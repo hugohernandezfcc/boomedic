@@ -108,7 +108,7 @@ return [
     */
 
     'menu' => [
-        'ACTIVIDADES'
+        'ACTIVIDADES',
         [
             'text'        => 'Consultas',
             'url'         => 'admin/pages',
