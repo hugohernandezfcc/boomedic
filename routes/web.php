@@ -20,3 +20,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
+Route::get('/bye', 'HomeController@logout')->name('bye');
