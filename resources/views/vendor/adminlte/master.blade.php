@@ -17,6 +17,33 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/AdminLTE.min.css') }}">
     
+    <style type="text/css">
+        .btn-secondary { 
+            color: #ffffff; 
+            background-color: #000000; 
+            border-color: #555; 
+        }
+        
+        .btn-secondary:hover, 
+        .btn-secondary.active, 
+        .open .dropdown-toggle.btn-secondary
+        { 
+            color: #ffffff; 
+            background-color: #333333; 
+            border-color: #444; 
+        }
+
+        .btn-secondary:focus, 
+        .btn-secondary:active, 
+        .open .dropdown-toggle.btn-secondary
+        { 
+            color: #ffffff; 
+            background-color: #696969; 
+            border-color: #444; 
+        }
+    </style>
+
+
     @if(config('adminlte.plugins.datatables'))
         <!-- DataTables -->
         <link rel="stylesheet" href="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.css">
