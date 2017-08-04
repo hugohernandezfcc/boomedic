@@ -108,79 +108,43 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'ACTIVIDADES'
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'Pages',
+            'text'        => 'Consultas',
             'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
+            'icon'        => 'heartbeat',
             'label_color' => 'success',
         ],
-        'ACCOUNT SETTINGS',
         [
-            'text' => 'Profile',
+            'text'        => 'Historial',
+            'url'         => 'admin/pages',
+            'icon'        => 'history',
+            'label'       => 0,
+            'label_color' => 'success',
+        ],
+        'CUENTA',
+        [
+            'text' => 'Perfil',
             'url'  => 'admin/settings',
             'icon' => 'user',
         ],
         [
-            'text' => 'Change Password',
+            'text' => 'Historia clinica',
             'url'  => 'admin/settings',
-            'icon' => 'lock',
+            'icon' => 'street-view',
         ],
         [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
+            'text' => 'Método de pago',
+            'url'  => 'admin/settings',
+            'icon' => 'credit-card',
         ],
-        'LABELS',
+        'TERMINOS Y CONDICIONES',
         [
-            'text'       => 'Important',
+            'text'       => 'Aviso de privacidad',
             'icon_color' => 'red',
         ],
         [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
+            'text'       => 'Ayuda',
             'icon_color' => 'aqua',
         ],
     ],

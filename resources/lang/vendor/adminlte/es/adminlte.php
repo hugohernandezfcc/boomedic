@@ -12,7 +12,7 @@ return [
     'i_forgot_my_password'        => '¿Olvidaste tu contraseña?',
     'i_already_have_a_membership' => 'Ya tengo una cuenta',
     'sign_in'                     => 'Entrar',
-    'log_out'                     => 'Cerrar',
+    'log_out'                     => 'Salir',
     'toggle_navigation'           => 'Navegación de palanca',
     'login_message'               => 'Inicio de sesión',
     'register_message'            => 'Registre una nueva cuenta',
