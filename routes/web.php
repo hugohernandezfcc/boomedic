@@ -16,8 +16,7 @@ Route::get('/', function () {
 });
 
 
+Route::get('/bye', 'HomeController@logout')->name('bye');
 
 Auth::routes();
-
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
-Route::get('/bye', 'HomeController@logout')->name('bye');

@@ -26,9 +26,4 @@ class HomeController extends Controller
         return view('medicalconsultations');
     }
 
-    public function logout()
-    {
-        return view('bye');
-    }
-
 }
