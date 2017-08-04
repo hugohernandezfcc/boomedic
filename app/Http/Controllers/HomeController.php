@@ -26,4 +26,11 @@ class HomeController extends Controller
         return view('medicalconsultations');
     }
 
+
+    public function logoutSession()
+    {   
+        Auth::logout();
+        return view('bye');
+    }
+
 }
