@@ -19,4 +19,5 @@ return [
     'password_reset_message'      => 'Restablecer la contraseña',
     'reset_password'              => 'Restablecer la contraseña',
     'send_password_reset_link'    => 'Enviar link de restablecimiento de contraseña',
+    'messageLogout'               => 'Se ha cerrado tu sesión.',
 ];
