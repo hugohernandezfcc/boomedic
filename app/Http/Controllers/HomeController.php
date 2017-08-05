@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -28,10 +29,11 @@ class HomeController extends Controller
     }
 
 
-    public function logoutSession()
-    {   
+    public function logout()
+    {
         Auth::logout();
-        return view('bye');
+        Session::flush();
+        return redirect('/bye');
     }
 
 }
