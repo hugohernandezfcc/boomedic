@@ -13,7 +13,7 @@ class UpdateTableUsers extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->string('userName');
             $table->string('firstName');
             $table->string('lastName');
