@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
+
+Auth::routes();
+
 Route::get('/bye', function () {
 	
 	Auth::logout();
@@ -22,6 +26,4 @@ Route::get('/bye', function () {
     return view('bye');
 });
 
-
-Auth::routes();
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
