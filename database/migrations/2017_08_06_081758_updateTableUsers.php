@@ -14,28 +14,28 @@ class UpdateTableUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('userName');
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->integer('age');
-            $table->enum('gender', ['male', 'female']);
-            $table->text('placeBirth');
-            $table->date('dateBirth');
-            $table->string('occupation');
-            $table->string('scholarship');
-            $table->string('maritalStatus');
-            $table->text('country');
-            $table->text('state');
-            $table->text('delegation');
-            $table->text('colony');
-            $table->text('street');
-            $table->text('streetNumber');
-            $table->text('interiorNumber');
-            $table->text('phone');
-            $table->text('officePhone');
-            $table->text('familyDoctor');
-            $table->text('phoneFd');
-            $table->longText('reasonForLastAppointment');
+            $table->string('userName')->nullable();
+            $table->string('firstName')->nullable();
+            $table->string('lastName')->nullable();
+            $table->integer('age')->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
+            $table->text('placeBirth')->nullable();
+            $table->date('dateBirth')->nullable();
+            $table->string('occupation')->nullable();
+            $table->string('scholarship')->nullable();
+            $table->string('maritalStatus')->nullable();
+            $table->text('country')->nullable();
+            $table->text('state')->nullable();
+            $table->text('delegation')->nullable();
+            $table->text('colony')->nullable();
+            $table->text('street')->nullable();
+            $table->text('streetNumber')->nullable();
+            $table->text('interiorNumber')->nullable();
+            $table->text('phone')->nullable();
+            $table->text('officePhone')->nullable();
+            $table->text('familyDoctor')->nullable();
+            $table->text('phoneFd')->nullable();
+            $table->longText('reasonForLastAppointment')->nullable();
         });
     }
 
