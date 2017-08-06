@@ -23,13 +23,16 @@
                         @endif
                     @else
                     <li class="{{ $subitem['top_nav_class'] }}">
-                        <a href="{{ $subitem['href'] }}">
-                            <i class="fa fa-{{ $subitem['icon'] or 'circle-o' }} {{ isset($subitem['icon_color']) ? 'text-' . $subitem['icon_color'] : '' }}"></i>
-                            {{ $subitem['text'] }}
-                            @if (isset($subitem['label']))
-                                <span class="label label-{{ $subitem['label_color'] or 'primary' }}">{{ $subitem['label'] }}</span>
-                            @endif
-                        </a>
+                        <form id="logout-form" action="{{ url( $subitem['href'] ) }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                            <a href="#">
+                                <i class="fa fa-{{ $subitem['icon'] or 'circle-o' }} {{ isset($subitem['icon_color']) ? 'text-' . $subitem['icon_color'] : '' }}"></i>
+                                {{ $subitem['text'] }}
+                                @if (isset($subitem['label']))
+                                    <span class="label label-{{ $subitem['label_color'] or 'primary' }}">{{ $subitem['label'] }}</span>
+                                @endif
+                            </a>
+                        </form>
                     </li>
                     @endif
                 @endforeach
