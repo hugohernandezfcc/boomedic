@@ -16,12 +16,12 @@ class CreateFamily extends Migration
         Schema::create('family', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('active_user')->unsigned();
-            $table->integer('passive_user')->unsigned();
+            $table->integer('activeUser')->unsigned();
+            $table->integer('passiveUser')->unsigned();
             $table->enum('relationship', ['mother', 'father', 'siblings', 'son', 'wife', 'husband', 'uncles', 'grandparents']);
 
-            $table->foreign('active_user')->references('id')->on('user');
-            $table->foreign('passive_user')->references('id')->on('user');
+            $table->foreign('active_user')->references('id')->on('users');
+            $table->foreign('passive_user')->references('id')->on('users');
 
             $table->timestamps();
         });

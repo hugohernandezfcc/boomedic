@@ -15,12 +15,15 @@ class CreateHistorySession extends Migration
     {
         Schema::create('historySession', function (Blueprint $table) {
             $table->increments('id');
-            
-            $table->string('Browser');
-            $table->string('IP');
-            $table->dateTime('DateIn');
-            $table->boolean('Status');
-            $table->dateTime('DateOut');
+
+            $table->string('browser');
+            $table->string('ip');
+            $table->dateTime('dateIn');
+            $table->boolean('status');
+            $table->dateTime('dateOut');
+
+            $table->integer('createdBy')->unsigned();
+            $table->foreign('createdBy')->references('id')->on('users');
 
             $table->timestamps();
         });
