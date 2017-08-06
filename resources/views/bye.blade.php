@@ -8,6 +8,8 @@
 @section('body_class', 'login-page')
 
 @section('body')
+    
+
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
@@ -18,6 +20,20 @@
         </div>
         <!-- /.login-box-body -->
     </div><!-- /.login-box -->
+
+    <script type="text/javascript">
+        
+    $(document).ready(function() {
+        console.log('Redireccionando....');
+
+
+        
+        setTimeout(function(){ window.location.href = '/bye'; }, 3000);
+
+    });
+
+    </script>
+
 @stop
 
 @section('adminlte_js')

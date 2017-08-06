@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('/bye', function () {
+	
+	Auth::logout();
+
     return view('bye');
 });
 
