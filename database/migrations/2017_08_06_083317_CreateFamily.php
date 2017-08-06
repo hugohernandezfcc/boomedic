@@ -19,9 +19,9 @@ class CreateFamily extends Migration
             $table->integer('activeUser')->unsigned();
             $table->integer('passiveUser')->unsigned();
             $table->enum('relationship', ['mother', 'father', 'siblings', 'son', 'wife', 'husband', 'uncles', 'grandparents']);
-
-            $table->foreign('active_user')->references('id')->on('users');
-            $table->foreign('passive_user')->references('id')->on('users');
+            $table->enum('activeUserStatus', ['active', 'inactive']);
+            $table->foreign('activeUser')->references('id')->on('users');
+            $table->foreign('passiveUser')->references('id')->on('users');
 
             $table->timestamps();
         });
