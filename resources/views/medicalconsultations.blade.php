@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>KEY:::2983eu239e8u239eu239e8u2938eu2938eu2389</h1>
+    <h1>{{KEY}}</h1>
 @stop
 
 @section('content')
