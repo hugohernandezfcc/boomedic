@@ -86,7 +86,7 @@ return [
     */
 
     'dashboard_url' => 'medicalconsultations',
-    'logout_url' => 'byes',
+    'logout_url' => 'bye',
     'logout_method' => null,
     'login_url' => 'login',
     'register_url' => 'register',
