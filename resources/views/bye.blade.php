@@ -21,18 +21,6 @@
         <!-- /.login-box-body -->
     </div><!-- /.login-box -->
 
-    <script type="text/javascript">
-        
-    $(document).ready(function() {
-        console.log('Redireccionando....');
-
-
-        
-        setTimeout(function(){ window.location.href = '/bye'; }, 3000);
-
-    });
-
-    </script>
 
 @stop
 
