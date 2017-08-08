@@ -69,6 +69,20 @@
 
 <script src="{{ asset('vendor/adminlte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+        //Datemask dd/mm/yyyy
+        //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
+    
+        //Date picker
+        $('#datepicker').datepicker({
+          autoclose: true
+        });
+    });
+</script>
+
 @if(config('adminlte.plugins.datatables'))
     <!-- DataTables -->
     <script src="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
