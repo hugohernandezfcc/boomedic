@@ -14,8 +14,7 @@ class CorrectingFieldsUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('dateBirth', 'birthDate');
-
+            $table->dropColumn('dateBirth');
         });
     }
 
