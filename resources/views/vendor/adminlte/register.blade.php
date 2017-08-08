@@ -29,8 +29,6 @@
                     @endif
                 </div>
 
-
-
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
                     <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="{{ trans('adminlte::adminlte.email') }}">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -41,12 +39,12 @@
                     @endif
                 </div>
 
-                <div class="form-group has-feedback {{ $errors->has('bithDate') ? 'has-error' : '' }}">
-                    <input type="date" name="bithDate" class="form-control" value="{{ old('bithDate') }}" placeholder="{{ trans('adminlte::adminlte.bithDate') }}">
+                <div class="form-group has-feedback {{ $errors->has('birthDate') ? 'has-error' : '' }}">
+                    <input type="text" name="birthDate" class="form-control" value="{{ old('birthDate') }}" placeholder="{{ trans('adminlte::adminlte.birthDate') }}" id="datepicker">
                     <span class="fa fa-birthday-cake"></span>
-                    @if ($errors->has('bithDate'))
+                    @if ($errors->has('birthDate'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('bithDate') }}</strong>
+                            <strong>{{ $errors->first('birthDate') }}</strong>
                         </span>
                     @endif
                 </div>
