@@ -78,7 +78,9 @@
     
         //Date picker
         $('#datepicker').datepicker({
-          autoclose: true
+            format: "dd/mm/yyyy",
+            language: "es",
+            autoclose: true
         });
 
 
