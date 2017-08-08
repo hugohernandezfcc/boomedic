@@ -10,5 +10,5 @@
     <p>The current UNIX timestamp is {{ time() }}.</p>
     <div id="app"></div>
 
-	<script src="{{ asset('react/app.js') }}"></script>
+	<script src="{{ asset('react/app-dist.js') }}"></script>
 @stop
