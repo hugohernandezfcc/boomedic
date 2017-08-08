@@ -20,7 +20,7 @@
 
 
                 <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
-                    <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="{{ trans('adminlte::adminlte.full_name') }}">
+                    <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="{{ trans('adminlte::adminlte.full_name') }}" id="name">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     @if ($errors->has('name'))
                         <span class="help-block">
@@ -41,7 +41,7 @@
 
                 <div class="form-group has-feedback {{ $errors->has('birthDate') ? 'has-error' : '' }}">
                     <input type="text" name="birthDate" class="form-control" value="{{ old('birthDate') }}" placeholder="{{ trans('adminlte::adminlte.birthDate') }}" id="datepicker">
-                    <span class="fa fa-birthday-cake"></span>
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     @if ($errors->has('birthDate'))
                         <span class="help-block">
                             <strong>{{ $errors->first('birthDate') }}</strong>
