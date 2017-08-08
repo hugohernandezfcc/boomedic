@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
+        
         return view('medicalconsultations', ['KEY' => 'Hugo hernández meneses']);
     }
 

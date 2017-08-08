@@ -106,10 +106,11 @@ return [
     'menu' => [
         'ACTIVIDADES',
         [
-            'text'        => 'Consultas',
+            'text'        => 'Consulta médica',
             'url'         => 'admin/pages',
             'icon'        => 'heartbeat',
             'label_color' => 'success',
+            'active'      => ['medicalconsultations']
         ],
         [
             'text'        => 'Historial',
