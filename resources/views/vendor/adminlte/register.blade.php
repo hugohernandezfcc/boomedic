@@ -39,12 +39,12 @@
                     @endif
                 </div>
 
-                <div class="form-group has-feedback {{ $errors->has('birthDate') ? 'has-error' : '' }}">
-                    <input type="text" name="birthDate" class="form-control" value="{{ old('birthDate') }}" placeholder="{{ trans('adminlte::adminlte.birthDate') }}" id="datepicker">
+                <div class="form-group has-feedback {{ $errors->has('birthdate') ? 'has-error' : '' }}">
+                    <input type="text" name="birthdate" class="form-control" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker">
                     <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-                    @if ($errors->has('birthDate'))
+                    @if ($errors->has('birthdate'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('birthDate') }}</strong>
+                            <strong>{{ $errors->first('birthdate') }}</strong>
                         </span>
                     @endif
                 </div>
