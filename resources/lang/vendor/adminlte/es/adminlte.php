@@ -6,7 +6,7 @@ return [
     'email'                       => 'Correo electrónico',
     'password'                    => 'Contraseña',
     'retype_password'             => 'Vuelva la contraseña',
-    'birthdate'                    => 'Fecha de nacimiento',
+    'birthdate'                   => 'Fecha de nacimiento',
     
 
     'remember_me'                 => 'Recuerdame',
