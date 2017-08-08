@@ -17,6 +17,11 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/AdminLTE.min.css') }}">
     
+    <!-- Adding React JS by CDN-->
+    <script crossorigin src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+
+
     <style type="text/css">
         .btn-secondary { 
             color: #ffffff; 
