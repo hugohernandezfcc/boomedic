@@ -80,6 +80,11 @@
         $('#datepicker').datepicker({
           autoclose: true
         });
+
+        $('.datepicker').datepicker().on('show', function(e) {
+            $(this).removeClass( "dropdown-menu" );
+        });
+
     });
 </script>
 
