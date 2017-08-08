@@ -81,7 +81,8 @@
           autoclose: true
         });
 
-        $('.datepicker').datepicker().on('show', function(e) {
+        $('#datepicker').datepicker().on('show', function(e) {
+            console.log('No hay café, vale madre.');
             $(this).removeClass( "dropdown-menu" );
         });
 
