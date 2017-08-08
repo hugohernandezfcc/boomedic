@@ -24,7 +24,7 @@ class CorrectingFieldsUsersCamelCase2 extends Migration
             $table->text('interiornumber')->nullable();
             $table->text('officephone')->nullable();
             $table->text('familydoctor')->nullable();
-            $table->text('phone')->nullable();
+            $table->text('mobile')->nullable();
             $table->longText('reasonforlastappointment')->nullable();
         });
     }
