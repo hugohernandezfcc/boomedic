@@ -81,8 +81,9 @@
           autoclose: true
         });
 
+
         $('#datepicker').datepicker().on('show', function(e) {
-            $(this).removeClass( "datepicker-dropdown" );
+            $('div.datepicker').removeClass( "datepicker-dropdown" );
         });
 
     });
