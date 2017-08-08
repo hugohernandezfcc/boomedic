@@ -41,6 +41,16 @@
                     @endif
                 </div>
 
+                <div class="form-group has-feedback {{ $errors->has('bithDate') ? 'has-error' : '' }}">
+                    <input type="date" name="bithDate" class="form-control" value="{{ old('bithDate') }}" placeholder="{{ trans('adminlte::adminlte.bithDate') }}">
+                    <span class="fa fa-birthday-cake"></span>
+                    @if ($errors->has('bithDate'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('bithDate') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
 
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                     <input type="password" name="password" class="form-control" placeholder="{{ trans('adminlte::adminlte.password') }}">

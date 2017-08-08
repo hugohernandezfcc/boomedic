@@ -6,6 +6,9 @@ return [
     'email'                       => 'Correo electrónico',
     'password'                    => 'Contraseña',
     'retype_password'             => 'Vuelva la contraseña',
+    'bithDate'                    => 'Fecha de nacimiento',
+    
+
     'remember_me'                 => 'Recuerdame',
     'register'                    => 'Registre',
     'register_a_new_membership'   => 'Registrarme',
