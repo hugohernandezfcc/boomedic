@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -48,7 +49,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required|string|max:255|min:5',
+                Rule::in([' '])
+            ],
             'birthdate' => 'required|date_format:"m/d/Y"|before:"now"',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -65,12 +69,41 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $age = date("Y") - substr($data['birthdate'], -4);
+        $explodeName = explode(' ', $data['name']);
+
+        $namesUser = array();
+
+        if(count($explodeName) == 2){
+
+            $namesUser['first'] = $explodeName[0];
+            $namesUser['last'] = $explodeName[1];
+        
+        }elseif (count($explodeName) == 3) {
+
+            $namesUser['first'] = $explodeName[0];
+            $namesUser['last'] = $explodeName[1] . ' ' . $explodeName[2];
+
+        }elseif (count($explodeName) == 4) {
+
+            $namesUser['first'] = $explodeName[0] . ' ' . $explodeName[1];
+            $namesUser['last'] = $explodeName[2] . ' ' . $explodeName[3];
+        }
+
+
+        $uName = explode('@', $data['email']);
+        $uName['username'] = $uName[0] . '@boomedic.mx';
 
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name'      => $data['name'],
+            'email'     => $data['email'],
             'birthdate' => $data['birthdate'],
-            'password' => bcrypt($data['password']),
+            'age'       => (int) $age,
+            'status'    => 'In Progress',
+            'firstname' => $namesUser['first'],
+            'lastname'  => $namesUser['last'],
+            'username'  => $uName['username'];
+            'password'  => bcrypt($data['password']),
         ]);
     }
 }
