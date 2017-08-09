@@ -150,12 +150,19 @@
 
 	            <!-- /.box-body -->
 			  	<div class="box-footer">
-			    	<button type="submit" class="btn btn-secondary btn-block btn-flat">
-		                Guardar
-		            </button>
+			    	<div class="row">
+			    		<div class="col-sm-6">
+				    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+				                Guardar
+				            </button>
+			            </div>
+			            <div class="col-sm-6">
+			            	&nbsp;
+			            </div>
+			    	</div>
 			  	</div>
 			  	<!-- box-footer -->
-	            
+
     		</form>
 
     		<script>
