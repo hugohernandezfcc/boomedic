@@ -107,7 +107,7 @@ return [
         'ACTIVIDADES',
         [
             'text'        => 'Consulta médica',
-            'url'         => 'admin/pages',
+            'url'         => 'medicalconsultations',
             'icon'        => 'heartbeat',
             'label_color' => 'success',
             'active'      => ['medicalconsultations']
