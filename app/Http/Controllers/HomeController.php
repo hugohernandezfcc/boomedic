@@ -25,11 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         
-
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
-            return redirect()->action('profile@edit', ['In Progress']);
+            return redirect('profile/In%20Progress');
         }else{
             return view('medicalconsultations', [
                     'KEY' => 'Hugo hernández meneses',

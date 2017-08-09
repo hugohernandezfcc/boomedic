@@ -24,4 +24,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
+
+Route::get('profile/{status}', [
+			'uses'	=>	'profile@edit',
+			'as'	=>	'profile'
+		]
+	);
+
 Route::post('/bye' , 'Auth\LoginController@logout');
