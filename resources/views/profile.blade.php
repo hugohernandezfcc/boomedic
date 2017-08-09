@@ -22,7 +22,7 @@
 	            </div>
     		@endif
 
-    		<form action="{{ url(user/update/{{ $userId }}) }}" method="post" class="form-horizontal">
+    		<form action="{{ url(user/update/$userId) }}" method="post" class="form-horizontal">
     			{{ csrf_field() }}
 
     			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
