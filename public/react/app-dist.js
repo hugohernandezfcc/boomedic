@@ -55,8 +55,7 @@ var Calculator = function (_React$Component) {
         React.createElement(
           'legend',
           null,
-          { $userId: $userId },
-          ' Enter temperature in Celsius:'
+          'Enter temperature in Celsius:'
         ),
         React.createElement('input', {
           value: temperature,
