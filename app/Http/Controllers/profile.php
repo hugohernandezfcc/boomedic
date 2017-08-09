@@ -69,8 +69,14 @@ class profile extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($status){
+
+        $users = DB::table('users')->where('id', Auth::id() )->get();
+
+        dd($users);
+
         return view('profile', [
-                'status' => $status
+                'status' => $status,
+                'firstname' => 's',
             ]
         );
     }
