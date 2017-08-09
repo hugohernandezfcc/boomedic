@@ -119,7 +119,7 @@
 				    </div>
 	            </div>
 
-	            <div class="row">
+	            <div class="row" style="width: 80%;">
 	            	<div class="col-sm-6">
 	            		<input type="text" class="form-control" id="street_number"  placeholder="Número de calle" disabled="true"></input>
 	            	</div>
