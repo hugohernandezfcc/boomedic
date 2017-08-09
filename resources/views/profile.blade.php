@@ -147,6 +147,15 @@
 		            	</div>
 		            </div>
 	            </div>
+
+	            <!-- /.box-body -->
+			  	<div class="box-footer">
+			    	<button type="submit" class="btn btn-secondary btn-block btn-flat">
+		                Guardar
+		            </button>
+			  	</div>
+			  	<!-- box-footer -->
+	            
     		</form>
 
     		<script>
@@ -220,11 +229,7 @@
 
 
 	  	</div>
-	  	<!-- /.box-body -->
-	  	<div class="box-footer">
-	    	aquí el botón que va a guardar los cambios.
-	  	</div>
-	  	<!-- box-footer -->
+	  	
 	</div>
 	<!-- /.box -->
 @stop
