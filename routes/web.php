@@ -33,6 +33,12 @@ Route::group(['prefix' => 'user'], function(){
 			'as'	=>	'edit'
 		]
 	);
+
+	Route::post('update/{id}', [
+			'uses'	=>	'profile@update',
+			'as'	=>	'update'
+		]
+	);
 });
 
 Route::post('/bye' , 'Auth\LoginController@logout');

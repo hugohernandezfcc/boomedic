@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\User;
 
 class profile extends Controller
 {
@@ -48,7 +49,7 @@ class profile extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -72,23 +73,9 @@ class profile extends Controller
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
 
-        
-                
-                
-                
-
-                // country
-                // state
-                // delegation
-                // colony
-                // street
-                // streetnumber
-                // interiornumber
-
-                // mobile
-                 
-
         return view('profile', [
+                'userId'    => Auth::id(),
+
                 'status'    => $status,
 
                 'firstname' => $users[0]->firstname,
@@ -116,7 +103,24 @@ class profile extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+
+        $user->status        = $request->status;         
+        $user->firstname     = $request->firstname;         
+        $user->lastname      = $request->lastname;         
+        $user->email         = $request->email;         
+        $user->username      = $request->username;         
+        $user->age           = $request->age;         
+        $user->gender        = $request->gender;         
+        $user->occupation    = $request->occupation;         
+        $user->scholarship   = $request->scholarship;         
+        $user->maritalstatus = $request->maritalstatus;         
+        $user->mobile        = $request->mobile;         
+        $user->status        = 'Complete';         
+
+
+        dd( $user );
     }
 
     /**
