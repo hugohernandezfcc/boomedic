@@ -22,7 +22,46 @@
 	            </div>
     		@endif
 
+    		<form method="post">
+    			{{ csrf_field() }}
 
+    			<div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Nombre</label>
+                	<div class="col-sm-10">
+                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
+                	</div>
+              	</div>
+
+
+              	<div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Apellidos</label>
+                	<div class="col-sm-10">
+                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}">
+                	</div>
+              	</div>
+
+              	<div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Corre electrónico</label>
+                	<div class="col-sm-10">
+                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
+                	</div>
+              	</div>
+
+              	<div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Nombre de usuario</label>
+                	<div class="col-sm-10">
+                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}">
+                	</div>
+              	</div>
+
+              	<div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Edad</label>
+                	<div class="col-sm-10">
+                  		<input type="text" name="age" class="form-control" id="age" value="{{ $age }}">
+                	</div>
+              	</div>
+
+    		</form>
 
 	    	aquí van a ir los campos
 	  	</div>

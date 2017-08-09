@@ -75,8 +75,13 @@ class profile extends Controller
         
 
         return view('profile', [
-                'status' => $status,
+                'status'    => $status,
+
                 'firstname' => $users[0]->firstname,
+                'lastname'  => $users[0]->lastname,
+                'email'     => $users[0]->email,
+                'username'  => $users[0]->username,
+                'age'       => $users[0]->age
             ]
         );
     }
