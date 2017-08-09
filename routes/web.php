@@ -28,7 +28,7 @@ Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsul
 
 Route::group(['prefix' => 'user'], function(){
 	// Por Método GET cacha el parametro status, "as" sirve para nombrar la ruta.
-	Route::get('profile/{status}', [
+	Route::get('edit/{status}', [
 			'uses'	=>	'profile@edit',
 			'as'	=>	'edit'
 		]
