@@ -123,7 +123,7 @@
 	            	<div class="row" style="width: 90%;" >
 		            	<div class="col-sm-6">
 		            		<input type="text" class="form-control" id="street_number"  placeholder="Número de calle" disabled="true"></input>
-		            	</div><br /> 
+		            	</div>
 		            	<div class="col-sm-6">
 		            		<input type="text" class="form-control" id="route" disabled="true">
 		            	</div>
@@ -132,7 +132,7 @@
 	              	<div class="row" style="width: 90%;" >
 		            	<div class="col-sm-6">
 		            		<input type="text" class="form-control" id="locality" disabled="true" placeholder="Ciudad"></input>
-		            	</div><br /> 
+		            	</div>
 		            	<div class="col-sm-6">
 		            		<input type="text" class="form-control" id="administrative_area_level_1" placeholder="Estado" disabled="true"></input>
 		            	</div>
@@ -141,7 +141,7 @@
 		            <div class="row" style="width: 90%;" >
 		            	<div class="col-sm-6">
 		            		<input type="text" class="form-control" id="postal_code" disabled="true" placeholder="Código postal"></input>
-		            	</div><br /> 
+		            	</div>
 		            	<div class="col-sm-6">
 		            		<input type="text" class="form-control" id="country" placeholder="País" disabled="true"></input>
 		            	</div>
