@@ -72,11 +72,11 @@ class profile extends Controller
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
 
-        dd($users);
+        
 
         return view('profile', [
                 'status' => $status,
-                'firstname' => 's',
+                'firstname' => $users[0]->firstname,
             ]
         );
     }

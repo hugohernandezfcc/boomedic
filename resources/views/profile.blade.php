@@ -16,14 +16,14 @@
 	  	<div class="box-body">
 	  		@if ($status == "In Progress")
 	  			<div class="callout callout-success">
-	                <h4>Ya casi estamos listos!!!</h4>
+	                <h4>Ya casi estamos listos {{ $firstname }} !!!</h4>
 
 	                <p>Confirma y completa la información que esta debajo</p>
 	            </div>
     		@endif
 
-    		
-    		
+
+
 	    	aquí van a ir los campos
 	  	</div>
 	  	<!-- /.box-body -->
