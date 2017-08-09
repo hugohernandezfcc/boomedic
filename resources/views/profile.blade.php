@@ -61,13 +61,15 @@
                 	</div>
               	</div>
 
-              	<hr style="height: 10px; color: red;" />
-              	Información personal
+              	<div class="callout callout-default">
+	                <b>Información personal</b>
+	            </div>
 
               	<br/>
-
-              	<hr style="height: 10px; color: red;" />
-              	Dirección
+              	<div class="callout callout-default">
+	                <b>Dirrección</b>
+	            </div>
+              	
 
     		</form>
 
