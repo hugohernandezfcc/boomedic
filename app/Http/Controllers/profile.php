@@ -130,7 +130,7 @@ class profile extends Controller
         $user->latitude      = $request->latitude; 
         $user->longitude     = $request->longitude; 
 
-        if ( $user->save() ) {
+        if ( $user->save() ) 
             return redirect('medicalconsultations');
     }
 
