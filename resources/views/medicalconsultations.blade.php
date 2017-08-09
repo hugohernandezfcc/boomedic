@@ -8,6 +8,8 @@
 
 @section('content')
     <p>The current UNIX timestamp is {{ time() }}.</p>
+    UserId: {{ $userId }}
+
     <div id="app"></div>
 
 	<script src="{{ asset('react/app-dist.js') }}"></script>
