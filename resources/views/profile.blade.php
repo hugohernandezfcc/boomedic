@@ -119,31 +119,33 @@
 				    </div>
 	            </div>
 
-	            <div class="row" style="width: 80%;" align="right">
-	            	<div class="col-sm-6">
-	            		<input type="text" class="form-control" id="street_number"  placeholder="Número de calle" disabled="true"></input>
-	            	</div>
-	            	<div class="col-sm-6">
-	            		<input type="text" class="form-control" id="route" disabled="true">
-	            	</div>
-	            </div>
-				<br />              	
-              	<div class="row" style="width: 80%;" align="right">
-	            	<div class="col-sm-6">
-	            		<input type="text" class="form-control" id="locality" disabled="true" placeholder="Ciudad"></input>
-	            	</div>
-	            	<div class="col-sm-6">
-	            		<input type="text" class="form-control" id="administrative_area_level_1" placeholder="Estado" disabled="true"></input>
-	            	</div>
-	            </div>
-				<br />
-	            <div class="row" style="width: 80%;" align="right">
-	            	<div class="col-sm-6">
-	            		<input type="text" class="form-control" id="postal_code" disabled="true" placeholder="Código postal"></input>
-	            	</div>
-	            	<div class="col-sm-6">
-	            		<input type="text" class="form-control" id="country" placeholder="País" disabled="true"></input>
-	            	</div>
+	            <div align="right">
+	            	<div class="row" style="width: 80%;" >
+		            	<div class="col-sm-6">
+		            		<input type="text" class="form-control" id="street_number"  placeholder="Número de calle" disabled="true"></input>
+		            	</div>
+		            	<div class="col-sm-6">
+		            		<input type="text" class="form-control" id="route" disabled="true">
+		            	</div>
+		            </div>
+					<br />              	
+	              	<div class="row" style="width: 80%;" >
+		            	<div class="col-sm-6">
+		            		<input type="text" class="form-control" id="locality" disabled="true" placeholder="Ciudad"></input>
+		            	</div>
+		            	<div class="col-sm-6">
+		            		<input type="text" class="form-control" id="administrative_area_level_1" placeholder="Estado" disabled="true"></input>
+		            	</div>
+		            </div>
+					<br />
+		            <div class="row" style="width: 80%;" >
+		            	<div class="col-sm-6">
+		            		<input type="text" class="form-control" id="postal_code" disabled="true" placeholder="Código postal"></input>
+		            	</div>
+		            	<div class="col-sm-6">
+		            		<input type="text" class="form-control" id="country" placeholder="País" disabled="true"></input>
+		            	</div>
+		            </div>
 	            </div>
     		</form>
 
