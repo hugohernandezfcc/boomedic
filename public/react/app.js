@@ -24,7 +24,7 @@ class Calculator extends React.Component {
     const temperature = this.state.temperature;
     return (
       <fieldset>
-        <legend>Enter temperature in Celsius:</legend>
+        <legend>{{$userId}} Enter temperature in Celsius:</legend>
         <input
           	value={temperature}
           	onChange={this.handleChange} />
