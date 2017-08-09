@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
-            return redirect('profile/In%20Progress');
+            return redirect('user/edit/In%20Progress');
         }else{
             return view('medicalconsultations', [
                     'KEY' => 'Hugo hernández meneses',
