@@ -151,12 +151,15 @@
 	            <!-- /.box-body -->
 			  	<div class="box-footer">
 			    	<div class="row">
-			    		<div class="col-sm-6">
+			    		<div class="col-sm-4">
+			            	&nbsp;
+			            </div>
+			    		<div class="col-sm-4">
 				    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 				                Guardar
 				            </button>
 			            </div>
-			            <div class="col-sm-6">
+			            <div class="col-sm-4">
 			            	&nbsp;
 			            </div>
 			    	</div>
