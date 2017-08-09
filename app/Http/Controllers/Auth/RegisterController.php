@@ -102,7 +102,7 @@ class RegisterController extends Controller
             'status'    => 'In Progress',
             'firstname' => $namesUser['first'],
             'lastname'  => $namesUser['last'],
-            'username'  => $uName['username'];
+            'username'  => $uName['username'],
             'password'  => bcrypt($data['password']),
         ]);
     }
