@@ -9,9 +9,4 @@
 @section('content')
     <p>The current UNIX timestamp is {{ time() }}.</p>
     UserId: {{ $userId }}
-
-    
-    
-    
-
 @stop
