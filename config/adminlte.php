@@ -110,6 +110,7 @@ return [
             'url'         => 'medicalconsultations',
             'icon'        => 'heartbeat',
             'label_color' => 'success',
+            'id'          => 'hdhm'
         ],
         [
             'text'        => 'Historial',
