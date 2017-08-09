@@ -95,9 +95,14 @@
 
 
         //$('#mobile').inputmask({"mask": "(999) 999-9999"});
+        $('form').on('keyup keypress', function(e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode === 13) { 
+                e.preventDefault();
+                return false;
+            }
+        });
     });
-
-
 </script>
 
 @if(config('adminlte.plugins.datatables'))
