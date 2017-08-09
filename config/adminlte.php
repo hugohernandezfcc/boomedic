@@ -107,10 +107,9 @@ return [
         'ACTIVIDADES',
         [
             'text'        => 'Consulta médica',
-            'url'         => 'medicalconsultations',
+            'url'         => 'https://afternoon-hollows-51469.herokuapp.com/medicalconsultations',
             'icon'        => 'heartbeat',
             'label_color' => 'success',
-            'id'          => 'hdhm'
         ],
         [
             'text'        => 'Historial',
