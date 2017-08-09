@@ -21,6 +21,9 @@
 	                <p>Confirma y completa la información que esta debajo</p>
 	            </div>
     		@endif
+
+    		
+    		
 	    	aquí van a ir los campos
 	  	</div>
 	  	<!-- /.box-body -->

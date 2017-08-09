@@ -25,11 +25,14 @@ Auth::routes();
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
 
-// Por Método GET cacha el parametro status, "as" sirve para nombrar la ruta.
-Route::get('profile/{status}', [
+
+Route::group(['prefix' => 'user'], function(){
+	// Por Método GET cacha el parametro status, "as" sirve para nombrar la ruta.
+	Route::get('profile/{status}', [
 			'uses'	=>	'profile@edit',
-			'as'	=>	'profile'
+			'as'	=>	'edit'
 		]
 	);
+});
 
 Route::post('/bye' , 'Auth\LoginController@logout');
