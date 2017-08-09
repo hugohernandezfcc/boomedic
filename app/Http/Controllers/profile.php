@@ -100,7 +100,7 @@ class profile extends Controller
 
                 'gender'       => $users[0]->gender,
                 'occupation'   => $users[0]->occupation,
-                'sholarship'   => $users[0]->sholarship,
+                'scholarship'   => $users[0]->scholarship
             ]
         );
     }
