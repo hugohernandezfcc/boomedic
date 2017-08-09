@@ -86,7 +86,7 @@ class profile extends Controller
                 // interiornumber
 
                 // mobile
-                // maritalstatus
+                 
 
         return view('profile', [
                 'status'    => $status,
@@ -98,9 +98,11 @@ class profile extends Controller
                 'age'       => $users[0]->age,
 
 
-                'gender'       => $users[0]->gender,
-                'occupation'   => $users[0]->occupation,
-                'scholarship'   => $users[0]->scholarship
+                'gender'        => $users[0]->gender,
+                'occupation'    => $users[0]->occupation,
+                'scholarship'   => $users[0]->scholarship,
+                'maritalstatus' => $users[0]->maritalstatus,
+                'mobile'        => $users[0]->mobile
             ]
         );
     }
