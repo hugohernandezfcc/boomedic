@@ -42,6 +42,9 @@ class User extends Authenticatable
         'familydoctor',             
         'mobile',                      
         'reasonforlastappointment', 
+        'postalcode',
+'latitude',
+'longitude',
     ];
 
     /**

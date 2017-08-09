@@ -118,7 +118,9 @@ class profile extends Controller
         $user->maritalstatus = $request->maritalstatus;         
         $user->mobile        = $request->mobile;         
         $user->status        = 'Complete';         
-
+        $user->postalcode    = $request->postalcode; 
+        $user->latitude      = $request->latitude; 
+        $user->longitude     = $request->longitude; 
 
         dd( $user );
     }

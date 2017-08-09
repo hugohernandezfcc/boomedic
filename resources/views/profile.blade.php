@@ -140,13 +140,16 @@
 					<br />
 		            <div class="row" style="width: 90%;" >
 		            	<div class="col-sm-6">
-		            		<input type="text" class="form-control" id="postal_code" disabled="true" placeholder="Código postal"></input>
+		            		<input type="text" class="form-control" name="postalcode" id="postal_code" disabled="true" placeholder="Código postal"></input>
 		            	</div>
 		            	<div class="col-sm-6">
 		            		<input type="text" class="form-control" name="country" id="country" placeholder="País" disabled="true"></input>
 		            	</div>
 		            </div>
 	            </div>
+
+	            <input type="hidden" name="latitude" id="latitudeFend" />
+	            <input type="hidden" name="longitude" id="longitudeFend" />
 
 	            <!-- /.box-body -->
 			  	<div class="box-footer">
@@ -227,6 +230,10 @@
 		              lat: position.coords.latitude,
 		              lng: position.coords.longitude
 		            };
+
+		            console.log(geolocation.lat + ' ' + geolocation.lng);
+		            document.getElementById('latitudeFend').value = geolocation.lat; 
+		            document.getElementById('longitudeFend').value = geolocation.lng;
 		            var circle = new google.maps.Circle({
 		              center: geolocation,
 		              radius: position.coords.accuracy
