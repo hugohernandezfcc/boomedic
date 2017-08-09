@@ -162,5 +162,6 @@
         setupClickListener('changetype-geocode', ['geocode']);
       }
     </script>
-    
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=places&callback=initMap"
+        async defer></script>
 @stop
