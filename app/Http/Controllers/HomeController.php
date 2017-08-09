@@ -23,8 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
-        
+        dd(Auth::id());
+
         return view('medicalconsultations', ['KEY' => 'Hugo hernández meneses']);
     }
 
