@@ -9,16 +9,18 @@
 @section('content')
     <div class="box">
 	  	<div class="box-header with-border">
-		    <h3 class="box-title">Información: {{$status}}</h3>
-		    <div class="box-tools pull-right">
-		      	<!-- Buttons, labels, and many other things can be placed here! -->
-		      	<!-- Here is a label for example -->
-		      	<span class="label label-primary">Label</span>
-		    </div>
+		    <h3 class="box-title">Información</h3>
 	    	<!-- /.box-tools -->
 	  	</div>
 	  	<!-- /.box-header -->
 	  	<div class="box-body">
+	  		@if (count($records) === 1)
+	  			<div class="callout callout-success">
+	                <h4>Ya casi estamos listos!!!</h4>
+
+	                <p>Confirma y completa la información que esta debajo</p>
+	            </div>
+    		@endif
 	    	aquí van a ir los campos
 	  	</div>
 	  	<!-- /.box-body -->

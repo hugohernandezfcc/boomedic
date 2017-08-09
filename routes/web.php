@@ -25,6 +25,7 @@ Auth::routes();
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
 
+// Por Método GET cacha el parametro status, "as" sirve para nombrar la ruta.
 Route::get('profile/{status}', [
 			'uses'	=>	'profile@edit',
 			'as'	=>	'profile'
