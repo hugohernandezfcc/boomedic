@@ -14,7 +14,7 @@
 	  	</div>
 	  	<!-- /.box-header -->
 	  	<div class="box-body">
-	  		@if (count($records) === 1)
+	  		@if ($status == "In Progress")
 	  			<div class="callout callout-success">
 	                <h4>Ya casi estamos listos!!!</h4>
 
