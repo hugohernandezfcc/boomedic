@@ -98,9 +98,9 @@ class profile extends Controller
                 'age'       => $users[0]->age,
 
 
-                'gender'       => $users[0]->gender
-                'occupation'   => $users[0]->occupation
-                'sholarship'   => $users[0]->sholarship
+                'gender'       => $users[0]->gender,
+                'occupation'   => $users[0]->occupation,
+                'sholarship'   => $users[0]->sholarship,
             ]
         );
     }
