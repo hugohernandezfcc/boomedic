@@ -77,16 +77,16 @@ class profile extends Controller
                 
                 
 
-                country
-                state
-                delegation
-                colony
-                street
-                streetnumber
-                interiornumber
+                // country
+                // state
+                // delegation
+                // colony
+                // street
+                // streetnumber
+                // interiornumber
 
-                mobile
-                maritalstatus
+                // mobile
+                // maritalstatus
 
         return view('profile', [
                 'status'    => $status,
