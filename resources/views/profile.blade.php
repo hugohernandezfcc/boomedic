@@ -22,7 +22,7 @@
 	            </div>
     		@endif
 
-    		<form method="post">
+    		<form method="post" class="form-horizontal">
     			{{ csrf_field() }}
 
     			<div class="form-group">
