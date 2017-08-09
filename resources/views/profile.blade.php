@@ -61,7 +61,7 @@
                 	</div>
               	</div>
 
-              	<div class="callout callout-default">
+              	<div class="callout callout-default" align="right">
 	                <b>Información personal</b>
 	            </div>
 
@@ -101,7 +101,7 @@
 
                 <div class="form-group">
                 	<label for="mobile" class="col-sm-2 control-label"># Móvil</label>
-                	<div class="input-group">
+                	<div class="col-sm-10">
 	                  	<input type="text" name="mobile" id="mobile" value="{{ $mobile }}" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
                 	</div>
                 	<!-- /.input group -->

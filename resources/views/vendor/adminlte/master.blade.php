@@ -88,9 +88,11 @@
             $('div.datepicker').removeClass( "datepicker-dropdown" );
         });
 
+
+        $('#mobile').inputmask({"mask": "(999) 999-9999"});
     });
 
-    
+
 </script>
 
 @if(config('adminlte.plugins.datatables'))
