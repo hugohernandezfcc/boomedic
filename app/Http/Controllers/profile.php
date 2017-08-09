@@ -73,6 +73,20 @@ class profile extends Controller
         $users = DB::table('users')->where('id', Auth::id() )->get();
 
         
+                
+                
+                
+
+                country
+                state
+                delegation
+                colony
+                street
+                streetnumber
+                interiornumber
+
+                mobile
+                maritalstatus
 
         return view('profile', [
                 'status'    => $status,
@@ -81,7 +95,12 @@ class profile extends Controller
                 'lastname'  => $users[0]->lastname,
                 'email'     => $users[0]->email,
                 'username'  => $users[0]->username,
-                'age'       => $users[0]->age
+                'age'       => $users[0]->age,
+
+
+                'gender'       => $users[0]->gender
+                'occupation'   => $users[0]->occupation
+                'sholarship'   => $users[0]->sholarship
             ]
         );
     }
