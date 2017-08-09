@@ -233,7 +233,7 @@
 
 		            console.log(geolocation.lat + ' ' + geolocation.lng);
 		            document.getElementById('latitudeFend').value = geolocation.lat; 
-		            document.getElementById('longitudeFend').value = geolocation.lng;
+		            document.getElementById('longitudeFend').value = geolocation.lat;
 		            var circle = new google.maps.Circle({
 		              center: geolocation,
 		              radius: position.coords.accuracy
@@ -245,8 +245,7 @@
 
 		      
 		    </script>
-		    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=places&callback=initAutocomplete"
-        async defer></script>
+
 
 	  	</div>
 	  	
