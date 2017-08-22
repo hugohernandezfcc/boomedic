@@ -30,7 +30,7 @@ class HomeController extends Controller
             return redirect('user/edit/In%20Progress');
         }else{
             return view('medicalconsultations', [
-                    'KEY' => 'Hugo hernández meneses',
+                    'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
                     'userId' => Auth::id()
                 ]
             );

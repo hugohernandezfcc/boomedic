@@ -28,7 +28,7 @@ class profile extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -60,7 +60,23 @@ class profile extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
+    }
+
+
+    public function redirecting($page)
+    {
+        switch ($page) {
+            case 'show':
+                return redirect('user/profile/' . Auth::id() ); //show
+                break;
+            
+            default:
+                return redirect('/medicalconsultations'); //medicalconsultations
+                break;
+        }
+
+        
     }
 
     /**

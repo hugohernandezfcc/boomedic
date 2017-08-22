@@ -3,7 +3,7 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-    <h1>{{$KEY}}</h1>
+    {{ $username }}
 @stop
 
 @section('content')

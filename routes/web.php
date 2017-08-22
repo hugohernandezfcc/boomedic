@@ -39,6 +39,19 @@ Route::group(['prefix' => 'user'], function(){
 			'as'	=>	'update'
 		]
 	);
+
+	Route::post('profile/{id}', [
+			'uses'	=>	'profile@show',
+			'as'	=>	'profile'
+		]
+	);
+
+	Route::post('redirecting/{page}', [
+			'uses'	=>	'profile@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+
 });
 
 Route::post('/bye' , 'Auth\LoginController@logout');
