@@ -60,7 +60,11 @@ class profile extends Controller
      */
     public function show($id)
     {
-        dd($id);
+        return view('profile', [
+                'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'userId' => Auth::id()
+            ]
+        );
     }
 
 

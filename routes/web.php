@@ -46,6 +46,7 @@ Route::group(['prefix' => 'user'], function(){
 		]
 	);
 
+	
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'profile@redirecting',
 			'as'	=>	'redirecting'

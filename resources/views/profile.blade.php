@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+
     <div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Información</h3>
@@ -21,6 +22,9 @@
 	                <p>Confirma y completa la información que esta debajo</p>
 	            </div>
     		@endif
+
+
+
 
     		<form action="/user/update/{{$userId}}" method="post" class="form-horizontal">
     			{{ csrf_field() }}
@@ -171,6 +175,9 @@
 
     		</form>
 
+
+
+
     		<script type="text/javascript">
 		      // This example displays an address form, using the autocomplete feature
 		      // of the Google Places API to help users fill in the information.
@@ -241,14 +248,9 @@
 		            autocomplete.setBounds(circle.getBounds());
 		          });
 		        }
-		      }
-
-		      
+		      }		      
 		    </script>
-
-
-	  	</div>
-	  	
+	  	</div>	  	
 	</div>
-	<!-- /.box -->
+
 @stop
