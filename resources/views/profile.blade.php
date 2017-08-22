@@ -26,7 +26,7 @@
 		        	<div class="form-control">{{ $username }}</div>
 		        	<input type="hidden" name="id" value="{{ $userId }}">
 		        	<div class="input-group-btn">
-			          	<button type="button" class="btn">
+			          	<button type="submit" class="btn">
 			          		<i class="fa fa-pencil text-muted"></i>
 			          	</button>
 		        	</div>
