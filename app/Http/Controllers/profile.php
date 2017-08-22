@@ -67,7 +67,7 @@ class profile extends Controller
         );
     }
 
-
+    
     public function redirecting($page)
     {
         switch ($page) {

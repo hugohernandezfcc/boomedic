@@ -20,7 +20,7 @@
 		    <!-- /.lockscreen-image -->
 
 		    <!-- lockscreen credentials (contains the form) -->
-		    <div class="lockscreen-credentials">
+		    <form class="lockscreen-credentials" action="/user/edit/complete" method="post">
 		      	<div class="input-group">
 		        	<div class="form-control">{{ $username }}</div>
 		        	<div class="input-group-btn">
@@ -28,8 +28,9 @@
 			          		<i class="fa fa-pencil text-muted"></i>
 			          	</button>
 		        	</div>
+		        	<input type="hidden" name="id" value="{{ $userId }}">
 		      	</div>
-		    </div>
+		    </form>
 		    <!-- /.lockscreen credentials -->
 
 		</div>
