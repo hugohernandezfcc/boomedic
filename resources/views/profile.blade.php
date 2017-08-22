@@ -21,14 +21,15 @@
 
 		    <!-- lockscreen credentials (contains the form) -->
 		    <form class="lockscreen-credentials" action="/user/edit/complete" method="post">
+		    	{{ csrf_field() }}
 		      	<div class="input-group">
 		        	<div class="form-control">{{ $username }}</div>
+		        	<input type="hidden" name="id" value="{{ $userId }}">
 		        	<div class="input-group-btn">
 			          	<button type="button" class="btn">
 			          		<i class="fa fa-pencil text-muted"></i>
 			          	</button>
 		        	</div>
-		        	<input type="hidden" name="id" value="{{ $userId }}">
 		      	</div>
 		    </form>
 		    <!-- /.lockscreen credentials -->
