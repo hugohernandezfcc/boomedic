@@ -121,7 +121,7 @@ return [
         'CUENTA',
         [
             'text' => 'Perfil',
-            'url'  => 'profile',
+            'url'  => 'user/redirecting/show',
             'icon' => 'user',
         ],
         [
