@@ -3,16 +3,16 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-    <h1>Perfil de usuario</h1>
+    <!-- <h1>Perfil de usuario</h1> -->
 @stop
 
 @section('content')
 
 	<br/>
 
-	@if( !empty($status) )
+	@if( empty($status) )
 
-		<div class="lockscreen-item">
+		<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 		    <!-- lockscreen image -->
 		    <div class="lockscreen-image">
 		      <img src="https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
