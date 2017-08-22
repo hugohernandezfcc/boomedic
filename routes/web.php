@@ -40,13 +40,13 @@ Route::group(['prefix' => 'user'], function(){
 		]
 	);
 
-	Route::post('profile/{id}', [
+	Route::get('profile/{id}', [
 			'uses'	=>	'profile@show',
 			'as'	=>	'profile'
 		]
 	);
-	
-	Route::post('redirecting/{page}', [
+
+	Route::get('redirecting/{page}', [
 			'uses'	=>	'profile@redirecting',
 			'as'	=>	'redirecting'
 		]
