@@ -8,6 +8,34 @@
 
 @section('content')
 
+	<br/>
+
+	@if( !empty($status) )
+
+		<div class="lockscreen-item">
+		    <!-- lockscreen image -->
+		    <div class="lockscreen-image">
+		      <img src="https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
+		    </div>
+		    <!-- /.lockscreen-image -->
+
+		    <!-- lockscreen credentials (contains the form) -->
+		    <div class="lockscreen-credentials">
+		      	<div class="input-group">
+		        	<div class="form-control">{{ $username }}</div>
+		        	<div class="input-group-btn">
+			          	<button type="button" class="btn">
+			          		<i class="fa fa-pencil text-muted"></i>
+			          	</button>
+		        	</div>
+		      	</div>
+		    </div>
+		    <!-- /.lockscreen credentials -->
+
+		</div>
+
+	@endif
+
     <div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Información</h3>
@@ -176,27 +204,7 @@
 	    		</form>
 
 	    	@else
-    			<div class="lockscreen-item">
-				    <!-- lockscreen image -->
-				    <div class="lockscreen-image">
-				      <img src="https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
-				    </div>
-				    <!-- /.lockscreen-image -->
-
-				    <!-- lockscreen credentials (contains the form) -->
-				    <div class="lockscreen-credentials">
-				      	<div class="input-group">
-				        	<div class="form-control">{{ $username }}</div>
-				        	<div class="input-group-btn">
-					          	<button type="button" class="btn">
-					          		<i class="fa fa-pencil text-muted"></i>
-					          	</button>
-				        	</div>
-				      	</div>
-				    </div>
-				    <!-- /.lockscreen credentials -->
-
-				</div>
+    			aquí va a ir el contenido.
     		@endif
 
 
