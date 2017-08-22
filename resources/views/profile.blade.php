@@ -16,7 +16,7 @@
 	  	<!-- /.box-header -->
 	  	<div class="box-body">
 	  		@if( !empty($status) )
-	  		
+
 		  		@if ($status == "In Progress")
 		  			<div class="callout callout-success">
 		                <h4>Ya casi estamos listos {{ $firstname }} !!!</h4>
@@ -175,6 +175,28 @@
 
 	    		</form>
 
+	    	@else
+    			<div class="lockscreen-item">
+				    <!-- lockscreen image -->
+				    <div class="lockscreen-image">
+				      <img src="https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
+				    </div>
+				    <!-- /.lockscreen-image -->
+
+				    <!-- lockscreen credentials (contains the form) -->
+				    <div class="lockscreen-credentials">
+				      	<div class="input-group">
+				        	<div class="form-control">{{ $username }}</div>
+				        	<div class="input-group-btn">
+					          	<button type="button" class="btn">
+					          		<i class="fa fa-pencil text-muted"></i>
+					          	</button>
+				        	</div>
+				      	</div>
+				    </div>
+				    <!-- /.lockscreen credentials -->
+
+				</div>
     		@endif
 
 
