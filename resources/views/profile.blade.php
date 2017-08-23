@@ -230,31 +230,77 @@
 		        <div class="nav-tabs-custom">
 		            <ul class="nav nav-tabs">
 		              	<li class="active"><a href="#tab_1" data-toggle="tab">Información personal</a></li>
-		              	<li><a href="#tab_2" data-toggle="tab">Historia clinica</a></li>
+		              	<li><a href="#tab_2" data-toggle="tab">Familia</a></li>
 		              	<li><a href="#tab_3" data-toggle="tab">Dirección de usuario</a></li>
 		            </ul>
 		            <div class="tab-content">
 		              	<div class="tab-pane active" id="tab_1">
+
+
 			                <div class="row">
 			                	<div class="col-sm-4">
 			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Nombre:</b></div>
-			                			<div class="col-sm-6" align="left">Hugo Hernández</div>
+			                			<div class="col-sm-6" align="left"><b>Corre electrónico:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $email }}</div>
 			                		</div>
 			                	</div>
 			                	<div class="col-sm-4">
 			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Nombre:</b></div>
-			                			<div class="col-sm-6" align="left">Hugo Hernández</div>
+			                			<div class="col-sm-6" align="left"><b>Nombre de usuario:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $username }}</div>
 			                		</div>
 			                	</div>
 			                	<div class="col-sm-4">
 			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Nombre:</b></div>
-			                			<div class="col-sm-6" align="left">Hugo Hernández</div>
+			                			<div class="col-sm-6" align="left"><b>Edad:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $age }}</div>
 			                		</div>
 			                	</div>
 			                </div>
+
+			                <div class="row">
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Ocupación:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $occupation }}</div>
+			                		</div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Genero:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $gender }}</div>
+			                		</div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Escolaridad:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $scholarship }}</div>
+			                		</div>
+			                	</div>
+			                </div>
+
+			                <div class="row">
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Estado civil:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $maritalstatus }}</div>
+			                		</div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b># Móvil:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $mobile }}</div>
+			                		</div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Ultima modificación:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $updated_at }}</div>
+			                		</div>
+			                	</div>
+			                </div>
+
+
 		              	</div>
 		              	<div class="tab-pane" id="tab_2">
 		                	the individual languages.
@@ -265,6 +311,9 @@
 		            </div>
 		        </div>
     		@endif
+
+
+
 
 
 

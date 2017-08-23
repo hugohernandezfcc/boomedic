@@ -46,7 +46,7 @@ Route::group(['prefix' => 'user'], function(){
 		]
 	);
 
-	
+
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'profile@redirecting',
 			'as'	=>	'redirecting'
@@ -55,4 +55,4 @@ Route::group(['prefix' => 'user'], function(){
 
 });
 
-Route::post('/bye' , 'Auth\LoginController@logout');
+Route::get('/bye' , 'Auth\LoginController@logout');

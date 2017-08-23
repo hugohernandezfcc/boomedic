@@ -56,6 +56,7 @@ class RegisterController extends Controller
         ]);
     }
 
+
     /**
      *  
      *  
