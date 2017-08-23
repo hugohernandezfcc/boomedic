@@ -235,19 +235,35 @@
 		            </ul>
 		            <div class="tab-content">
 		              	<div class="tab-pane active" id="tab_1">
-		                <b>How to use:</b>
-
-		                Exactly like the original bootstrap tabs except you should use
-		              </div>
-		              <div class="tab-pane" id="tab_2">
-		                the individual languages.
-		              </div>
-		              <div class="tab-pane" id="tab_3">
-		                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-		                
-		              </div>
+			                <div class="row">
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="center"><b>Nombre:</b></div>
+			                			<div class="col-sm-6" align="center">Hugo Hernández</div>
+			                		</div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="center"><b>Nombre:</b></div>
+			                			<div class="col-sm-6" align="center">Hugo Hernández</div>
+			                		</div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="center"><b>Nombre:</b></div>
+			                			<div class="col-sm-6" align="center">Hugo Hernández</div>
+			                		</div>
+			                	</div>
+			                </div>
+		              	</div>
+		              	<div class="tab-pane" id="tab_2">
+		                	the individual languages.
+		              	</div>
+		              	<div class="tab-pane" id="tab_3">
+		                	Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		              	</div>
 		            </div>
-		          </div>
+		        </div>
     		@endif
 
 
