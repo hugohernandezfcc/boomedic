@@ -43,8 +43,8 @@ class User extends Authenticatable
         'mobile',                      
         'reasonforlastappointment', 
         'postalcode',
-'latitude',
-'longitude',
+        'latitude',
+        'longitude',
     ];
 
     /**

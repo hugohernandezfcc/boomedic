@@ -127,8 +127,8 @@
 	                  <label for="maritalstatus" class="col-sm-2 control-label">Estado civil</label>
 	                  <div class="col-sm-10">
 		                  <select class="form-control" name="maritalstatus">
-		                    <option value="female">Soltero</option>
-		                    <option value="male">Casado</option>
+		                    <option value="1">Soltero</option>
+		                    <option value="2">Casado</option>
 		                  </select>
 	                  </div>
 	                </div>
