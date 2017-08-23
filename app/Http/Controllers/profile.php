@@ -83,6 +83,7 @@ class profile extends Controller
                 'scholarship'   => $users[0]->scholarship,
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
+                'updated_at'    => $users[0]->updated_at,
 
                 /** ADDRESS FISICAL USER  */
 

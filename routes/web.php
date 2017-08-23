@@ -55,4 +55,4 @@ Route::group(['prefix' => 'user'], function(){
 
 });
 
-Route::get('/bye' , 'Auth\LoginController@logout');
+Route::post('/bye' , 'Auth\LoginController@logout');
