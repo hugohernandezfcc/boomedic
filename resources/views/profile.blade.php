@@ -110,8 +110,8 @@
 	                  <label for="gender" class="col-sm-2 control-label">Genero</label>
 	                  <div class="col-sm-10">
 		                  <select class="form-control" name="gender">
-		                    <option value="female">Femenino</option>
-		                    <option value="male">Masculino</option>
+		                    <option value="female" {{ ($gender == 'female') ? 'selected' : '' }}>Femenino</option>
+		                    <option value="male"   {{ ($gender == 'male')   ? 'selected' : '' }}>Masculino</option>
 		                  </select>
 	                  </div>
 	                </div>
@@ -127,8 +127,8 @@
 	                  <label for="maritalstatus" class="col-sm-2 control-label">Estado civil</label>
 	                  <div class="col-sm-10">
 		                  <select class="form-control" name="maritalstatus">
-		                    <option value="1">Soltero</option>
-		                    <option value="2">Casado</option>
+		                    <option value="single"  {{ ($maritalstatus == 'single') ? 'selected' : '' }}>Soltero</option>
+		                    <option value="married" {{ ($maritalstatus == 'married') ? 'selected' : '' }}>Casado</option>
 		                  </select>
 	                  </div>
 	                </div>
