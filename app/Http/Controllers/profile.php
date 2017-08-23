@@ -67,7 +67,6 @@ class profile extends Controller
                  /** SYSTEM INFORMATION */
 
                 'userId'        => Auth::id(),
-                'status'        => $users[0]->status,
 
                 /** INFORMATION USER */
 
