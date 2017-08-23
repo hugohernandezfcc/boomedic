@@ -67,7 +67,7 @@ class profile extends Controller
         );
     }
 
-    
+
     public function redirecting($page)
     {
         switch ($page) {
@@ -94,16 +94,15 @@ class profile extends Controller
         $users = DB::table('users')->where('id', Auth::id() )->get();
 
         return view('profile', [
-                'userId'    => Auth::id(),
+                'userId'        => Auth::id(),
 
-                'status'    => $status,
+                'status'        => $status,
 
-                'firstname' => $users[0]->firstname,
-                'lastname'  => $users[0]->lastname,
-                'email'     => $users[0]->email,
-                'username'  => $users[0]->username,
-                'age'       => $users[0]->age,
-
+                'firstname'     => $users[0]->firstname,
+                'lastname'      => $users[0]->lastname,
+                'email'         => $users[0]->email,
+                'username'      => $users[0]->username,
+                'age'           => $users[0]->age,
 
                 'gender'        => $users[0]->gender,
                 'occupation'    => $users[0]->occupation,

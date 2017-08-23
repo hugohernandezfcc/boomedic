@@ -188,17 +188,31 @@
 		            <!-- /.box-body -->
 				  	<div class="box-footer">
 				    	<div class="row">
-				    		<div class="col-sm-4">
-				            	&nbsp;
-				            </div>
-				    		<div class="col-sm-4">
-					    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
-					                Guardar
-					            </button>
-				            </div>
-				            <div class="col-sm-4">
-				            	&nbsp;
-				            </div>
+
+				    		@if ($status == "In Progress")
+					    		<div class="col-sm-4">
+					            	&nbsp;
+					            </div>
+					    		<div class="col-sm-4">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						                Guardar
+						            </button>
+					            </div>
+					            <div class="col-sm-4">
+					            	&nbsp;
+					            </div>
+					       	@else 
+					       		<div class="col-sm-6">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						                Guardar
+						            </button>
+					            </div>
+					    		<div class="col-sm-6">
+					    			<button type="submit" class="btn btn-default btn-block btn-flat">
+						                Cancelar
+						            </button>
+					            </div>
+							@endif
 				    	</div>
 				  	</div>
 				  	<!-- box-footer -->
