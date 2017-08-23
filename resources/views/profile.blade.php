@@ -202,15 +202,21 @@
 					            	&nbsp;
 					            </div>
 					       	@else 
-					       		<div class="col-sm-6">
+					       		<div class="col-sm-4">
+					            	&nbsp;
+					            </div>
+					       		<div class="col-sm-4">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
 						            </button>
 					            </div>
-					    		<div class="col-sm-6">
+					    		<div class="col-sm-4">
 					    			<button type="submit" class="btn btn-default btn-block btn-flat">
 						                Cancelar
 						            </button>
+					            </div>
+					            <div class="col-sm-4">
+					            	&nbsp;
 					            </div>
 							@endif
 				    	</div>
