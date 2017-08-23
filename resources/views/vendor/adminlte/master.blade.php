@@ -48,6 +48,16 @@
             background-color: #696969; 
             border-color: #444; 
         }
+
+        .nav-tabs-custom>.nav-tabs>li.active {
+            border-top-color: #222d32;
+        }
+
+        .nav-tabs-custom>.nav-tabs>li {
+            border-top: 3px solid rgb(210, 214, 222);
+            margin-bottom: -2px;
+            margin-right: 5px;
+        }
     </style>
 
 
