@@ -60,9 +60,43 @@ class profile extends Controller
      */
     public function show($id)
     {
+        $users = DB::table('users')->where('id', Auth::id() )->get();
         return view('profile', [
                 'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'userId' => Auth::id()
+
+                 /** SYSTEM INFORMATION */
+
+                'userId'        => Auth::id(),
+                'status'        => $users[0]->status,
+
+                /** INFORMATION USER */
+
+                'firstname'     => $users[0]->firstname,
+                'lastname'      => $users[0]->lastname,
+                'email'         => $users[0]->email,
+                'username'      => $users[0]->username,
+                'age'           => $users[0]->age,
+
+                /** PERSONAL INFORMATION */
+
+                'gender'        => $users[0]->gender,
+                'occupation'    => $users[0]->occupation,
+                'scholarship'   => $users[0]->scholarship,
+                'maritalstatus' => $users[0]->maritalstatus,
+                'mobile'        => $users[0]->mobile,
+
+                /** ADDRESS FISICAL USER  */
+
+                'country'       => (   empty($users[0]->country)        ) ? '' : $users[0]->country, 
+                'state'         => (   empty($users[0]->state)          ) ? '' : $users[0]->state, 
+                'delegation'    => (   empty($users[0]->delegation)     ) ? '' : $users[0]->delegation, 
+                'colony'        => (   empty($users[0]->colony)         ) ? '' : $users[0]->colony, 
+                'street'        => (   empty($users[0]->street)         ) ? '' : $users[0]->street, 
+                'streetnumber'  => (   empty($users[0]->streetnumber)   ) ? '' : $users[0]->streetnumber, 
+                'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
+                'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
+                'longitude'     => (   empty($users[0]->longitude)      ) ? '' : $users[0]->longitude,
+                'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude
             ]
         );
     }
