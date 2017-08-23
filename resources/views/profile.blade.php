@@ -40,7 +40,7 @@
 
     <div class="box">
 	  	<div class="box-header with-border">
-		    <h3 class="box-title">Información</h3>
+		    <h3 class="box-title">Información de usuario</h3>
 	    	<!-- /.box-tools -->
 	  	</div>
 	  	<!-- /.box-header -->
@@ -226,7 +226,28 @@
 	    		</form>
 
 	    	@else
-    			aquí va a ir el contenido.
+    			<!-- Custom Tabs -->
+		        <div class="nav-tabs-custom">
+		            <ul class="nav nav-tabs">
+		              	<li class="active"><a href="#tab_1" data-toggle="tab">Información personal</a></li>
+		              	<li><a href="#tab_2" data-toggle="tab">Historia clinica</a></li>
+		              	<li><a href="#tab_3" data-toggle="tab">Dirección de usuario</a></li>
+		            </ul>
+		            <div class="tab-content">
+		              	<div class="tab-pane active" id="tab_1">
+		                <b>How to use:</b>
+
+		                Exactly like the original bootstrap tabs except you should use
+		              </div>
+		              <div class="tab-pane" id="tab_2">
+		                the individual languages.
+		              </div>
+		              <div class="tab-pane" id="tab_3">
+		                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		                
+		              </div>
+		            </div>
+		          </div>
     		@endif
 
 
