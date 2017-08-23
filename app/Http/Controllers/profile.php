@@ -94,9 +94,13 @@ class profile extends Controller
         $users = DB::table('users')->where('id', Auth::id() )->get();
 
         return view('profile', [
-                'userId'        => Auth::id(),
 
+                /** SYSTEM INFORMATION */
+
+                'userId'        => Auth::id(),
                 'status'        => $status,
+
+                /** INFORMATION USER */
 
                 'firstname'     => $users[0]->firstname,
                 'lastname'      => $users[0]->lastname,
@@ -104,11 +108,25 @@ class profile extends Controller
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
 
+                /** PERSONAL INFORMATION */
+
                 'gender'        => $users[0]->gender,
                 'occupation'    => $users[0]->occupation,
                 'scholarship'   => $users[0]->scholarship,
                 'maritalstatus' => $users[0]->maritalstatus,
-                'mobile'        => $users[0]->mobile
+                'mobile'        => $users[0]->mobile,
+
+                /** ADDRESS FISICAL USER  */
+
+                'country'       => $users[0]->country,
+                'state'         => $users[0]->state,
+                'delegation'    => $users[0]->delegation,
+                'colony'        => $users[0]->colony,
+                'street'        => $users[0]->street,
+                'streetnumber'  => $users[0]->streetnumber,
+                'interiornumber'=> $users[0]->interiornumber
+                'postalcode'    => $users[0]->postalcode
+
             ]
         );
     }
