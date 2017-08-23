@@ -238,20 +238,20 @@
 			                <div class="row">
 			                	<div class="col-sm-4">
 			                		<div class="row">
-			                			<div class="col-sm-6" align="center"><b>Nombre:</b></div>
-			                			<div class="col-sm-6" align="center">Hugo Hernández</div>
+			                			<div class="col-sm-6" align="left"><b>Nombre:</b></div>
+			                			<div class="col-sm-6" align="left">Hugo Hernández</div>
 			                		</div>
 			                	</div>
 			                	<div class="col-sm-4">
 			                		<div class="row">
-			                			<div class="col-sm-6" align="center"><b>Nombre:</b></div>
-			                			<div class="col-sm-6" align="center">Hugo Hernández</div>
+			                			<div class="col-sm-6" align="left"><b>Nombre:</b></div>
+			                			<div class="col-sm-6" align="left">Hugo Hernández</div>
 			                		</div>
 			                	</div>
 			                	<div class="col-sm-4">
 			                		<div class="row">
-			                			<div class="col-sm-6" align="center"><b>Nombre:</b></div>
-			                			<div class="col-sm-6" align="center">Hugo Hernández</div>
+			                			<div class="col-sm-6" align="left"><b>Nombre:</b></div>
+			                			<div class="col-sm-6" align="left">Hugo Hernández</div>
 			                		</div>
 			                	</div>
 			                </div>
