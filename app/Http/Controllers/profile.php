@@ -118,14 +118,14 @@ class profile extends Controller
 
                 /** ADDRESS FISICAL USER  */
 
-                'country'       => $users[0]->country,
-                'state'         => $users[0]->state,
-                'delegation'    => $users[0]->delegation,
-                'colony'        => $users[0]->colony,
-                'street'        => $users[0]->street,
-                'streetnumber'  => $users[0]->streetnumber,
-                'interiornumber'=> $users[0]->interiornumber
-                'postalcode'    => $users[0]->postalcode
+                'country'       => (   empty($users[0]->country)        ) ? '' : $users[0]->country, 
+                'state'         => (   empty($users[0]->state)          ) ? '' : $users[0]->state, 
+                'delegation'    => (   empty($users[0]->delegation)     ) ? '' : $users[0]->delegation, 
+                'colony'        => (   empty($users[0]->colony)         ) ? '' : $users[0]->colony, 
+                'street'        => (   empty($users[0]->street)         ) ? '' : $users[0]->street, 
+                'streetnumber'  => (   empty($users[0]->streetnumber)   ) ? '' : $users[0]->streetnumber, 
+                'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
+                'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode  
 
             ]
         );
