@@ -211,9 +211,9 @@
 						            </button>
 					            </div>
 					    		<div class="col-sm-4">
-					    			<button type="submit" class="btn btn-default btn-block btn-flat">
+					    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
 						                Cancelar
-						            </button>
+						            </a>
 					            </div>
 					            <div class="col-sm-4">
 					            	&nbsp;
