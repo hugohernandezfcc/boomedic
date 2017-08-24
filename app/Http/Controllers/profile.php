@@ -202,7 +202,7 @@ class profile extends Controller
         $user->longitude     = $request->longitude; 
 
         if ( $user->save() ) 
-            return redirect('medicalconsultations');
+            return redirect('user/profile/' . $id );
     }
 
     /**

@@ -235,7 +235,7 @@
 		            </ul>
 		            <div class="tab-content">
 		              	<div class="tab-pane active" id="tab_1">
-
+		              		<br/>
 
 			                <div class="row">
 			                	<div class="col-sm-4">
@@ -303,7 +303,7 @@
 
 		              	</div>
 		              	<div class="tab-pane" id="tab_2">
-		                	the individual languages.
+		                	space..
 		              	</div>
 		              	<div class="tab-pane" id="tab_3" style="height: 250px;">
 		              		<div id="mapAddressUser" ></div>
