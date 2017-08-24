@@ -58,6 +58,11 @@
             margin-bottom: -2px;
             margin-right: 5px;
         }
+
+        #mapAddressUser {
+            height: 50%;
+            width: 95%;
+        }
     </style>
 
 
