@@ -319,12 +319,6 @@
 
     		<script type="text/javascript">
 
-    			$(document).ready(function(){
-				  $("a").on('click touchstart',function(){
-				    $(this).hide();
-				    $(".hidden-div").css("display","block");
-				  });
-				});
 
     			window.onload = function(){
     				initAutocomplete();

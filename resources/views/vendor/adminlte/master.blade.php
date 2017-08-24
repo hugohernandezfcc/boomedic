@@ -117,6 +117,15 @@
             }
         });
     });
+
+    $(document).ready(function(){
+      $("a").on('click touchstart',function(){
+        $(this).hide();
+        $(".hidden-div").css("display","block");
+      });
+    });
+
+
 </script>
 
 @if(config('adminlte.plugins.datatables'))
