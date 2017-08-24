@@ -29,9 +29,10 @@ class payments extends Controller
     public function index()
     {
         $cards = DB::table('paymentsmethods')->where('owner', Auth::id() )->get();
-        
+
         return view('payments', [
                 'cards' => $cards,
+                'userId'        => Auth::id(),
                 'username' => DB::table('users')->where('id', Auth::id() )->value('name')
             ]
         );
