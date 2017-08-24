@@ -64,7 +64,18 @@ class payments extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pmethods = new paymentsmethods;
+
+        $pmethods->provider      = 'visa';
+        $pmethods->typemethod    = $request->typemethod;
+        $pmethods->country       = $request->country;
+        $pmethods->dateexpired   = $request->dateexpired;
+        $pmethods->cvv           = $request->cvv;
+        $pmethods->cardnumber    = $request->cardnumber;
+        $pmethods->owner         = Auth::id();
+
+        if ( $pmethods->save() ) 
+            return redirect('index');
     }
 
     /**

@@ -69,6 +69,14 @@ Route::group(['prefix' => 'payment'], function(){
 			'as'	=>	'create'
 		]
 	);
+
+	Route::post('store', [
+			'uses'	=>	'payments@store',
+			'as'	=>	'store'
+		]
+	);
+
+
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'payments@redirecting',
 			'as'	=>	'redirecting'
