@@ -306,7 +306,7 @@
 		                	the individual languages.
 		              	</div>
 		              	<div class="tab-pane" id="tab_3">
-		                	Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		              		<div id="mapAddressUser"></div>
 		              	</div>
 		            </div>
 		        </div>
@@ -397,7 +397,7 @@
 		      }	
 
 		      function initMapAddressUser() {
-		        var map = new google.maps.Map(document.getElementById('map'), {
+		        var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
 		          zoom: 4,
 		          center: {lat: "{{ $longitude }}" , lng: "{{ $latitude }}" }
 		        });
