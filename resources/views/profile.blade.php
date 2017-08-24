@@ -319,6 +319,13 @@
 
     		<script type="text/javascript">
 
+    			$(document).ready(function(){
+				  $("a").on('click touchstart',function(){
+				    $(this).hide();
+				    $(".hidden-div").css("display","block");
+				  });
+				});
+
     			window.onload = function(){
     				initAutocomplete();
     			};
@@ -400,13 +407,13 @@
 		    @if( empty($status) )
 
 		    	<script type="text/javascript">
-		    		var counter = 0;
+		    		var counter = -1;
 
 			      	function initMapAddressUser() {
 
 				      	if(!counter > 0){
 				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
-					          zoom: 16,
+					          zoom: 15,
 					          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
 					        });
 
