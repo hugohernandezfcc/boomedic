@@ -408,7 +408,7 @@
 
 				      	if(!counter > 0){
 				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
-					          zoom: 15,
+					          zoom: 7,
 					          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
 					        });
 
