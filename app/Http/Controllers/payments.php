@@ -75,7 +75,7 @@ class payments extends Controller
         $pmethods->owner         = Auth::id();
 
         if ( $pmethods->save() ) 
-            return redirect('index');
+            return redirect('payment/index');
     }
 
     /**
