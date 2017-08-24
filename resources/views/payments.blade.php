@@ -19,7 +19,7 @@
 	    <!-- /.lockscreen-image -->
 
 	    <!-- lockscreen credentials (contains the form) -->
-	    <form class="lockscreen-credentials" action="payment/create" method="get">
+	    <form class="lockscreen-credentials" action="create" method="get">
 	    	{{ csrf_field() }}
 	      	<div class="input-group">
 	        	<div class="form-control">{{ $username }}</div>
@@ -128,12 +128,12 @@
 	                	
 	                	function showMethodRegister(argument) {
 	                		if(argument == 'card'){
-								document.getElementById('card').style.display = "block";
-	                			document.getElementById('paypal').style.display = "none";
+								document.getElementById('cardFields').style.display = "block";
+	                			document.getElementById('paypalButton').style.display = "none";
 
 	                		}else if(argument == 'paypal'){
-	                			document.getElementById('paypal').style.display = "block";
-								document.getElementById('card').style.display = "none";
+	                			document.getElementById('paypalButton').style.display = "block";
+								document.getElementById('cardFields').style.display = "none";
 	                		}
 	                	}
 
