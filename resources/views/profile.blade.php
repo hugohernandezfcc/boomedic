@@ -318,6 +318,12 @@
 
 
     		<script type="text/javascript">
+
+    			window.onload = function(){
+    				initAutocomplete();
+    			};
+
+
 		      // This example displays an address form, using the autocomplete feature
 		      // of the Google Places API to help users fill in the information.
 
