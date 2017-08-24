@@ -112,9 +112,7 @@ class profile extends Controller
             default:
                 return redirect('/medicalconsultations'); //medicalconsultations
                 break;
-        }
-
-        
+        }   
     }
 
     /**

@@ -58,7 +58,17 @@ Route::group(['prefix' => 'user'], function(){
 
 Route::group(['prefix' => 'payment'], function(){
 
-	
+	Route::get('index', [
+			'uses'	=>	'payments@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'payments@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
 
 });
 

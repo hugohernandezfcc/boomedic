@@ -116,6 +116,10 @@
                 return false;
             }
         });
+        
+        if (document.getElementById('paymentmethodtable')) {
+            $('#paymentmethodtable').DataTable();
+        }
     });
 
 

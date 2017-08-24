@@ -13,7 +13,11 @@ class payments extends Controller
      */
     public function index()
     {
-        //
+        $cards = DB::table('paymentsmethods')->where('owner', Auth::id() )->get();
+        return view('payments', [
+                'cards' => $cards
+            ]
+        );
     }
 
     /**
@@ -69,6 +73,20 @@ class payments extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+
+    public function redirecting($page)
+    {
+        switch ($page) {
+            case 'index':
+                return redirect('payment/index'); //show
+                break;
+            
+            default:
+                return redirect('/medicalconsultations'); //medicalconsultations
+                break;
+        }   
     }
 
     /**

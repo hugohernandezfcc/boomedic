@@ -131,7 +131,7 @@ return [
         ],
         [
             'text' => 'Método de pago',
-            'url'  => 'admin/settings',
+            'url'  => 'payment/index',
             'icon' => 'credit-card',
         ],
         'TERMINOS Y CONDICIONES',
