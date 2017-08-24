@@ -182,8 +182,8 @@
 			            </div>
 		            </div>
 
-		            <input type="text" style="display: block;" name="latitude" id="latitudeFend" />
-		            <input type="text" style="display: block;" name="longitude" id="longitudeFend" />
+		            <input type="text" style="display: none;" name="latitude" id="latitudeFend" />
+		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" />
 		            <br/>
 		            <!-- /.box-body -->
 				  	<div class="box-footer">
@@ -381,6 +381,7 @@
 		      // Bias the autocomplete object to the user's geographical location,
 		      // as supplied by the browser's 'navigator.geolocation' object.
 		      function geolocate() {
+
 		        if (navigator.geolocation) {
 		          navigator.geolocation.getCurrentPosition(function(position) {
 		            var geolocation = {
