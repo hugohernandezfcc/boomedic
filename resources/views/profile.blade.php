@@ -322,6 +322,7 @@
 
     			window.onload = function(){
     				initAutocomplete();
+    				initMapAddressUser();
     			};
 
 
