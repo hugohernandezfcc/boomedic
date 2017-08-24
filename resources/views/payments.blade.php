@@ -70,7 +70,7 @@
 	            </table>
             @elseif($mode == 'createPaymentMethod')
             	<form action="store" method="post" class="form-horizontal">
-
+            		{{ csrf_field() }}
 	            	<div class="form-group has-feedback {{ $errors->has('typemethod') ? 'has-error' : '' }}">
 	                  	<label for="typemethod" class="col-sm-2 control-label">Tipo de método</label>
 	                  	<div class="col-sm-10">
