@@ -14,6 +14,8 @@ class Payments2 extends Migration
     public function up()
     {
         Schema::table('paymentsmethods', function (Blueprint $table) {
+            $table->dropColumn('cvv');
+            $table->dropColumn('cardnumber');
             $table->string('cvv')->nullable();
             $table->string('cardnumber')->nullable();
         });
