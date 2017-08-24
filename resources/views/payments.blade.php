@@ -121,6 +121,24 @@
 				                </select>
 			                </div>
 		              	</div>
+
+		              	<div class="col-sm-4">
+			            	&nbsp;
+			            </div>
+			       		<div class="col-sm-4">
+				    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+				                Guardar
+				            </button>
+			            </div>
+			    		<div class="col-sm-4">
+			    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+				                Cancelar
+				            </a>
+			            </div>
+			            <div class="col-sm-4">
+			            	&nbsp;
+			            </div>
+		              	
 	                </div>
 
 	                <div id="paypalButton" style="display: none;">
@@ -142,22 +160,7 @@
 
 	                </script>
 
-	                <div class="col-sm-4">
-		            	&nbsp;
-		            </div>
-		       		<div class="col-sm-4">
-			    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
-			                Guardar
-			            </button>
-		            </div>
-		    		<div class="col-sm-4">
-		    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
-			                Cancelar
-			            </a>
-		            </div>
-		            <div class="col-sm-4">
-		            	&nbsp;
-		            </div>
+	                
 
                 </form>
             @endif
