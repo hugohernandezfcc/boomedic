@@ -75,6 +75,7 @@
 	                  	<label for="typemethod" class="col-sm-2 control-label">Tipo de método</label>
 	                  	<div class="col-sm-10">
 		                  	<select class="form-control" name="typemethod" onchange="showMethodRegister(this.value);">
+		                    	<option value="">Seleccionar ...</option>
 		                    	<option value="card">Credito / Debido</option>
 		                    	<option value="paypal">Paypal</option>
 		                  	</select>
@@ -88,8 +89,8 @@
 		                  		<input type="text" name="cardnumber" class="form-control" id="cardnumber">
 		                	</div>
 		              	</div>
-		              	<div class="row">
-		              		<div class="col-sm-6">
+		              	<div class="row" style="width: 90%;" align="right">
+		              		<div class="col-sm-8">
 		              			<div class="form-group has-feedback {{ $errors->has('dateexpired') ? 'has-error' : '' }}">
 				                    <label for="dateexpired" class="col-sm-2 control-label">Fecha de Exp.</label>
 				                	<div class="col-sm-10">
@@ -97,7 +98,7 @@
 				                	</div>
 				              	</div>
 		              		</div>
-		              		<div class="col-sm-6">
+		              		<div class="col-sm-4">
 		              			<div class="form-group has-feedback {{ $errors->has('cvv') ? 'has-error' : '' }}">
 				                    <label for="cvv" class="col-sm-2 control-label">CVV</label>
 				                	<div class="col-sm-10">
@@ -108,15 +109,17 @@
 		              	</div>
 		              	<div class="form-group has-feedback {{ $errors->has('country') ? 'has-error' : '' }}">
 		                    <label for="country" class="col-sm-2 control-label">País</label>
-			                <select class="form-control select2" name="country" style="width: 100%;">
-			                  <option selected="selected">Estados Unidos</option>
-			                  <option>México</option>
-			                  <option>Brasil</option>
-			                  <option>Canada</option>
-			                  <option>Guatemala</option>
-			                  <option>Paraguay</option>
-			                  <option>Venezuela</option>
-			                </select>
+			                <div class="col-sm-10">
+				                <select class="form-control select2" name="country" style="width: 100%;">
+				                  <option selected="selected">Estados Unidos</option>
+				                  <option>México</option>
+				                  <option>Brasil</option>
+				                  <option>Canada</option>
+				                  <option>Guatemala</option>
+				                  <option>Paraguay</option>
+				                  <option>Venezuela</option>
+				                </select>
+			                </div>
 		              	</div>
 	                </div>
 
