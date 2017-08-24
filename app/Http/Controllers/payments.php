@@ -64,7 +64,7 @@ class payments extends Controller
      */
     public function store(Request $request)
     {
-        $pmethods = new App\PaymentMethod;
+        $pmethods = new PaymentMethod;
 
         $pmethods->provider      = 'visa';
         $pmethods->typemethod    = $request->typemethod;
