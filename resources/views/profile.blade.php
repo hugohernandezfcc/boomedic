@@ -305,7 +305,7 @@
 		              	<div class="tab-pane" id="tab_2">
 		                	the individual languages.
 		              	</div>
-		              	<div class="tab-pane" id="tab_3">
+		              	<div class="tab-pane" id="tab_3" style="height: 250px;">
 		              		<div id="mapAddressUser"></div>
 		              	</div>
 		            </div>
@@ -402,7 +402,7 @@
 		          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
 		        });
 
-		        var image = "{{asset('maps-and-flags.png')}}";
+		        var image = "{{asset('maps-and-flags_1.png')}}";
 		        var beachMarker = new google.maps.Marker({
 		          position: {lat: {{ $longitude }} , lng: {{ $latitude }} },
 		          map: map,
