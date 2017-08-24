@@ -399,12 +399,12 @@
 		      function initMapAddressUser() {
 		        var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
 		          zoom: 4,
-		          center: {lat: "{{ $longitude }}" , lng: "{{ $latitude }}" }
+		          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
 		        });
 
 		        var image = "{{asset('maps-and-flags.png')}}";
 		        var beachMarker = new google.maps.Marker({
-		          position: {lat: "{{ $longitude }}" , lng: "{{ $latitude }}" },
+		          position: {lat: {{ $longitude }} , lng: {{ $latitude }} },
 		          map: map,
 		          icon: image
 		        });
