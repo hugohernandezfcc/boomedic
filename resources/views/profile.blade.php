@@ -322,7 +322,10 @@
 
     			window.onload = function(){
     				initAutocomplete();
-    				initMapAddressUser();
+
+    				@if( empty($status) )
+    					initMapAddressUser();
+					@endif
     			};
 
 
