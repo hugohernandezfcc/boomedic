@@ -3,7 +3,7 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-    {{ $username }}
+
 @stop
 
 @section('content')

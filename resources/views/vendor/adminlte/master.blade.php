@@ -118,7 +118,9 @@
         });
         
         if (document.getElementById('paymentmethodtable')) {
-            $('#paymentmethodtable').DataTable();
+            $('#paymentmethodtable').DataTable({
+                'lengthChange': false
+            });
         }
     });
 

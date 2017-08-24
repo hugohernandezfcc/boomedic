@@ -31,9 +31,9 @@ class payments extends Controller
         $cards = DB::table('paymentsmethods')->where('owner', Auth::id() )->get();
 
         return view('payments', [
-                'cards' => $cards,
-                'userId'        => Auth::id(),
-                'username' => DB::table('users')->where('id', Auth::id() )->value('name')
+                'cards'     => $cards,
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name')
             ]
         );
     }
