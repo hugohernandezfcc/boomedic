@@ -33,7 +33,8 @@ class payments extends Controller
         return view('payments', [
                 'cards'     => $cards,
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name')
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'mode'      => 'listPaymentMethods'
             ]
         );
     }
@@ -45,7 +46,14 @@ class payments extends Controller
      */
     public function create()
     {
-        //
+
+
+        return view('payments', [
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'mode'      => 'createPaymentMethod'
+            ]
+        );
     }
 
     /**
