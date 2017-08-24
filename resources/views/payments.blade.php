@@ -82,14 +82,14 @@
 	                  	</div>
 	                </div>
 
-	                <div id="cardFields" style="display: none;" align="right">
+	                <div id="cardFields" style="display: none;" >
 	                	<div class="form-group has-feedback {{ $errors->has('cardnumber') ? 'has-error' : '' }}">
 		                    <label for="cardnumber" class="col-sm-2 control-label">No. Tarjeta</label>
 		                	<div class="col-sm-10">
 		                  		<input type="text" name="cardnumber" class="form-control" id="cardnumber">
 		                	</div>
 		              	</div>
-		              	<div class="row" style="width: 90%;" align="right">
+		              	<div class="row" style="width: 90%;" >
 		              		<div class="col-sm-6">
 		              			<div class="form-group has-feedback {{ $errors->has('dateexpired') ? 'has-error' : '' }}">
 				                    <label for="dateexpired" class="col-sm-2 control-label">Fecha de Exp.</label>
