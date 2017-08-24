@@ -397,7 +397,7 @@
 
 		    </script>
 
-		    @if( !empty($status) )
+		    @if( empty($status) )
 
 		    	<script type="text/javascript">
 		    		var counter = 0;
