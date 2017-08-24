@@ -20,7 +20,7 @@ class payments extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -29,8 +29,10 @@ class payments extends Controller
     public function index()
     {
         $cards = DB::table('paymentsmethods')->where('owner', Auth::id() )->get();
+        
         return view('payments', [
-                'cards' => $cards
+                'cards' => $cards,
+                'username' => DB::table('users')->where('id', Auth::id() )->value('name')
             ]
         );
     }
