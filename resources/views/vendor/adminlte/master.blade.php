@@ -60,7 +60,7 @@
         }
 
         #mapAddressUser {
-            height: 50%;
+            height: 100%;
             width: 95%;
         }
     </style>

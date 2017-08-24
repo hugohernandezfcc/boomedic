@@ -395,22 +395,35 @@
 		        }
 		      }	
 
-		      function initMapAddressUser() {
-		        var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
-		          zoom: 4,
-		          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
-		        });
-
-		        var image = "{{ asset('maps-and-flags_1.png') }}";
-		        
-		        var beachMarker = new google.maps.Marker({
-		          position: {lat: {{ $longitude }} , lng: {{ $latitude }} },
-		          map: map,
-		          icon: image
-		        });
-		      }
-
 		    </script>
+
+		    @if( !empty($status) )
+
+		    	<script type="text/javascript">
+		    		var counter = 0;
+
+			      	function initMapAddressUser() {
+
+				      	if(!counter > 0){
+				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
+					          zoom: 2,
+					          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
+					        });
+
+					        var image = "{{ asset('maps-and-flags_1.png') }}";
+					        
+					        var beachMarker = new google.maps.Marker({
+					          position: {lat: {{ $longitude }} , lng: {{ $latitude }} },
+					          map: map,
+					          icon: image
+					        });
+					    }
+				        counter++;
+			      	}
+		    	</script>
+
+			@endif
+
 	  	</div>	  	
 	</div>
 
