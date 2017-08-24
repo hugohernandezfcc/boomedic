@@ -72,8 +72,8 @@
             	<form action="/user/update/" method="post" class="form-horizontal">
 
 	            	<div class="form-group has-feedback {{ $errors->has('typemethod') ? 'has-error' : '' }}">
-	                  	<label for="typemethod" class="col-sm-3 control-label">Tipo de método</label>
-	                  	<div class="col-sm-9">
+	                  	<label for="typemethod" class="col-sm-2 control-label">Tipo de método</label>
+	                  	<div class="col-sm-10">
 		                  	<select class="form-control" name="typemethod" onchange="showMethodRegister(this.value);">
 		                    	<option value="">Seleccionar ...</option>
 		                    	<option value="card">Credito / Debido</option>
