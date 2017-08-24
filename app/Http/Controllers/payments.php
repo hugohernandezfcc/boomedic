@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
-use App\paymentsmethods;
+use App\PaymentMethod;
 
 class payments extends Controller
 {
@@ -64,7 +64,7 @@ class payments extends Controller
      */
     public function store(Request $request)
     {
-        $pmethods = new paymentsmethods;
+        $pmethods = new PaymentMethod;
 
         $pmethods->provider      = 'visa';
         $pmethods->typemethod    = $request->typemethod;
