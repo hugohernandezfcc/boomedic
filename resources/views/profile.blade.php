@@ -231,7 +231,7 @@
 		            <ul class="nav nav-tabs">
 		              	<li class="active"><a href="#tab_1" data-toggle="tab">Información personal</a></li>
 		              	<li><a href="#tab_2" data-toggle="tab">Familia</a></li>
-		              	<li><a href="#tab_3" data-toggle="tab">Dirección de usuario</a></li>
+		              	<li><a href="#tab_3" onclick="initMapAddressUser();" data-toggle="tab">Dirección de usuario</a></li>
 		            </ul>
 		            <div class="tab-content">
 		              	<div class="tab-pane active" id="tab_1">
@@ -306,7 +306,7 @@
 		                	the individual languages.
 		              	</div>
 		              	<div class="tab-pane" id="tab_3" style="height: 250px;">
-		              		<div id="mapAddressUser" style="width: 800px; height: 400px;"></div>
+		              		<div id="mapAddressUser" ></div>
 		              	</div>
 		            </div>
 		        </div>
@@ -321,7 +321,6 @@
 
     			window.onload = function(){
     				initAutocomplete();
-    				initMapAddressUser();
     			};
 
 
@@ -403,6 +402,7 @@
 		        });
 
 		        var image = "{{ asset('maps-and-flags_1.png') }}";
+		        
 		        var beachMarker = new google.maps.Marker({
 		          position: {lat: {{ $longitude }} , lng: {{ $latitude }} },
 		          map: map,
