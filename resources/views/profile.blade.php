@@ -321,6 +321,7 @@
 
     			window.onload = function(){
     				initAutocomplete();
+    				initMapAddressUser();
     			};
 
 
@@ -393,7 +394,22 @@
 		            autocomplete.setBounds(circle.getBounds());
 		          });
 		        }
-		      }		      
+		      }	
+
+		      function initMapAddressUser() {
+		        var map = new google.maps.Map(document.getElementById('map'), {
+		          zoom: 4,
+		          center: {lat: "{{ $longitude }}" , lng: "{{ $latitude }}" }
+		        });
+
+		        var image = "{{asset('maps-and-flags.png')}}";
+		        var beachMarker = new google.maps.Marker({
+		          position: {lat: "{{ $longitude }}" , lng: "{{ $latitude }}" },
+		          map: map,
+		          icon: image
+		        });
+		      }
+
 		    </script>
 	  	</div>	  	
 	</div>
