@@ -4,6 +4,7 @@
 
 @section('content_header')
     {{ $username }}
+    estoy en la rama de desarrollo
 @stop
 
 @section('content')
