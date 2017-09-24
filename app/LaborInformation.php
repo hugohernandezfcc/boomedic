@@ -19,7 +19,10 @@ class LaborInformation extends Model
 		'street',
 		'streetNumber',
 		'interiorNumber',
-		'phone'
+		'phone',
+		'latitude',
+		'longitude',
+		'postalcode'
     ];
 
     public function user(){
