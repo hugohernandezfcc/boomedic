@@ -11,8 +11,15 @@ class LaborInformation extends Model
     	'id',
 		'workplace',
 		'professionalPosition',
-		'address',
-		'profInformation'
+		'profInformation',
+		'country',
+		'state',
+		'delegation',
+		'colony',
+		'street',
+		'streetNumber',
+		'interiorNumber',
+		'phone'
     ];
 
     public function user(){
