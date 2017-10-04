@@ -13,8 +13,11 @@
 <!-- Starts map -->
     <script type="text/javascript">
       var loc = [];
+      var typeC;
 
       var specialities = [["Alergología"], ["Cardiología"], ["Gastroenterología"], ["Geriatría"], ["Infectología"], ["Neumología"], ["Neurología"], ["Nutriología"], ["Oftalmología"], ["Oncología"], ["Pediatría"], ["Psiquiatría"], ["Rehabilitación"], ["Reumatología"], ["Toxicología"], ["Odontología"]];
+
+      var generalM = var datos = [[19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], ["Cardiología", 19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], ["Gastroenterología", 19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], ["Geriatría", 19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], ["Infectología", 19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], ["Neumología", 19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], ["Neurología", 19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"]];
 
       var datos = [["Alergología", 19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], ["Cardiología", 19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], ["Gastroenterología", 19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], ["Geriatría", 19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], ["Infectología", 19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], ["Neumología", 19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], ["Neurología", 19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"], ["Nutriología", 19.3948036, -99.09768079999998, "Beatriz Fuentes Galindo", "Servicios Médicos Fuentes"], ["Oftalmología", 19.342083, -99.0532159, "Lucía Medina Arenas", "Clínica Venecia"], ["Oncología", 19.3149641, -99.24258859999998, "Valeria Guerrero Ibáñez", "Hospital Arcángel"], ["Pediatría", 19.409044, -99.19057579999998, "Sergio Vega Infante", "Hospital Arcángel"], ["Psiquiatría", 19.1942041, -99.02670760000001, "Porfirio Soto Cuevas", "Hospital Arcángel"], ["Rehabilitación", 19.2990233, -99.04364670000001, "Elías Vidal Íñigo", "Hospital Arcángel"], ["Reumatología", 19.2790911, -99.2114234, "Inés Salazar Lara", "Hospital DTC"], ["Toxicología", 19.4395911, -99.1131054, "Elena Ríos Macías", "Hospital DTC"], ["Odontología", 19.2572314, -99.10296640000001, "Adrián Rivera Llamas", "Hospital DTC"], ["Alergología", 19.3605334,-99.32670670000002, "Sara Lozano Alcántara", "Hospital DTC"], ["Cardiología", 19.4846606, -99.28867490000002, "Oswaldo Robles Alfaro", "Hospital DTC"], ["Gastroenterología", 19.3794059, -99.25914459999999, "Patricia Caballero Manzano", "Hospital DTC"], ["Geriatría", 19.3437444, -99.2561883, "Martín Aguirre Olivera", "Hospital DTC"], ["Infectología", 19.3631419, -99.38805969999996, "Octavio Garrido Quiroga", "Hospital DTC"], ["Neumología", 19.4356338, -99.24951070000001, "Magdalena Cruz Orozco", "Hospital DEF"], ["Neurología", 19.4873329, -99.22361340000001, "Alvaro Gutiérrez Quintana", "Hospital DEF"], ["Nutriología", 19.3948036, -99.19768079999998, "David Romero Acosta", "Clínica Acosta"], ["Oftalmología", 19.342083, -99.1532159, "Bernardo Gil Montoya", "Hospital DEF"], ["Oncología", 19.3149641, -99.34258859999998, "Gisela Rojas Palma", "Hospital DEF"], ["Pediatría", 19.409044, -99.29057579999998, "Natalia Reyes Salgado", "Hospital DEF"], ["Psiquiatría", 19.1942041, -99.12670760000001, "Marcelo Campos Uribe", "Hospital DEF"], ["Rehabilitación", 19.2990233, -99.14364670000001, "Teresa Luna Carmona", "Clínica Venecia"], ["Reumatología", 19.2790911, -99.3114234, "Irene Morales Alcalá", "Clínica Cruces"], ["Toxicología", 19.4395911, -99.2131054, "Fabián Castillo Valencia", "Hospital Luna"], ["Odontología", 19.2572314, -99.20296640000001, "Adela Molina Zamora", "Clínica Venecia"]];
     </script>
@@ -63,27 +66,36 @@
         if(fran != '')
         	console.log('FRAN:: '+fran);
 
-        if( x.options[s].text == "- Ninguna -"){
-        	console.log('Valor NULO:: '+x.options[s].text);
+        if(typeC == 'especialidad'){
+	        if( x.options[s].text == "- Ninguna -"){
+	        	console.log('Valor NULO:: '+x.options[s].text);
+	        	clearMarkers();
+	        	document.getElementById("demo").innerHTML = 'Seleccione una especialidad.';
+	        	document.getElementById("info").innerHTML = ' ';
+	        }
+	        if( x.options[s].text !== "- Ninguna -"){
+	        	console.log('Valor VÁLIDO:: '+x.options[s].text);
+	        	myFunction2();
+		  		drop();
+	        }
+		}else{
+        	console.log('Cita general');
         	clearMarkers();
-        	document.getElementById("demo").innerHTML = 'Seleccione una especialidad.';
-        	document.getElementById("info").innerHTML = ' ';
-        }
-        if( x.options[s].text !== "- Ninguna -"){
-        	console.log('Valor VÁLIDO:: '+x.options[s].text);
-        	myFunction2();
-	  		drop();
-        }
+		}
 	  }
 
 	  function ocultar(val){
 	  	var gen = '';
 
         if (document.getElementById('general').checked) {
+        	typeC = 'general';
 		  gen = document.getElementById("general").value;
 		  console.log('GEN:: '+gen);
 		  document.getElementById('selectSp').style.display = 'none';
+		  document.getElementById("demo").innerHTML = ' ';
+          document.getElementById("info").innerHTML = ' ';
 		}else{
+			typeC = 'especialidad';
 			console.log('GEN:: '+gen);
 			document.getElementById('selectSp').style.display = 'block';
 		}
@@ -120,7 +132,8 @@
             //Map
 	        map = new google.maps.Map(document.getElementById('map'), {
 	          zoom: 6,
-	          center: new google.maps.LatLng(pos),//{lat: 20.42, lng: -99.18}
+	          //center: new google.maps.LatLng(pos),//{lat: 20.42, lng: -99.18}
+	          center: {lat: 20.42, lng: -99.18}
 	        });
 
             marker = new google.maps.Marker({
