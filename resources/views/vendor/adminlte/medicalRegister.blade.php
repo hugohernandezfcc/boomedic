@@ -16,8 +16,7 @@
         <div class="register-box-body">
 
             <div class="alert alert-info alert-dismissible" >
-                <h5><i class="icon fa fa-info"></i> Aviso</h5>
-                {{ trans('adminlte::adminlte.Message_to_doctor') }}
+                <i class="icon fa fa-info"></i> {{ trans('adminlte::adminlte.Message_to_doctor') }}
             </div>
             <!-- <p class="login-box-msg"></p> -->
 
