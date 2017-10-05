@@ -27,10 +27,10 @@ class AppServiceProvider extends ServiceProvider
 
         URL::forceScheme('https');
 
-        $profInfo = DB::table('ProfessionalInformation')->where('user', Auth::id() )->get();
-
 
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
+
+            $profInfo = DB::table('ProfessionalInformation')->where('user', Auth::id() )->get();
 
             if($profInfo->count() > 0){
                 //es un médico
