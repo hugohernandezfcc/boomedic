@@ -19,67 +19,37 @@ Route::get('/medicalRegister', function () {
     return view('auth.medicalRegister');
 });
 
-// Route::get('/createmenu', function () {
+Route::get('/createmenu', function () {
 
-//     $itemMenu = new App\menu();
-// 	$itemMenu->to = 'Patient';
-// 	$itemMenu->typeitem = 'item';
-// 	$itemMenu->text = 'Perfil';
-// 	$itemMenu->url = 'user/redirecting/show';
-// 	$itemMenu->icon = 'user';
-// 	$itemMenu->parent = 4;
-
-// 	$itemMenu->save();
+    $itemMenu = new App\menu();
+	$itemMenu->to = 'Doctor';
+	$itemMenu->typeitem = 'section';
+	$itemMenu->text = 'ATENCIÓN A PACIENTES';
 
 
-// 	$itemMenu = new App\menu();
-// 	$itemMenu->to = 'Patient';
-// 	$itemMenu->typeitem = 'item';
-// 	$itemMenu->text = 'Historia clinica';
-// 	$itemMenu->url = 'admin/settings';
-// 	$itemMenu->icon = 'street-view';
-// 	$itemMenu->parent = 4;
-
-// 	$itemMenu->save();
-
-
-// 	$itemMenu = new App\menu();
-
-// 	$itemMenu->to = 'Patient';
-// 	$itemMenu->typeitem = 'item';
-// 	$itemMenu->text = 'Método de pago';
-// 	$itemMenu->url = 'payment/index';
-// 	$itemMenu->icon = 'credit-card';
-// 	$itemMenu->parent = 4;
-
-// 	$itemMenu->save();
+	$itemMenu->save();
 
 
 
-// 	$itemMenu = new App\menu();
-
-// 	$itemMenu->to = 'Patient';
-// 	$itemMenu->typeitem = 'item';
-// 	$itemMenu->text = 'Aviso de privacidad';
-// 	$itemMenu->url = 'admin/pages';
-// 	$itemMenu->label_color = 'red';
-// 	$itemMenu->parent = 5;
-
-// 	$itemMenu->save();
-
-// 	$itemMenu = new App\menu();
-
-// 	$itemMenu->to = 'Patient';
-// 	$itemMenu->typeitem = 'item';
-// 	$itemMenu->text = 'Ayuda';
-// 	$itemMenu->url = 'admin/pages';
-// 	$itemMenu->label_color = 'aqua';
-// 	$itemMenu->parent = 5;
-
-// 	$itemMenu->save();
+	$itemMenu = new App\menu();
+	$itemMenu->to = 'Doctor';
+	$itemMenu->typeitem = 'section';
+	$itemMenu->text = 'CUENTA';
 
 
-// });
+	$itemMenu->save();
+
+
+
+	$itemMenu = new App\menu();
+	$itemMenu->to = 'Doctor';
+	$itemMenu->typeitem = 'section';
+	$itemMenu->text = 'HISTORIAL';
+
+
+	$itemMenu->save();
+
+});
 
 
 
