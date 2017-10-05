@@ -129,7 +129,9 @@
         }
 
         $('.select2').select2();
-        towait();
+        if (document.getElementById('calendar')) {
+            towait();
+        }
         
     });
 

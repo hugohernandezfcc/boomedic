@@ -14,17 +14,8 @@
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'listDay,listWeek,month'
+				right: 'month,agendaWeek,agendaDay,listWeek'
 			},
-
-			// customize the button names,
-			// otherwise they'd all just say "list"
-			views: {
-				listDay: { buttonText: 'list day' },
-				listWeek: { buttonText: 'list week' }
-			},
-
-			defaultView: 'listWeek',
 			defaultDate: '2017-09-12',
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
@@ -32,7 +23,7 @@
 			events: [
 				{
 					title: 'All Day Event',
-					start: '2017-09-01'
+					start: '2017-09-01',
 				},
 				{
 					title: 'Long Event',
@@ -86,6 +77,7 @@
 				}
 			]
 		});
+
 	}
 
 </script>
