@@ -22,11 +22,16 @@ Route::get('/medicalRegister', function () {
 Route::get('/createmenu', function () {
     $itemMenu = new App\menu();
 
-	$itemMenu->text = 'ACTIVIDADES';
-	$itemMenu->to = 'Both';
-	$itemMenu->typeitem = 'section';
+	$itemMenu->to = 'Patient';
+	$itemMenu->typeitem = 'item';
+	$itemMenu->text = 'Consulta médica';
+	$itemMenu->url = 'medicalconsultations';
+	$itemMenu->icon = 'heartbeat';
+	$itemMenu->label_color = 'success';
+	$itemMenu->parent = 1;
 
 	$itemMenu->save();
+	dd($itemMenu);
 });
 
 
