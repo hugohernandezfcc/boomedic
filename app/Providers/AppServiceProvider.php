@@ -5,9 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
-use Illuminate\Contracts\Events\Dispatcher;
-use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,15 +16,11 @@ class AppServiceProvider extends ServiceProvider
 
         URL::forceScheme('https');
 
-        $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
-            $event->menu->add('MAIN NAVIGATION');
-            $event->menu->add([
-                'text' => 'Blog',
-                'url' => 'admin/blog',
-            ]);
-        });
+        // if(env( 'APP_ENV') !== 'local'){
+            //URL::forceScheme('https');
+        // }
     }
-
+ 
     /**
      * Register any application services.
      *
