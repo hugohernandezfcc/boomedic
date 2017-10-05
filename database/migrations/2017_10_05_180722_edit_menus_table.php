@@ -15,7 +15,7 @@ class EditMenusTable extends Migration
     {
         Schema::table('menus', function (Blueprint $table) {
             $table->integer('parent')->unsigned()->nullable();
-            $table->foreign('menus')->references('id')->on('menus');
+            $table->foreign('parent')->references('id')->on('menus');
         });
     }
 
