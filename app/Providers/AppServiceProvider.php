@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
 
             $profInfo = DB::table('ProfessionalInformation')->where('user', Auth::id() )->get();
 
+            dd($profInfo);
             if($profInfo->count() > 0){
                 //es un médico
                 $menusInfo = DB::table('menus')
@@ -57,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
                         }
                     }
                 }
-                dd($event);
+
             }else{
 
                 $menusInfo = DB::table('menus')
