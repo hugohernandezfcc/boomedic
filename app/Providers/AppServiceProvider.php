@@ -35,6 +35,10 @@ class AppServiceProvider extends ServiceProvider
             if($profInfo->count() > 0){
                 //es un médico
                 $event->menu->add('DOCTORES');
+
+
+                
+
             }else{
                 $menusInfo = DB::table('menus')
                                 ->where('to', 'Patient' )
@@ -59,13 +63,7 @@ class AppServiceProvider extends ServiceProvider
 
                         }
                     }
-
                 }
-                // $event->menu->add('MAIN NAVIGATION');
-                // $event->menu->add([
-                //     'text' => 'Blog ' . Auth::id(),
-                //     'url' => 'admin/blog',
-                // ]);
 
             }            
         });

@@ -25,7 +25,8 @@
     <script crossorigin src="https://unpkg.com/react@15/dist/react.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.print.min.css">
     <style type="text/css">
         .btn-secondary { 
             color: #ffffff; 
@@ -140,6 +141,11 @@
     <script src="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
     
+
+    <script src="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
+    <script type="text/javascript" src="https://fullcalendar.io/js/fullcalendar-3.5.1/lib/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.js"></script>
+
 
 @endif
 
