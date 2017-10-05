@@ -30,7 +30,7 @@ Route::get('/doDoctor', function () {
 	$itemMenu->user = 3;
 
 	$itemMenu->save();
-
+	dd($itemMenu);
 });
 
 
