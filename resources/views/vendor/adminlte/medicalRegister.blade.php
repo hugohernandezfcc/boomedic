@@ -79,7 +79,7 @@
 
 
                 <button type="submit" class="btn btn-secondary btn-block btn-flat">
-                    {{ trans('adminlte::adminlte.register_a_new_membership') }}
+                    {{ trans('adminlte::adminlte.register_a_new_membership_doctor') }}
                 </button>
 
             </form>
