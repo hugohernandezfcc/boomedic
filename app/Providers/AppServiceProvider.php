@@ -58,10 +58,8 @@ class AppServiceProvider extends ServiceProvider
                     }
                 }
 
-
-
-
             }else{
+
                 $menusInfo = DB::table('menus')
                                 ->where('to', 'Patient' )
                                 ->orWhere('to', 'Both')

@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -19,32 +20,18 @@ Route::get('/medicalRegister', function () {
     return view('auth.medicalRegister');
 });
 
-Route::get('/createmenu', function () {
+Route::get('/doDoctor', function () {
+	$itemMenu = new App\ProfessionalInformation();
 
-    $itemMenu = new App\menu();
-	$itemMenu->to = 'Doctor';
-	$itemMenu->typeitem = 'item';
-	$itemMenu->text = 'Citas pendientes';
-	$itemMenu->url = 'homemedical';
-	$itemMenu->icon = 'heartbeat';
-	$itemMenu->parent = 11;
-
-	$itemMenu->save();
-
-
-	$itemMenu = new App\menu();
-	$itemMenu->to = 'Doctor';
-	$itemMenu->typeitem = 'item';
-	$itemMenu->text = 'Saldos';
-	$itemMenu->url = 'balances';
-	$itemMenu->icon = 'briefcase';
-	$itemMenu->parent = 12;
+	$itemMenu->specialty = 'Toxicología';
+	$itemMenu->schoolOfMedicine = 'UAEH';
+	$itemMenu->facultyOfSpecialization = 'Ciencias de la salud';
+	$itemMenu->practiseProfessional = 5;
+	$itemMenu->user = 3;
 
 	$itemMenu->save();
 
 });
-
-
 
 
 /**
@@ -55,9 +42,11 @@ Auth::routes();
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
 
+
 Route::get('/homemedical', function () {
     return view('homemedical');
 });
+
 
 Route::group(['prefix' => 'user'], function(){
 	// Por Método GET cacha el parametro status, "as" sirve para nombrar la ruta.

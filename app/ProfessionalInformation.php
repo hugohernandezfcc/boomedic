@@ -8,7 +8,6 @@ class ProfessionalInformation extends Model
 {
     protected $table = "ProfessionalInformation";
     protected $fillable = [
-    	'id',
 		'specialty',
 		'schoolOfMedicine',
 		'facultyOfSpecialization',
