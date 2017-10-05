@@ -34,10 +34,32 @@ class AppServiceProvider extends ServiceProvider
 
             if($profInfo->count() > 0){
                 //es un médico
-                $event->menu->add('DOCTORES');
+                $menusInfo = DB::table('menus')
+                                ->where('to', 'Doctor' )
+                                ->get();
 
-                
-                
+                for ($i=0; $i < $menusInfo->count(); $i++) { 
+                    if($menusInfo[$i]->typeitem == 'section' ){
+                        # Se agrega la sección
+                        $event->menu->add( $menusInfo[$i]->text );
+                        
+                        for ($o=0; $o < $menusInfo->count(); $o++) { 
+                            if($menusInfo[$o]->parent == $menusInfo[$i]->id ){
+
+                                # Se agregan los items de la sección.
+                                $event->menu->add([
+                                    'text' => $menusInfo[$o]->text,
+                                    'url'  => $menusInfo[$o]->url,
+                                    'icon' => $menusInfo[$o]->icon
+                                ]);
+                            }
+
+                        }
+                    }
+                }
+
+
+
 
             }else{
                 $menusInfo = DB::table('menus')

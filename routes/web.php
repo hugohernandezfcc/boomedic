@@ -23,29 +23,22 @@ Route::get('/createmenu', function () {
 
     $itemMenu = new App\menu();
 	$itemMenu->to = 'Doctor';
-	$itemMenu->typeitem = 'section';
-	$itemMenu->text = 'ATENCIÓN A PACIENTES';
-
-
-	$itemMenu->save();
-
-
-
-	$itemMenu = new App\menu();
-	$itemMenu->to = 'Doctor';
-	$itemMenu->typeitem = 'section';
-	$itemMenu->text = 'CUENTA';
-
+	$itemMenu->typeitem = 'item';
+	$itemMenu->text = 'Citas pendientes';
+	$itemMenu->url = 'homemedical';
+	$itemMenu->icon = 'heartbeat';
+	$itemMenu->parent = 11;
 
 	$itemMenu->save();
 
 
-
 	$itemMenu = new App\menu();
 	$itemMenu->to = 'Doctor';
-	$itemMenu->typeitem = 'section';
-	$itemMenu->text = 'HISTORIAL';
-
+	$itemMenu->typeitem = 'item';
+	$itemMenu->text = 'Saldos';
+	$itemMenu->url = 'balances';
+	$itemMenu->icon = 'briefcase';
+	$itemMenu->parent = 12;
 
 	$itemMenu->save();
 
