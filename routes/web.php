@@ -24,14 +24,32 @@ Route::get('/createmenu', function () {
 
 	$itemMenu->to = 'Patient';
 	$itemMenu->typeitem = 'item';
-	$itemMenu->text = 'Consulta médica';
-	$itemMenu->url = 'medicalconsultations';
-	$itemMenu->icon = 'heartbeat';
+	$itemMenu->text = 'Historial';
+	$itemMenu->url = 'admin/pages';
+	$itemMenu->icon = 'history';
 	$itemMenu->label_color = 'success';
 	$itemMenu->parent = 1;
 
 	$itemMenu->save();
-	dd($itemMenu);
+
+
+	$itemMenu = new App\menu();
+
+	$itemMenu->to = 'Patient';
+	$itemMenu->typeitem = 'section';
+	$itemMenu->text = 'CUENTA';
+
+	$itemMenu->save();
+
+
+	$itemMenu = new App\menu();
+
+	$itemMenu->to = 'Patient';
+	$itemMenu->typeitem = 'section';
+	$itemMenu->text = 'TERMINOS Y CONDICIONES';
+
+	$itemMenu->save();
+
 });
 
 
