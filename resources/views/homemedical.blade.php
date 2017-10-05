@@ -9,8 +9,7 @@
 @section('content')
 	<script>
 
-	$(document).ready(function() {
-		
+	function towait() {
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -87,8 +86,7 @@
 				}
 			]
 		});
-		
-	});
+	}
 
 </script>
 
