@@ -21,7 +21,7 @@
             </div>
             <!-- <p class="login-box-msg"></p> -->
 
-            <form action="{{ url(config('adminlte.register_url', 'register')) }}" method="post">
+            <form action="{{ url(config('adminlte.register_doctor_url', 'medicalRegister')) }}" method="post">
                 {!! csrf_field() !!}
 
 
