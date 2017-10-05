@@ -95,7 +95,7 @@
 <script src="{{ asset('vendor/adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
-<script type="text/javascript" src="https://fullcalendar.io/js/fullcalendar-3.5.1/lib/moment.min.js"></script>
+<script src="{{ asset('vendor/adminlte/dist/js/moment.min.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.date.extensions.js"></script>
@@ -143,7 +143,7 @@
             var d    = date.getDate(),
                 m    = date.getMonth(),
                 y    = date.getFullYear()
-            
+
             $('#calendar').fullCalendar({
                   header    : {
                     left  : 'prev,next today',
