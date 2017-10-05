@@ -23,5 +23,9 @@ return [
     'reset_password'              => 'Restablecer la contraseña',
     'send_password_reset_link'    => 'Enviar link de restablecimiento de contraseña',
     'messageLogout'               => 'Se ha cerrado tu sesión.',
+
+
     'i_am_a_doctor'               => 'Soy médico',
+    'Message_to_doctor'           => 'Este formulario es solo para Médicos.',
+    'register_a_new_membership'   => 'Registrarme como Médico.',
 ];

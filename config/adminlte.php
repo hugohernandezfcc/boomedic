@@ -85,11 +85,12 @@ return [
     |
     */
 
-    'dashboard_url' => 'medicalconsultations',
-    'logout_url' => 'bye',
-    'logout_method' => null,
-    'login_url' => 'login',
-    'register_url' => 'register',
+    'dashboard_url'        => 'medicalconsultations',
+    'logout_url'           => 'bye',
+    'logout_method'        => null,
+    'login_url'            => 'login',
+    'register__doctor_url' => 'medicalRegister',
+    'register_url'         => 'register',
 
     /*
     |--------------------------------------------------------------------------
