@@ -156,6 +156,8 @@
                     week : 'week',
                     day  : 'day'
                   },
+                  defaultView: 'listWeek',
+
                   //Random default events
                   events    : [
                     {
