@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
                 //es un médico
                 $event->menu->add('DOCTORES');
 
-
+                
                 
 
             }else{
