@@ -20,17 +20,32 @@ Route::get('/medicalRegister', function () {
     return view('auth.medicalRegister');
 });
 
-Route::get('/doDoctor', function () {
-	$itemMenu = new App\ProfessionalInformation();
+Route::get('/createMenu', function () {
+	$itemMenu = new App\menu();
 
-	$itemMenu->specialty = 'Toxicología';
-	$itemMenu->schoolOfMedicine = 'UAEH';
-	$itemMenu->facultyOfSpecialization = 'Ciencias de la salud';
-	$itemMenu->practiseProfessional = 5;
-	$itemMenu->user = 3;
+	$itemMenu->to = 'Doctor';
+	$itemMenu->typeitem = 'item';
+	$itemMenu->text = 'Recetas';
+	$itemMenu->url = 'prescriptions';
+	$itemMenu->icon = 'file-text-o';
+	$itemMenu->label_color = 'red';
+	$itemMenu->parent = 11;
 
 	$itemMenu->save();
-	dd($itemMenu);
+
+
+	$itemMenu = new App\menu();
+
+	$itemMenu->to = 'Doctor';
+	$itemMenu->typeitem = 'item';
+	$itemMenu->text = 'Exámenes Diagnóstico';
+	$itemMenu->url = 'DiagnosticTests';
+	$itemMenu->icon = 'h-square';
+	$itemMenu->label_color = 'red';
+	$itemMenu->parent = 11;
+
+	$itemMenu->save();
+
 });
 
 
