@@ -8,7 +8,6 @@ class menu extends Model
 {
     protected $table = 'menus';
 
-
     protected $fillable = ['text', 'label', 'icon', 'label_color', 'url', 'to', 'typeitem', 'parent'];
 
     public function menu()

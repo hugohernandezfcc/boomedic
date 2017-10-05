@@ -19,6 +19,17 @@ Route::get('/medicalRegister', function () {
     return view('auth.medicalRegister');
 });
 
+Route::get('/createmenu', function () {
+    $itemMenu = new App\menu();
+
+	$itemMenu->text = 'ACTIVIDADES';
+	$itemMenu->to = 'Both';
+	$itemMenu->typeitem = 'section';
+
+	$itemMenu->save();
+});
+
+
 
 
 /**
