@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;

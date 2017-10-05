@@ -105,45 +105,45 @@ return [
     */
 
     'menu' => [
-        'ACTIVIDADES',
-        [
-            'text'        => 'Consulta médica',
-            'url'         => 'medicalconsultations',
-            'icon'        => 'heartbeat',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Historial',
-            'url'         => 'admin/pages',
-            'icon'        => 'history',
-            'label'       => 0,
-            'label_color' => 'success',
-        ],
-        'CUENTA',
-        [
-            'text' => 'Perfil',
-            'url'  => 'user/redirecting/show',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Historia clinica',
-            'url'  => 'admin/settings',
-            'icon' => 'street-view',
-        ],
-        [
-            'text' => 'Método de pago',
-            'url'  => 'payment/index',
-            'icon' => 'credit-card',
-        ],
-        'TERMINOS Y CONDICIONES',
-        [
-            'text'       => 'Aviso de privacidad',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Ayuda',
-            'icon_color' => 'aqua',
-        ],
+        // 'ACTIVIDADES',
+        // [
+        //     'text'        => 'Consulta médica',
+        //     'url'         => 'medicalconsultations',
+        //     'icon'        => 'heartbeat',
+        //     'label_color' => 'success',
+        // ],
+        // [
+        //     'text'        => 'Historial',
+        //     'url'         => 'admin/pages',
+        //     'icon'        => 'history',
+        //     'label'       => 0,
+        //     'label_color' => 'success',
+        // ],
+        // 'CUENTA',
+        // [
+        //     'text' => 'Perfil',
+        //     'url'  => 'user/redirecting/show',
+        //     'icon' => 'user',
+        // ],
+        // [
+        //     'text' => 'Historia clinica',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'street-view',
+        // ],
+        // [
+        //     'text' => 'Método de pago',
+        //     'url'  => 'payment/index',
+        //     'icon' => 'credit-card',
+        // ],
+        // 'TERMINOS Y CONDICIONES',
+        // [
+        //     'text'       => 'Aviso de privacidad',
+        //     'icon_color' => 'red',
+        // ],
+        // [
+        //     'text'       => 'Ayuda',
+        //     'icon_color' => 'aqua',
+        // ],
     ],
 
     /*
