@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\User;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -20,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
             $event->menu->add('MAIN NAVIGATION');
             $event->menu->add([
-                'text' => 'Blog',
+                'text' => 'Blog ' . Auth::id(),
                 'url' => 'admin/blog',
             ]);
         });
