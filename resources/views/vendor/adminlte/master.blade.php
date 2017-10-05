@@ -91,6 +91,8 @@
 <script src="{{ asset('vendor/adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
+<script type="text/javascript" src="https://fullcalendar.io/js/fullcalendar-3.5.1/lib/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.date.extensions.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.extensions.js"></script> -->
@@ -130,7 +132,73 @@
 
         $('.select2').select2();
         if (document.getElementById('calendar')) {
-            towait();
+            $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay,listWeek'
+            },
+            defaultDate: '2017-09-12',
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            events: [
+                {
+                    title: 'All Day Event',
+                    start: '2017-09-01',
+                },
+                {
+                    title: 'Long Event',
+                    start: '2017-09-07',
+                    end: '2017-09-10'
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: '2017-09-09T16:00:00'
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: '2017-09-16T16:00:00'
+                },
+                {
+                    title: 'Conference',
+                    start: '2017-09-11',
+                    end: '2017-09-13'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2017-09-12T10:30:00',
+                    end: '2017-09-12T12:30:00'
+                },
+                {
+                    title: 'Lunch',
+                    start: '2017-09-12T12:00:00'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2017-09-12T14:30:00'
+                },
+                {
+                    title: 'Happy Hour',
+                    start: '2017-09-12T17:30:00'
+                },
+                {
+                    title: 'Dinner',
+                    start: '2017-09-12T20:00:00'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: '2017-09-13T07:00:00'
+                },
+                {
+                    title: 'Click for Google',
+                    url: 'http://google.com/',
+                    start: '2017-09-28'
+                }
+            ]
+        });
         }
         
     });
@@ -146,8 +214,7 @@
     
 
     <script src="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
-    <script type="text/javascript" src="https://fullcalendar.io/js/fullcalendar-3.5.1/lib/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.js"></script>
+    
 
 
 @endif
