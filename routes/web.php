@@ -20,33 +20,6 @@ Route::get('/medicalRegister', function () {
     return view('auth.medicalRegister');
 });
 
-Route::get('/createMenu', function () {
-	$itemMenu = new App\menu();
-
-	$itemMenu->to = 'Doctor';
-	$itemMenu->typeitem = 'item';
-	$itemMenu->text = 'Recetas';
-	$itemMenu->url = 'prescriptions';
-	$itemMenu->icon = 'file-text-o';
-	$itemMenu->label_color = 'red';
-	$itemMenu->parent = 11;
-
-	$itemMenu->save();
-
-
-	$itemMenu = new App\menu();
-
-	$itemMenu->to = 'Doctor';
-	$itemMenu->typeitem = 'item';
-	$itemMenu->text = 'Exámenes Diagnóstico';
-	$itemMenu->url = 'DiagnosticTests';
-	$itemMenu->icon = 'h-square';
-	$itemMenu->label_color = 'red';
-	$itemMenu->parent = 11;
-
-	$itemMenu->save();
-
-});
 
 
 /**
