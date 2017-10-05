@@ -57,7 +57,7 @@ class AppServiceProvider extends ServiceProvider
                         }
                     }
                 }
-
+                dd($event);
             }else{
 
                 $menusInfo = DB::table('menus')
