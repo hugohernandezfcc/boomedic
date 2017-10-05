@@ -92,6 +92,9 @@ Auth::routes();
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
 
+Route::get('/homemedical', function () {
+    return view('homemedical');
+});
 
 Route::group(['prefix' => 'user'], function(){
 	// Por Método GET cacha el parametro status, "as" sirve para nombrar la ruta.
