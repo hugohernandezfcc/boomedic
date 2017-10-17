@@ -17,5 +17,32 @@
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
     "vue": "^2.1.10"
-  }
+  },
+  "name": "boomedic",
+  "description": "<p align=\"center\"><img src=\"https://laravel.com/assets/img/components/logo-laravel.svg\"></p>",
+  "version": "1.0.0",
+  "main": "webpack.mix.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "bootstrap-sass": "^3.3.7",
+    "cross-env": "^3.2.4",
+    "jquery": "^3.2.1",
+    "laravel-mix": "^0.12.1",
+    "lodash": "^4.17.4",
+    "toastr": "^2.1.2",
+    "vue": "^2.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugohernandezfcc/boomedic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hugohernandezfcc/boomedic/issues"
+  },
+  "homepage": "https://github.com/hugohernandezfcc/boomedic#readme"
 }
