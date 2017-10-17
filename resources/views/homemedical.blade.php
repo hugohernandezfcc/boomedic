@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-	
+	hugo daniel hernández meneses
 
 	<div class="box box-primary">
 	    <div class="box-body no-padding">
