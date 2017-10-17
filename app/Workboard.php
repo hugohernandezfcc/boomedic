@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Workboard extends Model
 {
-    protected $table = "'workboard'";
+    protected $table = "workboard";
     protected $fillable = [
     	'id',
-		'workingDays',
+		'workingDays', 
 		'workingHours',
 		'labInformation'
     ];
