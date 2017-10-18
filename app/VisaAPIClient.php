@@ -91,11 +91,19 @@ class VisaAPIClient {
 		$response = curl_exec ( $curl );
 		$this->loggingHelper( $response, $curl, $testInfo, $requestBodyString );
 		$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
 		curl_close ( $curl );
-				if($statusCode == '201'){
-				return $statusCode;
-			}   else {
-				return $response;
+		$body = substr($response, $header_size);
+		if($statusCode == '201'){
+			return $statusCode;
+		} else {	
+			if (empty($body) == false && $body != '') {
+				$json = json_decode($body);
+				$json = json_encode($json, JSON_PRETTY_PRINT);
+				return $json;
+
+			}
+		
 		}
 	}
 	
@@ -138,12 +146,20 @@ class VisaAPIClient {
 		$response = curl_exec ( $curl );
 		$this->loggingHelper( $response, $curl, $testInfo, $requestBodyString );
 		$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
 		curl_close ( $curl );
-				if($statusCode == '201'){
-				return $statusCode;
-			}   else {
-				return $response;
+		$body = substr($response, $header_size);
+		if($statusCode == '201'){
+			return $statusCode;
+		} else {	
+			if (empty($body) == false && $body != '') {
+				$json = json_decode($body);
+				$json = json_encode($json->responseStatus->message, JSON_PRETTY_PRINT);
+	
+				return $json;
 			}
+		
+		}
 	}
 
 }
