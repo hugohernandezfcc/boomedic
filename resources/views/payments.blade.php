@@ -52,7 +52,11 @@
 									    <span aria-hidden="true">&times;</span>
 									</button>
 									<strong>¡Hubo un error en tu pago y no fue procesado!</strong><br/><br/>		
-							        {{ session()->get('message') }}
+							       @php
+							       	$code = session()->get('message');
+							       @endphp
+							 
+							        {{ trans('adminlte::adminlte.'.$code) }}
 							    </div>
 							   @endif
 

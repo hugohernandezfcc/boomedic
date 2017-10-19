@@ -181,7 +181,7 @@ class payments extends Controller
             'message' => $statusCode, 
             'error' => 'error'
         );
-      return redirect('payment/index')->with($notification);
+            return redirect('payment/index')->with($notification);
          }
          
      }

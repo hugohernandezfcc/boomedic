@@ -99,8 +99,9 @@ class VisaAPIClient {
 		} else {	
 			if (empty($body) == false && $body != '') {
 				$json = json_decode($body);
-				$json = json_encode($json, JSON_PRETTY_PRINT);
-				return $json;
+				$json = json_encode($json->responseStatus->details[0]->message, JSON_PRETTY_PRINT);
+				$resp = str_replace('"',' ', $json);
+				return $resp;
 
 			}
 		
@@ -154,9 +155,9 @@ class VisaAPIClient {
 		} else {	
 			if (empty($body) == false && $body != '') {
 				$json = json_decode($body);
-				$json = json_encode($json->responseStatus->message, JSON_PRETTY_PRINT);
-	
-				return $json;
+				$json = json_encode($json->responseStatus->details[0]->message, JSON_PRETTY_PRINT);
+				$resp = str_replace('"','', $json);
+				return $resp;
 			}
 		
 		}
