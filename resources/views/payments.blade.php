@@ -34,7 +34,7 @@
 	    <!-- /.lockscreen credentials -->
 	</div>
 
-				<!--**************CARGAR ALERTA**************-->
+						<!-- Charge Alert whether payment was processed or not -->
 							@if(session()->has('message'))
 
 								@if(session()->has('success'))
@@ -55,13 +55,13 @@
 							       @php
 							       	$code = session()->get('message');
 							       @endphp
-							 
+							 		<!-- Error codes are defined within the adminlte -->
 							        {{ trans('adminlte::adminlte.'.$code) }}
 							    </div>
 							   @endif
 
 							@endif
-
+						<!-- Here ends the code for the alert -->
 
 	<div class="box">
 	  	<div class="box-header with-border">
@@ -102,14 +102,13 @@
 	                            <td><input type="text" name="pay" value="" style="text-align: center;"> <input type="hidden" name="id" value=" {{$card->id }} "></td>
 	                            <td align="center">
 	                            <div class="input-group-btn">
-		          				<!--<button type="submit" class="btn">-->
+		          				<!-- Delete button that goes to a destroy type driver for the user to delete badly entered payment methods or that he no longer wants to have -->
 		          				<a href = 'delete/{{ $card->id }}' class="btn" onclick ="return confirm('¿Seguro desea eliminar este método de pago?')">
 		          				<i class="fa fa-trash text-muted"></i>
 		          				</a>
-		          				<!--<i class="fa fa-trash text-muted"></i>
-		          				</button>-->
 	        					</div>
 	                            <div class="input-group-btn">
+	                            	<!-- Summit button to process the payment, this points to the PaymentAuthorizations -->
 	                            	<button type="submit" class="btn"><i class="fa fa-credit-card text-muted" id="reg"></i></button>
 		          		
 	        					</div></td>

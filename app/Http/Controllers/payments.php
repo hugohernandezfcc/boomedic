@@ -146,11 +146,16 @@ class payments extends Controller
     }
 
 
+    //Controller to make payment, Contains type of ROUTE defined post
+
     public function PaymentAuthorizations(Request $request) {
         $id = $request->id;
+
+        //Look in the table of methods of saved payments all the information of the selected method.
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
 
                     $this->VisaAPIClient = new VisaAPIClient;
+                    //Build json with payment details
                     $this->paymentAuthorizationRequest = json_encode ( [ 
                     'amount' => $request->pay,
                     'currency' => 'USD',
@@ -164,12 +169,13 @@ class payments extends Controller
 
                     $baseUrl = 'cybersource/';
                     $resourceP = 'payments/v1/authorizations';
+                    //apykey lo proporcionaVISA
                     $queryString = 'apikey=RY6NDJNX3Q2NDWVYUBQW21N37pbnY719X0SqzEs_CDSZbhFro';
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
          if($statusCode == '201'){
-            //return view(echo '<script type="text/javascript">alert("Pago procesado!");</script>');
             $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
             'message' => 'Pago procesado correctamente por un monto de: '. $request->pay.'$, para más información consulte su cartera de pago...', 
             'success' => 'success'
             );
@@ -178,6 +184,7 @@ class payments extends Controller
          }
          else {
              $notification = array(
+                //If it has been rejected, the internal error code is sent.
             'message' => $statusCode, 
             'error' => 'error'
         );

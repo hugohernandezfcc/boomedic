@@ -1,8 +1,9 @@
 <?php
-//require __DIR__ . '/vendor/autoload.php';
 
 namespace App;
 
+
+//Class where the CURL connection is made with VISA
 class VisaAPIClient {
 	
 	public function __construct() {
@@ -108,11 +109,14 @@ class VisaAPIClient {
 		}
 	}
 	
+	//This data is passed from the PaymentsAutorization controller
 	public function doXPayTokenCall($method, $baseUrl, $resource_path, $query_string, $testInfo, $requestBodyString, $inputHeaders = array()) {
 		$curl = curl_init ();
 		$method = strtolower ( $method );
+		//These data are provided by visa.
 		$sharedSecret = 'ooOGbyz5iGqkRE3bz5YbQrN7Us6Dtt#{2#$1nXk2';
 		$apiKey = 'RY6NDJNX3Q2NDWVYUBQW21N37pbnY719X0SqzEs_CDSZbhFro';
+		//To determine what time the service started.
 		$time = time(); 
 		$preHashString = $time.$resource_path.$query_string.$requestBodyString; 
 		$xPayToken = "xv2:".$time.":".hash_hmac('sha256', $preHashString, $sharedSecret);
@@ -150,12 +154,15 @@ class VisaAPIClient {
 		$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
 		curl_close ( $curl );
 		$body = substr($response, $header_size);
+		//Status code esmel HTTP_Code, so it will only be 201 or 400 in this case.
 		if($statusCode == '201'){
 			return $statusCode;
-		} else {	
+		} else {
+			//If payment is not approved, the internal status code must be searched within the answer json.
 			if (empty($body) == false && $body != '') {
 				$json = json_decode($body);
 				$json = json_encode($json->responseStatus->details[0]->message, JSON_PRETTY_PRINT);
+				//The quotation marks are removed so that the code is clean and can be found in the trans.
 				$resp = str_replace('"','', $json);
 				return $resp;
 			}
