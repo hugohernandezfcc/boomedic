@@ -124,6 +124,8 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
+    
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -163,6 +165,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -179,6 +182,7 @@ return [
 
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
 
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -227,6 +231,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'PDF' => Barryvdh\DomPDF\ServiceProvider::class,  
+
 
     ],
 

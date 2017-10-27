@@ -112,6 +112,11 @@ return [
             'icon'        => 'heartbeat',
             'label_color' => 'success',
         ],
+           [
+            'text'        => 'Receta médica',
+            'url'         => 'recetaMedica/index',
+            'icon'        => 'file-text-o',
+        ],
         [
             'text'        => 'Historial',
             'url'         => 'admin/pages',

@@ -92,6 +92,44 @@ Route::group(['prefix' => 'payment'], function(){
 	);
 
 
+
+});
+
+Route::group(['prefix' => 'recetaMedica'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'recetaMedica@index',
+			'as'	=>	'index'
+		]
+	);
+	
+	Route::post('PDFGenerator' , 'recetaMedica@PDFGenerator');
+
+	Route::get('create', [
+			'uses'	=>	'recetaMedica@create',
+			'as'	=>	'create'
+		]
+	);
+
+	Route::post('store', [
+			'uses'	=>	'recetaMedica@store',
+			'as'	=>	'store'
+		]
+	);
+
+	Route::get('delete/{id}', [
+			'uses'	=>	'recetaMedica@destroy',
+			'as'	=>	'destroy'
+		]
+	);
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'recetaMedica@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+
+
 });
 
 
