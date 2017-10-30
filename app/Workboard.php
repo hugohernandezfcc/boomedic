@@ -14,7 +14,7 @@ class Workboard extends Model
 		'labInformation'
     ];
 
-    public function user(){
-	  return $this->belongsTo('App\LaborInformation');
+    public function labInformation(){
+	  return $this->belongsTo('App\LaborInformation', 'labInformation');
 	}
 }

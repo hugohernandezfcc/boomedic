@@ -26,6 +26,6 @@ class LaborInformation extends Model
     ];
 
     public function user(){
-	  return $this->belongsTo('App\ProfessionalInformation');
+	  return $this->belongsTo('App\ProfessionalInformation', 'profInformation');
 	}
 }
