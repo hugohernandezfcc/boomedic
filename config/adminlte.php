@@ -114,7 +114,7 @@ return [
         ],
            [
             'text'        => 'Receta médica',
-            'url'         => 'recetaMedica/index',
+            'url'         => 'medicalPrescription/index',
             'icon'        => 'file-text-o',
         ],
         [

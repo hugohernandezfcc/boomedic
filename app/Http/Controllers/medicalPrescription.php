@@ -6,10 +6,10 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
-use PDF;
+use \PDF;
 
 
-class recetaMedica extends Controller
+class medicalPrescription extends Controller
 {
 
     /**
@@ -31,7 +31,7 @@ class recetaMedica extends Controller
     public function index()
     {
 
-        return view('recetaMedica', [
+        return view('medicalPrescription', [
                 'userId'    => Auth::id(),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'mode'      => 'Index'
@@ -100,7 +100,7 @@ class recetaMedica extends Controller
     {
         switch ($page) {
             case 'index':
-                return redirect('recetaMedica/index'); //show
+                return redirect('medicalPrescription/index'); //show
                 break;
             
             default:
@@ -121,11 +121,10 @@ class recetaMedica extends Controller
    
     }
     public function PDFGenerator (Request $request){
-    $html = '<html><body>'
-             . '<p>Blog: '.$request->medico.'</p>'
-             . '</body></html>';
+    $data =  array('medico' => $request->medico);
  
-     return \PDF::loadView($html, 'A4', 'portrait')->show();
+     $pdf = \PDF::loadView('medicalPrescriptionPDF', $data);
+     return $pdf->download('RESULT.pdf');
  
 }
 }

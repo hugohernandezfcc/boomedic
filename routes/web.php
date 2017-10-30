@@ -95,36 +95,36 @@ Route::group(['prefix' => 'payment'], function(){
 
 });
 
-Route::group(['prefix' => 'recetaMedica'], function(){
+Route::group(['prefix' => 'medicalPrescription'], function(){
 
 	Route::get('index', [
-			'uses'	=>	'recetaMedica@index',
+			'uses'	=>	'medicalPrescription@index',
 			'as'	=>	'index'
 		]
 	);
 	
-	Route::post('PDFGenerator' , 'recetaMedica@PDFGenerator');
+	Route::post('PDFGenerator' , 'medicalPrescription@PDFGenerator');
 
 	Route::get('create', [
-			'uses'	=>	'recetaMedica@create',
+			'uses'	=>	'medicalPrescription@create',
 			'as'	=>	'create'
 		]
 	);
 
 	Route::post('store', [
-			'uses'	=>	'recetaMedica@store',
+			'uses'	=>	'medicalPrescription@store',
 			'as'	=>	'store'
 		]
 	);
 
 	Route::get('delete/{id}', [
-			'uses'	=>	'recetaMedica@destroy',
+			'uses'	=>	'medicalPrescription@destroy',
 			'as'	=>	'destroy'
 		]
 	);
 
 	Route::get('redirecting/{page}', [
-			'uses'	=>	'recetaMedica@redirecting',
+			'uses'	=>	'medicalPrescription@redirecting',
 			'as'	=>	'redirecting'
 		]
 	);
