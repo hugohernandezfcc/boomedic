@@ -59,10 +59,11 @@
         z-index: 100;
         font-size: 90%;
         line-height: 15%;
-        padding-top: 0%;
-        padding-bottom: 0%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
         padding-right: 0.5%;
         padding-left: 0.5%;
+        border-radius: 1px;
       }
       .infoSpStyle{
         position: absolute;
@@ -229,7 +230,7 @@
     <div id="mapaC">
       <!-- Trigger the modal with a checkbox -->
       <div class="checkStyle">
-      <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><strong><label for="general" id="label01" class="textStyle01"></label></strong>
+        <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><strong><label for="general" id="label01" class="textStyle01"></label></strong>
       </div>
 
       <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
