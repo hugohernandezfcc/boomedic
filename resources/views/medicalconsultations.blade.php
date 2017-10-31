@@ -702,7 +702,7 @@
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {  
               
-              showInfo(loc[i][2] + ', ' + loc[i][3] + '. <br/><br/> <b>Las citas disponibles en</b>: <select class="form-control" name="placeatention" id="placeatention" size="1"><option id="opc01"></option><option>' + loc[i][4] +'</option></select> ');
+              showInfo(loc[i][2] + ', ' + loc[i][3] + '. <br/><br/> <b>Citas disponibles</b>: <select class="form-control" name="placeatention" id="placeatention" size="1"><option id="opc01">-- Ninguno -- </option><option>' + loc[i][4] +'</option></select> ');
               $('#modal-register-cite').modal('show');
             }
           })(marker, i));
