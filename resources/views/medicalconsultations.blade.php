@@ -626,9 +626,12 @@
           console.log(lat);
           console.log(lon);
 
+          var doctor = "{{ asset('doctors.png') }}";
+
           markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
-            animation: google.maps.Animation.DROP
+            animation: google.maps.Animation.DROP,
+            icon: doctor
           });
 
           var infowindow = new google.maps.InfoWindow();
