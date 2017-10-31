@@ -462,11 +462,7 @@
               center: new google.maps.LatLng(pos),
               disableDefaultUI: true
             });
-            var markerUser = {
-              url: "{{ asset('markerUser.png') }}",
-              // This marker is 20 pixels wide by 32 pixels high.
-              size: new google.maps.Size(20, 32)
-            }
+            var markerUser = "{{ asset('markerUser.png') }}";
 
             //Marker
             markerP = new google.maps.Marker({
