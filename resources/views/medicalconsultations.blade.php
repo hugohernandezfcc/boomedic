@@ -697,7 +697,7 @@
             }
           })(marker, i));
 
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {          
               $('#modal-register-cite').modal('show');
             }
