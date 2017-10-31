@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirectredirect()->secure('/medicalconsultations');
+            return redirect()->secure('/medicalconsultations');
         }
 
         return $next($request);
