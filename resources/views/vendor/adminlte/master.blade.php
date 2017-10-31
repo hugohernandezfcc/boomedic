@@ -27,11 +27,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.print.min.css" media="print">
 
 
-    <script src="{{ asset('vendor/adminlte/plugins/fullcalendar-3.5.1/lib/moment.min.js') }}"></script>
-    <script src="{{ asset('vendor/adminlte/plugins/fullcalendar-3.5.1/lib/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.js"></script>
-    <script src="{{ asset('vendor/adminlte/plugins/fullcalendar-3.5.1/lib/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('vendor/adminlte/plugins/fullcalendar-3.5.1/fullcalendar.min.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.2/fullcalendar.min.js"></script>
 
 
     <style type="text/css">
