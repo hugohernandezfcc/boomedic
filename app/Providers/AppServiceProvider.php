@@ -24,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Dispatcher $events)
     {
-
-        URL::forceScheme('https');
+        
+        \URL::forceScheme('https');
 
 
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {

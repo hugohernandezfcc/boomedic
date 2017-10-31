@@ -23,7 +23,7 @@ class Kernel extends HttpKernel
          * Custom Middlewares
          */
 
-        \App\Http\Middleware\HttpsProtocol::class,
+        // \App\Http\Middleware\HttpsProtocol::class,
     ];
 
     /**
