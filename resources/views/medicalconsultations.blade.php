@@ -26,7 +26,7 @@
         padding-bottom: 0%;
         padding-right: 0.7%;
         padding-left: 0.7%;
-        background-color: rgba(255,255,255,0.7);
+        /*background-color: rgba(255,255,255,0.7);*/
         z-index: 100;
         text-align: center;
         font-size: 90%;
@@ -272,21 +272,11 @@
           </div>
 
           <div class="modal-body" >
-              <!-- <center><p id="ShowDetails"></p></center> -->
-              <!-- <div id="selectSp" class=".center-block"> -->
               <div class="form-group">
-                <label>Select</label>
                 <select class="form-control" name="Speciality" id="mySelect" size="1">
                   <option id="opc01"></option>
                 </select>
               </div>
-                <!-- <center>
-                  <select name="Speciality" id="mySelect" size="1" ><br />
-                    <option id="opc01"></option>
-                  </select>
-                  <br/><br/>
-                </center> -->
-              <!-- </div> -->
           </div>
 
           <div class="modal-footer">
