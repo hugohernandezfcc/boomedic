@@ -19,7 +19,7 @@
       }
       #map{
         position: relative;
-        height: 250px;
+        height: 100%;
         width: 100%;
         z-index: 30;
       }
