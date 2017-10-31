@@ -269,7 +269,7 @@
     </div>
 
 
-    <!-- Modal -->
+    <!-- Modal de especialidades -->
     <div class="modal fade" id="myModal" role="dialog">
       <div class="modal-dialog modal-sm">
       
@@ -306,6 +306,34 @@
         
       </div>
     </div>
+
+
+    <!-- Modal de registro de cita -->
+    <div class="modal fade" id="modal-register-cite">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Concretar cita</h4>
+              </div>
+
+
+              <div class="modal-body">
+                <p>One fine body&hellip;</p>
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" id="button01" class="btn btn-secondary btn-block btn-flat">
+                  Confirmar y programar cita
+                </button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!--/ Modal de registro de cita -->
 
     </form>
 
@@ -661,7 +689,12 @@
               infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]);
               infowindow.open(map, marker);
               console.log(marker);
+              
+
               showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]);
+            
+
+
             }
           })(marker, i));
 
@@ -683,6 +716,7 @@
       }
 
       function showInfo(info){
+        $('#modal-register-cite').modal('show'); 
         document.getElementById("info").innerHTML = '<strong>Seleccionado: <br/>'+ info +'</strong>';
       }
     </script>
