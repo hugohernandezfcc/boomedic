@@ -698,8 +698,9 @@
           })(marker, i));
 
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
-            return function() {          
-              showInfo("<b>1"+loc[i][2]+"</b><br/>3"+loc[i][3]+"</b><br/>4"+loc[i][4]);
+            return function() {  
+
+              showInfo(loc[i][2] + ', ' + loc[i][3] + '. <br/><br/> <b>Las citas disponibles en</b>: <ul><li>' + loc[i][4] + '</li></ul> ');
               $('#modal-register-cite').modal('show');
             }
           })(marker, i));
@@ -722,7 +723,7 @@
       }
 
       function showInfo(info){ 
-        document.getElementById("info").innerHTML = '<strong>Seleccionado: <br/>'+ info +'</strong>';
+        document.getElementById("info").innerHTML = '<strong>Información del médico:</strong> <br/>'+ info +'';
       }
     </script>
 
