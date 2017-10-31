@@ -133,6 +133,44 @@ Route::group(['prefix' => 'medicalPrescription'], function(){
 });
 
 
+Route::group(['prefix' => 'serviceBilling'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'serviceBilling@index',
+			'as'	=>	'index'
+		]
+	);
+	
+	Route::post('PDFBilling' , 'serviceBilling@PDFBilling');
+
+	Route::get('create', [
+			'uses'	=>	'serviceBilling@create',
+			'as'	=>	'create'
+		]
+	);
+
+	Route::post('store', [
+			'uses'	=>	'serviceBilling@store',
+			'as'	=>	'store'
+		]
+	);
+
+	Route::get('delete/{id}', [
+			'uses'	=>	'serviceBilling@destroy',
+			'as'	=>	'destroy'
+		]
+	);
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'serviceBilling@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+
+
+});
+
+
 
 
 Route::post('/bye' , 'Auth\LoginController@logout');

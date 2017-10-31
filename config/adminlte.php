@@ -117,6 +117,7 @@ return [
             'url'         => 'medicalPrescription/index',
             'icon'        => 'file-text-o',
         ],
+
         [
             'text'        => 'Historial',
             'url'         => 'admin/pages',
@@ -139,6 +140,11 @@ return [
             'text' => 'Método de pago',
             'url'  => 'payment/index',
             'icon' => 'credit-card',
+        ],
+                   [
+            'text'        => 'Facturación de Servicios',
+            'url'         => 'serviceBilling/index',
+            'icon'        => 'file-o',
         ],
         'TERMINOS Y CONDICIONES',
         [
