@@ -12,7 +12,17 @@
     
   <style type="text/css">
 
-      
+      #mapaC{
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+      #map{
+        position: relative;
+        height: 100%;
+        width: 100%;
+        z-index: 30;
+      }
       #rango{
         position: absolute;
         width: 70%;
@@ -457,6 +467,13 @@
             infoWindow.setContent(message03);
         }
       }
+
+      google.maps.event.addDomListener(window, 'load', initMap);
+      google.maps.event.addDomListener(window, "resize", function() {
+       var center = map.getCenter();
+       google.maps.event.trigger(map, "resize");
+       map.setCenter(center); 
+      });
 
       //Filter of Speciality
       function functionEsp(specialityValue, keyWordValue, positionValue, rangeValue) {
