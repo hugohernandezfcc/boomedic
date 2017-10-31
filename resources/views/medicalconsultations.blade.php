@@ -692,9 +692,14 @@
               
 
               showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]);
-            
+          
 
+            }
+          })(marker, i));
 
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {          
+              $('#modal-register-cite').modal('show');
             }
           })(marker, i));
 
@@ -715,8 +720,7 @@
         markers = [];
       }
 
-      function showInfo(info){
-        $('#modal-register-cite').modal('show'); 
+      function showInfo(info){ 
         document.getElementById("info").innerHTML = '<strong>Seleccionado: <br/>'+ info +'</strong>';
       }
     </script>
