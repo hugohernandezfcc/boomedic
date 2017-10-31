@@ -321,7 +321,7 @@
 
 
               <div class="modal-body">
-                <p>One fine body&hellip;</p>
+                <p id="info"></p>
               </div>
 
 
@@ -399,7 +399,7 @@
 
     <p id="ShowDetails"></p>
     
-    <p id="info"></p>
+    
 
     <!-- Values of Labels -->
     <script type="text/javascript">
@@ -699,6 +699,7 @@
 
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {          
+              showInfo("<b>1"+loc[i][2]+"</b><br/>3"+loc[i][3]+"</b><br/>4"+loc[i][4]);
               $('#modal-register-cite').modal('show');
             }
           })(marker, i));
