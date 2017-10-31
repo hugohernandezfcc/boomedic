@@ -19,7 +19,7 @@
       }
       #map{
         position: relative;
-        height: 100%;
+        
         width: 100%;
         z-index: 30;
       }
@@ -282,64 +282,64 @@
 
     </form>
 
-     <script type="text/javascript">
-    function infoSelect(){
-      var x = document.getElementById("mySelect");
-      for (var i = 0; i < specialities.length; i++) {
-      var c = document.createElement("option");
-      c.text = specialities[i][0];
-      x.options.add(c, 1);
+    <script type="text/javascript">
+      function infoSelect(){
+        var x = document.getElementById("mySelect");
+        for (var i = 0; i < specialities.length; i++) {
+        var c = document.createElement("option");
+        c.text = specialities[i][0];
+        x.options.add(c, 1);
+        }
       }
-    }
 
-    function changeCheck(){
-      if (!document.getElementById('general').checked){
-        startProcess = false;
-        typeC = 'TypeSpeciality';
+      function changeCheck(){
+        if (!document.getElementById('general').checked){
+          startProcess = false;
+          typeC = 'TypeSpeciality';
+          $("#myModal").modal({backdrop: "static"});
+        }
+        if (document.getElementById('general').checked){
+          startProcess = false;
+          var x = document.getElementById("mySelect");   
+          x.selectedIndex = 0;
+          typeC = 'TypeGeneral';
+          document.getElementById("infoSpDetail").innerHTML = ' ';
+          document.getElementById('infoSp').style.display = 'none';
+          start();
+        }
+      }
+
+      function showM(){
+        if (!document.getElementById('general').checked){
+          startProcess = false;
+          typeC = 'TypeSpeciality';
+          $("#myModal").modal({backdrop: "static"});
+        }
+      }
+
+      function hideM(){
+        if (document.getElementById('general').checked)
+          $("#myModal").modal("hide");
+      }
+      function showM2(){
         $("#myModal").modal({backdrop: "static"});
       }
-      if (document.getElementById('general').checked){
-        startProcess = false;
-        var x = document.getElementById("mySelect");   
-        x.selectedIndex = 0;
-        typeC = 'TypeGeneral';
-        document.getElementById("infoSpDetail").innerHTML = ' ';
-        document.getElementById('infoSp').style.display = 'none';
-        start();
-      }
-    }
-
-    function showM(){
-      if (!document.getElementById('general').checked){
-        startProcess = false;
-        typeC = 'TypeSpeciality';
-        $("#myModal").modal({backdrop: "static"});
-      }
-    }
-
-    function hideM(){
-      if (document.getElementById('general').checked)
+      function hideM2(){
         $("#myModal").modal("hide");
-    }
-    function showM2(){
-      $("#myModal").modal({backdrop: "static"});
-    }
-    function hideM2(){
-      $("#myModal").modal("hide");
-    }
+      }
     </script>
 
     <!-- Current range -->
     <script>
-    var slider = document.getElementById("rango01");
-    var output2 = document.getElementById("rango03");
+      var slider = document.getElementById("rango01");
+      var output2 = document.getElementById("rango03");
 
-    var defaultVal = slider.defaultValue;
-    output2.innerHTML = slider.value;
+      var defaultVal = slider.defaultValue;
+      output2.innerHTML = slider.value;
 
-    slider.oninput = function() {
-      output2.innerHTML = this.value;
-    }
+      slider.oninput = function() {
+        output2.innerHTML = this.value;
+      }
     </script>
 
     <p id="ShowDetails"></p>
@@ -415,7 +415,16 @@
       var map;
       var infoWindow;
 
+      /**
+       * Function responsable of execute the main functions 
+       * 
+       */
       window.onload = function(){
+        var height = window.screen.availHeight-20;
+        console.log(height);
+
+        document.getElementById('map').setAttribute("style","height:" + height + "px");
+
         initMap();
         infoSelect();
       };
@@ -468,12 +477,6 @@
         }
       }
 
-      google.maps.event.addDomListener(window, 'load', initMap);
-      google.maps.event.addDomListener(window, "resize", function() {
-       var center = map.getCenter();
-       google.maps.event.trigger(map, "resize");
-       map.setCenter(center); 
-      });
 
       //Filter of Speciality
       function functionEsp(specialityValue, keyWordValue, positionValue, rangeValue) {
