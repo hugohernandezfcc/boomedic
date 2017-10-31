@@ -12,17 +12,7 @@
     
   <style type="text/css">
 
-      #mapaC{
-        position: relative;
-        height: 100%;
-        width: 100%;
-      }
-      #map{
-        position: relative;
-        height: 100%;
-        width: 100%;
-        z-index: 30;
-      }
+      
       #rango{
         position: absolute;
         width: 70%;

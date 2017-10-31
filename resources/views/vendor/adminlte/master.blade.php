@@ -85,6 +85,17 @@ body {
   margin: 0px;
   padding: 0px
 }
+#mapaC{
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+      #map{
+        position: relative;
+        height: 100%;
+        width: 100%;
+        z-index: 30;
+      }
 
     </style>
 
