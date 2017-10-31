@@ -273,14 +273,20 @@
 
           <div class="modal-body" >
               <!-- <center><p id="ShowDetails"></p></center> -->
-              <div id="selectSp" class=".center-block">
-                <center>
+              <!-- <div id="selectSp" class=".center-block"> -->
+              <div class="form-group">
+                <label>Select</label>
+                <select class="form-control" name="Speciality" id="mySelect" size="1">
+                  <option id="opc01"></option>
+                </select>
+              </div>
+                <!-- <center>
                   <select name="Speciality" id="mySelect" size="1" ><br />
                     <option id="opc01"></option>
                   </select>
                   <br/><br/>
-                </center>
-              </div>
+                </center> -->
+              <!-- </div> -->
           </div>
 
           <div class="modal-footer">
