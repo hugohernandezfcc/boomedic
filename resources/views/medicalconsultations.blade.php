@@ -310,7 +310,7 @@
 
     <!-- Modal de registro de cita -->
     <div class="modal fade" id="modal-register-cite">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content">
 
               <div class="modal-header">
@@ -376,9 +376,11 @@
         if (document.getElementById('general').checked)
           $("#myModal").modal("hide");
       }
+
       function showM2(){
         $("#myModal").modal({backdrop: "static"});
       }
+
       function hideM2(){
         $("#myModal").modal("hide");
       }
@@ -699,8 +701,8 @@
 
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {  
-
-              showInfo(loc[i][2] + ', ' + loc[i][3] + '. <br/><br/> <b>Las citas disponibles en</b>: <ul><li>' + loc[i][4] + '</li></ul> ');
+              
+              showInfo(loc[i][2] + ', ' + loc[i][3] + '. <br/><br/> <b>Las citas disponibles en</b>: <select class="form-control" name="placeatention" id="placeatention" size="1"><option id="opc01"></option><option>' + loc[i][4] +'</option></select> ');
               $('#modal-register-cite').modal('show');
             }
           })(marker, i));
