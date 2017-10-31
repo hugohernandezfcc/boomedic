@@ -78,6 +78,13 @@
         max-width: 900px;
         margin: 0 auto;
     }
+    html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px
+}
 
     </style>
 
