@@ -234,7 +234,9 @@
       </div>
 
       <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
-      <strong><span id="infoSpDetail" class="textStyle01"></span></strong>
+        <strong>
+          <span id="infoSpDetail" class="textStyle01"></span>
+        </strong>
       </div>
 
       <div id="searchDiv">
@@ -460,11 +462,17 @@
               center: new google.maps.LatLng(pos),
               disableDefaultUI: true
             });
+            var markerUser = {
+              url: "{{ asset('markerUser.png') }}",
+              // This marker is 20 pixels wide by 32 pixels high.
+              size: new google.maps.Size(20, 32)
+            }
+
             //Marker
             markerP = new google.maps.Marker({
               draggable: true,
               position: new google.maps.LatLng(pos),
-              //icon: image,
+              icon: markerUser,
               map: map
             });
             //Evento to open infowindow
