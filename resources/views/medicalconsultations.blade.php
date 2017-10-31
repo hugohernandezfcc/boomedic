@@ -423,7 +423,7 @@
        * 
        */
       window.onload = function(){
-        var height = window.screen.availHeight-100;
+        var height = window.screen.availHeight-110;
         console.log(height);
 
         document.getElementById('map').setAttribute("style","height:" + height + "px");
