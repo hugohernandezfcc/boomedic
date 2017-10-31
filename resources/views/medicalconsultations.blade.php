@@ -259,23 +259,35 @@
       
         <!-- Modal content-->
         <div class="modal-content">
-          <div class="modal-header" style="padding:0.5%;">
+
+          <div class="modal-header" >
+
             <!-- Tachecito para cerrar -->
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4><strong><label for="Speciality" id="label02"></label></strong></h4>
+          
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4>
+              <strong>
+                <label for="Speciality" id="label02"></label>
+              </strong>
+            </h4>
+
           </div>
-          <div class="modal-body" style="padding:0.9%;">
+
+          <div class="modal-body" >
               <!-- <center><p id="ShowDetails"></p></center> -->
               <div id="selectSp" class=".center-block">
-              <center>
-              <select name="Speciality" id="mySelect" size="1" ><br />
-                  <option id="opc01"></option>
-                </select>
-                <br/><br/>
-              </center>
+                <center>
+                  <select name="Speciality" id="mySelect" size="1" ><br />
+                    <option id="opc01"></option>
+                  </select>
+                  <br/><br/>
+                </center>
               </div>
           </div>
-          <div class="modal-footer" style="padding:0.5%;">
+
+          <div class="modal-footer">
             <center><button type="button" id="button01" class="btn btn-default .btn-xs" style="padding: 0.3%;" onclick="start();"><label for="button01" id="label07"></label></button></center>
           </div>
         </div>
