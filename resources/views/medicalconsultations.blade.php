@@ -255,7 +255,6 @@
         </div>
       </div>
 
-              
 
       <!-- <div id="launchSearch" class="launchSearchStyle" onclick="start();">
         <span class="glyphicon glyphicon-search"></span>
@@ -474,7 +473,13 @@
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 14,
               center: new google.maps.LatLng(pos),
-              disableDefaultUI: true
+              // disableDefaultUI: true,
+              zoomControl: true,
+              mapTypeControl: false,
+              scaleControl: false,
+              streetViewControl: false,
+              rotateControl: false,
+              fullscreenControl: false
             });
             var markerUser = "{{ asset('markerUser.png') }}";
 
