@@ -97,7 +97,7 @@
 
       .content-header {
           position: relative;
-          /* padding: 15px 15px 0 15px; */
+          padding: 1px 1px 0 1px; 
       }
       /*** Range
       /*General format*/
@@ -423,7 +423,7 @@
        * 
        */
       window.onload = function(){
-        var height = window.screen.availHeight-70;
+        var height = window.screen.availHeight-100;
         console.log(height);
 
         document.getElementById('map').setAttribute("style","height:" + height + "px");
