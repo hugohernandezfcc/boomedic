@@ -10,235 +10,586 @@
 
 @section('content')
     
-<!-- Starts map -->
+  <style type="text/css">
 
-<script type="text/javascript">
-      var loc = [];
-      var typeC = 'especialidad';
+      #mapaC{
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+      #map{
+        position: relative;
+        height: 250px;
+        width: 100%;
+        z-index: 30;
+      }
+      #rango{
+        position: absolute;
+        width: 70%;
+        bottom: 4.5%;
+        left: 15%;
+        right: 15%;
+        padding-top: 0.7%;
+        padding-bottom: 0%;
+        padding-right: 0.7%;
+        padding-left: 0.7%;
+        background-color: rgba(255,255,255,0.7);
+        z-index: 100;
+        text-align: center;
+        font-size: 90%;
+        line-height: 15%;
+      }
+      #searchDiv{
+        position: absolute;
+        width: 24%;
+        top: 4.5%;
+        right: 4%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
+        padding-right: 0.1%;
+        padding-left: 0.1%;
+        background-color: rgba(255,255,255,0.6);
+        z-index: 100;
+        text-align: center;
+        font-size: 90%;
+        line-height: 15%;      
+      }
+      .rangeStyle{
+        height: 1%;
+        width: 100%;
+      }
+      .checkStyle{
+        position: absolute;
+        top: 4.5%;
+        left: 1%;
+        background-color: rgba(255,255,255,0.8);
+        z-index: 100;
+        font-size: 90%;
+        line-height: 15%;
+        padding-top: 0%;
+        padding-bottom: 0%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;
+      }
+      .infoSpStyle{
+        position: absolute;
+        top: 19%;
+        right: 1%;
+        background-color: rgba(255,255,255,0.8);
+        z-index: 100;
+        font-size: 90%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;
+      }
+      .launchSearchStyle{
+        position: absolute;
+        top: 7%;
+        right: 1%;
+        background-color: rgba(255,255,255,0.8);
+        z-index: 100;
+        font-size: 90%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;
+      }
+      .textStyle01{
+        color: #424242;
+        text-shadow: 1px 1px 0.5px #424242;
+      }
 
-      var specialities = [["Alergología"], ["Cardiología"], ["Gastroenterología"], ["Geriatría"], ["Infectología"], ["Neumología"], ["Neurología"], ["Nutriología"], ["Oftalmología"], ["Oncología"], ["Pediatría"], ["Psiquiatría"], ["Rehabilitación"], ["Reumatología"], ["Toxicología"], ["Odontología"]];
+      /*** Range
+      /*General format*/
+      input[type='range'] {
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin: 18px 0;
+      }
+      /*Removes the blue border*/
+      input[type='range']:focus {
+        outline: none;
+      }
+      input[type=range]:focus::-webkit-slider-runnable-track {
+        outline: none;
+      }
+      /*Unstyled range input*/
+      input[type='range'],
+      input[type='range']::-webkit-slider-runnable-track,
+      input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+      }
+      /*Thumb Chrome*/
+      input[type=range]::-webkit-slider-thumb {
+        background-color: #000;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #000;
+        border-radius: 50%;
+        margin-top: -9px;
+      }
+      /*Thumb Mozilla*/
+      input[type=range]::-moz-range-thumb {
+        background-color: #000;
+        width: 15px;
+        height: 15px;
+        border: 3px solid #000;
+        border-radius: 50%;
+      }
+      /*Thumb Edge*/
+      input[type=range]::-ms-thumb {
+        background-color: #000;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #000;
+        border-radius: 50%;
+      }
+      /*Track Chrome*/
+      input[type=range]::-webkit-slider-runnable-track {
+        background-color: #000;
+        height: 3.5px;
+      }
+      /*Color barra Mozilla*/
+      input[type=range]::-moz-range-track {
+        background-color: #000;
+        height: 3px;
+      }
+      /*Track Edge*/
+      input[type=range]::-ms-track {
+        width: 100%;
+        height: 2.4px;
+        background-color: #000;
+        height: 3px;
+      }
+     /****/
+     /* Modal */
+     .modal-header, h4, .close {
+          color:black;
+          text-align: center;
+          font-size: 100%;
+          font-weight: bold;
+      }
+      .btn-default {
+          box-shadow: 1px 2px 5px #000000;   
+      }
 
-      var generalM = [[19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], [19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], [19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], [19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], [19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], [19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], [19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"]];
+  </style>
 
-      var datos = [["Alergología", 19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], ["Cardiología", 19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], ["Gastroenterología", 19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], ["Geriatría", 19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], ["Infectología", 19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], ["Neumología", 19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], ["Neurología", 19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"], ["Nutriología", 19.3948036, -99.09768079999998, "Beatriz Fuentes Galindo", "Servicios Médicos Fuentes"], ["Oftalmología", 19.342083, -99.0532159, "Lucía Medina Arenas", "Clínica Venecia"], ["Oncología", 19.3149641, -99.24258859999998, "Valeria Guerrero Ibáñez", "Hospital Arcángel"], ["Pediatría", 19.409044, -99.19057579999998, "Sergio Vega Infante", "Hospital Arcángel"], ["Psiquiatría", 19.1942041, -99.02670760000001, "Porfirio Soto Cuevas", "Hospital Arcángel"], ["Rehabilitación", 19.2990233, -99.04364670000001, "Elías Vidal Íñigo", "Hospital Arcángel"], ["Reumatología", 19.2790911, -99.2114234, "Inés Salazar Lara", "Hospital DTC"], ["Toxicología", 19.4395911, -99.1131054, "Elena Ríos Macías", "Hospital DTC"], ["Odontología", 19.2572314, -99.10296640000001, "Adrián Rivera Llamas", "Hospital DTC"], ["Alergología", 19.3605334,-99.32670670000002, "Sara Lozano Alcántara", "Hospital DTC"], ["Cardiología", 19.4846606, -99.28867490000002, "Oswaldo Robles Alfaro", "Hospital DTC"], ["Gastroenterología", 19.3794059, -99.25914459999999, "Patricia Caballero Manzano", "Hospital DTC"], ["Geriatría", 19.3437444, -99.2561883, "Martín Aguirre Olivera", "Hospital DTC"], ["Infectología", 19.3631419, -99.38805969999996, "Octavio Garrido Quiroga", "Hospital DTC"], ["Neumología", 19.4356338, -99.24951070000001, "Magdalena Cruz Orozco", "Hospital DEF"], ["Neurología", 19.4873329, -99.22361340000001, "Alvaro Gutiérrez Quintana", "Hospital DEF"], ["Nutriología", 19.3948036, -99.19768079999998, "David Romero Acosta", "Clínica Acosta"], ["Oftalmología", 19.342083, -99.1532159, "Bernardo Gil Montoya", "Hospital DEF"], ["Oncología", 19.3149641, -99.34258859999998, "Gisela Rojas Palma", "Hospital DEF"], ["Pediatría", 19.409044, -99.29057579999998, "Natalia Reyes Salgado", "Hospital DEF"], ["Psiquiatría", 19.1942041, -99.12670760000001, "Marcelo Campos Uribe", "Hospital DEF"], ["Rehabilitación", 19.2990233, -99.14364670000001, "Teresa Luna Carmona", "Clínica Venecia"], ["Reumatología", 19.2790911, -99.3114234, "Irene Morales Alcalá", "Clínica Cruces"], ["Toxicología", 19.4395911, -99.2131054, "Fabián Castillo Valencia", "Hospital Luna"], ["Odontología", 19.2572314, -99.20296640000001, "Adela Molina Zamora", "Clínica Venecia"]];
-    </script>
+  <!--  -->
+  <script type="text/javascript">
 
-    <form>
-    <input type="checkbox" name="general" id="general" onchange="ocultar();"> Médico General<br>
+    /**
+     * Text of labels
+     */
 
-    <br/>
-    <div id="selectSp">
-    <strong> Seleccionar especialidad  </strong>
-      <select id="mySelect" size="1" >
-        <!-- <option>- Select Speciality -</option> -->
-        <option>- Ninguna -</option>
-      </select>
+    var title = "Programar Cita";
+    var check01 = "Médico General";
+    var select01 = "Seleccionar especialidad";
+    var firstValue = '- Ninguna -';
+    var fieldSearch = 'Buscar';//'Nombre del Médico';
+    var Rango01 = 'Rango de búsqueda (metros):';
+    var Rango02 = 'Rango de búsqueda predefinido (metros):';
+    var Rango03 = 'Rango de búsqueda actual (metros):';
+    var Button02 = 'Mostrar filtros';
+    var Button01 = 'Buscar';
+    var error01 = 'Seleccione una especialidad';
+    var error02 = 'No se encontraron coincidencias';
+    var message01 = 'Su ubicación';
+    var message02 = 'Sólo se permiten origenes seguros';
+    var message03 = 'Error: Geolocation no soportada';
+    var result01 = 'Mostrando resultados para';
+    var result02 = 'Metros a la redonda';
 
-      <br/><br/>
+
+    /**
+     * Variables
+     */
+
+    var markerP;
+    var loc = [];
+    var typeC = 'TypeGeneral';
+    var startProcess = false;
+
+
+    /**
+     * Information loader
+     */
+
+    var specialities = [["Alergología"], ["Cardiología"], ["Gastroenterología"], ["Geriatría"], ["Infectología"], ["Neumología"], ["Neurología"], ["Nutriología"], ["Oftalmología"], ["Oncología"], ["Pediatría"], ["Psiquiatría"], ["Rehabilitación"], ["Reumatología"], ["Toxicología"], ["Odontología"]];
+
+    var generalM = [[19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], [19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], [19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], [19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], [19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], [19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], [19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"]];
+
+    var datos = [["Alergología", 19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], ["Cardiología", 19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], ["Gastroenterología", 19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], ["Geriatría", 19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], ["Infectología", 19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], ["Neumología", 19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], ["Neurología", 19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"], ["Nutriología", 19.3948036, -99.09768079999998, "Beatriz Fuentes Galindo", "Servicios Médicos Fuentes"], ["Oftalmología", 19.342083, -99.0532159, "Lucía Medina Arenas", "Clínica Venecia"], ["Oncología", 19.3149641, -99.24258859999998, "Valeria Guerrero Ibáñez", "Hospital Arcángel"], ["Pediatría", 19.409044, -99.19057579999998, "Sergio Vega Infante", "Hospital Arcángel"], ["Psiquiatría", 19.1942041, -99.02670760000001, "Porfirio Soto Cuevas", "Hospital Arcángel"], ["Rehabilitación", 19.2990233, -99.04364670000001, "Elías Vidal Íñigo", "Hospital Arcángel"], ["Reumatología", 19.2790911, -99.2114234, "Inés Salazar Lara", "Hospital DTC"], ["Toxicología", 19.4395911, -99.1131054, "Elena Ríos Macías", "Hospital DTC"], ["Odontología", 19.2572314, -99.10296640000001, "Adrián Rivera Llamas", "Hospital DTC"], ["Alergología", 19.3605334,-99.32670670000002, "Sara Lozano Alcántara", "Hospital DTC"], ["Cardiología", 19.4846606, -99.28867490000002, "Oswaldo Robles Alfaro", "Hospital DTC"], ["Gastroenterología", 19.3794059, -99.25914459999999, "Patricia Caballero Manzano", "Hospital DTC"], ["Geriatría", 19.3437444, -99.2561883, "Martín Aguirre Olivera", "Hospital DTC"], ["Infectología", 19.3631419, -99.38805969999996, "Octavio Garrido Quiroga", "Hospital DTC"], ["Neumología", 19.4356338, -99.24951070000001, "Magdalena Cruz Orozco", "Hospital DEF"], ["Neurología", 19.4873329, -99.22361340000001, "Alvaro Gutiérrez Quintana", "Hospital DEF"], ["Nutriología", 19.3948036, -99.19768079999998, "David Romero Acosta", "Clínica Acosta"], ["Oftalmología", 19.342083, -99.1532159, "Bernardo Gil Montoya", "Hospital DEF"], ["Oncología", 19.3149641, -99.34258859999998, "Gisela Rojas Palma", "Hospital DEF"], ["Pediatría", 19.409044, -99.29057579999998, "Natalia Reyes Salgado", "Hospital DEF"], ["Psiquiatría", 19.1942041, -99.12670760000001, "Marcelo Campos Uribe", "Hospital DEF"], ["Rehabilitación", 19.2990233, -99.14364670000001, "Teresa Luna Carmona", "Clínica Venecia"], ["Reumatología", 19.2790911, -99.3114234, "Irene Morales Alcalá", "Clínica Cruces"], ["Toxicología", 19.4395911, -99.2131054, "Fabián Castillo Valencia", "Hospital Luna"], ["Odontología", 19.2572314, -99.20296640000001, "Adela Molina Zamora", "Clínica Venecia"]];
+
+  </script>
+
+   <form>
+        
+    <div id="mapaC">
+      <!-- Trigger the modal with a checkbox -->
+      <div class="checkStyle">
+      <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><strong><label for="general" id="label01" class="textStyle01"></label></strong>
+      </div>
+
+      <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
+      <strong><span id="infoSpDetail" class="textStyle01"></span></strong>
+      </div>
+
+      <div id="searchDiv">
+        <strong><label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;</strong><input type="text" name="keyWordSearch" id="kWSearch">
+      </div>
+
+      <div id="launchSearch" class="launchSearchStyle" onclick="start();">
+        <span class="glyphicon glyphicon-search"></span>
+      </div>
+
+      <div id='rango'>
+        <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
+        <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
+      </div>
+      
+      <div id="map"></div>
     </div>
-    
-    <div id="medicoS" style="display:none;">
-      <strong> Nombre del Médico  </strong><input type="text" name="franquicia" id="d1"><br>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-sm">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header" style="padding:0.5%;">
+            <!-- Tachecito para cerrar -->
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><strong><label for="Speciality" id="label02"></label></strong></h4>
+          </div>
+          <div class="modal-body" style="padding:0.9%;">
+              <!-- <center><p id="ShowDetails"></p></center> -->
+              <div id="selectSp" class=".center-block">
+              <center>
+              <select name="Speciality" id="mySelect" size="1" ><br />
+                  <option id="opc01"></option>
+                </select>
+                <br/><br/>
+              </center>
+              </div>
+          </div>
+          <div class="modal-footer" style="padding:0.5%;">
+            <center><button type="button" id="button01" class="btn btn-default .btn-xs" style="padding: 0.3%;" onclick="start();"><label for="button01" id="label07"></label></button></center>
+          </div>
+        </div>
+        
+      </div>
     </div>
 
     </form>
 
-    <script type="text/javascript">
-        var x = document.getElementById("mySelect");    
-        for (var i = 0; i < specialities.length; i++) {
-        var c = document.createElement("option");
-        c.text = specialities[i][0];
-        x.options.add(c, 1);
-        }
+     <script type="text/javascript">
+    function infoSelect(){
+      var x = document.getElementById("mySelect");
+      for (var i = 0; i < specialities.length; i++) {
+      var c = document.createElement("option");
+      c.text = specialities[i][0];
+      x.options.add(c, 1);
+      }
+    }
+
+    function changeCheck(){
+      if (!document.getElementById('general').checked){
+        startProcess = false;
+        typeC = 'TypeSpeciality';
+        $("#myModal").modal({backdrop: "static"});
+      }
+      if (document.getElementById('general').checked){
+        startProcess = false;
+        var x = document.getElementById("mySelect");   
+        x.selectedIndex = 0;
+        typeC = 'TypeGeneral';
+        document.getElementById("infoSpDetail").innerHTML = ' ';
+        document.getElementById('infoSp').style.display = 'none';
+        start();
+      }
+    }
+
+    function showM(){
+      if (!document.getElementById('general').checked){
+        startProcess = false;
+        typeC = 'TypeSpeciality';
+        $("#myModal").modal({backdrop: "static"});
+      }
+    }
+
+    function hideM(){
+      if (document.getElementById('general').checked)
+        $("#myModal").modal("hide");
+    }
+    function showM2(){
+      $("#myModal").modal({backdrop: "static"});
+    }
+    function hideM2(){
+      $("#myModal").modal("hide");
+    }
     </script>
 
-    <br/>
-    <button type="button" onclick="start()"> Buscar </button>
-    <br/><br/>
-    <p id="demo"></p>
-    
-    <div id="map" class="tab-pane" style="height: 250px;"></div>
+    <!-- Current range -->
+    <script>
+    var slider = document.getElementById("rango01");
+    var output2 = document.getElementById("rango03");
 
-    <br/><br/>
+    var defaultVal = slider.defaultValue;
+    output2.innerHTML = slider.value;
+
+    slider.oninput = function() {
+      output2.innerHTML = this.value;
+    }
+    </script>
+
+    <p id="ShowDetails"></p>
+    
     <p id="info"></p>
+
+    <!-- Values of Labels -->
+    <script type="text/javascript">
+      document.title = title;
+      document.getElementById('label01').innerHTML = check01;
+      document.getElementById('label02').innerHTML = select01;
+      document.getElementById('opc01').innerHTML = firstValue;
+      document.getElementById('label03').innerHTML = fieldSearch;
+      document.getElementById('label04').innerHTML = Rango01;
+      /*document.getElementById('label08').innerHTML = Button02;*/
+      document.getElementById('label07').innerHTML = Button01;
+    </script>
 
     <script type="text/javascript">
       function start(){
-      var x = document.getElementById("mySelect");
+        startProcess = true;
+        //Clean
+        clearMarkers();
+        document.getElementById("ShowDetails").innerHTML = ' ';
+        document.getElementById("info").innerHTML = ' ';
+        //Value of Speciality
+        var x = document.getElementById("mySelect");
         var s = x.selectedIndex;
-        var fran = document.getElementById("d1").value;
+        var selectedValue = x.options[s].text;
+        console.log('ESPECIALIDAD::'+selectedValue);
+        //Value of word for search
+        var keySearch = document.getElementById("kWSearch").value;
+        console.log('PALABRA BÚSQUEDA::'+keySearch);
+        //Value of indicated Position
+        markerLatLng = markerP.getPosition();
+        console.log('NUEVA POSICION::'+markerLatLng);
+        //Value of Range to search
+        var x = document.getElementById("rango01");
+        var currentVal = x.value;
+        console.log('RANGO INDICADO:: '+currentVal);
         
-        if(fran != '')
-          console.log('FRAN:: '+fran);
-
-        if(typeC == 'especialidad'){
-          if( x.options[s].text == "- Ninguna -"){
-            console.log('Valor NULO:: '+x.options[s].text);
+        if(typeC == 'TypeSpeciality'){
+          if(selectedValue == firstValue){
+            console.log('NULO ESPECIALIDAD:: '+selectedValue);
             clearMarkers();
-            document.getElementById("demo").innerHTML = 'Seleccione una especialidad.';
+            /*document.getElementById("ShowDetails").innerHTML = error01;*/
+            document.getElementById("ShowDetails").innerHTML = ' ';
             document.getElementById("info").innerHTML = ' ';
+            document.getElementById('infoSp').style.display = 'none';
+            startProcess = false;
           }
-          if( x.options[s].text !== "- Ninguna -"){
-            console.log('Valor VÁLIDO:: '+x.options[s].text);
-            myFunction2();
-          drop();
+          if(selectedValue !== firstValue){
+            console.log('VÁLIDO ESPECIALIDAD:: '+selectedValue);
+            hideM2();
+            document.getElementById('infoSp').style.display = 'block';
+            document.getElementById("infoSpDetail").innerHTML = selectedValue;
+            functionEsp(selectedValue, keySearch, markerLatLng, currentVal);
+            drop();
+            }
           }
-    }else{
-          console.log('Cita general');
-          myFunction3();
-          drop();
-    }
-    }
 
-    function ocultar(val){
-      var gen = '';
-
-        if (document.getElementById('general').checked) {
-          typeC = 'general';
-      gen = document.getElementById("general").value;
-      console.log('GEN:: '+gen);
-      document.getElementById('medicoS').style.display = 'block';
-      document.getElementById('selectSp').style.display = 'none';
-      document.getElementById("demo").innerHTML = ' ';
-          document.getElementById("info").innerHTML = ' ';
-    }else{
-      typeC = 'especialidad';
-      console.log('GEN:: '+gen);
-      document.getElementById('selectSp').style.display = 'block';
-      document.getElementById('medicoS').style.display = 'none';
-    }
-    }
-
-  </script>
+          if(typeC == 'TypeGeneral'){
+            console.log('CITA GENERAL');
+            document.getElementById('infoSp').style.display = 'none';
+            functionGen(keySearch, markerLatLng, currentVal);
+            drop();
+          }
+      }
+    </script>
 
     <script type="text/javascript">
-
       var markers = [];
       var map;
       var infoWindow;
 
       window.onload = function(){
-      initMap();
-    };
+        initMap();
+        infoSelect();
+      };
 
       function initMap() {
-        var marker;
-        var image = "{{ asset('maps-and-flags_1.png') }}";
+        //var image = "{{ asset('maps-and-flags_1.png') }}";
         
         infoWindow = new google.maps.InfoWindow();
 
         //Current position
         if (navigator.geolocation) {
-
-          console.log('Pos');
+          console.log('POSICION ACTUAL');
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-
             //Map
-          map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 6,
-            //center: new google.maps.LatLng(pos),//{lat: 20.42, lng: -99.18}
-            center: {lat: 20.42, lng: -99.18}
-          });
-
-            marker = new google.maps.Marker({
+            map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 14,
+              center: new google.maps.LatLng(pos),
+              disableDefaultUI: true
+            });
+            //Marker
+            markerP = new google.maps.Marker({
+              draggable: true,
               position: new google.maps.LatLng(pos),
-              icon: image,
+              //icon: image,
               map: map
             });
-
-            marker.addListener('mouseover', function() {
-              infoWindow.open(map, marker);
-              infoWindow.setContent('Su ubicación');
+            //Evento to open infowindow
+            markerP.addListener('mouseover', function() {
+              infoWindow.open(map, markerP);
+              infoWindow.setContent(message01);
             });
           },
 
           //****Error
           function(failure) {
-        if(failure.message.indexOf("Only secure origins are allowed") == 0) {
-          // Secure Origin issue.
-        }
-      }
-          );
-        } else {
+            if(failure.message.indexOf(message02) == 0) {
+            // Secure Origin issue.
+            }
+          });
+        }else {
             // Browser doesn't support Geolocation
             infoWindow.setMap(map);
             //infoWindow.setPosition(map.getCenter());
             infoWindow.setPosition({lat: 20.42, lng: -99.18});
-            infoWindow.setContent('Error: Your browser doesn\'t support geolocation.');
+            infoWindow.setContent(message03);
         }
       }
 
-      //Filter
-      function myFunction2() {
+      //Filter of Speciality
+      function functionEsp(specialityValue, keyWordValue, positionValue, rangeValue) {
         var res = [];
         loc = [];
 
-        var x = document.getElementById("mySelect");
-        var s = x.selectedIndex;
+        console.log('specialityValue:: '+specialityValue);
+        console.log('keyWordValue:: '+keyWordValue);
+        console.log('positionValue:: '+positionValue);
+        console.log('rangeValue:: '+rangeValue);
 
-        if( x.options[s].text == "- Ninguna -")
-          console.log('Valor NULO:: '+x.options[s].text);
-        if( x.options[s].text !== "- Ninguna -")
-          console.log('Valor VALIDO:: '+x.options[s].text);
+        if(keyWordValue == ''){
+          for(var i = 0; i < datos.length; i++) {
+            if(datos[i][0] == specialityValue){
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4]]);
+            }
+          }
+        }else{
+          for(var i = 0; i < datos.length; i++) {
+            if(datos[i][0] == specialityValue && datos[i][3] == keyWordValue){
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4]]);
+            }
+          }          
+        }
 
-        for(var i = 0; i < datos.length; i++) {
-          if(datos[i][0] == x.options[s].text){
-            console.log(datos[i][0]);
-            console.log(x.options[s].text);
+        for(var i = 0; i < res.length; i++) {
+          var posB = new google.maps.LatLng(res[i][0], res[i][1]);
+          metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
+          console.log('metros:: '+metros);
+          console.log('Nombre:: '+res[i][3]);
 
-             res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4]]);
-
-             //loc[latitud, longitud, especialidad, nombre, hospital, dirección**]
-             loc.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4]]);
+          if(metros < rangeValue){
+            //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4]]);
           }
         }
 
-        console.log(loc);
-        console.log(loc[0]);
-        console.log(loc[1]);
-        
         console.log(res);
-        document.getElementById("demo").innerHTML = '<strong>Mostrando resultados para '+ res[0][2] +'</strong>';
+        console.log(loc);
+        
+        if(loc.length <= 0){
+          console.log('NO ENCONTRO MÉDICO');
+          console.log('TAMAÑO:: '+loc.length);
+          document.getElementById("ShowDetails").innerHTML = '<strong>'+error02+'.</strong>';
+          document.getElementById("info").innerHTML = ' ';
+        }else{
+          document.getElementById("ShowDetails").innerHTML = '<strong>'+ result01 + ' ' + specialityValue +'. '+ result02 + ' ' + rangeValue +'.</strong>';
+        }
       }
 
-      function myFunction3() {
+      //Filter of General Appointment
+      function functionGen(keyWordValue, positionValue, rangeValue) {
         var res = [];
         loc = [];
 
-        var fran = document.getElementById("d1").value;
+        console.log('keyWordValue:: '+keyWordValue);
+        console.log('positionValue:: '+positionValue);
+        console.log('rangeValue:: '+rangeValue);
         
-        if(fran != ''){
-          console.log('FRAN:: '+fran);
+        if(keyWordValue != ''){
+          console.log('KEYWORD SEARCH VÁLIDO:: '+keyWordValue);
+
           for(var i = 0; i < generalM.length; i++) {
-            if(generalM[i][2] == fran){
-
+            if(generalM[i][2] == keyWordValue){
                res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3]]);
-
-               //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
-               loc.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3]]);
             }
           }
 
+          for(var i = 0; i < res.length; i++) {
+            var posB = new google.maps.LatLng(res[i][0], res[i][1]);
+            metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
+            console.log('metros:: '+metros);
+            console.log('Nombre:: '+res[i][3]);
+
+            if(metros < rangeValue){
+               //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
+               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4]]);
+             }
+          }
+
           if(loc.length <= 0){
-            console.log('ENCONTRO MÉDICO');
+            console.log('NO ENCONTRO MÉDICO');
             console.log('TAMAÑO:: '+loc.length);
-            document.getElementById("demo").innerHTML = '<strong>No se encontraron coincidencias.</strong>';
+            document.getElementById("ShowDetails").innerHTML = '<strong>'+error02+'.</strong>';
             document.getElementById("info").innerHTML = ' ';
+          }else{
+            document.getElementById("ShowDetails").innerHTML = '<strong>' + result01 + ' ' + keyWordValue +'.</strong>';
           }
 
         }else{
-          document.getElementById("demo").innerHTML = '<strong>Indique el nombre del médico.</strong>';
-          document.getElementById("info").innerHTML = ' ';
-        }        
+          console.log('KEYWORD SEARCH NULO:: '+keyWordValue);
 
-        console.log(loc);
-        console.log(loc[0]);
-        console.log(loc[1]);        
+          for(var i = 0; i < generalM.length; i++) {
+            var posB = new google.maps.LatLng(generalM[i][0], generalM[i][1]);
+            metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
+            console.log('metros:: '+metros);
+            console.log('Nombre:: '+generalM[i][2]);
+
+            if(metros < rangeValue){
+              console.log('Nombre:: '+generalM[i][2]);
+              console.log(metros +'<'+ rangeValue);
+
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3]]);
+               //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
+            }
+          }
+
+          for(var i = 0; i < res.length; i++) {
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4]]);
+          }
+
+          if(loc.length <= 0){
+            console.log('NO ENCONTRO MÉDICO');
+            console.log('TAMAÑO:: '+loc.length);
+            document.getElementById("ShowDetails").innerHTML = '<strong>'+error02+'.</strong>';
+            document.getElementById("info").innerHTML = ' ';
+          }else{
+            document.getElementById("ShowDetails").innerHTML = '<strong>'+ result01 + ' ' + rangeValue + ' ' + result02 +'.</strong>';
+          }
+        }      
+
         console.log(res);
+        console.log(loc);
       }
 
       function drop() {
@@ -249,17 +600,15 @@
           console.log(lat);
           console.log(lon);
 
-          //addMarkerWithTimeout(lat, lon, i * 100);
-
-            markers[i] = new google.maps.Marker({
+          markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP
           });
 
-            var infowindow = new google.maps.InfoWindow();
-            var marker = markers[i];
+          var infowindow = new google.maps.InfoWindow();
+          var marker = markers[i];
 
-            google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+          google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
             return function() {
               infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]);
               infowindow.open(map, marker);
@@ -267,7 +616,6 @@
               showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]);
             }
           })(marker, i));
-
 
           setTimeout(dropMarker(i), i * 250);
         }
@@ -289,6 +637,43 @@
       function showInfo(info){
         document.getElementById("info").innerHTML = '<strong>Seleccionado: <br/>'+ info +'</strong>';
       }
-    </script>    
+    </script>
+
+    <!-- Calculate distance -->
+    <script type="text/javascript">
+      function distancia(lat1, lng1, lat2, lng2){
+        var earthRadius = 6371000; //meters
+        var dLat = Math.toRadians(lat2-lat1);
+        var dLng = Math.toRadians(lng2-lng1);
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+               Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
+               Math.sin(dLng/2) * Math.sin(dLng/2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        var dist = (earthRadius * c);
+
+        return dist;
+      }
+    </script>
+
+    <!-- Hides modal -->
+    <script>
+    $(document).ready(function(){
+        $("#myModal").on('hidden.bs.modal', function () {
+          //console.log(startProcess);
+          //alert(startProcess);
+           if(!startProcess){
+            /*alert('The modal is now hidden.');*/
+            var x = document.getElementById("mySelect");
+            var s = x.selectedIndex;
+            var selectedValue = x.options[s].text;
+            //alert(s);
+            document.getElementById("general").checked = true;            
+            x.selectedIndex = 0;
+            typeC = 'TypeGeneral';
+          }
+        });
+    });
+    </script>
+
 
 @stop
