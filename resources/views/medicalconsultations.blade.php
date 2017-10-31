@@ -290,7 +290,11 @@
           </div>
 
           <div class="modal-footer">
-            <center><button type="button" id="button01" class="btn btn-default .btn-xs" style="padding: 0.3%;" onclick="start();"><label for="button01" id="label07"></label></button></center>
+            <center>
+              <button type="button" id="button01" class="btn btn-secondary btn-block btn-flat" onclick="start();">
+                <label for="button01" id="label07"></label>
+              </button>
+            </center>
           </div>
         </div>
         
