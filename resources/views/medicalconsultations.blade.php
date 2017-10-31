@@ -267,11 +267,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4>
-              <strong>
-                <label for="Speciality" id="label02"></label>
-              </strong>
-            </h4>
+            <label for="Speciality" id="label02"></label>
 
           </div>
 
