@@ -2,7 +2,6 @@
 
 @section('title', 'Boomedic')
 
-
 @section('content')
     
   <style type="text/css">
@@ -93,6 +92,12 @@
       .content{
         padding-left: 1px;
         padding-right: 1px;
+        padding-top: 0px;
+      }
+
+      .content-header {
+          position: relative;
+          /* padding: 15px 15px 0 15px; */
       }
       /*** Range
       /*General format*/
