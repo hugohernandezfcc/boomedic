@@ -240,27 +240,26 @@
       </div>
 
       <div id="searchDiv">
-        <strong>
+        <!-- <strong>
           <label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;
         </strong>
-        <input type="text" name="keyWordSearch" class="form-control input-sm" id="kWSearch">
+        <input type="text" name="keyWordSearch" class="form-control input-sm" id="kWSearch"> -->
       
         <div class="input-group input-group-sm">
           <input type="text" class="form-control"  name="keyWordSearch"  id="kWSearch" >
           <span class="input-group-btn">
-            <button type="button" class="btn btn-info btn-flat">
+            <button type="button" class="btn btn-info btn-flat" onclick="start();">
               <span class="glyphicon glyphicon-search"></span>
             </button>
           </span>
         </div>
-
       </div>
 
               
 
-      <div id="launchSearch" class="launchSearchStyle" onclick="start();">
+      <!-- <div id="launchSearch" class="launchSearchStyle" onclick="start();">
         <span class="glyphicon glyphicon-search"></span>
-      </div>
+      </div> -->
 
       <div id='rango'>
         <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
