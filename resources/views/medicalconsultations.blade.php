@@ -79,11 +79,11 @@
         position: absolute;
         top: 7%;
         right: 1%;
-        background-color: rgba(255,255,255,0.8);
+        /*background-color: rgba(255,255,255,0.8);
         z-index: 100;
         font-size: 90%;
         padding-right: 0.5%;
-        padding-left: 0.5%;
+        padding-left: 0.5%;*/
       }
       .textStyle01{
         color: #424242;
@@ -240,8 +240,23 @@
       </div>
 
       <div id="searchDiv">
-        <strong><label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;</strong><input type="text" name="keyWordSearch" id="kWSearch">
+        <strong>
+          <label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;
+        </strong>
+        <input type="text" name="keyWordSearch" class="form-control input-sm" id="kWSearch">
+      
+        <div class="input-group input-group-sm">
+          <input type="text" class="form-control"  name="keyWordSearch"  id="kWSearch" >
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-info btn-flat">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+
       </div>
+
+              
 
       <div id="launchSearch" class="launchSearchStyle" onclick="start();">
         <span class="glyphicon glyphicon-search"></span>
@@ -366,7 +381,7 @@
       document.getElementById('label01').innerHTML = check01;
       document.getElementById('label02').innerHTML = select01;
       document.getElementById('opc01').innerHTML = firstValue;
-      document.getElementById('label03').innerHTML = fieldSearch;
+      // document.getElementById('label03').innerHTML = fieldSearch;
       document.getElementById('label04').innerHTML = Rango01;
       /*document.getElementById('label08').innerHTML = Button02;*/
       document.getElementById('label07').innerHTML = Button01;
