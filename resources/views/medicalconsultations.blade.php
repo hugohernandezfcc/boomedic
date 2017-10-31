@@ -2,11 +2,6 @@
 
 @section('title', 'Boomedic')
 
-@section('content_header')
-
-    Programa tu Consulta {{ $username }}
-
-@stop
 
 @section('content')
     
@@ -19,7 +14,6 @@
       }
       #map{
         position: relative;
-        
         width: 100%;
         z-index: 30;
       }
@@ -96,6 +90,10 @@
         text-shadow: 1px 1px 0.5px #424242;
       }
 
+      .content{
+        padding-left: 1px;
+        padding-right: 1px;
+      }
       /*** Range
       /*General format*/
       input[type='range'] {
