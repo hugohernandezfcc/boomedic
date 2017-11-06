@@ -11,7 +11,7 @@
 
 	<div class="box box-primary">
 	    <div class="box-body no-padding">
-	      <!-- THE CALENDAR -->
+	      <!-- THE cristina CALENDAR -->
 	      <div id="calendar"></div>
 	    </div>
 	    <!-- /.box-body -->
