@@ -16,9 +16,9 @@
         width: 100%;
         z-index: 30;
       }
-      #rango{
+      #rango{ 
         position: absolute;
-        width: 70%;
+        width: 70%; 
         bottom: 4.5%;
         left: 15%;
         right: 15%;
