@@ -14,20 +14,14 @@
         </div>
 
         <div class="register-box-body">
-
-            <div class="alert alert-info alert-dismissible" >
-                <i class="icon fa fa-info"></i> {{ trans('adminlte::adminlte.Message_to_doctor') }}
-            </div>
-            <!-- <p class="login-box-msg"></p> -->
-
-            <!-- <form action="{{ url(config('adminlte.register_doctor_url', 'medicalRegister')) }}" method="post"> -->
+            <p class="login-box-msg">{{ trans('adminlte::adminlte.register_message') }}</p>
             <form action="{{ url(config('adminlte.register_url', 'register')) }}" method="post">
                 {!! csrf_field() !!}
 
 
                 <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
                     <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="{{ trans('adminlte::adminlte.full_name') }}" id="name">
-                    <span class="fa  fa-user-md form-control-feedback"></span>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     @if ($errors->has('name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -79,13 +73,14 @@
 
 
                 <button type="submit" class="btn btn-secondary btn-block btn-flat">
-                    {{ trans('adminlte::adminlte.register_a_new_membership_doctor') }}
+                    {{ trans('adminlte::adminlte.register_a_new_membership') }}
                 </button>
 
             </form>
             <div class="auth-links">
-                <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="text-center">{{ trans('adminlte::adminlte.i_already_have_a_membership') }}</a> <br/>
-                <!-- <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="text-center">{{ trans('adminlte::adminlte.i_am_a_doctor') }}</a> -->
+                <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="text-center">{{ trans('adminlte::adminlte.i_already_have_a_membership') }}</a> 
+                <br/>
+                <a href="{{ url(config('adminlte.register__doctor_url', 'medicalRegister')) }}" class="text-center">{{ trans('adminlte::adminlte.i_am_a_doctor') }}</a>
             </div>
         </div>
         <!-- /.form-box -->
