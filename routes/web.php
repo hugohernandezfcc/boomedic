@@ -95,5 +95,34 @@ Route::group(['prefix' => 'payment'], function(){
 
 
 
+Route::group(['prefix' => 'doctor'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'doctors@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('create', [
+			'uses'	=>	'doctors@create',
+			'as'	=>	'create'
+		]
+	);
+
+	Route::post('store', [
+			'uses'	=>	'doctors@store',
+			'as'	=>	'store'
+		]
+	);
+
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'doctors@redirecting',
+			'as'	=>	'redirecting'
+		]
+});
+
+
+
 
 Route::post('/bye' , 'Auth\LoginController@logout');
