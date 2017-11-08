@@ -115,7 +115,7 @@ Route::group(['prefix' => 'doctor'], function(){
 		]
 	);
 
-
+ 
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'doctors@redirecting',
 			'as'	=>	'redirecting'
