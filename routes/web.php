@@ -97,29 +97,29 @@ Route::group(['prefix' => 'payment'], function(){
 
 Route::group(['prefix' => 'doctor'], function(){
 
-	Route::get('index', [
-			'uses'	=>	'doctors@index',
-			'as'	=>	'index'
+	Route::get('edit/{status}', [
+			'uses'	=>	'doctor@edit',
+			'as'	=>	'edit'
 		]
 	);
 
-	Route::get('create', [
-			'uses'	=>	'doctors@create',
-			'as'	=>	'create'
+	Route::post('update/{id}', [
+			'uses'	=>	'doctor@update',
+			'as'	=>	'update'
 		]
 	);
 
-	Route::post('store', [
-			'uses'	=>	'doctors@store',
-			'as'	=>	'store'
+	Route::get('doctor/{id}', [
+			'uses'	=>	'doctor@show',
+			'as'	=>	'profile'
 		]
 	);
 
- 
 	Route::get('redirecting/{page}', [
-			'uses'	=>	'doctors@redirecting',
+			'uses'	=>	'doctor@redirecting',
 			'as'	=>	'redirecting'
 		]
+	);
 });
 
 
