@@ -89,7 +89,7 @@ return [
     'logout_url'           => 'bye',
     'logout_method'        => null,
     'login_url'            => 'login',
-    'register_doctor_url'  => 'medicalRegister',
+    'register_doctor_url'  => 'homemedical',/*'medicalRegister',*/
     'register_url'         => 'register',
 
     /*
