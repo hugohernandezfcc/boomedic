@@ -40,7 +40,7 @@
 
     <div class="box">
 	  	<div class="box-header with-border">
-		    <h3 class="box-title">Información de usuario</h3>
+		    <h3 class="box-title">Información de Médico</h3>
 	    	<!-- /.box-tools -->
 	  	</div>
 	  	<!-- /.box-header -->
