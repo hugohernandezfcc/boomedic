@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,16 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
-        if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
-            return redirect('user/edit/In%20Progress');
-        }else{
-            return view('medicalconsultations', [
-                    'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
-                    'userId' => Auth::id()
-                ]
-            );
-        }
+        return view('home');
     }
-
 }

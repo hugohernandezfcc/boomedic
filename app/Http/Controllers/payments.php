@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\PaymentMethod;
+use App\Http\Controllers\VisaAPIClient;
 
 class payments extends Controller
 {
@@ -19,6 +20,7 @@ class payments extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+       
     }
 
     /**
@@ -66,10 +68,11 @@ class payments extends Controller
     {
         $pmethods = new PaymentMethod;
 
-        $pmethods->provider      = 'visa';
+        $pmethods->provider      = $request->provider;
         $pmethods->typemethod    = $request->typemethod;
         $pmethods->country       = $request->country;
-        $pmethods->dateexpired   = $request->dateexpired;
+        $pmethods->year          = $request->year;
+        $pmethods->month         = $request->month;
         $pmethods->cvv           = $request->cvv;
         $pmethods->cardnumber    = $request->cardnumber;
         $pmethods->owner         = Auth::id();
@@ -134,6 +137,60 @@ class payments extends Controller
      */
     public function destroy($id)
     {
-        //
+        $card = PaymentMethod::find($id);
+        $card->delete();
+    
+    // redirect
+    
+   return redirect('payment/index');
     }
+
+
+    //Controller to make payment, Contains type of ROUTE defined post
+
+    public function PaymentAuthorizations(Request $request) {
+        $id = $request->id;
+
+        //Look in the table of methods of saved payments all the information of the selected method.
+        $card = DB::table('paymentsmethods')->where('id', $id)->first();
+
+                    $this->VisaAPIClient = new VisaAPIClient;
+                    //Build json with payment details
+                    $this->paymentAuthorizationRequest = json_encode ( [ 
+                    'amount' => $request->pay,
+                    'currency' => 'USD',
+                    'payment' => [
+                      'cardNumber'=> $card->cardnumber,
+                      'cardExpirationMonth' => $card->month,
+                      'cardExpirationYear' =>  $card->year,
+                      'cvn' => $card->cvv
+                    ]
+                    ] );
+
+                    $baseUrl = 'cybersource/';
+                    $resourceP = 'payments/v1/authorizations';
+                    //apykey lo proporcionaVISA
+                    $queryString = 'apikey=RY6NDJNX3Q2NDWVYUBQW21N37pbnY719X0SqzEs_CDSZbhFro';
+                    $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
+        
+         if($statusCode == '201'){
+            $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'Pago procesado correctamente por un monto de: '. $request->pay.'$, para más información consulte su cartera de pago...', 
+            'success' => 'success'
+            );
+
+            return redirect('payment/index')->with($notification);
+         }
+         else {
+             $notification = array(
+                //If it has been rejected, the internal error code is sent.
+            'message' => $statusCode, 
+            'error' => 'error'
+        );
+            return redirect('payment/index')->with($notification);
+         }
+         
+     }
+    
 }

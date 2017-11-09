@@ -84,12 +84,23 @@ Route::group(['prefix' => 'payment'], function(){
 		]
 	);
 
+	Route::get('delete/{id}', [
+			'uses'	=>	'payments@destroy',
+			'as'	=>	'destroy'
+		]
+	);
 
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'payments@redirecting',
 			'as'	=>	'redirecting'
 		]
 	);
+	Route::post('PaymentAuthorizations',[
+			'uses'	=>	'payments@PaymentAuthorizations',
+			'as'	=>	'PaymentAuthorizations'
+		]
+	);
+
 
 });
 
@@ -126,3 +137,7 @@ Route::group(['prefix' => 'doctor'], function(){
 
 
 Route::post('/bye' , 'Auth\LoginController@logout');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
