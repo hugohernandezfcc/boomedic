@@ -1,9 +1,11 @@
 <?php 
 namespace App\Http\Controllers;
+
 //Class where the CURL connection is made with VISA
 class VisaAPIClient extends Controller {
 	
 	public function __construct() {
+
 		$this->timeout = 80;
 		$this->connectTimeout = 30;
 	}

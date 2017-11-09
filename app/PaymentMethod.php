@@ -12,7 +12,8 @@ class PaymentMethod extends Model
 		'provider',
 		'typemethod',
 		'country',
-		'dateexpired',
+		'month',
+		'year',
 		'cvv',
 		'cardnumber',
 		'owner'

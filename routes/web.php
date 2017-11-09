@@ -85,16 +85,60 @@ Route::group(['prefix' => 'payment'], function(){
 		]
 	);
 
+	Route::get('delete/{id}', [
+			'uses'	=>	'payments@destroy',
+			'as'	=>	'destroy'
+		]
+	);
 
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'payments@redirecting',
 			'as'	=>	'redirecting'
 		]
 	);
+	Route::post('PaymentAuthorizations',[
+			'uses'	=>	'payments@PaymentAuthorizations',
+			'as'	=>	'PaymentAuthorizations'
+		]
+	);
 
+
+});
+
+
+
+Route::group(['prefix' => 'doctor'], function(){
+
+	Route::get('edit/{status}', [
+			'uses'	=>	'doctor@edit',
+			'as'	=>	'edit'
+		]
+	);
+
+	Route::post('update/{id}', [
+			'uses'	=>	'doctor@update',
+			'as'	=>	'update'
+		]
+	);
+
+	Route::get('doctor/{id}', [
+			'uses'	=>	'doctor@show',
+			'as'	=>	'profile'
+		]
+	);
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'doctor@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
 });
 
 
 
 
 Route::post('/bye' , 'Auth\LoginController@logout');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
