@@ -132,7 +132,7 @@
 	                  	</div>
 	                </div>
 
-	                <div id="cardFields" style="display: none;" >
+	               <div id="cardFields" style="display: none;" >
 	                	<div class="form-group has-feedback {{ $errors->has('cardnumber') ? 'has-error' : '' }}">
 		                    <label for="cardnumber" class="col-sm-2 control-label">No. Tarjeta</label>
 		                	<div class="col-sm-10">
@@ -158,7 +158,7 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select>
-                        <select name="year" class="form-control selec1" style="width: 30%;">
+                        <select name="year" class="form-control select1" style="width: 30%;">
                             <option value="17"> 2017</option>
                             <option value="18"> 2018</option>
                             <option value="19"> 2019</option>
@@ -184,7 +184,7 @@
 		              		</div>
 		              	</div>
 		              	<div class="form-group has-feedback {{ $errors->has('country') ? 'has-error' : '' }}">
-		                    <label for="country" class="col-sm-2 control-label">País</label>
+		                    <label for="country" class="col-sm-1 control-label">País</label>
 			                <div class="col-sm-10" align="left">
 				                <select class="form-control select1" name="country" style="width: 100%;">
 				                  <option selected="selected">Estados Unidos</option>
