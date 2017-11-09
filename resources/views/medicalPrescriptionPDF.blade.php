@@ -21,11 +21,8 @@
                 <style>
                 .bordes{
                         background-color: #2C2C2C;
-                        border-radius: 85px;
-                        -moz-border-radius: 85px;
-                        -webkit-border-radius: 85px;
                         border: 0px solid #696969;
-                        border-collapse: separate;
+                        border-collapse: collapse;
                         border-spacing:0px 5px;
                         color: white;
                         font-family: sans-serif;
@@ -36,12 +33,9 @@
                 }
                  .bordes2{
                         background-color: #9A9A9A;
-                        border-radius: 85px;
-                        -moz-border-radius: 85px;
-                        -webkit-border-radius: 85px;
-                        border: 0px solid #696969;
+                        border: 3px;
                         border-collapse: separate;
-                        border-spacing:0px 5px;
+                        border-spacing:15px;
                         color: #151515;
                         font-family: sans-serif;
                         font-size: 14px;
@@ -52,6 +46,13 @@
                 .letras {
                         font-family: sans-serif;
                         font-size: 10px;
+                        border-width: 5px;
+                }
+                .letras2 {
+                        font-family: sans-serif;
+                        font-size: 14px;
+                         color: #3D3D3D;
+
                 }
                 </style>
 
@@ -75,13 +76,13 @@
                <tr style="color: #32313D;"><td>Nombre: {{ $Paciente }}</td><td>Peso: {{ $peso }}Kg</td><td>Estatura: {{ $est }}</td></tr>
                <tr style="color: #32313D;"><td>Alergias: {{ $alergias}}</td><td>Teléfono: {{ $mobileP }}</td><td>Email: {{ $email }}</td></tr>
        </table>
-              <table width="100%" class="letras">
+      <table width="100%" class="letras" style="border-collapse: collapse;">
                <tr class="bordes" style="height: 200px;"><td colspan="2" align="left" style="height: 28px; margin-left: 2px;">Datos del Médico Facultativo</td></tr><br/>
                <tr style="color: #32313D;"><td>Nombre: {{ $nameMedic }}</td><td>Especialidad: {{ $espe }}</td></tr>
                <tr style="color: #32313D;"><td>Teléfono: {{ $phoneM }}</td><td>Cédula Profesional: {{ $lic }}</td></tr>
        </table>
-              </table>
-              <table width="100%" class="letras">
+              
+       <table width="100%" class="letras" style="table-layout: fixed; width: 100%; ">
                <tr class="bordes" style="height: 200px;"><td colspan="4" align="center" style="height: 28px;">Datos de la Receta</td></tr><br/>
                 <tr >
                 <td class="bordes2" style="height: 33px;">Diagnóstico</td>
@@ -89,11 +90,11 @@
                 <td class="bordes2" style="height: 33px;">Presentación</td>
                 <td class="bordes2" style="height: 33px;">Dosis/Modo de Empleo</td>
                </tr>
-              <tr align="left">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr align="left" class="letras2">
+                <td><div style="word-wrap: break-word;">{{ $diagnostico }}</div></td>
+                <td align="center">{{ $medPres }}</td>
+                <td align="center">{{ $presentacion }}</td>
+                <td><div style="word-wrap: break-word;">{{ $dosis }}</div></td>
                </tr>    
        </table>
        <!--<table width="100%" class="letras">

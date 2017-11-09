@@ -139,7 +139,11 @@ class medicalPrescription extends Controller
                         'mobileP'  => $request->mobileP,
                         'email'    => $request->email,
                         'alergias' => $request->alergias,
-                        'age'      => $request->age
+                        'age'      => $request->age,
+                        'diagnostico' => $request->diag,
+                        'medPres'     => $request->medPres,
+                        'presentacion' => $request->presentacion,
+                        'dosis'        => $request->dosis 
 
 
                     ); 

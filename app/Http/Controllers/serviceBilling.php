@@ -141,7 +141,7 @@ class serviceBilling extends Controller
 $cfd = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <cfdi:Comprobante LugarExpedicion="$request->invoiceExpedition" metodoDePago="$request->paymentMethod"
-tipoDeComprobante="egreso" total="208197.77" Moneda="$request->currency" TipoCambio="1.0000" subTotal="208197.77"
+tipoDeComprobante="egreso" total="$total" Moneda="$request->currency" TipoCambio="1.0000" subTotal="$total"
 condicionesDePago="$request->paymentform"
 certificado="$certificado"
 noCertificado="$noCertificado" formaDePago="$request->paymentform"
@@ -204,6 +204,11 @@ EOF;
                                             $version = $tfd['version'];
                                             $selloSAT = $tfd['selloSAT'];
                                         }
+
+                            foreach ($xml->xpath('///bfa2:CFD') as $bfa2) {
+                                            $tconletra = $bfa2['totalConLetra'];
+
+                                        }
                             $cadenaQR = "https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=".$uuid. "&re=".$eRfc."&rr=BBB010101BBB&tt=".$total."&fe=".$selloSAT;
                                      
                     //Los Datos que serán enviados al PDF            
@@ -241,7 +246,8 @@ EOF;
                                     'noCertificadoSAT' => $noCertificadoSAT,
                                     'uuid' => $uuid,
                                     'selloCFD' => $selloCFD,
-                                    'codigoQR' =>  $cadenaQR
+                                    'codigoQR' =>  $cadenaQR,
+                                    'tconletra' => $tconletra
                      
 
 

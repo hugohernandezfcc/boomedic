@@ -97,6 +97,37 @@
 		                	</div>
 	                  	</div>
 	                  	<br/><hr align="center" width="80%" style="background-color: #979797; height: 3px; border:none;"/>
+	                  	<div class="row">
+	                  	<label class="col-sm-2 control-label">Diagnóstico</label>
+		 					<div class="col-sm-10">
+		                  		<input type="text" name="diag" class="form-control" id="diag">
+		                	</div></div><br/>
+		                	<div class="row">
+	                  	     	<label class="col-sm-2 control-label">Medicamento Prescrito</label>
+	                  	
+		 					<div class="col-sm-2">
+		                  		<input type="text" name="medPres" class="form-control" id="medPres">
+		                	</div>
+		                	<label class="col-sm-1 control-label">Presentación</label>
+		                	<div class="col-sm-2">
+		                  		<select name="presentacion" class="form-control select1">
+                            <option value="tabletas">Tabletas</option>
+                            <option value="capsulas">Capsulas</option>
+                            <option value="granulados">Granulado</option>
+                            <option value="supositorio">Supositorio</option>
+                            <option value="amppollas">Ampollas</option>
+                            <option value="solucion">Solución</option>
+                            <option value="unguentos">Ungüentos</option>
+                            <option value="jarabe">Jarabe</option>
+                        		</select>
+		                	</div>
+		                	 	<label class="col-sm-2 control-label">Dosis/Modo de Empleo</label>
+	                  	
+		 					<div class="col-sm-3">
+		                  		<input type="text" name="dosis" class="form-control" id="dosis">
+		                	</div>
+	                  	</div>
+	                  	<br/>
 	                  	<div class="form-group" align="center"> <!-- Submit Button -->
 					      <button type="submit"  class="btn btn-primary" style="background-color: #3E3D3D;">Generar</button>
 					    </div>
