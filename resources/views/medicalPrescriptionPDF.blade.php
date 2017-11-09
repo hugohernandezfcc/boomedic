@@ -18,116 +18,103 @@
 @section('body')
 <div>
 
-
-
-
                 <style>
                 .bordes{
-                        background-color: #3E3D3D;
+                        background-color: #2C2C2C;
                         border-radius: 85px;
                         -moz-border-radius: 85px;
                         -webkit-border-radius: 85px;
-                        border: 0px solid #3E3D3D;
+                        border: 0px solid #696969;
                         border-collapse: separate;
                         border-spacing:0px 5px;
                         color: white;
                         font-family: sans-serif;
-                        font-size: 13px;
+                        font-size: 14px;
                         text-align: center;
                         font-weight: bold;
+
+                }
+                 .bordes2{
+                        background-color: #9A9A9A;
+                        border-radius: 85px;
+                        -moz-border-radius: 85px;
+                        -webkit-border-radius: 85px;
+                        border: 0px solid #696969;
+                        border-collapse: separate;
+                        border-spacing:0px 5px;
+                        color: #151515;
+                        font-family: sans-serif;
+                        font-size: 14px;
+                        text-align: center;
+                        font-weight: bold;
+
                 }
                 .letras {
                         font-family: sans-serif;
-                        font-size: 11px;
+                        font-size: 10px;
                 }
                 </style>
 
 
         <table width="100%" class="letras">
-         <tr style="text-align: center;">
-            <td width="25%" rowspan="8" align="top"><IMG SRC="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" width=200 height=200></td>
-            <td width="35%" rowspan="8" align="top">Name<br/>Rfc<br/>Dirección: ePais, eEstado, Municipio eMunicipio, Colonia eColonia, Calle eCalle, eNoEX <br/> Código Postal: eCP</td>
-            <td width="40%">Comprobante Fiscal Digital a través de internet</td></tr>
-        <tr><td class="bordes">FACTURA</td></tr>
-        <tr style="text-align: center;">
-            <td style="color: #545454"><br/>Folio Fiscal Digital:</td></tr>
-        <tr style="text-align: center;">
-            <td>hgj343532k52k3523</td></tr>
-        <tr style="text-align: center"><td style="color: #545454">No. de Serie del Certificado SAT</td></tr> 
-        <tr style="text-align: center"><td>fsdkfy873wf2iu3hfkfhfhfshdf</td></tr>
-        <tr style="text-align: center"><td style="color: #545454">Fecha y Hora de Certificación</td></tr>
-        <tr style="text-align: center"><td>2017kjnsfnwefw</td></tr>         
+         <tr>
+            <td width="30%" align="top"><IMG SRC="http://www.cauca.gov.co/sites/default/files/tulogoaqui.jpg" width=150 height=150/></td>
+            <td width="40%" style="color: #545454; margin-right: 1px;"><h1>RECETARIO MÉDICO DIGITAL</h1><h2>ID: Ejemplo</h2></td>
+            <td width="30%" align="right"><img alt="" src="http://chart.apis.google.com/chart?cht=qr&amp;chs=130x130&amp;chl={{ $qr }}&amp;chld=H|0" /></td></tr>
        </table>
-       <table width="100%" class="letras">
+       <br/>
+       <table width="60%" class="letras" align="right">
                <tr style="color: #545454">
-                <td align="center">Fecha y Hora de Emisión</td>
-                <td align="center">Serie</td>
-                <td align="center">Folio</td>
-                <td align="center">No de Certificado del Emisor</td>
-                <td align="center">Moneda</td>
-                <td align="center">Tipo de Comprobante</td>
+                <td align="right">Emisión: {{ $date }}</td>
+                <td align="right">Centro Médico: {{ $clinic }}</td>
                </tr>
-               <tr>
-                <td align="center">fecha</td>
-                <td align="center">serie</td>
-                <td align="center">folio</td>
-                <td align="center">noCertificado</td>
-                <td align="center">moneda</td>
-                <td align="center">tipoComprobante</td>
-               </tr>
-       </table><br/><br/>
-       <table width="100%" class="letras">
-               <tr class="bordes"><td colspan="4" align="center">FACTURAR A:</td></tr>
-               <tr><td style="color: #545454">Razón Social:</td><td>razoncuenta</td><td style="color: #545454">RFC:</td><td>rfc</td></tr>
-               <tr><td style="color: #545454">Domicilio:</td><td>pais, Municipio municipio, Colonia colonia, Nro noExterior noInterior</td><td style="color: #545454">Referencia:</td><td>No aplica</td></tr>
-               <tr><td style="color: #545454">Ciudad:</td><td>estado</td><td style="color: #545454">Código Postal:</td><td>postal</td></tr>
        </table><br/>
-       <table width="100%" class="letras">
+       <hr align="right" width="60%" style="background-color: #9A9A9A; height: 3px; border:none;"  />
+       <table width="100%" class="letras" style="border-collapse: collapse;">
+               <tr class="bordes" ><td colspan="2" align="left" style="height: 28px; margin-left: 2px;">Datos del Paciente</td><td align="right" style="height: 28px;">Edad: {{ $age }}</td></tr><br/>
+               <tr style="color: #32313D;"><td>Nombre: {{ $Paciente }}</td><td>Peso: {{ $peso }}Kg</td><td>Estatura: {{ $est }}</td></tr>
+               <tr style="color: #32313D;"><td>Alergias: {{ $alergias}}</td><td>Teléfono: {{ $mobileP }}</td><td>Email: {{ $email }}</td></tr>
+       </table>
+              <table width="100%" class="letras">
+               <tr class="bordes" style="height: 200px;"><td colspan="2" align="left" style="height: 28px; margin-left: 2px;">Datos del Médico Facultativo</td></tr><br/>
+               <tr style="color: #32313D;"><td>Nombre: {{ $nameMedic }}</td><td>Especialidad: {{ $espe }}</td></tr>
+               <tr style="color: #32313D;"><td>Teléfono: {{ $phoneM }}</td><td>Cédula Profesional: {{ $lic }}</td></tr>
+       </table>
+              </table>
+              <table width="100%" class="letras">
+               <tr class="bordes" style="height: 200px;"><td colspan="4" align="center" style="height: 28px;">Datos de la Receta</td></tr><br/>
+                <tr >
+                <td class="bordes2" style="height: 33px;">Diagnóstico</td>
+                <td class="bordes2" style="height: 33px;">Medicamento Prescrito</td>
+                <td class="bordes2" style="height: 33px;">Presentación</td>
+                <td class="bordes2" style="height: 33px;">Dosis/Modo de Empleo</td>
+               </tr>
+              <tr align="left">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+               </tr>    
+       </table>
+       <!--<table width="100%" class="letras">
         
                 <tr >
-                <td class="bordes">CLAVE</td>
-                <td class="bordes">CANTIDAD</td>
-                <td class="bordes">UNIDAD DE MEDIDA</td>
-                <td class="bordes">DESCRIPCIÓN</td>
-                <td class="bordes">PRECIO UNITARIO</td>
-                <td class="bordes">IMPORTE</td>
-               </tr>
-
-               <tr >
-                <td align="center">Product2.Name</td>
-                <td align="center">Quantity</td>
-                <td align="center">UnidadMedida</td>
-                <td align="center">Product.Name</td>
-                <td align="center">UnitPrice</td>
-                <td align="center">{TotalPrice</td>
-               </tr>   
-
-       </table>
-       <table  class="letras">
-               <tr>
-                <td style="color: #545454" width="40%">Importe con Letra:</td><td width="40%">variable</td><td style="color: #545454" width="20%">SUB-TOTAL:</td><td>subtotal</td>
+                <td class="bordes2">Diagnóstico</td>
+                <td class="bordes2">Medicamento Prescrito</td>
+                <td class="bordes2">Presentación</td>
+                <td class="bordes2">Dosis/Modo de Empleo</td>
                </tr>
                <tr>
-                <td style="color: #545454" width="40%">Forma de Pago:</td><td width="40%">formap</td><td style="color: #545454" width="20%">IVA:</td><td>totalIva</td>
-               </tr>
-               <tr>
-                <td style="color: #545454" align="right" colspan="2">TOTAL:</td><td align="right" colspan="2">total</td>
-               </tr>
-       </table>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+               </tr>    
+
+       </table>-->
+      
 
 
-       <!-- SELLO FISCAL -->
-       <br/><br/><br/><br/><br/><br/>
-       <table width="100%" class="letras">
-               <tr><td width="80%" align = "center">Lugar de Expedición:</td><td rowspan="7" width="20%">codigo</td></tr>
-                <tr><td class="bordes">SELLO DIGITAL DEL EMISOR</td></tr>
-                <tr><td>string</td></tr>
-                <tr><td class="bordes">SELLO DIGITAL DEL SAT</td></tr>
-                <tr><td>string</td></tr>
-                <tr><td class="bordes">CADENA ORIGINAL DEL COMPLEMENTO DE CERTIFICACIÓN DIGITAL DEL SAT</td></tr>
-                <tr><td>{!uuid}</td></tr>
-               
-       </table>
 
 </div>
 @stop

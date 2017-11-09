@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use \PDF;
+use \Milon\Barcode\DNS2D;
 
 
 class serviceBilling extends Controller
@@ -134,46 +135,45 @@ class serviceBilling extends Controller
                 $DomicilioEmisor = "México, Calzada de Tlalpan #2792, Colonia Espartaco, Delegación Coyoacán, C.P. 04870";
                 $fecha = date("Y-m-d H:i:s");
                 $total = $request->monto + $request->monto2 + $request->monto3;
+              
 
-
-            /* Cuerpo del Xml CFDI de petición */
+            // Cuerpo del Xml CFDI de petición 
 $cfd = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <cfdi:Comprobante LugarExpedicion="$request->invoiceExpedition" metodoDePago="$request->paymentMethod"
-  tipoDeComprobante="egreso" total="208197.77" Moneda="$request->currency" TipoCambio="1.0000" subTotal="208197.77"
-  condicionesDePago="$request->paymentform"
-  certificado="$certificado"
-  noCertificado="$noCertificado" formaDePago="$request->paymentform"
-  sello=""
-  fecha="$fecha" folio="$folio" serie="$serie" version="3.2"
-  xsi:schemaLocation="http://www.buzonfiscal.com/ns/addenda/bf/2 http://www.buzonfiscal.com/schema/crrencxsd/Addenda_BF_v20.xsd http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd http://www.sat.gob.mx/consumodecombustibles http://www.sat.gob.mx/sitio_internet/cfd/consumodecombustibles/consumodecombustibles.xsd"
-  xmlns:bfa2="http://www.buzonfiscal.com/ns/addenda/bf/2" xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:consumodecombustibles="http://www.sat.gob.mx/consumodecombustibles">
-  <cfdi:Emisor nombre="$eRazon" rfc="$eRfc">
-    <cfdi:DomicilioFiscal codigoPostal="04870" pais="México" estado="Ciudad de México"
-      municipio="Coyoacan" colonia="Espartaco" noInterior="2do Piso" noExterior="2792"
-      calle="Calzada de Tlalpan"/>
-    <cfdi:RegimenFiscal Regimen="Regimen General de Ley Personas Morales"/>
-  </cfdi:Emisor>
-  <cfdi:Receptor nombre="$request->businessName" rfc="BBB010101BBB">
-    <cfdi:Domicilio codigoPostal="$request->PostalCode" pais="$request->Country" estado="$request->state"
-      municipio="$request->municipality" colonia="$request->colony" noInterior="$request->noIn" noExterior="$request->noExt"
-      calle="$request->street"/>
-  </cfdi:Receptor>
-  <cfdi:Conceptos>
-    <cfdi:Concepto importe="0.00" valorUnitario="0.00" descripcion="COMBUSTIBLE"
-      unidad="PZA" cantidad="1"/>
-  </cfdi:Conceptos>
-  <cfdi:Impuestos totalImpuestosTrasladados="0.00">
-    <cfdi:Traslados>
-      <cfdi:Traslado importe="0.00" tasa="16" impuesto="IVA"/>
-    </cfdi:Traslados>
-  </cfdi:Impuestos>
+tipoDeComprobante="egreso" total="208197.77" Moneda="$request->currency" TipoCambio="1.0000" subTotal="208197.77"
+condicionesDePago="$request->paymentform"
+certificado="$certificado"
+noCertificado="$noCertificado" formaDePago="$request->paymentform"
+sello=""
+fecha="$fecha" folio="$folio" serie="$serie" version="3.2"
+xsi:schemaLocation="http://www.buzonfiscal.com/ns/addenda/bf/2 http://www.buzonfiscal.com/schema/crrencxsd/Addenda_BF_v20.xsd http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd http://www.sat.gob.mx/consumodecombustibles http://www.sat.gob.mx/sitio_internet/cfd/consumodecombustibles/consumodecombustibles.xsd"
+xmlns:bfa2="http://www.buzonfiscal.com/ns/addenda/bf/2" xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:consumodecombustibles="http://www.sat.gob.mx/consumodecombustibles">
+<cfdi:Emisor nombre="$eRazon" rfc="$eRfc">
+<cfdi:DomicilioFiscal codigoPostal="04870" pais="México" estado="Ciudad de México"
+municipio="Coyoacan" colonia="Espartaco" noInterior="2do Piso" noExterior="2792"
+calle="Calzada de Tlalpan"/>
+<cfdi:RegimenFiscal Regimen="Regimen General de Ley Personas Morales"/>
+</cfdi:Emisor>
+<cfdi:Receptor nombre="$request->businessName" rfc="BBB010101BBB">
+<cfdi:Domicilio codigoPostal="$request->PostalCode" pais="$request->Country" estado="$request->state"
+municipio="$request->municipality" colonia="$request->colony" noInterior="$request->noIn" noExterior="$request->noExt"
+calle="$request->street"/>
+</cfdi:Receptor>
+<cfdi:Conceptos>
+<cfdi:Concepto importe="0.00" valorUnitario="0.00" descripcion="COMBUSTIBLE"
+unidad="PZA" cantidad="1"/>
+</cfdi:Conceptos>
+<cfdi:Impuestos totalImpuestosTrasladados="0.00">
+<cfdi:Traslados>
+<cfdi:Traslado importe="0.00" tasa="16" impuesto="IVA"/>
+</cfdi:Traslados>
+</cfdi:Impuestos>
 </cfdi:Comprobante>
 EOF;
-            /* Petición al Pac de facturación */
-
+                             // Petición al Pac de facturación 
                             $request_options = array(
                               'http' => array(
                                 'method' => "POST",
@@ -189,46 +189,66 @@ EOF;
 
                             $Domicilio = $request->Country.", ".$request->municipality.", ".$request->street.", ".$request->colony.", ".$request->noExt.", ".$request->noIn;
 
-                            /*foreach ($stamp[cfdi:Comprobante][cfdi:Complemento][tdf:TimbreFiscalDigital] as $valor){
-                            $selloCFD = $valor['selloCFD'];
-                            $selloSAT = $valor['selloSAT'];
-                            // los ddemas valor que deseas leer ....
-                            }      */       
-                            
-        $data =  array(
-                        'response' => $response_code,
-                        'stamp'  => $stamp,
-                        'businessName' => $request->businessName,
-                        'RFC' => $request->RFC,
-                        'PostalCode' =>$request->PostalCode,
-                        'state' => $request->state,
-                        'Domicilio' => $Domicilio,
-                        'Type' => 'Egreso',
-                        'serie' => $serie,
-                        'folio' => $folio,
-                        'noCertificado' => $noCertificado,
-                        'currency' => $request->currency,
-                        'eRfc' => $eRfc,
-                        'eRazon' => $eRazon,
-                        'DomicilioEmisor' => $DomicilioEmisor,
-                        'fecha' => $fecha,
-                        'c1' => $request->clave,
-                        'c2' => $request->clave2,
-                        'c3' => $request->clave3,
-                        's1' => $request->desc,
-                        's2' => $request->desc2,
-                        's3' => $request->desc3,
-                        'mon1' => $request->monto,
-                        'mon2' => $request->monto2,
-                        'mon3' => $request->monto3,
-                        'total' => $total,
-                        'formp' => $request->paymentform,
-                        'exp' => $request->invoiceExpedition
+                            //Recorrer XML para extraer timbre fiscal digital
+                            $xml = json_decode(json_encode($response), true);
+                            $xml = new \SimpleXMLElement($xml);
+                            $ns = $xml->getNamespaces(true);
+                            $xml->registerXPathNamespace('c', $ns['cfdi']);
+                            $xml->registerXPathNamespace('tfd', $ns['tfd']);
 
-                    ); 
+                            foreach ($xml->xpath('//tfd:TimbreFiscalDigital') as $tfd) {
+                                            $selloCFD = $tfd['selloCFD'];
+                                            $fechatim = $tfd['FechaTimbrado'];
+                                            $uuid = $tfd['UUID'];
+                                            $noCertificadoSAT = $tfd['noCertificadoSAT'];
+                                            $version = $tfd['version'];
+                                            $selloSAT = $tfd['selloSAT'];
+                                        }
+                            $cadenaQR = "https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=".$uuid. "&re=".$eRfc."&rr=BBB010101BBB&tt=".$total."&fe=".$selloSAT;
+                                     
+                    //Los Datos que serán enviados al PDF            
+                    $data =  array(
+                                    'response' => $response_code,
+                                    'stamp'  => $stamp,
+                                    'businessName' => $request->businessName,
+                                    'RFC' => $request->RFC,
+                                    'PostalCode' =>$request->PostalCode,
+                                    'state' => $request->state,
+                                    'Domicilio' => $Domicilio,
+                                    'Type' => 'Egreso',
+                                    'serie' => $serie,
+                                    'folio' => $folio,
+                                    'noCertificado' => $noCertificado,
+                                    'currency' => $request->currency,
+                                    'eRfc' => $eRfc,
+                                    'eRazon' => $eRazon,
+                                    'DomicilioEmisor' => $DomicilioEmisor,
+                                    'fecha' => $fecha,
+                                    'c1' => $request->clave,
+                                    'c2' => $request->clave2,
+                                    'c3' => $request->clave3,
+                                    's1' => $request->desc,
+                                    's2' => $request->desc2,
+                                    's3' => $request->desc3,
+                                    'mon1' => $request->monto,
+                                    'mon2' => $request->monto2,
+                                    'mon3' => $request->monto3,
+                                    'total' => $total,
+                                    'formp' => $request->paymentform,
+                                    'exp' => $request->invoiceExpedition,
+                                    'selloSAT' => $selloSAT,
+                                    'fechac' => $fechatim,
+                                    'noCertificadoSAT' => $noCertificadoSAT,
+                                    'uuid' => $uuid,
+                                    'selloCFD' => $selloCFD,
+                                    'codigoQR' =>  $cadenaQR
+                     
+
+
+                                ); 
 
         $pdf = \PDF::loadView('serviceBillingPDF', $data);
-        return $pdf->stream('Factura electrónica.pdf');
+        return $pdf->stream('Factura electrónica.pdf',array('Attachment'=>0));
  
 }
 }

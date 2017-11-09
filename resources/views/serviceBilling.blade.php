@@ -43,7 +43,7 @@
 
             
             @if($mode == 'Index')
-            	<form id="FOO" method="POST" action="PDFBilling">
+            	<form id="FOO" method="POST" action="PDFBilling" target="_blank">
             	
                		<div class="row">
 	                  	<label class="col-sm-2 control-label">Razón Social</label>
@@ -177,7 +177,7 @@
 
 
 	                  	<div class="form-group" style="text-align: center;"> <!-- Submit Button -->
-					      <button type="submit" class="btn btn-primary">Facturar</button>
+					      <button type="submit" class="btn btn-primary" style="background-color: #3E3D3D;">Facturar</button>
 					    </div>
                 </form>
             @endif

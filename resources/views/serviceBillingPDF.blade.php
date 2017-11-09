@@ -1,20 +1,4 @@
 @extends('adminlte::master')
-
-@section('title', 'Boomedic')
-
-@section('adminlte_css')
-    <link rel="stylesheet"
-          href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 'blue') . '.min.css')}} ">
-    @stack('css')
-    @yield('css')
-@stop
-
-@section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
-    'boxed' => 'layout-boxed',
-    'fixed' => 'fixed',
-    'top-nav' => 'layout-top-nav'
-][config('adminlte.layout')] : '') . (config('adminlte.collapse_sidebar') ? ' sidebar-collapse ' : ''))
-
 @section('body')
 
                 <style>
@@ -26,28 +10,35 @@
                         font-size: 13px;
                         text-align: center;
                         font-weight: bold;
+
+                        
+
                 }
                 .letras {
                         font-family: sans-serif;
-                        font-size: 11px;
+                        font-size: 9px;
+
+
                 }
+
+
                 </style>
 
-   <!--{{ $stamp }} -->
+
         <table width="100%" class="letras">
-         <tr style="text-align: center;">
-            <td width="25%" rowspan="8" align="top"><IMG SRC="http://www.cauca.gov.co/sites/default/files/tulogoaqui.jpg" width=200 height=200></td>
-            <td width="35%" rowspan="8" align="top">{{ $eRazon }}<br/>RFC: {{ $eRfc }}<br/>Dirección: {{ $DomicilioEmisor }}</td>
-            <td width="40%">Comprobante Fiscal Digital a través de internet</td></tr>
-        <tr ><td class="bordes" style="border-radius: 30px;" >FACTURA</td></tr>
-        <tr style="text-align: center;">
-            <td style="color: #545454"><br/>Folio Fiscal Digital:</td></tr>
-        <tr style="text-align: center;">
-            <td></td></tr>
-        <tr style="text-align: center"><td style="color: #545454">No. de Serie del Certificado SAT</td></tr> 
-        <tr style="text-align: center"><td></td></tr>
-        <tr style="text-align: center"><td style="color: #545454">Fecha y Hora de Certificación</td></tr>
-        <tr style="text-align: center"><td></td></tr>         
+             <tr style="text-align: center;">
+                <td width="25%" rowspan="8" align="top"><IMG SRC="http://www.cauca.gov.co/sites/default/files/tulogoaqui.jpg" width=200 height=200/></td>
+                <td width="35%" rowspan="8" align="top">{{ $eRazon }}<br/>RFC: {{ $eRfc }}<br/>Dirección: {{ $DomicilioEmisor }}</td>
+                <td width="40%">Comprobante Fiscal Digital a través de internet</td></tr>
+            <tr ><td class="bordes" style="border-radius: 30px;" >FACTURA</td></tr>
+            <tr style="text-align: center;">
+                <td style="color: #545454"><br/>Folio Fiscal Digital:</td></tr>
+            <tr style="text-align: center;">
+                <td>{{ $uuid }}</td></tr>
+            <tr style="text-align: center"><td style="color: #545454">No. de Serie del Certificado SAT</td></tr> 
+            <tr style="text-align: center"><td>{{ $noCertificadoSAT }}</td></tr>
+            <tr style="text-align: center"><td style="color: #545454">Fecha y Hora de Certificación</td></tr>
+            <tr style="text-align: center"><td>{{ $fechac }}</td></tr>         
        </table>
        <table width="100%" class="letras">
                <tr style="color: #545454">
@@ -57,7 +48,7 @@
                 <td align="center">No de Certificado del Emisor</td>
                 <td align="center">Moneda</td>
                 <td align="center">Tipo de Comprobante</td>
-               </tr>
+                </tr>
                <tr>
                 <td align="center">{{ $fecha }}</td>
                 <td align="center">{{ $serie }}</td>
@@ -115,16 +106,16 @@
 
 
        <!-- SELLO FISCAL -->
-       <br/><br/><br/><br/><br/><br/>
-       <table width="100%" class="letras">
-               <tr><td width="80%" align = "center">Lugar de Expedición: {{ $exp }}</td><td rowspan="7" width="20%"><IMG SRC="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Codigo_QR.svg/250px-Codigo_QR.svg.png" width=100 height=100></td></tr>
-                <tr><td class="bordes">SELLO DIGITAL DEL EMISOR</td></tr>
-                <tr><td>string</td></tr>
-                <tr><td class="bordes">SELLO DIGITAL DEL SAT</td></tr>
-                <tr><td>selloSAT </td></tr>
-                <tr><td class="bordes">CADENA ORIGINAL DEL COMPLEMENTO DE CERTIFICACIÓN DIGITAL DEL SAT</td></tr>
-                <tr><td>uuid</td></tr>
-               
+       <br/><br/><br/>
+
+       <table class="letras" style="table-layout: fixed; width: 100%; ">
+                <!--generate QR code with the Google table and where I put the variable is where I am sent what it contains-->
+                <tr><td width="80%">Lugar de Expedición: {{ $exp }}</td><td rowspan="5" width="20%"><img alt="" src="http://chart.apis.google.com/chart?cht=qr&amp;chs=150x150&amp;chl={{ $codigoQR }}&amp;chld=H|0" /></td></tr>
+                <tr><td class="bordes" >SELLO DIGITAL DEL EMISOR</td></tr>
+                <tr><td><div style="word-wrap: break-word;">{{ $selloCFD }}</div></td></tr>
+                <tr><td class="bordes"> SELLO DIGITAL SAT</td></tr>
+                <tr><td><div style="word-wrap: break-word;"><br/><br/>{{ $selloSAT }}</div></td></tr>
+      
        </table>
 
 @stop
