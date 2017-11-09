@@ -64,6 +64,7 @@ Route::group(['prefix' => 'user'], function(){
 });
 
 
+
 Route::group(['prefix' => 'payment'], function(){
 
 	Route::get('index', [
