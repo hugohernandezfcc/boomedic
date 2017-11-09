@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\PaymentMethod;
-use App\VisaAPIClient;
+use App\Http\Controllers\VisaAPIClient;
 
 class payments extends Controller
 {

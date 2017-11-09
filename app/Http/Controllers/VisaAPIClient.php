@@ -1,10 +1,10 @@
-<?php
+<?php 
+namespace App\Http\Controllers;
 
-namespace App;
 
 
 //Class where the CURL connection is made with VISA
-class VisaAPIClient {
+class VisaAPIClient extends Controller {
 	
 	public function __construct() {
 
