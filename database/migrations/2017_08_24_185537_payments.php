@@ -21,8 +21,10 @@ class Payments extends Migration
             $table->string('dateexpired')->nullable();
             $table->integer('cvv')->nullable();
             $table->integer('cardnumber')->nullable();
+
             $table->integer('owner')->unsigned();
             $table->foreign('owner')->references('id')->on('users');
+            
             $table->timestamps();
         });
     }
