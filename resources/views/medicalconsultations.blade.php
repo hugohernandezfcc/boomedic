@@ -542,7 +542,7 @@
         }
       }
 
-
+ 
       //Filter of Speciality
       function functionEsp(specialityValue, keyWordValue, positionValue, rangeValue) {
         var res = [];
