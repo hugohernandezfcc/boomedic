@@ -137,8 +137,8 @@ class payments extends Controller
      */
     public function destroy($id)
     {
-
-    DB::delete('delete from paymentsmethods where id = ?',[$id]) ;
+        $card = PaymentMethod::find($id);
+        $card->delete();
     
     // redirect
     
