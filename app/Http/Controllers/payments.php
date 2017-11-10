@@ -157,20 +157,7 @@ class payments extends Controller
         $id = $request->id;
 
         //Look in the table of methods of saved payments all the information of the selected method.
-        $card = DB::table('paymentsmethods')->where('id', $id)->first();
-
-                    $this->VisaAPIClient = new VisaAPIClient;
-                    //Build json with payment details
-                    $this->paymentAuthorizationRequest = json_encode ( [ 
-                    'amount' => $request->pay,
-                    'currency' => 'USD',
-                    'payment' => [
-                      'cardNumber'=> $card->cardnumber,
-                      'cardExpirationMonth' => $card->month,
-                      'cardExpirationYear' =>  $card->year,
-                      'cvn' => $card->cvv
-                    ]
-                    ] );
+        $card = DB::table('paymentsmethods')->where('id', $id)->get();
 
                     $baseUrl = 'cybersource/';
                     $resourceP = 'payments/v1/authorizations';
@@ -180,13 +167,14 @@ class payments extends Controller
         
          if($statusCode == '201'){
 
-                /* Insert_bank*/
-                    $Transaction = new transaction_bank;
-                    $Transaction->paymentmethod = $request->id;
-                    $Transaction->receiver = 'Prueba n1';
-                    $Transaction->amount = $request->pay;
-                    $Transaction->save();
-                /* Insert Transaction_bank*/    
+                    /* Insert_bank*/
+                        $Transaction = new transaction_bank;
+                        $Transaction->paymentmethod = $request->id;
+                        $Transaction->receiver = 'Prueba n1';
+                        $Transaction->amount = $request->pay;
+                        $Transaction->save();
+                    /* Insert Transaction_bank*/    
+
 
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
@@ -203,7 +191,26 @@ class payments extends Controller
             'error' => 'error'
         );
             return redirect('payment/index')->with($notification);
-         }
+        }
+         
+     }
+
+         public function transactions(Request $request) {
+        $id = $request->id;
+        //Look in the table of methods of saved payments all the information of the selected method.
+        $transactions = DB::table('transaction_bank')->where('paymentmethod', $id)->get();
+        $card = DB::table('paymentsmethods')->where('id', $id)->first();
+
+         return view('payments', [
+                'type'      => $card->typemethod,
+                'cardnumber' => $card->cardnumber,
+                'transactions'     => $transactions,
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'mode'      => 'historyTransaction'
+            ]
+        );
+                   
          
      }
     

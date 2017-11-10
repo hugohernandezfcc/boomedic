@@ -96,7 +96,9 @@
 	                        <tr><form action="PaymentAuthorizations" method="post" id="regForm">
 	                        
 	                            <td>{{ $card->typemethod }}</td>
-	                            <td>{{ $card->provider }}</td>
+	                            <td>{{ $card->provider }}
+	                           <a href = 'Transactions/{{ $card->id }}' class="btn"><i class="fa fa-history text-muted"></i>
+	                           </td>
 	                            <td>{{ $card->cardnumber }}</td>
 
 	                            <td><input type="text" name="pay" value="" style="text-align: center;"> <input type="hidden" name="id" value=" {{$card->id }} "></td>
@@ -246,6 +248,36 @@
 
 	                </script>
                 </form>
+            @endif
+
+             @if($mode == 'historyTransaction')
+            <div class="box-header with-border">
+		    <h3 class="box-title">Transacciones realizadas con su {{ $type}} {{ $cardnumber }}</h3></div>
+            	<table id="transactions" class="table table-bordered table-striped" cellspacing="0" width="100%">
+	                <thead>
+	                    <tr>
+	                    
+	                        <th>Nro. Transacción</th>
+	                        <th>Destinatario</th>
+	                        <th>Monto</th>
+	                        <th>Fecha de Transacción</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+		     @foreach ($transactions as $transaction)
+					     <tr>
+			             	<td>{{ $transaction->id }} <br/></td>
+			             	<td>{{ $transaction->receiver}}<br/></td>
+			             	<td>{{ $transaction->amount }}</td>
+			             	<td>{{ $transaction->created_at}}</td>
+			             </tr>
+             @endforeach
+					<tbody>
+	     </table>
+
+
+
+
             @endif
 
         </div>	  	

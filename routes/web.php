@@ -91,11 +91,18 @@ Route::group(['prefix' => 'payment'], function(){
 		]
 	);
 
+	Route::get('Transactions/{id}', [
+			'uses'	=>	'payments@Transactions',
+			'as'	=>	'Transactions'
+		]
+	);
+
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'payments@redirecting',
 			'as'	=>	'redirecting'
 		]
 	);
+
 	Route::post('PaymentAuthorizations',[
 			'uses'	=>	'payments@PaymentAuthorizations',
 			'as'	=>	'PaymentAuthorizations'
