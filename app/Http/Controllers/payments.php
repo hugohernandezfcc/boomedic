@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\PaymentMethod;
+use App\transaction_bank;
 use App\Http\Controllers\VisaAPIClient;
 
 class payments extends Controller
@@ -178,9 +179,18 @@ class payments extends Controller
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
          if($statusCode == '201'){
+
+                /* Insert_bank*/
+                    $Transaction = new transaction_bank;
+                    $Transaction->paymentmethod = $request->id;
+                    $Transaction->receiver = 'Prueba n1';
+                    $Transaction->amount = $request->pay;
+                    $Transaction->save();
+                /* Insert Transaction_bank*/    
+
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Pago procesado correctamente por un monto de: '. $request->pay.'$, para más información consulte su cartera de pago...', 
+            'message' => 'Transacción Nro. '.$Transaction->id.': Pago procesado correctamente por un monto de: '. $request->pay.'$, para más información consulte su cartera de pago... ', 
             'success' => 'success'
             );
 

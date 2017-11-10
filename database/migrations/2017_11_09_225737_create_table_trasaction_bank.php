@@ -17,7 +17,8 @@ class CreateTableTrasactionBank extends Migration
             $table->increments('id');
             $table->text('receiver');
             $table->decimal('amount', 8, 2);
-            $table->foreign('payment')->references('id')->on('PaymentMethod');
+            $table->integer('paymentmethod')->unsigned();
+            $table->foreign('paymentmethod')->references('id')->on('paymentsmethods');
             $table->timestamps();
         });
     }
