@@ -254,7 +254,12 @@
 
              @if($mode == 'historyTransaction')
             <div class="box-header with-border">
-		    <h3 class="box-title">Transacciones realizadas con su {{ $type}} {{ $cardnumber }}</h3></div>
+		    <h3 class="box-title">Transacciones realizadas con su {{ $type}} 
+		    	<?php 
+	            $cardfin = substr_replace($cardnumber, '••••••••••••', 0, 12)
+	            ?>
+	            {{ $cardfin }}	
+	            </h3></div>
             	<table id="transactions" class="table table-bordered table-striped" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
