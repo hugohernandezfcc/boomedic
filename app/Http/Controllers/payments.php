@@ -157,7 +157,20 @@ class payments extends Controller
         $id = $request->id;
 
         //Look in the table of methods of saved payments all the information of the selected method.
-        $card = DB::table('paymentsmethods')->where('id', $id)->get();
+        $card = DB::table('paymentsmethods')->where('id', $id)->first();
+
+                    $this->VisaAPIClient = new VisaAPIClient;
+                    //Build json with payment details
+                    $this->paymentAuthorizationRequest = json_encode ( [ 
+                    'amount' => $request->pay,
+                    'currency' => 'USD',
+                    'payment' => [
+                      'cardNumber'=> $card->cardnumber,
+                      'cardExpirationMonth' => $card->month,
+                      'cardExpirationYear' =>  $card->year,
+                      'cvn' => $card->cvv
+                    ]
+                    ] );
 
                     $baseUrl = 'cybersource/';
                     $resourceP = 'payments/v1/authorizations';
@@ -195,7 +208,7 @@ class payments extends Controller
          
      }
 
-         public function transactions(Request $request) {
+        public function transactions(Request $request) {
         $id = $request->id;
         //Look in the table of methods of saved payments all the information of the selected method.
         $transactions = DB::table('transaction_bank')->where('paymentmethod', $id)->get();
