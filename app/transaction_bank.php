@@ -11,7 +11,9 @@ class transaction_bank extends Model
     	'id',
 		'receiver',
 		'amount',
-		'paymentmethod'
+		'paymentmethod',
+		'credit_debit',
+		'bank'
     ];
     
 

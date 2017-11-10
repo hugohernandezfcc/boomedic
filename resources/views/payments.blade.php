@@ -143,12 +143,10 @@
 		                  		<input type="text" name="cardnumber" class="form-control" id="cardnumber">
 		                	</div>
 		              	</div>
-		              	<div class="row">
-
 		              			<div class="form-group has-feedback {{ $errors->has('year') ? 'has-error' : '' }}">
 				                    <label for="year" class="col-sm-2 control-label">Fecha de Exp.</label>
 				        <div class="col-sm-2">
-				        <select name="month" class="form-control select1">
+				        <select name="month" class="form-control">
                             <option value="01">01</option>
                             <option value="02">02</option>
                             <option value="03">03</option>
@@ -173,8 +171,9 @@
                         <select name="provider" class="form-control select1">
                             <option value="Visa"> VISA</option>
                             <option value="MasterCard"> MasterCard</option>
-                        </select></div>
-		              		
+                        </select>
+                   		 </div>
+                   		 
 		              			<div class="form-group has-feedback {{ $errors->has('cvv') ? 'has-error' : '' }}">
 				                    <label for="cvv" class="col-sm-1 control-label">CVV</label>
 				                	<div class="col-sm-1">
@@ -182,7 +181,7 @@
 				                	</div>
 				                </div>
 		              		</div>
-		              	</div>
+		              	
 		              	<div class="form-group has-feedback {{ $errors->has('country') ? 'has-error' : '' }}">
 		                    <label for="country" class="col-sm-2 control-label">País</label>
 			                <div class="col-sm-10" align="left">
