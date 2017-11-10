@@ -258,8 +258,8 @@
 
 			             @if($mode == 'historyTransaction')
 			            
-					    <h3><b>Transacciones:</b></h3>
-					    <div style="font-size: 13px;">Fecha de Creación: {{ $created }} </div> <br/>
+					    <h5>Transacciones:</h5>
+					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
 				             <div class="row">
 			                	<div class="col-sm-6">
 			                		<div class="row">
