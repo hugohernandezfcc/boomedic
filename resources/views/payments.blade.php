@@ -279,6 +279,27 @@
 			                	</div>
 			                	<div class="col-sm-4">
 			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Proveedor:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $provider }}</div>
+			                		</div>
+			                	</div>
+			                </div>
+			                <br/>
+			                <div class="row">
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Débito/Crédito:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $credit_debit }}</div>
+			                		</div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Fechade registro:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $created }}</div>
+			                		</div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="row">
 			                			<div class="col-sm-6" align="left"><b>TDC/TDD:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $credit_debit }}</div>
 			                		</div>

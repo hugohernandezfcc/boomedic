@@ -231,6 +231,10 @@ class payments extends Controller
          return view('payments', [
                 'type'      => $card->typemethod,
                 'cardnumber' => $card->cardnumber,
+                'bank' => $card->bank,
+                'provider' => $card->provider,
+                'credit_debit' => $card->credit_debit,
+                'created' => $card->created_at,
                 'transactions'     => $transactions,
                 'userId'    => Auth::id(),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
