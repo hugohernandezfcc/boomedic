@@ -257,56 +257,40 @@
             @endif
 
 			             @if($mode == 'historyTransaction')
-			            <div class="box-header with-border">
-					    <h3 class="box-title">Transacciones realizadas con su {{ $type}} 
-					    	<?php 
-				            $cardfin = substr_replace($cardnumber, '••••••••••••', 0, 12)
-				            ?>
-				            {{ $cardfin }}	
-				            </h3></div>
+			            
+					    <h3><b>Transacciones:</b></h3>
+					    <div style="font-size: 13px;">Fecha de Creación: {{ $created }} </div> <br/>
 				             <div class="row">
-			                	<div class="col-sm-4">
+			                	<div class="col-sm-6">
 			                		<div class="row">
 			                			<div class="col-sm-6" align="left"><b>Tarjeta:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $cardnumber }}</div>
 			                		</div>
 			                	</div>
-			                	<div class="col-sm-4">
+			                	<div class="col-sm-6">
 			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Banco Emisor:</b></div>
+			                			<div class="col-sm-6" align="left"><b>Banco:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $bank }}</div>
 			                		</div>
 			                	</div>
-			                	<div class="col-sm-4">
+			                </div>		
+			                <br/>
+			                <div class="row"> 
+			                <div class="col-sm-6">
 			                		<div class="row">
 			                			<div class="col-sm-6" align="left"><b>Proveedor:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $provider }}</div>
 			                		</div>
 			                	</div>
-			                </div>
-			                <br/>
 			                <div class="row">
-			                	<div class="col-sm-4">
+			                	<div class="col-sm-6">
 			                		<div class="row">
 			                			<div class="col-sm-6" align="left"><b>Débito/Crédito:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $credit_debit }}</div>
 			                		</div>
 			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Fechade registro:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $created }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>TDC/TDD:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $credit_debit }}</div>
-			                		</div>
-			                	</div>
 			                </div>
-			                <br/>
-
+			              </div><br/><br/>
 
 			            	<table id="transactions" class="table table-bordered table-striped" cellspacing="0" width="100%">
 				                <thead>
