@@ -170,8 +170,8 @@
                              <option value="22"> 2022</option>
                         </select></div><div class="col-sm-3">
                         <select name="CreDeb" class="form-control select1">
-                            <option value="Credit">Crédito</option>
-                            <option value="Debit">Débito</option>
+                            <option value="Credito">Crédito</option>
+                            <option value="Debito">Débito</option>
                         </select>
                    		 </div>
 				                    <label class="col-sm-1 control-label">CVV</label>
@@ -256,35 +256,58 @@
                 </form>
             @endif
 
-             @if($mode == 'historyTransaction')
-            <div class="box-header with-border">
-		    <h3 class="box-title">Transacciones realizadas con su {{ $type}} 
-		    	<?php 
-	            $cardfin = substr_replace($cardnumber, '••••••••••••', 0, 12)
-	            ?>
-	            {{ $cardfin }}	
-	            </h3></div>
-            	<table id="transactions" class="table table-bordered table-striped" cellspacing="0" width="100%">
-	                <thead>
-	                    <tr>
-	                    
-	                        <th>Nro. Transacción</th>
-	                        <th>Destinatario</th>
-	                        <th>Monto</th>
-	                        <th>Fecha de Transacción</th>
-	                    </tr>
-	                </thead>
-	                <tbody>
-		     @foreach ($transactions as $transaction)
-					     <tr>
-			             	<td>{{ $transaction->id }} <br/></td>
-			             	<td>{{ $transaction->receiver}}<br/></td>
-			             	<td>{{ $transaction->amount }}</td>
-			             	<td>{{ $transaction->created_at}}</td>
-			             </tr>
-             @endforeach
-					<tbody>
-	     </table>
+			             @if($mode == 'historyTransaction')
+			            <div class="box-header with-border">
+					    <h3 class="box-title">Transacciones realizadas con su {{ $type}} 
+					    	<?php 
+				            $cardfin = substr_replace($cardnumber, '••••••••••••', 0, 12)
+				            ?>
+				            {{ $cardfin }}	
+				            </h3></div>
+				             <div class="row">
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Tarjeta:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $cardnumber }}</div>
+			                		</div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Banco Emisor:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $bank }}</div>
+			                		</div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>TDC/TDD:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $credit_debit }}</div>
+			                		</div>
+			                	</div>
+			                </div>
+			                <br/>
+
+
+			            	<table id="transactions" class="table table-bordered table-striped" cellspacing="0" width="100%">
+				                <thead>
+				                    <tr>
+				                    
+				                        <th>Nro. Transacción</th>
+				                        <th>Destinatario</th>
+				                        <th>Monto</th>
+				                        <th>Fecha de Transacción</th>
+				                    </tr>
+				                </thead>
+				                <tbody>
+					     	@foreach ($transactions as $transaction)
+								     <tr>
+						             	<td>{{ $transaction->id }} <br/></td>
+						             	<td>{{ $transaction->receiver}}<br/></td>
+						             	<td>{{ $transaction->amount }}</td>
+						             	<td>{{ $transaction->created_at}}</td>
+						             </tr>
+			             	@endforeach
+								<tbody>
+				    	 </table>
 
 
 
