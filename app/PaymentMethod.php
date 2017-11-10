@@ -16,7 +16,9 @@ class PaymentMethod extends Model
 		'year',
 		'cvv',
 		'cardnumber',
-		'owner'
+		'owner',
+		'credit_debit',
+		'bank'
     ];
     
 

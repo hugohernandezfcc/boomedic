@@ -146,7 +146,7 @@
 		              			<div class="form-group has-feedback {{ $errors->has('year') ? 'has-error' : '' }}">
 				                    <label for="year" class="col-sm-2 control-label">Fecha de Exp.</label>
 				        <div class="col-sm-2">
-				        <select name="month" class="form-control">
+				        <select name="month" class="form-control select1">
                             <option value="01">01</option>
                             <option value="02">02</option>
                             <option value="03">03</option>
@@ -168,20 +168,26 @@
                             <option value="21"> 2021</option>
                              <option value="22"> 2022</option>
                         </select></div><div class="col-sm-3">
-                        <select name="provider" class="form-control select1">
-                            <option value="Visa"> VISA</option>
-                            <option value="MasterCard"> MasterCard</option>
+                        <select name="CreDeb" class="form-control select1">
+                            <option value="Credit">Crédito</option>
+                            <option value="Debit">Débito</option>
                         </select>
                    		 </div>
-                   		 
+                   		 </div>
+
 		              			<div class="form-group has-feedback {{ $errors->has('cvv') ? 'has-error' : '' }}">
 				                    <label for="cvv" class="col-sm-1 control-label">CVV</label>
 				                	<div class="col-sm-1">
 				                  		<input type="text" name="cvv" class="form-control" id="cvv">
 				                	</div>
-				                </div>
-		              		</div>
-		              	
+								</div>
+	                	<div class="form-group has-feedback {{ $errors->has('bank') ? 'has-error' : '' }}">
+		                    <label for="bank" class="col-sm-2 control-label">Banco</label>
+		                	<div class="col-sm-10">
+		                  		<input type="text" name="bank" class="form-control" id="bank">
+		                	</div>
+		              	</div>
+
 		              	<div class="form-group has-feedback {{ $errors->has('country') ? 'has-error' : '' }}">
 		                    <label for="country" class="col-sm-2 control-label">País</label>
 			                <div class="col-sm-10" align="left">
