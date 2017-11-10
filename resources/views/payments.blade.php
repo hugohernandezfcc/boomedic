@@ -96,10 +96,12 @@
 	                        <tr><form action="PaymentAuthorizations" method="post" id="regForm">
 	                        
 	                            <td>{{ $card->typemethod }}</td>
-	                            <td>{{ $card->provider }}
-	                           <a href = 'Transactions/{{ $card->id }}' class="btn"><i class="fa fa-history text-muted"></i>
-	                           </td>
-	                            <td>{{ $card->cardnumber }}</td>
+	                            <td>{{ $card->provider }}</td>
+	                            <td>
+	                            	<?php 
+	                            $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12)
+	                             ?>
+	                            <a href = 'Transactions/{{ $card->id }}' class="btn"> {{ $cardfin }}</td></a>
 
 	                            <td><input type="text" name="pay" value="" style="text-align: center;"> <input type="hidden" name="id" value=" {{$card->id }} "></td>
 	                            <td align="center">
