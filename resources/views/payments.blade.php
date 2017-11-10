@@ -173,14 +173,12 @@
                             <option value="Debit">Débito</option>
                         </select>
                    		 </div>
-                   		 </div>
-
-		              			<div class="form-group has-feedback {{ $errors->has('cvv') ? 'has-error' : '' }}">
-				                    <label for="cvv" class="col-sm-1 control-label">CVV</label>
-				                	<div class="col-sm-1">
+				                    <label class="col-sm-1 control-label">CVV</label>
+				                	<div class="col-sm-2">
 				                  		<input type="text" name="cvv" class="form-control" id="cvv">
 				                	</div>
 								</div>
+
 	                	<div class="form-group has-feedback {{ $errors->has('bank') ? 'has-error' : '' }}">
 		                    <label for="bank" class="col-sm-2 control-label">Banco</label>
 		                	<div class="col-sm-10">
