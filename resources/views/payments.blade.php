@@ -170,8 +170,8 @@
                              <option value="22"> 2022</option>
                         </select></div><div class="col-sm-3">
                         <select name="CreDeb" class="form-control select1">
-                            <option value="Credito">Crédito</option>
-                            <option value="Debito">Débito</option>
+                            <option value="Credit">Crédito</option>
+                            <option value="Debit">Débito</option>
                         </select>
                    		 </div>
 				                    <label class="col-sm-1 control-label">CVV</label>
