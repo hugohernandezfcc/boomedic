@@ -73,9 +73,9 @@
             	<table id="paymentmethodtable" class="table table-bordered table-striped" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
-	                    
-	                        <th>Tipo </th>
+	                        <th>Banco </th>
 	                        <th>Proveedor </th>
+	                        <th>Tipo </th>
 	                        <th>Terminación </th>
 	                        <th>Pago</th>
 	                        <th> - </th>
@@ -83,9 +83,9 @@
 	                </thead>
 	                <tfoot>
 	                    <tr>
-	                    
-	                        <th>Tipo </th>
+	                        <th>Banco </th>
 	                        <th>Proveedor </th>
+	                        <th>Tipo </th>
 	                        <th>Terminación </th>
 	                        <th>Pago</th>
 	                        <th> - </th>
@@ -95,8 +95,9 @@
 	                    @foreach ($cards as $card)
 	                        <tr><form action="PaymentAuthorizations" method="post" id="regForm">
 	                        
-	                            <td>{{ $card->typemethod }}</td>
+	                            <td>{{ $card->bank }}</td>
 	                            <td>{{ $card->provider }}</td>
+	                            <td>{{ $card->credit_debit }}</td>
 	                            <td>
 	                            	<?php 
 	                            $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12)
