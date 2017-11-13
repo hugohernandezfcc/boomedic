@@ -30,7 +30,7 @@ class privacyStatement extends Controller
      */
     public function index()
     {
-        $privacyStatement = DB::table('privacy_statement');
+        $privacyStatement = DB::table('privacy_statement')->first();
 
         return view('privacyStatement', [
                 'privacy'     => $privacyStatement,
