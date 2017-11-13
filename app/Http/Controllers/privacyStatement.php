@@ -31,11 +31,20 @@ class privacyStatement extends Controller
     public function index()
     {
         $privacyStatement = DB::table('privacy_statement')->first();
+        $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
+
+        if(is_null($StatementForUser)){
+            $mode = 'Null';
+    }
+        else {
+            $mode = 'Full';
+        }
 
         return view('privacyStatement', [
                 'privacy'     => $privacyStatement,
                 'userId'    => Auth::id(),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'mode'      => $mode
             ]
         );
     }
@@ -126,7 +135,30 @@ class privacyStatement extends Controller
    return redirect('privacyStatement/index');
     }
 
+        public function Aceptar()
+    {
+        $privacyStatement = DB::table('privacy_statement')->first();
 
-    //Controller to make payment, Contains type of ROUTE defined post
+        DB::table('users')->where('id',Auth::id())->update(['privacy_statement' => $privacyStatement->id]);
+
+        $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
+
+        if(is_null($StatementForUser)){
+            $mode = 'Null';
+    }
+        else {
+            $mode = 'Full';
+        }
+
+        return view('privacyStatement', [
+                'privacy'     => $privacyStatement,
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'mode'      => $mode
+            ]
+        );
+    }
+
+
     
 }

@@ -173,7 +173,11 @@ Route::group(['prefix' => 'privacyStatement'], function(){
 			'as'	=>	'redirecting'
 		]
 	);
-
+	Route::post('Aceptar', [
+			'uses'	=>	'privacyStatement@Aceptar',
+			'as'	=>	'Aceptar'
+		]
+	);
 
 
 });
