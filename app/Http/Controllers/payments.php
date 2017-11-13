@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\PaymentMethod;
-use App\transaction_bank;
-use App\Http\Controllers\VisaAPIClient;
+use App\VisaAPIClient;
 
 class payments extends Controller
 {
@@ -67,29 +66,15 @@ class payments extends Controller
      */
     public function store(Request $request)
     {
-        $number = substr($request->cardnumber,0,1);
-        $provider = 'Null';
         $pmethods = new PaymentMethod;
-        if($number == '4') 
-        {
-         $provider ='Visa'; 
-        }
-        if($number =='5') 
-        { 
-            $provider ='MasterCard'; 
-        }
 
-   
-
-        $pmethods->provider      = $provider;
+        $pmethods->provider      = $request->provider;
         $pmethods->typemethod    = $request->typemethod;
         $pmethods->country       = $request->country;
         $pmethods->year          = $request->year;
         $pmethods->month         = $request->month;
         $pmethods->cvv           = $request->cvv;
         $pmethods->cardnumber    = $request->cardnumber;
-        $pmethods->bank          = $request->bank;
-        $pmethods->credit_debit  = $request->CreDeb;
         $pmethods->owner         = Auth::id();
 
         if ( $pmethods->save() ) 
@@ -144,8 +129,6 @@ class payments extends Controller
         }   
     }
 
-    
-
     /**
      * Remove the specified resource from storage.
      *
@@ -155,13 +138,11 @@ class payments extends Controller
     public function destroy($id)
     {
 
-        $card = PaymentMethod::find($id);
-        $card->delete();
+    DB::delete('delete from paymentsmethods where id = ?',[$id]) ;
     
-        // redirect
-        
-       return redirect('payment/index');
-
+    // redirect
+    
+   return redirect('payment/index');
     }
 
 
@@ -193,19 +174,9 @@ class payments extends Controller
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
          if($statusCode == '201'){
-
-                    /* Insert_bank*/
-                        $Transaction = new transaction_bank;
-                        $Transaction->paymentmethod = $request->id;
-                        $Transaction->receiver = 'Prueba n1';
-                        $Transaction->amount = $request->pay;
-                        $Transaction->save();
-                    /* Insert Transaction_bank*/    
-
-
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Transacción Nro. '.$Transaction->id.': Pago procesado correctamente por un monto de: '. $request->pay.'$, para más información consulte su cartera de pago... ', 
+            'message' => 'Pago procesado correctamente por un monto de: '. $request->pay.'$, para más información consulte su cartera de pago...', 
             'success' => 'success'
             );
 
@@ -218,30 +189,7 @@ class payments extends Controller
             'error' => 'error'
         );
             return redirect('payment/index')->with($notification);
-        }
-         
-     }
-
-        public function transactions(Request $request) {
-        $id = $request->id;
-        //Look in the table of methods of saved payments all the information of the selected method.
-        $transactions = DB::table('transaction_bank')->where('paymentmethod', $id)->get();
-        $card = DB::table('paymentsmethods')->where('id', $id)->first();
-
-         return view('payments', [
-                'type'      => $card->typemethod,
-                'cardnumber' => $card->cardnumber,
-                'bank' => $card->bank,
-                'provider' => $card->provider,
-                'credit_debit' => $card->credit_debit,
-                'created' => $card->created_at,
-                'transactions'     => $transactions,
-                'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'mode'      => 'historyTransaction'
-            ]
-        );
-                   
+         }
          
      }
     

@@ -16,13 +16,10 @@ class PaymentMethod extends Model
 		'year',
 		'cvv',
 		'cardnumber',
-		'owner',
-		'credit_debit',
-		'bank'
+		'owner'
     ];
-    
 
     public function user(){
-	  return $this->belongsTo('App\User', 'owner');
+	  return $this->belongsTo('App\User');
 	}
 }
