@@ -142,6 +142,42 @@ Route::group(['prefix' => 'doctor'], function(){
 });
 
 
+Route::group(['prefix' => 'privacyStatement'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'privacyStatement@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('create', [
+			'uses'	=>	'privacyStatement@create',
+			'as'	=>	'create'
+		]
+	);
+
+	Route::post('store', [
+			'uses'	=>	'privacyStatement@store',
+			'as'	=>	'store'
+		]
+	);
+
+	Route::get('delete/{id}', [
+			'uses'	=>	'privacyStatement@destroy',
+			'as'	=>	'destroy'
+		]
+	);
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'privacyStatement@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+
+
+
+});
+
 
 
 Route::post('/bye' , 'Auth\LoginController@logout');
