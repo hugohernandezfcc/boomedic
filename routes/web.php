@@ -136,6 +136,37 @@ Route::group(['prefix' => 'doctor'], function(){
 
 
 
+Route::group(['prefix' => 'supportTicket'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'supportTickets@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('create', [
+			'uses'	=>	'supportTickets@create',
+			'as'	=>	'create'
+		]
+	);
+
+	Route::post('store', [
+			'uses'	=>	'supportTickets@store',
+			'as'	=>	'store'
+		]
+	);
+
+	Route::get('delete/{id}', [
+			'uses'	=>	'supportTickets@destroy',
+			'as'	=>	'destroy'
+		]
+	);
+
+});
+
+
+
+
 
 Route::post('/bye' , 'Auth\LoginController@logout');
 
