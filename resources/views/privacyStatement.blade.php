@@ -17,22 +17,27 @@
 
 
 	  	@if($mode == 'Null')
-	  	<form action="Aceptar" method="post" id="aceptar">
+	  	
 		          				      
-	  <div style="margin-left: 100px; margin-top: 50px; margin-right: 100px; text-align: justify;">
+	  <div style="margin-left: 100px; margin-top: 50px; margin-right: 100px; text-align: justify;margin-bottom: 5%">
 	  		{{ $privacy->description }}
 	  </div>
-	  <button type="submit" class="btn" >Aceptar</button>
-	</form>
+	  <div style="margin-bottom: 10%;margin-right: 100px;">
+	  	<table align="right"><tr><td>
+	  <form action="Aceptar" method="post" id="aceptar"><button type="submit" class="btn" >Aceptar</button></form></td>
+	  <td><form action="Rechazar" method="post" id="Rechazar">
+	  <button type="submit" class="btn">Rechazar</button></form></td></tr></table>
+	  </div><br/>
+	
 
 		@endif
 
 		@if($mode == 'Full')
 
-		LISTO
-			  <div style="margin-left: 100px; margin-top: 50px; margin-right: 100px; text-align: justify;">
+	
+			  <div style="margin-left: 100px; margin-top: 50px; margin-right: 100px; text-align: justify; margin-bottom: 10%;">
 	  		{{ $privacy->description }}
-	  </div>
+	  </div><br/>
   			@endif
  
 </div>	  	

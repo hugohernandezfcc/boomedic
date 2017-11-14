@@ -30,10 +30,10 @@ class privacyStatement extends Controller
      */
     public function index()
     {
-        $privacyStatement = DB::table('privacy_statement')->orderby('created_at','DESC')->take(1)->first();
+        $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
         $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
 
-        if(is_null($StatementForUser)){
+        if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
     }
         else {
@@ -41,7 +41,7 @@ class privacyStatement extends Controller
         }
 
         return view('privacyStatement', [
-                'privacy'     => $privacyStatement,
+                'privacy'     => $privacyStatement[0],
                 'userId'    => Auth::id(),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'mode'      => $mode
@@ -137,9 +137,9 @@ class privacyStatement extends Controller
 
         public function Aceptar()
     {
-        $privacyStatement = DB::table('privacy_statement')->first();
+        $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
 
-        DB::table('users')->where('id',Auth::id())->update(['privacy_statement' => $privacyStatement->id]);
+        DB::table('users')->where('id',Auth::id())->update(['privacy_statement' => $privacyStatement[0]->id]);
 
         $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
 
@@ -150,13 +150,7 @@ class privacyStatement extends Controller
             $mode = 'Full';
         }
 
-        return view('privacyStatement', [
-                'privacy'     => $privacyStatement,
-                'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'mode'      => $mode
-            ]
-        );
+return redirect('privacyStatement/index');
     }
 
 

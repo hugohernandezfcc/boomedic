@@ -10,6 +10,7 @@ class privacy_statement extends Model
     protected $fillable = [
     	'id',
 		'description',
+		'created_at'
 
     ];
 }
