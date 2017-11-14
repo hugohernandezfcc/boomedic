@@ -178,6 +178,11 @@ Route::group(['prefix' => 'privacyStatement'], function(){
 			'as'	=>	'Aceptar'
 		]
 	);
+	Route::post('Rechazar', [
+			'uses'	=>	'privacyStatement@Rechazar',
+			'as'	=>	'Rechazar'
+		]
+	);
 
 
 });

@@ -150,9 +150,15 @@ class privacyStatement extends Controller
             $mode = 'Full';
         }
 
-return redirect('privacyStatement/index');
+    return redirect('privacyStatement/index');
     }
 
 
+
+        public function Rechazar()
+    {
+          \Auth::logout();
+    return redirect('/home');
+    }
     
 }
