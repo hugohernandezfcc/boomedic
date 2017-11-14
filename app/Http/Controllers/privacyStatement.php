@@ -30,7 +30,7 @@ class privacyStatement extends Controller
      */
     public function index()
     {
-        $privacyStatement = DB::table('privacy_statement')->first();
+        $privacyStatement = DB::table('privacy_statement')->orderby('created_at','DESC')->take(1)->first();
         $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
 
         if(is_null($StatementForUser)){
