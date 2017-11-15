@@ -13,7 +13,7 @@ class supportTickets extends Controller
      */
     public function index()
     {
-        //
+        return view('tickets');
     }
 
     /**
