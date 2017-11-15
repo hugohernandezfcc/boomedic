@@ -186,9 +186,16 @@ Route::group(['prefix' => 'privacyStatement'], function(){
 
 });
 
-Route::get('paywithpaypal', array('as' => 'addmoney.paywithpaypal','uses' => 'AddMoneyController@payWithPaypal',));
-Route::post('paypal', array('as' => 'addmoney.paypal','uses' => 'AddMoneyController@postPaymentWithpaypal',));
-Route::get('paypal', array('as' => 'payment.status','uses' => 'AddMoneyController@getPaymentStatus',));
+		Route::post('payment2', array(
+		    'as' => 'payment2',
+		    'uses' => 'CentralController@postPayment',
+		));
+
+		// when the payment is done, this will redirect us to our page
+		Route::get('payment2/status', array(
+		    'as' => 'payment2.status',
+		    'uses' => 'CentralController@getPaymentStatus',
+		));
 
 
 
