@@ -32,12 +32,14 @@ class payments extends Controller
      * @return void
      */
     private $_api_context;
-    
+
     public function __construct()
     {
         $this->middleware('auth');
         $paypal_conf = config('paypal');
-        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));  
+        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
+
+
     }
 
     /**
@@ -210,7 +212,7 @@ class payments extends Controller
          
      }
 
-                            public function postPayment()
+         public function postPayment()
                     {
 
                         $payer = new Payer();
@@ -281,7 +283,7 @@ class payments extends Controller
 
                         if(isset($redirect_url)) {
                             // redirect to paypal
-                            return Redirect::away($redirect_url);
+                            return Rredirect('payment/index');
                         }
 
                         return Redirect::route('original.route')

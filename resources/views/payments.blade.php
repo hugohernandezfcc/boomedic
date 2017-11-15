@@ -222,7 +222,7 @@
 
 	                <div id="paypalButton" style="display: none;">
 	                	<form action="postPayment" method="post">
-						<input type="submit" name="Paypal Buy!">	
+						  <button type="submit" class="btn">Pagar con paypal</button>	
 						</form>
 
 	                </div>
