@@ -17,7 +17,11 @@ class supportTickets extends Controller
      */
     public function index()
     {
-        return view('tickets');
+        return view('tickets', [
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name')
+            ]
+        );
     }
 
     /**
