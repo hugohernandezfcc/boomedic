@@ -22,6 +22,7 @@ use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 use config;
 
+
 class payments extends Controller
 {
 
@@ -33,10 +34,9 @@ class payments extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-         $paypal_conf = Config::get('paypal');
+        $paypal_conf = config('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
         $this->_api_context->setConfig($paypal_conf['settings']);
-       
     }
 
     /**
