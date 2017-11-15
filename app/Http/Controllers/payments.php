@@ -31,12 +31,13 @@ class payments extends Controller
      *
      * @return void
      */
+    private $_api_context;
+    
     public function __construct()
     {
         $this->middleware('auth');
         $paypal_conf = config('paypal');
-        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
-        $this->_api_context->setConfig($paypal_conf['settings']);
+        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));  
     }
 
     /**
