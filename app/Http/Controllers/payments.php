@@ -212,7 +212,7 @@ class payments extends Controller
          
      }
 
-                                    public function postPayment()
+                            public function postPayment()
                              {
 
                             $payer = new Payer();
@@ -282,41 +282,40 @@ class payments extends Controller
 
                             }
 
-                            return redirect()->route('home')
-                             ->with('error', 'Unknown error occurred');
+                            return redirect()->route('home')->with('error', 'Unknown error occurred');
                              }
 
-                public function getPaymentStatus()
-                {
-                    // Get the payment ID before session clear
-                    $payment_id = Session::get('paypal_payment_id');
+                        public function getPaymentStatus(Request $request)
+                             {
+                             // Get the payment ID before session clear
+                             $payment_id = Session::get('paypal_payment_id');
 
-                    // clear the session payment ID
-                    Session::forget('paypal_payment_id');
+                            // clear the session payment ID
+                             Session::forget('paypal_payment_id');
 
-                    if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
-                        return Redirect::route('original.route')
-                            ->with('error', 'Payment failed');
-                    }
+                            if(empty($request->input('PayerID')) || empty($request->input('token'))){
+                             return redirect()->route('home')->with('info', 'Payment failed');
+                             }
 
-                    $payment = Payment::get($payment_id, $this->_api_context);
+                            $payment = Payment::get($payment_id, $this->_api_context);
 
-                    // PaymentExecution object includes information necessary 
-                    // to execute a PayPal account payment. 
-                    // The payer_id is added to the request query parameters
-                    // when the user is redirected from paypal back to your site
-                    $execution = new PaymentExecution();
-                    $execution->setPayerId(Input::get('PayerID'));
+                            // PaymentExecution object includes information necessary
+                             // to execute a PayPal account payment.
+                             // The payer_id is added to the request query parameters
+                             // when the user is redirected from paypal back to your site
+                             $execution = new PaymentExecution();
+                             $execution->setPayerId($request->input('PayerID'));
 
-                    //Execute the payment
-                    $result = $payment->execute($execution, $this->_api_context);
+                            //Execute the payment
+                             $result = $payment->execute($execution, $this->_api_context);
 
-                    if ($result->getState() == 'approved') { // payment made
-                        return Redirect::route('original.route')
-                            ->with('success', 'Payment success');
-                    }
-                    return Redirect::route('original.route')
-                        ->with('error', 'Payment failed');
-                }
-    
+                            if ($result->getState() == 'approved') { // payment made
+
+                            dd($result);  // Use this data to work as you need
+
+                            // return Redirect::route('home')
+                             // ->with('info', 'Payment success');
+                             }
+                             return Redirect::route('home')->with('info', 'Payment failed');
+                             }
 }
