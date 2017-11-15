@@ -212,83 +212,79 @@ class payments extends Controller
          
      }
 
-         public function postPayment()
-                    {
+                                    public function postPayment()
+                             {
 
-                        $payer = new Payer();
-                        $payer->setPaymentMethod('paypal');
+                            $payer = new Payer();
+                             $payer->setPaymentMethod('paypal');
 
-                        $item_1 = new Item();
-                        $item_1->setName('Item 1')
-                            ->setCurrency('USD')
-                            ->setQuantity(2)
-                            ->setPrice('15');
+                            $item_1 = new Item();
+                             $item_1->setName('Item 1') // item name
+                             ->setCurrency('AUD')
+                             ->setQuantity(1)
+                             ->setPrice('150'); // unit price
 
-                        $item_2 = new Item();
-                        $item_2->setName('Item 2')
-                            ->setCurrency('USD')
-                            ->setQuantity(4)
-                            ->setPrice('7');
+                            $item_2 = new Item();
+                             $item_2->setName('Item 2')
+                             ->setCurrency('AUD')
+                             ->setQuantity(2)
+                             ->setPrice('10');
 
-                        $item_3 = new Item();
-                        $item_3->setName('Item 3')
-                            ->setCurrency('USD')
-                            ->setQuantity(1)
-                            ->setPrice('20');
+                            // add item to list
+                             $item_list = new ItemList();
+                             $item_list->setItems(array($item_1, $item_2));
 
-                        // add item to list
-                        $item_list = new ItemList();
-                        $item_list->setItems(array($item_1, $item_2, $item_3));
+                            $amount = new Amount();
+                             $amount->setCurrency('AUD')
+                             ->setTotal(170);
 
-                        $amount = new Amount();
-                        $amount->setCurrency('USD')
-                            ->setTotal(78);
+                            $transaction = new Transaction();
+                             $transaction->setAmount($amount)
+                             ->setItemList($item_list)
+                             ->setDescription('description');
 
-                        $transaction = new Transaction();
-                        $transaction->setAmount($amount)
-                            ->setItemList($item_list)
-                            ->setDescription('Your transaction description');
+                            $redirect_urls = new RedirectUrls();
+                             $redirect_urls->setReturnUrl(route('payment.status')) // Specify return URL
+                             ->setCancelUrl(route('payment.status'));
 
-                        $redirect_urls = new RedirectUrls();
-                        $redirect_urls->setReturnUrl(URL::route('payment.status'))
-                            ->setCancelUrl(URL::route('payment.status'));
+                            $payment = new Payment();
+                             $payment->setIntent('Sale')
+                             ->setPayer($payer)
+                             ->setRedirectUrls($redirect_urls)
+                             ->setTransactions(array($transaction));
 
-                        $payment = new Payment();
-                        $payment->setIntent('Sale')
-                            ->setPayer($payer)
-                            ->setRedirectUrls($redirect_urls)
-                            ->setTransactions(array($transaction));
+                            try {
+                             $payment->create($this->_api_context);
+                             } catch (\PayPal\Exception\PPConnectionException $ex) {
+                             if (\Config::get('app.debug')) {
+                             echo "Exception: " . $ex->getMessage() . PHP_EOL;
+                             $err_data = json_decode($ex->getData(), true);
+                             exit;
+                             } else {
+                             die('Some error occur, sorry for inconvenient');
+                             }
+                             }
 
-                        try {
-                            $payment->create($this->_api_context);
-                        } catch (\PayPal\Exception\PPConnectionException $ex) {
-                            if (\Config::get('app.debug')) {
-                                echo "Exception: " . $ex->getMessage() . PHP_EOL;
-                                $err_data = json_decode($ex->getData(), true);
-                                exit;
-                            } else {
-                                die('Some error occur, sorry for inconvenient');
+                            foreach($payment->getLinks() as $link) {
+                             if($link->getRel() == 'approval_url') {
+                             $redirect_url = $link->getHref();
+                             break;
+                             }
+                             }
+
+                            // add payment ID to session
+                             Session::put('paypal_payment_id', $payment->getId());
+
+                            if(isset($redirect_url)) {
+                             // redirect to paypal
+
+                            return redirect($redirect_url);
+
                             }
-                        }
 
-                        foreach($payment->getLinks() as $link) {
-                            if($link->getRel() == 'approval_url') {
-                                $redirect_url = $link->getHref();
-                                break;
-                            }
-                        }
-
-                        // add payment ID to session
-                        Session::put('paypal_payment_id', $payment->getId());
-
-                        if(isset($redirect_url)) {
-                            // redirect to paypal
-                            return Rredirect('payment/index');
-                        }
-
-                        return Redirect::route('original.route')
-                            ->with('error', 'Unknown error occurred');
-                    }
+                            return redirect()->route('home')
+                             ->with('error', 'Unknown error occurred');
+                             }
 
                 public function getPaymentStatus()
                 {
