@@ -186,14 +186,14 @@ Route::group(['prefix' => 'privacyStatement'], function(){
 
 });
 
-		Route::post('payment2', array(
-		    'as' => 'payment2',
+		Route::post('postPayment', array(
+		    'as' => 'postPayment',
 		    'uses' => 'CentralController@postPayment',
 		));
 
 		// when the payment is done, this will redirect us to our page
-		Route::get('payment2/status', array(
-		    'as' => 'payment2.status',
+		Route::get('getPaymentStatus/status', array(
+		    'as' => 'getPaymentStatus',
 		    'uses' => 'CentralController@getPaymentStatus',
 		));
 
