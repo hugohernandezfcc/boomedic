@@ -108,6 +108,18 @@ Route::group(['prefix' => 'payment'], function(){
 			'as'	=>	'PaymentAuthorizations'
 		]
 	);
+	Route::post('postPayment', [
+		    'as' => 'postPayment',
+		    'uses' => 'payments@postPayment',
+		]);
+
+		// when the payment is done, this will redirect us to our page
+		Route::get('getPaymentStatus/status',[
+		    'as' => 'getPaymentStatus',
+		    'uses' => 'payments@getPaymentStatus',
+		]);
+
+
 
 
 });
@@ -186,18 +198,7 @@ Route::group(['prefix' => 'privacyStatement'], function(){
 
 });
 
-		Route::post('postPayment', array(
-		    'as' => 'postPayment',
-		    'uses' => 'CentralController@postPayment',
-		));
-
-		// when the payment is done, this will redirect us to our page
-		Route::get('getPaymentStatus/status', array(
-		    'as' => 'getPaymentStatus',
-		    'uses' => 'CentralController@getPaymentStatus',
-		));
-
-
+		
 
 Route::post('/bye' , 'Auth\LoginController@logout');
 

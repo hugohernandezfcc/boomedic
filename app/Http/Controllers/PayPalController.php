@@ -18,7 +18,7 @@ use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 
-class CentralController extends BaseController
+class PaypalController extends Controller
 {
     
     private $_api_context;
