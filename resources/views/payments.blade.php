@@ -221,7 +221,7 @@
 	                </div>
 
 	                <div id="paypalButton" style="display: none;">
-	                	<form action="payment2" method="post">
+	                	<form action="postPayment" method="post">
 						<input type="submit" name="Paypal Buy!">	
 						</form>
 
