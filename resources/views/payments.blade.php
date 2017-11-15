@@ -221,8 +221,8 @@
 	                </div>
 
 	                <div id="paypalButton" style="display: none;">
-	                	<form action="postPayment" method="post">
-						  <button type="submit" class="btn">Pagar con paypal</button>	
+	                	<form action="postPayment" method="post" class="form-horizontal">
+						  <button type="submit" class="btn btn-secondary btn-block btn-flat">Pagar con paypal</button>	
 						</form>
 
 	                </div>
