@@ -161,6 +161,11 @@ Route::group(['prefix' => 'supportTicket'], function(){
 			'as'	=>	'destroy'
 		]
 	);
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'tickets@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
 
 });
 

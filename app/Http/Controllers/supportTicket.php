@@ -13,7 +13,7 @@ class supportTicket extends Controller
      */
     public function index()
     {
-        return view('tickets');
+        return view('tickets/index');
     }
 
     /**
@@ -81,4 +81,18 @@ class supportTicket extends Controller
     {
         //
     }
+
+     public function redirecting($page)
+    {
+        switch ($page) {
+            case 'index':
+                return redirect('tickets/index'); //show
+                break;
+            
+            default:
+                return redirect('/medicalconsultations'); //medicalconsultations
+                break;
+        }   
+    }
+
 }
