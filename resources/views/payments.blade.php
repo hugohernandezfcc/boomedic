@@ -141,7 +141,7 @@
 	                	<div class="form-group has-feedback {{ $errors->has('cardnumber') ? 'has-error' : '' }}">
 		                    <label for="cardnumber" class="col-sm-2 control-label">No. Tarjeta</label>
 		                	<div class="col-sm-10">
-		                  		<input type="text" name="cardnumber" class="form-control" id="cardnumber">
+		                  		<input type="text" name="cardnumber" class="form-control" id="cardnumber" required>
 		                	</div>
 		              	</div>
 		              			<div class="form-group has-feedback {{ $errors->has('year') ? 'has-error' : '' }}">
@@ -174,7 +174,7 @@
                             <option value="Debit">Débito</option>
                         </select>
                    		 </div>
-				                    <label class="col-sm-1 control-label">CVV</label>
+				                    <label class="col-sm-1 control-label" required>CVV</label>
 				                	<div class="col-sm-2">
 				                  		<input type="text" name="cvv" class="form-control" id="cvv">
 				                	</div>
@@ -183,7 +183,7 @@
 	                	<div class="form-group has-feedback {{ $errors->has('bank') ? 'has-error' : '' }}">
 		                    <label for="bank" class="col-sm-2 control-label">Banco</label>
 		                	<div class="col-sm-10">
-		                  		<input type="text" name="bank" class="form-control" id="bank">
+		                  		<input type="text" name="bank" class="form-control" id="bank" required>
 		                	</div>
 		              	</div>
 
