@@ -139,25 +139,25 @@ Route::group(['prefix' => 'doctor'], function(){
 Route::group(['prefix' => 'supportTicket'], function(){
 
 	Route::get('index', [
-			'uses'	=>	'supportTickets@index',
+			'uses'	=>	'supportTicket@index',
 			'as'	=>	'index'
 		]
 	);
 
 	Route::get('create', [
-			'uses'	=>	'supportTickets@create',
+			'uses'	=>	'supportTicket@create',
 			'as'	=>	'create'
 		]
 	);
 
 	Route::post('store', [
-			'uses'	=>	'supportTickets@store',
+			'uses'	=>	'supportTicket@store',
 			'as'	=>	'store'
 		]
 	);
 
 	Route::get('delete/{id}', [
-			'uses'	=>	'supportTickets@destroy',
+			'uses'	=>	'supportTicket@destroy',
 			'as'	=>	'destroy'
 		]
 	);

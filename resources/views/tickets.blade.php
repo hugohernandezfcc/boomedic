@@ -2,7 +2,7 @@
 
 @section('title', 'Boomedic')
 
-@section('content_header')s
+@section('content_header')
 
 @stop
 
