@@ -61,7 +61,7 @@ class supportTickets extends Controller
         $nTicket->userType  = 'paciente';
 
         if ( $nTicket->save() )
-            return redirect('build');
+            return redirect('/build' . Auth::id() );
         else
             dd('Problemas al registrar usuario');
     }
