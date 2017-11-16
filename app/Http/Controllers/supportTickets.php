@@ -17,7 +17,7 @@ class supportTickets extends Controller
      */
     public function index()
     {
-        $allTickets = DB::table('paymentsmethods')->where('owner', Auth::id() )->get();
+        $allTickets = DB::table('support_tickets')->where('userId', Auth::id() )->get();
         return view('tickets', [
                 'allTickets'=> $allTickets,
                 'userId'    => Auth::id(),
