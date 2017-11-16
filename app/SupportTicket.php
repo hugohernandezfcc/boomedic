@@ -13,7 +13,9 @@ class SupportTicket extends Model
 		'email',
 		'userType',
 		'ticketDescription',
-		'userId'
+		'userId',
+		'status', 
+		'subject'
     ];
     
 

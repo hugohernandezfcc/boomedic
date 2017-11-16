@@ -66,7 +66,27 @@
 
 	                </tbody>
 	            </table>
-	        
+	        @elseif($mode == 'createTicket')
+
+	        	<form action="/supportTicket/store/{{$userId}}" method="post" class="form-horizontal">
+	    			{{ csrf_field() }}
+
+	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+	                    <label for="descriptionT" class="col-sm-2 control-label">Descripción</label>
+	                	<div class="col-sm-10">
+	                  		<input type="text" name="descriptionT" class="form-control" id="descriptionT" value="{{ $descriptionT }}">
+	                	</div>
+	              	</div>
+
+
+	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+	                    <label for="subjectT" class="col-sm-2 control-label">Asunto</label>
+	                	<div class="col-sm-10">
+	                  		<input type="text" name="subjectT" class="form-control" id="subjectT" value="{{ $subjectT }}">
+	                	</div>
+	              	</div>
+	            </form>
+
             @endif
 
         </div>	  	

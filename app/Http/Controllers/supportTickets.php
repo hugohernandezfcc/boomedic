@@ -55,8 +55,8 @@ class supportTickets extends Controller
         $nTicket->subject      = $request->subjectT;
         /*$nTicket->user      = $request->uName;
         $nTicket->email    = $request->uEmail;
-        $nTicket->userType       = $request->uType;
-        $nTicket->ticketDescription          = $request->description;*/
+        $nTicket->userType       = $request->uType;*/
+        $nTicket->ticketDescription          = $request->descriptionT;
         
         $nTicket->userId         = Auth::id();
 
