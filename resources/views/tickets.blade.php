@@ -90,17 +90,17 @@
 	            {!! Form::open(['route' => 'supportTicket.store', 'method' => 'POST']) !!}
 
 			    <div class="form-group">
-			        {!! Form::label('subject', 'Nombre(s)') !!}<br>
+			        {!! Form::label('subject', 'Asunto') !!}<br>
 			        {!! Form::text('subject', null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
 			    </div>
 
 			    <div class="form-group">
-			        {!! Form::label('ticketDescription', 'Apellidos') !!}<br>
+			        {!! Form::label('ticketDescription', 'Descripción') !!}<br>
 			        {!! Form::text('ticketDescription', null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
 			    </div>
 
 			    <div class="form-group">
-			        {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
+			        {!! Form::submit('Enviar', ['class' => 'btn btn-primary']) !!}
 			    </div>
 
 				{!! Form::close() !!}
