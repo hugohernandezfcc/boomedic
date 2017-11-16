@@ -122,7 +122,49 @@
 	                    @endforeach 
 
 	                </tbody>
-	            </table>
+	            </table><br/>
+	            <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                @if ($message = Session::get('success'))
+                <div class="custom-alerts alert alert-success fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    {!! $message !!}
+                </div>
+                <?php Session::forget('success');?>
+                @endif
+                @if ($message = Session::get('error'))
+                <div class="custom-alerts alert alert-danger fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    {!! $message !!}
+                </div>
+                <?php Session::forget('error');?>
+                @endif
+                    <form action="postPaymentWithpaypal" method="post" class="form-horizontal">
+                        {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
+                            <label for="amount" class="col-md-4 control-label">Monto</label>
+                            <div class="col-md-6">
+                                <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" autofocus>
+                                @if ($errors->has('amount'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('amount') }}</strong>
+                                    </span>
+                                @endif
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Pay 
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
             @elseif($mode == 'createPaymentMethod')
             	<form action="store" method="post" class="form-horizontal">
             		{{ csrf_field() }}
@@ -239,12 +281,10 @@
                 </div>
                 <?php Session::forget('error');?>
                 @endif
-                <div class="panel-heading">Paypal</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" id="payment-form" role="form" action="postPaymentWithpaypal" >
+                    <form action=" getPaymentStatus" method="post" class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
-                            <label for="amount" class="col-md-4 control-label">Amount</label>
+                            <label for="amount" class="col-md-4 control-label">Monto</label>
                             <div class="col-md-6">
                                 <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" autofocus>
                                 @if ($errors->has('amount'))
@@ -252,13 +292,10 @@
                                         <strong>{{ $errors->first('amount') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-                        
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Pay with Paypal
+                                    Pay 
                                 </button>
                             </div>
                         </div>
@@ -269,7 +306,7 @@
     </div>
 </div>
 
-	                </div>
+	                
 
 	                <script type="text/javascript">
 	                	

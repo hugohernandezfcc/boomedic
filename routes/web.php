@@ -110,7 +110,7 @@ Route::group(['prefix' => 'payment'], function(){
 	);
 	Route::post('postPaymentWithpaypal', [
 		    'as' => 'postPaymentWithpaypal',
-		    'uses' => 'payments@postPaymentWithpaypalt',
+		    'uses' => 'payments@postPaymentWithpaypal',
 		]);
 
 		// when the payment is done, this will redirect us to our page
@@ -119,9 +119,7 @@ Route::group(['prefix' => 'payment'], function(){
 		    'uses' => 'payments@getPaymentStatus',
 		]);
 
-	Route::get('paywithpaypal', array('as' => 'payments.paywithpaypal','uses' => 'payments@payWithPaypal',));
-	Route::post('paypal', array('as' => 'payments.paypal','uses' => 'payments@postPaymentWithpaypal',));
-	Route::get('paypal', array('as' => 'payments.status','uses' => 'payments@getPaymentStatus',));
+
 
 
 });
