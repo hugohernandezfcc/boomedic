@@ -165,7 +165,7 @@ Route::group(['prefix' => 'supportTicket'], function(){
 });
 
 
-Route::post('send', ['as' => 'send', 'uses' => 'MailController@send'] );
+Route::post('/send', 'MailController@send');
 
 
 
