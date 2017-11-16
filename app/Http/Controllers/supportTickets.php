@@ -60,7 +60,7 @@ class supportTickets extends Controller
 
         $nTicket->userId         = Auth::id();
 
-        if ( $nTicket->save() ) 
+        if ( $nTicket->save() )
             return redirect('supportTicket/index');
     }
 

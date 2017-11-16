@@ -72,17 +72,17 @@
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="descriptionT" class="col-sm-2 control-label">Descripción</label>
+	                    <label for="ticketDescription" class="col-sm-2 control-label">Descripción</label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="descriptionT" class="form-control" id="descriptionT" value="{{ $ticketDescription }}">
+	                  		<input type="text" name="ticketDescription" class="form-control" id="ticketDescription" value="{{ $ticketDescription }}">
 	                	</div>
 	              	</div>
 
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="subjectT" class="col-sm-2 control-label">Asunto</label>
+	                    <label for="subject" class="col-sm-2 control-label">Asunto</label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="subjectT" class="form-control" id="subjectT" value="{{ $subject }}">
+	                  		<input type="text" name="subject" class="form-control" id="subject" value="{{ $subject }}">
 	                	</div>
 	              	</div>
 	            </form>
