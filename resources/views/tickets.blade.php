@@ -72,16 +72,16 @@
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback ">
-	                    <label for="username" class="col-sm-2 control-label">Nombre Usuario</label>
-	                	<div class="col-sm-10">
-	                  		<input type="text" name="username" class="form-control" id="username" value="{{ $username }}">
-	                	</div>
-	              	</div>
-
-	    			<div class="form-group has-feedback ">
 	    				<label for="subject" class="col-sm-2 control-label">Asunto</label>
 	                	<div class="col-sm-10">
 	                  		<input type="text" name="subject" class="form-control" id="subject" >
+	                	</div>
+	              	</div>
+
+	              	<div class="form-group has-feedback ">
+	                    <label for="ticketDescription" class="col-sm-2 control-label">Descripción</label>
+	                	<div class="col-sm-10">
+	                  		<input type="text" name="ticketDescription" class="form-control" id="ticketDescription" >
 	                	</div>
 	              	</div>
 

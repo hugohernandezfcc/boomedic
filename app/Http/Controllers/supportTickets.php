@@ -37,6 +37,7 @@ class supportTickets extends Controller
         return view('tickets', [
                 'userId'    => Auth::id(),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'email'     => DB::table('users')->where('id', Auth::id() )->value('email'),
                 'mode'      => 'createTicket'
             ]
         );
@@ -50,9 +51,14 @@ class supportTickets extends Controller
      */
     public function store(Request $request)
     {
-        $nTicket = new SupportTicket($request->all());
-        
-        $nTicket->userId         = Auth::id();
+        $user = User::find(Auth::id());
+
+        $nTicket = new SupportTicket($request->all());        
+        $nTicket->userId    = Auth::id();
+        $nTicket->status    = 'In Progress';
+        $nTicket->user      = $user->name;
+        $nTicket->email     = $user->email;
+        $nTicket->userType  = 'paciente';
 
         if ( $nTicket->save() )
             return redirect('supportTicket/index');
