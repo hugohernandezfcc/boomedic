@@ -92,8 +92,7 @@ class MailController extends Controller
     });*/
    }
 
-    public function build()
-    {
+    public function build(){
         return $this->from('cristina@doitcloud.consulting')
                     ->view('newTicket');
     }
