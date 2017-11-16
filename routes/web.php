@@ -165,8 +165,8 @@ Route::group(['prefix' => 'supportTicket'], function(){
 });
 
 
-Route::post('/send', 'MailController@send');
-
+/*Route::post('/send', 'MailController@send');
+*/
 
 
 Route::post('/bye' , 'Auth\LoginController@logout');

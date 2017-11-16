@@ -84,11 +84,11 @@ class MailController extends Controller
 
     public function send(Request $request)
    {
-       Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
+       /*Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
     {
         $message->to('cristina@doitcloud.consulting');
         $message->subject('Mailgun and Laravel are awesome!');
         $message->from('no-reply@website_name.com', 'Website Name');
-    });
+    });*/
    }
 }
