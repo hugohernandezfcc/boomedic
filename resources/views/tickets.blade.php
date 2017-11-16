@@ -40,7 +40,7 @@
 		<div class="box-body">
 
             @if($mode == 'listTickets')
-            	<table id="ticketsTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
+            	<table id="paymentmethodtable" class="table table-bordered table-striped" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
 	                    	<th>Asunto </th>
@@ -56,12 +56,19 @@
 	                    </tr>
 	                </tfoot>
 	                <tbody>
+	                    @foreach ($allTickets as $ticket)
+	                        <tr>	                        
+	                            <td>{{ $ticket->subject }}</td>
+	                            <td>{{ $ticket->status }}</td>
+	                            <td>{{ $ticket->ticketDescription }}</td>
+	                        </tr>
+	                    @endforeach 
 
 	                </tbody>
 	            </table>
-	        @elseif($mode == 'createTicket')	        	
+	        @elseif($mode == 'createTicket')
 
-	            <form action="/supportTicket/store" method="post" class="form-horizontal">
+	        	<form action="/supportTicket/store" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback ">
