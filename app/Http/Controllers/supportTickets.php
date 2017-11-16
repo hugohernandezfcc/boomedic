@@ -51,17 +51,20 @@ class supportTickets extends Controller
     public function store(Request $request)
     {
         $nTicket = new SupportTicket;
+        $nTicket = new SupportTicket($request->all());
 
-        $nTicket->subject      = $request->subject;
+        $nTicket->subject      = 'subject';
         /*$nTicket->user      = $request->uName;
         $nTicket->email    = $request->uEmail;
         $nTicket->userType       = $request->uType;*/
-        $nTicket->ticketDescription          = $request->ticketDescription;
+        $nTicket->ticketDescription          = 'ticketDescription';
 
         $nTicket->userId         = Auth::id();
 
         if ( $nTicket->save() )
             return redirect('supportTicket/index');
+        else
+            dd('Problemas al registrar usuario');
     }
 
     /**
