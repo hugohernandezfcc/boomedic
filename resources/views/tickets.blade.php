@@ -61,7 +61,7 @@
 	            </table>
 	        @elseif($mode == 'createTicket')	        	
 
-	            <!-- {!! Form::open(['route' => 'supportTicket.store', 'method' => 'POST']) !!}
+	            {!! Form::open(['route' => 'supportTicket.store', 'method' => 'POST']) !!}
 
 			    <div class="form-group">
 			        {!! Form::label('subject', 'Asunto') !!}<br>
@@ -72,9 +72,8 @@
 			        {!! Form::submit('Enviar', ['class' => 'btn btn-primary']) !!}
 			    </div>
 
-				{!! Form::close() !!} -->
+				{!! Form::close() !!}
 
-				Algo
 
             @endif
 
