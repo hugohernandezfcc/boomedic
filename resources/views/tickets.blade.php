@@ -68,7 +68,7 @@
 	            </table>
 	        @elseif($mode == 'createTicket')
 
-	        	<form action="/supportTicket/store/{{$userId}}" method="post" class="form-horizontal">
+	        	<!-- <form action="/supportTicket/store/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -85,7 +85,25 @@
 	                  		<input type="text" name="subject" class="form-control" id="subject" value="{{ $subject }}">
 	                	</div>
 	              	</div>
-	            </form>
+	            </form> -->
+
+	            {!! Form::open(['route' => 'supportTicket.store', 'method' => 'POST']) !!}
+
+			    <div class="form-group">
+			        {!! Form::label('subject', 'Nombre(s)') !!}<br>
+			        {!! Form::text('subject', null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
+			    </div>
+
+			    <div class="form-group">
+			        {!! Form::label('ticketDescription', 'Apellidos') !!}<br>
+			        {!! Form::text('ticketDescription', null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
+			    </div>
+
+			    <div class="form-group">
+			        {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
+			    </div>
+
+				{!! Form::close() !!}
 
             @endif
 
