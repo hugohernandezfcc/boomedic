@@ -37,7 +37,7 @@
 	
 			  <div style="margin-left: 100px; margin-top: 50px; margin-right: 100px; text-align: justify; margin-bottom: 10%;">
 	  		{{ $privacy->description }}
-	  </div><br/>
+	  </div><br/>p
   			@endif
  
 </div>	  	

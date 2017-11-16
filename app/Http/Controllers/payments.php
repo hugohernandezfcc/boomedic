@@ -213,109 +213,93 @@ class payments extends Controller
      }
 
                 public function postPayment()
-                             {
-
-                            $payer = new Payer();
-                             $payer->setPaymentMethod('paypal');
-
+                {
+                    $payer = new Payer();
+                            $payer->setPaymentMethod('paypal');
                             $item_1 = new Item();
-                             $item_1->setName('Item 1') // item name
-                             ->setCurrency('AUD')
-                             ->setQuantity(1)
-                             ->setPrice('150'); // unit price
-
-                            $item_2 = new Item();
-                             $item_2->setName('Item 2')
-                             ->setCurrency('AUD')
-                             ->setQuantity(2)
-                             ->setPrice('10');
-
-                            // add item to list
-                             $item_list = new ItemList();
-                             $item_list->setItems(array($item_1, $item_2));
-
+                            $item_1->setName('Item 1') /** item name **/
+                                ->setCurrency('USD')
+                                ->setQuantity(1)
+                                ->setPrice($request->get('amount')); /** unit price **/
+                            $item_list = new ItemList();
+                            $item_list->setItems(array($item_1));
                             $amount = new Amount();
-                             $amount->setCurrency('AUD')
-                             ->setTotal(170);
-
+                            $amount->setCurrency('USD')
+                                ->setTotal($request->get('amount'));
                             $transaction = new Transaction();
-                             $transaction->setAmount($amount)
-                             ->setItemList($item_list)
-                             ->setDescription('description');
-
+                            $transaction->setAmount($amount)
+                                ->setItemList($item_list)
+                                ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
-                             $redirect_urls->setReturnUrl(route('payment.status')) // Specify return URL
-                             ->setCancelUrl(route('payment.status'));
-
+                            $redirect_urls->setReturnUrl(URL::route('payment.status')) /** Specify return URL **/
+                                ->setCancelUrl(URL::route('payment.status'));
                             $payment = new Payment();
-                             $payment->setIntent('Sale')
-                             ->setPayer($payer)
-                             ->setRedirectUrls($redirect_urls)
-                             ->setTransactions(array($transaction));
-
+                            $payment->setIntent('Sale')
+                                ->setPayer($payer)
+                                ->setRedirectUrls($redirect_urls)
+                                ->setTransactions(array($transaction));
+                                /** dd($payment->create($this->_api_context));exit; **/
                             try {
-                             $payment->create($this->_api_context);
-                             } catch (\PayPal\Exception\PPConnectionException $ex) {
-                             if (\Config::get('app.debug')) {
-                             echo "Exception: " . $ex->getMessage() . PHP_EOL;
-                             $err_data = json_decode($ex->getData(), true);
-                             exit;
-                             } else {
-                             die('Some error occur, sorry for inconvenient');
-                             }
-                             }
-
-                            foreach($payment->getLinks() as $link) {
-                             if($link->getRel() == 'approval_url') {
-                             $redirect_url = $link->getHref();
-                             break;
-                             }
-                             }
-
-                            // add payment ID to session
-                             Session::put('paypal_payment_id', $payment->getId());
-
-                            if(isset($redirect_url)) {
-                             // redirect to paypal
-
-                            return redirect($redirect_url);
-
+                                $payment->create($this->_api_context);
+                            } catch (\PayPal\Exception\PPConnectionException $ex) {
+                                if (\Config::get('app.debug')) {
+                                    \Session::put('error','Connection timeout');
+                                    return Redirect::route('addmoney.paywithpaypal');
+                                    /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
+                                    /** $err_data = json_decode($ex->getData(), true); **/
+                                    /** exit; **/
+                                } else {
+                                    \Session::put('error','Some error occur, sorry for inconvenient');
+                                    return Redirect::route('addmoney.paywithpaypal');
+                                    /** die('Some error occur, sorry for inconvenient'); **/
+                                }
                             }
+                            foreach($payment->getLinks() as $link) {
+                                if($link->getRel() == 'approval_url') {
+                                    $redirect_url = $link->getHref();
+                                    break;
+                                }
+                            }
+                            /** add payment ID to session **/
+                            Session::put('paypal_payment_id', $payment->getId());
+                            if(isset($redirect_url)) {
+                                /** redirect to paypal **/
+                                return Redirect::away($redirect_url);
+                            }
+                            \Session::put('error','Unknown error occurred');
+                            return Redirect::route('addmoney.paywithpaypal');
+                        }
 
-                            return redirect()->route('home')->with('error', 'Unknown error occurred');
-                             }
-
-                        public function getPaymentStatus(Request $request)
-                             {
-                             // Get the payment ID before session clear
-                             $payment_id = Session::get('paypal_payment_id');
-
-                            // clear the session payment ID
-                             Session::forget('paypal_payment_id');
-
-                            if(empty($request->input('PayerID')) || empty($request->input('token'))){
-                             return redirect()->route('home')->with('info', 'Payment failed');
-                             }
-
-                            $payment = Payment::get($payment_id, $this->_api_context);
-
-                            // PaymentExecution object includes information necessary
-                             // to execute a PayPal account payment.
-                             // The payer_id is added to the request query parameters
-                             // when the user is redirected from paypal back to your site
-                             $execution = new PaymentExecution();
-                             $execution->setPayerId($request->input('PayerID'));
-
-                            //Execute the payment
-                             $result = $payment->execute($execution, $this->_api_context);
-
-                            if ($result->getState() == 'approved') { // payment made
-
-                            dd($result);  // Use this data to work as you need
-
-                            // return Redirect::route('home')
-                             // ->with('info', 'Payment success');
-                             }
-                             return Redirect::route('home')->with('info', 'Payment failed');
-                             }
+                                public function getPaymentStatus(Request $request)
+                                {
+                                                              /** Get the payment ID before session clear **/
+                                        $payment_id = Session::get('paypal_payment_id');
+                                        /** clear the session payment ID **/
+                                        Session::forget('paypal_payment_id');
+                                        if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
+                                            \Session::put('error','Payment failed');
+                                            return Redirect::route('addmoney.paywithpaypal');
+                                        }
+                                        $payment = Payment::get($payment_id, $this->_api_context);
+                                        /** PaymentExecution object includes information necessary **/
+                                        /** to execute a PayPal account payment. **/
+                                        /** The payer_id is added to the request query parameters **/
+                                        /** when the user is redirected from paypal back to your site **/
+                                        $execution = new PaymentExecution();
+                                        $execution->setPayerId(Input::get('PayerID'));
+                                        /**Execute the payment **/
+                                        $result = $payment->execute($execution, $this->_api_context);
+                                        /** dd($result);exit; /** DEBUG RESULT, remove it later **/
+                                        if ($result->getState() == 'approved') { 
+                                            
+                                            /** it's all right **/
+                                            /** Here Write your database logic like that insert record or value in database if you want **/
+                                            \Session::put('success','Payment success');
+                                            return Redirect::route('addmoney.paywithpaypal');
+                                        }
+                                        \Session::put('error','Payment failed');
+                                        return Redirect::route('addmoney.paywithpaypal');
+                                    }
+                }
+                                         
 }
