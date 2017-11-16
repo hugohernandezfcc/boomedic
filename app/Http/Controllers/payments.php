@@ -212,7 +212,7 @@ class payments extends Controller
          
      }
 
-                            public function postPayment()
+                public function postPayment()
                              {
 
                             $payer = new Payer();

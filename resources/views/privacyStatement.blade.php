@@ -24,9 +24,9 @@
 	  </div>
 	  <div style="margin-bottom: 10%;margin-right: 100px;">
 	  	<table align="right"><tr><td>
-	  <form action="Aceptar" method="post" id="aceptar"><button type="submit" class="btn" >Aceptar</button></form></td>
+	  <form action="Aceptar" method="post" id="aceptar"><button type="submit" class="btn btn-secondary btn-block btn-flat" >Aceptar</button></form></td>
 	  <td><form action="Rechazar" method="post" id="Rechazar">
-	  <button type="submit" class="btn">Rechazar</button></form></td></tr></table>
+	  <button type="submit" class="btn btn-secondary btn-block btn-flat">Rechazar</button></form></td></tr></table>
 	  </div><br/>
 	
 
