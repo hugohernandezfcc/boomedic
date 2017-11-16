@@ -108,18 +108,20 @@ Route::group(['prefix' => 'payment'], function(){
 			'as'	=>	'PaymentAuthorizations'
 		]
 	);
-	Route::post('postPayment', [
-		    'as' => 'postPayment',
-		    'uses' => 'payments@postPayment',
+	Route::post('postPaymentWithpaypal', [
+		    'as' => 'postPaymentWithpaypal',
+		    'uses' => 'payments@postPaymentWithpaypalt',
 		]);
 
 		// when the payment is done, this will redirect us to our page
-		Route::get('getPaymentStatus/status',[
+	Route::get('getPaymentStatus/status',[
 		    'as' => 'getPaymentStatus',
 		    'uses' => 'payments@getPaymentStatus',
 		]);
 
-
+	Route::get('paywithpaypal', array('as' => 'payments.paywithpaypal','uses' => 'payments@payWithPaypal',));
+	Route::post('paypal', array('as' => 'payments.paypal','uses' => 'payments@postPaymentWithpaypal',));
+	Route::get('paypal', array('as' => 'payments.status','uses' => 'payments@getPaymentStatus',));
 
 
 });

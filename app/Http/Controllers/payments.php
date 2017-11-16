@@ -212,7 +212,7 @@ class payments extends Controller
          
      }
 
-                public function postPayment()
+            public function postPaymentWithpaypal(Request $request)
                 {
                     $payer = new Payer();
                             $payer->setPaymentMethod('paypal');
@@ -264,10 +264,10 @@ class payments extends Controller
                             Session::put('paypal_payment_id', $payment->getId());
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
-                                return Redirect::away($redirect_url);
+                                return redirect('payment/index');
                             }
                             \Session::put('error','Unknown error occurred');
-                            return Redirect::route('payments.paywithpaypal');
+                            return redirect('payment/index');
                         }
 
                                 public function getPaymentStatus(Request $request)
@@ -300,6 +300,11 @@ class payments extends Controller
                                         \Session::put('error','Payment failed');
                                         return Redirect::route('payments.paywithpaypal');
                                     }
+
+                     public function payWithPaypal()
+                            {
+                                return redirect('payment/index');
+                            }                
                 
                                          
 }
