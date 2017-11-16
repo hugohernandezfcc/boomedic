@@ -232,7 +232,7 @@ class payments extends Controller
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
                             $redirect_urls->setReturnUrl(URL::route('payment.status')) /** Specify return URL **/
-                                ->setCancelUrl(URL::route('payment.status'));
+                                ->setCancelUrl(URL::route('payments.status'));
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
@@ -244,13 +244,13 @@ class payments extends Controller
                             } catch (\PayPal\Exception\PPConnectionException $ex) {
                                 if (\Config::get('app.debug')) {
                                     \Session::put('error','Connection timeout');
-                                    return Redirect::route('addmoney.paywithpaypal');
+                                    return Redirect::route('payments.paywithpaypal');
                                     /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
                                     /** $err_data = json_decode($ex->getData(), true); **/
                                     /** exit; **/
                                 } else {
                                     \Session::put('error','Some error occur, sorry for inconvenient');
-                                    return Redirect::route('addmoney.paywithpaypal');
+                                    return Redirect::route('payments.paywithpaypal');
                                     /** die('Some error occur, sorry for inconvenient'); **/
                                 }
                             }
@@ -267,7 +267,7 @@ class payments extends Controller
                                 return Redirect::away($redirect_url);
                             }
                             \Session::put('error','Unknown error occurred');
-                            return Redirect::route('addmoney.paywithpaypal');
+                            return Redirect::route('payments.paywithpaypal');
                         }
 
                                 public function getPaymentStatus(Request $request)
@@ -278,7 +278,7 @@ class payments extends Controller
                                         Session::forget('paypal_payment_id');
                                         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
                                             \Session::put('error','Payment failed');
-                                            return Redirect::route('addmoney.paywithpaypal');
+                                            return Redirect::route('payments.paywithpaypal');
                                         }
                                         $payment = Payment::get($payment_id, $this->_api_context);
                                         /** PaymentExecution object includes information necessary **/
@@ -295,10 +295,10 @@ class payments extends Controller
                                             /** it's all right **/
                                             /** Here Write your database logic like that insert record or value in database if you want **/
                                             \Session::put('success','Payment success');
-                                            return Redirect::route('addmoney.paywithpaypal');
+                                            return Redirect::route('payments.paywithpaypal');
                                         }
                                         \Session::put('error','Payment failed');
-                                        return Redirect::route('addmoney.paywithpaypal');
+                                        return Redirect::route('payments.paywithpaypal');
                                     }
                 
                                          
