@@ -38,6 +38,7 @@ class payments extends Controller
         $this->middleware('auth');
         $paypal_conf = config('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
+        //$this->_api_context->setConfig($paypal_conf['settings']);
 
 
     }
