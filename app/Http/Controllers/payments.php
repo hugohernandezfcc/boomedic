@@ -300,6 +300,6 @@ class payments extends Controller
                                         \Session::put('error','Payment failed');
                                         return Redirect::route('addmoney.paywithpaypal');
                                     }
-                }
+                
                                          
 }
