@@ -52,12 +52,12 @@ class supportTickets extends Controller
     {
         $nTicket = new SupportTicket;
 
-        $nTicket->subject      = $request->subjectT;
+        $nTicket->subject      = $request->subject;
         /*$nTicket->user      = $request->uName;
         $nTicket->email    = $request->uEmail;
         $nTicket->userType       = $request->uType;*/
-        $nTicket->ticketDescription          = $request->descriptionT;
-        
+        $nTicket->ticketDescription          = $request->ticketDescription;
+
         $nTicket->userId         = Auth::id();
 
         if ( $nTicket->save() ) 
