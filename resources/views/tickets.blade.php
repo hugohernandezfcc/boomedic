@@ -56,31 +56,17 @@
 	                    </tr>
 	                </tfoot>
 	                <tbody>
-	                    @foreach ($allTickets as $ticket)
+	                    <!-- @foreach ($allTickets as $ticket)
 	                        <tr>	                        
 	                            <td>{{ $ticket->subject }}</td>
 	                            <td>{{ $ticket->status }}</td>
 	                            <td>{{ $ticket->ticketDescription }}</td>
 	                        </tr>
-	                    @endforeach 
+	                    @endforeach  -->
 
 	                </tbody>
 	            </table>
-
-            @elseif($mode == 'createTicket')
-            	<form action="store" method="post" class="form-horizontal">
-            		{{ csrf_field() }}
-
-	                <div id="newTicket" >
-							<div class="col-sm-5">
-		              			<label for="subjectT" class="col-sm-2 control-label">Asunto</label>
-				                	<div class="col-sm-6">
-				                  		<input type="text" name="subjectT" class="form-control" id="subjectT">
-				                	</div>
-		              		</div>
-
-	                </div>
-                </form>
+	        
             @endif
 
         </div>	  	
