@@ -94,10 +94,10 @@
 			        {!! Form::text('subject', null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
 			    </div>
 
-			    <div class="form-group">
+			    <!-- <div class="form-group">
 			        {!! Form::label('ticketDescription', 'Descripción') !!}<br>
 			        {!! Form::text('ticketDescription', null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
-			    </div>
+			    </div> -->
 
 			    <div class="form-group">
 			        {!! Form::submit('Enviar', ['class' => 'btn btn-primary']) !!}
