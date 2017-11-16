@@ -262,12 +262,12 @@ class payments extends Controller
                                 }
                             }
                             /** add payment ID to session **/
-                            Session::put('paypal_payment_id', $payment->getId());
+                            session()->put('paypal_payment_id', $payment->getId());
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
                                 return redirect('payment/index');
                             }
-                            \Session::put('error','Unknown error occurred');
+                            session()->put('error','Unknown error occurred');
                             return redirect('payment/index');
                         }
 
@@ -295,10 +295,10 @@ class payments extends Controller
                                             
                                             /** it's all right **/
                                             /** Here Write your database logic like that insert record or value in database if you want **/
-                                            \Session::put('success','Payment success');
+                                           session()->put('success','Payment success');
                                             return redirect('payment/index');
                                         }
-                                        \Session::put('error','Payment failed');
+                                        session()->put('error','Payment failed');
                                         return redirect('payment/index');
                                     }
 
