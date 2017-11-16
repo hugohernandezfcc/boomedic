@@ -241,7 +241,7 @@
                 @endif
                 <div class="panel-heading">Paywith Paypal</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" id="payment-form" role="form" action="{!! URL::route('addmoney.paypal') !!}" >
+                    <form class="form-horizontal" method="POST" id="payment-form" role="form" action="postPayment" >
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
                             <label for="amount" class="col-md-4 control-label">Amount</label>
