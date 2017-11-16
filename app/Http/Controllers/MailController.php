@@ -91,4 +91,10 @@ class MailController extends Controller
         $message->from('no-reply@website_name.com', 'Website Name');
     });*/
    }
+
+    public function build()
+    {
+        return $this->from('cristina@doitcloud.consulting')
+                    ->view('newTicket');
+    }
 }
