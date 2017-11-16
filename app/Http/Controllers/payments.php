@@ -36,9 +36,9 @@ class payments extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $paypal_conf = config('paypal');
-        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
-        //$this->_api_context->setConfig($paypal_conf['settings']);
+        $paypal_conf = \Config::get('paypal');
+        $this->_api_context = new ApiContext(new OAuthTokenCredential('AbVIn0UOzZZdKIhkGJDVfhvREJTEpxOaL1IxFdohTnXkgkLV-SO9irKdhmLL00tjQJTVIIAD0aIhcau-', 'ECKwqs6svjxoVIY55gw-LBX23jpWUKq6jUqIOh5adCDUhtfDxWAHPxPAWsPJshjXdpZvQK4po-L5buBS'));
+        $this->_api_context->setConfig(['mode' => 'sandbox', 'http.ConnectionTimeOut' => 1000,'log.LogEnabled' => false,'log.FileName' => '','log.LogLevel' => 'FINE','validation.level' => 'log']);
 
 
     }
