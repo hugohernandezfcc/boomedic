@@ -31,4 +31,59 @@
 	    <!-- /.lockscreen credentials -->
 	</div>
 
+
+
+	<div class="box">
+	  	<div class="box-header with-border">
+		    <h3 class="box-title">Estado de Casos</h3>
+	  	</div>
+		<div class="box-body">
+
+            @if($mode == 'listTickets')
+            	<table id="paymentmethodtable" class="table table-bordered table-striped" cellspacing="0" width="100%">
+	                <thead>
+	                    <tr>
+	                    	<th>Asunto </th>
+	                        <th>Estatus </th>
+	                        <th>Descripción </th>
+	                    </tr>
+	                </thead>
+	                <tfoot>
+	                    <tr>
+	                    	<th>Asunto </th>
+	                        <th>Estatus </th>
+	                        <th>Descripción </th>
+	                    </tr>
+	                </tfoot>
+	                <tbody>
+	                    @foreach ($allTickets as $ticket)
+	                        <tr>	                        
+	                            <td>{{ $ticket->subject }}</td>
+	                            <td>{{ $ticket->status }}</td>
+	                            <td>{{ $ticket->ticketDescription }}</td>
+	                        </tr>
+	                    @endforeach 
+
+	                </tbody>
+	            </table>
+
+            @elseif($mode == 'createTicket')
+            	<form action="store" method="post" class="form-horizontal">
+            		{{ csrf_field() }}
+
+	                <div id="newTicket" >
+							<div class="col-sm-5">
+		              			<label for="subjectT" class="col-sm-2 control-label">Asunto</label>
+				                	<div class="col-sm-6">
+				                  		<input type="text" name="subjectT" class="form-control" id="subjectT">
+				                	</div>
+		              		</div>
+
+	                </div>
+                </form>
+            @endif
+
+        </div>	  	
+	</div>
+
 @stop

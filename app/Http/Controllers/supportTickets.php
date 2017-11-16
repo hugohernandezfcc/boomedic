@@ -17,9 +17,12 @@ class supportTickets extends Controller
      */
     public function index()
     {
+        $allTickets = DB::table('paymentsmethods')->where('owner', Auth::id() )->get();
         return view('tickets', [
+                'allTickets'=> $allTickets,
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name')
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'mode'      => 'listTickets'
             ]
         );
     }
@@ -31,7 +34,12 @@ class supportTickets extends Controller
      */
     public function create()
     {
-        //
+        return view('tickets', [
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'mode'      => 'createTicket'
+            ]
+        );
     }
 
     /**
@@ -42,7 +50,17 @@ class supportTickets extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nTicket = new SupportTicket;
+
+        $nTicket->subject      = $request->subjectT;
+        /*$nTicket->user      = $request->uName;
+        $nTicket->email    = $request->uEmail;
+        $nTicket->userType       = $request->uType;
+        $nTicket->ticketDescription          = $request->description;*/
+        $nTicket->userId         = Auth::id();
+
+        if ( $nTicket->save() ) 
+            return redirect('supportTicket/index');
     }
 
     /**
