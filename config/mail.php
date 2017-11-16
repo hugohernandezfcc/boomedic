@@ -16,7 +16,8 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    /*'driver' => env('MAIL_DRIVER', 'smtp'),*/
+    'driver' => env('mailgun', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,9 +56,13 @@ return [
     |
     */
 
-    'from' => [
+    /*'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
+    ],*/
+    'from' => [
+        'address' => 'cristina@doitcloud.consulting',
+        'name' => 'MiNombre',
     ],
 
     /*
