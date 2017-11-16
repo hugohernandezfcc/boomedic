@@ -40,7 +40,7 @@
 		<div class="box-body">
 
             @if($mode == 'listTickets')
-            	<table id="paymentmethodtable" class="table table-bordered table-striped" cellspacing="0" width="100%">
+            	<table id="ticketsTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
 	                    	<th>Asunto </th>
@@ -61,18 +61,28 @@
 	            </table>
 	        @elseif($mode == 'createTicket')	        	
 
-	            {!! Form::open(['route' => 'supportTicket.store', 'method' => 'POST']) !!}
+	            <form action="/supportTicket/store" method="post" class="form-horizontal">
+	    			{{ csrf_field() }}
 
-			    <div class="form-group">
-			        {!! Form::label('subject', 'Asunto') !!}<br>
-			        {!! Form::text('subject', null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
-			    </div>
+	    			<div class="form-group has-feedback ">
+	                    <label for="subject" class="col-sm-2 control-label">Nombre</label>
+	                	<div class="col-sm-10">
+	                  		<input type="text" name="subject" class="form-control" id="subject" value="{{ $subject }}">
+	                	</div>
+	              	</div>
 
-			    <div class="form-group">
-			        {!! Form::submit('Enviar', ['class' => 'btn btn-primary']) !!}
-			    </div>
+	              	<div class="col-sm-4">
+			    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+			                Guardar
+			            </button>
+		            </div>
+		    		<div class="col-sm-4">
+		    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+			                Cancelar
+			            </a>
+		            </div>
 
-				{!! Form::close() !!}
+		        </form>
 
 
             @endif
