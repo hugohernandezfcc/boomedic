@@ -56,36 +56,12 @@
 	                    </tr>
 	                </tfoot>
 	                <tbody>
-	                    <!-- @foreach ($allTickets as $ticket)
-	                        <tr>	                        
-	                            <td>{{ $ticket->subject }}</td>
-	                            <td>{{ $ticket->status }}</td>
-	                            <td>{{ $ticket->ticketDescription }}</td>
-	                        </tr>
-	                    @endforeach  -->
 
 	                </tbody>
 	            </table>
 	        @elseif($mode == 'createTicket')
 
-	        	<!-- <form action="/supportTicket/store/{{$userId}}" method="post" class="form-horizontal">
-	    			{{ csrf_field() }}
-
-	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="ticketDescription" class="col-sm-2 control-label">Descripción</label>
-	                	<div class="col-sm-10">
-	                  		<input type="text" name="ticketDescription" class="form-control" id="ticketDescription" value="{{ $ticketDescription }}">
-	                	</div>
-	              	</div>
-
-
-	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="subject" class="col-sm-2 control-label">Asunto</label>
-	                	<div class="col-sm-10">
-	                  		<input type="text" name="subject" class="form-control" id="subject" value="{{ $subject }}">
-	                	</div>
-	              	</div>
-	            </form> -->
+	        	
 
 	            {!! Form::open(['route' => 'supportTicket.store', 'method' => 'POST']) !!}
 
@@ -93,11 +69,6 @@
 			        {!! Form::label('subject', 'Asunto') !!}<br>
 			        {!! Form::text('subject', null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
 			    </div>
-
-			    <!-- <div class="form-group">
-			        {!! Form::label('ticketDescription', 'Descripción') !!}<br>
-			        {!! Form::text('ticketDescription', null, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
-			    </div> -->
 
 			    <div class="form-group">
 			        {!! Form::submit('Enviar', ['class' => 'btn btn-primary']) !!}
