@@ -267,10 +267,10 @@ class payments extends Controller
                                 /** redirect to paypal **/
                                  $notification = array(
                 //If it has been rejected, the internal error code is sent.
-                                    'message' => 'success', 
+                                    'message' => $redirect_url, 
                                     'success' => 'success'
                                 );
-                                    return redirect('payment/index')->with($notification);
+                                    return redirect($redirect_url)->with($notification);
                                  
                             }
                             session()->put('error','Unknown error occurred');
