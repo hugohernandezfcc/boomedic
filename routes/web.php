@@ -114,7 +114,7 @@ Route::group(['prefix' => 'payment'], function(){
 		]);
 
 		// when the payment is done, this will redirect us to our page
-	Route::get('getPaymentStatus/status',[
+	Route::get('getPaymentStatus',[
 		    'as' => 'getPaymentStatus',
 		    'uses' => 'payments@getPaymentStatus',
 		]);

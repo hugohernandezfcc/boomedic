@@ -218,7 +218,7 @@ class payments extends Controller
          }
          
      }
-     
+
      public function transactions(Request $request) {
         $id = $request->id;
         //Look in the table of methods of saved payments all the information of the selected method.
@@ -260,8 +260,8 @@ class payments extends Controller
                                 ->setItemList($item_list)
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
-                            $redirect_urls->setReturnUrl('https://sbx00.herokuapp.com/payment/index') /** Specify return URL **/
-                                ->setCancelUrl('https://sbx00.herokuapp.com/payment/index');
+                            $redirect_urls->setReturnUrl('https://sbx00.herokuapp.com/getPaymentStatus') /** Specify return URL **/
+                                ->setCancelUrl('https://sbx00.herokuapp.com/getPaymentStatus');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
@@ -293,14 +293,24 @@ class payments extends Controller
                             session()->put('paypal_payment_id', $payment->getId());
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
+                                if($payment->state == 'approved') {
                                  $notification = array(
                 //If it has been rejected, the internal error code is sent.
                                     'message' => 'Pago procesado', 
                                     'success' => 'success'
                                 );
+                             } else {
+                                    $notification = array(
+                //If it has been rejected, the internal error code is sent.
+                                    'message' => $payment->state, 
+                                    'error' => 'error'
+                                );
+
+                             }
                                     return redirect($redirect_url)->with($notification);
+                             }
                                  
-                            }
+                            
                             session()->put('error','Unknown error occurred');
                             return redirect('payment/index');
                         }
