@@ -122,25 +122,11 @@
 	                    @endforeach 
 
 	                </tbody>
-	            </table><br/>
-	            <div class="container">
+	            </table><br/><br/>
+
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                @if ($message = Session::get('success'))
-                <div class="custom-alerts alert alert-success fade in">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                    {!! $message !!}
-                </div>
-                <?php Session::forget('success');?>
-                @endif
-                @if ($message = Session::get('error'))
-                <div class="custom-alerts alert alert-danger fade in">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                    {!! $message !!}
-                </div>
-                <?php Session::forget('error');?>
-                @endif
+
                     <form action="postPaymentWithpaypal" method="post" class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
@@ -152,18 +138,18 @@
                                         <strong>{{ $errors->first('amount') }}</strong>
                                     </span>
                                 @endif
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Pay 
+                        <div class="form-group"><br/>
+                            <div align="center">
+                                <button type="submit" class="btn btn-secondary btn-block btn-flat">
+                                   Pagar con Paypal
                                 </button>
                             </div>
                         </div>
                     </form>
-                </div>
+
             </div>
         </div>
-    </div>
+
 </div>
             @elseif($mode == 'createPaymentMethod')
             	<form action="store" method="post" class="form-horizontal">
@@ -263,47 +249,7 @@
 	                </div>
 
 	                <div id="paypalButton" style="display: none;">
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                @if ($message = Session::get('success'))
-                <div class="custom-alerts alert alert-success fade in">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                    {!! $message !!}
-                </div>
-                <?php Session::forget('success');?>
-                @endif
-                @if ($message = Session::get('error'))
-                <div class="custom-alerts alert alert-danger fade in">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                    {!! $message !!}
-                </div>
-                <?php Session::forget('error');?>
-                @endif
-                    <form action=" getPaymentStatus" method="post" class="form-horizontal">
-                        {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
-                            <label for="amount" class="col-md-4 control-label">Monto</label>
-                            <div class="col-md-6">
-                                <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" autofocus>
-                                @if ($errors->has('amount'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('amount') }}</strong>
-                                    </span>
-                                @endif
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Pay 
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 
 	                

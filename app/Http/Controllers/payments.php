@@ -267,7 +267,7 @@ class payments extends Controller
                                 /** redirect to paypal **/
                                  $notification = array(
                 //If it has been rejected, the internal error code is sent.
-                                    'message' => $redirect_url, 
+                                    'message' => 'Pago procesado', 
                                     'success' => 'success'
                                 );
                                     return redirect($redirect_url)->with($notification);
