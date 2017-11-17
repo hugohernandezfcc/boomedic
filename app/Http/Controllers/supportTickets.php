@@ -60,8 +60,12 @@ class supportTickets extends Controller
         $nTicket->email     = $user->email;
         $nTicket->userType  = 'paciente';
 
-        if ( $nTicket->save() )
-            return redirect('/build' . Auth::id() );
+        if ( $nTicket->save() ){
+            //return redirect('supportTicket/index');
+            Mail::send('newTicket', $data, function($message) use ($data) {
+                $message->to($data['email'], $data['name'])->subject('Por favor confirma tu correo');
+            });
+        }
         else
             dd('Problemas al registrar usuario');
     }
