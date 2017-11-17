@@ -315,7 +315,7 @@ class payments extends Controller
                             return redirect('payment/index');
                         }
 
-                                public function getPaymentStatus()
+                                public function getPaymentStatus(Request $request)
                                 {
                                                               /** Get the payment ID before session clear **/
                                         $payment_id = Session::get('paypal_payment_id');
@@ -323,7 +323,7 @@ class payments extends Controller
                                         Session::forget('paypal_payment_id');
                                         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
                                             $notification = array(
-                                            'message' => $payment->state, 
+                                            'message' => $payment->getstate, 
                                             'success' => 'success' );
 
                                          return redirect('payment/index')->with($notification);
@@ -344,8 +344,8 @@ class payments extends Controller
                                             /** Here Write your database logic like that insert record or value in database if you want **/
                                           $notification = array(
                                             'message' => $payment->state, 
-                                            'success' => 'success'
-                                        );
+                                            'success' => 'success');
+                                           return redirect('payment/index')->with($notification);
                                         }
                                         else {
                                           $notification = array(
