@@ -322,8 +322,11 @@ class payments extends Controller
                                         /** clear the session payment ID **/
                                         Session::forget('paypal_payment_id');
                                         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
-                                            session()->put('error','Payment failed');
-                                             return redirect('payment/index');
+                                            $notification = array(
+                                            'message' => $payment->getstate, 
+                                            'success' => 'success' );
+
+                                         return redirect($redirect_url)->with($notification);
                                         }
                                         $payment = Payment::get($payment_id, $this->_api_context);
                                         /** PaymentExecution object includes information necessary **/
@@ -343,9 +346,6 @@ class payments extends Controller
                                             'message' => $payment->getstate, 
                                             'success' => 'success'
                                         );
-
-                                  
-                                        
                                         }
                                         else {
                                           $notification = array(
