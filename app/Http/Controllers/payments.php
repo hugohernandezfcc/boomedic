@@ -315,7 +315,7 @@ class payments extends Controller
                             return redirect('payment/index');
                         }
 
-                                public function getPaymentStatus(Request $request)
+                public function getPaymentStatus(Request $request)
                                 {
                                                               /** Get the payment ID before session clear **/
                                         $payment_id = Session::get('paypal_payment_id');
@@ -338,7 +338,7 @@ class payments extends Controller
                                         /**Execute the payment **/
                                         $result = $payment->execute($execution, $this->_api_context);
                                         /** dd($result);exit; /** DEBUG RESULT, remove it later **/
-                                        if ($result->getState() == 'approved') { 
+                                        if ($result->state() == 'approved') { 
                                             
                                             /** it's all right **/
                                             /** Here Write your database logic like that insert record or value in database if you want **/
