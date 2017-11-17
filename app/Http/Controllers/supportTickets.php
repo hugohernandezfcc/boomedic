@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\SupportTicket;
+use Mail;
 
 class supportTickets extends Controller
 {
@@ -62,8 +63,12 @@ class supportTickets extends Controller
 
         if ( $nTicket->save() ){
             //return redirect('supportTicket/index');
-            Mail::send('newTicket', $data, function($message) use ($data) {
-                $message->to($data['email'], $data['name'])->subject('Por favor confirma tu correo');
+
+            // Send email
+            Mail::send('emails.newTicket', ['user' => $user], function ($m) use ($user) {
+                $m->from('cristina@doitcloud.consulting', 'Boomedic');
+
+                $m->to($user->email, $user->name)->subject('New Ticket');
             });
         }
         else
