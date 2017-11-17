@@ -70,6 +70,8 @@ class supportTickets extends Controller
 
                 $m->to($user->email, $user->name)->subject('New Ticket');
             });
+
+            return redirect('supportTicket/index');
         }
         else
             dd('Problemas al registrar usuario');
