@@ -232,8 +232,8 @@ class payments extends Controller
                                 ->setItemList($item_list)
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
-                            $redirect_urls->setReturnUrl('https://localhost/boomedic/public/index.php') /** Specify return URL **/
-                                ->setCancelUrl('https://localhost/boomedic/public/index.php');
+                            $redirect_urls->setReturnUrl('https://sbx00.herokuapp.com/payment/index') /** Specify return URL **/
+                                ->setCancelUrl('https://sbx00.herokuapp.com/payment/index');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
