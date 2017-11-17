@@ -232,8 +232,8 @@ class payments extends Controller
                                 ->setItemList($item_list)
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
-                            $redirect_urls->setReturnUrl('https://localhost/boomedic/public/index.php/payments/index') /** Specify return URL **/
-                                ->setCancelUrl('https://localhost/boomedic/public/index.php/payments/index');
+                            $redirect_urls->setReturnUrl('https://localhost/boomedic/public/index.php') /** Specify return URL **/
+                                ->setCancelUrl('https://localhost/boomedic/public/index.php');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
@@ -265,7 +265,13 @@ class payments extends Controller
                             session()->put('paypal_payment_id', $payment->getId());
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
-                                return redirect('payment/index');
+                                 $notification = array(
+                //If it has been rejected, the internal error code is sent.
+                                    'message' => 'success', 
+                                    'success' => 'success'
+                                );
+                                    return redirect('payment/index')->with($notification);
+                                 
                             }
                             session()->put('error','Unknown error occurred');
                             return redirect('payment/index');
@@ -278,7 +284,7 @@ class payments extends Controller
                                         /** clear the session payment ID **/
                                         Session::forget('paypal_payment_id');
                                         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
-                                            \Session::put('error','Payment failed');
+                                            session()->put('error','Payment failed');
                                              return redirect('payment/index');
                                         }
                                         $payment = Payment::get($payment_id, $this->_api_context);
@@ -296,7 +302,7 @@ class payments extends Controller
                                             /** it's all right **/
                                             /** Here Write your database logic like that insert record or value in database if you want **/
                                            session()->put('success','Payment success');
-                                            return redirect('payment/index');
+                                            return redirect('Prueba');
                                         }
                                         session()->put('error','Payment failed');
                                         return redirect('payment/index');
