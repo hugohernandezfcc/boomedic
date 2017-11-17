@@ -339,11 +339,21 @@ class payments extends Controller
                                             
                                             /** it's all right **/
                                             /** Here Write your database logic like that insert record or value in database if you want **/
-                                           session()->put('success','Payment success');
-                                            return redirect('Prueba');
+                                          $notification = array(
+                                            'message' => $payment->getstate, 
+                                            'success' => 'success'
+                                        );
+
+                                  
+                                        
                                         }
-                                        session()->put('error','Payment failed');
-                                        return redirect('payment/index');
+                                        else {
+                                          $notification = array(
+                                            'message' => $payment->getstate, 
+                                            'success' => 'success'
+                                        );
+                                         }
+                                         return redirect($redirect_url)->with($notification);
                                     }
 
                                          
