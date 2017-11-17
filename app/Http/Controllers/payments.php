@@ -194,12 +194,18 @@ class payments extends Controller
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
          if($statusCode == '201'){
+             /* Insert_bank*/
+                        $Transaction = new transaction_bank;
+                        $Transaction->paymentmethod = $request->id;
+                        $Transaction->receiver = 'Prueba n1';
+                        $Transaction->amount = $request->pay;
+                        $Transaction->save();
+                    /* Insert Transaction_bank*/    
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Pago procesado correctamente por un monto de: '. $request->pay.'$, para más información consulte su cartera de pago...', 
+            'message' => 'Transacción Nro. '.$Transaction->id.': Pago procesado correctamente por un monto de: '. $request->pay.'$, para más información consulte su cartera de pago... ', 
             'success' => 'success'
             );
-
             return redirect('payment/index')->with($notification);
          }
          else {
@@ -210,6 +216,28 @@ class payments extends Controller
         );
             return redirect('payment/index')->with($notification);
          }
+         
+     }
+     
+     public function transactions(Request $request) {
+        $id = $request->id;
+        //Look in the table of methods of saved payments all the information of the selected method.
+        $transactions = DB::table('transaction_bank')->where('paymentmethod', $id)->get();
+        $card = DB::table('paymentsmethods')->where('id', $id)->first();
+         return view('payments', [
+                'type'      => $card->typemethod,
+                'cardnumber' => $card->cardnumber,
+                'bank' => $card->bank,
+                'provider' => $card->provider,
+                'credit_debit' => $card->credit_debit,
+                'created' => $card->created_at,
+                'transactions'     => $transactions,
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'mode'      => 'historyTransaction'
+            ]
+        );
+                   
          
      }
 
