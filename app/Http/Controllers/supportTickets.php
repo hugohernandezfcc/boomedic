@@ -72,9 +72,9 @@ class supportTickets extends Controller
             });*/
 
             Mail::send('emails.newTicket', ['user' => $user], function ($message) {
-                $message->from('boomedic@email.com', 'Boomedic');
+                $message->from('cristina@doitcloud.consulting', 'Boomedic');
 
-                $message->to('cristina@doitcloud.consulting');
+                $message->to('cristina.pioquinto@hotmail.com');
             });
 
             return redirect('supportTicket/index');
