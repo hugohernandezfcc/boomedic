@@ -80,7 +80,7 @@ class supportTickets extends Controller
             return redirect('supportTicket/index');
         }
         else
-            dd('Problemas al registrar usuario');
+            dd('Problemas al crear registro.');
     }
 
     /**
