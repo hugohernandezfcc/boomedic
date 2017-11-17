@@ -65,10 +65,16 @@ class supportTickets extends Controller
             //return redirect('supportTicket/index');
 
             // Send email
-            Mail::send('emails.newTicket', ['user' => $user], function ($m) use ($user) {
+            /*Mail::send('emails.newTicket', ['user' => $user], function ($m) use ($user) {
                 $m->from('cristina@doitcloud.consulting', 'Boomedic');
 
                 $m->to($user->email, $user->name)->subject('New Ticket');
+            });*/
+
+            Mail::send('emails.newTicket', $data, function ($message) {
+                $message->from('boomedic@email.com', 'Boomedic');
+
+                $message->to('cristina@doitcloud.consulting');
             });
 
             return redirect('supportTicket/index');
