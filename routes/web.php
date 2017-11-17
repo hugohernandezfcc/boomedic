@@ -110,13 +110,13 @@ Route::group(['prefix' => 'payment'], function(){
 	);
 	Route::post('postPaymentWithpaypal', [
 		    'as' => 'postPaymentWithpaypal',
-		    'uses' => 'payments@postPaymentWithpaypal',
+		    'uses' => 'payments@postPaymentWithpaypal'
 		]);
 
 		// when the payment is done, this will redirect us to our page
 	Route::get('getPaymentStatus',[
 		    'as' => 'getPaymentStatus',
-		    'uses' => 'payments@getPaymentStatus',
+		    'uses' => 'payments@getPaymentStatus'
 		]);
 
 

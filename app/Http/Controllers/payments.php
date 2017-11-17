@@ -326,7 +326,7 @@ class payments extends Controller
                                             'message' => $payment->getstate, 
                                             'success' => 'success' );
 
-                                         return redirect($redirect_url)->with($notification);
+                                         return redirect('payment/index')->with($notification);
                                         }
                                         $payment = Payment::get($payment_id, $this->_api_context);
                                         /** PaymentExecution object includes information necessary **/
@@ -353,7 +353,7 @@ class payments extends Controller
                                             'success' => 'success'
                                         );
                                          }
-                                         return redirect($redirect_url)->with($notification);
+                                         return redirect('payment/index')->with($notification);
                                     }
 
                                          
