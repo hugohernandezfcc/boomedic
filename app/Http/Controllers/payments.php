@@ -295,12 +295,18 @@ class payments extends Controller
                                 /** redirect to paypal **/
                                 $response  = $request->input('Response') ;
                                 if( $payment->getId() == Null) {
-                                return redirect('payment/index');
+                                return redirect($redirect_url);
 
-                             } else {
+                             } 
+
+                                if ($response == 'Cancel') {
+                                      return redirect($redirect_url);
+                                    } 
+                                    
+                                    else {  
                                     $notification = array(
                 //If it has been rejected, the internal error code is sent.
-                                    'message' => 'Id de pago Paypal: '. $payment->getId(). 'Payer ID:'. $payment->PayerID, 
+                                    'message' => 'Id de pago Paypal: '. $payment->getId(). '<br/> Payer ID:'. $payment->PayerID, 
                                     'success' => 'success'
                                 );
                                     return redirect($redirect_url)->with($notification);
