@@ -304,9 +304,10 @@ class payments extends Controller
                                     } 
                                     
                                     else {  
+                                        $transactions = $payment->getTransactions();
                                     $notification = array(
                 //If it has been rejected, the internal error code is sent.
-                                    'message' => 'Id de pago Paypal: '. $payment->getId(). ' Nro Transaction:'. $payment->getTransactions(), 
+                                    'message' => 'Id de pago Paypal: '. $payment->getId(). ' Nro Transaction:'. $transactions[0], 
                                     'success' => 'success'
                                 );
                                     return redirect($redirect_url)->with($notification);
