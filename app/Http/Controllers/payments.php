@@ -197,7 +197,7 @@ class payments extends Controller
              /* Insert_bank*/
                         $Transaction = new transaction_bank;
                         $Transaction->paymentmethod = $request->id;
-                        $Transaction->receiver = 'Prueba n1';
+                        $Transaction->receiver = 'receiver prueba';
                         $Transaction->amount = $request->pay;
                         $Transaction->save();
                     /* Insert Transaction_bank*/    
@@ -260,7 +260,7 @@ class payments extends Controller
                                 ->setItemList($item_list)
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
-                            $redirect_urls->setReturnUrl('https://sbx00.herokuapp.com/payment/index') /** Specify return URL **/
+                            $redirect_urls->setReturnUrl('https://sbx00.herokuapp.com/getPaymentStatus') /** Specify return URL **/
                                 ->setCancelUrl('https://sbx00.herokuapp.com/medicalconsultations');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
@@ -270,6 +270,7 @@ class payments extends Controller
                                 /** dd($payment->create($this->_api_context));exit; **/
                             try {
                                 $payment->create($this->_api_context);
+
                             } catch (\PayPal\Exception\PPConnectionException $ex) {
                                 if (\Config::get('app.debug')) {
                                     \Session::put('error','Connection timeout');
@@ -283,6 +284,7 @@ class payments extends Controller
                                     /** die('Some error occur, sorry for inconvenient'); **/
                                 }
                             }
+
                             foreach($payment->getLinks() as $link) {
                                 if($link->getRel() == 'approval_url') {
                                     $redirect_url = $link->getHref();
@@ -293,68 +295,55 @@ class payments extends Controller
                             session()->put('paypal_payment_id', $payment->getId());
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
-                                if(empty($payment->getId())) {
-                                return redirect($redirect_url);
-
-                             }      
-                                    else {  
-                                 
-                                    $notification = array(
-                //If it has been rejected, the internal error code is sent.
-                                    'message' => 'Id de pago Paypal: '. $payment->getId() .  $request->fullUrl(), 
-                                    'success' => 'success'
-                                );
-                                    return redirect($redirect_url)->with($notification);
-                             }
-                                    
+                                return redirect($redirect_url);   
                             }
                                  
                             
                             session()->put('error','Unknown error occurred');
+                            return redirect('payment/index');
 
                         }
 
                 public function getPaymentStatus(Request $request)
-                                {
-                                                              /** Get the payment ID before session clear **/
-                                        $payment_id = Session::get('paypal_payment_id');
-                                        /** clear the session payment ID **/
-                                        Session::forget('paypal_payment_id');
-                                        if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
-                                            $notification = array(
-                                            'message' => $payment->getstate, 
-                                            'success' => 'success' );
+                        {
+                            // Get the payment ID before session clear
+                            $payment_id = Session::get('paypal_payment_id');
 
-                                         return redirect('payment/index')->with($notification);
-                                        }
-                                        $payment = Payment::get($payment_id, $this->_api_context);
-                                        /** PaymentExecution object includes information necessary **/
-                                        /** to execute a PayPal account payment. **/
-                                        /** The payer_id is added to the request query parameters **/
-                                        /** when the user is redirected from paypal back to your site **/
-                                        $execution = new PaymentExecution();
-                                        $execution->setPayerId(Input::get('PayerID'));
-                                        /**Execute the payment **/
-                                        $result = $payment->execute($execution, $this->_api_context);
-                                        /** dd($result);exit; /** DEBUG RESULT, remove it later **/
-                                        if ($result->state() == 'created') { 
-                                            
-                                            /** it's all right **/
-                                            /** Here Write your database logic like that insert record or value in database if you want **/
-                                          $notification = array(
-                                            'message' => $payment->state, 
-                                            'success' => 'success');
-                                           return redirect('payment/index')->with($notification);
-                                        }
-                                        else {
-                                          $notification = array(
-                                            'message' => $payment->getstate, 
-                                            'success' => 'success'
-                                        );
-                                           return redirect('payment/index')->with($notification);
-                                         }
-                                        
-                                    }
+                            // clear the session payment ID
+                            Session::forget('paypal_payment_id');
+                            
+                            if (empty($request->input('PayerID')) || empty($request->input('token'))) {
+                                    session()->put('error','Unknown error occurred');
+                              return redirect('payment/index');
+                            }
+                            
+                            $payment = Payment::get($payment_id, $this->_api_context);
+                            
+                            // PaymentExecution object includes information necessary
+                            // to execute a PayPal account payment.
+                            // The payer_id is added to the request query parameters
+                            // when the user is redirected from paypal back to your site
+                            $execution = new PaymentExecution();
+                            $execution->setPayerId($request->input('PayerID'));
+                            
+                            //Execute the payment
+                            $result = $payment->execute($execution, $this->_api_context);
+                            
+                            if ($result->getState() == 'approved') { // payment made
+                              // Payment is successful do your business logic here
+                              //dd($result); 
+                              
+                              $notification = array(
+                                        //If it has been rejected, the internal error code is sent.
+                                    'message' => 'Procesado', 
+                                    'success' => 'success'
+                                );
+                              return redirect('payment/index')->with($notification);
+                            }
+                            
+                            session()->put('error','Unknown error occurred');
+                            return redirect('payment/index');
+                          }
 
                                          
 }
