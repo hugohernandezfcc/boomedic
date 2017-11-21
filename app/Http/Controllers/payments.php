@@ -307,10 +307,10 @@ class payments extends Controller
                 public function getPaymentStatus(Request $request)
                         {
                             // Get the payment ID before session clear
-                            $payment_id = Session::get('paypal_payment_id');
+                            $payment_id = $request->session()->get('paypal_payment_id');
 
                             // clear the session payment ID
-                            Session::forget('paypal_payment_id');
+                            $request->session()->forget('paypal_payment_id');
                             
                             if (empty($request->input('PayerID')) || empty($request->input('token'))) {
                                     session()->put('error','Unknown error occurred');
