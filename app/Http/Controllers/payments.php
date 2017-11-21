@@ -340,7 +340,7 @@ class payments extends Controller
                                 $pmethods->country       = $request->country;
                                 $pmethods->cardnumber    = $request->input('PayerID');
                                 $pmethods->owner         = Auth::id();
-                                $pmethods->save() 
+                                $pmethods->save();
 
                               }
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->first();
