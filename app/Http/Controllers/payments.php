@@ -261,7 +261,7 @@ class payments extends Controller
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
                             $redirect_urls->setReturnUrl('https://sbx00.herokuapp.com/payment/index') /** Specify return URL **/
-                                ->setCancelUrl('https://sbx00.herokuapp.com/payment/index?Response=Cancel');
+                                ->setCancelUrl('https://sbx00.herokuapp.com/medicalconsultations');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
@@ -293,21 +293,15 @@ class payments extends Controller
                             session()->put('paypal_payment_id', $payment->getId());
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
-                                $response  = $request->input('Response') ;
                                 if(empty($payment->getId())) {
                                 return redirect($redirect_url);
 
-                             } 
-
-                                if ($response == 'Cancel') {
-                                      return redirect($redirect_url);
-                                    } 
-                                    
+                             }      
                                     else {  
-                                        $transactions = $payment->getTransactions();
+                                 
                                     $notification = array(
                 //If it has been rejected, the internal error code is sent.
-                                    'message' => 'Id de pago Paypal: '. $payment->getId(). ' Nro Transaction:'. $transactions[0], 
+                                    'message' => 'Id de pago Paypal: '. $payment->getId() .  $request->fullUrl(), 
                                     'success' => 'success'
                                 );
                                     return redirect($redirect_url)->with($notification);
