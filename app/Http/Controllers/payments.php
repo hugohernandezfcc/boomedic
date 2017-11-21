@@ -294,23 +294,23 @@ class payments extends Controller
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
                                 $response  = $request->input('Response') ;
-                                if($response == 'Cancel') {
-                                return redirect($redirect_url);
+                                if( $payment->getId() == Null) {
+                                return redirect('payment/index');
 
                              } else {
                                     $notification = array(
                 //If it has been rejected, the internal error code is sent.
                                     'message' => $payment->state, 
-                                    'error' => 'error'
+                                    'success' => 'success'
                                 );
                                     return redirect($redirect_url)->with($notification);
                              }
                                     
-                             }
+                            }
                                  
                             
                             session()->put('error','Unknown error occurred');
-                            return redirect('payment/index');
+
                         }
 
                 public function getPaymentStatus(Request $request)
