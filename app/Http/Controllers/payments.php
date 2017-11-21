@@ -344,11 +344,11 @@ class payments extends Controller
 
                               }
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->first();
-                                            $Transaction = new transaction_bank;
-                                            $Transaction->paymentmethod = $paypalExist2->id;
-                                            $Transaction->receiver = 'receiver prueba';
-                                            $Transaction->amount = '5';
-                                            $Transaction->save();    
+                                            $Trans = new transaction_bank;
+                                            $Trans->paymentmethod = $paypalExist2->id;
+                                            $Trans->receiver = 'receiver prueba';
+                                            $Trans->amount = '5';
+                                            $Trans->save();    
                                         
 
                               $notification = array(
