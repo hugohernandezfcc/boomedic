@@ -261,7 +261,7 @@ class payments extends Controller
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
                             $redirect_urls->setReturnUrl('https://sbx00.herokuapp.com/payment/index') /** Specify return URL **/
-                                ->setCancelUrl('https://sbx00.herokuapp.com/payment/index?=cancel');
+                                ->setCancelUrl('https://sbx00.herokuapp.com/payment/index?Response=Cancel');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
@@ -293,21 +293,19 @@ class payments extends Controller
                             session()->put('paypal_payment_id', $payment->getId());
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
-                                if($payment->state == 'created') {
-                                 $notification = array(
-                //If it has been rejected, the internal error code is sent.
-                                    'message' => $payment->state, 
-                                    'success' => 'success'
-                                );
+                                $response  = Input::get('Response') ;
+                                if($response == 'Cancel') {
+                                return redirect($redirect_url);
+
                              } else {
                                     $notification = array(
                 //If it has been rejected, the internal error code is sent.
                                     'message' => $payment->state, 
                                     'error' => 'error'
                                 );
-
-                             }
                                     return redirect($redirect_url)->with($notification);
+                             }
+                                    
                              }
                                  
                             
