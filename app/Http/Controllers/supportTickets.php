@@ -126,6 +126,9 @@ class supportTickets extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ticket = SupportTicket::find($id);
+        $ticket->delete();
+        
+       return redirect('supportTicket/index');
     }
 }
