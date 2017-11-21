@@ -260,8 +260,8 @@ class payments extends Controller
                                 ->setItemList($item_list)
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
-                            $redirect_urls->setReturnUrl('https://sbx00.herokuapp.com/getPaymentStatus/status') /** Specify return URL **/
-                                ->setCancelUrl('https://sbx00.herokuapp.com/getPaymentStatus/status');
+                            $redirect_urls->setReturnUrl('https://sbx00.herokuapp.com/getPaymentStatus?success=true') /** Specify return URL **/
+                                ->setCancelUrl('https://sbx00.herokuapp.com/getPaymentStatus');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
@@ -293,7 +293,7 @@ class payments extends Controller
                             session()->put('paypal_payment_id', $payment->getId());
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
-                                if($payment->state == 'approved') {
+                                if($payment->state == 'created') {
                                  $notification = array(
                 //If it has been rejected, the internal error code is sent.
                                     'message' => 'Pago procesado', 
@@ -318,9 +318,9 @@ class payments extends Controller
                 public function getPaymentStatus(Request $request)
                                 {
                                                               /** Get the payment ID before session clear **/
-                                        $payment_id = Session::get('paypal_payment_id');
+                                        //$payment_id = Session::get('paypal_payment_id');
                                         /** clear the session payment ID **/
-                                        Session::forget('paypal_payment_id');
+                                        //Session::forget('paypal_payment_id');
                                         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
                                             $notification = array(
                                             'message' => $payment->getstate, 
@@ -338,7 +338,7 @@ class payments extends Controller
                                         /**Execute the payment **/
                                         $result = $payment->execute($execution, $this->_api_context);
                                         /** dd($result);exit; /** DEBUG RESULT, remove it later **/
-                                        if ($result->state() == 'approved') { 
+                                        if ($result->state() == 'created') { 
                                             
                                             /** it's all right **/
                                             /** Here Write your database logic like that insert record or value in database if you want **/
