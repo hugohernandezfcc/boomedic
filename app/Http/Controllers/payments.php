@@ -296,7 +296,7 @@ class payments extends Controller
                                 if($payment->state == 'created') {
                                  $notification = array(
                 //If it has been rejected, the internal error code is sent.
-                                    'message' => 'Pago procesado', 
+                                    'message' => $payment->state, 
                                     'success' => 'success'
                                 );
                              } else {
@@ -318,9 +318,9 @@ class payments extends Controller
                 public function getPaymentStatus(Request $request)
                                 {
                                                               /** Get the payment ID before session clear **/
-                                        //$payment_id = Session::get('paypal_payment_id');
+                                        $payment_id = Session::get('paypal_payment_id');
                                         /** clear the session payment ID **/
-                                        //Session::forget('paypal_payment_id');
+                                        Session::forget('paypal_payment_id');
                                         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
                                             $notification = array(
                                             'message' => $payment->getstate, 
@@ -352,8 +352,9 @@ class payments extends Controller
                                             'message' => $payment->getstate, 
                                             'success' => 'success'
                                         );
+                                           return redirect('payment/index')->with($notification);
                                          }
-                                         return redirect('payment/index')->with($notification);
+                                        
                                     }
 
                                          
