@@ -293,7 +293,7 @@ class payments extends Controller
                             session()->put('paypal_payment_id', $payment->getId());
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
-                                $response  = Input::get('Response') ;
+                                $response  = $request->input('Response') ;
                                 if($response == 'Cancel') {
                                 return redirect($redirect_url);
 
