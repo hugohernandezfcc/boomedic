@@ -332,7 +332,7 @@ class payments extends Controller
                             if ($result->getState() == 'approved') { // payment made
                               // Payment is successful do your business logic here
                                 //Add payment method
-                                $paypalExist = $card = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->first();
+                                $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->first();
                                 if(empty($paypalExist)){
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
@@ -340,15 +340,16 @@ class payments extends Controller
                                 $pmethods->country       = $request->country;
                                 $pmethods->cardnumber    = $request->input('PayerID');
                                 $pmethods->owner         = Auth::id();
-                                        if ( $pmethods->save() ) {
+                                $pmethods->save() 
+
+                              }
+                               $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->first();
                                             $Transaction = new transaction_bank;
-                                            $Transaction->paymentmethod = $pmethods->id;
+                                            $Transaction->paymentmethod = $paypalExist2->id;
                                             $Transaction->receiver = 'receiver prueba';
                                             $Transaction->amount = '5';
                                             $Transaction->save();    
-                                        }
-                              }
-
+                                        
 
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
