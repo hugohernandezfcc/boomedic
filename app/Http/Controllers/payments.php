@@ -338,7 +338,7 @@ class payments extends Controller
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
                                 $pmethods->typemethod    = 'Paypal';
-                                $pmethods->country       = $request->country;
+                                $pmethods->paypal_email  = $result->getPayer()->getPayerInfo()->getEmail();
                                 $pmethods->cardnumber    = $request->input('PayerID');
                                 $pmethods->owner         = Auth::id();
                                 $pmethods->save();
