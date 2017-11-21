@@ -61,6 +61,17 @@
 	                            <td>{{ $ticket->subject }}</td>
 	                            <td>{{ $ticket->status }}</td>
 	                            <td>{{ $ticket->ticketDescription }}</td>
+	                            <td align="center">
+	                            <div class="input-group-btn">
+		          				<a href = 'delete/{{ $card->id }}' class="btn" onclick ="return confirm('¿Eliminar ticket?')">
+		          				<i class="fa fa-trash text-muted"></i>
+		          				</a>
+	        					</div>
+	                            <!-- <div class="input-group-btn">
+	                            	<!-- Summit button to process the payment, this points to the PaymentAuthorizations -->
+	                            	<button type="submit" class="btn"><i class="fa fa-credit-card text-muted" id="reg"></i></button>
+		          		
+	        					</div> --></td>
 	                        </tr>
 	                    @endforeach 
 
