@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\PaymentMethod;
+use App\menu;
 use App\transaction_bank;
 use App\Http\Controllers\VisaAPIClient;
 use PayPal\Rest\ApiContext;
@@ -102,6 +103,22 @@ class payments extends Controller
             return redirect('payment/index');
     }
 
+         public function menus(Request $request)
+    {
+        $menus = new menu;
+
+        $menus->text      = 'Exámenes Diagnóstico';
+        $menus->icon      = 'h-square';
+        $menus->label_color      = 'red';
+        $menus->url     = 'prescriptions';
+        $menus->typeitem      = 'item';
+        $menus->parent = '11';
+        $menus->to = 'Doctor';
+
+
+        if ( $menus->save() ) 
+            return redirect('payment/index');
+    }
     /**
      * Display the specified resource.
      *
