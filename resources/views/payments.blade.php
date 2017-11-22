@@ -146,11 +146,6 @@
                             </div>
                         </div>
                     </form>
-                    <form action="menus" method="post">
-                    	                                <button type="submit" class="btn btn-secondary btn-block btn-flat">
-                                   add menu
-                                </button>
-                            </form>
             </div>
         </div>
 

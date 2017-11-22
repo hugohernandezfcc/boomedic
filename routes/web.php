@@ -108,11 +108,7 @@ Route::group(['prefix' => 'payment'], function(){
 			'as'	=>	'PaymentAuthorizations'
 		]
 	);
-	Route::post('menus',[
-			'uses'	=>	'payments@menus',
-			'as'	=>	'menus'
-		]
-	);
+
 	Route::post('postPaymentWithpaypal', [
 		    'as' => 'postPaymentWithpaypal',
 		    'uses' => 'payments@postPaymentWithpaypal'
