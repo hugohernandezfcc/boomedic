@@ -56,10 +56,14 @@
 	    		@endif
 					    	
 	    		<form action="/user/update/{{$userId}}" method="post" class="form-horizontal">
-	    		<div class="col-sm-12" style="text-align: center;">	
-	    			<input type="file" name="archivo" class="col-sm-12"/>
-	    		</div>
 	    			{{ csrf_field() }}
+	    			<div class="row">
+	    			 <label class="col-sm-2 control-label">Foto de perfil</label>
+		    			 <div class="col-sm-10">
+		    			 	<input type="file" name="photo"/>
+		    			</div>
+	    			</div>
+	    			
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
