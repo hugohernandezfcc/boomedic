@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
+use Aws\S3\S3Client;
 
 class profile extends Controller
 {
@@ -172,9 +173,11 @@ class profile extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
         $user = User::find($id);
 
-
+        $user->profile_photo = $request->photo->path();
         $user->status        = $request->status;         
         $user->firstname     = $request->firstname;         
         $user->lastname      = $request->lastname;         

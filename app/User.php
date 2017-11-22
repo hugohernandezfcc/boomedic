@@ -45,6 +45,7 @@ class User extends Authenticatable
         'postalcode',
         'latitude',
         'longitude',
+        'profile_photo'
     ];
 
     /**
