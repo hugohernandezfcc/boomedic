@@ -13,7 +13,7 @@ class CreateProfessionalInformation extends Migration
      */
     public function up()
     {
-        Schema::create('ProfessionalInformation', function (Blueprint $table) {
+        Schema::create('professional_information', function (Blueprint $table) {
             $table->increments('id');
             $table->string('specialty');
             $table->string('schoolOfMedicine');
@@ -32,6 +32,6 @@ class CreateProfessionalInformation extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ProfessionalInformation');
+        Schema::dropIfExists('professional_information');
     }
 }

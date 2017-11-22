@@ -13,7 +13,7 @@ class CreateHistorySession extends Migration
      */
     public function up()
     {
-        Schema::create('historySession', function (Blueprint $table) {
+        Schema::create('history_session', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('browser');
@@ -36,6 +36,6 @@ class CreateHistorySession extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('historySession');
+        Schema::dropIfExists('history_session');
     }
 }

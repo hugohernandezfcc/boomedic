@@ -13,7 +13,7 @@ class CreateLaborInformation extends Migration
      */
     public function up()
     {
-        Schema::create('LaborInformation', function (Blueprint $table) {
+        Schema::create('labor_information', function (Blueprint $table) {
             $table->increments('id');
             $table->string('workplace');
             $table->string('professionalPosition');
@@ -28,7 +28,7 @@ class CreateLaborInformation extends Migration
             $table->text('phone')->nullable();
 
             $table->integer('profInformation')->unsigned();
-            $table->foreign('profInformation')->references('id')->on('ProfessionalInformation');
+            $table->foreign('profInformation')->references('id')->on('professional_information');
             $table->timestamps();
         });
     }
@@ -40,6 +40,6 @@ class CreateLaborInformation extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('LaborInformation');
+        Schema::dropIfExists('labor_information');
     }
 }

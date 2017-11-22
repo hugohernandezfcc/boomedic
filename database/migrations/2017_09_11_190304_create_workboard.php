@@ -18,7 +18,7 @@ class CreateWorkboard extends Migration
             $table->string('workingDays');
             $table->string('workingHours');
             $table->integer('labInformation')->unsigned();
-            $table->foreign('labInformation')->references('id')->on('LaborInformation');
+            $table->foreign('labInformation')->references('id')->on('labor_information');
             $table->timestamps();
         });
     }
