@@ -56,8 +56,8 @@
 	    		@endif
 					    	
 	    		<form action="/user/update/{{$userId}}" method="post" class="form-horizontal">
-	    		<div class="col-sm-10" align="center">	
-	    			<input type="file" name="archivo" class="btn btn-secondary btn-block btn-flat"/>
+	    		<div class="col-sm-12" style="text-align: center;">	
+	    			<input type="file" name="archivo" class="col-sm-12"/>
 	    		</div>
 	    			{{ csrf_field() }}
 
