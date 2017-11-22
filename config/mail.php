@@ -95,7 +95,7 @@ return [
 
     'username' => 'postmaster@sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org',
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => '775a683686f03bbe00e3fe4508808029',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'sendmail' => '775a683686f03bbe00e3fe4508808029',
+    'sendmail' => '/usr/sbin/sendmail -bs',
 
     /*
     |--------------------------------------------------------------------------
