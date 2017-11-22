@@ -273,7 +273,7 @@
 			             @if($mode == 'historyTransaction')
 			            	
 
-			            	 @if($typemethod == 'card')
+			            	 @if($type == 'card')
 
 					     <div style="font-size: 17px;">Transacciones</div>
 					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
@@ -332,7 +332,7 @@
 				    	 </table>
 				    	 @endif
 
-				    	 @if($typemethod == 'Paypal')
+				    	 @if($type == 'Paypal')
 				    	 					     <div style="font-size: 17px;">Transacciones</div>
 					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
 				             <div class="row">
