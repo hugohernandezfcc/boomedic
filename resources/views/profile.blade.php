@@ -57,7 +57,7 @@
 					    	
 	    		<form action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
-	    			<div>
+	    			<div class="row">
 	    			 <label class="col-sm-2 control-label">Foto de perfil</label>
 		    			 <div class="col-sm-10">
 		    			 	<input type="file" name="photo"/>
