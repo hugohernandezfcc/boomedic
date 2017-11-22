@@ -271,7 +271,10 @@
             @endif
 
 			             @if($mode == 'historyTransaction')
-			            
+			            	
+
+			            	 @if($typemethod == 'card')
+
 					     <div style="font-size: 17px;">Transacciones</div>
 					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
 				             <div class="row">
@@ -327,9 +330,57 @@
 			             	@endforeach
 								<tbody>
 				    	 </table>
+				    	 @endif
 
+				    	 @if($typemethod == 'Paypal')
+				    	 					     <div style="font-size: 17px;">Transacciones</div>
+					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
+				             <div class="row">
+			                	<div class="col-sm-6">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Id Paypal:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $cardnumber }}</div>
+			                		</div>
+			                	</div>
+			                	<div class="col-sm-6">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Email:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $paypal_email }}</div>
+			                		</div>
+			                	</div>
+			                </div>		
+			                <br/>
+			                <div class="row"> 
+			                <div class="col-sm-6">
+			                		<div class="row">
+			                			<div class="col-sm-6" align="left"><b>Proveedor:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $provider }}</div>
+			                		</div>
+			                	</div>
+			              </div><br/><br/>
 
-
+			            	<table id="transactions" class="table table-bordered table-striped" cellspacing="0" width="100%">
+				                <thead>
+				                    <tr>
+				                    
+				                        <th>Nro. Transacción</th>
+				                        <th>Destinatario</th>
+				                        <th>Monto</th>
+				                        <th>Fecha de Transacción</th>
+				                    </tr>
+				                </thead>
+				                <tbody>
+					     	@foreach ($transactions as $transaction)
+								     <tr>
+						             	<td>{{ $transaction->id }} <br/></td>
+						             	<td>{{ $transaction->receiver}}<br/></td>
+						             	<td>{{ $transaction->amount }}</td>
+						             	<td>{{ $transaction->created_at}}</td>
+						             </tr>
+			             	@endforeach
+								<tbody>
+				    	 </table>
+				    	 @endif
 
             @endif
 

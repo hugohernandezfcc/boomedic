@@ -111,8 +111,8 @@ class payments extends Controller
         $pmethods->credit_debit  = $request->CreDeb;
         $pmethods->owner         = Auth::id();
         if ( $pmethods->save() ) 
-            return redirect('payment/index');
-
+       return redirect('payment/index');
+}
     /**
      * Display the specified resource.
      *
@@ -238,6 +238,7 @@ class payments extends Controller
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
          return view('payments', [
                 'type'      => $card->typemethod,
+                'paypal_email'      => $card->paypal_email,
                 'cardnumber' => $card->cardnumber,
                 'bank' => $card->bank,
                 'provider' => $card->provider,
