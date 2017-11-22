@@ -62,20 +62,13 @@ class supportTickets extends Controller
         $nTicket->userType  = 'paciente';
 
         if ( $nTicket->save() ){
-            //return redirect('supportTicket/index');
 
             // Send email
-            /*Mail::send('emails.newTicket', ['user' => $user], function ($m) use ($user) {
-                $m->from('cristina@doitcloud.consulting', 'Boomedic');
-
-                $m->to($user->email, $user->name)->subject('New Ticket');
-            });*/
-
             Mail::send('emails.newTicket', ['user' => $user], function ($message) {
                 //$message->from('cristina@doitcloud.consulting', 'Boomedic');
-                $message->subject('Asunto del correo');
+                $message->subject('Nuevo Ticket creado.');
                 //$message->to('cristina.pioquinto@hotmail.com');
-                $message->to('cristina@doitcloud.consulting');
+                $message->to('cristina.pioquinto@hotmail.com');
             });
 
             return redirect('supportTicket/index');
