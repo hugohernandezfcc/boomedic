@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\User;
+use App\SupportTicket;
+use Mail;
 
-class supportTicket extends Controller
+class supportTickets extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +18,14 @@ class supportTicket extends Controller
      */
     public function index()
     {
-        return view('tickets');
+        $allTickets = DB::table('support_tickets')->where('userId', Auth::id() )->get();
+        return view('tickets', [
+                'allTickets'=> $allTickets,
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'mode'      => 'listTickets'
+            ]
+        );
     }
 
     /**
@@ -23,7 +35,13 @@ class supportTicket extends Controller
      */
     public function create()
     {
-        //
+        return view('tickets', [
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'email'     => DB::table('users')->where('id', Auth::id() )->value('email'),
+                'mode'      => 'createTicket'
+            ]
+        );
     }
 
     /**
@@ -34,7 +52,36 @@ class supportTicket extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::find(Auth::id());
+
+        $nTicket = new SupportTicket($request->all());        
+        $nTicket->userId    = Auth::id();
+        $nTicket->status    = 'In Progress';
+        $nTicket->user      = $user->name;
+        $nTicket->email     = $user->email;
+        $nTicket->userType  = 'paciente';
+
+        if ( $nTicket->save() ){
+            //return redirect('supportTicket/index');
+
+            // Send email
+            /*Mail::send('emails.newTicket', ['user' => $user], function ($m) use ($user) {
+                $m->from('cristina@doitcloud.consulting', 'Boomedic');
+
+                $m->to($user->email, $user->name)->subject('New Ticket');
+            });*/
+
+            Mail::send('emails.newTicket', ['user' => $user], function ($message) {
+                //$message->from('cristina@doitcloud.consulting', 'Boomedic');
+                $message->subject('Asunto del correo');
+                //$message->to('cristina.pioquinto@hotmail.com');
+                $message->to('cristina@doitcloud.consulting');
+            });
+
+            return redirect('supportTicket/index');
+        }
+        else
+            dd('Problemas al crear registro.');
     }
 
     /**
@@ -79,6 +126,9 @@ class supportTicket extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ticket = SupportTicket::find($id);
+        $ticket->delete();
+        
+       return redirect('supportTicket/index');
     }
 }
