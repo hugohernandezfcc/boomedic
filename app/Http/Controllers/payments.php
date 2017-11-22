@@ -88,20 +88,30 @@ class payments extends Controller
      */
     public function store(Request $request)
     {
+        $number = substr($request->cardnumber,0,1);
+        $provider = 'Null';
         $pmethods = new PaymentMethod;
-
-        $pmethods->provider      = $request->provider;
+        if($number == '4') 
+        {
+         $provider ='Visa'; 
+        }
+        if($number =='5') 
+        { 
+            $provider ='MasterCard'; 
+        }
+   
+        $pmethods->provider      = $provider;
         $pmethods->typemethod    = $request->typemethod;
         $pmethods->country       = $request->country;
         $pmethods->year          = $request->year;
         $pmethods->month         = $request->month;
         $pmethods->cvv           = $request->cvv;
         $pmethods->cardnumber    = $request->cardnumber;
+        $pmethods->bank          = $request->bank;
+        $pmethods->credit_debit  = $request->CreDeb;
         $pmethods->owner         = Auth::id();
-
         if ( $pmethods->save() ) 
             return redirect('payment/index');
-    }
 
     /**
      * Display the specified resource.
