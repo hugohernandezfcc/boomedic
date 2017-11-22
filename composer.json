@@ -10,7 +10,8 @@
         "jeroennoten/laravel-adminlte": "^1.19",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "paypal/rest-api-sdk-php": "*"
+        "paypal/rest-api-sdk-php": "*",
+         "aws/aws-sdk-php": "2.7.*@dev"
 
     },
     "require-dev": {
