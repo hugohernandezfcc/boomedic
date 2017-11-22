@@ -13,7 +13,7 @@ class AddFieldsLaborInformation extends Migration
      */
     public function up()
     {
-        Schema::table('labor_information', function (Blueprint $table) {
+        Schema::table('LaborInformation', function (Blueprint $table) {
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('postalcode')->nullable();
@@ -27,7 +27,7 @@ class AddFieldsLaborInformation extends Migration
      */
     public function down()
     {
-        Schema::table('labor_information', function (Blueprint $table) {
+        Schema::table('LaborInformation', function (Blueprint $table) {
             $table->dropColumn(['latitude', 'longitude', 'postalcode']);
         });
     }
