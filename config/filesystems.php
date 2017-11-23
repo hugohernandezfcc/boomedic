@@ -61,6 +61,7 @@ return [
             'secret' => '/NC00lT+tNjgV8bjlaHbM1XtUcIirHdh+voQ7Prh',
             'region' => 'us-east-1',
             'bucket' => 'abiliasf',
+            'ACL'    => 'public-read'
         ],
 
     ],

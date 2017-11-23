@@ -178,8 +178,8 @@ class profile extends Controller
     {
        // $path = $request->photo->store('images', 's3');
         $name_file = $request->file('photo')->getClientOriginalName();
+        Storage::disk('s3')->put('photo/'. $name_file, $request->file('photo'));
         $path = Storage::cloud()->url($name_file);
-        Storage::disk('s3')->put($name_file, $request->file('photo'));
 
         $user = User::find($id);
 
