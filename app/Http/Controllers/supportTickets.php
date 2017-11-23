@@ -68,8 +68,7 @@ class supportTickets extends Controller
                 //$message->from('cristina@doitcloud.consulting', 'Boomedic');
                 $message->subject('Nuevo Ticket creado.');
                 //$message->to('cristina.pioquinto@hotmail.com');
-                //$message->to('cristina.pioquinto@hotmail.com');
-                $message->to($user->email);
+                $message->to('cristina.pioquinto@hotmail.com');
             });
 
             return redirect('supportTicket/index');
