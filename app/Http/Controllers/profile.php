@@ -181,10 +181,7 @@ class profile extends Controller
         $file = $request->file('photo');
         $name_file = $request->file('photo')->getClientOriginalName();
         $img = Image::make($file);
-        $img->resize(null, 125, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        });
+        $img->resize(125, 125);
 
 
         Storage::disk('s3')->put('photo', $img, 'public');
