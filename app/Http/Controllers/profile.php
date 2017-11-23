@@ -10,7 +10,6 @@ use App\User;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
-use Image;
 
 class profile extends Controller
 {
@@ -178,17 +177,9 @@ class profile extends Controller
     public function update(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
-        $file = $request->file('photo');
+        $image = $request->file('photo');
         $name_file = $request->file('photo')->getClientOriginalName();
-        $img = Image::make($file);
-        $img->resize(null, 125, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        });
-        $resource = $img->stream()->detach();
-
-
-        Storage::disk('s3')->put('photo', $resource, 'public');
+        Storage::disk('s3')->put('photo', $image, 'public');
         $path = Storage::cloud()->url($name_file);
 
         $user = User::find($id);
