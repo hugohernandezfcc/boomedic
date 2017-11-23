@@ -55,7 +55,7 @@
 		            </div>
 	    		@endif
 					    	
-	    		<form action="/user/update/{{$userId}}" method="post" class="form-horizontal">
+	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 	    			<div class="row">
 	    			 <label class="col-sm-2 control-label">Foto de perfil</label>
