@@ -50,7 +50,36 @@ class profile extends Controller
      */
     public function store(Request $request)
     {
-        
+        $path = $request->photo->store('images', 's3');
+
+        $user = User::find($id);
+
+        $user->status        = $request->status;         
+        $user->firstname     = $request->firstname;         
+        $user->lastname      = $request->lastname;         
+        $user->email         = $request->email;         
+        $user->username      = $request->username;         
+        $user->age           = $request->age;         
+        $user->gender        = $request->gender;         
+        $user->occupation    = $request->occupation;         
+        $user->scholarship   = $request->scholarship;         
+        $user->maritalstatus = $request->maritalstatus;         
+        $user->mobile        = $request->mobile;         
+        $user->status        = 'Complete';
+
+        $user->country       = $request->country; 
+        $user->state         = $request->state; 
+        $user->delegation    = $request->delegation; 
+        $user->colony        = $request->colony; 
+        $user->street        = $request->street; 
+
+
+        $user->postalcode    = $request->postalcode; 
+        $user->latitude      = $request->latitude; 
+        $user->longitude     = $request->longitude; 
+
+        if ( $user->save() ) 
+            return redirect('user/profile/' . $id );
     }
 
     /**
