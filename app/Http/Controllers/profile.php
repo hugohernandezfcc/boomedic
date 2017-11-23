@@ -177,9 +177,9 @@ class profile extends Controller
     public function update(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
-        Storage::disk('s3')->put($request->file('test','photo'));
         $name_file = $request->file('photo')->path();
         $path = Storage::cloud()->url($name_file);
+        Storage::disk('s3')->put('test2', $request->file('photo'));
 
         $user = User::find($id);
 
