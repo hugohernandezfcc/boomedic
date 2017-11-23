@@ -173,11 +173,10 @@ class profile extends Controller
      */
     public function update(Request $request, $id)
     {
-        $path = $request->photo->path();
+        $path = $request->photo->store('images', 's3');
 
         $user = User::find($id);
 
-        $user->profile_photo = $path;
         $user->status        = $request->status;         
         $user->firstname     = $request->firstname;         
         $user->lastname      = $request->lastname;         
