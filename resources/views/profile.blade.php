@@ -106,7 +106,7 @@ success: function (file, response) {
 	    	<div class="row">
         			<div class="col-md-10" style="align-content: center;">
 
-	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="my-awesome-dropzone"></form>
+	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form>
 	    		</div>
 	    	</div>
 
