@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-
+ @yield('content')
 	<br/>
 
 	@if( empty($status) )
@@ -54,7 +54,8 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-					    	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+					    	    {{ HTML::script('js/jquery.js') }}
+   								 <script type="text/javascript">
 					    		$(window).load(function(){
 
 								 $(function() {
@@ -79,7 +80,7 @@
 								     }
 								    });
 								  });
-					    	</script>
+					    			</script>
 
 
 
