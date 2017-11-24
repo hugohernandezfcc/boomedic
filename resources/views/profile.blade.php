@@ -90,10 +90,10 @@
 	    			<div class="row">
 
 	    			 <label class="col-sm-2 control-label">Foto de perfil</label><br/>
-	    			 <img id="imgSalida" width="250" height="250" src="{{ $photo }}" /><br/>
+	    			 <img id="imgSalida" width="250" height="250" src="{{ $photo }}" class="rounded"/><br/>
 		    			 <div class="col-sm-10">
-		    			 	<input type="file" name="photo" id="photo" class="btn btn-elegant">
-		    			</div><br/>
+		    			 	<input type="file" name="photo" id="photo" class="form-control-file"><br/>
+		    			</div>
 	    			</div>
 	    			
 
