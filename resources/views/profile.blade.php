@@ -87,13 +87,13 @@
 
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
-	    			<div class="row" align="center">
+	    			<div class="row">
 
 	    			 <label class="col-sm-2 control-label">Foto de perfil</label><br/>
-	    			 <img id="imgSalida" width="20%" height="20%" src="" /><br/>
+	    			 <img id="imgSalida" width="25" height="25%" src="" /><br/>
 		    			 <div class="col-sm-12">
-		    			 	<input type="file" name="photo" id="photo">
-		    			</div>
+		    			 	<input type="file" name="photo" id="photo" class="btn btn-secondary btn-block btn-flat">
+		    			</div><br/>
 	    			</div>
 	    			
 
