@@ -46,7 +46,6 @@
         Dropzone.options.imageUpload = {
         	paramName: "file",
              maxFiles: 1,
-             autoProcessQueue: false,
              init: function(){
 			    var myDropZone = this;
 			    myDropZone.on('maxfilesexceeded', function(file) {
@@ -102,6 +101,17 @@
 		            </div>
 	    		@endif
 
+
+
+	    	<div class="row">
+        			<div class="col-md-10">
+
+	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone"></form>
+	    		</div>
+	    	</div>
+
+	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
+	    			{{ csrf_field() }}
 	    			<div class="row">
 
 	    			 <label class="col-sm-2 control-label">Foto de perfil</label><br/>
@@ -109,21 +119,8 @@
 		    			 <div class="col-sm-10">
 		    			 	<input type="file" name="photo" id="photo" class="form-control-file"><br/>
 		    			</div>-->
-	    			</div>	
-
-	    	<div class="row">
-        			<div class="col-md-12" align="center">
-
-	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="imageUpload">
-
-	    				</form>
-	    		</div>
-	    	</div>
-
-	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post">
-	    			 <div class="col-md-10 dropzone-previews"></div>
-	    			{{ csrf_field() }}
-
+	    			</div>
+	    			
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
@@ -286,10 +283,10 @@
 					            </div>
 							@endif
 				    	</div>
-				  	</div></form>
+				  	</div>
 				  	<!-- box-footer -->
 
-	    		
+	    		</form>
 
 	    	@else
     			<!-- Custom Tabs -->
