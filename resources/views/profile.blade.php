@@ -49,7 +49,6 @@
 				 
 				    maxFiles: 10,
 				    addRemoveLinks: true,
-				    previewsContainer: ".dropzone-previews",
 				    dictRemoveFile: "Remove",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "",
@@ -104,12 +103,6 @@
 	    		@endif
 	    		<div><form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    			
-
-	    				<div class="dropzone-previews"></div>
- 
-					    <div class="fallback">
-					       <input name="file" type="file"/>
-					    </div>
 	    		</form></div>
 
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post">
