@@ -182,7 +182,7 @@ class profile extends Controller
        // $path = $request->photo->store('images', 's3');
         
         $file = $request->file('file');
-        if(empty($file){
+        if(empty($file)){
         $img = Image::make($file);
         $img->resize(250, 250);
 
