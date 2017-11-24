@@ -44,13 +44,15 @@
 					    	</script>-->
 		<script type="text/javascript">
         Dropzone.options.imageUpload = {
-  // The configuration we've talked about above
-  			  paramName: "file",
-			  autoProcessQueue: false,
-			  uploadMultiple: true,
-			  maxFiles: 1,
-
-			  // The setting up of the dropzone
+        	paramName: "file",
+             maxFiles: 1,
+             autoProcessQueue: false,
+             init: function(){
+			    var myDropZone = this;
+			    myDropZone.on('maxfilesexceeded', function(file) {
+			      myDropZone.removeFile(file);
+			    });
+  }
         };
 </script>
 	<br/>
@@ -100,15 +102,6 @@
 		            </div>
 	    		@endif
 
-
-
-
-	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" >
-	    			<div class="col-sm-12">	
-	    				 <div class="dropzone" id="imageUpload">
-						    <input name="file" type="file" multiple />
-						  </div></div>
-	    			{{ csrf_field() }}
 	    			<div class="row">
 
 	    			 <label class="col-sm-2 control-label">Foto de perfil</label><br/>
@@ -116,8 +109,21 @@
 		    			 <div class="col-sm-10">
 		    			 	<input type="file" name="photo" id="photo" class="form-control-file"><br/>
 		    			</div>-->
-	    			</div>
-	    			
+	    			</div>	
+
+	    	<div class="row">
+        			<div class="col-md-12" align="center">
+
+	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="imageUpload">
+
+	    				</form>
+	    		</div>
+	    	</div>
+
+	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="imageUpload">
+	    			 <div class="col-md-10 dropzone-previews"></div>
+	    			{{ csrf_field() }}
+
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
@@ -244,7 +250,7 @@
 
 		            <input type="text" style="display: none;" name="latitude" id="latitudeFend" />
 		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" />
-		            <br/>
+		            <br/></form>
 		            <!-- /.box-body -->
 				  	<div class="box-footer">
 				    	<div class="row">
@@ -283,7 +289,7 @@
 				  	</div>
 				  	<!-- box-footer -->
 
-	    		</form>
+	    		
 
 	    	@else
     			<!-- Custom Tabs -->
