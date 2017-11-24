@@ -52,9 +52,7 @@
 				    previewsContainer: ".dropzone-previews",
 				    dictRemoveFile: "Remove",
 				    dictCancelUpload: "Cancel",
-				    dictDefaultMessage: "Inserte imagen aquí",
-				    dictMaxFilesExceeded: "Only 10 images allowed per upload.",
-				    acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF",
+				    dictDefaultMessage: "",
 				 
 				 }
 		</script>
