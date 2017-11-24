@@ -53,7 +53,7 @@
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "",
 				 
-				 }
+				 };
 		</script>
 	<br/>
 
