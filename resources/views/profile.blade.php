@@ -54,8 +54,21 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-					    	    {{ HTML::script('js/jquery.js') }}
-   								 <script type="text/javascript">
+
+
+
+
+
+	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
+	    			{{ csrf_field() }}
+	    			<div class="row" align="center">
+
+	    			 <label class="col-sm-12 control-label">Foto de perfil</label><br/>
+	    			 <img id="imgSalida" width="20%" height="20%" src="" /><br/>
+		    			 <div class="col-sm-12">
+		    			 	<input type="file" name="photo" id="photo">
+		    			 <script src="{{ asset('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js') }}"></script>
+					    	<script type="text/javascript">
 					    		$(window).load(function(){
 
 								 $(function() {
@@ -80,19 +93,7 @@
 								     }
 								    });
 								  });
-					    			</script>
-
-
-
-
-	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
-	    			{{ csrf_field() }}
-	    			<div class="row" align="center">
-
-	    			 <label class="col-sm-12 control-label">Foto de perfil</label><br/>
-	    			 <img id="imgSalida" width="20%" height="20%" src="" /><br/>
-		    			 <div class="col-sm-12">
-		    			 	<input type="file" name="photo" id="photo">
+					    	</script>
 		    			</div>
 	    			</div>
 	    			
