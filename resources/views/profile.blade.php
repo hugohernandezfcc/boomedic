@@ -46,6 +46,7 @@
         Dropzone.options.imageUpload = {
         	paramName: "file",
              maxFiles: 1,
+             autoProcessQueue: false,
              init: function(){
 			    var myDropZone = this;
 			    myDropZone.on('maxfilesexceeded', function(file) {
@@ -104,8 +105,13 @@
 
 
 	    	<div class="row">
-        			<div class="col-md-10">
-	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone"></form>
+        			<div class="col-md-10" align="center">
+
+	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone">
+	    					 <div>
+					                <h3>Sube tu foto de perfil</h3>
+					            </div>
+	    				</form>
 	    		</div>
 	    	</div>
 
