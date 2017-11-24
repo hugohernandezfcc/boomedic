@@ -60,31 +60,6 @@
 				    dictMaxFilesExceeded: "Only 10 images allowed per upload.",
 				    acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF",
 				 
-				   // The setting up of the dropzone
-				 
-				   init: function() {
-				     var myDropzone = this;
-				 
-				   // Upload images when submit button is clicked.
-				 
-				   $("#submit-all").click(function (e) {
-				       e.preventDefault();
-				       e.stopPropagation();
-				       myDropzone.processQueue();
-				 
-				    });
-				 
-				 
-				   // Refresh page when all images are uploaded
-				 
-				    myDropzone.on("complete", function (file) {
-				         if (myDropzone.getUploadingFiles().length === 0 && myDropzone.getQueuedFiles().length === 0) {
-				        window.location.reload();
-				        }
-				      });
-				 
-				    }
-				 
 				 }
 		</script>
 	<br/>
@@ -133,9 +108,17 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
+	    		<div><form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
+	    			
 
+	    				<div class="dropzone-previews"></div>
+ 
+					    <div class="fallback">
+					       <input name="file" type="file" multiple/>
+					    </div>
+	    		</form></div>
 
-	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
+	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post">
 	    			{{ csrf_field() }}
 	    			<div class="row">
 
@@ -145,11 +128,7 @@
 		    			 	<input type="file" name="photo" id="photo" class="form-control-file"><br/>
 		    			</div>-->
 	    			</div>
-	    			<div class="dropzone-previews"></div>
- 
-					    <div class="fallback">
-					       <input name="file" type="file" multiple/>
-					    </div>
+
 						    			
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -287,7 +266,7 @@
 					            	&nbsp;
 					            </div>
 					    		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat" id="submit-all">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
 						            </button>
 					            </div>
@@ -299,7 +278,7 @@
 					            	&nbsp;
 					            </div>
 					       		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat" id="submit-all">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
 						            </button>
 					            </div>
