@@ -180,8 +180,7 @@ class profile extends Controller
     public function update(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
-        $file = $request->file('photo');
-        $name_file = $request->file('photo')->getClientOriginalName();
+        $file = $request->file('file');
         $name_file = $request->file('file')->getClientOriginalName();
         $img = Image::make($file);
         $img->resize(250, 250);

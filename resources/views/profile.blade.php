@@ -15,7 +15,7 @@
 
 
 
-		    			 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		    			<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		    			 <script type="text/javascript">
 					    		$(window).load(function(){
 
@@ -41,7 +41,7 @@
 								     }
 								    });
 								  });
-					    	</script>
+					    	</script>-->
 		<script type="text/javascript">
         Dropzone.options.imageUpload = {
         	paramName: "file",
@@ -114,10 +114,10 @@
 	    			<div class="row">
 
 	    			 <label class="col-sm-2 control-label">Foto de perfil</label><br/>
-	    			 <img id="imgSalida" width="250" height="250" src="{{ $photo }}" class="rounded"/><br/>
+	    			 <!--<img id="imgSalida" width="250" height="250" src="{{ $photo }}" class="rounded"/><br/>
 		    			 <div class="col-sm-10">
 		    			 	<input type="file" name="photo" id="photo" class="form-control-file"><br/>
-		    			</div>
+		    			</div>-->
 	    			</div>
 	    			
 
