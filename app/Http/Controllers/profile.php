@@ -217,7 +217,7 @@ class profile extends Controller
         $user->longitude     = $request->longitude; 
 
         if ( $user->save() ) 
-            return redirect('user/profile/' . $id );
+            return response()->json(['success'=>$name_file]);
     }
 
     /**

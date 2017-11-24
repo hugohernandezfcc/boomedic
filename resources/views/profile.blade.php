@@ -97,23 +97,20 @@
 
 
 
-	    	<div class="row">
-        			<div class="col-md-12">
-	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" files="true"></form>
-	    		</div>
-	    	</div>
+
 
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 	    			<div class="row">
 
 	    			 <label class="col-sm-2 control-label">Foto de perfil</label><br/>
-	    			 <img id="imgSalida" width="250" height="250" src="{{ $photo }}" class="rounded"/><br/>
-		    			 <div class="col-sm-10">
-		    			 	<input type="file" name="photo" id="photo" class="form-control-file"><br/>
-		    			</div>
+
 	    			</div>
-	    			
+	    				    	<div class="row">
+        			<div class="col-md-12">
+	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" files="true"></form>
+	    		</div>
+	    	</div>
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
