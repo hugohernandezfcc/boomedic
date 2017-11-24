@@ -89,7 +89,7 @@
 	    			{{ csrf_field() }}
 	    			<div class="row" align="center">
 
-	    			 <label class="col-sm-12 control-label">Foto de perfil</label><br/>
+	    			 <label class="col-sm-2 control-label">Foto de perfil</label><br/>
 	    			 <img id="imgSalida" width="20%" height="20%" src="" /><br/>
 		    			 <div class="col-sm-12">
 		    			 	<input type="file" name="photo" id="photo">
