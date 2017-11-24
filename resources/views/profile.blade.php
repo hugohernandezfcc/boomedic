@@ -15,7 +15,7 @@
 		<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 		    <!-- lockscreen image -->
 		    <div class="lockscreen-image">
-		      <img src="https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
+		      <img src="{{ $photo }}" alt="User Image">
 		    </div>
 		    <!-- /.lockscreen-image -->
 

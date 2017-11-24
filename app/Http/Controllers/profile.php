@@ -80,6 +80,7 @@ class profile extends Controller
                 'email'         => $users[0]->email,
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
+                'photo'         => $users[0]->profile_photo,
 
                 /** PERSONAL INFORMATION */
 
@@ -144,6 +145,7 @@ class profile extends Controller
                 'email'         => $users[0]->email,
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
+                'photo'         => $users[0]->profile_photo,
 
                 /** PERSONAL INFORMATION */
 
