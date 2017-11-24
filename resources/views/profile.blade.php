@@ -51,7 +51,9 @@
 				    addRemoveLinks: true,
 				    dictRemoveFile: "Remove",
 				    dictCancelUpload: "Cancel",
-				    dictDefaultMessage: "",
+				    dictDefaultMessage: "Arrastre su foto aquí...",
+				     accept: function(file, done) {
+            			},
 				 
 				 };
 		</script>
