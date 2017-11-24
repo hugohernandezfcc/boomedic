@@ -130,7 +130,10 @@
 
 
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="imageUpload">
-	    			 <div class="col-md-10 dropzone-previews"></div>
+	    			<div class="col-sm-12">	
+	    				 <div class="fallback">
+						    <input name="file" type="file" multiple />
+						  </div></div>
 	    			{{ csrf_field() }}
 	    			<div class="row">
 
