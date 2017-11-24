@@ -182,7 +182,6 @@ class profile extends Controller
        // $path = $request->photo->store('images', 's3');
         
         $file = $request->file('file');
-        if(empty($file)){
         $img = Image::make($file);
         $img->resize(250, 250);
 
@@ -194,7 +193,7 @@ class profile extends Controller
         $user = User::find($id);
 
         $user->profile_photo = $path;   
-        } 
+        }
         $user->status        = $request->status;         
         $user->firstname     = $request->firstname;         
         $user->lastname      = $request->lastname;         
