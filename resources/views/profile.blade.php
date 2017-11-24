@@ -120,7 +120,7 @@
 	    		</div>
 	    	</div>
 
-	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="imageUpload">
+	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post">
 	    			 <div class="col-md-10 dropzone-previews"></div>
 	    			{{ csrf_field() }}
 
@@ -249,8 +249,8 @@
 		            </div>
 
 		            <input type="text" style="display: none;" name="latitude" id="latitudeFend" />
-		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" />
-		            <br/></form>
+		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" /></form>
+		            <br/>
 		            <!-- /.box-body -->
 				  	<div class="box-footer">
 				    	<div class="row">
