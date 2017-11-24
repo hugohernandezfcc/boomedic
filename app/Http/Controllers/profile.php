@@ -185,7 +185,7 @@ class profile extends Controller
         $img->resize(250, 250);
 
         $img->encode('jpg');
-        Storage::disk('s3')->put( $id,  (string) $img, 'public');
+        Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
         $path = Storage::cloud()->url($id);
 
         $user = User::find($id);
