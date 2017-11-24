@@ -249,7 +249,7 @@
 		            </div>
 
 		            <input type="text" style="display: none;" name="latitude" id="latitudeFend" />
-		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" /></form>
+		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" />
 		            <br/>
 		            <!-- /.box-body -->
 				  	<div class="box-footer">
@@ -286,7 +286,7 @@
 					            </div>
 							@endif
 				    	</div>
-				  	</div>
+				  	</div></form>
 				  	<!-- box-footer -->
 
 	    		
