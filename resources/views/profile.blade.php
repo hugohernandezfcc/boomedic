@@ -42,10 +42,16 @@
 								    });
 								  });
 					    	</script>
-					    	<script type="text/javascript">
+		<script type="text/javascript">
         Dropzone.options.imageUpload = {
-            maxFilesize         :       1,
-            acceptedFiles: ".jpeg,.jpg,.png,.gif"
+        	paramName: "file",
+             maxFiles: 1,
+             init: function(){
+			    var myDropZone = this;
+			    myDropZone.on('maxfilesexceeded', function(file) {
+			      myDropZone.removeFile(file);
+			    });
+  }
         };
 </script>
 	<br/>
@@ -98,8 +104,8 @@
 
 
 	    	<div class="row">
-        			<div class="col-md-12">
-	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" files="true"></form>
+        			<div class="col-md-10">
+	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone"></form>
 	    		</div>
 	    	</div>
 
