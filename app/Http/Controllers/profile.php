@@ -180,17 +180,21 @@ class profile extends Controller
     public function update(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
+        
         $file = $request->file('file');
+        if(empty($file){
         $img = Image::make($file);
         $img->resize(250, 250);
 
         $img->encode('jpg');
         Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
-        $path = Storage::cloud()->url($id.'.jpg');
+        $filename = $id.'.jpg';
+        $path = Storage::cloud()->url($filename);
 
         $user = User::find($id);
 
-        $user->profile_photo = $path;    
+        $user->profile_photo = $path;   
+        } 
         $user->status        = $request->status;         
         $user->firstname     = $request->firstname;         
         $user->lastname      = $request->lastname;         
@@ -214,8 +218,7 @@ class profile extends Controller
         $user->postalcode    = $request->postalcode; 
         $user->latitude      = $request->latitude; 
         $user->longitude     = $request->longitude; 
-        $user->save();
-
+        if($user->save())
             return redirect('user/profile/' . $id );
     }
 
