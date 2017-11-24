@@ -43,14 +43,7 @@
 								  });
 					    	</script>-->
 		<script type="text/javascript">
-        Dropzone.options.imageUpload = {
-        	paramName: "file",
-             maxFiles: 1,
-             init: function(){
-			    var myDropZone = this;
-			    myDropZone.on('maxfilesexceeded', function(file) {
-			      myDropZone.removeFile(file);
-			    });
+   
   }
         };
 </script>
