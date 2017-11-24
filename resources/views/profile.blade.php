@@ -54,12 +54,43 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-					    	
+					    	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+					    		$(window).load(function(){
+
+								 $(function() {
+								  $('#file').change(function(e) {
+								      addImage(e); 
+								     });
+								     function addImage(e){
+								      var file = e.target.files[0],
+								      imageType = /image.*/;
+								    
+								      if (!file.type.match(imageType))
+								       return;
+								  
+								      var reader = new FileReader();
+								      reader.onload = fileOnload;
+								      reader.readAsDataURL(file);
+								     }
+								  
+								     function fileOnload(e) {
+								      var result=e.target.result;
+								      $('#imgSalida').attr("src",result);
+								     }
+								    });
+								  });
+					    	</script>
+
+
+
+
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
-	    			<div class="row">
-	    			 <label class="col-sm-2 control-label">Foto de perfil</label>
-		    			 <div class="col-sm-10">
+	    			<div class="row" align="center">
+
+	    			 <label class="col-sm-12 control-label">Foto de perfil</label><br/>
+	    			 <img id="imgSalida" width="20%" height="20%" src="" /><br/>
+		    			 <div class="col-sm-12">
 		    			 	<input type="file" name="photo" id="photo">
 		    			</div>
 	    			</div>

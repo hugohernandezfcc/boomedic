@@ -183,10 +183,10 @@ class profile extends Controller
         $file = $request->file('photo');
         $name_file = $request->file('photo')->getClientOriginalName();
         $img = Image::make($file);
-        $img->resize(125, 125);
+        $img->resize(250, 250);
 
         $img->encode('jpg');
-        Storage::disk('s3')->put( $name_file,  (string) $img, 'public');
+        Storage::disk('s3')->put( $id,  (string) $img, 'public');
         $path = Storage::cloud()->url($name_file);
 
         $user = User::find($id);
