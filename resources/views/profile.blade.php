@@ -132,9 +132,9 @@
 
 
 	    	<div class="row">
-        			<div class="col-md-10">
+        			<div class="col-md-10" style="align-content: center;">
 
-	    				<form enctype="multipart/form-data" action="" method="post" class="dropzone"></form>
+	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone"></form>
 	    		</div>
 	    	</div>
 
