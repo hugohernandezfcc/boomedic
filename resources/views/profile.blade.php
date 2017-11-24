@@ -134,7 +134,7 @@
 	    	<div class="row">
         			<div class="col-md-10">
 
-	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone"></form>
+	    				<form enctype="multipart/form-data" action="" method="post" class="dropzone"></form>
 	    		</div>
 	    	</div>
 
@@ -310,11 +310,12 @@
 					            	&nbsp;
 					            </div>
 							@endif
+							</form>
 				    	</div>
 				  	</div>
 				  	<!-- box-footer -->
 
-	    		</form>
+	    		
 
 	    	@else
     			<!-- Custom Tabs -->
