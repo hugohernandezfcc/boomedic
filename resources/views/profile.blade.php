@@ -96,21 +96,21 @@
 	    		@endif
 
 
-
-
-
-	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
-	    			{{ csrf_field() }}
-	    			<div class="row">
+<div class="row">
 
 	    			 <label class="col-sm-2 control-label">Foto de perfil</label><br/>
-
+</div>
 	    			</div>
 	    				    	<div class="row">
         			<div class="col-md-12">
 	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" files="true"></form>
 	    		</div>
-	    	</div>
+
+
+
+	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
+	    			{{ csrf_field() }}
+	    			
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
