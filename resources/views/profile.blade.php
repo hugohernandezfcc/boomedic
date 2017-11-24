@@ -44,8 +44,8 @@
 					    	</script>-->
 		<script type="text/javascript">
 					$(function(){
-					  Dropzone.options.dropzone = {
-					    maxFilesize: 1,
+					  Dropzone.options.myAwesomeDropzone = {
+					    maxFilesize: 10,
 					    addRemoveLinks: true,
 					    dictResponseError: 'Server not Configured',
 					    acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
@@ -134,7 +134,7 @@
 	    	<div class="row">
         			<div class="col-md-10" style="align-content: center;">
 
-	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone"></form>
+	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="my-awesome-dropzone"></form>
 	    		</div>
 	    	</div>
 
