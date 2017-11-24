@@ -43,17 +43,50 @@
 								  });
 					    	</script>-->
 		<script type="text/javascript">
-					$(function(){
-					  Dropzone.options.myAwesomeDropzone = {
-					  	paramName: "file",
-					    maxFilesize: 10,
-
-success: function (file, response) {
-        console.log(response);
-    }
-					  };
-					})
-</script>
+				Dropzone.options.myAwesomeDropzone = { 
+				 
+				 // set following configuration
+				 
+				    autoProcessQueue: false,
+				    uploadMultiple: true,
+				    parallelUploads: 10,
+				    maxFiles: 10,
+				    addRemoveLinks: true,
+				    previewsContainer: ".dropzone-previews",
+				    dictRemoveFile: "Remove",
+				    dictCancelUpload: "Cancel",
+				    dictDefaultMessage: "Inserte imagen aquí",
+				    dictFileTooBig: "Image size is too big. Max size: 10mb.",
+				    dictMaxFilesExceeded: "Only 10 images allowed per upload.",
+				    acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF",
+				 
+				   // The setting up of the dropzone
+				 
+				   init: function() {
+				     var myDropzone = this;
+				 
+				   // Upload images when submit button is clicked.
+				 
+				   $("#submit-all").click(function (e) {
+				       e.preventDefault();
+				       e.stopPropagation();
+				       myDropzone.processQueue();
+				 
+				    });
+				 
+				 
+				   // Refresh page when all images are uploaded
+				 
+				    myDropzone.on("complete", function (file) {
+				         if (myDropzone.getUploadingFiles().length === 0 && myDropzone.getQueuedFiles().length === 0) {
+				        window.location.reload();
+				        }
+				      });
+				 
+				    }
+				 
+				 }
+		</script>
 	<br/>
 
 	@if( empty($status) )
@@ -102,15 +135,7 @@ success: function (file, response) {
 	    		@endif
 
 
-
-	    	<div class="row">
-        			<div class="col-md-10" style="align-content: center;">
-
-	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form>
-	    		</div>
-	    	</div>
-
-	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
+	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    			{{ csrf_field() }}
 	    			<div class="row">
 
@@ -120,7 +145,12 @@ success: function (file, response) {
 		    			 	<input type="file" name="photo" id="photo" class="form-control-file"><br/>
 		    			</div>-->
 	    			</div>
-	    			
+	    			<div class="dropzone-previews"></div>
+ 
+					    <div class="fallback">
+					       <input name="file" type="file" multiple/>
+					    </div>
+						    			
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
@@ -257,7 +287,7 @@ success: function (file, response) {
 					            	&nbsp;
 					            </div>
 					    		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat" id="submit-all">
 						                Guardar
 						            </button>
 					            </div>
@@ -269,7 +299,7 @@ success: function (file, response) {
 					            	&nbsp;
 					            </div>
 					       		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat" id="submit-all">
 						                Guardar
 						            </button>
 					            </div>
