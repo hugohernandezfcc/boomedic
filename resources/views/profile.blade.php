@@ -46,7 +46,7 @@
 				Dropzone.options.myAwesomeDropzone = { 
 				 
 				 // set following configuration
-				 	paramName: "file",
+				 
 				    maxFiles: 10,
 				    addRemoveLinks: true,
 				    previewsContainer: ".dropzone-previews",
@@ -106,6 +106,12 @@
 	    		@endif
 	    		<div><form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    			
+
+	    				<div class="dropzone-previews"></div>
+ 
+					    <div class="fallback">
+					       <input name="file" type="file"/>
+					    </div>
 	    		</form></div>
 
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post">
