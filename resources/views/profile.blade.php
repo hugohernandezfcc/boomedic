@@ -46,17 +46,13 @@
 				Dropzone.options.myAwesomeDropzone = { 
 				 
 				 // set following configuration
-				 
-				    autoProcessQueue: false,
-				    uploadMultiple: true,
-				    parallelUploads: 10,
+				 	paramName: "file",
 				    maxFiles: 10,
 				    addRemoveLinks: true,
 				    previewsContainer: ".dropzone-previews",
 				    dictRemoveFile: "Remove",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Inserte imagen aquí",
-				    dictFileTooBig: "Image size is too big. Max size: 10mb.",
 				    dictMaxFilesExceeded: "Only 10 images allowed per upload.",
 				    acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF",
 				 
@@ -110,12 +106,6 @@
 	    		@endif
 	    		<div><form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    			
-
-	    				<div class="dropzone-previews"></div>
- 
-					    <div class="fallback">
-					       <input name="file" type="file" multiple/>
-					    </div>
 	    		</form></div>
 
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post">
