@@ -7,6 +7,14 @@
 @stop
 
 @section('content')
+
+	<script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
+    <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+
+
+
 		    			 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		    			 <script type="text/javascript">
 					    		$(window).load(function(){
@@ -34,6 +42,12 @@
 								    });
 								  });
 					    	</script>
+					    	<script type="text/javascript">
+        Dropzone.options.imageUpload = {
+            maxFilesize         :       1,
+            acceptedFiles: ".jpeg,.jpg,.png,.gif"
+        };
+</script>
 	<br/>
 
 	@if( empty($status) )
@@ -83,7 +97,11 @@
 
 
 
-
+	    	<div class="row">
+        			<div class="col-md-12">
+	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" files="true"></form>
+	    		</div>
+	    	</div>
 
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
