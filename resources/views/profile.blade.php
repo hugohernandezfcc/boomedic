@@ -44,8 +44,8 @@
 					    	</script>-->
 		<script type="text/javascript">
 					$(function(){
-					  Dropzone.options.myAwesomeDropzone = {
-					    maxFilesize: 5,
+					  Dropzone.options.dropzone = {
+					    maxFilesize: 1,
 					    addRemoveLinks: true,
 					    dictResponseError: 'Server not Configured',
 					    acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
