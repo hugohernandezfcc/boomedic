@@ -7,7 +7,33 @@
 @stop
 
 @section('content')
- @yield('content')
+		    			 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		    			 <script type="text/javascript">
+					    		$(window).load(function(){
+
+								 $(function() {
+								  $('#file').change(function(e) {
+								      addImage(e); 
+								     });
+								     function addImage(e){
+								      var file = e.target.files[0],
+								      imageType = /image.*/;
+								    
+								      if (!file.type.match(imageType))
+								       return;
+								  
+								      var reader = new FileReader();
+								      reader.onload = fileOnload;
+								      reader.readAsDataURL(file);
+								     }
+								  
+								     function fileOnload(e) {
+								      var result=e.target.result;
+								      $('#imgSalida').attr("src",result);
+								     }
+								    });
+								  });
+					    	</script>
 	<br/>
 
 	@if( empty($status) )
@@ -67,33 +93,7 @@
 	    			 <img id="imgSalida" width="20%" height="20%" src="" /><br/>
 		    			 <div class="col-sm-12">
 		    			 	<input type="file" name="photo" id="photo">
-		    			 <script src="{{ asset('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js') }}"></script>
-					    	<script type="text/javascript">
-					    		$(window).load(function(){
 
-								 $(function() {
-								  $('#file').change(function(e) {
-								      addImage(e); 
-								     });
-								     function addImage(e){
-								      var file = e.target.files[0],
-								      imageType = /image.*/;
-								    
-								      if (!file.type.match(imageType))
-								       return;
-								  
-								      var reader = new FileReader();
-								      reader.onload = fileOnload;
-								      reader.readAsDataURL(file);
-								     }
-								  
-								     function fileOnload(e) {
-								      var result=e.target.result;
-								      $('#imgSalida').attr("src",result);
-								     }
-								    });
-								  });
-					    	</script>
 		    			</div>
 	    			</div>
 	    			
