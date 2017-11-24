@@ -107,10 +107,8 @@
 	    	<div class="row">
         			<div class="col-md-10" align="center">
 
-	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone">
-	    					 <div>
-					                <h3>Sube tu foto de perfil</h3>
-					            </div>
+	    				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="imageUpload">
+
 	    				</form>
 	    		</div>
 	    	</div>

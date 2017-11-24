@@ -215,8 +215,8 @@ class profile extends Controller
         $user->postalcode    = $request->postalcode; 
         $user->latitude      = $request->latitude; 
         $user->longitude     = $request->longitude; 
+        $user->save();
 
-        if ( $user->save() ) 
             return redirect('user/profile/' . $id );
     }
 
