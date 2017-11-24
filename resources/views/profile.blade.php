@@ -12,7 +12,7 @@
 					    		$(window).load(function(){
 
 								 $(function() {
-								  $('#file').change(function(e) {
+								  $('#photo').change(function(e) {
 								      addImage(e); 
 								     });
 								     function addImage(e){
@@ -93,7 +93,6 @@
 	    			 <img id="imgSalida" width="20%" height="20%" src="" /><br/>
 		    			 <div class="col-sm-12">
 		    			 	<input type="file" name="photo" id="photo">
-
 		    			</div>
 	    			</div>
 	    			
