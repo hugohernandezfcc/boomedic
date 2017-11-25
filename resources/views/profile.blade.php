@@ -52,9 +52,7 @@
 				    dictRemoveFile: "Remove",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arrastre su foto aquí...",
-				     accept: function(file, done) {
-            			},
-				 
+					acceptedFiles: ".jpeg,.jpg,.png,.gif"
 				 };
 		</script>
 	<br/>
