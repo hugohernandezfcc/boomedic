@@ -46,15 +46,20 @@
 				Dropzone.options.myAwesomeDropzone = { 
 				 
 				 // set following configuration
-				 	paramName: 'file',
-				    maxFiles: 2,
+				    maxFiles: 1,
 				    addRemoveLinks: true,
-				    dictRemoveFile: "Remove",
-				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arrastre su foto aquí...",
-				     accept: function(file, done) {
-            			},
-				 
+				    autoProcessQueue : false
+				 	    init: function () {
+            //var dropZone = this;
+			            if (document.getElementById('mydropzone').files.length > 0) {
+			                alert();
+			                $.each(files, function (index, item) {
+			                    this.emit('addedfile', 'uploading');
+			                });
+			            }
+
+			        }
 				 };
 		</script>
 	<br/>
