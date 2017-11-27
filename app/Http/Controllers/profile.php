@@ -182,10 +182,8 @@ class profile extends Controller
        // $path = $request->photo->store('images', 's3');
          $user = User::find($id);
         $file = $request->file('file');
-        if(empty($fyle)){
+        if(empty($file)){
         $img = Image::make($file);
-        $img->resize(250, 250);
-
         $img->encode('jpg');
         Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
         $filename = $id.'.jpg';
