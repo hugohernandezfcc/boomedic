@@ -135,7 +135,7 @@
                         <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
                             <label for="amount" class="col-md-4 control-label">Monto</label>
                             <div class="col-md-6">
-                                <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" autofocus>
+                                <input id="amount" type="number" class="form-control" name="amount" value="{{ old('amount') }}"  required>
                                 @if ($errors->has('amount'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('amount') }}</strong>
