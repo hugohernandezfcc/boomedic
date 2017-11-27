@@ -107,8 +107,10 @@
 		            </div>
 	    		@endif
 	    		<div class="row">
-	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
-	    		<div class="col-sm-10" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
+	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil Actual</label>
+	    		<div class="col-sm-4" align="center" style="margin: 10px 0 30px auto;"> <img src="{{ $photo }}" alt="User Image"></div>
+	    		<label class="col-sm-2 control-label" style="text-align: right;">Actualizar su foto de perfil</label>
+	    		<div class="col-sm-4" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    		</form></div></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
