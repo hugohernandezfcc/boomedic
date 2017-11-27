@@ -51,7 +51,7 @@
 				    addRemoveLinks: true,
 				    dictRemoveFile: "Eliminar",
 				    dictCancelUpload: "Cancel",
-				    dictDefaultMessage: "Arrastre su foto aquí...",
+				    dictDefaultMessage: "Arrastre o cargue su foto...",
 
 				    //autoProcessQueue : false
 				 	   
@@ -107,7 +107,7 @@
 		            </div>
 	    		@endif
 	    		<div class="row">
-	    		<label class="col-sm-2 control-label">Foto de perfil</label>
+	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
 	    		<div class="col-sm-10" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    		</form></div></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
