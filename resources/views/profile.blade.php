@@ -46,13 +46,17 @@
 				Dropzone.options.myAwesomeDropzone = { 
 				 
 				 // set following configuration
-				 
-				    maxFiles: 10,
+				 	paramName: 'file',
+				 	 clickable: true,
+				    maxFiles: 1,
 				    addRemoveLinks: true,
 				    dictRemoveFile: "Remove",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arrastre su foto aquí...",
-					acceptedFiles: ".jpeg,.jpg,.png,.gif"
+				    enqueueForUpload: true,
+				     accept: function(file, done) {
+            			},
+				 
 				 };
 		</script>
 	<br/>
