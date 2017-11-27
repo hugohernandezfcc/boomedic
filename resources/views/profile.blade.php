@@ -47,7 +47,7 @@
 				 
 				 // set following configuration
 				 	paramName: 'file',
-				    maxFiles: 1,
+				    maxFiles: 2,
 				    addRemoveLinks: true,
 				    dictRemoveFile: "Remove",
 				    dictCancelUpload: "Cancel",
