@@ -49,9 +49,10 @@
 				 	paramName: "file",
 				    maxFiles: 1,
 				    addRemoveLinks: true,
-				    dictRemoveFile: "Remove",
+				    dictRemoveFile: "Eliminar",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arrastre su foto aquí...",
+				    acceptedFiles: 'image/*', 
 				    //autoProcessQueue : false
 				 	   
 				 };
