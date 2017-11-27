@@ -121,9 +121,11 @@
 	                            	<button type="submit" class="btn"><i class="fa fa-credit-card text-muted" id="reg"></i></button>
 		          		
 	        					</div></td>
+	        					</form>
 	        					 @endif
 	        					 @if($card->provider == 'Paypal')
-	        					 <td></td>
+	        					 <form action="postPaymentWithpaypal" method="post" class="form-horizontal">
+	        					 <td><input id="amount" type="number" class="form-control" name="amount" value="{{ old('amount') }}"  required></td>
 	                            <td align="center">
 	                            <div class="input-group-btn">
 		          				<!-- Delete button that goes to a destroy type driver for the user to delete badly entered payment methods or that he no longer wants to have -->
@@ -131,9 +133,13 @@
 		          				<i class="fa fa-trash text-muted"></i>
 		          				</a>
 	        					</div>
-	                           </td>
+	        					<div class="input-group-btn">
+                                <button type="submit" class="btn"><i class="fa fa-credit-card text-muted" id="reg"></i>
+                                </button>
+                            	</div>
+	                           </td></form>
 	        					@endif
-	        					</form>
+	        					
 	                        </tr>
 	                    @endforeach 
 
