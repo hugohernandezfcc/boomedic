@@ -106,10 +106,9 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-	    		<div class="row">
 	    		<label class="col-sm-2 control-label">Foto de perfil</label>
 	    		<div class="col-sm-10"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
-	    		</form></div></div><br/>
+	    		</form></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
@@ -128,7 +127,7 @@
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="email" class="col-sm-2 control-label">Corre electrónico</label>
+	                    <label for="email" class="col-sm-2 control-label">Correo electrónico</label>
 	                	<div class="col-sm-10">
 	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
 	                	</div>
