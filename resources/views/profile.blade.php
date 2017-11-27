@@ -48,6 +48,7 @@
 				 // set following configuration
 				 	paramName: "file",
 				    maxFiles: 1,
+				    acceptedFiles: "image/*",
 				    addRemoveLinks: true,
 				    dictRemoveFile: "Eliminar",
 				    dictCancelUpload: "Cancel",
@@ -109,7 +110,7 @@
 	    		<div class="row">
 	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil Actual</label>
 	    		<div class="col-sm-6" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
-	    			<img src="{{ $photo }}" alt="User Image"  style="-webkit-box-shadow: 10px 3px 21px 9px rgba(0,0,0,0.38);-moz-box-shadow: 10px 3px 21px 9px rgba(0,0,0,0.38); box-shadow: 10px 3px 21px 9px rgba(0,0,0,0.38);">
+	    			<img src="{{ $photo }}" alt="User Image"  style="-webkit-box-shadow: 10px 3px 21px 9px rgba(0,0,0,0.73); -moz-box-shadow: 10px 3px 21px 9px rgba(0,0,0,0.73); box-shadow: 10px 3px 21px 9px rgba(0,0,0,0.73);">
 	    		</form></div>
 	    		</div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
