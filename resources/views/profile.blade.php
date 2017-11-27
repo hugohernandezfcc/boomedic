@@ -46,7 +46,7 @@
 				Dropzone.options.myAwesomeDropzone = { 
 				 
 				 // set following configuration
-				 	//paramName: 'file',
+				 	paramName: "file",
 				    maxFiles: 1,
 				    addRemoveLinks: true,
 				    dictRemoveFile: "Remove",
@@ -110,7 +110,7 @@
 		    			 	<input type="file" name="photo" id="photo" class="form-control-file"><br/>
 		    			</div>-->
 	    			
-	    		<div><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
+	    		<div class="col-sm-6"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    			
 	    		</form></div>
 	    	</div><br/>
