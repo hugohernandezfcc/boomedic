@@ -106,9 +106,10 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-	    		<label class="col-sm-2 control-label">Foto de perfil</label><br/>
-	    		<div><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
-	    		</form></div><br/>
+	    		<div class="row">
+	    		<label class="col-sm-2 control-label">Foto de perfil</label>
+	    		<div class="col-sm-10"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
+	    		</form></div></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
