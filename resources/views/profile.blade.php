@@ -105,12 +105,9 @@
 	    			    			<div class="row">
 
 	    			 <label class="col-sm-2 control-label">Foto de perfil</label><br/>
-	    			 <!--<img id="imgSalida" width="250" height="250" src="{{ $photo }}" class="rounded"/><br/>
-		    			 <div class="col-sm-10">
-		    			 	<input type="file" name="photo" id="photo" class="form-control-file"><br/>
-		    			</div>-->
+
 	    			
-	    		<div class="col-sm-6"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
+	    		<div class="col-sm-12"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    			
 	    		</form></div>
 	    	</div><br/>
