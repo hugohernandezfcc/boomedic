@@ -53,16 +53,7 @@
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arrastre su foto aquí...",
 				    //autoProcessQueue : false
-				 	    init: function () {
-            //var dropZone = this;
-			            if (document.getElementById('myAwesomeDropzone').files.length > 0) {
-			                alert();
-			                $.each(files, function (index, item) {
-			                    this.emit('addedfile', 'uploading');
-			                });
-			            }
-
-			        }
+				 	   
 				 };
 		</script>
 	<br/>
@@ -119,7 +110,7 @@
 		    			 	<input type="file" name="photo" id="photo" class="form-control-file"><br/>
 		    			</div>-->
 	    			
-	    		<div><form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
+	    		<div><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    			
 	    		</form></div>
 	    	</div><br/>

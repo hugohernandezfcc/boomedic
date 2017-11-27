@@ -50,6 +50,12 @@ Route::group(['prefix' => 'user'], function(){
 		]
 	);
 
+	Route::post('updateProfile/{id}', [
+			'uses'	=>	'profile@updateProfile',
+			'as'	=>	'updateProfile'
+		]
+	);
+
 	Route::get('profile/{id}', [
 			'uses'	=>	'profile@show',
 			'as'	=>	'profile'

@@ -181,19 +181,6 @@ class profile extends Controller
     {
        // $path = $request->photo->store('images', 's3');
          $user = User::find($id);
-        $file = $request->file('file');
-        if($file)){
-        $img = Image::make($file);
-        $img->resize(250, 250);
-        $img->encode('jpg');
-        Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
-        $filename = $id.'.jpg';
-        $path = Storage::cloud()->url($filename);
-        $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
-
-       
-        $user->profile_photo = $path2;   
-        }
         $user->status        = $request->status;         
         $user->firstname     = $request->firstname;         
         $user->lastname      = $request->lastname;         
@@ -217,6 +204,27 @@ class profile extends Controller
         $user->postalcode    = $request->postalcode; 
         $user->latitude      = $request->latitude; 
         $user->longitude     = $request->longitude; 
+        if($user->save())
+            return redirect('user/profile/' . $id );
+    }
+
+        public function updateProfile(Request $request, $id)
+    {
+       // $path = $request->photo->store('images', 's3');
+         $user = User::find($id);
+        $file = $request->file('file');
+
+        $img = Image::make($file);
+        $img->resize(250, 250);
+        $img->encode('jpg');
+        Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
+        $filename = $id.'.jpg';
+        $path = Storage::cloud()->url($filename);
+        $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
+
+       
+        $user->profile_photo = $path2;   
+
         if($user->save())
             return redirect('user/profile/' . $id );
     }
