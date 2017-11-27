@@ -52,7 +52,7 @@
 				    dictRemoveFile: "Eliminar",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arrastre su foto aquí...",
-				    acceptedFiles: 'image/*', 
+				    
 				    //autoProcessQueue : false
 				 	   
 				 };
