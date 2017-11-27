@@ -180,19 +180,21 @@ class profile extends Controller
     public function update(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
-        
+         $user = User::find($id);
         $file = $request->file('file');
+        if(empty($fyle)){
         $img = Image::make($file);
-        $img->resize(250, 250);
+        //$img->resize(250, 250);
 
         $img->encode('jpg');
         Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
         $filename = $id.'.jpg';
         $path = Storage::cloud()->url($filename);
+        $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
 
-        $user = User::find($id);
-
-        $user->profile_photo = $path;   
+       
+        $user->profile_photo = $path2;   
+        }
         $user->status        = $request->status;         
         $user->firstname     = $request->firstname;         
         $user->lastname      = $request->lastname;         
