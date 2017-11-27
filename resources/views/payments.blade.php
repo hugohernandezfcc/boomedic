@@ -106,8 +106,9 @@
 	                            <td>{{ $card->provider }}</td>
 	                            <td>{{ $card->credit_debit }}</td>
 	          
-
+	                            @if($card->provider != 'Paypal')
 	                            <td><input type="text" name="pay" value="" style="text-align: center;"> <input type="hidden" name="id" value=" {{$card->id }} "></td>
+	                            @endif
 	                            <td align="center">
 	                            <div class="input-group-btn">
 		          				<!-- Delete button that goes to a destroy type driver for the user to delete badly entered payment methods or that he no longer wants to have -->
