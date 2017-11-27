@@ -108,7 +108,7 @@
 	    		@endif
 	    		<div class="row">
 	    		<label class="col-sm-2 control-label">Foto de perfil</label>
-	    		<div class="col-sm-10" align="right"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
+	    		<div class="col-sm-10" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    		</form></div></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
