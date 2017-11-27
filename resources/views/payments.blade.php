@@ -121,7 +121,7 @@
 	                            	<button type="submit" class="btn"><i class="fa fa-credit-card text-muted" id="reg"></i></button>
 		          		
 	        					</div></td>
-	        					</form>
+
 	        					 @endif
 	        					 @if($card->provider == 'Paypal')
 	        					 <td></td>
@@ -134,8 +134,9 @@
 	        					</div>
 	                           </td>
 	        					@endif
-	        					
+	        					</form>
 	                        </tr>
+	                        
 	                    @endforeach 
 
 	                </tbody>
