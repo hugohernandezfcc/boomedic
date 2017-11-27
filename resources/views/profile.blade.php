@@ -109,7 +109,7 @@
 	    		<label class="col-sm-2 control-label">Foto de perfil</label><br/>
 	    		<div><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    		</form></div><br/>
-	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post">
+	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -118,7 +118,6 @@
 	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
 	                	</div>
 	              	</div>
-
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
@@ -272,11 +271,11 @@
 					            	&nbsp;
 					            </div>
 							@endif
-							</form>
+							
 				    	</div>
 				  	</div>
 				  	<!-- box-footer -->
-
+			</form>
 	    		
 
 	    	@else
