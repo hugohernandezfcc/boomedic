@@ -52,7 +52,7 @@
 				    dictRemoveFile: "Eliminar",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arrastre su foto aquí...",
-				    
+
 				    //autoProcessQueue : false
 				 	   
 				 };
@@ -106,20 +106,13 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-	    			    			<div class="row">
-
-	    			 <label class="col-sm-2 control-label">Foto de perfil</label><br/>
-
-	    			
-	    		<div class="col-sm-12"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
-	    			
+	    		<div class="row">
+	    		<label class="col-sm-2 control-label">Foto de perfil</label><br/>
+	    		<div><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
 	    		</form></div>
-	    	</div><br/>
+	    		</div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post">
 	    			{{ csrf_field() }}
-
-
-						    			
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
