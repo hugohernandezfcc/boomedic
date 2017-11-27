@@ -108,7 +108,7 @@
 	          
 	                            @if($card->provider != 'Paypal')
 	                            <td><input type="text" name="pay" value="" style="text-align: center;"> <input type="hidden" name="id" value=" {{$card->id }} "></td>
-	                            @endif
+
 	                            <td align="center">
 	                            <div class="input-group-btn">
 		          				<!-- Delete button that goes to a destroy type driver for the user to delete badly entered payment methods or that he no longer wants to have -->
@@ -121,6 +121,18 @@
 	                            	<button type="submit" class="btn"><i class="fa fa-credit-card text-muted" id="reg"></i></button>
 		          		
 	        					</div></td>
+	        					 @endif
+	        					 @if($card->provider == 'Paypal')
+	        					 <td></td>
+	                            <td align="center">
+	                            <div class="input-group-btn">
+		          				<!-- Delete button that goes to a destroy type driver for the user to delete badly entered payment methods or that he no longer wants to have -->
+		          				<a href = 'delete/{{ $card->id }}' class="btn" onclick ="return confirm('¿Seguro desea eliminar este método de pago?')">
+		          				<i class="fa fa-trash text-muted"></i>
+		          				</a>
+	        					</div>
+	                           </td>
+	        					@endif
 	        					</form>
 	                        </tr>
 	                    @endforeach 
