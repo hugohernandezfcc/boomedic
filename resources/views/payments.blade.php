@@ -14,8 +14,11 @@
 	<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 	    <!-- lockscreen image -->
 	    <div class="lockscreen-image">
-	      <img src="https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
-	    </div>
+		    	@if(empty($photo) )
+		    	 <img src="https://pixabay.com/p-42914/?no_redirect"  alt="User Image">
+		    	@endif 
+		      <img src="{{ $photo }}" alt="User Image">
+		    </div>
 	    <!-- /.lockscreen-image -->
 
 	    <!-- lockscreen credentials (contains the form) -->
