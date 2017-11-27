@@ -193,7 +193,6 @@ class profile extends Controller
         $user = User::find($id);
 
         $user->profile_photo = $path;   
-
         $user->status        = $request->status;         
         $user->firstname     = $request->firstname;         
         $user->lastname      = $request->lastname;         
