@@ -11,7 +11,7 @@
 
     <p>
     <strong>Motivo:</strong> {!!$subject!!} <br/>
-    <strong>Detalle del ticket:</strong> {!!description!!}
+    <strong>Detalle del ticket:</strong> {!!$description!!}
     </p>
 
     
