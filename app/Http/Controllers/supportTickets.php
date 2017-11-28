@@ -63,8 +63,6 @@ class supportTickets extends Controller
 
         if ( $nTicket->save() ){
 
-            $idT = $nTicket
-
             $data = [
                  'name'          => $user->first_name,
                  'description' => $request->ticketDescription
