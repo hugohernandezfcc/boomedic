@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 </head>
-<body>
+<body style="background-color: #696363">
 	<img src="{{ $message->embed(public_path() . '/images/logoD.png') }}" width="170" height="150" style="background-color: black; align-self: right" />
     
     <h2>El usuario {!!$name!!} ha creado un ticket.</h2>
