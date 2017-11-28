@@ -9,7 +9,7 @@
     <h2>El usuario {!!$name!!} ha creado un ticket.</h2>
     
 
-    <h3>Motivos: {!!$description!!}.</h2>
+    <p>Motivos: {!!$subject!!}.</p>
 
     
 </body>
