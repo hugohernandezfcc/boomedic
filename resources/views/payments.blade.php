@@ -246,6 +246,22 @@
 				                </select>
 			                </div>
 		              	</div>
+		              	<div class="col-sm-4">
+			            	&nbsp;
+			            </div>
+			       		<div class="col-sm-4">
+				    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+				                Guardar
+				            </button>
+			            </div>
+			    		<div class="col-sm-4">
+			    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+				                Cancelar
+				            </a>
+			            </div>
+			            <div class="col-sm-4">
+			            	&nbsp;
+			            </div>
 
 	                </div>
 
@@ -255,6 +271,22 @@
 		                  		<input type="email" name="paypal_email" class="form-control" id="paypal_email" required>
 		                	</div><br/>
 
+		              	<div class="col-sm-4">
+			            	&nbsp;
+			            </div>
+		                	<div class="col-sm-4">
+				    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+				                Guardar
+				            </button>
+			            </div>
+			    		<div class="col-sm-4">
+			    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+				                Cancelar
+				            </a>
+			            </div>
+			            <div class="col-sm-4">
+			            	&nbsp;
+			            </div>
 
 					</div>
 
@@ -274,22 +306,6 @@
 	                	}
 
 	                </script>
-	                		              	<div class="col-sm-4">
-			            	&nbsp;
-			            </div>
-		                	<div class="col-sm-4">
-				    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
-				                Guardar
-				            </button>
-			            </div>
-			    		<div class="col-sm-4">
-			    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
-				                Cancelar
-				            </a>
-			            </div>
-			            <div class="col-sm-4">
-			            	&nbsp;
-			            </div>
                 </form>
             @endif
 
