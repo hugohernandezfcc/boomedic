@@ -63,8 +63,16 @@ class supportTickets extends Controller
 
         if ( $nTicket->save() ){
 
+            $idT = $nTicket
+
+            $data = [
+                 'name'          => $user->first_name,
+                 'description' => $request->ticketDescription
+            ];
+
             // Send email
-            Mail::send('emails.newTicket', ['user' => $user], function ($message) {
+            //Mail::send('emails.newTicket', ['user' => $user], function ($message) {
+            Mail::send('emails.newTicket', $data, function ($message) {
                 //$message->from('cristina@doitcloud.consulting', 'Boomedic');
                 $message->subject('Nuevo Ticket creado.');
                 //$message->to('cristina.pioquinto@hotmail.com');
