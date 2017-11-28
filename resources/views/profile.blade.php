@@ -68,7 +68,7 @@
 		    	@if(!$photo)
 		    	 <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
 		    	@endif 
-		      <img src="{{ $photo }}" alt="User Image">
+		      <img src="{{ $photo }}">
 		    </div>
 		    <!-- /.lockscreen-image -->
 
