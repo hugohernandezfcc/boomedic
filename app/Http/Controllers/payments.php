@@ -293,8 +293,8 @@ class payments extends Controller
                                 ->setItemList($item_list)
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
-                            $redirect_urls->setReturnUrl('https://sbx00.herokuapp.com/payment/getPaymentStatus') /** Specify return URL **/
-                                ->setCancelUrl('https://sbx00.herokuapp.com/medicalconsultations');
+                            $redirect_urls->setReturnUrl('https://afternoon-hollows-51469.herokuapp.com/payment/getPaymentStatus') /** Specify return URL **/
+                                ->setCancelUrl('https://afternoon-hollows-51469.herokuapp.com/medicalconsultations');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
