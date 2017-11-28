@@ -65,7 +65,7 @@ class supportTickets extends Controller
 
             $data = [
                  'name'     => $user->name,
-                 'subject'  => $request->subject
+                 'subject'  => $request->subject,
                  'description' => $request->ticketDescription
             ];
 
