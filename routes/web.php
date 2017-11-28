@@ -206,7 +206,44 @@ Route::group(['prefix' => 'privacyStatement'], function(){
 
 });
 
-		
+
+Route::group(['prefix' => 'supportTicket'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'supportTicket@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('create', [
+			'uses'	=>	'supportTicket@create',
+			'as'	=>	'create'
+		]
+	);
+
+	Route::post('store', [
+			'uses'	=>	'supportTicket@store',
+			'as'	=>	'store'
+		]
+	);
+
+	Route::get('delete/{id}', [
+			'uses'	=>	'supportTicket@destroy',
+			'as'	=>	'destroy'
+		]
+	);
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'tickets@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+
+});
+
+
+
+
+
 
 Route::post('/bye' , 'Auth\LoginController@logout');
 
