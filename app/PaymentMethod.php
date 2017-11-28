@@ -16,11 +16,11 @@ class PaymentMethod extends Model
 		'year',
 		'cvv',
 		'cardnumber',
-		'owner'
+		'owner',
+		'paypal_email'
     ];
-    
 
     public function user(){
-	  return $this->belongsTo('App\User', 'owner');
+	  return $this->belongsTo('App\User');
 	}
 }

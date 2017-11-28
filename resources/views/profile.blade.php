@@ -8,6 +8,56 @@
 
 @section('content')
 
+	<script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
+    <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+
+
+
+		    			<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		    			 <script type="text/javascript">
+					    		$(window).load(function(){
+
+								 $(function() {
+								  $('#photo').change(function(e) {
+								      addImage(e); 
+								     });
+								     function addImage(e){
+								      var file = e.target.files[0],
+								      imageType = /image.*/;
+								    
+								      if (!file.type.match(imageType))
+								       return;
+								  
+								      var reader = new FileReader();
+								      reader.onload = fileOnload;
+								      reader.readAsDataURL(file);
+								     }
+								  
+								     function fileOnload(e) {
+								      var result=e.target.result;
+								      $('#imgSalida').attr("src",result);
+								     }
+								    });
+								  });
+					    	</script>-->
+		<script type="text/javascript">
+				Dropzone.options.myAwesomeDropzone = { 
+				 
+				 // set following configuration
+				 	paramName: "file",
+				    maxFiles: 1,
+				    acceptedFiles: "image/*",
+				    addRemoveLinks: true,
+				    dictRemoveFile: "Eliminar",
+				    dictCancelUpload: "Cancel",
+				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+
+				    //autoProcessQueue : false
+				 	   
+				 };
+		</script>
 	<br/>
 
 	@if( empty($status) )
@@ -15,7 +65,10 @@
 		<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 		    <!-- lockscreen image -->
 		    <div class="lockscreen-image">
-		      <img src="https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
+		    	@if(empty($photo) )
+		    	 <img src="https://pixabay.com/p-42914/?no_redirect"  alt="User Image">
+		    	@endif 
+		      <img src="{{ $photo }}" alt="User Image">
 		    </div>
 		    <!-- /.lockscreen-image -->
 
@@ -54,9 +107,13 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-
-	    	
-	    		<form action="/user/update/{{$userId}}" method="post" class="form-horizontal">
+	    		<div class="row">
+	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
+	    		<div class="col-sm-4" align="left">
+	    			<img src="{{ $photo }}" alt="User Image"  style="-webkit-box-shadow: 10px 4px 14px 2px rgba(0,0,0,0.75);-moz-box-shadow: 10px 4px 14px 2px rgba(0,0,0,0.75);box-shadow: 10px 4px 14px 2px rgba(0,0,0,0.75);">
+	    		</div>
+	    		<br/><br/><div class="col-sm-6" align="center" style="width:230px; height: 230px; "><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
+	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -66,7 +123,6 @@
 	                	</div>
 	              	</div>
 
-
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
 	                	<div class="col-sm-10">
@@ -75,7 +131,7 @@
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="email" class="col-sm-2 control-label">Corre electrónico</label>
+	                    <label for="email" class="col-sm-2 control-label">Correo electrónico</label>
 	                	<div class="col-sm-10">
 	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
 	                	</div>
@@ -219,11 +275,12 @@
 					            	&nbsp;
 					            </div>
 							@endif
+							
 				    	</div>
 				  	</div>
 				  	<!-- box-footer -->
-
-	    		</form>
+			</form>
+	    		
 
 	    	@else
     			<!-- Custom Tabs -->

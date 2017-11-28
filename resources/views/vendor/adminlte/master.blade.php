@@ -134,6 +134,9 @@
         
         if (document.getElementById('paymentmethodtable')) {
             $('#paymentmethodtable').DataTable({
+                language: {
+                  'search': 'Busqueda:'
+                },
                 'lengthChange': false
             });
         }
