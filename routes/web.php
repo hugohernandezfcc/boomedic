@@ -50,6 +50,12 @@ Route::group(['prefix' => 'user'], function(){
 		]
 	);
 
+	Route::post('updateProfile/{id}', [
+			'uses'	=>	'profile@updateProfile',
+			'as'	=>	'updateProfile'
+		]
+	);
+
 	Route::get('profile/{id}', [
 			'uses'	=>	'profile@show',
 			'as'	=>	'profile'
@@ -85,9 +91,16 @@ Route::group(['prefix' => 'payment'], function(){
 		]
 	);
 
+
 	Route::get('delete/{id}', [
 			'uses'	=>	'payments@destroy',
 			'as'	=>	'destroy'
+		]
+	);
+
+	Route::get('Transactions/{id}', [
+			'uses'	=>	'payments@Transactions',
+			'as'	=>	'Transactions'
 		]
 	);
 
@@ -96,11 +109,25 @@ Route::group(['prefix' => 'payment'], function(){
 			'as'	=>	'redirecting'
 		]
 	);
+
 	Route::post('PaymentAuthorizations',[
 			'uses'	=>	'payments@PaymentAuthorizations',
 			'as'	=>	'PaymentAuthorizations'
 		]
 	);
+
+	Route::post('postPaymentWithpaypal', [
+		    'as' => 'postPaymentWithpaypal',
+		    'uses' => 'payments@postPaymentWithpaypal'
+		]);
+
+		// when the payment is done, this will redirect us to our page
+	Route::get('getPaymentStatus',[
+		    'as' => 'getPaymentStatus',
+		    'uses' => 'payments@getPaymentStatus'
+		]);
+
+
 
 
 });
@@ -135,6 +162,50 @@ Route::group(['prefix' => 'doctor'], function(){
 });
 
 
+Route::group(['prefix' => 'privacyStatement'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'privacyStatement@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('create', [
+			'uses'	=>	'privacyStatement@create',
+			'as'	=>	'create'
+		]
+	);
+
+	Route::post('store', [
+			'uses'	=>	'privacyStatement@store',
+			'as'	=>	'store'
+		]
+	);
+
+	Route::get('delete/{id}', [
+			'uses'	=>	'privacyStatement@destroy',
+			'as'	=>	'destroy'
+		]
+	);
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'privacyStatement@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+	Route::post('Aceptar', [
+			'uses'	=>	'privacyStatement@Aceptar',
+			'as'	=>	'Aceptar'
+		]
+	);
+	Route::post('Rechazar', [
+			'uses'	=>	'privacyStatement@Rechazar',
+			'as'	=>	'Rechazar'
+		]
+	);
+
+});
+
 
 Route::group(['prefix' => 'supportTicket'], function(){
 
@@ -163,7 +234,6 @@ Route::group(['prefix' => 'supportTicket'], function(){
 	);
 
 });
-
 
 Route::post('/bye' , 'Auth\LoginController@logout');
 
