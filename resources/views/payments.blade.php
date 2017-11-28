@@ -267,10 +267,9 @@
 
 	                <div id="paypalButton" style="display: none;">
 		                    <label for="paypal_email" class="col-sm-2 control-label">Email Paypal</label>
-		                    <form action="storep" method="post" class="form-horizontal">
 		                	<div class="col-sm-10">
 		                  		<input type="text" name="paypal_email" class="form-control" id="paypal_email" required>
-		                	</div>
+		                	</div><br/>
 
 		              	<div class="col-sm-4">
 			            	&nbsp;
@@ -285,7 +284,7 @@
 				                Cancelar
 				            </a>
 			            </div>
-			        </form>
+
 					</div>
 
 	                

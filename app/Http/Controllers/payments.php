@@ -90,6 +90,11 @@ class payments extends Controller
      */
     public function store(Request $request)
     {
+
+
+        if ($request->typemethod == 'card') {
+            # code...
+        
         $number = substr($request->cardnumber,0,1);
         $provider = 'Null';
         $pmethods = new PaymentMethod;
@@ -112,21 +117,21 @@ class payments extends Controller
         $pmethods->bank          = $request->bank;
         $pmethods->credit_debit  = $request->CreDeb;
         $pmethods->owner         = Auth::id();
-        if ( $pmethods->save() ) 
-       return redirect('payment/index');
-}
+        }
+    
 
-    public function storep(Request $request)
-    {
+        if($request->typemethod == 'paypal'){
         $pmethods = new PaymentMethod;
         $pmethods->provider      = 'Paypal';
         $pmethods->typemethod    = 'Paypal';
         //$pmethods->cardnumber    = $request->cardnumber;
-        $pmethods->paypal_email          = $request->paypal_email;
+        $pmethods->paypal_email  = $request->paypal_email;
         $pmethods->owner         = Auth::id();
-        if ( $pmethods->save() ) 
+        }
+        if ($pmethods->save() ) 
        return redirect('payment/index');
 }
+
     /**
      * Display the specified resource.
      *
