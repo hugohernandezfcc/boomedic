@@ -124,6 +124,7 @@ class payments extends Controller
         $pmethods = new PaymentMethod;
         $pmethods->provider      = 'Paypal';
         $pmethods->typemethod    = 'Paypal';
+        $pmethods->cardnumber    = '0';
         //$pmethods->cardnumber    = $request->cardnumber;
         $pmethods->paypal_email  = $request->paypal_email;
         $pmethods->owner         = Auth::id();
