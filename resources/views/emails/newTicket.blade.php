@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 </head>
 <body>
-	<img src="<?php echo $message->embed('\resources\assets\images\logoD.png'); ?>">
+	<img src="\resources\assets\images\logoD.png">
     <h2>El usuario {{ $user->name }} ha creado un ticket.</h2>
 </body>
 </html>
