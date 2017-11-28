@@ -271,6 +271,10 @@
 		                	<div class="col-sm-10">
 		                  		<input type="text" name="paypal_email" class="form-control" id="paypal_email" required>
 		                	</div>
+
+		              	<div class="col-sm-4">
+			            	&nbsp;
+			            </div>
 		                	<div class="col-sm-4">
 				    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 				                Guardar
