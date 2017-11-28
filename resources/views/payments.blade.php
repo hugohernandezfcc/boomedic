@@ -107,7 +107,7 @@
 	                            <td>{{ $card->credit_debit }}</td>
 	          
 	                            @if($card->provider != 'Paypal')
-	                            <td><input type="text" name="pay" value="" style="text-align: center;" class="form-control"> <input type="hidden" name="id" value=" {{$card->id }} "></td>
+	                            <td><input type="number" name="pay" value="" style="text-align: center;" class="form-control" required> <input type="hidden" name="id" value=" {{$card->id }} "></td>
 
 	                            <td align="center">
 	                            <div class="input-group-btn">
