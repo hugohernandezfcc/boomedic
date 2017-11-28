@@ -64,10 +64,10 @@ class supportTickets extends Controller
         if ( $nTicket->save() ){
 
             $data = [
-                 'name'     => $user->name,
-                 'email'    => $user->email,
+                'name'     => $user->name,
+                'email'    => $user->email,
 
-                 'age'     => $user->age,                 
+                'age'     => $user->age,                 
                 'gender'    => $user->gender,
                 'occupation'=> $user->occupation,
                 'country'   => $user->country,    
@@ -92,9 +92,9 @@ class supportTickets extends Controller
             // VISTA: <h2>El usuario {{ $user->name }} ha creado un ticket.</h2>
             Mail::send('emails.newTicket', $data, function ($message) {
                 //$message->from('cristina@doitcloud.consulting', 'Boomedic');
-                $message->subject('Nuevo Ticket creado.');
+                $message->subject('Nuevo Ticket creado - ' . $user->name);
                 //$message->to('cristina.pioquinto@hotmail.com');
-                $message->to('cristina@doitcloud.consulting');
+                $message->to('contacto@doitcloud.consulting');
             });
 
             return redirect('supportTicket/index');
