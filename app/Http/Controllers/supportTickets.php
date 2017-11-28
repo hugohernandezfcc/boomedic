@@ -75,7 +75,7 @@ class supportTickets extends Controller
                 'delegation'    => $user->delegation,               
                 'colony'    => $user->colony,                   
                 'street'    => $user->street,                   
-                'phone'     => $user->mobile,
+                'mobile'     => $user->mobile,
                 'username'  => $user->username,                 
                 'firstname' => $user->firstname,                
                 'lastname'  => $user->lastname,                
