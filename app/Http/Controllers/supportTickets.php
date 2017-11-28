@@ -64,8 +64,9 @@ class supportTickets extends Controller
         if ( $nTicket->save() ){
 
             $data = [
-                 'name'          => $user->name,
-                 'description' => $request->ticketDescription
+                 'name'     => $user->name,
+                 'subject'  => $request->subject
+                 /*'description' => $request->ticketDescription*/
             ];
 
             // Send email
