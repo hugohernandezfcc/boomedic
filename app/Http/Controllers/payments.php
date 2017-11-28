@@ -366,7 +366,7 @@ class payments extends Controller
                               // Payment is successful do your business logic here
                                 //Add payment method
                                 $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->first();
-                                if(empty($paypalExist)){
+                                if(!$paypalExist){
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
                                 $pmethods->typemethod    = 'Paypal';
