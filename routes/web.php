@@ -90,6 +90,11 @@ Route::group(['prefix' => 'payment'], function(){
 			'as'	=>	'store'
 		]
 	);
+	Route::post('storep', [
+			'uses'	=>	'payments@storep',
+			'as'	=>	'storep'
+		]
+	);
 
 	Route::get('delete/{id}', [
 			'uses'	=>	'payments@destroy',

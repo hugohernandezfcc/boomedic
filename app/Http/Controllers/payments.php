@@ -115,6 +115,18 @@ class payments extends Controller
         if ( $pmethods->save() ) 
        return redirect('payment/index');
 }
+
+    public function storep(Request $request)
+    {
+        $pmethods = new PaymentMethod;
+        $pmethods->provider      = 'Paypal';
+        $pmethods->typemethod    = 'Paypal';
+        //$pmethods->cardnumber    = $request->cardnumber;
+        $pmethods->paypal_email          = $request->paypal_email;
+        $pmethods->owner         = Auth::id();
+        if ( $pmethods->save() ) 
+       return redirect('payment/index');
+}
     /**
      * Display the specified resource.
      *
@@ -349,12 +361,21 @@ class payments extends Controller
                               // Payment is successful do your business logic here
                                 //Add payment method
                                 $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->first();
-                                if(empty($paypalExist)){
+                                $paypalExistEmail = DB::table('paymentsmethods')->where('paypal_email', $result->getPayer()->getPayerInfo()->getEmail()->first();
+                                if(empty($paypalExist) && empty($paypalExistEmail)){
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
                                 $pmethods->typemethod    = 'Paypal';
                                 $pmethods->paypal_email  = $result->getPayer()->getPayerInfo()->getEmail();
                                 $pmethods->cardnumber    = $request->input('PayerID');
+                                $pmethods->owner         = Auth::id();
+                                $pmethods->save();
+
+                              }
+                                if($paypalExistEmail){
+                                
+                               
+                                $paypalExistEmail->cardnumber  =  $request->input('PayerID');
                                 $pmethods->owner         = Auth::id();
                                 $pmethods->save();
 
