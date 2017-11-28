@@ -14,7 +14,7 @@
 	<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 	    <!-- lockscreen image -->
 	    <div class="lockscreen-image">
-		    	@if(!$photo)
+		    	@if(empty($photo))
 		    	 <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
 		    	@endif 
 		      <img src="{{ $photo }}">
