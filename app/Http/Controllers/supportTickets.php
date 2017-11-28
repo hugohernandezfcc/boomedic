@@ -66,7 +66,6 @@ class supportTickets extends Controller
             $data = [
                 'name'     => $user->name,
                 'email'    => $user->email,
-
                 'age'     => $user->age,                 
                 'gender'    => $user->gender,
                 'occupation'=> $user->occupation,
@@ -82,18 +81,15 @@ class supportTickets extends Controller
                 'streetnumber'  => $user->streetnumber,           
                 'interiornumber'    => $user->interiornumber,       
                 'postalcode'    => $user->postalcode,
-
-                 'subject'  => $request->subject,
-                 'description' => $request->ticketDescription
+                'subject'  => $request->subject,
+                'description' => $request->ticketDescription
             ];
 
             // Send email
             //Mail::send('emails.newTicket', ['user' => $user], function ($message) {
             // VISTA: <h2>El usuario {{ $user->name }} ha creado un ticket.</h2>
             Mail::send('emails.newTicket', $data, function ($message) {
-                //$message->from('cristina@doitcloud.consulting', 'Boomedic');
                 $message->subject('Nuevo Ticket creado - ' . $user->name);
-                //$message->to('cristina.pioquinto@hotmail.com');
                 $message->to('contacto@doitcloud.consulting');
             });
 
