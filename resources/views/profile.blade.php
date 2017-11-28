@@ -113,7 +113,7 @@
 	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
 	    		<div class="col-sm-4" align="left">
 	    			@if($photo == '')
-		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:250px; height: 250px;">
+		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
 						<img src="{{ $photo }}">			
 			    	@endif 
