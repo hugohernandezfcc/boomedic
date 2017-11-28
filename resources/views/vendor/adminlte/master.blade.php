@@ -137,7 +137,7 @@
                 language: {
                   search: "Busqueda:"
                 },
-                "lengthChange": false
+                lengthChange: false
             });
         }
 
