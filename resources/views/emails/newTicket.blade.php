@@ -26,7 +26,7 @@
     <strong>Detalles del ticket</strong><br/>
 
     <strong>Motivo:</strong> {!!$subject!!} <br/>
-    <strong>Detalle del ticket:</strong> {!!$description!!}
+    <strong>Descripción:</strong> {!!$description!!}
     </p>
 
     
