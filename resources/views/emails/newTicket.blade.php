@@ -10,7 +10,7 @@
     
 
     <p>
-    <strong>Detalles del usuario</strong><br/><br/><br/>
+    <strong>Detalles del usuario</strong><br/>
     <strong>Nombre de Usuario:</strong> {!!$username!!} <br/>
     <strong>Nombre:</strong> {!!$firstname!!} {!!$lastname!!} <br/>
 
@@ -21,7 +21,9 @@
     <strong>Dirección:</strong> {!!$country!!}, {!!$state!!}, {!!$delegation!!}, {!!$colony!!}, {!!$postalcode!!}, {!!$street!!} {!!$streetnumber!!} {!!$interiornumber!!} <br/>
     <strong>Teléfono:</strong> {!!$phone!!} <br/>
 
-    <strong>Detalles del ticket</strong><br/><br/>
+    <br/><br/>
+
+    <strong>Detalles del ticket</strong><br/>
 
     <strong>Motivo:</strong> {!!$subject!!} <br/>
     <strong>Detalle del ticket:</strong> {!!$description!!}
