@@ -37,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
                 //es un médico
                 $menusInfo = DB::table('menus')
                                 ->where('to', 'Doctor' )
+                                ->orderBy('order')
                                 ->get();
 
                 for ($i=0; $i < $menusInfo->count(); $i++) { 
@@ -64,6 +65,7 @@ class AppServiceProvider extends ServiceProvider
                 $menusInfo = DB::table('menus')
                                 ->where('to', 'Patient' )
                                 ->orWhere('to', 'Both')
+                                ->orderBy('order')
                                 ->get();
 
                 for ($i=0; $i < $menusInfo->count(); $i++) { 
