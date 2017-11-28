@@ -19,7 +19,7 @@
     <strong>Ocupación:</strong> {!!$occupation!!} <br/>
     
     <strong>Dirección:</strong> {!!$country!!}, {!!$state!!}, {!!$delegation!!}, {!!$colony!!}, {!!$postalcode!!}, {!!$street!!} {!!$streetnumber!!} {!!$interiornumber!!} <br/>
-    <strong>Teléfono:</strong> {!!$phone!!} <br/>
+    <strong>Teléfono:</strong> {!!$mobile!!} <br/>
 
     <br/><br/>
 
