@@ -94,7 +94,7 @@ class payments extends Controller
 
         if ($request->typemethod == 'card') {
             # code...
-        
+        $pmethods = new PaymentMethod;
         $number = substr($request->cardnumber,0,1);
         $provider = 'Null';
 
@@ -121,6 +121,7 @@ class payments extends Controller
     
 
         if($request->typemethod == 'paypal'){
+        $pmethods = new PaymentMethod;
         $pmethods->provider      = 'Paypal';
         $pmethods->typemethod    = $request->typemethod;
         $pmethods->cardnumber    = '0';
