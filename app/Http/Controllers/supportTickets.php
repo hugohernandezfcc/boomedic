@@ -65,6 +65,24 @@ class supportTickets extends Controller
 
             $data = [
                  'name'     => $user->name,
+                 'email'    => $user->email,
+
+                 'age'     => $user->age,                 
+                'gender'    => $user->gender,
+                'occupation'=> $user->occupation,
+                'country'   => $user->country,    
+                'state'     => $user->state,                    
+                'delegation'    => $user->delegation,               
+                'colony'    => $user->colony,                   
+                'street'    => $user->street,                   
+                'phone'     => $user->phone,
+                'username'  => $user->username,                 
+                'firstname' => $user->firstname,                
+                'lastname'  => $user->lastname,                
+                'streetnumber'  => $user->streetnumber,           
+                'interiornumber'    => $user->interiornumber,       
+                'postalcode'    => $user->postalcode,
+
                  'subject'  => $request->subject,
                  'description' => $request->ticketDescription
             ];

@@ -10,6 +10,19 @@
     
 
     <p>
+    <strong>Detalles del usuario</strong><br/><br/><br/>
+    <strong>Nombre de Usuario:</strong> {!!$username!!} <br/>
+    <strong>Nombre:</strong> {!!$firstname!!} {!!$lastname!!} <br/>
+
+    <strong>Edad:</strong> {!!$age!!} <br/>
+    <strong>Género:</strong> {!!$gender!!} <br/>
+    <strong>Ocupación:</strong> {!!$occupation!!} <br/>
+    
+    <strong>Dirección:</strong> {!!$country!!}, {!!$state!!}, {!!$delegation!!}, {!!$colony!!}, {!!$postalcode!!}, {!!$street!!} {!!$streetnumber!!} {!!$interiornumber!!} <br/>
+    <strong>Teléfono:</strong> {!!$phone!!} <br/>
+
+    <strong>Detalles del ticket</strong><br/><br/>
+
     <strong>Motivo:</strong> {!!$subject!!} <br/>
     <strong>Detalle del ticket:</strong> {!!$description!!}
     </p>
