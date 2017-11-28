@@ -90,14 +90,14 @@ class payments extends Controller
      */
     public function store(Request $request)
     {
-
+        $pmethods = new PaymentMethod;
 
         if ($request->typemethod == 'card') {
             # code...
         
         $number = substr($request->cardnumber,0,1);
         $provider = 'Null';
-        $pmethods = new PaymentMethod;
+
         if($number == '4') 
         {
          $provider ='Visa'; 
@@ -121,15 +121,13 @@ class payments extends Controller
     
 
         if($request->typemethod == 'paypal'){
-        $pmethods = new PaymentMethod;
         $pmethods->provider      = 'Paypal';
-        $pmethods->typemethod    = 'Paypal';
+        $pmethods->typemethod    = $request->typemethod;
         $pmethods->cardnumber    = '0';
-        //$pmethods->cardnumber    = $request->cardnumber;
         $pmethods->paypal_email  = $request->paypal_email;
         $pmethods->owner         = Auth::id();
         }
-        if ($pmethods->save() ) 
+        if ($pmethods->save()) 
        return redirect('payment/index');
 }
 
