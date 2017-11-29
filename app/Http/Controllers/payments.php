@@ -382,7 +382,7 @@ class payments extends Controller
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
                                             $Trans->receiver = 'receiver prueba';
-                                            $Trans->amount = $result->getTransactions()->getAmount()->getTotal();
+                                            $Trans->amount = '1';
                                             $Trans->save();    
                                         
 
