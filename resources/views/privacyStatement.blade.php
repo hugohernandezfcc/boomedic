@@ -8,6 +8,28 @@
 
 @section('content')
 
+<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
+ <!-- lockscreen image -->
+	   <div class="lockscreen-image">
+		    	@if($photo == '')
+		    	 	<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
+				@else
+					<img src="{{ $photo }}">			
+		    	@endif 
+
+		    </div>
+	    <!-- /.lockscreen-image -->
+
+	    <!-- lockscreen credentials (contains the form) -->
+	    <form class="lockscreen-credentials" action="create" method="get">
+	    	{{ csrf_field() }}
+	      	<div class="input-group">
+	        	<div class="form-control">{{ $username }}</div>
+	        	<input type="hidden" name="id" value="{{ $userId }}">
+	      	</div>
+	    </form>
+	    <!-- /.lockscreen credentials -->
+	</div>
 
 <div class="box">
   	<div class="box-header with-border">
