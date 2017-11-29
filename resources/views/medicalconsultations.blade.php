@@ -254,7 +254,7 @@
           </span>
         </div>
       </div>
-      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:40%;padding-top: 20%;">
+      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:35%;padding-top: 20%;">
         <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
       </div>
 
