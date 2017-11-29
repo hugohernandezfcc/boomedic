@@ -22,7 +22,7 @@ class supportTickets extends Controller
         return view('tickets', [
                 'allTickets'=> $allTickets,
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
                 'mode'      => 'listTickets'
             ]
         );
@@ -37,7 +37,7 @@ class supportTickets extends Controller
     {
         return view('tickets', [
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
                 'email'     => DB::table('users')->where('id', Auth::id() )->value('email'),
                 'mode'      => 'createTicket'
             ]
