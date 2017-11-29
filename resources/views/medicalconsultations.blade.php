@@ -266,7 +266,7 @@
       </div>
       
       <div id="map"></div>
-      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;">
+      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute; align-content: center;">
         <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
       </div>
     </div>
@@ -546,7 +546,7 @@
 
         setTimeout(function(){
           document.getElementById('loadermap-to-remove').style.display = 'none';
-        }, 2100);
+        }, 4000);
       }
 
  
