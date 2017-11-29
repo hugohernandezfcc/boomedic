@@ -238,6 +238,3 @@ Route::group(['prefix' => 'supportTicket'], function(){
 
 Route::post('/bye' , 'Auth\LoginController@logout');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
