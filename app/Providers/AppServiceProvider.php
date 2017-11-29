@@ -31,13 +31,23 @@ class AppServiceProvider extends ServiceProvider
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
 
             $profInfo = DB::table('ProfessionalInformation')->where('user', Auth::id() )->get();
+             $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
+             $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
 
+
+             if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+                 $event->menu->add([
+                                    'text' => 'Aviso de Privacidad',
+                                    'url'  => 'privacyStatement/index',
+                                    'icon' => ''
+                                ]);
+                }
+                else{
 
             if($profInfo->count() > 0){
                 //es un médico
                 $menusInfo = DB::table('menus')
                                 ->where('to', 'Doctor' )
-                                ->orderBy('order')
                                 ->get();
 
                 for ($i=0; $i < $menusInfo->count(); $i++) { 
@@ -62,10 +72,18 @@ class AppServiceProvider extends ServiceProvider
 
             }else{
 
+              if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+                 $event->menu->add([
+                                    'text' => 'Aviso de Privacidad',
+                                    'url'  => 'privacyStatement/index',
+                                    'icon' => ''
+                                ]);
+                }
+                else{
+
                 $menusInfo = DB::table('menus')
                                 ->where('to', 'Patient' )
                                 ->orWhere('to', 'Both')
-                                ->orderBy('order')
                                 ->get();
 
                 for ($i=0; $i < $menusInfo->count(); $i++) { 
@@ -88,9 +106,12 @@ class AppServiceProvider extends ServiceProvider
                     }
                 }
 
-            }            
+            }
+
+         } }
         });
-    }
+    
+}
  
     /**
      * Register any application services.

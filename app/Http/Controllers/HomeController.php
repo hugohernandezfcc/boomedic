@@ -25,10 +25,26 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
+        $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
         
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
             return redirect('user/edit/In%20Progress');
-        }else{
+        }
+
+
+        if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+            $mode = 'Null';
+                    return view('privacyStatement', [
+                'privacy'     => $privacyStatement[0],
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'mode'      => $mode
+            ]
+        );
+        }
+       
+        else {
             return view('medicalconsultations', [
                     'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
                     'userId' => Auth::id()
