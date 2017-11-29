@@ -546,7 +546,7 @@
 
         setTimeout(function(){
           document.getElementById('loadermap-to-remove').style.display = 'none';
-        }, 1500);
+        }, 2100);
       }
 
  
