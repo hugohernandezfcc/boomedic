@@ -130,15 +130,13 @@ class privacyStatement extends Controller
     
     // redirect
     
-   return redirect('privacyStatement/index');
+        return redirect('privacyStatement/index');
     }
 
-        public function Aceptar()
+    public function Aceptar()
     {
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
-
         DB::table('users')->where('id',Auth::id())->update(['privacy_statement' => $privacyStatement[0]->id]);
-
         $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
 
         if(is_null($StatementForUser))
@@ -147,7 +145,7 @@ class privacyStatement extends Controller
             $mode = 'Full';
         
 
-    return redirect('privacyStatement/index');
+        return redirect('medicalconsultations');
     }
 
 
