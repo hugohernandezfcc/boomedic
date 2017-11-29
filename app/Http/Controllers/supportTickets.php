@@ -23,6 +23,7 @@ class supportTickets extends Controller
                 'allTickets'=> $allTickets,
                 'userId'    => Auth::id(),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                 'mode'      => 'listTickets'
             ]
         );
