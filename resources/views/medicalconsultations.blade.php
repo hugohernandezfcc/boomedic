@@ -266,8 +266,8 @@
       </div>
       
       <div id="map"></div>
-      <div class="overlay">
-        <i class="fa fa-refresh fa-spin"></i>
+      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;">
+        <h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1>
       </div>
     </div>
 
@@ -543,6 +543,10 @@
             infoWindow.setPosition({lat: 20.42, lng: -99.18});
             infoWindow.setContent(message03);
         }
+
+        setTimeout(function(){
+          document.getElementById('loadermap-to-remove').style.display = 'none';
+        }, 1500);
       }
 
  
