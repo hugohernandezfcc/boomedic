@@ -14,8 +14,11 @@
 	    <h3 class="box-title">Aviso de Privacidad</h3>
   	</div>
   	<div class="box-body">
-	  	@if($mode == 'Null')        				      
-		  	<p>
+	  	@if($mode == 'Null')
+	  		<div class="alert alert-info">
+		        <i class="icon fa fa-info"></i>Lee detenidamente el aviso de privacidad de nuestra compañia, estos terminos representan la disponibilidad del uso de esta aplicación, el rechazo del mismo limita el acceso a los servicios de la compañia.
+		    </div>        				      
+		  	<p align="justify">
 		  		{{ $privacy->description }}
 		  	</p>
 		  	<div class="row">
