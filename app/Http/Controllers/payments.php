@@ -234,7 +234,7 @@ class payments extends Controller
                     /* Insert Transaction_bank*/    
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Transacción Nro. '.$Transaction->id.': Pago procesado correctamente por un monto de: '. $request->pay.'$, para más información consulte su cartera de pago... ', 
+            'message' => 'Transacción Nro. '.$Transaction->id.': Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... ', 
             'success' => 'success'
             );
             return redirect('payment/index')->with($notification);
