@@ -21,6 +21,7 @@ class CreateTableMedicalAppointments extends Migration
             $table->foreign('user_doctor')->references('id')->on('users');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->datetime('when');
             $table->timestamps();
         });
     }

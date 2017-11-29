@@ -63,6 +63,7 @@ class medicalappointments extends Controller
         $medical->user_doctor    = '3';
         $medical->latitude       = 'Prueba';
         $medical->longitude     = 'Prueba';
+        $medical->when          = now();
             
         if ($medical->save()) 
        return redirect('medicalconsultations');
