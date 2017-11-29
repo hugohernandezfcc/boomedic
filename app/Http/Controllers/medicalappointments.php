@@ -100,7 +100,12 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $medical = medical_appointments::find(1);
+
+        $medical->when = '2017-30-12 09:00:00';
+
+        if ($medical->save()) 
+       return redirect('medicalconsultations');
     }
 
 
