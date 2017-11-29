@@ -67,7 +67,7 @@ class profile extends Controller
     {
         $users = DB::table('users')->where('id', Auth::id() )->get();
         return view('profile', [
-                'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'name' => DB::table('users')->where('id', Auth::id() )->value('name'),
 
                  /** SYSTEM INFORMATION */
 

@@ -48,7 +48,7 @@
 		    <form class="lockscreen-credentials" action="/user/edit/complete" method="get">
 		    	{{ csrf_field() }}
 		      	<div class="input-group">
-		        	<div class="form-control">{{ $username }}</div>
+		        	<div class="form-control">{{ $name }}</div>
 		        	<input type="hidden" name="id" value="{{ $userId }}">
 		        	<div class="input-group-btn">
 			          	<button type="submit" class="btn">

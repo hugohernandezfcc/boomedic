@@ -9,10 +9,13 @@
 @section('content')
 
 	<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
-	    <!-- lockscreen image -->
+ <!-- lockscreen image -->
 	    <div class="lockscreen-image">
-	      <img src="https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
-	    </div>
+		    	@if(empty($photo))
+		    	 <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
+		    	@endif 
+		      <img src="{{ $photo }}">
+	  </div>
 	    <!-- /.lockscreen-image -->
 
 	    <!-- lockscreen credentials (contains the form) -->

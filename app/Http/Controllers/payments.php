@@ -57,7 +57,7 @@ class payments extends Controller
         return view('payments', [
                 'cards'     => $cards,
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                 'mode'      => 'listPaymentMethods'
             ]
@@ -75,7 +75,7 @@ class payments extends Controller
 
         return view('payments', [
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                 'mode'      => 'createPaymentMethod'
             ]
@@ -188,7 +188,7 @@ class payments extends Controller
      */
     public function destroy($id)
     {
-    DB::delete('delete from transaction_bank where id = ?',[$id]) ;    
+    DB::delete('delete from transaction_bank where paymentmethod = ?',[$id]) ;    
     DB::delete('delete from paymentsmethods where id = ?',[$id]) ;
     
     // redirect
@@ -266,7 +266,7 @@ class payments extends Controller
                 'transactions'     => $transactions,
                 'userId'    => Auth::id(),
                 'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'mode'      => 'historyTransaction'
             ]
         );
@@ -370,6 +370,7 @@ class payments extends Controller
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
                                 $pmethods->typemethod    = 'Paypal';
+                                $pmethods->bank         = 'Paypal';
                                 $pmethods->paypal_email  = $result->getPayer()->getPayerInfo()->getEmail();
                                 $pmethods->cardnumber    = $request->input('PayerID');
                                 $pmethods->owner         = Auth::id();
@@ -381,7 +382,7 @@ class payments extends Controller
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
                                             $Trans->receiver = 'receiver prueba';
-                                            $Trans->amount = '5';
+                                            $Trans->amount = '1';
                                             $Trans->save();    
                                         
 
