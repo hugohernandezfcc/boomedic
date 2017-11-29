@@ -141,12 +141,20 @@ class privacyStatement extends Controller
         $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
 
         if(is_null($StatementForUser))
-            $mode = 'Null';
-        else 
+          {  $mode = 'Null';}
+        else {
             $mode = 'Full';
+        }
         
 
-        return redirect('medicalconsultations');
+        return view('privacyStatement', [
+                'privacy'   => $privacyStatement[0],
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'photo'  =>    DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                'mode'      => $mode
+            ]
+        );
     }
 
 
