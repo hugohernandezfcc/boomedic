@@ -254,7 +254,9 @@
           </span>
         </div>
       </div>
-
+      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:50%;margin-left:-600px;">
+        <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
+      </div>
 
       <div id='rango'>
         <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
@@ -263,9 +265,7 @@
       
       <div id="map"></div>
     </div>
-    <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute; align-content: center;">
-      <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
-    </div>
+
 
     <!-- Modal de especialidades -->
     <div class="modal fade" id="myModal" role="dialog">
