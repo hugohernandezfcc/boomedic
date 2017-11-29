@@ -141,22 +141,20 @@ class privacyStatement extends Controller
 
         $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
 
-        if(is_null($StatementForUser)){
+        if(is_null($StatementForUser))
             $mode = 'Null';
-    }
-        else {
+        else 
             $mode = 'Full';
-        }
+        
 
     return redirect('privacyStatement/index');
     }
 
 
 
-        public function Rechazar()
-    {
-          \Auth::logout();
-    return redirect('/home');
+    public function Rechazar(){
+        \Auth::logout();
+        return redirect('/login');
     }
     
 }
