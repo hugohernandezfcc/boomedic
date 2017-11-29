@@ -39,6 +39,7 @@ class HomeController extends Controller
                 'privacy'     => $privacyStatement[0],
                 'userId'    => Auth::id(),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'photo'  =>    DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                 'mode'      => $mode
             ]
         );
