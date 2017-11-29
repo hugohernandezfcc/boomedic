@@ -15,11 +15,11 @@
 	  	</div>
 
 	  	@if($mode == 'Null')        				      
-		  	<div style="margin-left: 100px; margin-top: 50px; margin-right: 100px; text-align: justify;margin-bottom: 5%">
+		  	<p>
 		  		{{ $privacy->description }}
-		  	</div>
+		  	</p>
 		  	<div style="margin-bottom: 10%;margin-right: 100px;">
-		  		<table align="right">
+		  		<table align="center">
 		  			<tr>
 		  				<td>
 		  					<form action="{{asset('/privacyStatement/Aceptar')}}" method="post" id="aceptar">
@@ -28,7 +28,7 @@
 		  				</td>
 		  				<td>
 		  					<form action="{{asset('/privacyStatement/Rechazar')}}" method="post" id="Rechazar">
-		  						<button type="submit" class="btn btn-secondary btn-block btn-flat">Rechazar</button>
+		  						<button type="submit" class="btn btn-default btn-block btn-flat">Rechazar</button>
 		  					</form>
 		  				</td>
 		  			</tr>
@@ -38,9 +38,9 @@
 		@endif
 
 		@if($mode == 'Full')
-			<div style="margin-left: 100px; margin-top: 50px; margin-right: 100px; text-align: justify; margin-bottom: 10%;">
-	  			{{ $privacy->description }}
-	  		</div><br/>
+			<p>
+				{{ $privacy->description }}
+			</p>
   		@endif
  
 </div>	  	
