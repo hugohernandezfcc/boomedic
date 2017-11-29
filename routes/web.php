@@ -12,39 +12,6 @@
 */
 
 
-Route::get('/personaluse', function () {
-    
-	DB::table('menus')->where([ 
-        ['id', '=', 1]
-    ])->update(
-        ['order' => 1]
-    );
-
-    DB::table('menus')->where([ 
-        ['id', '=', 2]
-    ])->update(
-        ['order' => 2]
-    );
-
-    DB::table('menus')->where([ 
-        ['id', '=', 3]
-    ])->update(
-        ['order' => 3]
-    );
-
-    DB::table('menus')->where([ 
-        ['id', '=', 4]
-    ])->update(
-        ['order' => 4]
-    );
-
-    DB::table('menus')->where([ 
-        ['id', '=', 6]
-    ])->update(
-        ['order' => 5]
-    );
-
-});
 
 Route::get('/', function () {
     return view('auth.login');
