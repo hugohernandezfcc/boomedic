@@ -28,20 +28,18 @@ class privacyStatement extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
         $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
 
-        if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+        if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id)
             $mode = 'Null';
-    }
-        else {
+        else 
             $mode = 'Full';
-        }
+        
 
         return view('privacyStatement', [
-                'privacy'     => $privacyStatement[0],
+                'privacy'   => $privacyStatement[0],
                 'userId'    => Auth::id(),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'mode'      => $mode
