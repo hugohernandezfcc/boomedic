@@ -102,7 +102,7 @@ class medicalappointments extends Controller
     {
         $medical = medical_appointments::find($id);
 
-        $medical->when = '2017-30-12 09:00:00';
+        $medical->when = '2017-12-30 09:00:00';
 
         if ($medical->save()) 
        return redirect('medicalconsultations');
