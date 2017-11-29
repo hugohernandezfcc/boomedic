@@ -59,12 +59,11 @@ class medicalappointments extends Controller
     {
         $medical = new medical_appointments;
 
-       
    
         $medical->user           = Auth::id();;
         $medical->user_doctor    = '3';
         $medical->latitude       = 'Prueba';
-        $pmethods->longitude     = 'Prueba';
+        $medical->longitude     = 'Prueba';
         }
     
         if ($medical->save()) 
