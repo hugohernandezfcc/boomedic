@@ -58,14 +58,12 @@ class medicalappointments extends Controller
     public function store(Request $request)
     {
         $medical = new medical_appointments;
-
    
-        $medical->user           = Auth::id();;
+        $medical->user           = Auth::id();
         $medical->user_doctor    = '3';
         $medical->latitude       = 'Prueba';
         $medical->longitude     = 'Prueba';
-        }
-    
+            
         if ($medical->save()) 
        return redirect('medicalconsultations/index');
     }
