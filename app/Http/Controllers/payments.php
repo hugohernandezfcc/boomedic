@@ -370,6 +370,7 @@ class payments extends Controller
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
                                 $pmethods->typemethod    = 'Paypal';
+                                $pmethods->bank          = 'Paypal';
                                 $pmethods->paypal_email  = $result->getPayer()->getPayerInfo()->getEmail();
                                 $pmethods->cardnumber    = $request->input('PayerID');
                                 $pmethods->owner         = Auth::id();
@@ -381,7 +382,7 @@ class payments extends Controller
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
                                             $Trans->receiver = 'receiver prueba';
-                                            $Trans->amount = '5';
+                                            $Trans->amount = $result->getTransactions()->getAmount()->getTotal();
                                             $Trans->save();    
                                         
 

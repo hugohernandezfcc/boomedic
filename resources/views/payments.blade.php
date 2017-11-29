@@ -97,6 +97,7 @@
 	                <tbody>
 	                    @foreach ($cards as $card)
 	                        <tr><form action="PaymentAuthorizations" method="post" id="regForm">
+	                        	@if($card->provider != 'Paypal')
 	                        	<td>
 	                            <?php 
 	                            $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12)
@@ -106,7 +107,7 @@
 	                            <td>{{ $card->provider }}</td>
 	                            <td>{{ $card->credit_debit }}</td>
 	          
-	                            @if($card->provider != 'Paypal')
+	                           
 	                            <td><input type="number" name="pay" value="" style="text-align: center;" class="form-control" required> <input type="hidden" name="id" value=" {{$card->id }} "></td>
 
 	                            <td align="center">
@@ -124,6 +125,11 @@
 
 	        					 @endif
 	        					 @if($card->provider == 'Paypal')
+	        					 <td>
+	                            <a href = 'Transactions/{{ $card->id }}' class="btn"> {{ $card->cardnumber }}</a></td>
+	                            <td>{{ $card->bank }}</td>
+	                            <td>{{ $card->provider }}</td>
+	                            <td>{{ $card->credit_debit }}</td>
 	        					 <td></td>
 	                            <td align="center">
 	                            <div class="input-group-btn">
