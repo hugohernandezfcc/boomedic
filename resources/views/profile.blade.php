@@ -12,35 +12,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 
-
-
-		    			<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		    			 <script type="text/javascript">
-					    		$(window).load(function(){
-
-								 $(function() {
-								  $('#photo').change(function(e) {
-								      addImage(e); 
-								     });
-								     function addImage(e){
-								      var file = e.target.files[0],
-								      imageType = /image.*/;
-								    
-								      if (!file.type.match(imageType))
-								       return;
-								  
-								      var reader = new FileReader();
-								      reader.onload = fileOnload;
-								      reader.readAsDataURL(file);
-								     }
-								  
-								     function fileOnload(e) {
-								      var result=e.target.result;
-								      $('#imgSalida').attr("src",result);
-								     }
-								    });
-								  });
-					    	</script>-->
 		<script type="text/javascript">
 				Dropzone.options.myAwesomeDropzone = { 
 				 

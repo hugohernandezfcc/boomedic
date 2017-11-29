@@ -89,7 +89,7 @@ class supportTickets extends Controller
             //Mail::send('emails.newTicket', ['user' => $user], function ($message) {
             // VISTA: <h2>El usuario {{ $user->name }} ha creado un ticket.</h2>
             Mail::send('emails.newTicket', $data, function ($message) {
-                $message->subject('Nuevo Ticket creado - ' . $data['name']);
+                $message->subject('Nuevo Ticket creado ');
                 $message->to('contacto@doitcloud.consulting');
             });
 
