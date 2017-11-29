@@ -100,7 +100,7 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        $medical = medical_appointments::find(1);
+        $medical = medical_appointments::find($id);
 
         $medical->when = '2017-30-12 09:00:00';
 

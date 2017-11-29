@@ -171,7 +171,7 @@ Route::group(['prefix' => 'medicalappointments'], function(){
 		]
 	);
 
-	Route::post('update/{id}', [
+	Route::get('update/{id}', [
 			'uses'	=>	'medicalappointments@update',
 			'as'	=>	'update'
 		]
