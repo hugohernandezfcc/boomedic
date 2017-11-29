@@ -62,9 +62,9 @@ class medicalappointments extends Controller
        
    
         $medical->user           = Auth::id();;
-        $medical->user_doctor    = $request->typemethod;
-        $medical->latitude       = $request->country;
-        $pmethods->longitude     = $request->year;
+        $medical->user_doctor    = '3';
+        $medical->latitude       = 'Prueba';
+        $pmethods->longitude     = 'Prueba';
         }
     
         if ($medical->save()) 
