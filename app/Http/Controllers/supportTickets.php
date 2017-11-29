@@ -40,6 +40,7 @@ class supportTickets extends Controller
                 'userId'    => Auth::id(),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
                 'email'     => DB::table('users')->where('id', Auth::id() )->value('email'),
+                'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                 'mode'      => 'createTicket'
             ]
         );
