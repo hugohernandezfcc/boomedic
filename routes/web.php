@@ -163,6 +163,35 @@ Route::group(['prefix' => 'doctor'], function(){
 });
 
 
+Route::group(['prefix' => 'medicalappointments'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'medicalappointments@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::post('update/{id}', [
+			'uses'	=>	'medicalappointments@update',
+			'as'	=>	'update'
+		]
+	);
+
+	Route::get('store/{id}', [
+			'uses'	=>	'medicalappointments@store',
+			'as'	=>	'store'
+		]
+	);
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'medicalappointments@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+});
+
+
+
 Route::group(['prefix' => 'privacyStatement'], function(){
 
 	Route::get('index', [
