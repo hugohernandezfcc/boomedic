@@ -226,9 +226,7 @@
   </script>
 
    <form>
-    <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute; align-content: center;">
-      <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
-    </div>
+    
     <div id="mapaC">
       <!-- Trigger the modal with a checkbox -->
       <div class="checkStyle">
@@ -265,7 +263,9 @@
       
       <div id="map"></div>
     </div>
-
+    <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute; align-content: center;">
+      <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
+    </div>
 
     <!-- Modal de especialidades -->
     <div class="modal fade" id="myModal" role="dialog">
