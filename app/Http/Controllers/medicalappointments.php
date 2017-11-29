@@ -65,7 +65,7 @@ class medicalappointments extends Controller
         $medical->longitude     = 'Prueba';
             
         if ($medical->save()) 
-       return redirect('medicalconsultations/index');
+       return redirect('medicalconsultations');
     }
 
     /**
