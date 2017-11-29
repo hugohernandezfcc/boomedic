@@ -17,7 +17,8 @@ class PaymentMethod extends Model
 		'cvv',
 		'cardnumber',
 		'owner',
-		'paypal_email'
+		'paypal_email',
+		'bank'
     ];
 
     public function user(){

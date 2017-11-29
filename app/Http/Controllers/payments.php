@@ -370,7 +370,7 @@ class payments extends Controller
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
                                 $pmethods->typemethod    = 'Paypal';
-                                $pmethods->bank          = 'Paypal';
+                                $pmethods->bank         = 'Paypal';
                                 $pmethods->paypal_email  = $result->getPayer()->getPayerInfo()->getEmail();
                                 $pmethods->cardnumber    = $request->input('PayerID');
                                 $pmethods->owner         = Auth::id();
@@ -388,7 +388,7 @@ class payments extends Controller
 
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
-                                    'message' => 'Procesado su pago de paypal Payer Id: ' .$request->input('PayerID'). ', ' .$result->getPayer()->getPayerInfo()->getEmail(). $result->getTransactions()->getAmount()->getTotal(), 
+                                    'message' => 'Procesado su pago de paypal Payer Id: ' .$request->input('PayerID'). ', ' .$result->getPayer()->getPayerInfo()->getEmail(), 
                                     'success' => 'success'
                                 );
                               return redirect('payment/index')->with($notification);
