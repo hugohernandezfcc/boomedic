@@ -147,13 +147,13 @@
                         'url':            '',
                         'infoThousandsi':  ',',
                         'loadingRecords': 'Cargando...',
-                        'oPaginate': {
+                        'paginate': {
                             'first':    'Primero',
                             'last':     'Último',
                             'next':     'Siguiente',
                             'previous': 'Anterior'
                         },
-                        "oAria": {
+                        "aria": {
                             'sortAscending':  ': Activar para ordenar la columna de manera ascendente',
                             'sortDescending': ': Activar para ordenar la columna de manera descendente'
                         }
