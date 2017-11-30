@@ -186,7 +186,8 @@
         text-align: center;
         font-size: 90%;
         line-height: 30px;
-        padding-left: 10px;     
+        padding-left: 10px; 
+
       }
 
   </style>
@@ -278,7 +279,7 @@
       </div>
       <div id="floating-panel">
       <input id="address" type="textbox" value=" ">
-      <button type="submit"><i class="fa fa-map-marker text-muted"></i></button>
+      <button type="submit"><i class="btn-info fa fa-map-marker text-muted"></i></button>
       <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
     </div>
       <div id="map"></div>
