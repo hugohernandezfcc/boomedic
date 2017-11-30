@@ -278,9 +278,11 @@
         <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
       </div>
       <div id="floating-panel">
-      <input id="address" type="textbox" value=" " class="form-control">
-      <span class="input-group-btn">
-      <button type="submit" class="btn btn-info btn-flat"><span class="fa fa-map-marker"></span></button></span>
+        <div class="input-group input-group-sm">
+          <input id="address" type="textbox" value=" " class="form-control">
+          <span class="input-group-btn">
+          <button type="submit" class="btn btn-info btn-flat"><span class="fa fa-map-marker"></span></button></span>
+        </div>
       <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
     </div>
       <div id="map"></div>
