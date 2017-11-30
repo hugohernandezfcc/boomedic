@@ -279,7 +279,7 @@
       </div>
       <div id="floating-panel">
       <input id="address" type="textbox" value=" ">
-      <button type="submit"><i class="btn-info fa fa-map-marker text-muted"></i></button>
+      <button type="submit" class="btn-info"><i class="fa fa-map-marker text-muted"></i></button>
       <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
     </div>
       <div id="map"></div>
