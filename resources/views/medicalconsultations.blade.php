@@ -186,7 +186,8 @@
         z-index: 100;
         text-align: center;
         font-size: 90%;
-        line-height: 15%;      
+        line-height: 30px;
+        padding-left: 10px;     
       }
 
   </style>
