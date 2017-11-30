@@ -382,13 +382,13 @@ class payments extends Controller
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
                                             $Trans->receiver = 'receiver prueba';
-                                            $Trans->amount = '1';
+                                            $Trans->amount = $payment->transactions[0]->amount->total;
                                             $Trans->save();    
                                         
 
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
-                                    'message' => 'Procesado su pago de paypal Payer Id: ' .$request->input('PayerID'). ', ' . $payment->transactions[0]->amount->total, 
+                                    'message' => 'Procesado su pago de paypal Payer Id: ' .$request->input('PayerID'). ', ' .$result->getPayer()->getPayerInfo()->getEmail(), 
                                     'success' => 'success'
                                 );
                               return redirect('payment/index')->with($notification);
