@@ -177,7 +177,7 @@
 
       #floating-panel {
         position: absolute;
-        top: 10px;
+        top: 30%;
         left: 25%;
         z-index: 5;
         background-color: #fff;
