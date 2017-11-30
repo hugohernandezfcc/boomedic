@@ -178,6 +178,7 @@
       #floating-panel {
 
         position: absolute;
+        width: 24%;
         top: 20%;
         right: 50%;
         padding: 5px;
