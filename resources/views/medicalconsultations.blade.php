@@ -176,16 +176,17 @@
       }
 
       #floating-panel {
+
         position: absolute;
-        top: 30%;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
+        width: 24%;
+        top: 4.5%;
+        right: 50%;
         padding: 5px;
+        background-color: rgba(255,255,255,0.6);
+        z-index: 100;
         text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
+        font-size: 90%;
+        line-height: 15%;      
       }
 
   </style>
