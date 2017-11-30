@@ -388,7 +388,7 @@ class payments extends Controller
 
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
-                                    'message' => 'Procesado su pago de paypal Payer Id: ' .$request->input('PayerID'). ', ' .$result->getTransactions(0)->getAmount()->getTotal(), 
+                                    'message' => 'Procesado su pago de paypal Payer Id: ' .$request->input('PayerID'). ', ' . $payment->transactions[0]->amount->total, 
                                     'success' => 'success'
                                 );
                               return redirect('payment/index')->with($notification);
