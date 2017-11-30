@@ -179,7 +179,7 @@
 
         position: absolute;
         width: 24%;
-        top: 4.5%;
+        top: 20%;
         right: 50%;
         padding: 5px;
         background-color: rgba(255,255,255,0.6);
@@ -282,7 +282,7 @@
 
       <div id="floating-panel">
       <input id="address" type="textbox" value=" ">
-      <input id="submit" type="button" value="Buscar">
+      <input id="submit" type="button" value="Buscar" class="btn btn-secondary btn-block btn-flat">
     </div>
     <!-- Modal de especialidades -->
     <div class="modal fade" id="myModal" role="dialog">
