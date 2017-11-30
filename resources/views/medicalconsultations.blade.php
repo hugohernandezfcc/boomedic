@@ -278,7 +278,7 @@
       </div>
       <div id="floating-panel">
       <input id="address" type="textbox" value=" ">
-      <input id="submit" type="button" value="Buscar">
+      <input id="submit" type="button" value="Buscar" class="map-marker text-muted">
     </div>
       <div id="map"></div>
     </div>
