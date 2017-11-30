@@ -276,14 +276,14 @@
         <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
         <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
       </div>
+
+      <div id="map"></div>
+    </div>
+
       <div id="floating-panel">
       <input id="address" type="textbox" value="Sydney, NSW">
       <input id="submit" type="button" value="Geocode">
     </div>
-      <div id="map"></div>
-    </div>
-
-
     <!-- Modal de especialidades -->
     <div class="modal fade" id="myModal" role="dialog">
       <div class="modal-dialog modal-sm">
