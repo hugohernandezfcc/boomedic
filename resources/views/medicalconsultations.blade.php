@@ -182,7 +182,6 @@
         z-index: 5;
         background-color: #fff;
         padding: 5px;
-        border: 1px solid #999;
         text-align: center;
         font-family: 'Roboto','sans-serif';
         line-height: 30px;
@@ -281,8 +280,8 @@
     </div>
 
       <div id="floating-panel">
-      <input id="address" type="textbox" value="Sydney, NSW">
-      <input id="submit" type="button" value="Geocode">
+      <input id="address" type="textbox" value=" ">
+      <input id="submit" type="button" value="Buscar">
     </div>
     <!-- Modal de especialidades -->
     <div class="modal fade" id="myModal" role="dialog">
