@@ -267,7 +267,7 @@
           <span id="infoSpDetail" class="textStyle01"></span>
         </strong>
       </div>
- </div>
+ 
       <div id="searchDiv">
         <!-- <strong>
           <label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;
@@ -397,7 +397,7 @@
         </div>
     </div>
     <!--/ Modal de registro de cita -->
- 
+ </div>
     </form>
 
     <script type="text/javascript">
