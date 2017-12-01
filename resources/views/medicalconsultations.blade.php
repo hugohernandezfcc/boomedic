@@ -266,7 +266,7 @@
           <input type="text" class="form-control"  name="keyWordSearch"  id="kWSearch" >
           <span class="input-group-btn">
             <button type="button" class="btn btn-info btn-flat" onclick="start();">
-              <span class="glyphicon glyphicon-search"></span>
+              <span ></span>
             </button>
           </span>
         </div>
