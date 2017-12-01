@@ -310,7 +310,7 @@
                         <div class="input-group input-group-sm">
                           <input id="address" type="textbox" value="" class="form-control">
                           <span class="input-group-btn">
-                          <input id="submit" type="button" class="fa fa-map-marker">
+                          <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar">
                        </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
                   </div>
