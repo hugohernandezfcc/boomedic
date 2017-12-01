@@ -845,7 +845,6 @@
         });
     });
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfhtvjKVp3M9PJ5JLYZXzMzhizRYxkz6Y&callback=initMap"
-  type="text/javascript"></script>
+
 
 @stop
