@@ -289,7 +289,7 @@
       <!--panel flotante-->
 
             <!--Boton y modal-->
-      <a class="checkStyle" data-backdrop="static" data-toggle="modal" data-target="#Modal"></a>
+      <a class="checkStyle2" data-backdrop="static" data-toggle="modal" data-target="#Modal"></a>
             <!--- modal  -->
             <div id="Modal" class="modal fade" role="dialog">
               <div class="modal-dialog">
