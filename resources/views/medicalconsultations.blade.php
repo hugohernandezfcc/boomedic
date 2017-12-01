@@ -290,33 +290,7 @@
 
             <!--Boton y modal-->
       <a class="checkStyle2" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqueda</a>
-            <!--- modal  -->
-            <div id="modal" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">   
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                    <label for="Busqueda">Busqueda de lugar:</label>
-                  </div>
-                  <div class="modal-body">
-         
-        <div class="input-group input-group-sm">
 
-          <input id="address" type="textbox" value=" " class="form-control">
-          <span class="input-group-btn">
-          <button type="submit" class="btn btn-info btn-flat"><span class="fa fa-map-marker"></span></button></span>
-        </div>
-      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-   
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
 
       <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:30%;padding-top: 20%;">
         <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
@@ -332,7 +306,29 @@
 
 
       
- 
+         <!-- Modal Busqueda por lugar -->
+
+            <div id="modal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">   
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <label for="Busqueda">Busqueda de lugar:</label>
+                  </div>
+                  <div class="modal-body">
+                        <div class="input-group input-group-sm">
+                          <input id="address" type="textbox" value=" " class="form-control">
+                          <span class="input-group-btn">
+                          <button type="submit" class="btn btn-info btn-flat"><span class="fa fa-map-marker"></span></button></span>
+                       </div>
+      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
     <!-- Modal de especialidades -->
