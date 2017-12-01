@@ -273,14 +273,7 @@
 
 
       <!--panel flotante-->
-      <div id="floating-panel">
-        <div class="input-group input-group-sm">
-          <input id="address" type="textbox" value=" " class="form-control">
-          <span class="input-group-btn">
-          <button type="submit" class="btn btn-info btn-flat"><span class="fa fa-map-marker"></span></button></span>
-        </div>
-      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-    </div>
+
             <!--Boton y modal-->
       <a class="btn btn-info btn-lg" data-backdrop="static" data-toggle="modal" data-target="#myModal">Enlarge map </a>
             <!--- modal  -->
@@ -292,7 +285,14 @@
                       Store
                   </div>
                   <div class="modal-body">
-                  
+                        <div id="floating-panel">
+        <div class="input-group input-group-sm">
+          <input id="address" type="textbox" value=" " class="form-control">
+          <span class="input-group-btn">
+          <button type="submit" class="btn btn-info btn-flat"><span class="fa fa-map-marker"></span></button></span>
+        </div>
+      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+    </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
