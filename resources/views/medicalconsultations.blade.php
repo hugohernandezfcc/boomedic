@@ -325,7 +325,8 @@
         <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
       </div>
 
-
+    <div id="map"></div>
+    </div>
 
 
       
@@ -397,8 +398,7 @@
         </div>
     </div>
     <!--/ Modal de registro de cita -->
-     <div id="map"></div>
-    </div>
+ 
     </form>
 
     <script type="text/javascript">
