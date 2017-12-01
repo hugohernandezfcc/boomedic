@@ -545,7 +545,10 @@
         //var image = "{{ asset('maps-and-flags_1.png') }}";
         
         infoWindow = new google.maps.InfoWindow();
-
+        var geocoder = new google.maps.Geocoder();
+        document.getElementById('submit').addEventListener('click', function() {
+        geocodeAddress(geocoder, map);
+        });
         //Current position
         if (navigator.geolocation) {
           console.log('POSICION ACTUAL');
@@ -590,11 +593,8 @@
             }
           });
 
-            var geocoder = new google.maps.Geocoder();
-        document.getElementById('submit').addEventListener('click', function() {
-        geocodeAddress(geocoder, map);
-        });
-          
+
+
         }else {
             // Browser doesn't support Geolocation
             infoWindow.setMap(map);
