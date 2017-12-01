@@ -70,7 +70,6 @@
         position: absolute;
         bottom: 4.5%;
         left: 1%;
-        background-color: rgba(255,255,255,0.8);
         z-index: 100;
         font-size: 90%;
         line-height: 15%;
@@ -78,7 +77,6 @@
         padding-bottom: 0.5%;
         padding-right: 0.5%;
         padding-left: 0.5%;
-        border-radius: 1px;
       }
       .infoSpStyle{
         position: absolute;
