@@ -545,7 +545,10 @@
         //var image = "{{ asset('maps-and-flags_1.png') }}";
         
         infoWindow = new google.maps.InfoWindow();
-
+        var geocoder = new google.maps.Geocoder();
+        document.getElementById('submit').addEventListener('click', function() {
+        geocodeAddress(geocoder, map);
+        });
         //Current position
         if (navigator.geolocation) {
           console.log('POSICION ACTUAL');
@@ -566,7 +569,7 @@
               rotateControl: false,
               fullscreenControl: false
             });
-            var geocoder = new google.maps.Geocoder();
+            
             var markerUser = "{{ asset('markerUser.png') }}";
 
             //Marker
@@ -582,9 +585,7 @@
               infoWindow.setContent(message01);
             });
           },
-        document.getElementById('submit').addEventListener('click', function() {
-        geocodeAddress(geocoder, map);
-        });
+
           //****Error
           function(failure) {
             if(failure.message.indexOf(message02) == 0) {
