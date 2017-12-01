@@ -14,7 +14,6 @@
       #map{
         position: relative;
         width: 100%;
-        height: 100%;
         z-index: 30;
       }
       #rango{ 
@@ -190,20 +189,7 @@
           box-shadow: 1px 2px 5px #000000;   
       }
 
-      #floating-panel {
-
-        position: absolute;
-        width: 24%;
-        top: 20%;
-        right: 50%;
-        padding: 5px;
-        background-color: rgba(255,255,255,0.6);
-        z-index: 100;
-        text-align: center;
-        font-size: 90%;
-        line-height: 30px;
-        
-      }
+    
 
   </style>
 
