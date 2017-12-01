@@ -45,7 +45,7 @@
         z-index: 100;
         text-align: center;
         font-size: 90%;
-        line-height: 15%;      
+        line-height: 15%;        
       }
       .rangeStyle{
         height: 1%;
@@ -289,9 +289,9 @@
       <!--panel flotante-->
 
             <!--Boton y modal-->
-      <a class="checkStyle2" data-backdrop="static" data-toggle="modal" data-target="#Modal"></a>
+      <a class="checkStyle2" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqeda</a>
             <!--- modal  -->
-            <div id="Modal" class="modal fade" role="dialog">
+            <div id="modal" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
