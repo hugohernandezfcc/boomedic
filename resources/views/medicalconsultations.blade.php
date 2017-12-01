@@ -65,6 +65,20 @@
         padding-left: 0.5%;
         border-radius: 1px;
       }
+     .checkStyle2{
+        position: absolute;
+        bottom: 4.5%;
+        left: 1%;
+        background-color: rgba(255,255,255,0.8);
+        z-index: 100;
+        font-size: 90%;
+        line-height: 15%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;
+        border-radius: 1px;
+      }
       .infoSpStyle{
         position: absolute;
         top: 19%;
@@ -275,14 +289,14 @@
       <!--panel flotante-->
 
             <!--Boton y modal-->
-      <a class="btn btn-info btn-lg" data-backdrop="static" data-toggle="modal" data-target="#Modal"></a>
+      <a class="checkStyle" data-backdrop="static" data-toggle="modal" data-target="#Modal"></a>
             <!--- modal  -->
             <div id="myModal" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
                   <div class="modal-header">   
-                      Store
+                      Busqueda de lugar:
                   </div>
                   <div class="modal-body">
                         <div id="floating-panel">
