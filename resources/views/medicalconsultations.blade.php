@@ -310,7 +310,7 @@
                   </div>
                   <div class="modal-body">
                         <div class="input-group input-group-sm">
-                          <input id="address" type="textbox" value="Cuernavaca" class="form-control">
+                          <input id="address" type="textbox" value="" class="form-control">
                           <span class="input-group-btn">
                           <button type="submit" class="btn btn-info btn-flat" id="submit"><span class="fa fa-map-marker"></span></button></span>
                        </div>
@@ -545,10 +545,7 @@
         //var image = "{{ asset('maps-and-flags_1.png') }}";
         
         infoWindow = new google.maps.InfoWindow();
-        var geocoder = new google.maps.Geocoder();
-        document.getElementById('submit').addEventListener('click', function() {
-        geocodeAddress(geocoder, map);
-        });
+
         //Current position
         if (navigator.geolocation) {
           console.log('POSICION ACTUAL');
@@ -569,7 +566,10 @@
               rotateControl: false,
               fullscreenControl: false
             });
-            
+        var geocoder = new google.maps.Geocoder();
+        document.getElementById('submit').addEventListener('click', function() {
+        geocodeAddress(geocoder, map);
+        });
             var markerUser = "{{ asset('markerUser.png') }}";
 
             //Marker
