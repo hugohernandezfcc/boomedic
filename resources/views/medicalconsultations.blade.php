@@ -68,7 +68,7 @@
       }
      .checkStyl2{
         position: absolute;
-        bottom: 4.5%
+        bottom: 4.5%;
         left: 1%;
         background-color: rgba(255,255,255,0.8);
         z-index: 100;
