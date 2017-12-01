@@ -284,7 +284,7 @@
         </div>
       </div>
 
-
+      </div>
 
       <!--panel flotante-->
 
@@ -303,7 +303,7 @@
       </div>
 
     <div id="map"></div>
-    </div>
+    
 
 
       
