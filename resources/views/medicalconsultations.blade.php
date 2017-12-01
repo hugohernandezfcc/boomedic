@@ -50,6 +50,7 @@
       .rangeStyle{
         height: 1%;
         width: 100%;
+        
       }
       .checkStyle{
         position: absolute;
@@ -67,7 +68,7 @@
       }
      .checkStyl2{
         position: absolute;
-        bottom: 5%;
+        margin-bottom: 10%;
         left: 1%;
         background-color: rgba(255,255,255,0.8);
         z-index: 100;
@@ -280,7 +281,7 @@
       <a class="btn btn-info" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqueda</a>
       </div>
 
-      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:30%;padding-top: 20%;">
+      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:50%;padding-top: 20%;">
         <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
       </div>
 
