@@ -14,6 +14,7 @@
       #map{
         position: relative;
         width: 100%;
+        height: 100%;
         z-index: 30;
       }
       #rango{ 
@@ -303,7 +304,7 @@
       </div>
 
     <div id="map"></div>
-    
+  </div> 
 
 
       
@@ -397,7 +398,7 @@
         </div>
     </div>
     <!--/ Modal de registro de cita -->
- </div>
+
     </form>
 
     <script type="text/javascript">
