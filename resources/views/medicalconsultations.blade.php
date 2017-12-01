@@ -242,7 +242,7 @@
 
   </script>
 
-   <form>
+    <form>
     
     <div id="mapaC">
       <!-- Trigger the modal with a checkbox -->
@@ -255,7 +255,7 @@
           <span id="infoSpDetail" class="textStyle01"></span>
         </strong>
       </div>
- 
+
       <div id="searchDiv">
         <!-- <strong>
           <label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;
@@ -271,54 +271,17 @@
           </span>
         </div>
       </div>
-
-
-
-      <!--panel flotante-->
-
-            <!--Boton y modal-->
- 
-
-      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:40%;padding-top: 20%;">
+      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:33%;padding-top: 20%;">
         <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
       </div>
 
-
-
-    <div id="map"></div>
-         <div class="checkStyl2">      
-      <a class="btn btn-info" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqueda</a>
-    </div>
-    <div id='rango'>
+      <div id='rango'>
         <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
         <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
       </div>
-  </div> 
-
       
-         <!-- Modal Busqueda por lugar -->
-
-            <div id="modal" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">   
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                    <label for="Busqueda">Busqueda de lugar:</label>
-                  </div>
-                  <div class="modal-body">
-                        <div class="input-group input-group-sm">
-                          <input id="address" type="textbox" value=" " class="form-control">
-                          <span class="input-group-btn">
-                          <button type="submit" class="btn btn-info btn-flat"><span class="fa fa-map-marker"></span></button></span>
-                       </div>
-      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div id="map"></div>
+    </div>
 
 
     <!-- Modal de especialidades -->
@@ -378,7 +341,7 @@
 
 
               <div class="modal-footer">
-                <button type="button" id="button01" class="btn btn-secondary btn-block btn-flat">
+                <button type="button" id="button01" onclick="window.location.href = 'https://afternoon-hollows-51469.herokuapp.com/payment/index';" class="btn btn-secondary btn-block btn-flat">
                   Confirmar y programar cita
                 </button>
               </div>
