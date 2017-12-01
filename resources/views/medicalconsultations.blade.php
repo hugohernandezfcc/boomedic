@@ -310,7 +310,7 @@
                   </div>
                   <div class="modal-body">
                         <div class="input-group input-group-sm">
-                          <input id="address" type="textbox" value=" " class="form-control">
+                          <input id="address" type="textbox" value="Cuernavaca" class="form-control">
                           <span class="input-group-btn">
                           <button type="submit" class="btn btn-info btn-flat" id="submit"><span class="fa fa-map-marker"></span></button></span>
                        </div>
