@@ -67,7 +67,7 @@
       }
      .checkStyl2{
         position: absolute;
-        top: 99%;
+        bottom: 5%;
         left: 1%;
         background-color: rgba(255,255,255,0.8);
         z-index: 100;
@@ -267,7 +267,7 @@
           <span id="infoSpDetail" class="textStyle01"></span>
         </strong>
       </div>
-
+ </div>
       <div id="searchDiv">
         <!-- <strong>
           <label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;
@@ -284,7 +284,7 @@
         </div>
       </div>
 
-      </div>
+
 
       <!--panel flotante-->
 
