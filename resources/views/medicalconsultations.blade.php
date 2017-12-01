@@ -291,7 +291,7 @@
             <!--Boton y modal-->
       <a class="checkStyle" data-backdrop="static" data-toggle="modal" data-target="#Modal"></a>
             <!--- modal  -->
-            <div id="myModal" class="modal fade" role="dialog">
+            <div id="Modal" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
