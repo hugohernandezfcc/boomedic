@@ -269,16 +269,19 @@
           </span>
         </div>
       </div>
-      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:30%;padding-top: 20%;">
-        <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
-      </div>
 
-      <div id='rango'>
-        <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
-        <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
-      </div>
 
-      <!--Boton y modal-->
+
+      <!--panel flotante-->
+      <div id="floating-panel">
+        <div class="input-group input-group-sm">
+          <input id="address" type="textbox" value=" " class="form-control">
+          <span class="input-group-btn">
+          <button type="submit" class="btn btn-info btn-flat"><span class="fa fa-map-marker"></span></button></span>
+        </div>
+      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+    </div>
+            <!--Boton y modal-->
       <a class="btn btn-info btn-lg" data-backdrop="static" data-toggle="modal" data-target="#myModal">Enlarge map </a>
             <!--- modal  -->
             <div id="myModal" class="modal fade" role="dialog">
@@ -299,16 +302,19 @@
               </div>
             </div>
 
+      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:30%;padding-top: 20%;">
+        <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
+      </div>
 
-      <!--panel flotante-->
-      <div id="floating-panel">
-        <div class="input-group input-group-sm">
-          <input id="address" type="textbox" value=" " class="form-control">
-          <span class="input-group-btn">
-          <button type="submit" class="btn btn-info btn-flat"><span class="fa fa-map-marker"></span></button></span>
-        </div>
-      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-    </div>
+      <div id='rango'>
+        <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
+        <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
+      </div>
+
+
+
+
+      
       <div id="map"></div>
     </div>
 
