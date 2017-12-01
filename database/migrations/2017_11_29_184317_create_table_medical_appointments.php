@@ -22,6 +22,7 @@ class CreateTableMedicalAppointments extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->datetime('when');
+            $table->enum('status', ['Registered', 'Taked','No completed'])->nullable();
             $table->timestamps();
         });
     }
