@@ -68,8 +68,7 @@
       }
      .checkStyl2{
         position: absolute;
-        margin-bottom: 10%;
-        left: 1%;
+        left: 40%;
         background-color: rgba(255,255,255,0.8);
         z-index: 100;
         font-size: 90%;
@@ -287,12 +286,12 @@
         <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
         <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
       </div>
-           <div class="checkStyl2">      
-      <a class="btn btn-info" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqueda</a>
-      </div>
+
     <div id="map"></div>
   </div> 
-
+    <div class="checkStyl2">      
+      <a class="btn btn-info" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqueda</a>
+      </div>
 
       
          <!-- Modal Busqueda por lugar -->
