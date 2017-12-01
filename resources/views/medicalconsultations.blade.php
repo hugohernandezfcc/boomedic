@@ -287,7 +287,7 @@
 
     <div id="map"></div>
          <div class="checkStyl2">      
-      <a class="btn btn-info" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqueda</a>
+      <a class="btn btn-secondary btn-block btn-flat" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqueda</a>
     </div>
     <div id='rango'>
         <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
