@@ -275,7 +275,7 @@
       <!--panel flotante-->
 
             <!--Boton y modal-->
-      <a class="btn btn-info btn-lg" data-backdrop="static" data-toggle="modal" data-target="#myModal">Enlarge map </a>
+      <a class="btn btn-info btn-lg" data-backdrop="static" data-toggle="modal" data-target="#myModal"></a>
             <!--- modal  -->
             <div id="myModal" class="modal fade" role="dialog">
               <div class="modal-dialog">
@@ -315,8 +315,7 @@
 
 
       
-      <div id="map"></div>
-    </div>
+ 
 
 
     <!-- Modal de especialidades -->
@@ -356,7 +355,8 @@
         
       </div>
     </div>
-
+     <div id="map"></div>
+    </div>
 
     <!-- Modal de registro de cita -->
     <div class="modal fade" id="modal-register-cite">
