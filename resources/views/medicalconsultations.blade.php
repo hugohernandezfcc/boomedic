@@ -67,7 +67,7 @@
       }
      .checkStyle2{
         position: absolute;
-       top: 20.5%;
+        top: 90%;
         left: 1%;
         background-color: rgba(255,255,255,0.8);
         z-index: 100;
@@ -289,7 +289,7 @@
       <!--panel flotante-->
 
             <!--Boton y modal-->
-      <a class="checkStyle2" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqeda</a>
+      <a class="checkStyle2" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqueda</a>
             <!--- modal  -->
             <div id="modal" class="modal fade" role="dialog">
               <div class="modal-dialog">
@@ -308,9 +308,9 @@
       <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
     </div>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
 
               </div>
