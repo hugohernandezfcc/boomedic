@@ -289,9 +289,7 @@
       <!--panel flotante-->
 
             <!--Boton y modal-->
-      <div class="checkStyle2">      
-      <a class="btn btn-info" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqueda</a>
-      </div>
+
 
       <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:30%;padding-top: 20%;">
         <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
@@ -305,7 +303,9 @@
     <div id="map"></div>
     </div>
 
-
+      <div class="checkStyle2">      
+      <a class="btn btn-info" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqueda</a>
+      </div>
       
          <!-- Modal Busqueda por lugar -->
 
