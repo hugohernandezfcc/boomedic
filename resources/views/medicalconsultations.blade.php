@@ -277,6 +277,30 @@
         <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
         <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
       </div>
+
+      <!--Boton y modal-->
+      <a class="btn btn-info btn-lg" data-backdrop="static" data-toggle="modal" data-target="#myModal">Enlarge map </a>
+            <!--- modal  -->
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">   
+                      Store
+                  </div>
+                  <div class="modal-body">
+                  
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+      <!--panel flotante-->
       <div id="floating-panel">
         <div class="input-group input-group-sm">
           <input id="address" type="textbox" value=" " class="form-control">
