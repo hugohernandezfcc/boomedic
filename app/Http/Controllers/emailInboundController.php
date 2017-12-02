@@ -34,7 +34,7 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json(['status' => 'ok']);
     }
 
     /**
