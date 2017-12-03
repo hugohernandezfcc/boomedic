@@ -10,7 +10,7 @@
 	  	</div>
 		<div class="box-body">
 
-            @if($mode == 'listCardsExpired')
+           
             	<table id="cardsExpired" class="table table-bordered table-striped" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
