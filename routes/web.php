@@ -293,5 +293,14 @@ Route::group(['prefix' => 'emailInbound'], function(){
 
 });
 
+Route::group(['prefix' => 'verifyExpiration'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'verifyExpirationController@index',
+			'as'	=>	'index'
+		]
+	);
+}
+
 Route::post('/bye' , 'Auth\LoginController@logout');
 
