@@ -300,7 +300,7 @@ Route::group(['prefix' => 'verifyExpiration'], function(){
 			'as'	=>	'index'
 		]
 	);
-}
+});
 
 Route::post('/bye' , 'Auth\LoginController@logout');
 
