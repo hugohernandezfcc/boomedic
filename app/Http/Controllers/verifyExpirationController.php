@@ -19,7 +19,7 @@ class verifyExpirationController extends Controller
     {
         $allCards = DB::table('paymentsmethods')->where('dateexpired', '<>', '');
         return view('cards', [
-                'cards'     => $allCards,
+                'allCards'     => $allCards,
                 'mode'      => 'listCardsExpired'
             ]
         );
