@@ -2,7 +2,7 @@
 
 @section('title', 'Boomedic')
 
-@section('content_header')
+@section('content')
 
 <div class="box">
 	  	<div class="box-header with-border">
