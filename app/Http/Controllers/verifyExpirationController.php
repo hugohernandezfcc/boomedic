@@ -17,7 +17,7 @@ class verifyExpirationController extends Controller
      */
     public function index()
     {
-        $allCards = DB::table('paymentsmethods')->where('dateexpired', '<>', '');
+        $allCards = DB::table('paymentsmethods')->where('dateexpired', '<>', '')->get();
         return view('cards', [
                 'allCards'     => $allCards,
                 'mode'      => 'listCardsExpired'
