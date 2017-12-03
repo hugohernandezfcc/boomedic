@@ -6,7 +6,7 @@
 
 <div class="box">
 	  	<div class="box-header with-border">
-		    <h3 class="box-title">Estado de Casos</h3>
+		    <h3 class="box-title">Estado de Formas de Pago</h3>
 	  	</div>
 		<div class="box-body">
 
