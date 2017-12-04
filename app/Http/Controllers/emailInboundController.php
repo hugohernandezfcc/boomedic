@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Collection;
+use GuzzleHttp\Client;
+use App\User;
+use App\email;
 
 class emailInboundController extends Controller
 {
@@ -34,7 +40,22 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json(['status' => 'ok']);
+        try
+        {
+            $attachs = request('storage');
+
+            if(!is_null($attachs)) {
+                $attachments = json_decode($attachs, true);
+
+                    $httpClient = new Client();
+                    $resp = $httpClient->request('GET', ['url'], ['auth' => ['api' => 'key-6acc7a4795144cf3dfe94d1e9b6393e6']]);
+            }
+            return view('cards', ['resp'     => $resp]);//response()->json(['status' => 'ok']);
+        }   
+        catch(\Exception $e) 
+        {
+            return response()->json(['status' => 'ok']);
+        }
     }
 
     /**
