@@ -40,14 +40,20 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
-        $httpClient = new Client();
+        /*$httpClient = new Client();
         $response = $httpClient->get('https://se.api.mailgun.net/v3/domains/sandboxde0a5dc93a4d4d6584ee4bde0852c464.mailgun.org/messages/eyJwIjpmYWxzZSwiayI6Ijc1NWJjZDE2LTlmZTMtNDNlMC05YWU4LTMzMTA1N2IyZjRjMSIsInMiOiJmMDgxNGY2NTE0IiwiYyI6InRhbmtiIn0=', [
             'auth' => ['api', 'key-6acc7a4795144cf3dfe94d1e9b6393e6'], 
         ]);
         $message = (string)$response->getMessage();
         //return $message;
         return view('emails', [
-                'message'     => $message]);
+                'message'     => $message]);*/
+        $nTicket = new SupportTicket($request->all());        
+        $nTicket->userId    = Auth::id();
+        $nTicket->status    = 'In Progress';
+        $nTicket->user      = 1;
+
+        $nTicket->save();
     }
 
     /**
