@@ -155,7 +155,9 @@ class VisaAPIClient extends Controller {
 		if($statusCode == '201'){
 				$json = json_decode($body);
 				$json = json_encode($json->referenceId, JSON_PRETTY_PRINT);
-			return $json;
+				$resp = str_replace('"','', $json);
+				$matriz = array($statusCode, $resp);
+			return $matriz;
 		} else {
 			//If payment is not approved, the internal status code must be searched within the answer json.
 			if (empty($body) == false && $body != '') {

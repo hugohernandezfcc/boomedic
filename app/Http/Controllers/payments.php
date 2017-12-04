@@ -224,7 +224,7 @@ class payments extends Controller
                     $queryString = 'apikey=RY6NDJNX3Q2NDWVYUBQW21N37pbnY719X0SqzEs_CDSZbhFro';
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
-         if($statusCode != '201'){
+         if($statusCode[0] == '201'){
              /* Insert_bank*/
                         $Transaction = new transaction_bank;
                         $Transaction->paymentmethod = $request->id;
@@ -234,7 +234,7 @@ class payments extends Controller
                     /* Insert Transaction_bank*/    
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Transacción Nro. '.$Transaction->id.': Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... '.$statusCode, 
+            'message' => 'Transacción Nro. '.$Transaction->id.': Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... '.$statusCode[1], 
             'success' => 'success'
             );
             return redirect('payment/index')->with($notification);
