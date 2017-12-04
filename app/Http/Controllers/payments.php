@@ -379,7 +379,7 @@ class payments extends Controller
 
                               }
 
-                               $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->first();
+                               $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
                                             $Trans->receiver = 'receiver prueba';
@@ -390,7 +390,7 @@ class payments extends Controller
 
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
-                                    'message' => 'Procesado su pago de paypal Payer Id: ' .$request->input('PayerID'). ', ' .$result->getPayer()->getPayerInfo()->getEmail().' tran: '. $payment_id, 
+                                    'message' => 'Procesado su pago de paypal Paypal Id: ' .$request->input('PayerID'). ', Correo: ' .$result->getPayer()->getPayerInfo()->getEmail().' Id de transacción: '. $payment_id, 
                                     'success' => 'success'
                                 );
                               return redirect('payment/index')->with($notification);
