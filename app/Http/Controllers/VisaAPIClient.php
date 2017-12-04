@@ -154,7 +154,7 @@ class VisaAPIClient extends Controller {
 		//Status code esmel HTTP_Code, so it will only be 201 or 400 in this case.
 		if($statusCode == '201'){
 				$json = json_decode($body);
-				$json = json_encode($json, JSON_PRETTY_PRINT);
+				$json = json_encode($json->referenceId, JSON_PRETTY_PRINT);
 			return $json;
 		} else {
 			//If payment is not approved, the internal status code must be searched within the answer json.
