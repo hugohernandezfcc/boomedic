@@ -366,7 +366,7 @@ class payments extends Controller
                             if ($result->getState() == 'approved') { // payment made
                               // Payment is successful do your business logic here
                                 //Add payment method
-                                $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->first();
+                                $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
                                 if(empty($paypalExist)){
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
@@ -389,7 +389,7 @@ class payments extends Controller
 
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
-                                    'message' => 'Procesado su pago de paypal Payer Id: ' .$request->input('PayerID'). ', ' .$result->getPayer()->getPayerInfo()->getEmail().' tran: '.$payment->related_resources[0]->sale->id, 
+                                    'message' => 'Procesado su pago de paypal Payer Id: ' .$request->input('PayerID'). ', ' .$result->getPayer()->getPayerInfo()->getEmail().' tran: '. $payment_id, 
                                     'success' => 'success'
                                 );
                               return redirect('payment/index')->with($notification);
