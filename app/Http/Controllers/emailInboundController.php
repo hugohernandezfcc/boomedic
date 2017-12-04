@@ -45,7 +45,9 @@ class emailInboundController extends Controller
             'auth' => ['api', 'key-6acc7a4795144cf3dfe94d1e9b6393e6'], 
         ]);
         $message = (string)$response->getMessage();
-        return $message;
+        //return $message;
+        return view('emails', [
+                'message'     => $message]);
     }
 
     /**
