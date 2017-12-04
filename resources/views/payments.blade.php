@@ -419,7 +419,7 @@
 				                <tbody>
 					     	@foreach ($transactions as $transaction)
 								     <tr>
-						             	<td>{{ $transaction->id }} <br/></td>
+						             	<td>{{ $transaction->transaction }} <br/></td>
 						             	<td>{{ $transaction->receiver}}<br/></td>
 						             	<td>{{ $transaction->amount }}</td>
 						             	<td>{{ $transaction->created_at}}</td>

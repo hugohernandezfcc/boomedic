@@ -384,6 +384,7 @@ class payments extends Controller
                                             $Trans->paymentmethod = $paypalExist2->id;
                                             $Trans->receiver = 'receiver prueba';
                                             $Trans->amount = $payment->transactions[0]->amount->total;
+                                            $Trans->transaction = $payment_id;
                                             $Trans->save();    
                                         
 
