@@ -40,22 +40,12 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
-        try
-        {
-            $attachs = request('storage');
-
-            if(!is_null($attachs)) {
-                $attachments = json_decode($attachs, true);
-
-                    $httpClient = new Client();
-                    $resp = $httpClient->request('GET', ['url'], ['auth' => ['api' => 'key-6acc7a4795144cf3dfe94d1e9b6393e6']]);
-            }
-            return view('cards', ['resp'     => $resp]);//response()->json(['status' => 'ok']);
-        }   
-        catch(\Exception $e) 
-        {
-            return response()->json(['status' => 'ok']);
-        }
+        $httpClient = new Client();
+        $response = $httpClient->get('https://se.api.mailgun.net/v3/domains/sandboxde0a5dc93a4d4d6584ee4bde0852c464.mailgun.org/messages/eyJwIjpmYWxzZSwiayI6Ijc1NWJjZDE2LTlmZTMtNDNlMC05YWU4LTMzMTA1N2IyZjRjMSIsInMiOiJmMDgxNGY2NTE0IiwiYyI6InRhbmtiIn0=', [
+            'auth' => ['api', 'key-6acc7a4795144cf3dfe94d1e9b6393e6'], 
+        ]);
+        $message = (string)$response->getMessage();
+        return $message;
     }
 
     /**
