@@ -265,5 +265,42 @@ Route::group(['prefix' => 'supportTicket'], function(){
 
 });
 
+Route::group(['prefix' => 'emailInbound'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'emailInboundController@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('create', [
+			'uses'	=>	'emailInboundController@create',
+			'as'	=>	'create'
+		]
+	);
+
+	Route::post('store', [
+			'uses'	=>	'emailInboundController@store',
+			'as'	=>	'store'
+		]
+	);
+
+	Route::get('delete/{id}', [
+			'uses'	=>	'emailInboundController@destroy',
+			'as'	=>	'destroy'
+		]
+	);
+
+});
+
+Route::group(['prefix' => 'verifyExpiration'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'verifyExpirationController@index',
+			'as'	=>	'index'
+		]
+	);
+});
+
 Route::post('/bye' , 'Auth\LoginController@logout');
 
