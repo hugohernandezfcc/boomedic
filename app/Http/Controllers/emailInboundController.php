@@ -48,7 +48,7 @@ class emailInboundController extends Controller
         //return $message;
         return view('emails', [
                 'message'     => $message]);*/
-        $nTicket = new SupportTicket($request->all());        
+        $nTicket = new SupportTicket();        
         $nTicket->userId    = 1;
         $nTicket->status    = 'In Progress';
 
