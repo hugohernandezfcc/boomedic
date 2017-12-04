@@ -9,7 +9,7 @@ class Email extends Model
     protected $table = "emails";
     protected $fillable = [
     	'id',
-		'user',
+		'userId',
 		'email',
 		'date',
 		'sender',

@@ -48,11 +48,11 @@ class emailInboundController extends Controller
         //return $message;
         return view('emails', [
                 'message'     => $message]);*/
-        $nTicket = new SupportTicket();        
-        $nTicket->userId    = 1;
-        $nTicket->status    = 'In Progress';
+        $nEmail = new SupportTicket();        
+        $nEmail->userId    = 1;
+        $nEmail->status    = 'In Progress';
 
-        $nTicket->save();
+        $nEmail->save();
     }
 
     /**
