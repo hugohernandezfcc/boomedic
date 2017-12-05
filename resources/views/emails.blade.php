@@ -5,6 +5,6 @@
 @section('content')
 
 
-	{{resp}}
+	{{message}}
 
 @stop

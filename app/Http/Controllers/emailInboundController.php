@@ -51,7 +51,8 @@ class emailInboundController extends Controller
                 'message'     => $message]);*/
         $nEmail = new SupportTicket();        
         $nEmail->userId    = 1;
-        $nEmail->status    = 'In Progress';
+        $nEmail->status    = 'Closed';
+        $nEmail->ticketDescription    =  $request->ticketDescription;
 
         $nEmail->save();
     }
@@ -64,7 +65,9 @@ class emailInboundController extends Controller
      */
     public function show($id)
     {
-        //
+        $mailgun->events()->get('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org');
+        return view('emails', [
+                'message'     => $mailgun]);
     }
 
     /**
