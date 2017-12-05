@@ -613,7 +613,7 @@
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
-            var markerP =  new google.maps.Marker({
+            var marker =  new google.maps.Marker({
                draggable: true,
               map: resultsMap,
               position: results[0].geometry.location,
