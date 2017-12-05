@@ -564,11 +564,7 @@
               rotateControl: false,
               fullscreenControl: false
             });
-        var geocoder = new google.maps.Geocoder();
-        document.getElementById('submit').addEventListener('click', function() {
-        geocodeAddress(geocoder, map);
-        markerP.setPosition(map);
-        });
+
             var markerUser = "{{ asset('markerUser.png') }}";
 
             //Marker
@@ -583,6 +579,13 @@
               infoWindow.open(map, markerP);
               infoWindow.setContent(message01);
             });
+                var geocoder = new google.maps.Geocoder();
+                document.getElementById('submit').addEventListener('click', function() {
+                geocodeAddress(geocoder, map);
+                markerP.setPosition(map);
+                });
+
+
           },
 
           //****Error
