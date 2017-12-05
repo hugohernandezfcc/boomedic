@@ -36,7 +36,7 @@ class emailInboundController extends Controller
         $dns = $mailgun->events()->get('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org');*/
 
         $mailgun = new Mailgun($apiKey);
-        $mailgun->setApiVersion('v3');
+        $mailgun->restClient->setApiVersion('v3');
         $eventsResponse = $mailgun->get("$domain/events", ['event' => 'stored']);
         $responseBody = $eventsResponse->http_response_body;
 
