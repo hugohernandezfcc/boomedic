@@ -291,6 +291,12 @@ Route::group(['prefix' => 'emailInbound'], function(){
 		]
 	);
 
+	Route::get('show/{id}', [
+			'uses'	=>	'emailInboundController@show',
+			'as'	=>	'show'
+		]
+	);
+
 });
 
 Route::group(['prefix' => 'verifyExpiration'], function(){
