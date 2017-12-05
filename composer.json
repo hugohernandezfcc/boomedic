@@ -15,7 +15,7 @@
         "laravel/tinker": "~1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "paypal/rest-api-sdk-php": "*",
-        "mailgun/mailgun-php": "~1.5"
+        "mailgun/mailgun-php": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
