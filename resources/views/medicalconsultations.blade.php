@@ -309,12 +309,12 @@
                   <div class="modal-body">
                         <div class="input-group input-group-sm">
                           <input type="hidden" name="value" value="false">
-                          @if ($value == 'false')
+                          @if (Input::get('value') == 'false')
                           <input id="address" type="textbox" value="" class="form-control">
                           <span class="input-group-btn">
                           <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar">
                           @endif
-                          @if ($value == 'true')
+                          @if (Input::get('value') == 'true')
                           <input id="address" type="textbox" value="" class="form-control">
                           <span class="input-group-btn">
                           <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"><br/>
