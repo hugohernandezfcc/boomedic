@@ -11,7 +11,7 @@ use GuzzleHttp\Client;
 use App\User;
 use App\email;
 
-require '../vendor/autoload.php';
+require '../../vendor/autoload.php';
 use Mailgun\Mailgun;
 
 class emailInboundController extends Controller
@@ -55,7 +55,7 @@ class emailInboundController extends Controller
                 foreach($attachments as $k => $a) {
                     $httpClient = new Client();
                     $response = $httpClient->get($attachment['url'], [
-                        'auth' => ['api', env("key-f3d340554fdb2c32590a9d4ace93027a")], 
+                        'auth' => ['api', "key-f3d340554fdb2c32590a9d4ace93027a"], 
                     ]);
                     $imageData = (string)$response->getBody();
                     $base64 = base64_encode($imageData);
