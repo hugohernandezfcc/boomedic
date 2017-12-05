@@ -28,8 +28,8 @@ class emailInboundController extends Controller
         return view('emails', [
                 'message'     => $dns]);*/
 
-        $ailgun = new Mailgun('api_key', new \Http\Adapter\Guzzle6\Client())
-        $dns = $mg->domains()->show('example.com')->getInboundDNSRecords();
+        $mailgun = new Mailgun('api_key', new \Http\Adapter\Guzzle6\Client())
+        $dns = $mailgun->domains()->show('example.com')->getInboundDNSRecords();
 
         return view('emails', [
                 'message'     => $dns]);
