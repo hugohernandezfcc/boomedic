@@ -567,8 +567,7 @@
         var geocoder = new google.maps.Geocoder();
         document.getElementById('submit').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
-        infoWindow.open(map, markerP);
-        infoWindow.setContent(message01);
+
         });
             var markerUser = "{{ asset('markerUser.png') }}";
 
@@ -614,9 +613,11 @@
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
+            var markerP =  google.maps.Marker({
+               draggable: true,
               map: resultsMap,
-              position: results[0].geometry.location
+              position: results[0].geometry.location,
+              icon: markerUser
             });
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
