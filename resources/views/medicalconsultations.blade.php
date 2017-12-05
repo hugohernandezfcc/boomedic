@@ -311,11 +311,11 @@
                           <input id="address" type="textbox" value="" class="form-control">
                           <span class="input-group-btn">
                           <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
-                          <br/>
+                       </div>
+                            <br/>                    
                           <div id ="ubi" class="input-group input-group-sm" style="display:none">
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" >
                           </div>
-                       </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
                   </div>
                 </div>
