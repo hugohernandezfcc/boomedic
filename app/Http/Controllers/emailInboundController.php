@@ -39,30 +39,21 @@ class emailInboundController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    {
     public function store(Request $request)
     {
-        try
-        {
-            $attachs = request('attachments');
+        /*$httpClient = new Client();
+        $response = $httpClient->get('https://se.api.mailgun.net/v3/domains/sandboxde0a5dc93a4d4d6584ee4bde0852c464.mailgun.org/messages/eyJwIjpmYWxzZSwiayI6Ijc1NWJjZDE2LTlmZTMtNDNlMC05YWU4LTMzMTA1N2IyZjRjMSIsInMiOiJmMDgxNGY2NTE0IiwiYyI6InRhbmtiIn0=', [
+            'auth' => ['api', 'key-6acc7a4795144cf3dfe94d1e9b6393e6'], 
+        ]);
+        $message = (string)$response->getMessage();
+        //return $message;
+        return view('emails', [
+                'message'     => $message]);*/
+        $nEmail = new SupportTicket();        
+        $nEmail->userId    = 1;
+        $nEmail->status    = 'In Progress';
 
-            if(!is_null($attachs)) {
-                $attachments = json_decode($attachs, true);
-
-                foreach($attachments as $k => $a) {
-                    $httpClient = new Client();
-                    $resp = $httpClient->request('GET', $a['url'], ['auth' => ['api' => 'key-6acc7a4795144cf3dfe94d1e9b6393e6']]);
-                    $imageData = $resp->getBody();
-                    $base64 = base64_encode($imageData);
-                    $this->saveTicketAttachment($base64, $a['name'], $ticket);
-                }
-            }
-            return response()->json(['status' => 'ok']);
-        }   
-        catch(\Exception $e) 
-        {
-            return response()->json(['status' => 'ok']);
-        }
+        $nEmail->save();
     }
 
     /**
