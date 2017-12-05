@@ -11,6 +11,7 @@ use GuzzleHttp\Client;
 use App\User;
 use App\email;
 
+require 'vendor/autoload.php';
 use Mailgun\Mailgun;
 
 class emailInboundController extends Controller
