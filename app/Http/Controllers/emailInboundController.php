@@ -23,12 +23,13 @@ class emailInboundController extends Controller
      */
     public function index()
     {
+        $api_key = 'key-f3d340554fdb2c32590a9d4ace93027a';
         /*$mailgun = Mailgun::create('key-f3d340554fdb2c32590a9d4ace93027a');
         $mailgun->events()->get('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org');
         return view('emails', [
                 'message'     => $dns]);*/
 
-        $mailgun = new Mailgun('api_key', new \Http\Adapter\Guzzle6\Client())
+        $mailgun = new Mailgun($api_key, new \Http\Adapter\Guzzle6\Client())
         $dns = $mailgun->domains()->show('example.com')->getInboundDNSRecords();
 
         return view('emails', [
