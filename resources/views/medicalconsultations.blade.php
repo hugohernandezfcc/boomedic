@@ -314,7 +314,7 @@
                        </div>
                             <br/>                    
                           <div id ="ubi" class="input-group input-group-sm" style="display:none">
-                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" >
+                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" onclick="initMap()">
                           </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
                   </div>
