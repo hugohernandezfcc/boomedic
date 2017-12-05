@@ -14,8 +14,6 @@ use App\email;
 require '../vendor/autoload.php';
 use Mailgun\Mailgun;
 
-use Mailgun\Connection\RestClient;
-
 class emailInboundController extends Controller
 {
     /**
@@ -25,33 +23,20 @@ class emailInboundController extends Controller
      */
     public function index()
     {
-        $apiKey = 'key-f3d340554fdb2c32590a9d4ace93027a';
-        $domain = 'sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org';
         /*$mailgun = Mailgun::create('key-f3d340554fdb2c32590a9d4ace93027a');
         $mailgun->events()->get('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org');
         return view('emails', [
                 'message'     => $dns]);*/
 
-        /*$mailgun = new Mailgun($api_key, new \Http\Adapter\Guzzle6\Client())
-        $dns = $mailgun->events()->get('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org');*/
-
-        $mailgun = new Mailgun($apiKey);
-        $mailgun->restClient->setApiVersion('v3');
-        $eventsResponse = $mailgun->get("$domain/events", ['event' => 'stored']);
-        $responseBody = $eventsResponse->http_response_body;
+        $mg = Mailgun::create('key-f3d340554fdb2c32590a9d4ace93027a');
+        $dns = $mg->domains()->show('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org')->getInboundDNSRecords();
 
         return view('emails', [
-                'message'     => $responseBody]);
+                'message'     => $dns]);
 
         /*foreach ($dns as $record) {
           echo $record->getType();
         }*/
-    }
-
-    public static function createM($apiKey)
-    {
-        $httpClientConfigurator = (new HttpClientConfigurator())->setApiKey($apiKey);
-        return Mailgun::configure($httpClientConfigurator);
     }
 
     /**
