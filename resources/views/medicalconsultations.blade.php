@@ -285,7 +285,7 @@
 
     <div id="map"></div>
          <div class="checkStyl2">      
-      <a class="btn btn-secondary btn-block btn-flat" data-backdrop="static" data-toggle="modal" data-target="#modal">Busqueda</a>
+      <a class="btn btn-secondary btn-block btn-flat" data-backdrop="static" data-toggle="modal" data-target="#modal">Búsqueda</a>
     </div>
     <div id='rango'>
         <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
@@ -304,7 +304,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                    <label for="Busqueda">Busqueda de lugar:</label>
+                    <label for="Busqueda">Búqueda de lugar:</label>
                   </div>
                   <div class="modal-body">
                         <div class="input-group input-group-sm">
@@ -567,6 +567,8 @@
         var geocoder = new google.maps.Geocoder();
         document.getElementById('submit').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
+        infoWindow.open(map, markerP);
+        infoWindow.setContent(message01);
         });
             var markerUser = "{{ asset('markerUser.png') }}";
 
