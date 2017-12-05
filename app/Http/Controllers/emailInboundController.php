@@ -23,7 +23,20 @@ class emailInboundController extends Controller
      */
     public function index()
     {
-        //
+        /*$mailgun = Mailgun::create('key-f3d340554fdb2c32590a9d4ace93027a');
+        $mailgun->events()->get('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org');
+        return view('emails', [
+                'message'     => $dns]);*/
+
+        $mg = Mailgun::create('key-f3d340554fdb2c32590a9d4ace93027a');
+        $dns = $mg->domains()->show('example.com')->getInboundDNSRecords();
+
+        return view('emails', [
+                'message'     => $dns]);
+
+        /*foreach ($dns as $record) {
+          echo $record->getType();
+        }*/
     }
 
     /**
@@ -68,10 +81,7 @@ class emailInboundController extends Controller
      */
     public function show($id)
     {
-        $mailgun = Mailgun::create('key-f3d340554fdb2c32590a9d4ace93027a');
-        $mailgun->events()->get('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org');
-        return view('emails', [
-                'message'     => $mailgun]);
+        //
     }
 
     /**
