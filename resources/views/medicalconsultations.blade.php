@@ -545,7 +545,8 @@
 
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
-        
+        $('#modal').modal('hide');
+         document.getElementById('ubi').style.display = 'none'; 
         infoWindow = new google.maps.InfoWindow();
 
         //Current position
