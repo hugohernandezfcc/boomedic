@@ -308,7 +308,7 @@
                   </div>
                   <div class="modal-body">
                         <div class="input-group input-group-sm">
-                          <input type="hidden" name="value" value="false">
+                          <input placeholder="" type="hidden" name="value" value="false">
                           @if (Input::has('value') == 'false')
                           <input id="address" type="textbox" value="" class="form-control">
                           <span class="input-group-btn">
