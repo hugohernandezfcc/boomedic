@@ -51,7 +51,7 @@ class emailInboundController extends Controller
 
                 foreach($attachments as $k => $a) {
                     $httpClient = new Client();
-                    $resp = $httpClient->request('GET', $a['url'], ['auth' => ['api' => 'key-example']]);
+                    $resp = $httpClient->request('GET', $a['url'], ['auth' => ['api' => 'key-6acc7a4795144cf3dfe94d1e9b6393e6']]);
                     $imageData = $resp->getBody();
                     $base64 = base64_encode($imageData);
                     $this->saveTicketAttachment($base64, $a['name'], $ticket);
