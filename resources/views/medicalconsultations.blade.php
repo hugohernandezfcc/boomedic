@@ -310,11 +310,11 @@
                         <div class="input-group input-group-sm">
                           <input id="address" type="textbox" value="" class="form-control">
                           <span class="input-group-btn">
-                          <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"><br/>
-                          </span>
-                          <span class="input-group-btn">
-                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" style="display:none">
-                        </span>
+                          <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
+                          <br/>
+                          <div id ="ubi" class="input-group input-group-sm" style="display:none">
+                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" >
+                          </div>
                        </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
                   </div>
@@ -587,7 +587,7 @@
                 document.getElementById('submit').addEventListener('click', function() {
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
-                document.getElementById('ubication').style.display = 'inline'; 
+                document.getElementById('ubi').style.display = 'inline'; 
                 });
 
 
