@@ -28,7 +28,7 @@ class emailInboundController extends Controller
         return view('emails', [
                 'message'     => $dns]);*/
 
-        $mg = self::createM('key-f3d340554fdb2c32590a9d4ace93027a');
+        $ailgun = new Mailgun('api_key', new \Http\Adapter\Guzzle6\Client())
         $dns = $mg->domains()->show('example.com')->getInboundDNSRecords();
 
         return view('emails', [
