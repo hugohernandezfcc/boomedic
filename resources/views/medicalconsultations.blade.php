@@ -567,12 +567,13 @@
         var geocoder = new google.maps.Geocoder();
         document.getElementById('submit').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
-
+        infoWindow.open(map, markerP);
+        infoWindow.setContent(message01);
         });
             var markerUser = "{{ asset('markerUser.png') }}";
 
             //Marker
-            markerP = new google.maps.Marker({
+              markerP = new google.maps.Marker({
               draggable: true,
               position: new google.maps.LatLng(pos),
               icon: markerUser,
