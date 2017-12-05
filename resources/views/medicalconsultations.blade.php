@@ -567,8 +567,6 @@
         var geocoder = new google.maps.Geocoder();
         document.getElementById('submit').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
-        infoWindow.open(map, marker);
-        infoWindow.setContent(message01);
         });
             var markerUser = "{{ asset('markerUser.png') }}";
 
