@@ -30,7 +30,7 @@ class emailInboundController extends Controller
                 'message'     => $dns]);*/
 
         $mailgun = new Mailgun($api_key, new \Http\Adapter\Guzzle6\Client())
-        $dns = $mailgun->domains()->show('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org')->getInboundDNSRecords();
+        $dns = $mailgun->events()->get('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org');
 
         return view('emails', [
                 'message'     => $dns]);
