@@ -55,7 +55,7 @@ class emailInboundController extends Controller
                 foreach($attachments as $k => $a) {
                     $httpClient = new Client();
                     $response = $httpClient->get($attachment['url'], [
-                        'auth' => ['api', "key-f3d340554fdb2c32590a9d4ace93027a"], 
+                        'auth' => ['api', "key-6acc7a4795144cf3dfe94d1e9b6393e6"], 
                     ]);
                     $imageData = (string)$response->getBody();
                     $base64 = base64_encode($imageData);
