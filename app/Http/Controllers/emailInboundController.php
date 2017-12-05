@@ -11,6 +11,8 @@ use GuzzleHttp\Client;
 use App\User;
 use App\email;
 
+use Mailgun\Mailgun;
+
 class emailInboundController extends Controller
 {
     /**
@@ -65,6 +67,7 @@ class emailInboundController extends Controller
      */
     public function show($id)
     {
+        $mailgun = Mailgun::create('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org');
         $mailgun->events()->get('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org');
         return view('emails', [
                 'message'     => $mailgun]);
