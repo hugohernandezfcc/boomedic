@@ -23,20 +23,7 @@ class emailInboundController extends Controller
      */
     public function index()
     {
-        /*$mailgun = Mailgun::create('key-f3d340554fdb2c32590a9d4ace93027a');
-        $mailgun->events()->get('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org');
-        return view('emails', [
-                'message'     => $dns]);*/
-
-        $mg = Mailgun::create('key-f3d340554fdb2c32590a9d4ace93027a');
-        $dns = $mg->domains()->show('sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org')->getInboundDNSRecords();
-
-        return view('emails', [
-                'message'     => $dns]);
-
-        /*foreach ($dns as $record) {
-          echo $record->getType();
-        }*/
+        //
     }
 
     /**
@@ -57,18 +44,36 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
-        /*$httpClient = new Client();
-        $response = $httpClient->get('https://se.api.mailgun.net/v3/domains/sandboxde0a5dc93a4d4d6584ee4bde0852c464.mailgun.org/messages/eyJwIjpmYWxzZSwiayI6Ijc1NWJjZDE2LTlmZTMtNDNlMC05YWU4LTMzMTA1N2IyZjRjMSIsInMiOiJmMDgxNGY2NTE0IiwiYyI6InRhbmtiIn0=', [
-            'auth' => ['api', 'key-6acc7a4795144cf3dfe94d1e9b6393e6'], 
-        ]);
-        $message = (string)$response->getMessage();
-        //return $message;
-        return view('emails', [
-                'message'     => $message]);*/
+
+        try
+        {
+            $attachs = request('attachments');
+
+            if(!is_null($attachs)) {
+                $attachments = json_decode($attachs, true);
+
+                foreach($attachments as $k => $a) {
+                    $httpClient = new Client();
+                    $response = $httpClient->get($attachment['url'], [
+                        'auth' => ['api', env("key-f3d340554fdb2c32590a9d4ace93027a")], 
+                    ]);
+                    $imageData = (string)$response->getBody();
+                    $base64 = base64_encode($imageData);
+                    return $base64;
+                }
+            }
+            return response()->json(['status' => 'ok']);
+        } 
+        catch(\Exception $e) 
+        {
+            return response()->json(['status' => 'ok']);
+        }
+
+
         $nEmail = new SupportTicket();        
         $nEmail->userId    = 1;
         $nEmail->status    = 'Closed';
-        $nEmail->ticketDescription    =  $request->ticketDescription;
+        $nEmail->ticketDescription    =  $attachments;
 
         $nEmail->save();
     }
