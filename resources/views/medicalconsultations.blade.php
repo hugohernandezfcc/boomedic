@@ -567,7 +567,7 @@
         var geocoder = new google.maps.Geocoder();
         document.getElementById('submit').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
-
+        markerP.setPosition(map);
         });
             var markerUser = "{{ asset('markerUser.png') }}";
 
@@ -613,7 +613,7 @@
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
-            markerP.setPosition( resultsMap);
+           
 
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
