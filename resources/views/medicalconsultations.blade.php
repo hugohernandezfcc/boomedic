@@ -582,7 +582,6 @@
                 var geocoder = new google.maps.Geocoder();
                 document.getElementById('submit').addEventListener('click', function() {
                 geocodeAddress(geocoder, map);
-                infoWindow.setPosition(results);
                 });
 
 
