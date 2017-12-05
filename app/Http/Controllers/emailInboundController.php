@@ -28,7 +28,7 @@ class emailInboundController extends Controller
         return view('emails', [
                 'message'     => $dns]);*/
 
-        $mg = Mailgun::create('key-f3d340554fdb2c32590a9d4ace93027a');
+        $mg = createM('key-f3d340554fdb2c32590a9d4ace93027a');
         $dns = $mg->domains()->show('example.com')->getInboundDNSRecords();
 
         return view('emails', [
@@ -37,6 +37,12 @@ class emailInboundController extends Controller
         /*foreach ($dns as $record) {
           echo $record->getType();
         }*/
+    }
+
+    public static function createM($apiKey)
+    {
+        $httpClientConfigurator = (new HttpClientConfigurator())->setApiKey($apiKey);
+        return self::configure($httpClientConfigurator);
     }
 
     /**
