@@ -614,8 +614,8 @@
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
-            var marker =  new google.maps.Marker({
-               draggable: true,
+            var markerP =  new google.maps.Marker({
+              draggable: true,
               map: resultsMap,
               position: results[0].geometry.location,
               icon: markerUser
