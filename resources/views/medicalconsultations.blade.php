@@ -582,7 +582,7 @@
                 var geocoder = new google.maps.Geocoder();
                 document.getElementById('submit').addEventListener('click', function() {
                 geocodeAddress(geocoder, map);
-                markerP.setPosition(map);
+                markerP.setPosition(results);
                 });
 
 
@@ -616,7 +616,8 @@
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
-           
+            var results = results[0].geometry.location;
+           return results;
 
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
