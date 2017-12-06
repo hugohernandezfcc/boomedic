@@ -80,7 +80,7 @@ class emailInboundController extends Controller
 
         app('log')->debug(request()->all());
 
-        $files = json_decode($request->input('attachments'), true)
+        $files = collect(json_decode($request->input('attachments'), true))
         ->filter(function ($file) {
             return $file['content-type'] == 'application/pdf';/*return $file['content-type'] == 'text/csv';*/
         });
@@ -88,7 +88,7 @@ class emailInboundController extends Controller
         if ($files->count() === 0) {
             return response()->json([
                 'status' => 'error',
-                'message' => $files/*'Missing expected pdf attachment'*/
+                'message' => json_decode($request)/*'Missing expected pdf attachment'*/
             ], 406);
         }
 
