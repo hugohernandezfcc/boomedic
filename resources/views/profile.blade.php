@@ -7,10 +7,31 @@
 @stop
 
 @section('content')
-
+	<script src="{{ asset('js/jquery.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.color.js') }}"></script>
+	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+    jQuery(function(){ jQuery('#target').Jcrop(); });
+     jQuery('#target').Jcrop({
+      aspectRatio: 300/300,
+      boxWidth: 300,
+      boxHeight: 300,
+      onSelect: updateCoords
+     });
+     function updateCoords(c){
+      jQuery('#x').val(c.x);
+      jQuery('#y').val(c.y);
+      jQuery('#w').val(c.w);
+      jQuery('#h').val(c.h);
+     };
+</script>
 
 		<script type="text/javascript">
 				Dropzone.options.myAwesomeDropzone = { 
@@ -75,18 +96,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                    <label for="Busqueda">Búqueda de lugar:</label>
+                    <label for="Busqueda">Recorte de imagen:</label>
                   </div>
                   <div class="modal-body">
                         <div class="input-group input-group-sm">
-                          <input id="address" type="textbox" value="" class="form-control">
+                           <img src="{{ $photo }}" id="target" />
                           <span class="input-group-btn">
-                          <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
+                          <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
                        </div>
-                            <br/>                    
-                          <div id ="ubi" class="input-group input-group-sm" style="display:none">
-                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" onclick="initMap()">
-                          </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
                   </div>
                 </div>
