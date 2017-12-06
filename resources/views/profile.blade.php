@@ -7,9 +7,9 @@
 @stop
 
 @section('content')
-	<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
-	<script type="text/javascript" src="http://jcrop-cdn.tapmodo.com/v0.9.12/js/jquery.Jcrop.js"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/jquery.color.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/jquery.Jcrop.js') }}"></script>
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
