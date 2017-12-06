@@ -23,7 +23,10 @@
 				    dictRemoveFile: "Eliminar",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
-				    
+				     success: function(file, response){
+					        //alert(response);
+					        alert('Uploaded!');
+					    }
 				    //autoProcessQueue : false
 				 	   
 				 };
