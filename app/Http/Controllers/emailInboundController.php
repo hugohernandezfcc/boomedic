@@ -91,12 +91,12 @@ class emailInboundController extends Controller
             ], 406);
         }
 
-        /*$nTicket = new SupportTicket();        
+        $nTicket = new SupportTicket();        
             $nTicket->userId    = 1;
             $nTicket->status    = 'New';
             $nTicket->ticketDescription      = 'Creado por email';
 
-            $nTicket->save();*/
+            $nTicket->save();
 
         /*$message = (new Client())->get($file['url'], [
             'auth' => ['api', 'key-f3d340554fdb2c32590a9d4ace93027a'],
