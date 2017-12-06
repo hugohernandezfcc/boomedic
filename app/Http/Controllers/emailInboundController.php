@@ -91,7 +91,7 @@ class emailInboundController extends Controller
             ], 406);
         }
 
-        $nTicket = new SupportTicket($request->all());        
+        $nTicket = new SupportTicket();        
             $nTicket->userId    = 1;
             $nTicket->status    = 'New';
             $nTicket->ticketDescription      = $files;
