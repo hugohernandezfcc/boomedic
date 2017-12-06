@@ -6,32 +6,17 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-    <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
-	<script src="{{ asset('js/jquery.color.js') }}"></script>
-	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/js/Jcrop.js"></script>
+	<link rel="stylesheet" href="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/css/Jcrop.css" type="text/css">
 
-
-@stop
-
-@section('content')
-
-		<script>
-				
-			    $(function(){ $('#target').Jcrop(); });
-			     $('#target').Jcrop({
-			      aspectRatio: 1,
-			      onSelect: updateCoords
-			     });
-			     function updateCoords(c){
-			      $('#x').val(c.x);
-			      $('#y').val(c.y);
-			      $('#w').val(c.w);
-			      $('#h').val(c.h);
-			     };
-			</script>
-
-
-
+		<script type="text/javascript">
+		  jQuery(function($)){
+		  
+		    $('#target').Jcrop();
+		    
+		  });
+		</script>
 
 		<script type="text/javascript">
 
@@ -50,9 +35,13 @@
 					$('#modal').modal('show'); 
 					    }
 				    //autoProcessQueue : false 
-				 	   
 				 };
 		</script>
+
+@stop
+
+@section('content')
+
 
 	<br/>
 
@@ -137,7 +126,7 @@
 	    			@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
-						<img src="{{ $photo }}" alt="User Image" id="target">			
+						<img src="{{ $photo }}" alt="User Image">			
 			    	@endif 
 	    			
 	    		</div>
