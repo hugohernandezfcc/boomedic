@@ -139,13 +139,19 @@ class emailInboundController extends Controller
                     $base64 = base64_encode($imageData);
                     return $base64;
 
-                    $nTicket = new SupportTicket();     
+                    /*$nTicket = new SupportTicket();     
+                    $nTicket->userId    = 1;
+                    $nTicket->status    = 'New';
+                    $nTicket->subject    = 'Nuevo Email';
+                    $nTicket->ticketDescription      = 'Nuevo';
+                    $nTicket->save();*/
+                }
+                $nTicket = new SupportTicket();     
                     $nTicket->userId    = 1;
                     $nTicket->status    = 'New';
                     $nTicket->subject    = 'Nuevo Email';
                     $nTicket->ticketDescription      = 'Nuevo';
                     $nTicket->save();
-                }
             }
             return response()->json(['status' => 'ok', 'message' => $attachments], 200);
         } 
