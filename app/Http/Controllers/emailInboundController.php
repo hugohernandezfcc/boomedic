@@ -99,6 +99,14 @@ class emailInboundController extends Controller
         /*return view('emails', [
                 'message'=> $message
             ]);*/
+                    
+            $nTicket = new SupportTicket($request->all());        
+            $nTicket->userId    = 1;
+            $nTicket->status    = 'New';
+            $nTicket->ticketDescription      = $message->getBody();
+
+            $nTicket->save();
+
             app('log')->debug(request()->all());
         return response()->json(['status' => 'ok'], 200);
     }
