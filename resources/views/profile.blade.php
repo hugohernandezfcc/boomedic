@@ -25,40 +25,15 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					        var modal = document.getElementById('modal');
-					        modal.style.display = "block";
+					document.getElementById('modal').style.display ='block';
 					    }
-				    //autoProcessQueue : false
+				    //autoProcessQueue : false 
 				 	   
 				 };
 		</script>
 	<br/>
 
-<div id="modal" class="modal fade" role="dialog" style="display:none">
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">   
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                    <label for="Busqueda">Búqueda de lugar:</label>
-                  </div>
-                  <div class="modal-body">
-                        <div class="input-group input-group-sm">
-                          <input id="address" type="textbox" value="" class="form-control">
-                          <span class="input-group-btn">
-                          <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
-                       </div>
-                            <br/>                    
-                          <div id ="ubi" class="input-group input-group-sm" style="display:none">
-                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" onclick="initMap()">
-                          </div>
-                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-                  </div>
-                </div>
-              </div>
- </div>
+
 
 	@if( empty($status) )
 
@@ -92,6 +67,34 @@
 		</div>
 
 	@endif
+<div id="modal" class="modal fade" role="dialog" style="display:none">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">   
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <label for="Busqueda">Búqueda de lugar:</label>
+                  </div>
+                  <div class="modal-body">
+                        <div class="input-group input-group-sm">
+                          <input id="address" type="textbox" value="" class="form-control">
+                          <span class="input-group-btn">
+                          <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
+                       </div>
+                            <br/>                    
+                          <div id ="ubi" class="input-group input-group-sm" style="display:none">
+                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" onclick="initMap()">
+                          </div>
+                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+                  </div>
+                </div>
+              </div>
+ </div>
+
+
+
 
     <div class="box">
 	  	<div class="box-header with-border">
