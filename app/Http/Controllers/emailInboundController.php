@@ -82,13 +82,13 @@ class emailInboundController extends Controller
 
         $files = collect(json_decode($request->input('attachments'), true))
         ->filter(function ($file) {
-            return $file['content-type'] == 'text/pdf';/*return $file['content-type'] == 'text/csv';*/
+            return $file['content-type'] == 'application/pdf';/*return $file['content-type'] == 'text/csv';*/
         });
 
         if ($files->count() === 0) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Missing expected CSV attachment'
+                'message' => 'Missing expected application/pdf attachment'
             ], 406);
         }
 
