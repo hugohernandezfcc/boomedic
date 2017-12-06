@@ -3,7 +3,7 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-  	<script src="js/jquery.Jcrop.min.js"></script>
+  	<script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
 	<script src="js/jquery.color.js"></script>
 	<script src="js/jquery.Jcrop.js"></script>
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
