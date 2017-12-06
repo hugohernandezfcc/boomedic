@@ -87,7 +87,7 @@ class emailInboundController extends Controller
         if ($files->count() === 0) {
             return response()->json([
                 'status' => 'error',
-                'message' => $request/*'Missing expected pdf attachment'*/
+                'message' => $files/*'Missing expected pdf attachment'*/
             ], 406);
         }
 
