@@ -16,17 +16,17 @@
 @section('content')
 
 		<script>
-				jQuery.noConflict(); 
-			    jQuery(function(){ jQuery('#target').Jcrop(); });
-			     jQuery('#target').Jcrop({
+				
+			    $(function(){ $('#target').Jcrop(); });
+			     $('#target').Jcrop({
 			      aspectRatio: 1,
 			      onSelect: updateCoords
 			     });
 			     function updateCoords(c){
-			      jQuery('#x').val(c.x);
-			      jQuery('#y').val(c.y);
-			      jQuery('#w').val(c.w);
-			      jQuery('#h').val(c.h);
+			      $('#x').val(c.x);
+			      $('#y').val(c.y);
+			      $('#w').val(c.w);
+			      $('#h').val(c.h);
 			     };
 			</script>
 
