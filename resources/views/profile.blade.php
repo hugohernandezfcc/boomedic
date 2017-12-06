@@ -4,12 +4,13 @@
 
 @section('content_header')
 
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
     <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.color.js') }}"></script>
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
-<script>
+<script type="text/javascript">
     jQuery(function(){ jQuery('#target').Jcrop(); });
      jQuery('#target').Jcrop({
       aspectRatio: 1,
@@ -23,7 +24,25 @@
      };
 </script>
 
+		<script type="text/javascript">
 
+				Dropzone.options.myAwesomeDropzone = { 
+				 
+				 // set following configuration
+				 	paramName: "file",
+				    maxFiles: 1,
+				    acceptedFiles: "image/*",
+				    addRemoveLinks: true,
+				    dictRemoveFile: "Eliminar",
+				    dictCancelUpload: "Cancel",
+				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+				     success: function(file, response){
+					        //alert(response);
+					$('#modal').modal('show'); 
+					    }
+				    //autoProcessQueue : false 
+				 };
+		</script>
 
 @stop
 
@@ -78,7 +97,7 @@
                   </div>
                   <div class="modal-body">
                         <div align="center">
-                           <img src="{{ $photo }}" id="target"/><br/>
+                           <img src="{{ $photo }}" id="target" name="target" /><br/>
                           <span class="input-group-btn">
                           <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
                        </div>
@@ -113,7 +132,7 @@
 	    			@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
-						<img src="{{ $photo }}" alt="User Image" id="target">			
+						<img src="{{ $photo }}" alt="User Image">			
 			    	@endif 
 	    			
 	    		</div>
