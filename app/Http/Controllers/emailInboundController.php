@@ -48,11 +48,8 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
-        $nTicket = new SupportTicket();     
-        $nTicket->userId    = 1;
-        $nTicket->status    = 'New';
-        $nTicket->subject    = 'Nuevo Email';
-        $nTicket->ticketDescription      = 'Nuevo';
+        $nTicket = new email();
+        $nTicket->userId      = 1;
         $nTicket->save();
     }
 
