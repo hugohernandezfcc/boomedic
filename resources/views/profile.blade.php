@@ -4,7 +4,6 @@
 
 @section('content_header')
 
-	<!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
     <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
@@ -12,6 +11,7 @@
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
 			<script>
+				jQuery.noConflict(); 
 			    jQuery(function(){ jQuery('#target').Jcrop(); });
 			     jQuery('#target').Jcrop({
 			      aspectRatio: 1,
