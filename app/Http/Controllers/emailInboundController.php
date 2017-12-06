@@ -151,7 +151,7 @@ class emailInboundController extends Controller
         } 
         catch(\Exception $e) 
         {
-            return response()->json(['status' => 'ok', 'message' => $request], 200);
+            return response()->json(['status' => 'error', 'message' => $request], 406);
         }
 
 
