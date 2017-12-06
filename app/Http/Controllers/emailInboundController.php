@@ -78,7 +78,6 @@ class emailInboundController extends Controller
 
         $nEmail->save();*/
 
-        app('log')->debug(request()->all());
 
         $files = collect(json_decode($request->input('attachments'), true))
         ->filter(function ($file) {
@@ -88,26 +87,25 @@ class emailInboundController extends Controller
         if ($files->count() === 0) {
             return response()->json([
                 'status' => 'error',
-                'message' => json_decode($request)/*'Missing expected pdf attachment'*/
+                'message' => $request/*'Missing expected pdf attachment'*/
             ], 406);
         }
 
-        $message = (new Client())->get($file['url'], [
+        /*$message = (new Client())->get($file['url'], [
             'auth' => ['api', 'key-f3d340554fdb2c32590a9d4ace93027a'],
-        ]);
+        ]);*/
 
         /*return view('emails', [
                 'message'=> $message
             ]);*/
                     
-            $nTicket = new SupportTicket($request->all());        
+            /*$nTicket = new SupportTicket($request->all());        
             $nTicket->userId    = 1;
             $nTicket->status    = 'New';
             $nTicket->ticketDescription      = $message->getBody();
 
-            $nTicket->save();
+            $nTicket->save();*/
 
-            app('log')->debug(request()->all());
         return response()->json(['status' => 'ok'], 200);
     }
 
