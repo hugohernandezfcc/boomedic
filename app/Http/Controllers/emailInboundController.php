@@ -143,7 +143,7 @@ class emailInboundController extends Controller
                     $nTicket->userId    = 1;
                     $nTicket->status    = 'New';
                     $nTicket->subject    = 'Nuevo Email';
-                    $nTicket->ticketDescription      = $base64;
+                    $nTicket->ticketDescription      = 'Nuevo';
                     $nTicket->save();
                 }
             }
