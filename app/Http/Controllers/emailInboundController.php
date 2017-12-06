@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use App\User;
 use App\email;
 
+use Illuminate\Support\Facades\DB;
 use App\SupportTicket;
 
 /*require 'vendor/autoload.php';*/
@@ -131,7 +132,7 @@ class emailInboundController extends Controller
 
                 foreach($attachments as $k => $a) {
                     $httpClient = new Client();
-                    $response = $httpClient->get($attachment['url'], [
+                    $response = $httpClient->get($a['url'], [
                         'auth' => ['api', 'key-f3d340554fdb2c32590a9d4ace93027a'], 
                     ]);
                     $imageData = (string)$response->getBody();
