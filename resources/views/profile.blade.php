@@ -10,12 +10,6 @@
 	<script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.color.js') }}"></script>
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
-	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-
-
-
 
 <script type="text/javascript">
     jQuery(function(){ jQuery('#target').Jcrop(); });
@@ -30,7 +24,9 @@
       jQuery('#h').val(c.h);
      };
 </script>
-
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 		<script type="text/javascript">
 
 				Dropzone.options.myAwesomeDropzone = { 
