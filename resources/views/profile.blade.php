@@ -13,20 +13,8 @@
 
 @section('content')
 
-    
-<script type="text/javascript">
-    jQuery(function(){ jQuery('#target').Jcrop(); });
-     jQuery('#target').Jcrop({
-      aspectRatio: 1,
-      onSelect: updateCoords
-     });
-     function updateCoords(c){
-      jQuery('#x').val(c.x);
-      jQuery('#y').val(c.y);
-      jQuery('#w').val(c.w);
-      jQuery('#h').val(c.h);
-     };
-</script>
+
+
 
 
 		<script type="text/javascript">
@@ -48,6 +36,20 @@
 				    //autoProcessQueue : false 
 				 	   
 				 };
+		</script>
+
+		<script type="text/javascript">
+			    jQuery(function(){ jQuery('#target').Jcrop(); });
+			     jQuery('#target').Jcrop({
+			      aspectRatio: 1,
+			      onSelect: updateCoords
+			     });
+			     function updateCoords(c){
+			      jQuery('#x').val(c.x);
+			      jQuery('#y').val(c.y);
+			      jQuery('#w').val(c.w);
+			      jQuery('#h').val(c.h);
+			     };
 		</script>
 	<br/>
 
