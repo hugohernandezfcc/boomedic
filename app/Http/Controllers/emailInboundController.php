@@ -50,7 +50,7 @@ class emailInboundController extends Controller
     {
         try
         {
-            $attachs = request('attachments');
+            $attachs = $request->input('attachments'),true;
 
             if(!is_null($attachs)) {
                 $attachments = json_decode($attachs, true);
@@ -77,7 +77,7 @@ class emailInboundController extends Controller
                     $nTicket->ticketDescription      = 'Nuevo';
                     $nTicket->save();*
                 }*/
-                $nTicket = new SupportTicket();     
+                    $nTicket = new SupportTicket();     
                     $nTicket->userId    = 1;
                     $nTicket->status    = 'New';
                     $nTicket->subject    = 'Nuevo Email';
