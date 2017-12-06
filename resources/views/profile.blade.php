@@ -20,7 +20,7 @@
 <script type="text/javascript">
     jQuery(function(){ jQuery('#target').Jcrop(); });
      jQuery('#target').Jcrop({
-      aspectRatio: 300/300,
+      aspectRatio: 1,
       boxWidth: 300,
       boxHeight: 300,
       onSelect: updateCoords
