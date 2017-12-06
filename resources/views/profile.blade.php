@@ -25,7 +25,7 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					document.getElementById('modal').style.display ='block';
+					$('#modal').modal('show'); 
 					    }
 				    //autoProcessQueue : false 
 				 	   
@@ -67,7 +67,7 @@
 		</div>
 
 	@endif
-<div id="modal" class="modal fade" role="dialog" style="display:none">
+<div id="modal" class="modal hide fade" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
