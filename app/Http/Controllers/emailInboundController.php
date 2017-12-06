@@ -48,48 +48,12 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
-        try
-        {
-            $attachs = $request->input('attachments'),true;
-
-            if(!is_null($attachs)) {
-                $attachments = json_decode($attachs, true);
-
-                foreach($attachments as $file) {
-                    $httpClient = new Client();
-                    $response = $httpClient->get($file['url'], ['auth' => ['api', 'key-f3d340554fdb2c32590a9d4ace93027a']]);
-                    $imageData = (string)$response->getBody();
-                    $base64 = base64_encode($imageData);
-                    return $base64;
-                }
-
-                /*foreach($attachments as $att) {
-                    $httpClient = new Client();
-                    $response = $httpClient->get($att['url'], ['auth' => ['api', 'key-f3d340554fdb2c32590a9d4ace93027a'],]);
-                    $imageData = (string)$response->getBody();
-                    $base64 = base64_encode($imageData);
-                    return $base64;
-
-                    /*$nTicket = new SupportTicket();     
-                    $nTicket->userId    = 1;
-                    $nTicket->status    = 'New';
-                    $nTicket->subject    = 'Nuevo Email';
-                    $nTicket->ticketDescription      = 'Nuevo';
-                    $nTicket->save();*
-                }*/
-                    $nTicket = new SupportTicket();     
-                    $nTicket->userId    = 1;
-                    $nTicket->status    = 'New';
-                    $nTicket->subject    = 'Nuevo Email';
-                    $nTicket->ticketDescription      = 'Nuevo';
-                    $nTicket->save();
-            }
-            return response()->json(['status' => 'ok', 'message' => $attachments], 200);
-        } 
-        catch(\Exception $e) 
-        {
-            return response()->json(['status' => 'error', 'message' => $request], 406);
-        }
+        $nTicket = new SupportTicket();     
+        $nTicket->userId    = 1;
+        $nTicket->status    = 'New';
+        $nTicket->subject    = 'Nuevo Email';
+        $nTicket->ticketDescription      = 'Nuevo';
+        $nTicket->save();
     }
 
     /**
