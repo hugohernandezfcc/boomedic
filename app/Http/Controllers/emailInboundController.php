@@ -88,7 +88,7 @@ class emailInboundController extends Controller
         if ($files->count() === 0) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Missing expected application/pdf attachment'
+                'message' => 'Missing expected pdf attachment'
             ], 406);
         }
 
@@ -96,10 +96,10 @@ class emailInboundController extends Controller
             'auth' => ['api', 'key-6acc7a4795144cf3dfe94d1e9b6393e6'],
         ]);
 
-        return view('emails', [
+        /*return view('emails', [
                 'message'=> $message
-            ]);
-        /*return response()->json(['status' => 'ok']);*/
+            ]);*/
+        return response()->json(['status' => 'ok']);
     }
 
     /**
