@@ -14,6 +14,8 @@ use App\email;
 require 'vendor/autoload.php';
 use Mailgun\Mailgun;
 
+use GuzzleHttp\Client;
+
 class emailInboundController extends Controller
 {
     /**
@@ -45,7 +47,7 @@ class emailInboundController extends Controller
     public function store(Request $request)
     {
 
-        try
+        /*try
         {
             $attachs = request('attachments');
 
@@ -75,7 +77,30 @@ class emailInboundController extends Controller
         $nEmail->status    = 'Closed';
         $nEmail->ticketDescription    =  $attachments;
 
-        $nEmail->save();
+        $nEmail->save();*/
+
+        app('log')->debug(request()->all());
+
+        $files = collect(json_decode($request->input('attachments'), true))
+        ->filter(function ($file) {
+            return $file['content-type'] == 'text/pdf';/*return $file['content-type'] == 'text/csv';*/
+        });
+
+        if ($files->count() === 0) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Missing expected CSV attachment'
+            ], 406);
+        }
+
+        $response = (new Client())->get($file['url'], [
+            'auth' => ['api', 'key-6acc7a4795144cf3dfe94d1e9b6393e6'],
+        ]);
+
+        return view('tickets', [
+                'allTickets'=> $allTickets
+            ]);
+        /*return response()->json(['status' => 'ok']);*/
     }
 
     /**
