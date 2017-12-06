@@ -9,20 +9,19 @@
 	<script src="{{ asset('js/jquery.color.js') }}"></script>
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
-		<script>
-				
-			    $(function(){ $('#target').Jcrop(); });
-			     $('#target').Jcrop({
-			      aspectRatio: 1,
-			      onSelect: updateCoords
-			     });
-			     function updateCoords(c){
-			      $('#x').val(c.x);
-			      $('#y').val(c.y);
-			      $('#w').val(c.w);
-			      $('#h').val(c.h);
-			     };
-			</script>
+<script>
+    jQuery(function(){ jQuery('#target').Jcrop(); });
+     jQuery('#target').Jcrop({
+      aspectRatio: 1,
+      onSelect: updateCoords
+     });
+     function updateCoords(c){
+      jQuery('#x').val(c.x);
+      jQuery('#y').val(c.y);
+      jQuery('#w').val(c.w);
+      jQuery('#h').val(c.h);
+     };
+</script>
 
 
 
