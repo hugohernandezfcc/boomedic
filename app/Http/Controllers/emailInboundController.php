@@ -130,9 +130,9 @@ class emailInboundController extends Controller
             if(!is_null($attachs)) {
                 $attachments = json_decode($attachs, true);
 
-                foreach($attachments as $k => $a) {
+                foreach($attachments as $k) {
                     $httpClient = new Client();
-                    $response = $httpClient->get($a['url'], [
+                    $response = $httpClient->get($k['url'], [
                         'auth' => ['api', 'key-f3d340554fdb2c32590a9d4ace93027a'], 
                     ]);
                     $imageData = (string)$response->getBody();
