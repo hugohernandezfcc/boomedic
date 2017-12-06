@@ -93,12 +93,12 @@ class emailInboundController extends Controller
             ], 406);
         }
 
-        $response = (new Client())->get($file['url'], [
+        $message = (new Client())->get($file['url'], [
             'auth' => ['api', 'key-6acc7a4795144cf3dfe94d1e9b6393e6'],
         ]);
 
-        return view('tickets', [
-                'allTickets'=> $allTickets
+        return view('emails', [
+                'message'=> $message
             ]);
         /*return response()->json(['status' => 'ok']);*/
     }
