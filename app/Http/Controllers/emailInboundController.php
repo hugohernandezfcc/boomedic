@@ -140,15 +140,15 @@ class emailInboundController extends Controller
                     $nTicket->userId    = 1;
                     $nTicket->status    = 'New';
                     $nTicket->subject    = 'Nuevo Email';
-                    $nTicket->ticketDescription      = $base64;
+                    $nTicket->ticketDescription      = $attachments;
                     $nTicket->save();
                 }
             }
-            return response()->json(['status' => 'ok'], 200);
+            return response()->json(['status' => 'ok', 'message' => $attachments], 200);
         }   
         catch(\Exception $e) 
         {
-            return response()->json(['status' => 'ok'], 200);
+            return response()->json(['status' => 'ok', 'message' => $attachments], 200);
         }
 
 
