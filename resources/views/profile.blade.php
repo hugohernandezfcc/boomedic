@@ -67,7 +67,7 @@
 		</div>
 
 	@endif
-<div id="modal" class="modal hide fade" role="dialog">
+<div id="modal" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
