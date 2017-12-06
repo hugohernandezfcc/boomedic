@@ -6,23 +6,7 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-    <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
-	<script src="{{ asset('js/jquery.color.js') }}"></script>
-	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
-<script type="text/javascript">
-    jQuery(function(){ jQuery('#target').Jcrop(); });
-     jQuery('#target').Jcrop({
-      aspectRatio: 1,
-      onSelect: updateCoords
-     });
-     function updateCoords(c){
-      jQuery('#x').val(c.x);
-      jQuery('#y').val(c.y);
-      jQuery('#w').val(c.w);
-      jQuery('#h').val(c.h);
-     };
-</script>
 
 		<script type="text/javascript">
 
@@ -513,5 +497,21 @@
 
 	  	</div>	  	
 	</div>
+    <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.color.js') }}"></script>
+	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
+<script type="text/javascript">
+    jQuery(function(){ jQuery('#target').Jcrop(); });
+     jQuery('#target').Jcrop({
+      aspectRatio: 1,
+      onSelect: updateCoords
+     });
+     function updateCoords(c){
+      jQuery('#x').val(c.x);
+      jQuery('#y').val(c.y);
+      jQuery('#w').val(c.w);
+      jQuery('#h').val(c.h);
+     };
+</script>
 @stop
