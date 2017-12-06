@@ -23,7 +23,7 @@
 				    dictRemoveFile: "Eliminar",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
-
+				    
 				    //autoProcessQueue : false
 				 	   
 				 };
@@ -38,7 +38,7 @@
 		    	@if($photo == '')
 		    	 	<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
 				@else
-					<img src="{{ $photo }}">			
+					<img src="{{ $photo }}" style="object-fit: cover;">			
 		    	@endif 
 
 		    </div>
