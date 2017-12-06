@@ -33,7 +33,7 @@
 				 };
 		</script>
 	<br/>
-}
+
 <div id="modal" class="modal fade" role="dialog" style="display:none">
               <div class="modal-dialog">
                 <!-- Modal content-->
