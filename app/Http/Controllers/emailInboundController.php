@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
-use GuzzleHttp\Client;
 
 use App\User;
 use App\email;
