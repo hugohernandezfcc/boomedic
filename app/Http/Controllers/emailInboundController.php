@@ -99,7 +99,8 @@ class emailInboundController extends Controller
         /*return view('emails', [
                 'message'=> $message
             ]);*/
-        return response()->json(['status' => 'ok']);
+            app('log')->debug(request()->all());
+        return response()->json(['status' => 'ok'], 200);
     }
 
     /**
