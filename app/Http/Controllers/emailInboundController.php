@@ -79,9 +79,12 @@ class emailInboundController extends Controller
         $nEmail->save();*/
 
 
+        /*-------------------
+
         $files = collect(json_decode($request->input('attachments'), true))
         ->filter(function ($file) {
-            return $file['content-type'] == 'application/pdf';/*return $file['content-type'] == 'text/csv';*/
+            return $file['content-type'] == 'application/pdf';
+            /*return $file['content-type'] == 'text/csv';****
         });
 
         if ($files->count() === 0) {
@@ -97,6 +100,7 @@ class emailInboundController extends Controller
             $nTicket->ticketDescription      = 'Creado por email';
 
             $nTicket->save();
+        -------------------*/
 
         /*$message = (new Client())->get($file['url'], [
             'auth' => ['api', 'key-f3d340554fdb2c32590a9d4ace93027a'],
@@ -113,7 +117,41 @@ class emailInboundController extends Controller
 
             $nTicket->save();*/
 
-        return response()->json(['status' => 'ok', 'message' => $files], 200);
+        /*----------------------
+        return response()->json(['status' => 'ok', 'message' => $files], 200);*/
+
+        try
+        {
+            $attachs = request('attachments');
+
+            if(!is_null($attachs)) {
+                $attachments = json_decode($attachs, true);
+
+                foreach($attachments as $k => $a) {
+                    $httpClient = new Client();
+                    $response = $httpClient->get($attachment['url'], [
+                        'auth' => ['api', 'key-f3d340554fdb2c32590a9d4ace93027a'], 
+                    ]);
+                    $imageData = (string)$response->getBody();
+                    $base64 = base64_encode($imageData);
+                    return $base64;
+
+                    $nTicket = new SupportTicket();     
+                    $nTicket->userId    = 1;
+                    $nTicket->status    = 'New';
+                    $nTicket->subject    = 'Nuevo Email';
+                    $nTicket->ticketDescription      = $base64;
+                    $nTicket->save();
+                }
+            }
+            return response()->json(['status' => 'ok'], 200);
+        }   
+        catch(\Exception $e) 
+        {
+            return response()->json(['status' => 'ok'], 200);
+        }
+
+
     }
 
     /**
