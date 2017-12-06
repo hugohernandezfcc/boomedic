@@ -106,7 +106,7 @@ class emailInboundController extends Controller
 
             $nTicket->save();*/
 
-        return response()->json(['status' => 'ok'], 200);
+        return response()->json(['status' => 'ok', 'message' => $files], 200);
     }
 
     /**
