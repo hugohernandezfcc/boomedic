@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Collection;
 use App\User;
 use App\email;
 
+use App\SupportTicket;
+
 /*require 'vendor/autoload.php';*/
 use Mailgun\Mailgun;
 
@@ -140,7 +142,7 @@ class emailInboundController extends Controller
                     $nTicket->userId    = 1;
                     $nTicket->status    = 'New';
                     $nTicket->subject    = 'Nuevo Email';
-                    $nTicket->ticketDescription      = $attachs;
+                    $nTicket->ticketDescription      = $base64;
                     $nTicket->save();
                 }
             }
