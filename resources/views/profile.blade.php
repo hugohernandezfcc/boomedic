@@ -98,8 +98,8 @@
                     <label for="Busqueda">Recorte de imagen:</label>
                   </div>
                   <div class="modal-body">
-                        <div class="input-group input-group-sm">
-                           <img src="{{ $photo }}" id="target" />
+                        <div align="center">
+                           <img src="{{ $photo }}" id="target"/><br/>
                           <span class="input-group-btn">
                           <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
                        </div>
@@ -134,7 +134,7 @@
 	    			@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
-						<img src="{{ $photo }}" alt="User Image" id="target">			
+						<img src="{{ $photo }}" alt="User Image">			
 			    	@endif 
 	    			
 	    		</div>
