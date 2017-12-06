@@ -7,9 +7,9 @@
 @stop
 
 @section('content')
-	<script src="{{ asset('js/jquery.min.js') }}"></script>
-	<script src="{{ asset('js/jquery.color.js') }}"></script>
-	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
@@ -21,8 +21,6 @@
     jQuery(function(){ jQuery('#target').Jcrop(); });
      jQuery('#target').Jcrop({
       aspectRatio: 1,
-      boxWidth: 300,
-      boxHeight: 300,
       onSelect: updateCoords
      });
      function updateCoords(c){
@@ -139,7 +137,7 @@
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-6" align="center" style="width:200px; height: 200px; "><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
+	    		<div class="col-sm-6" align="center" style="width:230px; height: 230px; "><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
