@@ -80,14 +80,14 @@
 <div id="modal" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
-                <div class="modal-content">
+                <div class="modal-content" style="display: flex; flex-direction: column; width: 38px;height: 1px;">
                   <div class="modal-header">   
                     <label for="Busqueda">Recorte de imagen:</label>
                   </div>
                   <div class="modal-body" >
 
                         <div align="center">
-                       <div id="container" style="display: flex; flex-direction: column; width: 38px;height: 1px;">
+                       <div id="container" >
                            <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="flex-grow: 1; height: 100%;"/>
                        </div> 
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
