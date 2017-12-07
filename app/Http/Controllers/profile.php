@@ -246,7 +246,7 @@ class profile extends Controller
         
 
 
-        $img = imagejpeg($dst_r, null, $jpeg_quality);
+        $img = imagejpeg($dst_r, 'textosimple.jpg', $jpeg_quality);
         Storage::disk('s3')->put( $id.'.jpg',  $img, 'public');
         $filename = $id.'.jpg';
         $path = Storage::cloud()->url($filename);
