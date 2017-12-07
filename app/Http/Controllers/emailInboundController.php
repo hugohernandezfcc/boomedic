@@ -72,7 +72,7 @@ class emailInboundController extends Controller
         $Date = request()->Date;
         $From = request()->From;
 
-        $cadena = $recipient + $sender + $subject + $Received + $Date + $From;
+        $cadena = "recipient:: ".$recipient . "sender:: ".$sender . "subject:: ".$subject . "Received:: ".$Received . "Date:: ".$Date . "From:: ".$From;
 
         $mg = new Mailgun('key-f3d340554fdb2c32590a9d4ace93027a');
         /*foreach ($files as $file){
