@@ -7,6 +7,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+    <script type="text/javascript" src="js/cssrefresh.js"></script>
+
 
 
 		<script type="text/javascript">
@@ -88,7 +90,7 @@
                   <div class="modal-body">
 
                         <div align="center">
-                        <div style="width: 80%;max-width: 600px;margin: 0 auto;">
+                        <div style="width: 20%;max-width: 400px;margin: 0 auto;">
                            <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target"  style="width: 100%;height: auto;" />
                         </div>
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
