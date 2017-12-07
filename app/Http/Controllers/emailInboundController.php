@@ -74,6 +74,7 @@ class emailInboundController extends Controller
 
         /*$cadena = "recipient:: ".$recipient . "sender:: ".$sender . "subject:: ".$subject . "Received:: ".$Received . "Date:: ".$Date . "From:: ".$From;*/
         $cadena = "recipient:: ".$recipient . "sender:: ".$sender;
+        console.log($request);
 
         $mg = new Mailgun('key-f3d340554fdb2c32590a9d4ace93027a');
         /*foreach ($files as $file){
