@@ -64,16 +64,19 @@ class emailInboundController extends Controller
 
         /*$files = json_decode($request->input('storage'),true);*/
         /*$files = json_decode($request,true);*/
-        $recipient = request()->recipient;
-        $sender = request()->sender;
+        /*$recipient = request()->recipient;
+        $sender = request()->sender;*/
         /*$subject = request()->subject;
         $Received = request()->Received;*/
         /*$MessageId = request()->Message-Id;*/
         /*$Date = request()->Date;
         $From = request()->From;*/
+        $m  = request()->message;
 
         /*$cadena = "recipient:: ".$recipient . "sender:: ".$sender . "subject:: ".$subject . "Received:: ".$Received . "Date:: ".$Date . "From:: ".$From;*/
-        $cadena = "recipient:: ".$recipient . "sender:: ".$sender;
+        
+        /*$cadena = "recipient:: ".$recipient . "sender:: ".$sender;*/
+        $cadena = $m;
         echo $request;
 
         $mg = new Mailgun('key-f3d340554fdb2c32590a9d4ace93027a');
