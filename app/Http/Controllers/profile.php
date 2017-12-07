@@ -222,11 +222,11 @@ class profile extends Controller
         $path = Storage::cloud()->url($filename);
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
 
-        Artisan::call('cache:clear');
+       
         $user->profile_photo = $path2;   
 
         if($user->save())
-            return redirect('user/profile/' . $id );
+            return view('user/profile/' . $id );
     }
 
     public function cropProfile(Request $request, $id)
