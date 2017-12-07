@@ -226,7 +226,7 @@ class profile extends Controller
         $user->profile_photo = $path2;   
 
         if($user->save())
-            return view('user/profile/' . $id );
+            return redirect('user/profile/' . $id );
     }
 
     public function cropProfile(Request $request, $id)
