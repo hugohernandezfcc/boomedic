@@ -68,7 +68,7 @@ class emailInboundController extends Controller
         $sender = request()->sender;
         $subject = request()->subject;
         $Received = request()->Received;
-        $MessageId = request()->Message-Id;
+        /*$MessageId = request()->Message-Id;*/
         $Date = request()->Date;
         $From = request()->From;
 
