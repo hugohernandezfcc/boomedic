@@ -84,11 +84,11 @@
                   <div class="modal-header">   
                     <label for="Busqueda">Recorte de imagen:</label>
                   </div>
-                  <div class="modal-body">
+                  <div class="modal-body" style="width: 600px; height: 600px;">
 
                         <div align="center">
                        
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}tmp.jpg" id="target" class="img-responsive" style="padding: 50px;" />
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}tmp.jpg" id="target" class="img-responsive"  style="width:100%;" />
                         
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
