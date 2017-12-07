@@ -215,7 +215,7 @@ class profile extends Controller
         $file = $request->file('file');
 
         $img = Image::make($file);
-        $img->resize(300, 300);
+        //$img->resize(300, 300);
         $img->encode('jpg');
         Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
         $filename = $id.'.jpg';
@@ -243,11 +243,11 @@ class profile extends Controller
         imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
             $request->w,$targ_h,$request->w,$request->h);
 
-        imagejpeg($dst_r, null, $jpeg_quality);
+        
 
 
         $img = imagejpeg($dst_r, null, $jpeg_quality);
-        Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
+        Storage::disk('s3')->put( $id.'.jpg',  $img, 'public');
         $filename = $id.'.jpg';
         $path = Storage::cloud()->url($filename);
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
