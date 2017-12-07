@@ -73,7 +73,9 @@ class emailInboundController extends Controller
         $nTicket->message      = $content;           
         $nTicket->save();
 
-        return response()->json(['status' => 'ok']);
+        if ( $nTicket->save() ){
+            return response()->json(['status' => 'ok']);
+        }
 
         // do something with $response->getBody();
     }
