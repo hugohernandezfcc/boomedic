@@ -21,14 +21,6 @@
 				    dictRemoveFile: "Eliminar",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
-				     success: function(file, response){
-					        //alert(response);
-					$("#modal").modal("show").on("shown", function () {
-					    window.setTimeout(function () {
-					        $("#modal").modal("hide");
-					    }, 5000);
-					});
-					    }
 				    //autoProcessQueue : false 
 				 };
 		</script>
@@ -509,16 +501,20 @@
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
 <script type="text/javascript">
-    jQuery(function(){ jQuery('#target').Jcrop(); });
-     jQuery('#target').Jcrop({
-      aspectRatio: 1,
-      onSelect: updateCoords
-     });
-     function updateCoords(c){
-      jQuery('#x').val(c.x);
-      jQuery('#y').val(c.y);
-      jQuery('#w').val(c.w);
-      jQuery('#h').val(c.h);
-     };
+if({{ json_encode($modal) }} == 'on'){
+		 $("#modal").modal("show");
+		}
+
+	   jQuery(function(){ jQuery('#target').Jcrop(); });
+	    jQuery('#target').Jcrop({
+	      aspectRatio: 1,
+	      onSelect: updateCoords
+	     });
+	     function updateCoords(c){
+	      jQuery('#x').val(c.x);
+	      jQuery('#y').val(c.y);
+	      jQuery('#w').val(c.w);
+	      jQuery('#h').val(c.h);
+	     };
 </script>
 @stop
