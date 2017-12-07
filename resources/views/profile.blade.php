@@ -77,7 +77,7 @@
 
 	@endif
 
-<div id="modal" class="modal fade" role="dialog">
+<div id="modal" class="modal fade" role="dialog" style="width: 60%;max-width: 400px;margin: 0 auto;">
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -90,9 +90,9 @@
                   <div class="modal-body">
 
                         <div align="center">
-                        <div style="width: 20%;max-width: 400px;margin: 0 auto;">
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}tmp.jpg" id="target"  style="width: 20%;height: auto;" />
-                        </div>
+                       
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}tmp.jpg" id="target" class="img-responsive" alt="Responsive image" />
+                        
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
