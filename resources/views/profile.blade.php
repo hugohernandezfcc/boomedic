@@ -23,7 +23,7 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					$('#modal').modal('show'); 
+					setTimeout($('#modal').modal('show'),4000); 
 					    }
 				    //autoProcessQueue : false 
 				 };
@@ -70,6 +70,7 @@
 		</div>
 
 	@endif
+
 <div id="modal" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
@@ -81,6 +82,7 @@
                     <label for="Busqueda">Recorte de imagen:</label>
                   </div>
                   <div class="modal-body">
+
                         <div align="center">
                            <img src="{{ $photo }}" id="target" name="target" /><br/>
                           <span class="input-group-btn">
