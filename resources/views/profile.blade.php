@@ -24,22 +24,21 @@
 				     success: function(file, response){
 					        //alert(response);
 					 setTimeout(function(){
-						    window.location = window.location.href + "?openmodal=1";
-						}, 3000);
+						   window.location.reload(1);
+						   var openmodal = '1';
+						}, 5000);
+
 					    }
 				    //autoProcessQueue : false 
 				 };
+				 if( openmodal == '1'){
+				 	$("#modal").modal("show").on("shown", function () {
+					    window.setTimeout(function () {
+					        $("#modal").modal("hide");
+					    }, 2000);
+					});
+				 }
 		</script>
-		<?php
-			    if($_GET['openmodal'] == 1){ ?>
-			        <script>
-			                 $(function(){
-			                     $('#modal').modal('show');
-			                 });
-			        </script>
-			<?php         
-			    }
-			?>
 
 @stop
 
