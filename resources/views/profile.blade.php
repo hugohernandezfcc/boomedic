@@ -522,8 +522,7 @@
      jQuery('#target').Jcrop({
       aspectRatio: 1,
       onSelect: updateCoords,
-	  setSelect: [250, 250, 250, 250],
-	  animateTo: [250, 250, 250, 250],
+	  setSelect: [0, 0, 300, 300],
       bgColor:     'black',
 
      });
