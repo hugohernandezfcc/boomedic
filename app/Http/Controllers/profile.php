@@ -218,7 +218,7 @@ class profile extends Controller
         //$img->resize(300, 300);
         $img->encode('jpg');
         Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
-        $filename = $id.'tmp.jpg';
+        $filename = $id.'.jpg';
         $path = Storage::cloud()->url($filename);
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
 
