@@ -245,9 +245,11 @@ class profile extends Controller
         $filename = $id.'.jpg';
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
         
-
-        $img = imagejpeg($dst_r, $path2, $jpeg_quality);
-        Storage::disk('s3')->put( $id.'.jpg',  $img, 'public');
+        ob_start();
+        $imagejpeg($dst_r);
+        $jpeg_file_contents = ob_get_contents();
+        ob_end_clean();
+        Storage::disk('s3')->put( $id.'.jpg',  $jpeg_file_contents, 'public');
         
         $path = Storage::cloud()->url($filename);
 
