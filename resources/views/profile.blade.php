@@ -27,7 +27,7 @@
 					$("#modal").modal("show").on("shown", function () {
 					    window.setTimeout(function () {
 					        $("#modal").modal("hide");
-					    }, 2000);
+					    }, 5000);
 					});
 					    }
 				    //autoProcessQueue : false 
@@ -89,9 +89,9 @@
                   <div class="modal-body">
 
                         <div align="center">
-                        <div style="width: 400px; height: 400px;">
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" name="target" style="width:100%;" />
-                        </div>   
+                        
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" name="target" style="width:30%;" />
+                         
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
