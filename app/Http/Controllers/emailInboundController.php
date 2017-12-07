@@ -58,9 +58,11 @@ class emailInboundController extends Controller
         
         return response()->json(['status' => 'ok']);*/
 
-        $request->input('sender');
+        /*$request->input('sender');
         $request->input('attachments');
-        $files = json_decode($request->input('attachments'),true);
+        $files = json_decode($request->input('attachments'),true);*/
+
+        $files = json_decode($request->input('storage'),true);
 
         $mg = new Mailgun('key-f3d340554fdb2c32590a9d4ace93027a');
         /*foreach ($files as $file){
