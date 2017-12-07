@@ -28,6 +28,7 @@
 					    window.setTimeout(function () {
 					        $("#modal").modal("hide");
 					    }, 5000);
+					    $('#modal').modal({backdrop: 'static', keyboard: false})
 					});
 					    }
 				    //autoProcessQueue : false 
@@ -89,16 +90,16 @@
                   <div class="modal-body">
 
                         <div align="center">
-                        
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target"  style="width:100%; max-width:500px;" />
-                         
+                        <div style="width: 80%;max-width: 600px;margin: 0 auto;">
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target"  style="width: 100%;height: auto;" />
+                        </div>
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
 							<input type="hidden" id="w" name="w" />
 							<input type="hidden" id="h" name="h" /><br/>
-	                          <span class="input-group-btn">
-	                          <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
+	                        <span class="input-group-btn">
+	                        <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
                           </form>
                        </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
