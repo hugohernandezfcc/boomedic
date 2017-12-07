@@ -217,11 +217,15 @@ class profile extends Controller
         $img = Image::make($file);
         //$img->resize(300, 300);
         $img->encode('jpg');
-        Storage::disk('s3')->put( $id.'tmp.jpg',  (string) $img, 'public');
+        Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
         $filename = $id.'tmp.jpg';
         $path = Storage::cloud()->url($filename);
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
 
+       
+        $user->profile_photo = $path2;   
+
+        if($user->save())
             return redirect('user/profile/' . $id );
     }
 
