@@ -66,8 +66,8 @@ class emailInboundController extends Controller
         /*$files = json_decode($request,true);*/
         $recipient = request()->recipient;
         $sender = request()->sender;
-        $subject = request()->subject;
-        $Received = request()->Received;
+        /*$subject = request()->subject;
+        $Received = request()->Received;*/
         /*$MessageId = request()->Message-Id;*/
         /*$Date = request()->Date;
         $From = request()->From;*/
