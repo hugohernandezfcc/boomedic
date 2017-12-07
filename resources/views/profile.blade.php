@@ -521,11 +521,7 @@
      jQuery('#target').Jcrop({
       aspectRatio: 1,
       onSelect: updateCoords,
-      setSelect:   [ ($('#target').attr('width') / 2) - 10, 
-                       ($('#target').attr('height') / 2) - 10, 
-                       ($('#target').attr('width') / 2) + 10, 
-                       ($('#target').attr('height') / 2) + 10 
-                     ],
+	  setSelect: [250, 200, 100, 50], 
       bgColor:     'black',
 
      });
