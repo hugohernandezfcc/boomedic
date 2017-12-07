@@ -77,7 +77,7 @@
 
 	@endif
 
-<div id="modal" class="modal fade" role="dialog" style="width: 60%;max-width: 400px;margin: 0 auto;">
+<div id="modal" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
