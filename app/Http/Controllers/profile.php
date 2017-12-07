@@ -227,7 +227,7 @@ class profile extends Controller
 
         if($user->save())
             return view('user/profile/' . $id,[
-                'modal' = 'on'
+                'modal' => 'on'
             ]);
     }
 
