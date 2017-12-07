@@ -48,7 +48,7 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
-        $attachs = request('attachments');
+        /*$attachs = request('attachments');
 
 
         $nTicket = new email();
@@ -56,7 +56,26 @@ class emailInboundController extends Controller
                 $nTicket->message      = $attachs;           
                 $nTicket->save();
         
+        return response()->json(['status' => 'ok']);*/
+
+        $request->input('sender');
+        $request->input('attachments');
+        $files = json_decode($request->input('attachments'),true);
+
+        $mg = new Mailgun('key-f3d340554fdb2c32590a9d4ace93027a');
+        foreach ($files as $file){
+                    $fileName = $file['name'];
+                    $content = $mg->getAttachment($file['url'])->http_response_body;
+        }
+
+        $nTicket = new email();
+        $nTicket->userId      = 1;                
+        $nTicket->message      = $content;           
+        $nTicket->save();
+
         return response()->json(['status' => 'ok']);
+
+        // do something with $response->getBody();
     }
 
     /**
