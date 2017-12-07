@@ -23,20 +23,14 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					 setTimeout(function(){
 						   window.location.reload(1);
 						   var openmodal = '1';
-						}, 5000);
-
 					    }
 				    //autoProcessQueue : false 
 				 };
-				 if( openmodal == '1'){
-				 	$("#modal").modal("show").on("shown", function () {
-					    window.setTimeout(function () {
-					        $("#modal").modal("hide");
-					    }, 2000);
-					});
+				 if(var openmodal == '1'){
+				 	$("#modal").modal("show");
+
 				 }
 		</script>
 
