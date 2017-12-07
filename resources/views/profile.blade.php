@@ -28,7 +28,7 @@
 					    window.setTimeout(function () {
 					        $("#modal").modal("hide");
 					    }, 5000);
-					    $('#modal').modal({backdrop: 'static', keyboard: false})
+
 					});
 					    }
 				    //autoProcessQueue : false 
@@ -519,6 +519,7 @@
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
 <script type="text/javascript">
+ $('#modal').modal({backdrop: 'static', keyboard: false});
     jQuery(function(){ jQuery('#target').Jcrop(); });
      jQuery('#target').Jcrop({
       aspectRatio: 1,
