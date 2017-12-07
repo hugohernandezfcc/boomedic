@@ -48,9 +48,12 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
+        $attachs = $request->input('recipients');
+
+
         $nTicket = new email();
                 $nTicket->userId      = 1;                
-                $nTicket->message      = $request;           
+                $nTicket->message      = $attachs;           
                 $nTicket->save();
         
         return response()->json(['status' => 'ok']);
