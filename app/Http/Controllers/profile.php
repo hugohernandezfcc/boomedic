@@ -222,10 +222,6 @@ class profile extends Controller
         $path = Storage::cloud()->url($filename);
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
 
-       
-        $user->profile_photo = $path2;   
-
-        if($user->save())
             return redirect('user/profile/' . $id );
     }
 
