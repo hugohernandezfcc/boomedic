@@ -229,6 +229,37 @@ class profile extends Controller
             return redirect('user/profile/' . $id );
     }
 
+    public function cropProfile(Request $request, $id)
+    {
+       // $path = $request->photo->store('images', 's3');
+        $user = User::find($id);
+        $targ_w = $targ_h = 300;
+        $jpeg_quality = 90;
+
+        $src = $user->profile_photo;
+        $img_r = imagecreatefromjpeg($src);
+        $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
+        imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
+            $request->w,$targ_h,$request->w,$request->h);
+
+        imagejpeg($dst_r, null, $jpeg_quality);
+
+
+        $img = Image::make(imagejpeg($dst_r, null, $jpeg_quality));
+        $img->encode('jpg');
+        Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
+        $filename = $id.'.jpg';
+        $path = Storage::cloud()->url($filename);
+        $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
+
+       
+        $user->profile_photo = $path2;   
+
+        if($user->save())
+            return redirect('user/profile/' . $id );
+    }
+
     /**
      * Remove the specified resource from storage.
      *

@@ -57,6 +57,12 @@ Route::group(['prefix' => 'user'], function(){
 		]
 	);
 
+		Route::post('cropProfile/{id}', [
+			'uses'	=>	'profile@cropProfile',
+			'as'	=>	'cropProfile'
+		]
+	);
+
 	Route::get('profile/{id}', [
 			'uses'	=>	'profile@show',
 			'as'	=>	'profile'
