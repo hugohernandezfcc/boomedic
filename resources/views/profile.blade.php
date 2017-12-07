@@ -80,15 +80,15 @@
 <div id="modal" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
-                <div class="modal-content" style="width: 600px; height: 600px;">
+                <div class="modal-content">
                   <div class="modal-header">   
                     <label for="Busqueda">Recorte de imagen:</label>
                   </div>
                   <div class="modal-body" >
 
-                        <div align="center">
+                        <div align="center" style="max-width:500px;">
                        
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target"  style="width: 500px; height: 500px;" />
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target"/>
                         
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
