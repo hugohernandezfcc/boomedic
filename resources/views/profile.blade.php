@@ -520,9 +520,9 @@
     jQuery(function(){ jQuery('#target').Jcrop(); });
      jQuery('#target').Jcrop({
       aspectRatio: 1,
-      onSelect: updateCoords,
+      onChange: updateCoords,
 	  setSelect: [250, 200, 100, 50], 
-      bgColor:     'black',
+      bgColor:     'black'
 
      });
      function updateCoords(c){
