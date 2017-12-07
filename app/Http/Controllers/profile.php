@@ -215,7 +215,7 @@ class profile extends Controller
         $file = $request->file('file');
 
         $img = Image::make($file);
-        //$img->resize(300, 300);
+        $img->resize(400, 400);
         $img->encode('jpg');
         Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
         $filename = $id.'.jpg';
