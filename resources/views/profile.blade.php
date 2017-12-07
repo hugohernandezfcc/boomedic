@@ -88,7 +88,7 @@
 
                         <div align="center" style="max-width:500px;">
                        
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target"/>
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="max-width:500px;"/>
                         
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
