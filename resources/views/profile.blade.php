@@ -88,6 +88,7 @@
 
                         <div align="center">
                    
+
                            <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="width:350px; height: 350px;">
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
@@ -521,7 +522,8 @@
      jQuery('#target').Jcrop({
       aspectRatio: 1,
       onSelect: updateCoords,
-	  setSelect: [250, 200, 100, 50], 
+	  setSelect: [250, 250, 250, 250],
+	  animateTo: [250, 250, 250, 250],
       bgColor:     'black',
 
      });

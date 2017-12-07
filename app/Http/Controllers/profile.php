@@ -241,7 +241,7 @@ class profile extends Controller
         $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
 
         imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
-            $request->w,$targ_h,$request->w,$request->h);
+            $targ_w,$targ_h,$request->w,$request->h);
         $filename = $id.'.jpg';
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
         
