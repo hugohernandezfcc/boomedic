@@ -242,9 +242,9 @@ class profile extends Controller
 
         imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
             $request->w,$targ_h,$request->w,$request->h);
-
-        $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
         $filename = $id.'.jpg';
+        $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
+        
 
         $img = imagejpeg($dst_r, $path2, $jpeg_quality);
         Storage::disk('s3')->put( $id.'.jpg',  $img, 'public');

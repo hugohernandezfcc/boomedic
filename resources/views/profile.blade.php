@@ -90,7 +90,7 @@
 
                         <div align="center">
 
-                           <img src="{{ $photo }}" id="target" name="target" />
+                           <img src="{{ $photo }}" id="target" name="target" style="width:30%; height: 30%;" />
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
