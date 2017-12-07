@@ -131,7 +131,7 @@
 	    			@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
-						<img src="{{ $photo }}" alt="User Image">			
+						<img src="{{ $photo }}" style="width:250px; height: 250px;">			
 			    	@endif 
 	    			
 	    		</div>
