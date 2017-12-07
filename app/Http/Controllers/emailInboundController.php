@@ -48,34 +48,12 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
-        try
-        {
-            /*$attachs = (string)$request('attachments');
-
-            if(!is_null($attachs)) {
-                /*$attachments = json_decode($attachs, true);*
-
-                foreach($attachments as $k => $a) {
-                    $httpClient = new Client();
-                    $resp = $httpClient->request('GET', $a['url'], ['auth' => ['api' => 'key-f3d340554fdb2c32590a9d4ace93027a']]);
-                    $imageData = $resp->getBody();
-                    $base64 = base64_encode($imageData);
-                    $this->saveTicketAttachment($base64, $a['name'], $ticket);
-                }
-
-                
-            }*/
-
-            $nTicket = new email();
+        $nTicket = new email();
                 $nTicket->userId      = 1;                
                 $nTicket->message      = $request;           
                 $nTicket->save();
-            return response()->json(['status' => 'ok']);
-        }   
-        catch(\Exception $e) 
-        {
-            return response()->json(['status' => 'ok']);
-        }
+        
+        return response()->json(['status' => 'ok']);
     }
 
     /**
