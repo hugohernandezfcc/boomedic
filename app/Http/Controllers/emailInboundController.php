@@ -48,7 +48,7 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
-        $attachs = $request->input('recipients');
+        $attachs = request('attachments');
 
 
         $nTicket = new email();
