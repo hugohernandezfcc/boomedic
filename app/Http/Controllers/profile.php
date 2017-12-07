@@ -226,9 +226,7 @@ class profile extends Controller
         $user->profile_photo = $path2;   
 
         if($user->save())
-            return view('user/profile/' . $id,[
-                'modal' => 'on'
-            ]);
+            return redirect('user/profile/' . $id );
     }
 
     /**

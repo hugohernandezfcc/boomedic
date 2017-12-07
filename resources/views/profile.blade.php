@@ -21,6 +21,15 @@
 				    dictRemoveFile: "Eliminar",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+				     success: function(file, response){
+					        //alert(response);
+					 location.reload(true);
+					$("#modal").modal("show").on("shown", function () {
+					    window.setTimeout(function () {
+					        $("#modal").modal("hide");
+					    }, 2000);
+					});
+					    }
 				    //autoProcessQueue : false 
 				 };
 		</script>
@@ -499,22 +508,18 @@
     <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.color.js') }}"></script>
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
-@if($modal == 'on')
-<script type="text/javascript">
-		 $("#modal").modal("show");
-		
 
-	   jQuery(function(){ jQuery('#target').Jcrop(); });
-	    jQuery('#target').Jcrop({
-	      aspectRatio: 1,
-	      onSelect: updateCoords
-	     });
-	     function updateCoords(c){
-	      jQuery('#x').val(c.x);
-	      jQuery('#y').val(c.y);
-	      jQuery('#w').val(c.w);
-	      jQuery('#h').val(c.h);
-	     };
+<script type="text/javascript">
+    jQuery(function(){ jQuery('#target').Jcrop(); });
+     jQuery('#target').Jcrop({
+      aspectRatio: 1,
+      onSelect: updateCoords
+     });
+     function updateCoords(c){
+      jQuery('#x').val(c.x);
+      jQuery('#y').val(c.y);
+      jQuery('#w').val(c.w);
+      jQuery('#h').val(c.h);
+     };
 </script>
-@endif
 @stop
