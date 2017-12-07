@@ -499,11 +499,10 @@
     <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.color.js') }}"></script>
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
-
+@if($modal == 'on')
 <script type="text/javascript">
-if({{ json_encode($modal) }} == 'on'){
 		 $("#modal").modal("show");
-		}
+		
 
 	   jQuery(function(){ jQuery('#target').Jcrop(); });
 	    jQuery('#target').Jcrop({
@@ -517,4 +516,5 @@ if({{ json_encode($modal) }} == 'on'){
 	      jQuery('#h').val(c.h);
 	     };
 </script>
+@endif
 @stop
