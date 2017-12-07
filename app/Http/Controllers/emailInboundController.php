@@ -63,15 +63,14 @@ class emailInboundController extends Controller
         $files = json_decode($request->input('attachments'),true);
 
         $mg = new Mailgun('key-f3d340554fdb2c32590a9d4ace93027a');
-        foreach ($files as $file){
+        /*foreach ($files as $file){
                     $fileName = $file['name'];
                     $content = $mg->getAttachment($file['url'])->http_response_body;
-        }
+        }*/
 
         $nTicket = new email();
         $nTicket->userId      = 1;                
-        $nTicket->message      = $content;           
-        $nTicket->save();
+        $nTicket->message      = $files;
 
         if ( $nTicket->save() ){
             return response()->json(['status' => 'ok']);
