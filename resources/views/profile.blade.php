@@ -24,12 +24,10 @@
 				     success: function(file, response){
 					        //alert(response);
 
-					$("#modal").modal("show").on("shown", function () {
-					    window.setTimeout(function () {
-					        $("#modal").modal("hide");
-					    }, 5000);
-					});
-					 $('#modal').modal({backdrop: 'static', keyboard: false});
+						setTimeout(function() {
+						    $('#modal').modal("show");
+						}, 4000);
+						$('#modal').modal({backdrop: 'static', keyboard: false});
 					    }
 				    //autoProcessQueue : false 
 				 };
