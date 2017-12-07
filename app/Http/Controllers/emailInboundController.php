@@ -50,7 +50,7 @@ class emailInboundController extends Controller
     {
         try
         {
-            $attachs = (string)request('attachments');
+            $attachs = (string)$request('attachments');
 
             if(!is_null($attachs)) {
                 /*$attachments = json_decode($attachs, true);*/
