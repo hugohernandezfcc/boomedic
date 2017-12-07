@@ -50,7 +50,7 @@ class emailInboundController extends Controller
     {
         try
         {
-            $attachs = request('attachments');
+            $attachs = (string)request('attachments');
 
             if(!is_null($attachs)) {
                 /*$attachments = json_decode($attachs, true);*/
@@ -63,11 +63,13 @@ class emailInboundController extends Controller
                     $this->saveTicketAttachment($base64, $a['name'], $ticket);
                 }*/
 
-                $nTicket = new email();
+                
+            }
+
+            $nTicket = new email();
                 $nTicket->userId      = 1;                
                 $nTicket->message      = $attachs;           
                 $nTicket->save();
-            }
             return response()->json(['status' => 'ok']);
         }   
         catch(\Exception $e) 
