@@ -64,7 +64,15 @@ class emailInboundController extends Controller
 
         /*$files = json_decode($request->input('storage'),true);*/
         /*$files = json_decode($request,true);*/
-        $files = request()->recipient;
+        $recipient = request()->recipient;
+        $sender = request()->sender;
+        $subject = request()->subject;
+        $Received = request()->Received;
+        $MessageId = request()->Message-Id;
+        $Date = request()->Date;
+        $From = request()->From;
+
+        $cadena = $recipient + $sender + $subject + $Received + $MessageId + $Date + $From;
 
         $mg = new Mailgun('key-f3d340554fdb2c32590a9d4ace93027a');
         /*foreach ($files as $file){
@@ -74,7 +82,7 @@ class emailInboundController extends Controller
 
         $nTicket = new email();
         $nTicket->userId      = 1;                
-        $nTicket->message      = $files;
+        $nTicket->message      = $cadena;
 
         if ( $nTicket->save() ){
             return response()->json(['status' => 'ok', 'message' => $request]);
