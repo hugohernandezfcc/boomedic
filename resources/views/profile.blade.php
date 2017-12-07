@@ -23,7 +23,9 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					 location.reload(true);
+					 setTimeout(function(){
+						   window.location.reload(1);
+						}, 5000);
 					$("#modal").modal("show").on("shown", function () {
 					    window.setTimeout(function () {
 					        $("#modal").modal("hide");
