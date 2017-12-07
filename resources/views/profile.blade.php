@@ -82,16 +82,13 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                   <div class="modal-header">   
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
                     <label for="Busqueda">Recorte de imagen:</label>
                   </div>
                   <div class="modal-body">
 
                         <div align="center">
                        
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}tmp.jpg" id="target" class="img-responsive" alt="Responsive image" />
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}tmp.jpg" id="target" class="img-responsive" style="padding: 50px;" />
                         
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
