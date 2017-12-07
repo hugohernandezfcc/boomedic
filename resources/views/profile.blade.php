@@ -28,6 +28,7 @@
 					        $("#modal").modal("hide");
 					    }, 5000);
 					});
+					    }
 				    //autoProcessQueue : false 
 				 };
 		</script>
