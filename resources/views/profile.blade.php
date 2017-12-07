@@ -87,9 +87,9 @@
                   <div class="modal-body" >
 
                         <div align="center">
-                       
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target"/>
-                        
+                       <div id="container" style="display: flex; flex-direction: column; width: 38px;height: 1px;">
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="flex-grow: 1; height: 100%;"/>
+                       </div> 
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
@@ -520,9 +520,9 @@
     jQuery(function(){ jQuery('#target').Jcrop(); });
      jQuery('#target').Jcrop({
       aspectRatio: 1,
-      onChange: updateCoords,
+      onSelect: updateCoords,
 	  setSelect: [250, 200, 100, 50], 
-      bgColor:     'black'
+      bgColor:     'black',
 
      });
      function updateCoords(c){
