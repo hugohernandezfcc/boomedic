@@ -518,14 +518,24 @@
 
 <script type="text/javascript">
 
-    jQuery(function(){ jQuery('#target').Jcrop(); });
-     jQuery('#target').Jcrop({
-      aspectRatio: 1,
-      onSelect: updateCoords,
-	  setSelect: [0, 0, 300, 300],
-      bgColor:     'black',
+var jcrop_api, boundx, boundy;
 
-     });
+    $('#target').Jcrop({
+        onChange: updateCoords,
+        onSelect: updateCoords,
+        aspectRatio: 0.75,
+        trueSize: [<?echo $width2;?>,<?echo $height2;?>]
+    },function(){
+        // Use the API to get the real image size
+        var bounds = this.getBounds();
+        boundx = bounds[0];
+        boundy = bounds[0.75];
+        //trueSize: [ancho,alto],
+        // Store the API in the jcrop_api variable
+        jcrop_api = this;
+    });
+
+
      function updateCoords(c){
       jQuery('#x').val(c.x);
       jQuery('#y').val(c.y);
