@@ -92,6 +92,7 @@
                            <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="width:350px; height: 350px;">
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
+
                            	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
 							<input type="hidden" id="w" name="w" />
@@ -135,7 +136,15 @@
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-4" align="center" style="width:230px; height: 230px; "><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
+	    		<div class="col-sm-4" align="center" style="width:230px; height: 230px; "><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
+	    			        <?php 
+                           	$imagen = getimagesize($file);    //Sacamos la información
+								  $width = $imagen[0];              //Ancho
+								  $height = $imagen[1];               //Alto
+                           	 ?>
+                           	<input type="hidden" id="width" name="width"/>
+                           	<input type="hidden" id="height" name="height" /> 
+	    		</form></div></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
@@ -524,7 +533,7 @@ var jcrop_api, boundx, boundy;
         onChange: updateCoords,
         onSelect: updateCoords,
         aspectRatio: 0.75,
-        trueSize: [<?echo $width2;?>,<?echo $height2;?>]
+        trueSize: [<?echo $width;?>,<?echo $height;?>]
     },function(){
         // Use the API to get the real image size
         var bounds = this.getBounds();
