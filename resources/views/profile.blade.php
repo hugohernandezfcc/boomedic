@@ -25,7 +25,7 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					        $("#modal").empty().load("/user/updateProfile/{{$userId}}");
+					        $("#modal").load("/user/updateProfile/{{$userId}}");
 						setTimeout(function() {
 						    $('#modal').modal("show");
 						}, 4000);
