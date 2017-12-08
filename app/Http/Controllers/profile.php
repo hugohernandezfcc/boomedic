@@ -211,11 +211,19 @@ class profile extends Controller
         public function updateProfile(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
-         $user = User::find($id);
+        $user = User::find($id);
         $file = $request->file('file');
+         $imagen = getimagesize($file);    //Sacamos la información
+          $width = $imagen[0];              //Ancho
+          $height = $imagen[1];  
+
+          if($height > '600' || $width > '600'){
+            $height = $height / 2;
+            $width = $width / 2;
+          }
 
         $img = Image::make($file);
-        //$img->resize(400, 400);
+        $img->resize($width, $height);
         $img->encode('jpg');
         Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
         $filename = $id.'.jpg';

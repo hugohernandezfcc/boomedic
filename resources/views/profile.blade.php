@@ -92,7 +92,6 @@
                            <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="width:350px; height: 350px;">
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
-
                            	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
 							<input type="hidden" id="w" name="w" />
@@ -136,15 +135,7 @@
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-4" align="center" style="width:230px; height: 230px; "><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">
-	    			        <?php 
-                           	$imagen = getimagesize($file);    //Sacamos la información
-								  $width = $imagen[0];              //Ancho
-								  $height = $imagen[1];               //Alto
-                           	 ?>
-                           	<input type="hidden" id="width" name="width"/>
-                           	<input type="hidden" id="height" name="height" /> 
-	    		</form></div></div><br/>
+	    		<div class="col-sm-4" align="center" style="width:230px; height: 230px; "><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
@@ -527,24 +518,14 @@
 
 <script type="text/javascript">
 
-var jcrop_api, boundx, boundy;
+    jQuery(function(){ jQuery('#target').Jcrop(); });
+     jQuery('#target').Jcrop({
+      aspectRatio: 1,
+      onSelect: updateCoords,
+	  setSelect: [0, 0, 300, 300],
+      bgColor:     'black',
 
-    $('#target').Jcrop({
-        onChange: updateCoords,
-        onSelect: updateCoords,
-        aspectRatio: 0.75,
-        trueSize: [<?echo $width;?>,<?echo $height;?>]
-    },function(){
-        // Use the API to get the real image size
-        var bounds = this.getBounds();
-        boundx = bounds[0];
-        boundy = bounds[0.75];
-        //trueSize: [ancho,alto],
-        // Store the API in the jcrop_api variable
-        jcrop_api = this;
-    });
-
-
+     });
      function updateCoords(c){
       jQuery('#x').val(c.x);
       jQuery('#y').val(c.y);
