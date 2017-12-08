@@ -13,8 +13,8 @@
 
 		<script type="text/javascript">
 
-				
-				if(Dropzone.options.myAwesomeDropzone = { 
+				Dropzone.options.myAwesomeDropzone = { 
+				 
 				 // set following configuration
 				 	paramName: "file",
 				    maxFiles: 1,
@@ -25,19 +25,14 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					        location.reload();
-
+					        
+						setTimeout(function() {
+						    $('#modal').modal("show");
+						}, 4000);
+						$('#modal').modal({backdrop: 'static', keyboard: false});
 					    }
 				    //autoProcessQueue : false 
-				 }){
-
-				setTimeout(function() {
-						    $('#modal').modal("show");
-						}, 1000);
-						$('#modal').modal({backdrop: 'static', keyboard: false});
-				}
-
-
+				 };
 		</script>
 
 @stop
