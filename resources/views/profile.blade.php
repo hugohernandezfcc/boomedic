@@ -136,14 +136,10 @@
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 
-			          if($height > '600' || $width > '600'){
-			            $height = $height / 4;
-			            $width = $width / 4;
-			          }
-			            if($height > '900' || $width > '900'){
-			                $height = $height / 5;
-			                $width = $width / 5;
-			              }
+			          if($height > '300' || $width > '300'){
+			            $height = $height / 2;
+			            $width = $width / 2;
+			        }
 					 ?>
 						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
 			    	@endif 
