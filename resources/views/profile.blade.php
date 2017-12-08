@@ -80,7 +80,7 @@
 <div id="modal" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
-                <div class="modal-content" style="width: 700px; height: 700px;">
+                <div class="modal-content" style="width: 60%">
                   <div class="modal-header">   
                     <label for="recorte">Recorte de imagen:</label>
                   </div>
