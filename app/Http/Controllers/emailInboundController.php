@@ -48,46 +48,21 @@ class emailInboundController extends Controller
      */
     public function store(Request $request)
     {
-        /*$attachs = request('attachments');
+        $files = collect(json_decode($request->input('attachments'), true))
+        ->filter(function ($file) {
+            return $file['content-type'] == 'application/pdf';
+        });
 
-
-        $nTicket = new email();
-                $nTicket->userId      = 1;                
-                $nTicket->message      = $attachs;           
-                $nTicket->save();
-        
-        return response()->json(['status' => 'ok']);*/
-
-        /*$request->input('sender');
-        $request->input('attachments');
-        $files = json_decode($request->input('attachments'),true);*/
-
-        /*$files = json_decode($request->input('storage'),true);*/
-        /*$files = json_decode($request,true);*/
-        /*$recipient = request()->recipient;
-        $sender = request()->sender;*/
-        /*$subject = request()->subject;
-        $Received = request()->Received;*/
-        /*$MessageId = request()->Message-Id;*/
-        /*$Date = request()->Date;
-        $From = request()->From;*/
-        $m  = request()->message;
-
-        /*$cadena = "recipient:: ".$recipient . "sender:: ".$sender . "subject:: ".$subject . "Received:: ".$Received . "Date:: ".$Date . "From:: ".$From;*/
-        
-        /*$cadena = "recipient:: ".$recipient . "sender:: ".$sender;*/
-        $cadena = $m;
-        echo $request;
-
-        $mg = new Mailgun('key-f3d340554fdb2c32590a9d4ace93027a');
-        /*foreach ($files as $file){
-                    $fileName = $file['name'];
-                    $content = $mg->getAttachment($file['url'])->http_response_body;
-        }*/
+        if ($files->count() === 0) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Missing expected CSV attachment'
+            ], 406);
+        }
 
         $nTicket = new email();
         $nTicket->userId      = 1;                
-        $nTicket->message      = $cadena;
+        $nTicket->message      = $files->count();
 
         if ( $nTicket->save() ){
             return response()->json(['status' => 'ok', 'message' => $request]);
