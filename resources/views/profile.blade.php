@@ -77,10 +77,10 @@
 
 	@endif
 
-<div id="modal" class="modal fade" role="dialog">
+<div id="modal" class="modal fade" role="dialog" style="width: 100%">
               <div class="modal-dialog">
                 <!-- Modal content-->
-                <div class="modal-content" style="width: 60%">
+                <div class="modal-content" >
                   <div class="modal-header">   
                     <label for="recorte">Recorte de imagen:</label>
                   </div>
