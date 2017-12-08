@@ -131,7 +131,21 @@
 	    			@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
-						<img src="{{ $photo }}" style="width:250px; height: 250px;">			
+					<?php 
+					  $imagen = getimagesize($file);    //Sacamos la información
+			          $width = $imagen[0];              //Ancho
+			          $height = $imagen[1];  
+
+			          if($height > '600' || $width > '600'){
+			            $height = $height / 3;
+			            $width = $width / 3;
+			          }
+			            if($height > '900' || $width > '900'){
+			                $height = $height / 4;
+			                $width = $width / 4;
+			              }
+					 ?>
+						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
 			    	@endif 
 	    			
 	    		</div>
