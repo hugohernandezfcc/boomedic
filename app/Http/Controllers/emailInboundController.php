@@ -90,7 +90,7 @@ class emailInboundController extends Controller
         /*$files = json_decode($request->input('storage'),true);*/
         /*$files = json_decode($request,true);*/
         $recipient = request()->recipient;
-        $sender = request()->token;
+        $sender = request()->sender;
         /*$subject = request()->subject;
         $Received = request()->Received;*/
         /*$MessageId = request()->Message-Id;*/
@@ -102,7 +102,7 @@ class emailInboundController extends Controller
         $cadena = "recipient:: ".$recipient . "sender:: ".$sender;
         echo $request;
 
-        $mg = new Mailgun('key-f3d340554fdb2c32590a9d4ace93027a');
+        $mg = new Mailgun('key-24a5298179ff4d60d1040dd961ec700f');
         /*foreach ($files as $file){
                     $fileName = $file['name'];
                     $content = $mg->getAttachment($file['url'])->http_response_body;
