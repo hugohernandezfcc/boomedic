@@ -90,7 +90,7 @@ class emailInboundController extends Controller
         /*$files = json_decode($request->input('storage'),true);*/
         /*$files = json_decode($request,true);*/
         $recipient = request()->attachments->parse_url(url);
-        $sender = request()->sender;
+        $sender = request()->sender; 
         /*$subject = request()->subject;
         $Received = request()->Received;*/
         /*$MessageId = request()->Message-Id;*/
