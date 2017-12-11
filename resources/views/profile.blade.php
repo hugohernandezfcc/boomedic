@@ -3,29 +3,6 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-<style type="text/css">
-	.loading{
-	width:100%; 
-	height:100%; 
-	background: rgba(0,0,0,.3);
-	position:fixed;
-	top:0;
-	left:0;
-	display:none;
-}
-
-.wind{
-	width:180px;
-	height:180px;
-	text-align:center;
-	position:absolute;
-	top:20%;
-	left:-90px;
-	margin-left:50%;
-	}
-</style>
-
-
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
@@ -48,7 +25,7 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					  document.getElementById("loading").style.display = "block";
+					  $('#loading').modal("show");
 					  setTimeout('window.location.reload(true)',8000);
 					     	}
 				    //autoProcessQueue : false 
@@ -134,7 +111,7 @@
               </div>
  </div>
 
-  <div class="loading" class="modal fade" role="dialog" style="display: none;">
+  <div class="loading" class="modal fade" role="dialog">
     <div class="wind">
       <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
     </div>
