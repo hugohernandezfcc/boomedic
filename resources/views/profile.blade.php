@@ -25,7 +25,6 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					  $('#loading').modal("show");
 					  setTimeout('window.location.reload(true)',8000);
 					     	}
 				    //autoProcessQueue : false 
@@ -111,11 +110,7 @@
               </div>
  </div>
 
-  <div class="loading" class="modal fade" role="dialog">
-    <div class="wind">
-      <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
-    </div>
-  </div>
+
 
 
     <div class="box">
