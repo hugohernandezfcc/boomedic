@@ -25,18 +25,18 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					        	
-					        	window.setTimeout('window.location.reload()', 6000);
-					    }
+					     setTimeout("location.reload()", 6000);
+					     	}
 				    //autoProcessQueue : false 
 				 };
-
-				 if (<?php if(Session::has('val')) ?> ){
-						setTimeout(function() {
+				 var val = "<?php echo Session::get('val'); ?>";
+				 		if(val == "true"){
+				 		setTimeout(function() {
 						    $('#modal').modal("show");
 						}, 4000);
 						$('#modal').modal({backdrop: 'static', keyboard: false});
-				 }
+					}
+					    
 		</script>
 
 @stop
