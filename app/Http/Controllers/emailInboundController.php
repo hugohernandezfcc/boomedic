@@ -59,9 +59,30 @@ class emailInboundController extends Controller
             $nTicket->userId      = 1;                
             $nTicket->message      = "Sin adjuntos";
         }else{
-            $nTicket = new email();
+            /*$nTicket = new email();
             $nTicket->userId      = 1;                
-            $nTicket->message      = $files->count();
+            $nTicket->message      = $files->count();*/
+
+            foreach ($files as $file){
+                $fileName = $file['name'];
+                $url = $file['url'];
+
+                $msg = $fileName ."::". $url;
+
+                $nTicket = new email();
+                $nTicket->userId      = 1;                
+                $nTicket->message      = $msg;
+                /*$content = $mg->getAttachment($file['url'])->http_response_body;*/
+            }
+
+
+            /*$httpClient = new Client();
+            $response = $httpClient->get($attachment['url'], [
+                'auth' => ['api', env("MAILGUN_SECRET")], 
+            ]);
+            $imageData = (string)$response->getBody();
+            $base64 = base64_encode($imageData);
+            return $base64;*/
         }
 
         if ( $nTicket->save() ){
