@@ -31,10 +31,7 @@
 				 };
 				 var val = "<?php echo session()->get('val'); ?>";
 				 		if(val == "true"){
-				 		setTimeout(function() {
 						    $('#modal').modal("show");
-						}, 4000);
-						$('#modal').modal({backdrop: 'static', keyboard: false});
 					}
 					    
 		</script>
