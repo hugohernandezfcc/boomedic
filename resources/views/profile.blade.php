@@ -33,9 +33,9 @@
 				 		if(val == "true"){
 				 		setTimeout(function() {
 						    $('#modal').modal("show");
-						}, 1000);
-						$('#modal').modal({backdrop: 'static', keyboard: false});
+						}, 1000);	
 					}
+					$('#modal').modal({backdrop: 'static', keyboard: true});
 					    
 		</script>
 
