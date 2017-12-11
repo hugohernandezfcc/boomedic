@@ -18,6 +18,8 @@ use Mailgun\Mailgun;
 
 use GuzzleHttp\Client;
 
+use Aws\S3\S3Client;
+
 class emailInboundController extends Controller
 {
     /**
@@ -62,11 +64,25 @@ class emailInboundController extends Controller
 
                 $msg = $fileName ."::". $url;
 
-                $nTicket = new email();
+                /*$nTicket = new email();
                 $nTicket->userId      = 1;                
                 $nTicket->message      = $msg;
                 $nTicket->save();
+                */
+
                 /*$content = $mg->getAttachment($file['url'])->http_response_body;*/
+
+                $httpClient = new Client();
+                $response = $httpClient->get($attachment['url'], [
+                    'auth' => ['api', 'key-24a5298179ff4d60d1040dd961ec700f'],
+                ]);
+                /*$imageData = (string)$response->getBody();
+                $base64 = base64_encode($imageData);
+                return $base64;*/
+
+
+
+                Storage::disk('s3')->put($fileName, $response);
             }
 
 
