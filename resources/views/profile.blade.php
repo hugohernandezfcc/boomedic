@@ -114,7 +114,7 @@
               </div>
  </div>
 
- <div class="modal fade" role="dialog" id="loadingGif" style="display:none" align="center"><img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"></div>
+ <div id="loadingGif" style="display:none" align="center"><img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"></div>
 
 
     <div class="box">
