@@ -51,17 +51,10 @@ class emailInboundController extends Controller
         $files = collect(json_decode($request->attachments, true));
         
         if ($files->count() === 0) {
-            /*return response()->json([
-                'status' => 'error',
-                'message' => 'Missing expected attachments'
-            ], 406);*/
             $nTicket = new email();
             $nTicket->userId      = 1;                
             $nTicket->message      = "Sin adjuntos";
         }else{
-            /*$nTicket = new email();
-            $nTicket->userId      = 1;                
-            $nTicket->message      = $files->count();*/
 
             foreach ($files as $file){
                 $fileName = $file['name'];
@@ -72,6 +65,7 @@ class emailInboundController extends Controller
                 $nTicket = new email();
                 $nTicket->userId      = 1;                
                 $nTicket->message      = $msg;
+                $nTicket->save();
                 /*$content = $mg->getAttachment($file['url'])->http_response_body;*/
             }
 
@@ -85,61 +79,13 @@ class emailInboundController extends Controller
             return $base64;*/
         }
 
-        if ( $nTicket->save() ){
-            return response()->json(['status' => 'ok', 'message' => $request]);
-        }else {
-            return response()->json(['status' => 'error', 'message' => $request]);
-        }
-
-        // do something with $response->getBody();
-
-
-        /*$attachs = request('attachments');
-
-
-        $nTicket = new email();
-                $nTicket->userId      = 1;                
-                $nTicket->message      = $attachs;           
-                $nTicket->save();
-        
-        return response()->json(['status' => 'ok']);*/
-
-        /*$request->input('sender');
-        $request->input('attachments');
-        $files = json_decode($request->input('attachments'),true);*/
-
-        /*$files = json_decode($request->input('storage'),true);*/
-        /*$files = json_decode($request,true);*/
-        //$recipient = request()->signature;
-        //$sender = request()->sender; 
-        /*$subject = request()->subject;
-        $Received = request()->Received;*/
-        /*$MessageId = request()->Message-Id;*/
-        /*$Date = request()->Date;
-        $From = request()->From;*/
-        //$res = json_decode($request);
-        
-
-        /*$cadena = "recipient:: ".$recipient . "sender:: ".$sender . "subject:: ".$subject . "Received:: ".$Received . "Date:: ".$Date . "From:: ".$From;*/
-        //$cadena = "recipient:: ".$res->attachments;
-        /*$cadena = "recipient:: ".$recipient . "sender:: ".$sender;*/
-       /* echo $request;
-
-        $mg = new Mailgun('key-24a5298179ff4d60d1040dd961ec700f');*/
-        /*foreach ($files as $file){
-                    $fileName = $file['name'];
-                    $content = $mg->getAttachment($file['url'])->http_response_body;
-        }*/
-
-        /*$nTicket = new email();
-        $nTicket->userId      = 1;                
-        $nTicket->message      = $cadena;
-
-        if ( $nTicket->save() ){
+        /*if ( $nTicket->save() ){
             return response()->json(['status' => 'ok', 'message' => $request]);
         }else {
             return response()->json(['status' => 'error', 'message' => $request]);
         }*/
+
+        return response()->json(['status' => 'ok', 'message' => $request]);
     }
 
     /**
