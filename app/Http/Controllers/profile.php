@@ -265,7 +265,7 @@ class profile extends Controller
         
         $path = Storage::cloud()->url($filename);
 
-
+         Session(['val' => 'false']);
        
         $user->profile_photo = $path2;   
 
