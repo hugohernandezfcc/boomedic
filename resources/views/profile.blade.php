@@ -33,10 +33,10 @@
 				 var val = "@php echo session()->get('val'); @endphp";
 				 		if(val == "true"){
 				 		setTimeout(function() {
-						    $('#modal').modal("show");
+						    $('#modal').modal({ backdrop: 'static' }, 'show');
 						}, 1000);	
 					}
-					$('#modal').modal({backdrop: 'static', keyboard: true});
+					
 					    
 		</script>
 
