@@ -135,7 +135,7 @@
 	    			@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
-					<?php 
+					@php 
 					  $imagen = getimagesize($photo);    //Sacamos la información
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
@@ -144,7 +144,7 @@
 			            $height = $height / 2;
 			            $width = $width / 2;
 			        }
-					 ?>
+					@endphp
 						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
 			    	@endif 
 	    			
