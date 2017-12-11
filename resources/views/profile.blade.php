@@ -29,7 +29,7 @@
 					  setTimeout(function(){ 
 					  	document.getElementById('loadingGif').style.display = "none";
 					  	window.location.reload(true);
-					  },8000);
+					  },10000);
 					     	}
 				    //autoProcessQueue : false 
 				 };
@@ -114,7 +114,7 @@
               </div>
  </div>
 
- <div id="loadingGif" style="display:none" align="center"><img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"></div>
+ <div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
 
 
     <div class="box">
