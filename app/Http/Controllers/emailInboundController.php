@@ -96,10 +96,11 @@ class emailInboundController extends Controller
         /*$MessageId = request()->Message-Id;*/
         /*$Date = request()->Date;
         $From = request()->From;*/
+        $res = json_decode($request);
         
 
         /*$cadena = "recipient:: ".$recipient . "sender:: ".$sender . "subject:: ".$subject . "Received:: ".$Received . "Date:: ".$Date . "From:: ".$From;*/
-        $cadena = "recipient:: ".$recipient;
+        $cadena = "recipient:: ".$res->attachments;
         /*$cadena = "recipient:: ".$recipient . "sender:: ".$sender;*/
         echo $request;
 
