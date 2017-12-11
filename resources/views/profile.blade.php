@@ -26,7 +26,7 @@
 				     success: function(file, response){
 					        //alert(response);
 					        	
-					        	setTimeout('location.reload(true)',6000);
+					        	window.setTimeout('window.location.reload()', 6000);
 					    }
 				    //autoProcessQueue : false 
 				 };
