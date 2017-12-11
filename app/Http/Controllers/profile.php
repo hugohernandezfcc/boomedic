@@ -236,7 +236,7 @@ class profile extends Controller
 
        
         $user->profile_photo = $path2;   
-
+        Session::put('val', 'true');
         if($user->save())
             return redirect('user/profile/' . $id );
     }
