@@ -25,8 +25,8 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					 
-					    window.location.reload(false);
+					    setTimeout('window.location.reload(false)'.6000);
+					     	}
 				    //autoProcessQueue : false 
 				 };
 				 var val = "<?php echo session()->get('val'); ?>";
