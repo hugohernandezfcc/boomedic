@@ -25,12 +25,14 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
+					  loader.style.display = "block";
 					  setTimeout('window.location.reload(true)',8000);
 					     	}
 				    //autoProcessQueue : false 
 				 };
 				 var val = "@php echo session()->get('val'); @endphp";
 				 		if(val == "true"){
+				 		loader.style.display = "none";
 				 		setTimeout(function() {
 						    $('#modal').modal("show");
 						}, 1000);
@@ -110,7 +112,9 @@
               </div>
  </div>
 
-
+     <div class="overlay" align="center" id="loader" style="position:absolute;left:40%;padding-top: 20%; display: none;">
+        <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
+      </div>
 
 
     <div class="box">
