@@ -114,14 +114,15 @@
               </div>
  </div>
 
- <div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
-
+ 
 
     <div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Información de usuario</h3>
 	    	<!-- /.box-tools -->
 	  	</div>
+	  	<div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
+
 	  	<!-- /.box-header -->
 	  	<div class="box-body">
 	  		@if( !empty($status) )
