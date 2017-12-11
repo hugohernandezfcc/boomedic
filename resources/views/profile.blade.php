@@ -29,7 +29,7 @@
 					     	}
 				    //autoProcessQueue : false 
 				 };
-				 var val = "<?php echo Session::get('val'); ?>";
+				 var val = "<?php echo session::get('val'); ?>";
 				 		if(val == "true"){
 				 		setTimeout(function() {
 						    $('#modal').modal("show");
