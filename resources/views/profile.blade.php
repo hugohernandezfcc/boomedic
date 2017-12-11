@@ -25,7 +25,7 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					     setTimeout("location.reload()", 6000);
+					    location.reload(true);
 					     	}
 				    //autoProcessQueue : false 
 				 };
