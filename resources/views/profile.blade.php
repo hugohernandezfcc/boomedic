@@ -48,7 +48,7 @@
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
-					  $('#loading').modal("show");
+					  document.getElementById("loading").style.display = "block";
 					  setTimeout('window.location.reload(true)',8000);
 					     	}
 				    //autoProcessQueue : false 
