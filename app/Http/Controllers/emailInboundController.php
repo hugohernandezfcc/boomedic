@@ -55,65 +55,28 @@ class emailInboundController extends Controller
         $files = collect(json_decode($request->attachments, true));
         
         if ($files->count() === 0) {
-            $nTicket = new email();
+            /*$nTicket = new email();
             $nTicket->userId      = 1;                
-            $nTicket->message      = "Sin adjuntos";
+            $nTicket->message      = "Sin adjuntos";*/
+            echo "Sin archivos";
         }else{
-
             foreach ($files as $file){
                 $fileName = $file['name'];
                 $url = $file['url'];
-
-                $msg = $fileName ."::". $url;
-
-                /*$nTicket = new email();
-                $nTicket->userId      = 1;                
-                $nTicket->message      = $msg;
-                $nTicket->save();
-                */
-
-                /*$content = $mg->getAttachment($file['url'])->http_response_body;*/
 
                 $httpClient = new Client();
                 $resp = $httpClient->get($url, [
                     'auth' => ['api', 'key-24a5298179ff4d60d1040dd961ec700f'],
                 ]);
-                $imageData = (string)$resp->getBody();
-                /*$base64 = base64_encode($imageData);*/
-
-                /*return $base64;*/
-
-               /* $date = getdate();
-                $dateT = $date[weekday]."/".$date[mday]."/".$date[month]."/".$date[year];
-                $fname = (string)$date."-".$fileName;*/
+                $content = (string)$resp->getBody();
 
                 $time = time();
-                $time1 = date("d M Y H:i", $time);
+                $time1 = date("d M Y H:i:s", $time);
+                $fname = $time1." - ".$fileName;
 
-
-                Storage::disk('s3')->put($time1." - ".$fileName, $imageData, 'public');
-
-
-
-                /*Storage::disk('s3')->put($fileName, $base64);*/
-                //Storage::disk('s3')->makeDirectory($fileName);
+                Storage::disk('s3')->put($fname, $content, 'public');
             }
-
-
-            /*$httpClient = new Client();
-            $response = $httpClient->get($attachment['url'], [
-                'auth' => ['api', env("MAILGUN_SECRET")], 
-            ]);
-            $imageData = (string)$response->getBody();
-            $base64 = base64_encode($imageData);
-            return $base64;*/
         }
-
-        /*if ( $nTicket->save() ){
-            return response()->json(['status' => 'ok', 'message' => $request]);
-        }else {
-            return response()->json(['status' => 'error', 'message' => $request]);
-        }*/
 
         return response()->json(['status' => 'ok', 'message' => $request]);
     }
