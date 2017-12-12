@@ -45,11 +45,12 @@
         z-index: 100;
         text-align: center;
         font-size: 90%;
-        line-height: 15%;      
+        line-height: 15%;        
       }
       .rangeStyle{
         height: 1%;
         width: 100%;
+        
       }
       .checkStyle{
         position: absolute;
@@ -64,6 +65,18 @@
         padding-right: 0.5%;
         padding-left: 0.5%;
         border-radius: 1px;
+      }
+     .checkStyl2{
+        position: absolute;
+        bottom: 4.5%;
+        left: 1%;
+        z-index: 100;
+        font-size: 90%;
+        line-height: 15%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;
       }
       .infoSpStyle{
         position: absolute;
@@ -175,6 +188,8 @@
           box-shadow: 1px 2px 5px #000000;   
       }
 
+    
+
   </style>
 
   <!--  -->
@@ -238,7 +253,7 @@
           <span id="infoSpDetail" class="textStyle01"></span>
         </strong>
       </div>
-
+ 
       <div id="searchDiv">
         <!-- <strong>
           <label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;
@@ -249,22 +264,57 @@
           <input type="text" class="form-control"  name="keyWordSearch"  id="kWSearch" >
           <span class="input-group-btn">
             <button type="button" class="btn btn-info btn-flat" onclick="start();">
-              <span class="glyphicon glyphicon-search"></span>
+              <span ></span>
             </button>
           </span>
         </div>
       </div>
+
       <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:33%;padding-top: 20%;">
+
         <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
       </div>
 
-      <div id='rango'>
+
+
+    <div id="map"></div>
+         <div class="checkStyl2">      
+      <a class="btn btn-secondary btn-block btn-flat" data-backdrop="static" data-toggle="modal" data-target="#modal">Búsqueda</a>
+    </div>
+    <div id='rango'>
         <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
         <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
       </div>
+  </div> 
+
       
-      <div id="map"></div>
-    </div>
+         <!-- Modal Busqueda por lugar -->
+
+            <div id="modal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">   
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <label for="Busqueda">Búqueda de lugar:</label>
+                  </div>
+                  <div class="modal-body">
+                        <div class="input-group input-group-sm">
+                          <input id="address" type="textbox" value="" class="form-control">
+                          <span class="input-group-btn">
+                          <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
+                       </div>
+                            <br/>                    
+                          <div id ="ubi" class="input-group input-group-sm" style="display:none">
+                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" onclick="initMap()">
+                          </div>
+                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
     <!-- Modal de especialidades -->
@@ -489,7 +539,8 @@
 
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
-        
+        $('#modal').modal('hide');
+         document.getElementById('ubi').style.display = 'none'; 
         infoWindow = new google.maps.InfoWindow();
 
         //Current position
@@ -512,10 +563,11 @@
               rotateControl: false,
               fullscreenControl: false
             });
+
             var markerUser = "{{ asset('markerUser.png') }}";
 
             //Marker
-            markerP = new google.maps.Marker({
+              markerP = new google.maps.Marker({
               draggable: true,
               position: new google.maps.LatLng(pos),
               icon: markerUser,
@@ -526,6 +578,14 @@
               infoWindow.open(map, markerP);
               infoWindow.setContent(message01);
             });
+                var geocoder = new google.maps.Geocoder();
+                document.getElementById('submit').addEventListener('click', function() {
+                geocodeAddress(geocoder, map, markerP);
+                $('#modal').modal('hide');
+                document.getElementById('ubi').style.display = 'inline'; 
+                });
+
+
           },
 
           //****Error
@@ -534,6 +594,9 @@
             // Secure Origin issue.
             }
           });
+
+
+
         }else {
             // Browser doesn't support Geolocation
             infoWindow.setMap(map);
@@ -542,8 +605,23 @@
             infoWindow.setContent(message03);
         }
 
+
+
       }
 
+
+      //Filter geocode Address
+        function geocodeAddress(geocoder, resultsMap, markerP) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            markerP.setPosition(results[0].geometry.location);
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
   
       //Filter of Speciality
       function functionEsp(specialityValue, keyWordValue, positionValue, rangeValue) {

@@ -3,16 +3,16 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-    <!-- <h1>Perfil de usuario</h1> -->
-@stop
-
-@section('content')
-
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+    <script type="text/javascript" src="js/cssrefresh.js"></script>
+
+
 
 		<script type="text/javascript">
+
 				Dropzone.options.myAwesomeDropzone = { 
 				 
 				 // set following configuration
@@ -23,12 +23,34 @@
 				    dictRemoveFile: "Eliminar",
 				    dictCancelUpload: "Cancel",
 				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
-
-				    //autoProcessQueue : false
-				 	   
+				     success: function(file, response){
+					        //alert(response);
+					  document.getElementById('loadingGif').style.display = "block";
+					  setTimeout(function(){ 
+					  	document.getElementById('loadingGif').style.display = "none";
+					  	window.location.reload(true);
+					  },10000);
+					     	}
+				    //autoProcessQueue : false 
 				 };
+				 var val = "@php echo session()->get('val'); @endphp";
+				 		if(val == "true"){
+				 		setTimeout(function() {
+						    $('#modal').modal({ backdrop: 'static' }, 'show');
+						}, 1000);	
+					}
+					
+					    
 		</script>
+
+@stop
+
+@section('content')
+
+
 	<br/>
+
+
 
 	@if( empty($status) )
 
@@ -38,7 +60,7 @@
 		    	@if($photo == '')
 		    	 	<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
 				@else
-					<img src="{{ $photo }}">			
+					<img src="{{ $photo }}" >			
 		    	@endif 
 
 		    </div>
@@ -63,11 +85,44 @@
 
 	@endif
 
+<div id="modal" class="modal fade" role="dialog" style="width: 100%">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" >
+                  <div class="modal-header">   
+                    <label for="recorte">Recorte de imagen:</label>
+                  </div>
+                  <div class="modal-body" >
+
+                        <div align="center">
+                   
+
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="width:350px; height: 350px;">
+                    
+                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
+                           	<input type="hidden" id="x" name="x" />
+							<input type="hidden" id="y" name="y" />
+							<input type="hidden" id="w" name="w" />
+							<input type="hidden" id="h" name="h" /><br/>
+	                        <span class="input-group-btn">
+	                        <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
+                          </form>
+                       </div>
+                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+                  </div>
+                </div>
+              </div>
+ </div>
+
+ 
+
     <div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Información de usuario</h3>
 	    	<!-- /.box-tools -->
 	  	</div>
+	  	<div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
+
 	  	<!-- /.box-header -->
 	  	<div class="box-body">
 	  		@if( !empty($status) )
@@ -85,11 +140,21 @@
 	    			@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
-						<img src="{{ $photo }}">			
+					@php 
+					  $imagen = getimagesize($photo);    //Sacamos la información
+			          $width = $imagen[0];              //Ancho
+			          $height = $imagen[1];  
+
+			          if($height > '300' || $width > '300'){
+			            $height = $height / 2;
+			            $width = $width / 2;
+			        }
+					@endphp
+						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-6" align="center" style="width:200px; height: 200px; "><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
+	    		<div class="col-sm-6" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
@@ -466,5 +531,31 @@
 
 	  	</div>	  	
 	</div>
+    <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.color.js') }}"></script>
+	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
+<script type="text/javascript">
+
+    jQuery(function(){ jQuery('#target').Jcrop(); });
+     jQuery('#target').Jcrop({
+      aspectRatio: 1,
+      onSelect: updateCoords,
+	  setSelect: [0, 0, 300, 300],
+      bgColor:     'black',
+
+     });
+     function updateCoords(c){
+      jQuery('#x').val(c.x);
+      jQuery('#y').val(c.y);
+      jQuery('#w').val(c.w);
+      jQuery('#h').val(c.h);
+     };
+     function checkCoords()
+{
+	if (parseInt(jQuery('#w').val())>0) return true;
+	alert('Seleccione una coordenada para subir');
+	return false;
+};
+</script>
 @stop

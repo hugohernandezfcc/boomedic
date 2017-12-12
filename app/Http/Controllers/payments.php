@@ -224,17 +224,18 @@ class payments extends Controller
                     $queryString = 'apikey=RY6NDJNX3Q2NDWVYUBQW21N37pbnY719X0SqzEs_CDSZbhFro';
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
-         if($statusCode == '201'){
+         if($statusCode[0] == '201'){
              /* Insert_bank*/
                         $Transaction = new transaction_bank;
                         $Transaction->paymentmethod = $request->id;
                         $Transaction->receiver = 'receiver prueba';
                         $Transaction->amount = $request->pay;
+                        $Transaction->transaction = $statusCode[1];
                         $Transaction->save();
                     /* Insert Transaction_bank*/    
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Transacción Nro. '.$Transaction->id.': Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... ', 
+            'message' => 'Transacción Nro. '.$statusCode[1].': Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... ', 
             'success' => 'success'
             );
             return redirect('payment/index')->with($notification);
@@ -365,7 +366,7 @@ class payments extends Controller
                             if ($result->getState() == 'approved') { // payment made
                               // Payment is successful do your business logic here
                                 //Add payment method
-                                $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->first();
+                                $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
                                 if(empty($paypalExist)){
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
@@ -378,17 +379,18 @@ class payments extends Controller
 
                               }
 
-                               $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->first();
+                               $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
                                             $Trans->receiver = 'receiver prueba';
-                                            $Trans->amount = '1';
+                                            $Trans->amount = $payment->transactions[0]->amount->total;
+                                            $Trans->transaction = $payment_id;
                                             $Trans->save();    
                                         
 
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
-                                    'message' => 'Procesado su pago de paypal Payer Id: ' .$request->input('PayerID'). ', ' .$result->getPayer()->getPayerInfo()->getEmail(), 
+                                    'message' => 'Procesado su pago de paypal, Correo: ' .$result->getPayer()->getPayerInfo()->getEmail().', Id de transacción: '. $payment_id, 
                                     'success' => 'success'
                                 );
                               return redirect('payment/index')->with($notification);
