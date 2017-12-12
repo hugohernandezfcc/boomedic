@@ -521,13 +521,12 @@
 
 <script type="text/javascript">
 
-    $(function(){ $('#target').Jcrop(); });
-     $('#target').Jcrop({
+    $(function(){ $.Jcrop('#target'); });
+     $.Jcrop('#target',{
       aspectRatio: 1,
       onSelect: updateCoords,
 	  setSelect: [0, 0, 300, 300],
-      bgColor:     'black',
-
+      bgColor:     'black'
      });
      function updateCoords(c){
       $('#x').val(c.x);
