@@ -92,7 +92,7 @@ class supportTickets extends Controller
             // VISTA: <h2>El usuario {{ $user->name }} ha creado un ticket.</h2>
             Mail::send('emails.newTicket', $data, function ($message) {
                 $message->subject('Nuevo Ticket creado ');
-                $message->to('contacto@doitcloud.consulting');
+                $message->to('cristina@doitcloud.consulting');
             });
 
             return redirect('supportTicket/index');

@@ -60,8 +60,13 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],*/
 
-    'from' => [
+    /*'from' => [
         'address' => 'cristina@doitcloud.consulting',
+        'name' => 'Boomedic',
+    ],*/
+
+    'from' => [
+        'address' => 'postmaster@sandboxad4b45c4083c44e487d79a7b15429da6.mailgun.org',
         'name' => 'Boomedic',
     ],
 
@@ -93,9 +98,13 @@ return [
 
     'password' => env('MAIL_PASSWORD'),*/
 
-    'username' => 'postmaster@sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org',
+    /*'username' => 'postmaster@sandbox9d528f96b99f4ba89ecc0891323eaf55.mailgun.org',
 
-    'password' => '775a683686f03bbe00e3fe4508808029',
+    'password' => '775a683686f03bbe00e3fe4508808029',*/
+
+    'username' => 'postmaster@sandboxad4b45c4083c44e487d79a7b15429da6.mailgun.org',
+
+    'password' => '5055be39a5729762377ef3cd6d9a0e97',
 
     /*
     |--------------------------------------------------------------------------
