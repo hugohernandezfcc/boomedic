@@ -19,6 +19,8 @@ use Mailgun\Mailgun;
 use GuzzleHttp\Client;
 
 use Aws\S3\S3Client;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\Filesystem;
 
 class emailInboundController extends Controller
 {
@@ -82,7 +84,7 @@ class emailInboundController extends Controller
 
 
 
-                Storage::disk('s3')->put($fileName, $base64, 'public');
+                Storage::disk('s3')->put($fileName, $base64);
             }
 
 
