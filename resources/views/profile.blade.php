@@ -400,12 +400,7 @@
 
     		<script type="text/javascript">
 
-    			window.onload = function(){
-    				initAutocomplete();
-    			@if(empty($status))
-    				initMapAddressUser();
-    			@endif
-    			};
+
 
 
 		      // This example displays an address form, using the autocomplete feature
