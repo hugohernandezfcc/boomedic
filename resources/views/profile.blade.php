@@ -402,10 +402,7 @@
 
     			window.onload = function(){
     				initAutocomplete();
-
-    				@if( empty($status) )
     					initMapAddressUser();
-					@endif
     			};
 
 
