@@ -55,9 +55,6 @@ class emailInboundController extends Controller
         $files = collect(json_decode($request->attachments, true));
         
         if ($files->count() === 0) {
-            /*$nTicket = new email();
-            $nTicket->userId      = 1;                
-            $nTicket->message      = "Sin adjuntos";*/
             echo "Sin archivos";
         }else{
             foreach ($files as $file){
@@ -71,8 +68,8 @@ class emailInboundController extends Controller
                 $content = (string)$resp->getBody();
 
                 $time = time();
-                $time1 = date("d M Y H:i:s", $time);
-                $fname = $time1." - ".$fileName;
+                $time1 = date("d_M_Y_H_i_s", $time);
+                $fname = $time1."_".$fileName;
 
                 Storage::disk('s3')->put($fname, $content, 'public');
             }
