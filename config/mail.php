@@ -66,7 +66,7 @@ return [
     ],*/
 
     'from' => [
-        'address' => 'postmaster@sandboxad4b45c4083c44e487d79a7b15429da6.mailgun.org',
+        'address' => 'boomedic@contacto.email',
         'name' => 'Boomedic',
     ],
 
