@@ -264,7 +264,7 @@
           <input type="text" class="form-control" placeholder="Buscar ..."  name="keyWordSearch"  id="kWSearch" >
           <span class="input-group-btn">
             <button type="button" class="btn btn-info btn-flat" onclick="start();">
-              <span ></span>
+              <span class="fa fa-search"></span>
             </button>
           </span>
         </div>
