@@ -3,35 +3,40 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
-    <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
-	<script src="{{ asset('js/jquery.color.js') }}"></script>
-	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 
-<script type="text/javascript">
 
-    jQuery(function(){ jQuery('#target').Jcrop(); });
-     jQuery('#target').Jcrop({
-      aspectRatio: 1,
-      onSelect: updateCoords,
-	  setSelect: [0, 0, 300, 300],
-      bgColor:     'black',
+		<script type="text/javascript">
 
-     });
-     function updateCoords(c){
-      jQuery('#x').val(c.x);
-      jQuery('#y').val(c.y);
-      jQuery('#w').val(c.w);
-      jQuery('#h').val(c.h);
-     };
-     function checkCoords()
-{
-	if (parseInt(jQuery('#w').val())>0) return true;
-	alert('Seleccione una coordenada para subir');
-	return false;
-};
-</script>
-
+				Dropzone.options.myAwesomeDropzone = { 
+				 
+				 // set following configuration
+				 	paramName: "file",
+				    maxFiles: 1,
+				    acceptedFiles: "image/*",
+				    addRemoveLinks: true,
+				    dictRemoveFile: "Eliminar",
+				    dictCancelUpload: "Cancel",
+				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+				     success: function(file, response){
+					        //alert(response);
+					  document.getElementById('loadingGif').style.display = "block";
+					  setTimeout(function(){ 
+					  	document.getElementById('loadingGif').style.display = "none";
+					  	window.location.reload(true);
+					  },10000);
+					     	}
+				    //autoProcessQueue : false 
+				 };
+				 var val = "@php echo session()->get('val'); @endphp";
+				 		if(val == "true"){
+				 		setTimeout(function() {
+						    $('#modal').modal({ backdrop: 'static' }, 'show');
+						}, 1000);	
+					}
+									    
+		</script>
 @stop
 
 @section('content')
@@ -508,42 +513,35 @@
 		    	</script>
 
 			@endif
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 
+	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
 
-		<script type="text/javascript">
+	<script src="{{ asset('js/jquery.color.js') }}"></script>
+	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
-				Dropzone.options.myAwesomeDropzone = { 
-				 
-				 // set following configuration
-				 	paramName: "file",
-				    maxFiles: 1,
-				    acceptedFiles: "image/*",
-				    addRemoveLinks: true,
-				    dictRemoveFile: "Eliminar",
-				    dictCancelUpload: "Cancel",
-				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
-				     success: function(file, response){
-					        //alert(response);
-					  document.getElementById('loadingGif').style.display = "block";
-					  setTimeout(function(){ 
-					  	document.getElementById('loadingGif').style.display = "none";
-					  	window.location.reload(true);
-					  },10000);
-					     	}
-				    //autoProcessQueue : false 
-				 };
-				 var val = "@php echo session()->get('val'); @endphp";
-				 		if(val == "true"){
-				 		setTimeout(function() {
-						    $('#modal').modal({ backdrop: 'static' }, 'show');
-						}, 1000);	
-					}
-					
-					    
-		</script>
+<script type="text/javascript">
 
+    jQuery(function(){ jQuery('#target').Jcrop(); });
+     jQuery('#target').Jcrop({
+      aspectRatio: 1,
+      onSelect: updateCoords,
+	  setSelect: [0, 0, 300, 300],
+      bgColor:     'black',
+
+     });
+     function updateCoords(c){
+      jQuery('#x').val(c.x);
+      jQuery('#y').val(c.y);
+      jQuery('#w').val(c.w);
+      jQuery('#h').val(c.h);
+     };
+     function checkCoords()
+{
+	if (parseInt(jQuery('#w').val())>0) return true;
+	alert('Seleccione una coordenada para subir');
+	return false;
+};
+</script>
 	  	</div>	  	
 	</div>
 
