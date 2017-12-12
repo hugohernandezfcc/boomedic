@@ -4,44 +4,7 @@
 
 @section('content_header')
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-    <script type="text/javascript" src="js/cssrefresh.js"></script>
 
-
-
-		<script type="text/javascript">
-
-				Dropzone.options.myAwesomeDropzone = { 
-				 
-				 // set following configuration
-				 	paramName: "file",
-				    maxFiles: 1,
-				    acceptedFiles: "image/*",
-				    addRemoveLinks: true,
-				    dictRemoveFile: "Eliminar",
-				    dictCancelUpload: "Cancel",
-				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
-				     success: function(file, response){
-					        //alert(response);
-					  document.getElementById('loadingGif').style.display = "block";
-					  setTimeout(function(){ 
-					  	document.getElementById('loadingGif').style.display = "none";
-					  	window.location.reload(true);
-					  },10000);
-					     	}
-				    //autoProcessQueue : false 
-				 };
-				 var val = "@php echo session()->get('val'); @endphp";
-				 		if(val == "true"){
-				 		setTimeout(function() {
-						    $('#modal').modal({ backdrop: 'static' }, 'show');
-						}, 1000);	
-					}
-					
-					    
-		</script>
 
 @stop
 
@@ -531,6 +494,45 @@
 
 	  	</div>	  	
 	</div>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+    <script type="text/javascript" src="js/cssrefresh.js"></script>
+
+
+
+		<script type="text/javascript">
+
+				Dropzone.options.myAwesomeDropzone = { 
+				 
+				 // set following configuration
+				 	paramName: "file",
+				    maxFiles: 1,
+				    acceptedFiles: "image/*",
+				    addRemoveLinks: true,
+				    dictRemoveFile: "Eliminar",
+				    dictCancelUpload: "Cancel",
+				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+				     success: function(file, response){
+					        //alert(response);
+					  document.getElementById('loadingGif').style.display = "block";
+					  setTimeout(function(){ 
+					  	document.getElementById('loadingGif').style.display = "none";
+					  	window.location.reload(true);
+					  },10000);
+					     	}
+				    //autoProcessQueue : false 
+				 };
+				 var val = "@php echo session()->get('val'); @endphp";
+				 		if(val == "true"){
+				 		setTimeout(function() {
+						    $('#modal').modal({ backdrop: 'static' }, 'show');
+						}, 1000);	
+					}
+					
+					    
+		</script>
+	
     <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.color.js') }}"></script>
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
