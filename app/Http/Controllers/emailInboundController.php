@@ -86,7 +86,7 @@ class emailInboundController extends Controller
 
 
                 /*Storage::disk('s3')->put($fileName, $base64);*/
-                Storage::makeDirectory($fileName);
+                Storage::disk('s3')->makeDirectory($fileName);
             }
 
 
