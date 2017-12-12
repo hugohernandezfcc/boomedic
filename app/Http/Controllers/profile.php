@@ -238,7 +238,7 @@ class profile extends Controller
         $user->profile_photo = $path2;   
         Session(['val' => 'true']);
         $user->save();
-        return redirect('user/profile/' . $id );
+        return redirect('/user/edit/complete');
     }
 
     public function cropProfile(Request $request, $id)
@@ -270,7 +270,7 @@ class profile extends Controller
         $user->profile_photo = $path2;   
 
         if($user->save())
-            return redirect('user/profile/' . $id );
+            return redirect('/user/edit/complete');
     }
 
     /**
