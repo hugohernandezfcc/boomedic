@@ -66,7 +66,7 @@ return [
     ],*/
 
     'from' => [
-        'address' => 'boomedic@contacto.email',
+        'address' => 'contacto@email.boomedic',
         'name' => 'Boomedic',
     ],
 
