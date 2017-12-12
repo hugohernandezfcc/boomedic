@@ -397,12 +397,14 @@
 		            </div>
 		        </div>
     		@endif
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
     		<script type="text/javascript">
 
     			window.onload = function(){
     				initAutocomplete();
-    					initMapAddressUser();
+    			@if(empty($status))
+    				initMapAddressUser();
+    			@endif
     			};
 
 
@@ -468,7 +470,7 @@
 
 		            console.log(geolocation.lat + ' ' + geolocation.lng);
 		            document.getElementById('latitudeFend').value = geolocation.lat; 
-		            document.getElementById('longitudeFend').value = geolocation.lat;
+		            document.getElementById('longitudeFend').value = geolocation.lng;
 		            var circle = new google.maps.Circle({
 		              center: geolocation,
 		              radius: position.coords.accuracy
