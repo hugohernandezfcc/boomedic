@@ -402,8 +402,6 @@
 		        </div>
     		@endif
 
-
-    		<script src='http://maps.googleapis.com/maps/api/js?v=3&sensor=false&amp;libraries=places&key=xxx'></script>
     		<script type="text/javascript">
 
     			window.onload = function(){
