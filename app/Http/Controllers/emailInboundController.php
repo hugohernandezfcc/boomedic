@@ -88,10 +88,10 @@ class emailInboundController extends Controller
                 $fname = (string)$date."-".$fileName;*/
 
                 $time = time();
-                $time1 = date("D-M-Y (H:i:s)", $time);
+                $time1 = date("d/M/Y_H:i", $time);
 
 
-                Storage::disk('s3')->put($time1."-".$fileName, $imageData, 'public');
+                Storage::disk('s3')->put($time1." - ".$fileName, $imageData, 'public');
 
 
 
