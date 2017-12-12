@@ -270,14 +270,8 @@
         </div>
       </div>
 
+      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:33%;padding-top: 20%;">
 
-
-      <!--panel flotante-->
-
-            <!--Boton y modal-->
- 
-
-      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:40%;padding-top: 20%;">
         <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
       </div>
 
@@ -380,7 +374,7 @@
 
 
               <div class="modal-footer">
-                <button type="button" id="button01" class="btn btn-secondary btn-block btn-flat">
+                <button type="button" id="button01" onclick="window.location.href = 'https://afternoon-hollows-51469.herokuapp.com/payment/index';" class="btn btn-secondary btn-block btn-flat">
                   Confirmar y programar cita
                 </button>
               </div>
