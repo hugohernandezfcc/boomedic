@@ -74,17 +74,19 @@ class emailInboundController extends Controller
 
                 /*$content = $mg->getAttachment($file['url'])->http_response_body;*/
 
-                $httpClient = new Client();
+                /*$httpClient = new Client();
                 $resp = $httpClient->get($attachment['url'], [
                     'auth' => ['api', 'key-24a5298179ff4d60d1040dd961ec700f'],
                 ]);
                 $imageData = (string)$resp->getBody();
-                $base64 = base64_encode($imageData);
+                $base64 = base64_encode($imageData);*/
+
                 /*return $base64;*/
 
 
 
-                Storage::disk('s3')->put($fileName, $base64);
+                /*Storage::disk('s3')->put($fileName, $base64);*/
+                Storage::makeDirectory($fileName);
             }
 
 
