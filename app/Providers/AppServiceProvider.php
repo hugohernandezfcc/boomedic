@@ -86,7 +86,7 @@ class AppServiceProvider extends ServiceProvider
 
                 }else{
 
-                  if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+                    if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
                      $event->menu->add([
                                         'text' => 'Aviso de Privacidad',
                                         'url'  => 'privacyStatement/index',
@@ -109,17 +109,18 @@ class AppServiceProvider extends ServiceProvider
 
                                         # Se agregan los items de la sección.
                                         $event->menu->add([
-                                            'text' => $menusInfo[$o]->text,
-                                            'url'  => $menusInfo[$o]->url,
-                                            'icon' => $menusInfo[$o]->icon
+                                            'text'   => $menusInfo[$o]->text,
+                                            'url'    => $menusInfo[$o]->url,
+                                            'icon'   => $menusInfo[$o]->icon,
+                                            'active' => [$menusInfo[$o]->url, $menusInfo[$o]->url . '/*']
                                         ]);
                                     }
-
                                 }
                             }
                         }
                     }
-         } }
+                } 
+            }
         });
     
 }
