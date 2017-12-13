@@ -155,8 +155,7 @@ class emailInboundController extends Controller
             'lastname'  => $user->lastname,                
             'streetnumber'  => $user->streetnumber,           
             'interiornumber'    => $user->interiornumber,       
-            'postalcode'    => $user->postalcode,
-            'textE' => $request->emailBody
+            'postalcode'    => $user->postalcode
         ];
 
         Mail::send('sendEmail', $data, function ($message) {
