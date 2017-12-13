@@ -77,24 +77,18 @@
                 </button>
 
             </form>
-            <br/>
+            <br/> 
             <div class="row">
                 <div class="col-sm-6" align="center">
-                    <a class="btn btn-default btn-block btn-flat" href="{{ url(config('adminlte.login_url', 'login')) }}" class="text-center">
+                    <a class="btn btn-default btn-block btn-flat" href="{{ url(config('adminlte.login_url', 'login')) }}" >
                         {{ trans('adminlte::adminlte.i_already_have_a_membership') }}
                     </a> 
                 </div>
                 <div class="col-sm-6" align="center">
-                    <a class="btn btn-default btn-block btn-flat" href="{{ url(config('adminlte.login_url', 'login')) }}" class="text-center">
-                        {{ trans('adminlte::adminlte.i_already_have_a_membership') }}
+                    <a class="btn btn-default btn-block btn-flat" href="{{ url(config('adminlte.register__doctor_url', 'medicalRegister')) }}" >
+                        {{ trans('adminlte::adminlte.i_am_a_doctor') }}
                     </a> 
                 </div>
-            </div>
-
-            <div class="auth-links">
-                
-                <br/>
-                <a href="{{ url(config('adminlte.register__doctor_url', 'medicalRegister')) }}" class="text-center">{{ trans('adminlte::adminlte.i_am_a_doctor') }}</a>
             </div>
         </div>
         <!-- /.form-box -->
