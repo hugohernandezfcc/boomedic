@@ -9,7 +9,7 @@
 @section('content')
     
     <br/>
-@yield('headerprofile')
+@include('headerprofile')
 
 	<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 	    <!-- lockscreen image -->
