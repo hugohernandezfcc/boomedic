@@ -114,6 +114,38 @@
 
 		        </form>
 
+		    @elseif($mode == 'sendEmail')
+
+	        	<form action="/emailInboundController/sendEmail" method="post" class="form-horizontal">
+	    			{{ csrf_field() }}
+
+	    			<div class="form-group has-feedback ">
+	    				<label for="subject" class="col-sm-2 control-label">Asunto</label>
+	                	<div class="col-sm-10">
+	                  		<input type="text" name="subject" class="form-control" id="subject" >
+	                	</div>
+	              	</div>
+
+	              	<div class="form-group has-feedback ">
+	                    <label for="emailBody" class="col-sm-2 control-label">Texto</label>
+	                	<div class="col-sm-10">
+	                  		<input type="text" name="emailBody" class="form-control" id="emailBody" >
+	                	</div>
+	              	</div>
+
+	              	<div class="col-sm-4">
+			    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+			                Enviar
+			            </button>
+		            </div>
+		    		<div class="col-sm-4">
+		    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+			                Cancelar
+			            </a>
+		            </div>
+
+		        </form>
+
             @endif
 
         </div>	  	

@@ -40,8 +40,15 @@ class emailInboundController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {        
+        return view('tickets', [
+                'userId'    => Auth::id(),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'email'     => DB::table('users')->where('id', Auth::id() )->value('email'),
+                'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                'mode'      => 'sendEmail'
+            ]
+        );
     }
 
     /**
@@ -121,5 +128,40 @@ class emailInboundController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function sendEmail(Request $request)
+    {
+        $user = User::find(Auth::id());
+
+        $data = [
+            'name'     => $user->name,
+            'email'    => $user->email,
+            'age'     => $user->age,                 
+            'gender'    => $user->gender,
+            'occupation'=> $user->occupation,
+            'country'   => $user->country,    
+            'state'     => $user->state,                    
+            'delegation'    => $user->delegation,               
+            'colony'    => $user->colony,                   
+            'street'    => $user->street,                   
+            'mobile'     => $user->mobile,
+            'username'  => $user->username,                 
+            'firstname' => $user->firstname,                
+            'lastname'  => $user->lastname,                
+            'streetnumber'  => $user->streetnumber,           
+            'interiornumber'    => $user->interiornumber,       
+            'postalcode'    => $user->postalcode,
+            'text' => $request->emailBody
+        ];
+
+        Mail::send('sendEmail', $data, function ($message) {
+            $message->subject($request->subject);
+            $message->to('cristina@doitcloud.consulting');
+        });
+
+        return redirect('supportTicket/index');
     }
 }
