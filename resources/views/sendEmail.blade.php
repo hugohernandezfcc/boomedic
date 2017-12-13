@@ -21,6 +21,10 @@
     <strong>Dirección:</strong> {!!$country!!}, {!!$state!!}, {!!$delegation!!}, {!!$colony!!}, {!!$postalcode!!}, {!!$street!!} {!!$streetnumber!!} {!!$interiornumber!!} <br/>
     <strong>Teléfono:</strong> {!!$mobile!!} <br/>
 
+
+
+    <strong>Detalle del correo:</strong> {!!$emailBody!!} <br/>
+
     </p>
 
     

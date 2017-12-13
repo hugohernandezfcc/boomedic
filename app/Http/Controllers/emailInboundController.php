@@ -137,6 +137,7 @@ class emailInboundController extends Controller
     public function sendEmail(Request $request)
     {
         $subjectE = $request->subject;
+
         $user = User::find(Auth::id());
 
         $data = [
@@ -156,7 +157,8 @@ class emailInboundController extends Controller
             'lastname'  => $user->lastname,                
             'streetnumber'  => $user->streetnumber,           
             'interiornumber'    => $user->interiornumber,       
-            'postalcode'    => $user->postalcode
+            'postalcode'    => $user->postalcode,
+            'emailBody' => $request->emailBody
         ];
 
         Mail::send('sendEmail', $data, function ($message) {
