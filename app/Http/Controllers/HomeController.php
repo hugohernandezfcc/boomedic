@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\ProfessionalInformation;
+use App\professional_information;
 
 class HomeController extends Controller
 {
@@ -41,7 +41,7 @@ class HomeController extends Controller
             );
         }
 
-        $profInfo = DB::table('ProfessionalInformation')
+        $profInfo = DB::table('professional_information')
                             ->where('user', Auth::id() )
                             ->get();
 
