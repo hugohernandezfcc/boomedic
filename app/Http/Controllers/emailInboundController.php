@@ -136,6 +136,7 @@ class emailInboundController extends Controller
 
     public function sendEmail(Request $request)
     {
+        $subjectE = $request->subject;
         $user = User::find(Auth::id());
 
         $data = [
@@ -159,7 +160,7 @@ class emailInboundController extends Controller
         ];
 
         Mail::send('sendEmail', $data, function ($message) {
-            $message->subject($request->subject);
+            $message->subject($subjectE);
             $message->to('cristina@doitcloud.consulting');
         });
 
