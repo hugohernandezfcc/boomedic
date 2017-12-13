@@ -27,4 +27,4 @@ class RenamingTables extends Migration
         Schema::rename('professional_information', 'ProfessionalInformation');
         Schema::rename('labor_information', 'LaborInformation');
     }
-}
+} 
