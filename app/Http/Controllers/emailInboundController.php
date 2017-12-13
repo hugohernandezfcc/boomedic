@@ -156,7 +156,7 @@ class emailInboundController extends Controller
             'streetnumber'  => $user->streetnumber,           
             'interiornumber'    => $user->interiornumber,       
             'postalcode'    => $user->postalcode,
-            'text' => $request->emailBody
+            'textE' => $request->emailBody
         ];
 
         Mail::send('sendEmail', $data, function ($message) {
@@ -164,6 +164,6 @@ class emailInboundController extends Controller
             $message->to('cristina@doitcloud.consulting');
         });
 
-        return redirect('supportTicket/index');
+        return redirect('user/profile/' . $id );
     }
 }
