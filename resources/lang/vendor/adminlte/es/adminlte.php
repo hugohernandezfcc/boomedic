@@ -13,7 +13,7 @@ return [
     'register'                    => 'Registre',
     'register_a_new_membership'   => 'Registrarme',
     'i_forgot_my_password'        => '¿Olvidaste tu contraseña?',
-    'i_already_have_a_membership' => 'Ya tengo una cuenta',
+    'i_already_have_a_membership' => 'Tengo una cuenta',
     'sign_in'                     => 'Entrar',
     'log_out'                     => 'Salir',
     'toggle_navigation'           => 'Navegación de palanca',
