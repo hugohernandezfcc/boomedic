@@ -114,7 +114,7 @@
 	              	<div class="form-group has-feedback ">
 	                    <label for="ticketDescription" class="col-sm-2 control-label">Descripción</label>
 	                	<div class="col-sm-10">
-	                  		<input type="textarea" name="ticketDescription" class="form-control" id="ticketDescription" >
+	                  		<textarea name="ticketDescription" class="form-control" id="ticketDescription" rows="4"></textarea>
 	                	</div>
 	              	</div>
 	              	<div class="row">
