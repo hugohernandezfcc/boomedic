@@ -86,6 +86,23 @@
 
 	        	<form action="/supportTicket/store" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
+	    		<div class="row">	
+	    			<label for="cause" class="col-sm-2 control-label">Causa</label>
+	    			 <div class="col-sm-10">
+				        <select name="cause" class="form-control select1">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select></div></div>
 
 	    			<div class="form-group has-feedback ">
 	    				<label for="subject" class="col-sm-2 control-label">Asunto</label>
@@ -100,18 +117,18 @@
 	                  		<input type="text" name="ticketDescription" class="form-control" id="ticketDescription" >
 	                	</div>
 	              	</div>
-
-	              	<div class="col-sm-4">
+	              	<div class="row">
+	              	<div class="col-sm-6">
 			    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 			                Guardar
 			            </button>
 		            </div>
-		    		<div class="col-sm-4">
+		    		<div class="col-sm-6">
 		    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
 			                Cancelar
 			            </a>
 		            </div>
-
+		        </div>
 		        </form>
 
             @endif
