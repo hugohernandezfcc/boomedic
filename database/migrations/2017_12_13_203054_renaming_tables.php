@@ -15,7 +15,6 @@ class RenamingTables extends Migration
     {
         Schema::rename('ProfessionalInformation', 'professional_information');
         Schema::rename('LaborInformation', 'labor_information');
-        Schema::rename('history_session', 'history_session');
     }
 
     /**
@@ -27,6 +26,5 @@ class RenamingTables extends Migration
     {
         Schema::rename('professional_information', 'ProfessionalInformation');
         Schema::rename('labor_information', 'LaborInformation');
-        Schema::rename('history_session', 'history_session');
     }
 }
