@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
                     'url'  => 'privacyStatement/index',
                     'icon' => ''
                 ]);
-                
+
             }else{
 
                 /**
@@ -92,35 +92,33 @@ class AppServiceProvider extends ServiceProvider
                                         'url'  => 'privacyStatement/index',
                                         'icon' => ''
                                     ]);
-                    }
-                    else{
+                    }else{
 
-                    $menusInfo = DB::table('menus')
-                                    ->where('to', 'Patient' )
-                                    ->orWhere('to', 'Both')
-                                    ->get();
+                        $menusInfo = DB::table('menus')
+                                        ->where('to', 'Patient' )
+                                        ->orWhere('to', 'Both')
+                                        ->get();
 
-                    for ($i=0; $i < $menusInfo->count(); $i++) { 
-                        if($menusInfo[$i]->typeitem == 'section' ){
-                            # Se agrega la sección
-                            $event->menu->add( $menusInfo[$i]->text );
-                            
-                            for ($o=0; $o < $menusInfo->count(); $o++) { 
-                                if($menusInfo[$o]->parent == $menusInfo[$i]->id ){
+                        for ($i=0; $i < $menusInfo->count(); $i++) { 
+                            if($menusInfo[$i]->typeitem == 'section' ){
+                                # Se agrega la sección
+                                $event->menu->add( $menusInfo[$i]->text );
+                                
+                                for ($o=0; $o < $menusInfo->count(); $o++) { 
+                                    if($menusInfo[$o]->parent == $menusInfo[$i]->id ){
 
-                                    # Se agregan los items de la sección.
-                                    $event->menu->add([
-                                        'text' => $menusInfo[$o]->text,
-                                        'url'  => $menusInfo[$o]->url,
-                                        'icon' => $menusInfo[$o]->icon
-                                    ]);
+                                        # Se agregan los items de la sección.
+                                        $event->menu->add([
+                                            'text' => $menusInfo[$o]->text,
+                                            'url'  => $menusInfo[$o]->url,
+                                            'icon' => $menusInfo[$o]->icon
+                                        ]);
+                                    }
+
                                 }
-
                             }
                         }
                     }
-                }
-
          } }
         });
     

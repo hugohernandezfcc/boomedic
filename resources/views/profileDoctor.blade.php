@@ -33,7 +33,6 @@
 		      	</div>
 		    </form>
 		    <!-- /.lockscreen credentials -->
-
 		</div>
 
 	@endif
@@ -414,7 +413,7 @@
 				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
 					          zoom: 7,
 					          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
-					          
+
 					        });
 
 					        var image = "{{ asset('maps-and-flags_1.png') }}";
