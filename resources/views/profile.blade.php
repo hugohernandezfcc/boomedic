@@ -401,8 +401,6 @@
     		<script type="text/javascript">
 
 
-
-
 		      // This example displays an address form, using the autocomplete feature
 		      // of the Google Places API to help users fill in the information.
 
@@ -480,6 +478,11 @@
 		    @if( empty($status) )
 
 		    	<script type="text/javascript">
+		    	
+		    	window.onload = function(){
+    				initAutocomplete();
+    				initMapAddressUser();
+    			};
 		    		var counter = -1;
 
 			      	function initMapAddressUser() {
@@ -487,13 +490,13 @@
 				      	if(!counter > 0){
 				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
 					          zoom: 7,
-					          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
+					          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
 					        });
 
 					        var image = "{{ asset('maps-and-flags_1.png') }}";
 					        
 					        var beachMarker = new google.maps.Marker({
-					          position: {lat: {{ $longitude }} , lng: {{ $latitude }} },
+					          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
 					          map: map,
 					          icon: image
 					        });
