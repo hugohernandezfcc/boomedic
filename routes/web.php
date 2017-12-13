@@ -297,7 +297,7 @@ Route::group(['prefix' => 'emailInbound'], function(){
 		]
 	);
 
-	Route::post('sendEmail', [
+	Route::post('sendEmail/{id}', [
 			'uses'	=>	'emailInboundController@sendEmail',
 			'as'	=>	'sendEmail'
 		]
