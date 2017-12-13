@@ -484,7 +484,7 @@
 
 
 
-			@endif
+			
 
 	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
 
