@@ -3,7 +3,40 @@
 @section('title', 'Boomedic')
 
 @section('content')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 
+
+		<script type="text/javascript">
+
+				Dropzone.options.myAwesomeDropzone = { 
+				 
+				 // set following configuration
+				 	paramName: "file",
+				    maxFiles: 1,
+				    acceptedFiles: "image/*",
+				    addRemoveLinks: true,
+				    dictRemoveFile: "Eliminar",
+				    dictCancelUpload: "Cancel",
+				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+				     success: function(file, response){
+					        //alert(response);
+					  document.getElementById('loadingGif').style.display = "block";
+					  setTimeout(function(){ 
+					  	document.getElementById('loadingGif').style.display = "none";
+					  	window.location.reload(true);
+					  },10000);
+					     	}
+				    //autoProcessQueue : false 
+				 };
+				 var val = "@php echo session()->get('val'); @endphp";
+				 		if(val == "true"){
+				 		setTimeout(function() {
+						    $('#modal').modal({ backdrop: 'static' }, 'show');
+						}, 1000);	
+					}
+									    
+		</script>
 	<br/>
 
 	@if( empty($status) )
@@ -119,7 +152,7 @@
 			    	@endif 
 	    			
 	    		</div>
-
+	    		<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
@@ -378,12 +411,7 @@
 
     		<script type="text/javascript">
 
-    			window.onload = function(){
-    				initAutocomplete();
-    			@if(empty($status))
-    				initMapAddressUser();
-    			@endif	
-    			};
+
 		      // This example displays an address form, using the autocomplete feature
 		      // of the Google Places API to help users fill in the information.
 
@@ -391,15 +419,15 @@
 		      // parameter when you first load the API. For example:
 		      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-		      var placeSearch, autocomplete;
-		      var componentForm = {
-		        street_number: 'short_name',
-		        route: 'long_name',
-		        locality: 'long_name',
-		        administrative_area_level_1: 'short_name',
-		        country: 'long_name',
-		        postal_code: 'short_name'
-		      };
+			 var placeSearch, autocomplete;
+			      var componentForm = {
+			        street_number: 'short_name',
+			        route: 'long_name',
+			        locality: 'long_name',
+			        administrative_area_level_1: 'short_name',
+			        country: 'long_name',
+			        postal_code: 'short_name'
+			      };
 
 		      function initAutocomplete() {
 		        // Create the autocomplete object, restricting the search to geographical
@@ -415,81 +443,76 @@
 
 		      function fillInAddress() {
 		        // Get the place details from the autocomplete object.
-		        var place = autocomplete.getPlace();
+        // Get the place details from the autocomplete object.
+			        var place = autocomplete.getPlace();
 
-		        for (var component in componentForm) {
-		          document.getElementById(component).value = '';
-		          document.getElementById(component).disabled = false;
-		        }
+			        for (var component in componentForm) {
+			          document.getElementById(component).value = '';
+			          document.getElementById(component).disabled = false;
+			        }
 
-		        // Get each component of the address from the place details
-		        // and fill the corresponding field on the form.
-		        for (var i = 0; i < place.address_components.length; i++) {
-		          var addressType = place.address_components[i].types[0];
-		          if (componentForm[addressType]) {
-		            var val = place.address_components[i][componentForm[addressType]];
-		            document.getElementById(addressType).value = val;
-		          }
-		        }
-		      }
+			        // Get each component of the address from the place details
+			        // and fill the corresponding field on the form.
+			        for (var i = 0; i < place.address_components.length; i++) {
+			          var addressType = place.address_components[i].types[0];
+			          if (componentForm[addressType]) {
+			            var val = place.address_components[i][componentForm[addressType]];
+			            document.getElementById(addressType).value = val;
+			          }
+			        }
+			      }
 
 		      // Bias the autocomplete object to the user's geographical location,
 		      // as supplied by the browser's 'navigator.geolocation' object.
 		      function geolocate() {
-
-		        if (navigator.geolocation) {
-		          navigator.geolocation.getCurrentPosition(function(position) {
-		            var geolocation = {
-		              lat: position.coords.latitude,
-		              lng: position.coords.longitude
-		            };
-
-		            console.log(geolocation.lat + ' ' + geolocation.lng);
-		            document.getElementById('latitudeFend').value = geolocation.lat; 
-		            document.getElementById('longitudeFend').value = geolocation.lng;
-		            var circle = new google.maps.Circle({
-		              center: geolocation,
-		              radius: position.coords.accuracy
-		            });
-		            autocomplete.setBounds(circle.getBounds());
-		          });
-		        }
-		      }	
+				 if (navigator.geolocation) {
+				          navigator.geolocation.getCurrentPosition(function(position) {
+				            var geolocation = {
+				              lat: position.coords.latitude,
+				              lng: position.coords.longitude
+				            };
+				            var circle = new google.maps.Circle({
+				              center: geolocation,
+				              radius: position.coords.accuracy
+				            });
+				            autocomplete.setBounds(circle.getBounds());
+				          });
+				        }
+				      }
 
 		    </script>
 
-		    @if( empty($status) )
 
-		    	<script type="text/javascript">
-		    	
-
-		    		var counter = -1;
-
-			      	function initMapAddressUser() {
-
-				      	if(!counter > 0){
-				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
-					          zoom: 7,
-					          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
-					        });
-
-					        var image = "{{ asset('maps-and-flags_1.png') }}";
-					        
-					        var beachMarker = new google.maps.Marker({
-					          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
-					          map: map,
-					          icon: image
-					        });
-					    }
-				        counter++;
-			      	}
-		    	</script>
 
 			@endif
 
 	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
 
-	
+	<script src="{{ asset('js/jquery.color.js') }}"></script>
+	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+
+<script type="text/javascript">
+
+    $(function(){ $.Jcrop('#target'); });
+     $.Jcrop('#target',{
+      aspectRatio: 1,
+      onSelect: updateCoords,
+	  setSelect: [0, 0, 300, 300],
+      bgColor:     'black'
+     });
+     function updateCoords(c){
+      $('#x').val(c.x);
+      $('#y').val(c.y);
+      $('#w').val(c.w);
+      $('#h').val(c.h);
+     };
+     function checkCoords()
+{
+	if (parseInt($('#w').val())>0) return true;
+	alert('Seleccione una coordenada para subir');
+	return false;
+};
+</script>
 	  	</div>	  	
 	</div>
 
