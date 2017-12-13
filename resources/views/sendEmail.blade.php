@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 </head>
 <body style="background-color: #696363">
-	<img src="{{ $message->embed(public_path() . '/images/logoD.png') }}" width="170" height="150" style="background-color: black; align-self: right" />
+	<!-- <img src="{{ $message->embed(public_path() . '/images/logoD.png') }}" width="170" height="150" style="background-color: black; align-self: right" /> -->
     
     <h2>El usuario {!!$name!!} envía este correo.</h2>
     
@@ -21,7 +21,7 @@
     <strong>Dirección:</strong> {!!$country!!}, {!!$state!!}, {!!$delegation!!}, {!!$colony!!}, {!!$postalcode!!}, {!!$street!!} {!!$streetnumber!!} {!!$interiornumber!!} <br/>
     <strong>Teléfono:</strong> {!!$mobile!!} <br/>
 
-
+    <br/>
 
     <strong>Detalle del correo:</strong> {!!$emailBody!!} <br/>
 

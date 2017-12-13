@@ -128,7 +128,7 @@
 
 		    @elseif($mode == 'sendEmail')
 
-	        	<form action="/emailInbound/sendEmail" method="post" class="form-horizontal">
+	        	<form action="/emailInbound/sendEmail/{{$userId}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback ">

@@ -134,7 +134,7 @@ class emailInboundController extends Controller
 
 
 
-    public function sendEmail(Request $request)
+    public function sendEmail(Request $request, $id)
     {
         $subjectE = $request->subject;
 
