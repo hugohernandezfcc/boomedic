@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
 
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
 
-            $profInfo = DB::table('ProfessionalInformation')->where('user', Auth::id() )->get();
+            $profInfo = DB::table('professional_information')->where('user', Auth::id() )->get();
              $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
              $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
 
