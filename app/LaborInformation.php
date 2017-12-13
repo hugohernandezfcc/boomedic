@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LaborInformation extends Model
 {
-    protected $table = "LaborInformation";
+    protected $table = "labor_information";
     protected $fillable = [
     	'id',
 		'workplace',
@@ -26,6 +26,6 @@ class LaborInformation extends Model
     ];
 
     public function user(){
-	  return $this->belongsTo('App\ProfessionalInformation', 'profInformation');
+	  return $this->belongsTo('App\professional_information', 'profInformation');
 	}
 }
