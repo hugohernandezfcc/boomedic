@@ -55,6 +55,15 @@
                     @endif
                 </div>
 
+                 <div class="form-group has-feedback {{ $errors->has('professional_license') ? 'has-error' : '' }}">
+                    <input type="text" name="professional_license" class="form-control" value="{{ old('professional_license') }}" placeholder="{{ trans('adminlte::adminlte.professional_license') }}" id="professional_license">
+                    <span class="fa  fa-keyboard-o form-control-feedback"></span>
+                    @if ($errors->has('professional_license'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('professional_license') }}</strong>
+                        </span>
+                    @endif
+                </div>
 
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                     <input type="password" name="password" class="form-control" placeholder="{{ trans('adminlte::adminlte.password') }}">
