@@ -413,10 +413,15 @@
 		            </div>
 		        </div>
     		@endif
-
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     		<script type="text/javascript">
 
-
+			window.onload = function(){
+    				initAutocomplete();
+    				@if( empty($status) )
+    					initMapAddressUser();
+					@endif
+    			};
 		      // This example displays an address form, using the autocomplete feature
 		      // of the Google Places API to help users fill in the information.
 
@@ -438,7 +443,7 @@
 		        // Create the autocomplete object, restricting the search to geographical
 		        // location types.
 		        autocomplete = new google.maps.places.Autocomplete(
-		            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+		         (document.getElementById('autocomplete')),
 		            {types: ['geocode']});
 
 		        // When the user selects an address from the dropdown, populate the address
@@ -495,10 +500,7 @@
 
 		    	<script type="text/javascript">
 		    	
-		    	window.onload = function(){
-    				initAutocomplete();
-    				initMapAddressUser();
-    			};
+
 		    		var counter = -1;
 
 			      	function initMapAddressUser() {
