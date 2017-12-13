@@ -3,13 +3,13 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
+    <!-- <h1>Perfil de usuario</h1> -->
+@stop
 
+
+@section('content')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-    <script type="text/javascript" src="js/cssrefresh.js"></script>
-
-
 
 	<script type="text/javascript">
 
@@ -50,9 +50,17 @@
 
 	<br/>
 
-
-
 	@if( empty($status) )
+
+
+    @include('headerprofile')
+    <script type="text/javascript">
+      //O si no lleva botón hacer el div "div_profile" invisible
+      var elemento = document.getElementById("i_button");
+      elemento.className = "fa fa-pencil text-muted";
+      document.forms.form_profile.action = "/user/edit/complete";
+    </script>
+
 
 		<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 		    <!-- lockscreen image -->
@@ -81,6 +89,7 @@
 		    </form>
 		    <!-- /.lockscreen credentials -->
 		</div>
+
 
 	@endif
 
@@ -135,7 +144,7 @@
 	    		@endif
 	    		<div class="row">
 	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
-	    		<div class="col-sm-4" align="center">
+	    		<div class="col-sm-3" align="center">
 	    			@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
@@ -144,16 +153,27 @@
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 
-			          if($height > '300' || $width > '300'){
-			            $height = $height / 2;
-			            $width = $width / 2;
+			          if($height > '500' || $width > '500'){
+			            $height = $height / 2.5;
+			            $width = $width / 2.5;
 			        }
+			        if($height > '800' || $width > '800'){
+			            $height = $height / 4;
+			            $width = $width / 4;
+			        }
+
+
+			          if($height < '400' || $width < '400'){
+			            $height = $height / 1.3;
+			            $width = $width / 1.3;
+			        }
+
 					@endphp
 						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-6" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
+	    		<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
@@ -412,21 +432,14 @@
 
 
 
-
-
-
     		<script type="text/javascript">
 
-
-    			window.onload = function(){
+			window.onload = function(){
     				initAutocomplete();
-
     				@if( empty($status) )
     					initMapAddressUser();
 					@endif
     			};
-
-
 		      // This example displays an address form, using the autocomplete feature
 		      // of the Google Places API to help users fill in the information.
 
@@ -448,7 +461,7 @@
 		        // Create the autocomplete object, restricting the search to geographical
 		        // location types.
 		        autocomplete = new google.maps.places.Autocomplete(
-		            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+		         (document.getElementById('autocomplete')),
 		            {types: ['geocode']});
 
 		        // When the user selects an address from the dropdown, populate the address
@@ -489,7 +502,7 @@
 
 		            console.log(geolocation.lat + ' ' + geolocation.lng);
 		            document.getElementById('latitudeFend').value = geolocation.lat; 
-		            document.getElementById('longitudeFend').value = geolocation.lat;
+		            document.getElementById('longitudeFend').value = geolocation.lng;
 		            var circle = new google.maps.Circle({
 		              center: geolocation,
 		              radius: position.coords.accuracy
@@ -504,6 +517,8 @@
 		    @if( empty($status) )
 
 		    	<script type="text/javascript">
+		    	
+
 		    		var counter = -1;
 
 			      	function initMapAddressUser() {
@@ -511,13 +526,13 @@
 				      	if(!counter > 0){
 				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
 					          zoom: 7,
-					          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
+					          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
 					        });
 
 					        var image = "{{ asset('maps-and-flags_1.png') }}";
 					        
 					        var beachMarker = new google.maps.Marker({
-					          position: {lat: {{ $longitude }} , lng: {{ $latitude }} },
+					          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
 					          map: map,
 					          icon: image
 					        });
@@ -528,33 +543,38 @@
 
 			@endif
 
-	  	</div>	  	
-	</div>
-    <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+
 	<script src="{{ asset('js/jquery.color.js') }}"></script>
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
+
+
+	  	</div>	  	
+	</div>
+
+
 	<script type="text/javascript">
 
-	    jQuery(function(){ jQuery('#target').Jcrop(); });
-	     jQuery('#target').Jcrop({
-	      aspectRatio: 1,
-	      onSelect: updateCoords,
-		  setSelect: [0, 0, 300, 300],
-	      bgColor:     'black',
+    $(function(){ $.Jcrop('#target'); });
+     $.Jcrop('#target',{
+      aspectRatio: 1,
+      onSelect: updateCoords,
+	  setSelect: [0, 0, 300, 300],
+      bgColor:     'black'
+     });
+     function updateCoords(c){
+      $('#x').val(c.x);
+      $('#y').val(c.y);
+      $('#w').val(c.w);
+      $('#h').val(c.h);
+     };
+     function checkCoords()
+    {
+      if (parseInt($('#w').val())>0) return true;
+      alert('Seleccione una coordenada para subir');
+      return false;
+    };
+    </script>
 
-	     });
-	     function updateCoords(c){
-	      jQuery('#x').val(c.x);
-	      jQuery('#y').val(c.y);
-	      jQuery('#w').val(c.w);
-	      jQuery('#h').val(c.h);
-	     };
-	     function checkCoords()
-	{
-		if (parseInt(jQuery('#w').val())>0) return true;
-		alert('Seleccione una coordenada para subir');
-		return false;
-	};
-	</script>
 @stop

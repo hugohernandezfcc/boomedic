@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
 
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
 
+           
             $profInfo = DB::table('professional_information')
                             ->where('user', Auth::id() )
                             ->get();
@@ -49,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
                     'url'  => 'privacyStatement/index',
                     'icon' => ''
                 ]);
+
 
             }else{
 

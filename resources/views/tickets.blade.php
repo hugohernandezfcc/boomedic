@@ -8,35 +8,8 @@
 
 @section('content')
 
-	<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
- <!-- lockscreen image -->
-	   <div class="lockscreen-image">
-		    	@if($photo == '')
-		    	 	<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
-				@else
-					<img src="{{ $photo }}">			
-		    	@endif 
 
-		    </div>
-	    <!-- /.lockscreen-image -->
-
-	    <!-- lockscreen credentials (contains the form) -->
-	    <form class="lockscreen-credentials" action="create" method="get">
-	    	{{ csrf_field() }}
-	      	<div class="input-group">
-	        	<div class="form-control">{{ $username }}</div>
-	        	<input type="hidden" name="id" value="{{ $userId }}">
-	        	<div class="input-group-btn">
-		          	<button type="submit" class="btn">
-		          		<i class="fa fa-plus text-muted"></i>
-		          	</button>
-	        	</div>
-	      	</div>
-	    </form>
-	    <!-- /.lockscreen credentials -->
-	</div>
-
-
+@include('headerprofile')
 
 	<div class="box">
 	  	<div class="box-header with-border">
@@ -86,8 +59,25 @@
 
 	        	<form action="/supportTicket/store" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
+	    		<div class="form-group has-feedback">	
+	    			<label for="cause" class="col-sm-2 control-label">Causa</label>
+	    			 <div class="col-sm-10">
+				        <select name="cause" class="form-control select1">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select></div></div>
 
-	    			<div class="form-group has-feedback ">
+	    			<div class="form-group has-feedback">
 	    				<label for="subject" class="col-sm-2 control-label">Asunto</label>
 	                	<div class="col-sm-10">
 	                  		<input type="text" name="subject" class="form-control" id="subject" >
@@ -97,21 +87,22 @@
 	              	<div class="form-group has-feedback ">
 	                    <label for="ticketDescription" class="col-sm-2 control-label">Descripción</label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="ticketDescription" class="form-control" id="ticketDescription" >
+	                  		<textarea name="ticketDescription" class="form-control" id="ticketDescription" rows="4" style="overflow:hidden;"></textarea>
 	                	</div>
 	              	</div>
-
-	              	<div class="col-sm-4">
+	              	<br>
+	              	<div class="form-group has-feedback">
+	              	<div class="col-sm-6">
 			    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 			                Guardar
 			            </button>
 		            </div>
-		    		<div class="col-sm-4">
+		    		<div class="col-sm-6">
 		    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
 			                Cancelar
 			            </a>
 		            </div>
-
+		        </div>
 		        </form>
 
             @endif
