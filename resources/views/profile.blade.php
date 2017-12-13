@@ -46,7 +46,7 @@
 
 	@if( empty($status) )
 
-				@include(headerprofile)
+				@include('headerprofile')
 				<script type="text/javascript">
 				//O si no lleva botón hacer el div "div_profile" invisible
 				var elemento = document.getElementById("i_button");
