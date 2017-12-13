@@ -92,16 +92,35 @@ class RegisterController extends Controller
         $uName = explode('@', $data['email']);
         $uName['username'] = $uName[0] . '@boomedic.mx';
 
-        return User::create([
-            'name'      => $data['name'],
-            'email'     => $data['email'],
-            'birthdate' => $data['birthdate'],
-            'age'       => (int) $age,
-            'status'    => 'In Progress',
-            'firstname' => $namesUser['first'],
-            'lastname'  => $namesUser['last'],
-            'username'  => $uName['username'],
-            'password'  => bcrypt($data['password']),
-        ]);
+        /**
+         * En caso de que este campo exista quiere decir que es un registro de médico.
+         */
+
+        if (isset($data['professional_license'])) {
+            return User::create([
+                'name'                  => $data['name'],
+                'email'                 => $data['email'],
+                'birthdate'             => $data['birthdate'],
+                'age'                   => (int) $age,
+                'status'                => 'In Progress',
+                'professional_license'  => $data['professional_license'],
+                'firstname'             => $namesUser['first'],
+                'lastname'              => $namesUser['last'],
+                'username'              => $uName['username'],
+                'password'              => bcrypt($data['password']),
+            ]);
+        }else{
+            return User::create([
+                'name'      => $data['name'],
+                'email'     => $data['email'],
+                'birthdate' => $data['birthdate'],
+                'age'       => (int) $age,
+                'status'    => 'In Progress',
+                'firstname' => $namesUser['first'],
+                'lastname'  => $namesUser['last'],
+                'username'  => $uName['username'],
+                'password'  => bcrypt($data['password']),
+            ]);
+        }
     }
 }
