@@ -123,7 +123,7 @@
 	    		@endif
 	    		<div class="row">
 	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
-	    		<div class="col-sm-4" align="center">
+	    		<div class="col-sm-3" align="center">
 	    			@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
@@ -136,12 +136,19 @@
 			            $height = $height / 3;
 			            $width = $width / 3;
 			        }
+
+
+			          if($height < '300' || $width < '300'){
+			            $height = $height / 2;
+			            $width = $width / 2;
+			        }
+
 					@endphp
 						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-6" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
+	    		<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
