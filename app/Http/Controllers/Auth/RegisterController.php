@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\ProfessionalInformation;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -69,25 +70,35 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $age = date("Y") - substr($data['birthdate'], -4);
-        $explodeName = explode(' ', $data['name']);
-
         $namesUser = array();
 
-        if(count($explodeName) == 2){
+        $pos = strpos(' ', $data['name']);
 
-            $namesUser['first'] = $explodeName[0];
-            $namesUser['last'] = $explodeName[1];
-        
-        }elseif (count($explodeName) == 3) {
+        if($pos !== false){
+            $explodeName = explode(' ', $data['name']);
 
-            $namesUser['first'] = $explodeName[0];
-            $namesUser['last'] = $explodeName[1] . ' ' . $explodeName[2];
+            
+            
+            if(count($explodeName) == 2){
 
-        }elseif (count($explodeName) == 4) {
+                $namesUser['first'] = $explodeName[0];
+                $namesUser['last'] = $explodeName[1];
+            
+            }elseif (count($explodeName) == 3) {
 
-            $namesUser['first'] = $explodeName[0] . ' ' . $explodeName[1];
-            $namesUser['last'] = $explodeName[2] . ' ' . $explodeName[3];
+                $namesUser['first'] = $explodeName[0];
+                $namesUser['last'] = $explodeName[1] . ' ' . $explodeName[2];
+
+            }elseif (count($explodeName) == 4) {
+
+                $namesUser['first'] = $explodeName[0] . ' ' . $explodeName[1];
+                $namesUser['last'] = $explodeName[2] . ' ' . $explodeName[3];
+            }
+        }else{
+           $namesUser['first'] = $data['name'],
         }
+
+        
 
 
         $uName = explode('@', $data['email']);
@@ -108,7 +119,7 @@ class RegisterController extends Controller
                 'age'       => (int) $age,
                 'status'    => 'In Progress',
                 'firstname' => $namesUser['first'],
-                'lastname'  => $namesUser['last'],
+                'lastname'  => (isset($namesUser['last'])) ? $namesUser['last'] : ' ',
                 'username'  => $uName['username'],
                 'password'  => bcrypt($data['password']),
             ]);
