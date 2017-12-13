@@ -50,7 +50,7 @@
 				<script type="text/javascript">
 				//O si no lleva botón hacer el div "div_profile" invisible
 				var elemento = document.getElementById("i_button");
-				elemento.className += "fa fa-pencil text-muted";
+				elemento.className = "fa fa-pencil text-muted";
 				</script>
 
 	@endif
