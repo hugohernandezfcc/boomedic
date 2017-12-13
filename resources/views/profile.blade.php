@@ -11,37 +11,37 @@
 
 
 
-		<script type="text/javascript">
+	<script type="text/javascript">
 
-				Dropzone.options.myAwesomeDropzone = { 
-				 
-				 // set following configuration
-				 	paramName: "file",
-				    maxFiles: 1,
-				    acceptedFiles: "image/*",
-				    addRemoveLinks: true,
-				    dictRemoveFile: "Eliminar",
-				    dictCancelUpload: "Cancel",
-				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
-				     success: function(file, response){
-					        //alert(response);
-					  document.getElementById('loadingGif').style.display = "block";
-					  setTimeout(function(){ 
-					  	document.getElementById('loadingGif').style.display = "none";
-					  	window.location.reload(true);
-					  },10000);
-					     	}
-				    //autoProcessQueue : false 
-				 };
-				 var val = "@php echo session()->get('val'); @endphp";
-				 		if(val == "true"){
-				 		setTimeout(function() {
-						    $('#modal').modal({ backdrop: 'static' }, 'show');
-						}, 1000);	
-					}
-					
-					    
-		</script>
+			Dropzone.options.myAwesomeDropzone = { 
+			 
+			 // set following configuration
+			 	paramName: "file",
+			    maxFiles: 1,
+			    acceptedFiles: "image/*",
+			    addRemoveLinks: true,
+			    dictRemoveFile: "Eliminar",
+			    dictCancelUpload: "Cancel",
+			    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+			     success: function(file, response){
+				        //alert(response);
+				  document.getElementById('loadingGif').style.display = "block";
+				  setTimeout(function(){ 
+				  	document.getElementById('loadingGif').style.display = "none";
+				  	window.location.reload(true);
+				  },10000);
+				     	}
+			    //autoProcessQueue : false 
+			 };
+			 var val = "@php echo session()->get('val'); @endphp";
+			 		if(val == "true"){
+			 		setTimeout(function() {
+					    $('#modal').modal({ backdrop: 'static' }, 'show');
+					}, 1000);	
+				}
+				
+				    
+	</script>
 
 @stop
 
@@ -80,7 +80,6 @@
 		      	</div>
 		    </form>
 		    <!-- /.lockscreen credentials -->
-
 		</div>
 
 	@endif
@@ -535,27 +534,27 @@
 	<script src="{{ asset('js/jquery.color.js') }}"></script>
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
-    jQuery(function(){ jQuery('#target').Jcrop(); });
-     jQuery('#target').Jcrop({
-      aspectRatio: 1,
-      onSelect: updateCoords,
-	  setSelect: [0, 0, 300, 300],
-      bgColor:     'black',
+	    jQuery(function(){ jQuery('#target').Jcrop(); });
+	     jQuery('#target').Jcrop({
+	      aspectRatio: 1,
+	      onSelect: updateCoords,
+		  setSelect: [0, 0, 300, 300],
+	      bgColor:     'black',
 
-     });
-     function updateCoords(c){
-      jQuery('#x').val(c.x);
-      jQuery('#y').val(c.y);
-      jQuery('#w').val(c.w);
-      jQuery('#h').val(c.h);
-     };
-     function checkCoords()
-{
-	if (parseInt(jQuery('#w').val())>0) return true;
-	alert('Seleccione una coordenada para subir');
-	return false;
-};
-</script>
+	     });
+	     function updateCoords(c){
+	      jQuery('#x').val(c.x);
+	      jQuery('#y').val(c.y);
+	      jQuery('#w').val(c.w);
+	      jQuery('#h').val(c.h);
+	     };
+	     function checkCoords()
+	{
+		if (parseInt(jQuery('#w').val())>0) return true;
+		alert('Seleccione una coordenada para subir');
+		return false;
+	};
+	</script>
 @stop

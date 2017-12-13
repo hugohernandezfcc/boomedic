@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Workboard;
 use App\LaborInformation;
+use Aws\S3\S3Client;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\Filesystem;
+use Image;
 
 class doctor extends Controller
 {
@@ -77,7 +81,7 @@ class doctor extends Controller
                 'email'         => $users[0]->email,
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
-
+                'photo'         => $users[0]->profile_photo,
                 /** PERSONAL INFORMATION */
 
                 'gender'        => $users[0]->gender,
@@ -204,6 +208,72 @@ class doctor extends Controller
         if ( $user->save() ) 
             return redirect('user/profile/' . $id );
     }
+
+    public function updateProfile(Request $request, $id)
+    {
+       // $path = $request->photo->store('images', 's3');
+        $user = User::find($id);
+        $file = $request->file('file');
+         $imagen = getimagesize($file);    //Sacamos la información
+          $width = $imagen[0];              //Ancho
+          $height = $imagen[1];  
+
+          if($height > '600' || $width > '600'){
+            $height = $height / 3;
+            $width = $width / 3;
+          }
+            if($height > '900' || $width > '900'){
+                $height = $height / 4;
+                $width = $width / 4;
+              }
+
+        $img = Image::make($file);
+        $img->resize($width, $height);
+        $img->encode('jpg');
+        Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
+        $filename = $id.'.jpg';
+        $path = Storage::cloud()->url($filename);
+        $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
+
+       
+        $user->profile_photo = $path2;   
+        Session(['val' => 'true']);
+        $user->save();
+        return redirect('user/profile/' . $id );
+    }
+
+    public function cropProfile(Request $request, $id)
+    {
+       // $path = $request->photo->store('images', 's3');
+        $user = User::find($id);
+        $targ_w = $targ_h = 300;
+        $jpeg_quality = 90;
+
+        $src = $user->profile_photo;
+        $img_r = imagecreatefromjpeg($src);
+        $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
+        imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
+            $targ_w,$targ_h,$request->w,$request->h);
+        $filename = $id.'.jpg';
+        $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
+        
+        ob_start();
+        imagejpeg($dst_r);
+        $jpeg_file_contents = ob_get_contents();
+        ob_end_clean();
+        Storage::disk('s3')->put( $id.'.jpg',  $jpeg_file_contents, 'public');
+        
+        $path = Storage::cloud()->url($filename);
+
+         Session(['val' => 'false']);
+       
+        $user->profile_photo = $path2;   
+
+        if($user->save())
+            return redirect('user/profile/' . $id );
+    }
+
 
     /**
      * Remove the specified resource from storage.
