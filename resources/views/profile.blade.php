@@ -23,7 +23,7 @@
 				    addRemoveLinks: true,
 				    dictRemoveFile: "Eliminar",
 				    dictCancelUpload: "Cancel",
-				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+				    dictDefaultMessage: "Arrastre hasta aquí su nueva foto de perfil...",
 				     success: function(file, response){
 					        //alert(response);
 					  document.getElementById('loadingGif').style.display = "block";
