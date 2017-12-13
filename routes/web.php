@@ -297,6 +297,12 @@ Route::group(['prefix' => 'emailInbound'], function(){
 		]
 	);
 
+	Route::get('sendEmail', [
+			'uses'	=>	'emailInboundController@sendEmail',
+			'as'	=>	'sendEmail'
+		]
+	);
+
 });
 
 Route::group(['prefix' => 'verifyExpiration'], function(){
