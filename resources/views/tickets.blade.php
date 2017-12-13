@@ -86,7 +86,7 @@
 
 	        	<form action="/supportTicket/store" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
-	    		<div class="row">	
+	    		<div class="form-group has-feedback">	
 	    			<label for="cause" class="col-sm-2 control-label">Causa</label>
 	    			 <div class="col-sm-10">
 				        <select name="cause" class="form-control select1">
@@ -104,7 +104,7 @@
                             <option value="12">12</option>
                         </select></div></div>
 
-	    			<div class="form-group has-feedback ">
+	    			<div class="form-group has-feedback">
 	    				<label for="subject" class="col-sm-2 control-label">Asunto</label>
 	                	<div class="col-sm-10">
 	                  		<input type="text" name="subject" class="form-control" id="subject" >
@@ -114,7 +114,7 @@
 	              	<div class="form-group has-feedback ">
 	                    <label for="ticketDescription" class="col-sm-2 control-label">Descripción</label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="ticketDescription" class="form-control" id="ticketDescription" >
+	                  		<input type="textarea" name="ticketDescription" class="form-control" id="ticketDescription" >
 	                	</div>
 	              	</div>
 	              	<div class="row">
