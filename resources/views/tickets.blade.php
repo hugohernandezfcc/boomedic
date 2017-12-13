@@ -36,7 +36,7 @@
 	    <form class="lockscreen-credentials" action="/emailInbound/create" method="get">
 	    	{{ csrf_field() }}
 	      	<div class="input-group">
-	        	<div class="form-control">{{ $username }}</div>
+	        	<div class="form-control">Escribir</div>
 	        	<input type="hidden" name="id" value="{{ $userId }}">
 	        	<div class="input-group-btn">
 		          	<button type="submit" class="btn">
@@ -128,7 +128,7 @@
 
 		    @elseif($mode == 'sendEmail')
 
-	        	<form action="/emailInboundController/sendEmail" method="post" class="form-horizontal">
+	        	<form action="/emailInbound/sendEmail" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback ">
