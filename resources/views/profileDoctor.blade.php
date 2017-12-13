@@ -3,7 +3,44 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-    <!-- <h1>Perfil de usuario</h1> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+    <script type="text/javascript" src="js/cssrefresh.js"></script>
+
+
+
+	<script type="text/javascript">
+
+			Dropzone.options.myAwesomeDropzone = { 
+			 
+			 // set following configuration
+			 	paramName: "file",
+			    maxFiles: 1,
+			    acceptedFiles: "image/*",
+			    addRemoveLinks: true,
+			    dictRemoveFile: "Eliminar",
+			    dictCancelUpload: "Cancel",
+			    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+			     success: function(file, response){
+				        //alert(response);
+				  document.getElementById('loadingGif').style.display = "block";
+				  setTimeout(function(){ 
+				  	document.getElementById('loadingGif').style.display = "none";
+				  	window.location.reload(true);
+				  },10000);
+				     	}
+			    //autoProcessQueue : false 
+			 };
+			 var val = "@php echo session()->get('val'); @endphp";
+			 		if(val == "true"){
+			 		setTimeout(function() {
+					    $('#modal').modal({ backdrop: 'static' }, 'show');
+					}, 1000);	
+				}
+				
+				    
+	</script>
 @stop
 
 @section('content')
@@ -15,7 +52,12 @@
 		<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 		    <!-- lockscreen image -->
 		    <div class="lockscreen-image">
-		      <img src="https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
+		    	@if($photo == '')
+		    	 	<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
+				@else
+					<img src="{{ $photo }}" >			
+		    	@endif 
+
 		    </div>
 		    <!-- /.lockscreen-image -->
 
@@ -23,7 +65,7 @@
 		    <form class="lockscreen-credentials" action="/user/edit/complete" method="get">
 		    	{{ csrf_field() }}
 		      	<div class="input-group">
-		        	<div class="form-control">{{ $username }}</div>
+		        	<div class="form-control">{{ $name }}</div>
 		        	<input type="hidden" name="id" value="{{ $userId }}">
 		        	<div class="input-group-btn">
 			          	<button type="submit" class="btn">
@@ -33,10 +75,31 @@
 		      	</div>
 		    </form>
 		    <!-- /.lockscreen credentials -->
-
 		</div>
 
 	@endif
+	<!-- Modal photo settings-->
+	<div id="modal" class="modal fade" role="dialog" style="width: 100%">
+	    <div class="modal-dialog">
+	        <div class="modal-content" >
+	          	<div class="modal-header"><label for="recorte">Recorte de imagen:</label></div>
+	          	<div class="modal-body" >
+	                <div align="center">
+	                   	<img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="width:350px; height: 350px;">
+	                   	<form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
+		                   	<input type="hidden" id="x" name="x" />
+							<input type="hidden" id="y" name="y" />
+							<input type="hidden" id="w" name="w" />
+							<input type="hidden" id="h" name="h" /><br/>
+		                    <span class="input-group-btn">
+		                    <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
+	                  	</form>
+	               </div>
+	          	</div>
+	        </div>
+	    </div>
+ 	</div>
+ 	<!-- Modal photo settings-->
 
     <div class="box">
 	  	<div class="box-header with-border">
@@ -54,8 +117,34 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
+	    		<!-- Photo Zone. -->
+	    		<div class="row">
+	    			<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
+		    		<div class="col-sm-4" align="center">
+		    			@if($photo == '')
+			    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
+						@else
+							@php 
+							  	$imagen = getimagesize($photo);    //Sacamos la información
+					          	$width = $imagen[0];              //Ancho
+					          	$height = $imagen[1];  
 
-	    	
+					          	if($height > '300' || $width > '300'){
+					            	$height = $height / 2;
+					            	$width = $width / 2;
+					        	}
+							@endphp
+							<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
+				    	@endif 
+		    			
+		    		</div>
+	    			<div class="col-sm-6" align="center">
+	    				<form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form>
+	    			</div>
+	    		</div>
+	    		<!-- Photo Zone. -->
+	    		<br/>
+
 	    		<form action="/doctor/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
@@ -414,6 +503,7 @@
 				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
 					          zoom: 7,
 					          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
+
 					        });
 
 					        var image = "{{ asset('maps-and-flags_1.png') }}";
@@ -432,5 +522,31 @@
 
 	  	</div>	  	
 	</div>
+	<script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.color.js') }}"></script>
+	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+	<script type="text/javascript">
 
+	    jQuery(function(){ jQuery('#target').Jcrop(); });
+	     jQuery('#target').Jcrop({
+	      aspectRatio: 1,
+	      onSelect: updateCoords,
+		  setSelect: [0, 0, 300, 300],
+	      bgColor:     'black',
+
+	     });
+	     function updateCoords(c){
+	      jQuery('#x').val(c.x);
+	      jQuery('#y').val(c.y);
+	      jQuery('#w').val(c.w);
+	      jQuery('#h').val(c.h);
+	     };
+	     function checkCoords()
+		{
+			if (parseInt(jQuery('#w').val())>0) return true;
+			alert('Seleccione una coordenada para subir');
+			return false;
+		};
+	</script>
+	
 @stop

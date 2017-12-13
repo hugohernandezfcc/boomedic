@@ -208,7 +208,7 @@ class profile extends Controller
             return redirect('user/profile/' . $id );
     }
 
-        public function updateProfile(Request $request, $id)
+    public function updateProfile(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
         $user = User::find($id);

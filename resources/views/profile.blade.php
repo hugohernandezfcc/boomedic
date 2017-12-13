@@ -11,48 +11,84 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 
+	<script type="text/javascript">
 
-		<script type="text/javascript">
+			Dropzone.options.myAwesomeDropzone = { 
+			 
+			 // set following configuration
+			 	paramName: "file",
+			    maxFiles: 1,
+			    acceptedFiles: "image/*",
+			    addRemoveLinks: true,
+			    dictRemoveFile: "Eliminar",
+			    dictCancelUpload: "Cancel",
+			    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+			     success: function(file, response){
+				        //alert(response);
+				  document.getElementById('loadingGif').style.display = "block";
+				  setTimeout(function(){ 
+				  	document.getElementById('loadingGif').style.display = "none";
+				  	window.location.reload(true);
+				  },10000);
+				     	}
+			    //autoProcessQueue : false 
+			 };
+			 var val = "@php echo session()->get('val'); @endphp";
+			 		if(val == "true"){
+			 		setTimeout(function() {
+					    $('#modal').modal({ backdrop: 'static' }, 'show');
+					}, 1000);	
+				}
+				
+				    
+	</script>
 
-				Dropzone.options.myAwesomeDropzone = { 
-				 
-				 // set following configuration
-				 	paramName: "file",
-				    maxFiles: 1,
-				    acceptedFiles: "image/*",
-				    addRemoveLinks: true,
-				    dictRemoveFile: "Eliminar",
-				    dictCancelUpload: "Cancel",
-				    dictDefaultMessage: "Arrastre hasta aquí su nueva foto de perfil...",
-				     success: function(file, response){
-					        //alert(response);
-					  document.getElementById('loadingGif').style.display = "block";
-					  setTimeout(function(){ 
-					  	document.getElementById('loadingGif').style.display = "none";
-					  	window.location.reload(true);
-					  },10000);
-					     	}
-				    //autoProcessQueue : false 
-				 };
-				 var val = "@php echo session()->get('val'); @endphp";
-				 		if(val == "true"){
-				 		setTimeout(function() {
-						    $('#modal').modal({ backdrop: 'static' }, 'show');
-						}, 1000);	
-					}
-									    
-		</script>
+@stop
+
+@section('content')
+
+
 	<br/>
 
 	@if( empty($status) )
 
-@include('headerprofile')
-<script type="text/javascript">
-//O si no lleva botón hacer el div "div_profile" invisible
-var elemento = document.getElementById("i_button");
-elemento.className = "fa fa-pencil text-muted";
-document.forms.form_profile.action = "/user/edit/complete";
-</script>
+
+    @include('headerprofile')
+    <script type="text/javascript">
+      //O si no lleva botón hacer el div "div_profile" invisible
+      var elemento = document.getElementById("i_button");
+      elemento.className = "fa fa-pencil text-muted";
+      document.forms.form_profile.action = "/user/edit/complete";
+    </script>
+
+
+		<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
+		    <!-- lockscreen image -->
+		    <div class="lockscreen-image">
+		    	@if($photo == '')
+		    	 	<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
+				@else
+					<img src="{{ $photo }}" >			
+		    	@endif 
+
+		    </div>
+		    <!-- /.lockscreen-image -->
+
+		    <!-- lockscreen credentials (contains the form) -->
+		    <form class="lockscreen-credentials" action="/user/edit/complete" method="get">
+		    	{{ csrf_field() }}
+		      	<div class="input-group">
+		        	<div class="form-control">{{ $name }}</div>
+		        	<input type="hidden" name="id" value="{{ $userId }}">
+		        	<div class="input-group-btn">
+			          	<button type="submit" class="btn">
+			          		<i class="fa fa-pencil text-muted"></i>
+			          	</button>
+		        	</div>
+		      	</div>
+		    </form>
+		    <!-- /.lockscreen credentials -->
+		</div>
 
 
 	@endif
@@ -512,7 +548,13 @@ document.forms.form_profile.action = "/user/edit/complete";
 	<script src="{{ asset('js/jquery.color.js') }}"></script>
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 
-<script type="text/javascript">
+
+
+	  	</div>	  	
+	</div>
+
+
+	<script type="text/javascript">
 
     $(function(){ $.Jcrop('#target'); });
      $.Jcrop('#target',{
@@ -528,13 +570,11 @@ document.forms.form_profile.action = "/user/edit/complete";
       $('#h').val(c.h);
      };
      function checkCoords()
-{
-	if (parseInt($('#w').val())>0) return true;
-	alert('Seleccione una coordenada para subir');
-	return false;
-};
-</script>
-	  	</div>	  	
-	</div>
+    {
+      if (parseInt($('#w').val())>0) return true;
+      alert('Seleccione una coordenada para subir');
+      return false;
+    };
+    </script>
 
 @stop
