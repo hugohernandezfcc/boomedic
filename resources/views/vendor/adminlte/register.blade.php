@@ -81,12 +81,14 @@
             <div class="row">
                 <div class="col-sm-6" align="center">
                     <a class="btn btn-default btn-block btn-flat" href="{{ url(config('adminlte.login_url', 'login')) }}" >
-                        {{ trans('adminlte::adminlte.i_already_have_a_membership') }}
+                        <i class="fa fa-arrow-left"></i>
+                        {{ trans('adminlte::adminlte.i_already_have_a_membership') }}&nbsp;
                     </a> 
                 </div>
                 <div class="col-sm-6" align="center">
                     <a class="btn btn-default btn-block btn-flat" href="{{ url(config('adminlte.register__doctor_url', 'medicalRegister')) }}" >
-                        {{ trans('adminlte::adminlte.i_am_a_doctor') }}
+                        {{ trans('adminlte::adminlte.i_am_a_doctor') }}&nbsp;
+                        <i class="fa fa-user-md"></i>
                     </a> 
                 </div>
             </div>
