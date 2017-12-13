@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class professional_information extends Model
+class ProfessionalInformation extends Model
 {
-    protected $table = "ProfessionalInformation";
+    protected $table = "professional_information";
     protected $fillable = [
 		'specialty',
 		'schoolOfMedicine',

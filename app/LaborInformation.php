@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class labor_information extends Model
+class LaborInformation extends Model
 {
-    protected $table = "LaborInformation";
+    protected $table = "labor_information";
     protected $fillable = [
     	'id',
 		'workplace',
