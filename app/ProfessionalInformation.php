@@ -12,7 +12,8 @@ class ProfessionalInformation extends Model
 		'schoolOfMedicine',
 		'facultyOfSpecialization',
 		'practiseProfessional',
-		'user'
+		'user',
+		'professional_license'
     ];
 
     public function user(){
