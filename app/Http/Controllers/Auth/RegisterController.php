@@ -99,29 +99,29 @@ class RegisterController extends Controller
 
         if (isset($data['professional_license'])) {
 
-            dd($data);
 
-            // $userCreated =  User::create([
-            //     'name'      => $data['name'],
-            //     'email'     => $data['email'],
-            //     'birthdate' => $data['birthdate'],
-            //     'age'       => (int) $age,
-            //     'status'    => 'In Progress',
-            //     'firstname' => $namesUser['first'],
-            //     'lastname'  => $namesUser['last'],
-            //     'username'  => $uName['username'],
-            //     'password'  => bcrypt($data['password']),
-            // ]);
 
-            // $profInformation = ProfessionalInformation::create([ 
-            //     'professional_license'  => $data['professional_license'],
-            //     'user'                  => $userCreated->id
-            // ]);
+            $userCreated =  User::create([
+                'name'      => $data['name'],
+                'email'     => $data['email'],
+                'birthdate' => $data['birthdate'],
+                'age'       => (int) $age,
+                'status'    => 'In Progress',
+                'firstname' => $namesUser['first'],
+                'lastname'  => $namesUser['last'],
+                'username'  => $uName['username'],
+                'password'  => bcrypt($data['password']),
+            ]);
 
-            // if($profInformation && $userCreated)
-            //     return TRUE;
-            // else
-            //     return false;
+            $profInformation = ProfessionalInformation::create([ 
+                'professional_license'  => $data['professional_license'],
+                'user'                  => $userCreated->id
+            ]);
+
+            if($profInformation && $userCreated)
+                return TRUE;
+            else
+                return false;
 
         }else{
             return User::create([
