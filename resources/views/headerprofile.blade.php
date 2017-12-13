@@ -14,7 +14,7 @@
 	    <!-- /.lockscreen-image -->
 
 	    <!-- lockscreen credentials (contains the form) -->
-	    <form class="lockscreen-credentials" action="create" method="get">
+	    <form class="lockscreen-credentials" action="create" method="get" id="form_profile">
 	    	{{ csrf_field() }}
 	      	<div class="input-group">
 	        	<div class="form-control">{{ $username }}</div>
