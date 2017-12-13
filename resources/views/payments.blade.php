@@ -9,8 +9,8 @@
 @section('content')
     
     <br/>
-@extends('headerprofile')
-
+@section('headerprofile')
+@stop
 	<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 	    <!-- lockscreen image -->
 	   <div class="lockscreen-image">
