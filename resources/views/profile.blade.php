@@ -378,7 +378,12 @@
 
     		<script type="text/javascript">
 
-
+    			window.onload = function(){
+    				initAutocomplete();
+    			@if(empty($status))
+    				initMapAddressUser();
+    			@endif	
+    			};
 		      // This example displays an address form, using the autocomplete feature
 		      // of the Google Places API to help users fill in the information.
 
@@ -457,10 +462,7 @@
 
 		    	<script type="text/javascript">
 		    	
-		    	window.onload = function(){
-    				initAutocomplete();
-    				initMapAddressUser();
-    			};
+
 		    		var counter = -1;
 
 			      	function initMapAddressUser() {
@@ -487,31 +489,7 @@
 
 	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
 
-	<script src="{{ asset('js/jquery.color.js') }}"></script>
-	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
-
-<script type="text/javascript">
-
-    $(function(){ $.Jcrop('#target'); });
-     $.Jcrop('#target',{
-      aspectRatio: 1,
-      onSelect: updateCoords,
-	  setSelect: [0, 0, 300, 300],
-      bgColor:     'black'
-     });
-     function updateCoords(c){
-      $('#x').val(c.x);
-      $('#y').val(c.y);
-      $('#w').val(c.w);
-      $('#h').val(c.h);
-     };
-     function checkCoords()
-{
-	if (parseInt($('#w').val())>0) return true;
-	alert('Seleccione una coordenada para subir');
-	return false;
-};
-</script>
+	
 	  	</div>	  	
 	</div>
 
