@@ -21,6 +21,7 @@ use GuzzleHttp\Client;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
+use Auth;
 
 class emailInboundController extends Controller
 {
