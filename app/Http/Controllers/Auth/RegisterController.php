@@ -130,7 +130,7 @@ class RegisterController extends Controller
             ]);
 
             if($profInformation && $userCreated)
-                return TRUE;
+                return $userCreated;
             else
                 return false;
 
