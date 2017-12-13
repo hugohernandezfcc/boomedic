@@ -55,7 +55,7 @@
                     @endif
                 </div>
 
-                 <div class="form-group has-feedback {{ $errors->has('professional_license') ? 'has-error' : '' }}">
+                <div class="form-group has-feedback {{ $errors->has('professional_license') ? 'has-error' : '' }}">
                     <input type="text" name="professional_license" class="form-control" value="{{ old('professional_license') }}" placeholder="{{ trans('adminlte::adminlte.professional_license') }}" id="professional_license">
                     <span class="fa  fa-keyboard-o form-control-feedback"></span>
                     @if ($errors->has('professional_license'))
@@ -93,8 +93,9 @@
 
             </form>
             
+            <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="text-center">{{ trans('adminlte::adminlte.i_already_have_a_membership') }}</a> 
             <div class="auth-links">
-                <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="text-center">{{ trans('adminlte::adminlte.i_already_have_a_membership') }}</a> <br/>
+                 <br/>
                 <!-- <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="text-center">{{ trans('adminlte::adminlte.i_am_a_doctor') }}</a> -->
             </div>
         </div>
