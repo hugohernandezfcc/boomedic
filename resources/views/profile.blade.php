@@ -2,41 +2,12 @@
 
 @section('title', 'Boomedic')
 
+@section('content_header')
+    <!-- <h1>Perfil de usuario</h1> -->
+@stop
+
 @section('content')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 
-
-		<script type="text/javascript">
-
-				Dropzone.options.myAwesomeDropzone = { 
-				 
-				 // set following configuration
-				 	paramName: "file",
-				    maxFiles: 1,
-				    acceptedFiles: "image/*",
-				    addRemoveLinks: true,
-				    dictRemoveFile: "Eliminar",
-				    dictCancelUpload: "Cancel",
-				    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
-				     success: function(file, response){
-					        //alert(response);
-					  document.getElementById('loadingGif').style.display = "block";
-					  setTimeout(function(){ 
-					  	document.getElementById('loadingGif').style.display = "none";
-					  	window.location.reload(true);
-					  },10000);
-					     	}
-				    //autoProcessQueue : false 
-				 };
-				 var val = "@php echo session()->get('val'); @endphp";
-				 		if(val == "true"){
-				 		setTimeout(function() {
-						    $('#modal').modal({ backdrop: 'static' }, 'show');
-						}, 1000);	
-					}
-									    
-		</script>
 	<br/>
 
 	@if( empty($status) )
@@ -44,12 +15,7 @@
 		<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 		    <!-- lockscreen image -->
 		    <div class="lockscreen-image">
-		    	@if($photo == '')
-		    	 	<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
-				@else
-					<img src="{{ $photo }}" >			
-		    	@endif 
-
+		      <img src="https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
 		    </div>
 		    <!-- /.lockscreen-image -->
 
@@ -57,7 +23,7 @@
 		    <form class="lockscreen-credentials" action="/user/edit/complete" method="get">
 		    	{{ csrf_field() }}
 		      	<div class="input-group">
-		        	<div class="form-control">{{ $name }}</div>
+		        	<div class="form-control">{{ $username }}</div>
 		        	<input type="hidden" name="id" value="{{ $userId }}">
 		        	<div class="input-group-btn">
 			          	<button type="submit" class="btn">
@@ -72,44 +38,11 @@
 
 	@endif
 
-<div id="modal" class="modal fade" role="dialog" style="width: 100%">
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content" >
-                  <div class="modal-header">   
-                    <label for="recorte">Recorte de imagen:</label>
-                  </div>
-                  <div class="modal-body" >
-
-                        <div align="center">
-                   
-
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="width:350px; height: 350px;">
-                    
-                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
-                           	<input type="hidden" id="x" name="x" />
-							<input type="hidden" id="y" name="y" />
-							<input type="hidden" id="w" name="w" />
-							<input type="hidden" id="h" name="h" /><br/>
-	                        <span class="input-group-btn">
-	                        <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
-                          </form>
-                       </div>
-                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-                  </div>
-                </div>
-              </div>
- </div>
-
- 
-
     <div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Información de usuario</h3>
 	    	<!-- /.box-tools -->
 	  	</div>
-	  	<div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
-
 	  	<!-- /.box-header -->
 	  	<div class="box-body">
 	  		@if( !empty($status) )
@@ -121,39 +54,9 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-	    		<div class="row">
-	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
-	    		<div class="col-sm-3" align="center">
-	    			@if($photo == '')
-		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
-					@else
-					@php 
-					  $imagen = getimagesize($photo);    //Sacamos la información
-			          $width = $imagen[0];              //Ancho
-			          $height = $imagen[1];  
 
-			          if($height > '500' || $width > '500'){
-			            $height = $height / 2.5;
-			            $width = $width / 2.5;
-			        }
-			        if($height > '800' || $width > '800'){
-			            $height = $height / 4;
-			            $width = $width / 4;
-			        }
-
-
-			          if($height < '400' || $width < '400'){
-			            $height = $height / 1.3;
-			            $width = $width / 1.3;
-			        }
-
-					@endphp
-						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
-			    	@endif 
-	    			
-	    		</div>
-	    		<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
-	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
+	    	
+	    		<form action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -163,6 +66,7 @@
 	                	</div>
 	              	</div>
 
+
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
 	                	<div class="col-sm-10">
@@ -171,7 +75,7 @@
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="email" class="col-sm-2 control-label">Correo electrónico</label>
+	                    <label for="email" class="col-sm-2 control-label">Corre electrónico</label>
 	                	<div class="col-sm-10">
 	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
 	                	</div>
@@ -315,12 +219,11 @@
 					            	&nbsp;
 					            </div>
 							@endif
-							
 				    	</div>
 				  	</div>
 				  	<!-- box-footer -->
-			</form>
-	    		
+
+	    		</form>
 
 	    	@else
     			<!-- Custom Tabs -->
@@ -409,110 +312,105 @@
 		        </div>
     		@endif
 
+
+
+
+
+
     		<script type="text/javascript">
-
-
+    			window.onload = function(){
+    				initAutocomplete();
+    				@if( empty($status) )
+    					initMapAddressUser();
+					@endif
+    			};
 		      // This example displays an address form, using the autocomplete feature
 		      // of the Google Places API to help users fill in the information.
-
 		      // This example requires the Places library. Include the libraries=places
 		      // parameter when you first load the API. For example:
 		      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-			 var placeSearch, autocomplete;
-			      var componentForm = {
-			        street_number: 'short_name',
-			        route: 'long_name',
-			        locality: 'long_name',
-			        administrative_area_level_1: 'short_name',
-			        country: 'long_name',
-			        postal_code: 'short_name'
-			      };
-
+		      var placeSearch, autocomplete;
+		      var componentForm = {
+		        street_number: 'short_name',
+		        route: 'long_name',
+		        locality: 'long_name',
+		        administrative_area_level_1: 'short_name',
+		        country: 'long_name',
+		        postal_code: 'short_name'
+		      };
 		      function initAutocomplete() {
 		        // Create the autocomplete object, restricting the search to geographical
 		        // location types.
 		        autocomplete = new google.maps.places.Autocomplete(
 		            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
 		            {types: ['geocode']});
-
 		        // When the user selects an address from the dropdown, populate the address
 		        // fields in the form.
 		        autocomplete.addListener('place_changed', fillInAddress);
 		      }
-
 		      function fillInAddress() {
 		        // Get the place details from the autocomplete object.
-        // Get the place details from the autocomplete object.
-			        var place = autocomplete.getPlace();
-
-			        for (var component in componentForm) {
-			          document.getElementById(component).value = '';
-			          document.getElementById(component).disabled = false;
-			        }
-
-			        // Get each component of the address from the place details
-			        // and fill the corresponding field on the form.
-			        for (var i = 0; i < place.address_components.length; i++) {
-			          var addressType = place.address_components[i].types[0];
-			          if (componentForm[addressType]) {
-			            var val = place.address_components[i][componentForm[addressType]];
-			            document.getElementById(addressType).value = val;
-			          }
-			        }
-			      }
-
+		        var place = autocomplete.getPlace();
+		        for (var component in componentForm) {
+		          document.getElementById(component).value = '';
+		          document.getElementById(component).disabled = false;
+		        }
+		        // Get each component of the address from the place details
+		        // and fill the corresponding field on the form.
+		        for (var i = 0; i < place.address_components.length; i++) {
+		          var addressType = place.address_components[i].types[0];
+		          if (componentForm[addressType]) {
+		            var val = place.address_components[i][componentForm[addressType]];
+		            document.getElementById(addressType).value = val;
+		          }
+		        }
+		      }
 		      // Bias the autocomplete object to the user's geographical location,
 		      // as supplied by the browser's 'navigator.geolocation' object.
 		      function geolocate() {
-				 if (navigator.geolocation) {
-				          navigator.geolocation.getCurrentPosition(function(position) {
-				            var geolocation = {
-				              lat: position.coords.latitude,
-				              lng: position.coords.longitude
-				            };
-				            var circle = new google.maps.Circle({
-				              center: geolocation,
-				              radius: position.coords.accuracy
-				            });
-				            autocomplete.setBounds(circle.getBounds());
-				          });
-				        }
-				      }
-
+		        if (navigator.geolocation) {
+		          navigator.geolocation.getCurrentPosition(function(position) {
+		            var geolocation = {
+		              lat: position.coords.latitude,
+		              lng: position.coords.longitude
+		            };
+		            console.log(geolocation.lat + ' ' + geolocation.lng);
+		            document.getElementById('latitudeFend').value = geolocation.lat; 
+		            document.getElementById('longitudeFend').value = geolocation.lat;
+		            var circle = new google.maps.Circle({
+		              center: geolocation,
+		              radius: position.coords.accuracy
+		            });
+		            autocomplete.setBounds(circle.getBounds());
+		          });
+		        }
+		      }	
 		    </script>
 
+		    @if( empty($status) )
 
+		    	<script type="text/javascript">
+		    		var counter = -1;
+			      	function initMapAddressUser() {
+				      	if(!counter > 0){
+				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
+					          zoom: 7,
+					          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
+					        });
+					        var image = "{{ asset('maps-and-flags_1.png') }}";
+					        
+					        var beachMarker = new google.maps.Marker({
+					          position: {lat: {{ $longitude }} , lng: {{ $latitude }} },
+					          map: map,
+					          icon: image
+					        });
+					    }
+				        counter++;
+			      	}
+		    	</script>
 
-			
+			@endif
 
-	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
-
-	<script src="{{ asset('js/jquery.color.js') }}"></script>
-	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
-
-<script type="text/javascript">
-
-    $(function(){ $.Jcrop('#target'); });
-     $.Jcrop('#target',{
-      aspectRatio: 1,
-      onSelect: updateCoords,
-	  setSelect: [0, 0, 300, 300],
-      bgColor:     'black'
-     });
-     function updateCoords(c){
-      $('#x').val(c.x);
-      $('#y').val(c.y);
-      $('#w').val(c.w);
-      $('#h').val(c.h);
-     };
-     function checkCoords()
-{
-	if (parseInt($('#w').val())>0) return true;
-	alert('Seleccione una coordenada para subir');
-	return false;
-};
-</script>
 	  	</div>	  	
 	</div>
 
