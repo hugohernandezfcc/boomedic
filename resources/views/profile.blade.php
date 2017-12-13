@@ -413,7 +413,10 @@
 		            </div>
 		        </div>
     		@endif
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=places">
+
     		<script type="text/javascript">
 
 			window.onload = function(){
