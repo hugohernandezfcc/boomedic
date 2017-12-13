@@ -114,10 +114,11 @@
 	              	<div class="form-group has-feedback ">
 	                    <label for="ticketDescription" class="col-sm-2 control-label">Descripción</label>
 	                	<div class="col-sm-10">
-	                  		<textarea name="ticketDescription" class="form-control" id="ticketDescription" rows="4"></textarea>
+	                  		<textarea name="ticketDescription" class="form-control" id="ticketDescription" rows="4" style="overflow:hidden;"></textarea>
 	                	</div>
 	              	</div>
-	              	<div class="row">
+	              	<br>
+	              	<div class="form-group has-feedback">
 	              	<div class="col-sm-6">
 			    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 			                Guardar
