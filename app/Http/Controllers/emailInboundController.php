@@ -158,12 +158,11 @@ class emailInboundController extends Controller
             'streetnumber'  => $user->streetnumber,           
             'interiornumber'    => $user->interiornumber,       
             'postalcode'    => $user->postalcode,
-            'emailBody' => $request->emailBody,
-            'subjectE' => $request->subject
+            'emailBody' => $request->emailBody
         ];
 
-        Mail::send('sendEmail', $data, function ($message) {
-            $message->subject($data->subjectE);
+        Mail::send('sendEmail', $data, function ($message) use ($subjectE){
+            $message->subject($subjectE);
             $message->to('cristina@doitcloud.consulting');
         });
 
