@@ -318,6 +318,12 @@ Route::group(['prefix' => 'verifyExpiration'], function(){
 			'as'	=>	'index'
 		]
 	);
+
+	Route::get('ver', [
+			'uses'	=>	'verifyExpirationController@ver',
+			'as'	=>	'ver'
+		]
+	);
 });
 
 Route::post('/bye' , 'Auth\LoginController@logout');

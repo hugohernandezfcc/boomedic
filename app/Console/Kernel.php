@@ -37,11 +37,6 @@ class Kernel extends ConsoleKernel
                                                 ->where('month', $month00);
                                                 ->where('year', $year00);
                                                 ->get();
-            /*return view('cards', [
-                    'allCards'     => $allCards,
-                    'mode'      => 'listCardsExpired'
-                ]
-            );*/
 
             if (empty($allCards)) {
                 foreach($allCards as $card) {
