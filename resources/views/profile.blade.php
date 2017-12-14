@@ -320,13 +320,17 @@
                   <div class="box-header with-border" style="font-size: 17px;">
                  <i class="fa fa-plus" id="ico1"></i>
 
+                <script type="text/javascript">
+                  if(getElementById('collapseOne').className == "panel-collapse collapse in"){
+                  getElementById('ico1').className = "fa fa-minus";
+              		}
+                </script>
+
                         Información personal
                   </div>
                   </a>
                   <div id="collapseOne" class="panel-collapse collapse in">
-                  <script type="text/javascript">
-                  getElementById('ico1').className = "fa fa-minus";
-                 </script>
+
                     <div class="box-body">
                       <br/>
 
