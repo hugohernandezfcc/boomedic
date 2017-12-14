@@ -4,7 +4,19 @@
 
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
-
+		<style type="text/css">
+		.panel-heading .accordion-toggle:after {
+		    /* symbol for "opening" panels */
+		    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+		    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+		    float: right;        /* adjust as needed */
+		    color: grey;         /* adjust as needed */
+		}
+		.panel-heading .accordion-toggle.collapsed:after {
+		    /* symbol for "collapsed" panels */
+		    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+		}
+</style>
 @stop
 
 @section('content')
@@ -308,13 +320,6 @@
 	    		
 
 	    	@else
-                <script type="text/javascript">
-					$('.collapse').on('shown.bs.collapse', function(){
-					$(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
-					}).on('hidden.bs.collapse', function(){
-					$(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
-					});
-                </script>
 
       <div class="row">
         <div class="col-md-12">
@@ -327,7 +332,7 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
                   <div class="box-header with-border" style="font-size: 17px;">
-                 <span class="glyphicon glyphicon-minus"></span>
+
 
                         Información personal
                   </div>
