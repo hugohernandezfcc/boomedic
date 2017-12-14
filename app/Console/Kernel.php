@@ -34,8 +34,8 @@ class Kernel extends ConsoleKernel
 
             $allCards = DB::table('paymentsmethods')->whereNotNull('month')
                                                 ->whereNotNull('year')
-                                                ->where('month', $month00);
-                                                ->where('year', $year00);
+                                                ->where('month', $month00)
+                                                ->where('year', $year00)
                                                 ->get();
 
             if (empty($allCards)) {
