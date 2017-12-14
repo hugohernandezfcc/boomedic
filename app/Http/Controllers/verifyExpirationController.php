@@ -93,4 +93,50 @@ class verifyExpirationController extends Controller
     {
         //
     }
+
+
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->call(function () {
+            $allCards = DB::table('paymentsmethods')->whereNotNull('month')
+                                                ->whereNotNull('year')
+                                                ->get();
+            /*return view('cards', [
+                    'allCards'     => $allCards,
+                    'mode'      => 'listCardsExpired'
+                ]
+            );*/
+
+            foreach($allCards as $card) {
+                $user = User::find($card->owner);
+
+                $data = [
+                    'name'     => $user->name,
+                    'email'    => $user->email,
+                    'age'     => $user->age,                 
+                    'gender'    => $user->gender,
+                    'occupation'=> $user->occupation,
+                    'country'   => $user->country,    
+                    'state'     => $user->state,                    
+                    'delegation'    => $user->delegation,               
+                    'colony'    => $user->colony,                   
+                    'street'    => $user->street,                   
+                    'mobile'     => $user->mobile,
+                    'username'  => $user->username,                 
+                    'firstname' => $user->firstname,                
+                    'lastname'  => $user->lastname,                
+                    'streetnumber'  => $user->streetnumber,           
+                    'interiornumber'    => $user->interiornumber,       
+                    'postalcode'    => $user->postalcode,
+                    'dateExpM'   =>  $card->month,
+                    'dateExpY'   =>  $card->year
+                ];
+
+                Mail::send('emails.card', $data, function ($message) {
+                    $message->subject('Tarjeta próxima a vencer.');
+                    $message->to('cristina@doitcloud.consulting');
+                });
+            }            
+        })->hourly();
+    }
 }
