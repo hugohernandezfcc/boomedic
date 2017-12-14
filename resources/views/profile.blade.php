@@ -308,11 +308,11 @@
 
 	    	@else
                 <script type="text/javascript">
-                  if(getElementById('collapseOne').className == "panel-collapse collapse in"){
-                  getElementById('ico1').className = "fa fa-minus";
+                  if(document.getElementById("collapseOne").className == "panel-collapse collapse in"){
+                  document.getElementById("ico1").className = "fa fa-minus";
               		}
               		else{
-              			 getElementById('ico1').className = "fa fa-plus";
+              			 document.getElementById("ico1").className = "fa fa-plus";
               		}
                 </script>
 
