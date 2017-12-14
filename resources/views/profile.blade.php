@@ -316,17 +316,7 @@
             <div class="box-body">
               <div class="box-group" id="accordion">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-             <script type="text/javascript">
-	    	if($('#collapseOne').hasClass('in')){
-	    		document.getElementById('ico').className = 'fa fa-minus';
-	    	}
-	    	if($('#collapseTwo').hasClass('in')){
-	    		document.getElementById('ico2').className = 'fa fa-minus';
-	    	}
-	    	if($('#collapseThree').hasClass('in')){
-	    		document.getElementById('ico3').className = 'fa fa-minus';
-	    	}
-	    	</script>
+             
                 <div class="panel box box-default" style="border-top-color: black;">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" aria-expanded="true" aria-controls="collapseOne">
                   <div class="box-header with-border" style="font-size: 17px;">
@@ -588,5 +578,17 @@
       return false;
     };
     </script>
+
+    <script type="text/javascript">
+	    	if($('#collapseOne').hasClass('in')){
+	    		document.getElementById('ico').className = 'fa fa-minus';
+	    	}
+	    	if($('#collapseTwo').hasClass('in')){
+	    		document.getElementById('ico2').className = 'fa fa-minus';
+	    	}
+	    	if($('#collapseThree').hasClass('in')){
+	    		document.getElementById('ico3').className = 'fa fa-minus';
+	    	}
+	</script>
 
 @stop
