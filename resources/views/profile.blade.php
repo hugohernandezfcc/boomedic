@@ -6,7 +6,6 @@
     <!-- <h1>Perfil de usuario</h1> -->
 @stop
 
-
 @section('content')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
@@ -43,15 +42,9 @@
 				    
 	</script>
 
-@stop
-
-@section('content')
-
-
 	<br/>
 
 	@if( empty($status) )
-
 
     @include('headerprofile')
     <script type="text/javascript">
@@ -60,36 +53,6 @@
       elemento.className = "fa fa-pencil text-muted";
       document.forms.form_profile.action = "/user/edit/complete";
     </script>
-
-
-		<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
-		    <!-- lockscreen image -->
-		    <div class="lockscreen-image">
-		    	@if($photo == '')
-		    	 	<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
-				@else
-					<img src="{{ $photo }}" >			
-		    	@endif 
-
-		    </div>
-		    <!-- /.lockscreen-image -->
-
-		    <!-- lockscreen credentials (contains the form) -->
-		    <form class="lockscreen-credentials" action="/user/edit/complete" method="get">
-		    	{{ csrf_field() }}
-		      	<div class="input-group">
-		        	<div class="form-control">{{ $name }}</div>
-		        	<input type="hidden" name="id" value="{{ $userId }}">
-		        	<div class="input-group-btn">
-			          	<button type="submit" class="btn">
-			          		<i class="fa fa-pencil text-muted"></i>
-			          	</button>
-		        	</div>
-		      	</div>
-		    </form>
-		    <!-- /.lockscreen credentials -->
-		</div>
-
 
 	@endif
 
