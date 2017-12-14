@@ -5,14 +5,14 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
 		<style type="text/css">
-		.panel-heading .accordion-toggle:after {
+		.accordion-toggle.box-header:after {
 		    /* symbol for "opening" panels */
 		    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
 		    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
 		    float: right;        /* adjust as needed */
 		    color: grey;         /* adjust as needed */
 		}
-		.panel-heading .accordion-toggle.collapsed:after {
+		.accordion-toggle.box-header.collapsed:after {
 		    /* symbol for "collapsed" panels */
 		    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
 		}
@@ -330,7 +330,7 @@
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
                  
                 <div class="panel box box-default" style="border-top-color: black;">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="accordion-toggle text-black">
                   <div class="box-header with-border" style="font-size: 17px;">
 
 
