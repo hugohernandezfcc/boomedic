@@ -323,7 +323,7 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" aria-expanded="true" aria-controls="collapseOne" onclick="changeIcon()">
                   <div class="box-header with-border" style="font-size: 17px;">
-                  <i class="fa fa-plus" id="ico"></i>
+                  <i class="fa fa-minus" id="ico"></i>
                         Información personal
                   </div>
                   </a>
@@ -596,11 +596,6 @@
 	    	} 
 	    	if($('#collapseThree').hasClass('in')){
 	    		document.getElementById('ico3').className = 'fa fa-minus';
-	    		document.getElementById('ico2').className = 'fa fa-plus';
-	    		document.getElementById('ico').className = 'fa fa-plus';
-	    	}
-	    	if(!$('#collapseThree').hasClass('in') && !$('#collapseTwo').hasClass('in') && !$('#collapseOne').hasClass('in')){
-	    		document.getElementById('ico3').className = 'fa fa-plus';
 	    		document.getElementById('ico2').className = 'fa fa-plus';
 	    		document.getElementById('ico').className = 'fa fa-plus';
 	    	}
