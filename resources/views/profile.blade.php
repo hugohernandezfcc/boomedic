@@ -315,9 +315,10 @@
               <div class="box-group" id="accordion">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
                  
-                <div class="panel box box-default" style="border-top-color: black; font-size: 17px;">
+                <div class="panel box box-default" style="border-top-color: black;">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
-                  <div class="box-header with-border">
+                  <div class="box-header with-border" style="font-size: 17px;">
+                 <i class="fa fa-plus" id="ico1"></i>
                         Información personal
                   </div>
                   </a>
@@ -391,9 +392,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="panel box box-default" style="border-top-color: black; font-size: 17px;">
+                <div class="panel box box-default" style="border-top-color: black;">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black">
-                  <div class="box-header with-border">
+                  <div class="box-header with-border" style="font-size: 17px;">
                         Familia
                   </div>
                 </a>
@@ -403,9 +404,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="panel box box-default" style="border-top-color: black; font-size: 17px;">
+                <div class="panel box box-default" style="border-top-color: black;">
                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black">	
-                  <div class="box-header with-border">
+                  <div class="box-header with-border" style="font-size: 17px;">
                         Dirección de usuario         
                   </div>
                   </a>  
