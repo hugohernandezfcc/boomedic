@@ -49,34 +49,13 @@
 
 	@if( empty($status) )
 
-		<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
-		    <!-- lockscreen image -->
-		    <div class="lockscreen-image">
-		    	@if($photo == '')
-		    	 	<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
-				@else
-					<img src="{{ $photo }}" >			
-		    	@endif 
-
-		    </div>
-		    <!-- /.lockscreen-image -->
-
-		    <!-- lockscreen credentials (contains the form) -->
-		    <form class="lockscreen-credentials" action="/user/edit/complete" method="get">
-		    	{{ csrf_field() }}
-		      	<div class="input-group">
-		        	<div class="form-control">{{ $name }}</div>
-		        	<input type="hidden" name="id" value="{{ $userId }}">
-		        	<div class="input-group-btn">
-			          	<button type="submit" class="btn">
-			          		<i class="fa fa-pencil text-muted"></i>
-			          	</button>
-		        	</div>
-		      	</div>
-		    </form>
-		    <!-- /.lockscreen credentials -->
-		</div>
-
+    @include('headerprofile')
+    <script type="text/javascript">
+      //O si no lleva botón hacer el div "div_profile" invisible
+      var elemento = document.getElementById("i_button");
+      elemento.className = "fa fa-pencil text-muted";
+      document.forms.form_profile.action = "/user/edit/complete";
+    </script>
 	@endif
 	<!-- Modal photo settings-->
 	<div id="modal" class="modal fade" role="dialog" style="width: 100%">
