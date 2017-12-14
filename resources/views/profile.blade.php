@@ -582,12 +582,18 @@
     <script type="text/javascript">
 	    	if($('#collapseOne').hasClass('in')){
 	    		document.getElementById('ico').className = 'fa fa-minus';
+	    	} else {
+	    		document.getElementById('ico').className = 'fa fa-plus';
 	    	}
 	    	if($('#collapseTwo').hasClass('in')){
 	    		document.getElementById('ico2').className = 'fa fa-minus';
+	    	} else {
+	    		document.getElementById('ico2').className = 'fa fa-plus';
 	    	}
 	    	if($('#collapseThree').hasClass('in')){
 	    		document.getElementById('ico3').className = 'fa fa-minus';
+	    	}else {
+	    		document.getElementById('ico3').className = 'fa fa-plus';
 	    	}
 	</script>
 
