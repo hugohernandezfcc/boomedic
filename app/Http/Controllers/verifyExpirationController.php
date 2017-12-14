@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\PaymentMethod;
+use App\email;
 use Mail;
 
 class verifyExpirationController extends Controller
@@ -118,11 +119,11 @@ class verifyExpirationController extends Controller
                                                 ->where('year', $year00)
                                                 ->get();
 
-            if (empty($allCards)) {
+            if (count($allCards) >0 ) {
                 foreach($allCards as $card) {
                     $user = User::find($card->owner);
 
-                    $data = [
+                    /*$data = [
                         'name'     => $user->name,
                         'email'    => $user->email,
                         'age'     => $user->age,                 
@@ -147,7 +148,12 @@ class verifyExpirationController extends Controller
                     Mail::send('emails.card', $data, function ($message) {
                         $message->subject('Tarjeta próxima a vencer.');
                         $message->to('cristina@doitcloud.consulting');
-                    });
+                    });*/
+
+                    $nTicket = new email();
+                    $nTicket->userId      = $user->id;                
+                    $nTicket->message      = $card->id;
+                    $nTicket->save();
                 }
             }
 
