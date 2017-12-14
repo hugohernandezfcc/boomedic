@@ -310,9 +310,9 @@
 
 	    	<script type="text/javascript">
 	    		$('.collapse').on('shown.bs.collapse', function(){
-				 getElementById('ico').removeClass("glyphicon-plus").addClass("glyphicon-minus");
+				$(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
 				}).on('hidden.bs.collapse', function(){
-				getElementById('ico').removeClass("glyphicon-minus").addClass("glyphicon-plus");
+				$(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
 				});
 	    	</script>
       <div class="row">
@@ -326,7 +326,7 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
                   <div class="box-header with-border" style="font-size: 17px;">
-                  	<div id="ico" class="glyphicon glyphicon-minus"></div>
+                  	<span class="glyphicon-minus"></span>
                         Información personal
                   </div>
                   </a>
