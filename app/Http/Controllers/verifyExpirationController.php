@@ -123,7 +123,7 @@ class verifyExpirationController extends Controller
                 foreach($allCards as $card) {
                     $user = User::find($card->owner);
 
-                    /*$data = [
+                    $data = [
                         'name'     => $user->name,
                         'email'    => $user->email,
                         'age'     => $user->age,                 
@@ -146,14 +146,17 @@ class verifyExpirationController extends Controller
                     ];
 
                     Mail::send('emails.card', $data, function ($message) {
-                        $message->subject('Tarjeta próxima a vencer.');
+                        $message->subject('Tarjeta próxima a vencer');
                         $message->to('cristina@doitcloud.consulting');
-                    });*/
+                    });
 
-                    $nTicket = new email();
-                    $nTicket->userId      = $user->id;                
-                    $nTicket->message      = $card->id;
-                    $nTicket->save();
+                    $emailS = new email();
+                    $emailS->userId      = $user->id;
+                    $emailS->email       = $user->name
+                    $emailS->date        = $date00;
+                    $emailS->subject     = 'Tarjeta próxima a vencer';
+                    $emailS->message     = "Se le notifica que su tarjeta se encuentra próxima a vencer el". $card->dateExpM}}."/".$card->dateExpY."cómo método de pago para Boomedic.";
+                    $emailS->save();
                 }
             }
 
