@@ -307,16 +307,9 @@
 	    		
 
 	    	@else
-    			<!-- Custom Tabs -->
-		       <!-- START ACCORDION & CAROUSEL-->
-      <h2 class="page-header">Bootstrap Accordion & Carousel</h2>
-
       <div class="row">
         <div class="col-md-6">
           <div class="box box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Collapsible Accordion</h3>
-            </div>
             <!-- /.box-header -->
             <div class="box-body">
               <div class="box-group" id="accordion">
@@ -325,19 +318,76 @@
                   <div class="box-header with-border">
                     <h4 class="box-title">
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                        Collapsible Group Item #1
+                        Información personal
                       </a>
                     </h4>
                   </div>
                   <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="box-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
-                      wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                      eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
-                      assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                      nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-                      farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                      labore sustainable VHS.
+                      <br/>
+
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Corre electrónico:</b></div>
+                            <div class="col-sm-6" align="left">{{ $email }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Nombre de usuario:</b></div>
+                            <div class="col-sm-6" align="left">{{ $username }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Edad:</b></div>
+                            <div class="col-sm-6" align="left">{{ $age }}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <br/>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Ocupación:</b></div>
+                            <div class="col-sm-6" align="left">{{ $occupation }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Genero:</b></div>
+                            <div class="col-sm-6" align="left">{{ $gender }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Escolaridad:</b></div>
+                            <div class="col-sm-6" align="left">{{ $scholarship }}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <br/>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Estado civil:</b></div>
+                            <div class="col-sm-6" align="left">{{ $maritalstatus }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b># Móvil:</b></div>
+                            <div class="col-sm-6" align="left">{{ $mobile }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Ultima modificación:</b></div>
+                            <div class="col-sm-6" align="left">{{ $updated_at }}</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -345,39 +395,27 @@
                   <div class="box-header with-border">
                     <h4 class="box-title">
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                        Collapsible Group Danger
+                        Familia
                       </a>
                     </h4>
                   </div>
                   <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="box-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
-                      wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                      eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
-                      assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                      nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-                      farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                      labore sustainable VHS.
+                            space..
                     </div>
                   </div>
                 </div>
                 <div class="panel box box-success">
                   <div class="box-header with-border">
                     <h4 class="box-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                        Collapsible Group Success
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();">
+                        Dirección de usuario
                       </a>
                     </h4>
                   </div>
                   <div id="collapseThree" class="panel-collapse collapse">
                     <div class="box-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
-                      wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                      eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
-                      assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                      nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-                      farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                      labore sustainable VHS.
+                          <div id="mapAddressUser" ></div>
                     </div>
                   </div>
                 </div>
@@ -390,8 +428,6 @@
         <!-- /.col -->
         <!-- /.col -->
       </div>
-      <!-- /.row -->
-      <!-- END ACCORDION & CAROUSEL-->
     		@endif
 
 
