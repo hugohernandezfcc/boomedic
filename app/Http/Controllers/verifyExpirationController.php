@@ -18,14 +18,26 @@ class verifyExpirationController extends Controller
     public function index()
     {
         /*$allCards = DB::table('paymentsmethods')->where('month', '<>', '')->get();*/
-        $allCards = DB::table('paymentsmethods')->whereNotNull('month')
+        /*$allCards = DB::table('paymentsmethods')->whereNotNull('month')
                                                 ->whereNotNull('year')
                                                 ->get();
         return view('cards', [
                 'allCards'     => $allCards,
                 'mode'      => 'listCardsExpired'
             ]
-        );
+        );*/
+
+
+        $date00 = getdate();
+            $month00 = date("n");
+            $year00 = date("y");
+
+            /*return dd($month00 . $year00);*/
+
+            $allCards = DB::table('paymentsmethods')->where('month', $month00)
+                                                ->where('year', $year00)
+                                                ->get();
+            return dd($allCards);
     }
 
     /**
@@ -137,7 +149,7 @@ class verifyExpirationController extends Controller
                         $message->to('cristina@doitcloud.consulting');
                     });
                 }
-            };
+            }
 
             return view('cards', [
                     'allCards'     => $allCards,

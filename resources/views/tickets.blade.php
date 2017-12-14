@@ -8,8 +8,6 @@
 
 @section('content')
 
-<<<<<<< HEAD
-=======
 	<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
  <!-- lockscreen image -->
 	   <div class="lockscreen-image">
@@ -50,9 +48,7 @@
 	    <!-- /.lockscreen credentials -->
 	</div>
 
->>>>>>> 4ef6d6fe68fd4c63e595c5d9b9ed8604ce11d800
 
-@include('headerprofile')
 
 	<div class="box">
 	  	<div class="box-header with-border">
@@ -102,42 +98,32 @@
 
 	        	<form action="/supportTicket/store" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
-	    		<div class="form-group has-feedback">	
-	    			<label for="cause" class="col-sm-2 control-label">Causa</label>
-	    			 <div class="col-sm-10">
-				        <select name="cause" class="form-control select1">
-                            <option value="01">Error "No es posible determinar mi ubicación"</option>
-                            <option value="02">La app no está sonando</option>
-                            <option value="03">La app se congela o se cierra en iOS</option>
-                            <option value="04">Uso de otras aplicaciones o recepción de llamadas mientras está en línea</option>
-                        </select></div></div>
 
-	    			<div class="form-group has-feedback">
+	    			<div class="form-group has-feedback ">
 	    				<label for="subject" class="col-sm-2 control-label">Asunto</label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="subject" class="form-control" id="subject"  required="true">
+	                  		<input type="text" name="subject" class="form-control" id="subject" >
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback ">
 	                    <label for="ticketDescription" class="col-sm-2 control-label">Descripción</label>
 	                	<div class="col-sm-10">
-	                  		<textarea name="ticketDescription" class="form-control" id="ticketDescription" rows="4" style="overflow:hidden;" required="true"></textarea>
+	                  		<input type="text" name="ticketDescription" class="form-control" id="ticketDescription" >
 	                	</div>
 	              	</div>
-	              	<br>
-	              	<div class="form-group has-feedback">
-	              	<div class="col-sm-6">
+
+	              	<div class="col-sm-4">
 			    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 			                Guardar
 			            </button>
 		            </div>
-		    		<div class="col-sm-6">
+		    		<div class="col-sm-4">
 		    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
 			                Cancelar
 			            </a>
 		            </div>
-		        </div>
+
 		        </form>
 
 		    @elseif($mode == 'sendEmail')
