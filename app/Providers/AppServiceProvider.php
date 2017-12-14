@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
 
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
 
+<<<<<<< HEAD
            
             $profInfo = DB::table('professional_information')
                             ->where('user', Auth::id() )
@@ -50,6 +51,43 @@ class AppServiceProvider extends ServiceProvider
                     'url'  => 'privacyStatement/index',
                     'icon' => ''
                 ]);
+=======
+            $profInfo = DB::table('professional_information')->where('user', Auth::id() )->get();
+             $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
+             $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
+
+
+             if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+                 $event->menu->add([
+                                    'text' => 'Aviso de Privacidad',
+                                    'url'  => 'privacyStatement/index',
+                                    'icon' => ''
+                                ]);
+                }
+                else{
+
+            if($profInfo->count() > 0){
+                //es un médico
+                $menusInfo = DB::table('menus')
+                                ->where('to', 'Doctor' )
+                                ->get();
+
+                for ($i=0; $i < $menusInfo->count(); $i++) { 
+                    if($menusInfo[$i]->typeitem == 'section' ){
+                        # Se agrega la sección
+                        $event->menu->add( $menusInfo[$i]->text );
+                        
+                        for ($o=0; $o < $menusInfo->count(); $o++) { 
+                            if($menusInfo[$o]->parent == $menusInfo[$i]->id ){
+
+                                # Se agregan los items de la sección.
+                                $event->menu->add([
+                                    'text' => $menusInfo[$o]->text,
+                                    'url'  => $menusInfo[$o]->url,
+                                    'icon' => $menusInfo[$o]->icon
+                                ]);
+                            }
+>>>>>>> 4ef6d6fe68fd4c63e595c5d9b9ed8604ce11d800
 
 
             }else{
