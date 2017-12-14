@@ -319,9 +319,9 @@ Route::group(['prefix' => 'verifyExpiration'], function(){
 		]
 	);
 
-	Route::get('ver', [
-			'uses'	=>	'verifyExpirationController@ver',
-			'as'	=>	'ver'
+	Route::get('index01', [
+			'uses'	=>	'verifyExpirationController@index01',
+			'as'	=>	'index01'
 		]
 	);
 });
