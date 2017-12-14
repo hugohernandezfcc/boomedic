@@ -148,7 +148,9 @@ class verifyExpirationController extends Controller
             $month00 = date("n");
             $year00 = date("y");
 
-            $allCards = DB::table('paymentsmethods')->whereNotNull('month')
+            return dd($month00 . $year00);
+
+            /*$allCards = DB::table('paymentsmethods')->whereNotNull('month')
                                                 ->whereNotNull('year')
                                                 ->where('month', $month00)
                                                 ->where('year', $year00)
@@ -191,6 +193,6 @@ class verifyExpirationController extends Controller
                     'allCards'     => $allCards,
                     'mode'      => 'listCardsExpired'
                 ]
-            );
+            );*/
     }
 }
