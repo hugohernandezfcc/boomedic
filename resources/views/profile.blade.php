@@ -314,7 +314,7 @@
             <div class="box-body">
               <div class="box-group" id="accordion">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                <div class="panel box bg-black">
+                <div class="panel box box-default">
                   <div class="box-header with-border">
                     
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
@@ -406,7 +406,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="panel box bg-black">
+                <div class="panel box box-default">
                   <div class="box-header with-border">
                 
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black">
