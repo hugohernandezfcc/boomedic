@@ -309,10 +309,10 @@
 	    	@else
                 <script type="text/javascript">
                   if(document.getElementById("collapseOne").className == "panel-collapse collapse in"){
-                  document.getElementById("ico1").className = "fa fa-minus";
+                  document.getElementById("ico1").addClass("fa fa-minus");
               		}
               		else{
-              			 document.getElementById("ico1").className = "fa fa-plus";
+              			 document.getElementById("ico1").addClass("fa fa-plus");
               		}
                 </script>
 
@@ -327,7 +327,7 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
                   <div class="box-header with-border" style="font-size: 17px;">
-                 <i class="" id="ico1"></i>
+                 <div class="fa fa-plus" id="ico1"></div>
 
                         Información personal
                   </div>
