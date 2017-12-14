@@ -316,11 +316,11 @@
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
                 <div class="panel box box-default">
                   <div class="box-header with-border">
-                    <h4 class="box-title">
+                    
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
                         Información personal
                       </a>
-                    </h4>
+              
                   </div>
                   <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="box-body">
@@ -329,7 +329,7 @@
                       <div class="row">
                         <div class="col-sm-4">
                           <div class="row">
-                            <div class="col-sm-6" align="left"><b>Corre electrónico:</b></div>
+                            <div class="col-sm-4" align="left"><b>Correo:</b></div>
                             <div class="col-sm-6" align="left">{{ $email }}</div>
                           </div>
                         </div>
@@ -394,11 +394,11 @@
                 </div>
                 <div class="panel box box-default">
                   <div class="box-header with-border">
-                    <h4 class="box-title">
+                   
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black">
                         Familia
                       </a>
-                    </h4>
+                
                   </div>
                   <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="box-body">
@@ -408,11 +408,11 @@
                 </div>
                 <div class="panel box box-default">
                   <div class="box-header with-border">
-                    <h4 class="box-title">
+                
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black">
                         Dirección de usuario
                       </a>
-                    </h4>
+                
                   </div>
                   <div id="collapseThree" class="panel-collapse collapse">
                     <div class="box-body">
