@@ -4,20 +4,7 @@
 
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
-<style type="text/css">
 
-.accordion:after {
-    content: '\02795'; /* Unicode character for "plus" sign (+) */
-    font-size: 13px;
-    color: #777;
-    float: right;
-    margin-left: 5px;
-}
-
-.collapse:after {
-    content: "\2796"; /* Unicode character for "minus" sign (-) */
-}
-</style>
 @stop
 
 @section('content')
@@ -322,12 +309,11 @@
 
 	    	@else
                 <script type="text/javascript">
-                  if(document.getElementById("collapseOne").className == "panel-collapse collapse in"){
-                  document.getElementById("ico1").className = "fa fa-minus";
-              		}
-              		else{
-              			 document.getElementById("ico1").className ="fa fa-plus";
-              		}
+					$('.collapse').on('shown.bs.collapse', function(){
+					$(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+					}).on('hidden.bs.collapse', function(){
+					$(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+					});
                 </script>
 
       <div class="row">
@@ -341,7 +327,7 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
                   <div class="box-header with-border" style="font-size: 17px;">
-                 <div class="fa fa-plus" id="ico1"></div>
+                 <span class="glyphicon glyphicon-minus"></span>
 
                         Información personal
                   </div>
