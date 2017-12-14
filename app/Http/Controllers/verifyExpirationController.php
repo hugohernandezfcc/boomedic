@@ -152,7 +152,7 @@ class verifyExpirationController extends Controller
 
                     $emailS = new email();
                     $emailS->userId      = $user->id;
-                    $emailS->email       = $user->name
+                    $emailS->email       = $user->name;
                     $emailS->date        = $date00;
                     $emailS->subject     = 'Tarjeta próxima a vencer';
                     $emailS->message     = "Se le notifica que su tarjeta se encuentra próxima a vencer el". $card->dateExpM}}."/".$card->dateExpY."cómo método de pago para Boomedic.";
