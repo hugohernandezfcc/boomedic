@@ -38,7 +38,7 @@
 	                             </td>
 	                            <td>{{ $card->bank }}</td>
 	                            <td>{{ $card->provider }}</td>
-	                            <td>{{ $card->dateexpired }}</td>
+	                            <td>{{ $card->month }}/{{ $card->year }}</td>
 	                        </tr>
 	                    @endforeach 
 
