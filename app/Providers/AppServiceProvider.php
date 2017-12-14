@@ -114,7 +114,7 @@ class AppServiceProvider extends ServiceProvider
                                             'text'   => $menusInfo[$o]->text,
                                             'url'    => $menusInfo[$o]->url,
                                             'icon'   => $menusInfo[$o]->icon,
-                                            'active' => [$menusInfo[$o]->url, $menusInfo[$o]->url . '/*']
+                                            'active' => [$menusInfo[$o]->url, explode('/', $menusInfo[$o]->url)[0] . '/*']
                                         ]);
                                     }
                                 }
