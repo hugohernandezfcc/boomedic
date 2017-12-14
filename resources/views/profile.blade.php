@@ -392,13 +392,11 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: #444444;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black">
                   <div class="box-header with-border">
-                   
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black">
                         Familia
-                      </a>
-                
                   </div>
+                </a>
                   <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="box-body">
                             space..
@@ -406,13 +404,11 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: #111111;">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black">	
                   <div class="box-header with-border">
-                
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black">
-                        Dirección de usuario
-                      </a>
-                
+                        Dirección de usuario         
                   </div>
+                  </a>  
                   <div id="collapseThree" class="panel-collapse collapse">
                     <div class="box-body">
                           <div id="mapAddressUser" ></div>
