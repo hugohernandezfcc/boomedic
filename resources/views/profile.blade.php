@@ -4,6 +4,20 @@
 
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
+<style type="text/css">
+
+.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+.collapse:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+</style>
 @stop
 
 @section('content')
