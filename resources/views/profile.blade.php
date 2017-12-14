@@ -318,11 +318,15 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
                   <div class="box-header with-border" style="font-size: 17px;">
-                 <i class="fa fa-plus" id="ico1"></i>
+                 <i class="fa-plus" id="ico1"></i>
+
                         Información personal
                   </div>
                   </a>
                   <div id="collapseOne" class="panel-collapse collapse in">
+                  <script type="text/javascript">
+                  getElementById('ico1').className = "fa-minus";
+                 </script>
                     <div class="box-body">
                       <br/>
 
@@ -395,6 +399,7 @@
                 <div class="panel box box-default" style="border-top-color: black;">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black">
                   <div class="box-header with-border" style="font-size: 17px;">
+                  	<i class="fa-plus" id="ico2"></i>
                         Familia
                   </div>
                 </a>
@@ -407,6 +412,7 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black">	
                   <div class="box-header with-border" style="font-size: 17px;">
+                  <i class="fa-plus" id="ico2"></i>
                         Dirección de usuario         
                   </div>
                   </a>  
