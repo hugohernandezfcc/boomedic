@@ -314,10 +314,10 @@
             <div class="box-body">
               <div class="box-group" id="accordion">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                <div class="box box-default">
+                <div class="panel box-default">
                   <div class="box-header with-border">
                     <h4 class="box-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">>
                         Información personal
                       </a>
                     </h4>
@@ -385,13 +385,14 @@
                           <div class="row">
                             <div class="col-sm-6" align="left"><b>Ultima modificación:</b></div>
                             <div class="col-sm-6" align="left">{{ $updated_at }}</div>
+                           <br/>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="panel box box-danger">
+                <div class="panel box box-default">
                   <div class="box-header with-border">
                     <h4 class="box-title">
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
@@ -405,7 +406,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="panel box box-success">
+                <div class="panel box-default">
                   <div class="box-header with-border">
                     <h4 class="box-title">
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();">
