@@ -110,6 +110,7 @@ class verifyExpirationController extends Controller
     public function index01(){
 
             $date00 = getdate();
+            $day00 = date("d");
             $month00 = date("n");
             $year00 = date("y");
 
@@ -153,9 +154,9 @@ class verifyExpirationController extends Controller
                     $emailS = new email();
                     $emailS->userId      = $user->id;
                     $emailS->email       = $user->name;
-                    $emailS->date        = $date00;
+                    $emailS->date        = date("y")."-".date("n")."-".date("d");
                     $emailS->subject     = 'Tarjeta próxima a vencer';
-                    $emailS->message     = "Se le notifica que su tarjeta se encuentra próxima a vencer el". $card->month."/".$card->year."cómo método de pago para Boomedic.";
+                    $emailS->message     = "Se le notifica que su tarjeta se encuentra próxima a vencer el ". $card->month."/".$card->year." cómo método de pago para Boomedic";
                     $emailS->save();
                 }
             }
