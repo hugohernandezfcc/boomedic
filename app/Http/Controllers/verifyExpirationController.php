@@ -29,8 +29,8 @@ class verifyExpirationController extends Controller
 
 
         $date00 = getdate();
-            $month00 = $date00[month];
-            $year00 =$date00[year];
+            $month00 = date("n");
+            $year00 = date("y");
 
             $allCards = DB::table('paymentsmethods')->where('month', 1)
                                                 ->where('year', 22)
@@ -145,8 +145,8 @@ class verifyExpirationController extends Controller
     public function index01(){
 
             $date00 = getdate();
-            $month00 = $date00[mon];
-            $year00 = $date00[year];
+            $month00 = date("n");
+            $year00 = date("y");
 
             $allCards = DB::table('paymentsmethods')->whereNotNull('month')
                                                 ->whereNotNull('year')
