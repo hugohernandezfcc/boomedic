@@ -314,14 +314,13 @@
             <div class="box-body">
               <div class="box-group" id="accordion">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                 
                 <div class="panel box box-default">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
                   <div class="box-header with-border">
-                    
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
                         Información personal
-                      </a>
-              
                   </div>
+                  </a>
                   <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="box-body">
                       <br/>
