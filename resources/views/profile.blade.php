@@ -4,6 +4,15 @@
 
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
+    <style type="text/css">
+    	
+    	a:active{
+    		font-family: FontAwesome;
+    		content: "\f068";
+    	}
+
+
+    </style>
 @stop
 
 @section('content')
@@ -326,7 +335,6 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" aria-expanded="true" aria-controls="collapseOne">
                   <div class="box-header with-border" style="font-size: 17px;">
-                  	<span class="glyphicon-minus"></span>
                         Información personal
                   </div>
                   </a>
@@ -402,7 +410,7 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black" aria-expanded="false" aria-controls="collapseTwo">>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black" aria-expanded="false" aria-controls="collapseTwo">
                   <div class="box-header with-border" style="font-size: 17px;">
                   	<i class="fa fa-plus" id="ico2"></i>
                         Familia
