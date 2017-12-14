@@ -32,13 +32,11 @@ class verifyExpirationController extends Controller
             $month00 = $date00[month];
             $year00 =$date00[year];
 
-            $allCards = DB::table('paymentsmethods')->whereNotNull('month')
-                                                ->whereNotNull('year')
-                                                ->where('month', 1)
+            $allCards = DB::table('paymentsmethods')->where('month', 1)
                                                 ->where('year', 22)
                                                 ->get();
 
-            if (empty($allCards)) {
+            /*if (empty($allCards)) {
                 foreach($allCards as $card) {
                     $user = User::find($card->owner);
 
@@ -75,7 +73,7 @@ class verifyExpirationController extends Controller
                     'allCards'     => $allCards,
                     'mode'      => 'listCardsExpired'
                 ]
-            );
+            );*/
     }
 
     /**
