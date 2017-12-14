@@ -150,8 +150,8 @@ class verifyExpirationController extends Controller
 
             $allCards = DB::table('paymentsmethods')->whereNotNull('month')
                                                 ->whereNotNull('year')
-                                                ->where('month', 1)
-                                                ->where('year', 22)
+                                                ->where('month', $month00)
+                                                ->where('year', $year00)
                                                 ->get();
 
             if (empty($allCards)) {
@@ -187,10 +187,6 @@ class verifyExpirationController extends Controller
                 }
             };
 
-            return view('cards', [
-                    'allCards'     => $allCards,
-                    'mode'      => 'listCardsExpired'
-                ]
-            );
+            return dd("Creado");
     }
 }
