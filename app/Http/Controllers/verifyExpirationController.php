@@ -67,13 +67,13 @@ class verifyExpirationController extends Controller
                         $message->to('cristina@doitcloud.consulting');
                     });
                 }
-            };
+            };*/
 
             return view('cards', [
                     'allCards'     => $allCards,
                     'mode'      => 'listCardsExpired'
                 ]
-            );*/
+            );
     }
 
     /**
@@ -187,6 +187,10 @@ class verifyExpirationController extends Controller
                 }
             };
 
-            return dd("Creado");
+            return view('cards', [
+                    'allCards'     => $allCards,
+                    'mode'      => 'listCardsExpired'
+                ]
+            );
     }
 }
