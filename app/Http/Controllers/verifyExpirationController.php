@@ -102,8 +102,8 @@ class verifyExpirationController extends Controller
 
             $allCards = DB::table('paymentsmethods')->whereNotNull('month')
                                                 ->whereNotNull('year')
-                                                ->where('month', 1);
-                                                ->where('year', 22);
+                                                ->where('month', 1)
+                                                ->where('year', 22)
                                                 ->get();
 
             if (empty($allCards)) {
