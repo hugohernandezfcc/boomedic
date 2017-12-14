@@ -324,7 +324,7 @@
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
                  
                 <div class="panel box box-default" style="border-top-color: black;">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" aria-expanded="true" aria-controls="collapseOne">
                   <div class="box-header with-border" style="font-size: 17px;">
                   	<span class="glyphicon-minus"></span>
                         Información personal
@@ -402,7 +402,7 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black" aria-expanded="false" aria-controls="collapseTwo">>
                   <div class="box-header with-border" style="font-size: 17px;">
                   	<i class="fa fa-plus" id="ico2"></i>
                         Familia
@@ -415,7 +415,7 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black">	
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black" aria-expanded="false" aria-controls="collapseThree">	
                   <div class="box-header with-border" style="font-size: 17px;">
                   <i class="fa fa-plus" id="ico2"></i>
                         Dirección de usuario         
