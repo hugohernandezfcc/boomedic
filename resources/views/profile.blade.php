@@ -4,15 +4,7 @@
 
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
-    <style type="text/css">
-    	
-    	a:active{
-    		font-family: FontAwesome;
-    		content: "\f068";
-    	}
 
-
-    </style>
 @stop
 
 @section('content')
@@ -316,7 +308,10 @@
 	    		
 
 	    	@else
-
+	    	<script type="text/javascript">
+	    	if($('#collapseOne').hasClass('collapse') == true)
+	    		document.getElementById('ico').className = 'fa fa-minus';
+	    	</script>
       <div class="row">
         <div class="col-md-12">
           <div class="box box-solid">
@@ -326,12 +321,13 @@
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
                  
                 <div class="panel box box-default" style="border-top-color: black;">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" aria-expanded="true" aria-controls="collapseOne" style="font-family: FontAwesome; content: '\f067';">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" aria-expanded="true" aria-controls="collapseOne">
                   <div class="box-header with-border" style="font-size: 17px;">
+                  <i class="fa fa-plus" id="ico"></i>
                         Información personal
                   </div>
                   </a>
-                  <div id="collapseOne" class="panel-collapse collapse in">
+                  <div id="collapseOne" class="panel-collapse collapse">
 
                     <div class="box-body">
                       <br/>

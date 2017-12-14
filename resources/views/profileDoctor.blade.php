@@ -295,89 +295,126 @@
 
 	    	@else
     			<!-- Custom Tabs -->
-		        <div class="nav-tabs-custom">
-		            <ul class="nav nav-tabs">
-		              	<li class="active"><a href="#tab_1" data-toggle="tab">Información personal</a></li>
-		              	<li><a href="#tab_2" data-toggle="tab">Familia</a></li>
-		              	<li><a href="#tab_3" onclick="initMapAddressUser();" data-toggle="tab">Dirección de usuario</a></li>
-		            </ul>
-		            <div class="tab-content">
-		              	<div class="tab-pane active" id="tab_1">
-		              		<br/>
+  <div class="row">
+        <div class="col-md-12">
+          <div class="box box-solid">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="box-group" id="accordion">
+                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                 
+                <div class="panel box box-default" style="border-top-color: black;">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" aria-expanded="true" aria-controls="collapseOne">
+                  <div class="box-header with-border" style="font-size: 17px;">
+                        Información personal
+                  </div>
+                  </a>
+                  <div id="collapseOne" class="panel-collapse collapse in">
 
-			                <div class="row">
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Corre electrónico:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $email }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Nombre de usuario:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $username }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Edad:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $age }}</div>
-			                		</div>
-			                	</div>
-			                </div>
-			                <br/>
-			                <div class="row">
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Ocupación:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $occupation }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Genero:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $gender }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Escolaridad:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $scholarship }}</div>
-			                		</div>
-			                	</div>
-			                </div>
-			                <br/>
-			                <div class="row">
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Estado civil:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $maritalstatus }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b># Móvil:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $mobile }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Ultima modificación:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $updated_at }}</div>
-			                		</div>
-			                	</div>
-			                </div>
+                    <div class="box-body">
+                      <br/>
 
-
-		              	</div>
-		              	<div class="tab-pane" id="tab_2">
-		                	space..
-		              	</div>
-		              	<div class="tab-pane" id="tab_3" style="height: 250px;">
-		              		<div id="mapAddressUser" ></div>
-		              	</div>
-		            </div>
-		        </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Correo:</b></div>
+                            <div class="col-sm-6" align="left">{{ $email }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Nombre de usuario:</b></div>
+                            <div class="col-sm-6" align="left">{{ $username }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Edad:</b></div>
+                            <div class="col-sm-6" align="left">{{ $age }}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <br/>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Ocupación:</b></div>
+                            <div class="col-sm-6" align="left">{{ $occupation }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Genero:</b></div>
+                            <div class="col-sm-6" align="left">{{ $gender }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Escolaridad:</b></div>
+                            <div class="col-sm-6" align="left">{{ $scholarship }}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <br/>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Estado civil:</b></div>
+                            <div class="col-sm-6" align="left">{{ $maritalstatus }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b># Móvil:</b></div>
+                            <div class="col-sm-6" align="left">{{ $mobile }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="row">
+                            <div class="col-sm-6" align="left"><b>Ultima modificación:</b></div>
+                            <div class="col-sm-6" align="left">{{ $updated_at }}</div>
+                           <br/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel box box-default" style="border-top-color: black;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black" aria-expanded="false" aria-controls="collapseTwo">
+                  <div class="box-header with-border" style="font-size: 17px;">
+                  	<i class="fa fa-plus" id="ico2"></i>
+                        Familia
+                  </div>
+                </a>
+                  <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="box-body">
+                            space..
+                    </div>
+                  </div>
+                </div>
+                <div class="panel box box-default" style="border-top-color: black;">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black" aria-expanded="false" aria-controls="collapseThree">	
+                  <div class="box-header with-border" style="font-size: 17px;">
+                  <i class="fa fa-plus" id="ico2"></i>
+                        Dirección de usuario         
+                  </div>
+                  </a>  
+                  <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="box-body">
+                          <div id="mapAddressUser" ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <!-- /.col -->
+      </div>
     		@endif
 
 
