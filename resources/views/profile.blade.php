@@ -314,10 +314,10 @@
             <div class="box-body">
               <div class="box-group" id="accordion">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                <div class="panel box-default">
+                <div class="panel box box-default">
                   <div class="box-header with-border">
                     <h4 class="box-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black">
                         Información personal
                       </a>
                     </h4>
@@ -395,7 +395,7 @@
                 <div class="panel box box-default">
                   <div class="box-header with-border">
                     <h4 class="box-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black">
                         Familia
                       </a>
                     </h4>
@@ -406,10 +406,10 @@
                     </div>
                   </div>
                 </div>
-                <div class="panel box-default">
+                <div class="panel box box-default">
                   <div class="box-header with-border">
                     <h4 class="box-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black">
                         Dirección de usuario
                       </a>
                     </h4>
