@@ -309,7 +309,7 @@
 
 	    	@else
 	    	<script type="text/javascript">
-	    	if($('#collapseOne').hasClass('collapse') == true)
+	    	if($('#collapseOne').hasClass('in'))
 	    		document.getElementById('ico').className = 'fa fa-minus';
 	    	</script>
       <div class="row">
@@ -327,7 +327,7 @@
                         Información personal
                   </div>
                   </a>
-                  <div id="collapseOne" class="panel-collapse collapse">
+                  <div id="collapseOne" class="panel-collapse collapse in">
 
                     <div class="box-body">
                       <br/>
