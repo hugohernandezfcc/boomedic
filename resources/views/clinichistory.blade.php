@@ -37,12 +37,16 @@
 					        <section>
 					            <p>Wonderful transition effects.</p>
 					        </section>
+					        <h3>Effects1</h3>
+					        <section>
+					            <p>1Wonderful transition effects.</p>
+					        </section>
 					        <h3>Pager</h3>
 					        <section>
 					            <p>The next and previous buttons help you to navigate through your content.</p>
 					        </section>
 					    </div>
-					    
+
 					    <script type="text/javascript">
 						    $("#example-basic").steps({
 						        headerTag: "h3",
