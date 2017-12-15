@@ -14,13 +14,17 @@
 	    color: grey; 
 	    margin-right: 1em; 
 			}
+		a:active::after {
+    		 content: "\f067"; 
+    	}
+    	a:link::after {
+    		 content: "\f067"; 
+    	}
+
 		  .box-header .a.collapsed::after{
 		    /* symbol for "collapsed" panels */
 		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
-		    	a:link, a:active::after {
-    		 content: "\f067"; 
-    	}
 
 
 
