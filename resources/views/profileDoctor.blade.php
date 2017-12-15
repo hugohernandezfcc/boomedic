@@ -3,10 +3,27 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
+    <style type="text/css">
+    .box-header .a:after {
+    /* symbol for "opening" panels */
+    font-family: "FontAwesome";  /* essential for enabling glyphicon */
+    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
+    float: left;        /* adjust as needed */
+    color: grey; 
+    margin-right: 1em;     
+    font-size: 17px;
+
+		}
+		  .box-header .a.collapsed:after{
+		    /* symbol for "collapsed" panels */
+		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
+		}
+    </style>
+
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-    <script type="text/javascript" src="js/cssrefresh.js"></script>
 
 
 
@@ -295,20 +312,22 @@
 
 	    	@else
     			<!-- Custom Tabs -->
-  <div class="row">
+      <div class="row">
         <div class="col-md-12">
           <div class="box box-solid">
             <!-- /.box-header -->
             <div class="box-body">
               <div class="box-group" id="accordion">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                 
+             
                 <div class="panel box box-default" style="border-top-color: black;">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" aria-expanded="true" aria-controls="collapseOne">
-                  <div class="box-header with-border" style="font-size: 17px;">
+                
+                 <div class="box-header with-border"> 
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" aria-expanded="true" aria-controls="collapseOne" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información personal
-                  </div>
                   </a>
+                  	</div>
+                   
                   <div id="collapseOne" class="panel-collapse collapse in">
 
                     <div class="box-body">
@@ -381,9 +400,8 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black" aria-expanded="false" aria-controls="collapseTwo">
-                  <div class="box-header with-border" style="font-size: 17px;">
-                  	<i class="fa fa-plus" id="ico2"></i>
+               <div class="box-header with-border">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" aria-expanded="false" aria-controls="collapseTwo" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Familia
                   </div>
                 </a>
@@ -394,9 +412,8 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black" aria-expanded="false" aria-controls="collapseThree">	
-                  <div class="box-header with-border" style="font-size: 17px;">
-                  <i class="fa fa-plus" id="ico2"></i>
+                	 <div class="box-header with-border">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" aria-expanded="false" aria-controls="collapseThree" style="display:block; height:100%; width:100%;font-size: 17px;">	
                         Dirección de usuario         
                   </div>
                   </a>  

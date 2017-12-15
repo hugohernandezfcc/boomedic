@@ -416,7 +416,7 @@
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" aria-expanded="false" aria-controls="collapseTwo" style="font-size: 17px;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" aria-expanded="false" aria-controls="collapseTwo" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Familia
                   </div>
                 </a>
@@ -428,7 +428,7 @@
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" aria-expanded="false" aria-controls="collapseThree" style="font-size: 17px;">	
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" aria-expanded="false" aria-controls="collapseThree" style="display:block; height:100%; width:100%;font-size: 17px;">	
                         Dirección de usuario         
                   </div>
                   </a>  
