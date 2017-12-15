@@ -18,6 +18,9 @@ class AddingClinicHistoryTable extends Migration
             $table->string('question');
             $table->string('question_id');
             $table->string('answer');
+            $table->string('answer_id');
+            $table->integer('user')->unsigned();
+            $table->foreign('user')->references('id')->on('users');
             $table->timestamps();
         });
     }
