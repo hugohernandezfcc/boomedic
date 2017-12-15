@@ -19,6 +19,10 @@
 		    /* symbol for "collapsed" panels */
 		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
+		.a:active {
+		    /* symbol for "collapsed" panels */
+		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
+		}
     </style>
 @stop
 
