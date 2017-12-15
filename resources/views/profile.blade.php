@@ -63,8 +63,7 @@
 					    $('#modal').modal({ backdrop: 'static' }, 'show');
 					}, 1000);	
 				}
-			$('.collapse').collapse("toggle");
-			$('.collapse').collapse("toggle");	
+
 				    
 	</script>
 
@@ -458,6 +457,8 @@
     		<script type="text/javascript">
 
 			window.onload = function(){
+			$('.collapse').collapse("toggle");
+			$('.collapse').collapse("toggle");	
     				initAutocomplete();
     				@if( empty($status) )
     					initMapAddressUser();
