@@ -13,7 +13,7 @@
 	    color: grey; 
 	    margin-right: 1em; 
 			}
-		  .box-header .a.collapsed::before{
+		  .box-header .a.collapsed::after{
 		    /* symbol for "collapsed" panels */
 		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
