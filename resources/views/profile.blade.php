@@ -6,6 +6,7 @@
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
 
+
 	    .box-header .a::after {
 	   	font-family: "FontAwesome";
 	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
@@ -17,6 +18,9 @@
 		    /* symbol for "collapsed" panels */
 		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
+		    	a:link, a:active::after {
+    		 content: "\f067"; 
+    	}
 
 
 
