@@ -6,18 +6,14 @@
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
 
-	    .box-header .a::after {
-	   	font-family: "FontAwesome";
-	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
-	    float: left;        /* adjust as needed */
-	    color: grey; 
-	    margin-right: 1em; 
-			}
-		  .box-header .a.collapsed::after{
-		    /* symbol for "collapsed" panels */
-		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
-		}
-
+//The accordion is closed
+.accordion-icon:before {
+    content: "\f0d7";
+}
+//The accordion is open
+.active .accordion-icon:before {
+    content: "\f0d8";
+ }
 
 
     </style>
@@ -340,6 +336,7 @@
                 
                  <div class="box-header with-border"> 
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+                  	<span class="fa accordion-icon"></span>
                         Información personal
                   </a>
                   	</div>
