@@ -19,7 +19,7 @@
 		    /* symbol for "collapsed" panels */
 		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
-		.a:active {
+ 		.box-header .a{
 		    /* symbol for "collapsed" panels */
 		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
