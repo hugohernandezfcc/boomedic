@@ -13,6 +13,7 @@
     color: grey; 
     margin-right: 1em;     
     font-size: 17px;
+    display: block;
 		}
 		  .box-header .a.collapsed:after{
 		    /* symbol for "collapsed" panels */
