@@ -6,13 +6,6 @@
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
 
-    	.a::before {
-	   	font-family: "FontAwesome";
-	    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
-	    float: left;        /* adjust as needed */
-	    color: grey; 
-	    margin-right: 1em; 
-			}
 	    .box-header .a::after {
 	   	font-family: "FontAwesome";
 	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
@@ -20,7 +13,7 @@
 	    color: grey; 
 	    margin-right: 1em; 
 			}
-		  .box-header .a.collapsed::after{
+		  .box-header .a.collapsed::before{
 		    /* symbol for "collapsed" panels */
 		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
