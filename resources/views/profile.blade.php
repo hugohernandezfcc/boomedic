@@ -321,7 +321,7 @@
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
              
                 <div class="panel box box-default" style="border-top-color: black;">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" aria-expanded="true" aria-controls="collapseOne" onclick="changeIcon()">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" aria-expanded="true" aria-controls="collapseOne">
                   <div class="box-header with-border" style="font-size: 17px;">
                   <i class="fa fa-minus" id="ico"></i>
                         Información personal
@@ -399,7 +399,7 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black" aria-expanded="false" aria-controls="collapseTwo" onclick="changeIcon()">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black" aria-expanded="false" aria-controls="collapseTwo">
                   <div class="box-header with-border" style="font-size: 17px;">
                   	<i class="fa fa-plus" id="ico2"></i>
                         Familia
@@ -412,7 +412,7 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser(); changeIcon();" class="text-black" aria-expanded="false" aria-controls="collapseThree">	
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black" aria-expanded="false" aria-controls="collapseThree">	
                   <div class="box-header with-border" style="font-size: 17px;">
                   <i class="fa fa-plus" id="ico3"></i>
                         Dirección de usuario         
@@ -583,23 +583,14 @@
     </script>
 
         <script type="text/javascript">
-        function changeIcon() {
-	    	if($('#collapseOne').hasClass('in')){
-	    		document.getElementById('ico').className = 'fa fa-minus';
-	    		document.getElementById('ico2').className = 'fa fa-plus';
-	    		document.getElementById('ico3').className = 'fa fa-plus';
-	    	} 
-	    	if($('#collapseTwo').hasClass('in')){
-	    		document.getElementById('ico2').className = 'fa fa-minus';
-	    		document.getElementById('ico').className = 'fa fa-plus';
-	    		document.getElementById('ico3').className = 'fa fa-plus';
-	    	} 
-	    	if($('#collapseThree').hasClass('in')){
-	    		document.getElementById('ico3').className = 'fa fa-minus';
-	    		document.getElementById('ico2').className = 'fa fa-plus';
-	    		document.getElementById('ico').className = 'fa fa-plus';
-	    	}
-	    }
+
+	    $('#collapseOne').on('show.bs.collapse', function () {
+	    	document.getElementById('ico').className = 'fa fa-minus';
+			})
+	    	    $('#collapseOne').on('hide.bs.collapse', function () {
+	    	document.getElementById('ico').className = 'fa fa-plus';
+			})
+
 	</script>
 
 
