@@ -5,14 +5,14 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
-    	.a .box-header:after {
+    	 .box-header .a:after {
     /* symbol for "opening" panels */
     font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
     content: "\e114";    /* adjust as needed, taken from bootstrap.css */
     float: right;        /* adjust as needed */
     color: grey;         /* adjust as needed */
 		}
-		.a .box-header.collapsed:after {
+		 .box-header .a.collapsed:after {
 		    /* symbol for "collapsed" panels */
 		    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
 		}
@@ -333,8 +333,9 @@
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
              
                 <div class="panel box box-default" style="border-top-color: black;">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" aria-expanded="true" aria-controls="collapseOne">
+                
                   <div class="box-header with-border" style="font-size: 17px;">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" aria-expanded="true" aria-controls="collapseOne">
                   <i class="fa fa-minus" id="ico"></i>
                         Información personal
                   </div>
