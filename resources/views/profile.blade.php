@@ -13,7 +13,7 @@
     color: grey; 
     margin-right: 1em;     
     font-size: 17px;
-    display: block;
+
 		}
 		  .box-header .a.collapsed:after{
 		    /* symbol for "collapsed" panels */
@@ -338,10 +338,8 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 
                  <div class="box-header with-border"> 
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" aria-expanded="true" aria-controls="collapseOne" style="font-size: 17px;">
-                  	<div class="col-sm-11">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" aria-expanded="true" aria-controls="collapseOne" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información personal
-                    </div>
                   </a>
                   	</div>
                    
