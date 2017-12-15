@@ -336,12 +336,13 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 
                   <div class="box-header with-border">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a" aria-expanded="true" aria-controls="collapseOne">
-                  	<div class="col-sm-11">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-grey" aria-expanded="true" aria-controls="collapseOne">
+                  	<div class="col-sm-12">
                         Información personal
                     </div>
+                    </div>
                   </a>
-                   </div>
+                   
                   <div id="collapseOne" class="panel-collapse collapse in">
 
                     <div class="box-body">
