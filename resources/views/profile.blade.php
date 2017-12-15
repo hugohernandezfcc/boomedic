@@ -5,11 +5,7 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
-    	.box-header .a:link::before {
-    	
-			 content: "\f067";
 
-		}
 	    .box-header .a::after {
 	   	font-family: "FontAwesome";
 	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
