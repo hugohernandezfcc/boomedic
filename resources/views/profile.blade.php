@@ -5,7 +5,7 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
-	    .box-header .a:after {
+	    .box-header .a::after {
 	    /* symbol for "opening" panels */
 	    font-family: "FontAwesome";  /* essential for enabling glyphicon */
 	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
@@ -14,7 +14,11 @@
 	    margin-right: 1em;     
 
 			}
-		  .box-header .a.collapsed:after{
+		  .box-header .a.collapsed::after{
+		    /* symbol for "collapsed" panels */
+		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
+		}
+				  .box-header .a.collapsed::before{
 		    /* symbol for "collapsed" panels */
 		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
