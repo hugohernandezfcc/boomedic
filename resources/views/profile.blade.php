@@ -14,12 +14,6 @@
 	    color: grey; 
 	    margin-right: 1em; 
 			}
-		a:active::after {
-    		 content: "\f067"; 
-    	}
-    	a:link::after {
-    		 content: "\f067"; 
-    	}
 
 		  .box-header .a.collapsed::after{
 		    /* symbol for "collapsed" panels */
@@ -457,8 +451,6 @@
     		<script type="text/javascript">
 
 			window.onload = function(){
-			$('.collapse').collapse("toggle");
-			$('.collapse').collapse("toggle");	
     				initAutocomplete();
     				@if( empty($status) )
     					initMapAddressUser();
