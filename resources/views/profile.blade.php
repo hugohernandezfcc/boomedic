@@ -19,11 +19,8 @@
 		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
 		.box-header .a::before{
-		font-family: "FontAwesome";  /* essential for enabling glyphicon */
-	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
-	    float: left;        /* adjust as needed */
-	    color: grey; 
-	    margin-right: 1em; 
+	    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
+
 		}
 
 
