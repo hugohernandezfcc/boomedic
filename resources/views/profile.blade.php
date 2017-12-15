@@ -352,7 +352,7 @@
                   </a>
                   	</div>
                    
-                  <div id="collapseOne" class="panel-collapse collapse in">
+                  <div id="collapseOne" class="panel-collapse collapse">
 
                     <div class="box-body">
                       <br/>
