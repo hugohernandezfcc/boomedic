@@ -5,7 +5,7 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
-    	 .d .a:after {
+    .a:after .box-header{
     /* symbol for "opening" panels */
     font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
     content: "\e114";    /* adjust as needed, taken from bootstrap.css */
@@ -13,7 +13,7 @@
     color: grey;         /* adjust as needed */
     font-size: 17px;
 		}
-		 .d .a.collapsed:after {
+		  .a.collapsed:after .box-header{
 		    /* symbol for "collapsed" panels */
 		    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
 		}
@@ -335,13 +335,13 @@
              
                 <div class="panel box box-default" style="border-top-color: black;">
                 
-                  <div class="box-header with-border">
+                  
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" aria-expanded="true" aria-controls="collapseOne">
-                  	<div class="d col-sm-12">
+                  		<div class="box-header with-border">
                         Información personal
-                    </div>
+                  		</div>
                   </a>
-                  </div>
+
                    
                   <div id="collapseOne" class="panel-collapse collapse in">
 
