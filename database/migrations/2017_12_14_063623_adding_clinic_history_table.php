@@ -15,7 +15,7 @@ class AddingClinicHistoryTable extends Migration
     {
         Schema::create('clinic_history', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('question');
+            $table->string('question'); 
             $table->string('question_id');
             $table->string('answer');
             $table->string('answer_id');
