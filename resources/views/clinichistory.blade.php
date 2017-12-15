@@ -9,6 +9,7 @@
 @section('content')
 	<script type="text/javascript" src="{{asset('jquery_steps/jquery.steps.js')}}"></script>
 	<script type="text/javascript" src="{{asset('jquery_steps/jquery.steps.js')}}"></script>
+	<link rel="stylesheet" type="text/css" href="{{asset('jquery_steps/jquery.steps.css')}}">
 	<div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Historía clínica</h3>
