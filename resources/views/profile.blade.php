@@ -6,13 +6,16 @@
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
 
-	    .box-header .a::after {
+    .box-header::after{
 	   	font-family: "FontAwesome";
-	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
+	    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 	    float: left;        /* adjust as needed */
 	    color: grey; 
 	    margin-right: 1em; 
-	       
+			}
+
+	    .box-header .a::after {
+	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
 
 			}
 		  .box-header .a.collapsed::after{
@@ -341,7 +344,7 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 
                  <div class="box-header with-border"> 
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" aria-expanded="true" aria-controls="collapseOne" style="display:block; height:100%; width:100%;font-size: 17px;">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información personal
                   </a>
                   	</div>
@@ -419,10 +422,10 @@
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" aria-expanded="false" aria-controls="collapseTwo" style="display:block; height:100%; width:100%;font-size: 17px;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Familia
-                  </div>
                 </a>
+                </div>
                   <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="box-body">
                             space..
@@ -431,10 +434,10 @@
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" aria-expanded="false" aria-controls="collapseThree" style="display:block; height:100%; width:100%;font-size: 17px;">	
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
                         Dirección de usuario         
-                  </div>
                   </a>  
+                  </div>
                   <div id="collapseThree" class="panel-collapse collapse">
                     <div class="box-body">
                           <div id="mapAddressUser" ></div>
