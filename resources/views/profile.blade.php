@@ -8,17 +8,13 @@
 
     	.box-header::after {
 	   	font-family: "FontAwesome";
-	    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
+	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
 	    float: left;        /* adjust as needed */
 	    color: grey; 
 	    margin-right: 1em; 
 			}
 
-	    .box-header .a::after {
-	   	
-	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
-			}
-		  .box-header .a.collapsed::after{
+		  .box-header.collapsed::after{
 		    /* symbol for "collapsed" panels */
 		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
