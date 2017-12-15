@@ -5,12 +5,12 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
-    	.box-header .a:active::before {
+    	.box-header .a:link::before {
     	
 			 content: "\f067";
 
 		}
-	    .box-header .a::before {
+	    .box-header .a::after {
 	   	font-family: "FontAwesome";
 	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
 	    float: left;        /* adjust as needed */
@@ -19,7 +19,7 @@
 	       
 
 			}
-		  .box-header .a.collapsed::before{
+		  .box-header .a.collapsed::after{
 		    /* symbol for "collapsed" panels */
 		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
