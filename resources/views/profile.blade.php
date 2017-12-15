@@ -8,7 +8,7 @@
     .box-header .a:after {
     /* symbol for "opening" panels */
     font-family: "FontAwesome";  /* essential for enabling glyphicon */
-    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
+    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
     float: left;        /* adjust as needed */
     color: grey; 
     margin-right: 1em;     
@@ -16,7 +16,7 @@
 		}
 		  .box-header .a.collapsed:after{
 		    /* symbol for "collapsed" panels */
-		    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
+		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 		}
     </style>
 @stop
@@ -417,7 +417,7 @@
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" aria-expanded="false" aria-controls="collapseTwo" style="font-size: 17px;>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" aria-expanded="false" aria-controls="collapseTwo" style="font-size: 17px;">
                         Familia
                   </div>
                 </a>
@@ -429,8 +429,7 @@
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" aria-expanded="false" aria-controls="collapseThree" style="font-size: 17px;>	
-                 
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" aria-expanded="false" aria-controls="collapseThree" style="font-size: 17px;">	
                         Dirección de usuario         
                   </div>
                   </a>  
