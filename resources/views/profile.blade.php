@@ -5,7 +5,7 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
-    	.box-header .a:active {
+    	.box-header .a:active::before {
     	
 			 content: "\f067";
 
