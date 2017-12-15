@@ -7,14 +7,14 @@
     <style type="text/css">
     .box-header .a:after {
     /* symbol for "opening" panels */
-    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
-    content: "\e433";    /* adjust as needed, taken from bootstrap.css */
+    font-family: "FontAwesome";  /* essential for enabling glyphicon */
+    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
     float: left;        /* adjust as needed */      
     font-size: 17px;
 		}
 		  .box-header .a.collapsed:after{
 		    /* symbol for "collapsed" panels */
-		    content: "\e434";    /* adjust as needed, taken from bootstrap.css */
+		    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
 		}
     </style>
 @stop
