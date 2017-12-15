@@ -27,7 +27,24 @@
                   <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="box-body">
                       
-
+                    	<script type="text/javascript">
+						    $("#example-basic").steps({
+						        headerTag: "h3",
+						        bodyTag: "section",
+						        transitionEffect: "slideLeft",
+						        autoFocus: true
+						     //    labels: {
+							    //     cancel: "Cancelar",
+							    //     current: "Paso actual:",
+							    //     pagination: "Paginación",
+							    //     finish: "Final",
+							    //     next: "Siguiente",
+							    //     previous: "Regresar",
+							    //     loading: "Cargando ..."
+							    // }
+						    });
+						</script>
+						 
 
 					    <div id="example-basic">
 					        <h3>Keyboard</h3>
@@ -93,23 +110,6 @@
 		</div>	  	
 	</div>
 
-	<script type="text/javascript">
-	    $("#example-basic").steps({
-	        headerTag: "h3",
-	        bodyTag: "section",
-	        transitionEffect: "slideLeft",
-	        autoFocus: true,
-	        labels: {
-		        cancel: "Cancelar",
-		        current: "Paso actual:",
-		        pagination: "Paginación",
-		        finish: "Final",
-		        next: "Siguiente",
-		        previous: "Regresar",
-		        loading: "Cargando ..."
-		    }
-	    });
-	</script>
-	 
+	
 
 @stop
