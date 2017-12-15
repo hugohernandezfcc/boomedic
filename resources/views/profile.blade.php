@@ -63,7 +63,8 @@
 					    $('#modal').modal({ backdrop: 'static' }, 'show');
 					}, 1000);	
 				}
-				
+			$('.collapse').collapse("toggle");
+			$('.collapse').collapse("toggle");	
 				    
 	</script>
 
@@ -352,7 +353,7 @@
                   </a>
                   	</div>
                    
-                  <div id="collapseOne" class="panel-collapse collapse">
+                  <div id="collapseOne" class="panel-collapse collapse in">
 
                     <div class="box-body">
                       <br/>
