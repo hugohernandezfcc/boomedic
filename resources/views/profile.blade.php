@@ -451,7 +451,8 @@
     		<script type="text/javascript">
 
 			window.onload = function(){
-			$('#collapseOne').collapse("toggle");
+			$('.collapse').collapse("toggle");
+			$('.collapse').collapse("toggle");
 	
     				initAutocomplete();
     				@if( empty($status) )
