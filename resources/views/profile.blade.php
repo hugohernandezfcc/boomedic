@@ -5,7 +5,7 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
-    	 .box-header .a:after {
+    	 .d .a:after {
     /* symbol for "opening" panels */
     font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
     content: "\e114";    /* adjust as needed, taken from bootstrap.css */
@@ -13,7 +13,7 @@
     color: grey;         /* adjust as needed */
     font-size: 17px;
 		}
-		 .box-header .a.collapsed:after {
+		 .d .a.collapsed:after {
 		    /* symbol for "collapsed" panels */
 		    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
 		}
@@ -336,12 +336,12 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 
                   <div class="box-header with-border">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-grey" aria-expanded="true" aria-controls="collapseOne">
-                  	<div class="col-sm-12">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" aria-expanded="true" aria-controls="collapseOne">
+                  	<div class="d col-sm-12">
                         Información personal
                     </div>
-                    </div>
                   </a>
+                  </div>
                    
                   <div id="collapseOne" class="panel-collapse collapse in">
 
@@ -416,7 +416,7 @@
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a" aria-expanded="false" aria-controls="collapseTwo">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" aria-expanded="false" aria-controls="collapseTwo">
                         Familia
                   </div>
                 </a>
@@ -428,7 +428,7 @@
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a" aria-expanded="false" aria-controls="collapseThree">	
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" aria-expanded="false" aria-controls="collapseThree">	
                  
                         Dirección de usuario         
                   </div>
