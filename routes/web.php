@@ -22,11 +22,6 @@ Route::get('/medicalRegister', function () {
 });
 
 
-
-/**
- * Rutas con autorización de acceso
- */
-
 Auth::routes();
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
