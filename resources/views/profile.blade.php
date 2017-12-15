@@ -6,7 +6,7 @@
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
 
-    	.a::after {
+    	.a::before {
 	   	font-family: "FontAwesome";
 	    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
 	    float: left;        /* adjust as needed */
@@ -375,8 +375,6 @@
                             <div class="col-sm-8" align="left">{{ $age }}</div>
                           </div>
                         </div>
-                     
-                      <br/>
                         <div class="col-sm-12">
                           <div class="row">
                             <div class="col-sm-4" align="left"><b>Ocupación:</b></div>
@@ -395,7 +393,6 @@
                             <div class="col-sm-8" align="left">{{ $scholarship }}</div>
                           </div>
                         </div>
-                      <br/>
                         <div class="col-sm-12">
                           <div class="row">
                             <div class="col-sm-4" align="left"><b>Estado civil:</b></div>
