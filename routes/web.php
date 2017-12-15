@@ -21,6 +21,10 @@ Route::get('/medicalRegister', function () {
     return view('auth.medicalRegister');
 });
 
+Route::get('/clinichistory', function () {
+    return view('clinichistory');
+});
+
 
 Auth::routes();
 
