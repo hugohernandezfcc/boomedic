@@ -9,7 +9,7 @@
     /* symbol for "opening" panels */
     font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
     content: "\e114";    /* adjust as needed, taken from bootstrap.css */
-    float: right;        /* adjust as needed */
+    float: left;        /* adjust as needed */
     color: grey;         /* adjust as needed */
 		}
 		 .box-header .a.collapsed:after {
@@ -336,7 +336,6 @@
                 
                   <div class="box-header with-border" style="font-size: 17px;">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" aria-expanded="true" aria-controls="collapseOne">
-                  <i class="fa fa-minus" id="ico"></i>
                         Información personal
                   </div>
                   </a>
@@ -412,9 +411,8 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black" aria-expanded="false" aria-controls="collapseTwo">
-                  <div class="box-header with-border" style="font-size: 17px;">
-                  	<i class="fa fa-plus" id="ico2"></i>
+               <div class="box-header with-border" style="font-size: 17px;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" aria-expanded="false" aria-controls="collapseTwo">
                         Familia
                   </div>
                 </a>
@@ -425,9 +423,9 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="text-black" aria-expanded="false" aria-controls="collapseThree">	
-                  <div class="box-header with-border" style="font-size: 17px;">
-                  <i class="fa fa-plus" id="ico3"></i>
+                	 <div class="box-header with-border" style="font-size: 17px;">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" aria-expanded="false" aria-controls="collapseThree">	
+                 
                         Dirección de usuario         
                   </div>
                   </a>  
