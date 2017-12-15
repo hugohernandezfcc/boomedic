@@ -8,7 +8,6 @@
 
 @section('content')
 
-	@include('headerprofile')
 
 	hugo 
 
