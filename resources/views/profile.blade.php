@@ -451,6 +451,8 @@
     		<script type="text/javascript">
 
 			window.onload = function(){
+			$('#collapseOne').collapse("toggle");
+	
     				initAutocomplete();
     				@if( empty($status) )
     					initMapAddressUser();
