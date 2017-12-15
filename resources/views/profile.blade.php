@@ -11,6 +11,7 @@
     content: "\e114";    /* adjust as needed, taken from bootstrap.css */
     float: left;        /* adjust as needed */
     color: grey;         /* adjust as needed */
+    font-size: 17px;
 		}
 		 .box-header .a.collapsed:after {
 		    /* symbol for "collapsed" panels */
@@ -334,11 +335,13 @@
              
                 <div class="panel box box-default" style="border-top-color: black;">
                 
-                  <div class="box-header with-border" style="font-size: 17px;">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" aria-expanded="true" aria-controls="collapseOne">
+                  <div class="box-header with-border">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a" aria-expanded="true" aria-controls="collapseOne">
+                  	<div class="col-sm-11">
                         Información personal
-                  </div>
+                    </div>
                   </a>
+                   </div>
                   <div id="collapseOne" class="panel-collapse collapse in">
 
                     <div class="box-body">
@@ -411,8 +414,8 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
-               <div class="box-header with-border" style="font-size: 17px;">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" aria-expanded="false" aria-controls="collapseTwo">
+               <div class="box-header with-border">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a" aria-expanded="false" aria-controls="collapseTwo">
                         Familia
                   </div>
                 </a>
@@ -423,8 +426,8 @@
                   </div>
                 </div>
                 <div class="panel box box-default" style="border-top-color: black;">
-                	 <div class="box-header with-border" style="font-size: 17px;">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" aria-expanded="false" aria-controls="collapseThree">	
+                	 <div class="box-header with-border">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a" aria-expanded="false" aria-controls="collapseThree">	
                  
                         Dirección de usuario         
                   </div>
