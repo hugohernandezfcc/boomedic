@@ -8,14 +8,13 @@
     .box-header .a:after {
     /* symbol for "opening" panels */
     font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
-    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
-    float: left;        /* adjust as needed */
-    color: grey;         /* adjust as needed */
+    content: "\e433";    /* adjust as needed, taken from bootstrap.css */
+    float: left;        /* adjust as needed */      
     font-size: 17px;
 		}
 		  .box-header .a.collapsed:after{
 		    /* symbol for "collapsed" panels */
-		    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+		    content: "\e434";    /* adjust as needed, taken from bootstrap.css */
 		}
     </style>
 @stop
