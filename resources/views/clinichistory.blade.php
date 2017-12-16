@@ -94,9 +94,9 @@
 							        cancel: "Cancelar",
 							        current: "Paso actual:",
 							        pagination: "Paginación",
-							        finish: "Final",
-							        next: "Siguiente <i class='fa fa-toggle-right'></i>",
-							        previous: "Regresar",
+							        finish: "Final  &nbsp; <i class='fa fa-check-circle-o'></i>",
+							        next: "Siguiente &nbsp; <i class='fa fa-chevron-right'></i>",
+							        previous: "Regresar &nbsp; <i class='fa fa-chevron-left'></i>",
 							        loading: "Cargando ..."
 							    }
 						    });
