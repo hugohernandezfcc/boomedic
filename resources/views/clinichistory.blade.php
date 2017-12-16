@@ -95,7 +95,7 @@
 							        current: "Paso actual:",
 							        pagination: "Paginación",
 							        finish: "Final",
-							        next: "Siguiente",
+							        next: "Siguiente <i class='fa fa-toggle-right'></i>",
 							        previous: "Regresar",
 							        loading: "Cargando ..."
 							    }
