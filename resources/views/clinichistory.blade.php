@@ -10,6 +10,29 @@
 	<script type="text/javascript" src="{{asset('jquery_steps/jquery.steps.js')}}"></script>
 	<script type="text/javascript" src="{{asset('jquery_steps/jquery.steps.js')}}"></script>
 	<link rel="stylesheet" type="text/css" href="{{asset('jquery_steps/jquery.steps.css')}}">
+
+	<style type="text/css">
+		.wizard > .steps a, .wizard > .steps a:hover, .wizard > .steps a:active {
+
+		    display: block;
+		    width: auto;
+		    margin: 0 .5em .5em;
+		    padding: 0.2em 0.2em;
+		    text-decoration: none;
+		    -webkit-border-radius: 5px;
+		    -moz-border-radius: 5px;
+		    border-radius: 5px;
+
+		}
+
+		.wizard > .steps .current a, .wizard > .steps .current a:hover, .wizard > .steps .current a:active {
+		    background: #565555;
+		    color: #fff;
+		    cursor: default;
+		}
+
+	</style>
+
 	<div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Historía clínica</h3>
