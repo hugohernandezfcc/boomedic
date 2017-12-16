@@ -31,6 +31,19 @@
 		    cursor: default;
 		}
 
+		.wizard > .actions a, .wizard > .actions a:hover, .wizard > .actions a:active {
+
+		    color: #ffffff; 
+            background-color: #000000; 
+            border-color: #555; 
+            border-radius: 0;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+			border-width: 1px;
+
+		}
+
 	</style>
 
 	<div class="box">
