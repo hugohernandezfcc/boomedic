@@ -452,7 +452,7 @@
 
 			window.onload = function(){
 			$('.collapse').collapse("toggle");
-			$('.collapse').collapse("toggle");
+			$('.collapse').collapse("hide");
 	
     				initAutocomplete();
     				@if( empty($status) )
