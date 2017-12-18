@@ -5,25 +5,24 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
-
-
-
-		 .box-header > a:before {
+ @import
+.panel-title > a:before {
     float: left !important;
     font-family: FontAwesome;
     content:"\f068";
     padding-left: 5px;
-		}
-		 .box-header > a.collapsed:before {
+    color: gray;
+    margin-right: 1em; 
+}
+.panel-title > a.collapsed:before {
 		    float: left !important;
 		    content:"\f067";
-		}
-		 .box-header > a:hover, 
-		 .box-header > a:active, 
-		 .box-header > a:focus  {
-		    text-decoration:none;
-		}
-
+}
+.panel-title > a:hover, 
+.panel-title > a:active, 
+.panel-title > a:focus  {
+    text-decoration:none;
+}
 
 
     </style>
@@ -345,9 +344,11 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 
                  <div class="box-header with-border"> 
+                 	<h4 class="panel-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información personal
                   </a>
+              </h4>
                   	</div>
                    
                   <div id="collapseOne" class="panel-collapse collapse in">
@@ -416,9 +417,11 @@
                 <br/>
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
+               	<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Familia
                 </a>
+            </h4>
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="box-body">
@@ -429,9 +432,11 @@
                 <br/>
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
+                	 	<h4 class="panel-title">
                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
                         Dirección de usuario         
-                  </a>  
+                  </a> 
+                  </h4> 
                   </div>
                   <div id="collapseThree" class="panel-collapse collapse">
                     <div class="box-body">
