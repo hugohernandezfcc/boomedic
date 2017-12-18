@@ -25,7 +25,7 @@ class SendEmails extends Command
      *
      * @var string
      */
-    protected $description = 'Send an email to the user when his tarjet is next to expired';
+    protected $description = 'Send an email to the user when its card is next to expire';
 
     /**
      * Create a new command instance.
