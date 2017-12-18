@@ -4,6 +4,13 @@ namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
+use App\Jobs\Job;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\User;
+use App\PaymentMethod;
+use App\email;
+use Mail;
 
 class SendReminderEmail
 {
