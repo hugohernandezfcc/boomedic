@@ -13,6 +13,9 @@
 		    padding-left: 5px;
 		    color: gray;
 		    margin-right: 1em; 
+		    display:block; 
+		    height:100%; width:100%;
+		    font-size: 17px;"
 		}
 		.panel-title > a.collapsed:before {
 				    float: left !important;
@@ -345,7 +348,7 @@
                 
                  <div class="box-header with-border"> 
                  	<h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         Información personal
                   </a>
               </h4>
@@ -418,7 +421,7 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
                	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         Familia
                 </a>
             </h4>
@@ -433,7 +436,7 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree">	
                         Dirección de usuario         
                   </a> 
                   </h4> 
