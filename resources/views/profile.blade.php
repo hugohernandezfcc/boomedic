@@ -17,7 +17,7 @@
 		 .box-header > a.collapsed:before {
 		    float: left !important;
 		    content:"\f067";
-		}left
+		}
 		 .box-header > a:hover, 
 		 .box-header > a:active, 
 		 .box-header > a:focus  {
