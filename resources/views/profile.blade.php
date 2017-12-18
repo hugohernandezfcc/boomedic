@@ -5,7 +5,7 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
- @import
+ 
 .panel-title > a:before {
     float: left !important;
     font-family: FontAwesome;
