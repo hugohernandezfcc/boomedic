@@ -15,7 +15,7 @@
     padding-left: 5px;
 		}
 		 .box-header > a.collapsed:before {
-		    float: right !important;
+		    float: left !important;
 		    content:"\f067";
 		}left
 		 .box-header > a:hover, 
