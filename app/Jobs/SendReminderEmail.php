@@ -12,9 +12,9 @@ use App\PaymentMethod;
 use App\email;
 use Mail;
 
-class SendReminderEmail
+class SendReminderEmail extends Job
 {
-    use Dispatchable, Queueable;
+    //use Dispatchable, Queueable;
 
     /**
      * Create a new job instance.

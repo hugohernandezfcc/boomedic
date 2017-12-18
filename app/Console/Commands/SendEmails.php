@@ -4,6 +4,13 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\User;
+use App\PaymentMethod;
+use App\email;
+use Mail;
+
 class SendEmails extends Command
 {
     /**
@@ -18,7 +25,7 @@ class SendEmails extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Send an email to the user when his tarjet is next to expired';
 
     /**
      * Create a new command instance.
@@ -37,6 +44,47 @@ class SendEmails extends Command
      */
     public function handle()
     {
-        //
+        $date00 = getdate();
+        $month00 = $date00[month];
+        $year00 =$date00[year];
+
+        $allCards = DB::table('paymentsmethods')->whereNotNull('month')
+                                            ->whereNotNull('year')
+                                            ->where('month', $month00)
+                                            ->where('year', $year00)
+                                            ->get();
+
+        if (empty($allCards)) {
+            foreach($allCards as $card) {
+                $user = User::find($card->owner);
+
+                $data = [
+                    'name'     => $user->name,
+                    'email'    => $user->email,
+                    'age'     => $user->age,                 
+                    'gender'    => $user->gender,
+                    'occupation'=> $user->occupation,
+                    'country'   => $user->country,    
+                    'state'     => $user->state,                    
+                    'delegation'    => $user->delegation,               
+                    'colony'    => $user->colony,                   
+                    'street'    => $user->street,                   
+                    'mobile'     => $user->mobile,
+                    'username'  => $user->username,                 
+                    'firstname' => $user->firstname,                
+                    'lastname'  => $user->lastname,                
+                    'streetnumber'  => $user->streetnumber,           
+                    'interiornumber'    => $user->interiornumber,       
+                    'postalcode'    => $user->postalcode,
+                    'dateExpM'   =>  $card->month,
+                    'dateExpY'   =>  $card->year
+                ];
+
+                Mail::send('emails.card', $data, function ($message) {
+                    $message->subject('Tarjeta próxima a vencer.');
+                    $message->to('cristina@doitcloud.consulting');
+                });
+            }
+        }
     }
 }
