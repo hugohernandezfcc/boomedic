@@ -33,7 +33,6 @@ class SendReminderEmail
      */
     public function handle()
     {
-        $schedule->call(function () {
             $date00 = getdate();
             $month00 = $date00[month];
             $year00 =$date00[year];
@@ -76,6 +75,5 @@ class SendReminderEmail
                     });
                 }
             }
-        });
     }
 }
