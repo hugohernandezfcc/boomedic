@@ -57,43 +57,49 @@ class SendEmails extends Command
 
         if (count($allCards) >0 ) {
             foreach($allCards as $card) {
-                $user = User::find($card->owner);
+                if($card->notified == FALSE){
+                    $user = User::find($card->owner);
 
-                $data = [
-                    'name'     => $user->name,
-                    'email'    => $user->email,
-                    'age'     => $user->age,                 
-                    'gender'    => $user->gender,
-                    'occupation'=> $user->occupation,
-                    'country'   => $user->country,    
-                    'state'     => $user->state,                    
-                    'delegation'    => $user->delegation,               
-                    'colony'    => $user->colony,                   
-                    'street'    => $user->street,                   
-                    'mobile'     => $user->mobile,
-                    'username'  => $user->username,                 
-                    'firstname' => $user->firstname,                
-                    'lastname'  => $user->lastname,                
-                    'streetnumber'  => $user->streetnumber,           
-                    'interiornumber'    => $user->interiornumber,       
-                    'postalcode'    => $user->postalcode,
-                    'dateExpM'   =>  $card->month,
-                    'dateExpY'   =>  $card->year
-                ];
+                    $data = [
+                        'name'     => $user->name,
+                        'email'    => $user->email,
+                        'age'     => $user->age,                 
+                        'gender'    => $user->gender,
+                        'occupation'=> $user->occupation,
+                        'country'   => $user->country,    
+                        'state'     => $user->state,                    
+                        'delegation'    => $user->delegation,               
+                        'colony'    => $user->colony,                   
+                        'street'    => $user->street,                   
+                        'mobile'     => $user->mobile,
+                        'username'  => $user->username,                 
+                        'firstname' => $user->firstname,                
+                        'lastname'  => $user->lastname,                
+                        'streetnumber'  => $user->streetnumber,           
+                        'interiornumber'    => $user->interiornumber,       
+                        'postalcode'    => $user->postalcode,
+                        'dateExpM'   =>  $card->month,
+                        'dateExpY'   =>  $card->year
+                    ];
 
-                Mail::send('emails.card', $data, function ($message) {
-                    $message->subject('Tarjeta próxima a vencer');
-                    $message->to('cristina@doitcloud.consulting');
-                });
+                    Mail::send('emails.card', $data, function ($message) {
+                        $message->subject('Tarjeta próxima a vencer');
+                        $message->to('cristina@doitcloud.consulting');
+                    });
 
-                $emailS = new email();
-                $emailS->userId      = $user->id;
-                $emailS->email       = $user->email;
-                $emailS->recipient   = $user->name;
-                $emailS->date        = date("Y")."-".date("n")."-".date("d");
-                $emailS->subject     = 'Tarjeta próxima a vencer';
-                $emailS->message     = "Se le notifica que su tarjeta se encuentra próxima a vencer el ". $card->month."/".$card->year." cómo método de pago para Boomedic";
-                $emailS->save();
+                    $emailS = new email();
+                    $emailS->userId      = $user->id;
+                    $emailS->email       = $user->email;
+                    $emailS->recipient   = $user->name;
+                    $emailS->date        = date("Y")."-".date("n")."-".date("d");
+                    $emailS->subject     = 'Tarjeta próxima a vencer';
+                    $emailS->message     = "Se le notifica que su tarjeta se encuentra próxima a vencer el ". $card->month."/".$card->year." cómo método de pago para Boomedic";
+                    $emailS->save();
+                    
+                    $card01 = PaymentMethod::find($card->id);
+                    $card01->notified = TRUE;
+                    $card01->save();
+                }
             }
         }
 
