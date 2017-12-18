@@ -57,7 +57,7 @@ class SendEmails extends Command
 
         if (count($allCards) >0 ) {
             foreach($allCards as $card) {
-                if($card->notified == FALSE){
+                if($card->notified === FALSE){
                     $user = User::find($card->owner);
 
                     $data = [
