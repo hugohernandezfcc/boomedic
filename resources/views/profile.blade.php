@@ -7,17 +7,21 @@
     <style type="text/css">
 
 
-	    .box-header .a::after {
-	   	font-family: "FontAwesome";
-	    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
-	    float: left;        /* adjust as needed */
-	    color: grey; 
-	    margin-right: 1em; 
-			}
 
-		  .box-header .a.collapsed::after{
-		    /* symbol for "collapsed" panels */
-		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
+		 .box-header > a:before {
+    float: left !important;
+    font-family: FontAwesome;
+    content:"\f068";
+    padding-left: 5px;
+		}
+		 .box-header > a.collapsed:before {
+		    float: right !important;
+		    content:"\f067";
+		}left
+		 .box-header > a:hover, 
+		 .box-header > a:active, 
+		 .box-header > a:focus  {
+		    text-decoration:none;
 		}
 
 
