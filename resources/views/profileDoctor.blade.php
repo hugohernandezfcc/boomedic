@@ -4,19 +4,22 @@
 
 @section('content_header')
     <style type="text/css">
-    .box-header .a:after {
-    /* symbol for "opening" panels */
-    font-family: "FontAwesome";  /* essential for enabling glyphicon */
-    content: "\f068";    /* adjust as needed, taken from bootstrap.css */
-    float: left;        /* adjust as needed */
-    color: grey; 
-    margin-right: 1em;     
-    font-size: 17px;
-
+    	.panel-title > a:hover, 
+		.panel-title > a:active, 
+		.panel-title > a:focus  {
+		    text-decoration:none;
 		}
-		  .box-header .a.collapsed:after{
-		    /* symbol for "collapsed" panels */
-		    content: "\f067";    /* adjust as needed, taken from bootstrap.css */
+		.panel-title > a.collapsed:before {
+		float: left !important;
+		content:"\f067";
+		}
+		.panel-title > a:before {
+		    float: left !important;
+		    font-family: FontAwesome;
+		    content:"\f068";
+		    padding-left: 5px;
+		    color: gray;
+		    margin-right: 1em; 
 		}
     </style>
 
@@ -312,112 +315,112 @@
 
 	    	@else
     			<!-- Custom Tabs -->
-      <div class="row">
+     <div class="row">
         <div class="col-md-12">
           <div class="box box-solid">
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="box-group" id="accordion">
+              <div class="box-group" id="accordion" aria-multiselectable="true">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
              
                 <div class="panel box box-default" style="border-top-color: black;">
                 
                  <div class="box-header with-border"> 
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="a text-black" aria-expanded="true" aria-controls="collapseOne" style="display:block; height:100%; width:100%;font-size: 17px;">
+                 	<h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información personal
                   </a>
+              </h4>
                   	</div>
                    
-                  <div id="collapseOne" class="panel-collapse collapse in">
+                  <div id="collapseOne" class="panel-collapse collapse in" aria-labelledby="headingOne">
 
                     <div class="box-body">
                       <br/>
 
-                      <div class="row">
-                        <div class="col-sm-4">
+                      
+                        <div class="col-sm-12">
                           <div class="row">
                             <div class="col-sm-4" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-6" align="left">{{ $email }}</div>
+                            <div class="col-sm-8" align="left">{{ $email }}</div>
                           </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                           <div class="row">
-                            <div class="col-sm-6" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-6" align="left">{{ $username }}</div>
+                            <div class="col-sm-4" align="left"><b>Nombre de usuario:</b></div>
+                            <div class="col-sm-8" align="left">{{ $username }}</div>
                           </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                           <div class="row">
-                            <div class="col-sm-6" align="left"><b>Edad:</b></div>
-                            <div class="col-sm-6" align="left">{{ $age }}</div>
+                            <div class="col-sm-4" align="left"><b>Edad:</b></div>
+                            <div class="col-sm-8" align="left">{{ $age }}</div>
                           </div>
                         </div>
-                      </div>
-                      <br/>
-                      <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                           <div class="row">
-                            <div class="col-sm-6" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-6" align="left">{{ $occupation }}</div>
+                            <div class="col-sm-4" align="left"><b>Ocupación:</b></div>
+                            <div class="col-sm-8" align="left">{{ $occupation }}</div>
                           </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                           <div class="row">
-                            <div class="col-sm-6" align="left"><b>Genero:</b></div>
-                            <div class="col-sm-6" align="left">{{ $gender }}</div>
+                            <div class="col-sm-4" align="left"><b>Genero:</b></div>
+                            <div class="col-sm-8" align="left">{{ $gender }}</div>
                           </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                           <div class="row">
-                            <div class="col-sm-6" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-6" align="left">{{ $scholarship }}</div>
+                            <div class="col-sm-4" align="left"><b>Escolaridad:</b></div>
+                            <div class="col-sm-8" align="left">{{ $scholarship }}</div>
                           </div>
                         </div>
-                      </div>
-                      <br/>
-                      <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                           <div class="row">
-                            <div class="col-sm-6" align="left"><b>Estado civil:</b></div>
-                            <div class="col-sm-6" align="left">{{ $maritalstatus }}</div>
+                            <div class="col-sm-4" align="left"><b>Estado civil:</b></div>
+                            <div class="col-sm-8" align="left">{{ $maritalstatus }}</div>
                           </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                           <div class="row">
-                            <div class="col-sm-6" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-6" align="left">{{ $mobile }}</div>
+                            <div class="col-sm-4" align="left"><b># Móvil:</b></div>
+                            <div class="col-sm-8" align="left">{{ $mobile }}</div>
                           </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                           <div class="row">
-                            <div class="col-sm-6" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-6" align="left">{{ $updated_at }}</div>
-                           <br/>
+                            <div class="col-sm-4" align="left"><b>Ultima modificación:</b></div>
+                            <div class="col-sm-8" align="left">{{ $updated_at }}</div>
                           </div>
                         </div>
-                      </div>
                     </div>
                   </div>
                 </div>
+                <br/>
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" aria-expanded="false" aria-controls="collapseTwo" style="display:block; height:100%; width:100%;font-size: 17px;">
+               	<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Familia
-                  </div>
                 </a>
-                  <div id="collapseTwo" class="panel-collapse collapse">
+            </h4>
+                </div>
+                  <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
                     <div class="box-body">
                             space..
                     </div>
                   </div>
                 </div>
+                <br/>
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" aria-expanded="false" aria-controls="collapseThree" style="display:block; height:100%; width:100%;font-size: 17px;">	
+                	 	<h4 class="panel-title">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
                         Dirección de usuario         
+                  </a> 
+                  </h4> 
                   </div>
-                  </a>  
-                  <div id="collapseThree" class="panel-collapse collapse">
+                  <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
                     <div class="box-body">
                           <div id="mapAddressUser" ></div>
                     </div>
@@ -443,8 +446,9 @@
 
 
     			window.onload = function(){
+    			$('#collapseTwo').collapse("toggle");
+				$('#collapseThree').collapse("toggle");
     				initAutocomplete();
-
     				@if( empty($status) )
     					initMapAddressUser();
 					@endif
