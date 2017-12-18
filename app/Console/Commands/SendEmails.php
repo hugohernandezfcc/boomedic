@@ -45,16 +45,17 @@ class SendEmails extends Command
     public function handle()
     {
         $date00 = getdate();
-        $month00 = $date00[month];
-        $year00 =$date00[year];
+        $day00 = date("d");
+        $month00 = date("n");
+        $year00 = date("y");
 
-        $allCards = DB::table('paymentsmethods')->whereNotNull('month')
-                                            ->whereNotNull('year')
-                                            ->where('month', $month00)
+        /*return dd($month00 . $year00);*/
+
+        $allCards = DB::table('paymentsmethods')->where('month', $month00)
                                             ->where('year', $year00)
                                             ->get();
 
-        if (empty($allCards)) {
+        if (count($allCards) >0 ) {
             foreach($allCards as $card) {
                 $user = User::find($card->owner);
 
@@ -81,10 +82,25 @@ class SendEmails extends Command
                 ];
 
                 Mail::send('emails.card', $data, function ($message) {
-                    $message->subject('Tarjeta próxima a vencer.');
+                    $message->subject('Tarjeta próxima a vencer');
                     $message->to('cristina@doitcloud.consulting');
                 });
+
+                $emailS = new email();
+                $emailS->userId      = $user->id;
+                $emailS->email       = $user->email;
+                $emailS->recipient   = $user->name;
+                $emailS->date        = date("Y")."-".date("n")."-".date("d");
+                $emailS->subject     = 'Tarjeta próxima a vencer';
+                $emailS->message     = "Se le notifica que su tarjeta se encuentra próxima a vencer el ". $card->month."/".$card->year." cómo método de pago para Boomedic";
+                $emailS->save();
             }
         }
+
+        /*return view('cards', [
+                'allCards'     => $allCards,
+                'mode'      => 'listCardsExpired'
+            ]
+        );*/
     }
 }
