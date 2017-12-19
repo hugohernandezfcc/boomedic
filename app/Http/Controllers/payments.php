@@ -23,6 +23,7 @@ use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 use config;
+use mail;
 
 
 class payments extends Controller
@@ -398,6 +399,7 @@ class payments extends Controller
                                     'message' => 'Procesado su pago de paypal, Correo: ' .$result->getPayer()->getPayerInfo()->getEmail().', Id de transacción: '. $payment_id, 
                                     'success' => 'success'
                                 );
+                              Mail::to('rebbeca.goncalves@doitcloud.consulting')->send('prueba');
                               return redirect('payment/index')->with($notification);
                             }
                             
