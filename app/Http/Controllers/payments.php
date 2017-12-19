@@ -116,6 +116,7 @@ class payments extends Controller
         $pmethods->cardnumber    = $request->cardnumber;
         $pmethods->bank          = $request->bank;
         $pmethods->credit_debit  = $request->CreDeb;
+        $pmethods->notified      = 'false';
         $pmethods->owner         = Auth::id();
         }
     
