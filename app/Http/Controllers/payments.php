@@ -257,7 +257,7 @@ class payments extends Controller
 
              Mail::send('emails.transaction', $data, function ($message) {
                         $message->subject('Transacción de pago en Boomedic');
-                        $message->to('rebbeca.goncalves@doitcloud.consulting');
+                        $message->to($user->email);
                     });
             return redirect('payment/index')->with($notification);
          }
@@ -402,7 +402,7 @@ class payments extends Controller
                                 $pmethods->save();
 
                               }
-
+                               $user = User::find(Auth::id());
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
@@ -418,6 +418,20 @@ class payments extends Controller
                                     'success' => 'success'
                                 );
 
+                                $data = [
+                                'name'     => $user->name,
+                                'email'    => $user->email, 
+                                'username'  => $user->username,                 
+                                'firstname' => $user->firstname,                
+                                'lastname'  => $user->lastname,    
+                                'number'   => $payment_id,
+                                'amount'   => '$'.$payment->transactions[0]->amount->total;        
+                                ];
+
+                                 Mail::send('emails.transaction', $data, function ($message) {
+                                            $message->subject('Transacción de pago en Boomedic');
+                                            $message->to($user->email);
+                                        });
                               return redirect('payment/index')->with($notification);
                             }
                             
