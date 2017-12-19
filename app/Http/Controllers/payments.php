@@ -425,7 +425,7 @@ class payments extends Controller
                                 'firstname' => $user->firstname,                
                                 'lastname'  => $user->lastname,    
                                 'number'   => $payment_id,
-                                'amount'   => '$'.$payment->transactions[0]->amount->total;        
+                                'amount'   => '$'.$payment->transactions[0]->amount->total        
                                 ];
 
                                  Mail::send('emails.transaction', $data, function ($message) {
