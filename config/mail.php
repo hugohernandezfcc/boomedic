@@ -61,7 +61,7 @@ return [
     ],*/
 
     'from' => [
-        'address' => 'rebbeca.goncalves@doitcloud.consulting',
+        'address' => 'contacto@doitcloud.consulting',
         'name' => 'Boomedic',
     ],
 

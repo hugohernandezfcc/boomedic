@@ -252,7 +252,7 @@ class payments extends Controller
             'firstname' => $user->firstname,                
             'lastname'  => $user->lastname,    
             'number'   => $statusCode[1],
-            'amount'   => $request->pay         
+            'amount'   => '$'.$request->pay         
             ];
 
              Mail::send('emails.transaction', $data, function ($message) {
