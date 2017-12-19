@@ -280,7 +280,7 @@ class payments extends Controller
             public function postPaymentWithpaypal(Request $request)
 
                 {
-                    $path = app_path();
+                    $url = URL::to("/");
 
                     $payer = new Payer();
                             $payer->setPaymentMethod('paypal');
@@ -299,8 +299,8 @@ class payments extends Controller
                                 ->setItemList($item_list)
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
-                            $redirect_urls->setReturnUrl($path.'/payment/getPaymentStatus') /** Specify return URL **/
-                                ->setCancelUrl($path.'/medicalconsultations');
+                            $redirect_urls->setReturnUrl($url.'/payment/getPaymentStatus') /** Specify return URL **/
+                                ->setCancelUrl($url.'/medicalconsultations');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
