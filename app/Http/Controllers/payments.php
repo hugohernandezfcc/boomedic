@@ -201,6 +201,7 @@ class payments extends Controller
     //Controller to make payment, Contains type of ROUTE defined post
 
     public function PaymentAuthorizations(Request $request) {
+
         $id = $request->id;
 
         //Look in the table of methods of saved payments all the information of the selected method.
@@ -277,7 +278,10 @@ class payments extends Controller
      }
 
             public function postPaymentWithpaypal(Request $request)
+
                 {
+                    $path = base_path();
+                    
                     $payer = new Payer();
                             $payer->setPaymentMethod('paypal');
                             $item_1 = new Item();
@@ -295,8 +299,8 @@ class payments extends Controller
                                 ->setItemList($item_list)
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
-                            $redirect_urls->setReturnUrl('https://afternoon-hollows-51469.herokuapp.com/payment/getPaymentStatus') /** Specify return URL **/
-                                ->setCancelUrl('https://afternoon-hollows-51469.herokuapp.com/medicalconsultations');
+                            $redirect_urls->setReturnUrl('$path/payment/getPaymentStatus') /** Specify return URL **/
+                                ->setCancelUrl('$path/medicalconsultations');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
