@@ -254,10 +254,10 @@ class payments extends Controller
             'number'   => $statusCode[1],
             'amount'   => '$'.$request->pay         
             ];
-
+                $email = $user->email;
              Mail::send('emails.transaction', $data, function ($message) {
                         $message->subject('Transacción de pago en Boomedic');
-                        $message->to($user->email);
+                        $message->to($email);
                     });
             return redirect('payment/index')->with($notification);
          }
@@ -402,7 +402,7 @@ class payments extends Controller
                                 $pmethods->save();
 
                               }
-                               $user = User::find(Auth::id());
+                               
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
@@ -417,7 +417,7 @@ class payments extends Controller
                                     'message' => 'Procesado su pago de paypal, Correo: ' .$result->getPayer()->getPayerInfo()->getEmail().', Id de transacción: '. $payment_id, 
                                     'success' => 'success'
                                 );
-
+                                $user = User::find(Auth::id());
                                 $data = [
                                 'name'     => $user->name,
                                 'email'    => $user->email, 
@@ -427,10 +427,10 @@ class payments extends Controller
                                 'number'   => $payment_id,
                                 'amount'   => '$'.$payment->transactions[0]->amount->total        
                                 ];
-
+                                $email = $user->email;
                                  Mail::send('emails.transaction', $data, function ($message) {
                                             $message->subject('Transacción de pago en Boomedic');
-                                            $message->to($user->email);
+                                            $message->to($email);
                                         });
                               return redirect('payment/index')->with($notification);
                             }
