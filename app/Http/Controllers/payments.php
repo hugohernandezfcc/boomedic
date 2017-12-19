@@ -24,6 +24,7 @@ use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 use config;
 use mail;
+use Mailgun\Mailgun;
 
 
 class payments extends Controller
@@ -204,7 +205,7 @@ class payments extends Controller
     public function PaymentAuthorizations(Request $request) {
 
         $id = $request->id;
-
+        $user = User::find(Auth::id());
         //Look in the table of methods of saved payments all the information of the selected method.
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
 
@@ -241,7 +242,22 @@ class payments extends Controller
             'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... ', 
             'success' => 'success'
             );
-             Mail::to('rebbeca.goncalves@doitcloud.consulting')->send('prueba');
+
+
+            $data = [
+            'name'     => $user->name,
+            'email'    => $user->email, 
+            'username'  => $user->username,                 
+            'firstname' => $user->firstname,                
+            'lastname'  => $user->lastname,    
+            'number'   => $statusCode[1],
+            'amount'   => $request->pay         
+            ];
+
+             Mail::send('emails.transaction', $data, function ($message) {
+                        $message->subject('Transacción de pago en Boomedic');
+                        $message->to('rebbeca.goncalves@doitcloud.consulting');
+                    });
             return redirect('payment/index')->with($notification);
          }
          else {
