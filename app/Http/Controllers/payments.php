@@ -399,6 +399,7 @@ class payments extends Controller
                                 $pmethods->paypal_email  = $result->getPayer()->getPayerInfo()->getEmail();
                                 $pmethods->cardnumber    = $request->input('PayerID');
                                 $pmethods->owner         = Auth::id();
+                                $pmethods->notified      = 'false';
                                 $pmethods->save();
 
                               }
