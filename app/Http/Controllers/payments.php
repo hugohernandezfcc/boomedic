@@ -280,7 +280,7 @@ class payments extends Controller
             public function postPaymentWithpaypal(Request $request)
 
                 {
-                    $url = URL::to("/");
+                    $url = url('/');
 
                     $payer = new Payer();
                             $payer->setPaymentMethod('paypal');
