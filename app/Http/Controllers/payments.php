@@ -281,7 +281,7 @@ class payments extends Controller
 
                 {
                     $path = base_path();
-                    
+
                     $payer = new Payer();
                             $payer->setPaymentMethod('paypal');
                             $item_1 = new Item();
@@ -299,8 +299,8 @@ class payments extends Controller
                                 ->setItemList($item_list)
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
-                            $redirect_urls->setReturnUrl('$path/payment/getPaymentStatus') /** Specify return URL **/
-                                ->setCancelUrl('$path/medicalconsultations');
+                            $redirect_urls->setReturnUrl($path.'/payment/getPaymentStatus') /** Specify return URL **/
+                                ->setCancelUrl($path.'/medicalconsultations');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
