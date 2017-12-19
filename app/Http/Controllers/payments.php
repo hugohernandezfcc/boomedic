@@ -238,9 +238,10 @@ class payments extends Controller
                     /* Insert Transaction_bank*/    
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Transacción Nro. '.$statusCode[1].': Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... ', 
+            'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... ', 
             'success' => 'success'
             );
+             Mail::to('rebbeca.goncalves@doitcloud.consulting')->send('prueba');
             return redirect('payment/index')->with($notification);
          }
          else {
@@ -399,7 +400,7 @@ class payments extends Controller
                                     'message' => 'Procesado su pago de paypal, Correo: ' .$result->getPayer()->getPayerInfo()->getEmail().', Id de transacción: '. $payment_id, 
                                     'success' => 'success'
                                 );
-                              Mail::to('rebbeca.goncalves@doitcloud.consulting')->send('prueba');
+
                               return redirect('payment/index')->with($notification);
                             }
                             
