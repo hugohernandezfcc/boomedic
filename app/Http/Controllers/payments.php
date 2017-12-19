@@ -257,7 +257,7 @@ class payments extends Controller
                 $email = $user->email;
              Mail::send('emails.transaction', $data, function ($message) {
                         $message->subject('Transacción de pago en Boomedic');
-                        $message->to($email);
+                        $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
             return redirect('payment/index')->with($notification);
          }
@@ -430,7 +430,7 @@ class payments extends Controller
                                 $email = $user->email;
                                  Mail::send('emails.transaction', $data, function ($message) {
                                             $message->subject('Transacción de pago en Boomedic');
-                                            $message->to($email);
+                                            $message->to('rebbeca.goncalves@doitcloud.consulting');
                                         });
                               return redirect('payment/index')->with($notification);
                             }
