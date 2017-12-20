@@ -61,14 +61,13 @@
                         </div> -->
                     </div>
                     <!-- /.col -->
-                    <div class="col-xs-4">
+                    
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
-                    </div>
+                    
                     <!-- /.col -->
                 </div>
             </form>
-        </div>
-        <div class="auth-links">
+            <div class="auth-links">
             <div class="row">
                 <div class="col-xs-6">
                     <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" class="btn btn-default btn-block btn-flat">
@@ -84,6 +83,8 @@
                 </div>
             </div>
         </div>
+        </div>
+        
         <!-- /.login-box-body -->
     </div><!-- /.login-box -->
 @stop
