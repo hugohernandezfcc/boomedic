@@ -88,7 +88,7 @@
         <div class="row">
             <div class="col-xs-6">
                 <div class="fb-login-button" data-size="medium" data-button-type="login_with" 
-                    data-scope="public_profile,email" onlogin="checkLoginState();"></div>
+                    data-scope="public_profile,email" onlogin="FacebookLogin.checkLoginState();"></div>
             </div>
         </div>
     </div><!-- /.login-box -->
