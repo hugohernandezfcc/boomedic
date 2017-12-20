@@ -91,6 +91,12 @@ class doctor extends Controller
                 'mobile'        => $users[0]->mobile,
                 'updated_at'    => $users[0]->updated_at,
 
+                /** PROFESSIONAL INFORMATION  */
+                'specialty'     => $professionali[0]->specialty,
+                'schoolOfMedicine' => $professionali[0]->schoolOfMedicine,
+                'facultyOfSpecialization' => $professionali[0]->facultyOfSpecialization,
+                'practiseProfessional'    => $professionali[0]->practiseProfessional,
+
                 /** ADDRESS FISICAL USER  */
 
                 'country'       => (   empty($users[0]->country)        ) ? '' : $users[0]->country, 
@@ -130,7 +136,7 @@ class doctor extends Controller
     public function edit($status){
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
-
+        $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
         return view('profile', [
 
                 /** SYSTEM INFORMATION */
@@ -153,6 +159,12 @@ class doctor extends Controller
                 'scholarship'   => $users[0]->scholarship,
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
+
+                /** PROFESSIONAL INFORMATION  */
+                'specialty'     => $professionali[0]->specialty,
+                'schoolOfMedicine' => $professionali[0]->schoolOfMedicine,
+                'facultyOfSpecialization' => $professionali[0]->facultyOfSpecialization,
+                'practiseProfessional'    => $professionali[0]->practiseProfessional,
 
                 /** ADDRESS FISICAL USER  */
 
