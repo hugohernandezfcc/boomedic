@@ -89,7 +89,7 @@
 
                 <button type="submit" class="btn btn-secondary btn-block btn-flat">
                     {{ trans('adminlte::adminlte.register_a_new_membership_doctor') }}
-                </button>
+                </button><br/>
                 <div class="row">
                 <div class="col-sm-7" align="center">
                         <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="btn btn-default btn-block btn-flat">
@@ -105,7 +105,7 @@
            
 
             <div class="auth-links">
-                 <br/>
+               
                 <!-- <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="text-center">{{ trans('adminlte::adminlte.i_am_a_doctor') }}</a> -->
             </div>
        
