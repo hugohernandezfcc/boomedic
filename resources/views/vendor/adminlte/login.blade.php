@@ -51,20 +51,9 @@
                     @endif
                 </div>
                 <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
-                <div class="row">
-                    <div class="col-xs-8">
-                        <!-- casilla de recordar usuario. -->
-                        &nbsp;
-                        <!-- <div class="checkbox icheck">
-                            <label>
-                                <input type="checkbox" name="remember"> {{ trans('adminlte::adminlte.remember_me') }}
-                            </label>
-                        </div> -->
-                    </div>
-                </div>
             </form>
             <div class="auth-links">
-            <div class="row">
+            <div class="form-group">
                 
                     <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" class="btn btn-default btn-block btn-flat">
                         {{ trans('adminlte::adminlte.i_forgot_my_password') }}
@@ -78,7 +67,7 @@
                     @endif
                 
             </div>
-        </div>
+            </div>
         </div>
         
         <!-- /.login-box-body -->
