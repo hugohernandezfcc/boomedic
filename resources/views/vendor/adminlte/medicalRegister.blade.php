@@ -90,13 +90,14 @@
                 <button type="submit" class="btn btn-secondary btn-block btn-flat">
                     {{ trans('adminlte::adminlte.register_a_new_membership_doctor') }}
                 </button><br/>
-                <div class="col-sm-8">
+                <div class="col-sm-7" align="left">
                         <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="btn btn-default btn-block btn-flat">
                              <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;
                          {{ trans('adminlte::adminlte.i_already_have_a_membership') }}
                         </a> 
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-5">
+                    &nbsp;
                 </div>
 
             </form>
