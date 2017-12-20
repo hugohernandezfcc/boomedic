@@ -50,6 +50,7 @@
                         </span>
                     @endif
                 </div>
+                <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                 <div class="row">
                     <div class="col-xs-8">
                         <!-- casilla de recordar usuario. -->
@@ -60,27 +61,22 @@
                             </label>
                         </div> -->
                     </div>
-                    <!-- /.col -->
-                    
-                        <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
-                    
-                    <!-- /.col -->
                 </div>
             </form>
             <div class="auth-links">
             <div class="row">
-                <div class="col-xs-6">
+                
                     <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" class="btn btn-default btn-block btn-flat">
                         {{ trans('adminlte::adminlte.i_forgot_my_password') }}
                     </a>
-                </div>
-                <div class="col-xs-6">
+                
+               
                     @if (config('adminlte.register_url', 'register'))
                     <a href="{{ url(config('adminlte.register_url', 'register')) }}" class="btn btn-default btn-block btn-flat">
                         {{ trans('adminlte::adminlte.register_a_new_membership') }}
                     </a>
                     @endif
-                </div>
+                
             </div>
         </div>
         </div>
