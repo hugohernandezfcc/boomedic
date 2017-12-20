@@ -18,7 +18,7 @@ class LaborInformation extends Model
 		'colony',
 		'street',
 		'streetNumber',
-		'interiorNumber',
+		'interiorNumber', 
 		'phone',
 		'latitude', 
 		'longitude',
