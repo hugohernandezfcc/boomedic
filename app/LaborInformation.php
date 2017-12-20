@@ -16,7 +16,7 @@ class LaborInformation extends Model
 		'state',
 		'delegation',
 		'colony',
-		'street',
+		'street', 
 		'streetNumber',
 		'interiorNumber',
 		'phone',
