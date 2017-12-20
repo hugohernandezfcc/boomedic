@@ -55,7 +55,7 @@
             <div class="auth-links">
             <div class="row">
                 <div class="col-sm-6" align="center">
-                    <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" class="btn btn-default btn-block btn-flat">
+                    <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" class="btn btn-default btn-block">
                         {{ trans('adminlte::adminlte.i_forgot_my_password') }}
                     </a>
                 </div>
