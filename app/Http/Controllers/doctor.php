@@ -14,7 +14,7 @@ use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 use Image;
 use App\professional_information;
-use App\LaborInformation;
+
 
 class doctor extends Controller
 {
