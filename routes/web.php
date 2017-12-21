@@ -168,13 +168,13 @@ Route::group(['prefix' => 'doctor'], function(){
 	);
 
 	Route::post('updateDoctor/{id}', [
-			'uses'	=>	'profile@updateDoctor',
+			'uses'	=>	'doctor@updateDoctor',
 			'as'	=>	'updateDoctor'
 		]
 	);
 
 		Route::post('cropDoctor/{id}', [
-			'uses'	=>	'profile@cropDoctor',
+			'uses'	=>	'doctor@cropDoctor',
 			'as'	=>	'cropDoctor'
 		]
 	);
