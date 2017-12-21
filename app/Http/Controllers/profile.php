@@ -220,12 +220,12 @@ class profile extends Controller
           $height = $imagen[1];  
 
           if($height > '600' || $width > '600'){
-            $height = $height / 3;
-            $width = $width / 3;
+            $height = $height / 2;
+            $width = $width / 2;
           }
             if($height > '900' || $width > '900'){
-                $height = $height / 4;
-                $width = $width / 4;
+                $height = $height / 3;
+                $width = $width / 3;
               }
 
         $img = Image::make($file);

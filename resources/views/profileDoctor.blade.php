@@ -444,13 +444,42 @@
                <div class="box-header with-border">
                	<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
-                        Familia
+                        Información Profesional
                 </a>
             </h4>
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
                     <div class="box-body">
-                            space..
+                            <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Licencia Profesional:</b></div>
+                            <div class="col-sm-8" align="left">{{ $professional_license }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Especialidad:</b></div>
+                            <div class="col-sm-8" align="left">{{ $specialty }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Escuela de Medicina:</b></div>
+                            <div class="col-sm-8" align="left">{{ $schoolOfMedicine }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Facultad de Especialización:</b></div>
+                            <div class="col-sm-8" align="left">{{ $facultyOfSpecialization }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Práctica Profesional:</b></div>
+                            <div class="col-sm-8" align="left">{{ $practiseProfessional }}</div>
+                          </div>
+                        </div>
                     </div>
                   </div>
                 </div>
