@@ -79,7 +79,7 @@
 	          	<div class="modal-header"><label for="recorte">Recorte de imagen:</label></div>
 	          	<div class="modal-body" >
 	                <div align="center">
-	                   	<img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="width:350px; height: 350px;">
+	                   	<img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target">
 	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
 		                   	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
