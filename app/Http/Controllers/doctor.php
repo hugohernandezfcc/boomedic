@@ -258,6 +258,8 @@ class doctor extends Controller
                 'streetnumber'  => (   empty($labor[0]->streetnumber)   ) ? '' : $labor[0]->streetnumber, 
                 'interiornumber'=> (   empty($labor[0]->interiornumber) ) ? '' : $labor[0]->interiornumber, 
                 'postalcode'    => (   empty($labor[0]->postalcode)     ) ? '' : $labor[0]->postalcode,
+                'latitude'    => (   empty($labor[0]->latitude)     ) ? '' : $labor[0]->latitude,
+                'longitude'    => (   empty($labor[0]->longitude)     ) ? '' : $labor[0]->longitude,
 
             ]
         );
