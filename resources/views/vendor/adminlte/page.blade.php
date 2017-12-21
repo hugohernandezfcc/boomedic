@@ -75,17 +75,17 @@
                                   <!-- Menu Footer-->
                                   <li class="user-footer">
                                     <div class="pull-left">
-                                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                      <a href="#" class="btn btn-secondary btn-block btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                  @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
-                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" class="btn btn-default btn-flat">
+                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" class="btn btn-secondary btn-block btn-flat">
                                     <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
                             @else
                                 <a href="#"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                 class="btn btn-default btn-flat">
+                                 class="btn btn-secondary btn-block btn-flat">
                                     <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
                                 <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
