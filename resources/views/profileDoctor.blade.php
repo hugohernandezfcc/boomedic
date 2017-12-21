@@ -60,7 +60,7 @@
 				    
 	</script>
 	<br/>
-
+	@if($mode == 'doctor')
 	@if( empty($status) )
 
     @include('headerprofile')
@@ -73,7 +73,7 @@
     </script>
 	@endif
 
-	@if($mode == 'doctor')
+	
 	<!-- Modal photo settings-->
 	<div id="modal" class="modal fade" role="dialog" style="width: 100%">
 	    <div class="modal-dialog">
