@@ -196,7 +196,7 @@ class doctor extends Controller
         $user = User::find($id);
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
         $bus = $professionali[0]->id;
-        $prof = ProfessionalInformation::find($bus);
+        $prof = professional_information::find($bus);
 
 
         $user->status        = $request->status;         
