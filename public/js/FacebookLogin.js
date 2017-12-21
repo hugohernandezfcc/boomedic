@@ -1,12 +1,12 @@
 var person = { userID: "" , name: "", firstName: "", lastName: "", accessToken: "", picture: "", email: ""};
 function checkLoginState() {
     FB.getLoginStatus(function (response) {
-        console.log(response);
+        //console.log(response);
         if (response.status == "connected"){
           person.accessToken = response.authResponse.accessToken;
           person.userID = response.authResponse.userID;
           FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)', function (userData){
-            console.log(userData);
+            //console.log(userData);
             person.name = userData.name;
             person.firstName = userData.first_name;
             person.lastName = userData.last_name;
