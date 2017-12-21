@@ -60,7 +60,7 @@
                         <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                   <img src="{{ $photo }}" class="user-image" alt="User Image">
-                                  <span class="hidden-xs">{{ $name }}</span>
+                                  <span class="hidden-xs">{{ $username }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                   <!-- User image -->
@@ -68,7 +68,7 @@
                                     <img src="{{ $photo }}" class="img-circle" alt="User Image">
 
                                     <p>
-                                        {{ name }}
+                                        {{ $username }}
                                       <small>Miembro desde Nov. 2017</small>
                                     </p>
                                   </li>
