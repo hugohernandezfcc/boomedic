@@ -15,7 +15,7 @@ function onSignInG(googleUser) {
                 person.email= resp.emails[0].value;
                 person.picture = resp.image.url;
                 console.log(person);
-            });*/
-        });
+            });
+        });*/
 }
 
