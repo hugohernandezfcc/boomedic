@@ -22,13 +22,11 @@
 		    margin-right: 1em; 
 		}
     </style>
+@stop
 
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+@section('content')
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-
-
 
 	<script type="text/javascript">
 
@@ -58,13 +56,9 @@
 					    $('#modal').modal({ backdrop: 'static' }, 'show');
 					}, 1000);	
 				}
-				
+
 				    
 	</script>
-@stop
-
-@section('content')
-
 	<br/>
 
 	@if( empty($status) )
@@ -124,23 +118,32 @@
 		    			@if($photo == '')
 			    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 						@else
-							@php 
-							  	$imagen = getimagesize($photo);    //Sacamos la información
-					          	$width = $imagen[0];              //Ancho
-					          	$height = $imagen[1];  
+					@php 
+					  $imagen = getimagesize($photo);    //Sacamos la información
+			          $width = $imagen[0];              //Ancho
+			          $height = $imagen[1];  
 
-					          	if($height > '300' || $width > '300'){
-					            	$height = $height / 2;
-					            	$width = $width / 2;
-					        	}
-							@endphp
+				          if($height > '500' || $width > '500'){
+				            $height = $height / 2.5;
+				            $width = $width / 2.5;
+				        }
+				        if($height > '800' || $width > '800'){
+				            $height = $height / 4;
+				            $width = $width / 4;
+				        }
+
+
+				          if($height < '400' || $width < '400'){
+				            $height = $height / 1.3;
+				            $width = $width / 1.3;
+				        }
+
+						@endphp
 							<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
 				    	@endif 
 		    			
 		    		</div>
-	    			<div class="col-sm-6" align="center">
-	    				<form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form>
-	    			</div>
+						<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
 	    		</div>
 	    		<!-- Photo Zone. -->
 	    		<br/>
@@ -596,34 +599,30 @@
 		    	</script>
 
 			@endif
-
-	  	</div>	  	
-	</div>
-	<script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
 	<script src="{{ asset('js/jquery.color.js') }}"></script>
 	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+	  	</div>	  	
+	</div>
 	<script type="text/javascript">
-
-	    jQuery(function(){ jQuery('#target').Jcrop(); });
-	     jQuery('#target').Jcrop({
-	      aspectRatio: 1,
-	      onSelect: updateCoords,
-		  setSelect: [0, 0, 300, 300],
-	      bgColor:     'black',
-
-	     });
-	     function updateCoords(c){
-	      jQuery('#x').val(c.x);
-	      jQuery('#y').val(c.y);
-	      jQuery('#w').val(c.w);
-	      jQuery('#h').val(c.h);
-	     };
-	     function checkCoords()
-		{
-			if (parseInt(jQuery('#w').val())>0) return true;
-			alert('Seleccione una coordenada para subir');
-			return false;
-		};
-	</script>
-	
+    $(function(){ $.Jcrop('#target'); });
+     $.Jcrop('#target',{
+      aspectRatio: 1,
+      onSelect: updateCoords,
+	  setSelect: [0, 0, 300, 300],
+      bgColor:     'black'
+     });
+     function updateCoords(c){
+      $('#x').val(c.x);
+      $('#y').val(c.y);
+      $('#w').val(c.w);
+      $('#h').val(c.h);
+     };
+     function checkCoords()
+    {
+      if (parseInt($('#w').val())>0) return true;
+      alert('Seleccione una coordenada para subir');
+      return false;
+    };
+    </script>
 @stop
