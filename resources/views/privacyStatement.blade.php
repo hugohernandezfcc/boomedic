@@ -8,11 +8,7 @@
 
 @section('content')
 
-@include('headerprofile')
-<script type="text/javascript">
-//O si no lleva botón hacer el div "div_profile" invisible
- document.getElementById("div_profile").style.display = 'none';
-</script>
+
 
 @if($mode == 'Null')
 
