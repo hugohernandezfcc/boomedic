@@ -67,7 +67,7 @@ class doctor extends Controller
     public function show($id)
     {
         $users = DB::table('users')->where('id', Auth::id() )->get();
-        $professionali = DB::table('ProfessionalInformation')->where('user', Auth::id() )->get();
+        $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
         return view('profileDoctor', [
                 'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
 
@@ -138,7 +138,7 @@ class doctor extends Controller
     public function edit($status){
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
-        $professionali = DB::table('ProfessionalInformation')->where('user', Auth::id() )->get();
+        $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
         return view('profileDoctor', [
 
                 /** SYSTEM INFORMATION */
@@ -194,7 +194,7 @@ class doctor extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $professionali = DB::table('ProfessionalInformation')->where('user', Auth::id())->get();
+        $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
         $bus = $professionali[0]->id;
         $prof = ProfessionalInformation::find($bus);
 
