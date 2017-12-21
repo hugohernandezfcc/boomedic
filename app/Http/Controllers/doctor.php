@@ -191,6 +191,7 @@ class doctor extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+         $professionali = DB::table('professional_information')->where('user', Auth::id() )->first();
 
 
         $user->status        = $request->status;         
@@ -216,6 +217,13 @@ class doctor extends Controller
         $user->postalcode    = $request->postalcode; 
         $user->latitude      = $request->latitude; 
         $user->longitude     = $request->longitude; 
+
+        $professionali->specialty                = $request->specialty;
+        $professionali->schoolOfMedicine         = $request->schoolOfMedicine;
+        $professionali->facultyOfSpecialization  = $request->facultyOfSpecialization;
+        $professionali->practiseProfessional     = $request->practiseProfessional;
+
+        $professionali->save();
 
         if ( $user->save() ) 
             return redirect('user/profile/' . $id );

@@ -229,6 +229,38 @@
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
+	              		<div class="callout callout-default" align="right">
+		                <b>Información Profesional</b>
+		            </div>
+		            <div class="form-group">
+	                	<label for="specialty" class="col-sm-2 control-label">Especialidad</label>
+	                	<div class="col-sm-10">
+		                  	<input type="text" name="specialty" id="specialty" value="{{ $specialty }}" class="form-control">
+	                	</div>
+	                	<!-- /.input group -->
+	              	</div>
+	              	<div class="form-group">
+	                	<label for="schoolOfMedicine" class="col-sm-2 control-label">Escuela de Medicina</label>
+	                	<div class="col-sm-10">
+		                  	<input type="text" name="schoolOfMedicine" id="schoolOfMedicine" value="{{ $schoolOfMedicine }}" class="form-control">
+	                	</div>
+	                	<!-- /.input group -->
+	              	</div>
+	              	<div class="form-group">
+	                	<label for="facultyOfSpecialization" class="col-sm-2 control-label">Facultad de Especialización</label>
+	                	<div class="col-sm-10">
+		                  	<input type="text" name="facultyOfSpecialization" id="facultyOfSpecialization" value="{{ $facultyOfSpecialization }}" class="form-control">
+	                	</div>
+	                	<!-- /.input group -->
+	              	</div>
+	              	<div class="form-group">
+	                	<label for="practiseProfessional" class="col-sm-2 control-label">Práctica Profesional</label>
+	                	<div class="col-sm-10">
+		                  	<input type="text" name="practiseProfessional" id="practiseProfessional" value="{{ $practiseProfessional }}" class="form-control">
+	                	</div>
+	                	<!-- /.input group -->
+	              	</div>
+
 
 	              	<div class="callout callout-default" align="right">
 		                <b>Dirección</b>
