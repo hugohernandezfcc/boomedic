@@ -60,9 +60,9 @@
                         <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                   @if($photo == '')
-                                        <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
+                                        <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="user-image" alt="User Image">
                                     @else
-                                        <img src="{{ $photo }}">            
+                                        <img src="{{ $photo }}" class="user-image" alt="User Image">            
                                     @endif 
                                   <span class="hidden-xs">{{ $username }}</span>
                                 </a>
