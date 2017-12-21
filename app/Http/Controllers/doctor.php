@@ -243,8 +243,8 @@ class doctor extends Controller
                 /** SYSTEM INFORMATION */
 
                 'userId'        => Auth::id(),
-                'name'      => $users[0]->name,
-                'photo'         => $users[0]->profile_photo,
+                'name'      => $user->name,
+                'photo'         => $user->profile_photo,
                 'mode'          => 'labor'
 
             ]
