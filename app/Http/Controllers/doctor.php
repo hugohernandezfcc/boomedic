@@ -67,7 +67,7 @@ class doctor extends Controller
     public function show($id)
     {
         $users = DB::table('users')->where('id', Auth::id() )->get();
-        $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
+        $professionali = DB::table('ProfessionalInformation')->where('user', Auth::id() )->get();
         return view('profileDoctor', [
                 'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
 
@@ -93,6 +93,7 @@ class doctor extends Controller
                 'updated_at'    => $users[0]->updated_at,
 
                 /** PROFESSIONAL INFORMATION  */
+                'professional_license'  =>  $professionali[0]->professional_license,
                 'specialty'     => $professionali[0]->specialty,
                 'schoolOfMedicine' => $professionali[0]->schoolOfMedicine,
                 'facultyOfSpecialization' => $professionali[0]->facultyOfSpecialization,
@@ -137,7 +138,7 @@ class doctor extends Controller
     public function edit($status){
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
-        $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
+        $professionali = DB::table('ProfessionalInformation')->where('user', Auth::id() )->get();
         return view('profileDoctor', [
 
                 /** SYSTEM INFORMATION */
@@ -162,6 +163,7 @@ class doctor extends Controller
                 'mobile'        => $users[0]->mobile,
 
                 /** PROFESSIONAL INFORMATION  */
+                'professional_license'  =>  $professionali[0]->professional_license,
                 'specialty'     => $professionali[0]->specialty,
                 'schoolOfMedicine' => $professionali[0]->schoolOfMedicine,
                 'facultyOfSpecialization' => $professionali[0]->facultyOfSpecialization,
@@ -193,7 +195,7 @@ class doctor extends Controller
     {
         $user = User::find($id);
         $professionali = DB::table('professional_information')->where('user', Auth::id())->first();
-        $prof = professional_information::find($professionali->id);
+        $prof = ProfessionalInformation::find($professionali->id);
 
 
         $user->status        = $request->status;         
@@ -218,8 +220,9 @@ class doctor extends Controller
 
         $user->postalcode    = $request->postalcode; 
         $user->latitude      = $request->latitude; 
-        $user->longitude     = $request->longitude; 
+        $user->longitude     = $request->longitude;
 
+        $prof->professional_license  =  $request->professional_license;
         $prof->specialty                = $request->specialty;
         $prof->schoolOfMedicine         = $request->schoolOfMedicine;
         $prof->facultyOfSpecialization  = $request->facultyOfSpecialization;

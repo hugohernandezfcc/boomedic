@@ -233,6 +233,13 @@
 		                <b>Información Profesional</b>
 		            </div>
 		            <div class="form-group">
+	                	<label for="professional_license" class="col-sm-2 control-label">Licencia Profesional</label>
+	                	<div class="col-sm-10">
+		                  	<input type="text" name="professional_license" id="professional_license" value="{{ $professional_license }}" class="form-control">
+	                	</div>
+	                	<!-- /.input group -->
+	              	</div>
+		            <div class="form-group">
 	                	<label for="specialty" class="col-sm-2 control-label">Especialidad</label>
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="specialty" id="specialty" value="{{ $specialty }}" class="form-control">
