@@ -60,7 +60,8 @@ class payments extends Controller
         return view('payments', [
                 'cards'     => $cards,
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                 'mode'      => 'listPaymentMethods'
             ]
@@ -78,7 +79,8 @@ class payments extends Controller
 
         return view('payments', [
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                 'mode'      => 'createPaymentMethod'
             ]

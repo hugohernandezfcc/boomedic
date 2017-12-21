@@ -34,7 +34,8 @@ class HomeController extends Controller
             return view('privacyStatement', [
                     'privacy'   => $privacyStatement[0],
                     'userId'    => Auth::id(),
-                    'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                    'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                    'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                     'photo'     => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                     'mode'      => $mode
                 ]
@@ -54,7 +55,8 @@ class HomeController extends Controller
         
         else {
             return view('medicalconsultations', [
-                    'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
+                    'username' => DB::table('users')->where('id', Auth::id() )->value('username'),
+                    'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                     'firstname' => DB::table('users')->where('id', Auth::id() )->value('firstname'),
                     'lastname' => DB::table('users')->where('id', Auth::id() )->value('lastname'),
                     'photo' => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),

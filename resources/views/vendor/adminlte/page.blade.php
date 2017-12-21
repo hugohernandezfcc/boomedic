@@ -64,7 +64,7 @@
                                     @else
                                         <img src="{{ $photo }}" class="user-image" alt="User Image">            
                                     @endif 
-                                  <span class="hidden-xs">{{ $username }}</span>
+                                  <span class="hidden-xs">{{ $name }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                   <!-- User image -->
@@ -76,7 +76,7 @@
                                     @endif 
 
                                     <p>
-                                        {{ $username }}
+                                        {{ $name }}
                                       <small>Miembro desde Nov. 2017</small>
                                     </p>
                                   </li>

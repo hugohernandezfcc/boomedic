@@ -41,7 +41,8 @@ class privacyStatement extends Controller
         return view('privacyStatement', [
                 'privacy'   => $privacyStatement[0],
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'  =>    DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                 'mode'      => $mode
             ]

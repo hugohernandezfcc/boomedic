@@ -81,7 +81,8 @@ class doctor extends Controller
                 'firstname'     => $users[0]->firstname,
                 'lastname'      => $users[0]->lastname,
                 'email'         => $users[0]->email,
-                'username'      => $users[0]->name,
+                'username'      => $users[0]->username,
+                'name'      => $users[0]->name,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
                 /** PERSONAL INFORMATION */
@@ -152,7 +153,8 @@ class doctor extends Controller
                 'firstname'     => $users[0]->firstname,
                 'lastname'      => $users[0]->lastname,
                 'email'         => $users[0]->email,
-                'username'      => $users[0]->name,
+                'username'      => $users[0]->username,
+                'name'      => $users[0]->name,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
                 /** PERSONAL INFORMATION */
