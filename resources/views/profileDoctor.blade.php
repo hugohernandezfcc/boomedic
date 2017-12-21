@@ -86,7 +86,7 @@
 	          	<div class="modal-body" >
 	                <div align="center">
 	                   	<img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="width:350px; height: 350px;">
-	                   	<form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
+	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
 		                   	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
 							<input type="hidden" id="w" name="w" />
@@ -139,7 +139,7 @@
 		    			
 		    		</div>
 	    			<div class="col-sm-6" align="center">
-	    				<form enctype="multipart/form-data" action="/doctor/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form>
+	    				<form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form>
 	    			</div>
 	    		</div>
 	    		<!-- Photo Zone. -->
