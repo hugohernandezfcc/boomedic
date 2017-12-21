@@ -89,7 +89,7 @@
         <!-- /.login-box-body -->
         <div class="row">
             <div class="col-xs-6">
-                <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
+                <div class="fb-login-button" data-size="large" data-button-type="continue_with" 
                     data-scope="public_profile,email" onlogin="checkLoginState();"></div>
             </div>
             <div class="col-xs-6">
