@@ -157,13 +157,25 @@ Route::group(['prefix' => 'doctor'], function(){
 
 	Route::get('doctor/{id}', [
 			'uses'	=>	'doctor@show',
-			'as'	=>	'profile'
+			'as'	=>	'doctor'
 		]
 	);
 
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'doctor@redirecting',
 			'as'	=>	'redirecting'
+		]
+	);
+
+	Route::post('updateDoctor/{id}', [
+			'uses'	=>	'profile@updateDoctor',
+			'as'	=>	'updateDoctor'
+		]
+	);
+
+		Route::post('cropDoctor/{id}', [
+			'uses'	=>	'profile@cropDoctor',
+			'as'	=>	'cropDoctor'
 		]
 	);
 });

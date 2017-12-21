@@ -75,7 +75,7 @@
       document.getElementById('labeltext').innerHTML = 'Editar';
       var elemento = document.getElementById("i_button");
       elemento.className = "fa fa-pencil text-muted";
-      document.forms.form_profile.action = "/user/edit/complete";
+      document.forms.form_profile.action = "/doctor/edit/complete";
     </script>
 	@endif
 	<!-- Modal photo settings-->
@@ -139,7 +139,7 @@
 		    			
 		    		</div>
 	    			<div class="col-sm-6" align="center">
-	    				<form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form>
+	    				<form enctype="multipart/form-data" action="/doctor/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form>
 	    			</div>
 	    		</div>
 	    		<!-- Photo Zone. -->

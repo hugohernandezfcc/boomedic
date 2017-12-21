@@ -138,7 +138,7 @@ class doctor extends Controller
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
         $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
-        return view('profile', [
+        return view('profileDoctor', [
 
                 /** SYSTEM INFORMATION */
 
@@ -227,10 +227,10 @@ class doctor extends Controller
         $professionali->save();
 
         if ( $user->save() ) 
-            return redirect('user/profile/' . $id );
+            return redirect('doctor/doctor/' . $id );
     }
 
-    public function updateProfile(Request $request, $id)
+    public function updateDoctor(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
         $user = User::find($id);
@@ -260,10 +260,10 @@ class doctor extends Controller
         $user->profile_photo = $path2;   
         Session(['val' => 'true']);
         $user->save();
-        return redirect('user/profile/' . $id );
+        return redirect('doctor/doctor/' . $id );
     }
 
-    public function cropProfile(Request $request, $id)
+    public function cropDoctor(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
         $user = User::find($id);
@@ -292,7 +292,7 @@ class doctor extends Controller
         $user->profile_photo = $path2;   
 
         if($user->save())
-            return redirect('user/profile/' . $id );
+            return redirect('doctor/doctor/' . $id );
     }
 
 
