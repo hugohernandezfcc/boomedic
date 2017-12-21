@@ -9,7 +9,9 @@
 @section('content')
     
     <br/>
-
+@if($mode == 'listPaymentMethods')    
+@include('headerprofile')
+@endif
 
 						<!-- Charge Alert whether payment was processed or not -->
 							@if(session()->has('message'))
@@ -47,7 +49,6 @@
 		<div class="box-body">
 
             @if($mode == 'listPaymentMethods')
-            @include('headerprofile')
             	<table id="paymentmethodtable" class="table table-bordered table-striped" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
@@ -150,7 +151,6 @@
 
 </div>
             @elseif($mode == 'createPaymentMethod')
-            @include('headerprofile')
             	<form action="store" method="post" class="form-horizontal">
             		{{ csrf_field() }}
 	            	<div class="form-group has-feedback {{ $errors->has('typemethod') ? 'has-error' : '' }}">
