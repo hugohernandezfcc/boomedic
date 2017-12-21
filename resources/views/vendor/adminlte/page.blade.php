@@ -73,7 +73,7 @@
                                     </p>
                                   </li>
                                   <!-- Menu Footer-->
-                                  <li class="user-footer">
+                                  <li class="user-footer" style="background-color:#C0C0C0;">
                                     <div class="pull-right">
                                       <a href="#" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-fw fa-user"></i> Perfil</a>
                                     </div>
