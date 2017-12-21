@@ -12,6 +12,7 @@ use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 use Image;
+use App\professional_information;
 
 class doctor extends Controller
 {
@@ -80,7 +81,7 @@ class doctor extends Controller
                 'firstname'     => $users[0]->firstname,
                 'lastname'      => $users[0]->lastname,
                 'email'         => $users[0]->email,
-                'username'      => $users[0]->username,
+                'username'      => $users[0]->name,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
                 /** PERSONAL INFORMATION */
@@ -151,7 +152,7 @@ class doctor extends Controller
                 'firstname'     => $users[0]->firstname,
                 'lastname'      => $users[0]->lastname,
                 'email'         => $users[0]->email,
-                'username'      => $users[0]->username,
+                'username'      => $users[0]->name,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
                 /** PERSONAL INFORMATION */
