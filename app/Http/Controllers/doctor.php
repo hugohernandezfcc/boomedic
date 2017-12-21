@@ -67,6 +67,7 @@ class doctor extends Controller
     public function show($id)
     {
         $users = DB::table('users')->where('id', Auth::id() )->get();
+        $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
         return view('profileDoctor', [
                 'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
 
