@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\medical_appointments;
-use App\menus;
+use App\menu;
 
 
 class medicalappointments extends Controller
@@ -58,7 +58,7 @@ class medicalappointments extends Controller
      */
     public function store(Request $request)
     {
-        $medical = new menus;
+        $medical = new menu;
    
         $medical->text           = 'Perfil';
         $medical->icon    = 'user';
