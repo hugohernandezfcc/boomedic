@@ -194,8 +194,9 @@ class doctor extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
-        $prof = ProfessionalInformation::find($professionali[0]->id);
+        $professionali = DB::table('ProfessionalInformation')->where('user', Auth::id())->get();
+        $bus = $professionali[0]->id;
+        $prof = ProfessionalInformation::find($bus);
 
 
         $user->status        = $request->status;         
