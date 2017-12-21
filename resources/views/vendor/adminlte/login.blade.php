@@ -91,7 +91,7 @@
                     data-scope="public_profile,email" onlogin="checkLoginState();"></div>
             </div>
             <div class="col-xs-6">
-                <div class="g-signin2" lang="es-419" data-width="165" data-height="27" data-longtitle="true" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div>
+                <div class="g-signin2" lang="es-419" data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div>
             </div>
         </div>
     </div><!-- /.login-box -->

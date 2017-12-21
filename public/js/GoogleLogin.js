@@ -1,7 +1,11 @@
 var person = { name: "", picture: "", email: ""};
 function onSignInG(googleUser) {
         var profile = googleUser.getBasicProfile();
-        gapi.client.load('plus', 'v1', function () {
+        person.name = profile.getName();
+        person.email= profile.getEmail();
+        person.picture = profile.getImageUrl();
+        console.log(person);
+        /*gapi.client.load('plus', 'v1', function () {
             var request = gapi.client.plus.people.get({
                 'userId': 'me'
             });
@@ -11,7 +15,7 @@ function onSignInG(googleUser) {
                 person.email= resp.emails[0].value;
                 person.picture = resp.image.url;
                 console.log(person);
-            });
+            });*/
         });
 }
 
