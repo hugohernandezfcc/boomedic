@@ -74,8 +74,8 @@
                                   </li>
                                   <!-- Menu Footer-->
                                   <li class="user-footer">
-                                    <div class="pull-left">
-                                      <a href="#" class="btn btn-secondary btn-block btn-flat">Profile</a>
+                                    <div class="pull-right">
+                                      <a href="#" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-fw fa-user"></i> Perfil</a>
                                     </div>
                                     <div class="pull-right">
                                  @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
