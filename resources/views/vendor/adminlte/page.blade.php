@@ -62,9 +62,9 @@
                                   <img src="{{ $photo }}" class="user-image" alt="User Image">
                                   <span class="hidden-xs">{{ $username }}</span>
                                 </a>
-                                <ul class="dropdown-menu" style="background-color:#4D4D4D;">
+                                <ul class="dropdown-menu">
                                   <!-- User image -->
-                                  <li class="user-header">
+                                  <li class="user-header" style="background-color:#4D4D4D;">
                                     <img src="{{ $photo }}" class="img-circle" alt="User Image">
 
                                     <p>
@@ -73,7 +73,7 @@
                                     </p>
                                   </li>
                                   <!-- Menu Footer-->
-                                  <li class="user-footer" >
+                                  <li class="user-footer" style="background-color:#4D4D4D;">
                                     <div class="pull-left">
                                       <a href="#" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-fw fa-user"></i> Perfil</a>
                                     </div>
