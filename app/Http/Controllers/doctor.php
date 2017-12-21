@@ -225,7 +225,7 @@ class doctor extends Controller
         $professionali->practiseProfessional     = $request->practiseProfessional;
 
         $professionali->save();
-        $user->save()
+        $user->save();
 
             return redirect('doctor/doctor/' . $id );
     }
