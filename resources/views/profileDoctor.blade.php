@@ -72,6 +72,8 @@
       document.forms.form_profile.action = "/doctor/edit/complete";
     </script>
 	@endif
+
+	@if($mode == 'doctor')
 	<!-- Modal photo settings-->
 	<div id="modal" class="modal fade" role="dialog" style="width: 100%">
 	    <div class="modal-dialog">
@@ -654,4 +656,8 @@
       return false;
     };
     </script>
+    @endif
+    @if($mode == 'labor')
+    HOLA MUNDO
+    @endif
 @stop

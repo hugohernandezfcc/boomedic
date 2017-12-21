@@ -113,7 +113,8 @@ class doctor extends Controller
                 'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
                 'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
                 'longitude'     => (   empty($users[0]->longitude)      ) ? '' : $users[0]->longitude,
-                'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude
+                'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
+                'mode'          => 'doctor'
             ]
         );
     }
@@ -182,7 +183,8 @@ class doctor extends Controller
                 'street'        => (   empty($users[0]->street)         ) ? '' : $users[0]->street, 
                 'streetnumber'  => (   empty($users[0]->streetnumber)   ) ? '' : $users[0]->streetnumber, 
                 'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
-                'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode  
+                'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
+                'mode'          => 'doctor'  
 
             ]
         );
@@ -236,7 +238,21 @@ class doctor extends Controller
         $prof->save();
         $user->save();
 
-            return redirect('doctor/doctor/' . $id );
+            return view('profileDoctor', [
+
+                /** SYSTEM INFORMATION */
+
+                'userId'        => Auth::id(),
+                'status'        => $status,
+
+                /** INFORMATION USER */
+                'username'      => $users[0]->username,
+                'name'      => $users[0]->name,
+                'photo'         => $users[0]->profile_photo,
+                'mode'          => 'labor'
+
+            ]
+        );
     }
 
     public function updateDoctor(Request $request, $id)
