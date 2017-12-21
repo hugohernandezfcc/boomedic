@@ -93,7 +93,7 @@
                     data-scope="public_profile,email" onlogin="checkLoginState();"></div>
             </div>
             <div class="col-xs-6">
-                <div class="g-signin2" data-width="170" data-height="30" data-onsuccess="onSignInG"></div>
+                <div class="g-signin2" data-width="165" data-height="27" data-onsuccess="onSignInG"></div>
             </div>
         </div>
     </div><!-- /.login-box -->
