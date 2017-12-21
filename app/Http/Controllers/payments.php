@@ -291,6 +291,7 @@ class payments extends Controller
                 'userId'    => Auth::id(),
                 'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'mode'      => 'historyTransaction'
             ]
         );
