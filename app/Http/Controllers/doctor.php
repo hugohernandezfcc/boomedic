@@ -14,6 +14,7 @@ use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 use Image;
 use App\professional_information;
+use App\LaborInformation;
 
 class doctor extends Controller
 {
@@ -203,6 +204,7 @@ class doctor extends Controller
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
+         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
 
 
         $user->status        = $request->status;         
@@ -245,7 +247,17 @@ class doctor extends Controller
                 'userId'        => Auth::id(),
                 'name'      => $user->name,
                 'photo'         => $user->profile_photo,
-                'mode'          => 'labor'
+                'mode'          => 'labor',
+
+                /* DIRECTION LABOR PROFESSIONAL  */
+                'country'       => (   empty($labor[0]->country)        ) ? '' : $labor[0]->country, 
+                'state'         => (   empty($labor[0]->state)          ) ? '' : $labor[0]->state, 
+                'delegation'    => (   empty($labor[0]->delegation)     ) ? '' : $labor[0]->delegation, 
+                'colony'        => (   empty($labor[0]->colony)         ) ? '' : $labor[0]->colony, 
+                'street'        => (   empty($labor[0]->street)         ) ? '' : $labor[0]->street, 
+                'streetnumber'  => (   empty($labor[0]->streetnumber)   ) ? '' : $labor[0]->streetnumber, 
+                'interiornumber'=> (   empty($labor[0]->interiornumber) ) ? '' : $labor[0]->interiornumber, 
+                'postalcode'    => (   empty($labor[0]->postalcode)     ) ? '' : $labor[0]->postalcode,
 
             ]
         );
@@ -253,6 +265,7 @@ class doctor extends Controller
 
     public function updateDoctor(Request $request, $id)
     {
+
         $user = User::find($id);
         $file = $request->file('file');
          $imagen = getimagesize($file);    //Sacamos la información
