@@ -60,7 +60,7 @@
                         <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                   <img src="{{ $photo }}" class="user-image" alt="User Image">
-                                  <span class="hidden-xs">{{ $firstname }}&nbsp;{{ $lastname }}</span>
+                                  <span class="hidden-xs">{{ $username }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                   <!-- User image -->
@@ -68,24 +68,9 @@
                                     <img src="{{ $photo }}" class="img-circle" alt="User Image">
 
                                     <p>
-                                        {{ $firstname }}&nbsp;{{ $lastname }}
+                                        {{ $username }}
                                       <small>Member since Nov. 2012</small>
                                     </p>
-                                  </li>
-                                  <!-- Menu Body -->
-                                  <li class="user-body">
-                                    <div class="row">
-                                      <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                      </div>
-                                      <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                      </div>
-                                      <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                      </div>
-                                    </div>
-                                    <!-- /.row -->
                                   </li>
                                   <!-- Menu Footer-->
                                   <li class="user-footer">
@@ -93,13 +78,8 @@
                                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                  </li>
-                                </ul>
-                              </li>
-                        <li>
-                            @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
+                                    <li>    
+                                      @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                 <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
                                     <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
@@ -116,7 +96,11 @@
                                     {{ csrf_field() }}
                                 </form>
                             @endif
-                        </li>
+                            </li>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
                     </ul>
                 </div>
                 @if(config('adminlte.layout') == 'top-nav')
