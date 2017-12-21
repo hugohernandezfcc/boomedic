@@ -339,20 +339,20 @@
           <div class="box box-solid">
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="box-group" id="accordion">
+              <div class="box-group" id="accordion" aria-multiselectable="true">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
              
                 <div class="panel box box-default" style="border-top-color: black;">
                 
                  <div class="box-header with-border"> 
                  	<h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información personal
                   </a>
               </h4>
                   	</div>
                    
-                  <div id="collapseOne" class="panel-collapse collapse in">
+                  <div id="collapseOne" class="panel-collapse collapse in" aria-labelledby="headingOne">
 
                     <div class="box-body">
                       <br/>
@@ -419,12 +419,12 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
                	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"  class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Familia
                 </a>
             </h4>
                 </div>
-                  <div id="collapseTwo" class="panel-collapse collapse in">
+                  <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
                     <div class="box-body">
                             space..
                     </div>
@@ -434,12 +434,12 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
                         Dirección de usuario         
                   </a> 
                   </h4> 
                   </div>
-                  <div id="collapseThree" class="panel-collapse collapse in">
+                  <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
                     <div class="box-body">
                           <div id="mapAddressUser" ></div>
                     </div>

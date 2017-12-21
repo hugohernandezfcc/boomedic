@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\medical_appointments;
-use App\menu;
 
 
 class medicalappointments extends Controller
@@ -58,14 +57,13 @@ class medicalappointments extends Controller
      */
     public function store(Request $request)
     {
-        $medical = new menu;
+        $medical = new medical_appointments;
    
-        $medical->text           = 'Perfil';
-        $medical->icon    = 'user';
-        $medical->url       = 'doctor/redirecting/show';
-        $medical->to     = 'Doctor';
-        $medical->typeitem          = 'item';
-        $medical->parent          = '12';
+        $medical->user           = Auth::id();
+        $medical->user_doctor    = '3';
+        $medical->latitude       = 'Prueba';
+        $medical->longitude     = 'Prueba';
+        $medical->when          = '2017-01-12 04:00:00';
             
         if ($medical->save()) 
        return redirect('medicalconsultations');
