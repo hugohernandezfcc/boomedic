@@ -339,7 +339,7 @@
           <div class="box box-solid">
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="box-group" id="accordion" aria-multiselectable="true">
+              <div class="box-group" id="accordion">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
              
                 <div class="panel box box-default" style="border-top-color: black;">
