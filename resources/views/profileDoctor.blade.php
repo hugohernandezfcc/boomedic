@@ -663,11 +663,103 @@
 				    @if($mode == 'labor')
 				   			<div class="box">
 							  	<div class="box-header with-border">
-								    <h3 class="box-title">Labor Información</h3>
+								    <h3 class="box-title">Información Laboral</h3>
 							    	<!-- /.box-tools -->
 							  	</div>
 						  	<!-- /.box-header -->
-								  	<div class="box-body">
+				<div class="box-body">
+
+				<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal">
+					<div class="callout callout-default" align="right">
+				 <div class="form-group">
+	                	<label for="professional_license" class="col-sm-2 control-label">Lugar de trabajo</label>
+	                	<div class="col-sm-10">
+		                  	<input type="text" name="professional_license" id="professional_license" value="" class="form-control">
+	                	</div>
+	                	<!-- /.input group -->
+	              	</div>
+		                <b>Dirección</b>
+		            </div>
+		            <div class="form-group">
+		            	<label for="autocomplete" class="col-sm-2 control-label">
+		            		<i class="fa fa-location-arrow"></i>
+		            	</label>
+		            	<div id="locationField" class="col-sm-10">
+					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"></input>
+					    </div>
+		            </div>
+
+		            <div align="right">
+		            	<div class="row" style="width: 90%;" >
+			            	<div class="col-sm-6">
+			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
+			            	</div>
+			            	<div class="col-sm-6">
+			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
+			            	</div>
+			            </div>
+						<br />              	
+		              	<div class="row" style="width: 90%;" >
+			            	<div class="col-sm-6">
+			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
+			            	</div>
+			            	<div class="col-sm-6">
+			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
+			            	</div>
+			            </div>
+						<br />
+			            <div class="row" style="width: 90%;" >
+			            	<div class="col-sm-6">
+			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
+			            	</div>
+			            	<div class="col-sm-6">
+			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
+			            	</div>
+			            </div>
+		            </div>
+
+		            <input type="text" style="display: none;" name="latitude" id="latitudeFend" />
+		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" />
+		            <br/>
+		            <!-- /.box-body -->
+				  	<div class="box-footer">
+				    	<div class="row">
+
+				    		@if ($status == "In Progress")
+					    		<div class="col-sm-4">
+					            	&nbsp;
+					            </div>
+					    		<div class="col-sm-4">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						                Guardar
+						            </button>
+					            </div>
+					            <div class="col-sm-4">
+					            	&nbsp;
+					            </div>
+					       	@else 
+					       		<div class="col-sm-4">
+					            	&nbsp;
+					            </div>
+					       		<div class="col-sm-4">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						                Guardar
+						            </button>
+					            </div>
+					    		<div class="col-sm-4">
+					    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+						                Cancelar
+						            </a>
+					            </div>
+					            <div class="col-sm-4">
+					            	&nbsp;
+					            </div>
+							@endif
+				    	</div>
+				  	</div>
+				  	<!-- box-footer -->
+
+	    		</form>
 								  	</div>	
 							</div>	  	
 				    @endif
