@@ -59,13 +59,21 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                  <img src="{{ $photo }}" class="user-image" alt="User Image">
+                                  @if($photo == '')
+                                        <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png">
+                                    @else
+                                        <img src="{{ $photo }}">            
+                                    @endif 
                                   <span class="hidden-xs">{{ $username }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                   <!-- User image -->
                                   <li class="user-header" style="background-color:#4D4D4D;">
-                                    <img src="{{ $photo }}" class="img-circle" alt="User Image">
+                                    @if($photo == '')
+                                        <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image">
+                                    @else
+                                        <img src="{{ $photo }}" class="img-circle" alt="User Image">            
+                                    @endif 
 
                                     <p>
                                         {{ $username }}
