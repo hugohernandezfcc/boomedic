@@ -13,4 +13,5 @@ function onSignInG(googleUser) {
                 console.log(person);
             });
         });
-    }
+}
+
