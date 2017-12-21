@@ -370,13 +370,13 @@
                 
                  <div class="box-header with-border"> 
                  	<h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+                  <a data-toggle="collapse" data-parent="#accordion" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información personal
                   </a>
               </h4>
                   	</div>
                    
-                  <div id="collapseOne" class="panel-collapse collapse in" aria-labelledby="headingOne">
+                  <div id="collapseOne" class="panel-collapse collapse in">
 
                     <div class="box-body">
                       <br/>
@@ -443,12 +443,12 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
                	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información Profesional
                 </a>
             </h4>
                 </div>
-                  <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
+                  <div id="collapseTwo" class="panel-collapse collapse in">
                     <div class="box-body">
                             <div class="col-sm-12">
                           <div class="row">
@@ -487,12 +487,12 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
                         Dirección de usuario         
                   </a> 
                   </h4> 
                   </div>
-                  <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
+                  <div id="collapseThree" class="panel-collapse collapse in">
                     <div class="box-body">
                           <div id="mapAddressUser" ></div>
                     </div>
