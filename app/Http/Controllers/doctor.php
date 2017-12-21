@@ -123,7 +123,7 @@ class doctor extends Controller
     {
         switch ($page) {
             case 'show':
-                return redirect('user/profile/' . Auth::id() ); //show
+                return redirect('doctor/doctor/' . Auth::id() ); //show
                 break;
             
             default:
