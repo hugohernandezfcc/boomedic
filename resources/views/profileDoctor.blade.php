@@ -657,7 +657,18 @@
     };
     </script>
     @endif
-    @if($mode == 'labor')
-    HOLA MUNDO
-    @endif
+
+
+
+				    @if($mode == 'labor')
+				   			<div class="box">
+							  	<div class="box-header with-border">
+								    <h3 class="box-title">Labor Información</h3>
+							    	<!-- /.box-tools -->
+							  	</div>
+						  	<!-- /.box-header -->
+								  	<div class="box-body">
+								  	</div>	
+							</div>	  	
+				    @endif
 @stop
