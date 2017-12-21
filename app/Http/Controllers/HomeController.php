@@ -55,6 +55,9 @@ class HomeController extends Controller
         else {
             return view('medicalconsultations', [
                     'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
+                    'firstname' => DB::table('users')->where('id', Auth::id() )->value('firstname'),
+                    'lastname' => DB::table('users')->where('id', Auth::id() )->value('lastname'),
+                    'photo' => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                     'userId' => Auth::id()
                 ]
             );
