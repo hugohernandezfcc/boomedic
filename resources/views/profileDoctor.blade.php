@@ -672,6 +672,23 @@
 					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
 					   </div><br/>
 
+					@foreach($laborinformation as $laborinformation)	
+						@if($laborinformation->id > '1')
+							<div class="col-sm-12">
+					          <div class="info-box">
+					            <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+
+					            <div class="info-box-content">
+					              <span class="info-box-text">Messages</span>
+					              <span class="info-box-number">1,410</span>
+					            </div>
+					            <!-- /.info-box-content -->
+					          </div>
+					          <!-- /.info-box -->
+					        </div>
+						@endif
+					@endforeach   
+
 					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
 					<div class="callout callout-default">
 				 <div class="form-group">

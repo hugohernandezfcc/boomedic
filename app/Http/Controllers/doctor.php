@@ -272,7 +272,7 @@ class doctor extends Controller
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
 
-        $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
+      
 
         $laborInformation = new laborInformation;
         $laborInformation->workplace       = $request->workplace; 
@@ -293,7 +293,7 @@ class doctor extends Controller
 
         $laborInformation->save();
 
-
+          $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
             return view('profileDoctor', [
 
                 /** SYSTEM INFORMATION */
@@ -304,6 +304,7 @@ class doctor extends Controller
                 'mode'          => 'labor',
 
                 /* DIRECTION LABOR PROFESSIONAL  */
+                'laborinformation'   => $labor;
                 'country'       => (   empty($labor[0]->country)        ) ? '' : $labor[0]->country, 
                 'state'         => (   empty($labor[0]->state)          ) ? '' : $labor[0]->state, 
                 'delegation'    => (   empty($labor[0]->delegation)     ) ? '' : $labor[0]->delegation, 
