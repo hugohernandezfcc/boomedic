@@ -102,6 +102,7 @@
 		    <h3 class="box-title">Información de Médico</h3>
 	    	<!-- /.box-tools -->
 	  	</div>
+	  	<div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
 	  	<!-- /.box-header -->
 	  	<div class="box-body">
 	  		@if( !empty($status) )
@@ -145,7 +146,7 @@
 				    	@endif 
 		    			
 		    		</div>
-						<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/doctor/updatedoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+						<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
 	    		</div>
 	    		<!-- Photo Zone. -->
 	    		<br/>
