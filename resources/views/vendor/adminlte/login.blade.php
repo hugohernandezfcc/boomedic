@@ -95,8 +95,7 @@
             </div>
         </div>
         <div class="row">
-            <br></br>
-            <div class="col-xs-6">
+            <div class="col-xs-6" data-width="165" data-height="27">
                 <script type="in/Login"></script>
             </div>
         </div>
