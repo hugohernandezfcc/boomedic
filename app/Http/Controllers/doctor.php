@@ -272,7 +272,7 @@ class doctor extends Controller
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
 
-        $labor = DB::table('labor_information')->where('profInformation', $bus)->get());
+        $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
 
         $laborInformation = new laborInformation;
         $laborInformation->country       = $request->country; 
