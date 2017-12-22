@@ -776,12 +776,14 @@
 					          </div>
 					          <!-- /.info-box -->
 					        </div>
+					   @endif
+					        
 					   @if($labor->id > '2')
 					   	@break
 						
 						@else
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
-						@endif
+					@endif
 
 			@endforeach  
 			  </div>   		 	
