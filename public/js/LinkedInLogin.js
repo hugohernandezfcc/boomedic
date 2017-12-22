@@ -1,4 +1,4 @@
-var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", title: "", industry: "", educations: ""};
+var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", title: "", industry: ""};
     function onLinkedInLoad() {
         IN.Event.on(IN, "auth", getProfileData);
       //  $('a[id*=li_ui_li_gen_]').css({marginBottom:'20px'}).html('<img src="/linkedin_signin_large.png" height="31" width="200" border="0" />');
