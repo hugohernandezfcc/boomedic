@@ -94,6 +94,11 @@
                 <div class="g-signin2" lang="es-419" data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <script type="in/Login"></script>
+            </div>
+        </div>
     </div><!-- /.login-box -->
 @stop
 
