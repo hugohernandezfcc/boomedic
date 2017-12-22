@@ -672,24 +672,7 @@
 					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
 					   </div><br/>
 
-					@foreach($labor as $labor)	
-						@if($labor->id > '0')
-						<div class="box-footer">
-							<div class="col-sm-12">
-					          <div class="info-box">
-					            <span class="info-box-icon bg-lighten-2"><i class="fa fa-hospital-o"></i></span>
 
-					            <div class="info-box-content">
-					              <span class="info-box-text">{{ $labor->workplace}}</span>
-					              <span class="info-box-text">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span>
-					            </div>
-					            <!-- /.info-box-content -->
-					          </div>
-					          <!-- /.info-box -->
-					        </div>
-					    </div>    
-						@endif
-					@endforeach   
 
 					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
 					<div class="callout callout-default">
@@ -777,6 +760,24 @@
 
 	    		</form>
 								  	</div>	
+				@foreach($labor as $labor)	
+						@if($labor->id > '0')
+						<div class="box-footer">
+							<div class="col-sm-12">
+					          <div class="info-box">
+					            <span class="info-box-icon bg-lighten-2"><i class="fa fa-hospital-o"></i></span>
+
+					            <div class="info-box-content">
+					              <span class="info-box-text">{{ $labor->workplace}}</span>
+					              <span class="info-box-text">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span>
+					            </div>
+					            <!-- /.info-box-content -->
+					          </div>
+					          <!-- /.info-box -->
+					        </div>
+					    </div>    
+						@endif
+					@endforeach   
 							</div>	
 
     		<script type="text/javascript">
