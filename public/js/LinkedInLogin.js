@@ -12,12 +12,12 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: ""};
         // Handle the successful return from the API call
     function displayProfileData(data){
         var user = data.values[0];
-        person.name = user.firstName+' '+user.lastName;
-        person.picture = user.pictureUrl;
-        person.email = user.emailAddress;
-        person.firstName = user.firstName;
-        person.lastName = user.lastName;
-        console.log(person);
+        personLI.name = user.firstName+' '+user.lastName;
+        personLI.picture = user.pictureUrl;
+        personLI.email = user.emailAddress;
+        personLI.firstName = user.firstName;
+        personLI.lastName = user.lastName;
+        console.log(personLI);
     }
 
     // Handle an error response from the API call
