@@ -267,7 +267,7 @@ class doctor extends Controller
 
         public function laborInformation(Request $request, $id)
     {
-        $user = User::find($id);
+        $user = DB::table('user')->where('id', Auth::id())->get();
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
@@ -275,6 +275,9 @@ class doctor extends Controller
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
 
         $laborInformation = new laborInformation;
+        $laborInformation->workplace       = $request->workplace; 
+        $laborInformation->professionalPosition       = $request->professionalPosition; 
+
         $laborInformation->country       = $request->country; 
         $laborInformation->state         = $request->state; 
         $laborInformation->delegation    = $request->delegation; 
@@ -296,8 +299,8 @@ class doctor extends Controller
                 /** SYSTEM INFORMATION */
 
                 'userId'        => Auth::id(),
-                'name'      => $user->name,
-                'photo'         => $user->profile_photo,
+                'name'      => $user[0]->name,
+                'photo'         => $user[0]->profile_photo,
                 'mode'          => 'labor',
 
                 /* DIRECTION LABOR PROFESSIONAL  */
