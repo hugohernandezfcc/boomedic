@@ -136,7 +136,7 @@
 				        }
 
 
-				        }
+				        
 
 						@endphp
 							<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
