@@ -824,6 +824,11 @@
 		          var addressType = place.address_components[i].types[0];
 		          if (componentForm[addressType]) {
 		            var val = place.address_components[i][componentForm[addressType]];
+		            var lat =  place.geometry.location.lat();
+		            var lng =  place.geometry.location.lng();
+		            document.getElementById('latitude').value = lat; 
+		            document.getElementById('longitude').value = lng;
+
 		            document.getElementById(addressType).value = val;
 		          }
 		        }
@@ -842,7 +847,7 @@
 
 		            console.log(geolocation.lat + ' ' + geolocation.lng);
 		            document.getElementById('latitude').value = geolocation.lat; 
-		            document.getElementById('longitude').value = geolocation.lat;
+		            document.getElementById('longitude').value = geolocation.lng;
 		            var circle = new google.maps.Circle({
 		              center: geolocation,
 		              radius: position.coords.accuracy
