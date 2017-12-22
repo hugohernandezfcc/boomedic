@@ -728,8 +728,8 @@
 			            </div>
 		            </div>
 
-		            <input type="text" style="display: none;" name="latitude" id="latitudeFend" />
-		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" />
+		            <input type="text" name="latitude" id="latitude" />
+		            <input type="text" name="longitude" id="longitude" />
 		            <br/>
 		            <!-- /.box-body -->
 				  	<div class="box-footer">
@@ -839,8 +839,8 @@
 		            };
 
 		            console.log(geolocation.lat + ' ' + geolocation.lng);
-		            document.getElementById('latitudeFend').value = geolocation.lat; 
-		            document.getElementById('longitudeFend').value = geolocation.lat;
+		            document.getElementById('latitude').value = geolocation.lat; 
+		            document.getElementById('longitude').value = geolocation.lat;
 		            var circle = new google.maps.Circle({
 		              center: geolocation,
 		              radius: position.coords.accuracy

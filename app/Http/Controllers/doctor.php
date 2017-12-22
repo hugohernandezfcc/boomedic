@@ -265,6 +265,57 @@ class doctor extends Controller
         );
     }
 
+        public function laborInformation(Request $request, $id)
+    {
+        $user = User::find($id);
+        $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
+        $bus = $professionali[0]->id;
+        $prof = professional_information::find($bus);
+
+        $labor = DB::table('labor_information')->where('profInformation', $bus)->get());
+
+        $laborInformation = new laborInformation;
+        $laborInformation->country       = $request->country; 
+        $laborInformation->state         = $request->state; 
+        $laborInformation->delegation    = $request->delegation; 
+        $laborInformation->colony        = $request->colony; 
+        $laborInformation->street        = $request->street; 
+
+
+        $laborInformation->postalcode    = $request->postalcode; 
+        $laborInformation->latitude      = $request->latitude; 
+        $laborInformation->longitude     = $request->longitude;
+
+        $laborInformation->profInformation  =   $prof->id;
+
+        $laborInformation->save();
+
+
+            return view('profileDoctor', [
+
+                /** SYSTEM INFORMATION */
+
+                'userId'        => Auth::id(),
+                'name'      => $user->name,
+                'photo'         => $user->profile_photo,
+                'mode'          => 'labor',
+
+                /* DIRECTION LABOR PROFESSIONAL  */
+                'country'       => (   empty($labor[0]->country)        ) ? '' : $labor[0]->country, 
+                'state'         => (   empty($labor[0]->state)          ) ? '' : $labor[0]->state, 
+                'delegation'    => (   empty($labor[0]->delegation)     ) ? '' : $labor[0]->delegation, 
+                'colony'        => (   empty($labor[0]->colony)         ) ? '' : $labor[0]->colony, 
+                'street'        => (   empty($labor[0]->street)         ) ? '' : $labor[0]->street, 
+                'streetnumber'  => (   empty($labor[0]->streetnumber)   ) ? '' : $labor[0]->streetnumber, 
+                'interiornumber'=> (   empty($labor[0]->interiornumber) ) ? '' : $labor[0]->interiornumber, 
+                'postalcode'    => (   empty($labor[0]->postalcode)     ) ? '' : $labor[0]->postalcode,
+                'latitude'    => (   empty($labor[0]->latitude)     ) ? '' : $labor[0]->latitude,
+                'longitude'    => (   empty($labor[0]->longitude)     ) ? '' : $labor[0]->longitude,
+
+            ]
+        );
+    }
+
     public function updateDoctor(Request $request, $id)
     {
 
