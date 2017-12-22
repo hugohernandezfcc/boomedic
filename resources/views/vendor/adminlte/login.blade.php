@@ -65,12 +65,12 @@
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                     </div>
                     <!-- /.col -->
-                    <div class="row" align="center"> O con redes sociales
-                        <div class="col-xs-6">
+                    <div class="row" align="center">
+                        <div align="center">
                             <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
                                     data-scope="public_profile,email" onlogin="checkLoginState();"></div>
                             </div>
-                        <div class="col-xs-6">
+                        <div align="center">
                             <div class="g-signin2" data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div>
                         </div>
                      </div><br>
