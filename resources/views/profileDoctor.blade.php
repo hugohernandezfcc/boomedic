@@ -659,7 +659,7 @@
 
 
 				    @if($mode == 'labor')
-				   			<div class="box" style="height: 100%; width: 100%;">
+				   			<div class="box" >
 							  	<div class="box-header with-border">
 								    <h3 class="box-title">Información Laboral</h3>
 							    	<!-- /.box-tools -->
@@ -759,8 +759,9 @@
 				  	<!-- box-footer -->
 
 	    		</form>
-								  	</div>	
-				@foreach($labor as $labor)	
+				</div>	
+			</div>
+			@foreach($labor as $labor)	
 						@if($labor->id > '0')
 						<div class="box-footer">
 							<div class="col-sm-12">
@@ -777,8 +778,7 @@
 					        </div>
 					    </div>    
 						@endif
-					@endforeach   
-							</div>	
+					@endforeach   	
 
     		<script type="text/javascript">
 
