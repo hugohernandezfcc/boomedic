@@ -1,6 +1,7 @@
-var person = { name: "", picture: "", email: "", lastName: "", firstName: ""};
+var personLI = { name: "", picture: "", email: "", lastName: "", firstName: ""};
     function onLinkedInLoad() {
         IN.Event.on(IN, "auth", getProfileData);
+        $('a[id*=li_ui_li_gen_]').css({marginBottom:'20px'}).html('<img src="/linkedin_signin_large.png" height="31" width="200" border="0" />');
     }
     
     // Use the API call wrapper to request the member's profile data
