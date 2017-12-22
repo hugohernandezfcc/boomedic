@@ -672,7 +672,7 @@
 					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
 					   </div><br/>
 
-					<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
+					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
 					<div class="callout callout-default">
 				 <div class="form-group">
 	                	<label for="professional_license" class="col-sm-2 control-label">Lugar de trabajo</label>

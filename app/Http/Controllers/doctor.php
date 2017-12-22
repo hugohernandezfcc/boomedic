@@ -265,7 +265,7 @@ class doctor extends Controller
         );
     }
 
-        public function laborInformation(Request $request, $id)
+        public function laborInformationNext(Request $request, $id)
     {
         $user = DB::table('user')->where('id', Auth::id())->get();
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();

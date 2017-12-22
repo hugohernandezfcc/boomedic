@@ -161,9 +161,9 @@ Route::group(['prefix' => 'doctor'], function(){
 		]
 	);
 
-	Route::get('laborInformation/{id}', [
-			'uses'	=>	'doctor@laborInformation',
-			'as'	=>	'laborInformation'
+	Route::get('laborInformationNext/{id}', [
+			'uses'	=>	'doctor@laborInformationNext',
+			'as'	=>	'laborInformationNext'
 		]
 	);
 
