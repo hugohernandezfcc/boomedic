@@ -675,9 +675,9 @@
 					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
 					<div class="callout callout-default">
 				 <div class="form-group">
-	                	<label for="professional_license" class="col-sm-2 control-label">Lugar de trabajo</label>
+	                	<label for="workplace" class="col-sm-2 control-label">Lugar de trabajo</label>
 	                	<div class="col-sm-10">
-		                  	<input type="text" name="professional_license" id="professional_license" value="" class="form-control">
+		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
