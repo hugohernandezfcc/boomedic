@@ -666,8 +666,10 @@
 							  	</div>
 						  	<!-- /.box-header -->
 				<div class="box-body">
-
-				<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal">
+					   <div id="boton">
+					      <button type="button" id="abrirform" class="btn btn-primary">Abrir formulario</button>
+					   </div>
+					<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
 					<div class="callout callout-default">
 				 <div class="form-group">
 	                	<label for="professional_license" class="col-sm-2 control-label">Lugar de trabajo</label>
@@ -757,7 +759,13 @@
 
     		<script type="text/javascript">
 
-
+    		$(document).ready(function() {
+				$("#abrirform").click(
+				function(event) {
+				   $("#boton").hide();
+				   document.getElementById("form1").style.display = "block";
+				})
+			})
     			window.onload = function(){
 
     				initAutocomplete();
