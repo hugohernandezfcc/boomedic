@@ -758,11 +758,12 @@
 	    		</form>
 				</div>	
 			</div>
+
+			@foreach($labor as $labor)	
 			<div class="box-footer" id="footer">
 				<div class="box-header with-border">
 			 		<h3 class="box-title">Centros agregados</h3>
 			 	<div class="box-header with-border">	
-			@foreach($labor as $labor)	
 						@if($labor->id > '0')
 							<div class="col-sm-12">
 					          <div class="info-box">
@@ -778,15 +779,15 @@
 					        </div>
 					   @endif
 					        
-					   @if($labor->id > '2')
+					@if($labor->id > '2')
 					   	@break
-						
-						@else
+					@endif
+					@if($labor->id == '0')
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
 					@endif
-
+			</div> 
 			@endforeach  
-			  </div>   		 	
+			   		 	
 
     		<script type="text/javascript">
 
