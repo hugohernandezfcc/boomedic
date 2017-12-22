@@ -127,18 +127,15 @@
 			          $height = $imagen[1];  
 
 				          if($height > '500' || $width > '500'){
-				            $height = $height / 2.5;
-				            $width = $width / 2.5;
+				            $height = $height / 2;
+				            $width = $width / 2;
 				        }
 				        if($height > '800' || $width > '800'){
-				            $height = $height / 4;
-				            $width = $width / 4;
+				            $height = $height / 3;
+				            $width = $width / 3;
 				        }
 
 
-				          if($height < '400' || $width < '400'){
-				            $height = $height / 1.3;
-				            $width = $width / 1.3;
 				        }
 
 						@endphp
@@ -671,7 +668,7 @@
 				<div class="box-body">
 
 				<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal">
-					<div class="callout callout-default" align="left">
+					<div class="callout callout-default">
 				 <div class="form-group">
 	                	<label for="professional_license" class="col-sm-2 control-label">Lugar de trabajo</label>
 	                	<div class="col-sm-10">
@@ -685,8 +682,8 @@
 		                  	<input type="text" name="professionalPosition" id="professionalPosition" value="" class="form-control">
 	                	</div>
 	                	<!-- /.input group -->
-	              	</div>
-		                <b>Dirección</b>
+	              	</div class="form-group">
+		                <label for="ubication" class="col-sm-2 control-label">Ubicación</label>
 		            </div>
 		            <div class="form-group">
 		            	<label for="autocomplete" class="col-sm-2 control-label">
