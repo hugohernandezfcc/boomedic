@@ -769,8 +769,8 @@
 					            <span class="info-box-icon bg-lighten-2"><i class="fa fa-hospital-o"></i></span>
 
 					            <div class="info-box-content">
-					              <span class="info-box-text">{{ $labor->workplace}}</span>
-					              <span class="info-box-text">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span>
+					              <span class="text-black">{{ $labor->workplace}}</span>
+					              <span>{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span>
 					            </div>
 					            <!-- /.info-box-content -->
 					          </div>

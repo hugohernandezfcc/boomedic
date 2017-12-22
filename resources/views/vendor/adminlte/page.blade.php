@@ -68,7 +68,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                   <!-- User image -->
-                                  <li class="user-header" style="background-color:#4D4D4D;">
+                                  <li class="user-header bg-lighten-2">
                                     @if($photo == '')
                                         <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image">
                                     @else
@@ -81,7 +81,7 @@
                                     </p>
                                   </li>
                                   <!-- Menu Footer-->
-                                  <li class="user-footer" style="background-color:#4D4D4D;">
+                                  <li class="user-footer bg-lighten-2">
                                     <div class="pull-center">
                                  @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                 <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" class="btn btn-secondary btn-block btn-flat">
