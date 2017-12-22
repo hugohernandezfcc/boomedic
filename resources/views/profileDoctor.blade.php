@@ -728,8 +728,8 @@
 			            </div>
 		            </div>
 
-		            <input type="text" name="latitude" id="latitude" />
-		            <input type="text" name="longitude" id="longitude" />
+		            <input type="text" name="latitude" id="latitude"/>
+		            <input type="text" name="longitude" id="longitude"/>
 		            <br/>
 		            <!-- /.box-body -->
 				  	<div class="box-footer">
@@ -792,7 +792,9 @@
 		        locality: 'long_name',
 		        administrative_area_level_1: 'short_name',
 		        country: 'long_name',
-		        postal_code: 'short_name'
+		        postal_code: 'short_name',
+		        latitude: 'long_name',
+		        longitude: 'long_name'
 		      };
 
 		      function initAutocomplete() {
