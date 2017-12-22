@@ -666,12 +666,12 @@
 							  	</div>
 						  	<!-- /.box-header -->
 				<div class="box-body"><br/>
-					   <div id="buttonOpen">
-					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-pencil"></i>Ingresar Dirección</button>
+					   <div id="buttonOpen" align="left">
+					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-pencil"></i> Ingresar Dirección</button>
+					      <br/>
+					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i> Registrar por ubicación actual</button>
 					   </div><br/>
-					  ¿<div id="buttonOpen2">
-					      <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>Registrar por ubicación actual</button>
-					   </div>
+
 					<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
 					<div class="callout callout-default">
 				 <div class="form-group">
