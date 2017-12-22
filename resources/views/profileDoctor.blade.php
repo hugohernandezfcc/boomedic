@@ -760,7 +760,11 @@
 			</div>
 			
 
-			
+			@if(empty($labor))
+			<div class="box-footer">
+						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
+			</div>
+			@else
 
 			@foreach($labor as $labor)	
 			<div class="box-footer">
@@ -782,11 +786,10 @@
 					@if($labor > 2)
 					   	@break
 					@endif
-					@if($labor == 0)
-						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
-					@endif
+					
 			 </div>
 			@endforeach  
+			@endif
 				   		 	
 
     		<script type="text/javascript">
