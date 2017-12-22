@@ -93,7 +93,7 @@
             <div class="col-xs-6">
                 <div class="g-signin2" data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div>
             </div>
-        </div>
+        </div><br>
         <div class="row">
             <div>
                 <div align="center"><script type="in/Login" data-width="165" data-height="27" ></script></div>
