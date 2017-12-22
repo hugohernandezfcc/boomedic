@@ -95,8 +95,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-6" data-width="255" data-height="45" align="text-center">
-                <script type="in/Login"></script>
+            <div class="col-xs-6">
+                <div><script type="in/Login"></script></div>
             </div>
         </div>
     </div><!-- /.login-box -->
