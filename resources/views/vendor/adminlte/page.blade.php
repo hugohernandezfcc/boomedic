@@ -66,9 +66,9 @@
                                     @endif 
                                   <span class="hidden-xs">{{ $name }}</span>
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu bg-darken-4">
                                   <!-- User image -->
-                                  <li class="user-header bg-lighten-2">
+                                  <li class="user-header bg-darken-4">
                                     @if($photo == '')
                                         <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image">
                                     @else
@@ -81,7 +81,7 @@
                                     </p>
                                   </li>
                                   <!-- Menu Footer-->
-                                  <li class="user-footer bg-lighten-2">
+                                  <li class="user-footer bg-darken-4">
                                     <div class="pull-center">
                                  @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                 <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" class="btn btn-secondary btn-block btn-flat">
