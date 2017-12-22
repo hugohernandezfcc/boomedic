@@ -688,7 +688,8 @@
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="professionalPosition" id="professionalPosition" value="" class="form-control">
 	                	</div>
-
+	                </div>
+	                	
 		            <div class="form-group">
 		            	<label for="autocomplete" class="col-sm-2 control-label">
 		            		<i class="fa fa-location-arrow"></i>
@@ -698,7 +699,7 @@
 					    </div>
 		            </div>
 
-		            <div align="right">
+		            <div class="form-group">
 		            	<div class="row" style="width: 90%;" >
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
@@ -760,7 +761,7 @@
 			</div>
 			
 
-			@if(empty($labor))
+			@if($labor->isEmpty())
 			<div class="box-footer">
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
 			</div>
@@ -768,7 +769,7 @@
 
 			@foreach($labor as $labor)	
 			<div class="box-footer">
-						@if($labor > 0)
+						@if($labor < 3)
 							<div class="col-sm-12">
 					          <div class="info-box">
 					            <span class="info-box-icon bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
@@ -782,10 +783,7 @@
 					          <!-- /.info-box -->
 					        </div>
 					   @endif
-					        
-					@if($labor > 2)
-					   	@break
-					@endif
+
 					
 			 </div>
 			@endforeach  
