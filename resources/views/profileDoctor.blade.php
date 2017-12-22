@@ -672,8 +672,8 @@
 					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
 					   </div><br/>
 
-					@foreach($laborinformation as $laborinformation)	
-						@if($laborinformation->id > '1')
+					@foreach($labor as $labor)	
+						@if($labor->id > '0')
 							<div class="col-sm-12">
 					          <div class="info-box">
 					            <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
