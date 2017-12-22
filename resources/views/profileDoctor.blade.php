@@ -688,44 +688,41 @@
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="professionalPosition" id="professionalPosition" value="" class="form-control">
 	                	</div>
-	                	<!-- /.input group -->
-	              	</div class="form-group">
-		                <label for="ubication" class="col-sm-2 control-label">Ubicación</label>
-		            </div>
+
 		            <div class="form-group">
 		            	<label for="autocomplete" class="col-sm-2 control-label">
 		            		<i class="fa fa-location-arrow"></i>
 		            	</label>
 		            	<div id="locationField" class="col-sm-10">
-					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"></input>
+					      	<input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del centro de salud donde trabajas" onFocus="geolocate()" type="text"></input>
 					    </div>
 		            </div>
 
 		            <div align="right">
 		            	<div class="row" style="width: 90%;" >
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
 			            </div>
 						<br />              	
 		              	<div class="row" style="width: 90%;" >
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
+			            		<input type="text" value="" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
 			            </div>
 						<br />
 			            <div class="row" style="width: 90%;" >
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
+			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
 			            </div>
 		            </div>
@@ -761,24 +758,30 @@
 	    		</form>
 				</div>	
 			</div>
+			<div class="box-footer" id="footer">
+			 <h3 class="box-title">Centros agregados</h3>	
 			@foreach($labor as $labor)	
 						@if($labor->id > '0')
-						<div class="box-footer">
 							<div class="col-sm-12">
 					          <div class="info-box">
 					            <span class="info-box-icon bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
 
 					            <div class="info-box-content">
 					              <span class="info-box-text">{{ $labor->workplace}}</span>
-					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span>
+					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
 					            </div>
 					            <!-- /.info-box-content -->
 					          </div>
 					          <!-- /.info-box -->
 					        </div>
-					    </div>    
+					   
+						
+						@else
+						 <span class="text-black">No hay ningún centro asociado a su cuenta</span>
 						@endif
-					@endforeach   	
+
+			@endforeach  
+			  </div>   		 	
 
     		<script type="text/javascript">
 
