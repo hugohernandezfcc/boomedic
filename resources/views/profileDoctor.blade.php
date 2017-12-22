@@ -666,8 +666,8 @@
 							  	</div>
 						  	<!-- /.box-header -->
 				<div class="box-body">
-					   <div id="boton">
-					      <button type="button" id="abrirform" class="btn btn-primary">Abrir formulario</button>
+					   <div id="buttonOpen">
+					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat">Abrir formulario</button>
 					   </div>
 					<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
 					<div class="callout callout-default">
@@ -760,9 +760,9 @@
     		<script type="text/javascript">
 
     		$(document).ready(function() {
-				$("#abrirform").click(
+				$("#openform").click(
 				function(event) {
-				   $("#boton").hide();
+				   $("#buttonOpen").hide();
 				   document.getElementById("form1").style.display = "block";
 				})
 			})
