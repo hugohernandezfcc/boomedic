@@ -700,7 +700,7 @@
 		            </div>
 
 		            <div class="form-group">
-		            	<div class="row" style="width: 90%;" >
+		            	<div class="row">
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
@@ -709,7 +709,7 @@
 			            	</div>
 			            </div>
 						<br />              	
-		              	<div class="row" style="width: 90%;" >
+		              	<div class="row">
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
 			            	</div>
@@ -718,7 +718,7 @@
 			            	</div>
 			            </div>
 						<br />
-			            <div class="row" style="width: 90%;" >
+			            <div class="row">
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
 			            	</div>
@@ -728,8 +728,8 @@
 			            </div>
 		            </div>
 
-		            <input type="text" name="latitude" id="latitude"/>
-		            <input type="text" name="longitude" id="longitude"/>
+		            <input type="hidden" name="latitude" id="latitude"/>
+		            <input type="hidden" name="longitude" id="longitude"/>
 		            <br/>
 		            <!-- /.box-body -->
 				  	<div class="box-footer">
