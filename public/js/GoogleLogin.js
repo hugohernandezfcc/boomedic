@@ -1,9 +1,11 @@
-var person = { name: "", picture: "", email: ""};
+var person = { name: "", picture: "", email: "", familyN: "", givenName: ""};
 function onSignInG(googleUser) {
         var profile = googleUser.getBasicProfile();
         person.name = profile.getName();
         person.email= profile.getEmail();
         person.picture = profile.getImageUrl();
+        person.familyN = profile.getFamilyName();
+        person.givenName = profile.getGivenName();
         console.log(person);
         /*gapi.client.load('plus', 'v1', function () {
             var request = gapi.client.plus.people.get({
