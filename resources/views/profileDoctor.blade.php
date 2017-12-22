@@ -674,9 +674,10 @@
 
 					@foreach($labor as $labor)	
 						@if($labor->id > '0')
+						<div class="box-footer">
 							<div class="col-sm-12">
 					          <div class="info-box">
-					            <span class="info-box-icon bg-darken-4"><i class="fa fa-hospital-o"></i></span>
+					            <span class="info-box-icon bg-lighten-2"><i class="fa fa-hospital-o"></i></span>
 
 					            <div class="info-box-content">
 					              <span class="info-box-text">{{ $labor->workplace}}</span>
@@ -686,6 +687,7 @@
 					          </div>
 					          <!-- /.info-box -->
 					        </div>
+					    </div>    
 						@endif
 					@endforeach   
 
