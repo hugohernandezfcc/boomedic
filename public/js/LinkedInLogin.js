@@ -1,4 +1,4 @@
-var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", title: "", specialities: "", industry: ""};
+var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", title: "", specialities: "", industry: "", educations: ""};
     function onLinkedInLoad() {
         IN.Event.on(IN, "auth", getProfileData);
       //  $('a[id*=li_ui_li_gen_]').css({marginBottom:'20px'}).html('<img src="/linkedin_signin_large.png" height="31" width="200" border="0" />');
@@ -6,7 +6,7 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
     
     // Use the API call wrapper to request the member's profile data
     function getProfileData() {
-        IN.API.Profile("me").fields("positions", "first-name", "last-name", "specialities", "industry", "picture-url", "public-profile-url", "email-address").result(displayProfileData).error(onError);
+        IN.API.Profile("me").fields("positions:(title)", "educations", "first-name", "last-name", "specialities", "industry", "picture-url", "public-profile-url", "email-address").result(displayProfileData).error(onError);
     }
 
         // Handle the successful return from the API call
