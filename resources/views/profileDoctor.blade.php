@@ -145,12 +145,12 @@
 				    	@endif 
 		    			
 		    		</div>
-						<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+						<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/doctor/updatedoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
 	    		</div>
 	    		<!-- Photo Zone. -->
 	    		<br/>
 
-	    		<form action="/doctor/update/{{$userId}}" method="post" class="form-horizontal">
+	    		<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -670,11 +670,18 @@
 				<div class="box-body">
 
 				<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal">
-					<div class="callout callout-default" align="right">
+					<div class="callout callout-default" align="left">
 				 <div class="form-group">
 	                	<label for="professional_license" class="col-sm-2 control-label">Lugar de trabajo</label>
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="professional_license" id="professional_license" value="" class="form-control">
+	                	</div>
+	                	<!-- /.input group -->
+	              	</div>
+	              	<div class="form-group">
+	                	<label for="professionalPosition" class="col-sm-2 control-label">Posición Profesional</label>
+	                	<div class="col-sm-10">
+		                  	<input type="text" name="professionalPosition" id="professionalPosition" value="" class="form-control">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>

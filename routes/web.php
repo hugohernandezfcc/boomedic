@@ -149,15 +149,21 @@ Route::group(['prefix' => 'doctor'], function(){
 		]
 	);
 
-	Route::post('update/{id}', [
+	Route::post('laborInformation/{id}', [
 			'uses'	=>	'doctor@update',
-			'as'	=>	'update'
+			'as'	=>	'laborInformation'
 		]
 	);
 
 	Route::get('doctor/{id}', [
 			'uses'	=>	'doctor@show',
 			'as'	=>	'doctor'
+		]
+	);
+
+	Route::get('laborInformation/{id}', [
+			'uses'	=>	'doctor@laborInformation',
+			'as'	=>	'laborInformation'
 		]
 	);
 
