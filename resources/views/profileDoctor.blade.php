@@ -760,7 +760,7 @@
 				</div>	
 			</div>
 			
-			<div class="footer">
+			<div class="navbar navbar-fixed-bottom">
 			@if($labor->isEmpty())
 			<div class="box-footer">
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
@@ -771,7 +771,7 @@
 			@foreach($labor as $labor)	
 			<div class="box-footer">
 						@if($loop->iteration < 3)
-							<div class="col-sm-12" style="height: 25px;">
+							<div class="col-sm-12">
 					          <div class="info-box bg-gray">
 					          	@if($loop->iteration == 1)
 					            <span class="info-box-icon bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
