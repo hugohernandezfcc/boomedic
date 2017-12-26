@@ -790,8 +790,8 @@
 					        </div>
 					   @endif	
 					   @if($loop->iteration > 2)
-					   <div class="col-sm-10">
-					   <span class="info-box-icon bg-lighten-1">Ver más...<i class="fa fa-arrow-right"></i></span>
+					   <div class="col-sm-10" style="text-align: right;">
+					   Ver más...<i class="fa fa-arrow-right"></i>
 					   </div>
 			 		   @endif			
 			@endforeach
