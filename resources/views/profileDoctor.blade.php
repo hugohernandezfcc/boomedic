@@ -769,7 +769,7 @@
 
 			@foreach($labor as $labor)	
 			
-						@if($labor[1])
+						@if(!empty($labor[1]))
 							<div class="col-sm-12">
 					          <div class="info-box">
 					            <span class="info-box-icon bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
@@ -784,7 +784,7 @@
 					        </div>
 					   @endif
 
-					 @if($labor[2])
+					 @if(!empty($labor[2]))
 							<div class="col-sm-12">
 					          <div class="info-box">
 					            <span class="info-box-icon bg-aqua"><i class="fa fa-hospital-o"></i></span>
