@@ -762,12 +762,12 @@
 			
 			<div class="footer col-sm-12">
 			@if($labor->isEmpty())
-			<div class="box-footer">
+			<div class="panel-footer">
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
 			</div>
 			
 			@else
-			<div class="box-footer">
+			<div class="panel-footer">
 			 <span class="text-black">Centros agregados:</span><br/>
 			@foreach($labor as $labor)	
 			
@@ -788,8 +788,12 @@
 					          </div>
 					          <!-- /.info-box -->
 					        </div>
-					   @endif			
-			 
+					   @endif	
+					   @if($loop->iteration > 2)
+					   <div class="col-sm-10">
+					   <span class="info-box-icon bg-lighten-1">Ver más...<i class="fa fa-arrow-right"></i></span>
+					   </div>
+			 		   @endif			
 			@endforeach
 			 </div> 
 			@endif
