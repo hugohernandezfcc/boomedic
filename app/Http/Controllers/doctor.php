@@ -300,7 +300,7 @@ class doctor extends Controller
         );
     }
 
-           public function laborInformationView(Request $request, $id)
+           public function laborInformationView($id)
     {
         $user = user::find(Auth::id());
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();

@@ -789,13 +789,19 @@
 						</a>
 			 		   @endif			
 			@endforeach
+			</div>	 
 			@endif
 
 
 			@if($mode == 'viewlabor')
 				@foreach($labor as $labor)	
 			
-
+					<div class="box">
+						<div class="box-header with-border">
+								    <h3 class="box-title">Registro de centros laborales</h3>
+							    	<!-- /.box-tools -->
+							  	</div>
+							  	<div class="box-body"><br/>
 							<div class="col-sm-10">
 					          <div class="info-box bg-gray">
 					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
@@ -807,13 +813,15 @@
 					          </div>
 					          <!-- /.info-box -->
 					        </div>
+					    </div>
+					</div>        
 			
 			@endforeach
 
 			@endif
 
 
-				</div>	   		 	
+				  		 	
 				
     		<script type="text/javascript">
 
