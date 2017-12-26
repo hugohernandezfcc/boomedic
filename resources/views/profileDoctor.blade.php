@@ -769,7 +769,7 @@
 
 			@foreach($labor as $labor)	
 			
-						@if($labor < '3')
+						@if($labor < 3)
 							<div class="col-sm-12">
 					          <div class="info-box">
 					            <span class="info-box-icon bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
