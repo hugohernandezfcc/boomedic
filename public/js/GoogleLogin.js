@@ -10,7 +10,7 @@ function onSignInG(googleUser) {
 }
 
 function renderG(){
- 	gapi.plusone.render('myButton'{
+ 	gapi.plusone.render('myButton', {
         'scope': 'profile email',
         'width': 240,
         'height': 50,
