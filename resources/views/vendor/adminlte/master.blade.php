@@ -109,12 +109,11 @@
           position:fixed;
           bottom:0;
           }
-          .info-box.info-box-sm {
+          .info-box {
               min-height: 45px;
-              small {
-                  font-size: 12px;
-              }
+             font-size: 12px;
               margin-bottom: 8px;
+               }
               .info-box-icon {
                   height: 45px;
                   width: 45px;
@@ -124,7 +123,7 @@
               .info-box-content {
                   margin-left: 45px;
               }
-          }
+         
 
 
     </style>
