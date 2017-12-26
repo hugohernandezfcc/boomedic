@@ -769,7 +769,7 @@
 
 			@foreach($labor as $labor)	
 			
-						@if(!empty($labor[1]))
+						@if($labor < '3')
 							<div class="col-sm-12">
 					          <div class="info-box">
 					            <span class="info-box-icon bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
@@ -782,24 +782,7 @@
 					          </div>
 					          <!-- /.info-box -->
 					        </div>
-					   @endif
-
-					 @if(!empty($labor[2]))
-							<div class="col-sm-12">
-					          <div class="info-box">
-					            <span class="info-box-icon bg-aqua"><i class="fa fa-hospital-o"></i></span>
-
-					            <div class="info-box-content">
-					              <span class="info-box-text">{{ $labor->workplace}}</span>
-					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>3
-					            </div>
-					            <!-- /.info-box-content -->
-					          </div>
-					          <!-- /.info-box -->
-					        </div>
-					   @endif
-
-					
+					   @endif			
 			 
 			@endforeach
 			</div>  
