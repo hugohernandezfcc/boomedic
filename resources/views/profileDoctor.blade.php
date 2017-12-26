@@ -771,7 +771,7 @@
 			@foreach($labor as $labor)	
 			<div class="box-footer">
 						@if($loop->iteration < 3)
-							<div class="col-sm-11">
+							<div class="col-sm-10">
 					          <div class="info-box bg-gray">
 					          	@if($loop->iteration == 1)
 					            <span class="info-box-icon bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
