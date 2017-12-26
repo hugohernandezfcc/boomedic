@@ -766,10 +766,10 @@
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
 			
 			@else
-
+			
 			@foreach($labor as $labor)	
 			
-						@if(array_count_values($labor) < 3)
+						@if($loop->iteration < 3)
 							<div class="col-sm-12">
 					          <div class="info-box">
 					            <span class="info-box-icon bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
