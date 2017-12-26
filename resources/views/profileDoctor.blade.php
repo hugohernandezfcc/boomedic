@@ -782,7 +782,7 @@
 					        </div>
 					   @endif	
 					   @if($loop->iteration > 2)
-					   <a href="doctor/laborInformationView">
+					   <a href="laborInformationView/{{$userId}}">
 					   <div class="col-sm-10" style="text-align: right;">
 					   Ver más...<i class="fa fa-arrow-right"></i><br/> &nbsp;
 					   </div>
