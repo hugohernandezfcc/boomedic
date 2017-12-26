@@ -736,25 +736,19 @@
 		            <br/>
 		            <!-- /.box-body -->
 				    	<div class="row">
-					       		<div class="col-sm-4">
-					            	&nbsp;
-					            </div>
-					       		<div class="col-sm-4">
+					       		<div class="col-sm-6">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
 						            </button>
 					            </div>
-					    		<div class="col-sm-4">
+				</form>            
+					    		<div class="col-sm-6">
 					    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
 						                Cancelar
 						            </a>
 					            </div>
-					            <div class="col-sm-4">
-					            	&nbsp;
-					            </div>
 				    	</div>
 
-	    		</form>
 				</div>	
 			</div>
 			
@@ -788,9 +782,11 @@
 					        </div>
 					   @endif	
 					   @if($loop->iteration > 2)
+					   <a href="#">
 					   <div class="col-sm-10" style="text-align: right;">
-					   Ver más...<i class="fa fa-arrow-right"></i>
+					   Ver más...<i class="fa fa-arrow-right"></i><br/>
 					   </div>
+						</a>
 			 		   @endif			
 			@endforeach
 			@endif
