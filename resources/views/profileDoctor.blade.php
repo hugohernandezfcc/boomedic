@@ -4,11 +4,7 @@
 
 @section('content_header')
     <style type="text/css">
-    	.panel-title > a:hover, 
-		.panel-title > a:active, 
-		.panel-title > a:focus  {
-		    text-decoration:none;
-		}
+
 		.panel-title > a.collapsed:before {
 		float: left !important;
 		content:"\f067";
@@ -284,7 +280,7 @@
 					    </div>
 		            </div>
 
-		            <div class="form-group">
+		            <div class="form-group" align="right">
 		            	
 			            	<div class="col-sm-5">
 			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
@@ -293,7 +289,7 @@
 			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>  
 			        </div>
-			        <div class="form-group">    	            	
+			        <div class="form-group" align="right">    	            	
 			            	<div class="col-sm-5">
 			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
 			            	</div>
@@ -301,7 +297,7 @@
 			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
 			        </div>
-			        <div class="form-group">    	
+			        <div class="form-group" align="right">    	
 			            	<div class="col-sm-5">
 			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
 			            	</div>
@@ -697,7 +693,7 @@
 					    </div>
 		            </div>
 
-		            <div class="form-group">
+		            <div class="form-group" align="right">
 		            	
 			            	<div class="col-sm-5">
 			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
@@ -706,7 +702,7 @@
 			            		<input type="text" value="" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
 			        </div>
-			        <div class="form-group">    	
+			        <div class="form-group" align="right">    	
 			            	<div class="col-sm-5">
 			            		<input type="text" value="" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
 			            	</div>
@@ -714,7 +710,7 @@
 			            		<input type="text" value="" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
 			        </div>
-			        <div class="form-group">    	
+			        <div class="form-group" align="right">    	
 			            	<div class="col-sm-5">
 			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
 			            	</div>
