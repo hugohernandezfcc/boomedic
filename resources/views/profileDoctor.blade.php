@@ -760,14 +760,14 @@
 				</div>	
 			</div>
 			
-			<div class="footer">
+			<div class="panel-footer">
 			@if($labor->isEmpty())
 			<div class="box-footer">
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
 			</div>
 			
 			@else
-
+			 <span class="text-black">Centros agregados:</span><br/>
 			@foreach($labor as $labor)	
 			<div class="box-footer">
 						@if($loop->iteration < 3)
