@@ -106,8 +106,9 @@
 
 
           .footer {
-          position:absolute;
+          position:fixed;
           bottom:0;
+          height: 100px;
           }
 
 
