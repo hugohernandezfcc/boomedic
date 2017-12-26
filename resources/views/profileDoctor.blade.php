@@ -783,8 +783,8 @@
 					   @endif	
 					   @if($loop->iteration > 2)
 					   <a href="#">
-					   <div class="col-sm-10" style="text-align: right;">
-					   Ver más...<i class="fa fa-arrow-right"></i><br/>
+					   <div class="col-sm-10" style="text-align: right; display:block; height:100%; width:100%;">
+					   Ver más...<i class="fa fa-arrow-right"></i>
 					   </div>
 						</a>
 			 		   @endif			
