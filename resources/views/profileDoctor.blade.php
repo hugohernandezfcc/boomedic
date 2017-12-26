@@ -659,7 +659,7 @@
 
 
 				    @if($mode == 'labor')
-				   			<div class="box" >
+				   			<div class="box" style="position: relative;">
 							  	<div class="box-header with-border">
 								    <h3 class="box-title">Información Laboral</h3>
 							    	<!-- /.box-tools -->
@@ -758,7 +758,7 @@
 
 	    		</form>
 				</div>	
-			</div>
+			
 			
 			<div class="footer col-sm-12">
 			@if($labor->isEmpty())
@@ -798,7 +798,7 @@
 			 </div> 
 			@endif
 				</div>	   		 	
-
+				</div>
     		<script type="text/javascript">
 
     		$(document).ready(function() {

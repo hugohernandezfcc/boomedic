@@ -106,7 +106,7 @@
 
 
           .footer {
-          position: sticky;
+          position:absolute;
           bottom:0;
           }
           .info-box {
