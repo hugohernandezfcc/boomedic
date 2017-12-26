@@ -760,16 +760,16 @@
 				</div>	
 			</div>
 			
-
-			@if($labor->isEmpty())
 			<div class="box-footer">
+			@if($labor->isEmpty())
+			
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
-			</div>
+			
 			@else
 
 			@foreach($labor as $labor)	
-			<div class="box-footer">
-						@if($labor < 3)
+			
+						@if($labor[1])
 							<div class="col-sm-12">
 					          <div class="info-box">
 					            <span class="info-box-icon bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
@@ -784,9 +784,25 @@
 					        </div>
 					   @endif
 
+					 @if($labor[2])
+							<div class="col-sm-12">
+					          <div class="info-box">
+					            <span class="info-box-icon bg-aqua"><i class="fa fa-hospital-o"></i></span>
+
+					            <div class="info-box-content">
+					              <span class="info-box-text">{{ $labor->workplace}}</span>
+					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>3
+					            </div>
+					            <!-- /.info-box-content -->
+					          </div>
+					          <!-- /.info-box -->
+					        </div>
+					   @endif
+
 					
-			 </div>
-			@endforeach  
+			 
+			@endforeach
+			</div>  
 			@endif
 				   		 	
 
