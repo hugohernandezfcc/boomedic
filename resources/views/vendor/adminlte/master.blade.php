@@ -110,14 +110,14 @@
           bottom:0;
           }
           .info-box {
-              height: 45px;
-             font-size: 11px;
+              min-height: 45px;
+             font-size: 12px;
               margin-bottom: 5px;
                }
               .info-box-icon {
                   height: 45px;
                   width: 45px;
-                  font-size: 20px;
+                  font-size: 24px;
                   line-height: 45px;        
               }
               .info-box-content {

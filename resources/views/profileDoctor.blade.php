@@ -767,9 +767,10 @@
 			</div>
 			
 			@else
+			<div class="box-footer">
 			 <span class="text-black">Centros agregados:</span><br/>
 			@foreach($labor as $labor)	
-			<div class="box-footer">
+			
 						@if($loop->iteration < 3)
 							<div class="col-sm-10">
 					          <div class="info-box bg-gray">
@@ -788,9 +789,9 @@
 					          <!-- /.info-box -->
 					        </div>
 					   @endif			
-			 </div> 
-			@endforeach
 			 
+			@endforeach
+			 </div> 
 			@endif
 				</div>	   		 	
 
