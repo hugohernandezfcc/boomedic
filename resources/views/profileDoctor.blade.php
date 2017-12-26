@@ -660,7 +660,7 @@
 
 				    @if($mode == 'labor')
 				   			<div class="box">
-							  	<div class="box-header with-border" style="  position:relative;">
+							  	<div class="box-header with-border">
 								    <h3 class="box-title">Información Laboral</h3>
 							    	<!-- /.box-tools -->
 							  	</div>
