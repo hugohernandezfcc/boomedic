@@ -776,7 +776,7 @@
 
 					            <div class="info-box-content">
 					              <span class="info-box-text">{{ $labor->workplace}}</span>
-					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
+					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>3
 					            </div>
 					            <!-- /.info-box-content -->
 					          </div>
