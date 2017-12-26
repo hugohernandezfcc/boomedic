@@ -700,33 +700,33 @@
 		            </div>
 
 		            <div class="form-group">
-		            	<div class="row">
+		            	
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
-			            </div>
-						<br />              	
-		              	<div class="row">
+			        </div>
+					         	
+		             <div class="form-group">
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
 			            	</div>
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
-			            </div>
-						<br />
-			            <div class="row">
+			          </div>
+					
+			          <div class="form-group">
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
 			            	</div>
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
-			            </div>
-		            </div>
+			         </div>
+		         
 
 		            <input type="hidden" name="latitude" id="latitude"/>
 		            <input type="hidden" name="longitude" id="longitude"/>
@@ -791,7 +791,7 @@
 					   @endif	
 					   @if($loop->iteration > 2)
 					   <div class="col-sm-10" style="text-align: right;">
-					   Ver más...<i class="fa fa-arrow-right"></i><br/>
+					   Ver más...<i class="fa fa-arrow-right"></i>
 					   </div>
 			 		   @endif			
 			@endforeach
