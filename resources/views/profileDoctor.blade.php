@@ -659,13 +659,13 @@
 
 
 				    @if($mode == 'labor')
-				   			<div class="box">
+				   			<div class="box" style="padding-bottom:100px;">
 							  	<div class="box-header with-border">
 								    <h3 class="box-title">Información Laboral</h3>
 							    	<!-- /.box-tools -->
 							  	</div>
 						  	<!-- /.box-header -->
-				<div class="box-body" style="padding-bottom:100px;"><br/>
+				<div class="box-body"><br/>
 					   <div id="buttonOpen" class="col-sm-12">
 					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar Dirección</button>
 					      <br/><br/>
@@ -758,7 +758,7 @@
 
 	    		</form>
 				</div>	
-			
+			</div>
 			
 			<div class="footer col-sm-12">
 			@if($labor->isEmpty())
@@ -791,14 +791,14 @@
 					   @endif	
 					   @if($loop->iteration > 2)
 					   <div class="col-sm-10" style="text-align: right;">
-					   Ver más...<i class="fa fa-arrow-right"></i>
+					   Ver más...<i class="fa fa-arrow-right"></i><br/>
 					   </div>
 			 		   @endif			
 			@endforeach
 			 </div> 
 			@endif
 				</div>	   		 	
-				</div>
+				
     		<script type="text/javascript">
 
     		$(document).ready(function() {
