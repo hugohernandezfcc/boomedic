@@ -766,14 +766,18 @@
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
 			
 			@else
-			
+
 			@foreach($labor as $labor)	
 			
 						@if($loop->iteration < 3)
 							<div class="col-sm-12">
 					          <div class="info-box">
+					          	@if($loop->iteration == 1)
 					            <span class="info-box-icon bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
-
+					            @endif
+					            @if($loop->iteration == 2)
+					            <span class="info-box-icon bg-aqua"><i class="fa fa-hospital-o"></i></span>
+					            @endif
 					            <div class="info-box-content">
 					              <span class="info-box-text">{{ $labor->workplace}}</span>
 					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>3
