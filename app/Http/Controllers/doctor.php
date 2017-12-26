@@ -307,26 +307,6 @@ class doctor extends Controller
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
 
-      
-
-        $laborInformation = new laborInformation;
-        $laborInformation->workplace       = $request->workplace; 
-        $laborInformation->professionalPosition       = $request->professionalPosition; 
-
-        $laborInformation->country       = $request->country; 
-        $laborInformation->state         = $request->state; 
-        $laborInformation->delegation    = $request->delegation; 
-        $laborInformation->colony        = $request->colony; 
-        $laborInformation->street        = $request->street; 
-
-
-        $laborInformation->postalcode    = $request->postalcode; 
-        $laborInformation->latitude      = $request->latitude; 
-        $laborInformation->longitude     = $request->longitude;
-
-        $laborInformation->profInformation  =   $prof->id;
-
-        $laborInformation->save();
 
           $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
             return view('profileDoctor', [
