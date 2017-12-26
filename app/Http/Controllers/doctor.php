@@ -300,6 +300,50 @@ class doctor extends Controller
         );
     }
 
+           public function laborInformationView(Request $request, $id)
+    {
+        $user = user::find(Auth::id());
+        $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
+        $bus = $professionali[0]->id;
+        $prof = professional_information::find($bus);
+
+      
+
+        $laborInformation = new laborInformation;
+        $laborInformation->workplace       = $request->workplace; 
+        $laborInformation->professionalPosition       = $request->professionalPosition; 
+
+        $laborInformation->country       = $request->country; 
+        $laborInformation->state         = $request->state; 
+        $laborInformation->delegation    = $request->delegation; 
+        $laborInformation->colony        = $request->colony; 
+        $laborInformation->street        = $request->street; 
+
+
+        $laborInformation->postalcode    = $request->postalcode; 
+        $laborInformation->latitude      = $request->latitude; 
+        $laborInformation->longitude     = $request->longitude;
+
+        $laborInformation->profInformation  =   $prof->id;
+
+        $laborInformation->save();
+
+          $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
+            return view('profileDoctor', [
+
+                /** SYSTEM INFORMATION */
+
+                'userId'        => Auth::id(),
+                'name'      => $user->name,
+                'photo'         => $user->profile_photo,
+                'mode'          => 'viewlabor',
+
+                /* DIRECTION LABOR PROFESSIONAL  */
+                'labor'         => $labor
+            ]
+        );
+    }
+
     public function updateDoctor(Request $request, $id)
     {
 

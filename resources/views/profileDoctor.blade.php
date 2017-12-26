@@ -782,14 +782,37 @@
 					        </div>
 					   @endif	
 					   @if($loop->iteration > 2)
-					   <a href="#">
-					   <div class="col-sm-10" style="text-align: right; display:block; height:100%; width:100%;">
-					   Ver más...<i class="fa fa-arrow-right"></i>
+					   <a href="doctor/laborInformationView">
+					   <div class="col-sm-10" style="text-align: right;">
+					   Ver más...<i class="fa fa-arrow-right"></i><br/> &nbsp;
 					   </div>
 						</a>
 			 		   @endif			
 			@endforeach
 			@endif
+
+
+			@if($mode == 'viewlabor')
+				@foreach($labor as $labor)	
+			
+
+							<div class="col-sm-10">
+					          <div class="info-box bg-gray">
+					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
+					            <div class="info-box-content">
+					              <span class="info-box-text">{{ $labor->workplace}}</span>
+					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
+					            </div>
+					            <!-- /.info-box-content -->
+					          </div>
+					          <!-- /.info-box -->
+					        </div>
+			
+			@endforeach
+
+			@endif
+
+
 				</div>	   		 	
 				
     		<script type="text/javascript">

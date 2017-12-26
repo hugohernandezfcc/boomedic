@@ -167,6 +167,12 @@ Route::group(['prefix' => 'doctor'], function(){
 		]
 	);
 
+	Route::post('laborInformationView/{id}', [
+			'uses'	=>	'doctor@laborInformationView',
+			'as'	=>	'laborInformationView'
+		]
+	);
+
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'doctor@redirecting',
 			'as'	=>	'redirecting'
