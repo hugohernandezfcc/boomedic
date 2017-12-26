@@ -771,13 +771,13 @@
 			@foreach($labor as $labor)	
 			<div class="box-footer">
 						@if($loop->iteration < 3)
-							<div class="col-sm-12" style="height: 45px;">
+							<div class="col-sm-11">
 					          <div class="info-box bg-gray" style="height: 45px;">
 					          	@if($loop->iteration == 1)
-					            <span class="icon bg-lighten-1" style="height: 30px;"><i class="fa fa-hospital-o"></i></span>
+					            <span class="info-box-icon bg-lighten-1" style="height: 30px;"><i class="fa fa-hospital-o"></i></span>
 					            @endif
 					            @if($loop->iteration == 2)
-					            <span class="icon bg-black" style="height: 30px;"><i class="fa fa-hospital-o"></i></span>
+					            <span class="info-box-icon bg-black" style="height: 30px;"><i class="fa fa-hospital-o"></i></span>
 					            @endif
 					            <div class="info-box-content">
 					              <span class="info-box-text">{{ $labor->workplace}}</span>
