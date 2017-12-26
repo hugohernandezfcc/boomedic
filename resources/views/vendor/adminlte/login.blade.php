@@ -65,13 +65,27 @@
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                     </div>
                     <!-- /.col -->
-                    <div class="row" align="center"> - O Con redes sociales - <br>
+                    <div class="row" align="center">     Con redes sociales  <br>
                         <div align="center">
                             <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
                                     data-scope="public_profile,email" onlogin="checkLoginState();"></div>
                             </div><br>
                         <div align="center">
-                            <div class="g-plusone" data-longtitle="true" data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div>
+                            <!--<div class="g-plusone" data-longtitle="true" data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div>-->
+                            <div id="myButton">
+                                <script>
+                                    function renderG(){
+                                        gapi.plusone.render('myButton'{
+                                                'scope': 'profile email',
+                                                'width': 240,
+                                                'height': 50,
+                                                'longtitle': true,
+                                                'theme': 'dark',
+                                                'onsuccess': onSignInG
+                                        });
+                                    }
+                                </script>
+                            </div>
                         </div>
                      </div><br>
                     <div class="row">
