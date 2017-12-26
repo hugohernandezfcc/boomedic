@@ -760,7 +760,7 @@
 				</div>	
 			</div>
 			
-			<div class="footer">
+			<div class="footer col-sm-12">
 			@if($labor->isEmpty())
 			<div class="box-footer">
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
@@ -774,10 +774,10 @@
 							<div class="col-sm-12" style="height: 50px;">
 					          <div class="info-box bg-gray" style="height: 50px;">
 					          	@if($loop->iteration == 1)
-					            <span class="info-box-icon bg-lighten-1" style="height: 45px;"><i class="fa fa-hospital-o"></i></span>
+					            <span class="info-box-icon bg-lighten-1" style="height: 30px;"><i class="fa fa-hospital-o"></i></span>
 					            @endif
 					            @if($loop->iteration == 2)
-					            <span class="info-box-icon bg-black" style="height: 50px;"><i class="fa fa-hospital-o"></i></span>
+					            <span class="info-box-icon bg-black" style="height: 30px;"><i class="fa fa-hospital-o"></i></span>
 					            @endif
 					            <div class="info-box-content" style="height: 50px;">
 					              <span class="info-box-text">{{ $labor->workplace}}</span>
