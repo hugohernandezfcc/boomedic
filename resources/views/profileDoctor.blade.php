@@ -760,7 +760,7 @@
 				</div>	
 			</div>
 			
-			<div class="panel-footer">
+			<div class="footer">
 			@if($labor->isEmpty())
 			<div class="box-footer">
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>

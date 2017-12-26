@@ -103,6 +103,13 @@
           line-height: 1.33;
           border-radius: 35px;
         }
+        .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #f5f5f5;
+}
 
 
 
