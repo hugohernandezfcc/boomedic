@@ -9,4 +9,12 @@ function onSignInG(googleUser) {
         console.log(personG);
 }
 
-
+function renderG(){
+ 	gapi.plusone.render('myButton'{
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'theme': 'dark',
+        'onsuccess': onSignInG
+        });
+}

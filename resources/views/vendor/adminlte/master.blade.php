@@ -100,7 +100,7 @@
 @yield('body')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://apis.google.com/js/platform.js?onLoad=renderG" async defer></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
     api_key: 78ezayhtq8yi4u
     authorize: true
