@@ -17,11 +17,6 @@
 		    color: gray;
 		    margin-right: 1em; 
 		}
-		#map{
-        position: relative;
-        width: 100%;
-        z-index: 30;
-      }
     </style>
 @stop
 
@@ -767,7 +762,8 @@
 
 			
 		</form>	
-		<div id="map"></div>
+		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display:none">
+		<div class="col-sm-8" id="map"></div>
 		</form>
 
 
@@ -826,349 +822,33 @@
 				function(event) {
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";
-				   
 				})
 			})
     			window.onload = function(){
-    				initMap();
+
     				initAutocomplete();
-    				@if( empty($status) )
-    					initMapAddressUser();
-					@endif
+
     			};
 
-      function initMap() {
- 		infoWindow = new google.maps.InfoWindow();
 
-        //Current position
-        if (navigator.geolocation) {
-          console.log('POSICION ACTUAL');
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            //Map
-            map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 14,
-              center: new google.maps.LatLng(pos),
-              styles: [
-              {
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#f5f5f5"
-                  }
-                ]
-              },
-              {
-                "elementType": "labels.icon",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#616161"
-                  }
-                ]
-              },
-              {
-                "elementType": "labels.text.stroke",
-                "stylers": [
-                  {
-                    "color": "#f5f5f5"
-                  }
-                ]
-              },
-              {
-                "featureType": "administrative.land_parcel",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "administrative.land_parcel",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#bdbdbd"
-                  }
-                ]
-              },
-              {
-                "featureType": "administrative.neighborhood",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#eeeeee"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi",
-                "elementType": "labels.text",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#757575"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.business",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.medical",
-                "stylers": [
-                  {
-                    "color": "#686b6e"
-                  },
-                  {
-                    "visibility": "on"
-                  },
-                  {
-                    "weight": 3
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.medical",
-                "elementType": "labels.icon",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.park",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.park",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#e5e5e5"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.park",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#9e9e9e"
-                  },
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#ffffff"
-                  }
-                ]
-              },
-              {
-                "featureType": "road",
-                "elementType": "labels",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "road",
-                "elementType": "labels.icon",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.arterial",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#757575"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.highway",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#dadada"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.highway",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#616161"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.highway.controlled_access",
-                "stylers": [
-                  {
-                    "visibility": "on"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.local",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#9e9e9e"
-                  }
-                ]
-              },
-              {
-                "featureType": "transit",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "transit.line",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#e5e5e5"
-                  }
-                ]
-              },
-              {
-                "featureType": "transit.station",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#eeeeee"
-                  }
-                ]
-              },
-              {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#c9c9c9"
-                  }
-                ]
-              },
-              {
-                "featureType": "water",
-                "elementType": "labels.text",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "water",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#9e9e9e"
-                  }
-                ]
-              }
-            ], 
-              // disableDefaultUI: true,
-              zoomControl: true,
-              mapTypeControl: false,
-              scaleControl: false,
-              streetViewControl: false,
-              rotateControl: false,
-              fullscreenControl: false
-            });
+		      // This example displays an address form, using the autocomplete feature
+		      // of the Google Places API to help users fill in the information.
 
-            var markerUser = "{{ asset('markerUser.png') }}";
+		      // This example requires the Places library. Include the libraries=places
+		      // parameter when you first load the API. For example:
+		      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-            //Marker
-              markerP = new google.maps.Marker({
-              draggable: true,
-              position: new google.maps.LatLng(pos),
-              icon: markerUser,
-              map: map
-            });
-            //Evento to open infowindow
-            markerP.addListener('mouseover', function() {
-              infoWindow.open(map, markerP);
-              infoWindow.setContent(message01);
-            });
-
-
-          },
-
-          //****Error
-          function(failure) {
-            if(failure.message.indexOf(message02) == 0) {
-            // Secure Origin issue.
-            }
-          });
-
-
-
-        }else {
-            // Browser doesn't support Geolocation
-            infoWindow.setMap(map);
-            //infoWindow.setPosition(map.getCenter());
-            infoWindow.setPosition({lat: 20.42, lng: -99.18});
-            infoWindow.setContent(message03);
-        }
-
-
-
-      }
+		      var placeSearch, autocomplete;
+		      var componentForm = {
+		        street_number: 'short_name',
+		        route: 'long_name',
+		        locality: 'long_name',
+		        administrative_area_level_1: 'short_name',
+		        country: 'long_name',
+		        postal_code: 'short_name',
+		        latitude: 'long_name',
+		        longitude: 'long_name'
+		      };
 
 		      function initAutocomplete() {
 		        // Create the autocomplete object, restricting the search to geographical
