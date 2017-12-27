@@ -798,7 +798,7 @@
 			@endforeach
 			</div>	 
 			@endif
-
+			@endif
 
 			@if($mode == 'viewlabor')
 				@foreach($labor as $labor)	
@@ -824,10 +824,6 @@
 					</div>        
 			
 			@endforeach
-
-			@endif
-
-
 				  		 	
 				
     		<script type="text/javascript">
