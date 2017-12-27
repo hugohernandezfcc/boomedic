@@ -765,8 +765,11 @@
 
 				</div>	
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
-			
-		  	<div id="map" align="right"></div>
+			<div class="form-group">
+			<div class="col-sm-6">&nbsp;</div>
+			<div class="col-sm-8">
+		  	<div id="map"></div>
+		  </div></div>
 		</form>
 			</div>
 
@@ -811,9 +814,9 @@
 					   </div>
 			 		   @endif			
 			@endforeach
-			</div>	 
+				 
 			@endif
-			
+			</div>
 
 
 				
