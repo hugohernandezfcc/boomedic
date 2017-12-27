@@ -783,12 +783,12 @@
 			
 			@else
 			
-			<div class="box-footer col-sm-12">
+			<div class="box-footer" style="width: 100%;">
 			@foreach($labor as $labor)	
 			
 						@if($loop->iteration < 3)
 							<div class="col-sm-12">
-					          <div class="info-box sm bg-gray">
+					          <div class="info-box sm bg-gray col-sm-12">
 					          	@if($loop->iteration == 1)
 					            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
 					            @endif
