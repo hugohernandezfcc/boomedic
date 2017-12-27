@@ -783,7 +783,7 @@
 			
 			@else
 			
-			<div class="box-footer">
+			<div class="box-footer col-sm-12">
 			@foreach($labor as $labor)	
 			
 						@if($loop->iteration < 3)
