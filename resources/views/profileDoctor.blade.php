@@ -18,7 +18,7 @@
 		    margin-right: 1em; 
 		}
 		#map {
-			margin-top: 20px;
+			padding-top: 0;
 		    width: 100%;
 		    height: 300px;
 		      }
@@ -767,7 +767,7 @@
 				</div>	
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
 			<div class="form-group">
-			<div class="col-sm-6">&nbsp;</div>
+			<div class="col-sm-4">&nbsp;</div>
 			<div class="col-sm-8">
 		  	<div id="map"></div>
 		  </div></div>
@@ -780,17 +780,17 @@
 
 			<div class="footer col-sm-12">
 			@if($labor->isEmpty())
-			<div class="panel-footer">
+			<div class="box-footer">
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
 			</div>
 			
 			@else
 			
-			<div class="panel-footer">
+			<div class="box-footer">
 			@foreach($labor as $labor)	
 			
 						@if($loop->iteration < 3)
-							<div class="col-sm-10">
+							<div class="col-sm-12">
 					          <div class="info-box sm bg-gray">
 					          	@if($loop->iteration == 1)
 					            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
@@ -808,7 +808,7 @@
 					        </div>
 					   @endif	
 					   @if($loop->iteration > 2)
-					   <div class="col-sm-10" style="text-align: right;">
+					   <div class="col-sm-12" style="text-align: right;">
 					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
 					   Ver todos... <i class="fa fa-arrow-right"></i>
 					   </a>
