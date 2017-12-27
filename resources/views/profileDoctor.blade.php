@@ -769,14 +769,14 @@
 			
 						@if($loop->iteration < 3)
 							<div class="col-sm-10">
-					          <div class="info-box-sm bg-gray">
+					          <div class="info-box sm bg-gray">
 					          	@if($loop->iteration == 1)
-					            <span class="info-box-icon-sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
+					            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
 					            @endif
 					            @if($loop->iteration == 2)
-					            <span class="info-box-icon-sm bg-black"><i class="fa fa-hospital-o"></i></span>
+					            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
 					            @endif
-					            <div class="info-box-content-sm">
+					            <div class="info-box-content sm">
 					              <span class="info-box-text">{{ $labor->workplace}}</span>
 					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
 					            </div>
