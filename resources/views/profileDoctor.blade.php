@@ -18,8 +18,8 @@
 		    margin-right: 1em; 
 		}
 		#map {
-        height: 65%;
-        width: 80%;
+        height: 300px;
+        width: 500px;
       }
     </style>
 @stop
