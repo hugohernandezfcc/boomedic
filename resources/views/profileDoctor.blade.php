@@ -738,6 +738,7 @@
 		            <input type="hidden" name="longitude" id="longitude"/>
 		            <br/>
 		            <!-- /.box-body -->
+		            <div class="row">
 					<div class="col-sm-4">
 					            	&nbsp;
 					            </div>
@@ -747,13 +748,14 @@
 						            </button>
 					            </div>
 					    		<div class="col-sm-4">
-					    			<a href="{{ url()->previous() }}" class="btn btn-default">
+					    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
 						                Cancelar
 						            </a>
 					            </div>
 					            <div class="col-sm-4">
 					            	&nbsp;
 					            </div>
+				 </div>
 
 				</div>	
 			</div>
