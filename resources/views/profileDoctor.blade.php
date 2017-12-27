@@ -764,6 +764,7 @@
 		</form>	
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display:none">
 		<div><input type="text" name="prueba"></div>
+		<div class="col-sm-8" id="map"></div>
 		</form>
 
 
@@ -799,7 +800,7 @@
 					   @if($loop->iteration > 2)
 					   <div class="col-sm-10" style="text-align: right;">
 					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
-					   Hay más... <i class="fa fa-arrow-right"></i>
+					   Ver todos... <i class="fa fa-arrow-right"></i>
 					   </a>
 					   </div>
 			 		   @endif			
@@ -820,7 +821,7 @@
 				})
 				$("#openform2").click(
 				function(event) {
-				   $("#buttonOpen2").hide();
+				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";
 				})
 			})
@@ -832,7 +833,32 @@
 					@endif
     			};
 
+    			function initMap() {
+			        var map = new google.maps.Map(document.getElementById('map'), {
+			          center: {lat: -34.397, lng: 150.644},
+			          zoom: 6
+			        });
+			        var infoWindow = new google.maps.InfoWindow({map: map});
 
+			        // Try HTML5 geolocation.
+			        if (navigator.geolocation) {
+			          navigator.geolocation.getCurrentPosition(function(position) {
+			            var pos = {
+			              lat: position.coords.latitude,
+			              lng: position.coords.longitude
+			            };
+
+			            infoWindow.setPosition(pos);
+			            infoWindow.setContent('Location found.');
+			            map.setCenter(pos);
+			          }, function() {
+			            handleLocationError(true, infoWindow, map.getCenter());
+			          });
+			        } else {
+			          // Browser doesn't support Geolocation
+			          handleLocationError(false, infoWindow, map.getCenter());
+			        }
+			      }
 		      // This example displays an address form, using the autocomplete feature
 		      // of the Google Places API to help users fill in the information.
 
