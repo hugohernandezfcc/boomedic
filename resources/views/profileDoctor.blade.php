@@ -18,7 +18,7 @@
 		    margin-right: 1em; 
 		}
 		#map {
-    width: 100%;
+    width: 60%;
     height: 400px;
       }
     </style>
