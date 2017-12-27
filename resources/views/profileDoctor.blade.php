@@ -765,12 +765,12 @@
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
 			<div class="form-group">
 			<div class="col-sm-5">
-				<div class="col-sm-12">
+				<div class="col-sm-6">
 					<span class="info-box-icon btn btn-secondary" onclick="initMap();"><i class="fa fa-map-marker"></i></span>
 				</div>
 				<div class="col-sm-6">	 
-				  <input type="text" name="lati" id="lati"/><br/>
-				</div><div class="col-sm-6">
+				  <input type="text" name="lati" id="lati"/>
+				<br/>
 		          <input type="text" name="long" id="long"/>
 		      </div>
 			</div>
