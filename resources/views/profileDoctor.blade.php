@@ -748,7 +748,7 @@
 						            </button>
 					            </div>
 					    		<div class="col-sm-4">
-					    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+					    			<a href="{{ url()->previous() }}" class="btn btn-secondary btn-block btn-flat">
 						                Cancelar
 						            </a>
 					            </div>
@@ -759,8 +759,14 @@
 
 				</div>	
 			</div>
-		</form>
+		</form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display:none">
+		<div><input type="text" name="prueba"></div>
+		<form>
 			
+		</form>	
+
+
+
 			<div class="footer col-sm-12">
 			@if($labor->isEmpty())
 			<div class="panel-footer">
@@ -793,7 +799,7 @@
 					   @if($loop->iteration > 2)
 					   <div class="col-sm-10" style="text-align: right;">
 					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
-					   Ver más... <i class="fa fa-arrow-right"></i>
+					   Hay más... <i class="fa fa-arrow-right"></i>
 					   </a>
 					   </div>
 			 		   @endif			
@@ -811,6 +817,11 @@
 				function(event) {
 				   $("#buttonOpen").hide();
 				   document.getElementById("form1").style.display = "block";
+				})
+				$("#openform2").click(
+				function(event) {
+				   $("#buttonOpen2").hide();
+				   document.getElementById("form2").style.display = "block";
 				})
 			})
     			window.onload = function(){
@@ -930,7 +941,7 @@
 			<div class="col-sm-6">&nbsp;</div>
 								<div class="col-sm-6">
 					    			<a href="{{ url('doctor/edit/complete') }}" class="btn btn-secondary btn-block btn-flat">
-						                Volver a edición de perfil
+						                Volver a edición del perfil
 						            </a>
 					            </div>
 			
