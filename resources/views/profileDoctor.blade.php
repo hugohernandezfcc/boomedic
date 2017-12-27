@@ -744,7 +744,7 @@
 						            </button>
 					            </div>
 					    		<div class="col-sm-4">
-					    			<a href="{{ url()->previous() }}" class="btn btn-secondary btn-block btn-flat">
+					    			<a href="{{ url()->previous() }}" class="btn btn-default">
 						                Cancelar
 						            </a>
 					            </div>
@@ -788,7 +788,7 @@
 					   @if($loop->iteration > 2)
 					   <div class="col-sm-10" style="text-align: right;">
 					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
-					   Ver más... <i class="fa fa-arrow-right"></i><br/>&nbsp;
+					   Ver más... <i class="fa fa-arrow-right"></i>
 					   </a>
 					   </div>
 			 		   @endif			
