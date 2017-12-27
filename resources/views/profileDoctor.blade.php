@@ -17,6 +17,11 @@
 		    color: gray;
 		    margin-right: 1em; 
 		}
+		#map{
+        position: relative;
+        width: 100%;
+        z-index: 30;
+      }
     </style>
 @stop
 
@@ -762,7 +767,7 @@
 
 			
 		</form>	
-		<div class="col-sm-8" id="map"></div>
+		<div id="map"></div>
 		</form>
 
 
@@ -821,11 +826,11 @@
 				function(event) {
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";
-				   initMap();
+				   
 				})
 			})
     			window.onload = function(){
-
+    				initMap();
     				initAutocomplete();
     				@if( empty($status) )
     					initMapAddressUser();
