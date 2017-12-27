@@ -19,7 +19,6 @@
 		}
 		#map {
         height: 100%;
-        position: relative;
         width: 100%;
         z-index: 30;
       }
@@ -832,6 +831,7 @@
 				function(event) {
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";
+				   document.getElementById("map").style.visibility = "visible";
 				   initMap();
 				 
 				})
