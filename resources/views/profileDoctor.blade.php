@@ -786,7 +786,7 @@
 					        </div>
 					   @endif	
 					   @if($loop->iteration > 2)
-					   <form action="{{ url('doctor/laborInformationView/') }}{{ $userId }}" method="post" class="form-horizontal">
+					   <form action="{{ url('doctor/laborInformationView') }}/{{ $userId }}" method="post" class="form-horizontal">
 						
 					   <div class="col-sm-10" style="text-align: right;">
 					   	<button type="submit">
