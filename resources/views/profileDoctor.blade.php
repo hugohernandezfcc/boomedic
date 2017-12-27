@@ -20,7 +20,7 @@
 		#map {
 			padding-top: 0;
 		    width: 100%;
-		    height: 300px;
+		    height: 100%;
 		      }
     </style>
 @stop
@@ -778,7 +778,7 @@
 
 
 
-			<div class="footer col-sm-12">
+			<div class="footer">
 			@if($labor->isEmpty())
 			<div class="box-footer">
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
@@ -790,7 +790,7 @@
 			@foreach($labor as $labor)	
 			
 						@if($loop->iteration < 3)
-							<div class="col-sm-12">
+							<div class="col-sm-10">
 					          <div class="info-box sm bg-gray">
 					          	@if($loop->iteration == 1)
 					            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
@@ -808,7 +808,7 @@
 					        </div>
 					   @endif	
 					   @if($loop->iteration > 2)
-					   <div class="col-sm-12" style="text-align: right;">
+					   <div class="col-sm-10" style="text-align: right;">
 					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
 					   Ver todos... <i class="fa fa-arrow-right"></i>
 					   </a>
