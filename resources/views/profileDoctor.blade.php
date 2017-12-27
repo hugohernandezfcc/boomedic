@@ -825,10 +825,11 @@
 				function(event) {
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";
+				   initMap();
 				})
 			})
     			window.onload = function(){
-    				initMap();
+
     				initAutocomplete();
 
     			};
@@ -869,7 +870,7 @@
 				            };
 
 				            infoWindow.setPosition(pos);
-				            infoWindow.setContent('Location found.');
+				            infoWindow.setContent('Posición actual');
 				            map.setCenter(pos);
 				          }, function() {
 				            handleLocationError(true, infoWindow, map.getCenter());
