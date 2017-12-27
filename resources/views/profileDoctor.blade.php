@@ -18,9 +18,10 @@
 		    margin-right: 1em; 
 		}
 		#map {
-    width: 60%;
-    height: 400px;
-      }
+			margin-top: 20px;
+		    width: 100%;
+		    height: 300px;
+		      }
     </style>
 @stop
 
@@ -785,7 +786,7 @@
 			
 			@else
 			
-			
+			<div class="panel-footer">
 			@foreach($labor as $labor)	
 			
 						@if($loop->iteration < 3)
@@ -814,7 +815,7 @@
 					   </div>
 			 		   @endif			
 			@endforeach
-				 
+			</div>	 
 			@endif
 			</div>
 
