@@ -18,9 +18,9 @@
 		    margin-right: 1em; 
 		}
 		#map {
+		position: relative;
         height: 300px;
-        width: 300px;
-        overflow: scroll;
+        width: 500px;
       }
     </style>
 @stop
