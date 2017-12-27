@@ -762,14 +762,16 @@
 					            </div>
 				 </div>
 				 				</form>	
-				</div>	
-			</div>
-
 
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
 			<div class="col-sm-4">&nbsp;</div>
 		    <div class="col-sm-8"><div id="map"></div></div>
 		</form>
+				</div>	
+			</div>
+
+
+
 
 
 			<div class="footer col-sm-12">
