@@ -744,7 +744,7 @@
 						            </button>
 					            </div>
 					    		<div class="col-sm-4">
-					    			<a href="{{ url()->previous() }}" class="btn btn-block btn-flat">
+					    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
 						                Cancelar
 						            </a>
 					            </div>
@@ -764,7 +764,7 @@
 			
 			@else
 			
-			 <span class="text-black">Centros agregados:</span><br/>
+			
 			@foreach($labor as $labor)	
 			
 						@if($loop->iteration < 3)
@@ -924,7 +924,7 @@
 			@endforeach
 			<div class="row" align="center">
 								<div class="col-sm-6">
-					    			<a href="{{ url('doctor/edit/complete') }}" class="btn btn-block btn-flat">
+					    			<a href="{{ url('doctor/edit/complete') }}" class="btn btn-default btn-block btn-flat">
 						                Volver a edición de perfil
 						            </a>
 					            </div>
