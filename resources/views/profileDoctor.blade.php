@@ -20,7 +20,7 @@
 		#map {
 			padding-top: 0;
 		    width: 100%;
-		    height: 300px;
+		    height: 350px;
 		      }
     </style>
 @stop
@@ -783,12 +783,12 @@
 			
 			@else
 			
-			<div class="box-footer" style="width: 100%;">
+			<div class="box-footer">
 			@foreach($labor as $labor)	
 			
 						@if($loop->iteration < 3)
 							<div class="col-sm-12">
-					          <div class="info-box sm bg-gray col-sm-12">
+					          <div class="info-box sm bg-gray">
 					          	@if($loop->iteration == 1)
 					            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
 					            @endif
@@ -819,10 +819,6 @@
 
 				
     		<script type="text/javascript">
-
-
-
-
 
     		$(document).ready(function() {
 				$("#openform").click(
