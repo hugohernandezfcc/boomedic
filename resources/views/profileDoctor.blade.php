@@ -666,20 +666,17 @@
 
 
 				    @if($mode == 'labor')
-				   			<div class="box" style="padding-bottom:110px;">
+				   			<div class="box" style="padding-bottom:130px;">
 							  	<div class="box-header with-border">
 								    <h3 class="box-title">Información Laboral</h3>
-							    	<!-- /.box-tools -->
 							  	</div>
 						  	<!-- /.box-header -->
-				<div class="box-body"><br/>
+				<div class="box-body">
 					   <div id="buttonOpen" class="col-sm-12">
 					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar Dirección</button>
 					      <br/><br/>
 					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
-					   </div><br/>
-
-
+					   </div>
 
 					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
 					<div class="callout callout-default">
@@ -767,7 +764,7 @@
 				</div>	
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
 			<div class="form-group">
-			<div class="col-sm-4">&nbsp;</div>
+			<div class="col-sm-4">coordenadas</div>
 			<div class="col-sm-8">
 		  	<div id="map"></div>
 		  </div></div>
