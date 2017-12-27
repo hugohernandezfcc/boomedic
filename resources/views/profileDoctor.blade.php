@@ -762,8 +762,6 @@
 
 			
 		</form>	
-		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display:none">
-		<div><input type="text" name="prueba"></div>
 		<div class="col-sm-8" id="map"></div>
 		</form>
 
@@ -823,6 +821,7 @@
 				function(event) {
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";
+				   initMap();
 				})
 			})
     			window.onload = function(){
