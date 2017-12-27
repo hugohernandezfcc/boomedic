@@ -744,7 +744,7 @@
 						            </button>
 					            </div>
 					    		<div class="col-sm-4">
-					    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+					    			<a href="{{ url()->previous() }}" class="btn btn-secondary btn-block btn-flat">
 						                Cancelar
 						            </a>
 					            </div>
@@ -787,7 +787,7 @@
 					   @endif	
 					   @if($loop->iteration > 2)
 					   <div class="col-sm-10" style="text-align: right;">
-					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}">
+					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
 					   Ver más... <i class="fa fa-arrow-right"></i><br/>&nbsp;
 					   </a>
 					   </div>
@@ -919,16 +919,16 @@
 					            <!-- /.info-box-content -->
 					          </div>
 					          <!-- /.info-box -->
-					        </div>    
+					        </div><br/>    
 			
 			@endforeach
-			<div class="row" align="center">
+			<div class="col-sm-6">&nbsp;</div>
 								<div class="col-sm-6">
-					    			<a href="{{ url('doctor/edit/complete') }}" class="btn btn-default btn-block btn-flat">
+					    			<a href="{{ url('doctor/edit/complete') }}" class="btn btn-secondary btn-block btn-flat">
 						                Volver a edición de perfil
 						            </a>
 					            </div>
-			</div>
+			
 
 					</div>
 					</div>   	
