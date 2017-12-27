@@ -765,7 +765,7 @@
 				</div>	
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
 			<div class="col-sm-4">Coordenadas</div>
-		  	<div class="col-sm-8" id="map"></div>
+		  	<div id="map"></div>
 		</form>
 			</div>
 
