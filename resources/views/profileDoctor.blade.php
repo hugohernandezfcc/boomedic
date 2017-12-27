@@ -786,46 +786,18 @@
 					        </div>
 					   @endif	
 					   @if($loop->iteration > 2)
-					   <form action="{{ url('doctor/laborInformationView') }}/{{ $userId }}" method="post" class="form-horizontal">
-						
 					   <div class="col-sm-10" style="text-align: right;">
-					   	<button type="submit">
+					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}">
 					   Ver más... <i class="fa fa-arrow-right"></i>
-					   </button><br/> &nbsp;
+					   </a>
 					   </div>
-						</form>
 			 		   @endif			
 			@endforeach
 			</div>	 
 			@endif
-			@endif
-
-			@if($mode == 'viewlabor')
-					<div class="box">
-						<div class="box-header with-border">
-								    <h3 class="box-title">Registro de Centros Laborales</h3>
-							    	<!-- /.box-tools -->
-						</div>
-					<div class="box-body"><br/>
-				@foreach($labor as $labor)	
 			
 
-							<div class="col-sm-12">
-					          <div class="info-box bg-gray">
-					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
-					            <div class="info-box-content">
-					              <span class="info-box-text">{{ $labor->workplace}}</span>
-					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
-					            </div>
-					            <!-- /.info-box-content -->
-					          </div>
-					          <!-- /.info-box -->
-					        </div>    
-			
-			@endforeach
-				  			</div>
-					</div>    	
-			@endif
+
 				
     		<script type="text/javascript">
 
@@ -926,4 +898,31 @@
 
 		    </script>  	
 				    @endif
+
+			@if($mode == 'viewlabor')
+					<div class="box">
+						<div class="box-header with-border">
+								    <h3 class="box-title">Registro de Centros Laborales</h3>
+							    	<!-- /.box-tools -->
+						</div>
+					<div class="box-body"><br/>
+				@foreach($labor as $labor)	
+			
+
+							<div class="col-sm-12">
+					          <div class="info-box bg-gray">
+					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
+					            <div class="info-box-content">
+					              <span class="info-box-text">{{ $labor->workplace}}</span>
+					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
+					            </div>
+					            <!-- /.info-box-content -->
+					          </div>
+					          <!-- /.info-box -->
+					        </div>    
+			
+			@endforeach
+				  			</div>
+					</div>    	
+			@endif
 @stop
