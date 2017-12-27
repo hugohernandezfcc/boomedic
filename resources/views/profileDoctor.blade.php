@@ -801,15 +801,16 @@
 			@endif
 
 			@if($mode == 'viewlabor')
-				@foreach($labor as $labor)	
-			
 					<div class="box">
 						<div class="box-header with-border">
-								    <h3 class="box-title">Registro de centros laborales</h3>
+								    <h3 class="box-title">Registro de Centros Laborales</h3>
 							    	<!-- /.box-tools -->
-							  	</div>
-							  	<div class="box-body"><br/>
-							<div class="col-sm-10">
+						</div>
+					<div class="box-body"><br/>
+				@foreach($labor as $labor)	
+			
+
+							<div class="col-sm-12">
 					          <div class="info-box bg-gray">
 					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
 					            <div class="info-box-content">
@@ -819,12 +820,12 @@
 					            <!-- /.info-box-content -->
 					          </div>
 					          <!-- /.info-box -->
-					        </div>
-					    </div>
-					</div>        
+					        </div>    
 			
 			@endforeach
-				  		 	
+				  			</div>
+					</div>    	
+			@endif
 				
     		<script type="text/javascript">
 
