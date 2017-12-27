@@ -766,7 +766,7 @@
 			<div class="form-group">
 			<div class="col-sm-5">
 				<div class="form-group">
-					<button onclick="initMap()" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i></button>
+					<span class="info-box-icon bg-black" onclick="initMap();"><i class="fa fa-map-marker"></i></span>
 				</div>	 
 				  <input type="text" name="lati" id="lati"/><br/>
 		          <input type="text" name="long" id="long"/>
