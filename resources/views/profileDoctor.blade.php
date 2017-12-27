@@ -762,9 +762,9 @@
 
 			
 		</form>	
-		</form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display:none">
+		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display:none">
 		<div><input type="text" name="prueba"></div>
-		<form>
+		</form>
 
 
 			<div class="footer col-sm-12">
