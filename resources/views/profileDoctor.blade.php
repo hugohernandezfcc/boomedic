@@ -764,8 +764,11 @@
 				</div>	
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
 			<div class="form-group">
-			<div class="col-sm-4">coordenadas</div>
-			<div class="col-sm-8">
+			<div class="col-sm-5">
+				  <input type="text" name="latitude" id="latitude"/><br/>
+		          <input type="text" name="longitude" id="longitude"/>
+			</div>
+			<div class="col-sm-7">
 		  	<div id="map"></div>
 		  </div></div>
 		</form>
@@ -932,10 +935,12 @@
               lng: position.coords.longitude
             };
             //Map
+             document.getElementById('latitude').value = position.coords.latitude;
+             document.getElementById('longitude').value = position.coords.longitude;
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 14,
               center: new google.maps.LatLng(pos),
-             
+            
               // disableDefaultUI: true,
               zoomControl: true,
               mapTypeControl: false,

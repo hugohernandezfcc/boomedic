@@ -111,7 +111,7 @@
           }
           .info-box.sm {
               min-height: 45px;
-             font-size: 13px;
+             font-size: 14px;
               margin-bottom: 5px;
                }
               .info-box-icon.sm {
