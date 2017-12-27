@@ -744,7 +744,7 @@
 						            </button>
 					            </div>
 					    		<div class="col-sm-4">
-					    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+					    			<a href="{{ url()->previous() }}" class="btn btn-block btn-flat">
 						                Cancelar
 						            </a>
 					            </div>
@@ -769,14 +769,14 @@
 			
 						@if($loop->iteration < 3)
 							<div class="col-sm-10">
-					          <div class="info-box bg-gray">
+					          <div class="info-box-sm bg-gray">
 					          	@if($loop->iteration == 1)
-					            <span class="info-box-icon bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
+					            <span class="info-box-icon-sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
 					            @endif
 					            @if($loop->iteration == 2)
-					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
+					            <span class="info-box-icon-sm bg-black"><i class="fa fa-hospital-o"></i></span>
 					            @endif
-					            <div class="info-box-content">
+					            <div class="info-box-content-sm">
 					              <span class="info-box-text">{{ $labor->workplace}}</span>
 					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
 					            </div>
@@ -788,7 +788,7 @@
 					   @if($loop->iteration > 2)
 					   <div class="col-sm-10" style="text-align: right;">
 					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}">
-					   Ver más... <i class="fa fa-arrow-right"></i>
+					   Ver más... <i class="fa fa-arrow-right"></i><br/>&nbsp;
 					   </a>
 					   </div>
 			 		   @endif			
@@ -922,6 +922,11 @@
 					        </div>    
 			
 			@endforeach
+								<div class="col-sm-4">
+					    			<a href="{{ url()->previous() }}" class="btn btn-block btn-flat">
+						                Cancelar
+						            </a>
+					            </div>
 				  			</div>
 					</div>    	
 			@endif

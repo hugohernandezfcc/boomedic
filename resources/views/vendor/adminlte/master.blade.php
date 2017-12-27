@@ -109,18 +109,18 @@
           position:fixed;
           bottom:0;
           }
-          .info-box {
+          .info-box-sm {
               min-height: 45px;
              font-size: 12px;
               margin-bottom: 5px;
                }
-              .info-box-icon {
+              .info-box-icon-sm {
                   height: 45px;
                   width: 45px;
                   font-size: 24px;
                   line-height: 45px;        
               }
-              .info-box-content {
+              .info-box-content-sm {
                   margin-left: 45px;
               }
          
