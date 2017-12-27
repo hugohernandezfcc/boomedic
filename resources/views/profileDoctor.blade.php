@@ -961,6 +961,8 @@
             });
             //Evento to open infowindow
             markerP.addListener('mouseover', function() {
+           	 document.getElementById('lati').value = position.coords.latitude;
+             document.getElementById('long').value = position.coords.longitude;
               infoWindow.open(map, markerP);
               infoWindow.setContent('Ubicación actual');
             });
