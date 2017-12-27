@@ -18,7 +18,8 @@
 		    margin-right: 1em; 
 		}
 		#map {
-        height: 40%;
+        height: 65%;
+        width: 80%;
       }
     </style>
 @stop
@@ -764,7 +765,7 @@
 
 				</div>	
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
-			<div class="col-sm-4">Coordenadas</div>
+			<div class="col-sm-6">Coordenadas</div>
 		  	<div id="map"></div>
 		</form>
 			</div>
