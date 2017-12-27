@@ -765,7 +765,7 @@
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
 			<div class="form-group">
 			<div class="col-sm-5">
-				<div class="col-sm-6">
+				<div class="col-sm-6" style="text-align: center;">
 					<span class="info-box-icon btn btn-secondary" onclick="initMap();"><i class="fa fa-map-marker"></i></span>
 				</div>
 				<div class="col-sm-6">	 
