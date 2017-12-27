@@ -122,19 +122,22 @@
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 
-				          if($height > '500' || $width > '500'){
-				            $height = $height / 2;
-				            $width = $width / 2;
-				        }
-				        if($height > '800' || $width > '800'){
-				            $height = $height / 3;
-				            $width = $width / 3;
-				        }
+			          if($height > '500' || $width > '500'){
+			            $height = $height / 2.5;
+			            $width = $width / 2.5;
+			        }
+			        if($height > '800' || $width > '800'){
+			            $height = $height / 4;
+			            $width = $width / 4;
+			        }
 
 
-				        
+			          if($height < '400' || $width < '400'){
+			            $height = $height / 1.3;
+			            $width = $width / 1.3;
+			        }
 
-						@endphp
+					@endphp
 							<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
 				    	@endif 
 		    			
