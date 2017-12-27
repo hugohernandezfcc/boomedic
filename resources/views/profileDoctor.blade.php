@@ -924,7 +924,7 @@
 			@endforeach
 			<div class="row" align="center">
 								<div class="col-sm-6">
-					    			<a href="{{ url(doctor/edit/complete) }}" class="btn btn-block btn-flat">
+					    			<a href="{{ url('doctor/edit/complete') }}" class="btn btn-block btn-flat">
 						                Volver a edición de perfil
 						            </a>
 					            </div>
