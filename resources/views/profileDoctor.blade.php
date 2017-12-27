@@ -777,7 +777,7 @@
 					            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
 					            @endif
 					            <div class="info-box-content sm">
-					              <span class="info-box-text">{{ $labor->workplace}}</span>
+					              <b>{{ $labor->workplace}}</b><br/>
 					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
 					            </div>
 					            <!-- /.info-box-content -->
@@ -913,7 +913,7 @@
 					          <div class="info-box bg-gray">
 					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
 					            <div class="info-box-content">
-					              <span class="info-box-text">{{ $labor->workplace}}</span>
+					              <b>{{ $labor->workplace}}</b><br/>
 					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
 					            </div>
 					            <!-- /.info-box-content -->
@@ -922,12 +922,15 @@
 					        </div>    
 			
 			@endforeach
-								<div class="col-sm-4">
-					    			<a href="{{ url()->previous() }}" class="btn btn-block btn-flat">
-						                Cancelar
+			<div class="row" align="center">
+								<div class="col-sm-6">
+					    			<a href="{{ url(doctor/edit/complete) }}" class="btn btn-block btn-flat">
+						                Volver a edición de perfil
 						            </a>
 					            </div>
-				  			</div>
-					</div>    	
+			</div>
+
+					</div>
+					</div>   	
 			@endif
 @stop
