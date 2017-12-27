@@ -765,8 +765,8 @@
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
 			<div class="form-group">
 			<div class="col-sm-5">
-				<div class="form-control">
-					<button onclick="initMap()" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>></button>
+				<div class="form-group">
+					<button onclick="initMap()" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i></button>
 				</div>	 
 				  <input type="text" name="lati" id="lati"/><br/>
 		          <input type="text" name="long" id="long"/>
