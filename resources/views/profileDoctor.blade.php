@@ -735,22 +735,26 @@
 		            <input type="hidden" name="longitude" id="longitude"/>
 		            <br/>
 		            <!-- /.box-body -->
-				    	<div class="row">
-					       		<div class="col-sm-6">
+					<div class="col-sm-4">
+					            	&nbsp;
+					            </div>
+					       		<div class="col-sm-4">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
 						            </button>
 					            </div>
-				</form>            
-					    		<div class="col-sm-6">
+					    		<div class="col-sm-4">
 					    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
 						                Cancelar
 						            </a>
 					            </div>
-				    	</div>
+					            <div class="col-sm-4">
+					            	&nbsp;
+					            </div>
 
 				</div>	
 			</div>
+		</form>
 			
 			<div class="footer col-sm-12">
 			@if($labor->isEmpty())
@@ -782,11 +786,14 @@
 					        </div>
 					   @endif	
 					   @if($loop->iteration > 2)
-					   <a href="laborInformationView/{{$userId}}">
+					   <form action="doctor/laborInformationView/{{$userId}}" method="post" class="form-horizontal">
+						
 					   <div class="col-sm-10" style="text-align: right;">
-					   Ver más...<i class="fa fa-arrow-right"></i><br/> &nbsp;
+					   	<button type="submit">
+					   Ver más... <i class="fa fa-arrow-right"></i>
+					   </button><br/> &nbsp;
 					   </div>
-						</a>
+						</form>
 			 		   @endif			
 			@endforeach
 			</div>	 
