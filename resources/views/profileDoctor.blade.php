@@ -781,6 +781,7 @@
 	                	</div>
 	                </div>
 				</div>	
+			<div class="col-sm-12">	
 				<div class="col-sm-3">
 					&nbsp;
 				</div>
@@ -795,6 +796,7 @@
 		      <div class="col-sm-2">
 					&nbsp;
 				</div>
+			</div>	
 				<div class="col-sm-12">
 								<div class="col-sm-4">
 					            	&nbsp;
@@ -806,9 +808,6 @@
 					            </div>
 					    		<div class="col-sm-4">
 					    			<button type="button" id="cancel" class="btn btn-default btn-block btn-flat">Cancelar</button>
-					            </div>
-					            <div class="col-sm-4">
-					            	&nbsp;
 					            </div>
 				</div>
 			</div>
