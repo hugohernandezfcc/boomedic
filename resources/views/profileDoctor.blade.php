@@ -1048,7 +1048,7 @@
 										    }
 										    if(component.types[0] == "street_number")
 										    {
-										         document.getElementById('street_numbe').value = component.long_name ;
+										         document.getElementById('street_numbe').value = component.short_name ;
 										    }
 										    if(component.types[0] == "route")
 										    {
@@ -1056,7 +1056,7 @@
 										    }
 										     if(component.types[0] == "administrative_area_level_1")
 										    {
-										         document.getElementById('state').value = component.long_name ;
+										         document.getElementById('state').value = component.short_name ;
 										    }
 
 										}
@@ -1122,7 +1122,7 @@
 										    }
 										    if(component.types[0] == "street_number")
 										    {
-										         document.getElementById('street_numbe').value = component.long_name ;
+										         document.getElementById('street_numbe').value = component.short_name ;
 										    }
 										    if(component.types[0] == "route")
 										    {
@@ -1130,7 +1130,7 @@
 										    }
 										     if(component.types[0] == "administrative_area_level_1")
 										    {
-										         document.getElementById('state').value = component.long_name ;
+										         document.getElementById('state').value = component.short_name ;
 										    }
 
 										}
