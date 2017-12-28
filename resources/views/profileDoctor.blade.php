@@ -807,7 +807,7 @@
 			            		<input type="text" class="form-control" name="colony" id="rout" disabled="true"></input>
 			            	</div>
 			        </div>
-			        
+
 			        <div class="form-group">  
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="delegation" id="localit" disabled="true"></input>
@@ -882,6 +882,7 @@
 					   Ver todos... <i class="fa fa-arrow-right"></i>
 					   </a>
 					   </div>
+					   @break
 			 		   @endif			
 			@endforeach
 			</div>	 
