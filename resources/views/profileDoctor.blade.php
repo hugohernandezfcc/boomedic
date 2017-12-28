@@ -1029,8 +1029,16 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						  document.getElementById('postalcode').value = results[0].address_components[6].short_name;
 						   document.getElementById('country').value = address_components[5].short_name;
+
+								   for(var i=0; i < results[0].address_components.length; i++)
+										{
+										    var component = results[0].address_components[i];
+										    if(component.types[0] == "postal_code")
+										    {
+										         document.getElementById('postalcode').value = component.long_name ;
+										    }
+										}
 
 					}
 					else
@@ -1075,8 +1083,15 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						 document.getElementById('postalcode').value = results[0].address_components[6].long_name;
 						   document.getElementById('countr').value = results[0].address_components[5].long_name;
+						   		for(var i=0; i < results[0].address_components.length; i++)
+										{
+										    var component = results[0].address_components[i];
+										    if(component.types[0] == "postal_code")
+										    {
+										         document.getElementById('postalcode').value = component.long_name ;
+										    }
+										}
                                
 
 					}
