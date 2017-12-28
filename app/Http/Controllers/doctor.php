@@ -386,7 +386,7 @@ class doctor extends Controller
         $user->profile_photo = $path2;   
 
         if($user->save())
-            return redirect('doctor/doctor/' . $id );
+            return redirect('doctor/edit/complete' . $id );
     }
 
 

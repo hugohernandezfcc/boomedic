@@ -47,7 +47,7 @@
 				  setTimeout(function(){ 
 				  	document.getElementById('loadingGif').style.display = "none";
 				  	window.location.reload(true);
-				  },10000);
+				  },12000);
 				     	}
 			    //autoProcessQueue : false 
 			 };
@@ -750,9 +750,7 @@
 						            </button>
 					            </div>
 					    		<div class="col-sm-4">
-					    			<a href="{{ url()->previous() }}" class="btn btn-secondary btn-block btn-flat">
-						                Cancelar
-						            </a>
+					    			<button type="button" id="cancel" class="btn btn-default btn-block btn-flat">Cancelar</button>
 					            </div>
 					            <div class="col-sm-4">
 					            	&nbsp;
@@ -765,7 +763,7 @@
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
 			<div class="form-group">
 			<div class="col-sm-5">
-				<div class="col-sm-6" style="align-items: center; align-content: center;">
+				<div class="col-sm-6"  align="center">
 					<span class="info-box-icon btn bg-navy" onclick="initMap();"><i class="fa fa-map-marker"></i></span>
 				</div>
 				<div class="col-sm-6">	 
@@ -839,6 +837,14 @@
 				function(event) {
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";
+				   initMap();
+				 
+				})
+				$("#cancel").click(
+				function(event) {
+				   $("#buttonOpen").show();
+				   document.getElementById("form1").style.display = "none";
+				   document.getElementById("form2").style.display = "none";
 				   initMap();
 				 
 				})
