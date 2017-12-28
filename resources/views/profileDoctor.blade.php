@@ -825,10 +825,10 @@
 			        <label  class="col-sm-2 control-label">
 		            	</label>  	
 			            	<div class="col-sm-5">
-			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true"></input>
+			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"></input>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="country" id="country"></input>
+			            		<input type="text" value="" class="form-control" name="countr" id="countr" placeholder="País"></input>
 			            	</div>
 			         </div>
 				<br/>
@@ -1075,8 +1075,8 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						 document.getElementById('postalcode').value = results[0].address_components[6].short_name;
-						   document.getElementById('country').value = results[0].address_components[5].short_name;
+						 document.getElementById('postalcode').value = results[0].address_components[6].long_name;
+						   document.getElementById('countr').value = results[0].address_components[5].long_name;
                                
 
 					}
