@@ -760,10 +760,28 @@
 
 
 				</div>	
+
+				<!-- form for map -->
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
 			<div class="form-group">
 			<div class="col-sm-5">
+				<div class="col-sm-12">
+					 <div class="form-group">
+	                	<label for="workplace" class="col-sm-2 control-label">Lugar de trabajo</label>
+	                	<div class="col-sm-10">
+		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control">
+	                	</div>
+	                	<!-- /.input group -->
+	              	</div>
+	              	<div class="form-group">
+	                	<label for="professionalPosition" class="col-sm-2 control-label">Posición Profesional</label>
+	                	<div class="col-sm-10">
+		                  	<input type="text" name="professionalPosition" id="professionalPosition" value="" class="form-control">
+	                	</div>
+	                </div>
+				</div>	
 				<div class="col-sm-6"  align="center">
+
 					<span class="info-box-icon btn bg-navy" onclick="initMap();"><i class="fa fa-map-marker"></i></span>
 				</div>
 				<div class="col-sm-6">	 
