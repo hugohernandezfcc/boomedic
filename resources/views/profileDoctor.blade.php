@@ -808,7 +808,7 @@
 					&nbsp;
 				</div>
 				<div class="col-sm-4"  align="right">
-					<span class="info-box-icon btn bg-black text-white" onclick="initMap();"><i class="fa fa-map-marker"></i><br/>Ubícame</span>
+					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 				</div>
 				<div class="col-sm-4">	 
 				  <input type="hidden" name="lati" id="lati" class="form-control" disabled="true" />
