@@ -836,7 +836,7 @@
 				</div>
 			</div>
 			<div class="col-sm-12">
-				<br/><br/>
+				<br/>
 					  <div class="form-group">
 		            	
 			            	<div class="col-sm-6">
@@ -1252,7 +1252,7 @@
 			@endforeach
 			<div class="col-sm-6">&nbsp;</div>
 								<div class="col-sm-6">
-					    			<a href="{{ url('doctor/doctor') }}" class="btn btn-secondary btn-block btn-flat">
+					    			<a href="{{ url('doctor/doctor') }}/{{ $userId }}" class="btn btn-secondary btn-block btn-flat">
 						                Volver al Perfil
 						            </a>
 					            </div>
