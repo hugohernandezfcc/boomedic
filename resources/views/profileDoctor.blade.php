@@ -838,6 +838,7 @@
 			<div class="col-sm-7">
 		  	<div id="map"></div>
 		  </div></div>
+		  <input type="hidden" name="ub" id="ub" value="true"></input>
 		</form>
 			</div>
 
