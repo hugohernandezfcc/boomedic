@@ -1029,17 +1029,14 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						var result = results[0];
-						//look for locality tag and administrative_area_level_1
-						var city = "";
-						var state = "";
-						for(var i=0, len=result.address_components.length; i<len; i++) {
-							var ac = result.address_components[i];
-							if(ac.types.indexOf("locality") >= 0) city = ac.long_name;
-							if(ac.types.indexOf("administrative_area_level_1") >= 0) state = ac.long_name;
-							document.getElementById('locality').value = city;
-							document.getElementById('state').value = state;
-
+								for(var i=0; i < results[0].address_components.length; i++)
+						{
+						    var component = results[0].address_components[i];
+						    if(component.types[0] == "postal_code")
+						    {
+						    	document.getElementById('postal_code').value = component.long_name;
+						        console.log(component.long_name);
+						    }
 						}
 					}
 					else
@@ -1084,18 +1081,15 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						 var result = results[0];
-						//look for locality tag and administrative_area_level_1
-						var city = "";
-						var state = "";
-						    for(var i=0, len=result.address_components.length; i<len; i++) {
-							var ac = result.address_components[i];
-							if(ac.types.indexOf("locality") >= 0) city = ac.long_name;
-							if(ac.types.indexOf("administrative_area_level_1") >= 0) state = ac.long_name;
-
+					for(var i=0; i < results[0].address_components.length; i++)
+						{
+						    var component = results[0].address_components[i];
+						    if(component.types[0] == "postal_code")
+						    {
+						    	document.getElementById('postal_code').value = component.long_name;
+						        console.log(component.long_name);
+						    }
 						}
-							document.getElementById('locality').value = city;
-							document.getElementById('state').value = state;
 
 					}
 					else
