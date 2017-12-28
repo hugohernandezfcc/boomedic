@@ -808,7 +808,6 @@
 				
 				<div class="col-sm-12">	 
 				  <input type="hidden" name="lati" id="lati" class="form-control" disabled="true" />
-				<br/>
 		          <input type="hidden" name="long" id="long" class="form-control" disabled="true"/>
 		      </div>
 

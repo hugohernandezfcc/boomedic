@@ -28,7 +28,12 @@ class HomeController extends Controller
     {
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
         $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
-        
+        $join = DB::table('professional_information')
+            ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
+            ->join('users', 'professional_information.user', '=', 'users.id')
+            ->select('labor_information.*', 'users.name', 'professional_information.specialty')
+            ->get();
+
         if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
@@ -60,7 +65,8 @@ class HomeController extends Controller
                     'firstname' => DB::table('users')->where('id', Auth::id() )->value('firstname'),
                     'lastname' => DB::table('users')->where('id', Auth::id() )->value('lastname'),
                     'photo' => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                    'userId' => Auth::id()
+                    'userId' => Auth::id(),
+                    'labor' => $join
                 ]
             );
         }
