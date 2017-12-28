@@ -1050,7 +1050,7 @@
 										    {
 										         document.getElementById('street_numbe').value = component.short_name ;
 										    }
-										    if(component.types[0] == "route")
+										    if(component.types[0] == "administrative_area_level_2")
 										    {
 										         document.getElementById('rout').value = component.long_name ;
 										    }
@@ -1124,7 +1124,7 @@
 										    {
 										         document.getElementById('street_numbe').value = component.short_name ;
 										    }
-										    if(component.types[0] == "route")
+										    if(component.types[0] == "administrative_area_level_2")
 										    {
 										         document.getElementById('rout').value = component.long_name ;
 										    }
