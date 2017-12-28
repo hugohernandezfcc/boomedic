@@ -767,34 +767,51 @@
 			<div class="col-sm-5">
 				<div class="col-sm-12">
 					 <div class="form-group">
-	                	<label for="workplace" class="col-sm-6 control-label">Lugar de trabajo</label>
-	                	<div class="col-sm-6">
+	                	<label for="workplace" class="col-sm-4 control-label">Lugar de trabajo</label>
+	                	<div class="col-sm-8">
 		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
 	              	<div class="form-group">
 
-	                	<label for="professionalPosition" class="col-sm-6 control-label">Posición Profesional</label>
-	                	<div class="col-sm-6">
+	                	<label for="professionalPosition" class="col-sm-4 control-label">Posición Profesional</label>
+	                	<div class="col-sm-8">
 		                  	<input type="text" name="professionalPosition" id="professionalPosition" value="" class="form-control">
 	                	</div>
 	                </div>
 				</div>	
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					&nbsp;
 				</div>
-				<div class="col-sm-4"  align="right">
+				<div class="col-sm-5"  align="right">
 					<span class="info-box-icon btn bg-navy" onclick="initMap();"><i class="fa fa-map-marker"></i></span>
 				</div>
 				<div class="col-sm-4">	 
-				  <input type="text" name="lati" id="lati"/>
+				  <input type="text" name="lati" id="lati" class="form-control" disabled="true" />
 				<br/>
-		          <input type="text" name="long" id="long"/>
+		          <input type="text" name="long" id="long" class="form-control" disabled="true"/>
 		      </div>
 		      <div class="col-sm-2">
 					&nbsp;
 				</div>
+				<div class="col-sm-12">
+								<div class="col-sm-4">
+					            	&nbsp;
+					            </div>
+					       		<div class="col-sm-4">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						                Guardar
+						            </button>
+					            </div>
+					    		<div class="col-sm-4">
+					    			<button type="button" id="cancel" class="btn btn-default btn-block btn-flat">Cancelar</button>
+					            </div>
+					            <div class="col-sm-4">
+					            	&nbsp;
+					            </div>
+				</div>
+			</div>
 			</div>
 			<div class="col-sm-7">
 		  	<div id="map"></div>
