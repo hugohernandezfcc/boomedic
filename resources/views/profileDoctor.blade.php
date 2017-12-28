@@ -1034,8 +1034,8 @@
 						    var component = results[0].address_components[i];
 						    if(component.types[0] == "postal_code")
 						    {
-						    	document.getElementById('postal_code').value = component.long_name;
-						        console.log(component.long_name);
+						    	document.getElementById('postal_code').value = component.short_name;
+						        console.log(component.short_name);
 						    }
 						}
 					}
@@ -1086,8 +1086,8 @@
 						    var component = results[0].address_components[i];
 						    if(component.types[0] == "postal_code")
 						    {
-						    	document.getElementById('postal_code').value = component.long_name;
-						        console.log(component.long_name);
+						    	document.getElementById('postal_code').value = component.short_name;
+						        console.log(component.short_name);
 						    }
 						}
 
