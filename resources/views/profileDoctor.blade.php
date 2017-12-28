@@ -20,7 +20,7 @@
 		#map {
 			padding-top: 0;
 		    width: 100%;
-		    height: 350px;
+		    height: 300px;
 		      }
     </style>
 @stop
@@ -804,13 +804,9 @@
 	                </div>
 				</div>	
 			<div class="col-sm-12">	
-				<div class="col-sm-4">
-					&nbsp;
-				</div>
-				<div class="col-sm-4"  align="right">
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
-				</div>
-				<div class="col-sm-4">	 
+				
+				<div class="col-sm-12">	 
 				  <input type="hidden" name="lati" id="lati" class="form-control" disabled="true" />
 				<br/>
 		          <input type="hidden" name="long" id="long" class="form-control" disabled="true"/>
