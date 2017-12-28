@@ -796,35 +796,29 @@
 		      <div class="col-sm-2">
 					&nbsp;
 				</div>
-			</div>
+			</div><br/>
 					  <div class="form-group">
-		            	<label  class="col-sm-2 control-label">
-		            	</label>
 		            	
-			            	<div class="col-sm-5">
+			            	<div class="col-sm-6">
 			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true"></input>
 			            	</div>
-			            	<div class="col-sm-5">
+			            	<div class="col-sm-6">
 			            		<input type="text" class="form-control" name="colony" id="rout" disabled="true"></input>
 			            	</div>
 			        </div>
 			        <div class="form-group">  
-			        <label  class="col-sm-2 control-label">
-		            	</label>  	
-			            	<div class="col-sm-5">
+			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="delegation" id="localit" disabled="true"></input>
 			            	</div>
-			            	<div class="col-sm-5">
+			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="state" id="state" disabled="true" placeholder="Estado"></input>
 			            	</div>
 			        </div>
 			        <div class="form-group"> 
-			        <label  class="col-sm-2 control-label">
-		            	</label>  	
-			            	<div class="col-sm-5">
+			            	<div class="col-sm-6">
 			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"></input>
 			            	</div>
-			            	<div class="col-sm-5">
+			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="countr" id="countr" placeholder="País" disabled="true"></input>
 			            	</div>
 			         </div>
@@ -836,7 +830,7 @@
 						            </button>
 					            </div>
 					    		<div class="col-sm-6">
-					    			<button type="button" id="cancel" class="btn btn-default btn-block btn-flat">Cancelar</button>
+					    			<button type="button" id="cancel2" class="btn btn-default btn-block btn-flat">Cancelar</button>
 					            </div>
 				</div>
 			</div>
@@ -909,6 +903,15 @@
 				 
 				})
 				$("#cancel").click(
+				function(event) {
+				   $("#buttonOpen").show();
+				   document.getElementById("form1").style.display = "none";
+				   document.getElementById("form2").style.display = "none";
+				   initMap();
+				 
+				})
+
+				$("#cancel2").click(
 				function(event) {
 				   $("#buttonOpen").show();
 				   document.getElementById("form1").style.display = "none";
