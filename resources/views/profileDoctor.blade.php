@@ -1028,7 +1028,7 @@
 				{
 					if (results[0])
 					{
-						 
+						 document.getElementById('dir').value = results[0].formatted_address;
 						for (var ac = 0; ac < results[0].address_components.length; ac++) {
                                     var component = results[0].address_components[ac];
 
@@ -1036,7 +1036,6 @@
                                         case 'locality':
                                             storableLocation.city = component.long_name;
                                              document.getElementById('locality').value = component.long_name;
-                                              document.getElementById('dir').value = component.short_name;
                                             break;
                                         case 'administrative_area_level_1':
                                             storableLocation.state = component.short_name;
@@ -1052,7 +1051,7 @@
                                         document.getElementById('postal_code').value = component.short_name;
                                         break;
                                     }
-                                };
+                                }
 					}
 					else
 					{
@@ -1095,15 +1094,14 @@
 				{
 					if (results[0])
 					{
-						
-							for (var ac = 0; ac < results[0].address_components.length; ac++) {
-                                    var component = results[0].address_components[ac];
+						 document.getElementById('dir').value = results[0].formatted_address;
+							
+                                    var component = results[0].address_components[0];
 
                                     switch(component.types[0]) {
                                         case 'locality':
                                             storableLocation.city = component.long_name;
                                              document.getElementById('locality').value = component.long_name;
-                                               document.getElementById('dir').value = component.short_name;
                                             break;
                                         case 'administrative_area_level_1':
                                             storableLocation.state = component.short_name;
@@ -1119,7 +1117,7 @@
                                         document.getElementById('postal_code').value = component.short_name;
                                         break;
                                     }
-                                };
+                               
 
 					}
 					else
