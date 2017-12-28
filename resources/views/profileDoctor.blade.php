@@ -532,12 +532,13 @@
 									   @endif	
 									   @if($loop->iteration > 2)
 									   <div class="col-sm-12" style="text-align: right;">
+									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
+									   	<button type="submit" class="btn btn-secondary"><i class="fa fa-plus"> Agregar otro centro</button>
+									   </form>
 									   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
 									   Ver todos... <i class="fa fa-arrow-right"></i>
 									   </a>
-									  <form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal">
-									   	<button type="submit" class="btn btn-secondary"></button>
-									   </form>
+
 									   </div>
 									   @break
 							 		   @endif			
