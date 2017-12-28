@@ -1030,34 +1030,38 @@
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
 
-
 						   		for(var i=0; i < results[0].address_components.length; i++)
 										{
 										    var component = results[0].address_components[i];
 										    if(component.types[0] == "postal_code")
 										    {
 										         document.getElementById('postalcode').value = component.long_name ;
+										         document.getElementById('postalcode').disabled = false;
 										    }
 										     if(component.types[0] == "country")
 										    {
 										         document.getElementById('countr').value = component.long_name ;
+										         document.getElementById('countr').disabled = false;
 										    }
-										    if(component.types[0] == "locality")
+										    if(component.types[0] == "sublocality")
 										    {
 										         document.getElementById('localit').value = component.long_name ;
-										         document.getElementById('localit').disabled = false;
+										          document.getElementById('localit').disabled = false;
 										    }
 										    if(component.types[0] == "street_number")
 										    {
 										         document.getElementById('street_numbe').value = component.short_name ;
+										         document.getElementById('street_numbe').disabled = false;
 										    }
 										    if(component.types[0] == "route")
 										    {
 										         document.getElementById('rout').value = component.long_name ;
+										         document.getElementById('rout').disabled = false;
 										    }
 										     if(component.types[0] == "administrative_area_level_1")
 										    {
 										         document.getElementById('state').value = component.short_name ;
+										         document.getElementById('state').disabled = false;
 										    }
 
 										}
@@ -1112,12 +1116,14 @@
 										    if(component.types[0] == "postal_code")
 										    {
 										         document.getElementById('postalcode').value = component.long_name ;
+										         document.getElementById('postalcode').disabled = false;
 										    }
 										     if(component.types[0] == "country")
 										    {
 										         document.getElementById('countr').value = component.long_name ;
+										         document.getElementById('countr').disabled = false;
 										    }
-										    if(component.types[0] == "locality")
+										    if(component.types[0] == "sublocality")
 										    {
 										         document.getElementById('localit').value = component.long_name ;
 										          document.getElementById('localit').disabled = false;
@@ -1125,14 +1131,17 @@
 										    if(component.types[0] == "street_number")
 										    {
 										         document.getElementById('street_numbe').value = component.short_name ;
+										         document.getElementById('street_numbe').disabled = false;
 										    }
 										    if(component.types[0] == "route")
 										    {
 										         document.getElementById('rout').value = component.long_name ;
+										         document.getElementById('rout').disabled = false;
 										    }
 										     if(component.types[0] == "administrative_area_level_1")
 										    {
 										         document.getElementById('state').value = component.short_name ;
+										         document.getElementById('state').disabled = false;
 										    }
 
 										}
