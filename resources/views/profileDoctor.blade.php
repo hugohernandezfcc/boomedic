@@ -786,7 +786,7 @@
 					&nbsp;
 				</div>
 				<div class="col-sm-3"  align="right">
-					<button type="button" id="init" class="btn btn-default btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>Ubícame</button>
+					<span class="info-box-icon btn bg-navy" onclick="initMap();"><i class="fa fa-map-marker">Ubícame</i></span>
 				</div>
 				<div class="col-sm-4">	 
 				  <input type="text" name="lati" id="lati" class="form-control" disabled="true" />
@@ -799,7 +799,7 @@
 			</div>
 			<div class="col-sm-12">
 				<input type="text" name="dir" id="dir" class="form-control" disabled="true"/>
-			</div>	
+			</div>	<br/>
 				<div class="col-sm-12">
 					       		<div class="col-sm-6">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
@@ -1032,6 +1032,7 @@
             markerP.addListener('mouseover', function() {
            	 document.getElementById('lati').value = markerP.getPosition().lat();
              document.getElementById('long').value = markerP.getPosition().lng();
+             var latlng = new google.maps.LatLng(markerP.getPosition().lat(), markerP.getPosition().lng());
              geocoder.geocode({"latLng": latlng}, function(results, status)
 			{
 				if (status == google.maps.GeocoderStatus.OK)
