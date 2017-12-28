@@ -1084,14 +1084,19 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						 						for(var i=0, len=result.address_components.length; i<len; i++) {
+						 var result = results[0];
+						//look for locality tag and administrative_area_level_1
+						var city = "";
+						var state = "";
+						    for(var i=0, len=result.address_components.length; i<len; i++) {
 							var ac = result.address_components[i];
 							if(ac.types.indexOf("locality") >= 0) city = ac.long_name;
 							if(ac.types.indexOf("administrative_area_level_1") >= 0) state = ac.long_name;
+
+						}
 							document.getElementById('locality').value = city;
 							document.getElementById('state').value = state;
 
-						}
 					}
 					else
 					{
