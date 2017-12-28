@@ -1043,7 +1043,7 @@
 										         document.getElementById('countr').value = component.long_name ;
 										         document.getElementById('countr').disabled = false;
 										    }
-										    if(component.types[0] == "sublocality")
+										    if(component.types[0] == "neighborhood")
 										    {
 										         document.getElementById('localit').value = component.long_name ;
 										          document.getElementById('localit').disabled = false;
@@ -1060,7 +1060,7 @@
 										    }
 										     if(component.types[0] == "administrative_area_level_1")
 										    {
-										         document.getElementById('state').value = component.short_name ;
+										         document.getElementById('state').value = component.long_name ;
 										         document.getElementById('state').disabled = false;
 										    }
 
@@ -1123,7 +1123,7 @@
 										         document.getElementById('countr').value = component.long_name ;
 										         document.getElementById('countr').disabled = false;
 										    }
-										    if(component.types[0] == "sublocality")
+										    if(component.types[0] == "neighborhood")
 										    {
 										         document.getElementById('localit').value = component.long_name ;
 										          document.getElementById('localit').disabled = false;
