@@ -804,20 +804,18 @@
 	                </div>
 				</div>	
 			<div class="col-sm-12">	
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					&nbsp;
 				</div>
-				<div class="col-sm-3"  align="right">
-					<span class="info-box-icon btn bg-black" onclick="initMap();"><i class="fa fa-map-marker"></i><br/>Ubícame</span>
+				<div class="col-sm-4"  align="right">
+					<span class="info-box-icon btn bg-black text-white" onclick="initMap();"><i class="fa fa-map-marker"></i><br/>Ubícame</span>
 				</div>
 				<div class="col-sm-4">	 
-				  <input type="text" name="lati" id="lati" class="form-control" disabled="true" />
+				  <input type="hidden" name="lati" id="lati" class="form-control" disabled="true" />
 				<br/>
-		          <input type="text" name="long" id="long" class="form-control" disabled="true"/>
+		          <input type="hidden" name="long" id="long" class="form-control" disabled="true"/>
 		      </div>
-		      <div class="col-sm-2">
-					&nbsp;
-				</div>
+
 			</div>
 			<div class="col-sm-12">
 				<br/>
