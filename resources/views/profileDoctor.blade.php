@@ -503,17 +503,11 @@
                   <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
                     <div class="box-body">
                           @if($labor->isEmpty())
-							<div class="box-footer">
-										 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
-							</div>
-							
+						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>			
 							@else
 							
-							<div class="box-footer">
 							@foreach($labor as $labor)	
-							
-										@if($loop->iteration < 3)
-											<div class="col-sm-12">
+							<div class="col-sm-12">
 									          <div class="info-box sm bg-gray">
 									          	@if($loop->iteration == 1)
 									            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
@@ -528,24 +522,13 @@
 									            <!-- /.info-box-content -->
 									          </div>
 									          <!-- /.info-box -->
-									        </div>
-									   @endif	
-									   @if($loop->iteration > 2)
-									   <div class="col-sm-11" style="text-align: right;">
+							</div>		
+							@endforeach
+							@endif
+									<div class="col-sm-12" style="text-align: right;">
 									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
 									   	<button type="submit" class="btn btn-secondary"><i class="fa fa-plus"></i>Agregar otro centro</button>
 									   </form></div>
-									   <div class="col-sm-1" style="text-align: right;">
-									   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
-									   Ver todos... <i class="fa fa-arrow-right"></i>
-									   </a>
-
-									   </div>
-									   @break
-							 		   @endif			
-							@endforeach
-							</div>	 
-							@endif
                     </div>
                   </div>
                 </div>
