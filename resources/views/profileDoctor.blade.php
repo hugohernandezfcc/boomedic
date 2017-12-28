@@ -825,7 +825,7 @@
 			        <label  class="col-sm-2 control-label">
 		            	</label>  	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code"></input>
+			            		<input type="text" value="" class="form-control" name="postal_code" id="postal_code"></input>
 			            	</div>
 			            	<div class="col-sm-5">
 			            		<input type="text" value="" class="form-control" name="country" id="country"></input>
@@ -1029,29 +1029,9 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						for (var ac = 0; ac < results[0].address_components.length; ac++) {
-                                    var component = results[0].address_components[ac];
+						  document.getElementById('postal_code').value = results[0].address_components[6].short_name;
+						   document.getElementById('country').value = address_components[5].short_name;
 
-                                    switch(component.types[0]) {
-                                        case 'locality':
-                                            storableLocation.city = component.long_name;
-                                             document.getElementById('locality').value = component.long_name;
-                                            break;
-                                        case 'administrative_area_level_1':
-                                            storableLocation.state = component.short_name;
-                                            document.getElementById('administrative_area_level_1').value = component.short_name;
-                                            break;
-                                        case 'country':
-                                            storableLocation.country = component.long_name;
-                                            storableLocation.registered_country_iso_code = component.short_name;
-                                            document.getElementById('country').value = component.long_name;
-                                            break;
-                                        case 'postal_code':
-                                        storableLocation.postal_code = component.short_name;
-                                        document.getElementById('postal_code').value = component.short_name;
-                                        break;
-                                    }
-                                }
 					}
 					else
 					{
@@ -1095,28 +1075,8 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-							
-                                    var component = results[0].address_components[0];
-
-                                    switch(component.types[0]) {
-                                        case 'locality':
-                                            storableLocation.city = component.long_name;
-                                             document.getElementById('locality').value = component.long_name;
-                                            break;
-                                        case 'administrative_area_level_1':
-                                            storableLocation.state = component.short_name;
-                                            document.getElementById('administrative_area_level_1').value = component.short_name;
-                                            break;
-                                        case 'country':
-                                            storableLocation.country = component.long_name;
-                                            storableLocation.registered_country_iso_code = component.short_name;
-                                            document.getElementById('country').value = component.long_name;
-                                            break;
-                                        case 'postal_code':
-                                        storableLocation.postal_code = component.short_name;
-                                        document.getElementById('postal_code').value = component.short_name;
-                                        break;
-                                    }
+						 document.getElementById('postal_code').value = results[0].address_components[6].short_name;
+						   document.getElementById('country').value = results[0].address_components[5].short_name;
                                
 
 					}
