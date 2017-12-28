@@ -1028,7 +1028,7 @@
 				{
 					if (results[0])
 					{
-						 document.getElementById('dir').value = results[0].formatted_address;
+						 
 						for (var ac = 0; ac < results[0].address_components.length; ac++) {
                                     var component = results[0].address_components[ac];
 
@@ -1036,6 +1036,7 @@
                                         case 'locality':
                                             storableLocation.city = component.long_name;
                                              document.getElementById('locality').value = component.long_name;
+                                              document.getElementById('dir').value = component.long_name;
                                             break;
                                         case 'administrative_area_level_1':
                                             storableLocation.state = component.short_name;
@@ -1094,7 +1095,7 @@
 				{
 					if (results[0])
 					{
-						 document.getElementById('dir').value = results[0].formatted_address;
+						
 							for (var ac = 0; ac < results[0].address_components.length; ac++) {
                                     var component = results[0].address_components[ac];
 
@@ -1102,6 +1103,7 @@
                                         case 'locality':
                                             storableLocation.city = component.long_name;
                                              document.getElementById('locality').value = component.long_name;
+                                              document.getElementById('dir').value = component.long_name;
                                             break;
                                         case 'administrative_area_level_1':
                                             storableLocation.state = component.short_name;
