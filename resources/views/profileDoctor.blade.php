@@ -797,16 +797,18 @@
 					&nbsp;
 				</div>
 			</div>
-
+					  <div class="form-group">
 		            	<label  class="col-sm-2 control-label">
 		            	</label>
+		            	
 			            	<div class="col-sm-5">
 			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true"></input>
 			            	</div>
 			            	<div class="col-sm-5">
 			            		<input type="text" class="form-control" name="colony" id="rout" disabled="true"></input>
 			            	</div>
-
+			        </div>
+			        <div class="form-group">  
 			        <label  class="col-sm-2 control-label">
 		            	</label>  	
 			            	<div class="col-sm-5">
@@ -815,6 +817,8 @@
 			            	<div class="col-sm-5">
 			            		<input type="text" value="" class="form-control" name="state" id="state" disabled="true" placeholder="Estado"></input>
 			            	</div>
+			        </div>
+			        <div class="form-group"> 
 			        <label  class="col-sm-2 control-label">
 		            	</label>  	
 			            	<div class="col-sm-5">
@@ -823,6 +827,8 @@
 			            	<div class="col-sm-5">
 			            		<input type="text" value="" class="form-control" name="countr" id="countr" placeholder="País" disabled="true"></input>
 			            	</div>
+			         </div>
+				<br/>
 				<div class="col-sm-12">
 					       		<div class="col-sm-6">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
@@ -1019,7 +1025,7 @@
 				{
 					if (results[0])
 					{
-						 document.getElementById('dir').value = results[0].formatted_address;
+						
 
 						   		for(var i=0; i < results[0].address_components.length; i++)
 										{
@@ -1099,7 +1105,7 @@
 				{
 					if (results[0])
 					{
-						 document.getElementById('dir').value = results[0].formatted_address;
+						 
 
 						   		for(var i=0; i < results[0].address_components.length; i++)
 										{
