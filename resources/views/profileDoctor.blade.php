@@ -805,30 +805,30 @@
 		            	</label>
 		            	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="street" id="street_number"></input>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="colony" id="route"></input>
 			            	</div>
 			        </div>
 			        <div class="form-group">  
 			        <label  class="col-sm-2 control-label">
 		            	</label>  	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
+			            		<input type="text" value="" class="form-control" name="delegation" id="locality"></input>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="state" id="administrative_area_level_1"></input>
 			            	</div>
 			        </div>
 			        <div class="form-group"> 
 			        <label  class="col-sm-2 control-label">
 		            	</label>  	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
+			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code"></input>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="country" id="country"></input>
 			            	</div>
 			         </div>
 				<br/>
@@ -1039,7 +1039,7 @@
                                             break;
                                         case 'administrative_area_level_1':
                                             storableLocation.state = component.short_name;
-                                            document.getElementById('state').value = component.short_name;
+                                            document.getElementById('administrative_area_level_1').value = component.short_name;
                                             break;
                                         case 'country':
                                             storableLocation.country = component.long_name;
@@ -1105,7 +1105,7 @@
                                             break;
                                         case 'administrative_area_level_1':
                                             storableLocation.state = component.short_name;
-                                            document.getElementById('state').value = component.short_name;
+                                            document.getElementById('administrative_area_level_1').value = component.short_name;
                                             break;
                                         case 'country':
                                             storableLocation.country = component.long_name;
