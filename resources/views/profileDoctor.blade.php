@@ -805,20 +805,20 @@
 		            	</label>
 		            	
 			            	<div class="col-sm-5">
-			            		<input type="text" class="form-control" name="street" id="street_number" disabled="true"></input>
+			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true"></input>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" class="form-control" name="colony" id="route" disabled="true"></input>
+			            		<input type="text" class="form-control" name="colony" id="rout" disabled="true"></input>
 			            	</div>
 			        </div>
 			        <div class="form-group">  
 			        <label  class="col-sm-2 control-label">
 		            	</label>  	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="delegation" id="locality"></input>
+			            		<input type="text" value="" class="form-control" name="delegation" id="localit" disabled="true"></input>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="state" id="administrative_area_level_1"></input>
+			            		<input type="text" value="" class="form-control" name="state" id="state" disabled="true" placeholder="Estado"></input>
 			            	</div>
 			        </div>
 			        <div class="form-group"> 
@@ -828,7 +828,7 @@
 			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"></input>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="countr" id="countr" placeholder="País"></input>
+			            		<input type="text" value="" class="form-control" name="countr" id="countr" placeholder="País" disabled="true"></input>
 			            	</div>
 			         </div>
 				<br/>
@@ -1029,15 +1029,36 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						   document.getElementById('country').value = address_components[5].short_name;
 
-								   for(var i=0; i < results[0].address_components.length; i++)
+
+						   		for(var i=0; i < results[0].address_components.length; i++)
 										{
 										    var component = results[0].address_components[i];
 										    if(component.types[0] == "postal_code")
 										    {
 										         document.getElementById('postalcode').value = component.long_name ;
 										    }
+										     if(component.types[0] == "country")
+										    {
+										         document.getElementById('countr').value = component.long_name ;
+										    }
+										    if(component.types[0] == "locality")
+										    {
+										         document.getElementById('localit').value = component.long_name ;
+										    }
+										    if(component.types[0] == "street_number")
+										    {
+										         document.getElementById('street_numbe').value = component.long_name ;
+										    }
+										    if(component.types[0] == "route")
+										    {
+										         document.getElementById('rout').value = component.long_name ;
+										    }
+										     if(component.types[0] == "administrative_area_level_1")
+										    {
+										         document.getElementById('state').value = component.long_name ;
+										    }
+
 										}
 
 					}
@@ -1083,7 +1104,7 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						   document.getElementById('countr').value = results[0].address_components[5].long_name;
+
 						   		for(var i=0; i < results[0].address_components.length; i++)
 										{
 										    var component = results[0].address_components[i];
@@ -1091,6 +1112,27 @@
 										    {
 										         document.getElementById('postalcode').value = component.long_name ;
 										    }
+										     if(component.types[0] == "country")
+										    {
+										         document.getElementById('countr').value = component.long_name ;
+										    }
+										    if(component.types[0] == "locality")
+										    {
+										         document.getElementById('localit').value = component.long_name ;
+										    }
+										    if(component.types[0] == "street_number")
+										    {
+										         document.getElementById('street_numbe').value = component.long_name ;
+										    }
+										    if(component.types[0] == "route")
+										    {
+										         document.getElementById('rout').value = component.long_name ;
+										    }
+										     if(component.types[0] == "administrative_area_level_1")
+										    {
+										         document.getElementById('state').value = component.long_name ;
+										    }
+
 										}
                                
 
