@@ -1029,15 +1029,13 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-								for(var i=0; i < results[0].address_components.length; i++)
-						{
-						    var component = results[0].address_components[i];
-						    if(component.types[0] == "postal_code")
-						    {
-						    	document.getElementById('postal_code').value = component.short_name;
-						        console.log(component.short_name);
-						    }
-						}
+						for (var i = 0; i < results[0].address_components.length; i++) {
+				          var addressType = results[0].address_components[i].types[0];
+				          if (componentForm[addressType]) {
+				            var val = results[0].address_components[i][componentForm[addressType]];
+				            document.getElementById(addressType).value = val;
+				          }
+				        }
 					}
 					else
 					{
@@ -1081,15 +1079,13 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-					for(var i=0; i < results[0].address_components.length; i++)
-						{
-						    var component = results[0].address_components[i];
-						    if(component.types[0] == "postal_code")
-						    {
-						    	document.getElementById('postal_code').value = component.short_name;
-						        console.log(component.short_name);
-						    }
-						}
+						for (var i = 0; i < results[0].address_components.length; i++) {
+				          var addressType = results[0].address_components[i].types[0];
+				          if (componentForm[addressType]) {
+				            var val = results[0].address_components[i][componentForm[addressType]];
+				            document.getElementById(addressType).value = val;
+				          }
+				        }
 
 					}
 					else
