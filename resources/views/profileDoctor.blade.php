@@ -1045,12 +1045,13 @@
 										    if(component.types[0] == "locality")
 										    {
 										         document.getElementById('localit').value = component.long_name ;
+										         document.getElementById('localit').disabled = false;
 										    }
 										    if(component.types[0] == "street_number")
 										    {
 										         document.getElementById('street_numbe').value = component.short_name ;
 										    }
-										    if(component.types[0] == "administrative_area_level_2")
+										    if(component.types[0] == "route")
 										    {
 										         document.getElementById('rout').value = component.long_name ;
 										    }
@@ -1119,12 +1120,13 @@
 										    if(component.types[0] == "locality")
 										    {
 										         document.getElementById('localit').value = component.long_name ;
+										          document.getElementById('localit').disabled = false;
 										    }
 										    if(component.types[0] == "street_number")
 										    {
 										         document.getElementById('street_numbe').value = component.short_name ;
 										    }
-										    if(component.types[0] == "administrative_area_level_2")
+										    if(component.types[0] == "route")
 										    {
 										         document.getElementById('rout').value = component.long_name ;
 										    }
