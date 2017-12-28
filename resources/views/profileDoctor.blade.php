@@ -1029,13 +1029,29 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						for (var i = 0; i < results[0].address_components.length; i++) {
-				          var addressType = results[0].address_components[i].types[0];
-				          if (componentForm[addressType]) {
-				            var val = results[0].address_components[i][componentForm[addressType]];
-				            document.getElementById(addressType).value = val;
-				          }
-				        }
+						for (var ac = 0; ac < results[0].address_components.length; ac++) {
+                                    var component = results[0].address_components[ac];
+
+                                    switch(component.types[0]) {
+                                        case 'locality':
+                                            storableLocation.city = component.long_name;
+                                             document.getElementById('locality').value = component.long_name;
+                                            break;
+                                        case 'administrative_area_level_1':
+                                            storableLocation.state = component.short_name;
+                                            document.getElementById('state').value = component.short_name;
+                                            break;
+                                        case 'country':
+                                            storableLocation.country = component.long_name;
+                                            storableLocation.registered_country_iso_code = component.short_name;
+                                            document.getElementById('country').value = component.long_name;
+                                            break;
+                                        case 'postal_code':
+                                        storableLocation.postal_code = component.short_name;
+                                        document.getElementById('postal_code').value = component.short_name;
+                                        break;
+                                    }
+                                };
 					}
 					else
 					{
@@ -1079,13 +1095,29 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						for (var i = 0; i < results[0].address_components.length; i++) {
-				          var addressType = results[0].address_components[i].types[0];
-				          if (componentForm[addressType]) {
-				            var val = results[0].address_components[i][componentForm[addressType]];
-				            document.getElementById(addressType).value = val;
-				          }
-				        }
+							for (var ac = 0; ac < results[0].address_components.length; ac++) {
+                                    var component = results[0].address_components[ac];
+
+                                    switch(component.types[0]) {
+                                        case 'locality':
+                                            storableLocation.city = component.long_name;
+                                             document.getElementById('locality').value = component.long_name;
+                                            break;
+                                        case 'administrative_area_level_1':
+                                            storableLocation.state = component.short_name;
+                                            document.getElementById('state').value = component.short_name;
+                                            break;
+                                        case 'country':
+                                            storableLocation.country = component.long_name;
+                                            storableLocation.registered_country_iso_code = component.short_name;
+                                            document.getElementById('country').value = component.long_name;
+                                            break;
+                                        case 'postal_code':
+                                        storableLocation.postal_code = component.short_name;
+                                        document.getElementById('postal_code').value = component.short_name;
+                                        break;
+                                    }
+                                };
 
 					}
 					else
