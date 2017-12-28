@@ -71,6 +71,9 @@ class doctor extends Controller
     {
         $users = DB::table('users')->where('id', Auth::id() )->get();
         $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
+        $bus = $professionali[0]->id;
+        $prof = professional_information::find($bus);
+        $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
         return view('profileDoctor', [
                 'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
 
@@ -115,7 +118,8 @@ class doctor extends Controller
                 'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
                 'longitude'     => (   empty($users[0]->longitude)      ) ? '' : $users[0]->longitude,
                 'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
-                'mode'          => 'doctor'
+                'mode'          => 'doctor',
+                'labor'         => $labor
             ]
         );
     }
@@ -144,6 +148,9 @@ class doctor extends Controller
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
         $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
+        $bus = $professionali[0]->id;
+        $prof = professional_information::find($bus);
+        $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
         return view('profileDoctor', [
 
                 /** SYSTEM INFORMATION */
@@ -185,7 +192,8 @@ class doctor extends Controller
                 'streetnumber'  => (   empty($users[0]->streetnumber)   ) ? '' : $users[0]->streetnumber, 
                 'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
                 'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
-                'mode'          => 'doctor'  
+                'mode'          => 'doctor',
+                'labor'         => $labor  
 
             ]
         );

@@ -495,13 +495,51 @@
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
-                        Dirección de usuario         
+                        Información Laboral      
                   </a> 
                   </h4> 
                   </div>
                   <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
                     <div class="box-body">
-                          <div id="mapAddressUser" ></div>
+                          @if($labor->isEmpty())
+							<div class="box-footer">
+										 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
+							</div>
+							
+							@else
+							
+							<div class="box-footer">
+							@foreach($labor as $labor)	
+							
+										@if($loop->iteration < 3)
+											<div class="col-sm-12">
+									          <div class="info-box sm bg-gray">
+									          	@if($loop->iteration == 1)
+									            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
+									            @endif
+									            @if($loop->iteration == 2)
+									            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
+									            @endif
+									            <div class="info-box-content sm">
+									              <b>{{ $labor->workplace}}</b><br/>
+									              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
+									            </div>
+									            <!-- /.info-box-content -->
+									          </div>
+									          <!-- /.info-box -->
+									        </div>
+									   @endif	
+									   @if($loop->iteration > 2)
+									   <div class="col-sm-12" style="text-align: right;">
+									   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
+									   Ver todos... <i class="fa fa-arrow-right"></i>
+									   </a>
+									   </div>
+									   @break
+							 		   @endif			
+							@endforeach
+							</div>	 
+							@endif
                     </div>
                   </div>
                 </div>
@@ -786,7 +824,7 @@
 					&nbsp;
 				</div>
 				<div class="col-sm-3"  align="right">
-					<span class="info-box-icon btn bg-navy" onclick="initMap();"><i class="fa fa-map-marker"></i><br/>Ubícame</span>
+					<span class="info-box-icon btn bg-black" onclick="initMap();"><i class="fa fa-map-marker"></i><br/>Ubícame</span>
 				</div>
 				<div class="col-sm-4">	 
 				  <input type="text" name="lati" id="lati" class="form-control" disabled="true" />
@@ -796,7 +834,7 @@
 		      <div class="col-sm-2">
 					&nbsp;
 				</div>
-			</div><br/>
+			</div><br/><br/>
 			<div class="col-sm-12">
 					  <div class="form-group">
 		            	
