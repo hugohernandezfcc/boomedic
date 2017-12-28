@@ -784,7 +784,7 @@
 				<div class="col-sm-3">
 					&nbsp;
 				</div>
-				<div class="col-sm-5"  align="right">
+				<div class="col-sm-3"  align="right">
 					<span class="info-box-icon btn bg-navy" onclick="initMap();"><i class="fa fa-map-marker"></i></span>
 				</div>
 				<div class="col-sm-4">	 
