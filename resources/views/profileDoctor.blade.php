@@ -805,10 +805,10 @@
 		            	</label>
 		            	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="street" id="street_number"></input>
+			            		<input type="text" class="form-control" name="street" id="street_number" disabled="true"></input>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="colony" id="route"></input>
+			            		<input type="text" class="form-control" name="colony" id="route" disabled="true"></input>
 			            	</div>
 			        </div>
 			        <div class="form-group">  
@@ -825,7 +825,7 @@
 			        <label  class="col-sm-2 control-label">
 		            	</label>  	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="postal_code" id="postal_code"></input>
+			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true"></input>
 			            	</div>
 			            	<div class="col-sm-5">
 			            		<input type="text" value="" class="form-control" name="country" id="country"></input>
@@ -1029,7 +1029,7 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						  document.getElementById('postal_code').value = results[0].address_components[6].short_name;
+						  document.getElementById('postalcode').value = results[0].address_components[6].short_name;
 						   document.getElementById('country').value = address_components[5].short_name;
 
 					}
@@ -1075,7 +1075,7 @@
 					if (results[0])
 					{
 						 document.getElementById('dir').value = results[0].formatted_address;
-						 document.getElementById('postal_code').value = results[0].address_components[6].short_name;
+						 document.getElementById('postalcode').value = results[0].address_components[6].short_name;
 						   document.getElementById('country').value = results[0].address_components[5].short_name;
                                
 
