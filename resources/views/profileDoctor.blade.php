@@ -1036,7 +1036,7 @@
                                         case 'locality':
                                             storableLocation.city = component.long_name;
                                              document.getElementById('locality').value = component.long_name;
-                                              document.getElementById('dir').value = component.long_name;
+                                              document.getElementById('dir').value = component.short_name;
                                             break;
                                         case 'administrative_area_level_1':
                                             storableLocation.state = component.short_name;
@@ -1103,7 +1103,7 @@
                                         case 'locality':
                                             storableLocation.city = component.long_name;
                                              document.getElementById('locality').value = component.long_name;
-                                              document.getElementById('dir').value = component.long_name;
+                                               document.getElementById('dir').value = component.short_name;
                                             break;
                                         case 'administrative_area_level_1':
                                             storableLocation.state = component.short_name;
