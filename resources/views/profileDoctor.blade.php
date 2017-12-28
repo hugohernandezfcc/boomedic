@@ -797,6 +797,7 @@
 					&nbsp;
 				</div>
 			</div><br/>
+			<div class="col-sm-12">
 					  <div class="form-group">
 		            	
 			            	<div class="col-sm-6">
@@ -822,7 +823,7 @@
 			            		<input type="text" value="" class="form-control" name="countr" id="countr" placeholder="País" disabled="true"></input>
 			            	</div>
 			         </div>
-				<br/>
+				</div>
 				<div class="col-sm-12">
 					       		<div class="col-sm-6">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
