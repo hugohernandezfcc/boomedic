@@ -786,7 +786,7 @@
 					&nbsp;
 				</div>
 				<div class="col-sm-3"  align="right">
-					<span class="info-box-icon btn bg-navy" onclick="initMap();"><i class="fa fa-map-marker">Ubícame</i></span>
+					<span class="info-box-icon btn bg-navy" onclick="initMap();"><i class="fa fa-map-marker"></i><br/>Ubícame</span>
 				</div>
 				<div class="col-sm-4">	 
 				  <input type="text" name="lati" id="lati" class="form-control" disabled="true" />
