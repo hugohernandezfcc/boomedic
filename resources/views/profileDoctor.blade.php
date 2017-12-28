@@ -834,8 +834,9 @@
 		      <div class="col-sm-2">
 					&nbsp;
 				</div>
-			</div><br/><br/>
+			</div>
 			<div class="col-sm-12">
+				<br/><br/>
 					  <div class="form-group">
 		            	
 			            	<div class="col-sm-6">
@@ -1251,8 +1252,8 @@
 			@endforeach
 			<div class="col-sm-6">&nbsp;</div>
 								<div class="col-sm-6">
-					    			<a href="{{ url('doctor/edit/complete') }}" class="btn btn-secondary btn-block btn-flat">
-						                Volver a edición del perfil
+					    			<a href="{{ url('doctor/doctor') }}" class="btn btn-secondary btn-block btn-flat">
+						                Volver al Perfil
 						            </a>
 					            </div>
 			
