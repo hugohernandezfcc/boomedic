@@ -767,28 +767,34 @@
 			<div class="col-sm-5">
 				<div class="col-sm-12">
 					 <div class="form-group">
-	                	<label for="workplace" class="col-sm-2 control-label">Lugar de trabajo</label>
-	                	<div class="col-sm-10">
+	                	<label for="workplace" class="col-sm-6 control-label">Lugar de trabajo</label>
+	                	<div class="col-sm-6">
 		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
 	              	<div class="form-group">
-	                	<label for="professionalPosition" class="col-sm-2 control-label">Posición Profesional</label>
-	                	<div class="col-sm-10">
+
+	                	<label for="professionalPosition" class="col-sm-6 control-label">Posición Profesional</label>
+	                	<div class="col-sm-6">
 		                  	<input type="text" name="professionalPosition" id="professionalPosition" value="" class="form-control">
 	                	</div>
 	                </div>
 				</div>	
-				<div class="col-sm-6"  align="center">
-
+				<div class="col-sm-2">
+					&nbsp;
+				</div>
+				<div class="col-sm-4"  align="right">
 					<span class="info-box-icon btn bg-navy" onclick="initMap();"><i class="fa fa-map-marker"></i></span>
 				</div>
-				<div class="col-sm-6">	 
+				<div class="col-sm-4">	 
 				  <input type="text" name="lati" id="lati"/>
 				<br/>
 		          <input type="text" name="long" id="long"/>
 		      </div>
+		      <div class="col-sm-2">
+					&nbsp;
+				</div>
 			</div>
 			<div class="col-sm-7">
 		  	<div id="map"></div>
