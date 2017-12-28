@@ -214,7 +214,7 @@ class doctor extends Controller
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
 
-
+        if ($request->change == "true") {
         $user->status        = $request->status;         
         $user->firstname     = $request->firstname;         
         $user->lastname      = $request->lastname;         
@@ -247,7 +247,7 @@ class doctor extends Controller
 
         $prof->save();
         $user->save();
-
+        }
             return view('profileDoctor', [
 
                 /** SYSTEM INFORMATION */
