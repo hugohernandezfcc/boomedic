@@ -786,7 +786,7 @@
 					&nbsp;
 				</div>
 				<div class="col-sm-3"  align="right">
-					<span class="info-box-icon btn bg-navy" onclick="initMap();"><i class="fa fa-map-marker"></i></span>
+					<span class="info-box-icon btn bg-navy" onclick="initMap();"><i class="fa fa-map-marker">Ubícame</i></span>
 				</div>
 				<div class="col-sm-4">	 
 				  <input type="text" name="lati" id="lati" class="form-control" disabled="true" />
@@ -796,17 +796,17 @@
 		      <div class="col-sm-2">
 					&nbsp;
 				</div>
+			</div>
+			<div class="col-sm-12">
+				<input type="text" name="dir" id="dir" class="form-control" disabled="true"/>
 			</div>	
 				<div class="col-sm-12">
-								<div class="col-sm-4">
-					            	&nbsp;
-					            </div>
-					       		<div class="col-sm-4">
+					       		<div class="col-sm-6">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
 						            </button>
 					            </div>
-					    		<div class="col-sm-4">
+					    		<div class="col-sm-6">
 					    			<button type="button" id="cancel" class="btn btn-default btn-block btn-flat">Cancelar</button>
 					            </div>
 				</div>
@@ -988,6 +988,24 @@
             //Map
              document.getElementById('lati').value = position.coords.latitude;
              document.getElementById('long').value = position.coords.longitude;
+        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        geocoder = new google.maps.Geocoder();
+        geocoder.geocode({"latLng": latlng}, function(results, status)
+			{
+				if (status == google.maps.GeocoderStatus.OK)
+				{
+					if (results[0])
+					{
+						 document.getElementById('dir').value = results[0].formatted_address;
+					}
+					else
+					{
+						 document.getElementById('dir').value = "No se ha podido obtener ninguna dirección en esas coordenadas";
+					}
+				}
+			});	
+
+
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 14,
               center: new google.maps.LatLng(pos),
