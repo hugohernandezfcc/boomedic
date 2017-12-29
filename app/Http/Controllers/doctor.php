@@ -284,8 +284,8 @@ class doctor extends Controller
 
 
         $laborInformation->postalcode    = $request->postalcode; 
-        $laborInformation->latitude      = $request->lati; 
-        $laborInformation->longitude     = $request->long;
+        $laborInformation->latitude      = $request->latitude; 
+        $laborInformation->longitude     = $request->longitude;
 
         $laborInformation->profInformation  =   $prof->id;
         }

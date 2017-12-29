@@ -807,8 +807,8 @@
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 				
 				<div class="col-sm-12">	 
-				  <input type="hidden" name="lati" id="lati" class="form-control" disabled="true" />
-		          <input type="hidden" name="long" id="long" class="form-control" disabled="true"/>
+				  <input type="hidden" name="latitude" id="lati" class="form-control" disabled="true" />
+		          <input type="hidden" name="longitude" id="long" class="form-control" disabled="true"/>
 		      </div>
 
 			</div>
@@ -1039,8 +1039,8 @@
               lng: position.coords.longitude
             };
             //Map
-             document.getElementById('lati').value = position.coords.latitude;
-             document.getElementById('long').value = position.coords.longitude;
+             document.getElementById('latitude').value = position.coords.latitude;
+             document.getElementById('longitude').value = position.coords.longitude;
         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         geocoder = new google.maps.Geocoder();
         geocoder.geocode({"latLng": latlng}, function(results, status)
@@ -1120,8 +1120,8 @@
             });
             //Evento to open infowindow
             markerP.addListener('mouseover', function() {
-           	 document.getElementById('lati').value = markerP.getPosition().lat();
-             document.getElementById('long').value = markerP.getPosition().lng();
+           	 document.getElementById('latitude').value = markerP.getPosition().lat();
+             document.getElementById('longitude').value = markerP.getPosition().lng();
              var latlng = new google.maps.LatLng(markerP.getPosition().lat(), markerP.getPosition().lng());
              geocoder.geocode({"latLng": latlng}, function(results, status)
 			{

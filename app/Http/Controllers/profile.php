@@ -65,19 +65,10 @@ class profile extends Controller
      */
     public function show($id)
     {
-         $join = DB::table('professional_information')
-            ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
-            ->join('users', 'professional_information.user', '=', 'users.id')
-            ->select('labor_information.*', 'users.name', 'professional_information.specialty')
-            ->get();
-                         foreach($join as $labor){
-            $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'"],'; 
-             }
-             Session(['it' => $it]);
-
         $users = DB::table('users')->where('id', Auth::id() )->get();
         return view('profile', [
                 'name' => DB::table('users')->where('id', Auth::id() )->value('name'),
+
                  /** SYSTEM INFORMATION */
 
                 'userId'        => Auth::id(),
@@ -138,16 +129,6 @@ class profile extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($status){
-         $join = DB::table('professional_information')
-            ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
-            ->join('users', 'professional_information.user', '=', 'users.id')
-            ->select('labor_information.*', 'users.name', 'professional_information.specialty')
-            ->get();
-
-             foreach($join as $labor){
-            $it[] = '["'.$labor->specialty.'","'.$labor->latitude.'","'.$labor->longitude.'", "'.$labor->name.'", "'.$labor->workplace.'"],'; 
-             }
-             Session(['it' => $it]);
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
 
