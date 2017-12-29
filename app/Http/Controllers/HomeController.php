@@ -35,7 +35,7 @@ class HomeController extends Controller
             ->get();
 
              foreach($join as $labor){
-            $it[] = '["'.$laborspecialty.'","'.$labor->latitude.'","'.$labor->longitude.'", "'.$labor->name.'", "'.$labor->workplace.'"],'; 
+            $it[] = '["'.$labor->specialty.'","'.$labor->latitude.'","'.$labor->longitude.'", "'.$labor->name.'", "'.$labor->workplace.'"],'; 
              }
 
         if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
