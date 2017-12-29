@@ -71,7 +71,7 @@ class HomeController extends Controller
                     'photo' => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                     'userId' => Auth::id(),
                     'labor' => $join,
-                    'it'    => $it
+                    'it'    => $it[]
                 ]
             );
         }
