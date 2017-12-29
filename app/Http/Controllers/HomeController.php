@@ -35,7 +35,7 @@ class HomeController extends Controller
             ->get();
 
              foreach($join as $labor){
-            $it[] = '["'.$labor->merge($professional_information->specialty).'","'.$labor->merge($labor_information->latitude).'","'.$labor->merge($labor_information->longitude).'", "'.$labor->merge($users->name).'", "'.$labor->labor_information->workplace.'"],'; 
+            $it[] = '["'.$laborspecialty.'","'.$labor->latitude.'","'.$labor->longitude.'", "'.$labor->name.'", "'.$labor->workplace.'"],'; 
              }
 
         if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
@@ -70,7 +70,8 @@ class HomeController extends Controller
                     'lastname' => DB::table('users')->where('id', Auth::id() )->value('lastname'),
                     'photo' => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                     'userId' => Auth::id(),
-                    'it'    => $it
+                    'labor' => $join,
+                    'it'    => $it;
                 ]
             );
         }
