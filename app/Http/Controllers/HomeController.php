@@ -34,6 +34,10 @@ class HomeController extends Controller
             ->select('labor_information.*', 'users.name', 'professional_information.specialty')
             ->get();
 
+             foreach($labor as $labor){
+            $it[] = '["'.$labor->professional_information->specialty.'","'.$labor->labor_information->latitude.'","'.$labor->labor_information->longitude.'", "'.$labor->users->name.'", "'.$labor->labor_information->workplace.'"],'; 
+             }
+
         if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
@@ -66,7 +70,8 @@ class HomeController extends Controller
                     'lastname' => DB::table('users')->where('id', Auth::id() )->value('lastname'),
                     'photo' => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                     'userId' => Auth::id(),
-                    'labor' => $join
+                    'labor' => $join,
+                    'it'    => $it;
                 ]
             );
         }
