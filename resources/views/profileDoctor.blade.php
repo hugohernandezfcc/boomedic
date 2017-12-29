@@ -842,7 +842,7 @@
 			         </div>
 				</div>
 				<div class="col-sm-12">
-					<input type="hidden" name="ub" id="ub" value="true"></input>
+					<input type="text" name="ub" id="ub" value="true" style="visibility: hidden;" />
 					       		<div class="col-sm-6">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
@@ -884,7 +884,7 @@
 					            @if($loop->iteration == 2)
 					            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
 					            @endif
-					            <div class="info-box-content sm col-sm-12">
+					            <div class="info-box-content sm">
 					              <b>{{ $labor->workplace}}</b><br/>
 					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
 					            </div>
