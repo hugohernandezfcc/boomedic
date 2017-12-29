@@ -807,8 +807,8 @@
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 				
 				<div class="col-sm-12">	 
-				  <input type="text" name="latitude" id="latitude" class="form-control" disabled="true" />
-		          <input type="text" name="longitude" id="longitude" class="form-control" disabled="true"/>
+				  <input type="text" name="lati" id="lati" class="form-control" disabled="true" />
+		          <input type="text" name="long" id="long" class="form-control" disabled="true"/>
 		      </div>
 
 			</div>
@@ -884,7 +884,7 @@
 					            @if($loop->iteration == 2)
 					            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
 					            @endif
-					            <div class="info-box-content sm">
+					            <div class="info-box-content sm col-sm-12">
 					              <b>{{ $labor->workplace}}</b><br/>
 					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
 					            </div>
@@ -1039,8 +1039,8 @@
               lng: position.coords.longitude
             };
             //Map
-             document.getElementById('latitude').value = position.coords.latitude;
-             document.getElementById('longitude').value = position.coords.longitude;
+             document.getElementById('lati').value = position.coords.latitude;
+             document.getElementById('long').value = position.coords.longitude;
         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         geocoder = new google.maps.Geocoder();
         geocoder.geocode({"latLng": latlng}, function(results, status)
@@ -1088,10 +1088,7 @@
 										}
 
 					}
-					else
-					{
-						 document.getElementById('dir').value = "No se ha podido obtener ninguna dirección en esas coordenadas";
-					}
+
 				}
 			});	
 
@@ -1120,8 +1117,8 @@
             });
             //Evento to open infowindow
             markerP.addListener('mouseover', function() {
-           	 document.getElementById('latitude').value = markerP.getPosition().lat();
-             document.getElementById('longitude').value = markerP.getPosition().lng();
+           	 document.getElementById('lati').value = markerP.getPosition().lat();
+             document.getElementById('long').value = markerP.getPosition().lng();
              var latlng = new google.maps.LatLng(markerP.getPosition().lat(), markerP.getPosition().lng());
              geocoder.geocode({"latLng": latlng}, function(results, status)
 			{
@@ -1169,10 +1166,7 @@
                                
 
 					}
-					else
-					{
-						 document.getElementById('dir').value = "No se ha podido obtener ninguna dirección en esas coordenadas";
-					}
+
 				}
 			});	
               infoWindow.open(map, markerP);
