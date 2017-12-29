@@ -805,13 +805,12 @@
 				</div>	
 			<div class="col-sm-12">	
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
-				
-				<div class="col-sm-12">	 
+
+			</div>
+			<div class="col-sm-12">	 
 					 <input type="hidden" name="lati" id="lati"/>
 		            <input type="hidden" name="long" id="longi"/>
 		      </div>
-
-			</div>
 			<div class="col-sm-12">
 				<br/>
 					  <div class="form-group">
