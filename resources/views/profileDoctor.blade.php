@@ -899,6 +899,9 @@
 					   </a>
 					   </div>
 					   @break
+					   @else
+					   <div class="col-sm-12" style="text-align: right;">&nbsp;
+					   </div>
 			 		   @endif			
 			@endforeach
 			</div>	 
