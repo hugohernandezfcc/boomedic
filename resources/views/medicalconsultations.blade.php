@@ -242,9 +242,8 @@
 
   </script>
         @php
-
           foreach($labor as $labor){
-            $it[] = '["'.$labor->professional_information->specialty.'","'.$labor->labor_information->latitude.'","'.$labor->labor_information->longitude.'", "'.$labor->users->name.'", "'.$labor->labor_information->workplace.'"], }';
+            $it[] = '["'.$labor->professional_information->specialty.'","'.$labor->labor_information->latitude.'","'.$labor->labor_information->longitude.'", "'.$labor->users->name.'", "'.$labor->labor_information->workplace.'"],'; }
         @endphp    
           
    <form>
