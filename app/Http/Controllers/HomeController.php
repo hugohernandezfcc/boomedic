@@ -37,6 +37,7 @@ class HomeController extends Controller
              foreach($join as $labor){
             $it[] = '["'.$labor->specialty.'","'.$labor->latitude.'","'.$labor->longitude.'", "'.$labor->name.'", "'.$labor->workplace.'"],'; 
              }
+             Session(['it' => $it]);
 
         if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
@@ -71,7 +72,7 @@ class HomeController extends Controller
                     'photo' => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                     'userId' => Auth::id(),
                     'labor' => $join,
-                    'it'    => $it
+
                 ]
             );
         }
