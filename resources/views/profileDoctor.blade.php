@@ -807,8 +807,8 @@
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 				
 				<div class="col-sm-12">	 
-				  <input type="text" name="lati" id="lati" class="form-control" disabled="true" />
-		          <input type="text" name="long" id="long" class="form-control" disabled="true"/>
+				  <input type="text" name="latitude" id="lati" class="form-control" disabled="true" />
+		          <input type="text" name="longitude" id="long" class="form-control" disabled="true"/>
 		      </div>
 
 			</div>
@@ -837,12 +837,11 @@
 			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"></input>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="countr" id="countr" placeholder="País" disabled="true"></input>
+			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true"></input>
 			            	</div>
 			         </div>
 				</div>
 				<div class="col-sm-12">
-					<input type="text" name="ub" id="ub" value="true" style="visibility: hidden;" />
 					       		<div class="col-sm-6">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
