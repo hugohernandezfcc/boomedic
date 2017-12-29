@@ -842,6 +842,7 @@
 			         </div>
 				</div>
 				<div class="col-sm-12">
+					<input type="hidden" name="ub" id="ub" value="true"></input>
 					       		<div class="col-sm-6">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
@@ -855,7 +856,7 @@
 			<div class="col-sm-7">
 		  	<div id="map"></div>
 		  </div></div>
-		  <input type="hidden" name="ub" id="ub" value="true"></input>
+		  
 		</form>
 			</div>
 
