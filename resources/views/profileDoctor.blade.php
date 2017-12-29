@@ -807,8 +807,8 @@
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 				
 				<div class="col-sm-12">	 
-				  <input type="text" name="lati" id="lati" class="form-control" disabled="true" />
-		          <input type="text" name="long" id="long" class="form-control" disabled="true"/>
+					 <input type="hidden" name="lati" id="lati"/>
+		            <input type="hidden" name="long" id="longi"/>
 		      </div>
 
 			</div>
