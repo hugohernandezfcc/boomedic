@@ -807,8 +807,8 @@
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 				
 				<div class="col-sm-12">	 
-				  <input type="hidden" name="latitude" id="lati" class="form-control" disabled="true" />
-		          <input type="hidden" name="longitude" id="long" class="form-control" disabled="true"/>
+				  <input type="text" name="latitude" id="latitude" class="form-control" disabled="true" />
+		          <input type="text" name="longitude" id="longitude" class="form-control" disabled="true"/>
 		      </div>
 
 			</div>
