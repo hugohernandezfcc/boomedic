@@ -24,8 +24,9 @@ function checkLoginState() {
                 },
                 contentType : "application/json; charset=utf-8",
                 data:  fbJSON,
-                success: function(){
+                success: function(data){
                     console.log("éxito");
+                    console.log(data);
                 },
                 error: function(errorThrown){
                     console.log("Aqui viene el error:");
