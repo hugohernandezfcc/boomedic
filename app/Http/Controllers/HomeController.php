@@ -35,11 +35,19 @@ class HomeController extends Controller
             ->get();
 
              foreach($join as $labor){
-            $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'"]';
-            $sp[] = '["'.$labor->specialty.'"]';
-             }
+                    if($labor->specialty == 'Médico General'){
+                        $mg == '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'"]';
+                    }
+                    else{
+                    $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'"]';
+
+                    $sp[] = '["'.$labor->specialty.'"]';
+                        }
+                     }
+
              Session(['it' => $it]);
              Session(['sp' => $sp]);
+             Session(['mg' => $mg]);
 
 
         if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
