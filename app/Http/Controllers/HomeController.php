@@ -39,7 +39,8 @@ class HomeController extends Controller
             $sp[] = '["'.$labor->specialty.'"]';
              }
              Session(['it' => $it]);
-             Session(['sp' => $sp]);
+             $sp2 = implode(',', array_unique($sp));
+             Session(['sp' => $sp2]);
 
 
         if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
