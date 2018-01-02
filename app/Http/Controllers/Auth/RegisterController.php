@@ -165,7 +165,7 @@ class RegisterController extends Controller
         $facebookUser->profile_photo = $request->input('picture');
         $facebookUser->save();
 
-        return 'Bien';
+        return "Pues creo que todo bien";
 
     }
 

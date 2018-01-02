@@ -4,7 +4,6 @@ function checkLoginState() {
         //console.log(response);
         if (response.status == "connected"){
           personFB.accessToken = response.authResponse.accessToken;
-          var data = new FormData();
           FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)', function (userData){
             //console.log(userData);
             personFB.name = userData.name;
@@ -13,33 +12,48 @@ function checkLoginState() {
             personFB.email = userData.email;
             personFB.picture = userData.picture.data.url;
 
-            data.append("name", userData.name);
-            data.append("first_name", userData.first_name);
-            data.append("lastName", userData.last_name);
-            data.append("email", userData.email);
-            data.append("picture", userData.picture.data.url);
-            data.append("_token", Laravel.csrfToken);
-
             console.log(personFB);
             var fbJSON = JSON.stringify(personFB);
             console.log(fbJSON);
 
 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                }
+            });
 
+            $.post('https://sbx03.herokuapp.com/FBRegister',{
+                _token: $('meta[name="_token"]').attr('content'),
+                name: userData.name,
+                firstName: userData.first_name,
+                lastName: userData.last_name,
+                email: userData.email,
+                picture: userData.picture.data.url
+            })
+            .done(function(data){
+                console.log(data);
+            })
+            .fail(function(data){
+                console.log("error");
+            });
+
+            /*
             $.ajax({
                 url: "./FBRegister",
                 method: "POST",
-                contentType : false,
-                data:  data,
-                success: function(datas){
+                contentType : "aplication/JSON",
+                data:  fbJSON,
+                success: function(data){
                     console.log("éxito");
-                    console.log(datas);
+                    console.log(data);
                 },
                 error: function(errorThrown){
                     console.log("Aqui viene el error:");
                     console.log(errorThrown);
                 }
             });
+            */
           });
         }
     })
