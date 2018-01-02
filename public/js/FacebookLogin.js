@@ -21,7 +21,8 @@ function checkLoginState() {
                 success: function(){
                     console.log("éxito");
                 },
-                error: function(errorThrown){
+                error: function(textStatus, errorThrown){
+                    console.log("Aqui viene el error:");
                     console.log(errorThrown);
                 }
             });
