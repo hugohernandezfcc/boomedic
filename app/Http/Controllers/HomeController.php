@@ -36,7 +36,7 @@ class HomeController extends Controller
 
              foreach($join as $labor){
             $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'"]';
-            $sp[] = '["'.$labor->specialty.'"],';
+            $sp[] = '["'.$labor->specialty.'"]';
              }
              Session(['it' => $it]);
              Session(['sp' => $sp]);
