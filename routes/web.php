@@ -24,7 +24,7 @@ Route::get('/medicalRegister', function () {
 /**
 *Rutas para registro con redes sociales
 */
-Route::put('/socialmedia/FBRegister', 'RegisterController@createbyFacebook');
+Route::post('/FBRegister', ['as' => 'FBRegister', 'uses' => 'RegisterController@createbyFacebook']);
 
 /**
  * Rutas con autorización de acceso
