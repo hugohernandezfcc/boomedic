@@ -226,7 +226,7 @@
     var loc = [];
     var typeC = 'TypeGeneral';
     var startProcess = false;
-    var sp = '["Traumatología"]';
+    var sp = '["Traumatología"],';
     var co = "@php echo session()->get('it')[0]; @endphp";
 
     /**
