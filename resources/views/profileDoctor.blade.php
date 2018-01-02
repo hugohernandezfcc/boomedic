@@ -901,9 +901,6 @@
 					          </div>
 					          <!-- /.info-box -->
 					        </div>
-					        <div class="col-sm-12" style="text-align: right;">
-					        	&nbsp;
-					        </div>	
 					   @endif	
 					   @if($loop->iteration > 2)
 					   <div class="col-sm-12" style="text-align: right;">
