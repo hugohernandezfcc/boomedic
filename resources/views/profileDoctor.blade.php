@@ -714,7 +714,7 @@
 	                	<div class="col-sm-4">
 		                  	<input type="text" name="professionalPosition" id="professionalPosition" value="" class="form-control">
 	                	</div>
-	                	<label for="cost" class="col-sm-2 control-label">Costo General de Consulta</label>
+	                	<label for="cost" class="col-sm-2 control-label">Costo de Consulta</label>
 	                	<div class="col-sm-4">
 		                  	<input type="text" name="cost" id="cost" value="" class="form-control">
 	                	</div>
@@ -807,7 +807,7 @@
 	                	</div>
 	                </div>
 	                <div class="form-group">
-	                	<label for="cost" class="col-sm-4 control-label">Costo General de Cita</label>
+	                	<label for="cost" class="col-sm-4 control-label">Costo de Consulta</label>
 	                	<div class="col-sm-8">
 		                  	<input type="text" name="cost" id="cost" value="" class="form-control">
 	                	</div>
