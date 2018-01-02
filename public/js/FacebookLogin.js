@@ -23,7 +23,7 @@ function checkLoginState() {
                 }
             });
 
-            $.post('https://sbx03.herokuapp.com/FBRegister',{
+            /*$.post('https://sbx03.herokuapp.com/FBRegister',{
                 _token: $('meta[name="_token"]').attr('content'),
                 name: userData.name,
                 firstName: userData.first_name,
@@ -36,9 +36,9 @@ function checkLoginState() {
             })
             .fail(function(data){
                 console.log("error");
-            });
+            });*/
 
-            /*
+            
             $.ajax({
                 url: "./FBRegister",
                 method: "POST",
@@ -53,7 +53,6 @@ function checkLoginState() {
                     console.log(errorThrown);
                 }
             });
-            */
           });
         }
     })
