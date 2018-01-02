@@ -711,8 +711,12 @@
 	              	</div>
 	              	<div class="form-group">
 	                	<label for="professionalPosition" class="col-sm-2 control-label">Posición Profesional</label>
-	                	<div class="col-sm-10">
+	                	<div class="col-sm-4">
 		                  	<input type="text" name="professionalPosition" id="professionalPosition" value="" class="form-control">
+	                	</div>
+	                	<label for="cost" class="col-sm-2 control-label">Costo General de Consulta</label>
+	                	<div class="col-sm-4">
+		                  	<input type="text" name="cost" id="cost" value="" class="form-control">
 	                	</div>
 	                </div>
 	                	
@@ -800,6 +804,12 @@
 	                	<label for="professionalPosition" class="col-sm-4 control-label">Posición Profesional</label>
 	                	<div class="col-sm-8">
 		                  	<input type="text" name="professionalPosition" id="professionalPosition" value="" class="form-control">
+	                	</div>
+	                </div>
+	                <div class="form-group">
+	                	<label for="cost" class="col-sm-4 control-label">Costo General de Cita</label>
+	                	<div class="col-sm-8">
+		                  	<input type="text" name="cost" id="cost" value="" class="form-control">
 	                	</div>
 	                </div>
 				</div>	
