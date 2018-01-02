@@ -436,8 +436,7 @@
                 	 	<h4 class="panel-title">
                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
                         Dirección de usuario      
-
-                        @php echo session()->get('it')[5]; @endphp   
+                      
                   </a> 
                   </h4> 
                   </div>
