@@ -149,19 +149,19 @@ class RegisterController extends Controller
         }
     }
 
-    protected function createbyFacebook(array $data){
-        $uN = explode('@', $data['email'];
+    protected function createbyFacebook(){
+        $uN = explode('@', Input::get('email');
         $uN['username'] = $uN[0] . '@boomedic.mx';
         $facebookUser = new User;
-        $facebookUser->name = $data['name'];
-        $facebookUser->email = $data['email'];
+        $facebookUser->name = Input::get('name');
+        $facebookUser->email = Input::get('email');
         $facebookUser->status = 'In Progress';
-        $facebookUser->firstname = $data['firstName'];
-        $facebookUser->lastname = $data['lastName'];
+        $facebookUser->firstname = Input::get('firstName');
+        $facebookUser->lastname = Input::get('lastName');
         $facebookUser->username = $uN['username'];
-        $facebookUser->password = '12345';
+        $facebookUser->password = bcrypt('12345');
         //bcrypt($uN[0]);
-        $facebookUser->profile_photo = $data['picture'];
+        $facebookUser->profile_photo = Input::get('picture');
         $facebookUser->save();
 
     }
