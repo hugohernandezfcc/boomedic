@@ -233,7 +233,7 @@
      * Information loader
      */
 
-    var specialities = [@php foreach(session()->get('sp') as $sp){ echo $sp; } @endphp , ["Alergología"], ["Cardiología"], ["Gastroenterología"], ["Geriatría"], ["Infectología"], ["Neumología"], ["Neurología"], ["Nutriología"], ["Oftalmología"], ["Oncología"], ["Pediatría"], ["Psiquiatría"], ["Rehabilitación"], ["Reumatología"], ["Toxicología"], ["Odontología"]];
+    var specialities = [@php foreach(session()->get('sp') as $sp){ echo $sp.','; } @endphp  ["Alergología"], ["Cardiología"], ["Gastroenterología"], ["Geriatría"], ["Infectología"], ["Neumología"], ["Neurología"], ["Nutriología"], ["Oftalmología"], ["Oncología"], ["Pediatría"], ["Psiquiatría"], ["Rehabilitación"], ["Reumatología"], ["Toxicología"], ["Odontología"]];
 
     var generalM = [[19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], [19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], [19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], [19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], [19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], [19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], [19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"]];
 
