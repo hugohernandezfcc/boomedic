@@ -21,16 +21,18 @@ Route::get('/medicalRegister', function () {
     return view('auth.medicalRegister');
 });
 
-/**
-*Rutas para registro con redes sociales
-*/
-Route::post('/FBRegister', ['as' => 'createbyFacebook', 'uses' => 'RegisterController@createbyFacebook']);
 
 /**
  * Rutas con autorización de acceso
  */
 
 Auth::routes();
+
+/**
+*Rutas para registro con redes sociales
+*/
+Route::post('/FBRegister', ['as' => 'FBRegister.createbyFacebook', 'uses' => 'RegisterController@createbyFacebook']);
+
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
 
