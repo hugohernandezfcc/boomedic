@@ -295,5 +295,24 @@ Route::group(['prefix' => 'supportTicket'], function(){
 
 });
 
+Route::group(['prefix' => 'history'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'history@index',
+			'as'	=>	'index'
+		]
+	);
+
+
+	Route::post('store', [
+			'uses'	=>	'history@store',
+			'as'	=>	'store'
+		]
+	);
+
+
+
+});
+
 Route::post('/bye' , 'Auth\LoginController@logout');
 
