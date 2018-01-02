@@ -165,6 +165,8 @@ class RegisterController extends Controller
         $facebookUser->profile_photo = $request->input('picture');
         $facebookUser->save();
 
+        return 'Bien';
+
     }
 
     protected function createbyGoogle(array $data){
