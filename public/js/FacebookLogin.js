@@ -26,7 +26,7 @@ function checkLoginState() {
                 type: "POST",
                 dataType: "json",
                 contentType : "application/json; charset=utf-8",
-                data: { data: fbJSON }
+                data: { data: fbJSON },
                 success: function(){
                     console.log("éxito");
                 },
