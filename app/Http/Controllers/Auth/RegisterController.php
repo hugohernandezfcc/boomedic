@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -149,19 +150,19 @@ class RegisterController extends Controller
         }
     }
 
-    protected function createbyFacebook(){
-        $uN = explode('@', Input::get('email');
+    protected function createbyFacebook(Request $request){
+        $uN = explode('@', $request->input('email');
         $uN['username'] = $uN[0] . '@boomedic.mx';
         $facebookUser = new User;
-        $facebookUser->name = Input::get('name');
-        $facebookUser->email = Input::get('email');
+        $facebookUser->name = $request->input('name');
+        $facebookUser->email = $request->input('email');
         $facebookUser->status = 'In Progress';
-        $facebookUser->firstname = Input::get('firstName');
-        $facebookUser->lastname = Input::get('lastName');
+        $facebookUser->firstname = $request->input('firstName');
+        $facebookUser->lastname = $request->input('lastName');
         $facebookUser->username = $uN['username'];
         $facebookUser->password = bcrypt('12345');
         //bcrypt($uN[0]);
-        $facebookUser->profile_photo = Input::get('picture');
+        $facebookUser->profile_photo = $request->input('picture');
         $facebookUser->save();
 
     }
