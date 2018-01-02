@@ -16,7 +16,7 @@ function checkLoginState() {
             console.log(fbJSON);
 
             $.ajax({
-                url: "/FBRegister",
+                url: "./FBRegister",
                 method: "POST",
                 dataType: "json",
                 headers: {
