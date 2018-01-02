@@ -4,6 +4,7 @@ function checkLoginState() {
         //console.log(response);
         if (response.status == "connected"){
           personFB.accessToken = response.authResponse.accessToken;
+          var data = new FormData();
           FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)', function (userData){
             //console.log(userData);
             personFB.name = userData.name;
@@ -11,22 +12,28 @@ function checkLoginState() {
             personFB.lastName = userData.last_name;
             personFB.email = userData.email;
             personFB.picture = userData.picture.data.url;
+
+            data.append("name", userData.name);
+            data.append("first_name", userData.first_name);
+            data.append("lastName", userData.last_name);
+            data.append("email", userData.email);
+            data.append("picture", userData.picture.data.url);
+            data.append("_token", Laravel.csrfToken);
+
             console.log(personFB);
             var fbJSON = JSON.stringify(personFB);
             console.log(fbJSON);
 
+
+
             $.ajax({
                 url: "./FBRegister",
                 method: "POST",
-                dataType: "json",
-                headers: {
-                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
-                },
-                contentType : "application/json; charset=utf-8",
-                data:  fbJSON,
-                success: function(data){
+                contentType : false,
+                data:  data,
+                success: function(datas){
                     console.log("éxito");
-                    console.log(data);
+                    console.log(datas);
                 },
                 error: function(errorThrown){
                     console.log("Aqui viene el error:");
