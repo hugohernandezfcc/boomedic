@@ -150,7 +150,7 @@ class RegisterController extends Controller
         }
     }
 
-    protected function createbyFacebook(Request $request){
+    public function createbyFacebook(Request $request){
         $uN = explode('@', $request->input('email');
         $uN['username'] = $uN[0] . '@boomedic.mx';
         $facebookUser = new User;
