@@ -31,7 +31,6 @@ class HomeController extends Controller
         $join = DB::table('professional_information')
             ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
             ->join('users', 'professional_information.user', '=', 'users.id')
-            ->where('users.id', Auth::id())
             ->select('labor_information.*', 'users.name', 'professional_information.specialty')
             ->get();
 
