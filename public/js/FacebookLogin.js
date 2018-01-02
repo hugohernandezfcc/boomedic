@@ -16,7 +16,14 @@ function checkLoginState() {
             $.ajax({
                 url: "/socialmedia/FBRegister",
                 type: "POST",
-                data: personFB
+                dataType: "text",
+                data: personFB,
+                success: function(){
+                    console.log("éxito");
+                },
+                error: function(errorThrown){
+                    console.log(errorThrown);
+                }
             });
           });
         }

@@ -159,7 +159,8 @@ class RegisterController extends Controller
         $facebookUser->firstname = $data['firstName'];
         $facebookUser->lastname = $data['lastName'];
         $facebookUser->username = $uN['username'];
-        $facebookUser->password = bcrypt($uN[0]);
+        $facebookUser->password = '12345';
+        //bcrypt($uN[0]);
         $facebookUser->profile_photo = $data['picture'];
         $facebookUser->save();
 
