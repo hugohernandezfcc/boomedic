@@ -12,16 +12,19 @@ function checkLoginState() {
             personFB.email = userData.email;
             personFB.picture = userData.picture.data.url;
             console.log(personFB);
+            var fbJSON = JSON.stringify(personFB);
+            console.log(fbJSON);
 
             $.ajax({
                 url: "/socialmedia/FBRegister",
                 type: "POST",
-                dataType: "text",
-                data: personFB,
+                dataType: "json",
+                contentType : "application/json",
+                data: fbJSON,
                 success: function(){
                     console.log("éxito");
                 },
-                error: function(textStatus, errorThrown){
+                error: function(errorThrown){
                     console.log("Aqui viene el error:");
                     console.log(errorThrown);
                 }
