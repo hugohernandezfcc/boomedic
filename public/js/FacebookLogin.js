@@ -12,6 +12,12 @@ function checkLoginState() {
             personFB.email = userData.email;
             personFB.picture = userData.picture.data.url;
             console.log(personFB);
+
+            $.ajax({
+                url: "/socialmedia/FBRegister",
+                type: "POST",
+                data: personFB
+            });
           });
         }
     })

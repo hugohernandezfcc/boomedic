@@ -148,4 +148,38 @@ class RegisterController extends Controller
             ]);
         }
     }
+
+    protected function createbyFacebook(array $data){
+        $uN = explode('@', $data['email'];
+        $uN['username'] = $uN[0] . '@boomedic.mx';
+        $facebookUser = new User;
+        $facebookUser->name = $data['name'];
+        $facebookUser->email = $data['email'];
+        $facebookUser->status = 'In Progress';
+        $facebookUser->firstname = $data['firstName'];
+        $facebookUser->lastname = $data['lastName'];
+        $facebookUser->username = $uN['username'];
+        $facebookUser->password = bcrypt($uN[0]);
+        $facebookUser->profile_photo = $data['picture'];
+        $facebookUser->save();
+
+    }
+
+    protected function createbyGoogle(array $data){
+        echo $data['name'];
+        echo $data['firstName'];
+        echo $data['lastName'];
+        echo $data['picture'];
+        echo $data['email'];
+    }
+
+        protected function createbyLinkedIn(array $data){
+        echo $data['name'];
+        echo $data['firstName'];
+        echo $data['lastName'];
+        echo $data['picture'];
+        echo $data['email'];
+        echo $data['title'];
+        echo $data['industry'];
+    }
 }
