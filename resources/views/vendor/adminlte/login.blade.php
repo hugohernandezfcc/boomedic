@@ -1,6 +1,7 @@
 @extends('adminlte::master')
 <head>
     <meta name="google-signin-client_id" content="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com">
+    <meta name="_token" content="{{ csrf_token() }}">
 </head>
 
 @section('adminlte_css')

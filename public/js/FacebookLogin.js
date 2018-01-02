@@ -15,12 +15,18 @@ function checkLoginState() {
             var fbJSON = JSON.stringify(personFB);
             console.log(fbJSON);
 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                }
+            });
+
             $.ajax({
                 url: "/FBRegister",
                 type: "POST",
                 dataType: "json",
                 contentType : "application/json; charset=utf-8",
-                data: fbJSON,
+                data: { data: fbJSON }
                 success: function(){
                     console.log("éxito");
                 },
