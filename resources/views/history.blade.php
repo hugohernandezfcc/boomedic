@@ -51,7 +51,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
 
-                <h3 class="timeline-header no-border"><a href="#">Array</a> @foreach($array as $array) {{ $array->Type }} @endforeach</h3>
+                <h3 class="timeline-header no-border"><a href="#">Array</a> @foreach($array as $array) {{ $array['Type'] }} <br/> {{ $array['created_at'] }}@endforeach</h3>
               </div>
             </li>
             <!-- END timeline item -->
