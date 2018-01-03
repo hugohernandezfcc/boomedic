@@ -8,8 +8,6 @@
 
 @section('content')
 
-
-<div class="box">
   	<div class="box-header with-border">
 	    <h3 class="box-title">Historial</h3>
   	</div>
@@ -132,5 +130,5 @@
       </div>
 
  	</div>
-</div>	  	
+ 	
 @stop
