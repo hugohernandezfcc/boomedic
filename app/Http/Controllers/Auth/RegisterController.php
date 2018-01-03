@@ -152,7 +152,7 @@ class RegisterController extends Controller
 
     public function createbyFacebook(Request $request){
        
-        $data = Input::all();
+        $data = $request->all();
 
         $uN = explode('@', $data['email']);
         $uN['username'] = $uN[0] . '@boomedic.mx';
@@ -172,6 +172,7 @@ class RegisterController extends Controller
         echo "console.log(".$facebookUser.");";
         echo "</script>";
         //return "Pues creo que todo bien";
+        return response()->json($data);
 
     }
 
