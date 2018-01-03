@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 var res = [];
-var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
+var datos = [@php foreach(session()->get('history') as $it){ echo $it.','; } @endphp];
 
 	for(var i = 0; i < datos.length; i++) {
            
