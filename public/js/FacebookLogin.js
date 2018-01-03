@@ -10,9 +10,9 @@ function checkLoginState() {
             personFB.email = userData.email;
             personFB.picture = userData.picture.data.url;
 
-            //console.log(personFB);
+            console.log(personFB);
 
-
+            /*
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-Token': $('meta[name="_token"]').attr('content')
@@ -32,7 +32,7 @@ function checkLoginState() {
                     console.log("Aqui viene el error:");
                     console.log(errorThrown);
                 }
-            });
+            });*/
           });
         }
     })
