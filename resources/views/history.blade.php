@@ -8,6 +8,20 @@
 
 @section('content')
 
+
+<script type="text/javascript">
+var res = [];
+var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
+
+	for(var i = 0; i < datos.length; i++) {
+           
+              res.push([datos[i][0], datos[i][1], datos[i][2], datos[i][3], datos[i][4]]);
+
+          }
+    for(var i = 0; i < res.length; i++) {      
+    document.getElementbyId('test').value = res[i][0] + res[i][1] + res[i][2] + res[i][3];  
+    }   
+</script>
 <div class="box">
   	<div class="box-header with-border">
 	    <h3 class="box-title">Historial</h3>
@@ -34,10 +48,7 @@
                 <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
 
                 <div class="timeline-body">
-                  Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                  weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                  jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                  quora plaxo ideeli hulu weebly balihoo...
+                  <input type="text" name="test" id="test"/>
                 </div>
                 <div class="timeline-footer">
                   <a class="btn btn-primary btn-xs">Read more</a>
@@ -112,9 +123,7 @@
                 <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
 
                 <div class="timeline-body">
-                  <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tMWkeBIohBs" frameborder="0" allowfullscreen=""></iframe>
-                  </div>
+
                 </div>
                 <div class="timeline-footer">
                   <a href="#" class="btn btn-xs bg-maroon">See comments</a>

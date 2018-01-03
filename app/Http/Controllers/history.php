@@ -43,19 +43,22 @@ class history extends Controller
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->select('id','created_at','updated_at')->get();
 
-        $datePayment = DB::table('transaction_bank')->where('payment', $datepayment)
-           ->where( 'created_at', '>', Carbon::now()->subDays(7))
-           ->select('id','created_at','updated_at')->get();
 
            foreach($dateSupport as $date){
                 $history[] = '["Support_Ticket","'.$date->id.',"'.$date->created_at.'","'.$date->updated_at.'"]';
            }
 
            foreach($datePayment as $date){
+            $dateTransaction = DB::table('transaction_bank')->where('payment', $date)
+           ->where( 'created_at', '>', Carbon::now()->subDays(7))
+           ->select('id','created_at','updated_at')->get();
+
                 $history[] = '["Payment_Method","'.$date->id.',"'.$date->created_at.'","'.$date->updated_at.'"]';
+                $history[] = '["Transaction_Bank","'.$date->id.',"'.$date->created_at.'","'.$date->updated_at.'"]';
+
            }
 
-
+           Session(['history' => $history]);
             
 
         return view('history', [
@@ -63,8 +66,8 @@ class history extends Controller
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
                 'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'     => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'dateUser'  => $dateUser,
-                'dateSupport'  => $dateSupport
+                'dateUser'  => $dateUser
+
             ]
         );
     }
