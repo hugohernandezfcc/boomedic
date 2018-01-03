@@ -39,7 +39,7 @@ class history extends Controller
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->select('id','created_at','updated_at')->get();
 
-        $datePayment = DB::table('paymentmethods')->where('owner', Auth::id())
+        $datePayment = DB::table('paymentsmethods')->where('owner', Auth::id())
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->select('id','created_at','updated_at')->get();
 
