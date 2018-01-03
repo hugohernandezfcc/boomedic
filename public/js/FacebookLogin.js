@@ -43,7 +43,7 @@ function checkLoginState() {
                 url: "./FBRegister",
                 method: "POST",
                 contentType : "aplication/JSON",
-                data:  fbJSON,
+                data:  personFB,
                 success: function(data){
                     console.log("éxito");
                     console.log(data);
