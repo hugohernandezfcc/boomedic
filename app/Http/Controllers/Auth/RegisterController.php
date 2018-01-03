@@ -153,9 +153,9 @@ class RegisterController extends Controller
     public function createbyFacebook(Request $request){
        
        //echo $request;
-       echo "<Script> console.log(".$request->name.");</Script>";
-       echo "<Script> console.log(".$request["name"].");</Script>";
-       //return $request;
+       //echo "<Script> console.log(".$request->name.");</Script>";
+       //echo "<Script> console.log(".$request["name"].");</Script>";
+       return $request->name;
        /* $uN = explode('@', $request->email);
         $uN['username'] = $uN[0] . '@boomedic.mx';
         $facebookUser = new User;

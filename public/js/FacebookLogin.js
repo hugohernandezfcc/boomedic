@@ -12,9 +12,9 @@ function checkLoginState() {
             personFB.email = userData.email;
             personFB.picture = userData.picture.data.url;
 
-            console.log(personFB);
+            //console.log(personFB);
             var fbJSON = JSON.stringify(personFB);
-            console.log(fbJSON);
+            //console.log(fbJSON);
 
 
             $.ajaxSetup({
