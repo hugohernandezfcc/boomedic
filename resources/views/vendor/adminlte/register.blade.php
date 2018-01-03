@@ -90,6 +90,9 @@
                             <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
 
                         </div>
+                        <div>
+                            <div align="center"><script type="in/Login" data-width="165" data-height="27" ></script></div>
+                        </div>
                 </div><br>
 
             </form>
