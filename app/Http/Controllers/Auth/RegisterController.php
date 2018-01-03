@@ -154,6 +154,8 @@ class RegisterController extends Controller
 
        //if($request->has('accessToken') and (($request->origin=='FB') or ($request->origin=='GG') or ($request->origin=='LI'))
         //{
+        if($request->has('accessToken'))
+        {
             $uN = explode('@', $request->email);
             $uN['username'] = $uN[0] . '@boomedic.mx';
             $facebookUser = new User;
@@ -167,9 +169,9 @@ class RegisterController extends Controller
             $facebookUser->profile_photo = $request->input('picture');
             //$facebookUser->save();
             return $facebookUser;
-        //}else{
-          //  return "ERROR";
-        //}
+        }else{
+            return "ERROR";
+        }
 
     }
 }
