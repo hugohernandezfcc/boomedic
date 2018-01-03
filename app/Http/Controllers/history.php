@@ -45,13 +45,12 @@ class history extends Controller
 
 
            foreach($dateSupport as $date){
-                $history[] = '["Support_Ticket","'.$date->id.'",'.$date->created_at.','.$date->updated_at.']';
-                $array  = array(
+                $array  = ([
                             'Type'       => 'Support Ticket',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
                             'updated_at' => $date->updated_at   
-                            );
+                            ]);
            }
 
            foreach($datePayment as $date){
@@ -59,13 +58,12 @@ class history extends Controller
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->select('id','created_at','updated_at')->get(); */
 
-                $history[] = '["Payment_Method","'.$date->id.'",'.$date->created_at.','.$date->updated_at.']';
-                $array   = array(
+                $array   = ([
                             'Type'       => 'Payment_Method',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
                             'updated_at' => $date->updated_at   
-                            );
+                            ]);
 
            }
 
@@ -78,7 +76,6 @@ class history extends Controller
                 'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'     => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                 'dateUser'  => $dateUser,
-                'history'   => $history,
                 'array'     => $array
 
             ]
