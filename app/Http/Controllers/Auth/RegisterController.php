@@ -150,7 +150,7 @@ class RegisterController extends Controller
         }
     }
 
-    public function createbyFacebook(Request $request){
+    public function createbySocialMedia(Request $request){
 
         if($request->has('accessToken') && ($request->origin == "GG" || $request->origin == "FB" || $request->origin == "LI"))
         {

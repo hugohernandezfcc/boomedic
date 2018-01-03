@@ -31,7 +31,7 @@ Auth::routes();
 /**
 *Rutas para registro con redes sociales
 */
-Route::post('FBRegister', ['as' => 'FBRegister.createbyFacebook', 'uses' => 'Auth\RegisterController@createbyFacebook']);
+Route::post('SMRegister', ['as' => 'SMRegister.createbySocialMedia', 'uses' => 'Auth\RegisterController@createbySocialMedia']);
 
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');

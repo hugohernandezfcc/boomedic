@@ -22,7 +22,7 @@ function checkLoginState() {
 
             
             $.ajax({
-                url: "./FBRegister",
+                url: "./SMRegister",
                 method: "POST",
                 data:  personFB,
                 success: function(data){
