@@ -154,7 +154,7 @@ class RegisterController extends Controller
        
         $data = $request->all();
 
-        $uN = explode('@', $data['email']);
+        /*$uN = explode('@', $data['email']);
         $uN['username'] = $uN[0] . '@boomedic.mx';
         $facebookUser = new User;
         $facebookUser->name = $data['name'];
@@ -166,10 +166,10 @@ class RegisterController extends Controller
         $facebookUser->password = bcrypt('12345');
         //bcrypt($uN[0]);
         $facebookUser->profile_photo = $data['picture'];
-        //$facebookUser->save();
+        //$facebookUser->save();*/
 
         echo "<script>";
-        echo "console.log(".$facebookUser.");";
+        echo "console.log(".$data.");";
         echo "</script>";
         //return "Pues creo que todo bien";
         return response()->json($data);
