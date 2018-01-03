@@ -9,14 +9,6 @@
 @section('content')
 
 
-<script type="text/javascript">
-var res = [];
-var datos = [@php foreach(session()->get('history') as $it){ echo $it.','; } @endphp];
-
- 
-    document.getElementbyId('test').value = @php echo session()->get('history')[0]; @endphp];  
-    }   
-</script>
 <div class="box">
   	<div class="box-header with-border">
 	    <h3 class="box-title">Historial</h3>
@@ -43,7 +35,7 @@ var datos = [@php foreach(session()->get('history') as $it){ echo $it.','; } @en
                 <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
 
                 <div class="timeline-body">
-                  <input type="text" name="test" id="test"/>
+                  @php echo session()->get('history')[0]; @endphp
                 </div>
                 <div class="timeline-footer">
                   <a class="btn btn-primary btn-xs">Read more</a>
