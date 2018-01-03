@@ -53,9 +53,9 @@
 
                 <h3 class="timeline-header no-border"><a href="#">Array</a> 
                 @foreach($array as $array) 
-                	 @foreach($array as $array2)
-                		{{ $array->Type }}  <br/>
-                	@endforeach	
+                	
+                		{{ $array }}  <br/>
+
                 @endforeach</h3>
               </div>
             </li>
