@@ -151,8 +151,8 @@ class RegisterController extends Controller
     }
 
     public function createbyFacebook(Request $request){
-        
-        if($request->has('accessToken') && ($request->origin == "GG" || $request->origin == "FB" || $request->origin == "LI")
+
+        if($request->has('accessToken') && ($request->origin == "GG" || $request->origin == "FB" || $request->origin == "LI"))
         {
             $uN = explode('@', $request->email);
             $uN['username'] = $uN[0] . '@boomedic.mx';
