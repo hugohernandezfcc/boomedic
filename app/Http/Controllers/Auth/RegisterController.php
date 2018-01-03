@@ -152,26 +152,25 @@ class RegisterController extends Controller
 
     public function createbyFacebook(Request $request){
 
-       // if($request->has('accessToken') and (($request->input('origin')=='FB') or ($request->input('origin')=='GG') or ($request->input('origin')=='LI'))
-        //{
+       if($request->has('accessToken') and 
+            (($request->origin=='FB') or ($request->origin=='GG') or ($request->origin=='LI'))
+        {
             $uN = explode('@', $request->email);
             $uN['username'] = $uN[0] . '@boomedic.mx';
             $facebookUser = new User;
             $facebookUser->name = $request->name;
-            $facebookUser->email = $request->input('email');
+            $facebookUser->email = $request->email;
             $facebookUser->status = 'In Progress';
-            $facebookUser->firstname = $request->input('firstName');
-            $facebookUser->lastname = $request->input('lastName');
+            $facebookUser->firstname = $request->firstName;
+            $facebookUser->lastname = $request->lastName;
             $facebookUser->username = $uN['username'];
-            $facebookUser->password = bcrypt($request->input('firstName') . $request->input('lastName'));
-            //bcrypt($uN[0]);
+            $facebookUser->password = bcrypt($request->firstName . $request->lastName);
             $facebookUser->profile_photo = $request->input('picture');
             //$facebookUser->save();
             return $facebookUser;
-            //return response()->json($data);
-        //}else{
+        }else{
             return "ERROR";
-        //}
+        }
 
     }
 }
