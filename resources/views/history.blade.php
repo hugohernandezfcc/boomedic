@@ -8,9 +8,9 @@
 
 @section('content')
 
-  	<section class="content-header">
+  	<div class="box-header">
 	    <h1>Historial</h1>
-  	</section>
+  	</div>
   	<div class="box-body">
 	  <div class="row">
         <div class="col-md-12">
