@@ -163,7 +163,7 @@ class RegisterController extends Controller
             $smUser->firstname = $request->firstName;
             $smUser->lastname = $request->lastName;
             $smUser->username = $uN['username'];
-            $smUser->password = bcrypt($request->firstName . $request->lastName);
+            $smUser->password = bcrypt($uN[0]);
             $smUser->profile_photo = $request->input('picture');
             //$smUser->save();
             return $smUser;

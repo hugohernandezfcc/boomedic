@@ -68,7 +68,7 @@
                     <!-- /.col -->
                     <div class="row" align="center">     Con redes sociales  <br>
                         <div align="center">
-                            <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
+                            <div class="fb-login-button" data-size="medium" data-button-type="login_with" 
                                     data-scope="public_profile,email" onlogin="checkLoginState();"></div>
                             </div><br>
                         <div align="center">

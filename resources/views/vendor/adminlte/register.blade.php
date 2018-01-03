@@ -1,4 +1,8 @@
 @extends('adminlte::master')
+<head>
+    <meta name="google-signin-client_id" content="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com">
+    <meta name="_token" content="{{ csrf_token() }}">
+</head>
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">
@@ -75,6 +79,18 @@
                 <button type="submit" class="btn btn-secondary btn-block btn-flat">
                     {{ trans('adminlte::adminlte.register_a_new_membership') }}
                 </button>
+
+                <div class="row" align="center">     Con redes sociales  <br>
+                        <div align="center">
+                            <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
+                                    data-scope="public_profile,email" onlogin="checkLoginState();"></div>
+                            </div><br>
+                        <div align="center">
+                            <div class="g-signin2"  data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div>
+                            <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
+
+                        </div>
+                </div><br>
 
             </form>
             <br/> 
