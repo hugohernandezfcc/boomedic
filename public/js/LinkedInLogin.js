@@ -1,4 +1,4 @@
-var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", title: "", industry: ""};
+var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", title: "", industry: "", accessToken: ""};
     function onLinkedInLoad() {
         IN.Event.on(IN, "auth", getProfileData);
       //  $('a[id*=li_ui_li_gen_]').css({marginBottom:'20px'}).html('<img src="/linkedin_signin_large.png" height="31" width="200" border="0" />');
@@ -20,6 +20,7 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
         personLI.title = user.positions.title;
         //personLI.specialities = user.specialities;
         personLI.industry = user.industry;
+        personLI.accessToken = IN.ENV.auth.oauth_token;
         console.log(personLI);
     }
 

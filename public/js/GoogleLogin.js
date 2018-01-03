@@ -1,11 +1,13 @@
-var personG = { name: "", picture: "", email: "", lastName: "", firstName: ""};
+var personG = { name: "", picture: "", email: "", lastName: "", firstName: "", accessToken: ""};
 function onSignInG(googleUser) {
         var profile = googleUser.getBasicProfile();
+        var authG = googleUser.getAuthResponse(true);
         personG.name = profile.getName();
         personG.email= profile.getEmail();
         personG.picture = profile.getImageUrl();
         personG.lastName = profile.getFamilyName();
         personG.firstName = profile.getGivenName();
+        personG.accessToken = authG.access_token;
         console.log(personG);
 }
 

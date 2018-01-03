@@ -161,30 +161,12 @@ class RegisterController extends Controller
         $facebookUser->firstname = $request->input('firstName');
         $facebookUser->lastname = $request->input('lastName');
         $facebookUser->username = $uN['username'];
-        $facebookUser->password = bcrypt('12345');
+        $facebookUser->password = bcrypt($request->input('firstName') . $request->input('lastName'));
         //bcrypt($uN[0]);
         $facebookUser->profile_photo = $request->input('picture');
         //$facebookUser->save();
         return $facebookUser;
         //return response()->json($data);
 
-    }
-
-    protected function createbyGoogle(array $data){
-        echo $data['name'];
-        echo $data['firstName'];
-        echo $data['lastName'];
-        echo $data['picture'];
-        echo $data['email'];
-    }
-
-        protected function createbyLinkedIn(array $data){
-        echo $data['name'];
-        echo $data['firstName'];
-        echo $data['lastName'];
-        echo $data['picture'];
-        echo $data['email'];
-        echo $data['title'];
-        echo $data['industry'];
     }
 }

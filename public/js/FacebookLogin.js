@@ -1,11 +1,9 @@
 var personFB = { name: "", firstName: "", lastName: "", accessToken: "", picture: "", email: ""};
 function checkLoginState() {
     FB.getLoginStatus(function (response) {
-        //console.log(response);
         if (response.status == "connected"){
           personFB.accessToken = response.authResponse.accessToken;
           FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)', function (userData){
-            //console.log(userData);
             personFB.name = userData.name;
             personFB.firstName = userData.first_name;
             personFB.lastName = userData.last_name;
@@ -13,8 +11,6 @@ function checkLoginState() {
             personFB.picture = userData.picture.data.url;
 
             //console.log(personFB);
-            var fbJSON = JSON.stringify(personFB);
-            //console.log(fbJSON);
 
 
             $.ajaxSetup({
