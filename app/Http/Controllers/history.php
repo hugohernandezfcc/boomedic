@@ -31,7 +31,7 @@ class history extends Controller
      */
     public function index(){
 
-        $dateUser = Users::where('id', Auth::id())
+        $dateUser = DB::table('users')->where('id', Auth::id())
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->value('created_at');
 
