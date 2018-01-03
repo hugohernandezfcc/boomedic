@@ -50,7 +50,7 @@ class history extends Controller
                             'Type'       => 'Support Ticket',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
-                            'updated_at' => $date->$updated_at   
+                            'updated_at' => $date->updated_at   
                             ]);
            }
 
@@ -64,7 +64,7 @@ class history extends Controller
                             'Type'       => 'Payment_Method',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
-                            'updated_at' => $date->$updated_at   
+                            'updated_at' => $date->updated_at   
                             ]);
 
            }
