@@ -154,25 +154,20 @@ class RegisterController extends Controller
        
         //$data = $request->all();
 
-        /*$uN = explode('@', $data['email']);
+        $uN = explode('@', $request->input('email'));
         $uN['username'] = $uN[0] . '@boomedic.mx';
         $facebookUser = new User;
-        $facebookUser->name = $data['name'];
-        $facebookUser->email = $data['email'];
+        $facebookUser->name = $request->input('name');
+        $facebookUser->email = $request->input('email');
         $facebookUser->status = 'In Progress';
-        $facebookUser->firstname = $data['firstName'];
-        $facebookUser->lastname = $data['lastName'];
-        $facebookUser->username = $uN['username'];
+        $facebookUser->firstname = $request->input('firstName');
+        $facebookUser->lastname = $request->input('lastName');
+        $facebookUser->username = $uN['username');
         $facebookUser->password = bcrypt('12345');
         //bcrypt($uN[0]);
-        $facebookUser->profile_photo = $data['picture'];
-        //$facebookUser->save();*/
+        $facebookUser->profile_photo = $request->input('picture');
+        //$facebookUser->save();
 
-        echo "<script>";
-        echo "console.log(".$request->input('name').");";
-        echo "console.log(".$request->input('name').");";
-        echo "</script>";
-        //return "Pues creo que todo bien";
         //return response()->json($data);
 
     }
