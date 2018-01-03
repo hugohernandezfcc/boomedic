@@ -9,7 +9,7 @@
 @section('content')
 
   	<div class="box-header with-border">
-	    <h3 class="box-title">Historial</h3>
+	    <h1 class="box-title">Historial</h1>
   	</div>
   	<div class="box-body">
 	  <div class="row">
