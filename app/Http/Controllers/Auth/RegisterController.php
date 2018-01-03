@@ -162,7 +162,7 @@ class RegisterController extends Controller
         $facebookUser->status = 'In Progress';
         $facebookUser->firstname = $request->input('firstName');
         $facebookUser->lastname = $request->input('lastName');
-        $facebookUser->username = $uN['username');
+        $facebookUser->username = $uN['username'];
         $facebookUser->password = bcrypt('12345');
         //bcrypt($uN[0]);
         $facebookUser->profile_photo = $request->input('picture');
