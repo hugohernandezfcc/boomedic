@@ -11,7 +11,7 @@ function checkLoginState() {
             personFB.picture = userData.picture.data.url;
             personFB.origin = 'FB';
 
-            console.log(personFB);
+            //console.log(personFB);
 
             
             $.ajaxSetup({

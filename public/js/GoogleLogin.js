@@ -9,15 +9,27 @@ function onSignInG(googleUser) {
         personG.firstName = profile.getGivenName();
         personG.accessToken = authG.access_token;
         personG.origin = 'GG';
-        console.log(personG);
-}
+        //console.log(personG);
 
-function renderG(){
- 	gapi.plusone.render('myButton', {
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'theme': 'dark',
-        'onsuccess': onSignInG
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                }
+            });
+
+            
+        $.ajax({
+                url: "./SMRegister",
+                method: "POST",
+                data:  personG,
+                success: function(data){
+                    console.log("éxito");
+                    console.log(data);
+                },
+                error: function(errorThrown){
+                    console.log("Aqui viene el error:");
+                    console.log(errorThrown);
+                }
         });
 }
+

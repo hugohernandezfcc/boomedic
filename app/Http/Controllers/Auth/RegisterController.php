@@ -156,17 +156,17 @@ class RegisterController extends Controller
         {
             $uN = explode('@', $request->email);
             $uN['username'] = $uN[0] . '@boomedic.mx';
-            $facebookUser = new User;
-            $facebookUser->name = $request->name;
-            $facebookUser->email = $request->email;
-            $facebookUser->status = 'In Progress';
-            $facebookUser->firstname = $request->firstName;
-            $facebookUser->lastname = $request->lastName;
-            $facebookUser->username = $uN['username'];
-            $facebookUser->password = bcrypt($request->firstName . $request->lastName);
-            $facebookUser->profile_photo = $request->input('picture');
-            //$facebookUser->save();
-            return $facebookUser;
+            $smUser = new User;
+            $smUser->name = $request->name;
+            $smUser->email = $request->email;
+            $smUser->status = 'In Progress';
+            $smUser->firstname = $request->firstName;
+            $smUser->lastname = $request->lastName;
+            $smUser->username = $uN['username'];
+            $smUser->password = bcrypt($request->firstName . $request->lastName);
+            $smUser->profile_photo = $request->input('picture');
+            //$smUser->save();
+            return $smUser;
         }else{
             return "ERROR";
         }

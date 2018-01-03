@@ -22,7 +22,28 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
         personLI.industry = user.industry;
         personLI.accessToken = IN.ENV.auth.oauth_token;
         personLI.origin = 'LI';
-        console.log(personLI);
+        //console.log(personLI);
+
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                }
+            });
+
+            
+        $.ajax({
+                url: "./SMRegister",
+                method: "POST",
+                data:  personLI,
+                success: function(data){
+                    console.log("éxito");
+                    console.log(data);
+                },
+                error: function(errorThrown){
+                    console.log("Aqui viene el error:");
+                    console.log(errorThrown);
+                }
+        });
     }
 
     // Handle an error response from the API call
