@@ -1,4 +1,4 @@
-var personFB = { name: "", firstName: "", lastName: "", accessToken: "", picture: "", email: ""};
+var personFB = { name: "", firstName: "", lastName: "", accessToken: "", picture: "", email: "", origin: ""};
 function checkLoginState() {
     FB.getLoginStatus(function (response) {
         if (response.status == "connected"){
@@ -9,10 +9,11 @@ function checkLoginState() {
             personFB.lastName = userData.last_name;
             personFB.email = userData.email;
             personFB.picture = userData.picture.data.url;
+            personFB.origin = 'FB';
 
             console.log(personFB);
 
-            /*
+            
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-Token': $('meta[name="_token"]').attr('content')
@@ -32,7 +33,7 @@ function checkLoginState() {
                     console.log("Aqui viene el error:");
                     console.log(errorThrown);
                 }
-            });*/
+            });
           });
         }
     })

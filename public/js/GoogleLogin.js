@@ -1,4 +1,4 @@
-var personG = { name: "", picture: "", email: "", lastName: "", firstName: "", accessToken: ""};
+var personG = { name: "", picture: "", email: "", lastName: "", firstName: "", accessToken: "", origin: ""};
 function onSignInG(googleUser) {
         var profile = googleUser.getBasicProfile();
         var authG = googleUser.getAuthResponse(true);
@@ -8,6 +8,7 @@ function onSignInG(googleUser) {
         personG.lastName = profile.getFamilyName();
         personG.firstName = profile.getGivenName();
         personG.accessToken = authG.access_token;
+        personG.origin = 'GG';
         console.log(personG);
 }
 
