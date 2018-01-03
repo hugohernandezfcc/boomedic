@@ -165,7 +165,7 @@ class RegisterController extends Controller
         //bcrypt($uN[0]);
         $facebookUser->profile_photo = $request->input('picture');
         //$facebookUser->save();
-        return $request;
+        return $facebookUser;
         //return response()->json($data);
 
     }
