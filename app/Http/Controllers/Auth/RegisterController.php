@@ -151,8 +151,6 @@ class RegisterController extends Controller
     }
 
     public function createbyFacebook(Request $request){
-       
-        //$data = $request->all();
 
         $uN = explode('@', $request->input('email'));
         $uN['username'] = $uN[0] . '@boomedic.mx';
@@ -167,7 +165,7 @@ class RegisterController extends Controller
         //bcrypt($uN[0]);
         $facebookUser->profile_photo = $request->input('picture');
         //$facebookUser->save();
-
+        return $facebookUser;
         //return response()->json($data);
 
     }
