@@ -13,13 +13,8 @@
 var res = [];
 var datos = [@php foreach(session()->get('history') as $it){ echo $it.','; } @endphp];
 
-	for(var i = 0; i < datos.length; i++) {
-           
-              res.push([datos[i][0], datos[i][1], datos[i][2], datos[i][3], datos[i][4]]);
-
-          }
-    for(var i = 0; i < res.length; i++) {      
-    document.getElementbyId('test').value = res[i][0] + res[i][1] + res[i][2] + res[i][3];  
+ 
+    document.getElementbyId('test').value = @php echo session()->get('history')[0]; @endphp];  
     }   
 </script>
 <div class="box">

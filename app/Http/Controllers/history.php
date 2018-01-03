@@ -45,7 +45,7 @@ class history extends Controller
 
 
            foreach($dateSupport as $date){
-                $history[] = '["Support_Ticket","'.$date->id.',"'.$date->created_at.'","'.$date->updated_at.'"]';
+                $history[] = '["Support_Ticket","'.$date->id.'",'.$date->created_at.','.$date->updated_at.']';
            }
 
            foreach($datePayment as $date){
@@ -53,8 +53,8 @@ class history extends Controller
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->select('id','created_at','updated_at')->get();
 
-                $history[] = '["Payment_Method","'.$date->id.',"'.$date->created_at.'","'.$date->updated_at.'"]';
-                $history[] = '["Transaction_Bank","'.$date->id.',"'.$date->created_at.'","'.$date->updated_at.'"]';
+                $history[] = '["Payment_Method","'.$date->id.'",'.$date->created_at.','.$date->updated_at.']';
+                $history[] = '["Transaction_Bank","'.$date->id.'",'.$date->created_at.','.$date->updated_at.']';
 
            }
 
