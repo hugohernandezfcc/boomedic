@@ -20,7 +20,7 @@
             <!-- timeline time label -->
             <li class="time-label">
                   <span class="bg-red">
-                    {{ \Carbon\Carbon::parse($dateUser)->format('l j F Y') }}
+                    {{ \Carbon\Carbon::parse($dateUser)->format('j F Y') }}
                   </span>
             </li>
             <!-- /.timeline-label -->

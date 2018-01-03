@@ -33,11 +33,28 @@ class history extends Controller
 
         $dateUser = DB::table('users')->where('id', Auth::id())
            ->where( 'updated_at', '>', Carbon::now()->subDays(7))
-           ->value('updated_at');
+           ->select('id','created_at','updated_at')->get();
 
         $dateSupport = DB::table('support_tickets')->where('userId', Auth::id())
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
-           ->get();  
+           ->select('id','created_at','updated_at')->get();
+
+        $datePayment = DB::table('paymentmethods')->where('owner', Auth::id())
+           ->where( 'created_at', '>', Carbon::now()->subDays(7))
+           ->select('id','created_at','updated_at')->get();
+
+        $datePayment = DB::table('transaction_bank')->where('payment', $datepayment)
+           ->where( 'created_at', '>', Carbon::now()->subDays(7))
+           ->select('id','created_at','updated_at')->get();
+
+           foreach($dateSupport as $date){
+                $history[] = '["Support_Ticket","'.$date->id.',"'.$date->created_at.'","'.$date->updated_at.'"]';
+           }
+
+           foreach($datePayment as $date){
+                $history[] = '["Payment_Method","'.$date->id.',"'.$date->created_at.'","'.$date->updated_at.'"]';
+           }
+
 
             
 
