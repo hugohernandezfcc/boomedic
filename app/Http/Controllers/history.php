@@ -58,7 +58,7 @@ class history extends Controller
 
            }
 
-           Session(['history' => $history]);
+
             
 
         return view('history', [
@@ -66,7 +66,8 @@ class history extends Controller
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
                 'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'     => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'dateUser'  => $dateUser
+                'dateUser'  => $dateUser,
+                'history'   => $history
 
             ]
         );
