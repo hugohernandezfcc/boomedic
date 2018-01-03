@@ -33,7 +33,7 @@ class history extends Controller
 
         $dateUser = DB::table('users')->where('id', Auth::id())
            ->where( 'updated_at', '>', Carbon::now()->subDays(7))
-           ->select('id','created_at','updated_at')->get();
+           ->value('updated_at');
 
         $dateSupport = DB::table('support_tickets')->where('userId', Auth::id())
            ->where( 'created_at', '>', Carbon::now()->subDays(7))

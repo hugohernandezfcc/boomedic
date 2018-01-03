@@ -29,7 +29,7 @@ var datos = [@php foreach(session()->get('history') as $it){ echo $it.','; } @en
             <!-- timeline time label -->
             <li class="time-label">
                   <span class="bg-red">
-                    {{ \Carbon\Carbon::parse($dateUser)->format('l j F Y') }}
+                    {{ \Carbon\Carbon::parse($dateUser)->format('d-m-Y') }}
                   </span>
             </li>
             <!-- /.timeline-label -->
