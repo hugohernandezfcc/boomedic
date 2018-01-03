@@ -60,7 +60,7 @@ class history extends Controller
            ->select('id','created_at','updated_at')->get(); */
 
                 $history[] = '["Payment_Method","'.$date->id.'",'.$date->created_at.','.$date->updated_at.']';
-                $array[]   = array([
+                $array[]   = ([
                             'Type'       => 'Payment_Method',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
