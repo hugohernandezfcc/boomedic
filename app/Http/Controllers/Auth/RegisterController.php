@@ -154,7 +154,7 @@ class RegisterController extends Controller
 
        //if($request->has('accessToken') and (($request->origin=='FB') or ($request->origin=='GG') or ($request->origin=='LI'))
         //{
-        if($request->has('accessToken'))
+        if($request->has('accessToken') && $request->origin == "GG")
         {
             $uN = explode('@', $request->email);
             $uN['username'] = $uN[0] . '@boomedic.mx';
