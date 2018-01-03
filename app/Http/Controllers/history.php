@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
+use Carbon\Carbon;
 
 
 
@@ -30,11 +31,16 @@ class history extends Controller
      */
     public function index(){
 
+        $dateUser = Users::where('id', Auth::id())
+           ->where( 'created_at', '>', Carbon::now()->subDays(7))
+           ->value('created_at');
+
         return view('history', [
                 'userId'    => Auth::id(),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
-                'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'photo'  =>    DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'photo'     => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                'dateUser'  => $dateUser
             ]
         );
     }

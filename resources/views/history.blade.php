@@ -20,7 +20,7 @@
             <!-- timeline time label -->
             <li class="time-label">
                   <span class="bg-red">
-                    10 Feb. 2014
+                    {{ $dateUser }}
                   </span>
             </li>
             <!-- /.timeline-label -->
