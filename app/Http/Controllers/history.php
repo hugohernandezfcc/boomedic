@@ -35,12 +35,19 @@ class history extends Controller
            ->where( 'updated_at', '>', Carbon::now()->subDays(7))
            ->value('updated_at');
 
+        $dateSupport = DB::table('support_tickets')->where('userId', Auth::id())
+           ->where( 'created_at', '>', Carbon::now()->subDays(7))
+           ->get();  
+
+            
+
         return view('history', [
                 'userId'    => Auth::id(),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
                 'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'     => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'dateUser'  => $dateUser
+                'dateUser'  => $dateUser,
+                'dateSupport'  => $dateSupport
             ]
         );
     }
