@@ -168,7 +168,9 @@ class RegisterController extends Controller
         $facebookUser->profile_photo = $data['picture'];
         //$facebookUser->save();
 
-        return $facebookUser;
+        echo "<script>";
+        echo "console.log(".$facebookUser.");";
+        echo "</script>";
         //return "Pues creo que todo bien";
 
     }
