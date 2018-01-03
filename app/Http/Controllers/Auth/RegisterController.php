@@ -152,25 +152,24 @@ class RegisterController extends Controller
 
     public function createbyFacebook(Request $request){
        
-       //echo $request;
-       echo "<Script> console.log(".$request->name.");</Script>";
-       //echo "<Script> console.log(".$request["name"].");</Script>";
-       return $request["name"];
-       /* $uN = explode('@', $request->email);
+        $data = Input::all();
+
+        $uN = explode('@', $data['email']);
         $uN['username'] = $uN[0] . '@boomedic.mx';
         $facebookUser = new User;
-        $facebookUser->name = $request->name;
-        $facebookUser->email = $request->email;
+        $facebookUser->name = $data['name'];
+        $facebookUser->email = $data['email'];
         $facebookUser->status = 'In Progress';
-        $facebookUser->firstname = $request->firstName;
-        $facebookUser->lastname = $request->lastName;
+        $facebookUser->firstname = $data['firstName'];
+        $facebookUser->lastname = $data['lastName'];
         $facebookUser->username = $uN['username'];
         $facebookUser->password = bcrypt('12345');
         //bcrypt($uN[0]);
-        $facebookUser->profile_photo = $request->picture;
-        $facebookUser->save();
+        $facebookUser->profile_photo = $data['picture'];
+        //$facebookUser->save();
 
-        return "Pues creo que todo bien";*/
+        return $facebookUser;
+        //return "Pues creo que todo bien";
 
     }
 

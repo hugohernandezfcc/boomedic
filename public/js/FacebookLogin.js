@@ -23,27 +23,12 @@ function checkLoginState() {
                 }
             });
 
-            /*$.post('https://sbx03.herokuapp.com/FBRegister',{
-                _token: $('meta[name="_token"]').attr('content'),
-                name: userData.name,
-                firstName: userData.first_name,
-                lastName: userData.last_name,
-                email: userData.email,
-                picture: userData.picture.data.url
-            })
-            .done(function(data){
-                console.log(data);
-            })
-            .fail(function(data){
-                console.log("error");
-            });*/
-
             
             $.ajax({
                 url: "./FBRegister",
                 method: "POST",
                 contentType : "aplication/JSON",
-                data:  personFB,
+                data:  fbJSON,
                 success: function(data){
                     console.log("éxito");
                     console.log(data);
