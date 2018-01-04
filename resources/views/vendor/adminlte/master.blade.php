@@ -109,7 +109,7 @@
     lang: es_ES
 </script>
 <script src="{{ asset('vendor/adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/FacebookLogin.js') }}" async defer></script>
+<script src="{{ asset('js/FacebookLogin.js') }}" async="true" defer="true"></script>
 <script src="{{ asset('js/GoogleLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInLogin.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
