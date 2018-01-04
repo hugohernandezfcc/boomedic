@@ -22,8 +22,6 @@
               <i class="fa fa-warning bg-red"></i>
 
               <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 0 </span>
-
                 <h3 class="timeline-header no-border"> No tiene historial registrado hasta ahora.</h3>
               </div>
             </li>
