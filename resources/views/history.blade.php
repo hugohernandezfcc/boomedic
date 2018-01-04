@@ -17,23 +17,23 @@
           <ul class="timeline">
           @foreach($array as $items) 
             <!-- timeline time label -->
-          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y') || $loop->iteration == 1)
+          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y'))
 
             <li class="time-label">
-                  <span class="bg-blue">
+                  <span class="bg-green">
                     {{ \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') }}
                   </span>
             </li>
 
             @endif
 
-          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y') || $loop->iteration == 1)
+          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y'))
             <li class="time-label">
                   <span class="bg-blue">
                     {{ \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') }}
                   </span>
             </li>
-            
+
             @endif
             
             @if($items['Type'] == 'Support Ticket')
