@@ -45,11 +45,13 @@ class history extends Controller
 
 
            foreach($dateSupport as $date){
+            $car = new Carbon($date->created_at);
                 $array[]  = collect([
                             'Type'       => 'Support Ticket',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
-                            'updated_at' => $date->updated_at   
+                            'updated_at' => $date->updated_at,
+                            'time'       => $car->diffForHumans()
                             ]);
            }
 
@@ -57,12 +59,14 @@ class history extends Controller
            /* $dateTransaction = DB::table('transaction_bank')->where('payment', $date)
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->select('id','created_at','updated_at')->get(); */
+           $car = new Carbon($date->created_at);
 
                 $array[]  = collect([
                             'Type'       => 'Payment Method',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
-                            'updated_at' => $date->updated_at   
+                            'updated_at' => $date->updated_at,
+                            'time'       => $car->diffForHumans()
                             ]);
 
            }

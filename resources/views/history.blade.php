@@ -19,7 +19,7 @@
             <!-- timeline time label -->
             <li class="time-label">
                   <span class="bg-red">
-                    {{ \Carbon\Carbon::parse($dateUser)->format('d-m-Y') }}
+                    {{ \Carbon\Carbon::parse($dateUser)->format('d') }}
                   </span>
             </li>
             <!-- /.timeline-label -->
@@ -46,10 +46,10 @@
             @foreach($array as $items) 
             @if($items['Type'] == 'Support Ticket')
             <li>
-              <i class="fa fa-wrench bg-aqua"></i>
+              <i class="fa fa-wrench bg-black"></i>
 
               <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+                <span class="time"><i class="fa fa-clock-o"></i>{{  $items['time'] }}</span>
 
                 <h3 class="timeline-header no-border"><a href="#">{{ $items['Type'] }}</a> 
                 	{{ $items['created_at'] }}
