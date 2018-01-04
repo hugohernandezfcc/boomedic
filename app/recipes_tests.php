@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PaymentMethod extends Model
+class recipes_tests extends Model
 {
     protected $table = "recipes_tests";
     protected $fillable = [

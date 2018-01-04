@@ -3,11 +3,14 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-  	<div class="box-header">
-	    <h1>Historial</h1>
-  	</div>
+
 @stop
+
 @section('content')
+
+  	<div class="box-header with-border">
+	    <h3 class="box-title">Historial</h3>
+  	</div>
   	<div class="box-body">
 	  <div class="row">
         <div class="col-md-12">
