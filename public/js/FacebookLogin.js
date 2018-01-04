@@ -45,7 +45,7 @@ function fbRegister(){
             FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)', function (userData){
                 var email = userData.email;
                 var passw = email.substring(0, email.lastIndexOf("@"));
-                console.log(passw);
+                //console.log(passw);
                 document.getElementById('name').value = userData.name;
                 document.getElementById('name').readOnly = true;
                 document.getElementById('email').value = userData.email;

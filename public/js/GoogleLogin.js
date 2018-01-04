@@ -34,6 +34,19 @@ function onSignInG(googleUser) {
 }
 
 function onRegisterG(googleUser){
-    
+    if(!googleUser.isSignedIn()){
+        var profile = googleUser.getBasicProfile();
+        var email = profile.getEmail();
+        var passw = email.substring(0, email.lastIndexOf("@"));
+        console.log(passw);
+        document.getElementById('name').value = profile.getName();
+        document.getElementById('name').readOnly = true;
+        document.getElementById('email').value = profile.getEmail();
+        document.getElementById('email').readOnly = true;
+        document.getElementById('passw').value = passw;
+        document.getElementById('passw').readOnly = true;
+        document.getElementById('passwc').value = passw;
+        document.getElementById('passwc').readOnly = true;
+    }
 }
 

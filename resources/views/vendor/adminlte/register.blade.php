@@ -80,7 +80,7 @@
                     {{ trans('adminlte::adminlte.register_a_new_membership') }}
                 </button>
 
-                <div class="row" align="center">     O Con redes sociales  <br>
+                <div class="row box"  align="center">     O Con redes sociales  <br>
                         <div align="center">
                             <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
                                     data-scope="public_profile,email" onlogin="fbRegister();"></div>
@@ -92,6 +92,9 @@
                         </div>
                         <div>
                             <div align="center"><script type="in/Login" data-width="165" data-height="27" ></script></div>
+                        </div>
+                        <div class="overlay">
+                            <i class="fa fa-refresh fa-spin"></i>
                         </div>
                 </div>
 
