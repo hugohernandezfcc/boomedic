@@ -57,9 +57,13 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header no-border"><a href="#">Ticket de Soporte creado</a> 
-                	
-                </h3>
+                <h3 class="timeline-header no-border"><a href="#">Ticket de Soporte creado</a></h3>
+                <div class="timeline-body">
+                	{{ $items['des']}}
+                </div>
+                <div class="timeline-footer">
+                  <a href="{{ url('supportTicket/index') }}" class="btn btn-secondary btn-flat btn-xs">Ver más</a>
+                </div>
               </div>
             </li>
             @endif
@@ -87,7 +91,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a href="#">{{ $items['Type'] }}</a></h3>
+                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                   Take me to your leader!

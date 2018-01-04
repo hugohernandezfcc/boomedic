@@ -37,7 +37,7 @@ class history extends Controller
 
         $dateSupport = DB::table('support_tickets')->where('userId', Auth::id())
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
-           ->select('id','created_at','updated_at')->get();
+           ->select('id','created_at','updated_at','ticketDescription')->get();
 
         $datePayment = DB::table('paymentsmethods')->where('owner', Auth::id())
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
@@ -52,7 +52,8 @@ class history extends Controller
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
                             'updated_at' => $date->updated_at,
-                            'time'       => $car->diffForHumans()
+                            'time'       => $car->diffForHumans(),
+                            'des'        => $date->ticketDescription
                             ]);
            }
         foreach($dateUser as $date){
