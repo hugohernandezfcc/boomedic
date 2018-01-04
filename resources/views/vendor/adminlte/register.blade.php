@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                    <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="{{ trans('adminlte::adminlte.email') }}">
+                    <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="{{ trans('adminlte::adminlte.email') }}" id="email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     @if ($errors->has('email'))
                         <span class="help-block">
@@ -55,7 +55,7 @@
 
 
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                    <input type="password" name="password" class="form-control" placeholder="{{ trans('adminlte::adminlte.password') }}">
+                    <input type="password" name="password" class="form-control" placeholder="{{ trans('adminlte::adminlte.password') }}" id="passw">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     @if ($errors->has('password'))
                         <span class="help-block">
@@ -66,7 +66,7 @@
 
 
                 <div class="form-group has-feedback {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
-                    <input type="password" name="password_confirmation" class="form-control" placeholder="{{ trans('adminlte::adminlte.retype_password') }}">
+                    <input type="password" name="password_confirmation" class="form-control" placeholder="{{ trans('adminlte::adminlte.retype_password') }}" id="passwc">
                     <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                     @if ($errors->has('password_confirmation'))
                         <span class="help-block">
@@ -80,10 +80,10 @@
                     {{ trans('adminlte::adminlte.register_a_new_membership') }}
                 </button>
 
-                <div class="row" align="center">     Con redes sociales  <br>
+                <div class="row" align="center">     O Con redes sociales  <br>
                         <div align="center">
                             <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
-                                    data-scope="public_profile,email" onlogin="checkLoginState();"></div>
+                                    data-scope="public_profile,email" onlogin="fbRegister();"></div>
                             </div><br>
                         <div align="center">
                             <div class="g-signin2"  data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div><br>

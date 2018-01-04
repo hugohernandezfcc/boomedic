@@ -39,6 +39,28 @@ function checkLoginState() {
     })
 }
 
+function fbRegister(){
+    FB.getLoginStatus(function (response) {
+        if (response.status == "connected"){
+            FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)', function (userData){
+                var email = userData.email;
+                var passw = email.substring(0, email.lastIndexOf("@"));
+                console.log(passw);
+                document.getElementById('name').value = userData.name;
+                document.getElementById('name').readOnly = true;
+                document.getElementById('email').value = userData.email;
+                document.getElementById('email').readOnly = true;
+                document.getElementById('passw').value = passw;
+                document.getElementById('passw').readOnly = true;
+                document.getElementById('passwc').value = passw;
+                document.getElementById('passwc').readOnly = true;
+            });
+
+        }
+
+    })
+}
+
 window.fbAsyncInit = function() {
 	FB.init({
 	appId      : '179677309285533',
