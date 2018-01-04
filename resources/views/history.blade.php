@@ -52,7 +52,7 @@
                 <h3 class="timeline-header no-border"><a href="#"></a> 
                  @foreach($array as $items) 
                 	
-                		{{ $items }}  <br/>
+                		{{ $items }}
 
                 @endforeach</h3>
               </div>
