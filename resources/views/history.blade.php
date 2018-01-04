@@ -15,7 +15,7 @@
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline">
-         @if($labor->isEmpty())
+         @if($array->isEmpty())
 			<div class="box-footer">
 						 <span class="text-black">No tiene historial hasta ahora...</span>
 			</div>
