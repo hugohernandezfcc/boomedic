@@ -76,7 +76,14 @@
                             <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
                         </div>
                         <div class="row">
-                            <div align="center"><script type="in/Login" data-width="165" data-height="27" ></script></div>
+                            <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
+                                api_key: 78ezayhtq8yi4u
+                                authorize: true
+                                onLoad: onLinkedInLoad
+                                scope: r_basicprofile r_emailaddress
+                                lang: es_ES
+                            </script>
+                            <div align="center"><script type="in/Login"></script></div>
                         </div>
                         <div class="overlay" id="cargar">
                             <div id="carga2"class="fa fa-refresh fa-spin"></div>

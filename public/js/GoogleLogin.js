@@ -35,6 +35,7 @@ function onSignInG(googleUser) {
 
 function onRegisterG(googleUser){
     //if(!googleUser.isSignedIn()){
+        console.log(googleUser.isSignedIn);
         var profile = googleUser.getBasicProfile();
         var email = profile.getEmail();
         var passw = email.substring(0, email.lastIndexOf("@"));
