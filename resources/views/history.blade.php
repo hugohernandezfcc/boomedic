@@ -3,7 +3,6 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-
 @stop
 
 @section('content')
@@ -16,10 +15,12 @@
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline">
+          @foreach($array as $items) 
             <!-- timeline time label -->
+            @if($item['created_at'] == \Carbon\Carbon::now() || $item['updated_at'] == \Carbon\Carbon::now() );
             <li class="time-label">
                   <span class="bg-red">
-                    {{ \Carbon\Carbon::parse($dateUser)->format('d') }}
+                    {{ \Carbon\Carbon::parse($item['created_at'])->format('d-m-Y') }}
                   </span>
             </li>
             <!-- /.timeline-label -->
@@ -43,7 +44,7 @@
             </li>
             <!-- END timeline item -->
             <!-- timeline item -->
-            @foreach($array as $items) 
+            
             @if($items['Type'] == 'Support Ticket')
             <li>
               <i class="fa fa-wrench bg-black"></i>
