@@ -33,7 +33,7 @@ class history extends Controller
 
         $dateUser = DB::table('users')->where('id', Auth::id())
            ->where( 'updated_at', '>', Carbon::now()->subDays(7))
-           ->value('updated_at');
+            ->select('id','created_at','updated_at')->get();
 
         $dateSupport = DB::table('support_tickets')->where('userId', Auth::id())
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
@@ -49,6 +49,16 @@ class history extends Controller
             $car = new Carbon($date->created_at);
                 $array[]  = collect([
                             'Type'       => 'Support Ticket',
+                            'id'         =>  $date->id,
+                            'created_at' => $date->created_at,
+                            'updated_at' => $date->updated_at,
+                            'time'       => $car->diffForHumans()
+                            ]);
+           }
+        foreach($dateUser as $date){
+            $car = new Carbon($date->updated_at);
+                $array[]  = collect([
+                            'Type'       => 'User',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
                             'updated_at' => $date->updated_at,

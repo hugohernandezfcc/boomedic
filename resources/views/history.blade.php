@@ -58,8 +58,20 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
                 <h3 class="timeline-header no-border"><a href="#">Ticket de Soporte creado</a> 
-                	{{ $items['created_at'] }}
-                 <br/>
+                	
+                </h3>
+              </div>
+            </li>
+            @endif
+           @if($items['Type'] == 'User')
+            <li>
+              <i class="fa fa-wrench bg-black"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+
+                <h3 class="timeline-header no-border"><a href="#">Se realizaron cambios en el perfíl</a> 
+                	
                 	
                 </h3>
               </div>
@@ -74,7 +86,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a href="#">{{ $items['Type'] }}</a>{{ $items['created_at'] }}</h3>
+                <h3 class="timeline-header"><a href="#">{{ $items['Type'] }}</a></h3>
 
                 <div class="timeline-body">
                   Take me to your leader!
