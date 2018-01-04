@@ -49,9 +49,9 @@
               <i class="fa fa-wrench bg-black"></i>
 
               <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i>{{  $items['time'] }}</span>
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header no-border"><a href="#">{{ $items['Type'] }}</a> 
+                <h3 class="timeline-header no-border"><a href="#"> {{ $items['Type'] }}</a> 
                 	{{ $items['created_at'] }}
                  <br/>
                 	
