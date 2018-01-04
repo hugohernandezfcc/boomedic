@@ -91,6 +91,13 @@
 
                         </div>
                         <div class="row">
+                            <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
+                                api_key: 78ezayhtq8yi4u
+                                authorize: true
+                                onLoad: onLinkedInLoad2
+                                scope: r_basicprofile r_emailaddress
+                                lang: es_ES
+                            </script>
                             <div align="center"><script type="in/Login" ></script></div>
                         </div>
                         <div class="overlay" id="cargar">
