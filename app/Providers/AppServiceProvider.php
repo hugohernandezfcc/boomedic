@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\User;
 use App\menu;
 use App\ProfessionalInformation;
+use Carbon\Carbon;
 
 
 use Auth;
@@ -24,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Dispatcher $events)
     {
-        \Carbon::setLocale(config('app.locale'));
+        Carbon::setLocale(config('app.locale'));
       
         \URL::forceScheme('https');
 
