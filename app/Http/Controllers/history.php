@@ -45,7 +45,7 @@ class history extends Controller
 
 
            foreach($dateSupport as $date){
-                $array  = ([
+                $array[]  = ([
                             'Type'       => 'Support Ticket',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
@@ -58,7 +58,7 @@ class history extends Controller
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->select('id','created_at','updated_at')->get(); */
 
-                $array   = ([
+                $array[]   = ([
                             'Type'       => 'Payment_Method',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
