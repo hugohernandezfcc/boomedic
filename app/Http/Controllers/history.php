@@ -43,7 +43,8 @@ class history extends Controller
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->select('id','created_at','updated_at')->get();
 
-
+           $array = collect();
+           
            foreach($dateSupport as $date){
             $car = new Carbon($date->created_at);
                 $array[]  = collect([
