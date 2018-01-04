@@ -17,20 +17,23 @@
           <ul class="timeline">
           @foreach($array as $items) 
             <!-- timeline time label -->
-          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y'))
+          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y') || $loop->iteration == 1)
+
             <li class="time-label">
-                  <span class="bg-red">
+                  <span class="bg-blue">
                     {{ \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') }}
                   </span>
             </li>
+
             @endif
 
-          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y'))
+          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y') || $loop->iteration == 1)
             <li class="time-label">
-                  <span class="bg-green">
+                  <span class="bg-blue">
                     {{ \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') }}
                   </span>
             </li>
+            
             @endif
             
             @if($items['Type'] == 'Support Ticket')
@@ -52,7 +55,7 @@
             <!-- timeline item -->
             @if($items['Type'] == 'Payment Method')
             <li>
-              <i class="fa fa-comments bg-yellow"></i>
+              <i class="fa fa-credit-card-alt bg-yellow"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
