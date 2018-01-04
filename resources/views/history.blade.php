@@ -43,28 +43,32 @@
             </li>
             <!-- END timeline item -->
             <!-- timeline item -->
+            @foreach($array as $items) 
+            @if($items['Type'] == 'Support Ticket')
             <li>
-              <i class="fa fa-user bg-aqua"></i>
+              <i class="fa fa-wrench bg-aqua"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
 
-                <h3 class="timeline-header no-border"><a href="#"></a> 
-                 @foreach($array as $items) 
-                 {{ $items['Type'] }} <br/>
-
-                @endforeach</h3>
+                <h3 class="timeline-header no-border"><a href="#">{{ $items['Type'] }}</a> 
+                	{{ $items['created_at'] }}
+                 <br/>
+                	
+                </h3>
               </div>
             </li>
+            @endif
             <!-- END timeline item -->
             <!-- timeline item -->
+            @if($items['Type'] == 'Payment Method')
             <li>
               <i class="fa fa-comments bg-yellow"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
 
-                <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+                <h3 class="timeline-header"><a href="#">{{ $items['Type'] }}</a>{{ $items['created_at'] }}</h3>
 
                 <div class="timeline-body">
                   Take me to your leader!
@@ -76,6 +80,7 @@
                 </div>
               </div>
             </li>
+            @endif
             <!-- END timeline item -->
             <!-- timeline time label -->
             <li class="time-label">
@@ -85,6 +90,7 @@
             </li>
             <!-- /.timeline-label -->
             <!-- timeline item -->
+            @endforeach
             <li>
               <i class="fa fa-camera bg-purple"></i>
 
