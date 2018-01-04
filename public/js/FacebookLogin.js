@@ -39,7 +39,7 @@ function checkLoginState() {
     })
 }
 
-function RegistroporFB(){
+function fbRegister(){
     FB.getLoginStatus(function (response) {
         if (response.status == "connected"){
             FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)', function (userData){
