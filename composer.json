@@ -15,6 +15,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "nesbot/carbon": "^1.22",
         "paypal/rest-api-sdk-php": "*"
     },
     "require-dev": {
