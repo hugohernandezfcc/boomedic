@@ -7,7 +7,7 @@
 
 @section('content')
 
-  	<div class="box-header with-border">
+  	<div class="box-header">
 	    <h3 class="box-title">Historial</h3>
   	</div>
   	<div class="box-body">
@@ -17,33 +17,21 @@
           <ul class="timeline">
           @foreach($array as $items) 
             <!-- timeline time label -->
-            @if($item['created_at'] == \Carbon\Carbon::now() || $item['updated_at'] == \Carbon\Carbon::now() );
+          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y'))
             <li class="time-label">
                   <span class="bg-red">
-                    {{ \Carbon\Carbon::parse($item['created_at'])->format('d-m-Y') }}
+                    {{ \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') }}
                   </span>
             </li>
-            <!-- /.timeline-label -->
-            <!-- timeline item -->
-            <li>
-              <i class="fa fa-envelope bg-blue"></i>
+            @endif
 
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                <div class="timeline-body">
-                 
-                </div>
-                <div class="timeline-footer">
-                  <a class="btn btn-primary btn-xs">Read more</a>
-                  <a class="btn btn-danger btn-xs">Delete</a>
-                </div>
-              </div>
+          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y'))
+            <li class="time-label">
+                  <span class="bg-green">
+                    {{ \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') }}
+                  </span>
             </li>
-            <!-- END timeline item -->
-            <!-- timeline item -->
+            @endif
             
             @if($items['Type'] == 'Support Ticket')
             <li>
@@ -52,7 +40,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header no-border"><a href="#"> {{ $items['Type'] }}</a> 
+                <h3 class="timeline-header no-border"><a href="#">Ticket de Soporte creado</a> 
                 	{{ $items['created_at'] }}
                  <br/>
                 	
@@ -67,7 +55,7 @@
               <i class="fa fa-comments bg-yellow"></i>
 
               <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
                 <h3 class="timeline-header"><a href="#">{{ $items['Type'] }}</a>{{ $items['created_at'] }}</h3>
 
@@ -82,56 +70,15 @@
               </div>
             </li>
             @endif
-            <!-- END timeline item -->
-            <!-- timeline time label -->
-            <li class="time-label">
-                  <span class="bg-green">
-                    3 Jan. 2014
-                  </span>
-            </li>
-            <!-- /.timeline-label -->
-            <!-- timeline item -->
+
             @endforeach
-            <li>
-              <i class="fa fa-camera bg-purple"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                <div class="timeline-body">
-                  <img src="http://placehold.it/150x100" alt="..." class="margin">
-                  <img src="http://placehold.it/150x100" alt="..." class="margin">
-                  <img src="http://placehold.it/150x100" alt="..." class="margin">
-                  <img src="http://placehold.it/150x100" alt="..." class="margin">
-                </div>
-              </div>
-            </li>
-            <!-- END timeline item -->
-            <!-- timeline item -->
-            <li>
-              <i class="fa fa-video-camera bg-maroon"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 5 days ago</span>
-
-                <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
-
-                <div class="timeline-body">
-
-                </div>
-                <div class="timeline-footer">
-                  <a href="#" class="btn btn-xs bg-maroon">See comments</a>
-                </div>
-              </div>
-            </li>
             <!-- END timeline item -->
             <li>
               <i class="fa fa-clock-o bg-gray"></i>
             </li>
+            
           </ul>
-        </div>
+          </div>
         <!-- /.col -->
       </div>
 
