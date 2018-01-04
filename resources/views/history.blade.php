@@ -15,6 +15,13 @@
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline">
+         @if($labor->isEmpty())
+			<div class="box-footer">
+						 <span class="text-black">No tiene historial hasta ahora...</span>
+			</div>
+			
+		@else 	
+
           @foreach($array as $items) 
             <!-- timeline time label -->
           @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y'))
@@ -75,6 +82,8 @@
             @endif
 
             @endforeach
+
+            @endif
             <!-- END timeline item -->
             <li>
               <i class="fa fa-clock-o bg-gray"></i>
