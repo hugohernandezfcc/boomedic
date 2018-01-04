@@ -16,13 +16,26 @@
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline">
+
+          <li class="time-label"  style="visibility: hidden;" id="li1">
+                  <span class="bg-green">
+                    {{ \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') }}
+                  </span>
+            </li>
+           <li class="time-label" class="bg-blue" style="visibility: hidden;" id="li2">
+                  <span >
+                    {{ \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') }}
+                  </span>
+            </li>
+
+
 		  	 @if($array->isEmpty())
 					
 			<li>
               <i class="fa fa-warning bg-red"></i>
 
               <div class="timeline-item">
-                <h3 class="timeline-header no-border"> No tiene historial registrado hasta ahora.</h3>
+                <h3 class="timeline-header no-border"> No tiene historial registrado hasta ahora. </h3>
               </div>
             </li>
 					
@@ -31,23 +44,18 @@
 
           @foreach($array as $items) 
             <!-- timeline time label -->
-          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y'))
+          @if(\Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y'))
+          <script type="text/javascript">
+          	document.getElementById('li1').style.visibility = visible;
+          </script>
 
-            <li class="time-label">
-                  <span class="bg-green">
-                    {{ \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') }}
-                  </span>
-            </li>
 
             @endif
 
-          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y'))
-            <li class="time-label">
-                  <span class="bg-blue">
-                    {{ \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') }}
-                  </span>
-            </li>
-
+          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y') || \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y'))
+           <script type="text/javascript">
+          	document.getElementById('li2').style.visibility = visible;
+          </script>
             @endif
             
             @if($items['Type'] == 'Support Ticket')
@@ -63,9 +71,10 @@
               </div>
             </li>
             @endif
+
            @if($items['Type'] == 'User')
             <li>
-              <i class="fa fa-wrench bg-black"></i>
+              <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
