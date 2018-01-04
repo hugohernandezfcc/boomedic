@@ -34,7 +34,7 @@ function onSignInG(googleUser) {
 }
 
 function onRegisterG(googleUser){
-    if(!googleUser.isSignedIn()){
+    //if(!googleUser.isSignedIn()){
         var profile = googleUser.getBasicProfile();
         var email = profile.getEmail();
         var passw = email.substring(0, email.lastIndexOf("@"));
@@ -47,6 +47,6 @@ function onRegisterG(googleUser){
         document.getElementById('passw').readOnly = true;
         document.getElementById('passwc').value = passw;
         document.getElementById('passwc').readOnly = true;
-    }
+    //}
 }
 
