@@ -50,9 +50,9 @@
                 <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
 
                 <h3 class="timeline-header no-border"><a href="#">Array</a> 
-                @foreach($array as $array) 
+                @foreach($array as $items) 
                 	
-                		{{ $array->array }}  <br/>
+                		{{ $items }}  <br/>
 
                 @endforeach</h3>
               </div>
