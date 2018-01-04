@@ -10,18 +10,26 @@
   	<div class="box-header">
 	    <h3 class="box-title">Historial</h3>
   	</div>
-  	 @if($array->isEmpty())
-			<div class="box-footer">
-						 <span class="text-black">No tiene historial hasta ahora...</span>
-			</div>
-			
-	@else 	
+
   	<div class="box-body">
 	  <div class="row">
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline">
+		  	 @if($array->isEmpty())
+					
+			<li>
+              <i class="fa fa-warning bg-red"></i>
 
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> 0 </span>
+
+                <h3 class="timeline-header no-border"> No tiene historial registrado hasta ahora.</h3>
+              </div>
+            </li>
+					
+					
+			@else 	
 
           @foreach($array as $items) 
             <!-- timeline time label -->
@@ -84,7 +92,7 @@
 
             @endforeach
 
-           
+            @endif
             <!-- END timeline item -->
             <li>
               <i class="fa fa-clock-o bg-gray"></i>
@@ -98,6 +106,6 @@
       </div>
 
  	</div>
- 	 @endif
+ 	
  	
 @stop
