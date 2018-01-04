@@ -68,8 +68,15 @@ window.fbAsyncInit = function() {
 	                    // the session
 	xfbml      : true,  // parse social plugins on this page
 	version    : 'v2.11' // use any version
-});    
+});  
+    FB.Event.subscribe('xfbml.render', function() {
+    var spinner = document.getElementById("cargar");
+    var ima = document.getElementById("carga2");
+    spinner.removeAttribute("class");
+    ima.removeAttribute("class");
+        } );  
 };
+    
 
 // Load the SDK asynchronously
 (function(d, s, id) {

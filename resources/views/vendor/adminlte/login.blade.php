@@ -49,7 +49,7 @@
                         <span class="help-block">
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
-                    @endif 
+                    @endif
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
@@ -64,24 +64,24 @@
                     <!-- /.col -->
                     <div class="col-xs-4">
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
-                    </div>
+                    </div><br><br><br>
                     <!-- /.col -->
-                    <div class="row" align="center">     Con redes sociales  <br>
-                        <div align="center">
+                    <div class="box" align="center" style="border-style: none; box-shadow: none;">     Con redes sociales  <br>
+                        <div class="row" align="center">
                             <div class="fb-login-button" data-size="medium" data-button-type="login_with" 
                                     data-scope="public_profile,email" onlogin="checkLoginState();"></div>
-                            </div><br>
-                        <div align="center">
-                            <div class="g-signin2"  data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div>
+                        </div><br>
+                        <div class="row" align="center">
+                            <div class="g-signin2"  data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div><br>
                             <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
-
                         </div>
-                     </div><br>
-                    <div class="row">
-                         <div>
+                        <div class="row">
                             <div align="center"><script type="in/Login" data-width="165" data-height="27" ></script></div>
                         </div>
-                    </div>
+                        <div class="overlay" id="cargar">
+                            <div id="carga2"class="fa fa-refresh fa-spin"></div>
+                        </div>
+                     </div><br>
                 </div>
             </form>
         </div>
