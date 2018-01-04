@@ -80,13 +80,23 @@
                     {{ trans('adminlte::adminlte.register_a_new_membership') }}
                 </button>
 
+                <script>
+                    var finished_rendering = function() {
+                    console.log("finished rendering plugins");
+                    var spinner = document.getElementById("cargar");
+                    spinner.removeAttribute("class");
+                    spinner.removeChild(spinner.childNodes[0]);
+                    }
+                    FB.Event.subscribe('xfbml.render', finished_rendering);
+                </script>
+
                 <div class="box"  align="center" id="socialnet">     O Con redes sociales  <br>
                         <div class="row" align="center">
                             <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
                                     data-scope="public_profile,email" onlogin="fbRegister();"></div>
                             </div><br>
                         <div class="row" align="center">
-                            <div class="g-signin2"  data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div><br>
+                            <div class="g-signin2"  data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onRegisterG"></div><br>
                             <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
 
                         </div>

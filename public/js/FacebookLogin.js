@@ -68,9 +68,7 @@ window.fbAsyncInit = function() {
 	                    // the session
 	xfbml      : true,  // parse social plugins on this page
 	version    : 'v2.11' // use any version
-});
-    document.getElementById('cargar').style.visibility='hiden';
-	
+});    
 };
 
 // Load the SDK asynchronously
