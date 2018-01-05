@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-use RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -25,7 +24,7 @@ class RegisterController extends Controller
     |
     */
 
-    
+    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
