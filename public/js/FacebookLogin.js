@@ -12,17 +12,8 @@ function checkLoginState() {
             personFB.origin = 'FB';
 
             FB.logout(function(response){
-                console.log('deslogeado!!!');
+                // console.log('deslogeado!!!');
             });
-
-            //console.log(personFB);
-
-            
-            /*$.ajaxSetup({
-                headers: {
-                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
-                }
-            });*/
 
             
             $.ajax({
@@ -69,7 +60,7 @@ function fbRegister(){
     })
 
     FB.logout(function(response){
-        console.log('deslogeado');
+        //console.log('deslogeado');
     });
 }
 

@@ -24,7 +24,7 @@
         document.getElementById('passwc').value = passw;
         document.getElementById('passwc').readOnly = true;
         IN.User.logout(function(){
-            console.log('deslogeado');
+            //console.log('deslogeado');
         });
     }
 

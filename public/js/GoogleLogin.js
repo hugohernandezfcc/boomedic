@@ -19,7 +19,7 @@ function onSignInG(googleUser) {
 
         var authG = gapi.auth2.getAuthInstance();
         authG.signOut().then(function(){
-            console.log("Deslogeado");
+            //console.log("Deslogeado");
         });
 
             
@@ -60,7 +60,7 @@ function onRegisterG(googleUser){
 
         var authG = gapi.auth2.getAuthInstance();
         authG.signOut().then(function(){
-            console.log("Deslogeado");
+         //console.log("Deslogeado");
         });
     //}
 }
