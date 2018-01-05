@@ -66,7 +66,7 @@
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                     </div><br><br><br>
                     <!-- /.col -->
-                    <div class="box" align="center" style="border-style: none; box-shadow: none;">     - REDES SOCIALES -  <br>
+                    <div class="box" align="center" style="border-style: none; box-shadow: none;"><br>
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
                           <div class="box-header with-border" align="left">

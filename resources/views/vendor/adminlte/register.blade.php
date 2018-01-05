@@ -80,28 +80,67 @@
                     {{ trans('adminlte::adminlte.register_a_new_membership') }}
                 </button>
 
-                <div class="box"  align="center" id="socialnet" style="border:none; box-shadow: none;">     - REDES SOCIALES -
-                        <div class="row" align="center">
-                            <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
+                <div class="box"  align="center" id="socialnet" style="border:none; box-shadow: none;"><br>
+                    <div class="box-group" id="accordion">
+                        <div class="panel box box-primary">
+                          <div class="box-header with-border" align="left">
+                            <h4 class="box-title">
+                                <i class="fa fa-fw fa-facebook-official" style="color: rgb(59, 89, 152);"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                Facebook
+                                </a>
+                            </h4>
+                          </div>
+                          <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row" align="center">
+                                    <div class="fb-login-button" id="botonfacebook_tocustom" data-size="medium" data-button-type="login_with" 
                                     data-scope="public_profile,email" onlogin="fbRegister();"></div>
-                        </div><br>
-                        <div class="row" align="center">
-                            <div class="g-signin2"  data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onRegisterG"></div><br>
+                                </div><br>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel box box-danger">
+                          <div class="box-header with-border" align="left">
+                            <h4 class="box-title">
+                                <i class="fa fa-fw fa-google" style="color: rgb(211, 72, 54);"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" >
+                                Google
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row" align="center">
+                                    <div class="g-signin2"  data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onRegisterG"></div><br>
                             <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
-
+                                </div>
+                            </div>
+                          </div>
                         </div>
-                        <div class="row">
-                            <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
-                                api_key: 78ezayhtq8yi4u
-                                authorize: true
-                                onLoad: onLinkedInLoad2
-                                scope: r_basicprofile r_emailaddress
-                                lang: es_ES
-                            </script>
-                            <div align="center"><script type="in/Login" ></script></div>
-                        </div>
-                        <div class="overlay" id="cargar">
-                            <div id="carga2"class="fa fa-refresh fa-spin"></div>
+                        <div class="panel box box-success">
+                          <div class="box-header with-border" align="left">
+                            <h4 class="box-title">
+                                <i class="fa fa-fw fa-linkedin"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                LinkedIn
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row">
+                                    <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
+                                        api_key: 78ezayhtq8yi4u
+                                        authorize: true
+                                        onLoad: onLinkedInLoad2
+                                        scope: r_basicprofile r_emailaddress
+                                        lang: es_ES
+                                    </script>
+                                    <div align="center"><script type="in/Login"></script></div>
+                                </div>
+                            </div>
+                          </div>
                         </div>
                 </div>
 
