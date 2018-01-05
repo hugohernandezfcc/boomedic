@@ -92,6 +92,9 @@
                 </div>
             </form>
         </div>
+        <div class="overlay" id="loginload">
+            <div id="loginload2"class="fa fa-refresh fa-spin"></div>
+        </div>
         <div class="auth-links">
             <div class="row">
                 <div class="col-xs-6">

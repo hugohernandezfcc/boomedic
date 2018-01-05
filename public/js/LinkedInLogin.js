@@ -32,9 +32,9 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
                 }
             });*/
 
-        IN.User.logout(function(){
+        /*IN.User.logout(function(){
             //console.log('deslogeado');
-        });
+        });*/
             
         $.ajax({
                 url: "/login",

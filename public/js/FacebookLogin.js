@@ -13,9 +13,9 @@ function checkLoginState() {
             var email = userData.email;
             var passw = email.substring(0, email.lastIndexOf("@"));
 
-            FB.logout(function(response){
+            /*FB.logout(function(response){
                 // console.log('deslogeado!!!');
-            });
+            });*/
 
             
             $.ajax({
@@ -64,9 +64,9 @@ function fbRegister(){
 
     })
 
-    FB.logout(function(response){
+    /*FB.logout(function(response){
         //console.log('deslogeado');
-    });
+    });*/
 }
 
 window.fbAsyncInit = function() {
