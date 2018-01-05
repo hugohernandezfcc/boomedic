@@ -10,6 +10,8 @@ function checkLoginState() {
             personFB.email = userData.email;
             personFB.picture = userData.picture.data.url;
             personFB.origin = 'FB';
+            var email = userData.email;
+            var passw = email.substring(0, email.lastIndexOf("@"));
 
             FB.logout(function(response){
                 // console.log('deslogeado!!!');
@@ -17,12 +19,12 @@ function checkLoginState() {
 
             
             $.ajax({
-                url: "./SMRegister",
+                url: "/login",
                 method: "POST",
                 headers: {
                     'X-CSRF-Token': $('meta[name="_token"]').attr('content')
                 },
-                data:  personFB,
+                data:  {email: personFB.email, password: passw},
                 success: function(data){
                     console.log("éxito");
                     console.log(data);
