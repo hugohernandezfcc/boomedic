@@ -28,7 +28,7 @@ function checkLoginState() {
                 success: function(data){
                     console.log("éxito");
                     //console.log(data);
-                    location.ref("/medicalconsultations");
+                    location.href("/medicalconsultations");
 
                 },
                 error: function(errorThrown){
