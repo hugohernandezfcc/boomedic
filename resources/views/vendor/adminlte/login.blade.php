@@ -91,8 +91,8 @@
                      </div><br>
                 </div>
             </form>
-            <div class="overlay" id="loginload">
-                <div id="loginload2"class="fa fa-refresh fa-spin"></div>
+            <div class="" id="loginload">
+                <div id="loginload2"class=""></div>
             </div>
         </div>
         <div class="auth-links">
