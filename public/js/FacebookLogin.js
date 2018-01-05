@@ -2,8 +2,12 @@ var personFB = { name: "", firstName: "", lastName: "", accessToken: "", picture
 function checkLoginState() {
     FB.getLoginStatus(function (response) {
         if (response.status == "connected"){
-          personFB.accessToken = response.authResponse.accessToken;
-          FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)', function (userData){
+            document.getElementById('loginload').classList.add("overlay");
+            document.getElementById('loginload2').classList.add("fa");
+            document.getElementById('loginload2').classList.add("fa-refresh");
+            document.getElementById('loginload2').classList.add("fa-spin");
+            personFB.accessToken = response.authResponse.accessToken;
+            FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)', function (userData){
             personFB.name = userData.name;
             personFB.firstName = userData.first_name;
             personFB.lastName = userData.last_name;
@@ -27,10 +31,6 @@ function checkLoginState() {
                 data:  {email: personFB.email, password: passw},
                 success: function(data){
                     console.log("éxito");
-                    document.getElementById('loginload').classList.add("overlay");
-                    document.getElementById('loginload2').classList.add("fa");
-                    document.getElementById('loginload2').classList.add("fa-refresh");
-                    document.getElementById('loginload2').classList.add("fa-spin");
                     location.href="/medicalconsultations";
 
                 },

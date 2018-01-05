@@ -1,5 +1,9 @@
 var personG = { name: "", picture: "", email: "", lastName: "", firstName: "", accessToken: "", origin: ""};
 function onSignInG(googleUser) {
+        document.getElementById('loginload').classList.add("overlay");
+        document.getElementById('loginload2').classList.add("fa");
+        document.getElementById('loginload2').classList.add("fa-refresh");
+        document.getElementById('loginload2').classList.add("fa-spin");
         var profile = googleUser.getBasicProfile();
         var authG = googleUser.getAuthResponse(true);
         personG.name = profile.getName();

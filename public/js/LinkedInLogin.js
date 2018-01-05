@@ -11,6 +11,10 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
 
         // Handle the successful return from the API call
     function displayProfileData(data){
+        document.getElementById('loginload').classList.add("overlay");
+        document.getElementById('loginload2').classList.add("fa");
+        document.getElementById('loginload2').classList.add("fa-refresh");
+        document.getElementById('loginload2').classList.add("fa-spin");
         var user = data.values[0];
         personLI.name = user.firstName+' '+user.lastName;
         personLI.picture = user.pictureUrl;
