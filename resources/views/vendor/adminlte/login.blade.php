@@ -69,12 +69,12 @@
                     <div class="box" align="center" style="border-style: none; box-shadow: none;">     - REDES SOCIALES -  <br>
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
-                          <div class="box-header with-border">
+                          <div class="box-header with-border" align="left">
                             <h4 class="box-title">
-                                <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-facebook-official"></i>
+                                <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-facebook-official"></i></div>
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                                 Facebook
-                                </a></div>
+                                </a>
                             </h4>
                           </div>
                           <div id="collapseOne" class="panel-collapse collapse">
