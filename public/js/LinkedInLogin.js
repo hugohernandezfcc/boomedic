@@ -24,16 +24,22 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
         personLI.origin = 'LI';
         //console.log(personLI);
 
-        $.ajaxSetup({
+        /*$.ajaxSetup({
                 headers: {
                     'X-CSRF-Token': $('meta[name="_token"]').attr('content')
                 }
-            });
+            });*/
 
+        IN.User.logout(function(){
+            console.log('deslogeado');
+        });
             
         $.ajax({
                 url: "/SMRegister",
                 method: "POST",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                },
                 data:  personLI,
                 success: function(data){
                     console.log("éxito");
@@ -44,9 +50,6 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
                     console.log(errorThrown);
                 }
         });
-        /*IN.User.logout(function(){
-            console.log('deslogeado');
-        });*/
     }
 
     // Handle an error response from the API call

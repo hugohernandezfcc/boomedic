@@ -17,6 +17,11 @@ function onSignInG(googleUser) {
                 }
             });*/
 
+        var authG = gapi.auth2.getAuthInstance();
+        authG.signOut().then(function(){
+            console.log("Deslogeado");
+        });
+
             
         $.ajax({
                 url: "./SMRegister",
@@ -34,6 +39,7 @@ function onSignInG(googleUser) {
                     console.log(errorThrown);
                 }
         });
+
 }
 
 function onRegisterG(googleUser){

@@ -80,7 +80,7 @@
                     {{ trans('adminlte::adminlte.register_a_new_membership') }}
                 </button>
 
-                <div class="box"  align="center" id="socialnet" style="border:none; box-shadow: none;">     O con redes sociales 
+                <div class="box"  align="center" id="socialnet" style="border:none; box-shadow: none;">     - REDES SOCIALES -
                         <div class="row" align="center">
                             <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
                                     data-scope="public_profile,email" onlogin="fbRegister();"></div>

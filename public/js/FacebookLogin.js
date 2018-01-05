@@ -11,19 +11,26 @@ function checkLoginState() {
             personFB.picture = userData.picture.data.url;
             personFB.origin = 'FB';
 
+            FB.logout(function(response){
+                console.log('deslogeado!!!');
+            });
+
             //console.log(personFB);
 
             
-            $.ajaxSetup({
+            /*$.ajaxSetup({
                 headers: {
                     'X-CSRF-Token': $('meta[name="_token"]').attr('content')
                 }
-            });
+            });*/
 
             
             $.ajax({
                 url: "./SMRegister",
                 method: "POST",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                },
                 data:  personFB,
                 success: function(data){
                     console.log("éxito");
@@ -38,9 +45,6 @@ function checkLoginState() {
         }
     })
 
-    //FB.logout(function(response){
-//
-  //  });
 }
 
 function fbRegister(){
@@ -64,9 +68,9 @@ function fbRegister(){
 
     })
 
-    //FB.logout(function(response){
-    //
-    //});
+    FB.logout(function(response){
+        console.log('deslogeado');
+    });
 }
 
 window.fbAsyncInit = function() {
