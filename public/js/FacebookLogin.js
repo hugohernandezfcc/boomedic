@@ -27,7 +27,9 @@ function checkLoginState() {
                 data:  {email: personFB.email, password: passw},
                 success: function(data){
                     console.log("éxito");
-                    console.log(data);
+                    //console.log(data);
+                    location.ref("/login");
+
                 },
                 error: function(errorThrown){
                     console.log("Aqui viene el error:");
