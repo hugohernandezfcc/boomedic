@@ -71,9 +71,10 @@
                         <div class="panel box box-primary">
                           <div class="box-header with-border">
                             <h4 class="box-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <div class="col-xs-8"><i class="fa fa-fw fa-facebook-official"></div>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                                 Facebook
-                              </a>
+                                </a>
                             </h4>
                           </div>
                           <div id="collapseOne" class="panel-collapse collapse">
@@ -88,7 +89,7 @@
                         <div class="panel box box-danger">
                           <div class="box-header with-border">
                             <h4 class="box-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" >
                                 Google
                               </a>
                             </h4>
