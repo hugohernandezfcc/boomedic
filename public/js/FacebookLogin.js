@@ -27,9 +27,9 @@ function checkLoginState() {
                 data:  {email: personFB.email, password: passw},
                 success: function(data){
                     console.log("éxito");
-                    //console.log(data);
                     document.getElementById('loginload').classList.add("overlay");
-                    document.getElementById('loginload2').classList.add("fa fa-refresh");
+                    document.getElementById('loginload2').classList.add("fa");
+                    document.getElementById('loginload2').classList.add("fa-refresh");
                     document.getElementById('loginload2').classList.add("fa-spin");
                     location.href="/medicalconsultations";
 
