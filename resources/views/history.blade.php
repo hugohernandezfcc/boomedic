@@ -49,6 +49,30 @@
             </li>
 
             @endif
+             @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(2)->format('d-m-Y') || \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(2)->format('d-m-Y'))
+            <li class="time-label">
+                  <span class="bg-blue">
+                    {{ \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') }}
+                  </span>
+            </li>
+
+            @endif
+            @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(3)->format('d-m-Y') || \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(3)->format('d-m-Y'))
+            <li class="time-label">
+                  <span class="bg-blue">
+                    {{ \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') }}
+                  </span>
+            </li>
+
+            @endif
+            @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(4)->format('d-m-Y') || \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(4)->format('d-m-Y'))
+            <li class="time-label">
+                  <span class="bg-blue">
+                    {{ \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') }}
+                  </span>
+            </li>
+
+            @endif
             
             @if($items['Type'] == 'Support Ticket')
             <li>
@@ -74,10 +98,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-
-                <h3 class="timeline-header no-border"><a href="#">Se realizaron cambios en el perfíl</a> 
-                	
-                	
+                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -94,12 +115,11 @@
                 <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
-                  Take me to your leader!
-                  Switzerland is small and neutral!
-                  We are more like Germany, ambitious and misunderstood!
+                	Tipo de método: {{ $items['typemethod'] }}
                 </div>
                 <div class="timeline-footer">
-                  <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions/$items['id']') }}">Ver Transacciones realizadas con ese método</a>
                 </div>
               </div>
             </li>
