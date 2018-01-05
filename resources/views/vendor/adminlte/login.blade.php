@@ -66,7 +66,7 @@
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                     </div><br><br><br>
                     <!-- /.col -->
-                    <div class="box" align="center" style="border-style: none; box-shadow: none;">     Con redes sociales  <br>
+                    <div class="box" align="center" style="border-style: none; box-shadow: none;">     - REDES SOCIALES -  <br>
                         <div class="row" align="center">
                             <div class="fb-login-button" id="botonfacebook_tocustom" data-size="medium" data-button-type="login_with" 
                                     data-scope="public_profile,email" onlogin="checkLoginState();"></div>

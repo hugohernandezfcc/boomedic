@@ -32,7 +32,7 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
 
             
         $.ajax({
-                url: "./SMRegister",
+                url: "/SMRegister",
                 method: "POST",
                 data:  personLI,
                 success: function(data){
@@ -44,6 +44,9 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
                     console.log(errorThrown);
                 }
         });
+        /*IN.User.logout(function(){
+            console.log('deslogeado');
+        });*/
     }
 
     // Handle an error response from the API call

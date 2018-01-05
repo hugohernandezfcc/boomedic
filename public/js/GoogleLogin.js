@@ -11,16 +11,19 @@ function onSignInG(googleUser) {
         personG.origin = 'GG';
         //console.log(personG);
 
-        $.ajaxSetup({
+        /*$.ajaxSetup({
                 headers: {
                     'X-CSRF-Token': $('meta[name="_token"]').attr('content')
                 }
-            });
+            });*/
 
             
         $.ajax({
                 url: "./SMRegister",
                 method: "POST",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                },
                 data:  personG,
                 success: function(data){
                     console.log("éxito");
@@ -48,6 +51,11 @@ function onRegisterG(googleUser){
         document.getElementById('passw').readOnly = true;
         document.getElementById('passwc').value = passw;
         document.getElementById('passwc').readOnly = true;
+
+        var authG = gapi.auth2.getAuthInstance();
+        authG.signOut().then(function(){
+            console.log("Deslogeado");
+        });
     //}
 }
 

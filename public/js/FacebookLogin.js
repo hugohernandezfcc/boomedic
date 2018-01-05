@@ -37,6 +37,10 @@ function checkLoginState() {
           });
         }
     })
+
+    //FB.logout(function(response){
+//
+  //  });
 }
 
 function fbRegister(){
@@ -59,6 +63,10 @@ function fbRegister(){
         }
 
     })
+
+    //FB.logout(function(response){
+    //
+    //});
 }
 
 window.fbAsyncInit = function() {

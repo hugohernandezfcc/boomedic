@@ -23,6 +23,9 @@
         document.getElementById('passw').readOnly = true;
         document.getElementById('passwc').value = passw;
         document.getElementById('passwc').readOnly = true;
+        IN.User.logout(function(){
+            console.log('deslogeado');
+        });
     }
 
     // Handle an error response from the API call
