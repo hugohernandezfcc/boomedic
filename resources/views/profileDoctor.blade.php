@@ -506,7 +506,7 @@
 						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>			
 							@else
 							
-							@foreach($labor as $labor)	
+							@foreach($labor->sortByDesc('created_at') as $labor)	
 							<div class="col-sm-12">
 									          <div class="info-box sm bg-gray">
 									            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
@@ -882,7 +882,7 @@
 			@else
 			
 			<div class="box-footer">
-			@foreach($labor as $labor)	
+			@foreach($labor->sortByDesc('created_at') as $labor)	
 			
 						@if($loop->iteration < 3)
 							<div class="col-sm-12">
@@ -1215,7 +1215,7 @@
 							    	<!-- /.box-tools -->
 						</div>
 					<div class="box-body"><br/>
-				@foreach($labor as $labor)	
+				@foreach($labor->sortByDesc('created_at') as $labor)	
 			
 
 							<div class="col-sm-12">

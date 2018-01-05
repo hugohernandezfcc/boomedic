@@ -29,7 +29,7 @@
 					
 			@else 	
 
-          @foreach($array as $items) 
+          @foreach($array->sortByDesc('updated_at') as $items) 
             <!-- timeline time label -->
 
             
