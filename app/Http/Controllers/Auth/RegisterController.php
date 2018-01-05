@@ -97,6 +97,7 @@ class RegisterController extends Controller
             }
         }else{
            $namesUser['first'] = $data['name'];
+           $namesUser['last'] = $data['name'];
         }
 
         
