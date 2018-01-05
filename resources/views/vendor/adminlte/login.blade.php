@@ -26,7 +26,7 @@
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
         </div>
         <!-- /.login-logo -->
-        <div class="login-box-body, box">
+        <div class="login-box-body box">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
             <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
                 {!! csrf_field() !!}
