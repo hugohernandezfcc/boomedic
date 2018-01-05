@@ -22,6 +22,8 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
         personLI.industry = user.industry;
         personLI.accessToken = IN.ENV.auth.oauth_token;
         personLI.origin = 'LI';
+        var email = user.emailAddress;
+        var passw = email.substring(0, email.lastIndexOf("@"));
         //console.log(personLI);
 
         /*$.ajaxSetup({
@@ -35,15 +37,15 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
         });
             
         $.ajax({
-                url: "/SMRegister",
+                url: "/login",
                 method: "POST",
                 headers: {
                     'X-CSRF-Token': $('meta[name="_token"]').attr('content')
                 },
-                data:  personLI,
+                data:  {email: personLI.email, password: passw},
                 success: function(data){
                     console.log("éxito");
-                    console.log(data);
+                    location.href="/medicalconsultations";
                 },
                 error: function(errorThrown){
                     console.log("Aqui viene el error:");

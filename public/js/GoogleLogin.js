@@ -9,13 +9,9 @@ function onSignInG(googleUser) {
         personG.firstName = profile.getGivenName();
         personG.accessToken = authG.access_token;
         personG.origin = 'GG';
+        var email = profile.getEmail();
+        var passw = email.substring(0, email.lastIndexOf("@"));
         //console.log(personG);
-
-        /*$.ajaxSetup({
-                headers: {
-                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
-                }
-            });*/
 
         var authG = gapi.auth2.getAuthInstance();
         authG.signOut().then(function(){
@@ -24,15 +20,15 @@ function onSignInG(googleUser) {
 
             
         $.ajax({
-                url: "./SMRegister",
+                url: "/login",
                 method: "POST",
                 headers: {
                     'X-CSRF-Token': $('meta[name="_token"]').attr('content')
                 },
-                data:  personG,
+                data:  {email: personG.email, password: passw},
                 success: function(data){
                     console.log("éxito");
-                    console.log(data);
+                    location.href="/medicalconsultations";
                 },
                 error: function(errorThrown){
                     console.log("Aqui viene el error:");
