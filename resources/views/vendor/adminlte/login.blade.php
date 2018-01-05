@@ -87,9 +87,10 @@
                           </div>
                         </div>
                         <div class="panel box box-danger">
-                          <div class="box-header with-border">
+                          <div class="box-header with-border" align="left">
                             <h4 class="box-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" >
+                                <i class="fa fa-fw fa-google"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" >
                                 Google
                               </a>
                             </h4>
@@ -104,9 +105,10 @@
                           </div>
                         </div>
                         <div class="panel box box-success">
-                          <div class="box-header with-border">
+                          <div class="box-header with-border" align="left">
                             <h4 class="box-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <i class="fa fa-fw fa-linkedin"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                                 LinkedIn
                               </a>
                             </h4>
