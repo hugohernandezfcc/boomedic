@@ -31,7 +31,14 @@
 
           @foreach($array->sortByDesc('updated_at') as $items) 
             <!-- timeline time label -->
+            @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y') || \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y'))
+            <li class="time-label">
+                  <span class="bg-blue">
+                    {{ \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') }}
+                  </span>
+            </li>
 
+            @endif
             
             @if($items['Type'] == 'Support Ticket')
             <li>
@@ -39,13 +46,9 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-
-                <h3 class="timeline-header no-border"><a href="#">Ticket de Soporte creado</a></h3>
+                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
-                	{{ $items['des']}}
-                </div>
-                <div class="timeline-footer">
-                  <a href="{{ url('supportTicket/index') }}" class="btn btn-secondary btn-flat btn-xs">Ver más</a>
+                	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
               </div>
             </li>
@@ -74,7 +77,7 @@
                 <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
-                	{{ $items['typemethod'] }} 
+                	<b>Tipo:</b> {{ $items['typemethod'] }} 
                 	@if( $items['typemethod'] != 'Paypal')
 	                @php
 	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
