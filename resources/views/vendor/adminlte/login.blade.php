@@ -68,7 +68,7 @@
                     <!-- /.col -->
                     <div class="box" align="center" style="border-style: none; box-shadow: none;">     - REDES SOCIALES -  <br>
                         <div class="box-group" id="accordion">
-                        <div class="panel box box-primary">
+                        <div class="panel box ">
                           <div class="box-header with-border">
                             <h4 class="box-title">
                               <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
