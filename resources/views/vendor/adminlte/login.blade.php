@@ -89,7 +89,7 @@
                         <div class="panel box box-danger">
                           <div class="box-header with-border" align="left">
                             <h4 class="box-title">
-                                <i class="fa fa-fw fa-google"></i>
+                                <i class="fa fa-fw fa-google" style="color: red;"></i>
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" >
                                 Google
                               </a>
