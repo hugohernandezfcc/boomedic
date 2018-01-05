@@ -47,7 +47,7 @@ class history extends Controller
            
            foreach($dateSupport as $date){
             $car = new Carbon($date->created_at);
-                $array[]  = collect([
+                $array[$date->created_at]  = collect([
                             'Type'       => 'Support Ticket',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
@@ -58,12 +58,12 @@ class history extends Controller
            }
         foreach($dateUser as $date){
             $car = new Carbon($date->updated_at);
-                $array[]  = collect([
+                $array[$date->created_at]  = collect([
                             'Type'       => 'User',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
                             'updated_at' => $date->updated_at,
-                            'time'       => $car->diffForHumans()
+                            'time'       => $car->diffForHumans(),
                             ]);
            }
 
@@ -73,7 +73,7 @@ class history extends Controller
            ->select('id','created_at','updated_at')->get(); */
            $car = new Carbon($date->created_at);
 
-                $array[]  = collect([
+                $array[$date->created_at]  = collect([
                             'Type'       => 'Payment Method',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
@@ -83,16 +83,17 @@ class history extends Controller
                             'cardnumber' => $date->cardnumber
                             ]);
 
+
            }
 
-
-            
+            dd($array);
+            $usuario = User::find(Auth::id());
 
         return view('history', [
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
-                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'photo'     => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                'username'  => $usuario->username,
+                'name'      => $usuario->name,
+                'photo'     => $usuario->profile_photo,
                 'dateUser'  => $dateUser,
                 'array'     => $array
 
