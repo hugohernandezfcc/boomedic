@@ -17,9 +17,6 @@ function checkLoginState() {
                 // console.log('deslogeado!!!');
             });*/
 
-            document.getElementById('loginload').class = "overlay";
-            document.getElementById('loginload2').class = "fa fa-refresh fa-spin";
-
             
             $.ajax({
                 url: "/login",
@@ -31,6 +28,8 @@ function checkLoginState() {
                 success: function(data){
                     console.log("éxito");
                     //console.log(data);
+                    document.getElementById('loginload').classList.add("overlay");
+                    document.getElementById('loginload2').classList.add("fa fa-refresh fa-spin");
                     location.href="/medicalconsultations";
 
                 },
