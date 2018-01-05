@@ -119,7 +119,7 @@
                 </div>
                 <div class="timeline-footer">
                   <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions/$items['id']') }}">Ver Transacciones realizadas con ese método</a>
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con ese método</a>
                 </div>
               </div>
             </li>
