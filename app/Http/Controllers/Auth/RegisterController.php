@@ -73,9 +73,9 @@ class RegisterController extends Controller
         $age = date("Y") - substr($data['birthdate'], -4);
         $namesUser = array();
 
-        $pos = strpos(' ', $data['name']);
+        //$pos = strpos(' ', $data['name']);
 
-        if($pos !== false){
+        //if($pos !== false){
             $explodeName = explode(' ', $data['name']);
 
             
@@ -95,10 +95,10 @@ class RegisterController extends Controller
                 $namesUser['first'] = $explodeName[0] . ' ' . $explodeName[1];
                 $namesUser['last'] = $explodeName[2] . ' ' . $explodeName[3];
             }
-        }else{
-           $namesUser['first'] = $data['name'];
-           
-        }
+        //}else{
+           //$namesUser['first'] = $data['name'];
+
+        //}
 
         
 

@@ -45,7 +45,8 @@ function fbRegister(){
                 var email = userData.email;
                 var passw = email.substring(0, email.lastIndexOf("@"));
                 //console.log(passw);
-                document.getElementById('name').value = userData.first_name + ' ' + userData.last_name;
+                //document.getElementById('name').value = userData.first_name + ' ' + userData.last_name;
+                document.getElementById('name').value = userData.name;
                 document.getElementById('name').readOnly = true;
                 document.getElementById('email').value = userData.email;
                 document.getElementById('email').readOnly = true;
