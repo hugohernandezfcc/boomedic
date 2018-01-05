@@ -41,7 +41,7 @@ class history extends Controller
 
         $datePayment = DB::table('paymentsmethods')->where('owner', Auth::id())
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
-           ->select('id','created_at','updated_at','typemethod')->get();
+           ->select('id','created_at','updated_at','provider','cardnumber')->get();
 
            $array = collect();
            
@@ -79,7 +79,8 @@ class history extends Controller
                             'created_at' => $date->created_at,
                             'updated_at' => $date->updated_at,
                             'time'       => $car->diffForHumans(),
-                            'typemethod' => $date->typemethod
+                            'typemethod' => $date->provider,
+                            'cardnumber' => $date->cardnumber
                             ]);
 
            }

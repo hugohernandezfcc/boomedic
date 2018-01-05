@@ -115,11 +115,19 @@
                 <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
-                	Tipo de método: {{ $items['typemethod'] }}
+                	{{ $items['typemethod'] }} 
+                	@if( $items['typemethod'] != 'Paypal')
+	                @php
+	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
+	                            echo $cardfin;
+
+	                @endphp
+
+	                @endif
                 </div>
                 <div class="timeline-footer">
                   <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con ese método</a>
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
                 </div>
               </div>
             </li>
