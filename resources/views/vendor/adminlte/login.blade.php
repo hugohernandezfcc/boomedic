@@ -71,7 +71,7 @@
                         <div class="panel box box-primary">
                           <div class="box-header with-border">
                             <h4 class="box-title">
-                                <div class="col-xs-8"><i class="fa fa-fw fa-facebook-official"></div>
+                                <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-facebook-official"></div>
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                                 Facebook
                                 </a>
