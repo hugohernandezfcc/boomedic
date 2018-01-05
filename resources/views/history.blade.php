@@ -31,48 +31,7 @@
 
           @foreach($array as $items) 
             <!-- timeline time label -->
-          @if(\Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y') || \Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->format('d-m-Y'))
 
-            <li class="time-label">
-                  <span class="bg-green">
-                    {{ \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') }}
-                  </span>
-            </li>
-
-            @endif
-
-          @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y') || \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(1)->format('d-m-Y'))
-            <li class="time-label">
-                  <span class="bg-blue">
-                    {{ \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') }}
-                  </span>
-            </li>
-
-            @endif
-             @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(2)->format('d-m-Y') || \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(2)->format('d-m-Y'))
-            <li class="time-label">
-                  <span class="bg-blue">
-                    {{ \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') }}
-                  </span>
-            </li>
-
-            @endif
-            @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(3)->format('d-m-Y') || \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(3)->format('d-m-Y'))
-            <li class="time-label">
-                  <span class="bg-blue">
-                    {{ \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') }}
-                  </span>
-            </li>
-
-            @endif
-            @if(\Carbon\Carbon::parse($items['created_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(4)->format('d-m-Y') || \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') == \Carbon\Carbon::now()->subDays(4)->format('d-m-Y'))
-            <li class="time-label">
-                  <span class="bg-blue">
-                    {{ \Carbon\Carbon::parse($items['updated_at'])->format('d-m-Y') }}
-                  </span>
-            </li>
-
-            @endif
             
             @if($items['Type'] == 'Support Ticket')
             <li>
