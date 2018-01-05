@@ -29,7 +29,8 @@ function checkLoginState() {
                     console.log("éxito");
                     //console.log(data);
                     document.getElementById('loginload').classList.add("overlay");
-                    document.getElementById('loginload2').classList.add("fa fa-refresh fa-spin");
+                    document.getElementById('loginload2').classList.add("fa fa-refresh");
+                    document.getElementById('loginload2').classList.add("fa-spin");
                     location.href="/medicalconsultations";
 
                 },
