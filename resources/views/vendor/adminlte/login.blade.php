@@ -72,8 +72,8 @@
                           <div class="box-header with-border" align="left">
                             <h4 class="box-title"> 
                                 <div class="col-md-1"><i class="fa fa-fw fa-facebook-official"></i></div>
-                                <a style="text-indent :5em;" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                Facebook
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    <p style="text-indent :5em;">Facebook</p>
                                 </a>
                             </h4>
                           </div>
