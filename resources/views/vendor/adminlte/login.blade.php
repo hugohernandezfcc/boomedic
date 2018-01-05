@@ -70,7 +70,7 @@
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
                           <div class="box-header with-border" align="left">
-                            <h4 class="box-title">
+                            <h4 class="box-title"> 
                                 <div class="col-md-1"><i class="fa fa-fw fa-facebook-official"></i></div>
                                 <a style="text-indent :5em;" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                                 Facebook
