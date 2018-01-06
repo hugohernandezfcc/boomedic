@@ -45,6 +45,13 @@ class history extends Controller
            ->select('id','created_at','updated_at','provider','cardnumber')->get();
 
            $array = collect();
+           $array1 = collect();
+           $array2 = collect();
+           $array3 = collect();
+           $array4 = collect();
+           $array5 = collect();
+           $array6 = collect();
+           $arraynow = collect();
            
            foreach($dateSupport as $date){
             $car = new Carbon($date->created_at);
@@ -102,6 +109,18 @@ class history extends Controller
             if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(3)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(3)->format('d-m-Y')){
                 $array3[] = $items;
             }
+           if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(4)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(4)->format('d-m-Y')){
+                $array4[] = $items;
+            }
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(5)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(5)->format('d-m-Y')){
+                $array5[] = $items;
+            }
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(6)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(6)->format('d-m-Y')){
+                $array6[] = $items;
+            }
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
+                $arraynow[] = $items;
+            }
            }
        
             //dd($array);
@@ -116,6 +135,11 @@ class history extends Controller
                 'array2'     => $array2,
                 'array1'    => $array1,
                 'array'     => $array,
+                'array3'     => $array3,
+                'array4'     => $array4,
+                'array5'     => $array5,
+                'array6'     => $array6,
+                'arraynow'     => $arraynow,
 
 
             ]
