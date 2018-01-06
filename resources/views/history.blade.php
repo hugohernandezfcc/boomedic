@@ -29,13 +29,83 @@
 					
 			@else 
 			<!-- Now -->
-		
+		@if(!$arraynow->isEmpty())
+            <!-- 1 day -->
+			<li class="time-label">
+                  <span class="bg-blue">
+                    {{ \Carbon\Carbon::parse($arraynow[0]['updated_at'])->format('d-m-Y') }}
+                  </span>
+            </li>
+            
+          @foreach($arraynow as $items) 
+            <!-- timeline time label -->
+
+            
+            @if($items['Type'] == 'Support Ticket')
+            <li>
+              <i class="fa fa-wrench bg-black"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <div class="timeline-body">
+                	<b>Asunto:</b> {{ $items['des']}} 
+                </div>
+              </div>
+            </li>
+            @endif
+
+           @if($items['Type'] == 'User')
+            <li>
+              <i class="fa fa-user bg-green"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                </h3>
+              </div>
+            </li>
+            @endif
+            <!-- END timeline item -->
+            <!-- timeline item -->
+            @if($items['Type'] == 'Payment Method')
+            <li>
+              <i class="fa fa-credit-card-alt bg-yellow"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+
+                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+
+                <div class="timeline-body">
+                	<b>Tipo:</b> {{ $items['typemethod'] }} 
+                	@if( $items['typemethod'] != 'Paypal')
+	                @php
+	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
+	                            echo $cardfin;
+
+	                @endphp
+
+	                @endif
+                </div>
+                <div class="timeline-footer">
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
+                </div>
+              </div>
+            </li>
+            @endif
+
+            @endforeach
+         @endif   
+ 		@if(!$array1->isEmpty())
             <!-- 1 day -->
 			<li class="time-label">
                   <span class="bg-blue">
                     {{ \Carbon\Carbon::parse($array1[0]['updated_at'])->format('d-m-Y') }}
                   </span>
             </li>
+            
           @foreach($array1 as $items) 
             <!-- timeline time label -->
 
@@ -96,11 +166,16 @@
             @endif
 
             @endforeach
-            <li class="time-label">
-                  <span class="bg-green">
+         @endif 
+
+         		@if(!$array2->isEmpty())
+            <!-- 1 day -->
+			<li class="time-label">
+                  <span class="bg-blue">
                     {{ \Carbon\Carbon::parse($array2[0]['updated_at'])->format('d-m-Y') }}
                   </span>
             </li>
+            
           @foreach($array2 as $items) 
             <!-- timeline time label -->
 
@@ -161,6 +236,286 @@
             @endif
 
             @endforeach
+         @endif   
+
+         		@if(!$array3->isEmpty())
+            <!-- 1 day -->
+			<li class="time-label">
+                  <span class="bg-blue">
+                    {{ \Carbon\Carbon::parse($array3[0]['updated_at'])->format('d-m-Y') }}
+                  </span>
+            </li>
+            
+          @foreach($array3 as $items) 
+            <!-- timeline time label -->
+
+            
+            @if($items['Type'] == 'Support Ticket')
+            <li>
+              <i class="fa fa-wrench bg-black"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <div class="timeline-body">
+                	<b>Asunto:</b> {{ $items['des']}} 
+                </div>
+              </div>
+            </li>
+            @endif
+
+           @if($items['Type'] == 'User')
+            <li>
+              <i class="fa fa-user bg-green"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                </h3>
+              </div>
+            </li>
+            @endif
+            <!-- END timeline item -->
+            <!-- timeline item -->
+            @if($items['Type'] == 'Payment Method')
+            <li>
+              <i class="fa fa-credit-card-alt bg-yellow"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+
+                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+
+                <div class="timeline-body">
+                	<b>Tipo:</b> {{ $items['typemethod'] }} 
+                	@if( $items['typemethod'] != 'Paypal')
+	                @php
+	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
+	                            echo $cardfin;
+
+	                @endphp
+
+	                @endif
+                </div>
+                <div class="timeline-footer">
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
+                </div>
+              </div>
+            </li>
+            @endif
+
+            @endforeach
+         @endif  
+
+         		@if(!$array4->isEmpty())
+            <!-- 1 day -->
+			<li class="time-label">
+                  <span class="bg-blue">
+                    {{ \Carbon\Carbon::parse($array4[0]['updated_at'])->format('d-m-Y') }}
+                  </span>
+            </li>
+            
+          @foreach($array4 as $items) 
+            <!-- timeline time label -->
+
+            
+            @if($items['Type'] == 'Support Ticket')
+            <li>
+              <i class="fa fa-wrench bg-black"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <div class="timeline-body">
+                	<b>Asunto:</b> {{ $items['des']}} 
+                </div>
+              </div>
+            </li>
+            @endif
+
+           @if($items['Type'] == 'User')
+            <li>
+              <i class="fa fa-user bg-green"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                </h3>
+              </div>
+            </li>
+            @endif
+            <!-- END timeline item -->
+            <!-- timeline item -->
+            @if($items['Type'] == 'Payment Method')
+            <li>
+              <i class="fa fa-credit-card-alt bg-yellow"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+
+                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+
+                <div class="timeline-body">
+                	<b>Tipo:</b> {{ $items['typemethod'] }} 
+                	@if( $items['typemethod'] != 'Paypal')
+	                @php
+	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
+	                            echo $cardfin;
+
+	                @endphp
+
+	                @endif
+                </div>
+                <div class="timeline-footer">
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
+                </div>
+              </div>
+            </li>
+            @endif
+
+            @endforeach
+         @endif  
+         		@if(!$array5->isEmpty())
+            <!-- 1 day -->
+			<li class="time-label">
+                  <span class="bg-blue">
+                    {{ \Carbon\Carbon::parse($array5[0]['updated_at'])->format('d-m-Y') }}
+                  </span>
+            </li>
+            
+          @foreach($array5 as $items) 
+            <!-- timeline time label -->
+
+            
+            @if($items['Type'] == 'Support Ticket')
+            <li>
+              <i class="fa fa-wrench bg-black"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <div class="timeline-body">
+                	<b>Asunto:</b> {{ $items['des']}} 
+                </div>
+              </div>
+            </li>
+            @endif
+
+           @if($items['Type'] == 'User')
+            <li>
+              <i class="fa fa-user bg-green"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                </h3>
+              </div>
+            </li>
+            @endif
+            <!-- END timeline item -->
+            <!-- timeline item -->
+            @if($items['Type'] == 'Payment Method')
+            <li>
+              <i class="fa fa-credit-card-alt bg-yellow"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+
+                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+
+                <div class="timeline-body">
+                	<b>Tipo:</b> {{ $items['typemethod'] }} 
+                	@if( $items['typemethod'] != 'Paypal')
+	                @php
+	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
+	                            echo $cardfin;
+
+	                @endphp
+
+	                @endif
+                </div>
+                <div class="timeline-footer">
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
+                </div>
+              </div>
+            </li>
+            @endif
+
+            @endforeach
+         @endif  
+
+         		@if(!$array6->isEmpty())
+            <!-- 1 day -->
+			<li class="time-label">
+                  <span class="bg-blue">
+                    {{ \Carbon\Carbon::parse($array6[0]['updated_at'])->format('d-m-Y') }}
+                  </span>
+            </li>
+            
+          @foreach($array6 as $items) 
+            <!-- timeline time label -->
+
+            
+            @if($items['Type'] == 'Support Ticket')
+            <li>
+              <i class="fa fa-wrench bg-black"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <div class="timeline-body">
+                	<b>Asunto:</b> {{ $items['des']}} 
+                </div>
+              </div>
+            </li>
+            @endif
+
+           @if($items['Type'] == 'User')
+            <li>
+              <i class="fa fa-user bg-green"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                </h3>
+              </div>
+            </li>
+            @endif
+            <!-- END timeline item -->
+            <!-- timeline item -->
+            @if($items['Type'] == 'Payment Method')
+            <li>
+              <i class="fa fa-credit-card-alt bg-yellow"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+
+                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+
+                <div class="timeline-body">
+                	<b>Tipo:</b> {{ $items['typemethod'] }} 
+                	@if( $items['typemethod'] != 'Paypal')
+	                @php
+	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
+	                            echo $cardfin;
+
+	                @endphp
+
+	                @endif
+                </div>
+                <div class="timeline-footer">
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
+                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
+                </div>
+              </div>
+            </li>
+            @endif
+
+            @endforeach
+         @endif  
             @endif
             <!-- END timeline item -->
             <li>
