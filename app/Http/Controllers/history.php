@@ -44,8 +44,15 @@ class history extends Controller
            ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->select('id','created_at','updated_at','provider','cardnumber')->get();
 
+           $arraynow = collect();
+           $array1 = collect();
+           $array2 = collect();
+           $array3 = collect();
+           $array4 = collect();
+           $array5 = collect();
+           $array6 = collect();
            $array = collect();
-           
+
            foreach($dateSupport as $date){
             $car = new Carbon($date->created_at);
                 $array[$date->updated_at]  = collect([
@@ -92,15 +99,38 @@ class history extends Controller
            foreach($array->sortByDesc('updated_at') as $items){
             if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
                 $arraynow[] = $items;
+                $dat[0] =  Carbon::parse($items['updated_at'])->format('d-m-Y');
+
             }
             if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(1)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(1)->format('d-m-Y')){
                 $array1[] = $items;
+                $dat[1] =  Carbon::parse($items['updated_at'])->format('d-m-Y');
+
             }
             if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(2)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(2)->format('d-m-Y')){
                 $array2[] = $items;
+                $dat[2] =  Carbon::parse($items['updated_at'])->format('d-m-Y');
+
             }
             if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(3)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(3)->format('d-m-Y')){
                 $array3[] = $items;
+                $dat[3] =  Carbon::parse($items['updated_at'])->format('d-m-Y');
+
+            }
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(4)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(4)->format('d-m-Y')){
+                $array4[] = $items;
+                $dat[4] =  Carbon::parse($items['updated_at'])->format('d-m-Y');
+
+            }
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(5)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(5)->format('d-m-Y')){
+                $array5[] = $items;
+                $dat[5] =  Carbon::parse($items['updated_at'])->format('d-m-Y');
+               
+            }
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(6)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(6)->format('d-m-Y')){
+                $array6[] = $items;
+                $dat[6] = Carbon::parse($items['updated_at'])->format('d-m-Y');
+
             }
            }
        
@@ -116,7 +146,13 @@ class history extends Controller
                 'array2'     => $array2,
                 'array1'    => $array1,
                 'array'     => $array,
-                'arraynow'  => $arraynow
+                'arraynow'  => $arraynow,
+                'array3'     => $array3,
+                'array4'     => $array4,
+                'array5'     => $array5,
+                'array6'     => $array6,
+                'dat'        => $dat
+
 
             ]
         );
