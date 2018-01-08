@@ -49,7 +49,7 @@
                 <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
-                	<b>Estatus:</b> {{ $items['status']}} <br/>
+                	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
               </div>
@@ -132,7 +132,7 @@
                 <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
-                	<b>Estatus:</b> {{ $items['status']}} <br/>
+                	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
               </div>
@@ -217,7 +217,7 @@
                 <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
-                	<b>Estatus:</b> {{ $items['status']}} <br/>
+                	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
               </div>
@@ -293,7 +293,7 @@
           @foreach($array3 as $items) 
             <!-- timeline time label -->
 
-                      @if($items['Type'] == 'Medical Appointments')
+          @if($items['Type'] == 'Medical Appointments')
             <li>
               <i class="fa fa-user-md bg-blue"></i>
 
@@ -302,7 +302,7 @@
                 <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
-                	<b>Estatus:</b> {{ $items['status']}} <br/>
+                	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
               </div>
@@ -387,7 +387,7 @@
                 <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
-                	<b>Estatus:</b> {{ $items['status']}} <br/>
+                	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
               </div>
@@ -471,7 +471,7 @@
                 <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
-                	<b>Estatus:</b> {{ $items['status']}} <br/>
+                	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
               </div>
@@ -555,7 +555,7 @@
                 <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
-                	<b>Estatus:</b> {{ $items['status']}} <br/>
+                	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
               </div>
