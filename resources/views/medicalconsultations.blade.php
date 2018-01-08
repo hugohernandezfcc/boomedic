@@ -252,7 +252,7 @@
                 
                  <div class="box-header with-border"> 
                   <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="display:block; height:100%; width:100%;font-size: 13px;">
                         Citas médicas registradas
                   </a>
               </h4>
@@ -279,7 +279,7 @@
                                  @endif 
                                                          @if($loop->iteration > 2)
                                                          <div class="col-sm-12" style="text-align: right;">
-                                                          <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn-xs">
+                                                          <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default btn-xs">
                                                          más detalles... <i class="fa fa-arrow-right"></i>
                                                          </a>
                                                          </div>
