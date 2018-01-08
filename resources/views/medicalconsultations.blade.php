@@ -244,8 +244,10 @@
    No hay citas registradas para los próximos 7 días...
  </div>
  @else
+<div class="box-body">
  @foreach($appointments as $appo)
 @if($loop->iteration < 3)
+
               <div class="col-sm-12">
                     <div class="info-box sm bg-gray">
                       @if($loop->iteration == 1)
@@ -263,13 +265,14 @@
              @endif 
              @if($loop->iteration > 2)
              <div class="col-sm-12" style="text-align: right;">
-              <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
+              <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default btn-xs">
              Ver todos... <i class="fa fa-arrow-right"></i>
              </a>
              </div>
              @break
              @endif 
  @endforeach
+</div>
  @endif
           
    <form>
