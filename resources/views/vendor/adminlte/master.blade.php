@@ -108,7 +108,7 @@
           .footer {
           position:fixed;
           bottom:0;
-          width: 90%;
+          width: 85%;
           }
           .info-box.sm {
 
