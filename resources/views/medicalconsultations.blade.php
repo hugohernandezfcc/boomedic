@@ -257,7 +257,7 @@
                       <span class="info-box-icon sm bg-black"><i class="fa fa-heartbeat"></i></span>
                       @endif
                       <div class="info-box-content sm">
-                        <b>Cita en {{ $appo->workplace}}</b>
+                        <b>Cita en {{ $appo->workplace}}</b><br/>
                        <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y') }}</span>            
                       </div>
    @endif 
