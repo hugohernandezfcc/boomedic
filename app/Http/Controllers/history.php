@@ -47,9 +47,9 @@ class history extends Controller
 
         $dateAppointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
-           ->join('labor_information', 'medical_appointments.workplace', '=', 'laborinformation.id')
+           ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
            ->where( 'medical_appointments.created_at', '>', Carbon::now()->subDays(21))
-           ->select('id','medical_appointments.created_at','medical_appointments.updated_at','medical_appointments.user_doctor','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace')->get();
+           ->select('medical_appointments.id','medical_appointments.created_at','medical_appointments.updated_at','medical_appointments.user_doctor','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace')->get();
 
            $array = collect();
            $array1 = collect();
