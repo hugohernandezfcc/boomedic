@@ -897,10 +897,11 @@
 					              <b>{{ $labor->workplace}}</b><br/>
 					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
 					            </div>
+					           <div align="right">
+					          	<a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a></div>
 					            <!-- /.info-box-content -->
 					          </div>
-					        <div align="right">
-					          	<a href = "{{ url('doctor/delete/') }} {{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a></div>
+
 					          <!-- /.info-box -->
 					        </div>
 					   @endif	
@@ -1226,11 +1227,12 @@
 					            <div class="info-box-content">
 					              <b>{{ $labor->workplace}}</b><br/>
 					              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
+					            <div align="right">
+					          	<a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a></div>
 					            </div>
 					            <!-- /.info-box-content -->
 					          </div>
-					          <div align="right">
-					          	<a href = "{{ url('doctor/delete/') }} {{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a></div>
+
 					          <!-- /.info-box -->
 					        </div><br/>    
 			
