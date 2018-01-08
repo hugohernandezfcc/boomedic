@@ -1039,12 +1039,12 @@
 
           google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
             return function() {
-              infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Precio: "+loc[i][5]);
+              infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
               infowindow.open(map, marker);
               console.log(marker);
               
 
-              showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Precio: "+loc[i][5]);
+              showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
           
 
             }
@@ -1053,7 +1053,7 @@
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {  
               
-              showInfo(loc[i][2] + ', ' + loc[i][3] + '. <br/><br/> <b>Citas disponibles</b>: <select class="form-control" name="placeatention" id="placeatention" size="1"><option id="opc01">-- Ninguno -- </option><option>' + loc[i][4] +'</option></select> ');
+              showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/><br/> <b>Citas disponibles</b>: <select class="form-control" name="placeatention" id="placeatention" size="1"><option id="opc01">-- Ninguno -- </option><option>' + loc[i][4] +'</option></select> ');
               $('#modal-register-cite').modal('show');
             }
           })(marker, i));
