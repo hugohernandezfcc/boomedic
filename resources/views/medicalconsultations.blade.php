@@ -907,13 +907,13 @@
         if(keyWordValue == ''){
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5]]);
             }
           }
         }else{
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue && datos[i][3] == keyWordValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5]]);
             }
           }          
         }
@@ -926,7 +926,7 @@
 
           if(metros < rangeValue){
             //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4]]);
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
           }
         }
 
@@ -957,7 +957,7 @@
 
           for(var i = 0; i < generalM.length; i++) {
             if(generalM[i][2] == keyWordValue){
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4]]);
             }
           }
 
@@ -968,8 +968,8 @@
             console.log('Nombre:: '+res[i][3]);
 
             if(metros < rangeValue){
-               //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
-               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4]]);
+               //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio]
+               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
              }
           }
 
@@ -995,13 +995,13 @@
               console.log('Nombre:: '+generalM[i][2]);
               console.log(metros +'<'+ rangeValue);
 
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4]]);
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
             }
           }
 
           for(var i = 0; i < res.length; i++) {
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4]]);
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
           }
 
           if(loc.length <= 0){
@@ -1039,12 +1039,12 @@
 
           google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
             return function() {
-              infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]);
+              infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Precio: "+loc[i][5]);
               infowindow.open(map, marker);
               console.log(marker);
               
 
-              showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]);
+              showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Precio: "+loc[i][5]);
           
 
             }
