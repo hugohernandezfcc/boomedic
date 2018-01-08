@@ -258,7 +258,7 @@
                       @endif
                       <div class="info-box-content sm">
                         <b>Cita en {{ $appo->workplace}}</b><br/>
-                       <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y i') }}</span>            
+                       <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
                       </div>
    @endif 
                            @if($loop->iteration > 2)
