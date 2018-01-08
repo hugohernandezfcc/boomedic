@@ -10,6 +10,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 
+    <!-- Para molécula -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
 	<script type="text/javascript">
 
 			Dropzone.options.myAwesomeDropzone = { 
@@ -384,7 +390,186 @@
 
 		              	</div>
 		              	<div class="tab-pane" id="tab_2">
-		                	space..
+		                	<!-- space.. -->
+		                	<!-- TODO LO DE FAMILIA: MOLÉCULA FAMILIAR -->
+
+		                	<style type="text/css">
+		                		.link line {
+								    stroke: #F1F1F1;
+								    stroke-width: 3px;
+								  }
+								  .node circle {
+								    stroke: #F2F2F2;
+								    stroke-width: 0.05px;
+								  }
+								  .node text {
+								    font: 10px sans-serif;
+								    pointer-events: none;
+								  }
+								  .node.fixed {
+								    fill: #f00;
+								  }
+								  /* Modal */
+							      .modal-header, h4, .close {
+							          color:black;
+							          text-align: center;
+							          font-size: 100%;
+							          font-weight: bold;
+							      }
+							      .btn-default {
+							          box-shadow: 1px 2px 5px #000000;   
+							      }
+		                	</style>
+
+		                	<!-- Modal delete -->
+		                	<div class="modal fade" id="myModal" role="dialog">
+							    <div class="modal-dialog modal-sm">    
+							      <!-- Modal content-->
+							      <div class="modal-content">
+
+							        <div class="modal-header" >
+							          <!-- Tachecito para cerrar -->        
+							          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							            <span aria-hidden="true">&times;</span>
+							          </button>
+							          <!-- <label for="Speciality" id="label02"></label> -->
+							          <h4 class="modal-title">Eliminar familiar</h4>
+							        </div>
+							        <div class="modal-body" >
+							            ¿Desea eliminar la relación familiar?
+							        </div>
+							        <div class="modal-footer">
+							          <center>
+							            <!-- <button type="button" id="button01" class="btn btn-secondary btn-block btn-flat" onclick="start();">
+							              <label for="button01" id="label07"></label>
+							            </button> -->
+							            <button type="button" id="button01" class="btn btn-secondary btn-block btn-flat">Confirmar</button>
+							          </center>
+							        </div>
+							      </div>      
+							    </div>
+							</div>
+
+							<script>
+							  var width = 350,
+							      height = 350;
+
+							  var color = d3.scale.category20();
+
+							  var radius = d3.scale.sqrt()
+							      .range([0, 6]);
+
+							  var svg = d3.select("body").append("svg")
+							      .attr("width", width)
+							      .attr("height", height);
+							      /*.attr("viewBox", "0 0 1500 1000");*/
+
+							  var force = d3.layout.force()
+							      .size([width, height])
+							      .charge(-600)
+							      .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 10; });
+
+							  var graph = {
+							    "nodes": [
+							      {"id": "0", "size": 20},
+							      {"id": "1", "size": 10},
+							      {"id": "2", "size": 10},
+							      {"id": "3", "size": 10},
+							      {"id": "4", "size": 10}
+							    ],
+							    "links": [
+							      {"source": 0, "target": 1},
+							      {"source": 0, "target": 2},
+							      {"source": 0, "target": 3},
+							      {"source": 0, "target": 4}
+							    ]
+							  };
+
+							  var col = [
+							        'https://t1.ea.ltmcdn.com/es/images/1/5/1/img_los_10_gatos_mas_raros_del_mundo_22151_600.jpg', 
+							        'https://misanimales.com/wp-content/uploads/2016/06/hipertiroidismo.jpg', 
+							        'https://static.vix.com/es/sites/default/files/styles/large/public/imj/hogartotal/4/459092279.jpg?itok=NFh8uYE9', 
+							        'https://estaticos.muyinteresante.es/uploads/images/test/5729feee5cafe8a65f8b4567/gatos-portada.jpg', 
+							        'https://estaticos.muyinteresante.es/uploads/images/article/594954595bafe8a1a53c98d7/gato_0.jpg',
+							        'https://t1.ea.ltmcdn.com/es/images/1/5/1/img_los_10_gatos_mas_raros_del_mundo_22151_600.jpg', 
+							        'https://misanimales.com/wp-content/uploads/2016/06/hipertiroidismo.jpg', 
+							        'https://static.vix.com/es/sites/default/files/styles/large/public/imj/hogartotal/4/459092279.jpg?itok=NFh8uYE9', 
+							        'https://estaticos.muyinteresante.es/uploads/images/test/5729feee5cafe8a65f8b4567/gatos-portada.jpg', 
+							        'https://estaticos.muyinteresante.es/uploads/images/article/594954595bafe8a1a53c98d7/gato_0.jpg',
+							        'https://t1.ea.ltmcdn.com/es/images/1/5/1/img_los_10_gatos_mas_raros_del_mundo_22151_600.jpg', 
+							        'https://misanimales.com/wp-content/uploads/2016/06/hipertiroidismo.jpg', 
+							        'https://static.vix.com/es/sites/default/files/styles/large/public/imj/hogartotal/4/459092279.jpg?itok=NFh8uYE9'
+							        ];
+
+							    force
+							        .nodes(graph.nodes)
+							        .links(graph.links)
+							        .on("tick", tick)
+							        .start();
+
+							    var link = svg.selectAll(".link")
+							        .data(graph.links)
+							        .enter().append("g")
+							        .attr("class", "link");
+							    link.append("line");
+
+							    var node = svg.selectAll(".node")
+							        .data(graph.nodes)
+							      .enter().append("g")
+							        .attr("class", "node")
+							        .on("dblclick", dblclick)
+							        .call(force.drag);
+
+							    node.append("circle")
+							        .attr("r", function(d) { return radius(d.size); })
+							        //.attr("fill", "#FFFFFF")
+							        .style("fill", function(d, i) {
+							          var defs = svg.append('svg:defs');
+							          defs.append("svg:pattern")
+							          .attr("id", i)
+							          .attr("width", 1)
+							          .attr("height", 1)
+							          .attr("patternUnits", "objectBoundingBox")
+							          .append("svg:image")
+							          .attr("xlink:href", col[i])
+							          .attr("width", d.size*2 + 20)
+							          .attr("height", d.size*2 + 20)
+							          .attr("x", -1)
+							          .attr("y", -1);
+							          return "url(#" + i + ")";
+							        });
+
+							    node.append("title")
+							      .text(function(d) { return d.id; });
+
+							    function tick() {
+							      link.selectAll("line")
+							          .attr("x1", function(d) { return d.source.x; })
+							          .attr("y1", function(d) { return d.source.y; })
+							          .attr("x2", function(d) { return d.target.x; })
+							          .attr("y2", function(d) { return d.target.y; });
+
+							      node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+							    }
+
+							    function dblclick(d) {
+							      $("#myModal").modal({backdrop: "static"});      
+							      //alert(d.id);
+							      //d3.select(this).remove();
+							      //d3.select(this).classed("fixed", d.fixed = true);
+							    }
+
+							    function deleteRel(d){
+							      
+							    }
+
+
+							  </script>
+
+
+		                	<!-- TERMINA TODO LO DE FAMILIA: MOLÉCULA FAMILIAR -->
+
+
 		              	</div>
 		              	<div class="tab-pane" id="tab_3" style="height: 250px;">
 		              		<div id="mapAddressUser" ></div>
