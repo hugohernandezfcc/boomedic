@@ -40,7 +40,22 @@
           @foreach($arraynow as $items) 
             <!-- timeline time label -->
 
-            
+          @if($items['Type'] == 'Medical Appointments')
+            <li>
+              <i class="fa fa-wrench bg-black"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
+                <div class="timeline-body">
+                	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
+                	<b>Estatus:</b> {{ $items['status']}} <br/>
+                	<b>Lugar:</b> {{ $items['workplace']}} 
+                </div>
+              </div>
+            </li>
+            @endif
+
             @if($items['Type'] == 'Support Ticket')
             <li>
               <i class="fa fa-wrench bg-black"></i>
