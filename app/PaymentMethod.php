@@ -18,7 +18,8 @@ class PaymentMethod extends Model
 		'cardnumber',
 		'owner',
 		'paypal_email',
-		'bank'
+		'bank',
+		'notified'
     ];
 
     public function user(){
