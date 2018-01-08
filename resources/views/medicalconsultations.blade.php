@@ -258,13 +258,13 @@
                       @endif
                       <div class="info-box-content sm">
                         <b>Cita en {{ $appo->workplace}}</b><br/>
-                       <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y') }}</span>            
+                       <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y i') }}</span>            
                       </div>
    @endif 
                            @if($loop->iteration > 2)
                            <div class="col-sm-12" style="text-align: right;">
                             <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn-xs">
-                           Ver todas... <i class="fa fa-arrow-right"></i>
+                           Más detalles... <i class="fa fa-arrow-right"></i>
                            </a>
                            </div>
                            @break
