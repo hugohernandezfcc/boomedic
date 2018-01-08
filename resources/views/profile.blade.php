@@ -12,9 +12,9 @@
 
     <!-- Para molécula -->
     <script src="https://d3js.org/d3.v3.min.js"></script>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript">
 
@@ -462,7 +462,8 @@
 							  var radius = d3.scale.sqrt()
 							      .range([0, 6]);
 
-							  var svg = d3.select("tab_2").append("svg")
+							  //var svg = d3.select("tab_2").append("svg")
+							  var svg = d3.select("svg")
 							      .attr("width", width)
 							      .attr("height", height);
 							      /*.attr("viewBox", "0 0 1500 1000");*/
