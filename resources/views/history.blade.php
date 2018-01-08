@@ -22,7 +22,7 @@
               <i class="fa fa-warning bg-red"></i>
 
               <div class="timeline-item">
-                <h3 class="timeline-header no-border"> No tiene historial registrado hasta ahora. </h3>
+                <h3 class="timeline-header no-border"> No tiene historial registrado en estos últimos 7 días. </h3>
               </div>
             </li>
 					
@@ -518,12 +518,27 @@
          @endif  
             @endif
             <!-- END timeline item -->
-            <li>
-              <i class="fa fa-clock-o bg-gray"></i>
-              <br/>
-              <div align="right">
+            
+			<br/>
+			@if($mode != 'more')
+            <div align="right">
               <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> Ver más del histórico </a>
           	</div>
+          	@endif
+          	@if($mode == 'more')
+           <div align="right">
+              <a href="{{ url('/history/index') }}" class="btn btn-secondary btn-flat btn-xs"> Volver </a>
+          	</div>
+          	
+          	@if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
+          	<div align="center">
+              No hay más histórico registrado en los días anteriores.
+          	</div>
+          	@endif
+          	@endif
+          	<li>
+              <i class="fa fa-clock-o bg-gray"></i>
+
             </li>
             
           </ul>
