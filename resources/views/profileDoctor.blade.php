@@ -1221,8 +1221,8 @@
 					          <div class="info-box bg-gray">
 					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
 					            <div class="info-box-content">
-					              <b>{{ $labor->workplace}}</b>    <a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a><br/>
-					             <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
+					              <b>{{ $labor->workplace}}</b><br/>
+					             <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span><a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a>
 					     						        
 					            </div>
 					          </div>
