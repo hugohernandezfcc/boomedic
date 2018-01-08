@@ -245,36 +245,54 @@
  </div>
  @else
 <div class="box-body">
-  <div class="col-sm-12">
- @foreach($appointments->sortByDesc('when') as $appo)
-@if($loop->iteration < 3)
+      <div class="box-group" id="accordion">
+                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+             
+                <div class="panel box box-default" style="border-top-color: black;">
+                
+                 <div class="box-header with-border"> 
+                  <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+                        Citas médicas registradas
+                  </a>
+              </h4>
+                    </div>
+                   
+                  <div id="collapseOne" class="panel-collapse collapse in" >
 
-              <div class="col-sm-6">
-                    <div class="info-box sm bg-gray">
-                      @if($loop->iteration == 1)
-                      <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-heartbeat"></i></span>
-                      @endif
-                      @if($loop->iteration == 2)
-                      <span class="info-box-icon sm bg-black"><i class="fa fa-heartbeat"></i></span>
-                      @endif
-                      <div class="info-box-content sm">
-                        <b>Cita en {{ $appo->workplace}}</b><br/>
-                       <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
-                      </div>    
+                    <div class="box-body">
+                         @foreach($appointments->sortByDesc('when') as $appo)
+                              @if($loop->iteration < 3)
+
+                                            <div class="col-sm-12">
+                                                  <div class="info-box sm bg-gray">
+                                                    @if($loop->iteration == 1)
+                                                    <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-heartbeat"></i></span>
+                                                    @endif
+                                                    @if($loop->iteration == 2)
+                                                    <span class="info-box-icon sm bg-black"><i class="fa fa-heartbeat"></i></span>
+                                                    @endif
+                                                    <div class="info-box-content sm">
+                                                      <b>Cita en {{ $appo->workplace}}</b><br/>
+                                                     <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y') }}</span>            
+                                                    </div>
+                                 @endif 
+                                                         @if($loop->iteration > 2)
+                                                         <div class="col-sm-12" style="text-align: right;">
+                                                          <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn-xs">
+                                                         más detalles... <i class="fa fa-arrow-right"></i>
+                                                         </a>
+                                                         </div>
+                                                         @break
+                                                         @endif 
+                                                  </div>
+                                                </div>
+
+                         @endforeach
                     </div>
                   </div>
-                  @endif 
-                   @if($loop->iteration > 2)
-                           <div class="col-sm-12" style="text-align: right;">
-                            <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn-xs">
-                           Más detalles... <i class="fa fa-arrow-right"></i>
-                           </a>
-                           </div>
-                           @break
-                   @endif 
-
- @endforeach
-</div>
+                </div>
+            </div>    
 </div>
  @endif
           
