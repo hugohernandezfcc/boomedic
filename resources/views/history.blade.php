@@ -46,7 +46,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
@@ -129,7 +129,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
@@ -214,7 +214,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
@@ -299,7 +299,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
@@ -384,7 +384,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
@@ -468,7 +468,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
@@ -552,7 +552,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                 	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
