@@ -421,6 +421,9 @@
 							      }
 		                	</style>
 
+		                	<!-- Área del gráfico -->
+		                	<svg ></svg>
+
 		                	<!-- Modal delete -->
 		                	<div class="modal fade" id="myModal" role="dialog">
 							    <div class="modal-dialog modal-sm">    
