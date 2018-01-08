@@ -412,6 +412,6 @@ class doctor extends Controller
     
     // redirect
     
-   return redirect('doctor/doctor');
+   return redirect('doctor/doctor'.Auth::id() );
     }
 }
