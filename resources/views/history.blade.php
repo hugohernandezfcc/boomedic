@@ -49,7 +49,7 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
+                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
@@ -132,7 +132,7 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
+                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
@@ -217,7 +217,7 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
+                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }}<br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
@@ -302,7 +302,7 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
+                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
@@ -387,7 +387,7 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
+                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
@@ -471,7 +471,7 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
+                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
@@ -555,7 +555,7 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ $items['when']}} <br/>
+                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>

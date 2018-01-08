@@ -274,7 +274,7 @@
                                  @endif 
                                                          @if($loop->iteration > 2)
                                                          <div class="col-sm-12" style="text-align: right;">
-                                                          <a href="{{ url('/medicalconsultations') }}/{{ $userId }}" class="btn btn-secondary btn-xs">
+                                                          <a href="{{ url('/medicalconsultations') }}/{{ $userId }}" class="btn btn-default btn-xs">
                                                          Más detalles... <i class="fa fa-arrow-right"></i>
                                                          </a>
                                                          </div>
