@@ -244,22 +244,17 @@
    No hay citas registradas para los próximos días...
  </div>
  @else
-<div class="box-body">
       <div class="box-group" id="accordion">
-                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-             
                 <div class="panel box box-default" style="border-top-color: gray;">
                 
                  <div class="box-header with-border"> 
                   <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-dark" style="display:block; height:100%; width:100%;font-size: 13px;">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="display:block; height:100%; width:100%;font-size: 12px;">
                         Citas médicas registradas
                   </a>
               </h4>
-                    </div>
-                   
+                    </div> 
                   <div id="collapseOne" class="panel-collapse collapse" >
-
                     <div class="box-body">
                          @foreach($appointments->sortByDesc('when') as $appo)
                               @if($loop->iteration < 3)
@@ -293,7 +288,6 @@
                   </div>
                 </div>
             </div>    
-</div>
  @endif
           
    <form>
