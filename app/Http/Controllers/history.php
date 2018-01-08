@@ -44,6 +44,13 @@ class history extends Controller
            ->where( 'created_at', '>', Carbon::now()->subDays(21))
            ->select('id','created_at','updated_at','provider','cardnumber')->get();
 
+
+        $dateAppointments = DB::table('medical_appointments')
+           ->join('users', 'medical_appointments.user', '=', 'users.id')
+           ->join('labor_information', 'medical_appointments.workplace', '=', 'laborinformation.id')
+           ->where( 'medical_appointments.created_at', '>', Carbon::now()->subDays(21))
+           ->select('id','medical_appointments.created_at','medical_appointments.updated_at','medical_appointments.user_doctor','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace')->get();
+
            $array = collect();
            $array1 = collect();
            $array2 = collect();
@@ -89,6 +96,26 @@ class history extends Controller
                             'time'       => $car->diffForHumans(),
                             'typemethod' => $date->provider,
                             'cardnumber' => $date->cardnumber
+                            ]);
+
+
+           }
+
+          foreach($dateAppointments as $date){
+           /* $dateTransaction = DB::table('transaction_bank')->where('payment', $date)
+           ->where( 'created_at', '>', Carbon::now()->subDays(7))
+           ->select('id','created_at','updated_at')->get(); */
+           $car = new Carbon($date->created_at);
+
+                $array[]  = collect([
+                            'Type'       => 'Medical Appointments',
+                            'id'         =>  $date->id,
+                            'created_at' => $date->created_at,
+                            'updated_at' => $date->updated_at,
+                            'time'       => $car->diffForHumans(),
+                            'when'       => $date->when,
+                            'workplace' => $date->workplace,
+                            'status'    => $date->status
                             ]);
 
 
