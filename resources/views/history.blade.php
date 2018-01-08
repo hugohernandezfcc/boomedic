@@ -519,7 +519,7 @@
             @endif
             <!-- END timeline item -->
             <li>
-              <i class="fa fa-clock-o bg-gray"><a href"{{ url('/payment/index') }}"> Ver más del histórico </a></i>
+              <i class="fa fa-clock-o bg-gray"></i><a href"{{ url('/payment/index') }}"> Ver más del histórico </a>
             </li>
             
           </ul>
