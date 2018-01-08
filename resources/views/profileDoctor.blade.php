@@ -900,7 +900,7 @@
 					            <!-- /.info-box-content -->
 					          </div>
 					        <div align="right">
-					          	<a href = "{{ url('doctor/delete/') }} {{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"></a></div>
+					          	<a href = "{{ url('doctor/delete/') }} {{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a></div>
 					          <!-- /.info-box -->
 					        </div>
 					   @endif	
@@ -1230,7 +1230,7 @@
 					            <!-- /.info-box-content -->
 					          </div>
 					          <div align="right">
-					          	<a href = "{{ url('doctor/delete/') }} {{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"></a></div>
+					          	<a href = "{{ url('doctor/delete/') }} {{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a></div>
 					          <!-- /.info-box -->
 					        </div><br/>    
 			
