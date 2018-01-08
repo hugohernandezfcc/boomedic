@@ -245,7 +245,7 @@
  </div>
  @else
 <div class="box-body">
- @foreach($appointments as $appo)
+ @foreach($appointments->sortByDesc('when') as $appo)
 @if($loop->iteration < 3)
 
               <div class="col-sm-12">
@@ -260,6 +260,7 @@
                         <b>Cita en {{ $appo->workplace}}</b>
                        <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y') }}</span>            
                       </div>
+   @endif 
                            @if($loop->iteration > 2)
                            <div class="col-sm-12" style="text-align: right;">
                             <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default btn-xs">
@@ -270,7 +271,7 @@
                            @endif 
                     </div>
                   </div>
-             @endif 
+
 
  @endforeach
 </div>
