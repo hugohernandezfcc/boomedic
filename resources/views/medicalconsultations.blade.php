@@ -244,10 +244,31 @@
    No hay citas registradas para los próximos 7 días...
  </div>
  @else
- @foreach($appointments as $appointments)
-  <div  class="box-body" align="center">
-   <b>Cita próxima: {{ $appointments->when }}</b>
- </div>
+ @foreach($appointments as $appo)
+@if($loop->iteration < 3)
+              <div class="col-sm-12">
+                    <div class="info-box sm bg-gray">
+                      @if($loop->iteration == 1)
+                      <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-heartbeat"></i></span>
+                      @endif
+                      @if($loop->iteration == 2)
+                      <span class="info-box-icon sm bg-black"><i class="fa fa-heartbeat"></i></span>
+                      @endif
+                      <div class="info-box-content sm">
+                        <b>Cita en {{ $appo->workplace}}</b>
+                       <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y') }}</span>            
+                      </div>
+                    </div>
+                  </div>
+             @endif 
+             @if($loop->iteration > 2)
+             <div class="col-sm-12" style="text-align: right;">
+              <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
+             Ver todos... <i class="fa fa-arrow-right"></i>
+             </a>
+             </div>
+             @break
+             @endif 
  @endforeach
  @endif
           
