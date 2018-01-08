@@ -106,6 +106,7 @@
 
 
           .footer {
+          height: 100%;
           position:fixed;
           bottom:0;
           }
