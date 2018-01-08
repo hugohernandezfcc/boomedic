@@ -239,7 +239,17 @@
 
 
   </script>
-
+ @if($appointments->isEmpty())
+ <div  class="box-body" align="center">
+   No hay citas registradas para los próximos 7 días...
+ </div>
+ @else
+ @foreach($appointments as $appointments)
+  <div  class="box-body" align="center">
+   <b>Cita próxima: {{ $appointments->when }}</b>
+ </div>
+ @endforeach
+ @endif
           
    <form>
     
