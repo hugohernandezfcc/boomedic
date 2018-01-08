@@ -241,7 +241,7 @@
   </script>
  @if($appointments->isEmpty())
  <div  class="box-body" align="center">
-   No hay citas registradas para los próximos 7 días...
+   No hay citas registradas para los próximos días...
  </div>
  @else
 <div class="box-body">
@@ -263,7 +263,7 @@
    @endif 
                            @if($loop->iteration > 2)
                            <div class="col-sm-12" style="text-align: right;">
-                            <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default btn-xs">
+                            <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn-xs">
                            Ver todas... <i class="fa fa-arrow-right"></i>
                            </a>
                            </div>
