@@ -70,8 +70,8 @@ class HomeController extends Controller
                     'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
                     'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                     'photo'     => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                    'mode'      => $mode,
-                    'appointments' => $appointments
+                    'mode'      => $mode
+                   
                 ]
             );
         }
@@ -96,6 +96,7 @@ class HomeController extends Controller
                     'photo' => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                     'userId' => Auth::id(),
                     'labor' => $join,
+                    'appointments' => $appointments
 
                 ]
             );
