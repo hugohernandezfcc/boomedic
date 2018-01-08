@@ -407,6 +407,11 @@ class doctor extends Controller
      */
     public function destroy($id)
     {
-        //
+    DB::delete('delete from labor_information where id = ?',[$id]) ;    
+
+    
+    // redirect
+    
+   return redirect('doctor/doctor');
     }
 }

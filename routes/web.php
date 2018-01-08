@@ -190,6 +190,11 @@ Route::group(['prefix' => 'doctor'], function(){
 			'as'	=>	'cropDoctor'
 		]
 	);
+		Route::get('delete/{id}', [
+			'uses'	=>	'doctor@destroy',
+			'as'	=>	'destroy'
+		]
+	);
 });
 
 
