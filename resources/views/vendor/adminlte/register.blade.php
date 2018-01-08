@@ -112,7 +112,7 @@
                           <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="box-body">
                                 <div class="row" align="center">
-                                    <div class="g-signin2"  data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onRegisterG"></div><br>
+                                    <div class="g-signin2"  data-width="165" data-height="27" data-clientid="547942327508-ag4qscbindftv9s70u1r711jseoqfheo.apps.googleusercontent.com"data-onsuccess="onRegisterG"></div><br>
                             <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                             <div class="box-body">
                                 <div class="row">
                                     <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
-                                        api_key: 78ezayhtq8yi4u
+                                        api_key: 78maelkx5by0xp
                                         authorize: true
                                         onLoad: onLinkedInLoad2
                                         scope: r_basicprofile r_emailaddress

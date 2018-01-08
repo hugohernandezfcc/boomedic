@@ -74,7 +74,7 @@ function fbRegister(){
 
 window.fbAsyncInit = function() {
 	FB.init({
-	appId      : '179677309285533',
+	appId      : '146617092710277',
 	cookie     : true,  // enable cookies to allow the server to access 
 	                    // the session
 	xfbml      : true,  // parse social plugins on this page
