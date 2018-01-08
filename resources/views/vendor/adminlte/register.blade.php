@@ -1,6 +1,6 @@
 @extends('adminlte::master')
 <head>
-    <meta name="google-signin-client_id" content="547942327508-ag4qscbindftv9s70u1r711jseoqfheo.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="547942327508-f7mgr9nkqkrql9fkqt6mc7v54h31kvbh.apps.googleusercontent.com  ">
     <meta name="_token" content="{{ csrf_token() }}">
 </head>
 
@@ -112,7 +112,7 @@
                           <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="box-body">
                                 <div class="row" align="center">
-                                    <div class="g-signin2"  data-width="165" data-height="27" data-clientid="547942327508-ag4qscbindftv9s70u1r711jseoqfheo.apps.googleusercontent.com"data-onsuccess="onRegisterG"></div><br>
+                                    <div class="g-signin2"  data-width="165" data-height="27" data-clientid="547942327508-f7mgr9nkqkrql9fkqt6mc7v54h31kvbh.apps.googleusercontent.com  "data-onsuccess="onRegisterG"></div><br>
                             <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
                                 </div>
                             </div>
