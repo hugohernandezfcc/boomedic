@@ -522,7 +522,7 @@
               <i class="fa fa-clock-o bg-gray"></i>
               <br/>
               <div align="right">
-              <a href="{{ url('/payment/index') }}" class="btn btn-secondary btn-flat btn-xs"> Ver más del histórico </a>
+              <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> Ver más del histórico </a>
           	</div>
             </li>
             

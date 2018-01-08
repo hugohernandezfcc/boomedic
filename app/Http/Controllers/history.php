@@ -146,6 +146,12 @@ class history extends Controller
         );
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public function moredays(){
                   $user = User::find(Auth::id());
 
@@ -217,25 +223,25 @@ class history extends Controller
             //if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
                 //$arraynow[] = $items;
             //}
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(1)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(1)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(8)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(8)->format('d-m-Y')){
                 $array1[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(2)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(2)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(9)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(9)->format('d-m-Y')){
                 $array2[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(3)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(3)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(10)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(10)->format('d-m-Y')){
                 $array3[] = $items;
             }
-           if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(4)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(4)->format('d-m-Y')){
+           if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(11)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(11)->format('d-m-Y')){
                 $array4[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(5)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(5)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(12)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(12)->format('d-m-Y')){
                 $array5[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(6)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(6)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(13)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(13)->format('d-m-Y')){
                 $array6[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(7)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(7)->format('d-m-Y')){
                 $arraynow[] = $items;
             }
            }
@@ -262,13 +268,12 @@ class history extends Controller
             ]
         );
     }
-    }
-
-    /**
+        /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
 
