@@ -258,7 +258,7 @@
               </h4>
                     </div>
                    
-                  <div id="collapseOne" class="panel-collapse collapse in" >
+                  <div id="collapseOne" class="panel-collapse collapse" >
 
                     <div class="box-body">
                          @foreach($appointments->sortByDesc('when') as $appo)
@@ -274,7 +274,7 @@
                                                     @endif
                                                     <div class="info-box-content sm">
                                                       <b>Cita en {{ $appo->workplace}}</b><br/>
-                                                     <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y') }}</span>            
+                                                     <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
                                                     </div>
                                  @endif 
                                                          @if($loop->iteration > 2)
