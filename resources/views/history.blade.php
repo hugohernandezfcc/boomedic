@@ -32,7 +32,7 @@
 		@if(!$arraynow->isEmpty())
             <!-- 1 day -->
 			<li class="time-label">
-                  <span class="bg-blue">
+                  <span class="bg-gray">
                     {{ \Carbon\Carbon::parse($arraynow[0]['updated_at'])->format('d-m-Y') }}
                   </span>
             </li>
@@ -101,7 +101,7 @@
  		@if(!$array1->isEmpty())
             <!-- 1 day -->
 			<li class="time-label">
-                  <span class="bg-blue">
+                  <span class="bg-gray">
                     {{ \Carbon\Carbon::parse($array1[0]['updated_at'])->format('d-m-Y') }}
                   </span>
             </li>
@@ -171,7 +171,7 @@
          		@if(!$array2->isEmpty())
             <!-- 1 day -->
 			<li class="time-label">
-                  <span class="bg-blue">
+                  <span class="bg-gray">
                     {{ \Carbon\Carbon::parse($array2[0]['updated_at'])->format('d-m-Y') }}
                   </span>
             </li>
@@ -241,7 +241,7 @@
          		@if(!$array3->isEmpty())
             <!-- 1 day -->
 			<li class="time-label">
-                  <span class="bg-blue">
+                  <span class="bg-gray">
                     {{ \Carbon\Carbon::parse($array3[0]['updated_at'])->format('d-m-Y') }}
                   </span>
             </li>
@@ -311,7 +311,7 @@
          		@if(!$array4->isEmpty())
             <!-- 1 day -->
 			<li class="time-label">
-                  <span class="bg-blue">
+                  <span class="bg-gray">
                     {{ \Carbon\Carbon::parse($array4[0]['updated_at'])->format('d-m-Y') }}
                   </span>
             </li>
@@ -380,7 +380,7 @@
          		@if(!$array5->isEmpty())
             <!-- 1 day -->
 			<li class="time-label">
-                  <span class="bg-blue">
+                  <span class="bg-gray">
                     {{ \Carbon\Carbon::parse($array5[0]['updated_at'])->format('d-m-Y') }}
                   </span>
             </li>
@@ -450,7 +450,7 @@
          		@if(!$array6->isEmpty())
             <!-- 1 day -->
 			<li class="time-label">
-                  <span class="bg-blue">
+                  <span class="bg-gray">
                     {{ \Carbon\Carbon::parse($array6[0]['updated_at'])->format('d-m-Y') }}
                   </span>
             </li>
@@ -519,7 +519,11 @@
             @endif
             <!-- END timeline item -->
             <li>
-              <i class="fa fa-clock-o bg-gray"></i><a href"{{ url('/payment/index') }}"> Ver más del histórico </a>
+              <i class="fa fa-clock-o bg-gray"></i>
+              <br/>
+              <div align="right">
+              <a href="{{ url('/payment/index') }}" class="btn btn-secondary btn-flat btn-xs"> Ver más del histórico </a>
+          	</div>
             </li>
             
           </ul>

@@ -303,6 +303,11 @@ Route::group(['prefix' => 'history'], function(){
 		]
 	);
 
+	Route::get('moredays', [
+			'uses'	=>	'history@moredays',
+			'as'	=>	'moredays'
+		]
+	);
 
 	Route::post('store', [
 			'uses'	=>	'history@store',
