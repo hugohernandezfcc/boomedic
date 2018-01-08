@@ -113,13 +113,13 @@
           .info-box.sm {
 
               min-height: 45px;
-             font-size: 12px;
+             font-size: 13px;
               margin-bottom: 3px;
                }
               .info-box-icon.sm {
                   height: 45px;
                   width: 45px;
-                  font-size: 20px;
+                  font-size: 24px;
                   line-height: 45px;        
               }
               .info-box-content.sm {
