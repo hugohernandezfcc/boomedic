@@ -106,11 +106,11 @@
 
 
           .footer {
-          width: 100%;
           position:fixed;
           bottom:0;
           }
           .info-box.sm {
+            width: 100%;
               min-height: 45px;
              font-size: 14px;
               margin-bottom: 4px;
