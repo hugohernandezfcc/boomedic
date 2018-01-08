@@ -36,10 +36,10 @@ class HomeController extends Controller
 
              foreach($join as $labor){
                     if($labor->specialty == 'Médico General'){
-                        $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'"]';
+                        $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'"],["'.$labor->general_amount.'"]';
                     }
                     else{
-                    $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'"]';
+                    $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'"],["'.$labor->general_amount.'"]';
 
                     $sp[] = '["'.$labor->specialty.'"]';
                     $mg = '0';
