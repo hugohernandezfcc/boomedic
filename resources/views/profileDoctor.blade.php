@@ -896,8 +896,8 @@
 					            <div class="info-box-content sm">
 					              <b>{{ $labor->workplace}}</b><br/>
 					             {{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}
+					            <a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><div align="right"><i class="fa fa-trash text-muted"></div></i></a>
 					            </div>
-					            					            <span style="text-align: right;"><a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a></span>
 					          </div>
 					        </div>
 					   @endif	
@@ -1223,7 +1223,7 @@
 					            <div class="info-box-content">
 					              <b>{{ $labor->workplace}}</b><br/>
 					             {{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}
-					     						            <span style="text-align: right;"><a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a></span>
+					     						            <a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><div align="right"><i class="fa fa-trash text-muted"></i></div></a>
 					            </div>
 					          </div>
 					        </div><br/>    
