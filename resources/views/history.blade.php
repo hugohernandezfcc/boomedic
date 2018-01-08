@@ -23,12 +23,18 @@
               <i class="fa fa-warning bg-red"></i>
 
               <div class="timeline-item">
-                <h3 class="timeline-header no-border"> No tiene historial registrado en estos últimos 7 días. </h3>
+                <h3 class="timeline-header no-border"> No tiene historial registrado en estos últimos días. </h3>
               </div>
             </li>
 					
 					
 			@else 
+			<div class="btn-group" align="center">
+			<button type="button" class="btn btn-default" title="Mostrar solo soporte"> <i class="fa fa-wrench bg-black"></i></button>	
+			<button type="button" class="btn btn-default" title="Mostrar solo citas"> <i class="fa fa-user-md bg-blue"></i></button>
+			<button type="button" class="btn btn-default" title="Mostrar solo actualización de usuario"> <i class="fa fa-user bg-green"></i></button>	
+			<button type="button" class="btn btn-default" title="Métodos de pagos registrados"> <i class="fa fa-credit-card-alt bg-yellow"></i></button>		
+			</div> <br/
 			<!-- Now -->
 		@if(!$arraynow->isEmpty())
             <!-- 1 day -->
