@@ -459,7 +459,7 @@
 							  var radius = d3.scale.sqrt()
 							      .range([0, 6]);
 
-							  var svg = d3.select("body").append("svg")
+							  var svg = d3.select("tab_2").append("svg")
 							      .attr("width", width)
 							      .attr("height", height);
 							      /*.attr("viewBox", "0 0 1500 1000");*/
