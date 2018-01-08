@@ -256,7 +256,7 @@
                     </div> 
                   <div id="collapseOne" class="panel-collapse collapse" >
                     <div class="box-body">
-                         @foreach($appointments->sortByDesc('when') as $appo)
+                         @foreach($appointments->sortBy('when') as $appo)
                               @if($loop->iteration < 3)
 
                                             <div class="col-sm-12">
