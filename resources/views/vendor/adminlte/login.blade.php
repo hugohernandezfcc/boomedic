@@ -53,6 +53,10 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
+                        <div class="alert alert-success alert-dismissable">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> Indicates a successful or positive action.
+                        </div>
                         <!-- casilla de recordar usuario. -->
                         &nbsp;
                         <!-- <div class="checkbox icheck">
