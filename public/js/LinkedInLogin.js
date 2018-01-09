@@ -28,13 +28,6 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
         personLI.origin = 'LI';
         var email = user.emailAddress;
         var passw = email.substring(0, email.lastIndexOf("@"));
-        //console.log(personLI);
-
-        /*$.ajaxSetup({
-                headers: {
-                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
-                }
-            });*/
 
         IN.User.logout(function(){
             //console.log('deslogeado');
@@ -52,8 +45,11 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
                     location.href="/medicalconsultations";
                 },
                 error: function(errorThrown){
-                    console.log("Aqui viene el error:");
-                    console.log(errorThrown);
+                   // console.log("Aqui viene el error:");
+                    //console.log(errorThrown);
+                    document.getElementById("loginload").removeAttribute("class");
+                    document.getElementById("loginload2").removeAttribute("class");
+                    alert("Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado");
                 }
         });
     }
