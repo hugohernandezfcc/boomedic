@@ -679,7 +679,7 @@
 			document.getElementById('val').value= 'User';
 			    var nombre = 'User';
 			      $.ajax({
-			      	url: "{{ url('/filter') }}",
+			      	url: "{{ url('history/filter') }}",
 			        type: "post",
 			        dataType: "json",
 			        data: {
@@ -693,7 +693,7 @@
 				document.getElementById('val').value= 'Support';
 				var nombre = 'Support';
 			      $.ajax({
-			      	url: "{{ url('/filter') }}",
+			      	url: "{{ url('history/filter') }}",
 			        type: "POST",
 			        dataType: "json",
 			        data: {
