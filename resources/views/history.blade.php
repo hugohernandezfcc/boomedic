@@ -32,10 +32,10 @@
 			<form name="form" action="" onSubmit="enviarDatos(); return false">
 			<input type="text" id="val" name="val" value=""/>
 			<div class="btn-group">
-			<button type="submit" class="btn bg-blue" title="Mostrar solo soporte" onclick="changeValue('Medical Appointments')"> <i class="fa fa-user-md"></i>
-			<button type="submit" class="btn bg-black" title="Mostrar solo citas" onclick="changeValue('Support Tickets')"><i class="fa fa-wrench "></i></button>
-			<button type="submit" class="btn bg-yellow" title="Mostrar solo actualización de usuario" onclick="changeValue('Payment')"> <i class="fa fa-credit-card-alt"></i></button>	
-			<button type="submit" class="btn bg-green" title="Métodos de pagos registrados" onclick="changeValue('User')"><i class="fa fa-user "></i></button>		
+			<button id="send" class="btn bg-blue" title="Mostrar solo soporte" onclick="changeValue('Medical Appointments')"> <i class="fa fa-user-md"></i>
+			<button id="send" type="submit" class="btn bg-black" title="Mostrar solo citas" onclick="changeValue('Support Tickets')"><i class="fa fa-wrench "></i></button>
+			<button id="send" type="submit" class="btn bg-yellow" title="Mostrar solo actualización de usuario" onclick="changeValue('Payment')"> <i class="fa fa-credit-card-alt"></i></button>	
+			<button id="send" type="submit" class="btn bg-green" title="Métodos de pagos registrados" onclick="changeValue('User')"><i class="fa fa-user "></i></button>		
 			</div>
 			</form>
 	 <br/><br/><br/>
@@ -667,43 +667,15 @@
 		   function changeValue(o){
 		     document.getElementById('val').value= o;
 		    }
-
-    	function objetoAjax(){
-		var xmlhttp = false;
-		try {
-			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-		} catch (e) {
- 
-			try {
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			} catch (E) {
-				xmlhttp = false; }
-		}
- 
-		if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
-		  xmlhttp = new XMLHttpRequest();
-		}
-		return xmlhttp;
-	}
-
-
-function enviarDatos(){
- 
-        //Recogemos los valores introducimos en los campos de texto
-		vari = document.form.val.value;
-		ajax = objetoAjax();
- 
-		//Abrimos una conexión AJAX pasando como parámetros el método de envío, y el archivo que realizará las operaciones deseadas
-		ajax.open("POST", "history/filter", true);
- 
-		//cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
-		//Llamamos al método setRequestHeader indicando que los datos a enviarse están codificados como un formulario. 
-		ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
- 
-		//enviamos las variables a 'consulta.php' 
-		ajax.send("&val="+vari); 
- 
-}
+			  $("#send").click(function (e) {
+			      e.preventDefault();
+			      var nombre = $('#val').val();
+			      $.ajax({
+			        type: "post",
+			        url: "/filter",
+			        data: {
+			            val: nombre
+			        }
 </script>	
  	
 @stop
