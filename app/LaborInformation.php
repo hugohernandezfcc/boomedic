@@ -18,11 +18,12 @@ class LaborInformation extends Model
 		'colony',
 		'street', 
 		'streetNumber',
-		'interiorNumber',
+		'interiorNumber', 
 		'phone',
 		'latitude', 
 		'longitude',
-		'postalcode'
+		'postalcode',
+		'general_amount'
     ];
 
     public function user(){

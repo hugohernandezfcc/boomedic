@@ -154,21 +154,50 @@ Route::group(['prefix' => 'doctor'], function(){
 		]
 	);
 
-	Route::post('update/{id}', [
+	Route::post('laborInformation/{id}', [
 			'uses'	=>	'doctor@update',
-			'as'	=>	'update'
+			'as'	=>	'laborInformation'
 		]
 	);
 
 	Route::get('doctor/{id}', [
 			'uses'	=>	'doctor@show',
-			'as'	=>	'profile'
+			'as'	=>	'doctor'
+		]
+	);
+
+	Route::post('laborInformationNext/{id}', [
+			'uses'	=>	'doctor@laborInformationNext',
+			'as'	=>	'laborInformationNext'
+		]
+	);
+
+	Route::get('laborInformationView/{id}', [
+			'uses'	=>	'doctor@laborInformationView',
+			'as'	=>	'laborInformationView'
 		]
 	);
 
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'doctor@redirecting',
 			'as'	=>	'redirecting'
+		]
+	);
+
+	Route::post('updateDoctor/{id}', [
+			'uses'	=>	'doctor@updateDoctor',
+			'as'	=>	'updateDoctor'
+		]
+	);
+
+		Route::post('cropDoctor/{id}', [
+			'uses'	=>	'doctor@cropDoctor',
+			'as'	=>	'cropDoctor'
+		]
+	);
+		Route::get('delete/{id}', [
+			'uses'	=>	'doctor@destroy',
+			'as'	=>	'destroy'
 		]
 	);
 });
@@ -273,6 +302,31 @@ Route::group(['prefix' => 'supportTicket'], function(){
 			'as'	=>	'destroy'
 		]
 	);
+
+});
+
+Route::group(['prefix' => 'history'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'history@index',
+			'as'	=>	'index'
+		]
+	);
+
+
+	Route::get('moredays', [
+			'uses'	=>	'history@moredays',
+			'as'	=>	'moredays'
+		]
+	);
+
+	Route::post('store', [
+			'uses'	=>	'history@store',
+			'as'	=>	'store'
+		]
+	);
+
+
 
 });
 

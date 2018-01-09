@@ -51,6 +51,7 @@
                         </span>
                     @endif
                 </div>
+
                 <div class="row">
                     <div class="col-xs-8">
                         <!-- casilla de recordar usuario. -->
@@ -140,21 +141,25 @@
             </div>
         </div>
         <div class="auth-links">
+
             <div class="row">
-                <div class="col-xs-6">
-                    <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" class="text-center" >
+                <div class="col-sm-7" align="center">
+                    <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" class="btn btn-default btn-block btn-flat">
                         {{ trans('adminlte::adminlte.i_forgot_my_password') }}
                     </a>
                 </div>
-                <div class="col-xs-6">
                     @if (config('adminlte.register_url', 'register'))
-                    <a href="{{ url(config('adminlte.register_url', 'register')) }}" class="text-center">
+                <div class="col-sm-5" align="center">
+                    <a href="{{ url(config('adminlte.register_url', 'register')) }}" class="btn btn-default btn-block btn-flat">
                         {{ trans('adminlte::adminlte.register_a_new_membership') }}
                     </a>
-                    @endif
                 </div>
+                    @endif
+                
+            </div>
             </div>
         </div>
+        
         <!-- /.login-box-body -->
         <div id="myModal" class="modal-danger2">
             <div class="modal-content-danger2">

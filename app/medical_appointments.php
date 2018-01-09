@@ -11,10 +11,9 @@ class medical_appointments extends Model
 		'id',
 		'user',
 		'user_doctor',
-		'latitude',
-		'longitude',
 		'when',
-		'status'
+		'status',
+		'workplace'
     ];
 
     public function user(){

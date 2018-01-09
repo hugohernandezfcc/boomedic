@@ -78,9 +78,13 @@ class profile extends Controller
                 'firstname'     => $users[0]->firstname,
                 'lastname'      => $users[0]->lastname,
                 'email'         => $users[0]->email,
+
+                'name'          => $users[0]->name,
+
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
+                'date'         => $users[0]->created_at,
 
                 /** PERSONAL INFORMATION */
 
@@ -143,9 +147,12 @@ class profile extends Controller
                 'firstname'     => $users[0]->firstname,
                 'lastname'      => $users[0]->lastname,
                 'email'         => $users[0]->email,
+                'name'          => $users[0]->name,
+
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
+                'date'         => $users[0]->created_at,
 
                 /** PERSONAL INFORMATION */
 
@@ -218,12 +225,12 @@ class profile extends Controller
           $height = $imagen[1];  
 
           if($height > '600' || $width > '600'){
-            $height = $height / 3;
-            $width = $width / 3;
+            $height = $height / 2;
+            $width = $width / 2;
           }
             if($height > '900' || $width > '900'){
-                $height = $height / 4;
-                $width = $width / 4;
+                $height = $height / 3;
+                $width = $width / 3;
               }
 
         $img = Image::make($file);

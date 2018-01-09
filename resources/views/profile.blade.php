@@ -4,6 +4,28 @@
 
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
+    <style type="text/css">
+    	.panel-title > a:hover, 
+		.panel-title > a:active, 
+		.panel-title > a:focus  {
+		    text-decoration:none;
+		}
+		.panel-title > a.collapsed:before {
+		float: left !important;
+		content:"\f067";
+		}
+		.panel-title > a:before {
+		    float: left !important;
+		    font-family: FontAwesome;
+		    content:"\f068";
+		    padding-left: 5px;
+		    color: gray;
+		    margin-right: 1em; 
+		}
+
+
+
+    </style>
 @stop
 
 @section('content')
@@ -38,9 +60,12 @@
 					    $('#modal').modal({ backdrop: 'static' }, 'show');
 					}, 1000);	
 				}
-				
+
 				    
 	</script>
+
+
+
 
 	<br/>
 
@@ -49,6 +74,7 @@
     @include('headerprofile')
     <script type="text/javascript">
       //O si no lleva botón hacer el div "div_profile" invisible
+      document.getElementById('labeltext').innerHTML = 'Editar';
       var elemento = document.getElementById("i_button");
       elemento.className = "fa fa-pencil text-muted";
       document.forms.form_profile.action = "/user/edit/complete";
@@ -68,7 +94,7 @@
                         <div align="center">
                    
 
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="width:350px; height: 350px;">
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target">
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
@@ -307,90 +333,128 @@
 	    		
 
 	    	@else
-    			<!-- Custom Tabs -->
-		        <div class="nav-tabs-custom">
-		            <ul class="nav nav-tabs">
-		              	<li class="active"><a href="#tab_1" data-toggle="tab">Información personal</a></li>
-		              	<li><a href="#tab_2" data-toggle="tab">Familia</a></li>
-		              	<li><a href="#tab_3" onclick="initMapAddressUser();" data-toggle="tab">Dirección de usuario</a></li>
-		            </ul>
-		            <div class="tab-content">
-		              	<div class="tab-pane active" id="tab_1">
-		              		<br/>
 
-			                <div class="row">
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Corre electrónico:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $email }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Nombre de usuario:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $username }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Edad:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $age }}</div>
-			                		</div>
-			                	</div>
-			                </div>
-			                <br/>
-			                <div class="row">
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Ocupación:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $occupation }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Genero:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $gender }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Escolaridad:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $scholarship }}</div>
-			                		</div>
-			                	</div>
-			                </div>
-			                <br/>
-			                <div class="row">
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Estado civil:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $maritalstatus }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b># Móvil:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $mobile }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Ultima modificación:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $updated_at }}</div>
-			                		</div>
-			                	</div>
-			                </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-solid">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="box-group" id="accordion" aria-multiselectable="true">
+                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+             
+                <div class="panel box box-default" style="border-top-color: black;">
+                
+                 <div class="box-header with-border"> 
+                 	<h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+                        Información personal
+                  </a>
+              </h4>
+                  	</div>
+                   
+                  <div id="collapseOne" class="panel-collapse collapse in" aria-labelledby="headingOne">
 
+                    <div class="box-body">
+                      <br/>
 
-		              	</div>
-		              	<div class="tab-pane" id="tab_2">
-		                	space..
-		              	</div>
-		              	<div class="tab-pane" id="tab_3" style="height: 250px;">
-		              		<div id="mapAddressUser" ></div>
-		              	</div>
-		            </div>
-		        </div>
+                      
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Correo:</b></div>
+                            <div class="col-sm-8" align="left">{{ $email }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Nombre de usuario:</b></div>
+                            <div class="col-sm-8" align="left">{{ $username }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Edad:</b></div>
+                            <div class="col-sm-8" align="left">{{ $age }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Ocupación:</b></div>
+                            <div class="col-sm-8" align="left">{{ $occupation }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Genero:</b></div>
+                            <div class="col-sm-8" align="left">{{ $gender }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Escolaridad:</b></div>
+                            <div class="col-sm-8" align="left">{{ $scholarship }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Estado civil:</b></div>
+                            <div class="col-sm-8" align="left">{{ $maritalstatus }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b># Móvil:</b></div>
+                            <div class="col-sm-8" align="left">{{ $mobile }}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Ultima modificación:</b></div>
+                            <div class="col-sm-8" align="left">{{ $updated_at }}</div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <br/>
+                <div class="panel box box-default" style="border-top-color: black;">
+               <div class="box-header with-border">
+               	<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+                        Familia
+                </a>
+            </h4>
+                </div>
+                  <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
+                    <div class="box-body">
+                            space..
+                    </div>
+                  </div>
+                </div>
+                <br/>
+                <div class="panel box box-default" style="border-top-color: black;">
+                	 <div class="box-header with-border">
+                	 	<h4 class="panel-title">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
+                        Dirección de usuario      
+                      
+                  </a> 
+                  </h4> 
+                  </div>
+                  <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
+                    <div class="box-body">
+                          <div id="mapAddressUser" ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <!-- /.col -->
+      </div>
     		@endif
 
 
@@ -398,6 +462,9 @@
     		<script type="text/javascript">
 
 			window.onload = function(){
+				$('#collapseTwo').collapse("toggle");
+				$('#collapseThree').collapse("toggle");
+	
     				initAutocomplete();
     				@if( empty($status) )
     					initMapAddressUser();
@@ -539,5 +606,7 @@
       return false;
     };
     </script>
+
+
 
 @stop

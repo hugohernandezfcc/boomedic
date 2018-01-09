@@ -60,10 +60,10 @@ class medicalappointments extends Controller
         $medical = new medical_appointments;
    
         $medical->user           = Auth::id();
-        $medical->user_doctor    = '3';
-        $medical->latitude       = 'Prueba';
-        $medical->longitude     = 'Prueba';
-        $medical->when          = '2017-01-12 04:00:00';
+        $medical->user_doctor    = '16';
+        $medical->latitude       = '19.343255357777';
+        $medical->longitude     = '-99.1379801140335';
+        $medical->when          = '2018-11-03 11:00:00';
             
         if ($medical->save()) 
        return redirect('medicalconsultations');

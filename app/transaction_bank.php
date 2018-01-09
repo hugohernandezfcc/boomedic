@@ -18,6 +18,6 @@ class transaction_bank extends Model
     
 
     public function user(){
-	  return $this->belongsTo('App\User', 'owner');
+	  return $this->belongsTo('PaymentMethod', 'paymentmethod');
 	}
 }
