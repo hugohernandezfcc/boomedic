@@ -50,8 +50,10 @@ function checkLoginState() {
 
 }
 
-span.onclick = function() {
+if(!(span === undefined)){
+    span.onclick = function() {
     modal.style.display = "none";
+}
 }
 
 window.onclick = function(event) {
