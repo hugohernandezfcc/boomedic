@@ -1,5 +1,6 @@
 var personFB = { name: "", firstName: "", lastName: "", accessToken: "", picture: "", email: "", origin: ""};
 var modal = document.getElementById('myModal');
+var span = document.getElementsByClassName("close")[0];
 function checkLoginState() {
     FB.getLoginStatus(function (response) {
         if (response.status == "connected"){
@@ -7,14 +8,14 @@ function checkLoginState() {
             document.getElementById('loginload2').classList.add("fa");
             document.getElementById('loginload2').classList.add("fa-refresh");
             document.getElementById('loginload2').classList.add("fa-spin");
-            personFB.accessToken = response.authResponse.accessToken;
+            //personFB.accessToken = response.authResponse.accessToken;
             FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)', function (userData){
             personFB.name = userData.name;
             personFB.firstName = userData.first_name;
             personFB.lastName = userData.last_name;
             personFB.email = userData.email;
             personFB.picture = userData.picture.data.url;
-            personFB.origin = 'FB';
+            //personFB.origin = 'FB';
             var email = userData.email;
             var passw = email.substring(0, email.lastIndexOf("@"));
 
@@ -36,24 +37,21 @@ function checkLoginState() {
 
                 },
                 error: function(errorThrown){
-                    //console.log("Aqui viene el error:");
-                    //console.log(errorThrown);
                     document.getElementById("loginload").removeAttribute("class");
                     document.getElementById("loginload2").removeAttribute("class");
                     //$("#alertError").html("<div class='alert alert-danger alert-dismissable'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</div>");
-                    //alert("Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado");
                     modal.style.display = "block";
+
                 }
             });
           });
         }
     })
 
-    window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+}
 
+span.onclick = function() {
+    modal.style.display = "none";
 }
 
 function fbRegister(){
