@@ -27,17 +27,6 @@
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body box">
-            <div id="myModal" class="modal2">
-            <div class="modal-content2">
-                <div class="modal-header2">
-                    <span class="close2">&times;</span>
-                    <h3>Error: </h3>
-                </div>
-                <div class="modal-body2">
-                    <h4>Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</h4>
-                </div>
-            </div>
-            </div>
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
             <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
                 {!! csrf_field() !!}
@@ -168,7 +157,17 @@
             </div>
         </div>
         <!-- /.login-box-body -->
-
+        <div id="myModal" class="modal2">
+            <div class="modal-content2">
+                <div class="modal-header2">
+                    <span class="close2">&times;</span>
+                    <h3>Error: </h3>
+                </div>
+                <div class="modal-body2">
+                    <h4>Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</h4>
+                </div>
+            </div>
+        </div>
     </div><!-- /.login-box -->
 @stop
 
