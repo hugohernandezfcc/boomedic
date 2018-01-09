@@ -29,14 +29,15 @@
 					
 					
 			@else 
-		<div class="col-sm-12" align="center">	
+		
 			<div class="btn-group">
-			<button type="button" class="btn bg-blue" title="Mostrar solo soporte"> <i class="fa fa-user-md"></i></button>	
-			<button type="button" class="btn bg-black" title="Mostrar solo citas"><i class="fa fa-wrench "></i></button>
-			<button type="button" class="btn bg-yellow" title="Mostrar solo actualización de usuario"> <i class="fa fa-credit-card-alt"></i></button>	
-			<button type="button" class="btn bg-green" title="Métodos de pagos registrados"><i class="fa fa-user "></i></button>		
+			<button type="button" class="btn bg-blue" title="Mostrar solo soporte" onclick="changeValue('Medical Appointments')"> <i class="fa fa-user-md"></i></button>	
+			<button type="button" class="btn bg-black" title="Mostrar solo citas" onclick="changeValue('Support Tickets')"><i class="fa fa-wrench "></i></button>
+			<button type="button" class="btn bg-yellow" title="Mostrar solo actualización de usuario" onclick="changeValue('Payment')"> <i class="fa fa-credit-card-alt"></i></button>	
+			<button type="button" class="btn bg-green" title="Métodos de pagos registrados" onclick="changeValue('User')"><i class="fa fa-user "></i></button>		
 			</div>
-		</div>	 <br/><br/>
+			<input type="text" id="val" value=""/>
+	 <br/><br/><br/>
 			<!-- Now -->
 		@if(!$arraynow->isEmpty())
             <!-- 1 day -->
@@ -661,6 +662,10 @@
       </div>
 
  	</div>
- 	
+ <script type="text/javascript">
+   function changeValue(o){
+     document.getElementById('val').value= o;
+    }
+</script>	
  	
 @stop
