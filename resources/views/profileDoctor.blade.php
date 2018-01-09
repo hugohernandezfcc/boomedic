@@ -688,7 +688,7 @@
 
 
 				    @if($mode == 'labor')
-				   			<div class="box" style="padding-bottom:130px;">
+				   			<div class="box" style="padding-bottom:130px;" id="boxlabor">
 							  	<div class="box-header with-border">
 								    <h3 class="box-title">Información Laboral</h3>
 							  	</div>
@@ -921,11 +921,13 @@
     		$(document).ready(function() {
 				$("#openform").click(
 				function(event) {
+					document.getElementById("boxlabor").style.paddingBottom = "130px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form1").style.display = "block";
 				})
 				$("#openform2").click(
 				function(event) {
+					document.getElementById("boxlabor").style.paddingBottom = "130px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";
 				   initMap();
