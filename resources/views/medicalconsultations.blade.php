@@ -239,11 +239,11 @@
 
 
   </script>
- @if($appointments->isEmpty())
- <div  class="box-body" align="center">
-   No hay citas registradas para los próximos días...
- </div>
- @else
+@if($appointments->isEmpty())
+<div class="alert alert-info alert-dismissible" id="alert">
+  <h4><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h4>               
+</div>
+@else
       <div class="box-group" id="accordion">
           <div class="panel box box-default" style="border-top-color: gray;">
           
@@ -436,6 +436,11 @@
     </form>
 
     <script type="text/javascript">
+
+      $("#alert").fadeTo(3000, 500).fadeOut(500, function(){
+          $("#alert").fadeOut(500);
+      });
+
       function infoSelect(){
         var x = document.getElementById("mySelect");
         for (var i = 0; i < specialities.length; i++) {
