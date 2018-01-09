@@ -32,10 +32,10 @@
 			<form name="form" action="" onSubmit="enviarDatos(); return false">
 			<input type="text" id="val" name="val" value=""/>
 			<div class="btn-group">
-			<button id="send" class="btn bg-blue" title="Mostrar solo soporte" onclick="changeValue('Medical Appointments')"> <i class="fa fa-user-md"></i>
-			<button id="send" type="submit" class="btn bg-black" title="Mostrar solo citas" onclick="changeValue('Support Tickets')"><i class="fa fa-wrench "></i></button>
-			<button id="send" type="submit" class="btn bg-yellow" title="Mostrar solo actualización de usuario" onclick="changeValue('Payment')"> <i class="fa fa-credit-card-alt"></i></button>	
-			<button id="send" type="submit" class="btn bg-green" title="Métodos de pagos registrados" onclick="changeValue('User')"><i class="fa fa-user "></i></button>		
+			<button id="appointment" class="btn bg-blue" title="Mostrar solo soporte" onclick="changeValue('Medical Appointments')"> <i class="fa fa-user-md"></i>
+			<button id="support" type="submit" class="btn bg-black" title="Mostrar solo citas" onclick="changeValue('Support Tickets')"><i class="fa fa-wrench "></i></button>
+			<button id="payment" type="submit" class="btn bg-yellow" title="Mostrar solo actualización de usuario" onclick="changeValue('Payment')"> <i class="fa fa-credit-card-alt"></i></button>	
+			<button id="user" type="submit" class="btn bg-green" title="Métodos de pagos registrados" onclick="changeValue('User')"><i class="fa fa-user "></i></button>		
 			</div>
 			</form>
 	 <br/><br/><br/>
@@ -667,12 +667,12 @@
 		   function changeValue(o){
 		     document.getElementById('val').value= o;
 		    }
-			  $("#send").click(function (e) {
+			  $("#user").click(function (e) {
 			      e.preventDefault();
-			      var nombre = $('#val').val();
+			      var nombre = 'User';
 			      $.ajax({
 			        type: "post",
-			        url: "/filter",
+			        url: "filter",
 			        data: {
 			            val: nombre
 			        }
