@@ -25,10 +25,10 @@
         <div class="modal-content2">
             <div class="modal-header2">
                 <span class="close2">&times;</span>
-                <h2>Error: </h2>
+                <h3>Error: </h3>
             </div>
         <div class="modal-body2">
-            <h2>Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</h2>
+            <h4>Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</h4>
         </div>
   </div>
     </div>
