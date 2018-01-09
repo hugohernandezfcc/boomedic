@@ -377,7 +377,7 @@ public function filter(Request $request){
            $arraynow = collect();
          
 
-         if($request->var == 'Support'){  
+         if($request->input("val") == 'Support'){  
          foreach($dateSupport as $date){
             $car = new Carbon($date->created_at);
                 $array[]  = collect([
@@ -391,7 +391,7 @@ public function filter(Request $request){
            }
          }
 
-         if($request->var == 'User'){
+         if($request->input("val") == 'User'){
             foreach($dateUser as $date){
             $car = new Carbon($date->updated_at);
                 $array[]  = collect([

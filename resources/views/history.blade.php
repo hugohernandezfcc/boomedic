@@ -3,6 +3,7 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
+
 @stop
 
 @section('content')
@@ -30,9 +31,10 @@
 					
 			@else 
 			<form id="form" action="" method="post">
+			<input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="text" id="val" name="val" value=""/>
 			<div class="btn-group">
-			<button id="appointment" type="button"  title="Mostrar solo soporte"> <i class="fa fa-user-md"></i>
+			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo soporte"><i class="fa fa-user-md"></i></button>		
 			<button id="support" type="button"  class="btn bg-black" title="Mostrar solo citas"><i class="fa fa-wrench "></i></button>
 			<button id="payment" type="button" class="btn bg-yellow" title="Mostrar solo actualización de usuario"> <i class="fa fa-credit-card-alt"></i></button>	
 			<button id="user" type="button" class="btn bg-green" title="Métodos de pagos registrados"><i class="fa fa-user "></i></button>		
@@ -663,31 +665,40 @@
       </div>
 
  	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script type="text/javascript">
 
-		$("#user").click(function () {
-			  	document.getElementById('val').value= 'User';
-			      var nombre = 'User';
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+		$("#user").click(function (e) {
+		e.preventDefault();
+			document.getElementById('val').value= 'User';
+			    var nombre = 'User';
 			      $.ajax({
+			      	url: "/filter",
 			        type: "post",
-			        url: "filter",
+			        dataType: "json",
 			        data: {
 			            val: nombre
-			        },
-			       contentType: 'application/x-www-form-urlencoded'
+			        }
 			   })
 			});
 
-		$("#support").click(function () {
+		$("#support").click(function (e) {
+		 e.preventDefault();	
 				document.getElementById('val').value= 'Support';
-			      var nombre = 'Support';
+				var nombre = 'Support';
 			      $.ajax({
-			        type: "post",
-			        url: "filter",
+			      	url: "/filter",
+			        type: "POST",
+			        dataType: "json",
 			        data: {
 			            val: nombre
-			        },
-			       contentType: 'application/x-www-form-urlencoded'
+			        }
 			   });
 			});       
 </script>	
