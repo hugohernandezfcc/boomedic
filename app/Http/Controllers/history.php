@@ -352,7 +352,7 @@ class history extends Controller
      * @return \Illuminate\Http\Response
      */
 
-public function historyfilter(Request $request){
+public function filter(Request $request){
        $user = User::find(Auth::id());
 
         $dateUser = DB::table('users')->where('id', Auth::id())

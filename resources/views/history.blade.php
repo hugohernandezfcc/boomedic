@@ -29,7 +29,7 @@
 					
 					
 			@else 
-			<form method="post" action="{{ url('/historyfilter') }}" enctype="multipart/form-data">
+			<form method="post" action="{{ url('/history/filter') }}" enctype="multipart/form-data">
 			<input type="text" id="val" value=""/>
 			<div class="btn-group">
 			<button class="btn bg-blue" title="Mostrar solo soporte" onclick="changeValue('Medical Appointments')"> <i class="fa fa-user-md"></i></button>	
