@@ -380,7 +380,7 @@ public function filter(Request $request){
          if($request->var == 'Support Tickets'){  
          foreach($dateSupport as $date){
             $car = new Carbon($date->created_at);
-                $array[$date->updated_at]  = collect([
+                $array[]  = collect([
                             'Type'       => 'Support Ticket',
                             'id'         =>  $date->id,
                             'created_at' => $date->created_at,
@@ -479,7 +479,7 @@ public function filter(Request $request){
                 'array5'     => $array5,
                 'array6'     => $array6,
                 'arraynow'     => $arraynow,
-                'mode'      => 'null'
+                'mode'      => 'more'
 
 
             ]
