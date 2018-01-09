@@ -33,7 +33,7 @@
 
 
 			<div class="btn-group">
-			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo soporte"><i class="fa fa-user-md"></i></button>		
+			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo soporte"><i class="fa fa-heartbeat"></i></button>		
 			<button id="support" type="button"  class="btn bg-black" title="Mostrar solo citas"><i class="fa fa-wrench "></i></button>
 			<button id="payment" type="button" class="btn bg-yellow" title="Mostrar solo actualización de usuario"> <i class="fa fa-credit-card-alt"></i></button>	
 			<button id="user" type="button" class="btn bg-green" title="Métodos de pagos registrados"><i class="fa fa-user "></i></button>
@@ -55,7 +55,7 @@
 
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-user-md bg-blue"></i>
+              <i class="fa fa-heartbeat bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
@@ -138,7 +138,7 @@
             <!-- timeline time label -->
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-user-md bg-blue"></i>
+              <i class="fa fa-heartbeat bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
@@ -223,7 +223,7 @@
 
             @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-user-md bg-blue"></i>
+              <i class="fa fa-heartbeat bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
@@ -308,7 +308,7 @@
 
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-user-md bg-blue"></i>
+              <i class="fa fa-heartbeat bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
@@ -393,7 +393,7 @@
 
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-user-md bg-blue"></i>
+              <i class="fa fa-heartbeat bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
@@ -477,7 +477,7 @@
 
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-user-md bg-blue"></i>
+              <i class="fa fa-heartbeat bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
@@ -561,7 +561,7 @@
             <!-- timeline time label -->
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-user-md bg-blue"></i>
+              <i class="fa fa-heartbeat bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
