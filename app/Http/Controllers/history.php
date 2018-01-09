@@ -479,6 +479,7 @@ public function filter(Request $request){
                 'array5'     => $array5,
                 'array6'     => $array6,
                 'arraynow'     => $arraynow,
+                'mode'      => 'null'
 
 
             ]
