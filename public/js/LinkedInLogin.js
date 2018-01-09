@@ -61,8 +61,10 @@ var span = document.getElementsByClassName("close-danger2")[0];
         console.log(error);
     }
 
-    span.onclick = function() {
-    modal.style.display = "none";
+    if(!(span === undefined)){
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
     }
 
     window.onclick = function(event) {
