@@ -29,14 +29,15 @@
 					
 					
 			@else 
-		
-			<div class="btn-group">
-			<button type="button" class="btn bg-blue" title="Mostrar solo soporte" onclick="changeValue('Medical Appointments')"> <i class="fa fa-user-md"></i></button>	
-			<button type="button" class="btn bg-black" title="Mostrar solo citas" onclick="changeValue('Support Tickets')"><i class="fa fa-wrench "></i></button>
-			<button type="button" class="btn bg-yellow" title="Mostrar solo actualización de usuario" onclick="changeValue('Payment')"> <i class="fa fa-credit-card-alt"></i></button>	
-			<button type="button" class="btn bg-green" title="Métodos de pagos registrados" onclick="changeValue('User')"><i class="fa fa-user "></i></button>		
-			</div>
+			<form method="post" action="{{ url('/historyfilter') }}" enctype="multipart/form-data">
 			<input type="text" id="val" value=""/>
+			<div class="btn-group">
+			<button class="btn bg-blue" title="Mostrar solo soporte" onclick="changeValue('Medical Appointments')"> <i class="fa fa-user-md"></i></button>	
+			<button class="btn bg-black" title="Mostrar solo citas" onclick="changeValue('Support Tickets')"><i class="fa fa-wrench "></i></button>
+			<button class="btn bg-yellow" title="Mostrar solo actualización de usuario" onclick="changeValue('Payment')"> <i class="fa fa-credit-card-alt"></i></button>	
+			<button class="btn bg-green" title="Métodos de pagos registrados" onclick="changeValue('User')"><i class="fa fa-user "></i></button>		
+			</div>
+			</form>
 	 <br/><br/><br/>
 			<!-- Now -->
 		@if(!$arraynow->isEmpty())
