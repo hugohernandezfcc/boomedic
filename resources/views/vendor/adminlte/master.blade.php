@@ -84,7 +84,7 @@
 
     <style>
     /* The Modal (background) */
-    .modal2 {
+    .modal-danger2 {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
@@ -99,7 +99,7 @@
     }
 
     /* Modal Content */
-    .modal-content2 {
+    .modal-content-danger2 {
         position: relative;
         background-color: #fefefe;
         margin: auto;
@@ -125,27 +125,27 @@
     }
 
     /* The Close Button */
-    .close2 {
+    .close-danger2 {
         color: white;
         float: right;
         font-size: 26px;
         font-weight: bold;
     }
 
-    .close2:hover,
-    .close2:focus {
+    .close-danger2:hover,
+    .close2-danger:focus {
         color: #000;
         text-decoration: none;
         cursor: pointer;
     }
 
-    .modal-header2 {
+    .modal-header-danger2 {
         padding: 1px 10px;
         background-color: #e62e00;
         color: white;
     }
 
-    .modal-body2 {padding: 2px 16px;}
+    .modal-body-danger2 {padding: 2px 16px;}
 
 </style>
 

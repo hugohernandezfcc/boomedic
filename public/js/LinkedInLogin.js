@@ -1,4 +1,6 @@
 var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", title: "", industry: "", accessToken: "", origin: ""};
+var modal = document.getElementById('myModal');
+var span = document.getElementsByClassName("close-danger2")[0];
     function onLinkedInLoad() {
         IN.Event.on(IN, "auth", getProfileData);
       //  $('a[id*=li_ui_li_gen_]').css({marginBottom:'20px'}).html('<img src="/linkedin_signin_large.png" height="31" width="200" border="0" />');
@@ -49,7 +51,7 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
                     //console.log(errorThrown);
                     document.getElementById("loginload").removeAttribute("class");
                     document.getElementById("loginload2").removeAttribute("class");
-                    alert("Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado");
+                    modal.style.display = "block";
                 }
         });
     }
@@ -57,4 +59,14 @@ var personLI = { name: "", picture: "", email: "", lastName: "", firstName: "", 
     // Handle an error response from the API call
     function onError(error) {
         console.log(error);
+    }
+
+    span.onclick = function() {
+    modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }

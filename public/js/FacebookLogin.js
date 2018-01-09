@@ -1,6 +1,6 @@
 var personFB = { name: "", firstName: "", lastName: "", accessToken: "", picture: "", email: "", origin: ""};
 var modal = document.getElementById('myModal');
-var span = document.getElementsByClassName("close2")[0];
+var span = document.getElementsByClassName("close-danger2")[0];
 function checkLoginState() {
     FB.getLoginStatus(function (response) {
         if (response.status == "connected"){

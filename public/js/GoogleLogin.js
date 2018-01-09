@@ -1,4 +1,6 @@
 var personG = { name: "", picture: "", email: "", lastName: "", firstName: "", accessToken: "", origin: ""};
+var modal = document.getElementById('myModal');
+var span = document.getElementsByClassName("close-danger2")[0];
 function onSignInG(googleUser) {
         document.getElementById('loginload').classList.add("overlay");
         document.getElementById('loginload2').classList.add("fa");
@@ -39,10 +41,20 @@ function onSignInG(googleUser) {
                     //console.log(errorThrown);
                     document.getElementById("loginload").removeAttribute("class");
                     document.getElementById("loginload2").removeAttribute("class");
-                    alert("Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado");
+                    modal.style.display = "block";
                 }
         });
 
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
 function onRegisterG(googleUser){
