@@ -78,7 +78,9 @@ class profile extends Controller
                 'firstname'     => $users[0]->firstname,
                 'lastname'      => $users[0]->lastname,
                 'email'         => $users[0]->email,
+
                 'name'          => $users[0]->name,
+
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
@@ -146,6 +148,7 @@ class profile extends Controller
                 'lastname'      => $users[0]->lastname,
                 'email'         => $users[0]->email,
                 'name'          => $users[0]->name,
+
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,

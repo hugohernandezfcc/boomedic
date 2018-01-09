@@ -1,4 +1,8 @@
 @extends('adminlte::master')
+<head>
+    <meta name="google-signin-client_id" content="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com">
+    <meta name="_token" content="{{ csrf_token() }}">
+</head>
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">
@@ -30,7 +34,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                    <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="{{ trans('adminlte::adminlte.email') }}">
+                    <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="{{ trans('adminlte::adminlte.email') }}" id="email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     @if ($errors->has('email'))
                         <span class="help-block">
@@ -51,7 +55,7 @@
 
 
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                    <input type="password" name="password" class="form-control" placeholder="{{ trans('adminlte::adminlte.password') }}">
+                    <input type="password" name="password" class="form-control" placeholder="{{ trans('adminlte::adminlte.password') }}" id="passw">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     @if ($errors->has('password'))
                         <span class="help-block">
@@ -62,7 +66,7 @@
 
 
                 <div class="form-group has-feedback {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
-                    <input type="password" name="password_confirmation" class="form-control" placeholder="{{ trans('adminlte::adminlte.retype_password') }}">
+                    <input type="password" name="password_confirmation" class="form-control" placeholder="{{ trans('adminlte::adminlte.retype_password') }}" id="passwc">
                     <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                     @if ($errors->has('password_confirmation'))
                         <span class="help-block">
@@ -75,6 +79,70 @@
                 <button type="submit" class="btn btn-secondary btn-block btn-flat">
                     {{ trans('adminlte::adminlte.register_a_new_membership') }}
                 </button>
+
+                <div class="box"  align="center" id="socialnet" style="border:none; box-shadow: none;"><br>
+                    <div class="box-group" id="accordion">
+                        <div class="panel box box-primary">
+                          <div class="box-header with-border" align="left">
+                            <h4 class="box-title">
+                                <i class="fa fa-fw fa-facebook-official" style="color: rgb(59, 89, 152);"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                Facebook
+                                </a>
+                            </h4>
+                          </div>
+                          <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row" align="center">
+                                    <div class="fb-login-button" id="botonfacebook_tocustom" data-size="medium" data-button-type="login_with" 
+                                    data-scope="public_profile,email" onlogin="fbRegister();"></div>
+                                </div><br>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel box box-danger">
+                          <div class="box-header with-border" align="left">
+                            <h4 class="box-title">
+                                <i class="fa fa-fw fa-google" style="color: rgb(211, 72, 54);"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" >
+                                Google
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row" align="center">
+                                    <div class="g-signin2"  data-width="165" data-height="27" data-clientid="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com"data-onsuccess="onRegisterG"></div><br>
+                            <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel box box-success">
+                          <div class="box-header with-border" align="left">
+                            <h4 class="box-title">
+                                <i class="fa fa-fw fa-linkedin"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                LinkedIn
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row">
+                                    <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
+                                        api_key: 78maelkx5by0xp
+                                        authorize: true
+                                        onLoad: onLinkedInLoad2
+                                        scope: r_basicprofile r_emailaddress
+                                        lang: es_ES
+                                    </script>
+                                    <div align="center"><script type="in/Login"></script></div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                </div>
 
             </form>
             <br/> 

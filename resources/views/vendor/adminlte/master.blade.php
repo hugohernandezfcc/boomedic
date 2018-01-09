@@ -130,6 +130,73 @@
 
     </style>
 
+    <style>
+    /* The Modal (background) */
+    .modal-danger2 {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content-danger2 {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 35%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+        from {top:-300px; opacity:0} 
+        to {top:0; opacity:1}
+    }
+
+    @keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    /* The Close Button */
+    .close-danger2 {
+        color: white;
+        float: right;
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+    .close-danger2:hover,
+    .close2-danger:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-header-danger2 {
+        padding: 1px 10px;
+        background-color: #e62e00;
+        color: white;
+    }
+
+    .modal-body-danger2 {padding: 2px 16px;}
+
+</style>
+
 
     @if(config('adminlte.plugins.datatables'))
         <!-- DataTables -->
@@ -149,17 +216,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
-    api_key: 78ezayhtq8yi4u
-    authorize: true
-    onLoad: onLinkedInLoad
-    scope: r_basicprofile r_emailaddress
-    lang: es_ES
-</script>
 <script src="{{ asset('vendor/adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/FacebookLogin.js') }}" async="true" defer="true"></script>
 <script src="{{ asset('js/GoogleLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInLogin.js') }}"></script>
+<script src="{{ asset('js/LinkedInRegister.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
 

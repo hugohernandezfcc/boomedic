@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -72,9 +73,9 @@ class RegisterController extends Controller
         $age = date("Y") - substr($data['birthdate'], -4);
         $namesUser = array();
 
-        $pos = strpos(' ', $data['name']);
+        //$pos = strpos(' ', $data['name']);
 
-        if($pos !== false){
+        //if($pos !== false){
             $explodeName = explode(' ', $data['name']);
 
             
@@ -94,9 +95,10 @@ class RegisterController extends Controller
                 $namesUser['first'] = $explodeName[0] . ' ' . $explodeName[1];
                 $namesUser['last'] = $explodeName[2] . ' ' . $explodeName[3];
             }
-        }else{
-           $namesUser['first'] = $data['name'];
-        }
+        //}else{
+           //$namesUser['first'] = $data['name'];
+
+        //}
 
         
 
@@ -147,5 +149,28 @@ class RegisterController extends Controller
                 'password'  => bcrypt($data['password']),
             ]);
         }
+    }
+
+    public function createbySocialMedia(Request $request){
+
+        if($request->has('accessToken') && ($request->origin == "GG" || $request->origin == "FB" || $request->origin == "LI"))
+        {
+            $uN = explode('@', $request->email);
+            $uN['username'] = $uN[0] . '@boomedic.mx';
+            $smUser = new User;
+            $smUser->name = $request->name;
+            $smUser->email = $request->email;
+            $smUser->status = 'In Progress';
+            $smUser->firstname = $request->firstName;
+            $smUser->lastname = $request->lastName;
+            $smUser->username = $uN['username'];
+            $smUser->password = bcrypt($uN[0]);
+            $smUser->profile_photo = $request->input('picture');
+            //$smUser->save();
+            return $smUser;
+        }else{
+            return "ERROR";
+        }
+
     }
 }

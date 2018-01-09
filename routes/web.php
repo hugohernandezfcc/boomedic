@@ -22,12 +22,17 @@ Route::get('/medicalRegister', function () {
 });
 
 
-
 /**
  * Rutas con autorización de acceso
  */
 
 Auth::routes();
+
+/**
+*Rutas para registro con redes sociales
+*/
+Route::post('SMRegister', ['as' => 'SMRegister.createbySocialMedia', 'uses' => 'Auth\RegisterController@createbySocialMedia']);
+
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
 

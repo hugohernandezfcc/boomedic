@@ -1,6 +1,7 @@
 @extends('adminlte::master')
 <head>
-    <meta name="google-signin-client_id" content="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com">
+    <meta name="_token" content="{{ csrf_token() }}">
 </head>
 
 @section('adminlte_css')
@@ -25,7 +26,7 @@
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
         </div>
         <!-- /.login-logo -->
-        <div class="login-box-body">
+        <div class="login-box-body box">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
             <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
                 {!! csrf_field() !!}
@@ -50,9 +51,97 @@
                         </span>
                     @endif
                 </div>
-                <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <!-- casilla de recordar usuario. -->
+                        &nbsp;
+                        <!-- <div class="checkbox icheck">
+                            <label>
+                                <input type="checkbox" name="remember"> {{ trans('adminlte::adminlte.remember_me') }}
+                            </label>
+                        </div> -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
+                    </div><br><br><br>
+                    <!-- /.col -->
+                    <div class="box" align="center" style="border-style: none; box-shadow: none;"><br>
+                        <div class="box-group" id="accordion">
+                        <div class="panel box box-primary">
+                          <div class="box-header with-border" align="left">
+                            <h4 class="box-title">
+                                <i class="fa fa-fw fa-facebook-official" style="color: rgb(59, 89, 152);"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                Facebook
+                                </a>
+                            </h4>
+                          </div>
+                          <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row" align="center">
+                                    <div class="fb-login-button" id="botonfacebook_tocustom" data-size="medium" data-button-type="login_with" 
+                                    data-scope="public_profile,email" onlogin="checkLoginState();"></div>
+                                </div><br>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel box box-danger">
+                          <div class="box-header with-border" align="left">
+                            <h4 class="box-title">
+                                <i class="fa fa-fw fa-google" style="color: rgb(211, 72, 54);"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" >
+                                Google
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row" align="center">
+                                    <div class="g-signin2"  data-width="165" data-height="27" data-clientid="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com"data-onsuccess="onSignInG"></div><br>
+                            <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel box box-success">
+                          <div class="box-header with-border" align="left">
+                            <h4 class="box-title">
+                                <i class="fa fa-fw fa-linkedin"></i>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                LinkedIn
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row">
+                                    <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
+                                        api_key: 78maelkx5by0xp
+                                        authorize: true
+                                        onLoad: onLinkedInLoad
+                                        scope: r_basicprofile r_emailaddress
+                                        lang: es_ES
+                                    </script>
+                                    <div align="center"><script type="in/Login"></script></div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        <div class="overlay" id="cargar">
+                            <div id="carga2"class="fa fa-refresh fa-spin"></div>
+                        </div>
+                     </div>
+                </div>
             </form>
-            <div class="auth-links">
+            <div class="" id="loginload">
+                <div id="loginload2"class=""></div>
+            </div>
+        </div>
+        <div class="auth-links">
+
             <div class="row">
                 <div class="col-sm-7" align="center">
                     <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" class="btn btn-default btn-block btn-flat">
@@ -72,18 +161,15 @@
         </div>
         
         <!-- /.login-box-body -->
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
-                    data-scope="public_profile,email" onlogin="checkLoginState();"></div>
-            </div>
-            <div class="col-xs-6">
-                <div class="g-signin2" data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div>
-            </div>
-        </div><br>
-        <div class="row">
-            <div>
-                <div align="center"><script type="in/Login" data-width="165" data-height="27" ></script></div>
+        <div id="myModal" class="modal-danger2">
+            <div class="modal-content-danger2">
+                <div class="modal-header-danger2">
+                    <span class="close-danger2">&times;</span>
+                    <h3>Error: </h3>
+                </div>
+                <div class="modal-body-danger2">
+                    <h4>Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</h4>
+                </div>
             </div>
         </div>
     </div><!-- /.login-box -->
