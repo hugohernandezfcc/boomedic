@@ -31,7 +31,7 @@
 					
 			@else 
 			<form id="form" action="" method="post">
-			<input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
+			<meta name="csrf-token" content="{{ csrf_token() }}">
 			<input type="text" id="val" name="val" value=""/>
 			<div class="btn-group">
 			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo soporte"><i class="fa fa-user-md"></i></button>		

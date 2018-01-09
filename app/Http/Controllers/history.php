@@ -380,10 +380,10 @@ public function filter(Request $request){
       if($request->ajax())
     {
         $name = $request->input('val');
-        Response->json($name);
+
     }    
 
-         if($name) == 'Support'){  
+         if($name == 'Support'){  
          foreach($dateSupport as $date){
             $car = new Carbon($date->created_at);
                 $array[]  = collect([
@@ -397,7 +397,7 @@ public function filter(Request $request){
            }
          }
 
-         if($rname == 'User'){
+         if($name == 'User'){
             foreach($dateUser as $date){
             $car = new Carbon($date->updated_at);
                 $array[]  = collect([
