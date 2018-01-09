@@ -142,6 +142,11 @@
                             </div>
                           </div>
                         </div>
+                        </div>
+                            <div class="overlay" id="cargar">
+                                <div id="carga2"class="fa fa-refresh fa-spin"></div>
+                            </div>
+                        </div>
                 </div>
 
             </form>
