@@ -35,8 +35,11 @@ function checkLoginState() {
 
                 },
                 error: function(errorThrown){
-                    console.log("Aqui viene el error:");
-                    console.log(errorThrown);
+                    //console.log("Aqui viene el error:");
+                    //console.log(errorThrown);
+                    document.getElementById("loginload").removeAttribute("class");
+                    document.getElementById("loginload2").removeAttribute("class");
+                    alert("Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado");
                 }
             });
           });
