@@ -140,7 +140,7 @@
     }
 
     .modal-header2 {
-        padding: 1px 16px;
+        padding: 1px 10px;
         background-color: #e62e00;
         color: white;
     }
