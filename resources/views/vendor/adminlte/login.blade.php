@@ -53,10 +53,6 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
-                        <div class="alert alert-success alert-dismissable">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Success!</strong> Indicates a successful or positive action.
-                        </div>
                         <!-- casilla de recordar usuario. -->
                         &nbsp;
                         <!-- <div class="checkbox icheck">
@@ -70,6 +66,10 @@
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                     </div><br><br><br>
                     <!-- /.col -->
+                    <div class="alert alert-success alert-dismissable">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> Indicates a successful or positive action.
+                    </div>
                     <div class="box" align="center" style="border-style: none; box-shadow: none;"><br>
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
