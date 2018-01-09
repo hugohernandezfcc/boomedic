@@ -938,6 +938,7 @@
 				   $("#buttonOpen").show();
 				   document.getElementById("form1").style.display = "none";
 				   document.getElementById("form2").style.display = "none";
+				   document.getElementById("boxlabor").style.paddingBottom = "";
 				   initMap();
 				 
 				})
@@ -947,6 +948,7 @@
 				   $("#buttonOpen").show();
 				   document.getElementById("form1").style.display = "none";
 				   document.getElementById("form2").style.display = "none";
+				   document.getElementById("boxlabor").style.paddingBottom = "";
 				   initMap();
 				 
 				})
