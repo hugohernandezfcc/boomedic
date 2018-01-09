@@ -486,7 +486,7 @@ if($request->ajax()){
 
             ]
         );
-    } else 
+    } else {
             return view('history', [
                 'userId'    => Auth::id(),
                 'username'  => $user->username,
@@ -497,6 +497,7 @@ if($request->ajax()){
 
             ]
         );
+        }
     }
 
     public function create()
