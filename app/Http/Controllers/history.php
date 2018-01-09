@@ -381,7 +381,7 @@ public function filter(Request $request){
     {
         $name = $request->input('val');
 
-    }    
+       
 
          if($name == 'Support'){  
          foreach($dateSupport as $date){
@@ -490,6 +490,11 @@ public function filter(Request $request){
 
             ]
         );
+    } else{
+    
+
+     return  "error";
+     }  
     }
 
     public function create()
