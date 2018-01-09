@@ -227,19 +227,69 @@
     var typeC = 'TypeGeneral';
     var startProcess = false;
 
-
     /**
      * Information loader
      */
 
-    var specialities = [["Alergología"], ["Cardiología"], ["Gastroenterología"], ["Geriatría"], ["Infectología"], ["Neumología"], ["Neurología"], ["Nutriología"], ["Oftalmología"], ["Oncología"], ["Pediatría"], ["Psiquiatría"], ["Rehabilitación"], ["Reumatología"], ["Toxicología"], ["Odontología"]];
+    var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp  ["Alergología"], ["Cardiología"], ["Gastroenterología"], ["Geriatría"], ["Infectología"], ["Neumología"], ["Neurología"], ["Nutriología"], ["Oftalmología"], ["Oncología"], ["Pediatría"], ["Psiquiatría"], ["Rehabilitación"], ["Reumatología"], ["Toxicología"], ["Odontología"]];
 
-    var generalM = [[19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], [19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], [19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], [19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], [19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], [19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], [19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"]];
+    var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp[19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], [19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], [19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], [19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], [19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], [19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], [19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"]];
 
-    var datos = [["Alergología", 19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], ["Cardiología", 19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], ["Gastroenterología", 19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], ["Geriatría", 19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], ["Infectología", 19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], ["Neumología", 19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], ["Neurología", 19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"], ["Nutriología", 19.3948036, -99.09768079999998, "Beatriz Fuentes Galindo", "Servicios Médicos Fuentes"], ["Oftalmología", 19.342083, -99.0532159, "Lucía Medina Arenas", "Clínica Venecia"], ["Oncología", 19.3149641, -99.24258859999998, "Valeria Guerrero Ibáñez", "Hospital Arcángel"], ["Pediatría", 19.409044, -99.19057579999998, "Sergio Vega Infante", "Hospital Arcángel"], ["Psiquiatría", 19.1942041, -99.02670760000001, "Porfirio Soto Cuevas", "Hospital Arcángel"], ["Rehabilitación", 19.2990233, -99.04364670000001, "Elías Vidal Íñigo", "Hospital Arcángel"], ["Reumatología", 19.2790911, -99.2114234, "Inés Salazar Lara", "Hospital DTC"], ["Toxicología", 19.4395911, -99.1131054, "Elena Ríos Macías", "Hospital DTC"], ["Odontología", 19.2572314, -99.10296640000001, "Adrián Rivera Llamas", "Hospital DTC"], ["Alergología", 19.3605334,-99.32670670000002, "Sara Lozano Alcántara", "Hospital DTC"], ["Cardiología", 19.4846606, -99.28867490000002, "Oswaldo Robles Alfaro", "Hospital DTC"], ["Gastroenterología", 19.3794059, -99.25914459999999, "Patricia Caballero Manzano", "Hospital DTC"], ["Geriatría", 19.3437444, -99.2561883, "Martín Aguirre Olivera", "Hospital DTC"], ["Infectología", 19.3631419, -99.38805969999996, "Octavio Garrido Quiroga", "Hospital DTC"], ["Neumología", 19.4356338, -99.24951070000001, "Magdalena Cruz Orozco", "Hospital DEF"], ["Neurología", 19.4873329, -99.22361340000001, "Alvaro Gutiérrez Quintana", "Hospital DEF"], ["Nutriología", 19.3948036, -99.19768079999998, "David Romero Acosta", "Clínica Acosta"], ["Oftalmología", 19.342083, -99.1532159, "Bernardo Gil Montoya", "Hospital DEF"], ["Oncología", 19.3149641, -99.34258859999998, "Gisela Rojas Palma", "Hospital DEF"], ["Pediatría", 19.409044, -99.29057579999998, "Natalia Reyes Salgado", "Hospital DEF"], ["Psiquiatría", 19.1942041, -99.12670760000001, "Marcelo Campos Uribe", "Hospital DEF"], ["Rehabilitación", 19.2990233, -99.14364670000001, "Teresa Luna Carmona", "Clínica Venecia"], ["Reumatología", 19.2790911, -99.3114234, "Irene Morales Alcalá", "Clínica Cruces"], ["Toxicología", 19.4395911, -99.2131054, "Fabián Castillo Valencia", "Hospital Luna"], ["Odontología", 19.2572314, -99.20296640000001, "Adela Molina Zamora", "Clínica Venecia"]];
+    var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp ["Alergología", 19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], ["Cardiología", 19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], ["Gastroenterología", 19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], ["Geriatría", 19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], ["Infectología", 19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], ["Neumología", 19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], ["Neurología", 19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"], ["Nutriología", 19.3948036, -99.09768079999998, "Beatriz Fuentes Galindo", "Servicios Médicos Fuentes"], ["Oftalmología", 19.342083, -99.0532159, "Lucía Medina Arenas", "Clínica Venecia"], ["Oncología", 19.3149641, -99.24258859999998, "Valeria Guerrero Ibáñez", "Hospital Arcángel"], ["Pediatría", 19.409044, -99.19057579999998, "Sergio Vega Infante", "Hospital Arcángel"], ["Psiquiatría", 19.1942041, -99.02670760000001, "Porfirio Soto Cuevas", "Hospital Arcángel"], ["Rehabilitación", 19.2990233, -99.04364670000001, "Elías Vidal Íñigo", "Hospital Arcángel"], ["Reumatología", 19.2790911, -99.2114234, "Inés Salazar Lara", "Hospital DTC"], ["Toxicología", 19.4395911, -99.1131054, "Elena Ríos Macías", "Hospital DTC"], ["Odontología", 19.2572314, -99.10296640000001, "Adrián Rivera Llamas", "Hospital DTC"], ["Alergología", 19.3605334,-99.32670670000002, "Sara Lozano Alcántara", "Hospital DTC"], ["Cardiología", 19.4846606, -99.28867490000002, "Oswaldo Robles Alfaro", "Hospital DTC"], ["Gastroenterología", 19.3794059, -99.25914459999999, "Patricia Caballero Manzano", "Hospital DTC"], ["Geriatría", 19.3437444, -99.2561883, "Martín Aguirre Olivera", "Hospital DTC"], ["Infectología", 19.3631419, -99.38805969999996, "Octavio Garrido Quiroga", "Hospital DTC"], ["Neumología", 19.4356338, -99.24951070000001, "Magdalena Cruz Orozco", "Hospital DEF"], ["Neurología", 19.4873329, -99.22361340000001, "Alvaro Gutiérrez Quintana", "Hospital DEF"], ["Nutriología", 19.3948036, -99.19768079999998, "David Romero Acosta", "Clínica Acosta"], ["Oftalmología", 19.342083, -99.1532159, "Bernardo Gil Montoya", "Hospital DEF"], ["Oncología", 19.3149641, -99.34258859999998, "Gisela Rojas Palma", "Hospital DEF"], ["Pediatría", 19.409044, -99.29057579999998, "Natalia Reyes Salgado", "Hospital DEF"], ["Psiquiatría", 19.1942041, -99.12670760000001, "Marcelo Campos Uribe", "Hospital DEF"], ["Rehabilitación", 19.2990233, -99.14364670000001, "Teresa Luna Carmona", "Clínica Venecia"], ["Reumatología", 19.2790911, -99.3114234, "Irene Morales Alcalá", "Clínica Cruces"], ["Toxicología", 19.4395911, -99.2131054, "Fabián Castillo Valencia", "Hospital Luna"], ["Odontología", 19.2572314, -99.20296640000001, "Adela Molina Zamora", "Clínica Venecia"]];
+
 
   </script>
+ @if($appointments->isEmpty())
+ <div  class="box-body" align="center">
+   No hay citas registradas para los próximos días...
+ </div>
+ @else
+      <div class="box-group" id="accordion">
+                <div class="panel box box-default" style="border-top-color: gray;">
+                
+                 <div class="box-header with-border"> 
+                  <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="display:block; height:100%; width:100%;font-size: 12px;">
+                        Citas médicas registradas
+                  </a>
+              </h4>
+                    </div> 
+                  <div id="collapseOne" class="panel-collapse collapse" >
+                    <div class="box-body">
+                         @foreach($appointments->sortBy('when') as $appo)
+                              @if($loop->iteration < 3)
 
+                                            <div class="col-sm-12">
+                                                  <div class="info-box sm bg-gray">
+                                                    @if($loop->iteration == 1)
+                                                    <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-heartbeat"></i></span>
+                                                    @endif
+                                                    @if($loop->iteration == 2)
+                                                    <span class="info-box-icon sm bg-black"><i class="fa fa-heartbeat"></i></span>
+                                                    @endif
+                                                    <div class="info-box-content sm">
+                                                      <b>Lugar:</b> {{ $appo->workplace}}.<br/>
+                                                     <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
+                                                    </div>
+                                 @endif 
+                                                         @if($loop->iteration > 2)
+                                                         <div class="col-sm-12" style="text-align: right;">
+                                                          <a href="{{ url('/medicalconsultations') }}" class="btn btn-default btn-xs">
+                                                         Más detalles... <i class="fa fa-arrow-right"></i>
+                                                         </a>
+                                                         </div>
+                                                         @break
+                                                         @endif 
+                                                  </div>
+                                                </div>
+
+                         @endforeach
+                    </div>
+                  </div>
+                </div>
+            </div>    
+ @endif
+          
    <form>
     
     <div id="mapaC">
@@ -796,13 +846,13 @@
         if(keyWordValue == ''){
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5]]);
             }
           }
         }else{
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue && datos[i][3] == keyWordValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5]]);
             }
           }          
         }
@@ -815,7 +865,7 @@
 
           if(metros < rangeValue){
             //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4]]);
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
           }
         }
 
@@ -846,7 +896,7 @@
 
           for(var i = 0; i < generalM.length; i++) {
             if(generalM[i][2] == keyWordValue){
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4]]);
             }
           }
 
@@ -857,8 +907,8 @@
             console.log('Nombre:: '+res[i][3]);
 
             if(metros < rangeValue){
-               //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
-               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4]]);
+               //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio]
+               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
              }
           }
 
@@ -884,13 +934,13 @@
               console.log('Nombre:: '+generalM[i][2]);
               console.log(metros +'<'+ rangeValue);
 
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4]]);
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
             }
           }
 
           for(var i = 0; i < res.length; i++) {
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4]]);
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
           }
 
           if(loc.length <= 0){
@@ -928,12 +978,12 @@
 
           google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
             return function() {
-              infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]);
+              infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
               infowindow.open(map, marker);
               console.log(marker);
               
 
-              showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]);
+              showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
           
 
             }
@@ -942,7 +992,7 @@
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {  
               
-              showInfo(loc[i][2] + ', ' + loc[i][3] + '. <br/><br/> <b>Citas disponibles</b>: <select class="form-control" name="placeatention" id="placeatention" size="1"><option id="opc01">-- Ninguno -- </option><option>' + loc[i][4] +'</option></select> ');
+              showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/><br/> <b>Citas disponibles</b>: <select class="form-control" name="placeatention" id="placeatention" size="1"><option id="opc01">-- Ninguno -- </option><option>' + loc[i][4] +'</option></select> ');
               $('#modal-register-cite').modal('show');
             }
           })(marker, i));

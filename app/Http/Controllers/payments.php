@@ -23,6 +23,9 @@ use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 use config;
+use Mail;
+use email;
+use Mailgun\Mailgun;
 
 
 class payments extends Controller
@@ -57,8 +60,11 @@ class payments extends Controller
         return view('payments', [
                 'cards'     => $cards,
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at'),
+
                 'mode'      => 'listPaymentMethods'
             ]
         );
@@ -75,8 +81,10 @@ class payments extends Controller
 
         return view('payments', [
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at'),
                 'mode'      => 'createPaymentMethod'
             ]
         );
@@ -116,6 +124,7 @@ class payments extends Controller
         $pmethods->cardnumber    = $request->cardnumber;
         $pmethods->bank          = $request->bank;
         $pmethods->credit_debit  = $request->CreDeb;
+        $pmethods->notified      = 'false';
         $pmethods->owner         = Auth::id();
         }
     
@@ -200,8 +209,9 @@ class payments extends Controller
     //Controller to make payment, Contains type of ROUTE defined post
 
     public function PaymentAuthorizations(Request $request) {
-        $id = $request->id;
 
+        $id = $request->id;
+        $user = User::find(Auth::id());
         //Look in the table of methods of saved payments all the information of the selected method.
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
 
@@ -235,9 +245,25 @@ class payments extends Controller
                     /* Insert Transaction_bank*/    
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Transacción Nro. '.$statusCode[1].': Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... ', 
+            'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... ', 
             'success' => 'success'
             );
+
+
+            $data = [
+            'name'     => $user->name,
+            'email'    => $user->email, 
+            'username'  => $user->username,                 
+            'firstname' => $user->firstname,                
+            'lastname'  => $user->lastname,    
+            'number'   => $statusCode[1],
+            'amount'   => '$'.$request->pay         
+            ];
+                $email = $user->email;
+             Mail::send('emails.transaction', $data, function ($message) {
+                        $message->subject('Transacción de pago en Boomedic');
+                        $message->to('rebbeca.goncalves@doitcloud.consulting');
+                    });
             return redirect('payment/index')->with($notification);
          }
          else {
@@ -268,6 +294,7 @@ class payments extends Controller
                 'userId'    => Auth::id(),
                 'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'mode'      => 'historyTransaction'
             ]
         );
@@ -276,7 +303,10 @@ class payments extends Controller
      }
 
             public function postPaymentWithpaypal(Request $request)
+
                 {
+                    $url = url('/');
+
                     $payer = new Payer();
                             $payer->setPaymentMethod('paypal');
                             $item_1 = new Item();
@@ -294,8 +324,8 @@ class payments extends Controller
                                 ->setItemList($item_list)
                                 ->setDescription('Your transaction description');
                             $redirect_urls = new RedirectUrls();
-                            $redirect_urls->setReturnUrl('https://afternoon-hollows-51469.herokuapp.com/payment/getPaymentStatus') /** Specify return URL **/
-                                ->setCancelUrl('https://afternoon-hollows-51469.herokuapp.com/medicalconsultations');
+                            $redirect_urls->setReturnUrl($url.'/payment/getPaymentStatus') /** Specify return URL **/
+                                ->setCancelUrl($url.'/medicalconsultations');
                             $payment = new Payment();
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
@@ -375,10 +405,11 @@ class payments extends Controller
                                 $pmethods->paypal_email  = $result->getPayer()->getPayerInfo()->getEmail();
                                 $pmethods->cardnumber    = $request->input('PayerID');
                                 $pmethods->owner         = Auth::id();
+                                $pmethods->notified      = 'false';
                                 $pmethods->save();
 
                               }
-
+                               
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
@@ -393,6 +424,21 @@ class payments extends Controller
                                     'message' => 'Procesado su pago de paypal, Correo: ' .$result->getPayer()->getPayerInfo()->getEmail().', Id de transacción: '. $payment_id, 
                                     'success' => 'success'
                                 );
+                                $user = User::find(Auth::id());
+                                $data = [
+                                'name'     => $user->name,
+                                'email'    => $user->email, 
+                                'username'  => $user->username,                 
+                                'firstname' => $user->firstname,                
+                                'lastname'  => $user->lastname,    
+                                'number'   => $payment_id,
+                                'amount'   => '$'.$payment->transactions[0]->amount->total        
+                                ];
+                                $email = $user->email;
+                                 Mail::send('emails.transaction', $data, function ($message) {
+                                            $message->subject('Transacción de pago en Boomedic');
+                                            $message->to('rebbeca.goncalves@doitcloud.consulting');
+                                        });
                               return redirect('payment/index')->with($notification);
                             }
                             

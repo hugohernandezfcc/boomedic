@@ -9,7 +9,9 @@
 @section('content')
     
     <br/>
+@if($mode == 'listPaymentMethods')    
 @include('headerprofile')
+@endif
 
 						<!-- Charge Alert whether payment was processed or not -->
 							@if(session()->has('message'))
@@ -290,7 +292,7 @@
             @endif
 
 			             @if($mode == 'historyTransaction')
-			            	
+
 
 			            	 @if($type == 'card')
 

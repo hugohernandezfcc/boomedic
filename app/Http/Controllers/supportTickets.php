@@ -33,8 +33,10 @@ class supportTickets extends Controller
         return view('tickets', [
                 'allTickets'=> $allTickets,
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at'),
                 'mode'      => 'listTickets'
             ]
         );
@@ -49,9 +51,11 @@ class supportTickets extends Controller
     {
         return view('tickets', [
                 'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
+                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
+                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'email'     => DB::table('users')->where('id', Auth::id() )->value('email'),
                 'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at'),
                 'mode'      => 'createTicket'
             ]
         );

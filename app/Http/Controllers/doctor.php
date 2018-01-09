@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
@@ -12,6 +13,8 @@ use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 use Image;
+use App\professional_information;
+
 
 class doctor extends Controller
 {
@@ -67,6 +70,10 @@ class doctor extends Controller
     public function show($id)
     {
         $users = DB::table('users')->where('id', Auth::id() )->get();
+        $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
+        $bus = $professionali[0]->id;
+        $prof = professional_information::find($bus);
+        $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
         return view('profileDoctor', [
                 'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
 
@@ -80,8 +87,11 @@ class doctor extends Controller
                 'lastname'      => $users[0]->lastname,
                 'email'         => $users[0]->email,
                 'username'      => $users[0]->username,
+                'name'      => $users[0]->name,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
+                'date'         => $users[0]->created_at,
+
                 /** PERSONAL INFORMATION */
 
                 'gender'        => $users[0]->gender,
@@ -90,6 +100,13 @@ class doctor extends Controller
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
                 'updated_at'    => $users[0]->updated_at,
+
+                /** PROFESSIONAL INFORMATION  */
+                'professional_license'  =>  $professionali[0]->professional_license,
+                'specialty'     => $professionali[0]->specialty,
+                'schoolOfMedicine' => $professionali[0]->schoolOfMedicine,
+                'facultyOfSpecialization' => $professionali[0]->facultyOfSpecialization,
+                'practiseProfessional'    => $professionali[0]->practiseProfessional,
 
                 /** ADDRESS FISICAL USER  */
 
@@ -102,7 +119,9 @@ class doctor extends Controller
                 'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
                 'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
                 'longitude'     => (   empty($users[0]->longitude)      ) ? '' : $users[0]->longitude,
-                'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude
+                'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
+                'mode'          => 'doctor',
+                'labor'         => $labor
             ]
         );
     }
@@ -112,7 +131,7 @@ class doctor extends Controller
     {
         switch ($page) {
             case 'show':
-                return redirect('user/profile/' . Auth::id() ); //show
+                return redirect('doctor/doctor/' . Auth::id() ); //show
                 break;
             
             default:
@@ -141,8 +160,11 @@ question
     public function edit($status){
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
-
-        return view('profile', [
+        $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
+        $bus = $professionali[0]->id;
+        $prof = professional_information::find($bus);
+        $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
+        return view('profileDoctor', [
 
                 /** SYSTEM INFORMATION */
 
@@ -155,8 +177,10 @@ question
                 'lastname'      => $users[0]->lastname,
                 'email'         => $users[0]->email,
                 'username'      => $users[0]->username,
+                'name'      => $users[0]->name,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
+                'date'         => $users[0]->created_at,
                 /** PERSONAL INFORMATION */
 
                 'gender'        => $users[0]->gender,
@@ -164,6 +188,13 @@ question
                 'scholarship'   => $users[0]->scholarship,
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
+
+                /** PROFESSIONAL INFORMATION  */
+                'professional_license'  =>  $professionali[0]->professional_license,
+                'specialty'     => $professionali[0]->specialty,
+                'schoolOfMedicine' => $professionali[0]->schoolOfMedicine,
+                'facultyOfSpecialization' => $professionali[0]->facultyOfSpecialization,
+                'practiseProfessional'    => $professionali[0]->practiseProfessional,
 
                 /** ADDRESS FISICAL USER  */
 
@@ -174,7 +205,9 @@ question
                 'street'        => (   empty($users[0]->street)         ) ? '' : $users[0]->street, 
                 'streetnumber'  => (   empty($users[0]->streetnumber)   ) ? '' : $users[0]->streetnumber, 
                 'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
-                'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode  
+                'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
+                'mode'          => 'doctor',
+                'labor'         => $labor  
 
             ]
         );
@@ -190,8 +223,12 @@ question
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+        $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
+        $bus = $professionali[0]->id;
+        $prof = professional_information::find($bus);
+        $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
 
-
+        if ($request->change == "true") {
         $user->status        = $request->status;         
         $user->firstname     = $request->firstname;         
         $user->lastname      = $request->lastname;         
@@ -214,15 +251,108 @@ question
 
         $user->postalcode    = $request->postalcode; 
         $user->latitude      = $request->latitude; 
-        $user->longitude     = $request->longitude; 
+        $user->longitude     = $request->longitude;
 
-        if ( $user->save() ) 
-            return redirect('user/profile/' . $id );
+        $prof->professional_license  =  $request->professional_license;
+        $prof->specialty                = $request->specialty;
+        $prof->schoolOfMedicine         = $request->schoolOfMedicine;
+        $prof->facultyOfSpecialization  = $request->facultyOfSpecialization;
+        $prof->practiseProfessional     = $request->practiseProfessional;
+
+        $prof->save();
+        $user->save();
+        }
+            return view('profileDoctor', [
+
+                /** SYSTEM INFORMATION */
+
+                'userId'        => Auth::id(),
+                'name'      => $user->name,
+                'photo'         => $user->profile_photo,
+                'date'         => $user->created_at,
+                'mode'          => 'labor',
+
+                /* DIRECTION LABOR PROFESSIONAL  */
+                'labor'         => $labor,
+
+            ]
+        );
     }
 
-    public function updateProfile(Request $request, $id)
+        public function laborInformationNext(Request $request, $id)
     {
-       // $path = $request->photo->store('images', 's3');
+        $user = user::find(Auth::id());
+        $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
+        $bus = $professionali[0]->id;
+        $prof = professional_information::find($bus);
+
+        $laborInformation = new laborInformation;
+
+
+        $laborInformation->workplace       = $request->workplace; 
+        $laborInformation->professionalPosition       = $request->professionalPosition; 
+
+        $laborInformation->country       = $request->country; 
+        $laborInformation->state         = $request->state; 
+        $laborInformation->delegation    = $request->delegation; 
+        $laborInformation->colony        = $request->colony; 
+        $laborInformation->street        = $request->street; 
+
+
+        $laborInformation->postalcode    = $request->postalcode; 
+        $laborInformation->latitude      = $request->lati; 
+        $laborInformation->longitude     = $request->long;
+        $laborInformation->general_amount = $request->cost;
+
+        $laborInformation->profInformation  =   $prof->id;
+   
+        $laborInformation->save();
+
+          $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
+            return view('profileDoctor', [
+
+                /** SYSTEM INFORMATION */
+
+                'userId'        => Auth::id(),
+                'name'      => $user->name,
+                'photo'         => $user->profile_photo,
+                'date'         => $user->created_at,
+                'mode'          => 'labor',
+
+                /* DIRECTION LABOR PROFESSIONAL  */
+                'labor'         => $labor
+            ]
+        );
+    }
+
+           public function laborInformationView($id)
+    {
+        $user = user::find(Auth::id());
+        $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
+        $bus = $professionali[0]->id;
+        $prof = professional_information::find($bus);
+
+
+          $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
+            return view('profileDoctor', [
+
+                /** SYSTEM INFORMATION */
+
+                'userId'        => Auth::id(),
+                'name'      => $user->name,
+                'photo'         => $user->profile_photo,
+                'date'         => $user->created_at,
+                'mode'          => 'viewlabor',
+
+                /* DIRECTION LABOR PROFESSIONAL  */
+                'labor'         => $labor
+            ]
+        );
+    }
+
+    public function updateDoctor(Request $request, $id)
+    {
+
         $user = User::find($id);
         $file = $request->file('file');
          $imagen = getimagesize($file);    //Sacamos la información
@@ -230,12 +360,12 @@ question
           $height = $imagen[1];  
 
           if($height > '600' || $width > '600'){
-            $height = $height / 3;
-            $width = $width / 3;
+            $height = $height / 2;
+            $width = $width / 2;
           }
             if($height > '900' || $width > '900'){
-                $height = $height / 4;
-                $width = $width / 4;
+                $height = $height / 3;
+                $width = $width / 3;
               }
 
         $img = Image::make($file);
@@ -250,10 +380,10 @@ question
         $user->profile_photo = $path2;   
         Session(['val' => 'true']);
         $user->save();
-        return redirect('user/profile/' . $id );
+        return redirect('doctor/doctor/' . $id );
     }
 
-    public function cropProfile(Request $request, $id)
+    public function cropDoctor(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
         $user = User::find($id);
@@ -282,7 +412,7 @@ question
         $user->profile_photo = $path2;   
 
         if($user->save())
-            return redirect('user/profile/' . $id );
+            return redirect('doctor/edit/complete' . $id );
     }
 
 
@@ -294,6 +424,11 @@ question
      */
     public function destroy($id)
     {
-        //
+    DB::delete('delete from labor_information where id = ?',[$id]) ;    
+
+    
+    // redirect
+    
+   return redirect('doctor/doctor/'.Auth::id() );
     }
 }

@@ -57,16 +57,41 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
-                        <li>
-                            @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
-                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
-                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                        <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                  @if($photo == '')
+                                        <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="user-image" alt="User Image">
+                                    @else
+                                        <img src="{{ $photo }}" class="user-image" alt="User Image">            
+                                    @endif 
+                                  <span class="hidden-xs">{{ $name }}</span>
+                                </a>
+                                <ul class="dropdown-menu bg-darken-4">
+                                  <!-- User image -->
+                                  <li class="user-header bg-darken-4">
+                                    @if($photo == '')
+                                        <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image">
+                                    @else
+                                        <img src="{{ $photo }}" class="img-circle" alt="User Image">            
+                                    @endif 
+
+                                    <p>
+                                        {{ $name }}
+                                      <small>Miembro desde  {{ \Carbon\Carbon::parse($date)->format('m-Y') }}</small>
+                                    </p>
+                                  </li>
+                                  <!-- Menu Footer-->
+                                  <li class="user-footer bg-darken-4">
+                                    <div class="pull-center">
+                                 @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
+                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" class="btn btn-secondary btn-block btn-flat">
+                                    <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
                             @else
                                 <a href="#"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                >
-                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                 class="btn btn-secondary btn-block btn-flat">
+                                    <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
                                 <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
                                     @if(config('adminlte.logout_method'))
@@ -75,7 +100,10 @@
                                     {{ csrf_field() }}
                                 </form>
                             @endif
-                        </li>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
                     </ul>
                 </div>
                 @if(config('adminlte.layout') == 'top-nav')

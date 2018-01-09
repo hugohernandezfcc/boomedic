@@ -61,7 +61,7 @@ return [
     ],*/
 
     'from' => [
-        'address' => 'cristina@doitcloud.consulting',
+        'address' => 'contacto@doitcloud.consulting',
         'name' => 'Boomedic',
     ],
 
@@ -93,9 +93,11 @@ return [
 
     'password' => env('MAIL_PASSWORD'),*/
 
+
     'username' => 'postmaster@sandbox17b4931395db42479457e358c2801167.mailgun.org',
 
     'password' => 'd5d750368384442c12be13ce1f9c3953',
+
 
     /*
     |--------------------------------------------------------------------------
