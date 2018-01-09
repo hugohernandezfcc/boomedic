@@ -21,6 +21,13 @@
 
 
 @section('body')
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
+    </div>
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
@@ -66,11 +73,7 @@
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                     </div><br><br><br>
                     <!-- /.col -->
-                    <div id="alertError"></div>
-                    <!--<div class="alert alert-danger alert-dismissable">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Error:</strong> Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.
-                    </div>-->
+                    <div id="alertError"></div><!---->
                     <div class="box" align="center" style="border-style: none; box-shadow: none;"><br>
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">

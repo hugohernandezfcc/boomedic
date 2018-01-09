@@ -1,4 +1,5 @@
 var personFB = { name: "", firstName: "", lastName: "", accessToken: "", picture: "", email: "", origin: ""};
+var modal = document.getElementById('myModal');
 function checkLoginState() {
     FB.getLoginStatus(function (response) {
         if (response.status == "connected"){
@@ -39,13 +40,19 @@ function checkLoginState() {
                     //console.log(errorThrown);
                     document.getElementById("loginload").removeAttribute("class");
                     document.getElementById("loginload2").removeAttribute("class");
-                    $("#alertError").html("<div class='alert alert-danger alert-dismissable'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</div>");
+                    //$("#alertError").html("<div class='alert alert-danger alert-dismissable'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</div>");
                     //alert("Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado");
+                    modal.style.display = "block";
                 }
             });
           });
         }
     })
+
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 
 }
 
