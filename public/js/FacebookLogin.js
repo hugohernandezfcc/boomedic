@@ -43,15 +43,16 @@ function checkLoginState() {
                     //$("#alertError").html("<div class='alert alert-danger alert-dismissable'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</div>");
                     //alert("Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado");
                     modal.style.display = "block";
-                    window.onclick = function(event) {
-                        if (event.target == modal) {
-                            modal.style.display = "none";
-                        };
                 }
             });
           });
         }
     })
+
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 
 }
 
