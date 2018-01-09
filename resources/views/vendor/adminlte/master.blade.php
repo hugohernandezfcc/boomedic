@@ -128,7 +128,7 @@
     .close2 {
         color: white;
         float: right;
-        font-size: 28px;
+        font-size: 26px;
         font-weight: bold;
     }
 
@@ -140,8 +140,8 @@
     }
 
     .modal-header2 {
-        padding: 2px 16px;
-        background-color: #5cb85c;
+        padding: 1px 16px;
+        background-color: #e62e00;
         color: white;
     }
 
