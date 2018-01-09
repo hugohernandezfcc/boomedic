@@ -36,7 +36,8 @@
 			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo soporte"><i class="fa fa-user-md"></i></button>		
 			<button id="support" type="button"  class="btn bg-black" title="Mostrar solo citas"><i class="fa fa-wrench "></i></button>
 			<button id="payment" type="button" class="btn bg-yellow" title="Mostrar solo actualización de usuario"> <i class="fa fa-credit-card-alt"></i></button>	
-			<button id="user" type="button" class="btn bg-green" title="Métodos de pagos registrados"><i class="fa fa-user "></i></button>		
+			<button id="user" type="button" class="btn bg-green" title="Métodos de pagos registrados"><i class="fa fa-user "></i></button>
+			<button id="all" type="button" class="btn black bg-darken-4" title="Ver todo"><i> • • • </i></button>				
 			</div>
 
 	 <br/><br/><br/>
@@ -771,7 +772,33 @@
 			    u[i].style.display = 'block';
 			}
 
-			});  	     
+			});  
+
+			$("#all").click(function () {
+	
+			var x = document.getElementsByClassName("support");
+			var i;
+			for (i = 0; i < x.length; i++) {
+			    x[i].style.display = 'block';
+			}
+			var y = document.getElementsByClassName("user");
+			var i;
+			for (i = 0; i < y.length; i++) {
+			    y[i].style.display = 'block';
+			}
+
+			var z = document.getElementsByClassName("appointment");
+			var i;
+			for (i = 0; i < z.length; i++) {
+			    z[i].style.display = 'block';
+			}
+			var u = document.getElementsByClassName("payment");
+			var i;
+			for (i = 0; i < u.length; i++) {
+			    u[i].style.display = 'block';
+			}
+
+			});  	     	     
 </script>	
  	
 @stop
