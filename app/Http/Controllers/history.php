@@ -353,6 +353,8 @@ class history extends Controller
      */
 
 public function filter(Request $request){
+       
+if($request->ajax()){ 
        $user = User::find(Auth::id());
 
         $dateUser = DB::table('users')->where('id', Auth::id())
@@ -480,6 +482,17 @@ public function filter(Request $request){
                 'array6'     => $array6,
                 'arraynow'     => $arraynow,
                 'mode'      => 'more'
+
+
+            ]
+        );
+    } else 
+            return view('history', [
+                'userId'    => Auth::id(),
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'mode'      => 'null'
 
 
             ]
