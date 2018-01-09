@@ -30,16 +30,15 @@
 					
 					
 			@else 
-			<form id="form" action="" method="post">
-			<meta name="csrf-token" content="{{ csrf_token() }}">
-			<input type="text" id="val" name="val" value=""/>
+
+
 			<div class="btn-group">
 			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo soporte"><i class="fa fa-user-md"></i></button>		
 			<button id="support" type="button"  class="btn bg-black" title="Mostrar solo citas"><i class="fa fa-wrench "></i></button>
 			<button id="payment" type="button" class="btn bg-yellow" title="Mostrar solo actualización de usuario"> <i class="fa fa-credit-card-alt"></i></button>	
 			<button id="user" type="button" class="btn bg-green" title="Métodos de pagos registrados"><i class="fa fa-user "></i></button>		
 			</div>
-			</form>
+
 	 <br/><br/><br/>
 			<!-- Now -->
 		@if(!$arraynow->isEmpty())
@@ -54,7 +53,7 @@
             <!-- timeline time label -->
 
           @if($items['Type'] == 'Medical Appointments')
-            <li>
+            <li class="appointment">
               <i class="fa fa-user-md bg-blue"></i>
 
               <div class="timeline-item">
@@ -70,7 +69,7 @@
             @endif
 
             @if($items['Type'] == 'Support Ticket')
-            <li>
+            <li class="support">
               <i class="fa fa-wrench bg-black"></i>
 
               <div class="timeline-item">
@@ -84,7 +83,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li>
+            <li class="user">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -97,7 +96,7 @@
             <!-- END timeline item -->
             <!-- timeline item -->
             @if($items['Type'] == 'Payment Method')
-            <li>
+            <li class="payment">
               <i class="fa fa-credit-card-alt bg-yellow"></i>
 
               <div class="timeline-item">
@@ -137,7 +136,7 @@
           @foreach($array1 as $items) 
             <!-- timeline time label -->
           @if($items['Type'] == 'Medical Appointments')
-            <li>
+            <li class="appointment">
               <i class="fa fa-user-md bg-blue"></i>
 
               <div class="timeline-item">
@@ -153,7 +152,7 @@
             @endif
             
             @if($items['Type'] == 'Support Ticket')
-            <li>
+            <li class="support">
               <i class="fa fa-wrench bg-black"></i>
 
               <div class="timeline-item">
@@ -167,7 +166,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li>
+            <li class="user">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -180,7 +179,7 @@
             <!-- END timeline item -->
             <!-- timeline item -->
             @if($items['Type'] == 'Payment Method')
-            <li>
+            <li class="payment">
               <i class="fa fa-credit-card-alt bg-yellow"></i>
 
               <div class="timeline-item">
@@ -222,7 +221,7 @@
             <!-- timeline time label -->
 
             @if($items['Type'] == 'Medical Appointments')
-            <li>
+            <li class="appointment">
               <i class="fa fa-user-md bg-blue"></i>
 
               <div class="timeline-item">
@@ -238,7 +237,7 @@
             @endif
 
             @if($items['Type'] == 'Support Ticket')
-            <li>
+            <li class="support">
               <i class="fa fa-wrench bg-black"></i>
 
               <div class="timeline-item">
@@ -252,7 +251,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li>
+            <li class="user">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -265,7 +264,7 @@
             <!-- END timeline item -->
             <!-- timeline item -->
             @if($items['Type'] == 'Payment Method')
-            <li>
+            <li class="payment">
               <i class="fa fa-credit-card-alt bg-yellow"></i>
 
               <div class="timeline-item">
@@ -307,7 +306,7 @@
             <!-- timeline time label -->
 
           @if($items['Type'] == 'Medical Appointments')
-            <li>
+            <li class="appointment">
               <i class="fa fa-user-md bg-blue"></i>
 
               <div class="timeline-item">
@@ -323,7 +322,7 @@
             @endif
 
             @if($items['Type'] == 'Support Ticket')
-            <li>
+            <li class="support">
               <i class="fa fa-wrench bg-black"></i>
 
               <div class="timeline-item">
@@ -337,7 +336,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li>
+            <li class="user">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -350,7 +349,7 @@
             <!-- END timeline item -->
             <!-- timeline item -->
             @if($items['Type'] == 'Payment Method')
-            <li>
+            <li class="payment">
               <i class="fa fa-credit-card-alt bg-yellow"></i>
 
               <div class="timeline-item">
@@ -392,7 +391,7 @@
             <!-- timeline time label -->
 
           @if($items['Type'] == 'Medical Appointments')
-            <li>
+            <li class="appointment">
               <i class="fa fa-user-md bg-blue"></i>
 
               <div class="timeline-item">
@@ -408,7 +407,7 @@
             @endif
 
             @if($items['Type'] == 'Support Ticket')
-            <li>
+            <li class="support">
               <i class="fa fa-wrench bg-black"></i>
 
               <div class="timeline-item">
@@ -422,7 +421,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li>
+            <li class="user">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -435,7 +434,7 @@
             <!-- END timeline item -->
             <!-- timeline item -->
             @if($items['Type'] == 'Payment Method')
-            <li>
+            <li class="payment">
               <i class="fa fa-credit-card-alt bg-yellow"></i>
 
               <div class="timeline-item">
@@ -476,7 +475,7 @@
             <!-- timeline time label -->
 
           @if($items['Type'] == 'Medical Appointments')
-            <li>
+            <li class="appointment">
               <i class="fa fa-user-md bg-blue"></i>
 
               <div class="timeline-item">
@@ -492,7 +491,7 @@
             @endif
 
             @if($items['Type'] == 'Support Ticket')
-            <li>
+            <li class="support">
               <i class="fa fa-wrench bg-black"></i>
 
               <div class="timeline-item">
@@ -506,7 +505,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li>
+            <li class="user">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -519,7 +518,7 @@
             <!-- END timeline item -->
             <!-- timeline item -->
             @if($items['Type'] == 'Payment Method')
-            <li>
+            <li class="payment">
               <i class="fa fa-credit-card-alt bg-yellow"></i>
 
               <div class="timeline-item">
@@ -560,7 +559,7 @@
           @foreach($array6 as $items) 
             <!-- timeline time label -->
           @if($items['Type'] == 'Medical Appointments')
-            <li>
+            <li class="appointment">
               <i class="fa fa-user-md bg-blue"></i>
 
               <div class="timeline-item">
@@ -576,7 +575,7 @@
             @endif
             
             @if($items['Type'] == 'Support Ticket')
-            <li>
+            <li class="support">
               <i class="fa fa-wrench bg-black"></i>
 
               <div class="timeline-item">
@@ -590,7 +589,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li>
+            <li class="user">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -603,7 +602,7 @@
             <!-- END timeline item -->
             <!-- timeline item -->
             @if($items['Type'] == 'Payment Method')
-            <li>
+            <li class="payment">
               <i class="fa fa-credit-card-alt bg-yellow"></i>
 
               <div class="timeline-item">
@@ -665,45 +664,114 @@
       </div>
 
  	</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
  <script type="text/javascript">
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+		$("#user").click(function () {
 
-		$("#user").click(function (e) {
-		e.preventDefault();
-			document.getElementById('val').value= 'User';
-			    var nombre = 'User';
-			      $.ajax({
-			      	url: "{{ url('history/filter') }}",
-			        type: "post",
-			        dataType: "json",
-			        data: {
-			            val: nombre
-			        }
-			   })
+			var x = document.getElementsByClassName("support");
+			var i;
+			for (i = 0; i < x.length; i++) {
+			    x[i].style.display = 'none';
+			}
+			var y = document.getElementsByClassName("payment");
+			var i;
+			for (i = 0; i < y.length; i++) {
+			    y[i].style.display = 'none';
+			}
+
+			var z = document.getElementsByClassName("appointment");
+			var i;
+			for (i = 0; i < z.length; i++) {
+			    z[i].style.display = 'none';
+			}
+
+			var u = document.getElementsByClassName("user");
+			var i;
+			for (i = 0; i < u.length; i++) {
+			    u[i].style.display = 'block';
+			}
+
 			});
 
-		$("#support").click(function (e) {
-		 e.preventDefault();	
-				document.getElementById('val').value= 'Support';
-				var nombre = 'Support';
-			      $.ajax({
-			      	url: "{{ url('history/filter') }}",
-			        type: "POST",
-			        dataType: "json",
-			        data: {
-			            val: nombre
-			        },
-			  success:function(data){
-                    console.log(data);  
-           }
-			   });
-			});       
+		$("#support").click(function () {
+	
+
+			var x = document.getElementsByClassName("user");
+			var i;
+			for (i = 0; i < x.length; i++) {
+			    x[i].style.display = 'none';
+			}
+			var y = document.getElementsByClassName("payment");
+			var i;
+			for (i = 0; i < y.length; i++) {
+			    y[i].style.display = 'none';
+			}
+
+			var z = document.getElementsByClassName("appointment");
+			var i;
+			for (i = 0; i < z.length; i++) {
+			    z[i].style.display = 'none';
+			}
+
+			var u = document.getElementsByClassName("support");
+			var i;
+			for (i = 0; i < u.length; i++) {
+			    u[i].style.display = 'block';
+			}
+			});  
+
+		$("#appointment").click(function () {
+	
+			var x = document.getElementsByClassName("support");
+			var i;
+			for (i = 0; i < x.length; i++) {
+			    x[i].style.display = 'none';
+			}
+			var y = document.getElementsByClassName("payment");
+			var i;
+			for (i = 0; i < y.length; i++) {
+			    y[i].style.display = 'none';
+			}
+
+			var z = document.getElementsByClassName("user");
+			var i;
+			for (i = 0; i < z.length; i++) {
+			    z[i].style.display = 'none';
+			}
+			var u = document.getElementsByClassName("appointment");
+			var i;
+			for (i = 0; i < u.length; i++) {
+			    u[i].style.display = 'block';
+			}
+
+			});  
+
+		$("#payment").click(function () {
+	
+			var x = document.getElementsByClassName("support");
+			var i;
+			for (i = 0; i < x.length; i++) {
+			    x[i].style.display = 'none';
+			}
+			var y = document.getElementsByClassName("user");
+			var i;
+			for (i = 0; i < y.length; i++) {
+			    y[i].style.display = 'none';
+			}
+
+			var z = document.getElementsByClassName("appointment");
+			var i;
+			for (i = 0; i < z.length; i++) {
+			    z[i].style.display = 'none';
+			}
+			var u = document.getElementsByClassName("payment");
+			var i;
+			for (i = 0; i < u.length; i++) {
+			    u[i].style.display = 'block';
+			}
+
+			});  	     
 </script>	
  	
 @stop

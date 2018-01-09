@@ -195,6 +195,12 @@ class history extends Controller
            ->where( 'created_at', '>', Carbon::now()->subDays(21))
            ->select('id','created_at','updated_at','provider','cardnumber')->get();
 
+        $dateAppointments = DB::table('medical_appointments')
+           ->join('users', 'medical_appointments.user', '=', 'users.id')
+           ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+           ->where( 'medical_appointments.created_at', '>', Carbon::now()->subDays(21))
+           ->select('medical_appointments.id','medical_appointments.created_at','medical_appointments.updated_at','medical_appointments.user_doctor','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace')->get();   
+
            $array = collect();
            $array1 = collect();
            $array2 = collect();
@@ -352,150 +358,6 @@ class history extends Controller
      * @return \Illuminate\Http\Response
      */
 
-public function filter(Request $request){
-       
-
-       $user = User::find(Auth::id());
-
-        $dateUser = DB::table('users')->where('id', Auth::id())
-           ->where( 'updated_at', '>', Carbon::now()->subDays(21))
-            ->select('id','created_at','updated_at')->get();
-
-        $dateSupport = DB::table('support_tickets')->where('userId', Auth::id())
-           ->where( 'created_at', '>', Carbon::now()->subDays(21))
-           ->select('id','created_at','updated_at','ticketDescription')->get();
-
-        $datePayment = DB::table('paymentsmethods')->where('owner', Auth::id())
-           ->where( 'created_at', '>', Carbon::now()->subDays(21))
-           ->select('id','created_at','updated_at','provider','cardnumber')->get();
-
-           $array = collect();
-           $array1 = collect();
-           $array2 = collect();
-           $array3 = collect();
-           $array4 = collect();
-           $array5 = collect();
-           $array6 = collect();
-           $arraynow = collect();
-      if($request->ajax())
-    {
-        $name = $request->input('val');
-
-       
-
-         if($name == 'Support'){  
-         foreach($dateSupport as $date){
-            $car = new Carbon($date->created_at);
-                $array[]  = collect([
-                            'Type'       => 'Support Ticket',
-                            'id'         =>  $date->id,
-                            'created_at' => $date->created_at,
-                            'updated_at' => $date->updated_at,
-                            'time'       => $car->diffForHumans(),
-                            'des'        => $date->ticketDescription
-                            ]);
-           }
-         }
-
-         if($name == 'User'){
-            foreach($dateUser as $date){
-            $car = new Carbon($date->updated_at);
-                $array[]  = collect([
-                            'Type'       => 'User',
-                            'id'         =>  $date->id,
-                            'created_at' => $date->created_at,
-                            'updated_at' => $date->updated_at,
-                            'time'       => $car->diffForHumans(),
-                            ]);
-           }
-         }  
-
-
-            foreach($array->sortByDesc('updated_at') as $items){
-            //if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
-                //$arraynow[] = $items;
-            //}
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(1)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(1)->format('d-m-Y')){
-                $array1[] = $items;
-            }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(2)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(2)->format('d-m-Y')){
-                $array2[] = $items;
-            }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(3)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(3)->format('d-m-Y')){
-                $array3[] = $items;
-            }
-           if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(4)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(4)->format('d-m-Y')){
-                $array4[] = $items;
-            }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(5)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(5)->format('d-m-Y')){
-                $array5[] = $items;
-            }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(6)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(6)->format('d-m-Y')){
-                $array6[] = $items;
-            }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
-                $arraynow[] = $items;
-            }
-           }
-
-       
-           if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty()){
-                foreach($array->sortByDesc('updated_at') as $items){
-            //if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
-                //$arraynow[] = $items;
-                    //}
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(8)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(8)->format('d-m-Y')){
-                $array1[] = $items;
-            }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(9)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(9)->format('d-m-Y')){
-                $array2[] = $items;
-            }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(10)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(10)->format('d-m-Y')){
-                $array3[] = $items;
-            }
-           if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(11)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(11)->format('d-m-Y')){
-                $array4[] = $items;
-            }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(12)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(12)->format('d-m-Y')){
-                $array5[] = $items;
-            }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(13)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(13)->format('d-m-Y')){
-                $array6[] = $items;
-            }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->subDays(7)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays(7)->format('d-m-Y')){
-                $arraynow[] = $items;
-            }
-                   }
-
-
-           }
-           
-
-        return view('history', [
-                'userId'    => Auth::id(),
-                'username'  => $user->username,
-                'name'      => $user->name,
-                'photo'     => $user->profile_photo,
-                'dateUser'  => $dateUser,
-                'array2'     => $array2,
-                'array1'    => $array1,
-                'array'     => $array,
-                'array3'     => $array3,
-                'array4'     => $array4,
-                'array5'     => $array5,
-                'array6'     => $array6,
-                'arraynow'     => $arraynow,
-                'mode'      => 'more'
-
-
-            ]
-        );
-    } else{
-    
-
-     return  "error";
-     }  
-    }
 
     public function create()
     {

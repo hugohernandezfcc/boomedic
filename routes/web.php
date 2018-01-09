@@ -308,11 +308,6 @@ Route::group(['prefix' => 'history'], function(){
 		]
 	);
 
-	Route::post('filter', [
-			'uses'	=>	'history@filter',
-			'as'	=>	'filter'
-		]
-	);
 
 	Route::get('moredays', [
 			'uses'	=>	'history@moredays',
