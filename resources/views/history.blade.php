@@ -667,7 +667,7 @@
 		   function changeValue(o){
 		     document.getElementById('val').value= o;
 		    }
-			  $("#user").click(function (e) {
+		$("#user").click(function (e) {
 			      e.preventDefault();
 			      var nombre = 'User';
 			      $.ajax({
@@ -675,7 +675,23 @@
 			        url: "filter",
 			        data: {
 			            val: nombre
-			        }
+			        },
+			       contentType: 'application/x-www-form-urlencoded'
+			   });
+			});
+
+		$("#support").click(function (e) {
+			      e.preventDefault();
+			      var nombre = 'Support';
+			      $.ajax({
+			        type: "post",
+			        url: "filter",
+			        data: {
+			            val: nombre
+			        },
+			       contentType: 'application/x-www-form-urlencoded'
+			   });
+			});       
 </script>	
  	
 @stop
