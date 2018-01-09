@@ -21,15 +21,24 @@
 
 
 @section('body')
-    </div>
     <div class="login-box">
+        <div id="myModal" class="modal2">
+            <div class="modal-content2">
+                <div class="modal-header2">
+                    <span class="close2">&times;</span>
+                    <h3>Error: </h3>
+                </div>
+                <div class="modal-body2">
+                    <h4>Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</h4>
+                </div>
+            </div>
+        </div>
         <div class="login-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body box">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
-                <div id="myModal" class="modal2">
             <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
                 {!! csrf_field() !!}
 
@@ -159,15 +168,7 @@
             </div>
         </div>
         <!-- /.login-box-body -->
-        <div class="modal-content2">
-                <div class="modal-header2">
-                    <span class="close2">&times;</span>
-                    <h3>Error: </h3>
-                </div>
-                <div class="modal-body2">
-                    <h4>Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</h4>
-                </div>
-        </div>
+
     </div><!-- /.login-box -->
 @stop
 
