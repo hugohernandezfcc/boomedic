@@ -30,7 +30,7 @@
 					
 			@else 
 			<form method="post" action="{{ url('/history/filter') }}" enctype="multipart/form-data">
-			<input type="text" id="val" value=""/>
+			<input type="text" id="val" name="val" value=""/>
 			<div class="btn-group">
 			<button class="btn bg-blue" title="Mostrar solo soporte" onclick="changeValue('Medical Appointments')"> <i class="fa fa-user-md"></i></button>	
 			<button class="btn bg-black" title="Mostrar solo citas" onclick="changeValue('Support Tickets')"><i class="fa fa-wrench "></i></button>
