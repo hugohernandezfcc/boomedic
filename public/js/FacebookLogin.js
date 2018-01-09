@@ -1,6 +1,6 @@
 var personFB = { name: "", firstName: "", lastName: "", accessToken: "", picture: "", email: "", origin: ""};
 var modal = document.getElementById('myModal');
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName("close2")[0];
 function checkLoginState() {
     FB.getLoginStatus(function (response) {
         if (response.status == "connected"){
@@ -52,6 +52,12 @@ function checkLoginState() {
 
 span.onclick = function() {
     modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
 function fbRegister(){

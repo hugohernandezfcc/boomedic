@@ -21,12 +21,16 @@
 
 
 @section('body')
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
+    <div id="myModal" class="modal2">
+        <div class="modal-content2">
+            <div class="modal-header2">
+                <span class="close2">&times;</span>
+                <h2>Error: </h2>
+            </div>
+        <div class="modal-body2">
+            <p>Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</p>
         </div>
+  </div>
     </div>
     <div class="login-box">
         <div class="login-logo">
