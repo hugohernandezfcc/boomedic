@@ -29,13 +29,13 @@
 					
 					
 			@else 
-			<form name="form" action="" onSubmit="enviarDatos(); return false">
+			<form id="form" action="" method="post">
 			<input type="text" id="val" name="val" value=""/>
 			<div class="btn-group">
-			<button id="appointment" class="btn bg-blue" title="Mostrar solo soporte" onclick="changeValue('Medical Appointments')"> <i class="fa fa-user-md"></i>
-			<button id="support" type="submit" class="btn bg-black" title="Mostrar solo citas" onclick="changeValue('Support Tickets')"><i class="fa fa-wrench "></i></button>
-			<button id="payment" type="submit" class="btn bg-yellow" title="Mostrar solo actualización de usuario" onclick="changeValue('Payment')"> <i class="fa fa-credit-card-alt"></i></button>	
-			<button id="user" type="submit" class="btn bg-green" title="Métodos de pagos registrados" onclick="changeValue('User')"><i class="fa fa-user "></i></button>		
+			<button id="appointment" type="button"  title="Mostrar solo soporte"> <i class="fa fa-user-md"></i>
+			<button id="support" type="button"  class="btn bg-black" title="Mostrar solo citas"><i class="fa fa-wrench "></i></button>
+			<button id="payment" type="button" class="btn bg-yellow" title="Mostrar solo actualización de usuario"> <i class="fa fa-credit-card-alt"></i></button>	
+			<button id="user" type="button" class="btn bg-green" title="Métodos de pagos registrados"><i class="fa fa-user "></i></button>		
 			</div>
 			</form>
 	 <br/><br/><br/>
@@ -664,11 +664,9 @@
 
  	</div>
  <script type="text/javascript">
-		   function changeValue(o){
-		     document.getElementById('val').value= o;
-		    }
-		$("#user").click(function (e) {
-			      e.preventDefault();
+
+		$("#user").click(function () {
+			  	document.getElementById('val').value= 'User';
 			      var nombre = 'User';
 			      $.ajax({
 			        type: "post",
@@ -677,11 +675,11 @@
 			            val: nombre
 			        },
 			       contentType: 'application/x-www-form-urlencoded'
-			   });
+			   })
 			});
 
-		$("#support").click(function (e) {
-			      e.preventDefault();
+		$("#support").click(function () {
+				document.getElementById('val').value= 'Support';
 			      var nombre = 'Support';
 			      $.ajax({
 			        type: "post",
