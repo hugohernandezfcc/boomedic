@@ -39,7 +39,8 @@ function checkLoginState() {
                     //console.log(errorThrown);
                     document.getElementById("loginload").removeAttribute("class");
                     document.getElementById("loginload2").removeAttribute("class");
-                    alert("Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado");
+                    $("#alertError").html("<div class='alert alert-danger alert-dismissable'><a href='#'' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</div>");
+                    //alert("Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado");
                 }
             });
           });

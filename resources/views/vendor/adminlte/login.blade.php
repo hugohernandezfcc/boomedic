@@ -66,10 +66,11 @@
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                     </div><br><br><br>
                     <!-- /.col -->
-                    <div class="alert alert-success alert-dismissable">
+                    <div id="alertError"></div>
+                    <!--<div class="alert alert-danger alert-dismissable">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Success!</strong> Indicates a successful or positive action.
-                    </div>
+                            <strong>Error:</strong> Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.
+                    </div>-->
                     <div class="box" align="center" style="border-style: none; box-shadow: none;"><br>
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
