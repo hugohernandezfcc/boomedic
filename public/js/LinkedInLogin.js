@@ -51,6 +51,7 @@ var span = document.getElementsByClassName("close-danger2")[0];
                     //console.log(errorThrown);
                     document.getElementById("loginload").removeAttribute("class");
                     document.getElementById("loginload2").removeAttribute("class");
+                    document.getElementById('collapseThree').classList.add("collapse");
                     modal.style.display = "block";
                 }
         });
