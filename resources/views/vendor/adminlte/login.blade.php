@@ -28,7 +28,7 @@
                 <h2>Error: </h2>
             </div>
         <div class="modal-body2">
-            <h3>Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</h3>
+            <h2>Los datos no corresponden con nuestra base de datos, asegúrese de estar registrado.</h2>
         </div>
   </div>
     </div>
