@@ -77,7 +77,22 @@
 
                                     <p>
                                         {{ $name }}
-                                      <small>Miembro desde  {{ \Carbon\Carbon::parse($date)->format('m-Y') }}</small>
+                                      <small>Miembro desde
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '01') Ene. @endif
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '02') Feb. @endif
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '03') Mar. @endif
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '04') Abr. @endif
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '05') May. @endif
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '06') Jun. @endif
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '07') Jul. @endif
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '08') Ago. @endif
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '09') Sep. @endif
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '10') Oct. @endif
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '11') Nov. @endif
+                                        @if(\Carbon\Carbon::parse($date)->format('m') == '12') Dic. @endif
+                                        {{ \Carbon\Carbon::parse($date)->format('Y') }}
+
+                                      </small>
                                     </p>
                                   </li>
                                   <!-- Menu Footer-->

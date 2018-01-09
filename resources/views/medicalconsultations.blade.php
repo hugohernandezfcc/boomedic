@@ -249,8 +249,8 @@
                 
                  <div class="box-header with-border"> 
                   <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="display:block; height:100%; width:100%;font-size: 12px;">
-                        Citas médicas registradas
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
+                   <div align="left"><i class="fa fa-chevron-down text-muted"></i> Citas médicas registradas</div>
                   </a>
               </h4>
                     </div> 
@@ -261,12 +261,7 @@
 
                                             <div class="col-sm-12">
                                                   <div class="info-box sm bg-gray">
-                                                    @if($loop->iteration == 1)
-                                                    <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-heartbeat"></i></span>
-                                                    @endif
-                                                    @if($loop->iteration == 2)
                                                     <span class="info-box-icon sm bg-black"><i class="fa fa-heartbeat"></i></span>
-                                                    @endif
                                                     <div class="info-box-content sm">
                                                       <b>Lugar:</b> {{ $appo->workplace}}.<br/>
                                                      <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
@@ -274,8 +269,8 @@
                                  @endif 
                                                          @if($loop->iteration > 2)
                                                          <div class="col-sm-12" style="text-align: right;">
-                                                          <a href="{{ url('/medicalconsultations') }}" class="btn btn-default btn-xs">
-                                                         Más detalles... <i class="fa fa-arrow-right"></i>
+                                                          <a href="{{ url('/medicalconsultations') }}" style="font-size: 12px;">
+                                                         Más detalles...
                                                          </a>
                                                          </div>
                                                          @break
@@ -606,165 +601,275 @@
               zoom: 14,
               center: new google.maps.LatLng(pos),
               styles: [
-  {
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#f5f5f5"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.icon",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#616161"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.text.stroke",
-    "stylers": [
-      {
-        "color": "#f5f5f5"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.land_parcel",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#bdbdbd"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#eeeeee"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#757575"
-      }
-    ]
-  },
-  {
-    "featureType": "poi.park",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#e5e5e5"
-      }
-    ]
-  },
-  {
-    "featureType": "poi.park",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#9e9e9e"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#ffffff"
-      }
-    ]
-  },
-  {
-    "featureType": "road.arterial",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#757575"
-      }
-    ]
-  },
-  {
-    "featureType": "road.highway",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#dadada"
-      }
-    ]
-  },
-  {
-    "featureType": "road.highway",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#616161"
-      }
-    ]
-  },
-  {
-    "featureType": "road.local",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#9e9e9e"
-      }
-    ]
-  },
-  {
-    "featureType": "transit.line",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#e5e5e5"
-      }
-    ]
-  },
-  {
-    "featureType": "transit.station",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#eeeeee"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#c9c9c9"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#9e9e9e"
-      }
-    ]
-  }
-], 
+              {
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#f5f5f5"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.icon",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#616161"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                  {
+                    "color": "#f5f5f5"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.land_parcel",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.land_parcel",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#bdbdbd"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.neighborhood",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#eeeeee"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "labels.text",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#757575"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.business",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.medical",
+                "stylers": [
+                  {
+                    "color": "#686b6e"
+                  },
+                  {
+                    "visibility": "on"
+                  },
+                  {
+                    "weight": 3
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.medical",
+                "elementType": "labels.icon",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#e5e5e5"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#9e9e9e"
+                  },
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#ffffff"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "labels",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "labels.icon",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.arterial",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#757575"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#dadada"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#616161"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway.controlled_access",
+                "stylers": [
+                  {
+                    "visibility": "on"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.local",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#9e9e9e"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit.line",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#e5e5e5"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit.station",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#eeeeee"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#c9c9c9"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "labels.text",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#9e9e9e"
+                  }
+                ]
+              }
+            ], 
               // disableDefaultUI: true,
               zoomControl: true,
               mapTypeControl: false,
