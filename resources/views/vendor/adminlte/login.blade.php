@@ -1,7 +1,7 @@
 @extends('adminlte::master')
-
-
-
+<head>
+    <meta name="google-signin-client_id" content="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com">
+</head>
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/plugins/iCheck/square/blue.css') }}">
@@ -72,6 +72,20 @@
         </div>
         
         <!-- /.login-box-body -->
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="fb-login-button" data-size="medium" data-button-type="continue_with" 
+                    data-scope="public_profile,email" onlogin="checkLoginState();"></div>
+            </div>
+            <div class="col-xs-6">
+                <div class="g-signin2" data-width="165" data-height="27" data-clientid="627103508601-mstgbse0thdiv2qcn2dop6pn0u28gc31.apps.googleusercontent.com  "data-onsuccess="onSignInG"></div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div>
+                <div align="center"><script type="in/Login" data-width="165" data-height="27" ></script></div>
+            </div>
+        </div>
     </div><!-- /.login-box -->
 @stop
 
@@ -88,3 +102,4 @@
     </script>
     @yield('js')
 @stop
+ 

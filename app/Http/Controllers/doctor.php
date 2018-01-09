@@ -142,7 +142,18 @@ class doctor extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     *questions_clinic_history
+id
+code_translation
+question
+text_help
+
+answers_clinic_history
+id
+code_translation
+answer
+text_help
+question
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
