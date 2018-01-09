@@ -688,7 +688,7 @@
 
 
 				    @if($mode == 'labor')
-				   			<div class="box" style="padding-bottom:130px;" id="boxlabor">
+				   			<div class="box" id="boxlabor">
 							  	<div class="box-header with-border">
 								    <h3 class="box-title">Información Laboral</h3>
 							  	</div>
