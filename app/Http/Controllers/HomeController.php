@@ -70,6 +70,7 @@ class HomeController extends Controller
                     'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
                     'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                     'photo'     => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                    'date'     => DB::table('users')->where('id', Auth::id() )->value('created_at'),
                     'mode'      => $mode
                    
                 ]
@@ -94,6 +95,7 @@ class HomeController extends Controller
                     'firstname' => DB::table('users')->where('id', Auth::id() )->value('firstname'),
                     'lastname' => DB::table('users')->where('id', Auth::id() )->value('lastname'),
                     'photo' => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                    'date'     => DB::table('users')->where('id', Auth::id() )->value('created_at'),
                     'userId' => Auth::id(),
                     'labor' => $join,
                     'appointments' => $appointments

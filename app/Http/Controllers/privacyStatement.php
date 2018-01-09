@@ -44,6 +44,7 @@ class privacyStatement extends Controller
                 'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
                 'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
                 'photo'  =>    DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
+                'date'  =>    DB::table('users')->where('id', Auth::id() )->value('created_at'),
                 'mode'      => $mode
             ]
         );

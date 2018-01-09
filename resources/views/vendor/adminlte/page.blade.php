@@ -77,7 +77,7 @@
 
                                     <p>
                                         {{ $name }}
-                                      <small>Miembro desde Nov. 2017</small>
+                                      <small>Miembro desde  {{ \Carbon\Carbon::parse($date)->format('m-Y') }}</small>
                                     </p>
                                   </li>
                                   <!-- Menu Footer-->

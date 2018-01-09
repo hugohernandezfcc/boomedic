@@ -82,6 +82,7 @@ class profile extends Controller
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
+                'date'         => $users[0]->created_at,
 
                 /** PERSONAL INFORMATION */
 
@@ -148,6 +149,7 @@ class profile extends Controller
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
+                'date'         => $users[0]->created_at,
 
                 /** PERSONAL INFORMATION */
 

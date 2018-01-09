@@ -90,6 +90,8 @@ class doctor extends Controller
                 'name'      => $users[0]->name,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
+                'date'         => $users[0]->created_at,
+
                 /** PERSONAL INFORMATION */
 
                 'gender'        => $users[0]->gender,
@@ -167,6 +169,7 @@ class doctor extends Controller
                 'name'      => $users[0]->name,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
+                'date'         => $users[0]->created_at,
                 /** PERSONAL INFORMATION */
 
                 'gender'        => $users[0]->gender,
@@ -255,6 +258,7 @@ class doctor extends Controller
                 'userId'        => Auth::id(),
                 'name'      => $user->name,
                 'photo'         => $user->profile_photo,
+                'date'         => $user->created_at,
                 'mode'          => 'labor',
 
                 /* DIRECTION LABOR PROFESSIONAL  */
@@ -301,6 +305,7 @@ class doctor extends Controller
                 'userId'        => Auth::id(),
                 'name'      => $user->name,
                 'photo'         => $user->profile_photo,
+                'date'         => $user->created_at,
                 'mode'          => 'labor',
 
                 /* DIRECTION LABOR PROFESSIONAL  */
@@ -325,6 +330,7 @@ class doctor extends Controller
                 'userId'        => Auth::id(),
                 'name'      => $user->name,
                 'photo'         => $user->profile_photo,
+                'date'         => $user->created_at,
                 'mode'          => 'viewlabor',
 
                 /* DIRECTION LABOR PROFESSIONAL  */
