@@ -814,7 +814,6 @@
 	                </div>
 				</div>	
 			<div class="col-sm-12">	
-					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 				
 				<div class="col-sm-12">	 
 					 <input type="hidden" name="lati" id="lati"/>
@@ -864,6 +863,9 @@
 			</div>
 			<div class="col-sm-7">
 		  	<div id="map"></div>
+		  	<div class="col-sm-12">	
+					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
+			</div>	
 		  </div></div>
 		  
 		</form>
@@ -927,7 +929,7 @@
 				})
 				$("#openform2").click(
 				function(event) {
-					document.getElementById("boxlabor").style.paddingBottom = "130px";
+					document.getElementById("boxlabor").style.paddingBottom = "140px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";
 				   initMap();
