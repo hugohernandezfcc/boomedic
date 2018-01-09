@@ -354,7 +354,7 @@ class history extends Controller
 
 public function filter(Request $request){
        
-if($request->ajax()){ 
+
        $user = User::find(Auth::id());
 
         $dateUser = DB::table('users')->where('id', Auth::id())
@@ -377,9 +377,13 @@ if($request->ajax()){
            $array5 = collect();
            $array6 = collect();
            $arraynow = collect();
-         
+      if($request->ajax())
+    {
+        $name = $request->input('val');
+        Response->json($name);
+    }    
 
-         if($request->input("val") == 'Support'){  
+         if($name) == 'Support'){  
          foreach($dateSupport as $date){
             $car = new Carbon($date->created_at);
                 $array[]  = collect([
@@ -393,7 +397,7 @@ if($request->ajax()){
            }
          }
 
-         if($request->input("val") == 'User'){
+         if($rname == 'User'){
             foreach($dateUser as $date){
             $car = new Carbon($date->updated_at);
                 $array[]  = collect([
@@ -486,18 +490,6 @@ if($request->ajax()){
 
             ]
         );
-    } else {
-            return view('history', [
-                'userId'    => Auth::id(),
-                'username'  => $user->username,
-                'name'      => $user->name,
-                'photo'     => $user->profile_photo,
-                'mode'      => 'null'
-
-
-            ]
-        );
-        }
     }
 
     public function create()
