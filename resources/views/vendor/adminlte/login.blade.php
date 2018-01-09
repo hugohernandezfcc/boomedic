@@ -51,30 +51,16 @@
                         </span>
                     @endif
                 </div>
-
-                <div class="row">
-                    <div class="col-xs-8">
-                        <!-- casilla de recordar usuario. -->
-                        &nbsp;
-                        <!-- <div class="checkbox icheck">
-                            <label>
-                                <input type="checkbox" name="remember"> {{ trans('adminlte::adminlte.remember_me') }}
-                            </label>
-                        </div> -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-xs-4">
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
-                    </div><br><br><br>
+                  </form>
                     <!-- /.col -->
                     <div class="box" align="center" style="border-style: none; box-shadow: none;"><br>
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
                           <div class="box-header with-border" align="left">
                             <h4 class="box-title">
-                                <i class="fa fa-fw fa-facebook-official" style="color: rgb(59, 89, 152);"></i>
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                Facebook
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" >
+                                <i class="fa fa-fw fa-facebook-official" style="color: rgb(59, 89, 152);"></i> Facebook
                                 </a>
                             </h4>
                           </div>
@@ -90,9 +76,9 @@
                         <div class="panel box box-danger">
                           <div class="box-header with-border" align="left">
                             <h4 class="box-title">
-                                <i class="fa fa-fw fa-google" style="color: rgb(211, 72, 54);"></i>
+                                
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" >
-                                Google
+                                <i class="fa fa-fw fa-google" style="color: rgb(211, 72, 54);"></i> Google
                               </a>
                             </h4>
                           </div>
@@ -108,9 +94,9 @@
                         <div class="panel box box-success">
                           <div class="box-header with-border" align="left">
                             <h4 class="box-title">
-                                <i class="fa fa-fw fa-linkedin"></i>
+                                
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                LinkedIn
+                                <i class="fa fa-fw fa-linkedin"></i> LinkedIn
                               </a>
                             </h4>
                           </div>
@@ -134,14 +120,12 @@
                             <div id="carga2"class="fa fa-refresh fa-spin"></div>
                         </div>
                      </div>
-                </div>
-            </form>
+
+            
             <div class="" id="loginload">
                 <div id="loginload2"class=""></div>
             </div>
-        </div>
-        <div class="auth-links">
-
+                        <div class="auth-links">
             <div class="row">
                 <div class="col-sm-7" align="center">
                     <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" class="btn btn-default btn-block btn-flat">
@@ -158,6 +142,8 @@
                 
             </div>
             </div>
+        </div>
+
         </div>
         
         <!-- /.login-box-body -->
