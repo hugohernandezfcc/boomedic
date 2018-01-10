@@ -50,9 +50,8 @@
                         </span>
                     @endif
                 </div>
-                <button type="submit"
-                        class="btn btn-secondary btn-block btn-flat"
-                >{{ trans('adminlte::adminlte.reset_password') }}</button>
+                <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.reset_password') }}</button>
+
             </form>
         </div>
         <!-- /.login-box-body -->

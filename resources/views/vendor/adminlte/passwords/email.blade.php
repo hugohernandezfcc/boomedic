@@ -36,6 +36,12 @@
                 <button type="submit"
                         class="btn btn-secondary btn-block btn-flat"
                 >{{ trans('adminlte::adminlte.send_password_reset_link') }}</button>
+
+                    <a class="btn btn-default btn-block btn-flat" href="{{ url(config('adminlte.login_url', 'login')) }}" >
+                        <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;
+                        Volver
+                    </a> 
+              
             </form>
         </div>
         <!-- /.login-box-body -->
