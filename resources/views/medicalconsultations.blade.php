@@ -494,7 +494,7 @@
 
           </div>
               <div class="modal-footer">
-                <form action="postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
+                <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                         {{ csrf_field() }}
                   <input id="amount" type="hidden" class="form-control" name="amount" required>
                 </form>
