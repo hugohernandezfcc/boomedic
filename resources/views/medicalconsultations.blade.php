@@ -476,7 +476,12 @@
             </div>
           </div>
           <!-- /.box -->
+          <script type="text/javascript">
+          $(function () {
 
+            $('#calendar').datepicker();
+            });
+          </script>
 
 
 
