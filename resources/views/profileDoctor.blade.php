@@ -246,10 +246,29 @@
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
-		            <div class="form-group">
+		            <div class="form-group">	
 	                	<label for="specialty" class="col-sm-2 control-label">Especialidad</label>
 	                	<div class="col-sm-10">
-		                  	<input type="text" name="specialty" id="specialty" value="{{ $specialty }}" class="form-control">
+		                  	<select class="form-control" name="specialty" id="specialty">
+		                    	<option value="">Seleccionar ...</option>
+		                    	<option value="Alergología"> Médico General </option>
+		                    	<option value="Alergología"> Alergología </option>
+		                    	<option value="Cardiología">Cardiología</option>
+		                    	<option value="Gastroenterología"> Gastroenterología </option>
+		                    	<option value="Geriatría"> Geriatría </option>
+		                    	<option value="Infectología"> Infectología </option>
+		                    	<option value="Neumología"> Neumología </option>
+		                    	<option value="Neurología"> Neurología </option>
+		                    	<option value="Nutriología"> Nutriología </option>
+		                    	<option value="Oftalmología"> Oftalmología </option>
+		                    	<option value="Oncología"> Oncología </option>
+		                    	<option value="Pediatría"> Pediatría </option>
+		                    	<option value="Psiquiatría"> Psiquiatría </option>
+		                    	<option value="Rehabilitación"> Rehabilitación </option>
+		                    	<option value="Reumatología"> Reumatología </option>
+		                    	<option value="Toxicología"> Toxicología </option>
+		                    	<option value="Odontología"> Odontología </option>
+		                  	</select>
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
