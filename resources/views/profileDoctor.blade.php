@@ -862,6 +862,7 @@
 				</div>
 			</div>
 			<div class="col-sm-7">
+			<div id="loadingGif2" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
 		  	<div id="map"></div>
 		  	<div class="col-sm-12">	
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
@@ -931,8 +932,11 @@
 				function(event) {
 					document.getElementById("boxlabor").style.paddingBottom = "140px";
 				   $("#buttonOpen").hide();
-				   document.getElementById("form2").style.display = "block";
-				   initMap();
+				   document.getElementById("form2").style.display = "block";		  
+				  setTimeout(function(){ 
+				  	initMap();
+				  	document.getElementById('loadingGif2').style.display = "none";	 
+				  },2000);
 				 
 				})
 				$("#cancel").click(
