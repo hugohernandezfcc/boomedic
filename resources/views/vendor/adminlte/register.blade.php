@@ -138,7 +138,7 @@
                                 <div id="carga2"class="fa fa-refresh fa-spin"></div>
                             </div>
                         </div>
-                </div>
+               
 
             </form>
             <br/> 
@@ -157,6 +157,7 @@
                 </div>
             </div>
         </div>
+         </div>
         <!-- /.form-box -->
     </div><!-- /.register-box -->
 @stop
