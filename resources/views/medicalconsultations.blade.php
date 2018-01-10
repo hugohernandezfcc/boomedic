@@ -398,7 +398,7 @@
 
 
               <div class="modal-body">
-                <div style="display: none;">
+                <div >
                   <p id="info"></p>
                 </div>
               
@@ -435,10 +435,6 @@
             
           </div>
           <!-- /.box -->
-          <select id="paymentMethodsFields" class="form-control" style="display: none;">
-            
-          </select>
-
           <select id="timesByDay" class="form-control" style="display: none;">
             <option>10:00 A.M.</option>
             <option>11:00 A.M.</option>
@@ -449,6 +445,10 @@
             <option>16:00 P.M.</option>
             <option>17:00 P.M.</option>
             <option>18:00 P.M.</option>
+          </select>
+          <select id="paymentMethodsFields" class="form-control" style="display: none;">
+            
+          <br/>
           </select>
 
           <script type="text/javascript">
@@ -476,8 +476,9 @@
                     
                     var option = document.createElement("option");
                     option.text = result[i].provider + ": " + result[i].cardnumber;
+                    option.value = result[i].provider + "_" + result[i].cardnumber;
                     x.add(option);
-                    
+
                   }
 
                   
@@ -1120,7 +1121,7 @@
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {  
               
-              showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/><br/> <b>Citas disponibles</b>: <select class="form-control" name="placeatention" id="placeatention" size="1"><option id="opc01">-- Ninguno -- </option><option>' + loc[i][4] +'</option></select> ');
+              showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
               $('#modal-register-cite').modal('show');
             }
           })(marker, i));
