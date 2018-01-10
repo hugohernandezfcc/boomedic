@@ -126,7 +126,7 @@ class RegisterController extends Controller
                 'password'  => bcrypt($data['password']),
             ]);
 
-            $profInformation = ProfessionalInformation::create([ 
+            $profInformation = professional_information::create([ 
                 'professional_license'  => $data['professional_license'],
                 'user'                  => $userCreated->id
             ]);
