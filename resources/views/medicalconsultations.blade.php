@@ -494,10 +494,10 @@
 
           </div>
               <div class="modal-footer">
-                <form action="postPaymentWithpaypal" method="post" class="form-horizontal">
+                <form action="postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                         {{ csrf_field() }}
                   <input id="amount" type="hidden" class="form-control" name="amount" required>
-                  <button type="submit" id="button01"  class="btn btn-secondary btn-block btn-flat">
+                  <button type="button" id="button01" onclick="document.getElementById('formulatio_paypal').submit();"  class="btn btn-secondary btn-block btn-flat">
                     Confirmar y programar cita
                   </button>
                 </form>
