@@ -124,7 +124,7 @@
 	                </tbody>
 	            </table><br/><br/>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-8 col-md-offset-2">
 
                     <form action="postPaymentWithpaypal" method="post" class="form-horizontal">
@@ -147,7 +147,7 @@
                         </div>
                     </form>
             </div>
-        </div>fhp
+        </div> -->
 
 </div>
             @elseif($mode == 'createPaymentMethod')

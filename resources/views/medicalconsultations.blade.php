@@ -403,7 +403,7 @@
                 </div>
               <hr width="100%">
                 <!-- Calendar -->
-          <div class="box box-solid bg-default-gradient">
+          <div class="box box-solid bg-green-gradient">
             <div class="box-header">
               <i class="fa fa-calendar"></i>
 
@@ -451,7 +451,7 @@
 
             $('#calendar').on('changeDate', function() {
                 $('#dateSelectedForCite').val(
-                    $('#datepicker').datepicker('getFormattedDate')
+                    $('#calendar').datepicker('getFormattedDate')
                 );
             });
 
@@ -494,10 +494,15 @@
 
           </div>
               <div class="modal-footer">
-                <button type="button" id="button01" onclick="window.location.href = 'https://afternoon-hollows-51469.herokuapp.com/payment/index';" class="btn btn-secondary btn-block btn-flat">
-                  Confirmar y programar cita
-                </button>
+                <form action="postPaymentWithpaypal" method="post" class="form-horizontal">
+                        {{ csrf_field() }}
+                  <input id="amount" type="hidden" class="form-control" name="amount" required>
+                  <button type="submit" id="button01"  class="btn btn-secondary btn-block btn-flat">
+                    Confirmar y programar cita
+                  </button>
+                </form>
               </div>
+
             </div>
         </div>
     </div>
@@ -1124,6 +1129,7 @@
             return function() {  
               
               showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
+              document.getElementById('amount').value = loc[i][5];
               $('#modal-register-cite').modal('show');
             }
           })(marker, i));
