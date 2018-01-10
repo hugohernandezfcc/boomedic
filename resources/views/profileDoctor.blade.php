@@ -250,7 +250,7 @@
 	                	<label for="specialty" class="col-sm-2 control-label">Especialidad</label>
 	                	<div class="col-sm-10">
 		                  	<select class="form-control" name="specialty" id="specialty">
-		                    	<option value="{{ $specialty }}"> {{ $specialty }}</option>
+		                    	<option value="{{ $specialty }}" selected> {{ $specialty }}</option>
 		                    	<option value="Alergología"> Médico General </option>
 		                    	<option value="Alergología"> Alergología </option>
 		                    	<option value="Cardiología">Cardiología</option>
