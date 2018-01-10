@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\ProfessionalInformation;
+use App\professional_information;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -126,7 +126,7 @@ class RegisterController extends Controller
                 'password'  => bcrypt($data['password']),
             ]);
 
-            $profInformation = ProfessionalInformation::create([ 
+            $profInformation = professional_information::create([ 
                 'professional_license'  => $data['professional_license'],
                 'user'                  => $userCreated->id
             ]);
