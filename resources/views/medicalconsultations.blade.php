@@ -435,13 +435,16 @@
             
           </div>
           <!-- /.box -->
+          <select id="paymentMethodsFields" style="display: none;">
+            
+          </select>
           <script type="text/javascript">
           $(function () {
 
             $('#calendar').datepicker();
 
             $(".datepicker .datepicker-days").on('click', 'td.day', function () {
-                alert('day clicked');
+                document.getElementById('paymentMethodsFields').style.display = "block";
             });
 
             
@@ -451,6 +454,18 @@
                 url: "medicalappointments/showPaymentMethods", 
                 success: function(result){
                   console.log(result);
+
+                  var x = document.getElementById("paymentMethodsFields");
+
+                  for (var i = result.length - 1; i >= 0; i--) {
+                    
+                    var option = document.createElement("option");
+                    option.text = result[i].provider + ": " + result[i].cardnumber;
+                    x.add(option);
+                  }
+
+                  
+
                 }
               }
             );
