@@ -16,6 +16,8 @@
   	<div class="box-body">
 	  <div class="row">
         <div class="col-md-12">
+        <div align="center"><label id="response"></label></div>
+			<br/>
           <!-- The time line -->
           <ul class="timeline">
 		  	 @if($array->isEmpty())
@@ -31,7 +33,6 @@
 					
 			@else 
 
-
 			<div class="btn-group">
 			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo citas"><i class="fa fa-heartbeat"></i></button>		
 			<button id="support" type="button"  class="btn bg-black" title="Mostrar solo soporte"><i class="fa fa-wrench "></i></button>
@@ -40,7 +41,11 @@
 			<button id="all" type="button" class="btn black bg-darken-4" title="Ver todo"><i> • • • </i></button>				
 			</div>
 
+	 
+	 	
 	 <br/><br/><br/>
+
+
 			<!-- Now -->
 		@if(!$arraynow->isEmpty())
             <!-- 1 day -->
@@ -692,7 +697,12 @@
 			for (i = 0; i < u.length; i++) {
 			    u[i].style.display = 'block';
 			}
-
+			if(!u[0]){
+			    	document.getElementById("response").innerHTML = "No hay cambios de usuario";
+			    }
+			    else{
+			    	document.getElementById("response").innerHTML = " ";
+			    }
 			});
 
 		$("#support").click(function () {
@@ -720,6 +730,12 @@
 			for (i = 0; i < u.length; i++) {
 			    u[i].style.display = 'block';
 			}
+				if(!u[0]){
+			    	document.getElementById("response").innerHTML = "No hay tickets de soporte registrados...";
+			    }
+			   else {
+			    	document.getElementById("response").innerHTML = " ";
+			    }
 			});  
 
 		$("#appointment").click(function () {
@@ -745,6 +761,13 @@
 			for (i = 0; i < u.length; i++) {
 			    u[i].style.display = 'block';
 			}
+			if(!u[0]){
+			    	document.getElementById("response").innerHTML = "No hay citas registradas en este periodo de fechas...";
+			    }
+			    else{
+			    	document.getElementById("response").innerHTML = " ";
+			    }
+
 
 			});  
 
@@ -768,9 +791,16 @@
 			}
 			var u = document.getElementsByClassName("payment");
 			var i;
+
 			for (i = 0; i < u.length; i++) {
 			    u[i].style.display = 'block';
+
 			}
+				if(!u[0]){
+			    	document.getElementById("response").innerHTML = "No hay métodos de pagos en el historial";
+			    }	else{
+			    	document.getElementById("response").innerHTML = " ";
+			    }
 
 			});  
 
@@ -797,6 +827,9 @@
 			for (i = 0; i < u.length; i++) {
 			    u[i].style.display = 'block';
 			}
+				
+			    	document.getElementById("response").innerHTML = " ";
+			    
 
 			});  	     	     
 </script>	

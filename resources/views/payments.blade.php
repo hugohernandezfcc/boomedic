@@ -75,9 +75,9 @@
 	                        <tr><form action="PaymentAuthorizations" method="post" id="regForm">
 	                        	@if($card->provider != 'Paypal')
 	                        	<td>
-	                            <?php 
+	                             @php 
 	                            $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12)
-	                             ?>
+	                             @endphp
 	                            <a href = 'Transactions/{{ $card->id }}' class="btn"> {{ $cardfin }}</a></td>
 	                            <td>{{ $card->bank }}</td>
 	                            <td>{{ $card->provider }}</td>
@@ -147,7 +147,7 @@
                         </div>
                     </form>
             </div>
-        </div>
+        </div>fhp
 
 </div>
             @elseif($mode == 'createPaymentMethod')
