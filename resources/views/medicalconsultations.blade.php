@@ -476,7 +476,12 @@
                   for (var i = result.length - 1; i >= 0; i--) {
                     
                     var option = document.createElement("option");
-                    option.text = result[i].provider + ": " + result[i].cardnumber;
+
+                    if(result[i].provider == "Paypal")
+                      option.text = '<i class="fa fa-fw fa-cc-paypal"></i>: ' + result[i].cardnumber;
+                    
+                    option.text = '<i class="fa fa-fw fa-cc-paypal"></i>: ' + result[i].cardnumber;
+                    
                     option.value = result[i].provider + "_" + result[i].cardnumber;
                     x.add(option);
 
