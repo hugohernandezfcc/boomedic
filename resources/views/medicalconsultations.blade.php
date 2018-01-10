@@ -5,7 +5,6 @@
 @section('content')
     
   <style type="text/css">
-
       #mapaC{
         position: relative;
         height: 100%;
@@ -102,13 +101,11 @@
         color: #424242;
         text-shadow: 1px 1px 0.5px #424242;
       }
-
       .content{
         padding-left: 1px;
         padding-right: 1px;
         padding-top: 0px;
       }
-
       .content-header {
           position: relative;
           padding: 1px 1px 0 1px; 
@@ -187,18 +184,14 @@
       .btn-default {
           box-shadow: 1px 2px 5px #000000;   
       }
-
     
-
   </style>
 
   <!--  -->
   <script type="text/javascript">
-
     /**
      * Text of labels
      */
-
     var title = "Programar Cita";
     var check01 = "Médico General";
     var select01 = "Seleccionar especialidad";
@@ -216,78 +209,64 @@
     var message03 = 'Error: Geolocation no soportada';
     var result01 = 'Mostrando resultados para';
     var result02 = 'Metros a la redonda';
-
-
     /**
      * Variables
      */
-
     var markerP;
     var loc = [];
     var typeC = 'TypeGeneral';
     var startProcess = false;
-
     /**
      * Information loader
      */
-
-    var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
-
-    var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
-
-    var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp ];
-
-
+    var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp  ["Alergología"], ["Cardiología"], ["Gastroenterología"], ["Geriatría"], ["Infectología"], ["Neumología"], ["Neurología"], ["Nutriología"], ["Oftalmología"], ["Oncología"], ["Pediatría"], ["Psiquiatría"], ["Rehabilitación"], ["Reumatología"], ["Toxicología"], ["Odontología"]];
+    var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp[19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], [19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], [19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], [19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], [19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], [19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], [19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"]];
+    var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp ["Alergología", 19.3605334,-99.22670670000002, "Alicia García Vega", "Hospital Arcángel"], ["Cardiología", 19.4846606, -99.18867490000002, "Marcos Ortega Acevedo", "Clínica Ortega"], ["Gastroenterología", 19.3794059, -99.15914459999999, "Cristóbal Torres Escudero", "Consultorio Escudero"], ["Geriatría", 19.3437444, -99.1561883, "Gonzalo Flores Alarcón", "Hospital Arcángel"], ["Infectología", 19.3631419, -99.28805969999996, "Damián Suarez Fonseca", "Hospital DEF"], ["Neumología", 19.4356338, -99.14951070000001, "Humberto Ramos Mora", "Consultorio Ramos Mora"], ["Neurología", 19.4873329, -99.12361340000001, "Fernando Ortiz Álamo", "Hospital Arcángel"], ["Nutriología", 19.3948036, -99.09768079999998, "Beatriz Fuentes Galindo", "Servicios Médicos Fuentes"], ["Oftalmología", 19.342083, -99.0532159, "Lucía Medina Arenas", "Clínica Venecia"], ["Oncología", 19.3149641, -99.24258859999998, "Valeria Guerrero Ibáñez", "Hospital Arcángel"], ["Pediatría", 19.409044, -99.19057579999998, "Sergio Vega Infante", "Hospital Arcángel"], ["Psiquiatría", 19.1942041, -99.02670760000001, "Porfirio Soto Cuevas", "Hospital Arcángel"], ["Rehabilitación", 19.2990233, -99.04364670000001, "Elías Vidal Íñigo", "Hospital Arcángel"], ["Reumatología", 19.2790911, -99.2114234, "Inés Salazar Lara", "Hospital DTC"], ["Toxicología", 19.4395911, -99.1131054, "Elena Ríos Macías", "Hospital DTC"], ["Odontología", 19.2572314, -99.10296640000001, "Adrián Rivera Llamas", "Hospital DTC"], ["Alergología", 19.3605334,-99.32670670000002, "Sara Lozano Alcántara", "Hospital DTC"], ["Cardiología", 19.4846606, -99.28867490000002, "Oswaldo Robles Alfaro", "Hospital DTC"], ["Gastroenterología", 19.3794059, -99.25914459999999, "Patricia Caballero Manzano", "Hospital DTC"], ["Geriatría", 19.3437444, -99.2561883, "Martín Aguirre Olivera", "Hospital DTC"], ["Infectología", 19.3631419, -99.38805969999996, "Octavio Garrido Quiroga", "Hospital DTC"], ["Neumología", 19.4356338, -99.24951070000001, "Magdalena Cruz Orozco", "Hospital DEF"], ["Neurología", 19.4873329, -99.22361340000001, "Alvaro Gutiérrez Quintana", "Hospital DEF"], ["Nutriología", 19.3948036, -99.19768079999998, "David Romero Acosta", "Clínica Acosta"], ["Oftalmología", 19.342083, -99.1532159, "Bernardo Gil Montoya", "Hospital DEF"], ["Oncología", 19.3149641, -99.34258859999998, "Gisela Rojas Palma", "Hospital DEF"], ["Pediatría", 19.409044, -99.29057579999998, "Natalia Reyes Salgado", "Hospital DEF"], ["Psiquiatría", 19.1942041, -99.12670760000001, "Marcelo Campos Uribe", "Hospital DEF"], ["Rehabilitación", 19.2990233, -99.14364670000001, "Teresa Luna Carmona", "Clínica Venecia"], ["Reumatología", 19.2790911, -99.3114234, "Irene Morales Alcalá", "Clínica Cruces"], ["Toxicología", 19.4395911, -99.2131054, "Fabián Castillo Valencia", "Hospital Luna"], ["Odontología", 19.2572314, -99.20296640000001, "Adela Molina Zamora", "Clínica Venecia"]];
   </script>
-@if($appointments->isEmpty())
+ @if($appointments->isEmpty())
 <div class="alert alert-info alert-dismissible" id="alert">
-  <h4><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h4>               
+                <h4><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h4>               
 </div>
-@else
+ @else
       <div class="box-group" id="accordion">
-          <div class="panel box box-default" style="border-top-color: gray;">
-          
-           <div class="box-header with-border"> 
-            <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="display:block; height:100%; width:100%;font-size: 12px;">
-                  Citas médicas registradas
-            </a>
-        </h4>
-              </div> 
-            <div id="collapseOne" class="panel-collapse collapse" >
-              <div class="box-body">
-                   @foreach($appointments->sortBy('when') as $appo)
-                        @if($loop->iteration < 3)
+                <div class="panel box box-default" style="border-top-color: gray;">
+                
+                 <div class="box-header with-border"> 
+                  <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
+                   <div align="left"><i class="fa fa-chevron-down text-muted"></i> Citas médicas registradas</div>
+                  </a>
+              </h4>
+                    </div> 
+                  <div id="collapseOne" class="panel-collapse collapse" >
+                    <div class="box-body">
+                         @foreach($appointments->sortBy('when') as $appo)
+                              @if($loop->iteration < 3)
 
-                          <div class="col-sm-12">
-                                <div class="info-box sm bg-gray">
-                                  @if($loop->iteration == 1)
-                                    <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-heartbeat"></i></span>
-                                  @endif
-                                  @if($loop->iteration == 2)
-                                    <span class="info-box-icon sm bg-black"><i class="fa fa-heartbeat"></i></span>
-                                  @endif
-                                  <div class="info-box-content sm">
-                                    <b>Lugar:</b> {{ $appo->workplace}}.<br/>
-                                    <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
-                                  </div>
-                           @endif 
-                           @if($loop->iteration > 2)
-                            <div class="col-sm-12" style="text-align: right;">
-                              <a href="{{ url('/medicalconsultations') }}" class="btn btn-default btn-xs">
-                                Más detalles... <i class="fa fa-arrow-right"></i>
-                              </a>
-                            </div>
-                           @break
-                           @endif 
-                        </div>
-                      </div>
+                                            <div class="col-sm-12">
+                                                  <div class="info-box sm bg-gray">
+                                                    <span class="info-box-icon sm bg-black"><i class="fa fa-heartbeat"></i></span>
+                                                    <div class="info-box-content sm">
+                                                      <b>Lugar:</b> {{ $appo->workplace}}.<br/>
+                                                     <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
+                                                    </div>
+                                 @endif 
+                                                         @if($loop->iteration > 2)
+                                                         <div class="col-sm-12" style="text-align: right;">
+                                                          <a href="{{ url('/medicalconsultations') }}" style="font-size: 12px;">
+                                                         Más detalles...
+                                                         </a>
+                                                         </div>
+                                                         @break
+                                                         @endif 
+                                                  </div>
+                                                </div>
 
-                   @endforeach
-              </div>
-            </div>
-          </div>
-      </div>    
+                         @endforeach
+                    </div>
+                  </div>
+                </div>
+            </div>    
  @endif
           
    <form>
@@ -436,11 +415,9 @@
     </form>
 
     <script type="text/javascript">
-
-      $("#alert").fadeTo(3000, 500).fadeOut(500, function(){
-          $("#alert").fadeOut(500);
-      });
-
+    $("#alert").fadeTo(3000, 500).fadeOut(500, function(){
+    $("#alert").fadeOut(500);
+});
       function infoSelect(){
         var x = document.getElementById("mySelect");
         for (var i = 0; i < specialities.length; i++) {
@@ -449,7 +426,6 @@
         x.options.add(c, 1);
         }
       }
-
       function changeCheck(){
         if (!document.getElementById('general').checked){
           startProcess = false;
@@ -466,7 +442,6 @@
           start();
         }
       }
-
       function showM(){
         if (!document.getElementById('general').checked){
           startProcess = false;
@@ -474,16 +449,13 @@
           $("#myModal").modal({backdrop: "static"});
         }
       }
-
       function hideM(){
         if (document.getElementById('general').checked)
           $("#myModal").modal("hide");
       }
-
       function showM2(){
         $("#myModal").modal({backdrop: "static"});
       }
-
       function hideM2(){
         $("#myModal").modal("hide");
       }
@@ -493,10 +465,8 @@
     <script>
       var slider = document.getElementById("rango01");
       var output2 = document.getElementById("rango03");
-
       var defaultVal = slider.defaultValue;
       output2.innerHTML = slider.value;
-
       slider.oninput = function() {
         output2.innerHTML = this.value;
       }
@@ -560,7 +530,6 @@
             drop();
             }
           }
-
           if(typeC == 'TypeGeneral'){
             console.log('CITA GENERAL');
             document.getElementById('infoSp').style.display = 'none';
@@ -574,7 +543,6 @@
       var markers = [];
       var map;
       var infoWindow;
-
       /**
        * Function responsable of execute the main functions 
        * 
@@ -582,22 +550,18 @@
       window.onload = function(){
         var height = window.screen.availHeight-115;
         console.log(height);
-
         document.getElementById('map').setAttribute("style","height:" + height + "px");
-
         initMap();
         infoSelect();
         setTimeout(function(){
           document.getElementById('loadermap-to-remove').style.display = 'none';
         }, 4000);
       };
-
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
         $('#modal').modal('hide');
          document.getElementById('ubi').style.display = 'none'; 
         infoWindow = new google.maps.InfoWindow();
-
         //Current position
         if (navigator.geolocation) {
           console.log('POSICION ACTUAL');
@@ -611,165 +575,275 @@
               zoom: 14,
               center: new google.maps.LatLng(pos),
               styles: [
-  {
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#f5f5f5"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.icon",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#616161"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.text.stroke",
-    "stylers": [
-      {
-        "color": "#f5f5f5"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.land_parcel",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#bdbdbd"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#eeeeee"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#757575"
-      }
-    ]
-  },
-  {
-    "featureType": "poi.park",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#e5e5e5"
-      }
-    ]
-  },
-  {
-    "featureType": "poi.park",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#9e9e9e"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#ffffff"
-      }
-    ]
-  },
-  {
-    "featureType": "road.arterial",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#757575"
-      }
-    ]
-  },
-  {
-    "featureType": "road.highway",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#dadada"
-      }
-    ]
-  },
-  {
-    "featureType": "road.highway",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#616161"
-      }
-    ]
-  },
-  {
-    "featureType": "road.local",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#9e9e9e"
-      }
-    ]
-  },
-  {
-    "featureType": "transit.line",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#e5e5e5"
-      }
-    ]
-  },
-  {
-    "featureType": "transit.station",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#eeeeee"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#c9c9c9"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#9e9e9e"
-      }
-    ]
-  }
-], 
+              {
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#f5f5f5"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.icon",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#616161"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                  {
+                    "color": "#f5f5f5"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.land_parcel",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.land_parcel",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#bdbdbd"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.neighborhood",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#eeeeee"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "labels.text",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#757575"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.business",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.medical",
+                "stylers": [
+                  {
+                    "color": "#686b6e"
+                  },
+                  {
+                    "visibility": "on"
+                  },
+                  {
+                    "weight": 3
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.medical",
+                "elementType": "labels.icon",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#e5e5e5"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#9e9e9e"
+                  },
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#ffffff"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "labels",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "labels.icon",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.arterial",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#757575"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#dadada"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#616161"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway.controlled_access",
+                "stylers": [
+                  {
+                    "visibility": "on"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.local",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#9e9e9e"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit.line",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#e5e5e5"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit.station",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#eeeeee"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#c9c9c9"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "labels.text",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#9e9e9e"
+                  }
+                ]
+              }
+            ], 
               // disableDefaultUI: true,
               zoomControl: true,
               mapTypeControl: false,
@@ -778,9 +852,7 @@
               rotateControl: false,
               fullscreenControl: false
             });
-
             var markerUser = "{{ asset('markerUser.png') }}";
-
             //Marker
               markerP = new google.maps.Marker({
               draggable: true,
@@ -799,19 +871,13 @@
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
                 });
-
-
           },
-
           //****Error
           function(failure) {
             if(failure.message.indexOf(message02) == 0) {
             // Secure Origin issue.
             }
           });
-
-
-
         }else {
             // Browser doesn't support Geolocation
             infoWindow.setMap(map);
@@ -819,12 +885,7 @@
             infoWindow.setPosition({lat: 20.42, lng: -99.18});
             infoWindow.setContent(message03);
         }
-
-
-
       }
-
-
       //Filter geocode Address
         function geocodeAddress(geocoder, resultsMap, markerP) {
         var address = document.getElementById('address').value;
@@ -842,12 +903,10 @@
       function functionEsp(specialityValue, keyWordValue, positionValue, rangeValue) {
         var res = [];
         loc = [];
-
         console.log('specialityValue:: '+specialityValue);
         console.log('keyWordValue:: '+keyWordValue);
         console.log('positionValue:: '+positionValue);
         console.log('rangeValue:: '+rangeValue);
-
         if(keyWordValue == ''){
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue){
@@ -861,19 +920,16 @@
             }
           }          
         }
-
         for(var i = 0; i < res.length; i++) {
           var posB = new google.maps.LatLng(res[i][0], res[i][1]);
           metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
           console.log('metros:: '+metros);
           console.log('Nombre:: '+res[i][3]);
-
           if(metros < rangeValue){
             //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
             loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
           }
         }
-
         console.log(res);
         console.log(loc);
         
@@ -886,37 +942,31 @@
           document.getElementById("ShowDetails").innerHTML = '<strong>'+ result01 + ' ' + specialityValue +'. '+ result02 + ' ' + rangeValue +'.</strong>';
         }
       }
-
       //Filter of General Appointment
       function functionGen(keyWordValue, positionValue, rangeValue) {
         var res = [];
         loc = [];
-
         console.log('keyWordValue:: '+keyWordValue);
         console.log('positionValue:: '+positionValue);
         console.log('rangeValue:: '+rangeValue);
         
         if(keyWordValue != ''){
           console.log('KEYWORD SEARCH VÁLIDO:: '+keyWordValue);
-
           for(var i = 0; i < generalM.length; i++) {
             if(generalM[i][2] == keyWordValue){
                res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4]]);
             }
           }
-
           for(var i = 0; i < res.length; i++) {
             var posB = new google.maps.LatLng(res[i][0], res[i][1]);
             metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
             console.log('metros:: '+metros);
             console.log('Nombre:: '+res[i][3]);
-
             if(metros < rangeValue){
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio]
                loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
              }
           }
-
           if(loc.length <= 0){
             console.log('NO ENCONTRO MÉDICO');
             console.log('TAMAÑO:: '+loc.length);
@@ -925,29 +975,23 @@
           }else{
             document.getElementById("ShowDetails").innerHTML = '<strong>' + result01 + ' ' + keyWordValue +'.</strong>';
           }
-
         }else{
           console.log('KEYWORD SEARCH NULO:: '+keyWordValue);
-
           for(var i = 0; i < generalM.length; i++) {
             var posB = new google.maps.LatLng(generalM[i][0], generalM[i][1]);
             metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
             console.log('metros:: '+metros);
             console.log('Nombre:: '+generalM[i][2]);
-
             if(metros < rangeValue){
               console.log('Nombre:: '+generalM[i][2]);
               console.log(metros +'<'+ rangeValue);
-
                res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4]]);
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
             }
           }
-
           for(var i = 0; i < res.length; i++) {
             loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
           }
-
           if(loc.length <= 0){
             console.log('NO ENCONTRO MÉDICO');
             console.log('TAMAÑO:: '+loc.length);
@@ -957,11 +1001,9 @@
             document.getElementById("ShowDetails").innerHTML = '<strong>'+ result01 + ' ' + rangeValue + ' ' + result02 +'.</strong>';
           }
         }      
-
         console.log(res);
         console.log(loc);
       }
-
       function drop() {
         clearMarkers();
         for (var i = 0; i < loc.length; i++) {
@@ -969,31 +1011,24 @@
           var lon = loc[i][1];
           console.log(lat);
           console.log(lon);
-
           var doctor = "{{ asset('doctors.png') }}";
-
           markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
             icon: doctor
           });
-
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-
           google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
             return function() {
               infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
               infowindow.open(map, marker);
               console.log(marker);
               
-
               showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
           
-
             }
           })(marker, i));
-
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {  
               
@@ -1001,24 +1036,20 @@
               $('#modal-register-cite').modal('show');
             }
           })(marker, i));
-
           setTimeout(dropMarker(i), i * 250);
         }
       }
-
       function dropMarker(i) {
         return function() {
           markers[i].setMap(map);
         };
       }
-
       function clearMarkers() {
         for (var i = 0; i < markers.length; i++) {
           markers[i].setMap(null);
         }
         markers = [];
       }
-
       function showInfo(info){ 
         document.getElementById("info").innerHTML = '<strong>Información del médico:</strong> <br/>'+ info +'';
       }
@@ -1035,7 +1066,6 @@
                Math.sin(dLng/2) * Math.sin(dLng/2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
         var dist = (earthRadius * c);
-
         return dist;
       }
     </script>
