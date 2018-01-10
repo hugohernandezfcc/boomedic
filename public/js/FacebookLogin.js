@@ -98,10 +98,12 @@ window.fbAsyncInit = function() {
 	version    : 'v2.11' // use any version
 });  
     FB.Event.subscribe('xfbml.render', function() {
-    var spinner = document.getElementById("cargar");
-    var ima = document.getElementById("carga2");
-    spinner.removeAttribute("class");
-    ima.removeAttribute("class");
+    var spinner = document.getElementById("cargarfacebook");
+    var ima = document.getElementById("cargafacebook");
+    if(!(spinner === undefined) && !(ima === undefined)){
+        spinner.removeAttribute("class");
+        ima.removeAttribute("class");
+    }
         } );  
 };
     
