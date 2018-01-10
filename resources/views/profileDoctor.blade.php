@@ -251,6 +251,7 @@
 	                	<div class="col-sm-10">
 		                  	<select class="form-control" name="specialty" id="specialty">
 		                    	<option value="">Seleccionar ...</option>
+		                    	<option value="Alergología"> Médico General </option>
 		                    	<option value="Alergología"> Alergología </option>
 		                    	<option value="Cardiología">Cardiología</option>
 		                    	<option value="Gastroenterología"> Gastroenterología </option>
