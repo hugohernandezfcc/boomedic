@@ -435,9 +435,22 @@
             
           </div>
           <!-- /.box -->
-          <select id="paymentMethodsFields" style="display: none;">
+          <select id="paymentMethodsFields" class="form-control" style="display: none;">
             
           </select>
+
+          <select id="timesByDay" class="form-control" style="display: none;">
+            <option>10:00 A.M.</option>
+            <option>11:00 A.M.</option>
+            <option>12:00 P.M.</option>
+            <option>13:00 P.M.</option>
+            <option>14:00 P.M.</option>
+            <option>15:00 P.M.</option>
+            <option>16:00 P.M.</option>
+            <option>17:00 P.M.</option>
+            <option>18:00 P.M.</option>
+          </select>
+
           <script type="text/javascript">
           $(function () {
 
@@ -445,9 +458,11 @@
 
             $(".datepicker .datepicker-days").on('click', 'td.day', function () {
                 document.getElementById('paymentMethodsFields').style.display = "block";
+                document.getElementById('timesByDay').style.display = "block";
             });
 
             
+
 
             $.ajax(
               {
@@ -462,6 +477,7 @@
                     var option = document.createElement("option");
                     option.text = result[i].provider + ": " + result[i].cardnumber;
                     x.add(option);
+                    
                   }
 
                   
