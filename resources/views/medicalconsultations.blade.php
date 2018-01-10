@@ -488,21 +488,8 @@
               }
             );
 
-            function format(icon) {
-                var originalOption = icon.element;
-                console.log("voy a subir");
-                console.log(originalOption);
-
-                if($(originalOption).data('icon') == 'Paypal')
-                  return '<i class="fa fa-fw fa-cc-paypal"></i> ' + icon.text;
-                else
-                  return '<i class="fa ' + $(originalOption).data('icon') + '"></i> ' + icon.text;
-            }
-
-            $('#paymentMethodsFields').select2({
+            $('select').select2({
                 width: "100%",
-                formatResult: format,
-                formatSelection: format
             });
 
           });
