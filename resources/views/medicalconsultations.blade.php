@@ -398,14 +398,16 @@
 
 
               <div class="modal-body">
-                <p id="info"></p>
-              </div>
+                <div style="display: none;">
+                  <p id="info"></p>
+                </div>
+              
                 <!-- Calendar -->
           <div class="box box-solid bg-green-gradient">
             <div class="box-header">
               <i class="fa fa-calendar"></i>
 
-              <h3 class="box-title">Calendar</h3>
+              <h3 class="box-title">Seleccionar día</h3>
               <!-- tools box -->
               <div class="pull-right box-tools">
                 <!-- button with a dropdown -->
@@ -446,7 +448,7 @@
           </script>
 
 
-
+          </div>
               <div class="modal-footer">
                 <button type="button" id="button01" onclick="window.location.href = 'https://afternoon-hollows-51469.herokuapp.com/payment/index';" class="btn btn-secondary btn-block btn-flat">
                   Confirmar y programar cita
