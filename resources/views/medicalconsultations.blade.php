@@ -462,7 +462,6 @@
                 document.getElementById('timesByDay').style.display = "block";
             });
 
-            
 
 
             $.ajax(
@@ -476,13 +475,9 @@
                   for (var i = result.length - 1; i >= 0; i--) {
                     
                     var option = document.createElement("option");
-
-                    if(result[i].provider == "Paypal")
-                      option.text = '<i class="fa fa-fw fa-cc-paypal"></i>: ' + result[i].cardnumber;
-                    
-                    option.text = '<i class="fa fa-fw fa-cc-paypal"></i>: ' + result[i].cardnumber;
-                    
+                    option.text = result[i].provider + ": " + result[i].cardnumber;
                     option.value = result[i].provider + "_" + result[i].cardnumber;
+                    option.setAttribute("data-icon", result[i].provider);
                     x.add(option);
 
                   }
@@ -492,6 +487,24 @@
                 }
               }
             );
+
+            function format(icon) {
+                var originalOption = icon.element;
+
+                console.log(originalOption);
+
+                if($(originalOption).data('icon') == 'Paypal')
+                  return '<i class="fa fa-fw fa-cc-paypal"></i> ' + icon.text;
+                else
+                  return '<i class="fa ' + $(originalOption).data('icon') + '"></i> ' + icon.text;
+            }
+
+            $('#paymentMethodsFields').select2({
+                width: "100%",
+                formatResult: format,
+                formatSelection: format
+            });
+
           });
           </script>
 
