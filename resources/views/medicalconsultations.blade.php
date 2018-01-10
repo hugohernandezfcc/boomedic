@@ -401,7 +401,7 @@
                 <div >
                   <p id="info"></p>
                 </div>
-              
+              <hr width="100%">
                 <!-- Calendar -->
           <div class="box box-solid bg-green-gradient">
             <div class="box-header">
@@ -446,9 +446,10 @@
             <option>17:00 P.M.</option>
             <option>18:00 P.M.</option>
           </select>
+          <br/>
           <select id="paymentMethodsFields" class="form-control" style="display: none;">
             
-          <br/>
+          
           </select>
 
           <script type="text/javascript">
