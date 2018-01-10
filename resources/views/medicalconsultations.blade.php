@@ -444,6 +444,16 @@
                 alert('day clicked');
             });
 
+            
+
+            $.ajax(
+              {
+                url: "medicalappointments/showPaymentMethods", 
+                success: function(result){
+                  console.log(result);
+                }
+              }
+            );
           });
           </script>
 

@@ -223,6 +223,13 @@ Route::group(['prefix' => 'medicalappointments'], function(){
 		]
 	);
 
+	Route::get('showPaymentMethods', [
+			'uses'	=>	'medicalappointments@showPaymentMethods',
+			'as'	=>	'showPaymentMethods'
+		]
+	);
+	
+
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'medicalappointments@redirecting',
 			'as'	=>	'redirecting'

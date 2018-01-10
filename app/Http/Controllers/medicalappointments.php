@@ -70,6 +70,17 @@ class medicalappointments extends Controller
     }
 
     /**
+     * Method responsable of list of paymentmethods
+     */
+
+    public function showPaymentMethods()
+    {
+        return response()->json(
+            DB::table('paymentsmethods')->where('owner', Auth::id() )->get()
+        );
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
