@@ -368,7 +368,10 @@
     <!-- DataTables -->
     <script src="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
-    
+        <script type="text/javascript" src="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+    <script src="https://adminlte.io/themes/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
     <script src="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
     
