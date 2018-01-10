@@ -497,10 +497,9 @@
                 <form action="postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                         {{ csrf_field() }}
                   <input id="amount" type="hidden" class="form-control" name="amount" required>
-                  <button type="button" id="button01" onclick="document.getElementById('formulatio_paypal').submit();"  class="btn btn-secondary btn-block btn-flat">
-                    Confirmar y programar cita
-                  </button>
                 </form>
+                  
+                <input type="button" id="button01" value="Confirmar y programar cita" onclick="document.getElementById('formulatio_paypal').submit();"  class="btn btn-secondary btn-block btn-flat">
               </div>
 
             </div>
