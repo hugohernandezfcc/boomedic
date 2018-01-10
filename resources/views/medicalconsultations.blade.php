@@ -490,7 +490,7 @@
 
             function format(icon) {
                 var originalOption = icon.element;
-
+                console.log("voy a subir");
                 console.log(originalOption);
 
                 if($(originalOption).data('icon') == 'Paypal')
