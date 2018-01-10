@@ -83,14 +83,11 @@
                 <div class="box"  align="center" id="socialnet" style="border:none; box-shadow: none;"><br>
                     <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" style="font-size: 14px;">
                           <div class="box-header with-border" align="left">
-                            <h4 class="box-title">
-                                <i class="fa fa-fw fa-facebook-official" style="color: rgb(59, 89, 152);"></i>
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                Facebook
-                                </a>
-                            </h4>
+                                <i class="fa fa-fw fa-facebook-official" style="color: rgb(59, 89, 152);"></i><b>Facebook</b>
                           </div>
+                          </a>
                           <div id="collapseOne" class="panel-collapse collapse">
                             <div class="box-body">
                                 <div class="row" align="center">
@@ -101,14 +98,11 @@
                           </div>
                         </div>
                         <div class="panel box box-danger">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black" style="font-size: 14px;">
                           <div class="box-header with-border" align="left">
-                            <h4 class="box-title">
-                                <i class="fa fa-fw fa-google" style="color: rgb(211, 72, 54);"></i>
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" >
-                                Google
-                              </a>
-                            </h4>
+                                <i class="fa fa-fw fa-google" style="color: rgb(211, 72, 54);"></i><b>Google</b>
                           </div>
+                          </a>
                           <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="box-body">
                                 <div class="row" align="center">
@@ -119,14 +113,11 @@
                           </div>
                         </div>
                         <div class="panel box box-success">
+                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="text-black" style=" font-size: 14px;">
                           <div class="box-header with-border" align="left">
-                            <h4 class="box-title">
-                                <i class="fa fa-fw fa-linkedin"></i>
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                LinkedIn
-                              </a>
-                            </h4>
+                                <i class="fa fa-fw fa-linkedin"></i><b>LinkedIn</b>
                           </div>
+                           </a>
                           <div id="collapseThree" class="panel-collapse collapse">
                             <div class="box-body">
                                 <div class="row">

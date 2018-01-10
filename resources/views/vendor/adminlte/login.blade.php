@@ -95,7 +95,7 @@
                           <div id="collapseThree" class="panel-collapse collapse">
                             <div class="box-body">
                                 <div class="row">
-                                    <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
+                                      <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
                                         api_key: 78maelkx5by0xp
                                         authorize: true
                                         onLoad: onLinkedInLoad
