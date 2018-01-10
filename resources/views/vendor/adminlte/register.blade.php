@@ -94,7 +94,7 @@
                           <div id="collapseOne" class="panel-collapse collapse">
                             <div class="box-body">
                                 <div class="row" align="center">
-                                    <div class="fb-login-button" id="botonfacebook_tocustom" data-size="medium" data-button-type="login_with" 
+                                    <div class="fb-login-button" id="botonfacebook_tocustom" data-size="medium" data-button-type="continue_with" 
                                     data-scope="public_profile,email" onlogin="fbRegister();"></div>
                                 </div><br>
                             </div>
