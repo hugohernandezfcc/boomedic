@@ -933,6 +933,11 @@
 					document.getElementById("boxlabor").style.paddingBottom = "140px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";
+				   document.getElementById('loadingGif2').style.display = "block";
+				  setTimeout(function(){ 
+				  	document.getElementById('loadingGif2').style.display = "none";
+				  	window.location.reload(true);
+				  },2000);
 				   initMap();
 				 
 				})
@@ -958,11 +963,7 @@
 			})
     			window.onload = function(){
     				initAutocomplete();
-    			  document.getElementById('loadingGif2').style.display = "block";
-				  setTimeout(function(){ 
-				  	document.getElementById('loadingGif2').style.display = "none";
-				  	window.location.reload(true);
-				  },2000);
+
     			};
 
 
