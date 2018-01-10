@@ -2,6 +2,7 @@
 <head>
     <meta name="google-signin-client_id" content="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com">
     <meta name="_token" content="{{ csrf_token() }}">
+    <script type="text/javascript" src="{{ asset('js/FacebookLogin.js') }}" async="true" defer="true"></script>
 </head>
 
 @section('adminlte_css')
