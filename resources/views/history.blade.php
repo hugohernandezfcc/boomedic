@@ -37,7 +37,7 @@
 			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo citas"><i class="fa fa-heartbeat"></i></button>		
 			<button id="support" type="button"  class="btn bg-black" title="Mostrar solo soporte"><i class="fa fa-wrench "></i></button>
 			<button id="payment" type="button" class="btn bg-yellow" title="Métodos de pagos registrados"> <i class="fa fa-credit-card-alt"></i></button>	
-			<button id="user" type="button" class="btn bg-green" title="Mostrar solo actualización de usuario"><i class="fa fa-user "></i></button>
+			<button id="userli" type="button" class="btn bg-green" title="Mostrar solo actualización de usuario"><i class="fa fa-user "></i></button>
 			<button id="all" type="button" class="btn black bg-darken-4" title="Ver todo"><i> • • • </i></button>				
 			</div>
 
@@ -89,7 +89,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li class="user">
+            <li class="userli">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -172,7 +172,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li class="user">
+            <li class="userli">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -257,7 +257,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li class="user">
+            <li class="userli">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -342,7 +342,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li class="user">
+            <li class="userli">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -427,7 +427,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li class="user">
+            <li class="userli">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -511,7 +511,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li class="user">
+            <li class="userli">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -595,7 +595,7 @@
             @endif
 
            @if($items['Type'] == 'User')
-            <li class="user">
+            <li class="userli">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
@@ -673,7 +673,7 @@
 
  <script type="text/javascript">
 
-		$("#user").click(function () {
+		$("#userli").click(function () {
 
 			var x = document.getElementsByClassName("support");
 			var i;
@@ -692,7 +692,7 @@
 			    z[i].style.display = 'none';
 			}
 
-			var u = document.getElementsByClassName("user");
+			var u = document.getElementsByClassName("userli");
 			var i;
 			for (i = 0; i < u.length; i++) {
 			    u[i].style.display = 'block';
@@ -708,7 +708,7 @@
 		$("#support").click(function () {
 	
 
-			var x = document.getElementsByClassName("user");
+			var x = document.getElementsByClassName("userli");
 			var i;
 			for (i = 0; i < x.length; i++) {
 			    x[i].style.display = 'none';
@@ -751,7 +751,7 @@
 			    y[i].style.display = 'none';
 			}
 
-			var z = document.getElementsByClassName("user");
+			var z = document.getElementsByClassName("userli");
 			var i;
 			for (i = 0; i < z.length; i++) {
 			    z[i].style.display = 'none';
@@ -762,7 +762,7 @@
 			    u[i].style.display = 'block';
 			}
 			if(!u[0]){
-			    	document.getElementById("response").innerHTML = "No hay citas registradas en este periodo de fechas...";
+			    	document.getElementById("response").innerHTML = "No hay citas registradas en este periodo";
 			    }
 			    else{
 			    	document.getElementById("response").innerHTML = " ";
@@ -778,7 +778,7 @@
 			for (i = 0; i < x.length; i++) {
 			    x[i].style.display = 'none';
 			}
-			var y = document.getElementsByClassName("user");
+			var y = document.getElementsByClassName("userli");
 			var i;
 			for (i = 0; i < y.length; i++) {
 			    y[i].style.display = 'none';
@@ -811,7 +811,7 @@
 			for (i = 0; i < x.length; i++) {
 			    x[i].style.display = 'block';
 			}
-			var y = document.getElementsByClassName("user");
+			var y = document.getElementsByClassName("userli");
 			var i;
 			for (i = 0; i < y.length; i++) {
 			    y[i].style.display = 'block';
