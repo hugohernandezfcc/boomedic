@@ -131,6 +131,7 @@
     </style>
 
     <style>
+    
     /* The Modal (background) */
     .modal-danger2 {
         display: none; /* Hidden by default */
