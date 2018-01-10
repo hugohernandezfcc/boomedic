@@ -100,7 +100,7 @@ window.fbAsyncInit = function() {
     FB.Event.subscribe('xfbml.render', function() {
     var spinner = document.getElementById("cargar");
     var ima = document.getElementById("carga2");
-    if(!(spinner === undefined) && !(ima === undefined)){
+    if((spinner !== null) && (ima !== null)){
         spinner.removeAttribute("class");
         ima.removeAttribute("class");
     }
