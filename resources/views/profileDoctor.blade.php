@@ -934,10 +934,9 @@
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";		  
 				  setTimeout(function(){ 
-				  	document.getElementById('loadingGif2').style.display = "none";
+				  	initMap();
+				  	document.getElementById('loadingGif2').style.display = "none";	 
 				  },2000);
-
-				   initMap();
 				 
 				})
 				$("#cancel").click(
