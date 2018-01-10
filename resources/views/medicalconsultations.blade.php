@@ -403,37 +403,28 @@
                 </div>
               <hr width="100%">
                 <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
+          <div class="box box-solid bg-default-gradient">
             <div class="box-header">
               <i class="fa fa-calendar"></i>
 
               <h3 class="box-title">Seleccionar día</h3>
               <!-- tools box -->
               <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <!-- <div class="btn-group">
-                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bars"></i></button>
-                    <ul class="dropdown-menu pull-right" role="menu">
-                      <li><a href="#">Add new event</a></li>
-                      <li><a href="#">Clear events</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">View calendar</a></li>
-                    </ul>
-                </div> -->
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
+                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
               </div>
               <!-- /. tools -->
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <!--The calendar -->
-              <div id="calendar" style="width: 100%"></div>
+              <div id="calendar" style="width: 80%"></div>
             </div>
             <!-- /.box-body -->
             
           </div>
+
+          <input type="hidden" id="dateSelectedForCite">
+ 
           <!-- /.box -->
           <select id="timesByDay" class="form-control" style="display: none;">
             <option>10:00 A.M.</option>
@@ -447,6 +438,7 @@
             <option>18:00 P.M.</option>
           </select>
           <br/>
+          <br/>
           <select id="paymentMethodsFields" class="form-control" style="display: none;">
             
           
@@ -456,6 +448,13 @@
           $(function () {
 
             $('#calendar').datepicker();
+
+            $('#calendar').on('changeDate', function() {
+                $('#dateSelectedForCite').val(
+                    $('#datepicker').datepicker('getFormattedDate')
+                );
+            });
+
 
             $(".datepicker .datepicker-days").on('click', 'td.day', function () {
                 document.getElementById('paymentMethodsFields').style.display = "block";
@@ -481,9 +480,6 @@
                     x.add(option);
 
                   }
-
-                  
-
                 }
               }
             );
