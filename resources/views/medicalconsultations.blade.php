@@ -269,7 +269,7 @@
             </div>    
  @endif
           
-   <form>
+   
     
     <div id="mapaC">
       <!-- Trigger the modal with a checkbox -->
@@ -499,7 +499,9 @@
                   <input id="amount" type="hidden" class="form-control" name="amount" required>
                 </form>
                   
-                <input type="button" id="button01" value="Confirmar y programar cita" onclick="document.getElementById('formulatio_paypal').submit();"  class="btn btn-secondary btn-block btn-flat">
+                <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
+                  Confirmar y programar cita
+                </button>
               </div>
 
             </div>
@@ -507,7 +509,7 @@
     </div>
     <!--/ Modal de registro de cita -->
 
-    </form>
+
 
     <script type="text/javascript">
     $("#alert").fadeTo(3000, 500).fadeOut(500, function(){
