@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     public function index(){
-    	$users Users::all();
+    	$users User::all();
 
     	return Fractal::collection($users, new UserTransformer);
     }
