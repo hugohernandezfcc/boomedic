@@ -241,7 +241,7 @@
                 <div class="panel box box-default" style="border-top-color: gray;">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
                  <div class="box-header with-border"> 
-                       <div align="left"><i class="fa fa-chevron-down text-muted"></i> Citas médicas registradas</div>
+                       <div align="left"><i class="fa fa-chevron-down text-muted"></i> <b>Citas médicas registradas</b></div>
                      </div> 
                     </a>
                   <div id="collapseOne" class="panel-collapse collapse" >
