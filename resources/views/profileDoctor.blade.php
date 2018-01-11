@@ -243,7 +243,8 @@
 		            	<label for="medical_society" class="col-sm-2 control-label">Sociedad de Médicos</label>
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="medical_society" id="medical_society" value="{{ $medical_society }}" class="form-control">
-	                	</div>
+	                	</div></div>
+	               <div class="form-group"> 	
 	                	<label for="professional_license" class="col-sm-2 control-label">Licencia Profesional</label>
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="professional_license" id="professional_license" value="{{ $professional_license }}" class="form-control">
