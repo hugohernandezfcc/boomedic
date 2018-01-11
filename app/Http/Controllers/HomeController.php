@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\professional_information;
 use Carbon\Carbon;
+use App\User;
 
 class HomeController extends Controller
 {
