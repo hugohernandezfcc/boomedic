@@ -29,4 +29,8 @@ class LaborInformation extends Model
     public function user(){
 	  return $this->belongsTo('App\professional_information', 'profInformation');
 	}
+
+	public function workboard(){
+		return $this->hasMany(Workboard::class, 'labInformation', 'id');
+	}
 }

@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -57,5 +58,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function profesionalInformation(){
+        return $this->hasMany(professional_information::class, 'user', 'id');
+    }
 
+    public function paymentMethod(){
+        return $this->hasMany(professional_information::class, 'user', 'id');
+    }
+
+    public function supportTickets(){
+        return $this->hasMany(professional_information::class, 'user', 'id');
+    }
+
+    public function medicalAppointments(){
+        return $this->hasMany(professional_information::class, 'user', 'id');
+    }
 }

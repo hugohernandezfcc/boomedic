@@ -19,4 +19,8 @@ class professional_information extends Model
     public function user(){
 	  return $this->belongsTo('App\User', 'user');
 	}
+
+	public function laborInfo(){
+		return $this->hasMany(LaborInformation::class, 'profInformation', 'id');
+	}
 }
