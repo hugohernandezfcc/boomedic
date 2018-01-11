@@ -97,9 +97,9 @@ class UserController extends Controller
         $user->longitude = ($request->filled('longitude')) ? $request->longitude : $user->longitude;
         $user->profile_photo = ($request->filled('profile_photo')) ? $request->profile_photo : $user->profile_photo;
         */
-        $user->mobile = ($request->filled('mobile')) ? $request->mobile : $user->mobile;
-        $user->interiornumber = ($request->filled('interiornumber')) ? $request->interiornumber : $user->interiornumber;
-        $user->streetnumber = ($request->filled('streetnumber')) ? $request->streetnumber : $user->streetnumber;
+        $user->mobile = $request->mobil;
+        //$user->interiornumber = ($request->filled('interiornumber')) ? $request->interiornumber : $user->interiornumber;
+        //$user->streetnumber = ($request->filled('streetnumber')) ? $request->streetnumber : $user->streetnumber;
         $user->save();
 
         return Fractal::item($user, new UserTransformer);
