@@ -154,7 +154,7 @@ class history extends Controller
            
 
         return view('history', [
-                'userId'    => Auth::id(),
+                'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
@@ -334,7 +334,7 @@ class history extends Controller
            
 
         return view('history', [
-                'userId'    => Auth::id(),
+                'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,

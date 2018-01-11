@@ -313,10 +313,10 @@ question
 
                 /** SYSTEM INFORMATION */
 
-                'userId'        => Auth::id(),
-                'name'      => $user->name,
+                'userId'        => $user->id,
+                'name'          => $user->name,
                 'photo'         => $user->profile_photo,
-                'date'         => $user->created_at,
+                'date'          => $user->created_at,
                 'mode'          => 'labor',
 
                 /* DIRECTION LABOR PROFESSIONAL  */
@@ -338,10 +338,10 @@ question
 
                 /** SYSTEM INFORMATION */
 
-                'userId'        => Auth::id(),
-                'name'      => $user->name,
+                'userId'        => $user->id,
+                'name'          => $user->name,
                 'photo'         => $user->profile_photo,
-                'date'         => $user->created_at,
+                'date'          => $user->created_at,
                 'mode'          => 'viewlabor',
 
                 /* DIRECTION LABOR PROFESSIONAL  */

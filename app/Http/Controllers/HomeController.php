@@ -96,7 +96,7 @@ class HomeController extends Controller
                     'name'      => $user->name,
                     'firstname' => $user->firstname,
                     'lastname'  => $user->lastname,
-                    'photo'     => $user->porfile_photo,
+                    'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
                     'userId'    => $user->id,
                     'labor'     => $join,
