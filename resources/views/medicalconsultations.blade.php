@@ -229,11 +229,9 @@
             </div>
              @else
              <div class="box-group" id="accordion">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 13px;">
                  <div class="box-header with-border"> 
-                  <h4 class="panel-title">
                    <div align="left"><i class="fa fa-chevron-down text-muted"></i> Citas médicas registradas</div>
-                    </h4>
                     </div> 
                  </a>
                   <div id="collapseOne" class="panel-collapse collapse" >
