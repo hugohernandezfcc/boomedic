@@ -97,7 +97,9 @@ class UserController extends Controller
         $user->longitude = ($request->filled('longitude')) ? $request->longitude : $user->longitude;
         $user->profile_photo = ($request->filled('profile_photo')) ? $request->profile_photo : $user->profile_photo;
         */
-        $user->mobile = $request->mobile;
+        if($request->filled('mobile')){
+            $user->mobile = $request->mobile;
+        }
         //$user->interiornumber = ($request->filled('interiornumber')) ? $request->interiornumber : $user->interiornumber;
         //$user->streetnumber = ($request->filled('streetnumber')) ? $request->streetnumber : $user->streetnumber;
         $user->save();
