@@ -223,20 +223,18 @@
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
   </script>
- @if($appointments->isEmpty())
-<div class="alert alert-info alert-dismissible" id="alert">
-                <h4><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h4>               
-</div>
- @else
-      <div class="box-group" id="accordion">
-                <div class="panel box box-default" style="border-top-color: gray;">
-                
+             @if($appointments->isEmpty())
+            <div class="alert alert-info alert-dismissible" id="alert">
+                            <h4><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h4>               
+            </div>
+             @else
+             <div class="box-group" id="accordion">
                  <div class="box-header with-border"> 
                   <h4 class="panel-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
                    <div align="left"><i class="fa fa-chevron-down text-muted"></i> Citas médicas registradas</div>
                   </a>
-              </h4>
+                    </h4>
                     </div> 
                   <div id="collapseOne" class="panel-collapse collapse" >
                     <div class="box-body">
@@ -261,11 +259,9 @@
                                                          @endif 
                                                   </div>
                                                 </div>
-
                          @endforeach
                     </div>
                   </div>
-                </div>
             </div>    
  @endif
           
