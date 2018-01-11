@@ -28,7 +28,7 @@ class StoreUserRequest extends FormRequest
             'email' => 'required',  
             'password' => 'required', 
             'birthdate' => 'required',                                 
-            'status' => 'required',
+            'status' => '',
             'professional_license' => ''                
         ];
     }

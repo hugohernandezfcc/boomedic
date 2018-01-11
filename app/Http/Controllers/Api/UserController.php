@@ -56,7 +56,7 @@ class UserController extends Controller
         $user->password  = bcrypt($data['password']);
         $user->save();
         
-        if($request->filled('professional_license'))
+        if($request->has('professional_license'))
         {
             $profInformation = new professional_information;
             $profInformation->professional_license = $request->professional_license;
