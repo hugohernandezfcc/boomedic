@@ -19,7 +19,7 @@ class UserController extends Controller
     }
 
     public function show(User $user){
-    	return Fractal::item($users, new UserTransformer);
+    	return Fractal::item($user, new UserTransformer);
     }
 
     public function store(StoreUserRequest $request){
