@@ -67,7 +67,7 @@ class UserController extends Controller
     }
 
     public function update(UpdateUserRequest $request, User $user){
-        $user->name = ($request->filled('name')) ? $request->name : $user->name; 
+       /* $user->name = ($request->filled('name')) ? $request->name : $user->name; 
         $user->email = ($request->filled('email')) ? $request->email : $user->email;  
         $user->birthdate = ($request->filled('birthdate')) ? $request->birthdate : $user->birthdate; 
         $user->age = ($request->filled('age')) ? $request->age : $user->age;                  
@@ -96,7 +96,10 @@ class UserController extends Controller
         $user->latitude = ($request->filled('latitude')) ? $request->latitude : $user->latitude;
         $user->longitude = ($request->filled('longitude')) ? $request->longitude : $user->longitude;
         $user->profile_photo = ($request->filled('profile_photo')) ? $request->profile_photo : $user->profile_photo;
-
+        */
+        $user->mobile = ($request->filled('mobile')) ? $request->mobile : $user->mobile;
+        $user->interiornumber = ($request->filled('interiornumber')) ? $request->interiornumber : $user->interiornumber;
+        $user->streetnumber = ($request->filled('streetnumber')) ? $request->streetnumber : $user->streetnumber;
         $user->save();
 
         return Fractal::item($user, new UserTransformer);
