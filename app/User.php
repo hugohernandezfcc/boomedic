@@ -67,7 +67,7 @@ class User extends Authenticatable
     }
 
     public function supportTickets(){
-        return $this->hasMany(SupportTicket::class, 'userid', 'id');
+        return $this->hasMany(SupportTicket::class, 'userId', 'id');
     }
 
     public function medicalAppointments(){
