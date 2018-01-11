@@ -28,8 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = User::find(Auth::id());
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
-        $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
+        $StatementForUser = $user->privacy_statement;
         $appointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
@@ -67,11 +68,11 @@ class HomeController extends Controller
             $mode = 'Null';
             return view('privacyStatement', [
                     'privacy'   => $privacyStatement[0],
-                    'userId'    => Auth::id(),
-                    'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
-                    'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
-                    'photo'     => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                    'date'     => DB::table('users')->where('id', Auth::id() )->value('created_at'),
+                    'userId'    => $user->id,
+                    'username'  => $user->username,
+                    'name'      => $user->name,
+                    'photo'     => $user->profile_photo,
+                    'date'      => $user->created_at,
                     'mode'      => $mode
                    
                 ]
@@ -91,14 +92,14 @@ class HomeController extends Controller
         
         else {
             return view('medicalconsultations', [
-                    'username' => DB::table('users')->where('id', Auth::id() )->value('username'),
-                    'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
-                    'firstname' => DB::table('users')->where('id', Auth::id() )->value('firstname'),
-                    'lastname' => DB::table('users')->where('id', Auth::id() )->value('lastname'),
-                    'photo' => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                    'date'     => DB::table('users')->where('id', Auth::id() )->value('created_at'),
-                    'userId' => Auth::id(),
-                    'labor' => $join,
+                    'username'  => $user->username,
+                    'name'      => $user->name,
+                    'firstname' => $user->firstname,
+                    'lastname'  => $user->lastname,
+                    'photo'     => $user->porfile_photo,
+                    'date'      => $user->created_at,
+                    'userId'    => $user->id,
+                    'labor'     => $join,
                     'appointments' => $appointments
 
                 ]
