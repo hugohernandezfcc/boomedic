@@ -107,6 +107,7 @@ class doctor extends Controller
                 'schoolOfMedicine' => $professionali[0]->schoolOfMedicine,
                 'facultyOfSpecialization' => $professionali[0]->facultyOfSpecialization,
                 'practiseProfessional'    => $professionali[0]->practiseProfessional,
+                'medical_society'         => $professionali[0]->medical_society,  
 
                 /** ADDRESS FISICAL USER  */
 
@@ -195,6 +196,7 @@ question
                 'schoolOfMedicine' => $professionali[0]->schoolOfMedicine,
                 'facultyOfSpecialization' => $professionali[0]->facultyOfSpecialization,
                 'practiseProfessional'    => $professionali[0]->practiseProfessional,
+                'medical_society'         => $professionali[0]->medical_society,  
 
                 /** ADDRESS FISICAL USER  */
 
@@ -258,6 +260,7 @@ question
         $prof->schoolOfMedicine         = $request->schoolOfMedicine;
         $prof->facultyOfSpecialization  = $request->facultyOfSpecialization;
         $prof->practiseProfessional     = $request->practiseProfessional;
+        $prof->medical_society          = $request->medical_society ;  
 
         $prof->save();
         $user->save();
