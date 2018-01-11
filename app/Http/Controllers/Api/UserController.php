@@ -53,7 +53,7 @@ class UserController extends Controller
         $user->firstname = $namesUser['first'];
         $user->lastname  = $namesUser['last'];
         $user->username  = $uN['username'];
-        $user->password  = bcrypt($data['password']);
+        $user->password  = bcrypt($request->password);
         $user->save();
         
         if($request->has('professional_license'))
