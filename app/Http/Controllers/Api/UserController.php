@@ -67,42 +67,36 @@ class UserController extends Controller
     }
 
     public function update(UpdateUserRequest $request, User $user){
-       /* $user->name = ($request->filled('name')) ? $request->name : $user->name; 
-        $user->email = ($request->filled('email')) ? $request->email : $user->email;  
-        $user->birthdate = ($request->filled('birthdate')) ? $request->birthdate : $user->birthdate; 
-        $user->age = ($request->filled('age')) ? $request->age : $user->age;                  
-        $user->gender = ($request->filled('gender')) ? $request->gender : $user->gender;     
-        $user->occupation = ($request->filled('occupation')) ? $request->occupation : $user->occupation; 
-        $user->scholarship = ($request->filled('scholarship')) ? $request->scholarship : $user->scholarship;
-        $user->country = ($request->filled('country')) ? $request->country : $user->country;    
-        $user->state = ($request->filled('state')) ? $request->state : $user->state;                    
-        $user->delegation = ($request->filled('delegation')) ? $request->delegation : $user->delegation;               
-        $user->colony = ($request->filled('colony')) ? $request->colony : $user->colony;                   
-        $user->street = ($request->filled('street')) ? $request->street : $user->street;                   
-        $user->phone = ($request->filled('phone')) ? $request->phone : $user->phone;                    
-        $user->status = ($request->filled('status')) ? $request->status : $user->status;                   
-        $user->username = ($request->filled('username')) ? $request->username : $user->username;                 
-        $user->firstname = ($request->filled('firstname')) ? $request->firstname : $user->firstname;                
-        $user->lastname = ($request->filled('lastname')) ? $request->lastname : $user->lastname;                 
-        $user->placebirth = ($request->filled('placebirth')) ? $request->placebirth : $user->placebirth;                
-        $user->maritalstatus = ($request->filled('maritalstatus')) ? $request->maritalstatus : $user->maritalstatus;  
-        $user->streetnumber = ($request->filled('streetnumber')) ? $request->streetnumber : $user->streetnumber;
-        $user->interiornumber = ($request->filled('interiornumber')) ? $request->interiornumber : $user->interiornumber;
-        $user->officephone = ($request->filled('officephone')) ? $request->officephone : $user->officephone;
-        $user->familydoctor = ($request->filled('familydoctor')) ? $request->familydoctor : $user->familydoctor;
-        $user->mobile = ($request->filled('mobile')) ? $request->mobile : $user->mobile;                      
-        $user->reasonforlastappointment = ($request->filled('reasonforlastappointment')) ? $request->reasonforlastappointment : $user->reasonforlastappointment; 
-        $user->postalcode = ($request->filled('postalcode')) ? $request->postalcode : $user->postalcode;
-        $user->latitude = ($request->filled('latitude')) ? $request->latitude : $user->latitude;
-        $user->longitude = ($request->filled('longitude')) ? $request->longitude : $user->longitude;
-        $user->profile_photo = ($request->filled('profile_photo')) ? $request->profile_photo : $user->profile_photo;
-        */
-        //if($request->filled('mobile')){
-          //  $user->mobile = $request->mobile;
-        //}
-        $user->mobile = ($request->filled('interiornumber')) ? $request->interiornumber : $user->interiornumber;
-        //$user->interiornumber = ($request->filled('interiornumber')) ? $request->interiornumber : $user->interiornumber;
-        //$user->streetnumber = ($request->filled('streetnumber')) ? $request->streetnumber : $user->streetnumber;
+        $user->name = ($request->has('name')) ? $request->name : $user->name; 
+        $user->email = ($request->has('email')) ? $request->email : $user->email;  
+        $user->birthdate = ($request->has('birthdate')) ? $request->birthdate : $user->birthdate; 
+        $user->age = ($request->has('age')) ? $request->age : $user->age;                  
+        $user->gender = ($request->has('gender')) ? $request->gender : $user->gender;     
+        $user->occupation = ($request->has('occupation')) ? $request->occupation : $user->occupation; 
+        $user->scholarship = ($request->has('scholarship')) ? $request->scholarship : $user->scholarship;
+        $user->country = ($request->has('country')) ? $request->country : $user->country;    
+        $user->state = ($request->has('state')) ? $request->state : $user->state;                    
+        $user->delegation = ($request->has('delegation')) ? $request->delegation : $user->delegation;               
+        $user->colony = ($request->has('colony')) ? $request->colony : $user->colony;                   
+        $user->street = ($request->has('street')) ? $request->street : $user->street;                   
+        $user->phone = ($request->has('phone')) ? $request->phone : $user->phone;                    
+        $user->status = ($request->has('status')) ? $request->status : $user->status;                   
+        $user->username = ($request->has('username')) ? $request->username : $user->username;                 
+        $user->firstname = ($request->has('firstname')) ? $request->firstname : $user->firstname;                
+        $user->lastname = ($request->has('lastname')) ? $request->lastname : $user->lastname;                 
+        $user->placebirth = ($request->has('placebirth')) ? $request->placebirth : $user->placebirth;                
+        $user->maritalstatus = ($request->has('maritalstatus')) ? $request->maritalstatus : $user->maritalstatus;  
+        $user->streetnumber = ($request->has('streetnumber')) ? $request->streetnumber : $user->streetnumber;
+        $user->interiornumber = ($request->has('interiornumber')) ? $request->interiornumber : $user->interiornumber;
+        $user->officephone = ($request->has('officephone')) ? $request->officephone : $user->officephone;
+        $user->familydoctor = ($request->has('familydoctor')) ? $request->familydoctor : $user->familydoctor;
+        $user->mobile = ($request->has('mobile')) ? $request->mobile : $user->mobile;                      
+        $user->reasonforlastappointment = ($request->has('reasonforlastappointment')) ? $request->reasonforlastappointment : $user->reasonforlastappointment; 
+        $user->postalcode = ($request->has('postalcode')) ? $request->postalcode : $user->postalcode;
+        $user->latitude = ($request->has('latitude')) ? $request->latitude : $user->latitude;
+        $user->longitude = ($request->has('longitude')) ? $request->longitude : $user->longitude;
+        $user->profile_photo = ($request->has('profile_photo')) ? $request->profile_photo : $user->profile_photo;
+        
         $user->save();
 
         return Fractal::item($user, new UserTransformer);
