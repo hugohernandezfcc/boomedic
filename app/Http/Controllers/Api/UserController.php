@@ -48,12 +48,12 @@ class UserController extends Controller
             }
         $user->email = $request->email;
         $user->birthdate = $request->birthdate;
-        $user->age       = (int) $age,
-        $user->status    = 'In Progress',
-        $user->firstname = $namesUser['first'],
-        $user->lastname  = $namesUser['last'],
-        $user->username  = $uName['username'],
-        $user->password  = bcrypt($data['password']),
+        $user->age       = (int) $age;
+        $user->status    = 'In Progress';
+        $user->firstname = $namesUser['first'];
+        $user->lastname  = $namesUser['last'];
+        $user->username  = $uName['username'];
+        $user->password  = bcrypt($data['password']);
         $user->save();
         
         if($request->filled('professional_license'))
