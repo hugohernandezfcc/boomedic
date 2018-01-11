@@ -241,7 +241,7 @@
 
                                             <div class="col-sm-12">
                                                   <div class="info-box sm bg-gray">
-                                                    <span class="info-box-icon sm bg-black"><i class="fa fa-heartbeat"></i></span>
+                                                    <span class="info-box-icon sm bg-black"><i class="fa fa-calendar-check-o"></i></span>
                                                     <div class="info-box-content sm">
                                                       <b>Lugar:</b> {{ $appo->workplace}}.<br/>
                                                      <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
