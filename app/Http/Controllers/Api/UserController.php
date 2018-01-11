@@ -52,7 +52,7 @@ class UserController extends Controller
         $user->status    = 'In Progress';
         $user->firstname = $namesUser['first'];
         $user->lastname  = $namesUser['last'];
-        $user->username  = $uName['username'];
+        $user->username  = $uN['username'];
         $user->password  = bcrypt($data['password']);
         $user->save();
         
