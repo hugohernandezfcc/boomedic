@@ -228,12 +228,13 @@
                             <h4><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h4>               
             </div>
              @else
-             <div class="box-group" id="accordion">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
+        <div class="box-group" id="accordion">
+                <div class="panel box box-default" style="border-top-color: gray;">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
                  <div class="box-header with-border"> 
-                   <div align="left"><i class="fa fa-chevron-down text-muted"></i> <b>Citas médicas registradas</b></div>
-                    </div> 
-                 </a>
+                       <div align="left"><i class="fa fa-chevron-down text-muted"></i> Citas médicas registradas</div>
+                     </div> 
+                    </a>
                   <div id="collapseOne" class="panel-collapse collapse" >
                     <div class="box-body">
                          @foreach($appointments->sortBy('when') as $appo)
@@ -257,9 +258,11 @@
                                                          @endif 
                                                   </div>
                                                 </div>
+
                          @endforeach
                     </div>
                   </div>
+                </div>
             </div>    
  @endif
           
