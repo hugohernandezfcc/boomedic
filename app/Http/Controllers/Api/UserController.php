@@ -67,7 +67,6 @@ class UserController extends Controller
     }
 
     public function update(UpdateUserRequest $request, User $user){
-        $user->password = ($request->filled('password')) ? bcrypt($request->password) : $user->password;
         $user->name = ($request->filled('name')) ? $request->name : $user->name; 
         $user->email = ($request->filled('email')) ? $request->email : $user->email;  
         $user->birthdate = ($request->filled('birthdate')) ? $request->birthdate : $user->birthdate; 
