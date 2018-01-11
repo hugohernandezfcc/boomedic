@@ -7,7 +7,6 @@ use App\Transformers\UserTransformer;
 use App\Http\Requests\Api\User\StoreUserRequest;
 use App\Http\Controllers\Controller;
 use Cyvelnet\Laravel5Fractal\Facades\Fractal;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
