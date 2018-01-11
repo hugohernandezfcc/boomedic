@@ -184,15 +184,15 @@
       .btn-default {
           box-shadow: 1px 2px 5px #000000;   
       }
-      .box {
-    position: relative;
-    border-radius: 3px;
-    background: #ffffff;
-    border-top: 3px solid #d2d6de;
-    /* margin-bottom: 20px; */
-    width: 100%;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-}
+        .box {
+
+             margin-bottom: 0;
+
+        }
+
+        .panel {
+             margin-bottom: 0; 
+        }
     
   </style>
 
