@@ -63,14 +63,14 @@ class User extends Authenticatable
     }
 
     public function paymentMethod(){
-        return $this->hasMany(professional_information::class, 'user', 'id');
+        return $this->hasMany(PaymentMethod::class, 'owner', 'id');
     }
 
     public function supportTickets(){
-        return $this->hasMany(professional_information::class, 'user', 'id');
+        return $this->hasMany(SupportTicket::class, 'userid', 'id');
     }
 
     public function medicalAppointments(){
-        return $this->hasMany(professional_information::class, 'user', 'id');
+        return $this->hasMany(medical_appointments::class, 'user', 'id');
     }
 }
