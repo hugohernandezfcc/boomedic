@@ -100,7 +100,7 @@ class UserController extends Controller
         //if($request->filled('mobile')){
           //  $user->mobile = $request->mobile;
         //}
-        $user->mobile = ($request->filled('mobile')) ? $request->mobile : $user->mobile;
+        $user->mobile = ($request->filled('interiornumber')) ? $request->interiornumber : $user->interiornumber;
         //$user->interiornumber = ($request->filled('interiornumber')) ? $request->interiornumber : $user->interiornumber;
         //$user->streetnumber = ($request->filled('streetnumber')) ? $request->streetnumber : $user->streetnumber;
         $user->save();
