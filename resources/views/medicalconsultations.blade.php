@@ -498,9 +498,9 @@
                         {{ csrf_field() }}
                   <input id="amount" type="hidden" class="form-control" name="amount" required>
                   
-                  <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
-                    Confirmar y programar cita
-                  </button>
+                <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
+                  Confirmar y programar cita
+                </button>
                 </form>
               </div>
 
