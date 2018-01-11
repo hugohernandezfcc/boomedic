@@ -55,16 +55,16 @@ class payments extends Controller
      */
     public function index()
     {
+        $user = User::find(Auth::id());
         $cards = DB::table('paymentsmethods')->where('owner', Auth::id() )->get();
 
         return view('payments', [
                 'cards'     => $cards,
-                'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
-                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at'),
-
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
                 'mode'      => 'listPaymentMethods'
             ]
         );
@@ -78,13 +78,13 @@ class payments extends Controller
     public function create()
     {
 
-
+        $user = User::find(Auth::id());
         return view('payments', [
-                'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
-                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at'),
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
                 'mode'      => 'createPaymentMethod'
             ]
         );
@@ -251,14 +251,14 @@ class payments extends Controller
 
 
             $data = [
-            'name'     => $user->name,
-            'email'    => $user->email, 
+            'name'      => $user->name,
+            'email'     => $user->email, 
             'username'  => $user->username,                 
             'firstname' => $user->firstname,                
             'lastname'  => $user->lastname,    
-            'number'   => $statusCode[1],
-            'amount'   => '$'.$request->pay         
-            ];
+            'number'    => $statusCode[1],
+            'amount'    => '$'.$request->pay         
+            ]; 
                 $email = $user->email;
              Mail::send('emails.transaction', $data, function ($message) {
                         $message->subject('Transacción de pago en Boomedic');
@@ -278,25 +278,26 @@ class payments extends Controller
      }
 
      public function transactions(Request $request) {
+        $user = User::find(Auth::id());
         $id = $request->id;
         //Look in the table of methods of saved payments all the information of the selected method.
         $transactions = DB::table('transaction_bank')->where('paymentmethod', $id)->get();
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
          return view('payments', [
-                'type'      => $card->typemethod,
+                'type'              => $card->typemethod,
                 'paypal_email'      => $card->paypal_email,
-                'cardnumber' => $card->cardnumber,
-                'bank' => $card->bank,
-                'provider' => $card->provider,
-                'credit_debit' => $card->credit_debit,
-                'created' => $card->created_at,
-                'transactions'     => $transactions,
-                'userId'    => Auth::id(),
-                'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'mode'      => 'historyTransaction',
-                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at')
+                'cardnumber'        => $card->cardnumber,
+                'bank'              => $card->bank,
+                'provider'          => $card->provider,
+                'credit_debit'      => $card->credit_debit,
+                'created'           => $card->created_at,
+                'transactions'      => $transactions,
+                'userId'            => $user->id,
+                'photo'             => $user->profile_photo,
+                'username'          => $user->username,
+                'name'              => $user->name,
+                'mode'              => 'historyTransaction',
+                'date'              => $user->created_at
             ]
         );
                    
@@ -402,7 +403,7 @@ class payments extends Controller
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
                                 $pmethods->typemethod    = 'Paypal';
-                                $pmethods->bank         = 'Paypal';
+                                $pmethods->bank          = 'Paypal';
                                 $pmethods->paypal_email  = $result->getPayer()->getPayerInfo()->getEmail();
                                 $pmethods->cardnumber    = $request->input('PayerID');
                                 $pmethods->owner         = Auth::id();
@@ -427,13 +428,13 @@ class payments extends Controller
                                 );
                                 $user = User::find(Auth::id());
                                 $data = [
-                                'name'     => $user->name,
-                                'email'    => $user->email, 
+                                'name'      => $user->name,
+                                'email'     => $user->email, 
                                 'username'  => $user->username,                 
                                 'firstname' => $user->firstname,                
                                 'lastname'  => $user->lastname,    
-                                'number'   => $payment_id,
-                                'amount'   => '$'.$payment->transactions[0]->amount->total        
+                                'number'    => $payment_id,
+                                'amount'    => '$'.$payment->transactions[0]->amount->total        
                                 ];
                                 $email = $user->email;
                                  Mail::send('emails.transaction', $data, function ($message) {

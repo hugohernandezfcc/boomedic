@@ -29,14 +29,15 @@ class supportTickets extends Controller
      */
     public function index()
     {
+        $user = User::find($id);
         $allTickets = DB::table('support_tickets')->where('userId', Auth::id() )->get();
         return view('tickets', [
                 'allTickets'=> $allTickets,
-                'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
-                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at'),
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
                 'mode'      => 'listTickets'
             ]
         );
@@ -49,13 +50,14 @@ class supportTickets extends Controller
      */
     public function create()
     {
+             $user = User::find($id);
         return view('tickets', [
-                'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
-                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'email'     => DB::table('users')->where('id', Auth::id() )->value('email'),
-                'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at'),
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'email'     => $user->email,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
                 'mode'      => 'createTicket'
             ]
         );
@@ -81,25 +83,25 @@ class supportTickets extends Controller
         if ( $nTicket->save() ){
 
             $data = [
-                'name'     => $user->name,
-                'email'    => $user->email,
-                'age'     => $user->age,                 
-                'gender'    => $user->gender,
-                'occupation'=> $user->occupation,
-                'country'   => $user->country,    
-                'state'     => $user->state,                    
-                'delegation'    => $user->delegation,               
-                'colony'    => $user->colony,                   
-                'street'    => $user->street,                   
+                'name'       => $user->name,
+                'email'      => $user->email,
+                'age'        => $user->age,                 
+                'gender'     => $user->gender,
+                'occupation' => $user->occupation,
+                'country'    => $user->country,    
+                'state'      => $user->state,                    
+                'delegation' => $user->delegation,               
+                'colony'     => $user->colony,                   
+                'street'     => $user->street,                   
                 'mobile'     => $user->mobile,
-                'username'  => $user->username,                 
-                'firstname' => $user->firstname,                
-                'lastname'  => $user->lastname,                
-                'streetnumber'  => $user->streetnumber,           
+                'username'   => $user->username,                 
+                'firstname'  => $user->firstname,                
+                'lastname'   => $user->lastname,                
+                'streetnumber'      => $user->streetnumber,           
                 'interiornumber'    => $user->interiornumber,       
-                'postalcode'    => $user->postalcode,
-                'subject'  => $request->subject,
-                'description' => $request->ticketDescription
+                'postalcode'        => $user->postalcode,
+                'subject'           => $request->subject,
+                'description'       => $request->ticketDescription
             ];
 
             // Send email

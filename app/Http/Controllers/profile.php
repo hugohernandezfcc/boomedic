@@ -67,8 +67,7 @@ class profile extends Controller
     {
         $users = DB::table('users')->where('id', Auth::id() )->get();
         return view('profile', [
-                'name' => DB::table('users')->where('id', Auth::id() )->value('name'),
-
+                
                  /** SYSTEM INFORMATION */
 
                 'userId'        => Auth::id(),
@@ -187,7 +186,7 @@ class profile extends Controller
     public function update(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
-         $user = User::find($id);
+        $user = User::find($id);
         $user->status        = $request->status;         
         $user->firstname     = $request->firstname;         
         $user->lastname      = $request->lastname;         
