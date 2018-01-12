@@ -29,9 +29,10 @@ class ProfessionalInfoController extends Controller
         $pInfo->schoolOfMedicine = ($request->has('schoolOfMedicine')) ? $request->schoolOfMedicine : $pInfo->schoolOfMedicine;
         $pInfo->facultyOfSpecialization = ($request->has('facultyOfSpecialization')) ? $request->facultyOfSpecialization : $pInfo->facultyOfSpecialization;
         $pInfo->practiseProfessional = ($request->has('practiseProfessional')) ? $request->practiseProfessional : $pInfo->practiseProfessional;
-        $pInfo->user = $request->user;
-        $pInfo->professional_license = $request->professional_license : $pInfo->specialty;
         $pInfo->medical_society = ($request->has('medical_society')) ? $request->medical_society : $pInfo->medical_society;
+
+        $pInfo->user = $request->user;
+        $pInfo->professional_license = $request->professional_license;
 
         $pInfo->save();
 
