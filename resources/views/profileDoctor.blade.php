@@ -537,7 +537,7 @@
 							@else
 							
 							@foreach($labor->sortByDesc('created_at') as $labor)	
-							<div class="col-sm-12">
+							<div class="col-sm-7">
 									          <div class="info-box sm bg-gray">
 									            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
 									            <div class="info-box-content sm">
@@ -547,6 +547,9 @@
 									            <!-- /.info-box-content -->
 									          </div>
 									          <!-- /.info-box -->
+							</div>
+							<div class="col-sm-5">
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $longitude }}&amp;zoom=12&amp;size=200x100" alt="ubicación">	
 							</div>		
 							@endforeach
 							@endif
@@ -918,7 +921,7 @@
 			@foreach($labor->sortByDesc('created_at') as $labor)	
 			
 						@if($loop->iteration < 3)
-							<div class="col-sm-12">
+							<div class="col-sm-6">
 					          <div class="info-box sm bg-gray">
 					          	@if($loop->iteration == 1)
 					            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
@@ -932,7 +935,10 @@
 					            
 					            </div>
 					          </div>
-					        </div>
+					        </div>}
+					        <div class="col-sm-5">
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $longitude }}&amp;zoom=12&amp;size=200x100" alt="ubicación">	
+							</div>	
 					   @endif	
 					   @if($loop->iteration > 2)
 					   <div class="col-sm-12" style="text-align: right;">
@@ -1257,7 +1263,7 @@
 				@foreach($labor->sortByDesc('created_at') as $labor)	
 			
 
-							<div class="col-sm-12">
+							<div class="col-sm-6">
 					          <div class="info-box bg-gray">
 					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
 					            <div class="info-box-content">
@@ -1266,7 +1272,10 @@
 					     						        
 					            </div>
 					          </div>
-					        </div><br/>    
+					        </div>
+					        <div class="col-sm-5">
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $longitude }}&amp;zoom=12&amp;size=200x100" alt="ubicación">	
+							</div>	<br/>    
 			
 			@endforeach
 			<div class="col-sm-6">&nbsp;</div>
