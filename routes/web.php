@@ -222,12 +222,6 @@ Route::group(['prefix' => 'medicalappointments'], function(){
 			'as'	=>	'store'
 		]
 	);
-
-	Route::get('showPaymentMethods', [
-			'uses'	=>	'medicalappointments@showPaymentMethods',
-			'as'	=>	'showPaymentMethods'
-		]
-	);
 	
 
 	Route::get('redirecting/{page}', [
@@ -237,6 +231,34 @@ Route::group(['prefix' => 'medicalappointments'], function(){
 	);
 });
 
+
+Route::group(['prefix' => 'workboard'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'workboard@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('update/{id}', [
+			'uses'	=>	'workboard@update',
+			'as'	=>	'update'
+		]
+	);
+
+	Route::get('store/{id}', [
+			'uses'	=>	'workboard@store',
+			'as'	=>	'store'
+		]
+	);
+	
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'workboard@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+});
 
 
 Route::group(['prefix' => 'privacyStatement'], function(){
