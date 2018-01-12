@@ -14,12 +14,12 @@ class ProfessionalInfoController extends Controller
 {
     public function index(){
     	$pInfo = professional_information::all();
-    	//return Fractal::includes('parent')->collection($pInfo, new ProfessionalInformationTransformer);
-    	return Fractal::collection($pInfo, new ProfessionalInformationTransformer);
+    	return Fractal::includes('parent')->collection($pInfo, new ProfessionalInformationTransformer);
+    	//return Fractal::collection($pInfo, new ProfessionalInformationTransformer);
     }
 
     public function show(professional_information $pInfo){
-    	return Fractal::item($pInfo, new ProfessionalInformationTransformer);
+    	return Fractal::includes('parent')->item($pInfo, new ProfessionalInformationTransformer);
 
     }
 
