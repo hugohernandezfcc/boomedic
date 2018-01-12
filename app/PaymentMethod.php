@@ -25,4 +25,8 @@ class PaymentMethod extends Model
     public function user(){
 	  return $this->belongsTo('App\User');
 	}
+
+	public function transactions(){
+		return $this->hasMany(transaction_bank::class, 'paymentmethod', 'id');
+	}
 }
