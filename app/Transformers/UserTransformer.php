@@ -70,8 +70,7 @@ class UserTransformer extends TransformerAbstract
         ];
     }
     public function includeProfesionalInformation(User $user){
-        $pfi = $user->profesionalInformation->first();
-        return $this->item($pfi, new ProfessionalInformationTransformer);
+        return $this->collection($user->profesionalInformation, new ProfessionalInformationTransformer);
     }
     public function includePaymentMethods(User $user){
         return $this->collection($user->paymentMethod, new PaymentMethodTransformer);
