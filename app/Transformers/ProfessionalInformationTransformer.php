@@ -34,6 +34,7 @@ class ProfessionalInformationTransformer extends TransformerAbstract
     public function transform(professional_information $pi)
     {
         return [
+            'id' => $pi->id,
             'specialty'  => $pi->specialty,
             'schoolOfMedicine'  => $pi->schoolOfMedicine,
             'facultyOfSpecialization'  => $pi->facultyOfSpecialization,
