@@ -36,3 +36,12 @@ Route::group(['namespace' => 'Api', 'prefix' => '/professionalInfo'], function()
 	Route::post('/{pInfo}',['as' => 'professionalInfo.update', 'uses' => 'ProfessionalInfoController@update']);
 
 });
+
+Route::group(['namespace' => 'Api', 'prefix' => '/laborInfo'], function(){
+
+	Route::get('/',['as' => 'laborInfo', 'uses' => 'LaborInfoController@index']);
+	Route::put('/',['as' => 'laborInfo.store', 'uses' => 'LaborInfoController@store']);
+	Route::get('/{LaborInfo}',['as' => 'laborInfo.show', 'uses' => 'LaborInfoController@show']);
+	Route::post('/{LaborInfo}',['as' => 'laborInfo.update', 'uses' => 'LaborInfoController@update']);
+
+});
