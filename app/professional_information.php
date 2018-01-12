@@ -17,11 +17,11 @@ class professional_information extends Model
 		'medical_society'
     ];
 
-    /*public function user(){
+    public function user(){
 	  return $this->belongsTo('App\User', 'user');
-	}*/
+	}
 
-	public function userApi(){
+	public function owner(){
 		return $this->BelongsTo(User::class, 'user', 'id');
 	}
 

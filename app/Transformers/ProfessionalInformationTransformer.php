@@ -16,7 +16,7 @@ class ProfessionalInformationTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['parent'];
+    protected $availableIncludes = ['owner'];
 
     /**
      * List of resources to automatically include
@@ -46,7 +46,7 @@ class ProfessionalInformationTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeParent(professional_information $pfi){
+    public function includeOwner(professional_information $pfi){
         return $this->item($pfi->userApi, new UserTransformer);
     }
 
