@@ -538,7 +538,7 @@
 							
 							@foreach($labor->sortByDesc('created_at') as $labor)
 							<div class="form-group">	
-							<div class="col-sm-7">
+							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
 									          <div class="info-box sm bg-gray">
 									            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
 									            <div class="info-box-content sm">
@@ -549,8 +549,8 @@
 									          </div>
 									          <!-- /.info-box -->
 							</div>
-							<div class="col-sm-5">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=18&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
+							<div class="col-sm-4">
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
 							</div>
 							</div>		
 							@endforeach
@@ -924,7 +924,7 @@
 			
 						@if($loop->iteration < 3)
 						<div class="form-group">
-							<div class="col-sm-8">
+							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
 					          <div class="info-box sm bg-gray">
 					          	@if($loop->iteration == 1)
 					            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
@@ -940,7 +940,7 @@
 					          </div>
 					        </div>
 					        <div class="col-sm-4">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=18&amp;size=500x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=500x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
 							</div>
 							</div>	
 					   @endif	
@@ -1267,7 +1267,7 @@
 				@foreach($labor->sortByDesc('created_at') as $labor)	
 			
 						<div class="form-group">
-							<div class="col-sm-7">
+							<div class="col-sm-7" style="padding-right: 0; padding-left: 0;">
 					          <div class="info-box bg-gray">
 					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
 					            <div class="info-box-content">
@@ -1278,7 +1278,7 @@
 					          </div>
 					        </div>
 					        <div class="col-sm-5">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=18&amp;size=550x80&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=500x85&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
 							</div></div>	<br/>    
 			
 			@endforeach
