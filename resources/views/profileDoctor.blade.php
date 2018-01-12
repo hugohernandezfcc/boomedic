@@ -540,7 +540,7 @@
 							<div class="form-group">	
 							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
 									          <div class="info-box sm bg-gray">
-									          	<span class="info-box-icon sm bg-secondary"><i class="fa fa-calendar-plus-o"></i></span>
+									          	<a href=""><span class="info-box-icon sm bg-secondary"><i class="fa fa-calendar-plus-o"></i></span></a>
 									            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
 									            <div class="info-box-content sm">
 									              <b>{{ $labor->workplace}}</b><br/>
@@ -928,7 +928,7 @@
 						<div class="form-group">
 							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
 					          <div class="info-box sm bg-gray">
-					          	<span class="info-box-icon sm bg-secondary"><i class="fa fa-calendar-plus-o"></i></span>
+					          	<a href=""><span class="info-box-icon sm bg-secondary"><i class="fa fa-calendar-plus-o"></i></span></a>
 					            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
 
 					            <div class="info-box-content sm">
@@ -1270,7 +1270,7 @@
 						<div class="form-group">
 							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
 					          <div class="info-box bg-gray">
-					          	<span class="info-box-icon bg-secondary"><i class="fa fa-calendar-plus-o"></i></span>
+					          	<a href=""><span class="info-box-icon bg-secondary"><i class="fa fa-calendar-plus-o"></i></span></a>
 					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
 					            <div class="info-box-content">
 					              <b>{{ $labor->workplace}}</b><br/>

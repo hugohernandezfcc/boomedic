@@ -134,6 +134,9 @@
           .info-box-content {
                margin-left: 180px; 
                }    
+          .info-box-content.sm {
+               margin-left: 90px; 
+               }    
               .info-box-icon.sm {
                   height: 45px;
                   width: 45px;
