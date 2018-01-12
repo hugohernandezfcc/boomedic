@@ -543,7 +543,7 @@
 									          	<a href=""><span class="info-box-icon sm bg-secondary"><i class="fa fa-calendar-plus-o"></i></span></a>
 									            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
 									            <div class="info-box-content sm">
-									              <b>{{ $labor->workplace}}</b><br/>
+									              <b>{{ $labor->workplace}}</b> 
 									              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
 									            </div>
 									            <!-- /.info-box-content -->
