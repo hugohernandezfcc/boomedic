@@ -28,7 +28,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/users'], function(){
 
 });
 
-Route::group(['namespace' => 'Api2', 'prefix' => '/professionalInfo'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/professionalInfo'], function(){
 
 	Route::get('/',['as' => 'professionalInfo', 'uses' => 'ProfessionalInfoController@index']);
 	Route::put('/',['as' => 'professionalInfo.store', 'uses' => 'ProfessionalInfoController@store']);
