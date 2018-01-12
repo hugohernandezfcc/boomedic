@@ -59,7 +59,7 @@ class User extends Authenticatable
     ];
 
     public function profesionalInformation(){
-        return $this->hasOne(professional_information::class, 'user', 'id');
+        return $this->hasMany(professional_information::class, 'user', 'id');
     }
 
     public function paymentMethod(){
