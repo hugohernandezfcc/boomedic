@@ -22,7 +22,7 @@ class professional_information extends Model
 	}
 
 	public function userApi(){
-		return $this->belongsTo(User::class, 'id', 'user');
+		return $this->BelongsTo(User::class, 'user', 'id');
 	}
 
 	public function laborInfo(){
