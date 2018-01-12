@@ -16,14 +16,14 @@ class UserTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['profesionalInformation'];
+    protected $availableIncludes = ['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments'];
 
     /**
      * List of resources to automatically include
      *
      * @var array
      */
-    protected $defaultIncludes = ['paymentMethods', 'supportTickets', 'medicalAppointments'];
+    protected $defaultIncludes = [];
 
     /**
      * Transform object into a generic array

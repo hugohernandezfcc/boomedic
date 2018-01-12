@@ -35,6 +35,7 @@ class MenuTransformer extends TransformerAbstract
     {
         return [
 
+            'id' => $menu->id,
             'text' =>$menu->text, 
             'order' =>$menu->order, 
             'label' =>$menu->label, 

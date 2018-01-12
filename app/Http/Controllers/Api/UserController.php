@@ -15,11 +15,11 @@ class UserController extends Controller
     public function index(){
     	$users = User::all();
 
-    	return Fractal::collection($users, new UserTransformer);
+    	return Fractal::includes('profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments')->collection($users, new UserTransformer);
     }
 
     public function show(User $user){
-    	return Fractal::item($user, new UserTransformer);
+    	return Fractal::includes('profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments')->item($user, new UserTransformer);
     }
 
     public function store(StoreUserRequest $request){
@@ -61,6 +61,8 @@ class UserController extends Controller
             $profInformation = new professional_information;
             $profInformation->professional_license = $request->professional_license;
             $profInformation->user = $user->id;
+            $profInformation->save();
+            return Fractal::includes('profesionalInformation')->item($user, new UserTransformer);
         }
 
         return Fractal::item($user, new UserTransformer);
@@ -99,6 +101,6 @@ class UserController extends Controller
         
         $user->save();
 
-        return Fractal::item($user, new UserTransformer);
+        return Fractal::includes('profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments')->item($user, new UserTransformer);
     }
 }

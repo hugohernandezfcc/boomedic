@@ -16,7 +16,7 @@ class LaborInformationTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['parent'];
+    protected $availableIncludes = ['parent', 'workboard'];
 
     /**
      * List of resources to automatically include

@@ -16,14 +16,14 @@ class ProfessionalInformationTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['parent'];
+    protected $availableIncludes = ['parent', 'laborInfo'];
 
     /**
      * List of resources to automatically include
      *
      * @var array
      */
-    protected $defaultIncludes = ['laborInfo'];
+    protected $defaultIncludes = [];
 
     /**
      * Transform object into a generic array
