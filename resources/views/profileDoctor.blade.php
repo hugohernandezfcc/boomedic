@@ -538,8 +538,9 @@
 							
 							@foreach($labor->sortByDesc('created_at') as $labor)
 							<div class="form-group">	
-							<div class="col-sm-7" style="padding-right: 0; padding-left: 0;">
+							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
 									          <div class="info-box sm bg-gray">
+									          	<span class="info-box-icon sm bg-black"><i class="fa fa-calendar-plus-o"></i></span>
 									            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
 									            <div class="info-box-content sm">
 									              <b>{{ $labor->workplace}}</b><br/>
@@ -549,7 +550,7 @@
 									          </div>
 									          <!-- /.info-box -->
 							</div>
-							<div class="col-sm-5" style="padding-right: 0; padding-left: 0;">
+							<div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
 							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
 							</div>
 							</div>		
