@@ -18,7 +18,7 @@ class ProfessionalInfoController extends Controller
     }
 
     public function show(professional_information $pInfo){
-    	return Fractal::includes('parent')->item($pInfo, new ProfessionalInformationTransformer);
+    	return Fractal::item($pInfo, new ProfessionalInformationTransformer);
 
     }
 
