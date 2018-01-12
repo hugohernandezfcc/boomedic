@@ -55,6 +55,6 @@ class PaymentMethodTransformer extends TransformerAbstract
     }
 
     public function includeTransactions(PaymentMethod $pm){
-        return $this->collection($pm->transactions, new ArticleTransformer);
+        return $this->collection($pm->transactions, new TransactionBankTransformer);
     }
 }
