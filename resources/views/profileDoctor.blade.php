@@ -939,6 +939,9 @@
 					          </div>
 					        </div>
 					        <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+					        	<script type="text/javascript">
+					        		console.log('{{ $labor->latitude }}');
+					        	</script>
 							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=350x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
 							</div>
 								
