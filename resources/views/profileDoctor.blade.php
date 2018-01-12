@@ -256,7 +256,7 @@
 	                	<div class="col-sm-10">
 		                  	<select class="form-control" name="specialty" id="specialty">
 		                    	<option value="{{ $specialty }}" selected> {{ $specialty }}</option>
-		                    	<option value="Alergología"> Médico General </option>
+		                    	<option value="Médico General"> Médico General </option>
 		                    	<option value="Alergología"> Alergología </option>
 		                    	<option value="Cardiología">Cardiología</option>
 		                    	<option value="Gastroenterología"> Gastroenterología </option>

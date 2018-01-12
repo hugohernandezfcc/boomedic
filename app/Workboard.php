@@ -11,7 +11,11 @@ class Workboard extends Model
     	'id',
 		'workingDays', 
 		'workingHours',
-		'labInformation'
+		'labInformation',
+		'start',
+		'end',
+		'fixed_schedule',
+		'patient_duration_attention'
     ];
 
     public function labInformation(){
