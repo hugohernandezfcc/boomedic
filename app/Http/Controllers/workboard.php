@@ -28,7 +28,7 @@ class workboard extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index($id){
     $user = User::find(Auth::id());   
 
         return view('workboard', [

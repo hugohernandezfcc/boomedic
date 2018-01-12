@@ -234,7 +234,7 @@ Route::group(['prefix' => 'medicalappointments'], function(){
 
 Route::group(['prefix' => 'workboard'], function(){
 
-	Route::get('index', [
+	Route::get('index/{id}', [
 			'uses'	=>	'workboard@index',
 			'as'	=>	'index'
 		]
