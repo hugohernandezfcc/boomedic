@@ -15,7 +15,6 @@ class ProfessionalInfoController extends Controller
     public function index(){
     	$pInfo = professional_information::all();
     	return Fractal::includes('owner')->collection($pInfo, new ProfessionalInformationTransformer);
-    	//return Fractal::collection($pInfo, new ProfessionalInformationTransformer);
     }
 
     public function show(professional_information $pInfo){
