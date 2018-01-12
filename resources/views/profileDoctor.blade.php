@@ -550,7 +550,7 @@
 									          <!-- /.info-box -->
 							</div>
 							<div class="col-sm-5">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=14&amp;size=300x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=18&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
 							</div>
 							</div>		
 							@endforeach
@@ -924,7 +924,7 @@
 			
 						@if($loop->iteration < 3)
 						<div class="form-group">
-							<div class="col-sm-7">
+							<div class="col-sm-8">
 					          <div class="info-box sm bg-gray">
 					          	@if($loop->iteration == 1)
 					            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
@@ -938,9 +938,9 @@
 					            
 					            </div>
 					          </div>
-					        </div>}
-					        <div class="col-sm-5">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=14&amp;size=300x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
+					        </div>
+					        <div class="col-sm-4">
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=18&amp;size=500x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
 							</div>
 							</div>	
 					   @endif	
@@ -1278,7 +1278,7 @@
 					          </div>
 					        </div>
 					        <div class="col-sm-5">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=14&amp;size=300x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=18&amp;size=550x80&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
 							</div></div>	<br/>    
 			
 			@endforeach
