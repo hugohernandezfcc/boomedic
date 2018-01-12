@@ -126,18 +126,16 @@
           .info-box.sm {
 
               min-height: 45px;
-             font-size: 12px;
+             font-size: 10px;
               margin-bottom: 3px;
                }
               .info-box-icon.sm {
                   height: 45px;
                   width: 45px;
-                  font-size: 24px;
+                  font-size: 23px;
                   line-height: 45px;        
               }
-              .info-box-content.sm {
-                  margin-left: 45px;
-              }
+
          
 
 
