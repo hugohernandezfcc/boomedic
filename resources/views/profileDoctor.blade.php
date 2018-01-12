@@ -921,7 +921,7 @@
 			
 			@else
 			
-			<div class="box">
+			<div class="box-body">
 			@foreach($labor->sortByDesc('created_at') as $labor)	
 			
 						@if($loop->iteration < 3)
@@ -940,11 +940,9 @@
 					        </div>
 					        <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
 					        	<script type="text/javascript">
-					        	var height = window.screen.availHeight-115;
-					        	console.log(height);
-					        	document.getElementById('mapstatic').src= '//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size='+ heigth +'x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g';
+					        		console.log('{{ $labor->latitude }}');
 					        	</script>
-							<img border="0" alt="ubicación" id="mapstatic">	
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=350x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" width="250px">	
 							</div>
 								
 					   @endif	
