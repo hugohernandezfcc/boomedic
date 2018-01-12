@@ -538,7 +538,7 @@
 							
 							@foreach($labor->sortByDesc('created_at') as $labor)
 							<div class="form-group">	
-							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
+							<div class="col-sm-7" style="padding-right: 0; padding-left: 0;">
 									          <div class="info-box sm bg-gray">
 									            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
 									            <div class="info-box-content sm">
@@ -549,13 +549,14 @@
 									          </div>
 									          <!-- /.info-box -->
 							</div>
-							<div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+							<div class="col-sm-5" style="padding-right: 0; padding-left: 0;">
 							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
 							</div>
 							</div>		
 							@endforeach
 							@endif
-									<div class="col-sm-12" style="text-align: right;">
+									<div class="col-sm-6">&nbsp;</div>
+									<div class="col-sm-6" style="text-align: right;">
 									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
 									   	<button type="submit" class="btn btn-secondary"><i class="fa fa-plus"></i>Agregar otro centro</button>
 									   </form></div>
@@ -924,7 +925,7 @@
 			
 						@if($loop->iteration < 3)
 						<div class="form-group">
-							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
+							<div class="col-sm-7" style="padding-right: 0; padding-left: 0;">
 					          <div class="info-box sm bg-gray">
 					          	@if($loop->iteration == 1)
 					            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
@@ -939,13 +940,14 @@
 					            </div>
 					          </div>
 					        </div>
-					        <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
+					        <div class="col-sm-5" style="padding-right: 0; padding-left: 0;">
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=450x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
 							</div>
 							</div>	
 					   @endif	
 					   @if($loop->iteration > 2)
-					   <div class="col-sm-12" style="text-align: right;">
+					   <div class="col-sm-6">&nbsp;</div>
+					   <div class="col-sm-6" style="text-align: right;">
 					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
 					   Ver todos... <i class="fa fa-arrow-right"></i>
 					   </a>
