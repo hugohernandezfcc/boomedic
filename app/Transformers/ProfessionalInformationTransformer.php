@@ -46,7 +46,7 @@ class ProfessionalInformationTransformer extends TransformerAbstract
     }
 
     public function includeParent(professional_information $pfi){
-        return $this->item($pfi->user, new UserTransformer);
+        return $this->item($pfi->userApi, new UserTransformer);
     }
 
     public function includeLaborInformation(professional_information $pfi){
