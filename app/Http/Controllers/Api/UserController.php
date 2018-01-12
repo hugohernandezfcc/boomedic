@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index(){
     	$users = User::all();
 
-    	return Fractal::includes('profesionalInformation')->collection($users, new UserTransformer);
+    	return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments'])->collection($users, new UserTransformer);
     }
 
     public function show(User $user){
@@ -69,6 +69,7 @@ class UserController extends Controller
     }
 
     public function update(UpdateUserRequest $request, User $user){
+        $user->password = ($request->has('password')) ? bcrypt($request->password) : $user->password; 
         $user->name = ($request->has('name')) ? $request->name : $user->name; 
         $user->email = ($request->has('email')) ? $request->email : $user->email;  
         $user->birthdate = ($request->has('birthdate')) ? $request->birthdate : $user->birthdate; 
@@ -101,6 +102,6 @@ class UserController extends Controller
         
         $user->save();
 
-        return Fractal::includes('profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments')->item($user, new UserTransformer);
+        return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments'])->item($user, new UserTransformer);
     }
 }

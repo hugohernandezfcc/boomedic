@@ -16,14 +16,14 @@ class ProfessionalInformationTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['parent', 'laborInfo'];
+    protected $availableIncludes = ['parent'];
 
     /**
      * List of resources to automatically include
      *
      * @var array
      */
-    protected $defaultIncludes = [];
+    protected $defaultIncludes = ['laborInformation'];
 
     /**
      * Transform object into a generic array
@@ -39,7 +39,8 @@ class ProfessionalInformationTransformer extends TransformerAbstract
             'facultyOfSpecialization'  => $pi->facultyOfSpecialization,
             'practiseProfessional'  => $pi->practiseProfessional,
             'user'  => $pi->user,
-            'professional_license'  => $pi->professional_license
+            'professional_license'  => $pi->professional_license,
+            'medical_society' => $pi->medical_society
 			
         ];
     }
@@ -48,7 +49,7 @@ class ProfessionalInformationTransformer extends TransformerAbstract
         return $this->item($pfi->user, new UserTransformer);
     }
 
-    public function includeLaborInfo(professional_information $pfi){
+    public function includeLaborInformation(professional_information $pfi){
         return $this->collection($pfi->laborInfo, new LaborInformationTransformer);
     }
     

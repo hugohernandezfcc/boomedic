@@ -16,14 +16,14 @@ class LaborInformationTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['parent', 'workboard'];
+    protected $availableIncludes = ['parent'];
 
     /**
      * List of resources to automatically include
      *
      * @var array
      */
-    protected $defaultIncludes = [];
+    protected $defaultIncludes = ['workboard'];
 
     /**
      * Transform object into a generic array

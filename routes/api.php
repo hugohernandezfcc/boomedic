@@ -27,3 +27,12 @@ Route::group(['namespace' => 'Api', 'prefix' => '/users'], function(){
 	//Route::delete('/{article}',['as' => 'articles.destroy', 'uses' => 'ArticleController@destroy']);
 
 });
+
+Route::group(['namespace' => 'Api', 'prefix' => '/professionalInfo'], function(){
+
+	Route::get('/',['as' => 'professionalInfo', 'uses' => 'ProfessionalInfoController@index']);
+	Route::put('/',['as' => 'professionalInfo.store', 'uses' => 'ProfessionalInfoController@store']);
+	Route::get('/{professionalInfo}',['as' => 'professionalInfo.show', 'uses' => 'ProfessionalInfoController@show']);
+	Route::post('/{professionalInfo}',['as' => 'professionalInfo.update', 'uses' => 'ProfessionalInfoController@update']);
+
+});
