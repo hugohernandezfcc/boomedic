@@ -129,8 +129,11 @@
               margin-bottom: 4px;
                }
           .info-box {
-              font-size: 2.8vmin;
-               }     
+              font-size: 2.5vmin;
+               }
+          .info-box-content {
+               margin-left: 180px; 
+               }    
               .info-box-icon.sm {
                   height: 45px;
                   width: 45px;
