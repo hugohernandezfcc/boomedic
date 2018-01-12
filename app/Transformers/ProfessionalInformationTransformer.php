@@ -39,7 +39,7 @@ class ProfessionalInformationTransformer extends TransformerAbstract
             'schoolOfMedicine'  => $pi->schoolOfMedicine,
             'facultyOfSpecialization'  => $pi->facultyOfSpecialization,
             'practiseProfessional'  => $pi->practiseProfessional,
-            'user'  => $pi->user,
+            'user'  => $pi->user->id,
             'professional_license'  => $pi->professional_license,
             'medical_society' => $pi->medical_society
 			
