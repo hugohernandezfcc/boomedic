@@ -232,29 +232,29 @@ Route::group(['prefix' => 'medicalappointments'], function(){
 });
 
 
-Route::group(['prefix' => 'workboardDoctor'], function(){
+Route::group(['prefix' => 'workboardDr'], function(){
 
 	Route::get('index/{id}', [
-			'uses'	=>	'workboardDoctor@index',
+			'uses'	=>	'workboardDr@index',
 			'as'	=>	'index'
 		]
 	);
 
 	Route::get('update/{id}', [
-			'uses'	=>	'workboardDoctor@update',
+			'uses'	=>	'workboardDr@update',
 			'as'	=>	'update'
 		]
 	);
 
 	Route::get('store/{id}', [
-			'uses'	=>	'workboardDoctor@store',
+			'uses'	=>	'workboardDr@store',
 			'as'	=>	'store'
 		]
 	);
 	
 
 	Route::get('redirecting/{page}', [
-			'uses'	=>	'workboardDoctor@redirecting',
+			'uses'	=>	'workboardDr@redirecting',
 			'as'	=>	'redirecting'
 		]
 	);
