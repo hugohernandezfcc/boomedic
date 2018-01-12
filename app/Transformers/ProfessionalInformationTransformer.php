@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use App\ProfessionalInformation;
+use App\professional_information;
 use League\Fractal;
 use League\Fractal\TransformerAbstract;
 use League\Fractal\Resource\Collection;
@@ -31,7 +31,7 @@ class ProfessionalInformationTransformer extends TransformerAbstract
      * @var $resource
      * @return array
      */
-    public function transform(ProfessionalInformation $pi)
+    public function transform(professional_information $pi)
     {
         return [
             'specialty'  => $pi->specialty,
@@ -44,11 +44,11 @@ class ProfessionalInformationTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeParent(ProfessionalInformation $pfi){
+    public function includeParent(professional_information $pfi){
         return $this->item($pfi->user, new UserTransformer);
     }
 
-    public function includeLaborInfo(ProfessionalInformation $pfi){
+    public function includeLaborInfo(professional_information $pfi){
         return $this->collection($pfi->laborInfo, new LaborInformationTransformer);
     }
     
