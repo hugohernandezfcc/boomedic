@@ -16,14 +16,14 @@ class PaymentMethodTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['user', 'transactions'];
+    protected $availableIncludes = ['user'];
 
     /**
      * List of resources to automatically include
      *
      * @var array
      */
-    protected $defaultIncludes = [];
+    protected $defaultIncludes = ['transactions'];
 
     /**
      * Transform object into a generic array
