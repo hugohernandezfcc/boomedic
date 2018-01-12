@@ -16,15 +16,16 @@ class AddFieldsTableWorkboard extends Migration
         
         Schema::create('workboard', function (Blueprint $table) {
 
-            $table->increments('id');
+             $table->increments('id');
              $table->string('workingDays')->nullable();
              $table->string('workingHours')->nullable();
-             $table->string('start')->nullable();
-             $table->string('end')->nullable();
+             $table->time('start')->nullable();
+             $table->time('end')->nullable();
              $table->boolean('fixed_schedule')->nullable();
              $table->longText('patient_duration_attention')->nullable();
              $table->integer('labInformation')->unsigned();
              $table->foreign('labInformation')->references('id')->on('labor_information');
+             $table->timestamps();
             
 
 
