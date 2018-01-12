@@ -1274,7 +1274,7 @@
 					          </div>
 					        </div>
 					        <div class="col-sm-5">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $longitude }}&amp;zoom=12&amp;size=200x100" alt="ubicación">	
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $longitude }}&amp;zoom=12&amp;size=200x100&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación">	
 							</div>	<br/>    
 			
 			@endforeach
