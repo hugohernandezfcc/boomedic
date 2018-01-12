@@ -9,7 +9,7 @@ use App\User;
 use App\Workboard;
 
 
-class workboard extends Controller
+class workboardDoctor extends Controller
 {
 
     /**
