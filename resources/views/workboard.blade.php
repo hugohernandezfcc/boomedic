@@ -12,13 +12,7 @@
 }
 </style>
 <!-- Include Required Prerequisites -->
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
- 
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
 @stop
 
 @section('content')
@@ -87,35 +81,66 @@
 			</div>
 
 	</div>
-	<div class="col-sm-12">
+	<div class="col-sm-6">
 
-		<div class="form-group">
-		<label>Rango: Hora de inicio y fin</label>
-                <div class="input-group">
+		<label>Hora de inicio:</label>
+		<div class="bootstrap-timepicker">
+			<div class="bootstrap-timepicker-widget dropdown-menu">
+				<table><tbody><tr><td><a href="#" data-action="incrementHour">
+					<i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="incrementMinute">
+						<i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td class="meridian-column"><a href="#" data-action="toggleMeridian">
+							<i class="glyphicon glyphicon-chevron-up"></i></a></td></tr>
+							<tr><td><span class="bootstrap-timepicker-hour">05</span></td> <td class="separator">:</td><td><span class="bootstrap-timepicker-minute">15</span></td> <td class="separator">&nbsp;</td><td><span class="bootstrap-timepicker-meridian">PM</span></td></tr><tr><td><a href="#" data-action="decrementHour"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator"></td><td><a href="#" data-action="decrementMinute"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-down"></i></a></td></tr></tbody></table></div>
+                <div class="form-group">
+                  <div class="input-group">
                   <div class="input-group-addon">
-                    <i class="fa fa-clock-o"></i>
+                      <i class="fa fa-clock-o"></i>
+                    </div>
+                    <input type="text" class="form-control timepicker">
+  
                   </div>
-                  <input type="text" class="form-control pull-right" id="reservationtime" name="reservationtime">
-
+                  <!-- /.input group -->
                 </div>
-                <!-- /.input group -->
+                <!-- /.form group -->
               </div>
-	</div>		
-			<!--Radio group-->
+
+	</div>	
+		<div class="col-sm-6">
+
+		<label>Hora Final:</label>
+		<div class="bootstrap-timepicker">
+			<div class="bootstrap-timepicker-widget dropdown-menu">
+				<table><tbody><tr><td><a href="#" data-action="incrementHour">
+					<i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="incrementMinute">
+						<i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td class="meridian-column"><a href="#" data-action="toggleMeridian">
+							<i class="glyphicon glyphicon-chevron-up"></i></a></td></tr>
+							<tr><td><span class="bootstrap-timepicker-hour">05</span></td> <td class="separator">:</td><td><span class="bootstrap-timepicker-minute">15</span></td> <td class="separator">&nbsp;</td><td><span class="bootstrap-timepicker-meridian">PM</span></td></tr><tr><td><a href="#" data-action="decrementHour"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator"></td><td><a href="#" data-action="decrementMinute"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-down"></i></a></td></tr></tbody></table></div>
+                <div class="form-group">
+                  <div class="input-group">
+                  <div class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                    </div>
+                    <input type="text" class="form-control timepicker">
+  
+                  </div>
+                  <!-- /.input group -->
+                </div>
+                <!-- /.form group -->
+              </div>
+
+	</div>	
+	
  	</div>
 
-<script type="text/javascript">
-$(function() {
-    $('input[name="reservationtime"]').daterangepicker({
-        timePicker: true,
-        timePickerIncrement: 30,
-        locale: {
-            format: 'h:mm A'
-        }
-    });
-});
-</script>
+
 
 </div>
-
+<script>
+  $(function () {
+    //Timepicker
+    $('.timepicker').timepicker({
+      showInputs: false
+    })
+  })
+</script>
 @stop
