@@ -68,6 +68,6 @@ class LaborInfoController extends Controller
 
     	$LaborInfo->save();
 
-    	return Fractal::item($LaborInformation, new LaborInformationTransformer);
+    	return Fractal::item($LaborInfo, new LaborInformationTransformer);
     }
 }
