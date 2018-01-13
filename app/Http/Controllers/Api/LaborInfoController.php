@@ -44,14 +44,14 @@ class LaborInfoController extends Controller
 
     	$LaborInfo->save();
 
-    	return Fractal::item($LaborInformation, new LaborInformationTransformer);
+    	return Fractal::item($LaborInfo, new LaborInformationTransformer);
 
     }
 
     public function update(UpdateLaborInfoRequest $request, LaborInformation $LaborInfo){
     	$LaborInfo->workplace = ($request->has('workplace')) ? $request->workplace : $LaborInfo->workplace;
-    	$LaborInfo->professionalPosition = ($request->has('professionalPosition')) ? $request->workplace : $LaborInfo->workplace;
-    	$LaborInfo->profInformation = ($request->has('profInformation')) ? $request->workplace : $LaborInfo->workplace;
+    	$LaborInfo->professionalPosition = ($request->has('professionalPosition')) ? $request->professionalPosition : $LaborInfo->professionalPosition;
+    	$LaborInfo->profInformation = ($request->has('profInformation')) ? $request->profInformation : $LaborInfo->profInformation;
 
     	$LaborInfo->country = ($request->has('country')) ? $request->country : $LaborInfo->country;
     	$LaborInfo->state = ($request->has('state')) ? $request->state : $LaborInfo->state;
