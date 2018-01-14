@@ -8,6 +8,7 @@ use App\Http\Requests\Api\SupportTicket\storeSupportTicket;
 use App\Http\Requests\Api\SupportTicket\updateSupportTicket;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Cyvelnet\Laravel5Fractal\Facades\Fractal;
 
 class SupportTicketController extends Controller
 {
