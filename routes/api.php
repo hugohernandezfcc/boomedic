@@ -45,3 +45,12 @@ Route::group(['namespace' => 'Api', 'prefix' => '/laborInfo'], function(){
 	Route::post('/{LaborInfo}',['as' => 'laborInfo.update', 'uses' => 'LaborInfoController@update']);
 
 });
+
+Route::group(['namespace' => 'Api', 'prefix' => '/supportTicket'], function(){
+
+	Route::get('/',['as' => 'supportTicket', 'uses' => 'SupportTicketController@index']);
+	Route::put('/',['as' => 'supportTicket.store', 'uses' => 'SupportTicketController@store']);
+	Route::get('/{supportTicket}',['as' => 'supportTicket.show', 'uses' => 'SupportTicketController@show']);
+	Route::post('/{supportTicket}',['as' => 'supportTicket.update', 'uses' => 'SupportTicketController@update']);
+
+});
