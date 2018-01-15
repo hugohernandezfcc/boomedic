@@ -33,7 +33,7 @@ class storePaymentMethodRequest extends FormRequest
             'cardnumber' => 'required',
             'owner' => 'required',
             'paypal_email' => '',
-            'bank' => '',
+            'bank' => 'required',
             'notified' => ''
         ];
     }

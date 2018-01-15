@@ -39,7 +39,10 @@ class TransactionBankTransformer extends TransformerAbstract
             'receiver' => $tb->receiver,
             'amount' => $tb->amount,
             'paymentmethod' => $tb->paymentmethod,
-            'transaction' => $tb->transaction
+            'transaction' => $tb->transaction,
+            'created_at' => $tb->created_at->format('d M Y'),
+            'updated_at' => $tb->updated_at->format('d M Y'),
+            'credit_debit' => $tb->credit_debit
 			
         ];
     }
