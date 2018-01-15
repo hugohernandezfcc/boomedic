@@ -14,11 +14,11 @@ class medicalAppointmentsController extends Controller
 {
     	public function index(){
     	$medicalAppo = medical_appointments::all();
-    	return Fractal::collection($medicalAppo, new MedicalAppointmentsTransformer);
+    	return Fractal::includes(['owner', 'doctor'])->collection($medicalAppo, new MedicalAppointmentsTransformer);
     }
 
     public function show(medical_appointments $medicalApp){
-    	return Fractal::item($medicalAppo, new MedicalAppointmentsTransformer);
+    	return Fractal::includes(['owner', 'doctor'])->item($medicalAppo, new MedicalAppointmentsTransformer);
 
     }
 
@@ -41,7 +41,7 @@ class medicalAppointmentsController extends Controller
 
         $medicalAppo->save();
 
-        return Fractal::item($medicalAppo, new MedicalAppointmentsTransformer);
+        return Fractal::includes(['owner', 'doctor'])->item($medicalAppo, new MedicalAppointmentsTransformer);
 
     }
 
@@ -60,7 +60,7 @@ class medicalAppointmentsController extends Controller
 
         $medicalAppo->save();
 
-        return Fractal::item($medicalAppo, new MedicalAppointmentsTransformer);
+        return Fractal::includes(['owner', 'doctor'])->item($medicalAppo, new MedicalAppointmentsTransformer);
 
     }  
 }
