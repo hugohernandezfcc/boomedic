@@ -28,7 +28,7 @@ class storeTransactionBankRequest extends FormRequest
             'amount' => 'required',
             'paymentmethod' => 'required',
             'transaction' => 'required',
-            'credit_debit' => 'required',
+            'credit_debit' => '',
         ];
     }
 }

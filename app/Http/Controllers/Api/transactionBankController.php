@@ -29,7 +29,7 @@ class transactionBankController extends Controller
         $transactionBank->amount = $request->amount; 
         $transactionBank->paymentmethod = $request->paymentmethod;
         $transactionBank->transaction = $request->transaction;
-        $transactionBank->credit_debit = $request->credit_debit;
+        //$transactionBank->credit_debit = $request->credit_debit;
 
         $transactionBank->save();
 
@@ -42,7 +42,7 @@ class transactionBankController extends Controller
         $transactionBank->amount = ($request->has('amount')) ? $request->amount :  $transactionBank->amount;
         $transactionBank->paymentmethod = ($request->has('paymentmethod')) ? $request->paymentmethod :  $transactionBank->paymentmethod;
         $transactionBank->transaction = ($request->has('transaction')) ? $request->transaction :  $transactionBank->transaction;
-        $transactionBank->credit_debit = ($request->has('credit_debit')) ? $request->credit_debit :  $transactionBank->credit_debit;
+       // $transactionBank->credit_debit = ($request->has('credit_debit')) ? $request->credit_debit :  $transactionBank->credit_debit;
 
         $transactionBank->save();
 
