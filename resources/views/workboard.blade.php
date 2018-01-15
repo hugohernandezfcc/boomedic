@@ -10,8 +10,15 @@
 .btn.active span.glyphicon {				
 	opacity: 1;				
 }
+
 </style>
 <!-- Include Required Prerequisites -->
+<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
 
 @stop
 
@@ -110,26 +117,10 @@
 		<div class="col-sm-6">
 
 		<label>Hora Final:</label>
-		<div class="bootstrap-timepicker">
-			<div class="bootstrap-timepicker-widget dropdown-menu">
-				<table><tbody><tr><td><a href="#" data-action="incrementHour">
-					<i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="incrementMinute">
-						<i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td class="meridian-column"><a href="#" data-action="toggleMeridian">
-							<i class="glyphicon glyphicon-chevron-up"></i></a></td></tr>
-							<tr><td><span class="bootstrap-timepicker-hour">05</span></td> <td class="separator">:</td><td><span class="bootstrap-timepicker-minute">15</span></td> <td class="separator">&nbsp;</td><td><span class="bootstrap-timepicker-meridian">PM</span></td></tr><tr><td><a href="#" data-action="decrementHour"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator"></td><td><a href="#" data-action="decrementMinute"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-down"></i></a></td></tr></tbody></table></div>
-                <div class="form-group">
-                  <div class="input-group">
-                  <div class="input-group-addon">
-                      <i class="fa fa-clock-o"></i>
-                    </div>
-                    <input type="text" class="form-control timepicker">
-  
-                  </div>
-                  <!-- /.input group -->
-                </div>
-                <!-- /.form group -->
-              </div>
-
+		<div class="input-group bootstrap-timepicker timepicker">
+		  <input id="timepicker1" type="text" class="form-control input-small">
+		  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+		</div>
 	</div>	
 	
  	</div>
@@ -137,10 +128,9 @@
 
 
 </div>
-<script>
-$('.timepicker').click(function (){
-$('.timepicker').timepicker('showWidget');
-
-});
+<script type="text/javascript">
+  $('#timepicker1').timepicker({
+    showInputs: false
+  });
 </script>
 @stop
