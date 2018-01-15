@@ -71,7 +71,7 @@
 				<b>Sáb</b>
 			</label>				
 		</div>
-	</div><br/><brs
+	</div><br/><br/>
 		<!--Radio group-->
 	<div class="col-sm-4">
 				<div class="form-group">
@@ -80,7 +80,7 @@
 			</div>
 	</div>
 
-	<div class="col-sm-12">
+	<div class="col-sm-8">
 
 			<div class="form-group">
 				<label>Fijo </label>
