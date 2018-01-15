@@ -38,7 +38,9 @@ class WorkboardTransformer extends TransformerAbstract
             'id' => $wb->id,
             'workingDays' => $wb->workingDays, 
             'workingHours' => $wb->workingHours,
-            'labInformation' => $wb->labInformation
+            'labInformation' => $wb->labInformation,
+            'created_at' => $wb->created_at->format('d M Y'),
+            'updated_at' => $wb->updated_at->format('d M Y'),
 			
         ];
     }

@@ -54,3 +54,12 @@ Route::group(['namespace' => 'Api', 'prefix' => '/supportTicket'], function(){
 	Route::post('/{supportTicket}',['as' => 'supportTicket.update', 'uses' => 'SupportTicketController@update']);
 
 });
+
+Route::group(['namespace' => 'Api', 'prefix' => '/workboard'], function(){
+
+	Route::get('/',['as' => 'workboard', 'uses' => 'WorkboardController@index']);
+	Route::put('/',['as' => 'workboard.store', 'uses' => 'WorkboardController@store']);
+	Route::get('/{workboard}',['as' => 'workboard.show', 'uses' => 'WorkboardController@show']);
+	Route::post('/{workboard}',['as' => 'workboard.update', 'uses' => 'WorkboardController@update']);
+
+});
