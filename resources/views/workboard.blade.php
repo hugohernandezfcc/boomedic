@@ -64,20 +64,22 @@
 				<b>Sáb</b>
 			</label>				
 		</div>
-	</div><br/>
+	</div><br/><brs
 		<!--Radio group-->
-	<div class="col-sm-12">
+	<div class="col-sm-4">
 				<div class="form-group">
-				<label>Horario Variable: </label>
-			    <input name="group100" type="radio" id="radio100">
+				<label>Tipo de Horario: </label>
+			   
 			</div>
 	</div>
 
 	<div class="col-sm-12">
 
 			<div class="form-group">
-				<label>Horario Fijo: </label>
-			    <input name="group100" type="radio" id="radio101" checked>
+				<label>Fijo </label>
+			    <input name="group100" type="radio" id="radio101" checked> &nbsp;&nbsp;
+			    <label>Variable </label>
+			     <input name="group100" type="radio" id="radio100">
 			</div>
 
 	</div>
