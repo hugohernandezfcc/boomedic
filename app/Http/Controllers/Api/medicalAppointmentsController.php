@@ -17,7 +17,7 @@ class medicalAppointmentsController extends Controller
     	return Fractal::includes(['owner', 'doctor'])->collection($medicalAppo, new MedicalAppointmentsTransformer);
     }
 
-    public function show(medical_appointments $medicalApp){
+    public function show(medical_appointments $medicalAppo){
     	return Fractal::includes(['owner', 'doctor'])->item($medicalAppo, new MedicalAppointmentsTransformer);
 
     }

@@ -26,7 +26,7 @@ class storeMedicalAppointmentsRequest extends FormRequest
         return [
             'user' => 'required',
             'user_doctor' => 'required',
-            'when' => '',
+            'when' => 'required',
             'status' => 'required',
             'workplace' => 'required'
         ];
