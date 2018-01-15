@@ -19,4 +19,12 @@ class medical_appointments extends Model
     public function user(){
 	  return $this->belongsTo('App\User', 'user');
 	}
+
+	public function owner(){
+		return $this->BelongsTo(User::class, 'user', 'id');
+	}
+
+	public function doctor(){
+		return $this->BelongsTo(User::class, 'user_doctor', 'id');
+	}
 }

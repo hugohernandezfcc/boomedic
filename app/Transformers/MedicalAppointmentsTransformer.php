@@ -16,7 +16,7 @@ class MedicalAppointmentsTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = [];
+    protected $availableIncludes = ['owner', 'doctor'];
 
     /**
      * List of resources to automatically include
@@ -44,5 +44,13 @@ class MedicalAppointmentsTransformer extends TransformerAbstract
             'status' => $mA->status
 			
         ];
+    }
+
+    public function includeOwner(medical_appointments $mA){
+        return $this->item($mA->owner, new UserTransformer);
+    }
+
+    public function includeDoctor(medical_appointments $mA){
+        return $this->item($mA->doctor, new UserTransformer);
     }
 }
