@@ -45,13 +45,15 @@ class PaymentMethodTransformer extends TransformerAbstract
             'cardnumber' => $pm->cardnumber,
             'owner' => $pm->owner,
             'paypal_email' => $pm->paypal_email,
-            'bank' => $pm->bank
+            'bank' => $pm->bank,
+            'created_at' => $pm->created_at->format('d M Y'),
+            'updated_at' => $pm->updated_at->format('d M Y'),
 			
         ];
     }
 
     public function includeUser(PaymentMethod $pm){
-        return $this->item($pm->userApi, new UserTransformer);
+        return $this->item($pm->ownerApi, new UserTransformer);
     }
 
     public function includeTransactions(PaymentMethod $pm){

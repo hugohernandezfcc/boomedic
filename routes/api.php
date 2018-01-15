@@ -63,3 +63,12 @@ Route::group(['namespace' => 'Api', 'prefix' => '/workboard'], function(){
 	Route::post('/{workboard}',['as' => 'workboard.update', 'uses' => 'WorkboardController@update']);
 
 });
+
+Route::group(['namespace' => 'Api', 'prefix' => '/paymentMethod'], function(){
+
+	Route::get('/',['as' => 'paymentMethod', 'uses' => 'paymentMethodController@index']);
+	Route::put('/',['as' => 'paymentMethod.store', 'uses' => 'paymentMethodController@store']);
+	Route::get('/{paymentMethod}',['as' => 'paymentMethod.show', 'uses' => 'paymentMethodController@show']);
+	Route::post('/{paymentMethod}',['as' => 'paymentMethod.update', 'uses' => 'paymentMethodController@update']);
+
+});

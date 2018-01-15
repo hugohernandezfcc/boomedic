@@ -26,6 +26,10 @@ class PaymentMethod extends Model
 	  return $this->belongsTo('App\User');
 	}
 
+	public function ownerApi(){
+		return $this->BelongsTo(User::class, 'owner', 'id');
+	}
+
 	public function transactions(){
 		return $this->hasMany(transaction_bank::class, 'paymentmethod', 'id');
 	}
