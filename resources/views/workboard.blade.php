@@ -3,20 +3,20 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-<style type="text/css">
-.btn span.fa {    			
-	opacity: 0;				
-}
-.btn.active span.fa {				
-	opacity: 1;				
-}
-</style>
+
 <!-- Include Required Prerequisites -->
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css"/>
 <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
-
+<style type="text/css">
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
+</style>
 @stop
 
 @section('content')
@@ -30,41 +30,41 @@
   		<label>Seleccione los días de la semana que va a trabajar:</label><br/>
   	    </div>
   	<div class="col-sm-8">	
-  		<div class="btn-group" data-toggle="buttons" style="font-size: 12px">
+  		<div class="btn-group" data-toggle="buttons">
 
   			<label class="btn btn-secondary">
-				<input type="checkbox" value="Domingo" name="Domingo">
-				<span class="fa icon-ok"></span>
+				<input type="checkbox" value="Domingo" name="Domingo" autocomplete="off" checked>
+				<span class="glyphicon glyphicon-ok"></span>
 				 <b>Dom</b>
 			</label>		
 	  		<label class="btn btn-default">
 				<input type="checkbox" value="Lunes" name="Lunes">
-				<span class="fa icon-ok"></span>
+				<span class="glyphicon glyphicon-ok"></span>
 				<b>Lun</b>
 			</label>
 			<label class="btn btn-default">
 				<input type="checkbox" value="Martes" name="Martes">
-				<span class="fa icon-ok"></span>
+				<span class="glyphicon glyphicon-ok"></span>
 				<b>Mar</b>
 			</label>
 			<label class="btn btn-default">
 				<input type="checkbox" value="Miercoles" name="Miercoles">
-				<span class="fa icon-ok"></span>
+				<span class="glyphicon glyphicon-ok"></span>
 				<b>Mier</b>
 			</label>
 			<label class="btn btn-default">
 				<input type="checkbox" value="Jueves" name="Jueves">
-				<span class="fa icon-ok"></span>
+				<span class="glyphicon glyphicon-ok"></span>
 				<b>Jue</b>
 			</label>
 			<label class="btn btn-default">
 				<input type="checkbox" value="Viernes" name="Viernes">
-				<span class="fa icon-ok"></span>
+				<span class="glyphicon glyphicon-ok"></span>
 				<b>Vier</b>
 			</label>
 			<label class="btn btn-default">
 				<input type="checkbox" value="Sábado" name="Sábado">
-				<span class="fa icon-ok"></span>
+				<span class="glyphicon glyphicon-ok"></span>
 				<b>Sáb</b>
 			</label>				
 		</div>
@@ -91,7 +91,7 @@
 
 		<label>Hora de inicio:</label>
 		<div class="input-group bootstrap-timepicker timepicker">
-		  <input id="timepicker2" type="text" class="form-control input-small">
+		  <input id="timepicker2" type="text" class="form-control">
 		  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 		</div>
 
@@ -100,7 +100,7 @@
 
 		<label>Hora Final:</label>
 		<div class="input-group bootstrap-timepicker timepicker">
-		  <input id="timepicker1" type="text" class="form-control input-small">
+		  <input id="timepicker1" type="text" class="form-control">
 		  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 		</div>
 	</div>	
@@ -112,10 +112,14 @@
 </div>
 <script type="text/javascript">
   $('#timepicker1').timepicker({
-    showInputs: false
+    showInputs: false,
+     showMeridian:false,
+     minuteStep: 5
   });
     $('#timepicker2').timepicker({
-    showInputs: false
+    showInputs: false,
+     showMeridian:false,
+     minuteStep: 5
   });
 </script>
 @stop
