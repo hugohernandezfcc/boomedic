@@ -136,11 +136,9 @@
 
 </div>
 <script>
-  $(function () {
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false
-    })
-  })
+$('.timepicker').click(function (){
+$('.timepicker').timepicker('showWidget');
+
+});
 </script>
 @stop

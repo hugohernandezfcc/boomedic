@@ -135,7 +135,7 @@
                margin-left: 180px; 
                }    
           .info-box-content.sm {
-               margin-left: 90px; 
+               margin-left: 50px; 
                }    
               .info-box-icon.sm {
                   height: 45px;
