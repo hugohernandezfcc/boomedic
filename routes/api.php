@@ -72,3 +72,12 @@ Route::group(['namespace' => 'Api', 'prefix' => '/paymentMethod'], function(){
 	Route::post('/{paymentMethod}',['as' => 'paymentMethod.update', 'uses' => 'paymentMethodController@update']);
 
 });
+
+Route::group(['namespace' => 'Api', 'prefix' => '/transactionBank'], function(){
+
+	Route::get('/',['as' => 'transactionBank', 'uses' => 'transactionBankController@index']);
+	Route::put('/',['as' => 'transactionBank.store', 'uses' => 'transactionBankController@store']);
+	Route::get('/{transactionBank}',['as' => 'transactionBank.show', 'uses' => 'transactionBankController@show']);
+	Route::post('/{transactionBank}',['as' => 'transactionBank.update', 'uses' => 'transactionBankController@update']);
+
+});
