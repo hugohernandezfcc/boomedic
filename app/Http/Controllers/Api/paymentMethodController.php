@@ -14,11 +14,11 @@ class paymentMethodController extends Controller
 {
 	public function index(){
     	$paymentMethod = PaymentMethod::all();
-    	return Fractal::include('user')->collection($paymentMethod, new PaymentMethodTransformer);
+    	return Fractal::includes('user')->collection($paymentMethod, new PaymentMethodTransformer);
     }
 
     public function show(PaymentMethod $paymentMethod){
-    	return Fractal::include('user')->item($paymentMethod, new PaymentMethodTransformer);
+    	return Fractal::includes('user')->item($paymentMethod, new PaymentMethodTransformer);
 
     }
 
@@ -41,7 +41,7 @@ class paymentMethodController extends Controller
 
         $paymentMethod->save();
 
-        return Fractal::include('user')->item($paymentMethod, new PaymentMethodTransformer);
+        return Fractal::includes('user')->item($paymentMethod, new PaymentMethodTransformer);
 
     }
 
@@ -60,7 +60,7 @@ class paymentMethodController extends Controller
 
         $paymentMethod->save();
 
-        return Fractal::include('user')->item($paymentMethod, new PaymentMethodTransformer);
+        return Fractal::includes('user')->item($paymentMethod, new PaymentMethodTransformer);
 
     }   
 }
