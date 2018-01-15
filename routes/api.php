@@ -81,3 +81,12 @@ Route::group(['namespace' => 'Api', 'prefix' => '/transactionBank'], function(){
 	Route::post('/{transactionBank}',['as' => 'transactionBank.update', 'uses' => 'transactionBankController@update']);
 
 });
+
+Route::group(['namespace' => 'Api', 'prefix' => '/medicalAppointment'], function(){
+
+	Route::get('/',['as' => 'medicalAppo', 'uses' => 'medicalAppointmentsController@index']);
+	Route::put('/',['as' => 'medicalAppo.store', 'uses' => 'medicalAppointmentsController@store']);
+	Route::get('/{medicalAppo}',['as' => 'medicalAppo.show', 'uses' => 'medicalAppointmentsController@show']);
+	Route::post('/{medicalAppo}',['as' => 'medicalAppo.update', 'uses' => 'medicalAppointmentsController@update']);
+
+});
