@@ -526,7 +526,7 @@
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
-                        Información Laboral      
+                        Consultorios    
                   </a> 
                   </h4> 
                   </div>
@@ -539,9 +539,9 @@
 							@foreach($labor->sortByDesc('created_at') as $labor)
 							<div class="form-group">	
 							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
-									          <div class="info-box sm bg-gray">
+									          <div class="info-box sm bg-black">
 									          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-secondary"><i class="fa fa-calendar-plus-o"></i></span></a>
-									            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
+									            
 									            <div class="info-box-content sm">
 									              <b>{{ $labor->workplace}}</b> 
 									              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
@@ -559,7 +559,7 @@
 									<div class="col-sm-6">&nbsp;</div>
 									<div class="col-sm-6" style="text-align: right;">
 									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
-									   	<button type="submit" class="btn btn-secondary"><i class="fa fa-plus"></i>Agregar otro centro</button>
+									   	<button type="submit" class="btn btn-secondary"><i class="fa fa-plus"></i>Agregar consultorio</button>
 									   </form></div>
                     </div>
                   </div>
