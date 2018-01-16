@@ -761,8 +761,9 @@
 	                </div>
 	                	
 	                <div class="form-group">
-		            	<div id="locationField" class="col-sm-12">
-		            		<label for="professionalPosition" class="col-sm-2 control-label"><i class="fa fa-location-arrow"></i></label>
+		            	
+		            		<label for="professionalPosition" class="col-sm-2 control-label">Dirección</label>
+		            	<div id="locationField" class="col-sm-10">
 					      	 <input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del consultorio" onFocus="geolocate()" type="text"/>
 					    </div>
 					</div>   
@@ -792,17 +793,17 @@
 		            <input type="hidden" name="long" id="longitude"/>
 		            <br/>
 		            <!-- /.box-body -->
-		            <div class="form-group">
-
-					       		<div class="col-sm-8">
+		            <div class="form-group" align="right">
+								<div class="col-sm-6">
+					    		&nbsp;	
+					            </div>
+					       		<div class="col-sm-6" align="right">
 						    		<button type="submit" class="btn btn-secondary">
 						                Guardar
 						            </button>
 					    			<button type="button" id="cancel" class="btn btn-default ">Cancelar</button>
 					            </div>
-					            <div class="col-sm-4">
-					            	&nbsp;
-					            </div>
+
 				 </div>
 				 				</form>	
 
@@ -837,8 +838,6 @@
 				</div>	
 					 <input type="hidden" name="lati" id="lati"/>
 		            <input type="hidden" name="long" id="long"/>
-
-			<label class="col-sm-4 control-label"> Dirección</label>
 			<div class="col-sm-12">			
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true" placeholder="País"/>
@@ -879,7 +878,7 @@
 			</div>
 			<div class="col-sm-7">
 			<div id="loadingGif2" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
-		  	<div id="map"></div><br/>
+		  	<div id="map"></div>
 		  	<div class="col-sm-12" align=" center">	
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 			</div>	
