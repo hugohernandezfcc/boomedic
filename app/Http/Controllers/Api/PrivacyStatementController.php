@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\privacy_statement;
 use App\Transformers\PrivacyStatementTransformer;
-use App\Http\Requests\Api\PrivacyStatement\storePrivacyStatementRequest;
-use App\Http\Requests\Api\PrivacyStatement\updatePrivacyStatementRequest;
+//use App\Http\Requests\Api\PrivacyStatement\storePrivacyStatementRequest;
+//use App\Http\Requests\Api\PrivacyStatement\updatePrivacyStatementRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cyvelnet\Laravel5Fractal\Facades\Fractal;

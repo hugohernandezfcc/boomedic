@@ -20,7 +20,7 @@ class UserController extends Controller
     }
 
     public function show(User $user){
-    	return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails'])->item($user, new UserTransformer);
+    	return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails', 'historySession'])->item($user, new UserTransformer);
     }
 
     public function store(StoreUserRequest $request){
@@ -103,6 +103,6 @@ class UserController extends Controller
         
         $user->save();
 
-        return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails'])->item($user, new UserTransformer);
+        return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails', 'historySession'])->item($user, new UserTransformer);
     }
 }

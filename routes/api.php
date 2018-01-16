@@ -139,9 +139,18 @@ Route::group(['namespace' => 'Api', 'prefix' => '/privacyStatements'], function(
 Route::group(['namespace' => 'Api', 'prefix' => '/menus'], function(){
 
 	Route::get('/',['as' => 'menu', 'uses' => 'MenuController@index']);
-	Route::put('/',['as' => 'menu.store', 'uses' => 'MenuController@store']);
+	//Route::put('/',['as' => 'menu.store', 'uses' => 'MenuController@store']);
 	Route::get('/{menu}',['as' => 'menu.show', 'uses' => 'MenuController@show']);
-	Route::post('/{menu}',['as' => 'menu.update', 'uses' => 'MenuController@update']);
+	//Route::post('/{menu}',['as' => 'menu.update', 'uses' => 'MenuController@update']);
+
+});
+
+Route::group(['namespace' => 'Api', 'prefix' => '/historySessions'], function(){
+
+	Route::get('/',['as' => 'hs', 'uses' => 'historySessionController@index']);
+	Route::put('/',['as' => 'hs.store', 'uses' => 'historySessionController@store']);
+	Route::get('/{hs}',['as' => 'hs.show', 'uses' => 'historySessionController@show']);
+	Route::post('/{hs}',['as' => 'hs.update', 'uses' => 'historySessionController@update']);
 
 });
 

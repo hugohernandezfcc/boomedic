@@ -77,4 +77,8 @@ class User extends Authenticatable
     public function emails(){
         return $this->hasMany(Email::class, 'userId', 'id');
     }
+
+    public function historySession(){
+        return $this->hasMany(history_session::class, 'createdBy', 'id');
+    }
 }

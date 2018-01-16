@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\menu;
 use App\Transformers\MenuTransformer;
-use App\Http\Requests\Api\Menu\storeMenuRequest;
-use App\Http\Requests\Api\Menu\updateMenuRequest;
+//use App\Http\Requests\Api\Menu\storeMenuRequest;
+//use App\Http\Requests\Api\Menu\updateMenuRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cyvelnet\Laravel5Fractal\Facades\Fractal;
@@ -22,7 +22,7 @@ class MenuController extends Controller
 
     }
 
-    public function store(storeMenuRequest $request){
+    /*public function store(storeMenuRequest $request){
     	$menu = new menu;
 
     	$menu->text = $request->text;
@@ -57,5 +57,5 @@ class MenuController extends Controller
     	$menu->save();
 
     	return Fractal::includes('parentMenu')->item($menu, new MenuTransformer);
-    }
+    }*/
 }

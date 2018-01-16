@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api\Menu;
+namespace App\Http\Requests\Api\HistorySession;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class updateMenuRequest extends FormRequest
+class updateHistorySessionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,11 @@ class updateMenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'text' => '', 
-            'order' => '', 
-            'label' => '',
-            'icon' => '', 
-            'label_color' => '', 
-            'url' => '', 
-            'to' => '', 
-            'typeitem' => '', 
-            'parent' => ''
+            'browser' => '',
+            'dateIn' => '',
+            'status' => '',
+            'dateOut' => '',
+            'createdBy' => ''
         ];
     }
 }
