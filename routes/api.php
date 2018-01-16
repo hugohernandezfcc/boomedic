@@ -154,3 +154,12 @@ Route::group(['namespace' => 'Api', 'prefix' => '/historySessions'], function(){
 
 });
 
+Route::group(['namespace' => 'Api', 'prefix' => '/recipes'], function(){
+
+	Route::get('/',['as' => 'recipe', 'uses' => 'recipesTestController@index']);
+	Route::put('/',['as' => 'recipe.store', 'uses' => 'recipesTestController@store']);
+	Route::get('/{recipe}',['as' => 'recipe.show', 'uses' => 'recipesTestController@show']);
+	Route::post('/{recipe}',['as' => 'recipe.update', 'uses' => 'recipesTestController@update']);
+
+});
+
