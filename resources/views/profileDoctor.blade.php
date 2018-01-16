@@ -767,37 +767,27 @@
 					</div>    
 
 
-		            <div class="form-group">
-		            	<label  class="col-sm-2 control-label">
-		            	</label>
+
 		            	
-			            	<div class="col-sm-5">
+			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
-			            	<div class="col-sm-5">
+			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }} placeholder="Colonia"></input>
 			            	</div>
-			        </div>
-			        <div class="form-group">  
-			        <label  class="col-sm-2 control-label">
-		            	</label>  	
-			            	<div class="col-sm-5">
+
+			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
 			            	</div>
-			            	<div class="col-sm-5">
+			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
-			        </div>
-			        <div class="form-group"> 
-			        <label  class="col-sm-2 control-label">
-		            	</label>  	
-			            	<div class="col-sm-5">
+			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
 			            	</div>
-			            	<div class="col-sm-5">
+			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
-			         </div>
 		         
 
 		            <input type="hidden" name="lati" id="latitude"/>
@@ -859,8 +849,10 @@
 		      </div>
 
 			</div>
-			<div class="col-sm-12">
-				<br/>		  
+			<label class="col-sm-4 control-label"> Dirección</label>
+			<div class="col-sm-8">&nbsp;
+			</div>
+		  
 			            	<div class="col-sm-6">
 			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true" placeholder="Calle"></input>
 			            	</div>
@@ -880,17 +872,17 @@
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true" placeholder="País"></input>
 			            	</div>
-			        
-				</div>
+
 				<div class="col-sm-12">
-					       		<div class="col-sm-6">
+					       		<div class="col-sm-3">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
 						            </button>
 					            </div>
-					    		<div class="col-sm-6">
+					    		<div class="col-sm-3">
 					    			<button type="button" id="cancel2" class="btn btn-default btn-block btn-flat">Cancelar</button>
 					            </div>
+					            <div class="col-sm-6">&nbsp;</div>
 				</div>
 			</div>
 			<div class="col-sm-7">
