@@ -51,7 +51,7 @@ class recipesTestController extends Controller
 
         $recipe->save();
 
-        return Fractal::item($paymentMethod, new RecipesTestsTransformer);
+        return Fractal::item($recipe, new RecipesTestsTransformer);
 
     }
 }
