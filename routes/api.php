@@ -99,3 +99,12 @@ Route::group(['namespace' => 'Api', 'prefix' => '/diagnostics'], function(){
 	Route::post('/{diagnostic}',['as' => 'diagnostic.update', 'uses' => 'DiagnosticsController@update']);
 
 });
+
+Route::group(['namespace' => 'Api', 'prefix' => '/diagnosticTest'], function(){
+
+	Route::get('/',['as' => 'diagTest', 'uses' => 'DiagnosticsTestController@index']);
+	Route::put('/',['as' => 'diagTest.store', 'uses' => 'DiagnosticsTestController@store']);
+	Route::get('/{diagTest}',['as' => 'diagTest.show', 'uses' => 'DiagnosticsTestController@show']);
+	Route::post('/{diagTest}',['as' => 'diagTest.update', 'uses' => 'DiagnosticsTestController@update']);
+
+});

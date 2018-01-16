@@ -18,4 +18,8 @@ class diagnostic_tests extends Model
     public function user(){
 	  return $this->belongsTo('App\User');
 	}
+
+	public function owner(){
+		return $this->BelongsTo(diagnostic_tests::class, 'parent', 'id');
+	}
 }

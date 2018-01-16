@@ -36,11 +36,15 @@ class DiagnosticTestsTransformer extends TransformerAbstract
         return [
 
             'id' => $diagT->id,
-            'name' => $diagT-> name,
+            'name' => $diagT->name,
             'description' => $diagT->description,
             'code' => $diagT->code,
             'parent' => $diagT->parent,
 			
         ];
+    }
+
+    public function includeParentTest(diagnostic_tests $diagT){
+        return $this->item($diagT->owner, new DiagnosticTestsTransformer);
     }
 }
