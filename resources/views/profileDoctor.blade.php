@@ -900,7 +900,7 @@
 			@else
 			
 			<div class="box-footer">
-				Consultorios agregados:
+				Consultorios agregados recientemente
 			@foreach($labor->sortByDesc('created_at') as $labor)	
 			
 						@if($loop->iteration < 3)
