@@ -920,7 +920,7 @@
 			
 			@else
 			
-			<div class="box-body">
+			<div class="box-footer">
 				<label>Consultorios agregados:</label>
 			@foreach($labor->sortByDesc('created_at') as $labor)	
 			
