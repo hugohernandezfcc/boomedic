@@ -731,9 +731,13 @@
 						  	<!-- /.box-header -->
 				<div class="box-body">
 					   <div id="buttonOpen" class="col-sm-12">
-					      <button type="button" id="openform" class="btn btn-secondary"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar Dirección</button>
+					   	<div  class="col-sm-5">
+					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar Dirección</button>
+					     </div> <div  class="col-sm-2">
 					      <label> Ó </label>
-					       <button type="button" id="openform2" class="btn btn-secondary"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
+					  </div><div  class="col-sm-5">
+					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
+					   </div>
 					   </div>
 
 					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
