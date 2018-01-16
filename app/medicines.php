@@ -18,4 +18,8 @@ class medicines extends Model
     public function user(){
 	  return $this->belongsTo('App\User');
 	}
+
+	public function owner(){
+		return $this->BelongsTo(medicines::class, 'parent', 'id');
+	}
 }
