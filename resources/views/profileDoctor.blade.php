@@ -731,9 +731,9 @@
 						  	<!-- /.box-header -->
 				<div class="box-body">
 					   <div id="buttonOpen" class="col-sm-12">
-					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar Dirección</button>
-					      <br/><br/>
-					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
+					      <button type="button" id="openform" class="btn btn-secondary btn-block"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar Dirección</button>
+					      <label> Ó </label>
+					       <button type="button" id="openform2" class="btn btn-secondary btn-block"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
 					   </div>
 
 					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
@@ -741,7 +741,7 @@
 				 <div class="form-group">
 	                	<label for="workplace" class="col-sm-2 control-label">Lugar de trabajo</label>
 	                	<div class="col-sm-10">
-		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control">
+		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Consultorio Particular, Hospital, entre otros">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
@@ -831,7 +831,7 @@
 					 <div class="form-group">
 	                	<label for="workplace" class="col-sm-4 control-label">Lugar de trabajo</label>
 	                	<div class="col-sm-8">
-		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control">
+		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Consultorio Particular, Hospital, entre otros">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
@@ -867,17 +867,13 @@
 			            	<div class="col-sm-6">
 			            		<input type="text" class="form-control" name="colony" id="rout" disabled="true" placeholder="Colonia"></input>
 			            	</div>
-			        </div>
-
-			        <div class="form-group">  
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="delegation" id="localit" disabled="true" placeholder="Delegación"></input>
 			            	</div>
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="state" id="state" disabled="true" placeholder="Estado"></input>
 			            	</div>
-			        </div>
-			        <div class="form-group"> 
+			        
 			            	<div class="col-sm-6">
 			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"></input>
 			            	</div>
@@ -931,7 +927,7 @@
 					          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar"></i></span></a>
 					            <div class="info-box-content sm">
 					              <b> {{ $labor->workplace}}</b>
-					             <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span><a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a>
+					             <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span>
 					            </div>
 					          </div>
 					        </div>
