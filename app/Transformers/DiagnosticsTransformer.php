@@ -31,15 +31,15 @@ class DiagnosticsTransformer extends TransformerAbstract
      * @var $resource
      * @return array
      */
-    public function transform(diagnostics $resource)
+    public function transform(diagnostics $diag)
     {
         return [
 
-            'id' => $resource->id,
-			'name' => $resource->name,
-            'description' => $resource->description,
-            'code' => $resource->code,
-            'parent' => $resource->parent,
+            'id' => $diag->id,
+			'name' => $diag->name,
+            'description' => $diag->description,
+            'code' => $diag->code,
+            'parent' => $diag->parent,
         ];
     }
 
