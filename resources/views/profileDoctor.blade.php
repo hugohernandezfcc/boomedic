@@ -760,15 +760,12 @@
 	                	</div>
 	                </div>
 	                	
-	                
+	                <div class="form-group">
 		            	<div id="locationField" class="col-sm-12">
-					      	 ><i class="fa fa-location-arrow"></i><input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del consultorio" onFocus="geolocate()" type="text"/>
+					      	 <i class="fa fa-location-arrow"></i><input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del consultorio" onFocus="geolocate()" type="text"/>
 					    </div>
-					   
+					</div>   
 
-
-
-		            	
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
@@ -798,13 +795,11 @@
 					<div class="col-sm-4">
 					            	&nbsp;
 					            </div>
-					       		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+					       		<div class="col-sm-8">
+						    		<button type="submit" class="btn btn-secondary">
 						                Guardar
 						            </button>
-					            </div>
-					    		<div class="col-sm-4">
-					    			<button type="button" id="cancel" class="btn btn-default btn-block btn-flat">Cancelar</button>
+					    			<button type="button" id="cancel" class="btn btn-default ">Cancelar</button>
 					            </div>
 					            <div class="col-sm-4">
 					            	&nbsp;
