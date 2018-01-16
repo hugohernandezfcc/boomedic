@@ -14,4 +14,8 @@ class menu extends Model
     {
         return $this->belongsTo('App\menu', 'parent');
     }
+
+    public function owner(){
+    	return $this->BelongsTo(menu::class, 'parent', 'id');
+    }
 }

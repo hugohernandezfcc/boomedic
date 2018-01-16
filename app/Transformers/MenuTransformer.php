@@ -16,7 +16,7 @@ class MenuTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = [];
+    protected $availableIncludes = ['parentMenu'];
 
     /**
      * List of resources to automatically include
@@ -47,5 +47,13 @@ class MenuTransformer extends TransformerAbstract
             'parent' =>$menu->parent
 			
         ];
+    }
+
+    public function includeParentMenu(menu $menu){
+        $test = $menu->owner;
+        if($test != null){
+            return $this->item($menu->owner, new DiagnosticTestsTransformer);
+        }
+        
     }
 }
