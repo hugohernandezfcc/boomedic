@@ -44,6 +44,10 @@ class DiagnosticsTransformer extends TransformerAbstract
     }
 
     public function includeParentDiagnostic(diagnostics $diag){
-        return $this->item($diag->owner, new DiagnosticsTransformer);
+        $test = $diag->owner;
+        if($test != null){
+            return $this->item($diag->owner, new DiagnosticsTransformer);
+        }
+        
     }
 }
