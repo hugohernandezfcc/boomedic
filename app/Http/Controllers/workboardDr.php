@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
-use App\Workboard;
+use App\workboard;
 
 
 class workboardDr extends Controller
@@ -30,14 +30,14 @@ class workboardDr extends Controller
      */
     public function index($id){
     $user = User::find(Auth::id());   
-
+    $work = $id;
         return view('workboard', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'workplace'      => $id
+                'work'      => $work
             ]
         );
     }
@@ -50,14 +50,31 @@ class workboardDr extends Controller
     public function create(Request $request, $id )
     {
 
-         $user = User::find(Auth::id());   
+         $user = User::find(Auth::id()); 
+         
+         $workboard = new workboard;
+         if($request->Mar == 'Mar'){
+         $workboard->workingDays = $request->Mar;
+         $workboard->workingHours = 
+         $workboard->labInformation = $id;
+         $workboard->start = $request->start;
+         $workboard->end   = $request->end;
+         if($request->fixed == 'fixed'){
+         $workboard->fixed_schedule = 'True';
+            }
+         $workboard->patient_duration_attention = $request->prom;
+         $workboard->save();
+        }
+
+
 
         return view('workboard', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
-                'date'      => $user->created_at
+                'date'      => $user->created_at,
+                'work'      => $id
 
             ]
         );
