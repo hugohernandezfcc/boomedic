@@ -13,7 +13,7 @@ use Cyvelnet\Laravel5Fractal\Facades\Fractal;
 class DiagnosticsController extends Controller
 {
     public function index(){
-    	$diagnostic = diagnostics::all();
+    	$diagnostic = DB::table('diagnostics')->get();
     	return Fractal::includes('parent_diagnostic')->collection($diagnostic, new DiagnosticsTransformer);
     }
 
