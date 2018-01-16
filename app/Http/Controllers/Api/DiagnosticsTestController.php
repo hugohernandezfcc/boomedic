@@ -37,7 +37,7 @@ class DiagnosticsTestController extends Controller
 
     }
 
-    public function update(UpdatediagTestRequest $request, diagnostic_tests $diagTest){
+    public function update(updateDiagnosticTestRequest $request, diagnostic_tests $diagTest){
     	$diagTest->name = ($request->has('name')) ? $request->name : $diagTest->name;
     	$diagTest->description = ($request->has('description')) ? $request->description : $diagTest->description;
     	$diagTest->code = ($request->has('code')) ? $request->code : $diagTest->code;
