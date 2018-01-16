@@ -128,6 +128,7 @@ class RegisterController extends Controller
 
             $profInformation = professional_information::create([ 
                 'professional_license'  => $data['professional_license'],
+                'medical_society'  => $data['medical_society'],
                 'user'                  => $userCreated->id
             ]);
 

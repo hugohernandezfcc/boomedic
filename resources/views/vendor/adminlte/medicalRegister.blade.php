@@ -65,6 +65,16 @@
                     @endif
                 </div>
 
+                <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
+                    <input type="text" name="medical_society" class="form-control" value="{{ old('medical_society') }}" placeholder="{{ trans('adminlte::adminlte.medical_society') }}" id="medical_society">
+                    <span class="fa  fa-keyboard-o form-control-feedback"></span>
+                    @if ($errors->has('medical_society'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('medical_society') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                     <input type="password" name="password" class="form-control" placeholder="{{ trans('adminlte::adminlte.password') }}">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
