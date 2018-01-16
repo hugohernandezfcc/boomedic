@@ -760,11 +760,11 @@
 	                	</div>
 	                </div>
 	                	
-	                <div class="form-group">
-		            	<div id="locationField" class="col-sm-10">
-					      	 <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span><input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del consultorio" onFocus="geolocate()" type="text"></input>
+	                
+		            	<div id="locationField" class="col-sm-12">
+					      	 ><i class="fa fa-location-arrow"></i><input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del consultorio" onFocus="geolocate()" type="text"/>
 					    </div>
-					</div>    
+					   
 
 
 
@@ -851,7 +851,12 @@
 			</div>
 			<label class="col-sm-4 control-label"> Dirección</label>
 			<div class="col-sm-8">			
-		  
+			            	<div class="col-sm-6">
+			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true" placeholder="País"></input>
+			            	</div>
+			            	<div class="col-sm-6">
+			            		<input type="text" value="" class="form-control" name="state" id="state" disabled="true" placeholder="Estado"></input>
+			            	</div>		  
 			            	<div class="col-sm-6">
 			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true" placeholder="Calle"></input>
 			            	</div>
@@ -861,25 +866,20 @@
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="delegation" id="localit" disabled="true" placeholder="Delegación"></input>
 			            	</div>
-			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="state" id="state" disabled="true" placeholder="Estado"></input>
-			            	</div>
+
 			        
 			            	<div class="col-sm-6">
 			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"></input>
 			            	</div>
-			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true" placeholder="País"></input>
-			            	</div>
+
 			</div><br/>
 				<div class="col-sm-12">
-							<div class="col-sm-6">&nbsp;</div>
-					       		<div class="col-sm-3">
+					       		<div class="col-sm-6">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
 						            </button>
 					            </div>
-					    		<div class="col-sm-3">
+					    		<div class="col-sm-6">
 					    			<button type="button" id="cancel2" class="btn btn-default btn-block btn-flat">Cancelar</button>
 					            </div>
 					            
@@ -956,7 +956,7 @@
 				})
 				$("#openform2").click(
 				function(event) {
-					document.getElementById("boxlabor").style.paddingBottom = "170px";
+					document.getElementById("boxlabor").style.paddingBottom = "190px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";		  
 				  setTimeout(function(){ 
