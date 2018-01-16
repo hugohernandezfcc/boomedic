@@ -5,7 +5,7 @@
 @section('content_header')
 
 <!-- Include Required Prerequisites -->
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css"/>
 <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
@@ -33,17 +33,17 @@
   		<div class="btn-group" data-toggle="buttons">
 
   			<label class="btn btn-secondary">
-				<input type="checkbox" value="Domingo" name="Domingo" autocomplete="off" checked>
+				<input type="checkbox" value="Domingo" name="Domingo" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				 <b>Dom</b>
 			</label>		
 	  		<label class="btn btn-default">
-				<input type="checkbox" value="Lunes" name="Lunes">
+				<input type="checkbox" value="Lunes" name="Lunes" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Lun</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Martes" name="Martes">
+				<input type="checkbox" value="Martes" name="Martes" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Mar</b>
 			</label>
