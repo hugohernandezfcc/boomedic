@@ -731,15 +731,15 @@
 						  	<!-- /.box-header -->
 				<div class="box-body">
 					   <div id="buttonOpen" class="col-sm-12">
-					      <button type="button" id="openform" class="btn btn-secondary btn-block"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar Dirección</button>
+					      <button type="button" id="openform" class="btn btn-secondary"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar Dirección</button>
 					      <label> Ó </label>
-					       <button type="button" id="openform2" class="btn btn-secondary btn-block"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
+					       <button type="button" id="openform2" class="btn btn-secondary"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
 					   </div>
 
 					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
 					<div class="callout callout-default">
 				 <div class="form-group">
-	                	<label for="workplace" class="col-sm-2 control-label">Lugar de trabajo</label>
+	                	<label for="workplace" class="col-sm-2 control-label">Nombre del Lugar</label>
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Consultorio Particular, Hospital, entre otros">
 	                	</div>
@@ -829,7 +829,7 @@
 			<div class="col-sm-5">
 				<div class="col-sm-12">
 					 <div class="form-group">
-	                	<label for="workplace" class="col-sm-4 control-label">Lugar de trabajo</label>
+	                	<label for="workplace" class="col-sm-4 control-label">Nombre del lugar</label>
 	                	<div class="col-sm-8">
 		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Consultorio Particular, Hospital, entre otros">
 	                	</div>
