@@ -30,7 +30,8 @@ class storeEmailsRequest extends FormRequest
             'sender' => 'required',
             'recipient' => 'required',
             'subject' => 'required',
-            'message' => 'required'
+            'message' => 'required',
+            'parent' => 'required'
         ];
     }
 }

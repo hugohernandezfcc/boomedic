@@ -12,7 +12,8 @@ class Email extends Model
 		'sender',
 		'recipient',
 		'subject',
-		'message'
+		'message',
+		'parent'
     ];
     
     public function user(){

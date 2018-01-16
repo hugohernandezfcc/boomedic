@@ -30,7 +30,8 @@ class updateEmailsRequest extends FormRequest
             'sender' => '',
             'recipient' => '',
             'subject' => '',
-            'message' => ''
+            'message' => '',
+            'parent' => ''
         ];
     }
 }

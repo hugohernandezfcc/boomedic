@@ -42,7 +42,8 @@ class EmailTransformer extends TransformerAbstract
             'sender' => $email->sender,
             'recipient' => $email->recipient,
             'subject' => $email->subject,
-            'message' => $email->message
+            'message' => $email->message,
+            'parent' => $email->parent
 			
         ];
     }
