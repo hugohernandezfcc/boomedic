@@ -745,7 +745,7 @@
 				 <div class="form-group">
 	                	<label for="workplace" class="col-sm-2 control-label">Nombre del Lugar</label>
 	                	<div class="col-sm-10">
-		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Consultorio Particular, Hospital, entre otros">
+		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Consultorio particular, Hospital, entre otros">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
@@ -762,7 +762,8 @@
 	                	
 	                <div class="form-group">
 		            	<div id="locationField" class="col-sm-12">
-					      	 <i class="fa fa-location-arrow"></i><input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del consultorio" onFocus="geolocate()" type="text"/>
+		            		<label for="professionalPosition" class="col-sm-2 control-label"><i class="fa fa-location-arrow"></i></label>
+					      	 <input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del consultorio" onFocus="geolocate()" type="text"/>
 					    </div>
 					</div>   
 
@@ -791,10 +792,8 @@
 		            <input type="hidden" name="long" id="longitude"/>
 		            <br/>
 		            <!-- /.box-body -->
-		            <div class="row">
-					<div class="col-sm-4">
-					            	&nbsp;
-					            </div>
+		            <div class="form-group">
+
 					       		<div class="col-sm-8">
 						    		<button type="submit" class="btn btn-secondary">
 						                Guardar
@@ -867,16 +866,19 @@
 			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"></input>
 			            	</div>
 
-			</div><br/>
+			</div>
 				<div class="col-sm-12">
+					<br/>
+								<div class="col-sm-6">
+					    		&nbsp;	
+					            </div>
 					       		<div class="col-sm-6">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						    		<button type="submit" class="btn btn-secondary ">
 						                Guardar
 						            </button>
+						            <button type="button" id="cancel2" class="btn btn-default ">Cancelar</button>
 					            </div>
-					    		<div class="col-sm-6">
-					    			<button type="button" id="cancel2" class="btn btn-default btn-block btn-flat">Cancelar</button>
-					            </div>
+
 					            
 				</div>
 			</div>
@@ -884,7 +886,7 @@
 			<div id="loadingGif2" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
 		  	<div id="map"></div><br/>
 		  	<div class="col-sm-12" align=" center">	
-					<span class="btn btn-secondary" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
+					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 			</div>	
 		  </div></div>
 		  
