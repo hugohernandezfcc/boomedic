@@ -733,8 +733,8 @@
 					   <div id="buttonOpen" class="col-sm-12">
 					   	<div  class="col-sm-5">
 					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar Dirección</button>
-					     </div> <div  class="col-sm-2">
-					      <label> Ó </label>
+					     </div> <div  class="col-sm-2" align="center">
+					      Ó 
 					  </div><div  class="col-sm-5">
 					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
 					   </div>
@@ -921,7 +921,7 @@
 			@else
 			
 			<div class="box-footer">
-				<label>Consultorios agregados:</label>
+				Consultorios agregados:
 			@foreach($labor->sortByDesc('created_at') as $labor)	
 			
 						@if($loop->iteration < 3)
