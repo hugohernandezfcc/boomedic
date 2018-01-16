@@ -16,7 +16,7 @@ class DiagnosticTestsTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = [];
+    protected $availableIncludes = ['parentTest'];
 
     /**
      * List of resources to automatically include
