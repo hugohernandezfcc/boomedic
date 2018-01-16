@@ -91,7 +91,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/medicalAppointment'], function
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/diagnostic'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/diagnostics'], function(){
 
 	Route::get('/',['as' => 'diagnostic', 'uses' => 'DiagnosticsController@index']);
 	Route::put('/',['as' => 'diagnostic.store', 'uses' => 'DiagnosticsController@store']);
