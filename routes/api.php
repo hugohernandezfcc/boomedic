@@ -126,3 +126,13 @@ Route::group(['namespace' => 'Api', 'prefix' => '/emails'], function(){
 	Route::post('/{email}',['as' => 'email.update', 'uses' => 'EmailsController@update']);
 
 });
+
+Route::group(['namespace' => 'Api', 'prefix' => '/privacyStatements'], function(){
+
+	Route::get('/',['as' => 'ps', 'uses' => 'PrivacyStatementController@index']);
+	Route::put('/',['as' => 'ps.store', 'uses' => 'PrivacyStatementController@store']);
+	Route::get('/{ps}',['as' => 'ps.show', 'uses' => 'PrivacyStatementController@show']);
+	Route::post('/{ps}',['as' => 'ps.update', 'uses' => 'PrivacyStatementController@update']);
+
+});
+

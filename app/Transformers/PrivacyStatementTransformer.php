@@ -37,7 +37,8 @@ class PrivacyStatementTransformer extends TransformerAbstract
 
             'id' => $ps->id,
             'description' => $ps->description,
-            'created_at' => $ps->created_at
+            'created_at' => $ps->created_at,
+            'updated_at' => $ps->updated_at
 			
         ];
     }
