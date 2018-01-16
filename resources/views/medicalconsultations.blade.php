@@ -239,7 +239,7 @@
                     <div class="box-body">
                          @foreach($appointments->sortBy('when') as $appo)
                               @if($loop->iteration < 3)
-
+                                <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}">
                                             <div class="col-sm-12">
                                                   <div class="info-box sm bg-gray">
                                                     <span class="info-box-icon sm bg-black"><i class="fa fa-calendar-check-o"></i></span>
@@ -247,6 +247,7 @@
                                                       <b>Lugar:</b> {{ $appo->workplace}}.<br/>
                                                      <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
                                                     </div>
+                                                    </a>
                                  @endif 
                                                          @if($loop->iteration > 2)
                                                          <div class="col-sm-12" style="text-align: right;">
