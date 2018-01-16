@@ -799,6 +799,7 @@
 					    		&nbsp;	
 					            </div>
 					       		<div class="col-sm-6" align="right">
+					       			<br/>
 						    		<button type="submit" class="btn btn-secondary">
 						                Guardar
 						            </button>
