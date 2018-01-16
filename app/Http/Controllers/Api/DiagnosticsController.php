@@ -14,11 +14,11 @@ class DiagnosticsController extends Controller
 {
     public function index(){
     	$diagnostic = diagnostics::all();
-    	return Fractal::includes('parentDiagnostic')->collection($diagnostic, new DiagnosticsTransformer);
+    	return Fractal::includes('parent_diagnostic')->collection($diagnostic, new DiagnosticsTransformer);
     }
 
     public function show(diagnostics $diagnostic){
-    	return Fractal::includes('parentDiagnostic')->item($diagnostic, new DiagnosticsTransformer);
+    	return Fractal::includes('parent_diagnostic')->item($diagnostic, new DiagnosticsTransformer);
 
     }
 
@@ -33,7 +33,7 @@ class DiagnosticsController extends Controller
 
         $diagnostic->save();
 
-        return Fractal::includes('parentDiagnostic')->item($diagnostic, new DiagnosticsTransformer);
+        return Fractal::includes('parent_diagnostic')->item($diagnostic, new DiagnosticsTransformer);
 
     }
 
@@ -45,7 +45,7 @@ class DiagnosticsController extends Controller
 
         $diagnostic->save();
 
-        return Fractal::includes('parentDiagnostic')->item($diagnostic, new DiagnosticsTransformer);
+        return Fractal::includes('parent_diagnostic')->item($diagnostic, new DiagnosticsTransformer);
 
     }
 }

@@ -16,7 +16,7 @@ class DiagnosticsTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['parentDiagnostic'];
+    protected $availableIncludes = ['parent_diagnostic'];
 
     /**
      * List of resources to automatically include
@@ -43,7 +43,7 @@ class DiagnosticsTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeParentDiagnostic(diagnostics $diag){
+    public function includeParent_diagnostic(diagnostics $diag){
         return $this->item($diag->owner, new DiagnosticsTransformer);
     }
 }
