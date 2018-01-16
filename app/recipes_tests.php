@@ -15,6 +15,7 @@ class recipes_tests extends Model
 		'notes',
 		'folio',
 		'date',
+		'Data_frontend'
 
     ];
 

@@ -31,6 +31,7 @@ class recipesTestController extends Controller
         $recipe->notes = $request->notes;
         $recipe->folio = $request->folio;
         $recipe->date = $request->date;
+        $recipe->Data_frontend = $request->Data_frontend;
 
 
         $recipe->save();
@@ -46,6 +47,7 @@ class recipesTestController extends Controller
         $recipe->notes = ($request->has('notes')) ? $request->notes :  $recipe->notes;
         $recipe->folio = ($request->has('folio')) ? $request->folio :  $recipe->folio;
         $recipe->date = ($request->has('date')) ? $request->date :  $recipe->date;
+        $recipe->Data_frontend = ($request->has('Data_frontend')) ? $request->Data_frontend :  $recipe->Data_frontend;
 
         $recipe->save();
 

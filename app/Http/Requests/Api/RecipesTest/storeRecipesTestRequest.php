@@ -30,6 +30,7 @@ class storeRecipesTestRequest extends FormRequest
             'notes' => 'required',
             'folio' => 'required',
             'date' => 'required',
+            'Data_frontend' => 'required'
         ];
     }
 }

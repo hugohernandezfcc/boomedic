@@ -30,6 +30,7 @@ class updateRecipesTestRequest extends FormRequest
             'notes' => '',
             'folio' => '',
             'date' => '',
+            'Data_frontend' =>''
         ];
     }
 }
