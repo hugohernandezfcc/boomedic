@@ -22,7 +22,7 @@
         left: 15%;
         right: 15%;
         padding-top: 0.7%;
-        padding-bottom: 0%;
+        padding-bottom: 0.7%;
         padding-right: 0.7%;
         padding-left: 0.7%;
         /*background-color: rgba(255,255,255,0.7);*/
@@ -66,16 +66,7 @@
         border-radius: 1px;
       }
      .checkStyl2{
-        position: absolute;
-        bottom: 4.5%;
-        left: 1%;
-        z-index: 100;
-        font-size: 90%;
-        line-height: 15%;
-        padding-top: 0.5%;
-        padding-bottom: 0.5%;
-        padding-right: 0.5%;
-        padding-left: 0.5%;
+      text-align: center;
       }
       .infoSpStyle{
         position: absolute;
@@ -313,13 +304,15 @@
 
 
     <div id="map"></div>
-         <div class="checkStyl2">      
-      <a class="btn btn-secondary btn-block btn-flat" data-backdrop="static" data-toggle="modal" data-target="#modal"><li class="fa fa-map-marker"></li> Cambiar de ubicación</a>
-    </div>
+
     <div id='rango'>
         <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
         <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
+             <div class="checkStyl2">      
+      <a class="btn btn-secondary btn-xs" data-backdrop="static" data-toggle="modal" data-target="#modal"><li class="fa fa-map-marker"></li> Cambiar de ubicación</a>
+    </div>
       </div>
+
   </div> 
 
       
