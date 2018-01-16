@@ -850,8 +850,7 @@
 
 			</div>
 			<label class="col-sm-4 control-label"> Dirección</label>
-			<div class="col-sm-8">&nbsp;
-			</div>
+			<div class="col-sm-8">			
 		  
 			            	<div class="col-sm-6">
 			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true" placeholder="Calle"></input>
@@ -872,8 +871,9 @@
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true" placeholder="País"></input>
 			            	</div>
-
+			</div><br/>
 				<div class="col-sm-12">
+							<div class="col-sm-6">&nbsp;</div>
 					       		<div class="col-sm-3">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						                Guardar
@@ -882,14 +882,14 @@
 					    		<div class="col-sm-3">
 					    			<button type="button" id="cancel2" class="btn btn-default btn-block btn-flat">Cancelar</button>
 					            </div>
-					            <div class="col-sm-6">&nbsp;</div>
+					            
 				</div>
 			</div>
 			<div class="col-sm-7">
 			<div id="loadingGif2" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
-		  	<div id="map"></div>
-		  	<div class="col-sm-12">	
-					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
+		  	<div id="map"></div><br/>
+		  	<div class="col-sm-12" align=" center">	
+					<span class="btn btn-secondary" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 			</div>	
 		  </div></div>
 		  
@@ -950,13 +950,13 @@
     		$(document).ready(function() {
 				$("#openform").click(
 				function(event) {
-					document.getElementById("boxlabor").style.paddingBottom = "130px";
+					document.getElementById("boxlabor").style.paddingBottom = "160px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form1").style.display = "block";
 				})
 				$("#openform2").click(
 				function(event) {
-					document.getElementById("boxlabor").style.paddingBottom = "140px";
+					document.getElementById("boxlabor").style.paddingBottom = "170px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";		  
 				  setTimeout(function(){ 
