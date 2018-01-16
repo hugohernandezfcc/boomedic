@@ -244,10 +244,11 @@
                                                   <div class="info-box sm bg-gray">
                                                     <span class="info-box-icon sm bg-black"><i class="fa fa-calendar-check-o"></i></span>
                                                     <div class="info-box-content sm">
-                                                      <b>Lugar:</b> {{ $appo->workplace}}.<br/>
+                                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}"> 
+                                                      <b>Lugar:</b> {{ $appo->workplace}}.</a><br/>
                                                      <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
                                                     </div>
-                                                    </a>
+
                                  @endif 
                                                          @if($loop->iteration > 2)
                                                          <div class="col-sm-12" style="text-align: right;">
