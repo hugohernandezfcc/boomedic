@@ -732,9 +732,9 @@
 				<div class="box-body">
 					   <div id="buttonOpen" class="col-sm-12">
 					   	<div  class="col-sm-5">
-					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar Dirección</button>
+					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar dirección</button>
 					     </div> <div  class="col-sm-2" align="center">
-					      Ó 
+					      ó 
 					  </div><div  class="col-sm-5">
 					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
 					   </div>
@@ -760,14 +760,12 @@
 	                	</div>
 	                </div>
 	                	
-		            <div class="form-group">
-		            	<label for="autocomplete" class="col-sm-2 control-label">
-		            		<i class="fa fa-location-arrow"></i>
-		            	</label>
+	                <div class="form-group">
 		            	<div id="locationField" class="col-sm-10">
-					      	<input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del centro de salud donde trabajas" onFocus="geolocate()" type="text"></input>
+					      	 <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span><input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del consultorio" onFocus="geolocate()" type="text"></input>
 					    </div>
-		            </div>
+					</div>    
+
 
 		            <div class="form-group">
 		            	<label  class="col-sm-2 control-label">
@@ -862,9 +860,7 @@
 
 			</div>
 			<div class="col-sm-12">
-				<br/>
-					  <div class="form-group">
-		            	
+				<br/>		  
 			            	<div class="col-sm-6">
 			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true" placeholder="Calle"></input>
 			            	</div>
@@ -884,7 +880,7 @@
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true" placeholder="País"></input>
 			            	</div>
-			         </div>
+			        
 				</div>
 				<div class="col-sm-12">
 					       		<div class="col-sm-6">
@@ -942,8 +938,8 @@
 								
 					   @endif	
 					   @if($loop->iteration > 2)
-					   <div class="col-sm-12" style="text-align: right;">
-					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
+					   <div class="col-sm-12" style="text-align: right;" align="right">
+					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default btn-xs">
 					   Ver todos... <i class="fa fa-arrow-right"></i>
 					   </a>
 					   </div>

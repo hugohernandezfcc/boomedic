@@ -119,7 +119,6 @@
           position:fixed;
           bottom:0;
           padding-right: 15px;
-          padding-left: 15px;
           min-height: 1px;
           box-sizing: border-box;
           }
