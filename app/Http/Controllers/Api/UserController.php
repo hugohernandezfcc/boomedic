@@ -16,11 +16,11 @@ class UserController extends Controller
     public function index(){
     	$users = User::all();
 
-    	return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments'])->collection($users, new UserTransformer);
+    	return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments','emails'])->collection($users, new UserTransformer);
     }
 
     public function show(User $user){
-    	return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments'])->item($user, new UserTransformer);
+    	return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails'])->item($user, new UserTransformer);
     }
 
     public function store(StoreUserRequest $request){
@@ -103,6 +103,6 @@ class UserController extends Controller
         
         $user->save();
 
-        return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments'])->item($user, new UserTransformer);
+        return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails'])->item($user, new UserTransformer);
     }
 }

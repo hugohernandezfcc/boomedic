@@ -73,4 +73,8 @@ class User extends Authenticatable
     public function medicalAppointments(){
         return $this->hasMany(medical_appointments::class, 'user', 'id');
     }
+
+    public function emails(){
+        return $this->hasMany(Email::class, 'userId', 'id');
+    }
 }

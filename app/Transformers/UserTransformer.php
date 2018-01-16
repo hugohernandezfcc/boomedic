@@ -16,7 +16,7 @@ class UserTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments'];
+    protected $availableIncludes = ['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails'];
 
     /**
      * List of resources to automatically include
@@ -81,5 +81,9 @@ class UserTransformer extends TransformerAbstract
 
     public function includeMedicalAppointments(User $user){
         return $this->collection($user->medicalAppointments, new MedicalAppointmentsTransformer);
+    }
+
+    public function includeEmails(User $user){
+        return $this->collection($user->emails, new EmailTransformer);
     }
 }
