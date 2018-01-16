@@ -22,7 +22,7 @@ class DiagnosticsTestController extends Controller
 
     }
 
-    public function store(storediagTestRequest $request){
+    public function store(storeDiagnosticTestRequest $request){
     	$diagTest = new diagnostic_tests;
 
     	$diagTest->name = $request->name;
