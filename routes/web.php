@@ -246,9 +246,9 @@ Route::group(['prefix' => 'workboardDr'], function(){
 		]
 	);
 
-	Route::get('store/{id}', [
-			'uses'	=>	'workboardDr@store',
-			'as'	=>	'store'
+	Route::post('create/{id}', [
+			'uses'	=>	'workboardDr@create',
+			'as'	=>	'create'
 		]
 	);
 	

@@ -29,7 +29,7 @@
   		<div class="col-sm-4">	
   		<label>Seleccione los días de la semana que va a trabajar:</label><br/>
   	    </div>
-  	    <form action="/workboardDr/{{$userId}}" method="post" class="form-horizontal">
+  	    <form action="/workboardDr/create/{{ $workplace }}" method="post" class="form-horizontal">
   	<div class="col-sm-8">	
   		<div data-toggle="buttons">
 

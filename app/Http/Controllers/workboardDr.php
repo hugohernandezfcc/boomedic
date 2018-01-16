@@ -37,6 +37,7 @@ class workboardDr extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
+                'workplace' => $id,
             ]
         );
     }
@@ -46,10 +47,20 @@ class workboardDr extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id )
     {
 
+         $user = User::find(Auth::id());   
 
+        return view('workboard', [
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at
+
+            ]
+        );
     }
 
     /**
