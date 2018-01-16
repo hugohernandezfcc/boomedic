@@ -45,6 +45,10 @@ class DiagnosticTestsTransformer extends TransformerAbstract
     }
 
     public function includeParentTest(diagnostic_tests $diagT){
-        return $this->item($diagT->owner, new DiagnosticTestsTransformer);
+        $test = $diagT->owner;
+        if($test != null){
+            return $this->item($diagT->owner, new DiagnosticTestsTransformer);
+        }
+        
     }
 }

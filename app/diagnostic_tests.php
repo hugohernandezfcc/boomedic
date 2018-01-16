@@ -20,13 +20,6 @@ class diagnostic_tests extends Model
 	}
 
 	public function owner(){
-		$dtParent = $this->BelongsTo(diagnostic_tests::class, 'parent', 'id');
-		if($dtParent !==null){
-			return  $dtParent;
-		}else{
-			$test = new diagnostic_tests;
-			return $this;
-		}
-		
+		return $this->BelongsTo(diagnostic_tests::class, 'parent', 'id');
 	}
 }
