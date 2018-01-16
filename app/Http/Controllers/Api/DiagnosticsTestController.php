@@ -14,7 +14,7 @@ class DiagnosticsTestController extends Controller
 {
     public function index(){
     	$diagTest = diagnostic_tests::all();
-    	return Fractal::includes('parentTest')->collection($diagTest, new DiagnosticTestsTransformer);
+    	return Fractal::collection($diagTest, new DiagnosticTestsTransformer);
     }
 
     public function show(diagnostic_tests $diagTest){
