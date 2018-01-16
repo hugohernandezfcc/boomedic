@@ -52,7 +52,7 @@ class MenuTransformer extends TransformerAbstract
     public function includeParentMenu(menu $menu){
         $test = $menu->owner;
         if($test != null){
-            return $this->item($menu->owner, new DiagnosticTestsTransformer);
+            return $this->item($menu->owner, new MenuTransformer);
         }
         
     }
