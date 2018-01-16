@@ -20,6 +20,6 @@ class Email extends Model
 	}
 
 	public function owner(){
-		return $this->BlongsTo(User::class, 'userId', 'id');
+		return $this->BelongsTo(User::class, 'userId', 'id');
 	}
 }
