@@ -9,6 +9,7 @@ use App\Http\Requests\Api\Diagnostics\updateDiagnosticRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cyvelnet\Laravel5Fractal\Facades\Fractal;
+use App\Http\Controllers\Api\DB;
 
 class DiagnosticsController extends Controller
 {
