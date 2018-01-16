@@ -33,8 +33,6 @@ class EmailsController extends Controller
         $email->subject = $request->subject;
         $email->message = $request->message;
 
-        $email->parent = ($request->has('parent')) ? $request->parent :  $email->parent;
-
         $email->save();
 
         return Fractal::includes('owner')->item($email, new EmailTransformer);

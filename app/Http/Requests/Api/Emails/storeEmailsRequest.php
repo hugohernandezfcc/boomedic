@@ -31,7 +31,7 @@ class storeEmailsRequest extends FormRequest
             'recipient' => 'required',
             'subject' => 'required',
             'message' => 'required',
-            'parent' => 'required'
+            
         ];
     }
 }
