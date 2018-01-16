@@ -69,7 +69,7 @@
 				<b>Sáb</b>
 			</label>				
 		</div>
-	</div><br/><br/>
+	</div><br/><br/><br/>
 		<!--Radio group-->
 	<div class="col-sm-4">
 				<div class="form-group">
@@ -82,9 +82,9 @@
 
 			<div class="form-group">
 				<label>Fijo </label>
-			    <input name="group100" type="radio" id="radio101" checked> &nbsp;&nbsp;
+			    <input name="fixed" type="radio" id="fixed" checked value="fixed"> &nbsp;&nbsp;
 			    <label>Variable </label>
-			     <input name="group100" type="radio" id="radio100" disabled="disabled">
+			     <input name="fixed" type="radio" id="vard" disabled="disabled" value="var">
 			</div>
 
 	</div>
@@ -93,7 +93,7 @@
 		<label>Hora de inicio:</label>
 		<div class="input-group bootstrap-timepicker timepicker">
 		<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-		  <input id="timepicker2" type="text" class="form-control">
+		  <input id="timepicker2" type="text" class="form-control" name="start">
 		</div>
 
 	</div>	
@@ -101,13 +101,17 @@
 
 		<label>Hora Final:</label>
 		<div class="input-group bootstrap-timepicker timepicker">
-		  <input id="timepicker1" type="text" class="form-control">
+		  <input id="timepicker1" type="text" class="form-control" name="end">
 		  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 		</div>
 	</div>	
-	
+			<label class="col-sm-2 control-label">Promedio de duración por cita:</label>
+	<div class="col-sm-10">
+		 <input id="prom" type="text" name="prom" class="form-control">
  	</div>
-
+ 	<div class="col-sm-12" align="right">
+ 		<button type="submit" class="btn btn-secondary"></button>
+ 	</div>
 
 </form>
 </div>
