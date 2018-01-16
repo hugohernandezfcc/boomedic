@@ -539,9 +539,8 @@
 							@foreach($labor->sortByDesc('created_at') as $labor)
 							<div class="form-group">	
 							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
-									          <div class="info-box sm bg-black">
-									          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-secondary"><i class="fa fa-calendar-plus-o"></i></span></a>
-									            
+									          <div class="info-box sm bg-gray">
+									          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar-plus-o"></i></span></a> 
 									            <div class="info-box-content sm">
 									              <b>{{ $labor->workplace}}</b> 
 									              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
@@ -727,7 +726,7 @@
 				    @if($mode == 'labor')
 				   			<div class="box" id="boxlabor">
 							  	<div class="box-header with-border">
-								    <h3 class="box-title">Información Laboral</h3>
+								    <h3 class="box-title">Alta de nuevo consultorio</h3>
 							  	</div>
 						  	<!-- /.box-header -->
 				<div class="box-body">
@@ -774,7 +773,7 @@
 			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }} placeholder="Colonia"></input>
 			            	</div>
 			        </div>
 			        <div class="form-group">  
@@ -863,16 +862,16 @@
 					  <div class="form-group">
 		            	
 			            	<div class="col-sm-6">
-			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true"></input>
+			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true" placeholder="Calle"></input>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" class="form-control" name="colony" id="rout" disabled="true"></input>
+			            		<input type="text" class="form-control" name="colony" id="rout" disabled="true" placeholder="Colonia"></input>
 			            	</div>
 			        </div>
 
 			        <div class="form-group">  
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="delegation" id="localit" disabled="true"></input>
+			            		<input type="text" value="" class="form-control" name="delegation" id="localit" disabled="true" placeholder="Delegación"></input>
 			            	</div>
 			            	<div class="col-sm-6">
 			            		<input type="text" value="" class="form-control" name="state" id="state" disabled="true" placeholder="Estado"></input>
@@ -883,7 +882,7 @@
 			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"></input>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true"></input>
+			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true" placeholder="País"></input>
 			            	</div>
 			         </div>
 				</div>
@@ -916,25 +915,23 @@
 			<div class="footer">
 			@if($labor->isEmpty())
 			<div class="box-footer">
-						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
+						 <span class="text-black">No hay ningún consultorio asociado a su cuenta...</span>
 			</div>
 			
 			@else
 			
 			<div class="box-body">
+				<label>Consultorios agregados:</label>
 			@foreach($labor->sortByDesc('created_at') as $labor)	
 			
 						@if($loop->iteration < 3)
 						<div class="form-group">
 							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
 					          <div class="info-box sm bg-gray">
-					          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-secondary"><i class="fa fa-calendar-plus-o"></i></span></a>
-					            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
-
+					          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar-plus-o"></i></span></a>
 					            <div class="info-box-content sm">
 					              <b> {{ $labor->workplace}}</b>
 					             <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span><a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a>
-					            
 					            </div>
 					          </div>
 					        </div>
@@ -1261,7 +1258,7 @@
 			@if($mode == 'viewlabor')
 					<div class="box">
 						<div class="box-header with-border">
-								    <h3 class="box-title">Registro de Centros Laborales</h3>
+								    <h3 class="box-title">Consultorios agregados</h3>
 							    	<!-- /.box-tools -->
 						</div>
 					<div class="box-body"><br/>
@@ -1270,8 +1267,7 @@
 						<div class="form-group">
 							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
 					          <div class="info-box bg-gray">
-					          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon bg-secondary"><i class="fa fa-calendar-plus-o"></i></span></a>
-					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
+					          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon bg-black"><i class="fa fa-calendar-plus-o"></i></span></a>
 					            <div class="info-box-content">
 					              <b>{{ $labor->workplace}}</b><br/>
 					             <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span><a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a>
