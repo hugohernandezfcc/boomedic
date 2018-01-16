@@ -116,17 +116,12 @@
 
 
           .footer {
-        position: absolute;
-        width: 70%; 
-        bottom: 4.5%;
-        left: 15%;
-        right: 15%;
-        padding-top: 0.7%;
-        padding-bottom: 0.7%;
-        padding-right: 0.7%;
-        padding-left: 0.7%;
-        /*background-color: rgba(255,255,255,0.7);*/
-        z-index: 100;
+          position:fixed;
+          bottom:0;
+          padding-right: 15px;
+          padding-left: 15px;
+          min-height: 1px;
+          box-sizing: border-box;
           }
           .info-box.sm {
               min-height: 45px;
