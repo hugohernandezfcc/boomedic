@@ -29,17 +29,17 @@
   		<div class="col-sm-4">	
   		<label>Seleccione los días de la semana que va a trabajar:</label><br/>
   	    </div>
-  	    <form>
+  	    <form action="/workboardDr/{{$userId}}" method="post" class="form-horizontal">
   	<div class="col-sm-8">	
   		<div data-toggle="buttons">
 
   			<label class="btn btn-secondary">
-				<input type="checkbox" value="Dom" name="Dom"  autocomplete="off">
+				<input type="checkbox" value="Dom" name="Dom" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				 <b>Dom</b>
 			</label>		
-	  		<label class="btn btn-default">
-				<input type="checkbox" value="Lun" name="Lun" autocomplete="off">
+	  		<label class="btn btn-default active">
+				<input type="checkbox" value="Lun" name="Lun" autocomplete="off" checked>
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Lun</b>
 			</label>
@@ -88,6 +88,7 @@
 			</div>
 
 	</div>
+	<div class="form-group">
 	<div class="col-sm-6">
 
 		<label>Hora de inicio:</label>
@@ -104,13 +105,18 @@
 		  <input id="timepicker1" type="text" class="form-control" name="end">
 		  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 		</div>
-	</div>	
-			<label class="col-sm-2 control-label">Promedio de duración por cita:</label>
-	<div class="col-sm-10">
-		 <input id="prom" type="text" name="prom" class="form-control">
- 	</div>
+	</div>
+</div>	
+	<div class="form-group">
+		
+		<label class="col-sm-2 control-label">Promedio de duración por cita:</label>
+		<div class="col-sm-10">
+			 <input id="prom" type="number" name="prom" class="form-control" placeholder="Unidad de tiempo en minutos" required="required">
+	 	</div>
+	</div>
  	<div class="col-sm-12" align="right">
- 		<button type="submit" class="btn btn-secondary"></button>
+ 		<button type="submit" class="btn btn-secondary">Guardar</button>
+ 		<button type="cancel" class="btn btn-default">Cancelar</button>
  	</div>
 
 </form>
@@ -126,5 +132,6 @@
      showMeridian:false,
      minuteStep: 5
   });
+
 </script>
 @stop
