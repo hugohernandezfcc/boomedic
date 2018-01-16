@@ -37,7 +37,7 @@ class workboardDr extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'workplace' => $id,
+                'workplace'      => $id
             ]
         );
     }
