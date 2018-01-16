@@ -130,9 +130,18 @@ Route::group(['namespace' => 'Api', 'prefix' => '/emails'], function(){
 Route::group(['namespace' => 'Api', 'prefix' => '/privacyStatements'], function(){
 
 	Route::get('/',['as' => 'ps', 'uses' => 'PrivacyStatementController@index']);
-	Route::put('/',['as' => 'ps.store', 'uses' => 'PrivacyStatementController@store']);
+	//Route::put('/',['as' => 'ps.store', 'uses' => 'PrivacyStatementController@store']);
 	Route::get('/{ps}',['as' => 'ps.show', 'uses' => 'PrivacyStatementController@show']);
-	Route::post('/{ps}',['as' => 'ps.update', 'uses' => 'PrivacyStatementController@update']);
+	//Route::post('/{ps}',['as' => 'ps.update', 'uses' => 'PrivacyStatementController@update']);
+
+});
+
+Route::group(['namespace' => 'Api', 'prefix' => '/menus'], function(){
+
+	Route::get('/',['as' => 'menu', 'uses' => 'MenuController@index']);
+	Route::put('/',['as' => 'menu.store', 'uses' => 'MenuController@store']);
+	Route::get('/{menu}',['as' => 'menu.show', 'uses' => 'MenuController@show']);
+	Route::post('/{menu}',['as' => 'menu.update', 'uses' => 'MenuController@update']);
 
 });
 

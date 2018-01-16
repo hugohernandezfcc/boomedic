@@ -22,7 +22,7 @@ class PrivacyStatementController extends Controller
 
     }
 
-    public function store(storePrivacyStatementRequest $request){
+    /*public function store(storePrivacyStatementRequest $request){
     	$ps = new privacy_statement;
 
     	$ps->description = $request->description;
@@ -40,5 +40,5 @@ class PrivacyStatementController extends Controller
 
         return Fractal::item($ps, new PrivacyStatementTransformer);
 
-    }
+    }*/
 }
