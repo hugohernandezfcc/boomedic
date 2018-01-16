@@ -239,7 +239,7 @@
                     <div class="box-body">
                          @foreach($appointments->sortBy('when') as $appo)
                               @if($loop->iteration < 3)
-                                <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}">
+                                <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" target="_blank">
                                             <div class="col-sm-12">
                                                   <div class="info-box sm bg-gray">
                                                     <span class="info-box-icon sm bg-black"><i class="fa fa-calendar-check-o"></i></span>
