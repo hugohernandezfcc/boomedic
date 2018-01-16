@@ -19,7 +19,11 @@ class recipes_tests extends Model
 
     ];
 
-    public function user(){
-	  return $this->belongsTo('App\User');
+    public function doctor(){
+	  return $this->belongsTo('App\User', 'doctor');
+	}
+
+	public function patient(){
+	  return $this->belongsTo('App\User', 'patient');
 	}
 }
