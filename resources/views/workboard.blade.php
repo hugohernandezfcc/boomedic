@@ -7,7 +7,6 @@
 <!-- Include Required Prerequisites -->
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css"/>
-<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
 <style type="text/css">
 .btn span.glyphicon {    			
@@ -30,41 +29,42 @@
   		<div class="col-sm-4">	
   		<label>Seleccione los días de la semana que va a trabajar:</label><br/>
   	    </div>
+  	    <form>
   	<div class="col-sm-8">	
-  		<div class="btn-group" data-toggle="buttons">
+  		<div data-toggle="buttons">
 
   			<label class="btn btn-secondary">
-				<input type="checkbox" value="Domingo" name="Domingo" autocomplete="off">
+				<input type="checkbox" value="Dom" name="Dom"  autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				 <b>Dom</b>
 			</label>		
 	  		<label class="btn btn-default">
-				<input type="checkbox" value="Lunes" name="Lunes" autocomplete="off">
+				<input type="checkbox" value="Lun" name="Lun" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Lun</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Martes" name="Martes" autocomplete="off">
+				<input type="checkbox" value="Mar" name="Mar" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Mar</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Miercoles" name="Miercoles">
+				<input type="checkbox" value="Mie" name="Mie" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Mier</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Jueves" name="Jueves">
+				<input type="checkbox" value="Jue" name="Jue" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Jue</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Viernes" name="Viernes">
+				<input type="checkbox" value="Vie" name="Vie" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Vier</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Sábado" name="Sábado">
+				<input type="checkbox" value="Sáb" name="Sab" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Sáb</b>
 			</label>				
@@ -84,7 +84,7 @@
 				<label>Fijo </label>
 			    <input name="group100" type="radio" id="radio101" checked> &nbsp;&nbsp;
 			    <label>Variable </label>
-			     <input name="group100" type="radio" id="radio100">
+			     <input name="group100" type="radio" id="radio100" disabled="disabled">
 			</div>
 
 	</div>
@@ -92,8 +92,8 @@
 
 		<label>Hora de inicio:</label>
 		<div class="input-group bootstrap-timepicker timepicker">
+		<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 		  <input id="timepicker2" type="text" class="form-control">
-		  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 		</div>
 
 	</div>	
@@ -109,7 +109,7 @@
  	</div>
 
 
-
+</form>
 </div>
 <script type="text/javascript">
   $('#timepicker1').timepicker({
