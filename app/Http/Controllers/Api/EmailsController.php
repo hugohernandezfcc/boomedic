@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Email;
 use App\Transformers\EmailTransformer;
-use App\Http\Requests\Api\Email\storeEmailsRequest;
-use App\Http\Requests\Api\Email\updateEmailsRequest;
+use App\Http\Requests\Api\Emails\storeEmailsRequest;
+use App\Http\Requests\Api\Emails\updateEmailsRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cyvelnet\Laravel5Fractal\Facades\Fractal;
