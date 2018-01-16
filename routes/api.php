@@ -90,3 +90,12 @@ Route::group(['namespace' => 'Api', 'prefix' => '/medicalAppointment'], function
 	Route::post('/{medicalAppo}',['as' => 'medicalAppo.update', 'uses' => 'medicalAppointmentsController@update']);
 
 });
+
+Route::group(['namespace' => 'Api', 'prefix' => '/diagnostic'], function(){
+
+	Route::get('/',['as' => 'diagnostic', 'uses' => 'DiagnosticsController@index']);
+	Route::put('/',['as' => 'diagnostic.store', 'uses' => 'DiagnosticsController@store']);
+	Route::get('/{diagnostic}',['as' => 'diagnostic.show', 'uses' => 'DiagnosticsController@show']);
+	Route::post('/{diagnostic}',['as' => 'diagnostic.update', 'uses' => 'DiagnosticsController@update']);
+
+});
