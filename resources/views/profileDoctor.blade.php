@@ -768,23 +768,23 @@
 					</div>   
 
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }} placeholder="Colonia"></input>
+			            		<input type="text" value="" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }} placeholder="Colonia"/>
 			            	</div>
 
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
+			            		<input type="text" value="" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"/>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
+			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"/>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
 		         
 
@@ -835,44 +835,39 @@
 	                	</div>
 	                </div>
 				</div>	
-			<div class="col-sm-12">	
-				
-				<div class="col-sm-12">	 
 					 <input type="hidden" name="lati" id="lati"/>
 		            <input type="hidden" name="long" id="long"/>
-		      </div>
 
-			</div>
 			<label class="col-sm-4 control-label"> Dirección</label>
-			<div class="col-sm-8">			
+			<div class="col-sm-12">			
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true" placeholder="País"></input>
+			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true" placeholder="País"/>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="state" id="state" disabled="true" placeholder="Estado"></input>
+			            		<input type="text" value="" class="form-control" name="state" id="state" disabled="true" placeholder="Estado"/>
 			            	</div>		  
 			            	<div class="col-sm-6">
-			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true" placeholder="Calle"></input>
+			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true" placeholder="Calle"/>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" class="form-control" name="colony" id="rout" disabled="true" placeholder="Colonia"></input>
+			            		<input type="text" class="form-control" name="colony" id="rout" disabled="true" placeholder="Colonia"/>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="delegation" id="localit" disabled="true" placeholder="Delegación"></input>
+			            		<input type="text" value="" class="form-control" name="delegation" id="localit" disabled="true" placeholder="Delegación"/>
 			            	</div>
 
 			        
 			            	<div class="col-sm-6">
-			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"></input>
+			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"/>
 			            	</div>
 
 			</div>
-				<div class="col-sm-12">
-					<br/>
+				<div class="col-sm-12 form-group" align="right">
 								<div class="col-sm-6">
 					    		&nbsp;	
 					            </div>
-					       		<div class="col-sm-6">
+					       		<div class="col-sm-6" align="right">
+					       			<br/>
 						    		<button type="submit" class="btn btn-secondary ">
 						                Guardar
 						            </button>
