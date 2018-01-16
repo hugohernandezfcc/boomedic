@@ -16,7 +16,7 @@ class DiagnosticsController extends Controller
     public function index(){
     	//$diagnostic = DB::table('diagnostics')->get();
     	$diagnostic = diagnostics::all();
-    	return Fractal::includes('parent_diagnostic')->collection($diagnostic, new DiagnosticsTransformer);
+    	return Fractal::collection($diagnostic, new DiagnosticsTransformer);
     }
 
     public function show(diagnostics $diagnostic){
