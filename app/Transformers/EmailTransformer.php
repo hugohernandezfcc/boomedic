@@ -16,7 +16,7 @@ class EmailTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = [];
+    protected $availableIncludes = ['owner'];
 
     /**
      * List of resources to automatically include
@@ -45,5 +45,9 @@ class EmailTransformer extends TransformerAbstract
             'message' => $email->message
 			
         ];
+    }
+
+    public function includeOwner(Email $email){
+        return $this->item($email->owner, new UserTransformer);
     }
 }

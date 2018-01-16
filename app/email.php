@@ -18,4 +18,8 @@ class Email extends Model
     public function user(){
 	  return $this->belongsTo('App\User', 'userId');
 	}
+
+	public function owner(){
+		return $this->BlongsTo(User::class, 'userId', 'id');
+	}
 }

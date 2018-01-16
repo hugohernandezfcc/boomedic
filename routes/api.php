@@ -111,9 +111,18 @@ Route::group(['namespace' => 'Api', 'prefix' => '/diagnosticTest'], function(){
 
 Route::group(['namespace' => 'Api', 'prefix' => '/medicines'], function(){
 
-	Route::get('/',['as' => 'medicine', 'uses' => 'MedicinesController@index']);
-	Route::put('/',['as' => 'medicine.store', 'uses' => 'MedicinesController@store']);
-	Route::get('/{medicine}',['as' => 'medicine.show', 'uses' => 'MedicinesController@show']);
-	Route::post('/{medicine}',['as' => 'medicine.update', 'uses' => 'MedicinesController@update']);
+	Route::get('/',['as' => 'diagTest', 'uses' => 'MedicinesController@index']);
+	Route::put('/',['as' => 'diagTest.store', 'uses' => 'MedicinesController@store']);
+	Route::get('/{diagTest}',['as' => 'diagTest.show', 'uses' => 'MedicinesController@show']);
+	Route::post('/{diagTest}',['as' => 'diagTest.update', 'uses' => 'MedicinesController@update']);
+
+});
+
+Route::group(['namespace' => 'Api', 'prefix' => '/emails'], function(){
+
+	Route::get('/',['as' => 'email', 'uses' => 'EmailsController@index']);
+	Route::put('/',['as' => 'email.store', 'uses' => 'EmailsController@store']);
+	Route::get('/{email}',['as' => 'email.show', 'uses' => 'EmailsController@show']);
+	Route::post('/{email}',['as' => 'email.update', 'uses' => 'EmailsController@update']);
 
 });
