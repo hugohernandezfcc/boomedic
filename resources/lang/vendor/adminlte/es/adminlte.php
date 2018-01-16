@@ -29,6 +29,7 @@ return [
     'Message_to_doctor'                  => 'Este formulario es solo para Médicos.',
     'register_a_new_membership_doctor'   => 'Registrarme como Médico',
     'professional_license'               => 'Cédula profisional de médico',
+    'medical_society'                    => 'Sociedad de Médicos'
 
 
 
