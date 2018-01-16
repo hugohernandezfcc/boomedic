@@ -16,7 +16,7 @@ class UserTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails', 'historySession'];
+    protected $availableIncludes = ['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails', 'historySession', 'recipes'];
 
     /**
      * List of resources to automatically include
@@ -89,5 +89,14 @@ class UserTransformer extends TransformerAbstract
 
     public function includeHistorySession(User $user){
         return $this->collection($user->historySession, new HistorySessionTransformer);
+    }
+
+    public function includeRecipes(User $user){
+        if($user->has('profesionalInformation'))
+        {
+            return $this->collection($user->recipesDoctor, new RecipesTestsTransformer);
+        }else{
+            return $this->collection($user->recipesPatient, new RecipesTestsTransformer);
+        }
     }
 }

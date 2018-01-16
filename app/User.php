@@ -81,4 +81,12 @@ class User extends Authenticatable
     public function historySession(){
         return $this->hasMany(history_session::class, 'createdBy', 'id');
     }
+
+    public function recipesPatient(){
+        return $this->hasMany(recipes_tests::class, 'patient', 'id');
+    }
+
+    public function recipesDoctor(){
+        return $this->hasMany(recipes_tests::class, 'doctor', 'id');
+    }
 }
