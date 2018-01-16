@@ -296,7 +296,7 @@
         <input type="text" name="keyWordSearch" class="form-control input-sm" id="kWSearch"> -->
       
         <div class="input-group input-group-sm">
-          <input type="text" class="form-control" placeholder="Buscar ..."  name="keyWordSearch"  id="kWSearch" >
+          <input type="text" class="form-control" placeholder="Buscar firma, médico, hospital..."  name="keyWordSearch"  id="kWSearch" >
           <span class="input-group-btn">
             <button type="button" class="btn btn-info btn-flat" onclick="start();">
               <span class="fa fa-search"></span>
@@ -314,7 +314,7 @@
 
     <div id="map"></div>
          <div class="checkStyl2">      
-      <a class="btn btn-secondary btn-block btn-flat" data-backdrop="static" data-toggle="modal" data-target="#modal">Búsqueda</a>
+      <a class="btn btn-secondary btn-block btn-flat" data-backdrop="static" data-toggle="modal" data-target="#modal"><li class="fa fa-map-marker"></li> Cambiar de ubicación</a>
     </div>
     <div id='rango'>
         <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
@@ -333,17 +333,17 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                    <label for="Busqueda">Búqueda de lugar:</label>
+                    <label for="Busqueda">Nueva ubicación:</label>
                   </div>
                   <div class="modal-body">
                         <div class="input-group input-group-sm">
-                          <input id="address" type="textbox" value="" class="form-control">
+                          <input id="address" type="textbox" value="" class="form-control" placeholder="Puede ingresar direcciones específicas..">
                           <span class="input-group-btn">
                           <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
                        </div>
                             <br/>                    
                           <div id ="ubi" class="input-group input-group-sm" style="display:none">
-                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" onclick="initMap()">
+                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
                           </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
                   </div>

@@ -128,8 +128,8 @@
 			          $height = $imagen[1];  
 
 			          if($height > '500' || $width > '500'){
-			            $height = $height / 2.5;
-			            $width = $width / 2.5;
+			            $height = $height / 3;
+			            $width = $width / 3;
 			        }
 			        if($height > '800' || $width > '800'){
 			            $height = $height / 4;
@@ -138,12 +138,12 @@
 
 
 			          if($height < '400' || $width < '400'){
-			            $height = $height / 1.3;
-			            $width = $width / 1.3;
+			            $height = $height / 1.7;
+			            $width = $width / 1.7;
 			        }
 
 					@endphp
-							<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
+							<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">		
 				    	@endif 
 		    			
 		    		</div>
