@@ -14,11 +14,11 @@ class cli_recipesTestController extends Controller
 {
      public function index(){
     	$cliRecipe = cli_recipes_tests::all();
-    	return Fractal::collection($cliRecipe, new CliRecipesTestsTransformer);
+    	return Fractal::includes('medicine_data')->collection($cliRecipe, new CliRecipesTestsTransformer);
     }
 
     public function show(cli_recipes_tests $cliRecipe){
-    	return Fractal::item($cliRecipe, new CliRecipesTestsTransformer);
+    	return Fractal::includes('medicine_data')->item($cliRecipe, new CliRecipesTestsTransformer);
 
     }
 
