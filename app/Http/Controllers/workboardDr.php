@@ -68,9 +68,10 @@ class workboardDr extends Controller
                             'duration' => $consultation
                             ]);
             } else {
+                $key = $i-1; 
                             $jsonhorary[$i] = collect([
-                            'start' => $jsonhorary[$i-1]['end'],
-                            'end' => $jsonhorary[$i-1]['end'] + $consultation,
+                            'start' => $jsonhorary[$key]['end'],
+                            'end' => $jsonhorary[$key]['end'] + $consultation,
                             'duration' => $consultation
                             ]);
             }
@@ -108,7 +109,7 @@ class workboardDr extends Controller
          if($request->fixed == 'fixed'){
          $workboard->fixed_schedule = 'True';
             }
-         $workboard->patient_duration_attention = $jsonhorary;
+         $workboard->patient_duration_attention = $jsonhorary->toJson();
          $workboard->save();
         
         }
