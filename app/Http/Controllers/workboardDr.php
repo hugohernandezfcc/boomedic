@@ -59,19 +59,21 @@ class workboardDr extends Controller
         $totalDuration = $finishTime->diffInMinutes($startTime);
         $consultation = $request->prom - 5;
         $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
+
+
         $jsonhorary = collect();
         for($i=0; $i < $totalconsultation; $i++){
             if($i == '0'){
             $jsonhorary[$i] = collect([
                             'start' => $request->start,
-                            'end' => $request->start + $consultation,
+                            'end' => gmdate('H:i', $request->start) + gmdate('H:i', '00:'.$consultation),
                             'duration' => $consultation
                             ]);
             } else {
                 $key = $i-1; 
                             $jsonhorary[$i] = collect([
                             'start' => $jsonhorary[$key]['end'],
-                            'end' => $jsonhorary[$key]['end'] + $consultation,
+                            'end' => date('H:i',$jsonhorary[$key]['end']) + date('H:i', '00:'.$consultation),
                             'duration' => $consultation
                             ]);
             }
