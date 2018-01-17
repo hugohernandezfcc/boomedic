@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
-use App\workboard;
+use App\Workboard;
 use Carbon\Carbon;
 
 
