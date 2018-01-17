@@ -23,7 +23,7 @@ class medicines extends Model
 		return $this->BelongsTo(medicines::class, 'parent', 'id');
 	}
 
-	public function cliRecipesTest(){
+	/*public function cliRecipesTest(){
 		return $this->hasMany(cli_recipes_tests::class, 'medicine', 'id')
-	}
+	}*/
 }
