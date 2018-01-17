@@ -163,3 +163,12 @@ Route::group(['namespace' => 'Api', 'prefix' => '/recipes'], function(){
 
 });
 
+Route::group(['namespace' => 'Api', 'prefix' => '/cli_recipes'], function(){
+
+	Route::get('/',['as' => 'cliRecipe', 'uses' => 'cli_recipesTestController@index']);
+	Route::put('/',['as' => 'cliRecipe.store', 'uses' => 'cli_recipesTestController@store']);
+	Route::get('/{cliRecipe}',['as' => 'cliRecipe.show', 'uses' => 'cli_recipesTestController@show']);
+	Route::post('/{cliRecipe}',['as' => 'cliRecipe.update', 'uses' => 'cli_recipesTestController@update']);
+
+});
+

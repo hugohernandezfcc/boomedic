@@ -13,7 +13,7 @@ class updateCliRecipesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class updateCliRecipesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'medicine' => '',
+            'test' => '',
+            'recipe_test' => '',
         ];
     }
 }

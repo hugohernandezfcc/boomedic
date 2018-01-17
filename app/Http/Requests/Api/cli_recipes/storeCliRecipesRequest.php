@@ -13,7 +13,7 @@ class storeCliRecipesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class storeCliRecipesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'medicine' => 'required',
+            'test' => 'required',
+            'recipe_test' => 'required',
         ];
     }
 }

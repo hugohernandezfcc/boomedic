@@ -42,4 +42,16 @@ class CliRecipesTestsTransformer extends TransformerAbstract
 			
         ];
     }
+
+    public function includeRecipeTestData(cli_recipes_tests $crt){
+        return $this->item($crt->apiRecipesTest, new RecipesTestsTransformer);
+    }
+
+    public function includeMedicineData(cli_recipes_tests $crt){
+        return $this->item($crt->apiMedicine, new MedicinesTransformer);
+    }
+
+    public function includeDiagnosticTestData(cli_recipes_tests $crt){
+        return $this->item($crt->apiDiagnostic, new DiagnosticTestsTransformer);
+    }
 }

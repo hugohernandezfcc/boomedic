@@ -22,4 +22,8 @@ class medicines extends Model
 	public function owner(){
 		return $this->BelongsTo(medicines::class, 'parent', 'id');
 	}
+
+	public function cliRecipesTest(){
+		return $this->hasMany(cli_recipes_tests::class, 'medicine', 'id')
+	}
 }

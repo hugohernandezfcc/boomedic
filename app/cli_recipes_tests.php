@@ -26,4 +26,16 @@ class cli_recipes_tests extends Model
 	public function test(){
 	  return $this->belongsTo('App\diagnostic_tests', 'test');
 	}
+
+	public function apiRecipesTest(){
+		return $this->BelongsTo(recipes_tests::class, 'recipes_tests', 'id');
+	}
+
+	public function apiMedicine(){
+		return $this->BelongsTo(recipes_tests::class, 'medicine', 'id');
+	}
+
+	public function apiDiagnostic(){
+		return $this->BelongsTo(recipes_tests::class, 'test', 'id');
+	}
 }
