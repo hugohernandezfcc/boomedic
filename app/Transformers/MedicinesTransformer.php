@@ -47,7 +47,7 @@ class MedicinesTransformer extends TransformerAbstract
     public function includeParentMedicine(medicines $medicine){
         $test = $medicine->owner;
         if($test != null){
-            return $this->item($medicine->owner, new DiagnosticTestsTransformer);
+            return $this->item($medicine->owner, new MedicinesTransformer);
         }
     }
 
