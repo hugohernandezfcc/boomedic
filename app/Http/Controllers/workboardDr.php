@@ -61,26 +61,6 @@ class workboardDr extends Controller
         $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
 
 
-       /* $jsonhorary = collect();
-
-        for($i=0; $i < $totalconsultation; $i++){
-            if($i == '0'){
-
-            $jsonhorary[$i] = collect([
-                            'start' => $request->start,
-                            'end' => gmdate('H:i', $request->start) + gmdate('H:i', '00:'.$consultation),
-                            'duration' => $consultation
-                            ]);
-            } else {
-                $key = $i-1; 
-                            $jsonhorary[$i] = collect([
-                            'start' => $jsonhorary[$key]['end'],
-                            'end' => date('H:i',$jsonhorary[$key]['end']) + date('H:i', '00:'.$consultation),
-                            'duration' => $consultation
-                            ]);
-            }
-        } */
-
     $hora_inicio = new \DateTime(  $startTime );
     $hora_fin    = new \DateTime(  $finishTime );
     $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que nos muestre $hora_fin
@@ -95,6 +75,14 @@ class workboardDr extends Controller
 
         // Guardamos las horas intervalos 
         $horas[] =  $hora->format('H:i:s');
+    }
+
+
+    $timeend = Carbon::parse(\end($horas)); 
+
+    if($timeend !=  $finishTime){
+         $timedeath = $finishTime->diffInMinutes($timeend);
+         array_push($horas, $timedeath->format('H:i:s'));
     }
 
 
