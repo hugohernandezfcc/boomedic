@@ -33,8 +33,7 @@ class recipesTestController extends Controller
         $recipe->date = $request->date;
         $recipe->Data_frontend = $request->Data_frontend;
 
-        dd($recipe->save());
-        dd($recipe);
+        $recipe->save();
         return Fractal::includes(['doctor_data', 'patient_data'])->item($recipe, new RecipesTestsTransformer);
 
     }
