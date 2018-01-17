@@ -82,7 +82,7 @@ class workboardDr extends Controller
 
     if($timeend !=  $finishTime){
          $timedeath = $finishTime->diffInMinutes($timeend);
-         array_push($horas, ".$timedeath.");
+         array_push($horas, "asueto :".$timedeath);
     }
 
 
