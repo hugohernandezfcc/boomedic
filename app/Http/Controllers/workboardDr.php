@@ -51,13 +51,32 @@ class workboardDr extends Controller
     public function create(Request $request, $id )
     {
 
-         $user = User::find(Auth::id()); 
-    foreach($request->day as $day){   
+        $user = User::find(Auth::id()); 
+        foreach($request->day as $day){   
         $startTime = Carbon::parse($request->start);
         $finishTime = Carbon::parse($request->end);
 
         $totalDuration = $finishTime->diffInMinutes($startTime);
-        $totalconsultation = number_format(($totalDuration / $request->prom), 0, '.', ',');
+        $consultation = $request->prom - 5;
+        $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
+        $jsonhorary = collect();
+        for($i=0; $i < $totalconsultation; $i++){
+            if($i == '1'){
+            $jsonhorary[$i] = collect([
+                            'start' => $request->start,
+                            'end' => $request->start + $consultation,
+                            'duration' => $consultation
+                            ]);
+            } else {
+                            $jsonhorary[$i] = collect([
+                            'start' => $jsonhorary[$i-1]['end'],
+                            'end' => $jsonhorary[$i-1]['end'] + $consultation,
+                            'duration' => $consultation
+                            ]);
+            }
+        }
+
+
 
          $workboard = new workboard;
         
@@ -89,7 +108,7 @@ class workboardDr extends Controller
          if($request->fixed == 'fixed'){
          $workboard->fixed_schedule = 'True';
             }
-         $workboard->patient_duration_attention = $totalconsultation;
+         $workboard->patient_duration_attention = $jsonhorary;
          $workboard->save();
         
         }
