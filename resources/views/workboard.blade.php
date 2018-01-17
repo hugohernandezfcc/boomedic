@@ -34,37 +34,37 @@
   		<div data-toggle="buttons">
 
   			<label class="btn btn-secondary">
-				<input type="checkbox" value="Dom" name="Dom" autocomplete="off">
+				<input type="checkbox" value="Dom" name="day[]" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				 <b>Dom</b>
 			</label>		
 	  		<label class="btn btn-default active">
-				<input type="checkbox" value="Lun" name="Lun" autocomplete="off" checked>
+				<input type="checkbox" value="Lun" name="day[]" autocomplete="off" checked>
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Lun</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Mar" name="Mar" autocomplete="off">
+				<input type="checkbox" value="Mar" name="day[]" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Mar</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Mie" name="Mie" autocomplete="off">
+				<input type="checkbox" value="Mie" name="day[]" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Mier</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Jue" name="Jue" autocomplete="off">
+				<input type="checkbox" value="Jue" name="day[]" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Jue</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Vie" name="Vie" autocomplete="off">
+				<input type="checkbox" value="Vie" name="day[]" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Vier</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Sáb" name="Sab" autocomplete="off">
+				<input type="checkbox" value="Sáb" name="day[]" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Sáb</b>
 			</label>				

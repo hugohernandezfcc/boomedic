@@ -51,11 +51,31 @@ class workboardDr extends Controller
     {
 
          $user = User::find(Auth::id()); 
-         
+    foreach($request->day as $day){   
          $workboard = new workboard;
-         if($request->Mar == 'Mar'){
-         $workboard->workingDays = $request->Mar;
-         $workboard->workingHours = 
+        
+         if($day == 'Lun'){
+         $workboard->workingDays = $day;
+         }
+         if($day == 'Mar'){
+         $workboard->workingDays = $day;
+         }
+         if($day == 'Mie'){
+         $workboard->workingDays = $day;
+         }
+         if($day == 'Jue'){
+         $workboard->workingDays = $day;
+         }
+         if($day == 'Vie'){
+         $workboard->workingDays = $day;
+         }
+        if($day == 'Sab'){
+         $workboard->workingDays = $day;
+         }
+        if($day == 'Dom'){
+         $workboard->workingDays = $day;
+         }
+         $workboard->workingHours = $request->end - $request->start;
          $workboard->labInformation = $id;
          $workboard->start = $request->start;
          $workboard->end   = $request->end;
@@ -64,20 +84,12 @@ class workboardDr extends Controller
             }
          $workboard->patient_duration_attention = $request->prom;
          $workboard->save();
+        
         }
 
 
 
-        return view('workboard', [
-                'userId'    => $user->id,
-                'username'  => $user->username,
-                'name'      => $user->name,
-                'photo'     => $user->profile_photo,
-                'date'      => $user->created_at,
-                'work'      => $id
-
-            ]
-        );
+      return redirect('workboardDr/index/'.$id);
     }
 
     /**
@@ -136,11 +148,11 @@ class workboardDr extends Controller
     {
         switch ($page) {
             case 'index':
-                return redirect('workboard/index'); //show
+                return redirect('workboardDr/index'); //show
                 break;
             
             default:
-                return redirect('/workboard'); //medicalconsultations
+                return redirect('/medicalconsultations'); //medicalconsultations
                 break;
         }   
     }
