@@ -61,9 +61,11 @@ class workboardDr extends Controller
         $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
 
 
-        $jsonhorary = collect();
+       /* $jsonhorary = collect();
+
         for($i=0; $i < $totalconsultation; $i++){
             if($i == '0'){
+
             $jsonhorary[$i] = collect([
                             'start' => $request->start,
                             'end' => gmdate('H:i', $request->start) + gmdate('H:i', '00:'.$consultation),
@@ -77,7 +79,23 @@ class workboardDr extends Controller
                             'duration' => $consultation
                             ]);
             }
-        }
+        } */
+
+    $hora_inicio = new DateTime(  $startTime );
+    $hora_fin    = new DateTime(  $finishTime );
+    $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que nos muestre $hora_fin
+
+    // Establecemos el intervalo en minutos        
+    $intervalo = new DateInterval('PT'.$consultation.'M');
+
+    // Sacamos los periodos entre las horas
+    $periodo   = new DatePeriod($hora_inicio, $intervalo, $hora_fin);        
+
+    foreach( $periodo as $hora ) {
+
+        // Guardamos las horas intervalos 
+        $horas[] =  $hora->format('H:i:s');
+    }
 
 
 
@@ -111,7 +129,7 @@ class workboardDr extends Controller
          if($request->fixed == 'fixed'){
          $workboard->fixed_schedule = 'True';
             }
-         $workboard->patient_duration_attention = $jsonhorary->toJson();
+         $workboard->patient_duration_attention = $horas;
          $workboard->save();
         
         }
