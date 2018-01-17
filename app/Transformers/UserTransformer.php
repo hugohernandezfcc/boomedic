@@ -92,7 +92,7 @@ class UserTransformer extends TransformerAbstract
     }
 
     public function includeRecipes(User $user){
-        if($user->has('profesionalInformation'))
+        if($user->has('profesional_information'))
         {
             return $this->collection($user->recipesDoctor, new RecipesTestsTransformer);
         }else{
