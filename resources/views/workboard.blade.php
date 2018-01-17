@@ -116,7 +116,9 @@
 	</div>
  	<div class="col-sm-12" align="right">
  		<button type="submit" class="btn btn-secondary">Guardar</button>
- 		<button type="cancel" class="btn btn-default">Cancelar</button>
+ 		<a href="{{ url()->previous() }}" class="btn btn-default">
+						                Cancelar
+ </a>
  	</div>
 
 </form>
