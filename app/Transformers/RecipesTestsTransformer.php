@@ -36,12 +36,12 @@ class RecipesTestsTransformer extends TransformerAbstract
         return [
 
             'id' => $recipe->id,
-            'type' => $recipe->id,
-            'doctor' => $recipe->id,
-            'patient' => $recipe->id,
-            'notes' => $recipe->id,
-            'folio' => $recipe->id,
-            'date' => $recipe->id,
+            'type' => $recipe->type,
+            'doctor' => $recipe->doctor,
+            'patient' => $recipe->patient,
+            'notes' => $recipe->notes,
+            'folio' => $recipe->folio,
+            'date' => $recipe->date,
 			
         ];
     }
