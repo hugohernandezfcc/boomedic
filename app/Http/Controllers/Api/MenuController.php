@@ -14,11 +14,11 @@ class MenuController extends Controller
 {
     public function index(){
     	$menu = menu::all();
-    	return Fractal::includes('parentMenu')->collection($menu, new MenuTransformer);
+    	return Fractal::includes('parent_menu')->collection($menu, new MenuTransformer);
     }
 
     public function show(menu $menu){
-    	return Fractal::includes('parentMenu')->item($menu, new MenuTransformer);
+    	return Fractal::includes('parent_menu')->item($menu, new MenuTransformer);
 
     }
 
@@ -38,7 +38,7 @@ class MenuController extends Controller
 
     	$menu->save();
 
-    	return Fractal::includes('parentMenu')->item($menu, new MenuTransformer);
+    	return Fractal::includes('parent_menu')->item($menu, new MenuTransformer);
 
     }
 
@@ -56,6 +56,6 @@ class MenuController extends Controller
 
     	$menu->save();
 
-    	return Fractal::includes('parentMenu')->item($menu, new MenuTransformer);
+    	return Fractal::includes('parent_menu')->item($menu, new MenuTransformer);
     }*/
 }

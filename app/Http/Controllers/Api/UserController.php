@@ -16,11 +16,11 @@ class UserController extends Controller
     public function index(){
     	$users = User::all();
 
-    	return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments','emails', 'recipes'])->collection($users, new UserTransformer);
+    	return Fractal::includes(['profesional_information','payment_methods', 'support_tickets', 'medical_appointments','emails', 'recipes'])->collection($users, new UserTransformer);
     }
 
     public function show(User $user){
-    	return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails', 'historySession', 'recipes'])->item($user, new UserTransformer);
+    	return Fractal::includes(['profesional_information','payment_methods', 'support_tickets', 'medical_appointments', 'emails', 'history_session', 'recipes'])->item($user, new UserTransformer);
     }
 
     public function store(StoreUserRequest $request){
@@ -63,7 +63,7 @@ class UserController extends Controller
             $profInformation->professional_license = $request->professional_license;
             $profInformation->user = $user->id;
             $profInformation->save();
-            return Fractal::includes('profesionalInformation')->item($user, new UserTransformer);
+            return Fractal::includes('profesional_information')->item($user, new UserTransformer);
         }
 
         return Fractal::item($user, new UserTransformer);
@@ -103,6 +103,6 @@ class UserController extends Controller
         
         $user->save();
 
-        return Fractal::includes(['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails', 'historySession', 'recipes'])->item($user, new UserTransformer);
+        return Fractal::includes(['profesional_information','payment_methods', 'support_tickets', 'medical_appointments', 'emails', 'history_session', 'recipes'])->item($user, new UserTransformer);
     }
 }

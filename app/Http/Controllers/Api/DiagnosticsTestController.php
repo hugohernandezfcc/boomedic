@@ -14,11 +14,11 @@ class DiagnosticsTestController extends Controller
 {
     public function index(){
     	$diagTest = diagnostic_tests::all();
-    	return Fractal::includes('parentTest')->collection($diagTest, new DiagnosticTestsTransformer);
+    	return Fractal::includes('parent_test')->collection($diagTest, new DiagnosticTestsTransformer);
     }
 
     public function show(diagnostic_tests $diagTest){
-    	return Fractal::includes('parentTest')->item($diagTest, new DiagnosticTestsTransformer);
+    	return Fractal::includes('parent_test')->item($diagTest, new DiagnosticTestsTransformer);
 
     }
 
@@ -33,7 +33,7 @@ class DiagnosticsTestController extends Controller
 
     	$diagTest->save();
 
-    	return Fractal::includes('parentTest')->item($diagTest, new DiagnosticTestsTransformer);
+    	return Fractal::includes('parent_test')->item($diagTest, new DiagnosticTestsTransformer);
 
     }
 
@@ -46,6 +46,6 @@ class DiagnosticsTestController extends Controller
 
     	$diagTest->save();
 
-    	return Fractal::includes('parentTest')->item($diagTest, new DiagnosticTestsTransformer);
+    	return Fractal::includes('parent_test')->item($diagTest, new DiagnosticTestsTransformer);
     }
 }

@@ -16,7 +16,7 @@ class UserTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['profesionalInformation','paymentMethods', 'supportTickets', 'medicalAppointments', 'emails', 'historySession', 'recipes'];
+    protected $availableIncludes = ['profesional_information','payment_methods', 'support_tickets', 'medical_appointments', 'emails', 'history_session', 'recipes'];
 
     /**
      * List of resources to automatically include

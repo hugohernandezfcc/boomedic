@@ -16,7 +16,7 @@ class MenuTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['parentMenu'];
+    protected $availableIncludes = ['parent_ menu'];
 
     /**
      * List of resources to automatically include

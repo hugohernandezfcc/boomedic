@@ -23,7 +23,7 @@ class ProfessionalInformationTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $defaultIncludes = ['laborInformation'];
+    protected $defaultIncludes = ['labor_information'];
 
     /**
      * Transform object into a generic array

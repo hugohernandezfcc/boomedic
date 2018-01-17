@@ -16,7 +16,7 @@ class SupportTicketTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['user'];
+    protected $availableIncludes = ['user_data'];
 
     /**
      * List of resources to automatically include
