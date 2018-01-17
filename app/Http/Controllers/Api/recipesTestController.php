@@ -32,9 +32,9 @@ class recipesTestController extends Controller
         $recipe->folio = $request->folio;
         $recipe->date = $request->date;
         $recipe->Data_frontend = $request->Data_frontend;
-        dd($recipe);
+        
         $recipe->save();
-
+        dd($recipe);
         return Fractal::item($recipe, new RecipesTestsTransformer);
 
     }
