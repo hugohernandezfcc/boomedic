@@ -14,11 +14,11 @@ class recipesTestController extends Controller
 {
     public function index(){
     	$recipe = recipes_tests::all();
-    	return Fractal::collection($recipe, new RecipesTestsTransformer);
+    	return Fractal::includes(['doctor_data', 'patient_data'])->collection($recipe, new RecipesTestsTransformer);
     }
 
     public function show(recipes_tests $recipe){
-    	return Fractal::item($recipe, new RecipesTestsTransformer);
+    	return Fractal::includes(['doctor_data', 'patient_data'])->item($recipe, new RecipesTestsTransformer);
 
     }
 
@@ -35,7 +35,7 @@ class recipesTestController extends Controller
 
         dd($recipe->save());
         dd($recipe);
-        return Fractal::item($recipe, new RecipesTestsTransformer);
+        return Fractal::includes(['doctor_data', 'patient_data'])->item($recipe, new RecipesTestsTransformer);
 
     }
 
@@ -50,7 +50,7 @@ class recipesTestController extends Controller
 
         $recipe->save();
 
-        return Fractal::item($recipe, new RecipesTestsTransformer);
+        return Fractal::includes(['doctor_data', 'patient_data'])->item($recipe, new RecipesTestsTransformer);
 
     }
 }

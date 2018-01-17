@@ -16,7 +16,7 @@ class RecipesTestsTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = [];
+    protected $availableIncludes = ['doctor_data', 'patient_data'];
 
     /**
      * List of resources to automatically include
@@ -44,5 +44,13 @@ class RecipesTestsTransformer extends TransformerAbstract
             'date' => $recipe->id,
 			
         ];
+    }
+
+    public function includeDoctorData(recipes_tests $recipe){
+        return $this->item($recipe->apiDoctor, new UserTransformer);
+    }
+
+    public function includePatientData(recipes_tests $recipe){
+        return $this->item($recipe->apiPatient, new UserTransformer);
     }
 }

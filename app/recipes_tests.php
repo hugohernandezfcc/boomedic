@@ -26,4 +26,12 @@ class recipes_tests extends Model
 	public function patient(){
 	  return $this->belongsTo('App\User', 'patient');
 	}
+
+	public function apiDoctor(){
+		return $this->BelongsTo(User::class, 'doctor', 'id');
+	}
+
+	public function apiPatient(){
+		return $this->BelongsTo(User::class, 'patient', 'id');
+	}
 }
