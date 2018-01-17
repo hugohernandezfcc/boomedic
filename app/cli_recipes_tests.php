@@ -32,10 +32,10 @@ class cli_recipes_tests extends Model
 	}
 
 	public function apiMedicine(){
-		return $this->BelongsTo(recipes_tests::class, 'medicine', 'id');
+		return $this->BelongsTo(medicines::class, 'medicine', 'id');
 	}
 
 	public function apiDiagnostic(){
-		return $this->BelongsTo(recipes_tests::class, 'test', 'id');
+		return $this->BelongsTo(diagnostic_tests::class, 'test', 'id');
 	}
 }
