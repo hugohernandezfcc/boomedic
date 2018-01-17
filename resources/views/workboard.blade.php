@@ -64,7 +64,7 @@
 				<b>Vier</b>
 			</label>
 			<label class="btn btn-default">
-				<input type="checkbox" value="Sáb" name="day[]" autocomplete="off">
+				<input type="checkbox" value="Sab" name="day[]" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Sáb</b>
 			</label>				
