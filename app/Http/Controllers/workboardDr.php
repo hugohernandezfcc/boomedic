@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\workboard;
+use Carbon\Carbon;
 
 
 class workboardDr extends Controller
@@ -52,6 +53,11 @@ class workboardDr extends Controller
 
          $user = User::find(Auth::id()); 
     foreach($request->day as $day){   
+        $startTime = Carbon::parse($request->start);
+        $finishTime = Carbon::parse($request->end);
+
+        $totalDuration = $finishTime->diffInMinutes($startTime);
+
          $workboard = new workboard;
         
          if($day == 'Lun'){
@@ -75,7 +81,7 @@ class workboardDr extends Controller
         if($day == 'Dom'){
          $workboard->workingDays = $day;
          }
-         $workboard->workingHours = $request->end - $request->start;
+         $workboard->workingHours = $totalDuration;
          $workboard->labInformation = $id;
          $workboard->start = $request->start;
          $workboard->end   = $request->end;
