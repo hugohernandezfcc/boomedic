@@ -81,15 +81,15 @@ class workboardDr extends Controller
             }
         } */
 
-    $hora_inicio = new DateTime(  $startTime );
-    $hora_fin    = new DateTime(  $finishTime );
+    $hora_inicio = new \DateTime(  $startTime );
+    $hora_fin    = new \DateTime(  $finishTime );
     $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que nos muestre $hora_fin
 
     // Establecemos el intervalo en minutos        
-    $intervalo = new DateInterval('PT'.$consultation.'M');
+    $intervalo = new \DateInterval('PT'.$consultation.'M');
 
     // Sacamos los periodos entre las horas
-    $periodo   = new DatePeriod($hora_inicio, $intervalo, $hora_fin);        
+    $periodo   = new \DatePeriod($hora_inicio, $intervalo, $hora_fin);        
 
     foreach( $periodo as $hora ) {
 
@@ -129,7 +129,7 @@ class workboardDr extends Controller
          if($request->fixed == 'fixed'){
          $workboard->fixed_schedule = 'True';
             }
-         $workboard->patient_duration_attention = $horas;
+         $workboard->patient_duration_attention =  json_encode($horas);
          $workboard->save();
         
         }
