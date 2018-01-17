@@ -26,7 +26,7 @@ class storeCliRecipesRequest extends FormRequest
         return [
             'medicine' => 'required',
             'test' => 'required',
-            'recipe_test' => 'required',
+            'recipe_test' => '',
         ];
     }
 }
