@@ -61,7 +61,7 @@ class workboardDr extends Controller
         $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
         $jsonhorary = collect();
         for($i=0; $i < $totalconsultation; $i++){
-            if($i == '1'){
+            if($i == '0'){
             $jsonhorary[$i] = collect([
                             'start' => $request->start,
                             'end' => $request->start + $consultation,
