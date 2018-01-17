@@ -44,7 +44,6 @@ class CliRecipesTestsTransformer extends TransformerAbstract
     }
 
     public function includeRecipeTestData(cli_recipes_tests $crt){
-        dd($crt->apiRecipesTest);
         return $this->item($crt->apiRecipesTest, new RecipesTestsTransformer);
     }
 
