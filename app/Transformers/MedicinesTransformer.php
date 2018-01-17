@@ -16,7 +16,7 @@ class MedicinesTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = ['parent_medicine', 'cli_recipes_tests'];
+    protected $availableIncludes = ['parent_medicine'];
 
     /**
      * List of resources to automatically include
@@ -51,7 +51,7 @@ class MedicinesTransformer extends TransformerAbstract
         }
     }
 
-    public function includeCliRecipesTest(medicines $medicine){
+    /*public function includeCliRecipesTest(medicines $medicine){
         return $this->collection($medicine->cliRecipesTest, new CliRecipesTestsTransformer);
-    }
+    }*/
 }
