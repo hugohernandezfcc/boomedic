@@ -57,7 +57,8 @@ class workboardDr extends Controller
         $finishTime = Carbon::parse($request->end);
 
         $totalDuration = $finishTime->diffInMinutes($startTime);
-        $totalconsultation = $totalDuration / $request->prom;
+        $totalconsultation =  bcdiv($totalDuration, $request->prom, '0');
+
          $workboard = new workboard;
         
          if($day == 'Lun'){
@@ -81,7 +82,7 @@ class workboardDr extends Controller
         if($day == 'Dom'){
          $workboard->workingDays = $day;
          }
-         $workboard->workingHours = $totalDuration / 60;
+         $workboard->workingHours =  bcdiv($totalDuration, '60', '0');;
          $workboard->labInformation = $id;
          $workboard->start = $request->start;
          $workboard->end   = $request->end;
