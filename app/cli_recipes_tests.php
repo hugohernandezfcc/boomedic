@@ -16,7 +16,7 @@ class cli_recipes_tests extends Model
     ];
 
     public function recipes_tests(){
-	  return $this->belongsTo('App\recipes_tests', 'recipes_tests');
+	  return $this->belongsTo('App\recipes_tests', 'recipe_tests');
 	}
 
 	public function medicine(){
@@ -28,7 +28,7 @@ class cli_recipes_tests extends Model
 	}
 
 	public function apiRecipesTest(){
-		return $this->BelongsTo(recipes_tests::class, 'recipes_tests', 'id');
+		return $this->BelongsTo(recipes_tests::class, 'recipe_tests', 'id');
 	}
 
 	public function apiMedicine(){
