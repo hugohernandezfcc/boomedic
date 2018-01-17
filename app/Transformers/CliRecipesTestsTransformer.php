@@ -16,14 +16,14 @@ class CliRecipesTestsTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = [];
+    protected $availableIncludes = ['recipe_test_data', 'medicine_data', 'diagnostic_test_data'];
 
     /**
      * List of resources to automatically include
      *
      * @var array
      */
-    protected $defaultIncludes = ['recipe_test_data', 'medicine_data', 'diagnostic_test_data'];
+    protected $defaultIncludes = [];
 
     /**
      * Transform object into a generic array
