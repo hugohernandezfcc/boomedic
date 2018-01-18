@@ -32,7 +32,7 @@
   		<div class="col-sm-4">	
   		<label>Seleccione los días de la semana que dará consultas:</label><br/>
   	    </div>
-  	    <form action="{{ url('/workboardDr/create') }}/{{ $work }}" method="post" class="form-horizontal">
+  	    <form action="{{ url('/workboardDr/create') }}/{{ $work }}" method="post" class="form-horizontal" id="formwork">
   	<div class="col-sm-8">	
   		<div data-toggle="buttons">
 
@@ -93,8 +93,8 @@
 	</div>
 	<div class="form-group" style="display: none;" id="menu2">
 		<div class="col-sm-12" >
+			<label> Agregue sus horarios por día o grupos de días</label>
 				<select id="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple >
-
 				  </select>
 		</div>
 	</div>
@@ -155,8 +155,11 @@
 			function(event) {
 			   document.getElementById("menu2").style.display = "none";
 			})
+    
 	   $("#sel")
 		   .html('<option value="1">city1</option><option>city2</option>').selectpicker('refresh');
+		   for (i=0;ele=document.form1.elements[i];i++)
+
 
 </script>
 @stop
