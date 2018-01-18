@@ -27,7 +27,7 @@
   	</div>
   	<div class="box-body">
   		<div class="col-sm-4">	
-  		<label>Seleccione los días de la semana que va a trabajar:</label><br/>
+  		<label>Seleccione los días de la semana que dará consultas:</label><br/>
   	    </div>
   	    <form action="{{ url('/workboardDr/create') }}/{{ $work }}" method="post" class="form-horizontal">
   	<div class="col-sm-8">	
@@ -88,6 +88,16 @@
 			</div>
 
 	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<select class="selectpicker" multiple>
+			    <option>Mustard</option>
+			    <option>Ketchup</option>
+			    <option>Relish</option>
+			</select>
+		</div>
+	</div>
+
 	<div class="form-group">
 	<div class="col-sm-6">
 
