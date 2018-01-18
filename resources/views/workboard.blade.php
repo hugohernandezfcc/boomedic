@@ -8,6 +8,10 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css"/>
 <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+    rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+    type="text/javascript"></script>
 <style type="text/css">
 .btn span.glyphicon {    			
 	opacity: 0;				
@@ -90,12 +94,13 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-12">
-			  <select class="selectpicker" multiple data-selected-text-format="count>3">
-			     <option>Mustard</option>
-			      <option>Ketchup</option>
-			      <option>Relish</option>
-			      <option>Onions</option>
-			  </select>
+			<select id="lstFruits" multiple="multiple">
+			    <option value="1">Mango</option>
+			    <option value="2">Apple</option>
+			    <option value="3">Banana</option>
+			    <option value="4">Guava</option>
+			    <option value="5">Orange</option>
+			</select>
 		</div>
 	</div>
 
@@ -134,21 +139,22 @@
 
 </form>
 </div>
-<script type="text/javascript">
-  $('#timepicker1').timepicker({
-    showInputs: false,
-     showMeridian:false,
-     minuteStep: 5
-  });
-    $('#timepicker2').timepicker({
-    showInputs: false,
-     showMeridian:false,
-     minuteStep: 5
-  });
-    $('.selectpicker').selectpicker({
-      style: 'btn-info',
-      size: 4
-  });
+			<script type="text/javascript">
+			  $('#timepicker1').timepicker({
+			    showInputs: false,
+			     showMeridian:false,
+			     minuteStep: 5
+			  });
+			    $('#timepicker2').timepicker({
+			    showInputs: false,
+			     showMeridian:false,
+			     minuteStep: 5
+			  });
+					$(function () {
+					        $('#lstFruits').multiselect({
+					            includeSelectAllOption: true
+					        });
+					    });
 
-</script>
+			</script>
 @stop
