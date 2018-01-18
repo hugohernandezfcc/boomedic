@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css"/>
 <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-alpha/css/bootstrap-select.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-alpha/js/bootstrap-select.js"></script>
 <style type="text/css">
 .btn span.glyphicon {    			
 	opacity: 0;				
@@ -37,37 +37,37 @@
   		<div data-toggle="buttons">
 
   			<label for="Dom" class="btn btn-secondary">
-				<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off" class="btn">
+				<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				 <b>Dom</b>
 			</label>		
-	  		<label for="Lun" class="btn btn-default active">
-				<input type="checkbox" value="Lun" name="day[]" id="Lun" autocomplete="off" checked>
+	  		<label for="Lun" class="btn btn-default">
+				<input type="checkbox" value="Lun" name="day[]" id="Lun" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Lun</b>
 			</label>
-			<label class="btn btn-default">
-				<input type="checkbox" value="Mar" name="day[]" autocomplete="off">
+			<label for="Mar" class="btn btn-default">
+				<input type="checkbox" value="Mar" name="day[]" id="Mar" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Mar</b>
 			</label>
-			<label class="btn btn-default">
-				<input type="checkbox" value="Mie" name="day[]" autocomplete="off">
+			<label for="Mie"  class="btn btn-default">
+				<input type="checkbox" value="Mie" name="day[]" id="Mier" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Mier</b>
 			</label>
-			<label class="btn btn-default">
-				<input type="checkbox" value="Jue" name="day[]" autocomplete="off">
+			<label for="Jue" class="btn btn-default">
+				<input type="checkbox" value="Jue" name="day[]" id="Jue" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Jue</b>
 			</label>
-			<label class="btn btn-default">
-				<input type="checkbox" value="Vie" name="day[]" autocomplete="off">
+			<label for="Vie" class="btn btn-default">
+				<input type="checkbox" value="Vie" name="day[]" id="Vie" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Vier</b>
 			</label>
-			<label class="btn btn-default">
-				<input type="checkbox" value="Sab" name="day[]" autocomplete="off">
+			<label for="Sab" class="btn btn-default">
+				<input type="checkbox" value="Sab" name="day[]" id="Sab" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Sáb</b>
 			</label>				
@@ -156,13 +156,15 @@
 			   document.getElementById("menu2").style.display = "none";
 			})
 
-
-
-		 $('label.btn.btn-default.active input[type=checkbox]').click(function() {
+</script>
+<script type="text/javascript">
+			 $('label.active input[type=checkbox]').each(function(event) {
 		
-		$("#sel").append('<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>').selectpicker('refresh');  
-		        
-		        });
+				var options += '<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>';
+
+
+		        })
+			 	$("#sel").append(options).trigger('change.select2');			
 
 </script>
 @stop
