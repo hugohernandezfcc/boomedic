@@ -37,7 +37,7 @@
   		<div data-toggle="buttons">
 
   			<label for="Dom" class="btn btn-secondary">
-				<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off">
+				<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off" class="btn">
 				<span class="glyphicon glyphicon-ok"></span>
 				 <b>Dom</b>
 			</label>		
@@ -157,13 +157,12 @@
 			})
 
 
-		 $('input[type=checkbox]:checked').each(function() {
+
+		 $('label.btn.btn-default.active input[type=checkbox]').click(function() {
 		
 		$("#sel").append('<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>').selectpicker('refresh');  
-		         
+		        
 		        });
-
-       
 
 </script>
 @stop
