@@ -90,11 +90,12 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-12">
-			<select class="selectpicker" multiple>
-			    <option>Mustard</option>
-			    <option>Ketchup</option>
-			    <option>Relish</option>
-			</select>
+			  <select class="selectpicker" multiple data-selected-text-format="count>3">
+			     <option>Mustard</option>
+			      <option>Ketchup</option>
+			      <option>Relish</option>
+			      <option>Onions</option>
+			  </select>
 		</div>
 	</div>
 
@@ -143,6 +144,10 @@
     showInputs: false,
      showMeridian:false,
      minuteStep: 5
+  });
+    $('.selectpicker').selectpicker({
+      style: 'btn-info',
+      size: 4
   });
 
 </script>
