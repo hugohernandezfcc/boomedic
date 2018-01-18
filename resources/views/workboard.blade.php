@@ -37,12 +37,12 @@
   		<div data-toggle="buttons">
 
   			<label class="btn btn-secondary">
-				<input type="checkbox" value="Dom" name="day[]" autocomplete="off">
+				<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off">
 				<span class="glyphicon glyphicon-ok"></span>
 				 <b>Dom</b>
 			</label>		
 	  		<label class="btn btn-default active">
-				<input type="checkbox" value="Lun" name="day[]" autocomplete="off" checked>
+				<input type="checkbox" value="Lun" name="day[]" id="Lun" autocomplete="off" checked>
 				<span class="glyphicon glyphicon-ok"></span>
 				<b>Lun</b>
 			</label>
@@ -148,18 +148,26 @@
     $("#var").click(
 				function(event) {
 				   document.getElementById("menu2").style.display = "block";
-
+				  
 				})
 
     $("#fixed").click(
 			function(event) {
 			   document.getElementById("menu2").style.display = "none";
 			})
-    
-	   $("#sel")
-		   .html('<option value="1">city1</option><option>city2</option>').selectpicker('refresh');
-		   for (i=0;ele=document.form1.elements[i];i++)
 
+ 	var days = "";
+		 $('input[type=checkbox]').each(function() {
+
+		 	days += "(" + $(this).val() + "-" + (this.checked ? "checked" : "not checked") + ")";
+	
+		          	  
+		        });
+
+ 	 	for (x=0;x<days.length;x++) {
+		 		 $("#sel").html('<option value="'+ days[x] +'">'+ days[x] +'</option>').selectpicker('refresh');  
+		 }
+       
 
 </script>
 @stop
