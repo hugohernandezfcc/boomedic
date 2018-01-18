@@ -94,9 +94,6 @@
 	<div class="form-group" style="display: none;" id="menu2">
 		<div class="col-sm-12" >
 				<select id="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple >
-				    <option>PHP</option>
-				    <option>CSS</option>
-				    <option>HTML</option>
 
 				  </select>
 		</div>
@@ -151,25 +148,15 @@
     $("#var").click(
 				function(event) {
 				   document.getElementById("menu2").style.display = "block";
-var sel = document.getElementById('sel');
 
-// create new option element
-var opt = document.createElement('option');
-
-// create text node to add to option element (opt)
-opt.appendChild( document.createTextNode('New Option Text') );
-
-// set value property of opt
-opt.value = 'option value'; 
-
-// add opt to end of select box (sel)
-sel.appendChild(opt); 
 				})
 
     $("#fixed").click(
 			function(event) {
 			   document.getElementById("menu2").style.display = "none";
 			})
+	   $("#sel")
+		   .html('<option value="1">city1</option><option>city2</option>').selectpicker('refresh');
 
 </script>
 @stop
