@@ -93,13 +93,8 @@
 	</div>
 	<div class="form-group" style="display: none;" id="menu2">
 		<div class="col-sm-12" >
-				<select class="selectpicker" data-style="btn-secondary" multiple >
-				    <option>PHP</option>
-				    <option>CSS</option>
-				    <option>HTML</option>
-				    <option>CSS 3</option>
-				    <option>Bootstrap</option>
-				    <option>JavaScript</option>
+				<select id="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple >
+
 				  </select>
 		</div>
 	</div>
@@ -153,7 +148,17 @@
     $("#var").click(
 				function(event) {
 				   document.getElementById("menu2").style.display = "block";
+				   var x = document.getElementById("sel");
+				var option = document.createElement("option");
+				option.text = "Kiwi";
+				x.add(option, x[1]);;
+
 				})
+
+    $("#fixed").click(
+			function(event) {
+			   document.getElementById("menu2").style.display = "none";
+			})
 
 </script>
 @stop
