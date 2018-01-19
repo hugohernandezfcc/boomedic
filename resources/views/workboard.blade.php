@@ -30,7 +30,8 @@
 	    
   	</div>
   	<div class="box-body">
-
+  		<div id="al" class="alert form-group col-sm-12" style="display: none;">
+  		</div>
 	<div class="form-group col-sm-12">		
 	<label class="col-sm-4 control-label">Tipo de Horario: </label>
 
@@ -89,11 +90,12 @@
 	</div>
 </div>
 
-		<!--Radio group-->
+
+
 	<div class="form-group col-sm-12" style="display: none;" id="menu2">
 		<div class="col-sm-12" >
-			<label> Agregue sus horarios por día o grupos de días</label>
-				<select id="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple title="Seleccione uno o varios días">
+			<label> Agrupe los días que tengan un mismo horario</label>
+				<select id="sel" name="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple title="Seleccione uno o varios días">
 
 				  </select>
 		</div>
@@ -141,13 +143,15 @@
   $('#timepicker1').timepicker({
     showInputs: false,
      showMeridian:false,
-     minuteStep: 5
+     minuteStep: 5,
+     defaultTime: '18:00'
   });
     $('#timepicker2').timepicker({
     showInputs: false,
      showMeridian:false,
-     minuteStep: 5
-  });
+     minuteStep: 5,
+     defaultTime: '8:00'
+  })
     $("#var").click(
 				function(event) {
 				   document.getElementById("menu2").style.display = "block";
@@ -160,11 +164,23 @@
 				   document.getElementById("menu2").style.display = "none";
 				    document.getElementById("btn1").style.display = "none";
 				}) 
+       $("#btn1").click(
+				function(event) {
 
-    $("#fixed").click(
-			function(event) {
-			   document.getElementById("menu2").style.display = "none";
-			})
+					var group =  $("#sel").val();
+				if (group == "") {
+				document.getElementById("al").style.display = "block";	
+				  $('.alert').append('<div class="alert alert-danger alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-check"></i> No has seleccionado ningún día </b></div>');
+					} else {
+				document.getElementById("al").style.display = "block";	
+					
+				
+				  $('.alert').append('<div class="alert alert-success alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-check"></i> Grupo de horario agregado</b><br/>Días: '+ group +'. Hora inicial: '+ document.getElementById("timepicker2") +'. Hora Final: '+ document.getElementById("timepicker1") +'</div>');
+				}
+			
+				}) 
+
+
 
 </script>
 <script type="text/javascript">
