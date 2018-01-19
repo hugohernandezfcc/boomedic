@@ -182,6 +182,7 @@
 					$("#sel option[value='"+ selects[i] +"']").attr('disabled','disabled');
 				}
 					$("#sel").val().trigger('change');
+					
 				}
 			
 				}) 
