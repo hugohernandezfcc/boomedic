@@ -30,7 +30,7 @@
 	    
   	</div>
   	<div class="box-body">
-  		<div id="al" class="alert form-group col-sm-12" style="display: none;">
+  		<div id="al" class="al form-group col-sm-12" style="display: none;">
   		</div>
 	<div class="form-group col-sm-12">		
 	<label class="col-sm-4 control-label">Tipo de Horario: </label>
@@ -170,12 +170,11 @@
 					var group =  $("#sel").val();
 				if (group == "") {
 				document.getElementById("al").style.display = "block";	
-				  $('.alert').append('<div class="alert alert-danger alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-check"></i> No has seleccionado ningún día </b></div>');
+				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-check"></i> No has seleccionado ningún día </b></div>');
 					} else {
 				document.getElementById("al").style.display = "block";	
 					
-				
-				  $('.alert').append('<div class="alert alert-success alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-check"></i> Grupo de horario agregado</b><br/>Días: '+ group +'. Hora inicial: '+ document.getElementById("timepicker2") +'. Hora Final: '+ document.getElementById("timepicker1") +'</div>');
+				  $('.al').append('<div class="alert alert-success alert-dismissible" id="alert"><b><i class="icon fa fa-check"></i> Grupo de horario agregado</b><br/>Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				}
 			
 				}) 
