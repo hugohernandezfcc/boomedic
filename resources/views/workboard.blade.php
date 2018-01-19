@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css"/>
 <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-alpha/css/bootstrap-select.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-alpha/js/bootstrap-select.js"></script>
 <style type="text/css">
 .btn span.glyphicon {    			
 	opacity: 0;				
@@ -159,7 +159,6 @@
 				   document.getElementById("menu1").style.display = "none";
 				})
        $("#fixed").click(
-
 				function(event) {
 				   document.getElementById("menu1").style.display = "block";
 				   document.getElementById("menu2").style.display = "none";
@@ -170,21 +169,20 @@
 
 					var group =  $("#sel").val();
 
-				if (!group) {
+				if (group == "") {
 				document.getElementById("al").style.display = "block";	
 				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-check"></i> No has seleccionado ningún día </b></div>');
 					} else {
 				document.getElementById("al").style.display = "block";	
 
-				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
+				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button><b><i class="icon fa fa-info"></i> Grupo de horario agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				var selects = group.toString().split(',');
 				for (var i = -1; i < selects.length; i++) {	
-					$("#sel").val('"+ selects[i] +"').trigger("change"); 
-					$("#sel option[value='"+ selects[i] +"']").attr('disabled','disabled').trigger("change");
-					
+					$("#sel").val('"+ selects[i] +"').trigger('change');
+					$("#sel option[value='"+ selects[i] +"']").attr('disabled','disabled');
 				}
-					
-			}
+					$("#sel").val().trigger('change');
+				}
 			
 				}) 
 
