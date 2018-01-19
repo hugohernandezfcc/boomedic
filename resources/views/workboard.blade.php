@@ -159,6 +159,7 @@
 				   document.getElementById("menu1").style.display = "none";
 				})
        $("#fixed").click(
+
 				function(event) {
 				   document.getElementById("menu1").style.display = "block";
 				   document.getElementById("menu2").style.display = "none";
@@ -178,12 +179,10 @@
 				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button><b><i class="icon fa fa-info"></i> Grupo de horario agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				var selects = group.toString().split(',');
 				for (var i = -1; i < selects.length; i++) {	
-					$("#sel").val('"+ selects[i] +"').trigger('change');
 					$("#sel option[value='"+ selects[i] +"']").remove().trigger('change.select2');
-
-
-
+					
 				}
+					$("#sel").val(null).trigger("change"); 
 			}
 			
 				}) 
