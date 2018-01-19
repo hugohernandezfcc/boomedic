@@ -93,7 +93,8 @@
 	<div class="form-group col-sm-12" style="display: none;" id="menu2">
 		<div class="col-sm-12" >
 			<label> Agregue sus horarios por día o grupos de días</label>
-				<select id="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple >
+				<select id="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple title="Seleccione uno o varios días">
+
 				  </select>
 		</div>
 	</div>
