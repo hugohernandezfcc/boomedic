@@ -30,13 +30,10 @@
   	</div>
   	<div class="box-body">
 
-  	<div class="col-sm-4">
-			<div class="form-group">
-				<label>Tipo de Horario: </label>
-			   
-			</div>
-	</div>
-  			<div class="col-sm-8">
+			
+	<label class="col-sm-4 form-control">Tipo de Horario: </label>
+
+  	<div class="col-sm-8">
 
 			<div class="form-group">
 				<label>Fijo </label>
@@ -44,12 +41,11 @@
 			    <label>Variable </label>
 			     <input name="fixed" type="radio" id="var" value="var">
 			</div>
-
 	</div>
-	<div class="form-group" id="menu1" style="display: none;">
-	  		<div class="col-sm-4">	
-  		<label>Seleccione los días de la semana que dará consulta con una jornada fija</label><br/>
-  	    </div>
+
+	<div class="form-group" id="menu1">
+
+  		<label class="col-sm-4 form-control">Seleccione los días de la semana que dará consulta con una jornada fija</label>
   	    <form action="{{ url('/workboardDr/create') }}/{{ $work }}" method="post" class="form-horizontal" id="formwork">
   	<div class="col-sm-8">	
   		<div data-toggle="buttons">
@@ -92,11 +88,8 @@
 		</div>
 	</div>
 </div>
-	<br/><br/><br/>
+
 		<!--Radio group-->
-
-
-
 	<div class="form-group" style="display: none;" id="menu2">
 		<div class="col-sm-12" >
 			<label> Agregue sus horarios por día o grupos de días</label>
@@ -104,7 +97,7 @@
 				  </select>
 		</div>
 	</div>
-
+	<br/><br/><br/>
 	<div class="form-group">
 	<div class="col-sm-6">
 
@@ -171,7 +164,7 @@
 <script type="text/javascript">
 			 $(' input[type=checkbox]').each(function(event) {
 		
-				$("#sel").append('<option value="'+ $('input[type=checkbox]').val() +'">'+ $('input[type=checkbox]').val() +'</option>').trigger('change.select2');
+				$("#sel").append('<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>').trigger('change.select2');
 
 
 		        })
