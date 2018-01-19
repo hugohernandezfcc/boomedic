@@ -179,7 +179,8 @@
 				var selects = group.toString().split(',');
 				for (var i = -1; i < selects.length; i++) {	
 					$("#sel").val('"+ selects[i] +"').trigger('change');
-					$("#sel option[value='"+ selects[i] +"']").remove().trigger('change');
+					$("#sel option[value='"+ selects[i] +"']").remove().trigger('change.select2');
+
 
 
 				}
