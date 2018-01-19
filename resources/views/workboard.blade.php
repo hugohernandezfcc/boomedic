@@ -29,6 +29,13 @@
 	    
   	</div>
   	<div class="box-body">
+
+  	<div class="col-sm-4">
+			<div class="form-group">
+				<label>Tipo de Horario: </label>
+			   
+			</div>
+	</div>
   			<div class="col-sm-8">
 
 			<div class="form-group">
@@ -87,12 +94,7 @@
 </div>
 	<br/><br/><br/>
 		<!--Radio group-->
-	<div class="col-sm-4">
-				<div class="form-group">
-				<label>Tipo de Horario: </label>
-			   
-			</div>
-	</div>
+
 
 
 	<div class="form-group" style="display: none;" id="menu2">
@@ -117,8 +119,8 @@
 
 		<label>Hora Final:</label>
 		<div class="input-group bootstrap-timepicker timepicker">
+			 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 		  <input id="timepicker1" type="text" class="form-control" name="end">
-		  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 		</div>
 	</div>
 </div>	
