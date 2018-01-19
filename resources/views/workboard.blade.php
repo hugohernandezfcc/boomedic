@@ -18,6 +18,7 @@
 .btn.active span.glyphicon {				
 	opacity: 1;				
 }
+
 </style>
 @stop
 
@@ -30,23 +31,22 @@
   	</div>
   	<div class="box-body">
 
-			
+	<div class="form-group col-sm-12">		
 	<label class="col-sm-4 control-label">Tipo de Horario: </label>
 
   	<div class="col-sm-8">
-
-			<div class="form-group">
 				<label>Fijo </label>
 			    <input name="fixed" type="radio" id="fixed" checked value="fixed"> &nbsp;&nbsp;
 			    <label>Variable </label>
 			     <input name="fixed" type="radio" id="var" value="var">
-			</div>
+	</div>
 	</div>
 
 	<div class="form-group col-sm-12" id="menu1">
 
-  		<label class="col-sm-4 control-label">Seleccione los días de la semana que dará consulta con una jornada fija</label>
+  		
   	    <form action="{{ url('/workboardDr/create') }}/{{ $work }}" method="post" class="form-horizontal" id="formwork">
+  	    	<div class="col-sm-4"><label>Seleccione los días de la semana que dará consulta con una jornada fija</label></div>
   	<div class="col-sm-8">	
   		<div data-toggle="buttons" class="btn-group">
 
@@ -90,7 +90,7 @@
 </div>
 
 		<!--Radio group-->
-	<div class="form-group" style="display: none;" id="menu2">
+	<div class="form-group col-sm-12" style="display: none;" id="menu2">
 		<div class="col-sm-12" >
 			<label> Agregue sus horarios por día o grupos de días</label>
 				<select id="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple >
@@ -98,7 +98,7 @@
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group col-sm-12">
 	<div class="col-sm-6">
 
 		<label>Hora de inicio:</label>
@@ -117,13 +117,16 @@
 		</div>
 	</div>
 </div><br/>	
-	<div class="form-group">
+	<div class="form-group col-sm-12">
 		
 		<label class="col-sm-2 control-label">Promedio de duración por cita:</label>
 		<div class="col-sm-10">
 			 <input id="prom" type="number" name="prom" class="form-control" placeholder="Unidad de tiempo en minutos" required="required">
 	 	</div>
 	</div>
+	<div id="btn1" class="col-sm-12" align="left" style="display: none;">
+ 		<button type="button" class="btn btn-secondary btn">Agregar grupo de horario</button>
+ 	</div>
  	<div class="col-sm-12" align="right">
  		<button type="submit" class="btn btn-secondary">Guardar</button>
  		<a href="{{ url()->previous() }}" class="btn btn-default">
@@ -147,12 +150,14 @@
     $("#var").click(
 				function(event) {
 				   document.getElementById("menu2").style.display = "block";
+				    document.getElementById("btn1").style.display = "block";
 				   document.getElementById("menu1").style.display = "none";
 				})
        $("#fixed").click(
 				function(event) {
 				   document.getElementById("menu1").style.display = "block";
 				   document.getElementById("menu2").style.display = "none";
+				    document.getElementById("btn1").style.display = "none";
 				}) 
 
     $("#fixed").click(
@@ -163,10 +168,7 @@
 </script>
 <script type="text/javascript">
 			 $(' input[type=checkbox]').each(function(event) {
-		
-				$("#sel").append('<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>').trigger('change.select2');
-
-
+						$("#sel").append('<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>').trigger('change.select2');
 		        })
 			 				
 
