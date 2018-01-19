@@ -29,7 +29,18 @@
 	    
   	</div>
   	<div class="box-body">
-  		<div class="col-sm-4">	
+  			<div class="col-sm-8">
+
+			<div class="form-group">
+				<label>Fijo </label>
+			    <input name="fixed" type="radio" id="fixed" checked value="fixed"> &nbsp;&nbsp;
+			    <label>Variable </label>
+			     <input name="fixed" type="radio" id="var" value="var">
+			</div>
+
+	</div>
+	<div class="form-group" id="menu1" style="display: none;">
+	  		<div class="col-sm-4">	
   		<label>Seleccione los días de la semana que dará consultas:</label><br/>
   	    </div>
   	    <form action="{{ url('/workboardDr/create') }}/{{ $work }}" method="post" class="form-horizontal" id="formwork">
@@ -72,7 +83,9 @@
 				<b>Sáb</b>
 			</label>				
 		</div>
-	</div><br/><br/><br/>
+	</div>
+</div>
+	<br/><br/><br/>
 		<!--Radio group-->
 	<div class="col-sm-4">
 				<div class="form-group">
@@ -81,16 +94,7 @@
 			</div>
 	</div>
 
-	<div class="col-sm-8">
 
-			<div class="form-group">
-				<label>Fijo </label>
-			    <input name="fixed" type="radio" id="fixed" checked value="fixed"> &nbsp;&nbsp;
-			    <label>Variable </label>
-			     <input name="fixed" type="radio" id="var" value="var">
-			</div>
-
-	</div>
 	<div class="form-group" style="display: none;" id="menu2">
 		<div class="col-sm-12" >
 			<label> Agregue sus horarios por día o grupos de días</label>
@@ -148,8 +152,13 @@
     $("#var").click(
 				function(event) {
 				   document.getElementById("menu2").style.display = "block";
-				  
+				   document.getElementById("menu1").style.display = "none";
 				})
+       $("#fixed").click(
+				function(event) {
+				   document.getElementById("menu1").style.display = "block";
+				   document.getElementById("menu2").style.display = "none";
+				}) 
 
     $("#fixed").click(
 			function(event) {
@@ -160,11 +169,11 @@
 <script type="text/javascript">
 			 $('label.active input[type=checkbox]').each(function(event) {
 		
-				var options += '<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>';
+				$("#sel").append('<option value="'+ $('input[type=checkbox]').val() +'">'+ $('input[type=checkbox]').val() +'</option>').trigger('change.select2');
 
 
 		        })
-			 	$("#sel").append(options).trigger('change.select2');			
+			 				
 
 </script>
 @stop
