@@ -48,7 +48,7 @@
 	</div>
 	<div class="form-group" id="menu1" style="display: none;">
 	  		<div class="col-sm-4">	
-  		<label>Seleccione los días de la semana que dará consultas:</label><br/>
+  		<label>Seleccione los días de la semana que dará consulta con una jornada fija</label><br/>
   	    </div>
   	    <form action="{{ url('/workboardDr/create') }}/{{ $work }}" method="post" class="form-horizontal" id="formwork">
   	<div class="col-sm-8">	
@@ -123,7 +123,7 @@
 		  <input id="timepicker1" type="text" class="form-control" name="end">
 		</div>
 	</div>
-</div>	
+</div><br/>	
 	<div class="form-group">
 		
 		<label class="col-sm-2 control-label">Promedio de duración por cita:</label>
@@ -169,7 +169,7 @@
 
 </script>
 <script type="text/javascript">
-			 $('label.active input[type=checkbox]').each(function(event) {
+			 $(' input[type=checkbox]').each(function(event) {
 		
 				$("#sel").append('<option value="'+ $('input[type=checkbox]').val() +'">'+ $('input[type=checkbox]').val() +'</option>').trigger('change.select2');
 
