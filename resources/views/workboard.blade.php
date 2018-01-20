@@ -169,6 +169,7 @@
 				   document.getElementById("menu1").style.display = "block";
 				   document.getElementById("menu2").style.display = "none";
 				    document.getElementById("btn1").style.display = "none";
+				    document.getElementById("type").value = '';
 				}) 
        $("#btn1").click(
 				function(event) {
@@ -183,6 +184,12 @@
 
 				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				var selects = group.toString().split(',');
+				document.getElementById("timestart").value = $("#timepicker2").val();
+				document.getElementById("timeend").value = $("#timepicker1").val();
+				document.getElementById("varprom").value = $("#prom").val();
+				document.getElementById("vardays").value = group;
+
+
 				for (var i = -1; i < selects.length; i++) {	
 					$("#sel").val('"+ selects[i] +"').trigger('change');
 					$("#sel option[value='"+ selects[i] +"']").attr('disabled','disabled');

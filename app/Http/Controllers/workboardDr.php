@@ -50,6 +50,7 @@ class workboardDr extends Controller
      */
     public function create(Request $request, $id )
     {
+if ($request->type == '') {
 
         $user = User::find(Auth::id()); 
         foreach($request->day as $day){   
@@ -122,10 +123,14 @@ class workboardDr extends Controller
         
         }
 
+                      return redirect('workboardDr/index/'.$id);
+                    }
+                } else 
+                {
+                    return redirect('workboardDr/index/'.$id);
+                     $user = User::find(Auth::id()); 
+                }
 
-
-      return redirect('workboardDr/index/'.$id);
-    }
 
     /**
      * Store a newly created resource in storage.
