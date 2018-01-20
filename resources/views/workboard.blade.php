@@ -98,6 +98,11 @@
 				<select id="sel" name="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple title="Seleccione uno o varios días">
 
 				  </select>
+				  <input type="hidden" name="timestart[]" id="timestart">
+				  <input type="hidden" name="timeend[]" id="timeend">
+				  <input type="hidden" name="varprom[]" id="varprom">
+				  <input type="hidden" name="vardays[]" id="vardays">
+				  <input type="hidden" name="type" id="type">
 		</div>
 	</div>
 
@@ -157,6 +162,7 @@
 				   document.getElementById("menu2").style.display = "block";
 				    document.getElementById("btn1").style.display = "block";
 				   document.getElementById("menu1").style.display = "none";
+				   document.getElementById("type").value = 'true';
 				})
        $("#fixed").click(
 				function(event) {
@@ -169,20 +175,21 @@
 
 					var group =  $("#sel").val();
 
-				if (group == "") {
+				if (!group) {
 				document.getElementById("al").style.display = "block";	
 				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-check"></i> No has seleccionado ningún día </b></div>');
 					} else {
 				document.getElementById("al").style.display = "block";	
 
-				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button><b><i class="icon fa fa-info"></i> Grupo de horario agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
+				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				var selects = group.toString().split(',');
 				for (var i = -1; i < selects.length; i++) {	
 					$("#sel").val('"+ selects[i] +"').trigger('change');
 					$("#sel option[value='"+ selects[i] +"']").attr('disabled','disabled');
 				}
-					$("#sel").val().trigger('change');
-					
+					$("#sel").val('0').trigger('change.select2');
+					$(".filter-option").html("Seleccione uno o varios días");
+
 				}
 			
 				}) 
