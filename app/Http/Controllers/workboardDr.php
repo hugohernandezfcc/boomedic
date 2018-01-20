@@ -123,14 +123,10 @@ if ($request->type == '') {
         
         }
 
-                      return redirect('workboardDr/index/'.$id);
-                    }
-                } else 
-                {
-                    return redirect('workboardDr/index/'.$id);
-                     $user = User::find(Auth::id()); 
-                }
+} else {}
 
+      return redirect('workboardDr/index/'.$id);
+    }
 
     /**
      * Store a newly created resource in storage.
