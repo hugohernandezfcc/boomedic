@@ -98,9 +98,6 @@
 				<select id="sel" name="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple title="Seleccione uno o varios días">
 
 				  </select>
-				  <input type="hidden" name="timestart" id="timestart">
-				  <input type="hidden" name="timeend" id="timeend">
-				  <input type="hidden" name="varprom" id="varprom">
 				  <input type="hidden" name="vardays" id="vardays">
 				  <input type="hidden" name="type" id="type">
 		</div>
@@ -185,32 +182,23 @@
 				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				var selects = group.toString().split(',');
 
-					var jsonday = {};
-					var jsonend = {};
-					var jsonprom = {};
-					var jsonstart = {};	
+
+					var json = {};	
 
 
 				for(z=0; z < selects.length; z++){
-					jsonstart[z] = $("#timepicker2").val();
-					jsonend [z] = $("#timepicker1").val();
-					jsonprom [z] = $("#prom").val();
-					jsonday [z] = selects[z];
+					json[z] = {"day" : selects[z], "start": $("#timepicker2").val() , "end" : $("#timepicker1").val(), "prom" : $("#prom").val() };
 					$("#sel").val('"+ selects[z] +"').trigger('change');
 					$("#sel option[value='"+ selects[z] +"']").attr('disabled','disabled');
 				}
-				console.log(jsonday);
+				console.log(json);
 
 					if(!document.getElementById("vardays").value){
-				document.getElementById("timestart").value = JSON.stringify(jsonstart);
-				document.getElementById("timeend").value = JSON.stringify(jsonend);
-				document.getElementById("varprom").value = JSON.stringify(jsonprom);
-				document.getElementById("vardays").value = JSON.stringify(jsonday);
+				document.getElementById("vardays").value = json;
+			
 				} else {
-				document.getElementById("timestart").value = document.getElementById("timestart").value.concat(JSON.stringify(jsonstart));
-				document.getElementById("timeend").value = document.getElementById("timeend").value.concat(JSON.stringify(jsonend));
-				document.getElementById("varprom").value = document.getElementById("varprom").value.concat(JSON.stringify(jsonprom));
-				document.getElementById("vardays").value = document.getElementById("vardays").value.concat(JSON.stringify(jsonday));
+
+				document.getElementById("vardays").value = document.getElementById("vardays").value.concat(json);
 
 				}
 
