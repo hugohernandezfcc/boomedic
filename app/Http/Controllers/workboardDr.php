@@ -128,7 +128,6 @@ if ($request->type == '') {
     $json = json_decode($request->vardays);
     foreach ($json as $json2) {
 
-         dd($json2);
        
          $workboard = new workboard;
          $workboard->workingDays = $json2->day;
