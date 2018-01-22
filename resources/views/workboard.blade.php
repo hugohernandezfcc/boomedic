@@ -187,7 +187,7 @@
 
 
 				for(z=0; z < selects.length; z++){
-					json.push(JSON.stringify({"day" : selects[z], "start": $("#timepicker2").val() , "end" : $("#timepicker1").val(), "prom" : $("#prom").val() }));
+					json.push({"day" : selects[z], "start": $("#timepicker2").val() , "end" : $("#timepicker1").val(), "prom" : $("#prom").val() });
 					$("#sel").val('"+ selects[z] +"').trigger('change');
 					$("#sel option[value='"+ selects[z] +"']").attr('disabled','disabled');
 				}
@@ -199,7 +199,7 @@
 				} else {
 				//json.push(document.getElementById("vardays").value);
 				var jsonend = json.concat(document.getElementById("vardays").value);
-				document.getElementById("vardays").value = jsonend;
+				document.getElementById("vardays").value = JSON.stringify(jsonend);
 				console.log(document.getElementById("vardays").value);
 
 				}
