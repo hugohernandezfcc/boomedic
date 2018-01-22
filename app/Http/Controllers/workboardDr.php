@@ -123,7 +123,28 @@ if ($request->type == '') {
         
         }
 
-} else {}
+} else {
+    $jsonstart = json_decode($request->timestart);
+    $jsonend = json_decode($request->timeend);
+    $jsonprom = json_decode($request->varprom);
+    $jsonday = json_decode($vardays->vardays);
+         $workboard = new workboard;
+        
+     
+         $workboard->workingDays = $jsonday;
+
+         $workboard->labInformation = $id;
+         $workboard->start = $jsonstart;
+         $workboard->end   =  $jsonend;   
+         $workboard->fixed_schedule = 'False';
+
+         $workboard->patient_duration_attention =  $jsonprom;
+         $workboard->save();
+
+
+
+
+}
 
       return redirect('workboardDr/index/'.$id);
     }
