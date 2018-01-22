@@ -194,11 +194,11 @@
 				console.log(json);
 
 					if(!document.getElementById("vardays").value){
-				document.getElementById("vardays").value = json;
+				document.getElementById("vardays").value = JSON.stringify(json);
 			
 				} else {
 
-				document.getElementById("vardays").value = document.getElementById("vardays").value.concat(json);
+				document.getElementById("vardays").value = JSON.stringify(document.getElementById("vardays").value).concat(JSON.stringify(json));
 
 				}
 

@@ -125,11 +125,11 @@ if ($request->type == '') {
 
 } else {
     $json = json_decode($request->vardays);
-    foreach ($json as $json) {
+    foreach ($json as $json2) {
 
 
          $workboard = new workboard;
-         $workboard->workingDays = $json->day;
+         $workboard->workingDays = $json2->day;
 
          $workboard->labInformation = $id;
 
