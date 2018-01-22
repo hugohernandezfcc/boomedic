@@ -98,10 +98,10 @@
 				<select id="sel" name="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple title="Seleccione uno o varios días">
 
 				  </select>
-				  <input type="hidden" name="timestart[]" id="timestart">
-				  <input type="hidden" name="timeend[]" id="timeend">
-				  <input type="hidden" name="varprom[]" id="varprom">
-				  <input type="hidden" name="vardays[]" id="vardays">
+				  <input type="hidden" name="timestart" id="timestart">
+				  <input type="hidden" name="timeend" id="timeend">
+				  <input type="hidden" name="varprom" id="varprom">
+				  <input type="hidden" name="vardays" id="vardays">
 				  <input type="hidden" name="type" id="type">
 		</div>
 	</div>
@@ -184,23 +184,36 @@
 
 				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				var selects = group.toString().split(',');
-				for(z=-1; z < selects.length; z++){
-					var jsonstart[z] = $("#timepicker2").val();
-					var jsonend[z] = $("#timepicker1").val();
-					var jsonprom[z] = $("#prom").val();
-					var jsonday[z]  = selects[z];
+
+					var jsonday = {};
+					var jsonend = {};
+					var jsonprom = {};
+					var jsonstart = {};	
+
+
+				for(z=0; z < selects.length; z++){
+					jsonstart[z] = $("#timepicker2").val();
+					jsonend [z] = $("#timepicker1").val();
+					jsonprom [z] = $("#prom").val();
+					jsonday [z] = selects[z];
+					$("#sel").val('"+ selects[z] +"').trigger('change');
+					$("#sel option[value='"+ selects[z] +"']").attr('disabled','disabled');
+				}
+				console.log(jsonday);
+
+					if(!document.getElementById("vardays").value){
+				document.getElementById("timestart").value = JSON.stringify(jsonstart);
+				document.getElementById("timeend").value = JSON.stringify(jsonend);
+				document.getElementById("varprom").value = JSON.stringify(jsonprom);
+				document.getElementById("vardays").value = JSON.stringify(jsonday);
+				} else {
+				document.getElementById("timestart").value = document.getElementById("timestart").value.concat(JSON.stringify(jsonstart));
+				document.getElementById("timeend").value = document.getElementById("timeend").value.concat(JSON.stringify(jsonend));
+				document.getElementById("varprom").value = document.getElementById("varprom").value.concat(JSON.stringify(jsonprom));
+				document.getElementById("vardays").value = document.getElementById("vardays").value.concat(JSON.stringify(jsonday));
+
 				}
 
-				document.getElementById("timestart").value = jsonstart[z];
-				document.getElementById("timeend").value = jsonend[z];
-				document.getElementById("varprom").value = jsonprom[z];
-				document.getElementById("vardays").value = jsonday[z];
-
-
-				for (var i = -1; i < selects.length; i++) {	
-					$("#sel").val('"+ selects[i] +"').trigger('change');
-					$("#sel option[value='"+ selects[i] +"']").attr('disabled','disabled');
-				}
 					$("#sel").val('0').trigger('change.select2');
 					$(".filter-option").html("Seleccione uno o varios días");
 
