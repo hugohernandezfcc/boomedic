@@ -184,10 +184,17 @@
 
 				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				var selects = group.toString().split(',');
-				document.getElementById("timestart").value = $("#timepicker2").val();
-				document.getElementById("timeend").value = $("#timepicker1").val();
-				document.getElementById("varprom").value = $("#prom").val();
-				document.getElementById("vardays").value = group;
+				for(z=0; z<selects; z++){
+					var jsonstart[z] = $("#timepicker2").val();
+					var jsonend[z] = $("#timepicker1").val();
+					var jsonprom[z] = $("#prom").val();
+					var jsonday[z]  = selects[z];
+				}
+				
+				document.getElementById("timestart").value = jsonstart[z];
+				document.getElementById("timeend").value = jsonend[z];
+				document.getElementById("varprom").value = jsonprom[z];
+				document.getElementById("vardays").value = jsonday[z];
 
 
 				for (var i = -1; i < selects.length; i++) {	
