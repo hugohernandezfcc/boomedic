@@ -175,11 +175,15 @@
 
 				if (!group) {
 				document.getElementById("al").style.display = "block";	
-				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-check"></i> No has seleccionado ningún día </b></div>');
+				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="danger"><b><i class="icon fa fa-check"></i> No has seleccionado ningún día </b></div>');
+					$("#danger").fadeTo(2000, 500).slideUp(500, function(){
+					    $("#danger").alert('close');
+					});
+
 					} else {
 				document.getElementById("al").style.display = "block";	
 
-				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
+				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario pre-agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				var selects = group.toString().split(',');
 
 
@@ -206,6 +210,10 @@
 
 					$("#sel").val('0').trigger('change.select2');
 					$(".filter-option").html("Seleccione uno o varios días");
+
+				$('#alert').on('close.bs.alert', function () {
+					//code
+					});
 
 				}
 			

@@ -127,14 +127,46 @@ if ($request->type == '') {
 
     $json = json_decode($request->vardays);
     foreach ($json as $json2) {
+        $startTime = Carbon::parse($json2->start);
+        $finishTime = Carbon::parse($json2->end);
+
+        $totalDuration = $finishTime->diffInMinutes($startTime);
+        $consultation = $request->prom - 5;
+        $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
+
+
+    $hora_inicio = new \DateTime(  $startTime );
+    $hora_fin    = new \DateTime(  $finishTime );
+    $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que nos muestre $hora_fin
+
+    // Establecemos el intervalo en minutos        
+    $intervalo = new \DateInterval('PT'.$consultation.'M');
+
+    // Sacamos los periodos entre las horas
+    $periodo   = new \DatePeriod($hora_inicio, $intervalo, $hora_fin);        
+
+    foreach( $periodo as $hora ) {
+
+        // Guardamos las horas intervalos 
+        $horas[] =  $hora->format('H:i:s');
+    }
+
+
+    $timeend = Carbon::parse(\end($horas)); 
+
+    if($timeend !=  $finishTime){
+         $timedeath = $finishTime->diffInMinutes($json2->end);
+         array_push($horas, "asueto :".$timedeath);
+    }
 
        
          $workboard = new workboard;
+         $workboard->workingHours = number_format(($totalDuration / 60), 0, '.', ',');
          $workboard->workingDays = $json2->day;
          $workboard->start = $json2->start;
          $workboard->end   = $json2->end;
          $workboard->labInformation = $id;
-
+         $workboard->patient_duration_attention =  json_encode($horas);
          $workboard->fixed_schedule = 'False';
 
 
