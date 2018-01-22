@@ -170,7 +170,7 @@
 				}) 
        $("#btn1").click(
 				function(event) {
-
+					var json = new Array();	
 					var group =  $("#sel").val();
 
 				if (!group) {
@@ -183,22 +183,24 @@
 				var selects = group.toString().split(',');
 
 
-					var json = {};	
+					
 
 
 				for(z=0; z < selects.length; z++){
-					json[z] = {"day" : selects[z], "start": $("#timepicker2").val() , "end" : $("#timepicker1").val(), "prom" : $("#prom").val() };
+					json.push(JSON.stringify({"day" : selects[z], "start": $("#timepicker2").val() , "end" : $("#timepicker1").val(), "prom" : $("#prom").val() }));
 					$("#sel").val('"+ selects[z] +"').trigger('change');
 					$("#sel option[value='"+ selects[z] +"']").attr('disabled','disabled');
 				}
-				console.log(json);
+				
 
-					if(!document.getElementById("vardays").value){
-				document.getElementById("vardays").value = JSON.stringify(json);
+				if(!document.getElementById("vardays").value){
+				document.getElementById("vardays").value = json;
 			
 				} else {
-
-				document.getElementById("vardays").value = JSON.stringify(document.getElementById("vardays").value).concat(JSON.stringify(json));
+				//json.push(document.getElementById("vardays").value);
+				var jsonend = [ json.concat(document.getElementById("vardays").value) ];
+				document.getElementById("vardays").value = jsonend;
+				console.log(document.getElementById("vardays").value);
 
 				}
 

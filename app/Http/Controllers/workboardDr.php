@@ -124,20 +124,23 @@ if ($request->type == '') {
         }
 
 } else {
+
     $json = json_decode($request->vardays);
     foreach ($json as $json2) {
 
-
+         
+       
          $workboard = new workboard;
          $workboard->workingDays = $json2->day;
-
+         $workboard->start = $json2->start;
+         $workboard->end   = $json2->end;
          $workboard->labInformation = $id;
 
          $workboard->fixed_schedule = 'False';
 
 
          $workboard->save();
-
+        
  }
 
 }
