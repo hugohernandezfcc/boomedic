@@ -246,12 +246,7 @@
 
 <script type="text/javascript">
     $(function () {
-       $('#paymentmethodtable').DataTable( {
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
-        responsive: true
-    } );
+
         //Datemask dd/mm/yyyy
         //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
     
@@ -304,7 +299,11 @@
                             'sortDescending': ': Activar para ordenar la columna de manera descendente'
                         }
                     },
-                'lengthChange': false
+                'lengthChange': false,
+                        rowReorder: {
+                          selector: 'td:nth-child(2)'
+                      },
+                      responsive: true
             });
         }
 
