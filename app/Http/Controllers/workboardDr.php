@@ -32,13 +32,16 @@ class workboardDr extends Controller
     public function index($id){
     $user = User::find(Auth::id());   
     $work = $id;
+    $workboard = DB::table('workboard')->where('labInformation', $work)->first();
+
         return view('workboard', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'work'      => $work
+                'work'      => $work,
+                'workboard' => $workboard 
             ]
         );
     }
@@ -50,10 +53,15 @@ class workboardDr extends Controller
      */
     public function create(Request $request, $id )
     {
-if ($request->type == '') {
+  $workboard = DB::table('workboard')->where('labInformation', $id)->first();
+ if(count($workboard) > 0){
+    DB::table('workboard')->where('labInformation', $id)->delete();   
+ }
+
+if ($request->type == 'false') {
 
         $user = User::find(Auth::id()); 
-        foreach($request->day as $day){   
+        
         $startTime = Carbon::parse($request->start);
         $finishTime = Carbon::parse($request->end);
 
@@ -86,7 +94,7 @@ if ($request->type == '') {
          array_push($horas, "asueto :".$timedeath);
     }
 
-
+foreach($request->day as $day){   
 
          $workboard = new workboard;
         
@@ -123,7 +131,7 @@ if ($request->type == '') {
         
         }
 
-} else {
+} if ($request->type == 'true')  {
 
     $json = json_decode($request->vardays);
     foreach ($json as $json2) {

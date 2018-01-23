@@ -25,11 +25,18 @@
 @section('content')
 
 <div class="box">
+
   	<div class="box-header with-border">
 	    <h3 class="box-title">Horario de Trabajo</h3>
 	    
   	</div>
   	<div class="box-body">
+@if(count($workboard) > 0)
+<div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> Tienes un horario registrado en este lugar. Si guardas un nuevo horario se perderá el registro anterior.</b>
+</div>
+
+
+@endif
   		<div id="al" class="al form-group col-sm-12" style="display: none;">
   		</div>
 	<div class="form-group col-sm-12">		
@@ -99,7 +106,7 @@
 
 				  </select>
 				  <input type="hidden" name="vardays" id="vardays">
-				  <input type="hidden" name="type" id="type">
+				  <input type="hidden" name="type" id="type" value="false">
 		</div>
 	</div>
 
@@ -166,7 +173,7 @@
 				   document.getElementById("menu1").style.display = "block";
 				   document.getElementById("menu2").style.display = "none";
 				    document.getElementById("btn1").style.display = "none";
-				    document.getElementById("type").value = '';
+				    document.getElementById("type").value = 'false';
 				}) 
        $("#btn1").click(
 				function(event) {
@@ -175,7 +182,7 @@
 
 				if (!group) {
 				document.getElementById("al").style.display = "block";	
-				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="danger"><b><i class="icon fa fa-check"></i> No has seleccionado ningún día </b></div>');
+				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="danger"><b><i class="icon fa fa-warning"></i> No has seleccionado ningún día </b></div>');
 					$("#danger").fadeTo(2000, 500).slideUp(500, function(){
 					    $("#danger").alert('close');
 					});
@@ -183,9 +190,9 @@
 					} 
 				if (!document.getElementById('prom').value) {
 				document.getElementById("al").style.display = "block";	
-				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="danger"><b><i class="icon fa fa-check"></i> No has indicado la duración de la cita</b></div>');
-					$("#danger").fadeTo(2000, 500).slideUp(500, function(){
-					    $("#danger").alert('close');
+				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="danger2"><b><i class="icon fa fa-warning"></i> No has indicado la duración de la cita</b></div>');
+					$("#danger2").fadeTo(2000, 500).slideUp(500, function(){
+					    $("#danger2").alert('close');
 					});
 
 					}
@@ -257,4 +264,5 @@
 			 				
 
 </script>
+
 @stop
