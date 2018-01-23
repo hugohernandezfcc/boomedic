@@ -49,7 +49,7 @@
 		<div class="box-body">
 
             @if($mode == 'listPaymentMethods')
-            	<table id="paymentmethodtable" class="display nowrap table table-bordered table-striped" cellspacing="0" width="100%">
+            	<table id="paymentmethodtable" class="table table-bordered table-striped display nowrap dtr-inline collapse" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
 	                    	<th>Tarjeta</th>
@@ -107,7 +107,7 @@
 	                            <td>{{ $card->bank }}</td>
 	                            <td>{{ $card->provider }}</td>
 	                            <td>{{ $card->credit_debit }}</td>
-	        					 <td></td>
+	        					 <
 	                            <td align="center">
 	                            <div class="input-group-btn">
 		          				<!-- Delete button that goes to a destroy type driver for the user to delete badly entered payment methods or that he no longer wants to have -->
