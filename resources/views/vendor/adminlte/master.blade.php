@@ -246,6 +246,12 @@
 
 <script type="text/javascript">
     $(function () {
+       $('#paymentmethodtable').DataTable( {
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    } );
         //Datemask dd/mm/yyyy
         //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
     
@@ -273,10 +279,7 @@
         
         if (document.getElementById('paymentmethodtable')) {
             $('#paymentmethodtable').DataTable({
-                 'rowReorder': {
-                          'selector': 'td:nth-child(2)'
-                      },
-                      'responsive': true,
+      
                 language: {
                         'processing':     'Procesando...',
                         'lengthMenu':     'Mostrar _MENU_ registros',
