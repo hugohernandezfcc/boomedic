@@ -29,7 +29,7 @@ class supportTickets extends Controller
      */
     public function index()
     {
-        $user = User::find($id);
+        $user = User::find(Auth::id());
         $allTickets = DB::table('support_tickets')->where('userId', Auth::id() )->get();
         return view('tickets', [
                 'allTickets'=> $allTickets,
@@ -50,7 +50,7 @@ class supportTickets extends Controller
      */
     public function create()
     {
-             $user = User::find($id);
+             $user = User::find(Auth::id());
         return view('tickets', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
