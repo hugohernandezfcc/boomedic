@@ -135,6 +135,7 @@ foreach($request->day as $day){
 
     $json = json_decode($request->vardays);
     foreach ($json as $json2) {
+        $horas = array();
         $startTime = Carbon::parse($json2->start);
         $finishTime = Carbon::parse($json2->end);
 
