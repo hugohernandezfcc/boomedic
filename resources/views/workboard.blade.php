@@ -192,14 +192,14 @@
 					else {
 				document.getElementById("al").style.display = "block";	
 
-				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario pre-agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
+				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="clo" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario pre-agregado</b> &nbsp; Días: <span>'+ group +'</span>. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				var selects = group.toString().split(',');
 
 
 					
 
 
-				for(z=0; z < selects.length; z++){
+				for(var z=0; z < selects.length; z++){
 					json.push({"day" : selects[z], "start": $("#timepicker2").val() , "end" : $("#timepicker1").val(), "prom" : $("#prom").val() });
 					$("#sel").val('"+ selects[z] +"').trigger('change');
 					$("#sel option[value='"+ selects[z] +"']").attr('disabled','disabled');
@@ -215,13 +215,34 @@
 				document.getElementById("vardays").value = JSON.stringify(jsonend);
 				console.log(document.getElementById("vardays").value);
 
+
 				}
 
 					$("#sel").val('0').trigger('change.select2');
 					$(".filter-option").html("Seleccione uno o varios días");
 
-				$('#alert').on('close.bs.alert', function () {
-					//code function para select 
+				$(".clo").click(function () {
+
+					var valor = $('#alert').children('span').text();
+					var unselect =	valor.toString().split(',');
+					
+					var jsonfind = document.getElementById("vardays").value;
+					for(var z=0; z < unselect.length; z++){
+					
+					$("#sel").val('"+ unselect[z] +"').trigger('change');
+					$("#sel option[value='"+ unselect[z] +"']").removeAttr("disabled");
+
+							$.each(JSON.parse(jsonfind), function(i){
+							    if (this["day"] == '"'+ unselect[z] +'"') {
+							    	
+							    	jsonfind.splice(i,1);
+							    	console.log(jsonfind);
+							    	document.getElementById("vardays").value = jsonfind;
+							    }
+							});
+
+					 $("#alert").alert('close');
+				}
 					});
 
 				}
