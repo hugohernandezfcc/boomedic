@@ -49,7 +49,7 @@
 		<div class="box-body">
 
             @if($mode == 'listPaymentMethods')
-            	<table id="paymentmethodtable" class="table table-bordered table-striped display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
+            	<table id="paymentmethodtable" class="display nowrap table table-bordered table-striped" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
 	                    	<th>Tarjeta</th>
@@ -84,7 +84,7 @@
 	                            <td>{{ $card->credit_debit }}</td>
 	          
 	                           
-	                            <td><input type="number" name="pay" value="" style="text-align: center;" class="form-control" required> <input type="hidden" name="id" value=" {{$card->id }} "></td>
+	                            <!--  <td><input type="number" name="pay" value="" style="text-align: center;" class="form-control" required> <input type="hidden" name="id" value=" {{$card->id }} "></td> -->
 
 	                            <td align="center">
 	                            <div class="input-group-btn">
@@ -93,11 +93,12 @@
 		          				<i class="fa fa-trash text-muted"></i>
 		          				</a>
 	        					</div>
-	                            <div class="input-group-btn">
-	                            	<!-- Summit button to process the payment, this points to the PaymentAuthorizations -->
+	                            <!-- <div class="input-group-btn">
+	                            
 	                            	<button type="submit" class="btn"><i class="fa fa-credit-card text-muted" id="reg"></i></button>
 		          		
-	        					</div></td>
+	        					</div> -->
+	        				</td>
 
 	        					 @endif
 	        					 @if($card->provider == 'Paypal')

@@ -303,9 +303,9 @@
                     },
                 'lengthChange': false,
                         rowReorder: {
-                          'selector': 'td:nth-child(2)'
+                          selector: 'td:nth-child(2)'
                       },
-                      'responsive': true
+                      responsive: true
             });
         }
 
@@ -393,7 +393,7 @@
 
 @if(config('adminlte.plugins.datatables'))
     <!-- DataTables -->
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
