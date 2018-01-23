@@ -49,9 +49,9 @@
 		<div class="box-body">
 
             @if($mode == 'listPaymentMethods')
-            	<table id="paymentmethodtable" class="table table-bordered table-striped display nowrap dtr-inline" cellspacing="0" width="100%">
+            	<table id="paymentmethodtable" class="table table-bordered table-striped display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
 	                <thead>
-	                    <tr>
+	                    <tr role="row">
 	                    	<th>Tarjeta</th>
 	                        <th>Banco </th>
 	                        <th>Proveedor </th>
@@ -72,7 +72,7 @@
 	                </tfoot>
 	                <tbody>
 	                    @foreach ($cards as $card)
-	                        <tr><form action="PaymentAuthorizations" method="post" id="regForm">
+	                        <tr role="row"><form action="PaymentAuthorizations" method="post" id="regForm">
 	                        	@if($card->provider != 'Paypal')
 	                        	<td>
 	                             @php 
