@@ -212,7 +212,7 @@
 					$(".filter-option").html("Seleccione uno o varios días");
 
 				$('#alert').on('close.bs.alert', function () {
-					//code
+					//code function para select 
 					});
 
 				}
