@@ -303,9 +303,9 @@
                     },
                 'lengthChange': false,
                         rowReorder: {
-                          selector: 'td:nth-child(2)'
+                          'selector': 'td:nth-child(2)'
                       },
-                      responsive: true
+                      'responsive': true
             });
         }
 
