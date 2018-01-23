@@ -192,7 +192,7 @@
 					else {
 				document.getElementById("al").style.display = "block";	
 				var selects = group.toString().split(',');
-				  $('.al').append('<div class="alert alert-info alert-dismissible" id="'+ selects[0] +'"><button type="button" class="clo'+selects[0]+'" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario pre-agregado</b> &nbsp; Días: <span>'+ group +'</span>. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
+				  $('.al').append('<div class="alert alert-info alert-dismissible" id="'+ selects[0] +'"><button type="button" class="clo'+selects[0]+' close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario pre-agregado</b> &nbsp; Días: <span>'+ group +'</span>. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				
 
 
