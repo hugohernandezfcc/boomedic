@@ -126,7 +126,7 @@
 		
 		<label class="col-sm-2 control-label">Promedio de duración por cita:</label>
 		<div class="col-sm-10">
-			 <input id="prom" type="number" name="prom" class="form-control" placeholder="Unidad de tiempo en minutos" required="required">
+			 <input id="prom" type="number" name="prom" class="form-control" placeholder="Unidad de tiempo en minutos" required>
 	 	</div>
 	</div>
 	<div id="btn1" class="col-sm-12" align="left" style="display: none;">
@@ -180,7 +180,16 @@
 					    $("#danger").alert('close');
 					});
 
-					} else {
+					} 
+				if (!document.getElementById('prom').value) {
+				document.getElementById("al").style.display = "block";	
+				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="danger"><b><i class="icon fa fa-check"></i> No has indicado la duración de la cita</b></div>');
+					$("#danger").fadeTo(2000, 500).slideUp(500, function(){
+					    $("#danger").alert('close');
+					});
+
+					}
+					else {
 				document.getElementById("al").style.display = "block";	
 
 				  $('.al').append('<div class="alert alert-info alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario pre-agregado</b> &nbsp; Días: '+ group +'. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
