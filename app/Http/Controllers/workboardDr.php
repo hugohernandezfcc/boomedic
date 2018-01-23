@@ -155,7 +155,7 @@ if ($request->type == '') {
     $timeend = Carbon::parse(\end($horas)); 
 
     if($timeend !=  $finishTime){
-         $timedeath = $finishTime->diffInMinutes($json2->end);
+         $timedeath = $finishTime->diffInMinutes($timeend);
          array_push($horas, "asueto :".$timedeath);
     }
 
