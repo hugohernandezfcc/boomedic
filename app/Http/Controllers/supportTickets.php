@@ -74,7 +74,7 @@ class supportTickets extends Controller
         $user = User::find(Auth::id());
 
         $nTicket = new SupportTicket($request->all());        
-        $nTicket->userId    = Auth::id();
+        $nTicket->userId    = $user->id;
         $nTicket->status    = 'In Progress';
         $nTicket->user      = $user->name;
         $nTicket->email     = $user->email;

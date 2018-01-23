@@ -273,6 +273,10 @@
         
         if (document.getElementById('paymentmethodtable')) {
             $('#paymentmethodtable').DataTable({
+                 'rowReorder': {
+                          'selector': 'td:nth-child(2)'
+                      },
+                      'responsive': true,
                 language: {
                         'processing':     'Procesando...',
                         'lengthMenu':     'Mostrar _MENU_ registros',
