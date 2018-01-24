@@ -214,7 +214,13 @@
     }
 
     .modal-body-danger2 {padding: 2px 16px;}
-
+   table.dataTable.dtr-column>tbody>tr>td.control:before, table.dataTable.dtr-column>tbody>tr>th.control:before{
+   background-color: #33b748 !important;
+   }
+   table.dataTable.dtr-column>tbody>tr.parent td.control:before, table.dataTable.dtr-column>tbody>tr.parent th.control:before {
+    content: '-';
+    background-color: #d33333 !important;
+}
 </style>
 
 
@@ -304,13 +310,13 @@
         responsive: {
             details: {
                 type: 'column',
-                target: -3
+                target: 0
             }
         },
         columnDefs: [ {
             className: 'control',
             orderable: false,
-            targets:   -3
+            targets:   0
         } ]
             });
         }
