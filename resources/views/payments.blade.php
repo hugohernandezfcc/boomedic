@@ -66,7 +66,7 @@
 	                        <th>Banco </th>
 	                        <th>Proveedor </th>
 	                        <th>Tipo</th>
-	                        <th>Pago</th>
+	                        
 	                        <th> - </th>
 	                    </tr>
 	                </tfoot>
