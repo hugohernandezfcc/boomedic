@@ -49,7 +49,7 @@
 		<div class="box-body">
 
             @if($mode == 'listPaymentMethods')
-            	<table id="paymentmethodtable" class="table table-bordered table-striped display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
+            	<table id="paymentmethodtable" class="display responsive nowrap" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr role="row">
 	                    	<th>Tarjeta</th>
