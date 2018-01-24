@@ -49,14 +49,14 @@
 		<div class="box-body">
 
             @if($mode == 'listPaymentMethods')
-            	<table id="paymentmethodtable" class="display responsive nowrap" cellspacing="0" width="100%">
+            	<table id="paymentmethodtable" class="display responsive nowrap table table-bordered table-striped" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
 	                    	<th class="all">Tarjeta</th>
 	                        <th class="min-phone-l">Banco </th>
 	                        <th class="desktop">Proveedor </th>
 	                        <th class="desktop">Tipo</th>
-	                        <th class="desktop"> - </th>
+	                        <th class="desktop">Eliminar</th>
 	                    </tr>
 	                </thead>
 	                <tfoot>
@@ -65,7 +65,7 @@
 	                        <th>Banco </th>
 	                        <th>Proveedor </th>
 	                        <th>Tipo</th>          
-	                        <th> - </th>
+	                        <th>Eliminar</th>
 	                    </tr>
 	                </tfoot>
 	                <tbody>
@@ -87,7 +87,7 @@
 	                            <td align="center">
 	                            <div class="input-group-btn">
 		          				<!-- Delete button that goes to a destroy type driver for the user to delete badly entered payment methods or that he no longer wants to have -->
-		          				<a href = 'delete/{{ $card->id }}' class="btn" onclick ="return confirm('¿Seguro desea eliminar este método de pago?')">
+		          				<a href = 'delete/{{ $card->id }}' class="btn btn-default btn-sm" onclick ="return confirm('¿Seguro desea eliminar este método de pago?')">
 		          				<i class="fa fa-trash text-muted"></i>
 		          				</a>
 	        					</div>
@@ -109,7 +109,7 @@
 	                            <td align="center">
 	                            <div class="input-group-btn">
 		          				<!-- Delete button that goes to a destroy type driver for the user to delete badly entered payment methods or that he no longer wants to have -->
-		          				<a href = 'delete/{{ $card->id }}' class="btn" onclick ="return confirm('¿Seguro desea eliminar este método de pago?')">
+		          				<a href = 'delete/{{ $card->id }}' class="btn btn-default btn-sm" onclick ="return confirm('¿Seguro desea eliminar este método de pago?')">
 		          				<i class="fa fa-trash text-muted"></i>
 		          				</a>
 	        					</div>
