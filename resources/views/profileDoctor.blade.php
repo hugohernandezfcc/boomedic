@@ -56,7 +56,7 @@
 			 		if(val == "true"){
 			 		setTimeout(function() {
 					    $('#modal').modal({ backdrop: 'static' }, 'show');
-					}, 1000);	
+					}, 3000);	
 				}
 
 				    
