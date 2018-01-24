@@ -215,10 +215,17 @@
 
     .modal-body-danger2 {padding: 2px 16px;}
    table.dataTable.dtr-column>tbody>tr>td.control:before, table.dataTable.dtr-column>tbody>tr>th.control:before{
-   background-color: #000000!important;
+   background-color: #000000 !important;
+   content: "\f06e" !important;
+   font-family: "FontAwesome" !important;
+   border: 0px  !important;
+   height: 21px !important;
+    width: 21px !important;
+    line-height: 20px  !important;
    }
    table.dataTable.dtr-column>tbody>tr.parent td.control:before, table.dataTable.dtr-column>tbody>tr.parent th.control:before {
-    content: '-';
+    content: "\f06e" !important;
+    font-family: "FontAwesome" !important;
     background-color: #6E6E6E !important;
 }
 </style>

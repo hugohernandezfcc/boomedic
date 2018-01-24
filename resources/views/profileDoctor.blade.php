@@ -24,12 +24,13 @@
 		    z-index: 30;
 		      }
 		.dropzone {
-			     min-height: 25px !important; 
-			    border: 2px solid rgba(0,0,0,0.3);
-			    border-style: dotted !important;
+			     min-height: 10px !important; 
+			    border-style: dotted  !important;
 			    /* background: white; */
-			     padding: 0 10px !important;
-			    height: 90px;
+			     padding: 0 !important;
+			}
+			.dropzone .dz-message {
+			    margin: 1em 0 !important;
 			}
     </style>
 @stop
@@ -160,7 +161,7 @@
 			    	@endif 
 		    			
 		    		</div>
-						<div class="col-sm-6" align="center" style="width: 200px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+						<div class="col-sm-6" align="center"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
 	    		</div>
 	    		<!-- Photo Zone. -->
 	    		<br/>
