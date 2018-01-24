@@ -56,7 +56,6 @@
 	                        <th>Banco </th>
 	                        <th>Proveedor </th>
 	                        <th>Tipo</th>
-	                        <th>Pago</th>
 	                        <th> - </th>
 	                    </tr>
 	                </thead>
@@ -65,8 +64,7 @@
 	                       <th>Tarjeta</th>
 	                        <th>Banco </th>
 	                        <th>Proveedor </th>
-	                        <th>Tipo</th>
-	                        
+	                        <th>Tipo</th>          
 	                        <th> - </th>
 	                    </tr>
 	                </tfoot>
