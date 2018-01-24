@@ -51,17 +51,17 @@
             @if($mode == 'listPaymentMethods')
             	<table id="paymentmethodtable" class="display responsive nowrap" cellspacing="0" width="100%">
 	                <thead>
-	                    <tr role="row">
-	                    	<th>Tarjeta</th>
-	                        <th>Banco </th>
-	                        <th>Proveedor </th>
-	                        <th>Tipo</th>
-	                        <th> - </th>
+	                    <tr>
+	                    	<th class="all">Tarjeta</th>
+	                        <th class="min-phone-l">Banco </th>
+	                        <th class="desktop">Proveedor </th>
+	                        <th class="desktop">Tipo</th>
+	                        <th class="desktop"> - </th>
 	                    </tr>
 	                </thead>
 	                <tfoot>
 	                    <tr>
-	                       <th>Tarjeta</th>
+	                        <th>Tarjeta</th>
 	                        <th>Banco </th>
 	                        <th>Proveedor </th>
 	                        <th>Tipo</th>          
@@ -70,13 +70,13 @@
 	                </tfoot>
 	                <tbody>
 	                    @foreach ($cards as $card)
-	                        <tr role="row"><form action="PaymentAuthorizations" method="post" id="regForm">
+	                        <tr><form action="PaymentAuthorizations" method="post" id="regForm">
 	                        	@if($card->provider != 'Paypal')
 	                        	<td>
 	                             @php 
 	                            $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12)
 	                             @endphp
-	                            <a href = 'Transactions/{{ $card->id }}' class="btn"> {{ $cardfin }}</a></td>
+	                            <a href = 'Transactions/{{ $card->id }}' class="btn">{{ $cardfin }}</a></td>
 	                            <td>{{ $card->bank }}</td>
 	                            <td>{{ $card->provider }}</td>
 	                            <td>{{ $card->credit_debit }}</td>

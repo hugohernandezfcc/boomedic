@@ -300,7 +300,18 @@
                             'sortDescending': ': Activar para ordenar la columna de manera descendente'
                         }
                     },
-                'lengthChange': false
+                'lengthChange': false,
+        responsive: {
+            details: {
+                type: 'column',
+                target: -3
+            }
+        },
+        columnDefs: [ {
+            className: 'control',
+            orderable: false,
+            targets:   -3
+        } ]
             });
         }
 
