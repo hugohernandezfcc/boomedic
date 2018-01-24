@@ -221,7 +221,6 @@
     @if(config('adminlte.plugins.datatables'))
         <!-- DataTables -->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.3/css/rowReorder.dataTables.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css">
     @endif
 
@@ -301,11 +300,7 @@
                             'sortDescending': ': Activar para ordenar la columna de manera descendente'
                         }
                     },
-                'lengthChange': false,
-                        rowReorder: {
-                          selector: 'td:nth-child(2)'
-                      },
-                      responsive: true
+                'lengthChange': false
             });
         }
 
@@ -400,7 +395,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
     <script src="https://adminlte.io/themes/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
-    <script src="https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
     
 
