@@ -48,7 +48,7 @@
 				  setTimeout(function(){ 
 				  	document.getElementById('loadingGif').style.display = "none";
 				  	window.location.reload(true);
-				  },12000);
+				  },14000);
 				     	}
 			    //autoProcessQueue : false 
 			 };
