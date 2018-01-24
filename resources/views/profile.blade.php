@@ -22,7 +22,15 @@
 		    color: gray;
 		    margin-right: 1em; 
 		}
-
+			.dropzone {
+			     min-height: 10px !important; 
+			    border-style: dotted  !important;
+			    /* background: white; */
+			     padding: 0 !important;
+			}
+			.dropzone .dz-message {
+			    margin: 1em 0 !important;
+			}
 
 
     </style>
@@ -167,7 +175,7 @@
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-2" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
 	    	</div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}

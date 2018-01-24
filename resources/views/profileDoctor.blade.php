@@ -161,7 +161,7 @@
 			    	@endif 
 		    			
 		    		</div>
-						<div class="col-sm-6" align="center"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+						<div class="col-sm-6" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
 	    		</div>
 	    		<!-- Photo Zone. -->
 	    		<br/>
@@ -318,9 +318,7 @@
 		                <b>Dirección</b>
 		            </div>
 		            <div class="form-group">
-		            	<label for="autocomplete" class="col-sm-2 control-label">
-		            		<i class="fa fa-location-arrow"></i>
-		            	</label>
+
 		            	<div id="locationField" class="col-sm-10">
 					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"></input>
 					    </div>
