@@ -23,6 +23,14 @@
 		    height: 300px;
 		    z-index: 30;
 		      }
+		.dropzone {
+			     min-height: 25px !important; 
+			    border: 2px solid rgba(0,0,0,0.3);
+			    border-style: dotted !important;
+			    /* background: white; */
+			     padding: 0 10px !important;
+			    height: 90px;
+			}
     </style>
 @stop
 
@@ -117,9 +125,9 @@
 		            </div>
 	    		@endif
 	    		<!-- Photo Zone. -->
-	    		<div class="col-sm-12">
+	    		<div class="row" align="center">
 	    			<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
-		    		<div class="col-sm-3" align="center">
+		    		<div class="col-sm-4" align="center">
 						@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
@@ -152,7 +160,7 @@
 			    	@endif 
 		    			
 		    		</div>
-						<div class="col-sm-2" align="center"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+						<div class="col-sm-6" align="center" style="width: 200px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
 	    		</div>
 	    		<!-- Photo Zone. -->
 	    		<br/>

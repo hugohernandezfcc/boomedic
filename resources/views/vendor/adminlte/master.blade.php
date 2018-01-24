@@ -215,11 +215,11 @@
 
     .modal-body-danger2 {padding: 2px 16px;}
    table.dataTable.dtr-column>tbody>tr>td.control:before, table.dataTable.dtr-column>tbody>tr>th.control:before{
-   background-color: #33b748 !important;
+   background-color: #000000!important;
    }
    table.dataTable.dtr-column>tbody>tr.parent td.control:before, table.dataTable.dtr-column>tbody>tr.parent th.control:before {
     content: '-';
-    background-color: #d33333 !important;
+    background-color: #6E6E6E !important;
 }
 </style>
 
