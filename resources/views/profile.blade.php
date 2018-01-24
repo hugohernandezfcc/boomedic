@@ -139,9 +139,9 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-          
+          <label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
 	    		<div class="row" align="center">
-	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
+	    		
 	    		<div class="col-sm-3" align="center">
 	    			@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
