@@ -119,36 +119,40 @@
 	    		<!-- Photo Zone. -->
 	    		<div class="row">
 	    			<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
-		    		<div class="col-sm-4" align="center">
-		    			@if($photo == '')
-			    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
-						@else
+		    		<div class="col-sm-3" align="center">
+						@if($photo == '')
+		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
+					@else
 					@php 
 					  $imagen = getimagesize($photo);    //Sacamos la información
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 
 			          if($height > '500' || $width > '500'){
-			            $height = $height / 3;
-			            $width = $width / 3;
+			            $height = $height / 2.8;
+			            $width = $width / 2.8;
 			        }
 			        if($height > '800' || $width > '800'){
 			            $height = $height / 4;
 			            $width = $width / 4;
 			        }
+			      if($height > '800' || $width > '1200'){
+			            $height = $height / 6;
+			            $width = $width / 6;
+			        }
 
 
 			          if($height < '400' || $width < '400'){
-			            $height = $height / 1.7;
-			            $width = $width / 1.7;
+			            $height = $height / 1.6;
+			            $width = $width / 1.6;
 			        }
 
 					@endphp
-							<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">		
-				    	@endif 
+						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+			    	@endif 
 		    			
 		    		</div>
-						<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+						<div class="col-sm-2" align="center"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
 	    		</div>
 	    		<!-- Photo Zone. -->
 	    		<br/>

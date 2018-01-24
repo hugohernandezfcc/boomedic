@@ -131,24 +131,7 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-	    		<div class="col-sm-12">
-	    					<div class="col-sm-4">
-					            	&nbsp;
-					            </div>
-					       		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
-						                Guardar
-						            </button>
-					            </div>
-					    		<div class="col-sm-4">
-					    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
-						                Cancelar
-						            </a>
-					            </div>
-					            <div class="col-sm-4">
-					            	&nbsp;
-					            </div>
-				</div><br/>	            
+          
 	    		<div class="row">
 	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
 	    		<div class="col-sm-3" align="center">
@@ -180,7 +163,7 @@
 			        }
 
 					@endphp
-						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
+						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 	    			
 	    		</div>
