@@ -265,9 +265,7 @@
 		                <b>Dirección</b>
 		            </div>
 		            <div class="form-group">
-		            	<label for="autocomplete" class="col-sm-2 control-label">
-		            		<i class="fa fa-location-arrow"></i>
-		            	</label>
+
 		            	<div id="locationField" class="col-sm-10">
 					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"></input>
 					    </div>
