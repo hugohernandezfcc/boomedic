@@ -117,7 +117,7 @@
 		            </div>
 	    		@endif
 	    		<!-- Photo Zone. -->
-	    		<div class="row">
+	    		<div class="col-sm-12">
 	    			<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
 		    		<div class="col-sm-3" align="center">
 						@if($photo == '')
