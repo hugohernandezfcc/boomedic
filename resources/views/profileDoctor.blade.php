@@ -174,7 +174,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">La foto de perfíl es obligatoria</h4>
+                <h4 class="modal-title">La foto de perfil es obligatoria</h4>
               </div>
             </div>
           </div>
