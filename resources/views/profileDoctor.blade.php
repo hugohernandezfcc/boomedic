@@ -186,7 +186,7 @@
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="email" class="col-sm-2 control-label">Corre electrónico</label>
+	                    <label for="email" class="col-sm-2 control-label">Correo electrónico</label>
 	                	<div class="col-sm-10">
 	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
 	                	</div>
@@ -833,8 +833,8 @@
 					 <div class="form-group">
 	                	<label for="workplace" class="col-sm-4 control-label">Nombre del lugar</label>
 	                	<div class="col-sm-8">
-	                		<label id="labelwork" class="text-red"></label>
-		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros.">
+	                		<label id="labelwork2" class="text-red"></label>
+		                  	<input type="text" name="workplace" id="workplace2" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros.">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
@@ -962,10 +962,21 @@
     			var workplace =  document.getElementById('workplace').value;
 
     			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') >= 0 || workplace.indexOf('hospital') >= 0 || workplace.indexOf('HOSPITAL') >= 0 || workplace.indexOf('consultorio') >= 0 || workplace.indexOf('CONSULTORIO') >= 0){
-    					document.getElementById('labelwork').innerHTML = 'Las palabras hospital, o consultorio están restringidas...'
+    					document.getElementById('labelwork').innerHTML = '* Las palabras hospital, o consultorio están restringidas...'
     			}
     			else{
     				document.getElementById('labelwork').innerHTML = ''
+    			}
+    		})
+
+				$("input#workplace2").bind('change keyup input', function() {
+    			var workplace =  document.getElementById('workplace2').value;
+
+    			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') >= 0 || workplace.indexOf('hospital') >= 0 || workplace.indexOf('HOSPITAL') >= 0 || workplace.indexOf('consultorio') >= 0 || workplace.indexOf('CONSULTORIO') >= 0){
+    					document.getElementById('labelwork2').innerHTML = '* Las palabras hospital, o consultorio están restringidas...'
+    			}
+    			else{
+    				document.getElementById('labelwork2').innerHTML = ''
     			}
     		})
 
