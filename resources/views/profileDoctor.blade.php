@@ -833,14 +833,13 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Default Modal</h4>
+                <h4 class="modal-title">Servicios disponibles en este lugar</h4>
               </div>
               <div class="modal-body">
                 <p>One fine body…</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><i class="fa fa-check"></i></button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -898,7 +897,8 @@
 
 			</div>
 				<div class="col-sm-12 form-group" align="right">
-								<div class="col-sm-6">
+								<div class="col-sm-6" align="left">
+									<br/>
 					    		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
 						                Agregar servicios
 						        </button>	
