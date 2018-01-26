@@ -293,10 +293,16 @@ question
          array_push($services,'Estacionamiento');
         }
         if($request->Cafeteria){
-          array_push($services,'Cafetería');
+          array_push($services,'Cafeteria');
         }
-        if($request->Ambulacias){
-           array_push($services,'Ambulacias');
+        if($request->Ambulancias){
+           array_push($services,'Ambulancias');
+        }
+        if($request->Elevador){
+           array_push($services,'Elevador');
+        }
+        if($request->Wifi){
+           array_push($services,'Wifi');
         }
 
 
