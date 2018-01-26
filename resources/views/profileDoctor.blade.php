@@ -961,7 +961,7 @@
 				$("input#workplace").bind('change keyup input', function() {
     			var workplace =  document.getElementById('workplace').value;
 
-    			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') || workplace.indexOf('hospital') || workplace.indexOf('HOSPITAL') || workplace.indexOf('consultorio') || workplace.indexOf('CONSULTORIO')){
+    			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') >= 0 || workplace.indexOf('hospital') >= 0 || workplace.indexOf('HOSPITAL') >= 0 || workplace.indexOf('consultorio') >= 0 || workplace.indexOf('CONSULTORIO') >= 0){
     					document.getElementById('labelwork').innerHTML = 'Las palabras hospital, o consultorio están restringidas...'
     			}
     			else{
