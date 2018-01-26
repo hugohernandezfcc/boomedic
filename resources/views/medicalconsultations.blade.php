@@ -459,14 +459,15 @@
                              data: $("#search").serialize(), 
                              success: function(data)             
                              {
-                               $('#resp').html(data);               
+                               $('#resp').html(data);  
+                               console.log(data);             
                              }
                          });
                       });
                   });
 
 
-          
+
           $(function () {
 
             $('#calendar').datepicker();
