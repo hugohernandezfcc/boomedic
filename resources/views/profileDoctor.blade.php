@@ -958,7 +958,7 @@
 
     		$(document).ready(function() {
 
-				$("#workplace").onchange(
+				$("#workplace").on(
 					function(event) {
     			var workplace =  document.getElementById('workplace').value;
 
