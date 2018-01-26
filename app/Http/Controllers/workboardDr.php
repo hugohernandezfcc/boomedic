@@ -32,7 +32,7 @@ class workboardDr extends Controller
     public function index($id){
     $user = User::find(Auth::id());   
     $work = $id;
-    $workboard = DB::table('workboard')->where('labInformation', $work)->first();
+    $workboard = DB::table('workboard')->where('labInformation', $work)->get();
 
         return view('workboard', [
                 'userId'    => $user->id,
