@@ -332,15 +332,18 @@
                   </div>
                   <div class="modal-body">
                         <div class="input-group input-group-sm">
+                           <form method="post" id="search">
                           <input id="address" type="textbox" value="" class="form-control" placeholder="Puede ingresar direcciones específicas..">
                           <span class="input-group-btn">
                           <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
+                        </form>
                        </div>
                             <br/>                    
                           <div id ="ubi" class="input-group input-group-sm" style="display:none">
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
                           </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+                      <div id="resp"></div>
                   </div>
                 </div>
               </div>
@@ -446,6 +449,24 @@
           </select>
 
           <script type="text/javascript">
+                      /* Envío formulario */
+                  $(document).on('ready',function(){       
+                      $('#submit').click(function(){
+                          var url = "{{ url('medicalconsultations/recent') }}";
+                          $.ajax({                        
+                             type: "POST",                 
+                             url: url,                     
+                             data: $("#search").serialize(), 
+                             success: function(data)             
+                             {
+                               $('#resp').html(data);               
+                             }
+                         });
+                      });
+                  });
+
+
+          
           $(function () {
 
             $('#calendar').datepicker();
@@ -513,6 +534,8 @@
 
 
     <script type="text/javascript">
+
+
     $("#alert").fadeTo(3000, 500).fadeOut(500, function(){
     $("#alert").fadeOut(500);
 });
