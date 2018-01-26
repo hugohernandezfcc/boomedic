@@ -958,11 +958,14 @@
 
     		$(document).ready(function() {
 
-				$("#workplace").on('change', function() {
+				$("input#workplace").bind('change keyup input', function() {
     			var workplace =  document.getElementById('workplace').value;
 
     			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') || workplace.indexOf('hospital') || workplace.indexOf('HOSPITAL') || workplace.indexOf('consultorio') || workplace.indexOf('CONSULTORIO')){
     					document.getElementById('labelwork').innerHTML = 'Las palabras hospital, o consultorio están restringidas...'
+    			}
+    			else{
+    				document.getElementById('labelwork').innerHTML = ''
     			}
     		})
 
