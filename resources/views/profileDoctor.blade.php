@@ -958,8 +958,7 @@
 
     		$(document).ready(function() {
 
-				$("#workplace").on(
-					function(event) {
+				$("#workplace").on('change', function() {
     			var workplace =  document.getElementById('workplace').value;
 
     			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') || workplace.indexOf('hospital') || workplace.indexOf('HOSPITAL') || workplace.indexOf('consultorio') || workplace.indexOf('CONSULTORIO')){
