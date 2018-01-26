@@ -168,7 +168,8 @@
 	    		<br/>
 
 	    		<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="formDr">
-	    	<div class="modal-dialog" id="modalAlert">
+	    <div id="modalAlert" class="modal fade" role="dialog">
+	    <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -177,6 +178,7 @@
               </div>
             </div>
           </div>
+      </div>
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -607,7 +609,7 @@
 				  $("#formDr").submit(function() {
 				    var x = "{{ $photo }}"; 
 				      if (x == '') {
-				        $('#modalAlert').modal('show')	
+				        $('#modalAlert').modal()	
 				        return false;
 				      } else 
 				          return true;			
