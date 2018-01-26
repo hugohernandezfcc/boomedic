@@ -290,14 +290,15 @@ question
         $prof = professional_information::find($bus);
         $services = array();
         if($request->Estacionamiento){
-            $services = array_push('Estacionamiento');
+         array_push($services,'Estacionamiento');
         }
         if($request->Cafeteria){
-            $services = array_push('Cafetería');
+          array_push($services,'Cafetería');
         }
         if($request->Ambulacias){
-            $services = array_push('Ambulacias');
+           array_push($services,'Ambulacias');
         }
+
 
         $laborInformation = new laborInformation;
 
