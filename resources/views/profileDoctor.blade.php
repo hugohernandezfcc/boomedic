@@ -836,10 +836,43 @@
                 <h4 class="modal-title">Servicios disponibles en este lugar</h4>
               </div>
               <div class="modal-body">
-                <p>One fine body…</p>
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Estacionamiento
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Ambulancias
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Cafetería
+                    </label>
+                  </div>
+                 <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                     Elevador
+                    </label>
+                  </div>
+                   <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                     Wifi
+                    </label>
+                  </div>
+                </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><i class="fa fa-check"></i></button>
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
               </div>
             </div>
             <!-- /.modal-content -->
