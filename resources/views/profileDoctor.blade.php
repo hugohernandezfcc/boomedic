@@ -759,7 +759,7 @@
 	                	<label for="workplace" class="col-sm-2 control-label">Nombre del Lugar</label>
 	                	<div class="col-sm-10">
 	                		<label id="labelwork" class="text-red"></label>
-		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros." onchange="value();">
+		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros.">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
@@ -834,7 +834,7 @@
 	                	<label for="workplace" class="col-sm-4 control-label">Nombre del lugar</label>
 	                	<div class="col-sm-8">
 	                		<label id="labelwork" class="text-red"></label>
-		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros." onchange="value();">
+		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros.">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
@@ -953,15 +953,20 @@
 
 				
     		<script type="text/javascript">
-    		function value() {
+    	
+
+
+    		$(document).ready(function() {
+
+				$("#workplace").onchange(
+					function(event) {
     			var workplace =  document.getElementById('workplace').value;
 
     			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') || workplace.indexOf('hospital') || workplace.indexOf('HOSPITAL') || workplace.indexOf('consultorio') || workplace.indexOf('CONSULTORIO')){
     					document.getElementById('labelwork').text() = 'Las palabras hospital, o consultorio están restringidas...'
     			}
-    		}
+    		})
 
-    		$(document).ready(function() {
 				$("#openform").click(
 				function(event) {
 					document.getElementById("boxlabor").style.paddingBottom = "160px";
