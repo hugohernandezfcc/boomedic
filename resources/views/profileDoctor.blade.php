@@ -758,7 +758,8 @@
 				 <div class="form-group">
 	                	<label for="workplace" class="col-sm-2 control-label">Nombre del Lugar</label>
 	                	<div class="col-sm-10">
-		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Consultorio particular, Hospital, entre otros">
+	                		<label id="labelwork" class="text-red"></label>
+		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros." onchange="value();">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
@@ -832,7 +833,8 @@
 					 <div class="form-group">
 	                	<label for="workplace" class="col-sm-4 control-label">Nombre del lugar</label>
 	                	<div class="col-sm-8">
-		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Consultorio Particular, Hospital, entre otros">
+	                		<label id="labelwork" class="text-red"></label>
+		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros." onchange="value();">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
@@ -951,6 +953,13 @@
 
 				
     		<script type="text/javascript">
+    		function value() {
+    			var workplace =  document.getElementById('workplace').value;
+
+    			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') || workplace.indexOf('hospital') || workplace.indexOf('HOSPITAL') || workplace.indexOf('consultorio') || workplace.indexOf('CONSULTORIO')){
+    					document.getElementById('labelwork').text() = 'Las palabras hospital, o consultorio están restringidas...'
+    			}
+    		}
 
     		$(document).ready(function() {
 				$("#openform").click(

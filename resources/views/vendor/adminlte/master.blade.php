@@ -124,11 +124,11 @@
           }
           .info-box.sm {
               min-height: 45px;
-              font-size: 2.2vmin;
+              font-size: 2vmin;
               margin-bottom: 3px;
                }
           .info-box {
-              font-size: 14px;
+              font-size: 13px;
               margin-bottom: 0;
                }
           .info-box-content {
