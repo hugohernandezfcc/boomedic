@@ -450,8 +450,9 @@
 
           <script type="text/javascript">
                       /* Envío formulario */
-                  $(document).on('ready',function(){       
-                      $('#submit').click(function(){
+               
+                      $('#submit').click(function(event){
+
                           var url = "{{ url('medicalconsultations/recent') }}";
                           $.ajax({                        
                              type: "POST",                 
@@ -464,7 +465,6 @@
                              }
                          });
                       });
-                  });
 
 
 
