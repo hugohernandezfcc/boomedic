@@ -761,40 +761,41 @@
                 <h4 class="modal-title">Servicios disponibles en este lugar</h4>
               </div>
               <div class="modal-body">
-                <div class="row">
+               <div class="label-group">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox">
+                      <input type="checkbox" name="Estacionamiento">
                       Estacionamiento
                     </label>
                   </div>
 
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox">
+                      <input type="checkbox" name="Ambulancias">
                       Ambulancias
                     </label>
                   </div>
 
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox">
+                      <input type="checkbox" name="Cafetería">
                       Cafetería
                     </label>
                   </div>
                  <div class="checkbox">
                     <label>
-                      <input type="checkbox">
+                      <input type="checkbox" name="Elevador">
                      Elevador
                     </label>
                   </div>
                    <div class="checkbox">
                     <label>
-                      <input type="checkbox">
+                      <input type="checkbox" name="Wifi">
                      Wifi
                     </label>
                   </div>
                 </div>
+              </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
@@ -887,40 +888,40 @@
                 <h4 class="modal-title">Servicios disponibles en este lugar</h4>
               </div>
               <div class="modal-body">
-               <p> <div class="form-group">
+               <div class="label-group">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox">
+                      <input type="checkbox" name="Estacionamiento">
                       Estacionamiento
                     </label>
                   </div>
 
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox">
+                      <input type="checkbox" name="Ambulancias">
                       Ambulancias
                     </label>
                   </div>
 
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox">
+                      <input type="checkbox" name="Cafetería">
                       Cafetería
                     </label>
                   </div>
                  <div class="checkbox">
                     <label>
-                      <input type="checkbox">
+                      <input type="checkbox" name="Elevador">
                      Elevador
                     </label>
                   </div>
                    <div class="checkbox">
                     <label>
-                      <input type="checkbox">
+                      <input type="checkbox" name="Wifi">
                      Wifi
                     </label>
                   </div>
-                </div></p>
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
