@@ -754,14 +754,14 @@
 					   </div>
 
 					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
-									<div class="modal fade" id="modal-default" style="display: none;">
+		<div class="modal fade" id="modal-default1" style="display: none;">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title">Servicios disponibles en este lugar</h4>
               </div>
               <div class="modal-body">
-               <p> <div class="form-group">
+                <div class="row">
                   <div class="checkbox">
                     <label>
                       <input type="checkbox">
@@ -794,7 +794,7 @@
                      Wifi
                     </label>
                   </div>
-                </div></p>
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
@@ -857,10 +857,10 @@
 		            <input type="hidden" name="long" id="longitude"/>
 		            <br/>
 		            <!-- /.box-body -->
-		            <div class="form-group" align="right">
+		            <div class="form-group" align="left">
 								<div class="col-sm-6">
 									<br/>
-					    		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+					    		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default1">
 						                Agregar servicios
 						        </button>
 					            </div>
