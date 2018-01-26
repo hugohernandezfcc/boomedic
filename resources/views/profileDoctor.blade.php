@@ -167,7 +167,7 @@
 	    		<!-- Photo Zone. -->
 	    		<br/>
 
-	    		<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal">
+	    		<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="formDr">
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -594,6 +594,16 @@
 
     		<script type="text/javascript">
 
+    		$(document).ready(function(){
+				  $("#formDr").submit(function() {
+				    var x = "{{ $photo }}"; 
+				      if (x == '') {
+				        alert("Es obligatorio subir una foto de perfil");		
+				        return false;
+				      } else 
+				          return true;			
+				    });
+				});
 
     			window.onload = function(){
     			$('#collapseTwo').collapse("toggle");
