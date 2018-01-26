@@ -111,7 +111,7 @@ class HomeController extends Controller
     public function recent()
     {
        $historysearch = $Request->recent;
-
+       echo $historysearch;
 
         return ($historysearch);
 
