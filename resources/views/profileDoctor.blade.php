@@ -796,7 +796,7 @@
                   </div>
                 </div>
               </div>
-              </div>
+             
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
               </div>
