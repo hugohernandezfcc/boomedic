@@ -905,7 +905,7 @@
 
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" name="Cafetería">
+                      <input type="checkbox" name="Cafeteria">
                       Cafetería
                     </label>
                   </div>

@@ -288,6 +288,16 @@ question
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
+        $services = array();
+        if($request->Estacionamiento){
+            $services = array_push('Estacionamiento');
+        }
+        if($request->Cafeteria){
+            $services = array_push('Cafetería');
+        }
+        if($request->Ambulacias){
+            $services = array_push('Ambulacias');
+        }
 
         $laborInformation = new laborInformation;
 
@@ -308,6 +318,7 @@ question
         $laborInformation->general_amount = $request->cost;
 
         $laborInformation->profInformation  =   $prof->id;
+        $laborInformation->services         = json_encode($services);
    
         $laborInformation->save();
 
@@ -328,7 +339,7 @@ question
         );
     }
 
-           public function laborInformationView($id)
+    public function laborInformationView($id)
     {
         $user = user::find(Auth::id());
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
