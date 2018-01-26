@@ -958,7 +958,7 @@
 
     		$(document).ready(function() {
 
-				$("#workplace").on('change', function() {
+				$("#workplace").on('change paste keyup', function() {
     			var workplace =  document.getElementById('workplace').value;
 
     			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') || workplace.indexOf('hospital') || workplace.indexOf('HOSPITAL') || workplace.indexOf('consultorio') || workplace.indexOf('CONSULTORIO')){
