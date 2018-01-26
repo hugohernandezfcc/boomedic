@@ -450,6 +450,6 @@ question
     
     // redirect
     
-   return redirect('doctor/doctor/'.Auth::id() );
+   return redirect('doctor/laborInformationView/'.Auth::id() );
     }
 }
