@@ -754,6 +754,56 @@
 					   </div>
 
 					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
+									<div class="modal fade" id="modal-default" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Servicios disponibles en este lugar</h4>
+              </div>
+              <div class="modal-body">
+               <p> <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Estacionamiento
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Ambulancias
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Cafetería
+                    </label>
+                  </div>
+                 <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                     Elevador
+                    </label>
+                  </div>
+                   <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                     Wifi
+                    </label>
+                  </div>
+                </div></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 					<div class="callout callout-default">
 				 <div class="form-group">
 	                	<label for="workplace" class="col-sm-2 control-label">Nombre del Lugar</label>
@@ -809,7 +859,10 @@
 		            <!-- /.box-body -->
 		            <div class="form-group" align="right">
 								<div class="col-sm-6">
-					    		&nbsp;	
+									<br/>
+					    		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+						                Agregar servicios
+						        </button>
 					            </div>
 					       		<div class="col-sm-6" align="right">
 					       			<br/>
@@ -831,12 +884,10 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
                 <h4 class="modal-title">Servicios disponibles en este lugar</h4>
               </div>
               <div class="modal-body">
-                <div class="form-group">
+               <p> <div class="form-group">
                   <div class="checkbox">
                     <label>
                       <input type="checkbox">
@@ -869,7 +920,7 @@
                      Wifi
                     </label>
                   </div>
-                </div>
+                </div></p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
