@@ -451,22 +451,6 @@
           <script type="text/javascript">
                       /* Envío formulario */
                
-                      $('#submit').click(function(event){
-
-                          var url = "{{ url('medicalconsultations/recent') }}";
-                          $.ajax({                        
-                             type: "POST",                 
-                             url: url,                     
-                             data: $("#search").serialize(), 
-                             success: function(data)             
-                             {
-                               $('#resp').html(data);  
-                               console.log(data);             
-                             }
-                         });
-                      });
-
-
 
           $(function () {
 
@@ -993,6 +977,16 @@
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
+                           $.ajax({                        
+                             type: "POST",                 
+                             url: {{ url('medicalconsultations/recent') }},                     
+                             data: $("#search").serialize(), 
+                             success: function(data)             
+                             {
+                               $('#resp').html(data);  
+                               console.log(data);             
+                             }
+                         });
                 });
           },
           //****Error
