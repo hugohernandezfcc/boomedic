@@ -110,7 +110,7 @@ class HomeController extends Controller
 
     public function recent(Request $request)
     {
-      
+
 
 
         return response()->json($request);
