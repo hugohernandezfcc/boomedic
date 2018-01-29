@@ -113,19 +113,7 @@ class HomeController extends Controller
         $userSearch = $user->recent_search;
         $recent = array();
         $json = json_decode($request);
-        if(!$user->recent_search){
-            foreach ($json as $json) {
-            array_push($recent,   $json->search);
-             $user->recent_search  = json_encode($recent); 
-         }
-      } else{
-         foreach ($json as $json) {
-        array_push($userSearch, $json->search);
-             $user->recent_search  = json_encode($userSearch); 
-             
-         }
-     }
-            $user->save();
+
         return response()->json(json_encode($json));
 
     }
