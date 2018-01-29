@@ -343,7 +343,7 @@
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
                           </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-                      <div id="resp"></div>
+                      <div id="resp" style="display: none;"></div>
                   </div>
                 </div>
               </div>
@@ -472,7 +472,7 @@
 
             $.ajax(
               {
-                
+                type: "GET",    
                 url: "medicalappointments/showPaymentMethods", 
                 success: function(result){
                   console.log(result);
@@ -977,11 +977,13 @@
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
-                           $.ajax({                                     
+                           $.ajax({                        
+                             type: "POST",                 
                              url: "medicalconsultations/recent",                     
-                             data: $("#search"), 
+                             data: $("#search").serialize(), 
                              success: function(data)             
                              {
+                               $('#resp').style.display = "block";
                                $('#resp').html(data);  
                                console.log(data);             
                              }
