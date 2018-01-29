@@ -123,7 +123,7 @@ class HomeController extends Controller
              $user->save();
       }
 
-        return response()->json( $userSearch);
+        return response()->json($request);
 
     }
 
