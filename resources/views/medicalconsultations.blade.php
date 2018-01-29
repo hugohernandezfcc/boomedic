@@ -1213,7 +1213,6 @@
         });
     });
     var input = document.getElementById('address');
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
         var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.bindTo('bounds', map);
     </script>
