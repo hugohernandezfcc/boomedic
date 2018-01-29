@@ -113,7 +113,7 @@ class HomeController extends Controller
        $historysearch = $request->recent;
 
 
-        return ($historysearch);
+        return response()->json($historysearch);
 
     }
 
