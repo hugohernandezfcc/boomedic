@@ -114,8 +114,10 @@ class HomeController extends Controller
         $recent = array();
         $json = json_decode($request);
 
-          
-             $user->recent_search  = 'test'; 
+
+   
+             $user->recent_search  = $json; 
+
             $user->save();
         return response()->json(['search' => $user->recent_search]);
 

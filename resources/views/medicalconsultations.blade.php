@@ -3,7 +3,7 @@
 @section('title', 'Boomedic')
 
 @section('content')
-    
+
   <style type="text/css">
       #mapaC{
         position: relative;
@@ -985,16 +985,20 @@
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
                 
-                 var address1 = new Array(); 
-                 address1.push({ "search" :  $("#address").val() });
-                 console.log(JSON.stringify(address1));    
-                           $.ajax({                        
+
+                 var address1 = ({ "search" :  $("#address").val() });
+
+
+                           $.ajax({     
+
                              type: "POST",                 
-                             url: "medicalconsultations/recent",  
+                             url: "medicalconsultations/recent", 
+                             headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}, 
                               data: JSON.stringify(address1), 
                               dataType: 'json',                   
                              success: function(data)             
                              {
+                               console.log(JSON.stringify(address1));     
                                document.getElementById('resp').style.display = "block";
                                $('#resp').html( JSON.stringify(data));  
                                console.log(JSON.stringify(data));             
