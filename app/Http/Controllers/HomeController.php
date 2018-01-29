@@ -110,10 +110,10 @@ class HomeController extends Controller
 
     public function recent(Request $request)
     {
-       $historysearch = $request->recent;
+      
 
 
-        return response()->json($historysearch);
+        return response()->json($request);
 
     }
 

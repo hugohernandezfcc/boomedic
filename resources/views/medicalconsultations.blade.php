@@ -977,16 +977,17 @@
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
+                var address1 = $("#address");
                            $.ajax({                        
                              type: "POST",                 
                              url: "medicalconsultations/recent",  
-                              data: { 'value' : $("#address") }, 
+                              data: { 'value' : address1 }, 
                               dataType: 'json',                   
                              success: function(data)             
                              {
                                document.getElementById('resp').style.display = "block";
                                $('#resp').html(data);  
-                               console.log(data);             
+                               console.log(JSON.stringify(data));             
                              }
                          });
                 });
