@@ -184,7 +184,8 @@
         .panel {
              margin-bottom: 0; 
         }
-    
+    .pac-container {
+     z-index: 100000; }
   </style>
 
   <!--  -->
@@ -962,6 +963,7 @@
             });
             var input = document.getElementById('address');
               new google.maps.places.Autocomplete(input);
+
             var markerUser = "{{ asset('markerUser.png') }}";
             //Marker
               markerP = new google.maps.Marker({
