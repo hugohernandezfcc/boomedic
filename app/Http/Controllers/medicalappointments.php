@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\medical_appointments;
-
 
 class medicalappointments extends Controller
 {
@@ -69,23 +67,24 @@ class medicalappointments extends Controller
        return redirect('medicalconsultations');
     }
 
-    /**
+ /**
      * Method responsable of list of paymentmethods
      */
-
     public function showPaymentMethods()
     {
         return response()->json(
-             DB::table('paymentsmethods')->where('owner', Auth::id())->get()
+            DB::table('paymentsmethods')->where('owner', Auth::id() )->get()
         );
     }
-
-    /**
+  /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+    
     public function show($id)
     {
         //

@@ -473,7 +473,7 @@
             $.ajax(
               {
                 
-                url: "{{ url('medicalappointments/showPaymentMethods') }}", 
+                url: "medicalappointments/showPaymentMethods", 
                 success: function(result){
                   console.log(result);
 
