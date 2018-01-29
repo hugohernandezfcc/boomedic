@@ -979,13 +979,13 @@
               infoWindow.setContent(message01);
             });
                 var geocoder = new google.maps.Geocoder();
-                var address1 = new Array(); 
+               
                 document.getElementById('submit').addEventListener('click', function() {
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
                 
-              
+                 var address1 = new Array(); 
                  address1.push({ "search" :  $("#address").val() });
                  console.log(JSON.stringify(address1));    
                            $.ajax({                        
