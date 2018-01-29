@@ -3,7 +3,7 @@
 @section('title', 'Boomedic')
 
 @section('content')
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
   <style type="text/css">
       #mapaC{
         position: relative;
@@ -984,21 +984,23 @@
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
-                
+                $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
 
-                 var address1 = $("#address").val();
-
+                 var address1 = document.getElementById('address').value;
 
                            $.ajax({     
 
                              type: "POST",                 
-                             url: "medicalconsultations/recent", 
-                              data: { "_token": "{{ csrf_token() }}",
-                                        search : address1 }, 
+                             url: "medicalconsultations/recent",  
+                              data: { "search" : address1 }, 
                               dataType: 'json',                   
                              success: function(data)             
                              {
-                               console.log(JSON.stringify(address1));     
+                               console.log(address1);     
                                document.getElementById('resp').style.display = "block";
                                $('#resp').html( JSON.stringify(data));  
                                console.log(JSON.stringify(data));             

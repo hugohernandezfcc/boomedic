@@ -116,10 +116,10 @@ class HomeController extends Controller
 
 
    
-             $user->recent_search  = json_encode($json); 
+             $user->recent_search  = $request; 
 
             $user->save();
-        return response()->json(['search' => $user->recent_search]);
+        return response()->json($user->recent_search);
 
     }
 
