@@ -1002,8 +1002,8 @@
                              {
                                console.log(address1);     
                                document.getElementById('resp').style.display = "block";
-                               $('#resp').html( JSON.stringify(data));  
-                               console.log(JSON.stringify(data));             
+                               $('#resp').html(data);  
+                               console.log(data);             
                              }
                          });
                 });
