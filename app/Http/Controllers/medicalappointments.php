@@ -26,6 +26,7 @@ class medicalappointments extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index(){
         
 
@@ -84,7 +85,7 @@ class medicalappointments extends Controller
      */
 
 
-    
+
     public function show($id)
     {
         //
