@@ -985,8 +985,8 @@
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
                 var address1 = new Array(); 
-                var recent = document.getElementById('address').value;
-                 address1.push({ recent });
+              
+                 address1.push({ "search":  $("#address").val() });
                            $.ajax({                        
                              type: "POST",                 
                              url: "medicalconsultations/recent",  
