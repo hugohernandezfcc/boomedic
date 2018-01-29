@@ -959,6 +959,11 @@
               rotateControl: false,
               fullscreenControl: false
             });
+        var input = (document.getElementById('address'));
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+        
             var markerUser = "{{ asset('markerUser.png') }}";
             //Marker
               markerP = new google.maps.Marker({
@@ -981,7 +986,7 @@
                            $.ajax({                        
                              type: "POST",                 
                              url: "medicalconsultations/recent",  
-                              data: { 'value' : address1 }, 
+                              data: { 'value' : 'dir' }, 
                               dataType: 'json',                   
                              success: function(data)             
                              {
