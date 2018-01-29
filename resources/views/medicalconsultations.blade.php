@@ -185,7 +185,8 @@
              margin-bottom: 0; 
         }
     .pac-container {
-     z-index: 100000; }
+     z-index: 100000; 
+   }
   </style>
 
   <!--  -->
@@ -983,16 +984,16 @@
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
-                var address1 = $("#address");
+                 var address1 = "{ value :"+ document.getElementById('address').value + "}";
                            $.ajax({                        
                              type: "POST",                 
                              url: "medicalconsultations/recent",  
-                              data: { 'value' : 'dir' }, 
+                              data: JSON.stringify(address1), 
                               dataType: 'json',                   
                              success: function(data)             
                              {
                                document.getElementById('resp').style.display = "block";
-                               $('#resp').html(data);  
+                               $('#resp').html( JSON.stringify(data));  
                                console.log(JSON.stringify(data));             
                              }
                          });
