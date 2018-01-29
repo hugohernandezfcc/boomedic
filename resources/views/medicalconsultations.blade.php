@@ -333,7 +333,7 @@
                   <div class="modal-body">
                         <div class="input-group input-group-sm">
                         
-                          <input id="address1" type="textbox" value="" class="form-control" placeholder="Puede ingresar direcciones específicas..">
+                          <input id="address" type="textbox" value="" class="form-control" placeholder="Puede ingresar direcciones específicas..">
                           <span class="input-group-btn">
                           <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
                         
@@ -959,11 +959,7 @@
               rotateControl: false,
               fullscreenControl: false
             });
-        var input = document.getElementById('address1');
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo('bounds', map);
-
+ 
             var markerUser = "{{ asset('markerUser.png') }}";
             //Marker
               markerP = new google.maps.Marker({
@@ -978,11 +974,15 @@
               infoWindow.setContent(message01);
             });
                 var geocoder = new google.maps.Geocoder();
+                       var input = document.getElementById('address');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
                 document.getElementById('submit').addEventListener('click', function() {
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
-                var address1 = $("#address1");
+                var address1 = $("#address");
                            $.ajax({                        
                              type: "POST",                 
                              url: "medicalconsultations/recent",  
