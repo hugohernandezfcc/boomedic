@@ -472,7 +472,7 @@
 
             $.ajax(
               {
-                type: "GET",    
+                
                 url: "{{ url('medicalappointments/showPaymentMethods') }}", 
                 success: function(result){
                   console.log(result);
@@ -977,10 +977,9 @@
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
-                           $.ajax({                        
-                             type: "POST",                 
+                           $.ajax({                                     
                              url: "medicalconsultations/recent",                     
-                             data: $("#search").serialize(), 
+                             data: $("#search"), 
                              success: function(data)             
                              {
                                $('#resp').html(data);  
