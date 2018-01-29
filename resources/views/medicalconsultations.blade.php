@@ -332,14 +332,14 @@
                   </div>
                   <div class="modal-body">
                         <div class="input-group input-group-sm">
-                           <form method="post" id="search">
+                        
                           <input id="address" type="textbox" value="" class="form-control" placeholder="Puede ingresar direcciones específicas..">
                           <span class="input-group-btn">
                           <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
-                        </form>
+                        
                        </div>
                             <br/>                    
-                          <div id ="ubi" class="input-group input-group-sm" style="display:none">
+                          <div id ="ubi" class="input-group input-group-sm" style="display:none;">
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
                           </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
@@ -979,11 +979,12 @@
                 document.getElementById('ubi').style.display = 'inline'; 
                            $.ajax({                        
                              type: "POST",                 
-                             url: "medicalconsultations/recent",                     
-                             data: $("#search").serialize(), 
+                             url: "medicalconsultations/recent",  
+                              data: { 'value' : $("#address") }, 
+                              dataType: 'json',                   
                              success: function(data)             
                              {
-                               $('#resp').style.display = "block";
+                               document.getElementById('resp').style.display = "block";
                                $('#resp').html(data);  
                                console.log(data);             
                              }
