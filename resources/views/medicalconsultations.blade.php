@@ -960,7 +960,8 @@
               rotateControl: false,
               fullscreenControl: false
             });
- 
+            var input = document.getElementById('address');
+              new google.maps.places.Autocomplete(input);
             var markerUser = "{{ asset('markerUser.png') }}";
             //Marker
               markerP = new google.maps.Marker({
@@ -1212,9 +1213,8 @@
           }
         });
     });
-    var input = document.getElementById('address');
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo('bounds', map);
+
+        
     </script>
 
 
