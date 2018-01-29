@@ -984,7 +984,9 @@
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
-                 var address1 = "{ value :"+ document.getElementById('address').value + "}";
+                var address1 = new Array(); 
+                var recent = document.getElementById('address').value;
+                 address1.push({ recent });
                            $.ajax({                        
                              type: "POST",                 
                              url: "medicalconsultations/recent",  
