@@ -109,7 +109,7 @@ class HomeController extends Controller
 
 
     public function recent(Request $request)
-   /* {   $user = User::find($id);
+  {   /*  $user = User::find($id);
         $userSearch =  DB::table('users')->where('id', Auth::id() )->value('recent_search');
         $recent = array();
         $json = json_decode($request);
