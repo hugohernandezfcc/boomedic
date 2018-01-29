@@ -669,6 +669,7 @@
         $('#modal').modal('hide');
          document.getElementById('ubi').style.display = 'none'; 
         infoWindow = new google.maps.InfoWindow();
+
         //Current position
         if (navigator.geolocation) {
           console.log('POSICION ACTUAL');
@@ -974,10 +975,7 @@
               infoWindow.setContent(message01);
             });
                 var geocoder = new google.maps.Geocoder();
-                       var input = document.getElementById('address');
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo('bounds', map);
+
                 document.getElementById('submit').addEventListener('click', function() {
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
@@ -1214,6 +1212,10 @@
           }
         });
     });
+    var input = document.getElementById('address');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
     </script>
 
 
