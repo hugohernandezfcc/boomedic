@@ -986,7 +986,7 @@
                 document.getElementById('ubi').style.display = 'inline'; 
                 
 
-                 var address1 = ({ "search" :  $("#address").val() });
+                 var address1 = $("#address").val();
 
 
                            $.ajax({     
@@ -994,7 +994,7 @@
                              type: "POST",                 
                              url: "medicalconsultations/recent", 
                              headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}, 
-                              data: JSON.stringify(address1), 
+                              data: { search : address1 }, 
                               dataType: 'json',                   
                              success: function(data)             
                              {
