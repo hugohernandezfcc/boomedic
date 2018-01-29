@@ -76,7 +76,7 @@ class medicalappointments extends Controller
     public function showPaymentMethods()
     {
         return response()->json(
-            DB::table('paymentsmethods')->where('owner', Auth::id() )->get()
+             DB::table('paymentsmethods')->where('owner', Auth::id())->get()
         );
     }
 

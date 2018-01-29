@@ -979,7 +979,7 @@
                 document.getElementById('ubi').style.display = 'inline'; 
                            $.ajax({                        
                              type: "POST",                 
-                             url: {{ url('medicalconsultations/recent') }},                     
+                             url: "medicalconsultations/recent",                     
                              data: $("#search").serialize(), 
                              success: function(data)             
                              {
