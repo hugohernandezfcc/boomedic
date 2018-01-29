@@ -115,12 +115,12 @@ class HomeController extends Controller
         $json = json_decode($request);
 
             foreach ($json as $json) {
-            array_push($recent,   $json->search);
+            array_push($recent,   $json;
              $user->recent_search  = json_encode($recent); 
          }
 
             $user->save();
-        return response()->json(json_encode($json));
+        return response()->json($request);
 
     }
 
