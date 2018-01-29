@@ -116,11 +116,11 @@ class HomeController extends Controller
 
             foreach ($json as $json) {
             array_push($recent,   $json);
-             $user->recent_search  = json_encode($recent); 
+             $user->recent_search  = $json->search; 
          }
 
             $user->save();
-        return response()->json($request);
+        return response()->json(['search' => $user->recent_search]);
 
     }
 
