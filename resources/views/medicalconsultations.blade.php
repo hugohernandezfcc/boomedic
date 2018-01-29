@@ -993,8 +993,8 @@
 
                              type: "POST",                 
                              url: "medicalconsultations/recent", 
-                             headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}, 
-                              data: { search : address1 }, 
+                              data: { "_token": "{{ csrf_token() }}",
+                                        search : address1 }, 
                               dataType: 'json',                   
                              success: function(data)             
                              {
