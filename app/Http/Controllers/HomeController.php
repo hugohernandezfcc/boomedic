@@ -106,8 +106,12 @@ class HomeController extends Controller
             );
         }
     }
-
-
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
     public function recent(Request $request)
   {     $user = User::find(Auth::id());
         $userSearch = json_decode($user->recent_search);
