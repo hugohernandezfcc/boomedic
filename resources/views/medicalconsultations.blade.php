@@ -510,7 +510,7 @@
                   console.log(JSON.parse(result));
                    var result1 = JSON.parse(result);            
                               for(var z=0; z < result1.length; z++){
-                                 $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent">'+ result1[z] +'</a><br/>');
+                                 $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent">'+ result1[z] +'<br/></a>');
                                }
                 }
               }
@@ -1014,7 +1014,6 @@
                  var address1 = document.getElementById('address').value;
 
                            $.ajax({     
-
                              type: "POST",                 
                              url: "medicalconsultations/recent",  
                               data: { "search" : address1 }, 
