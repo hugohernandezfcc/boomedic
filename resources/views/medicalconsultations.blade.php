@@ -493,6 +493,17 @@
                 }
               }
             );
+            $.ajax(
+              {
+                type: "GET",    
+                url: "medicalconsultations/showrecent", 
+                success: function(result){
+                  console.log(result);
+                   document.getElementById('resp').style.display = "block";
+                               $('#resp').html(result); 
+                }
+              }
+            );
 
             $('select').select2({
                 width: "100%",

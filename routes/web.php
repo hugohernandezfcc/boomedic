@@ -37,6 +37,7 @@ Route::post('SMRegister', ['as' => 'SMRegister.createbySocialMedia', 'uses' => '
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
 
 Route::post('/medicalconsultations/recent', 'HomeController@recent')->name('medicalconsultations/recent');
+Route::get('/medicalconsultations/showrecent', 'HomeController@showrecent')->name('medicalconsultations/showrecent');
 
 
 Route::get('/homemedical', function () {

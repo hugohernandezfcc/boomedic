@@ -111,12 +111,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function recent(Request $request)
   {     $user = User::find(Auth::id());
         $userSearch = json_decode($user->recent_search);
         $recent = array();
         $json = json_decode($request);
+    if($request->search != null){
         if(!$userSearch){
            
             array_push($recent, $request->search);
@@ -124,17 +125,31 @@ class HomeController extends Controller
          
       } else{
          
-
-         array_push($userSearch, $request->search);
-             $user->recent_search  = json_encode($userSearch); 
+        if(count($userSearch) == 3 ){
+            unset($userSearch[0]);
+            array_push($userSearch, $request->search);
+            $user->recent_search  = json_encode($userSearch); 
+        } else{
+            array_push($userSearch, $request->search);
+            $user->recent_search  = json_encode($userSearch); 
+            }
+        }
          
      }
-
-   
-
             $user->save();
+        }
         return response()->json($user->recent_search);
 
     }
 
+     /**
+     * Method responsable of list of recent
+     */
+    public function showrecent()
+    {
+         $user = User::find(Auth::id());
+        return response()->json($user->recent_search);
+    }
+
 }
+
