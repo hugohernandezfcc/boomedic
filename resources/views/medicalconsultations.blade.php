@@ -1022,7 +1022,10 @@
                              success: function(data)             
                              {
                       console.log(JSON.parse(data));
-
+                       var result1 = JSON.parse(result);            
+                              for(var z=0; z < result1.length; z++){
+                                 $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);">'+ result1[z] +'</a><br/>');
+                               }
                              }
                          });
                 });
