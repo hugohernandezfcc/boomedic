@@ -472,6 +472,14 @@
 
 
 
+
+            $('select').select2({
+                width: "100%",
+            });
+
+          });
+
+
             $.ajax(
               {
                 type: "GET",    
@@ -493,7 +501,8 @@
                 }
               }
             );
-            $.ajax(
+
+           $.ajax(
               {
                 type: "GET",    
                 url: "medicalconsultations/showrecent", 
@@ -501,17 +510,16 @@
                   console.log(JSON.parse(result));
                    var result1 = JSON.parse(result);            
                               for(var z=0; z < result1.length; z++){
-                                 $('#resp').append('<a href="#">'+ result1[z] +'</a><br/>');
+                                 $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);">'+ result1[z] +'</a><br/>');
                                }
                 }
               }
             );
-
-            $('select').select2({
-                width: "100%",
-            });
-
-          });
+              function showvalue (link){
+                  var value = link.getAttribute("data-value");
+                  document.getElementById('address').value = value;
+                  document.getElementById('submit').click();
+              }
           </script>
 
 
@@ -1017,6 +1025,7 @@
                       var data1 = JSON.parse(data);            
                                 for(var z=0; z < data1.length; z++){
                                  $('#resp').append('<a href="#">'+ data1[z] +'</a><br/>');         
+                              }
                              }
                          });
                 });
