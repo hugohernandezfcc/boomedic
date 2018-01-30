@@ -1025,7 +1025,7 @@
                        var data1 = JSON.parse(data); 
                        $(".recent").remove();           
                               for(var z=0; z < data1.length; z++){
-                                 $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent">'+ data1[z] +'</a><br/>');
+                                 $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent">'+ data1[z] +'<br/></a>');
                                }
                              }
                          });
