@@ -575,7 +575,7 @@
        * 
        */
       window.onload = function(){
-        var height = window.screen.availHeight-115;
+        var height = window.screen.availHeight-130;
         console.log(height);
         alert(height);
 
