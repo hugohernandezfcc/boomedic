@@ -125,8 +125,9 @@ class HomeController extends Controller
          
       } else{
          
-        if(count($userSearch) == 3 ){
+        if(count($userSearch) == 4 ){
             unset($userSearch[0]);
+            $userSearch = array_values($userSearch);
             array_push($userSearch, $request->search);
             $user->recent_search  = json_encode($userSearch); 
         } else{
