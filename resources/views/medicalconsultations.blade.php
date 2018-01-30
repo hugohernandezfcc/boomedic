@@ -345,7 +345,7 @@
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
                           </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-                      <div id="resp" style="display: none;"></div>
+                      <div id="resp"><b>Busquedas recientes:</b><br/></div>
                   </div>
                 </div>
               </div>
@@ -498,9 +498,11 @@
                 type: "GET",    
                 url: "medicalconsultations/showrecent", 
                 success: function(result){
-                  console.log(result);
-                   document.getElementById('resp').style.display = "block";
-                               $('#resp').html(result); 
+                  console.log(JSON.parse(result));
+                   var result1 = JSON.parse(result);            
+                              for(var z=0; z < result1.length; z++){
+                                 $('#resp').append('<a href="#">'+ result1[z] +'</a><br/>');
+                               }
                 }
               }
             );
@@ -1011,10 +1013,10 @@
                               dataType: 'json',                
                              success: function(data)             
                              {
-                               console.log(address1);     
-                               document.getElementById('resp').style.display = "block";
-                               $('#resp').html(data);  
-                               console.log(data);             
+                      console.log(JSON.parse(data));
+                      var data1 = JSON.parse(data);            
+                                for(var z=0; z < data1.length; z++){
+                                 $('#resp').append('<a href="#">'+ data1[z] +'</a><br/>');         
                              }
                          });
                 });
