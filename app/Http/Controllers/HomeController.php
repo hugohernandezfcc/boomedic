@@ -135,7 +135,7 @@ class HomeController extends Controller
             }
         }
          
-     }
+     
             $user->save();
         }
         return response()->json($user->recent_search);
