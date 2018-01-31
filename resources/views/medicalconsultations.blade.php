@@ -452,19 +452,12 @@
 
           $(function () {
 
-            $('#calendar').datepicker({
-              beforeShowDay: function(date){ return [date.getDay() == 6 || date.getDay() == 0,""]}
-            });
-
+            $('#calendar').datepicker({beforeShowDay: function(date){ return [date.getDay() == 3 || date.getDay() == 5,""]}
+              });
             $('#calendar').on('changeDate', function() {
                 $('#dateSelectedForCite').val(
                     $('#calendar').datepicker('getFormattedDate')
                 );
-            });
-
-
-            $(".datepicker .datepicker-days").on('click', 'td.day', function () {
-                document.getElementById('paymentMethodsFields').style.display = "block";
             });
 
 
