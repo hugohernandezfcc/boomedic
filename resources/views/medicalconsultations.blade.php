@@ -427,7 +427,7 @@
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <!--The calendar -->
-              <div id="calendar" style="width: 80%"></div>
+              <div id="calendar1" style="width: 80%"></div>
             </div>
             <!-- /.box-body -->
             
@@ -452,11 +452,11 @@
 
           $(function () {
 
-            $('#calendar').datepicker({beforeShowDay: function(date){ return [date.getDay() == 3 || date.getDay() == 5,""]}
+            $('#calendar1').datepicker({beforeShowDay: function(date){ return [date.getDay() == 3 || date.getDay() == 5,""]}
               });
-            $('#calendar').on('changeDate', function() {
+            $('#calendar1').on('changeDate', function() {
                 $('#dateSelectedForCite').val(
-                    $('#calendar').datepicker('getFormattedDate')
+                    $('#calendar1').datepicker('getFormattedDate')
                 );
             });
 
