@@ -1188,11 +1188,11 @@
               document.getElementById('amount').value = loc[i][5];
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
-
-                  for (var y = loc[i][6].length - 1; y >= 0; y--) {  
+                  var optionhour = loc[i][6].reverse;
+                  for (var y = optionhour.length - 1; y >= 0; y--) {  
                     var option = document.createElement("option");
-                    option.text = loc[i][6][y];
-                    option.value = loc[i][6][y];
+                    option.text = optionhour[y];
+                    option.value = optionhour[y];
                     x.add(option);
             } }
           })(marker, i));
