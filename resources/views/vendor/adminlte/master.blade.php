@@ -84,7 +84,7 @@
             width: 95%;
         }
 
-        #calendar {
+        #calendar1 {
         max-width: 900px;
         margin: 0 auto;
     }

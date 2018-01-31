@@ -413,14 +413,14 @@
                 </div>
               <hr width="100%">
                 <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
+          <div class="box box-solid bg-black-gradient">
             <div class="box-header">
               <i class="fa fa-calendar"></i>
 
               <h3 class="box-title">Seleccionar día</h3>
               <!-- tools box -->
               <div class="pull-right box-tools">
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
               </div>
               <!-- /. tools -->
             </div>
