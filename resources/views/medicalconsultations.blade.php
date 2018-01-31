@@ -1196,7 +1196,15 @@
               showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
               document.getElementById('amount').value = loc[i][5];
               $('#modal-register-cite').modal('show');
-            }
+                                var x = document.getElementById("paymentMethodsFields");
+
+                  for (var y = loc[i][6].length - 1; y >= 0; y--) {
+                    
+                    var option = document.createElement("timesByDay");
+                    option.text = loc[i][6][y];
+                    option.value = loc[i][6][y];
+                    x.add(option);
+            } }
           })(marker, i));
           setTimeout(dropMarker(i), i * 250);
         }
