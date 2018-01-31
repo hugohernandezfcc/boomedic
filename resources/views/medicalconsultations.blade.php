@@ -1184,7 +1184,7 @@
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
-                   $('#calendar1').datepicker({ daysOfWeekDisabled: [0,1,2] });
+                   $('#calendar1').datepicker({ beforeShowDay: onlyTheseWeekDays([0, 6]) });
 
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                     var res = optionhour[y].split(":"); 
