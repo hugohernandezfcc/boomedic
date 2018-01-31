@@ -226,6 +226,7 @@
      */
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
+
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
   </script>
              @if($appointments->isEmpty())
@@ -1145,7 +1146,7 @@
             if(metros < rangeValue){
               console.log('Nombre:: '+generalM[i][2]);
               console.log(metros +'<'+ rangeValue);
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4],generalM[i][5]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4], generalM[i][5]]);
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
             }
           }
