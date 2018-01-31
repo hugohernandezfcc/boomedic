@@ -446,8 +446,12 @@ question
     public function destroy($id)
     {
   $workboard = DB::table('workboard')->where('labInformation', $id)->get();
+  $appointments = DB::table('medical_appointments')->where('workplace', $id)->get();
  if(count($workboard) > 0){
     DB::table('workboard')->where('labInformation', $id)->delete();   
+ }
+  if(count($appointments) > 0){
+    DB::table('medical_appointments')->where('workplace', $id)->delete();   
  }
     DB::delete('delete from labor_information where id = ?',[$id]) ;    
 
