@@ -427,7 +427,9 @@
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <!--The calendar -->
-              <div id="calendar" style="width: 80%"></div>
+              <div style="width: 80%">
+                <input type="text" id="calendar" />
+              </div>
             </div>
             <!-- /.box-body -->
             
@@ -452,25 +454,18 @@
 
           $(function () {
 
-                   $('#calendar').datepicker({ beforeShowDay: function(day) {
-                    var day = day.getDay();
-                    if (day == 1) {
-                        return [false, "somecssclass"]
-                    } else {
-                        return [true, "someothercssclass"]
-                    }
-                 }
+                   $('#calendar').datepicker({ beforeShowDay: function(dt)
+                      {
+                         return [dt.getDay() == 1 || dt.getDay() == 3 ? false : true];
+                      }
+                   });
+
                 });
 
             $('#calendar').on('changeDate', function() {
                 $('#dateSelectedForCite').val(
                     $('#calendar').datepicker('getFormattedDate')
                 );
-            });
-
-
-            $(".datepicker .datepicker-days").on('click', 'td.day', function () {
-                document.getElementById('paymentMethodsFields').style.display = "block";
             });
 
 
