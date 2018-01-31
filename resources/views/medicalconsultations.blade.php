@@ -435,16 +435,8 @@
           <input type="hidden" id="dateSelectedForCite">
  
           <!-- /.box -->
-          <select id="timesByDay" class="form-control" style="display: none;">
-            <option>10:00 A.M.</option>
-            <option>11:00 A.M.</option>
-            <option>12:00 P.M.</option>
-            <option>13:00 P.M.</option>
-            <option>14:00 P.M.</option>
-            <option>15:00 P.M.</option>
-            <option>16:00 P.M.</option>
-            <option>17:00 P.M.</option>
-            <option>18:00 P.M.</option>
+          <select id="timesByDay" class="form-control">
+
           </select>
           <br/>
           <br/>
@@ -470,7 +462,6 @@
 
             $(".datepicker .datepicker-days").on('click', 'td.day', function () {
                 document.getElementById('paymentMethodsFields').style.display = "block";
-                document.getElementById('timesByDay').style.display = "block";
             });
 
 
@@ -1196,11 +1187,10 @@
               showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
               document.getElementById('amount').value = loc[i][5];
               $('#modal-register-cite').modal('show');
-                                var x = document.getElementById("paymentMethodsFields");
+                  var x = document.getElementById("timesByDay");
 
-                  for (var y = loc[i][6].length - 1; y >= 0; y--) {
-                    
-                    var option = document.createElement("timesByDay");
+                  for (var y = loc[i][6].length - 1; y >= 0; y--) {  
+                    var option = document.createElement("option");
                     option.text = loc[i][6][y];
                     option.value = loc[i][6][y];
                     x.add(option);
