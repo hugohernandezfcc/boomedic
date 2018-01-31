@@ -1070,13 +1070,13 @@
         if(keyWordValue == ''){
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6]]);
             }
           }
         }else{
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue && datos[i][3] == keyWordValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6]]);
             }
           }          
         }
@@ -1087,7 +1087,7 @@
           console.log('Nombre:: '+res[i][3]);
           if(metros < rangeValue){
             //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6]]);
           }
         }
         console.log(res);
@@ -1114,7 +1114,7 @@
           console.log('KEYWORD SEARCH VÁLIDO:: '+keyWordValue);
           for(var i = 0; i < generalM.length; i++) {
             if(generalM[i][2] == keyWordValue){
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4],generalM[i][5]]);
             }
           }
           for(var i = 0; i < res.length; i++) {
@@ -1123,8 +1123,8 @@
             console.log('metros:: '+metros);
             console.log('Nombre:: '+res[i][3]);
             if(metros < rangeValue){
-               //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio]
-               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
+               //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio, intervalos]
+               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6]]);
              }
           }
           if(loc.length <= 0){
@@ -1145,12 +1145,12 @@
             if(metros < rangeValue){
               console.log('Nombre:: '+generalM[i][2]);
               console.log(metros +'<'+ rangeValue);
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4],generalM[i][5]]);
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
             }
           }
           for(var i = 0; i < res.length; i++) {
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6]]);
           }
           if(loc.length <= 0){
             console.log('NO ENCONTRO MÉDICO');

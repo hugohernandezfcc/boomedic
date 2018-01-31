@@ -41,16 +41,17 @@ class HomeController extends Controller
         $join = DB::table('professional_information')
             ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
             ->join('users', 'professional_information.user', '=', 'users.id')
-            ->select('labor_information.*', 'users.name', 'professional_information.specialty')
+            ->join('workboard', 'labor_information.id', '=', 'workboard.labInformation')
+            ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'workboard.patient_duration_attention')
             ->get();
 
 
              foreach($join as $labor){
                     if($labor->specialty == 'Médico General'){
-                        $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'"]';
+                        $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'","'.$labor->patient_duration_attention.'"]';
                     }
                     else{
-                    $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'"]';
+                    $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'","'.$labor->patient_duration_attention.'"]';
 
                     $sp[] = '["'.$labor->specialty.'"]';
                     $mg = '0';
