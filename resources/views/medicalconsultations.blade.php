@@ -1184,10 +1184,11 @@
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
-                   $('#calendar1').datepicker({ beforeShowDay: function(dt){return [dt.getDay() == 1 || dt.getDay() == 3 ? false : true];}
-                      });
+                   $('#calendar1').datepicker({ daysOfWeekDisabled: [0,1,2] });
 
-                  for (var y = optionhour.length - 1; y >= 0; y--) {  
+                  for (var y = optionhour.length - 1; y >= 0; y--) { 
+                    var res = optionhour[y].split(":"); 
+                    console.log(res);
                     var option = document.createElement("option");
                     option.text = optionhour[y];
                     option.value = optionhour[y];
