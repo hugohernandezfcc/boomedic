@@ -334,21 +334,18 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                     <label for="Busqueda">Nueva ubicación:</label>
-                  </div>
-                  <div class="modal-body">
                         <div class="input-group input-group-sm">
-                        
                           <input id="address" type="textbox" value="" class="form-control" placeholder="Puede ingresar direcciones específicas..">
                           <span class="input-group-btn">
                           <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
-                        
                        </div>
-                            <br/>                    
+                  </div>
+                  <div class="modal-body">                
                           <div id ="ubi" class="input-group input-group-sm" style="display:none;">
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
                           </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-                      <div id="resp"><br/><b>Busquedas recientes:</b><br/></div>
+                      <div id="resp"><b>Busquedas recientes:</b><br/></div>
                   </div>
                 </div>
               </div>
