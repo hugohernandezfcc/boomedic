@@ -1189,46 +1189,46 @@
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                     var res = optionhour[y].split(":"); 
                     
-                        if(res[0] == 'Dom'){
+                      if(res[0] == 'Dom'){
                       var index = days.indexOf(0);
                        if (index > -1) {
-                               array.splice(index, 1);
+                               days.splice(index, 1);
                             }
                         }
                         if(res[0] == 'Lun'){
                         var index = days.indexOf(1);
                         if (index > -1) {
-                               array.splice(index, 1);
+                               days.splice(index, 1);
                             }
                         }
                         if(res[0] == 'Mar'){
                           var index = days.indexOf(2);
                            if (index > -1) {
-                               array.splice(index, 1);
+                               days.splice(index, 1);
                             }
                         }
                         if(res[0] == 'Mie'){
                           var index = days.indexOf(3);
                         if (index > -1) {
-                               array.splice(index, 1);
+                               days.splice(index, 1);
                             }
                         }
                         if(res[0] == 'Jue'){
                           var index = days.indexOf(4);
                         if (index > -1) {
-                               array.splice(index, 1);
+                               days.splice(index, 1);
                             }
                         }
                         if(res[0] == 'Vie'){
                           var index = days.indexOf(5);
                         if (index > -1) {
-                               array.splice(index, 1);
+                               days.splice(index, 1);
                             }
                         }
                         if(res[0] == 'Sab'){
                           var index = days.indexOf(6);
                           if (index > -1) {
-                               array.splice(index, 1);
+                               days.splice(index, 1);
                             }
                         }
 
