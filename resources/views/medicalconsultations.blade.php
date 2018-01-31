@@ -451,14 +451,16 @@
                
 
           $(function () {
-$('#calendar').datepicker({ beforeShowDay:
-    function(dt)
-    {
-       return [dt.getDay() == 1 || dt.getDay() == 3 ? false : true];
 
-    }
-
- });
+                   $('#calendar').datepicker({ beforeShowDay: function(day) {
+                    var day = day.getDay();
+                    if (day == 1) {
+                        return [false, "somecssclass"]
+                    } else {
+                        return [true, "someothercssclass"]
+                    }
+                 }
+                });
 
             $('#calendar').on('changeDate', function() {
                 $('#dateSelectedForCite').val(
