@@ -452,7 +452,7 @@
 
           $(function () {
 
-            $('#calendar1').datepicker({ daysOfWeekDisabled: [0,1,2] });
+
            /* $('#calendar1').on('changeDate', function() {
                 $('#dateSelectedForCite').val(
                     $('#calendar1').datepicker('getFormattedDate')
@@ -1184,6 +1184,9 @@
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
+                   $('#calendar1').datepicker({ beforeShowDay: function(dt){return [dt.getDay() == 1 || dt.getDay() == 3 ? false : true];}
+                      });
+
                   for (var y = optionhour.length - 1; y >= 0; y--) {  
                     var option = document.createElement("option");
                     option.text = optionhour[y];
