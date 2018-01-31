@@ -509,8 +509,8 @@
                 type: "GET",    
                 url: "medicalconsultations/showrecent", 
                 success: function(result){
-                  console.log(JSON.parse(result));
-                   var result1 = JSON.parse(result);            
+                  console.log(JSON.parse(result).reverse());
+                   var result1 = JSON.parse(result).reverse();            
                               for(var z=0; z < result1.length; z++){
                                  $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ result1[z] +'<br/></a>');
                                }
@@ -1022,8 +1022,8 @@
                               dataType: 'json',                
                              success: function(data)             
                              {
-                      console.log(JSON.parse(data));
-                       var data1 = JSON.parse(data); 
+                      console.log(JSON.parse(data).reverse());
+                       var data1 = JSON.parse(data).reverse(); 
                        $(".recent").remove();           
                               for(var z=0; z < data1.length; z++){
                                  $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ data1[z] +'<br/></a>');
