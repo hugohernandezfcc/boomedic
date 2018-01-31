@@ -1188,10 +1188,10 @@
 
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                     var res = optionhour[y].split(":"); 
-                    console.log(res);
+                    console.log(res[0]);
                     var option = document.createElement("option");
-                    option.text = optionhour[y];
-                    option.value = optionhour[y];
+                    option.text = res[0];
+                    option.value = res[0];
                     x.add(option);
             } }
           })(marker, i));
