@@ -452,13 +452,12 @@
 
           $(function () {
 
-            $('#calendar1').datepicker({beforeShowDay: function(date){ return [date.getDay() == 3 || date.getDay() == 5,""]}
-              });
-            $('#calendar1').on('changeDate', function() {
+            $('#calendar1').datepicker({ daysOfWeekDisabled: [0,6] });
+           /* $('#calendar1').on('changeDate', function() {
                 $('#dateSelectedForCite').val(
                     $('#calendar1').datepicker('getFormattedDate')
                 );
-            });
+            }); */
 
 
 
