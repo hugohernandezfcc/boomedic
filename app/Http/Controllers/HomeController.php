@@ -50,7 +50,7 @@ class HomeController extends Controller
                  $workArray = array();
                 $workboard = DB::table('workboard') ->where('workboard.labInformation', '=', $labor->id)->get();
                           foreach($workboard  as $work){
-                            array_push($workArray, $work->workingDays);
+                            array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
                           }
                     if($labor->specialty == 'Médico General'){
                         $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).']';
