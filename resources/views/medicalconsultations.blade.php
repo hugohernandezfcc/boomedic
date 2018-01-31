@@ -452,7 +452,7 @@
 
           $(function () {
 
-            $('#calendar1').datepicker({ daysOfWeekDisabled: [0,6] });
+            $('#calendar1').datepicker({ daysOfWeekDisabled: [0,1,2] });
            /* $('#calendar1').on('changeDate', function() {
                 $('#dateSelectedForCite').val(
                     $('#calendar1').datepicker('getFormattedDate')
