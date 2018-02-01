@@ -1190,9 +1190,9 @@
                  $('#timesByDay').children().remove();
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                      resp = optionhour[y].split(":",2); 
-                     resp2 = resp.slice(4);
-                  console.log(resp.slice(4));
-                  
+                     resp2 = optionhour[y].slice(4);
+                  console.log(optionhour[y].slice(4));
+
                       if(resp[0] == 'Dom'){
                         var Dom = resp[1];
                       var index = days.indexOf(0);
@@ -1248,9 +1248,22 @@
                     option.value = resp[1];
                     x.add(option);
                   }
-                     $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es'}).on('changeDate',function(e){
-                        console.log(e);
-                      });
+                     $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es', onSelect: function(dateText){
+                              var seldate = $(this).datepicker('getDate');
+                              seldate = seldate.toDateString();
+                              seldate = seldate.split(' ');
+                              var weekday=new Array();
+                                  weekday['Mon']="Lunes";
+                                  weekday['Tue']="Martes";
+                                  weekday['Wed']="Miércoles";
+                                  weekday['Thu']="Jueves";
+                                  weekday['Fri']="Viernes";
+                                  weekday['Sat']="Sábado";
+                                  weekday['Sun']="Domingo";
+                              var dayOfWeek = weekday[seldate[0]];
+                             console.log(dayOfWeek);
+                          }
+                        })
              }
           })(marker, i));
           setTimeout(dropMarker(i), i * 250);
