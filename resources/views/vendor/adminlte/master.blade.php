@@ -263,7 +263,7 @@
 
         //Datemask dd/mm/yyyy
         //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
-          $.datepicker.regional['es'] = {
+         $.fn.datetimepicker.dates['es'] = {
             closeText: 'Cerrar',
             prevText: '<Ant',
             nextText: 'Sig>',
@@ -281,7 +281,6 @@
             yearSuffix: ''
           };
 
-          $.datepicker.setDefaults($.datepicker.regional['es']);
         //Date picker
        /* $('#datepicker').datepicker({
             format: "mm/dd/yyyy",
