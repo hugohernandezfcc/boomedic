@@ -1188,45 +1188,52 @@
                   var resp = Array();
                  $('#timesByDay').children().remove();
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
-                    var resp = optionhour[y].split(":"); 
+                     resp = optionhour[y].split(":"); 
                     
                       if(resp[0] == 'Dom'){
+                        var Dom = resp[1];
                       var index = days.indexOf(0);
                        if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Lun'){
+                          var Lun = resp[1];
                         var index = days.indexOf(1);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Mar'){
+                          var Mar = resp[1];
                           var index = days.indexOf(2);
                            if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Mie'){
+                          var Mie = resp[1];
                           var index = days.indexOf(3);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Jue'){
+                          var Jue = resp[1];
                           var index = days.indexOf(4);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Vie'){
+                          var Vie = resp[1];
                           var index = days.indexOf(5);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Sab'){
+                          var Sab = resp[1];
                           var index = days.indexOf(6);
                           if (index > -1) {
                                days.splice(index, 1);
@@ -1234,11 +1241,11 @@
                         }
 
                     var option = document.createElement("option");
-                    option.text = resp[0];
-                    option.value = resp[0];
+                    option.text = resp[1];
+                    option.value = resp[1];
                     x.add(option);
                   }
-                  
+
                     console.log(days);
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es' }).on('changeDate',function(e){
                         console.log(e);
