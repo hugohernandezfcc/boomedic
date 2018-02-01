@@ -15,7 +15,7 @@
 
 
 
-@section('body_class', 'login-page')
+<style type="text/css">body{background-color: blue;}</style>
 
 
 
