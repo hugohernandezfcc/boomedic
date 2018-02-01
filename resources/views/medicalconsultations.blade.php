@@ -493,7 +493,7 @@
 
 
 
-                <div >
+                <div>
                   <p id="info"></p>
                 </div>
               <hr width="100%">
