@@ -1248,22 +1248,9 @@
                     option.value = resp2;
                     x.add(option);
                   }
-                     $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es', onSelect: function(dateText){
-                              var seldate = $(this).datepicker('getDate');
-                              seldate = seldate.toDateString();
-                              seldate = seldate.split(' ');
-                              var weekday=new Array();
-                                  weekday['Mon']="Lunes";
-                                  weekday['Tue']="Martes";
-                                  weekday['Wed']="Miércoles";
-                                  weekday['Thu']="Jueves";
-                                  weekday['Fri']="Viernes";
-                                  weekday['Sat']="Sábado";
-                                  weekday['Sun']="Domingo";
-                              var dayOfWeek = weekday[seldate[0]];
-                             console.log(dayOfWeek);
-                          }
-                        })
+                     $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es', }).on('changeDate',function(e){
+                        console.log(e.date.format('DD-MM-YYYY'));
+                      });
              }
           })(marker, i));
           setTimeout(dropMarker(i), i * 250);
