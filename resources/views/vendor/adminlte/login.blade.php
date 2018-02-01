@@ -22,7 +22,7 @@
 
 
 @section('body')
-LEX
+kdfbvkfbvxkvbzxkvb
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
