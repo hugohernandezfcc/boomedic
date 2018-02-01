@@ -1256,8 +1256,8 @@
                         if (e.date.getDay() == 0) {
                           for(var d = 0; d < Dom.length; d++){
                              var option = document.createElement("option");
-                              option.text = Dom[d];
-                              option.value = Dom[d];
+                              option.text = Dom[d].slice(0,-3);
+                              option.value = Dom[d].slice(0,-3);
                               x.add(option);
                               console.log(Dom);
                           }
@@ -1265,8 +1265,8 @@
                         if (e.date.getDay() == 1) {
                           for(var d = 0; d < Lun.length; d++){
                              var option = document.createElement("option");
-                              option.text = Lun[d];
-                              option.value = Lun[d];
+                              option.text = Lun[d].slice(0,-3);
+                              option.value = Lun[d].slice(0,-3);
                               x.add(option);
                               console.log(Lun);
                           }
@@ -1274,8 +1274,8 @@
                        if (e.date.getDay() == 2) {
                           for(var d = 0; d < Mar.length; d++){
                              var option = document.createElement("option");
-                              option.text = Mar[d];
-                              option.value = Mar[d];
+                              option.text = Mar[d].slice(0,-3);
+                              option.value = Mar[d].slice(0,-3);
                               x.add(option);
                               console.log(Mar);
                           }
@@ -1283,8 +1283,8 @@
                        if (e.date.getDay() == 3) {
                           for(var d = 0; d < Mie.length; d++){
                              var option = document.createElement("option");
-                              option.text = Mie[d];
-                              option.value = Mie[d];
+                              option.text = Mie[d].slice(0,-3);
+                              option.value = Mie[d].slice(0,-3);
                               x.add(option);
                               console.log(Mie);
                           }
@@ -1292,8 +1292,8 @@
                        if (e.date.getDay() == 4) {
                           for(var d = 0; d < Jue.length; d++){
                              var option = document.createElement("option");
-                              option.text = Jue[d];
-                              option.value = Jue[d];
+                              option.text = Jue[d].slice(0,-3);
+                              option.value = Jue[d].slice(0,-3);
                               x.add(option);
                               console.log(Jue);
                           }
@@ -1301,16 +1301,16 @@
                         if (e.date.getDay() == 5) {
                           for(var d = 0; d < Vie.length; d++){
                              var option = document.createElement("option");
-                              option.text = Vie[d];
-                              option.value = Vie[d];
+                              option.text = Vie[d].slice(0,-3);
+                              option.value = Vie[d].slice(0,-3);
                               x.add(option);
                           }
                         }
                        if (e.date.getDay() == 6) {
                           for(var d = 0; d < Sab.length; d++){
                              var option = document.createElement("option");
-                              option.text = Sab[d];
-                              option.value = Sab[d];
+                              option.text = Sab[d].slice(0,-3);
+                              option.value = Sab[d].slice(0,-3);
                               x.add(option);
                           }
                         }    
