@@ -232,7 +232,6 @@
 /*styles Wizard */
     .wizard .nav-tabs {
         position: relative;
-        margin: 40px auto;
         margin-bottom: 0;
         border-bottom-color: #e0e0e0;
     }
@@ -245,7 +244,7 @@
     height: 2px;
     background: #e0e0e0;
     position: absolute;
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
     left: 0;
     right: 0;
@@ -270,9 +269,9 @@ span.round-tab {
     left: 0;
     text-align: center;
     font-size: 16px;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
 }
 span.round-tab i{
     color:#555555;
@@ -319,9 +318,9 @@ span.round-tab:hover {
 }
 
 .wizard .nav-tabs > li a {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
     margin: 20px auto;
     border-radius: 100%;
     padding: 0;
