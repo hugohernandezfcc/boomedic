@@ -1190,7 +1190,9 @@
                  $('#timesByDay').children().remove();
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                      resp = optionhour[y].split(":",2); 
-                  console.log(resp);
+                     resp2 = resp.slice(4);
+                  console.log(resp.slice(4));
+                  
                       if(resp[0] == 'Dom'){
                         var Dom = resp[1];
                       var index = days.indexOf(0);
