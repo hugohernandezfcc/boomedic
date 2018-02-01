@@ -1260,8 +1260,8 @@
                               option.text = Dom[d].slice(0,-3);
                               option.value = Dom[d].slice(0,-3);
                               x.add(option);
-                            
                           }
+                           $("#timesByDay option[value='asueto ']").remove();
                         }
                         if (e.date.getDay() == 1) {
                           for(var d = 0; d < Lun.length; d++){
@@ -1280,6 +1280,7 @@
                               option.value = Mar[d].slice(0,-3);
                               x.add(option);
                           }
+                           $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 3) {
                           for(var d = 0; d < Mie.length; d++){
@@ -1289,6 +1290,7 @@
                               option.value = Mie[d].slice(0,-3);
                               x.add(option);
                           }
+                           $("#timesByDay option[value='asueto ']").remove();
                         } 
                        if (e.date.getDay() == 4) {
                           for(var d = 0; d < Jue.length; d++){
@@ -1297,6 +1299,7 @@
                               option.value = Jue[d].slice(0,-3);
                               x.add(option);
                           }
+                           $("#timesByDay option[value='asueto ']").remove();
                         }                                               
                         if (e.date.getDay() == 5) {
                           for(var d = 0; d < Vie.length; d++){
@@ -1305,6 +1308,7 @@
                               option.value = Vie[d].slice(0,-3);
                               x.add(option);
                           }
+                           $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 6) {
                           for(var d = 0; d < Sab.length; d++){
@@ -1313,6 +1317,7 @@
                               option.value = Sab[d].slice(0,-3);
                               x.add(option);
                           }
+                           $("#timesByDay option[value='asueto ']").remove();
                         }    
                         $('#dateSelectedForCite').val = e.date.toString();                  
                          console.log(e.date.toString());
