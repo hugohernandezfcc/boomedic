@@ -434,16 +434,12 @@
           </div>
 
           <input type="hidden" id="dateSelectedForCite">
- 
+           <br/>
           <!-- /.box -->
           <select id="timesByDay" class="form-control">
-
           </select>
           <br/>
-          <br/>
           <select id="paymentMethodsFields" class="form-control" style="display: none;">
-            
-          
           </select>
 
           <script type="text/javascript">
@@ -1264,6 +1260,30 @@
                               x.add(option);
                           }
                         }
+                       if (e.date.getDay() == 2) {
+                          for(var d = 0; d < Mar.length; d++){
+                             var option = document.createElement("option");
+                              option.text = Mar[d];
+                              option.value = Mar[d];
+                              x.add(option);
+                          }
+                        }
+                       if (e.date.getDay() == 3) {
+                          for(var d = 0; d < Mie.length; d++){
+                             var option = document.createElement("option");
+                              option.text = Mie[d];
+                              option.value = Mie[d];
+                              x.add(option);
+                          }
+                        } 
+                       if (e.date.getDay() == 4) {
+                          for(var d = 0; d < Jue.length; d++){
+                             var option = document.createElement("option");
+                              option.text = Jue[d];
+                              option.value = Jue[d];
+                              x.add(option);
+                          }
+                        }                                               
                         if (e.date.getDay() == 5) {
                           for(var d = 0; d < Vie.length; d++){
                              var option = document.createElement("option");
@@ -1272,8 +1292,15 @@
                               x.add(option);
                           }
                         }
+                       if (e.date.getDay() == 6) {
+                          for(var d = 0; d < Sab.length; d++){
+                             var option = document.createElement("option");
+                              option.text = Sab[d];
+                              option.value = Sab[d];
+                              x.add(option);
+                          }
+                        }                        
                          console.log(e.date.toString());
-                         console.log(e.date.getDay());
                       });
              }
           })(marker, i));
