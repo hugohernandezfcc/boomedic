@@ -170,6 +170,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         \Laravel\Passport\PassportServiceProvider::class,
         \Cyvelnet\Laravel5Fractal\Laravel5FractalServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -236,6 +237,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
 
         'Fractal' => \Cyvelnet\Laravel5Fractal\Facades\Fractal::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
+
             
     ],
 

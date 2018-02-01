@@ -22,6 +22,11 @@
 
 
 @section('body')
+    @if($agent->is('Windows'))
+        <script type="text/javascript">
+            alert("Windows");
+        </script>
+    @endif
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
