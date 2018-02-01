@@ -1185,47 +1185,48 @@
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
                   var days = [0,1,2,3,4,5,6];
-
+                  var resp = Array();
+                  x.find('option').remove();
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
-                    var res = optionhour[y].split(":"); 
+                    var resp = optionhour[y].split(":"); 
                     
-                      if(res[0] == 'Dom'){
+                      if(resp[0] == 'Dom'){
                       var index = days.indexOf(0);
                        if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
-                        if(res[0] == 'Lun'){
+                        if(resp[0] == 'Lun'){
                         var index = days.indexOf(1);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
-                        if(res[0] == 'Mar'){
+                        if(resp[0] == 'Mar'){
                           var index = days.indexOf(2);
                            if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
-                        if(res[0] == 'Mie'){
+                        if(resp[0] == 'Mie'){
                           var index = days.indexOf(3);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
-                        if(res[0] == 'Jue'){
+                        if(resp[0] == 'Jue'){
                           var index = days.indexOf(4);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
-                        if(res[0] == 'Vie'){
+                        if(resp[0] == 'Vie'){
                           var index = days.indexOf(5);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
-                        if(res[0] == 'Sab'){
+                        if(resp[0] == 'Sab'){
                           var index = days.indexOf(6);
                           if (index > -1) {
                                days.splice(index, 1);
@@ -1233,8 +1234,8 @@
                         }
 
                     var option = document.createElement("option");
-                    option.text = res[0];
-                    option.value = res[0];
+                    option.text = resp[0];
+                    option.value = resp[0];
                     x.add(option);
                   }
                     console.log(days);
