@@ -1249,7 +1249,7 @@
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es', }).on('changeDate',function(e){
                      $('#timesByDay').children().remove();
                         if (e.date.getDay() == 0) {
-                          for(var d = Dom - 1; d >= 0; d--){
+                          for(var d = 0; d < Dom.length; d++){
                              var option = document.createElement("option");
                               option.text = Dom[d];
                               option.value = Dom[d];
@@ -1257,7 +1257,7 @@
                           }
                         }
                         if (e.date.getDay() == 1) {
-                          for(var d = Lun - 1; d >= 0; d--){
+                          for(var d = 0; d < Lun.length; d++){
                              var option = document.createElement("option");
                               option.text = Lun[d];
                               option.value = Lun[d];
@@ -1265,7 +1265,7 @@
                           }
                         }
                         if (e.date.getDay() == 5) {
-                          for(var d = Vie - 1; d >= 0; d--){
+                          for(var d = 0; d < Vie.length; d++){
                              var option = document.createElement("option");
                               option.text = Vie[d];
                               option.value = Vie[d];
