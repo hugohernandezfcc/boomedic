@@ -1249,7 +1249,7 @@
                     x.add(option);
                   }
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es', }).on('changeDate',function(e){
-                        console.log(e.getDay());
+                        console.log(e);
                          console.log(e.getDate());
                       });
              }
