@@ -53,7 +53,7 @@ class workboardDr extends Controller
      */
     public function create(Request $request, $id )
     {
-  $workboard = DB::table('workboard')->where('labInformation', $id)->first();
+  $workboard = DB::table('workboard')->where('labInformation', $id)->get();
  if(count($workboard) > 0){
     DB::table('workboard')->where('labInformation', $id)->delete();   
  }
