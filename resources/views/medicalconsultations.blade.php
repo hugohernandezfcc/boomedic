@@ -1186,6 +1186,7 @@
                   var optionhour = loc[i][6].reverse();
                   var days = [0,1,2,3,4,5,6];
                   var resp = Array();
+
                   $('#calendar1').datepicker('destroy');
                  $('#timesByDay').children().remove();
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
@@ -1194,62 +1195,83 @@
                   console.log(optionhour[y].slice(4));
 
                       if(resp[0] == 'Dom'){
-                        var Dom = resp2;
+                        var Dom = resp2.reverse();
                       var index = days.indexOf(0);
                        if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Lun'){
-                          var Lun = resp2;
+                          var Lun = resp2.reverse();
                         var index = days.indexOf(1);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Mar'){
-                          var Mar = resp2;
+                          var Mar = resp2.reverse();
                           var index = days.indexOf(2);
                            if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Mie'){
-                          var Mie = resp2;
+                          var Mie = resp2.reverse();
                           var index = days.indexOf(3);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Jue'){
-                          var Jue = resp2;
+                          var Jue = resp2.reverse();
                           var index = days.indexOf(4);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Vie'){
-                          var Vie = resp2;
+                          var Vie = resp2.reverse();
                           var index = days.indexOf(5);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Sab'){
-                          var Sab = resp2;
+                          var Sab = resp2.reverse();
                           var index = days.indexOf(6);
                           if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
 
-                    var option = document.createElement("option");
-                    option.text = resp2;
-                    option.value = resp2;
-                    x.add(option);
+
                   }
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es', }).on('changeDate',function(e){
-                        console.log(e);
+                     $('#timesByDay').children().remove();
+                        if (e.date.getDay() == 0) {
+                          for(var d = Dom - 1; d >= 0; d--){
+                             var option = document.createElement("option");
+                              option.text = Dom[d];
+                              option.value = Dom[d];
+                              x.add(option);
+                          }
+                        }
+                        if (e.date.getDay() == 1) {
+                          for(var d = Lun - 1; d >= 0; d--){
+                             var option = document.createElement("option");
+                              option.text = Lun[d];
+                              option.value = Lun[d];
+                              x.add(option);
+                          }
+                        }
+                        if (e.date.getDay() == 5) {
+                          for(var d = Vie - 1; d >= 0; d--){
+                             var option = document.createElement("option");
+                              option.text = Vie[d];
+                              option.value = Vie[d];
+                              x.add(option);
+                          }
+                        }
                          console.log(e.date.toString());
                          console.log(e.date.getDay());
                       });
