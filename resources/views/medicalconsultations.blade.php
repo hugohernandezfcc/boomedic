@@ -1189,10 +1189,8 @@
                   $('#calendar1').datepicker('destroy');
                  $('#timesByDay').children().remove();
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
-                     resp = optionhour[y].split(":"); 
-                      console.log(resp);
-                      console.log(optionhour[y]);  
-                    console.log(resp[1] + resp[2]);
+                     resp = optionhour[y].split(":",2); 
+                  console.log(resp);
                       if(resp[0] == 'Dom'){
                         var Dom = resp[1];
                       var index = days.indexOf(0);
