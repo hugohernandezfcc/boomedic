@@ -1255,24 +1255,22 @@
                      $('#timesByDay').children().remove();
                         if (e.date.getDay() == 0) {
                           for(var d = 0; d < Dom.length; d++){
-                           if(Dom[d].slice(0,-3) != 'asueto') {
+
                              var option = document.createElement("option");
                               option.text = Dom[d].slice(0,-3);
                               option.value = Dom[d].slice(0,-3);
                               x.add(option);
-                              console.log(Dom);
-                            }
+                            
                           }
                         }
                         if (e.date.getDay() == 1) {
                           for(var d = 0; d < Lun.length; d++){
-                            if(Lun[d].slice(0,-3) != 'asueto') {
+
                              var option = document.createElement("option");
                               option.text = Lun[d].slice(0,-3);
                               option.value = Lun[d].slice(0,-3);
                               x.add(option);
-                              console.log(Lun);
-                            }
+                            
                           }
                         }
                        if (e.date.getDay() == 2) {
@@ -1281,7 +1279,6 @@
                               option.text = Mar[d].slice(0,-3);
                               option.value = Mar[d].slice(0,-3);
                               x.add(option);
-                              console.log(Mar);
                           }
                         }
                        if (e.date.getDay() == 3) {
@@ -1291,7 +1288,6 @@
                               option.text = Mie[d].slice(0,-3);
                               option.value = Mie[d].slice(0,-3);
                               x.add(option);
-                              console.log(Mie);
                           }
                         } 
                        if (e.date.getDay() == 4) {
@@ -1300,7 +1296,6 @@
                               option.text = Jue[d].slice(0,-3);
                               option.value = Jue[d].slice(0,-3);
                               x.add(option);
-                              console.log(Jue);
                           }
                         }                                               
                         if (e.date.getDay() == 5) {
