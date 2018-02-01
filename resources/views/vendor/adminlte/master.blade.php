@@ -319,8 +319,9 @@ span.round-tab:hover {
 }
 
 .wizard .nav-tabs > li a {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
     margin: 20px auto;
     border-radius: 100%;
     padding: 0;
@@ -342,12 +343,6 @@ span.round-tab:hover {
     .wizard {
         width: 90%;
         height: auto !important;
-    }
-
-    .wizard .nav-tabs > li a {
-        width: 50px;
-        height: 50px;
-        line-height: 50px;
     }
 
     .wizard li.active:after {
