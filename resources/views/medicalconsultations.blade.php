@@ -1301,8 +1301,8 @@
                               x.add(option);
                           }
                         }    
-                        $('#dateSelectedForCite').val = e.date.toString('YYYY/MM/DD');                  
-                         console.log(e.date.toString('YYYY/MM/DD'));
+                        $('#dateSelectedForCite').val = e.date.toString();                  
+                         console.log(e.date.toString());
                       });
              }
           })(marker, i));
