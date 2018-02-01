@@ -411,8 +411,7 @@
 
 
                 <!--WIZARD TEST-->
-<div class="container">
-  <div class="row">
+
     <section>
         <div class="wizard">
             <div class="wizard-inner">
@@ -487,8 +486,7 @@
             </form>
         </div>
     </section>
-   </div>
-</div>
+
                 <!--WIZARD TEST-->
 
 
