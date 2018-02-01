@@ -22,7 +22,7 @@
 
 
 @section('body')
-    @if($agent->is('Windows'))
+    @if($agent->isAndroidOS())
         <script type="text/javascript">
             alert("Windows");
         </script>
