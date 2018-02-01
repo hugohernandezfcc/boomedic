@@ -1255,20 +1255,24 @@
                      $('#timesByDay').children().remove();
                         if (e.date.getDay() == 0) {
                           for(var d = 0; d < Dom.length; d++){
+                           if(Dom[d].slice(0,-3) != 'asueto') {
                              var option = document.createElement("option");
                               option.text = Dom[d].slice(0,-3);
                               option.value = Dom[d].slice(0,-3);
                               x.add(option);
                               console.log(Dom);
+                            }
                           }
                         }
                         if (e.date.getDay() == 1) {
                           for(var d = 0; d < Lun.length; d++){
+                            if(Lun[d].slice(0,-3) != 'asueto') {
                              var option = document.createElement("option");
                               option.text = Lun[d].slice(0,-3);
                               option.value = Lun[d].slice(0,-3);
                               x.add(option);
                               console.log(Lun);
+                            }
                           }
                         }
                        if (e.date.getDay() == 2) {
@@ -1282,6 +1286,7 @@
                         }
                        if (e.date.getDay() == 3) {
                           for(var d = 0; d < Mie.length; d++){
+
                              var option = document.createElement("option");
                               option.text = Mie[d].slice(0,-3);
                               option.value = Mie[d].slice(0,-3);
