@@ -1243,7 +1243,7 @@
 
 
                   }
-                     $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es', }).on('changeDate',function(e){
+                     $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es', dateFormat: 'dd/mm/yyyy'}).on('changeDate',function(e){
                      $('#timesByDay').children().remove();
                         if (e.date.getDay() == 0) {
                           for(var d = 0; d < Dom.length; d++){
