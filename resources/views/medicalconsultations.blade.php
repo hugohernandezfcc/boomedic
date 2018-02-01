@@ -1195,49 +1195,49 @@
                   console.log(optionhour[y].slice(4));
 
                       if(resp[0] == 'Dom'){
-                        var Dom = resp2;
+                        var Dom = JSON.parse(resp2);
                       var index = days.indexOf(0);
                        if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Lun'){
-                          var Lun = resp2;
+                          var Lun = JSON.parse(resp2);
                         var index = days.indexOf(1);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Mar'){
-                          var Mar = resp2;
+                          var Mar = JSON.parse(resp2);
                           var index = days.indexOf(2);
                            if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Mie'){
-                          var Mie = resp2;
+                          var Mie = JSON.parse(resp2);
                           var index = days.indexOf(3);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Jue'){
-                          var Jue = resp2;
+                          var Jue = JSON.parse(resp2);
                           var index = days.indexOf(4);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Vie'){
-                          var Vie = resp2;
+                          var Vie = JSON.parse(resp2);
                           var index = days.indexOf(5);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Sab'){
-                          var Sab = resp2;
+                          var Sab = JSON.parse(resp2);
                           var index = days.indexOf(6);
                           if (index > -1) {
                                days.splice(index, 1);
