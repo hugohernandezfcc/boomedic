@@ -1186,7 +1186,7 @@
                   var optionhour = loc[i][6].reverse();
                   var days = [0,1,2,3,4,5,6];
                   var resp = Array();
-                  x.find('option').remove();
+                 $('#timesByDay').children().remove();
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                     var resp = optionhour[y].split(":"); 
                     
@@ -1238,6 +1238,7 @@
                     option.value = resp[0];
                     x.add(option);
                   }
+                  
                     console.log(days);
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es' }).on('changeDate',function(e){
                         console.log(e);
