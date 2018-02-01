@@ -1184,58 +1184,65 @@
                   var days = [0,1,2,3,4,5,6];
                   var resp = Array();
                   var resp2 = Array();
+                  var Dom = Array();
+                  var Lun = Array();
+                  var Mar = Array();
+                  var Mie = Array();
+                  var Jue = Array();
+                  var Vie = Array();                
+                  var Sab = Array();
 
                   $('#calendar1').datepicker('destroy');
                  $('#timesByDay').children().remove();
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                      resp = optionhour[y].split(":",2); 
-                     resp2 = optionhour[y].slice(4);
+                     resp2 = JSON.parse(optionhour[y].slice(4));
                   console.log(optionhour[y].slice(4));
 
                       if(resp[0] == 'Dom'){
-                        var Dom = JSON.parse(resp2);
+                        Dom = resp2;
                       var index = days.indexOf(0);
                        if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Lun'){
-                          var Lun = JSON.parse(resp2);
+                          Lun = resp2;
                         var index = days.indexOf(1);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Mar'){
-                          var Mar = JSON.parse(resp2);
+                          Mar = resp2;
                           var index = days.indexOf(2);
                            if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Mie'){
-                          var Mie = JSON.parse(resp2);
+                          Mie = resp2;
                           var index = days.indexOf(3);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Jue'){
-                          var Jue = JSON.parse(resp2);
+                         Jue = resp2;
                           var index = days.indexOf(4);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Vie'){
-                          var Vie = JSON.parse(resp2);
+                          Vie = resp2;
                           var index = days.indexOf(5);
                         if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
                         if(resp[0] == 'Sab'){
-                          var Sab = JSON.parse(resp2);
+                          Sab = resp2;
                           var index = days.indexOf(6);
                           if (index > -1) {
                                days.splice(index, 1);
