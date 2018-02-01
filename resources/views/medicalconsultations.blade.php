@@ -1183,6 +1183,7 @@
                   var optionhour = loc[i][6].reverse();
                   var days = [0,1,2,3,4,5,6];
                   var resp = Array();
+                  var resp2 = Array();
 
                   $('#calendar1').datepicker('destroy');
                  $('#timesByDay').children().remove();
