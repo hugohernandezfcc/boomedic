@@ -1251,6 +1251,7 @@
                               option.text = Dom[d];
                               option.value = Dom[d];
                               x.add(option);
+                              console.log(Dom);
                           }
                         }
                         if (e.date.getDay() == 1) {
@@ -1259,6 +1260,7 @@
                               option.text = Lun[d];
                               option.value = Lun[d];
                               x.add(option);
+                              console.log(Lun);
                           }
                         }
                        if (e.date.getDay() == 2) {
@@ -1267,6 +1269,7 @@
                               option.text = Mar[d];
                               option.value = Mar[d];
                               x.add(option);
+                              console.log(Mar);
                           }
                         }
                        if (e.date.getDay() == 3) {
@@ -1275,6 +1278,7 @@
                               option.text = Mie[d];
                               option.value = Mie[d];
                               x.add(option);
+                              console.log(Mie);
                           }
                         } 
                        if (e.date.getDay() == 4) {
@@ -1283,6 +1287,7 @@
                               option.text = Jue[d];
                               option.value = Jue[d];
                               x.add(option);
+                              console.log(Jue);
                           }
                         }                                               
                         if (e.date.getDay() == 5) {
