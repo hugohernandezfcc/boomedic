@@ -1265,12 +1265,12 @@
                         }
                         if (e.date.getDay() == 1) {
                           for(var d = 0; d < Lun.length; d++){
-
+                            if(Lun[d].slice(0,-3) != "asueto "){
                              var option = document.createElement("option");
                               option.text = Lun[d].slice(0,-3);
                               option.value = Lun[d].slice(0,-3);
                               x.add(option);
-                            
+                            }
                           }
                         }
                        if (e.date.getDay() == 2) {
