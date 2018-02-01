@@ -274,9 +274,6 @@
             titleFormat: "MM yyyy",
             weekStart: 0
           };
-          $('#calendar1').datepicker({
-              language: 'es'
-          });
         //Date picker
        /* $('#datepicker').datepicker({
             format: "mm/dd/yyyy",

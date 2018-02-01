@@ -1238,7 +1238,7 @@
                     x.add(option);
                   }
                     console.log(days);
-                     $('#calendar1').datepicker({ daysOfWeekDisabled: days }).on('changeDate',function(e){
+                     $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es' }).on('changeDate',function(e){
                         console.log(e);
                       });
              }
