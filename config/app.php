@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://sbx06.herokuapp.com/'),
+    'url' => env('APP_URL', 'https://afternoon-hollows-51469.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------
