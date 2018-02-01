@@ -1190,7 +1190,7 @@
                  $('#timesByDay').children().remove();
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                      resp = optionhour[y].split(":"); 
-                    
+                    console.log(resp[1] + resp[2]);
                       if(resp[0] == 'Dom'){
                         var Dom = resp[1];
                       var index = days.indexOf(0);
@@ -1246,8 +1246,6 @@
                     option.value = resp[1];
                     x.add(option);
                   }
-
-                    console.log(days);
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es' }).on('changeDate',function(e){
                         console.log(e);
                       });
