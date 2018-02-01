@@ -91,12 +91,14 @@
                     {{ trans('adminlte::adminlte.register_a_new_membership_doctor') }}
                 </button><br/>
                 <div class="row">
+                @if(!$agent->isAndroidOS())
                 <div class="col-sm-7" align="center">
                         <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="btn btn-default btn-block btn-flat">
                              <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;
                          {{ trans('adminlte::adminlte.i_already_have_a_membership') }}
                         </a> 
                 </div>
+                @endif
                 <div class="col-sm-5" align="center">
                     &nbsp;
                 </div>
