@@ -433,7 +433,7 @@
             
           </div>
 
-          <input type="hidden" id="dateSelectedForCite">
+          <input type="hidden" id="dateSelectedForCite" value="">
            <br/>
           <!-- /.box -->
           <select id="timesByDay" class="form-control">
@@ -1243,7 +1243,7 @@
 
 
                   }
-                     $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es', dateFormat: 'dd/mm/yyyy'}).on('changeDate',function(e){
+                     $('#calendar1').datepicker({ daysOfWeekDisabled: days,  language: 'es'}).on('changeDate',function(e){
                      $('#timesByDay').children().remove();
                         if (e.date.getDay() == 0) {
                           for(var d = 0; d < Dom.length; d++){
@@ -1301,8 +1301,8 @@
                               x.add(option);
                           }
                         }    
-                        $('#dateSelectedForCite').val = e.date.toString();                  
-                         console.log(e.date.toString());
+                        $('#dateSelectedForCite').val = e.date.toString('YYYY/MM/DD');                  
+                         console.log(e.date.toString('YYYY/MM/DD'));
                       });
              }
           })(marker, i));
