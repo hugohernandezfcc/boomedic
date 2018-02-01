@@ -439,6 +439,7 @@
           <select id="timesByDay" class="form-control">
           </select>
           <br/>
+          <br/>
           <select id="paymentMethodsFields" class="form-control" style="display: none;">
           </select>
 
@@ -1299,7 +1300,8 @@
                               option.value = Sab[d];
                               x.add(option);
                           }
-                        }                        
+                        }    
+                        $('#dateSelectedForCite').val = e.date.toString();                  
                          console.log(e.date.toString());
                       });
              }
