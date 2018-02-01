@@ -3236,7 +3236,8 @@ table.text-center th {
 }
 .login-page,
 .register-page {
-  background: #d2d6de;
+  /*background: #d2d6de;*/
+  background-image: url('images/fondo-03.jpg');background-size:  cover;
 }
 .login-box,
 .register-box {
