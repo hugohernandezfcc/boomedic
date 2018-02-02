@@ -564,8 +564,8 @@ $(document).ready(function () {
         var $active = $('.wizard .nav-tabs li.active');
         $active.next().removeClass('disabled');
         nextTab($active);
-         document.getElementById('endtime').innerHTML = $('select#timesByDay').val;
-        document.getElementById('endpayment').innerHTML =  $('select#paymentMethodsFields').val;
+         document.getElementById('endtime').innerHTML = document.getElementById('timesByDay').value;
+        document.getElementById('endpayment').innerHTML =  document.getElementById('paymentMethodsFields').value;
 
     });
     $(".prev-step").click(function (e) {
