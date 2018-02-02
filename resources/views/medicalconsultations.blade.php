@@ -635,7 +635,7 @@
           }
       }
     </script>
-<input type="hidden" id="android" value="{{ $agent->isAndroidOS() }}">
+
     <script type="text/javascript">
       var markers = [];
       var map;
@@ -646,7 +646,7 @@
        */
       window.onload = function(){
         var height;
-        if("<?php echo $agent->isAndroidOS(); ?>"){
+        if(@php echo $agent->isAndroidOS(); @endphp){
             height = "512";
             alert("desde Android");
         }else{
