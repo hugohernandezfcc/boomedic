@@ -408,7 +408,9 @@
 
 
               <div class="modal-body">
-
+                <div>
+                  <p id="info"></p>
+                </div>
 
                 <!--WIZARD TEST-->
 
@@ -454,8 +456,29 @@
             <form role="form">
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
-                        <h3>Step 1</h3>
-                        <p>This is step 1</p>
+                        <h3>Paso 1</h3>
+                                  <div class="box box-solid bg-black-gradient">
+                                        <div class="box-header">
+                                          <i class="fa fa-calendar"></i>
+
+                                          <h3 class="box-title">Seleccionar día</h3>
+                                          <!-- tools box -->
+                                          <div class="pull-right box-tools">
+                                            <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                          </div>
+                                          <!-- /. tools -->
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body no-padding">
+                                          <!--The calendar -->
+                                          <div id="calendar1" style="width: 80%"></div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        
+                                      </div>
+
+                                      <input type="hidden" id="dateSelectedForCite" value="">
+                                       <br/>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
                         </ul>
@@ -491,33 +514,9 @@
 
 
 
-                <div>
-                  <p id="info"></p>
-                </div>
-              <hr width="100%">
+
                 <!-- Calendar -->
-          <div class="box box-solid bg-black-gradient">
-            <div class="box-header">
-              <i class="fa fa-calendar"></i>
 
-              <h3 class="box-title">Seleccionar día</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="calendar1" style="width: 80%"></div>
-            </div>
-            <!-- /.box-body -->
-            
-          </div>
-
-          <input type="hidden" id="dateSelectedForCite" value="">
-           <br/>
           <!-- /.box -->
           <select id="timesByDay" class="form-control">
           </select>
