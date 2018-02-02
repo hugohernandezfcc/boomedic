@@ -642,15 +642,17 @@
       var infoWindow;
       /**
        * Function responsable of execute the main functions 
-       *
+       * $agent->isAndroidOS
        */
       window.onload = function(){
         var height;
-        if(@php echo !$agent->isDesktop(); @endphp == 1){
+        var coso = @php echo $agent->isDesktop(); @endphp;
+        alert(coso);
+        if(@php echo $agent->isDesktop(); @endphp){
             height = window.screen.availHeight-115;
           console.log(height);
           alert("desde Windows");
-        }else{
+        }if(@php echo $agent->isAndroidOS(); @endphp){
           height = "512";
           alert("desde Android");
         }
