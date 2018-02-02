@@ -647,7 +647,7 @@
       window.onload = function(){
         var height;
         if(document.getElementById('android').value){
-            height = "655";
+            height = "512";
         }else{
           height = window.screen.availHeight-115;
           console.log(height);
