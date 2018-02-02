@@ -646,13 +646,13 @@
        */
       window.onload = function(){
         var height;
-        if(@php $agent->isAndroidOS(); @endphp){
-            height = "512";
-            alert("desde Android");
-        }else{
-          height = window.screen.availHeight-115;
+        if(@php echo $agent->isDesktop(); @endphp){
+            height = window.screen.availHeight-115;
           console.log(height);
           alert("desde Windows");
+        }else{
+          height = "512";
+          alert("desde Android");
         }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
