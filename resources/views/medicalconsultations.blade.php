@@ -640,11 +640,13 @@
       var markers = [];
       var map;
       var infoWindow;
+      var agent = '{{$agent}}';
       /**
        * Function responsable of execute the main functions 
-       * 
+       * $agent->isAndroidOS
        */
       window.onload = function(){
+        alert(agent);
         var height = window.screen.availHeight-115;
         console.log(height);
         document.getElementById('map').setAttribute("style","height:" + height + "px");
