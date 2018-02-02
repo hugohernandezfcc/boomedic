@@ -421,7 +421,7 @@
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Paso 1">
+                        <a href="#step1" data-toggle="tabs" aria-controls="step1" role="tab" title="Paso 1">
                             <span class="round-tab">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -520,7 +520,12 @@
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
                         <h3>Finalizar</h3>
-                        <p>You have successfully completed all steps.</p>
+                       <label id="enddate"> </label>.<br/>
+                       <label id="endtime"> </label>.<br/>
+                       <label id="endpayment"> </label>.<br/>
+                       <label id="endamount"> </label>.<br/>
+                       Método de Pago: .<br/>
+
                          <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
                             Confirmar y programar cita
                           </button>
@@ -538,7 +543,7 @@
           <script type="text/javascript">
 $(document).ready(function () {
     //Initialize tooltips
-    $('.nav-tabs > li a[title]').tooltip('show');
+          $('.nav-tabs > li a[title]').tooltip();
     
     //Wizard
     $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
@@ -1429,7 +1434,7 @@ function prevTab(elem) {
                         $('#dateSelectedForCite').val = e.date.toString();                  
                          console.log(e.date.toString());
                          document.getElementById("onestep").disabled = false;
-
+                         $('#enddate').text = 'Fecha: ' + e.date.toString();
                       });
              }
           })(marker, i));
