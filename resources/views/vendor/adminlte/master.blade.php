@@ -331,7 +331,6 @@ span.round-tab:hover {
 
 .wizard .tab-pane {
     position: relative;
-    padding-top: 50px;
 }
 
 

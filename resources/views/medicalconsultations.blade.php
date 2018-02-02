@@ -421,22 +421,22 @@
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Paso 1">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
+                                <i class="fa fa-calendar"></i>
                             </span>
                         </a>
                     </li>
 
                     <li role="presentation" class="disabled">
-                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Paso 2">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-pencil"></i>
+                                <i class="fas fa-clock"></i>
                             </span>
                         </a>
                     </li>
                     <li role="presentation" class="disabled">
-                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Paso 3">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-picture"></i>
                             </span>
@@ -480,24 +480,25 @@
                                       <input type="hidden" id="dateSelectedForCite" value="">
                                        <br/>
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            <li><button type="button" class="btn btn-primary next-step">Siguiente</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
-                        <h3>Step 2</h3>
-                        <p>This is step 2</p>
+                        <h3>Paso 2</h3>
+                           <b>Seleccionar Hora de la cita</b>
+                          <select id="timesByDay" class="form-control">
+                          </select>
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            <li><button type="button" class="btn btn-default prev-step">Anterior</button></li>
+                            <li><button type="button" class="btn btn-primary next-step">Siguiente</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <h3>Step 3</h3>
                         <p>This is step 3</p>
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-default next-step">Skip</button></li>
-                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                            <li><button type="button" class="btn btn-default prev-step">Anterior</button></li>
+                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Siguiente</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
@@ -517,11 +518,8 @@
 
                 <!-- Calendar -->
 
-          <!-- /.box -->
-          <select id="timesByDay" class="form-control">
-          </select>
-          <br/>
-          <br/>
+
+
           <select id="paymentMethodsFields" class="form-control" style="display: none;">
           </select>
 
