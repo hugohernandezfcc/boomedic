@@ -421,7 +421,7 @@
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tabs" aria-controls="step1" role="tab" title="Paso 1">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Paso 1">
                             <span class="round-tab">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -523,8 +523,8 @@
                        <label id="enddate"> </label.<br/>
                        <label id="endtime"> </label><br/>
                        <label id="endpayment"> </label><br/>
-                       <label id="endamount"> </label><br/>
-                       <br/>
+                       <label id="endamount"></label><br/>
+                       
 
                          <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
                             Confirmar y programar cita
@@ -586,7 +586,9 @@ function prevTab(elem) {
 
           });
 
-
+$('select#timesByDay').on('change',function(){
+    document.getElementById('endtime').innerHTML = $(this).val();
+});
             $.ajax(
               {
                 type: "GET",    
@@ -1290,7 +1292,7 @@ function prevTab(elem) {
               
               showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
               document.getElementById('amount').value = loc[i][5];
-              document.getElementById('endamount').innerHTML = 'Monto a pagar: ' + loc[i][5];
+              document.getElementById('endamount').innerHTML = 'Monto a pagar: $' + loc[i][5];
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
