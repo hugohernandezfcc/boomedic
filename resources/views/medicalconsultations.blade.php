@@ -431,14 +431,14 @@
                     <li role="presentation" class="disabled">
                         <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Paso 2">
                             <span class="round-tab">
-                                <i class="fas fa-clock"></i>
+                                <i class="fa fa-clock"></i>
                             </span>
                         </a>
                     </li>
                     <li role="presentation" class="disabled">
                         <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Paso 3">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-picture"></i>
+                                <i class="fa fa-credit-card"></i>
                             </span>
                         </a>
                     </li>
@@ -480,7 +480,7 @@
                                       <input type="hidden" id="dateSelectedForCite" value="">
                                        <br/>
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-primary next-step">Siguiente</button></li>
+                            <li><button type="button" class="btn btn-secondary next-step">Siguiente</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
@@ -488,17 +488,30 @@
                            <b>Seleccionar Hora de la cita</b>
                           <select id="timesByDay" class="form-control">
                           </select>
+                          <br/>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Anterior</button></li>
-                            <li><button type="button" class="btn btn-primary next-step">Siguiente</button></li>
+                            <li><button type="button" class="btn btn-secondary next-step">Siguiente</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
-                        <h3>Step 3</h3>
-                        <p>This is step 3</p>
+                        <h3>Paso 3</h3>
+                        <b>Completar pago</b>
+                         <div class="modal-footer">
+                          <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
+                                  {{ csrf_field() }}
+                            <input id="amount" type="hidden" class="form-control" name="amount" required>
+                            
+                          <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
+                            Confirmar y programar cita
+                          </button>
+                          </form>
+                        </div>
+                                  <select id="paymentMethodsFields" class="form-control" style="display: none;">
+                                  </select>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Anterior</button></li>
-                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Siguiente</button></li>
+                            <li><button type="button" class="btn btn-secondary next-step">Siguiente</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
@@ -513,15 +526,6 @@
 
                 <!--WIZARD TEST-->
 
-
-
-
-                <!-- Calendar -->
-
-
-
-          <select id="paymentMethodsFields" class="form-control" style="display: none;">
-          </select>
 
           <script type="text/javascript">
 $(document).ready(function () {
@@ -614,16 +618,7 @@ function prevTab(elem) {
 
 
           </div>
-              <div class="modal-footer">
-                <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
-                        {{ csrf_field() }}
-                  <input id="amount" type="hidden" class="form-control" name="amount" required>
-                  
-                <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
-                  Confirmar y programar cita
-                </button>
-                </form>
-              </div>
+
 
             </div>
         </div>
