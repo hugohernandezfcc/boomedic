@@ -480,39 +480,40 @@
                                       <input type="hidden" id="dateSelectedForCite" value="">
                                        <br/>
                         <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-secondary next-step">Siguiente</button>
+                            <button type="button" class="btn btn-secondary btn-flat next-step">Siguiente</button>
                         </div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
                         <h3>Paso 2</h3>
                            <b>Seleccionar Hora de la cita</b>
-                           <div class="row">
+                           <div class="col-sm-12">
                           <select id="timesByDay" class="form-control">
                           </select>
                          </div>
                           <br/>
 
                           <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default  prev-step">Anterior</button>
-                        <button type="button" class="btn btn-secondary next-step">Siguiente</button>
+                        <button type="button" class="btn btn-default btn-flat prev-step">Anterior</button>
+                        <button type="button" class="btn btn-secondary btn-flat next-step">Siguiente</button>
                          </div>
 
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <h3>Paso 3</h3>
                         <b>Seleccionar método de pago</b>
-                         <div class="row">
+                         <div class="col-sm-12">
                              <select id="paymentMethodsFields" class="form-control" style="display: none;">
                              </select>
+                         </div>     
                           <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                                   {{ csrf_field() }}
                             <input id="amount" type="hidden" class="form-control" name="amount" required>
-                           </div> 
+                           
                         
 
                           <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default prev-step">Anterior</button>
-                            <button type="button" class="btn btn-secondary next-step">Siguiente</button>
+                            <button type="button" class="btn btn-default btn-flat prev-step">Anterior</button>
+                            <button type="button" class="btn btn-secondary btn-flat next-step">Siguiente</button>
                           </div>
 
                     </div>

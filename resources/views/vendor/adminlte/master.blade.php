@@ -309,7 +309,7 @@ span.round-tab:hover {
 .wizard li.active:after {
     content: " ";
     position: absolute;
-    left: 46%;
+    left: 35%;
     opacity: 1;
     margin: 0 auto;
     bottom: 0px;
