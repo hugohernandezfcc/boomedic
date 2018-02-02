@@ -635,7 +635,7 @@
           }
       }
     </script>
-
+<input type="hidden" id="android" value="{{ $agent->isAndroidOS() }}">
     <script type="text/javascript">
       var markers = [];
       var map;
@@ -646,15 +646,13 @@
        */
       window.onload = function(){
         var height;
-        var coso = @php echo $agent->isDesktop(); @endphp;
-        alert(coso);
-        if(@php echo $agent->isDesktop(); @endphp){
-            height = window.screen.availHeight-115;
+        if("<?php echo $agent->isAndroidOS(); ?>"){
+            height = "512";
+            alert("desde Android");
+        }else{
+          height = window.screen.availHeight-115;
           console.log(height);
           alert("desde Windows");
-        }if(@php echo $agent->isAndroidOS(); @endphp){
-          height = "512";
-          alert("desde Android");
         }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
