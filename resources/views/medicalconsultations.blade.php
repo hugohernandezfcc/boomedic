@@ -464,7 +464,7 @@
                                           <h3 class="box-title">Seleccionar día</h3>
                                           <!-- tools box -->
                                           <div class="pull-right box-tools">
-                                            <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                            <button type="button" class="btn btn-secondary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                           </div>
                                           <!-- /. tools -->
                                         </div>
@@ -480,7 +480,7 @@
                                       <input type="hidden" id="dateSelectedForCite" value="">
                                        <br/>
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-secondary btn-sm next-step">Siguiente</button></li>
+                            <li><button type="button" class="btn btn-secondary btn-xs next-step">Siguiente</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
@@ -490,13 +490,16 @@
                           </select>
                           <br/>
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-default btn-sm prev-step">Anterior</button></li>
-                            <li><button type="button" class="btn btn-secondary btn-sm next-step">Siguiente</button></li>
+                          <div class="btn-group">
+                            <li><button type="button" class="btn btn-default btn-xs prev-step">Anterior</button></li>
+                            <li><button type="button" class="btn btn-secondary btn-xs next-step">Siguiente</button></li>
+                         </div>
                         </ul>
+
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <h3>Paso 3</h3>
-                        <b>Completar pago</b>
+                        <b>Seleccionar método de pago</b>
                              <select id="paymentMethodsFields" class="form-control" style="display: none;">
                              </select>
                          <div class="modal-footer">
@@ -504,20 +507,22 @@
                                   {{ csrf_field() }}
                             <input id="amount" type="hidden" class="form-control" name="amount" required>
                             
-                          <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
-                            Confirmar y programar cita
-                          </button>
-                          </form>
                         </div>
 
                         <ul class="list-inline pull-right">
+                          <div class="btn-group">
                             <li><button type="button" class="btn btn-default btn-sm prev-step">Anterior</button></li>
                             <li><button type="button" class="btn btn-secondary btn-sm next-step">Siguiente</button></li>
+                          </div>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
-                        <h3>Complete</h3>
+                        <h3>Finalizar</h3>
                         <p>You have successfully completed all steps.</p>
+                         <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
+                            Confirmar y programar cita
+                          </button>
+                          </form>
                     </div>
                     <div class="clearfix"></div>
                 </div>

@@ -262,7 +262,7 @@
 span.round-tab {
     width: 30px;
     height: 30px;
-    line-height: 30px;
+    line-height: 26px;
     display: inline-block;
     border-radius: 100px;
     background: #fff;
@@ -342,7 +342,7 @@ span.round-tab:hover {
     }
 
     span.round-tab {
-        font-size: 14px;
+        font-size: 15px;
         width: 30px;
         height: 30px;
         line-height: 30px;
