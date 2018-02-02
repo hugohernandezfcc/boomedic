@@ -645,11 +645,13 @@
        * $agent->isAndroidOS
        */
       window.onload = function(){
+        var height;
         if(document.getElementById('android').value){
-            alert('soy un celular chido');
+            height = "655";
+        }else{
+          height = window.screen.availHeight-115;
+          console.log(height);
         }
-        var height = window.screen.availHeight-115;
-        console.log(height);
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
         infoSelect();
