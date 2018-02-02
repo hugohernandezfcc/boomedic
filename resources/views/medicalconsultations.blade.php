@@ -646,7 +646,7 @@
        */
       window.onload = function(){
         var height;
-        if("<?php echo $agent->isAndroidOS(); ?>"){
+        if("<?php echo $agent->isMobile(); ?>"){
             height = "500";
             alert("desde Android");
         }else{
