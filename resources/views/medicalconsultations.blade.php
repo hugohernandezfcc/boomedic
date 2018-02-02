@@ -646,9 +646,7 @@
        */
       window.onload = function(){
         var height;
-        var coso = @php echo $agent->isDesktop(); @endphp;
-        alert(coso);
-        if(@php echo $agent->isDesktop(); @endphp == 1){
+        if(@php echo !$agent->isDesktop(); @endphp == 1){
             height = window.screen.availHeight-115;
           console.log(height);
           alert("desde Windows");
