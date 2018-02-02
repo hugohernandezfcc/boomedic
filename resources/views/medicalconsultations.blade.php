@@ -431,7 +431,7 @@
                     <li role="presentation" class="disabled">
                         <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Paso 2">
                             <span class="round-tab">
-                                <i class="fa fa-clock"></i>
+                                <i class="fa fa-clock-o"></i>
                             </span>
                         </a>
                     </li>
@@ -480,7 +480,7 @@
                                       <input type="hidden" id="dateSelectedForCite" value="">
                                        <br/>
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-secondary next-step">Siguiente</button></li>
+                            <li><button type="button" class="btn btn-secondary btn-sm next-step">Siguiente</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
@@ -490,13 +490,15 @@
                           </select>
                           <br/>
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-default prev-step">Anterior</button></li>
-                            <li><button type="button" class="btn btn-secondary next-step">Siguiente</button></li>
+                            <li><button type="button" class="btn btn-default btn-sm prev-step">Anterior</button></li>
+                            <li><button type="button" class="btn btn-secondary btn-sm next-step">Siguiente</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <h3>Paso 3</h3>
                         <b>Completar pago</b>
+                             <select id="paymentMethodsFields" class="form-control" style="display: none;">
+                             </select>
                          <div class="modal-footer">
                           <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                                   {{ csrf_field() }}
@@ -507,11 +509,10 @@
                           </button>
                           </form>
                         </div>
-                                  <select id="paymentMethodsFields" class="form-control" style="display: none;">
-                                  </select>
+
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-default prev-step">Anterior</button></li>
-                            <li><button type="button" class="btn btn-secondary next-step">Siguiente</button></li>
+                            <li><button type="button" class="btn btn-default btn-sm prev-step">Anterior</button></li>
+                            <li><button type="button" class="btn btn-secondary btn-sm next-step">Siguiente</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
