@@ -635,18 +635,19 @@
           }
       }
     </script>
-
+<input type="hidden" id="android" value="{{ $agent->isAndroidOS }}">
     <script type="text/javascript">
       var markers = [];
       var map;
       var infoWindow;
-      var agent = '{{$agent}}';
       /**
        * Function responsable of execute the main functions 
        * $agent->isAndroidOS
        */
       window.onload = function(){
-        alert(agent);
+        if(document.getElementById('android').value){
+            alert('soy un celular chido');
+        }
         var height = window.screen.availHeight-115;
         console.log(height);
         document.getElementById('map').setAttribute("style","height:" + height + "px");
