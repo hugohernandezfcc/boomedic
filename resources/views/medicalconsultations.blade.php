@@ -1290,6 +1290,7 @@ function prevTab(elem) {
               
               showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
               document.getElementById('amount').value = loc[i][5];
+              document.getElementById('endamount').innerHTML = 'Monto a pagar: ' + loc[i][5];
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
@@ -1434,7 +1435,7 @@ function prevTab(elem) {
                         $('#dateSelectedForCite').val = e.date.toString();                  
                          console.log(e.date.toString());
                          document.getElementById("onestep").disabled = false;
-                         $('#enddate').text = 'Fecha: ' + e.date.toString();
+                         $('#enddate').innerHTML = 'Fecha: ' + e.date.toString();
                       });
              }
           })(marker, i));
