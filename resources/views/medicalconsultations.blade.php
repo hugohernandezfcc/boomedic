@@ -480,7 +480,7 @@
                                       <input type="hidden" id="dateSelectedForCite" value="">
                                        <br/>
                         <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-secondary btn-flat next-step">Siguiente</button>
+                            <button type="button" class="btn btn-secondary btn-flat next-step" id="onestep" disabled="disabled">Siguiente</button>
                         </div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
@@ -550,11 +550,11 @@ $(document).ready(function () {
     });
 
     $(".next-step").click(function (e) {
-      if (document.getElementById('dateSelectedForCite' != '').value) {
+
         var $active = $('.wizard .nav-tabs li.active');
         $active.next().removeClass('disabled');
         nextTab($active);
-          }
+
     });
     $(".prev-step").click(function (e) {
 
@@ -1427,6 +1427,8 @@ function prevTab(elem) {
                         }    
                         $('#dateSelectedForCite').val = e.date.toString();                  
                          console.log(e.date.toString());
+                         document.getElementById("onestep").disabled = false;
+
                       });
              }
           })(marker, i));
