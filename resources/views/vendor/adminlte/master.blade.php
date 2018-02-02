@@ -237,7 +237,6 @@
 
     .wizard .nav-tabs {
         position: relative;
-        margin: 40px auto;
         margin-bottom: 0;
         border-bottom-color: #e0e0e0;
     }
@@ -266,9 +265,9 @@
 }
 
 span.round-tab {
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     display: inline-block;
     border-radius: 100px;
     background: #fff;
@@ -324,9 +323,9 @@ span.round-tab:hover {
 }
 
 .wizard .nav-tabs > li a {
-    width: 25px;
-    height: 25px;
-    margin: 20px auto;
+    width: 30px;
+    height: 30px;
+    margin: 30px auto;
     border-radius: 100%;
     padding: 0;
 }
@@ -353,15 +352,15 @@ span.round-tab:hover {
 
     span.round-tab {
         font-size: 14px;
-        width: 25px;
-        height: 25px;
-        line-height: 25px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
     }
 
     .wizard .nav-tabs > li a {
-        width: 25px;
-        height: 25px;
-        line-height: 25px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
     }
 
     .wizard li.active:after {
