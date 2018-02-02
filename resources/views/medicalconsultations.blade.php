@@ -504,7 +504,8 @@
                          <div class="col-sm-12">
                              <select id="paymentMethodsFields" class="form-control" style="display: none;">
                              </select>
-                         </div>     
+                         </div>
+                         <br/>     
                           <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                                   {{ csrf_field() }}
                             <input id="amount" type="hidden" class="form-control" name="amount" required>
