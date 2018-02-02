@@ -543,6 +543,10 @@
           <script type="text/javascript">
 $(document).ready(function () {
     //Initialize tooltips
+
+
+
+
           $('.nav-tabs > li a[title]').tooltip();
     
     //Wizard
@@ -560,6 +564,8 @@ $(document).ready(function () {
         var $active = $('.wizard .nav-tabs li.active');
         $active.next().removeClass('disabled');
         nextTab($active);
+         document.getElementById('endtime').innerHTML = $('select#timesByDay').val;
+        document.getElementById('endpayment').innerHTML =  $('select#paymentMethodsFields').val;
 
     });
     $(".prev-step").click(function (e) {
@@ -586,12 +592,6 @@ function prevTab(elem) {
 
           });
 
-$('select#timesByDay').on('change',function(){
-    document.getElementById('endtime').innerHTML = $(this).val();
-});
-$('select#paymentMethodsFields').on('change',function(){
-    document.getElementById('endpayment').innerHTML = $(this).val();
-});
             $.ajax(
               {
                 type: "GET",    
