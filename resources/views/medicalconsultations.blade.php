@@ -520,7 +520,7 @@
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
                         <h3>Finalizar</h3>
-                       <label id="enddate"> </label.<br/>
+                       <label id="enddate"> </label><br/>
                        <label id="endtime"> </label><br/>
                        <label id="endpayment"> </label><br/>
                        <label id="endamount"></label><br/>
@@ -588,6 +588,9 @@ function prevTab(elem) {
 
 $('select#timesByDay').on('change',function(){
     document.getElementById('endtime').innerHTML = $(this).val();
+});
+$('select#paymentMethodsFields').on('change',function(){
+    document.getElementById('endpayment').innerHTML = $(this).val();
 });
             $.ajax(
               {
