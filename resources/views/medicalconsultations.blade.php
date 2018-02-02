@@ -479,9 +479,9 @@
 
                                       <input type="hidden" id="dateSelectedForCite" value="">
                                        <br/>
-                        <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-secondary btn-xs next-step">Siguiente</button></li>
-                        </ul>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-secondary btn-xs next-step">Siguiente</button>
+                        </div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
                         <h3>Paso 2</h3>
@@ -489,12 +489,11 @@
                           <select id="timesByDay" class="form-control">
                           </select>
                           <br/>
-                        <ul class="list-inline pull-right">
-                          <div class="btn-group">
-                            <li><button type="button" class="btn btn-default btn-xs prev-step">Anterior</button></li>
-                            <li><button type="button" class="btn btn-secondary btn-xs next-step">Siguiente</button></li>
+
+                          <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs prev-step">Anterior</button>
+                        <button type="button" class="btn btn-secondary btn-xs next-step">Siguiente</button>
                          </div>
-                        </ul>
 
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
@@ -509,12 +508,11 @@
                             
                         </div>
 
-                        <ul class="list-inline pull-right">
-                          <div class="btn-group">
-                            <li><button type="button" class="btn btn-default btn-sm prev-step">Anterior</button></li>
-                            <li><button type="button" class="btn btn-secondary btn-sm next-step">Siguiente</button></li>
+                          <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-xs prev-step">Anterior</button>
+                            <button type="button" class="btn btn-secondary btn-xs next-step">Siguiente</button>
                           </div>
-                        </ul>
+
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
                         <h3>Finalizar</h3>

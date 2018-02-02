@@ -337,7 +337,6 @@ span.round-tab:hover {
 @media( max-width : 1300px ) {
 
     .wizard {
-        width: 90%;
         height: auto !important;
     }
 
