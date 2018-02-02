@@ -174,7 +174,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">La foto de perfil es obligatoria</h4>
+                <h4 class="modal-title">La foto de perfil es obligatoria, recuerde que es la imagen que verá el ppaciente.</h4>
               </div>
             </div>
           </div>
@@ -557,7 +557,7 @@
                   <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
                     <div class="box-body">
                           @if($labor->isEmpty())
-						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>			
+						 <span class="text-black">No hay ningún centro asociado a su cuenta.</span>			
 							@else
 							
 							@foreach($labor->sortByDesc('created_at') as $labor)
@@ -959,7 +959,7 @@
 	                	<label for="workplace" class="col-sm-4 control-label">Nombre del lugar</label>
 	                	<div class="col-sm-8">
 	                		<label id="labelwork2" class="text-red"></label>
-		                  	<input type="text" name="workplace" id="workplace2" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros.">
+		                  	<input type="text" name="workplace" id="workplace2" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros...">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
@@ -1038,7 +1038,7 @@
 			<div class="footer">
 			@if($labor->isEmpty())
 			<div class="box-footer">
-						 <span class="text-black">No hay ningún consultorio asociado a su cuenta...</span>
+						 <span class="text-black">No hay ningún consultorio asociado a su cuenta.</span>
 			</div>
 			
 			@else
@@ -1090,7 +1090,7 @@
     			var workplace =  document.getElementById('workplace').value;
 
     			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') >= 0 || workplace.indexOf('hospital') >= 0 || workplace.indexOf('HOSPITAL') >= 0 || workplace.indexOf('consultorio') >= 0 || workplace.indexOf('CONSULTORIO') >= 0){
-    					document.getElementById('labelwork').innerHTML = '* Las palabras hospital, o consultorio están restringidas...'
+    					document.getElementById('labelwork').innerHTML = '* Las palabras hospital, o consultorio están restringidas.'
     			}
     			else{
     				document.getElementById('labelwork').innerHTML = ''
@@ -1101,7 +1101,7 @@
     			var workplace =  document.getElementById('workplace2').value;
 
     			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') >= 0 || workplace.indexOf('hospital') >= 0 || workplace.indexOf('HOSPITAL') >= 0 || workplace.indexOf('consultorio') >= 0 || workplace.indexOf('CONSULTORIO') >= 0){
-    					document.getElementById('labelwork2').innerHTML = '* Las palabras hospital, o consultorio están restringidas...'
+    					document.getElementById('labelwork2').innerHTML = '* Las palabras hospital, o consultorio están restringidas.'
     			}
     			else{
     				document.getElementById('labelwork2').innerHTML = ''
