@@ -635,7 +635,7 @@
           }
       }
     </script>
-<input type="hidden" id="android" value="{{ $agent->isAndroidOS }}">
+<input type="hidden" id="android" value="{{ $agent->isAndroidOS() }}">
     <script type="text/javascript">
       var markers = [];
       var map;
