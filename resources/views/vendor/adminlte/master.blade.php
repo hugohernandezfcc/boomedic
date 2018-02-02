@@ -230,11 +230,6 @@
 }
 
 /*styles Wizard */
-.wizard {
-    margin: 20px auto;
-    background: #fff;
-}
-
     .wizard .nav-tabs {
         position: relative;
         margin-bottom: 0;
@@ -339,9 +334,6 @@ span.round-tab:hover {
     padding-top: 50px;
 }
 
-.wizard h3 {
-    margin-top: 0;
-}
 
 @media( max-width : 1300px ) {
 
