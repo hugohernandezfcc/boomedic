@@ -403,7 +403,25 @@
                 </div>
               <hr width="100%">
                 <!-- Calendar -->
-          
+          <div class="box box-solid bg-green-gradient">
+            <div class="box-header">
+              <i class="fa fa-calendar"></i>
+
+              <h3 class="box-title">Seleccionar día</h3>
+              <!-- tools box -->
+              <div class="pull-right box-tools">
+                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+              </div>
+              <!-- /. tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <!--The calendar -->
+              <div id="calendar1" style="width: 80%"></div>
+            </div>
+            <!-- /.box-body -->
+            
+          </div>
 
           <input type="hidden" id="dateSelectedForCite">
  
@@ -429,11 +447,11 @@
           <script type="text/javascript">
           $(function () {
 
-            $('#calendar').datepicker();
+            $('#calendar1').datepicker();
 
-            $('#calendar').on('changeDate', function() {
+            $('#calendar1').on('changeDate', function() {
                 $('#dateSelectedForCite').val(
-                    $('#calendar').datepicker('getFormattedDate')
+                    $('#calendar1').datepicker('getFormattedDate')
                 );
             });
 
