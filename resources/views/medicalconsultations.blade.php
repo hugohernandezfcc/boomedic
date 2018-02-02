@@ -502,7 +502,7 @@
                         <h3>Paso 3</h3>
                         <b>Seleccionar método de pago</b>
                          <div class="col-sm-12">
-                             <select id="paymentMethodsFields" class="form-control" style="display: none;">
+                             <select id="paymentMethodsFields" class="form-control">
                              </select>
                          </div>
                          <br/>     
@@ -520,11 +520,11 @@
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
                         <h3>Finalizar</h3>
-                       <label id="enddate"> </label>.<br/>
-                       <label id="endtime"> </label>.<br/>
-                       <label id="endpayment"> </label>.<br/>
-                       <label id="endamount"> </label>.<br/>
-                       Método de Pago: .<br/>
+                       <label id="enddate"> </label.<br/>
+                       <label id="endtime"> </label><br/>
+                       <label id="endpayment"> </label><br/>
+                       <label id="endamount"> </label><br/>
+                       <br/>
 
                          <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
                             Confirmar y programar cita
@@ -1435,7 +1435,7 @@ function prevTab(elem) {
                         $('#dateSelectedForCite').val = e.date.toString();                  
                          console.log(e.date.toString());
                          document.getElementById("onestep").disabled = false;
-                         $('#enddate').innerHTML = 'Fecha: ' + e.date.toString();
+                         document.getElementById("enddate").innerHTML = 'Fecha: ' + e.date.toString();
                       });
              }
           })(marker, i));
