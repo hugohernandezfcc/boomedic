@@ -646,7 +646,7 @@
        */
       window.onload = function(){
         var height;
-        if({{ $agent->isAndroidOS() }}{
+        if("<?php $agent->isAndroidOS(); ?>"){
             height = "512";
         }else{
           height = window.screen.availHeight-115;
