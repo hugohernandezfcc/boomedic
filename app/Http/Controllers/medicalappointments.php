@@ -68,7 +68,8 @@ class medicalappointments extends Controller
         //$medical->longitude     = '-99.1379801140335';
         $medical->when          = '2018-11-03 11:00:00';
         $doctor = user::find($medical->user_doctor);
-
+        $user = user::find(Auth::id());
+        $data = ['email' => $user->email];
         if ($medical->save()) {
 
             Mail::send('emails.confirmacionCita', ['doctor' => $doctor,'appointment' => $medical], function ($message) use($data){
