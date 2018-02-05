@@ -72,7 +72,7 @@ class medicalappointments extends Controller
         $data = ['email' => $user->email];
         if ($medical->save()) {
 
-            Mail::send('emails.confirmacionCita', ['doctor' => $doctor,'appointment' => $medical], function ($message) use($data){
+            Mail::send('emails.appointmentConfirmation', ['doctor' => $doctor,'appointment' => $medical], function ($message) use($data){
                 $message->subject('Boomedic');
                 $message->to($data['email']);
             }); 
