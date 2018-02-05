@@ -62,8 +62,9 @@ class medicalappointments extends Controller
    
         $medical->user           = Auth::id();
         $medical->user_doctor    = '16';
-        $medical->latitude       = '19.343255357777';
-        $medical->longitude     = '-99.1379801140335';
+        $medical->workplace    = '21';
+        //$medical->latitude       = '19.343255357777';
+        //$medical->longitude     = '-99.1379801140335';
         $medical->when          = '2018-11-03 11:00:00';
         $doctor = user::find($medical->user_doctor);
 
