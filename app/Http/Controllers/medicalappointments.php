@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
+use Mail;
 use App\medical_appointments;
 
 
