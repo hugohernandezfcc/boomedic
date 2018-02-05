@@ -57,6 +57,7 @@ class medicalappointments extends Controller
      */
     public function store(Request $request)
     {
+        $user = user::find(Auth::id());
         $medical = new medical_appointments;
    
         $medical->user           = Auth::id();
@@ -64,9 +65,17 @@ class medicalappointments extends Controller
         $medical->latitude       = '19.343255357777';
         $medical->longitude     = '-99.1379801140335';
         $medical->when          = '2018-11-03 11:00:00';
-            
-        if ($medical->save()) 
-       return redirect('medicalconsultations');
+        $doctor = user::find($medical->user_doctor);
+
+        if ($medical->save()) {
+
+            Mail::send('emails.confirmacionCita', ['doctor' => $doctor,'appointment' => $medical], function ($message) use($data){
+                $message->subject('Boomedic');
+                $message->to($data['email']);
+            }); 
+
+            return redirect('medicalconsultations');
+        }
     }
 
     /**
