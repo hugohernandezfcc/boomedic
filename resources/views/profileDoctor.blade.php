@@ -178,38 +178,38 @@
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
+	                    <label for="firstname" class="col-sm-2 control-label">Nombre<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
+	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}" required="true">
 	                	</div>
 	              	</div>
 
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
+	                    <label for="lastname" class="col-sm-2 control-label">Apellidos<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}">
+	                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}" required="true">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="email" class="col-sm-2 control-label">Corre electrónico</label>
+	                    <label for="email" class="col-sm-2 control-label">Correo electrónico<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
-	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
+	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}" required="true">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="username" class="col-sm-2 control-label">Nombre de usuario</label>
 	                	<div class="col-sm-10">
-	                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}">
+	                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}" readonly="true">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="age" class="col-sm-2 control-label">Edad</label>
+	                    <label for="age" class="col-sm-2 control-label">Edad<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="age" class="form-control" id="age" value="{{ $age }}">
+	                  		<input type="text" name="age" class="form-control" id="age" value="{{ $age }}" required="true">
 	                	</div>
 	              	</div>
 
@@ -225,7 +225,7 @@
 	              	</div>
 	              	
 	              	<div class="form-group has-feedback {{ $errors->has('gender') ? 'has-error' : '' }}">
-	                  <label for="gender" class="col-sm-2 control-label">Genero</label>
+	                  <label for="gender" class="col-sm-2 control-label">Genero<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                  <div class="col-sm-10">
 		                  <select class="form-control" name="gender">
 		                    <option value="female" {{ ($gender == 'female') ? 'selected' : '' }}>Femenino</option>
@@ -235,7 +235,7 @@
 	                </div>
 
 	                <div class="form-group has-feedback {{ $errors->has('scholarship') ? 'has-error' : '' }}">
-	                    <label for="scholarship" class="col-sm-2 control-label">Escolaridad</label>
+	                    <label for="scholarship" class="col-sm-2 control-label">Escolaridad<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
 	                  		<input type="text" name="scholarship" class="form-control" id="scholarship" value="{{ $scholarship }}">
 	                	</div>
@@ -262,14 +262,14 @@
 		                <b>Información Profesional</b>
 		            </div>
 		            <div class="form-group">
-	                	<label for="professional_license" class="col-sm-2 control-label">Licencia Profesional</label>
+	                	<label for="professional_license" class="col-sm-2 control-label">Licencia Profesional<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="professional_license" id="professional_license" value="{{ $professional_license }}" class="form-control">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
 		            <div class="form-group">	
-	                	<label for="specialty" class="col-sm-2 control-label">Especialidad</label>
+	                	<label for="specialty" class="col-sm-2 control-label">Especialidad<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
 		                  	<select class="form-control" name="specialty" id="specialty">
 		                    	<option value="{{ $specialty }}" selected> {{ $specialty }}</option>
@@ -295,14 +295,14 @@
 	                	<!-- /.input group -->
 	              	</div>
 	              	<div class="form-group">
-	                	<label for="schoolOfMedicine" class="col-sm-2 control-label">Escuela de Medicina</label>
+	                	<label for="schoolOfMedicine" class="col-sm-2 control-label">Escuela de Medicina<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="schoolOfMedicine" id="schoolOfMedicine" value="{{ $schoolOfMedicine }}" class="form-control">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
 	              	<div class="form-group">
-	                	<label for="facultyOfSpecialization" class="col-sm-2 control-label">Facultad de Especialización</label>
+	                	<label for="facultyOfSpecialization" class="col-sm-2 control-label">Facultad de Especialización<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="facultyOfSpecialization" id="facultyOfSpecialization" value="{{ $facultyOfSpecialization }}" class="form-control">
 	                	</div>
