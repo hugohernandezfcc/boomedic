@@ -138,7 +138,7 @@
 	    				&nbsp;
 	    			</div>
 	    			<div class="col-sm-4">
-	    				<button type="submit" class="btn btn-secondary btn-block btn-flat">
+	    				<button onclick="saveChanges()" class="btn btn-secondary btn-block btn-flat">
 	    					Guardar
 	    				</button>
 	    			</div>
@@ -321,7 +321,7 @@
 					            	&nbsp;
 					            </div>
 					    		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat" id="saveButtonProfile">
 						                Guardar
 						            </button>
 					            </div>
@@ -604,6 +604,11 @@
 	  	</div>	  	
 	</div>
 
+	<script type="text/javascript">
+		function saveChanges(){
+			document.getElementById("saveButtonProfile").click();
+		}
+	</script>
 
 	<script type="text/javascript">
 
