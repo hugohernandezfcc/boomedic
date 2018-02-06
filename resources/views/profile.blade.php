@@ -181,9 +181,12 @@
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="firstname" class="col-sm-2 control-label">Nombre <span class="text-red fa fa-circle" style="font-size: 7px;"></span></label>
+	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}" required>
+	                		<div class="input-group">
+                			<li class="input-group-addon text-red">•</li>
+	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
+	                  		 </div>
 	                	</div>
 	              	</div>
 
@@ -265,39 +268,40 @@
 		                <b>Dirección</b>
 		            </div>
 		            <div class="form-group">
-		            	<div id="locationField" class="col-sm-12">
+
+		            	<div id="locationField" class="col-sm-10" align="right">
 					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"/>
 					    </div>
 		            </div>
 
-
-		            <div class="form-group">
-			            	<div class="col-sm-12">
+		            <div align="right">
+		            	<div class="row" style="width: 90%;" >
+			            	<div class="col-sm-6">
 			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
-			        </div><div class="form-group">
-			            	<div class="col-sm-12">
+			            	<div class="col-sm-6">
 			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
-			        </div><div class="form-group">
-			            	<div class="col-sm-12">
+			            </div>
+						<br />              	
+		              	<div class="row" style="width: 90%;" >
+			            	<div class="col-sm-6">
 			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"/>
 			            	</div>
-			        </div><div class="form-group">
-			            	<div class="col-sm-12">
+			            	<div class="col-sm-6">
 			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
-			        </div><div class="form-group">
-
-			            	<div class="col-sm-12">
+			            </div>
+						<br />
+			            <div class="row" style="width: 90%;" >
+			            	<div class="col-sm-6">
 			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"/>
 			            	</div>
-			        </div><div class="form-group">
-			            	<div class="col-sm-12">
+			            	<div class="col-sm-6">
 			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
-			        </div>
-		           
+			            </div>
+		            </div>
 
 		            <input type="text" style="display: none;" name="latitude" id="latitudeFend" />
 		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" />
