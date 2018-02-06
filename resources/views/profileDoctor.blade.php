@@ -747,6 +747,7 @@
 
 			<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
 				<div class="callout callout-default">
+					@if($agent->isMobile())
 					<div class="row">
 						<div class="col-sm-4">
 					            &nbsp;
@@ -763,6 +764,7 @@
 					            	&nbsp;
 					    </div>
 				 	</div>
+				 	@endif
 				 	<div class="form-group">
 	                	<label for="workplace" class="col-sm-2 control-label">Lugar de trabajo</label>
 	                	<div class="col-sm-10">
@@ -849,17 +851,27 @@
 				</div>	
 
 				<!-- form for map -->
-		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
-			<div class="form-group">
-			<div class="col-sm-5">
-				<div class="col-sm-12">
-					 <div class="form-group">
-	                	<label for="workplace" class="col-sm-4 control-label">Lugar de trabajo</label>
-	                	<div class="col-sm-8">
-		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control">
-	                	</div>
+			<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
+				<div class="form-group">
+					<div class="col-sm-12">
+					    <div class="col-sm-6">
+						    <button type="submit" class="btn btn-secondary btn-block btn-flat">
+						        Guardar
+						    </button>
+					    </div>
+					    <div class="col-sm-6">
+					    	<button type="button" id="cancel2" class="btn btn-default btn-block btn-flat">Cancelar</button>
+					    </div>
+					</div>
+					<div class="col-sm-5">
+						<div class="col-sm-12">
+					 		<div class="form-group">
+	                			<label for="workplace" class="col-sm-4 control-label">Lugar de trabajo</label>
+	                			<div class="col-sm-8">
+		                  			<input type="text" name="workplace" id="workplace" value="" class="form-control">
+	                			</div>
 	                	<!-- /.input group -->
-	              	</div>
+	              			</div>
 	              	<div class="form-group">
 
 	                	<label for="professionalPosition" class="col-sm-4 control-label">Posición Profesional</label>
