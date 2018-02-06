@@ -28,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+    
         $user = User::find(Auth::id());
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
         $StatementForUser = $user->privacy_statement;

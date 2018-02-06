@@ -174,4 +174,10 @@ class RegisterController extends Controller
         }
 
     }
+
+        public function association()
+    {
+          $asso = DB::table('medical_association')->get();
+        return response()->json($asso);
+    }
 }

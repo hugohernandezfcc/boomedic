@@ -13,6 +13,7 @@
 @section('body_class', 'register-page')
 
 @section('body')
+
     <div class="register-box">
         <div class="register-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>

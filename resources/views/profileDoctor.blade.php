@@ -268,7 +268,7 @@
 		            <div class="form-group">
 		            	<label for="medical_society" class="col-sm-2 control-label">Sociedad de Médicos</label>
 	                	<div class="col-sm-10">
-	                		<select class="form-control" name="medical_society" id="specialty">
+	                		<select class="form-control" name="medical_society" id="medical_society">
 	                			@foreach($asso as $asso)
 	                				<option value="{{ $asso->name }}" selected> {{ $asso->name }}</option>
 	                			@endforeach

@@ -8,6 +8,28 @@
 @section('body_class', 'register-page')
 
 @section('body')
+<script type="text/javascript">
+                $.ajax(
+              {
+                type: "GET",    
+                url: "RegisterController/association", 
+                success: function(result){
+                  console.log(result);
+
+                  var x = document.getElementById("selectas");
+
+                  for (var i = result.length - 1; i >= 0; i--) {
+                    
+                    var option = document.createElement("option");
+                    option.text = result[i].name + ": " + result[i].name;
+                    option.value = result[i].name + "_" + result[i].name;
+                    x.add(option);
+
+                  }
+                }
+              }
+            );
+</script>
     <div class="register-box">
         <div class="register-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
@@ -66,13 +88,8 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
-                    <input type="text" name="medical_society" class="form-control" value="{{ old('medical_society') }}" placeholder="{{ trans('adminlte::adminlte.medical_society') }}" id="medical_society">
-                    <span class="fa  fa-keyboard-o form-control-feedback"></span>
-                    @if ($errors->has('medical_society'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('medical_society') }}</strong>
-                        </span>
-                    @endif
+                    <select class="form-control" name="medical_society" id="selectas">
+                    </select>
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
