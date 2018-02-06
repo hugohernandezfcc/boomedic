@@ -379,7 +379,7 @@ question
 
     public function updateDoctor(Request $request, $id)
     {
-        Session::flush();
+        
         $user = User::find($id);
         $file = $request->file('file');
          $imagen = getimagesize($file);    //Sacamos la información
