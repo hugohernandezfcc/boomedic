@@ -150,7 +150,7 @@
 	    				&nbsp;
 	    			</div>
 	    		</div><br/>
-	    		
+
 	    		<div class="row">
 	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
 	    		<div class="col-sm-3" align="center">
@@ -332,7 +332,7 @@
 					            	&nbsp;
 					            </div>
 					       		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat" id="saveButtonProfile">
 						                Guardar
 						            </button>
 					            </div>
