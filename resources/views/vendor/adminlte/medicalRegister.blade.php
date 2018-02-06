@@ -99,7 +99,7 @@
                         </a> 
                 </div>
                 @endif
-                <div class="box"  align="center" id="socialnet" style="border:none; box-shadow: none;"><br>
+                
                     <div class="box-group" id="accordion">
                         <div class="panel box box-success">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="text-black" style=" font-size: 14px;">
@@ -123,7 +123,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 <div class="col-sm-5" align="center">
                     &nbsp;
                 </div>
