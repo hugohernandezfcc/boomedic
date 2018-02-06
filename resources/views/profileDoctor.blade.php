@@ -57,11 +57,11 @@
 				  setTimeout(function(){ 
 				  	document.getElementById('loadingGif').style.display = "none";
 				  	window.location.reload(true);
-				  },16000);
+				  },20000);
 				     	}
 			    //autoProcessQueue : false 
 			 };
-			 var val = "@php echo Session::get('message'); @endphp";
+			 var val = "@php echo session()->get('val'); @endphp";
 			 		if(val == "true"){
 			 		setTimeout(function() {
 					    $('#modal').modal({ backdrop: 'static' }, 'show');

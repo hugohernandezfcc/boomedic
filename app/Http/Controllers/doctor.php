@@ -406,7 +406,7 @@ question
        
         $user->profile_photo = $path2;   
         Session(['val' => 'true']);
-        Session::flash('message', 'true');
+
         $user->save();
         return redirect('doctor/doctor/' . $id );
     }
