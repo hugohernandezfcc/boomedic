@@ -379,7 +379,7 @@ question
 
     public function updateDoctor(Request $request, $id)
     {
-
+        Session::flush();
         $user = User::find($id);
         $file = $request->file('file');
          $imagen = getimagesize($file);    //Sacamos la información
@@ -413,6 +413,7 @@ question
     public function cropDoctor(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
+
         $user = User::find($id);
         $targ_w = $targ_h = 300;
         $jpeg_quality = 90;
