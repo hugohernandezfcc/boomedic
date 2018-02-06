@@ -745,9 +745,25 @@
 					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
 					   </div>
 
-					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
-					<div class="callout callout-default">
-				 <div class="form-group">
+			<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
+				<div class="callout callout-default">
+					<div class="row">
+						<div class="col-sm-4">
+					            &nbsp;
+					    </div>
+					    <div class="col-sm-4">
+						    <button type="submit" class="btn btn-secondary btn-block btn-flat">
+						        Guardar
+						    </button>
+					    </div>
+					    <div class="col-sm-4">
+					    	<button type="button" id="cancel" class="btn btn-default btn-block btn-flat">Cancelar</button>
+					    </div>
+					    <div class="col-sm-4">
+					            	&nbsp;
+					    </div>
+				 	</div>
+				 	<div class="form-group">
 	                	<label for="workplace" class="col-sm-2 control-label">Lugar de trabajo</label>
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control">
@@ -812,22 +828,22 @@
 		            <br/>
 		            <!-- /.box-body -->
 		            <div class="row">
-					<div class="col-sm-4">
+						<div class="col-sm-4">
+					            &nbsp;
+					    </div>
+					    <div class="col-sm-4">
+						    <button type="submit" class="btn btn-secondary btn-block btn-flat">
+						        Guardar
+						    </button>
+					    </div>
+					    <div class="col-sm-4">
+					    	<button type="button" id="cancel" class="btn btn-default btn-block btn-flat">Cancelar</button>
+					    </div>
+					    <div class="col-sm-4">
 					            	&nbsp;
-					            </div>
-					       		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
-						                Guardar
-						            </button>
-					            </div>
-					    		<div class="col-sm-4">
-					    			<button type="button" id="cancel" class="btn btn-default btn-block btn-flat">Cancelar</button>
-					            </div>
-					            <div class="col-sm-4">
-					            	&nbsp;
-					            </div>
-				 </div>
-				 				</form>	
+					    </div>
+				 	</div>
+			</form>	
 
 
 				</div>	
