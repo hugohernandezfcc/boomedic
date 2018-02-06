@@ -184,7 +184,7 @@
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
 	                	<div class="col-sm-10">
 	                		<div class="input-group">
-                			<span class="input-group-addon text-red">*</span>
+                			<span class="text-red">•</span>
 	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
 	                  		 </div>
 	                	</div>
