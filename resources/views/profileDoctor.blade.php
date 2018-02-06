@@ -252,9 +252,9 @@
 	                </div>
 
 	                <div class="form-group">
-	                	<label for="mobile" class="col-sm-2 control-label"># Móvil</label>
+	                	<label for="mobile" class="col-sm-2 control-label"># Móvil<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
-		                  	<input type="text" name="mobile" id="mobile" value="{{ $mobile }}" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+		                  	<input type="text" name="mobile" id="mobile" value="{{ $mobile }}" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask required="true">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
