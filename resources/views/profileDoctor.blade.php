@@ -855,6 +855,7 @@
 				<div class="form-group">
 					<div class="col-sm-5">
 						<div class="col-sm-12">
+							@if($agent->isMobile())
 					    		<div class="col-sm-6">
 						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
 						        		Guardar
@@ -862,7 +863,8 @@
 					    		</div>
 					    		<div class="col-sm-6">
 					    			<button type="button" id="cancel2" class="btn btn-default btn-block btn-flat">Cancelar</button>
-					    		</div>
+					    		</div><br/>
+					    	@endif
 					 		<div class="form-group">
 	                			<label for="workplace" class="col-sm-4 control-label">Lugar de trabajo</label>
 	                			<div class="col-sm-8">
