@@ -99,33 +99,10 @@
                         </a> 
                 </div>
                 @endif
-                
-                    <div class="box-group" id="accordion">
-                        <div class="panel box box-success">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="text-black" style=" font-size: 14px;">
-                                <div class="box-header with-border" align="left">
-                                    <i class="fa fa-fw fa-linkedin"></i><b>LinkedIn</b>
-                                </div>
-                            </a>
-                            <div id="collapseThree" class="panel-collapse collapse">
-                                <div class="box-body">
-                                    <div class="row">
-                                        <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
-                                            api_key: 78maelkx5by0xp
-                                            authorize: true
-                                            onLoad: onLinkedInLoad2
-                                            scope: r_basicprofile r_emailaddress
-                                            lang: es_ES
-                                        </script>
-                                    <div align="center"><script type="in/Login"></script></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 <div class="col-sm-5" align="center">
                     &nbsp;
                 </div>
+            </div>
             </form>
            
 
