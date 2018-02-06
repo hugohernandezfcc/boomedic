@@ -1,7 +1,4 @@
 @extends('adminlte::master')
-<head>
-    <script src="{{ asset('js/LinkedInMRegister.js') }}"></script>
-</head>
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">
