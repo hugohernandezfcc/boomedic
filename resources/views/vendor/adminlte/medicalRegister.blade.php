@@ -109,7 +109,7 @@
                                             api_key: 78maelkx5by0xp
                                             authorize: true
                                             onLoad: onLinkedInLoad3
-                                            scope: r_fullprofile r_emailaddress
+                                            scope: r_basicprofile r_emailaddress
                                             lang: es_ES
                                         </script>
                                         <div align="center"><script type="in/Login"></script></div>
