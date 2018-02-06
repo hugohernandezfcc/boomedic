@@ -116,6 +116,28 @@
 		            </div>
 	    		@endif
 	    		<!-- Photo Zone. -->
+
+	    		@if($agent->isMobile())
+	    		<div class="row">
+	    			<div class="col-sm-4">
+	    				&nbsp;
+	    			</div>
+	    			<div class="col-sm-4">
+	    				<button onclick="saveChanges()" class="btn btn-secondary btn-block btn-flat">
+	    					Guardar
+	    				</button>
+	    			</div>
+	    			<div class="col-sm-4">
+	    				<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+	    					Cancelar
+	    				</a>
+	    			</div>
+	    			<div class="col-sm-4">
+	    				&nbsp;
+	    			</div>
+	    		</div><br/>
+	    		@endif
+
 	    		<div class="row">
 	    			<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
 		    		<div class="col-sm-4" align="center">
@@ -352,7 +374,7 @@
 					            	&nbsp;
 					            </div>
 					    		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat" id="saveButtonProfile">
 						                Guardar
 						            </button>
 					            </div>
@@ -364,7 +386,7 @@
 					            	&nbsp;
 					            </div>
 					       		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+						    		<button type="submit" class="btn btn-secondary btn-block btn-flat" id="saveButtonProfile">
 						                Guardar
 						            </button>
 					            </div>
@@ -557,7 +579,11 @@
       </div>
     		@endif
 
-
+    		<script type="text/javascript">
+				function saveChanges(){
+					document.getElementById("saveButtonProfile").click();
+				}
+			</script>
 
 
 
