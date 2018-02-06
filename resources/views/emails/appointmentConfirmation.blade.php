@@ -13,7 +13,7 @@
     Estimado usuario, su cita ha sido confirmada para la fecha {{$appointment->when}} con el doctor {{$doctor->name}}.<br>
     Favor de presentarse el día y la fecha indicada.
     </p>
-
+    <br><br>
     
 </body>
 </html>

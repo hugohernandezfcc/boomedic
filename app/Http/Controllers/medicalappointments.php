@@ -56,14 +56,13 @@ class medicalappointments extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        $user = user::find(Auth::id());
         $medical = new medical_appointments;
    
         $medical->user           = Auth::id();
-        $medical->user_doctor    = '16';
-        $medical->workplace    = '21';
+        $medical->user_doctor    = $id;
+        $medical->workplace    = '29';
         //$medical->latitude       = '19.343255357777';
         //$medical->longitude     = '-99.1379801140335';
         $medical->when          = '2018-11-03 11:00:00';
