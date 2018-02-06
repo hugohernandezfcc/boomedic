@@ -99,9 +99,6 @@
                         </a> 
                 </div>
                 @endif
-                <div class="col-sm-5" align="center">
-                    &nbsp;
-                </div>
                 <div class="box"  align="center" id="socialnet" style="border:none; box-shadow: none;"><br>
                     <div class="box-group" id="accordion">
                         <div class="panel box box-success">
@@ -126,6 +123,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-sm-5" align="center">
+                    &nbsp;
                 </div>
             </form>
            
