@@ -379,7 +379,7 @@ question
 
     public function updateDoctor(Request $request, $id)
     {
-        
+
         $user = User::find($id);
         $file = $request->file('file');
          $imagen = getimagesize($file);    //Sacamos la información
@@ -406,6 +406,7 @@ question
        
         $user->profile_photo = $path2;   
         Session(['val' => 'true']);
+        Session::flash('message', 'true');
         $user->save();
         return redirect('doctor/doctor/' . $id );
     }
