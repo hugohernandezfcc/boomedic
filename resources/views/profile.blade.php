@@ -188,37 +188,37 @@
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="firstname" class="col-sm-2 control-label">Nombre<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 9px "></i></label>
+	                    <label for="firstname" class="col-sm-2 control-label">Nombre<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
+	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}" required="true">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
+	                    <label for="lastname" class="col-sm-2 control-label">Apellidos<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}">
+	                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}" required="true">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="email" class="col-sm-2 control-label">Correo electrónico</label>
+	                    <label for="email" class="col-sm-2 control-label">Correo electrónico<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
-	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
+	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}" required="true">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="username" class="col-sm-2 control-label">Nombre de usuario</label>
 	                	<div class="col-sm-10">
-	                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}">
+	                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}" readonly="true">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="age" class="col-sm-2 control-label">Edad</label>
+	                    <label for="age" class="col-sm-2 control-label">Edad<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="age" class="form-control" id="age" value="{{ $age }}">
+	                  		<input type="text" name="age" class="form-control" id="age" value="{{ $age }}" required="true">
 	                	</div>
 	              	</div>
 
