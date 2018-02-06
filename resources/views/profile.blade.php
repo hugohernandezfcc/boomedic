@@ -234,7 +234,7 @@
 	              	</div>
 	              	
 	              	<div class="form-group has-feedback {{ $errors->has('gender') ? 'has-error' : '' }}">
-	                  <label for="gender" class="col-sm-2 control-label">Genero</label>
+	                  <label for="gender" class="col-sm-2 control-label">Genero<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                  <div class="col-sm-10">
 		                  <select class="form-control" name="gender">
 		                    <option value="female" {{ ($gender == 'female') ? 'selected' : '' }}>Femenino</option>
@@ -251,7 +251,7 @@
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('maritalstatus') ? 'has-error' : '' }}">
-	                  <label for="maritalstatus" class="col-sm-2 control-label">Estado civil</label>
+	                  <label for="maritalstatus" class="col-sm-2 control-label">Estado civil<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                  <div class="col-sm-10">
 		                  <select class="form-control" name="maritalstatus">
 		                    <option value="single"  {{ ($maritalstatus == 'single') ? 'selected' : '' }}>Soltero</option>
