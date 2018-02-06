@@ -14,21 +14,21 @@
         var name = user.firstName+' '+user.lastName;
         var email = user.emailAddress;
         var passw = email.substring(0, email.lastIndexOf("@"));
-        alert("dateofBirth" + user.dateofBirth);
-        alert("dateOfBirth" + user.dateOfBirth);
+        console.log("dateofBirth" + user.dateofBirth);
+        console.log("dateOfBirth" + user.dateOfBirth);
         //console.log(passw);
         document.getElementById('name').value = name;
         document.getElementById('name').readOnly = true;
         document.getElementById('email').value = user.emailAddress;
         document.getElementById('email').readOnly = true;
-        document.getElementById('datepicker').value = user.dateOfBirth;
-        document.getElementById('datepicker').readOnly = true;
+        //document.getElementById('datepicker').value = user.dateOfBirth;
+        //document.getElementById('datepicker').readOnly = true;
         document.getElementById('passw').value = passw;
         document.getElementById('passw').readOnly = true;
         document.getElementById('passwc').value = passw;
         document.getElementById('passwc').readOnly = true;
         IN.User.logout(function(){
-            //console.log('deslogeado');
+            
         });
     }
 
