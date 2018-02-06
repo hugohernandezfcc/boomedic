@@ -61,8 +61,8 @@
 				     	}
 			    //autoProcessQueue : false 
 			 };
-			 var val = "@php echo session()->get('val'); @endphp";
-			 		if(Session::has('message')){
+			 var val = "@php echo Session::get('message'); @endphp";
+			 		if(val == "true"){
 			 		setTimeout(function() {
 					    $('#modal').modal({ backdrop: 'static' }, 'show');
 					}, 4000);	
