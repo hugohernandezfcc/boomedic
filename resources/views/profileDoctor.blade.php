@@ -268,7 +268,11 @@
 		            <div class="form-group">
 		            	<label for="medical_society" class="col-sm-2 control-label">Sociedad de Médicos</label>
 	                	<div class="col-sm-10">
-		                  	<input type="text" name="medical_society" id="medical_society" value="{{ $medical_society }}" class="form-control">
+	                		<select class="form-control" name="medical_society" id="specialty">
+	                			@foreach($asso as $asso)
+	                				<option value="{{ $asso->name }}" selected> {{ $asso->name }}</option>
+	                			@endforeach
+	                		</select>
 	                	</div></div>
 	               <div class="form-group"> 	
 	                	<label for="professional_license" class="col-sm-2 control-label">Licencia Profesional</label>
