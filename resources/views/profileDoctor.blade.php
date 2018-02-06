@@ -932,7 +932,7 @@
 					    		<div class="col-sm-6">
 					    			<button type="button" id="cancel2" class="btn btn-default btn-block btn-flat">Cancelar</button>
 					            </div>
-				</div>
+				</div><br/>
 			</div>
 			<div class="col-sm-7">
 			<div id="loadingGif2" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>

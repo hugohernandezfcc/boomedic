@@ -59,6 +59,20 @@
 
 	        	<form action="/supportTicket/store" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
+
+	    		<div class="form-group has-feedback">
+	              		<div class="col-sm-6">
+			    			<button type="submit" class="btn btn-secondary btn-block btn-flat">
+			                	Guardar
+			            	</button>
+		            	</div>
+		    			<div class="col-sm-6">
+		    				<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+			                Cancelar
+			            	</a>
+		            	</div>
+		        </div>
+		        
 	    		<div class="form-group has-feedback">	
 	    			<label for="cause" class="col-sm-2 control-label">Causa</label>
 	    			 <div class="col-sm-10">
@@ -84,17 +98,17 @@
 	              	</div>
 	              	<br>
 	              	<div class="form-group has-feedback">
-	              	<div class="col-sm-6">
-			    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
-			                Guardar
-			            </button>
-		            </div>
-		    		<div class="col-sm-6">
-		    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+	              		<div class="col-sm-6">
+			    			<button type="submit" class="btn btn-secondary btn-block btn-flat">
+			                	Guardar
+			            	</button>
+		            	</div>
+		    			<div class="col-sm-6">
+		    				<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
 			                Cancelar
-			            </a>
-		            </div>
-		        </div>
+			            	</a>
+		            	</div>
+		        	</div>
 		        </form>
 
             @endif
