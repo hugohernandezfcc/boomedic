@@ -166,13 +166,13 @@
 
 	               <div id="cardFields" style="display: none;" >
 	                	<div class="form-group has-feedback {{ $errors->has('cardnumber') ? 'has-error' : '' }}">
-		                    <label for="cardnumber" class="col-sm-2 control-label">No. Tarjeta</label>
+		                    <label for="cardnumber" class="col-sm-2 control-label">No. Tarjeta<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 		                	<div class="col-sm-10">
 		                  		<input type="text" name="cardnumber" class="form-control" id="cardnumber" required>
 		                	</div>
 		              	</div>
 		              			<div class="form-group has-feedback {{ $errors->has('year') ? 'has-error' : '' }}">
-				                    <label for="year" class="col-sm-2 control-label">Fecha de Exp.</label>
+				                    <label for="year" class="col-sm-2 control-label">Fecha de Exp.<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 				        <div class="col-sm-2">
 				        <select name="month" class="form-control select1">
                             <option value="01">01</option>
@@ -201,21 +201,21 @@
                             <option value="Debit">Débito</option>
                         </select>
                    		 </div>
-				                    <label class="col-sm-1 control-label" required>CVV</label>
+				                    <label class="col-sm-1 control-label" required>CVV<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 				                	<div class="col-sm-2">
 				                  		<input type="text" name="cvv" class="form-control" id="cvv">
 				                	</div>
 								</div>
 
 	                	<div class="form-group has-feedback {{ $errors->has('bank') ? 'has-error' : '' }}">
-		                    <label for="bank" class="col-sm-2 control-label">Banco</label>
+		                    <label for="bank" class="col-sm-2 control-label">Banco<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 		                	<div class="col-sm-10">
 		                  		<input type="text" name="bank" class="form-control" id="bank" required>
 		                	</div>
 		              	</div>
 
 		              	<div class="form-group has-feedback {{ $errors->has('country') ? 'has-error' : '' }}">
-		                    <label for="country" class="col-sm-2 control-label">País</label>
+		                    <label for="country" class="col-sm-2 control-label">País<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 			                <div class="col-sm-10" align="left">
 				                <select class="form-control select1" name="country" style="width: 100%;">
 				                  <option selected="selected">Estados Unidos</option>
