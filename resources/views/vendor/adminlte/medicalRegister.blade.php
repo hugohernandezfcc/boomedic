@@ -105,7 +105,7 @@
                                         <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
                                             api_key: 78maelkx5by0xp
                                             authorize: true
-                                            onLoad: onLinkedInLoad3
+                                            onLoad: onLinkedInLoad2
                                             scope: r_basicprofile r_emailaddress
                                             lang: es_ES
                                         </script>
