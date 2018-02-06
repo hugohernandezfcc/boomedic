@@ -132,7 +132,6 @@
 		            </div>
 	    		@endif
 
-	    		@if($agent->isMobile())
 	    		<div class="col-sm-12">
 	    			<div class="col-sm-4">
 	    				&nbsp;
@@ -151,7 +150,7 @@
 	    				&nbsp;
 	    			</div>
 	    		</div><br/>
-	    		@endif
+	    		
 	    		<div class="row">
 	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
 	    		<div class="col-sm-3" align="center">
@@ -478,7 +477,12 @@
       </div>
     		@endif
 
-
+    		<script type="text/javascript">
+				function saveChanges(){
+					console.log("botón apretao");
+					document.getElementById("saveButtonProfile").click();
+				}
+			</script>
 
     		<script type="text/javascript">
 
@@ -603,12 +607,6 @@
 
 	  	</div>	  	
 	</div>
-
-	<script type="text/javascript">
-		function saveChanges(){
-			document.getElementById("saveButtonProfile").click();
-		}
-	</script>
 
 	<script type="text/javascript">
 
