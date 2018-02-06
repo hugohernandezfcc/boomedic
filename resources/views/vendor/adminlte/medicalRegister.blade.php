@@ -89,7 +89,7 @@
 
                 <button type="submit" class="btn btn-secondary btn-block btn-flat">
                     {{ trans('adminlte::adminlte.register_a_new_membership_doctor') }}
-                </button><br/>
+                </button>
 
                 <div class="box"  align="center" id="socialnet" style="border:none; box-shadow: none;"><br>
                     <div class="box-group" id="accordion">
