@@ -268,13 +268,12 @@
 		                <b>Dirección</b>
 		            </div>
 		            <div class="form-group">
-
-		            	<div id="locationField" class="col-sm-10">
+		            	<div id="locationField" class="col-sm-12">
 					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"/>
 					    </div>
 		            </div>
 
-		            <div align="form-group">
+
 
 			            	<div class="col-sm-12">
 			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}/>
@@ -296,7 +295,7 @@
 			            	<div class="col-sm-12">
 			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
-		            </div>
+		           
 
 		            <input type="text" style="display: none;" name="latitude" id="latitudeFend" />
 		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" />
