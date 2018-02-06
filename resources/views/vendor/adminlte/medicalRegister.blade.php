@@ -90,6 +90,65 @@
                 <button type="submit" class="btn btn-secondary btn-block btn-flat">
                     {{ trans('adminlte::adminlte.register_a_new_membership_doctor') }}
                 </button><br/>
+
+                <div class="box"  align="center" id="socialnet" style="border:none; box-shadow: none;"><br>
+                    <div class="box-group" id="accordion">
+                        <div class="panel box box-primary">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" style="font-size: 14px;">
+                          <div class="box-header with-border" align="left">
+                                <i class="fa fa-fw fa-facebook-official" style="color: rgb(59, 89, 152);"></i><b>Facebook</b>
+                          </div>
+                          </a>
+                          <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row" align="center">
+                                    <div class="fb-login-button" id="botonfacebook_tocustom" data-size="medium" data-button-type="continue_with" 
+                                    data-scope="public_profile,email" onlogin="fbRegister();"></div>
+                                </div><br>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel box box-danger">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-black" style="font-size: 14px;">
+                          <div class="box-header with-border" align="left">
+                                <i class="fa fa-fw fa-google" style="color: rgb(211, 72, 54);"></i><b>Google</b>
+                          </div>
+                          </a>
+                          <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row" align="center">
+                                    <div class="g-signin2"  data-width="165" data-height="27" data-clientid="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com"data-onsuccess="onRegisterG"></div><br>
+                            <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel box box-success">
+                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="text-black" style=" font-size: 14px;">
+                          <div class="box-header with-border" align="left">
+                                <i class="fa fa-fw fa-linkedin"></i><b>LinkedIn</b>
+                          </div>
+                           </a>
+                          <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="box-body">
+                                <div class="row">
+                                    <script type="text/javascript" src="//platform.linkedin.com/in.js" async defer>
+                                        api_key: 78maelkx5by0xp
+                                        authorize: true
+                                        onLoad: onLinkedInLoad2
+                                        scope: r_basicprofile r_emailaddress
+                                        lang: es_ES
+                                    </script>
+                                    <div align="center"><script type="in/Login"></script></div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                            <div class="overlay" id="cargarfacebook">
+                                <div id="cargafacebook"class="fa fa-refresh fa-spin"></div>
+                            </div>
+                        </div>
                 <div class="row">
                 @if(!$agent->isAndroidOS())
                 <div class="col-sm-7" align="center">
