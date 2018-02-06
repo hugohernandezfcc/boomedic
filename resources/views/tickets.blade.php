@@ -60,6 +60,7 @@
 	        	<form action="/supportTicket/store" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 	    		<div class="form-group has-feedback">
+	    			@if($agent->isMobile())
 	              		<div class="col-sm-6">
 			    			<button type="submit" class="btn btn-secondary btn-block btn-flat">
 			                	Guardar
@@ -69,7 +70,8 @@
 		    				<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
 			                Cancelar
 			            	</a>
-		            	</div>	
+		            	</div><br/>
+		            @endif
 	    			<label for="cause" class="col-sm-2 control-label">Causa</label>
 	    			 <div class="col-sm-10">
 				        <select name="cause" class="form-control select1">
