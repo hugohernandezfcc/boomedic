@@ -183,7 +183,7 @@
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
 	                	<div class="col-sm-10">
-	                		<span class="form-control text-red">•</span>
+	                		<li class="text-red">•</li>
 	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
 	                	</div>
 	              	</div>

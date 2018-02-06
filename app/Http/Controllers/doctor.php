@@ -74,6 +74,7 @@ class doctor extends Controller
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
+        $asso = DB::table('medical_association')->get();
         return view('profileDoctor', [
                 'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
 
@@ -122,7 +123,8 @@ class doctor extends Controller
                 'longitude'     => (   empty($users[0]->longitude)      ) ? '' : $users[0]->longitude,
                 'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
                 'mode'          => 'doctor',
-                'labor'         => $labor
+                'labor'         => $labor,
+                 'asso'          => $asso
             ]
         );
     }
@@ -165,6 +167,7 @@ question
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
+        $asso = DB::table('medical_association')->get();
         return view('profileDoctor', [
 
                 /** SYSTEM INFORMATION */
@@ -209,7 +212,8 @@ question
                 'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
                 'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
                 'mode'          => 'doctor',
-                'labor'         => $labor  
+                'labor'         => $labor,
+                'asso'          => $asso
 
             ]
         );
@@ -229,6 +233,7 @@ question
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
+         $asso = DB::table('medical_association')->get();
 
         if ($request->change == "true") {
         $user->status        = $request->status;         
@@ -274,6 +279,7 @@ question
                 'photo'         => $user->profile_photo,
                 'date'         => $user->created_at,
                 'mode'          => 'labor',
+                'asso'          => $asso,
 
                 /* DIRECTION LABOR PROFESSIONAL  */
                 'labor'         => $labor,
