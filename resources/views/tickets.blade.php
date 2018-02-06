@@ -82,14 +82,14 @@
                         </select></div></div>
 
 	    			<div class="form-group has-feedback">
-	    				<label for="subject" class="col-sm-2 control-label">Asunto</label>
+	    				<label for="subject" class="col-sm-2 control-label">Asunto<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
 	                  		<input type="text" name="subject" class="form-control" id="subject"  required="true">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback ">
-	                    <label for="ticketDescription" class="col-sm-2 control-label">Descripción</label>
+	                    <label for="ticketDescription" class="col-sm-2 control-label">Descripción<i class="fa fa-asterisk text-red" style="vertical-align: top; font-size: 8px "></i></label>
 	                	<div class="col-sm-10">
 	                  		<textarea name="ticketDescription" class="form-control" id="ticketDescription" rows="4" style="overflow:hidden;" required="true"></textarea>
 	                	</div>
