@@ -31,7 +31,10 @@
 			.dropzone .dz-message {
 			    margin: 1em 0 !important;
 			}
-
+.form-group.required .control-label:after { 
+   content:"*";
+   color:red;
+}
 
     </style>
 @stop
@@ -183,8 +186,7 @@
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
 	                	<div class="col-sm-10">
-	                		<li class="text-red">•</li>
-	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
+	                  		<label class='control-label form-group required'><input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}"></label>
 	                	</div>
 	              	</div>
 
