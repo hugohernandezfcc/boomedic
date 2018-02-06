@@ -131,6 +131,27 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
+
+	    		@if($agent->isMobile())
+	    		<div class="col-sm-12">
+	    			<div class="col-sm-4">
+	    				&nbsp;
+	    			</div>
+	    			<div class="col-sm-4">
+	    				<button type="submit" class="btn btn-secondary btn-block btn-flat">
+	    					Guardar
+	    				</button>
+	    			</div>
+	    			<div class="col-sm-4">
+	    				<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+	    					Cancelar
+	    				</a>
+	    			</div>
+	    			<div class="col-sm-4">
+	    				&nbsp;
+	    			</div>
+	    		</div><br/>
+	    		@endif
 	    		<div class="row">
 	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
 	    		<div class="col-sm-3" align="center">
