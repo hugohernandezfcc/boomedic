@@ -41,7 +41,22 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }    
+     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function index()
+    {
+    $asso = DB::table('medical_association')->get();
+    return view('medicalRegister', [
+                'asso'          => $asso
+            ]
+        );
     }
+
 
     /**
      * Get a validator for an incoming registration request.
