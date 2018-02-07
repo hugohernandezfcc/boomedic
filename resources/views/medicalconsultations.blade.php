@@ -480,12 +480,13 @@
                                       <input type="hidden" id="dateSelectedForCite" value="">
                                        <br/>
                         <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-secondary btn-flat next-step" id="onestep" disabled="disabled">Siguiente</button>
+                            <button type="button" class="btn btn-secondary btn-flat btn-sm next-step" id="onestep" disabled="disabled">Siguiente</button>
                         </div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
                         <h3>Paso 2</h3>
                            <b>Seleccionar Hora de la cita</b>
+                           <br/>
                            <div class="form-group">
                           <div class="col-sm-12">
                           <select id="timesByDay" class="form-control">
@@ -495,14 +496,15 @@
                           <br/>
 
                           <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default btn-flat prev-step">Anterior</button>
-                        <button type="button" class="btn btn-secondary btn-flat next-step">Siguiente</button>
+                        <button type="button" class="btn btn-default btn-flat btn-sm prev-step">Anterior</button>
+                        <button type="button" class="btn btn-secondary btn-flat btn-sm next-step">Siguiente</button>
                          </div>
 
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <h3>Paso 3</h3>
                         <b>Seleccionar método de pago</b>
+                        <br/>
                         <div class="form-group">
                          <div class="col-sm-12">
                              <select id="paymentMethodsFields" class="form-control">
@@ -517,8 +519,8 @@
                         
 
                           <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default btn-flat prev-step">Anterior</button>
-                            <button type="button" class="btn btn-secondary btn-flat next-step">Siguiente</button>
+                            <button type="button" class="btn btn-default btn-flat btn-sm prev-step">Anterior</button>
+                            <button type="button" class="btn btn-secondary btn-flat btn-sm next-step">Siguiente</button>
                           </div>
 
                     </div>
@@ -530,7 +532,7 @@
                        <label id="endamount"></label><br/>
                        
 
-                         <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
+                         <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat btn-sm">
                             Confirmar y programar cita
                           </button>
                           </form>
