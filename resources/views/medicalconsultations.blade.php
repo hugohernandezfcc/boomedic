@@ -646,7 +646,9 @@
        */
       window.onload = function(){
         var height;
-        if("<?php echo $agent->isMobile(); ?>"){
+        var validator = @php echo $agent->isMobile(); @endphp;
+        if(validator == 1){
+            console.log("validator interno: "+validator);
             height = "500";
             //alert("desde Android");
         }else{
@@ -654,6 +656,7 @@
           console.log(height);
           //alert("desde Windows");
         }
+        console.log("validator final: "+validator);
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
         infoSelect();
