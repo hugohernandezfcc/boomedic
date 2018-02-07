@@ -605,7 +605,7 @@ function prevTab(elem) {
                     
                     var option = document.createElement("option");
                     option.text = result[i].provider + ": " + result[i].cardnumber;
-                    option.value = result[i].provider + "_" + result[i].cardnumber;
+                    option.value = result[i].provider + " " + result[i].cardnumber;
                     option.setAttribute("data-icon", result[i].provider);
                     x.add(option);
 
@@ -1440,7 +1440,7 @@ function prevTab(elem) {
                         $('#dateSelectedForCite').val = e.date;                  
                          console.log(e.date.toString());
                          document.getElementById("onestep").disabled = false;
-                         document.getElementById("enddate").innerHTML = 'Fecha: ' + e.date;
+                         document.getElementById("enddate").innerHTML = 'Fecha: ' + '{{ \Carbon\Carbon::parse(' + e.date + ')->format('d-m-Y h:i A') }}';
                       });
              }
           })(marker, i));
