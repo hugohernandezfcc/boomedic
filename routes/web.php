@@ -32,10 +32,11 @@ Auth::routes();
 *Rutas para registro con redes sociales
 */
 Route::post('SMRegister', ['as' => 'SMRegister.createbySocialMedia', 'uses' => 'Auth\RegisterController@createbySocialMedia']);
+Route::get('SMRegister', ['as' => 'SMRegister', 'uses' => 'Auth\RegisterController@index']);
+
 
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
-Route::get('/medicalRegister', 'Auth\RegisterController@index')->name('medicalRegister');
 
 
 Route::post('/medicalconsultations/recent', 'HomeController@recent')->name('medicalconsultations/recent');

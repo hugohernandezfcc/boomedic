@@ -65,15 +65,38 @@
                     @endif
                 </div>
 
-               <!-- <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
-                    <input type="text" name="medical_society" class="form-control" value="{{ old('medical_society') }}" placeholder="{{ trans('adminlte::adminlte.medical_society') }}" id="medical_society">
-                    <span class="fa  fa-keyboard-o form-control-feedback"></span>
-                    @if ($errors->has('medical_society'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('medical_society') }}</strong>
-                        </span>
-                    @endif
-                </div> -->
+               <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
+                   <select class="form-control" name="medical_society" id="medical_society">
+                    <script type="text/javascript">
+                                $.ajax(
+                                      {
+                                        type: "GET",    
+                                        url: "medicalRegister", 
+                                        success: function(result){
+                                          console.log(result);
+
+                                          var x = document.getElementById("medical_society");
+
+                                          for (var i = result.length - 1; i >= 0; i--) {
+                                            
+                                            var option = document.createElement("option");
+                                            option.text = result[i].name+ ": " + result[i].name;
+                                            option.value = result[i].name+ "_" + result[i].name;
+                                            option.setAttribute("data-icon", result[i].provider);
+                                            x.add(option);
+
+                                          }
+                                        }
+                                      }
+                                    );
+                                </script>
+
+
+                                @foreach($asso as $asso)
+                                    <option value="{{ $asso->name }}" selected> {{ $asso->name }}</option>
+                                @endforeach
+                    </select>
+                </div>
 
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                     <input type="password" name="password" class="form-control" placeholder="{{ trans('adminlte::adminlte.password') }}">

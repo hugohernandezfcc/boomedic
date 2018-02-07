@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -51,10 +52,7 @@ class RegisterController extends Controller
     public function index()
     {
     $asso = DB::table('medical_association')->get();
-    return view('medicalRegister', [
-                'asso'          => $asso
-            ]
-        );
+        return response()->json($asso);
     }
 
 
