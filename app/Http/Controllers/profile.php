@@ -223,14 +223,15 @@ class profile extends Controller
           $width = $imagen[0];              //Ancho
           $height = $imagen[1];  
 
-          if($height > '600' || $width > '600'){
+          if($height > '800' || $width > '600'){
             $height = $height / 2;
             $width = $width / 2;
           }
-            if($height > '900' || $width > '900'){
+            if($height > '1000' || $width > '900'){
                 $height = $height / 3;
                 $width = $width / 3;
               }
+
 
         $img = Image::make($file);
         $img->resize($width, $height);
@@ -243,7 +244,7 @@ class profile extends Controller
        
         $user->profile_photo = $path2;   
         Session(['val' => 'true']);
-        $user->save();
+        if($user->save());
         return redirect('/user/edit/complete');
     }
 
