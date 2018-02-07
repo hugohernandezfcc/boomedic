@@ -1440,7 +1440,8 @@ function prevTab(elem) {
                         $('#dateSelectedForCite').val = e.date;                  
                          console.log(e.date.toString());
                          document.getElementById("onestep").disabled = false;
-                         document.getElementById("enddate").innerHTML = 'Fecha: ' + '{{ \Carbon\Carbon::parse(' + e.date.toString() + ')->format("d-m-Y h:i A") }}';
+                         document.getElementById("enddate").innerHTML = 'Fecha: {{ \Carbon\Carbon::parse(e.date.toString())->format("d-m-Y h:i A") }}';
+                         console.log('{{ \Carbon\Carbon::parse(' + e.date.toString() + ')->format("d-m-Y h:i A") }}');
                       });
              }
           })(marker, i));
