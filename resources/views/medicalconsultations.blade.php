@@ -275,7 +275,34 @@
             </div>    
  @endif
           
-   
+              <!-- Charge Alert whether payment was processed or not -->
+              @if(session()->has('message'))
+
+                @if(session()->has('success'))
+                  <div class="alert alert-success alert-dismissable fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  <strong>¡Enhorabuena!</strong><br/><br/>    
+                      {{ session()->get('message') }}
+                  </div>
+                 
+                @elseif(session()->has('error'))
+                 <div class="alert alert-danger alert-dismissable fade in" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  <strong>¡Hubo un error en tu pago y no fue procesado!</strong><br/><br/>    
+                     @php
+                      $code = session()->get('message');
+                     @endphp
+                  <!-- Error codes are defined within the adminlte -->
+                      {{ trans('adminlte::adminlte.'.$code) }}
+                  </div>
+                 @endif
+
+              @endif
+            <!-- Here ends the code for the alert --> 
     
     <div id="mapaC">
       <!-- Trigger the modal with a checkbox -->

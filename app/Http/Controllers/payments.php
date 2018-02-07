@@ -441,11 +441,11 @@ class payments extends Controller
                                             $message->subject('Transacción de pago en Boomedic');
                                             $message->to('rebbeca.goncalves@doitcloud.consulting');
                                         });
-                              return redirect('payment/index')->with($notification);
+                              return redirect('medicalconsultations')->with($notification);
                             }
                             
                             session()->put('error','Unknown error occurred');
-                            return redirect('payment/index');
+                            return redirect('medicalconsultations');
                           }
 
                                          
