@@ -1437,7 +1437,7 @@ function prevTab(elem) {
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }    
-                        $('#dateSelectedForCite').val = e.date.ToString();                  
+                        $('#dateSelectedForCite').val = e.date;                  
                          console.log(e);
                          document.getElementById("onestep").disabled = false;
                          var dateStarted = '{{ \Carbon\Carbon::parse('e.date')->format("d-m-Y") }}';
