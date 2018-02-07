@@ -121,7 +121,7 @@ class medicalappointments extends Controller
     public function update(Request $request, $id)
     {
         $medical = medical_appointments::find($id);
-        $previousAppointment = $medical;
+        $previousAppointment = $medical->when;
 
         $medical->when = '2017-12-30 09:00:00';
 
