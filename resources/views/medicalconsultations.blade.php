@@ -646,8 +646,9 @@
        */
       window.onload = function(){
         var height;
-        var validator = @php echo $agent->isMobile(); @endphp;
-        if(validator == 1){
+        var validator = @php if($agent->isMobile())
+                                echo '1'; @endif @endphp;
+        if(validator == '1'){
             console.log("validator interno: "+validator);
             height = "500";
             //alert("desde Android");
