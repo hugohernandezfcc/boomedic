@@ -534,8 +534,6 @@
                         <div class="form-group">
                          <div class="col-sm-12">
                              <select id="paymentMethodsFields" class="form-control">
-                              <option default>Ninguno</option>
-                              <option value="Paypal">Paypal</option>
                              </select>
                          </div>
                        </div>
@@ -633,6 +631,10 @@ function prevTab(elem) {
                   console.log(result);
 
                   var x = document.getElementById("paymentMethodsFields");
+                   var option = document.createElement("option");
+                   option.text = "Paypal";
+                    option.value = "Paypal";
+                    x.add(option);
 
                   for (var i = result.length - 1; i >= 0; i--) {
                     
