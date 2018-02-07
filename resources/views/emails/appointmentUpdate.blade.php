@@ -10,7 +10,7 @@
     
 
     <p>
-    Estimado usuario, su cita ha sido cambiada de la fecha {{$previousAppointment->when}} para el {{$previousAppointment->when}} con el doctor {{$doctor->name}}.<br>
+    Estimado usuario, su cita ha sido cambiada de la fecha {{$previousAppointment->when}} para el {{$appointment->when}} con el doctor {{$doctor->name}}.<br>
     Favor de presentarse el día y la fecha indicada.
     </p>
     <br><br>
