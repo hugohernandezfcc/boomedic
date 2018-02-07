@@ -534,6 +534,8 @@
                         <div class="form-group">
                          <div class="col-sm-12">
                              <select id="paymentMethodsFields" class="form-control">
+                              <option default>Ninguno</option>
+                              <option value="Paypal">Paypal</option>
                              </select>
                          </div>
                        </div>
@@ -635,12 +637,6 @@ function prevTab(elem) {
                   for (var i = result.length - 1; i >= 0; i--) {
                     
                     var option = document.createElement("option");
-                    if(result[i].provider == 'Paypal'){
-                      if(!$("#paymentMethodsFields option[value='Paypal']")){
-                        option.text = result[i].provider;
-                        option.value = result[i].provider;
-                        x.add(option);
-                      }
                     }
                     if(result[i].provider != 'Paypal'){
                     option.text = result[i].provider + ": " + result[i].cardnumber;
