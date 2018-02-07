@@ -649,7 +649,7 @@
         if("@php echo $agent->isMobile(); @endphp"){
             height = window.screen.availHeight;
             if(height >= 1900){
-              height -= 1450;
+              height -= 1440;
             }
         }else{
           height = window.screen.availHeight-115;
