@@ -67,22 +67,22 @@
 
                <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
                    <select class="form-control" name="medical_society" id="medical_society">
+                    <option default>Sociedad de médicos</option>
                     <script type="text/javascript">
                                 $.ajax(
                                       {
                                         type: "GET",    
-                                        url: "/medicalRegister/society", 
+                                        url: "{{ url('/medicalRegister/society') }}", 
                                         success: function(result){
                                           console.log(result);
 
                                           var x = document.getElementById("medical_society");
-
-                                          for (var i = 0; i > result.length; i++) {
-                                            
+                                          
+                                          for (var i = 0; i < result.length; i++) {
+                                            console.log(result[i].name);
                                             var option = document.createElement("option");
-                                            option.text = result[i].name+ ": " + result[i].name;
-                                            option.value = result[i].name+ "_" + result[i].name;
-                                            option.setAttribute("data-icon", result[i].provider);
+                                            option.text = result[i].name;
+                                            option.value = result[i].name;
                                             x.add(option);
 
                                           }
