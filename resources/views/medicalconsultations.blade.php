@@ -646,7 +646,13 @@
        */
       window.onload = function(){
         var height;
-        if($agent->isMobile()){
+        var validator = @php if($agent->isMobile()){
+          echo "movil";
+        }else{
+          echo "pc";
+        }@endphp;
+        console.log("validator: "+validator);
+        if(validator == 'movil'){
             height = "500";
             console.log("desde Android");
         }else{
