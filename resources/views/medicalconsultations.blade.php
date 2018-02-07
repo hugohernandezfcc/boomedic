@@ -191,7 +191,7 @@
           margin-bottom: 8px;     
       }
   </style>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <!--  -->
   <script type="text/javascript">
     /**
@@ -1440,7 +1440,8 @@ function prevTab(elem) {
                         $('#dateSelectedForCite').val = e.date.toISOString();                  
                          console.log(e.date.toISOString());
                          document.getElementById("onestep").disabled = false;
-                         document.getElementById("enddate").innerHTML = "Fecha:" + e.date.toISOString();
+                         var da = moment(e.date.toISOString()).format("YYYY-MM-DD");
+                         document.getElementById("enddate").innerHTML = "Fecha:" + da;
                       });
              }
           })(marker, i));
