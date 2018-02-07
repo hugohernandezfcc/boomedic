@@ -486,9 +486,11 @@
                     <div class="tab-pane" role="tabpanel" id="step2">
                         <h3>Paso 2</h3>
                            <b>Seleccionar Hora de la cita</b>
-                           <div class="col-sm-12">
+                           <div class="form-group">
+                          <div class="col-sm-12">
                           <select id="timesByDay" class="form-control">
                           </select>
+                         </div>
                          </div>
                           <br/>
 
@@ -501,10 +503,12 @@
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <h3>Paso 3</h3>
                         <b>Seleccionar método de pago</b>
+                        <div class="form-group">
                          <div class="col-sm-12">
                              <select id="paymentMethodsFields" class="form-control">
                              </select>
                          </div>
+                       </div>
                          <br/>     
                           <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                                   {{ csrf_field() }}
@@ -1441,7 +1445,7 @@ function prevTab(elem) {
                          console.log(e.date.toISOString());
                          document.getElementById("onestep").disabled = false;
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
-                         document.getElementById("enddate").innerHTML = "Fecha:" + da;
+                         document.getElementById("enddate").innerHTML = "Fecha: " + da;
                       });
              }
           })(marker, i));
