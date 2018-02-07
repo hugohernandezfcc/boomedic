@@ -1440,7 +1440,7 @@ function prevTab(elem) {
                         $('#dateSelectedForCite').val = e.date.toISOString();                  
                          console.log(e.date.toISOString());
                          document.getElementById("onestep").disabled = false;
-                         var da = moment(e.date.toISOString()).format("YYYY-MM-DD");
+                         var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
                          document.getElementById("enddate").innerHTML = "Fecha:" + da;
                       });
              }
