@@ -647,6 +647,7 @@
       window.onload = function(){
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
+            alert(window.screen.availHeight);
             height = window.screen.availHeight-1350;
             //alert("desde Android");
         }else{
