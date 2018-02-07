@@ -56,15 +56,13 @@ class medicalappointments extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store(Request $request, $id)
     {
         $medical = new medical_appointments;
    
         $medical->user           = Auth::id();
         $medical->user_doctor    = $id;
         $medical->workplace    = '29';
-        //$medical->latitude       = '19.343255357777';
-        //$medical->longitude     = '-99.1379801140335';
         $medical->when          = '2018-11-03 11:00:00';
         $doctor = user::find($medical->user_doctor);
         $user = user::find(Auth::id());
@@ -123,11 +121,22 @@ class medicalappointments extends Controller
     public function update(Request $request, $id)
     {
         $medical = medical_appointments::find($id);
+        $previousAppointment = $medical;
 
         $medical->when = '2017-12-30 09:00:00';
 
-        if ($medical->save()) 
-       return redirect('medicalconsultations');
+        $doctor = user::find($medical->user_doctor);
+        $user = user::find(Auth::id());
+
+        $data = ['email' => $user->email];
+
+        if ($medical->save()){
+            Mail::send('emails.appointmentUpdate', ['doctor' => $doctor, 'previousAppointment' => $previousAppointment,'appointment' => $medical], function ($message) use($data){
+                $message->subject('Boomedic');
+                $message->to($data['email']);
+            });
+            return redirect('medicalconsultations');
+        }
     }
 
 
