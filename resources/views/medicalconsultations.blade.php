@@ -532,7 +532,7 @@
                        <label id="endamount"></label><br/>
                        
 
-                         <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat btn-sm">
+                         <button type="submit" id="cite" class="btn btn-secondary btn-block btn-flat btn-sm">
                             Confirmar y programar cita
                           </button>
                           </form>
@@ -555,7 +555,7 @@ $('#formulatio_paypal').submit(function() { // catch the form's submit event
         type: $(this).attr('method'), // GET or POST
         url: $(this).attr('action'), // the file to call
         success: function(response) { // on success..
-            $('#created').html(response); // update the DIV
+            $('#modal-register-cite').html(response); // update the DIV
         }
     });
     return false; // cancel original event to prevent form submitting
