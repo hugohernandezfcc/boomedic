@@ -532,7 +532,7 @@
                        <label id="endamount"></label><br/>
                        
 
-                         <button type="button" id="button01" class="btn btn-secondary btn-block btn-flat btn-sm">
+                         <button type="button" id="buttoncite" class="btn btn-secondary btn-block btn-flat btn-sm">
                             Confirmar y programar cita
                           </button>
                           </form>
@@ -549,8 +549,8 @@
           <script type="text/javascript">
 $(document).ready(function () {
     //Initialize tooltips
-      $("#button01").click(function(event) {
-          $("#modal-register-cite").load('/payment/postPaymentWithpaypal');
+      $("#buttoncite").click(function(event) {
+          $("#modal-register-cite").load("{{ url('/payment/postPaymentWithpaypal') }}");
         });
 
 
