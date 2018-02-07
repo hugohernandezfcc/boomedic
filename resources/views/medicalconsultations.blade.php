@@ -564,8 +564,8 @@ $(document).ready(function () {
         var $active = $('.wizard .nav-tabs li.active');
         $active.next().removeClass('disabled');
         nextTab($active);
-         document.getElementById('endtime').innerHTML = document.getElementById('timesByDay').value;
-        document.getElementById('endpayment').innerHTML =  document.getElementById('paymentMethodsFields').value;
+         document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
+        document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + document.getElementById('paymentMethodsFields').value;
 
     });
     $(".prev-step").click(function (e) {
@@ -1440,7 +1440,7 @@ function prevTab(elem) {
                         $('#dateSelectedForCite').val = e.date;                  
                          console.log(e.date.toString());
                          document.getElementById("onestep").disabled = false;
-                         var dateStarted = " {{ \DateTime::createFromFormat('D M d Y H:i:s e+',"e.date.toString()") }}";
+                         var dateStarted = " {{ \DateTime::createFromFormat('D M d Y H:i:s e+',"+ e.date.toString() +") }}";
                          document.getElementById("enddate").innerHTML = "Fecha:" + dateStarted ;
                          console.log(dateStarted);
                       });
