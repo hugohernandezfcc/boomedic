@@ -405,10 +405,12 @@ question
 
        
         $user->profile_photo = $path2;   
-        Session(['val' => 'true']);
+        
 
-        if($user->save());
+        if($user->save()){
+            Session(['val' => 'true']);
         return redirect('doctor/doctor/' . $id );
+        }
     }
 
     public function cropDoctor(Request $request, $id)
