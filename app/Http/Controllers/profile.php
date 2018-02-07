@@ -243,9 +243,8 @@ class profile extends Controller
 
        
         $user->profile_photo = $path2;   
-        
+                Session(['val' => 'true']);
         if($user->save()){
-        Session(['val' => 'true']);
         return redirect('/user/edit/complete');
       }
     }
