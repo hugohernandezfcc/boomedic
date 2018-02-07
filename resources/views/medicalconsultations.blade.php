@@ -648,11 +648,11 @@
         var height;
         if("<?php echo $agent->isMobile(); ?>"){
             height = "500";
-            alert("desde Android");
+            //alert("desde Android");
         }else{
           height = window.screen.availHeight-115;
           console.log(height);
-          alert("desde Windows");
+          //alert("desde Windows");
         }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
