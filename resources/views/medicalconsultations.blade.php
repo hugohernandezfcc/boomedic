@@ -646,19 +646,13 @@
        */
       window.onload = function(){
         var height;
-        var validator = @php if($agent->isMobile()){
-          echo "movil";
-        }else{
-          echo "pc";
-        }@endphp;
-        console.log("validator: "+validator);
-        if(validator == 'movil'){
+        if("@php echo $agent->isMobile(); @endphp"){
             height = "500";
-            console.log("desde Android");
+            //alert("desde Android");
         }else{
           height = window.screen.availHeight-115;
           console.log(height);
-          console.log("desde Windows");
+          //alert("desde Windows");
         }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
