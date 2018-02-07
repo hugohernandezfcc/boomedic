@@ -635,7 +635,7 @@ function prevTab(elem) {
                   for (var i = result.length - 1; i >= 0; i--) {
                     
                     var option = document.createElement("option");
-                    if(result[i].provider == 'Paypal' && ! $("#paymentMethodsFields option[value='Paypal']"){
+                    if(result[i].provider == 'Paypal' && !$("#paymentMethodsFields option[value='Paypal']")){
                      option.text = result[i].provider;
                     option.value = result[i].provider;
                     }
