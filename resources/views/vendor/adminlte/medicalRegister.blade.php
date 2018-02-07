@@ -71,13 +71,13 @@
                                 $.ajax(
                                       {
                                         type: "GET",    
-                                        url: "medicalRegister", 
+                                        url: "/medicalRegister/society", 
                                         success: function(result){
                                           console.log(result);
 
                                           var x = document.getElementById("medical_society");
 
-                                          for (var i = result.length - 1; i >= 0; i--) {
+                                          for (var i = 0; i > result.length; i++) {
                                             
                                             var option = document.createElement("option");
                                             option.text = result[i].name+ ": " + result[i].name;
@@ -91,10 +91,6 @@
                                     );
                                 </script>
 
-
-                                @foreach($asso as $asso)
-                                    <option value="{{ $asso->name }}" selected> {{ $asso->name }}</option>
-                                @endforeach
                     </select>
                 </div>
 

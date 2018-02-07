@@ -32,7 +32,7 @@ Auth::routes();
 *Rutas para registro con redes sociales
 */
 Route::post('SMRegister', ['as' => 'SMRegister.createbySocialMedia', 'uses' => 'Auth\RegisterController@createbySocialMedia']);
-Route::get('SMRegister', ['as' => 'SMRegister', 'uses' => 'Auth\RegisterController@index']);
+Route::get('medicalRegister/society', ['as' => 'medicalRegister/society', 'uses' => 'Auth\RegisterController@index']);
 
 
 
