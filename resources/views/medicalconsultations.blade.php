@@ -541,7 +541,7 @@
                           <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                                   {{ csrf_field() }}
                             <input id="amount" type="hidden" class="form-control" name="amount">
-                           
+                            <input type="hidden" name="id" id="idcard">
                         
 
                           <div class="btn-group pull-right">
@@ -596,7 +596,8 @@ $(document).ready(function () {
         $active.next().removeClass('disabled');
         nextTab($active);
          document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
-        document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + document.getElementById('paymentMethodsFields').value;
+        document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
+        document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
 
     });
     $(".prev-step").click(function (e) {
