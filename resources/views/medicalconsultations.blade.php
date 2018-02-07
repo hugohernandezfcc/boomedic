@@ -514,7 +514,7 @@
                          <br/>     
                           <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                                   {{ csrf_field() }}
-                            <input id="amount" type="hidden" class="form-control" name="amount" required>
+                            <input id="amount" type="hidden" class="form-control" name="amount">
                            
                         
 
@@ -532,7 +532,7 @@
                        <label id="endamount"></label><br/>
                        
 
-                         <button type="button" id="buttoncite" class="btn btn-secondary btn-block btn-flat btn-sm">
+                         <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat btn-sm">
                             Confirmar y programar cita
                           </button>
                           </form>
@@ -549,9 +549,18 @@
           <script type="text/javascript">
 $(document).ready(function () {
     //Initialize tooltips
-      $("#buttoncite").click(function(event) {
-          $("#modal-register-cite").load("{{ url('/payment/postPaymentWithpaypal') }}");
-        });
+$('#formulatio_paypal').submit(function() { // catch the form's submit event
+    $.ajax({ // create an AJAX call...
+        data: $(this).serialize(), // get the form data
+        type: $(this).attr('method'), // GET or POST
+        url: $(this).attr('action'), // the file to call
+        success: function(response) { // on success..
+            $('#created').html(response); // update the DIV
+        }
+    });
+    return false; // cancel original event to prevent form submitting
+});
+
 
 
           $('.nav-tabs > li a[title]').tooltip();
