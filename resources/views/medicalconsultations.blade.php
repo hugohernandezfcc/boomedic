@@ -635,15 +635,19 @@ function prevTab(elem) {
                   for (var i = result.length - 1; i >= 0; i--) {
                     
                     var option = document.createElement("option");
-                    if(result[i].provider == 'Paypal' && !$("#paymentMethodsFields option[value='Paypal']")){
-                    option.text = result[i].provider;
-                    option.value = result[i].provider;
+                    if(result[i].provider == 'Paypal'){
+                      if(!$("#paymentMethodsFields option[value='Paypal']")){
+                        option.text = result[i].provider;
+                        option.value = result[i].provider;
+                        x.add(option);
+                      }
                     }
                     if(result[i].provider != 'Paypal'){
                     option.text = result[i].provider + ": " + result[i].cardnumber;
                     option.value = result[i].id;
+                    x.add(option);
                         }
-                        x.add(option);
+                        
                   }
                 }
               }
