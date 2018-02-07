@@ -246,7 +246,7 @@ class profile extends Controller
         
         if($user->save()){
         Session(['val' => 'true']);
-        return redirect('/user/edit/complete')
+        return redirect('/user/edit/complete');
       }
     }
 
