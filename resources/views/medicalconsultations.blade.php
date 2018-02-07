@@ -636,14 +636,14 @@ function prevTab(elem) {
                     
                     var option = document.createElement("option");
                     if(result[i].provider == 'Paypal' && !$("#paymentMethodsFields option[value='Paypal']")){
-                     option.text = result[i].provider;
+                    option.text = result[i].provider;
                     option.value = result[i].provider;
                     }
-                    else {
+                    if(result[i].provider != 'Paypal'){
                     option.text = result[i].provider + ": " + result[i].cardnumber;
-                    option.value = result[i].provider + " " + result[i].cardnumber;
-                    x.add(option);
+                    option.value = result[i].id;
                         }
+                        x.add(option);
                   }
                 }
               }
