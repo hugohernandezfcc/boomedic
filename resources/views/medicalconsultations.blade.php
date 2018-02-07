@@ -1437,11 +1437,10 @@ function prevTab(elem) {
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }    
-                        $('#dateSelectedForCite').val = e.date;                  
-                         console.log(e);
+                        $('#dateSelectedForCite').val = e.date.toISOString();                  
+                         console.log(e.date.toISOString());
                          document.getElementById("onestep").disabled = false;
-                         var dateStarted = '{{ \Carbon\Carbon::parse('e.date')->format("d-m-Y") }}';
-                         document.getElementById("enddate").innerHTML = "Fecha:" ;
+                         document.getElementById("enddate").innerHTML = "Fecha:" + e.date.toISOString();
                       });
              }
           })(marker, i));
