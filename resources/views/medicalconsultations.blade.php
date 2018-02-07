@@ -649,13 +649,10 @@
         if("@php echo $agent->isMobile(); @endphp"){
             height = window.screen.availHeight;
             if(height >= 1900){
-              height -= 1370;
+              height -= 1450;
             }
-            //alert("desde Android");
         }else{
           height = window.screen.availHeight-115;
-          console.log(height);
-          //alert("desde Windows");
         }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
