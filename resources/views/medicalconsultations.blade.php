@@ -229,13 +229,10 @@
 
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
     console.log(datos);
-  
-     if("@php echo session()->has('success'); @endphp"){
+
        $('#modalsuccess').modal('show');
-     }
-    if("@php echo session()->has('error'); @endphp"){
        $('#modalerror').modal('show');
-     }
+
   </script>
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
@@ -736,9 +733,11 @@ function prevTab(elem) {
 });
       function infoSelect(){
         var x = document.getElementById("mySelect");
-        for (var i = 0; i < specialities.length; i++) {
+        var specialities1 = specialities.sort();
+        specialities1 = specialities.reverse();
+        for (var i = 0; i < specialities1.length; i++) {
         var c = document.createElement("option");
-        c.text = specialities[i][0];
+        c.text = specialities1[i][0];
         x.options.add(c, 1);
         }
       }
