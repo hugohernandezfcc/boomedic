@@ -646,15 +646,16 @@
       window.onload = function(){
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
+            var mensaje1 = "@php echo $agent->isSamsung(); @endphp";
+            var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight;
-            alert("La altura en tu celular es: "+height);
+            alert("Primer mensaje: "+mensaje1+ " mensaje2: "+mensaje2);
             if(height >= 1900){
               height -= 1440;
             }
         }else{
           height = window.screen.availHeight-115;
         }
-        alert("La altura arreglada es: "+height);
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
         infoSelect();
