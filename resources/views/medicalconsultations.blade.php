@@ -229,6 +229,13 @@
 
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
     console.log(datos);
+  
+     if(@php echo session()->has('success') @endphp){
+       $('#modalsuccess').modal('show');
+     }
+    if(@php echo session()->has('error') @endphp){
+       $('#modalerror').modal('show');
+     }
   </script>
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
@@ -300,9 +307,7 @@
                         </div>
                       </div> 
                     </div>
-              <script type="text/javascript">
-                   $('#modalsuccess').modal('show');
-               </script>
+
                  <!--Fin modal success-->
 
                 @elseif(session()->has('error'))
@@ -330,9 +335,7 @@
                         </div>
                       </div> 
                     </div>
-                                   <script type="text/javascript">
-                   $('#modalerror').modal('show');
-                 </script>
+
                  <!--Fin modal error-->
                  @endif
 
