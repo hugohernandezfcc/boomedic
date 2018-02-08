@@ -243,6 +243,15 @@ class payments extends Controller
                         $Transaction->transaction = $statusCode[1];
                         $Transaction->save();
                     /* Insert Transaction_bank*/    
+                    /* Insert Cita */
+                    $medical = new medical_appointments;
+                    $medical->user           = Auth::id();
+                    $medical->user_doctor    = $request->dr;
+                    $medical->workplace       = $request->idlabor;
+                    $medical->when          = $request->when;
+            
+           if ($medical->save()) {
+                
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
             'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->amount.', para más información consulte su cartera de pago... ', 
@@ -264,6 +273,7 @@ class payments extends Controller
                         $message->subject('Transacción de pago en Boomedic');
                         $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
+         }
             return redirect('medicalconsultations')->with($notification);
          }
          else {
