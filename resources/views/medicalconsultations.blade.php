@@ -230,8 +230,7 @@
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
     console.log(datos);
 
-       $('#modalsuccess').modal('show');
-       $('#modalerror').modal('show');
+
 
   </script>
              @if($appointments->isEmpty())
@@ -612,7 +611,8 @@
 $(document).ready(function () {
     //Initialize tooltips
 
-
+       $('#modalsuccess').modal('show');
+       $('#modalerror').modal('show');
 
           $('.nav-tabs > li a[title]').tooltip();
     
