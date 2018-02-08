@@ -646,7 +646,7 @@
       window.onload = function(){
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
-            var mensaje1 = "@php echo $agent->is('Huawei'); @endphp";
+            var mensaje1 = "@php if($agent->is('Huawei')) echo 'Huawei'; @endphp";
             var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight;
             alert("Primer mensaje: "+mensaje1+ " mensaje2: "+mensaje2);
