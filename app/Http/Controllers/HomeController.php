@@ -42,7 +42,7 @@ class HomeController extends Controller
         $join = DB::table('professional_information')
             ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
             ->join('users', 'professional_information.user', '=', 'users.id')
-            ->select('labor_information.*', 'users.name', 'professional_information.specialty')
+            ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'users.id AS dr')
             ->get();
 
                 
@@ -54,10 +54,10 @@ class HomeController extends Controller
                             array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
                           }
                     if($labor->specialty == 'Médico General'){
-                        $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).']';
+                        $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'"]';
                     }
                     else{
-                    $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).']';
+                    $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->dr.'"]';
 
                     $sp[] = '["'.$labor->specialty.'"]';
                     $mg = '0';

@@ -26,7 +26,7 @@ use config;
 use Mail;
 use email;
 use Mailgun\Mailgun;
-
+use App\medical_appointments;
 
 class payments extends Controller
 {
