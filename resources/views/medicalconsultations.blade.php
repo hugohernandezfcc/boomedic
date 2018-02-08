@@ -649,7 +649,7 @@
             var mensaje1 = "@php echo $agent->isSamsung(); @endphp";
             var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight;
-            alert("Primer mensaje: "+mensaje1+ " mensaje2: "+mensaje2);
+            alert("Altura: "+height+ " version de android: "+mensaje2 );
             if(height >= 1900){
               height -= 1440;
             }
