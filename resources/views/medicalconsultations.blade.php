@@ -456,14 +456,14 @@
                         </a>
                     </li>
 
-                    <li role="presentation" class="disabled">
+                    <li role="presentation" class="disabled" id="s2">
                         <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Paso 2">
                             <span class="round-tab">
                                 <i class="fa fa-clock-o"></i>
                             </span>
                         </a>
                     </li>
-                    <li role="presentation" class="disabled">
+                    <li role="presentation" class="disabled" id="s3">
                         <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Paso 3">
                             <span class="round-tab">
                                 <i class="fa fa-credit-card"></i>
@@ -471,7 +471,7 @@
                         </a>
                     </li>
 
-                    <li role="presentation" class="disabled">
+                    <li role="presentation" class="disabled" id="s4">
                         <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-ok"></i>
@@ -1335,6 +1335,10 @@ function prevTab(elem) {
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {  
               $('#tab1').trigger('click');
+              document.getElementById("onestep").disabled = true;
+               $('#s2').addClass("disabled");
+               $('#s3').addClass("disabled");
+               $('#s4').addClass("disabled");
 
               document.getElementById('enddate').innerHTML = '';
               document.getElementById('endtime').innerHTML = '';
