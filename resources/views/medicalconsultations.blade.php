@@ -648,10 +648,10 @@
         if("@php echo $agent->isMobile(); @endphp"){
             var mensaje1 = "@php echo $agent->isSamsung(); @endphp";
             var mensaje2 = "@php echo $agent->version('Android'); @endphp";
-            height = window.screen.availHeight;
+            height = window.screen.availHeight-115;
             alert("Altura: "+height+ " version de android: "+mensaje2 );
-            if(height >= 1900){
-              height -= 1440;
+            if(height >= 1800){
+              height -= 1325;
             }
         }else{
           height = window.screen.availHeight-115;
