@@ -642,18 +642,19 @@
       var infoWindow;
       /**
        * Function responsable of execute the main functions 
-       * $agent->isAndroidOS
        */
       window.onload = function(){
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
             height = window.screen.availHeight;
+            alert("La altura en tu celular es: "+height);
             if(height >= 1900){
               height -= 1440;
             }
         }else{
           height = window.screen.availHeight-115;
         }
+        alert("La altura arreglada es: "+height);
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
         infoSelect();
