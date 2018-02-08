@@ -279,26 +279,53 @@
               @if(session()->has('message'))
 
                 @if(session()->has('success'))
-                  <div class="alert alert-success alert-dismissable fade in" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                  <strong>¡Enhorabuena!</strong><br/><br/>    
-                      {{ session()->get('message') }}
-                  </div>
-                 
+                 <!--Modal cita y pago success-->
+                 <div class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                            <div class="modal-body" >
+                            <strong>¡Enhorabuena!</strong><br/><br/>    
+                            {{ session()->get('message') }}
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+                 <!--Fin modal success-->
+
                 @elseif(session()->has('error'))
-                 <div class="alert alert-danger alert-dismissable fade in" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                  <strong>¡Hubo un error en tu pago y no fue procesado!</strong><br/><br/>    
-                     @php
-                      $code = session()->get('message');
-                     @endphp
-                  <!-- Error codes are defined within the adminlte -->
-                      {{ trans('adminlte::adminlte.'.$code) }}
-                  </div>
+
+                <!--Modal cita y pago error-->
+                 <div class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                            <div class="modal-body" >
+                             <strong>¡Hubo un error en tu pago y no fue procesado!</strong><br/><br/>    
+                                 @php
+                                  $code = session()->get('message');
+                                 @endphp
+                          <!-- Error codes are defined within the adminlte -->
+                              {{ trans('adminlte::adminlte.'.$code) }}
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+                 <!--Fin modal error-->
                  @endif
 
               @endif
