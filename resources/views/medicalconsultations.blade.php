@@ -441,6 +441,7 @@
 
                 <!--WIZARD TEST-->
 
+
     <section>
         <div class="wizard">
             <div class="wizard-inner">
@@ -1334,6 +1335,7 @@ function prevTab(elem) {
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {  
               $('#tab1').trigger('click');
+
               document.getElementById('enddate').innerHTML = '';
               document.getElementById('endtime').innerHTML = '';
               document.getElementById('endpayment').innerHTML = '';
