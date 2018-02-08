@@ -312,7 +312,7 @@ class payments extends Controller
                     $payer = new Payer();
                             $payer->setPaymentMethod('paypal');
                             $item_1 = new Item();
-                            $item_1->setName('Item 1') /** item name **/
+                            $item_1->setName('Consulta') /** item name **/
                                 ->setCurrency('USD')
                                 ->setQuantity(1)
                                 ->setPrice($request->get('amount')); /** unit price **/
@@ -359,6 +359,7 @@ class payments extends Controller
                             }
                             /** add payment ID to session **/
                             session()->put('paypal_payment_id', $payment->getId());
+                             session()->put('receiver', $request->get('receiver'));
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
                                 return redirect($redirect_url);   
@@ -374,13 +375,15 @@ class payments extends Controller
                         {
                             // Get the payment ID before session clear
                             $payment_id = $request->session()->get('paypal_payment_id');
+                            $receiver = $request->session()->get('receiver');
 
                             // clear the session payment ID
                             $request->session()->forget('paypal_payment_id');
+                            $request->session()->forget('receiver');
                             
                             if (empty($request->input('PayerID')) || empty($request->input('token'))) {
                                     session()->put('error','Unknown error occurred');
-                              return redirect('payment/index');
+                              return redirect('medicalconsultations');
                             }
                             
                             $payment = Payment::get($payment_id, $this->_api_context);
@@ -415,7 +418,7 @@ class payments extends Controller
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
-                                            $Trans->receiver = $request->receiver;
+                                            $Trans->receiver = $receiver;
                                             $Trans->amount = $payment->transactions[0]->amount->total;
                                             $Trans->transaction = $payment_id;
                                             $Trans->save();    
