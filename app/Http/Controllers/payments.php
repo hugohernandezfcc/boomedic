@@ -218,7 +218,7 @@ class payments extends Controller
                     $this->VisaAPIClient = new VisaAPIClient;
                     //Build json with payment details
                     $this->paymentAuthorizationRequest = json_encode ( [ 
-                    'amount' => $request->pay,
+                    'amount' => $request->amount,
                     'currency' => 'USD',
                     'payment' => [
                       'cardNumber'=> $card->cardnumber,
@@ -272,7 +272,7 @@ class payments extends Controller
             'message' => $statusCode, 
             'error' => 'error'
         );
-            return redirect('payment/index')->with($notification);
+            return redirect('medicalconsultations')->with($notification);
          }
          
      }

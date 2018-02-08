@@ -599,7 +599,7 @@ $(document).ready(function () {
         document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
         document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
         if(document.getElementById('paymentMethodsFields').value != "Paypal"){
-          $('#formulatio_paypal').attr('action', 'medicalconsultations');
+          $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
         }
 
     });
