@@ -293,12 +293,12 @@
 
                         <div class="modal-header" >
                           <!-- Tachecito para cerrar -->
+                          <strong>¡Enhorabuena!</strong> 
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                            <div class="modal-body" >
-                            <strong>¡Enhorabuena!</strong><br/><br/>    
+                            <div class="modal-body" > 
                             {{ session()->get('message') }}
                             </div>
                         </div>
@@ -317,12 +317,12 @@
 
                         <div class="modal-header" >
                           <!-- Tachecito para cerrar -->
+                            <strong>¡Hubo un error en tu pago y no fue procesado!</strong>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                             <div class="modal-body" >
-                             <strong>¡Hubo un error en tu pago y no fue procesado!</strong><br/><br/>    
                                  @php
                                   $code = session()->get('message');
                                  @endphp
