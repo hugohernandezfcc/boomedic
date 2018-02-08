@@ -651,7 +651,7 @@
             alert("mensaje2: "+mensaje2);
             if(height >= 1900){
               height -= 1440;
-            } 
+            }
         }else{
           height = window.screen.availHeight-115;
         }
