@@ -575,9 +575,6 @@
           <script type="text/javascript">
 $(document).ready(function () {
     //Initialize tooltips
-      $(".modal").on("hidden.bs.modal", function(){
-          $("#modal-register-cite").html("");
-      });
 
 
 
