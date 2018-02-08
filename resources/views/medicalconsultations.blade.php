@@ -579,7 +579,45 @@ $(document).ready(function () {
 
 
 
+          $('.nav-tabs > li a[title]').tooltip();
     
+    //Wizard
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+
+    $(".next-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+         document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
+        document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
+        document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
+        if(document.getElementById('paymentMethodsFields').value != "Paypal"){
+          $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
+        }
+
+    });
+    $(".prev-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        prevTab($active);
+
+    });
+});
+
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+}
                
 
           $(function () {
@@ -1295,55 +1333,11 @@ $(document).ready(function () {
             }
           })(marker, i));
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
-            $('.nav-tabs > li a[title]').tooltip();
-    
-    //Wizard
-                        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-
-                            var $target = $(e.target);
-                        
-                            if ($target.parent().hasClass('disabled')) {
-                                return false;
-                            }
-                        });
-
-                        $(".next-step").click(function (e) {
-
-                            var $active = $('.wizard .nav-tabs li.active');
-                            $active.next().removeClass('disabled');
-                            nextTab($active);
-                             document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
-                            document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
-                            document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
-                            if(document.getElementById('paymentMethodsFields').value != "Paypal"){
-                              $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
-                            }
-                            if(document.getElementById('paymentMethodsFields').value == "Paypal"){
-                              $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
-                            }
-
-                        });
-                        $(".prev-step").click(function (e) {
-
-                            var $active = $('.wizard .nav-tabs li.active');
-                            prevTab($active);
-
-                        });
-                    });
-
-                    function nextTab(elem) {
-                        $(elem).next().find('a[data-toggle="tab"]').click();
-                    }
-                    function prevTab(elem) {
-                        $(elem).prev().find('a[data-toggle="tab"]').click();
-                    }
+            return function() {  
               document.getElementById('enddate').value = '';
               document.getElementById('endtime').value = '';
               document.getElementById('endpayment').value = '';
               $('#formulatio_paypal').trigger("reset");
-            return function() {  
-
-
               showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
               document.getElementById('amount').value = loc[i][5];
               document.getElementById('endamount').innerHTML = 'Monto a pagar: $' + loc[i][5];
