@@ -448,7 +448,7 @@
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Paso 1">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Paso 1" id="tab1">
                             <span class="round-tab">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -1333,6 +1333,7 @@ function prevTab(elem) {
           })(marker, i));
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {  
+              $('#tab1').trigger('click');
               document.getElementById('enddate').innerHTML = '';
               document.getElementById('endtime').innerHTML = '';
               document.getElementById('endpayment').innerHTML = '';
