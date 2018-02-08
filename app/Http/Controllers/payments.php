@@ -238,7 +238,7 @@ class payments extends Controller
              /* Insert_bank*/
                         $Transaction = new transaction_bank;
                         $Transaction->paymentmethod = $request->id;
-                        $Transaction->receiver = 'receiver prueba';
+                        $Transaction->receiver = $request->receiver;
                         $Transaction->amount = $request->amount;
                         $Transaction->transaction = $statusCode[1];
                         $Transaction->save();
@@ -415,7 +415,7 @@ class payments extends Controller
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
-                                            $Trans->receiver = 'receiver prueba';
+                                            $Trans->receiver = $request->receiver;
                                             $Trans->amount = $payment->transactions[0]->amount->total;
                                             $Trans->transaction = $payment_id;
                                             $Trans->save();    

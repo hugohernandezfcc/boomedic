@@ -542,6 +542,7 @@
                                   {{ csrf_field() }}
                             <input id="amount" type="hidden" class="form-control" name="amount">
                             <input type="hidden" name="id" id="idcard">
+                             <input type="hidden" name="receiver" id="receiver">
                         
 
                           <div class="btn-group pull-right">
@@ -1337,6 +1338,7 @@ function prevTab(elem) {
               showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
               document.getElementById('amount').value = loc[i][5];
               document.getElementById('endamount').innerHTML = 'Monto a pagar: $' + loc[i][5];
+              document.getElementById('receiver').value = loc[i][3];
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
