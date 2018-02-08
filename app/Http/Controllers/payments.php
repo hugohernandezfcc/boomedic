@@ -239,13 +239,13 @@ class payments extends Controller
                         $Transaction = new transaction_bank;
                         $Transaction->paymentmethod = $request->id;
                         $Transaction->receiver = 'receiver prueba';
-                        $Transaction->amount = $request->pay;
+                        $Transaction->amount = $request->amount;
                         $Transaction->transaction = $statusCode[1];
                         $Transaction->save();
                     /* Insert Transaction_bank*/    
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... ', 
+            'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->amount.', para más información consulte su cartera de pago... ', 
             'success' => 'success'
             );
 
@@ -257,7 +257,7 @@ class payments extends Controller
             'firstname' => $user->firstname,                
             'lastname'  => $user->lastname,    
             'number'    => $statusCode[1],
-            'amount'    => '$'.$request->pay         
+            'amount'    => '$'.$request->amount       
             ]; 
                 $email = $user->email;
              Mail::send('emails.transaction', $data, function ($message) {
