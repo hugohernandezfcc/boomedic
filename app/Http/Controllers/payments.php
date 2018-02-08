@@ -369,7 +369,10 @@ class payments extends Controller
                             }
                             /** add payment ID to session **/
                             session()->put('paypal_payment_id', $payment->getId());
-                             session()->put('receiver', $request->get('receiver'));
+                            session()->put('receiver', $request->get('receiver'));
+                            session()->put('dr', $request->get('dr'));
+                            session()->put('idlabor', $request->get('idlabor'));
+                            session()->put('when', $request->get('when'));
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
                                 return redirect($redirect_url);   
@@ -386,6 +389,9 @@ class payments extends Controller
                             // Get the payment ID before session clear
                             $payment_id = $request->session()->get('paypal_payment_id');
                             $receiver = $request->session()->get('receiver');
+                            $dr = $request->session()->get('dr');
+                            $idlabor = $request->session()->get('idlabor');
+                            $when = $request->session()->get('when');
 
                             // clear the session payment ID
                             $request->session()->forget('paypal_payment_id');
@@ -432,13 +438,22 @@ class payments extends Controller
                                             $Trans->amount = $payment->transactions[0]->amount->total;
                                             $Trans->transaction = $payment_id;
                                             $Trans->save();    
-                                        
+                                                   /* Insert Cita */
+                                        $medical = new medical_appointments;
+                                        $medical->user           = Auth::id();
+                                        $medical->user_doctor    = $dr;
+                                        $medical->workplace       = $idlabor;
+                                        $medical->when          = $when;
+                                
+                            if ($medical->save()) {         
 
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
                                     'message' => 'Procesado su pago de paypal, Correo: ' .$result->getPayer()->getPayerInfo()->getEmail().', Id de transacción: '. $payment_id, 
                                     'success' => 'success'
                                 );
+
+
                                 $user = User::find(Auth::id());
                                 $data = [
                                 'name'      => $user->name,
@@ -454,6 +469,7 @@ class payments extends Controller
                                             $message->subject('Transacción de pago en Boomedic');
                                             $message->to('rebbeca.goncalves@doitcloud.consulting');
                                         });
+                             }
                               return redirect('medicalconsultations')->with($notification);
                             }
                             
