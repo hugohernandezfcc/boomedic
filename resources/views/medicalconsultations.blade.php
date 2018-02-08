@@ -650,7 +650,7 @@
             var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight-115;
             alert("Altura: "+height+ " version de android: "+mensaje2 );
-            if(height >= 1800){
+            if(height >= 1700){
               height -= 1325;
             }
         }else{
