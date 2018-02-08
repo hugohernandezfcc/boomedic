@@ -649,7 +649,7 @@
             var mensaje1 = "@php if($agent->is('Samsung')) echo 'Huawei'; else echo 'no Huawei' @endphp";
             var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight;
-            alert("Primer mensaje: "+mensaje1+ " mensaje2: "+mensaje2);
+            alert(" mensaje2: "+mensaje2);
             if(height >= 1900){
               height -= 1440;
             }
