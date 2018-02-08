@@ -578,6 +578,9 @@
                             <input id="amount" type="hidden" class="form-control" name="amount">
                             <input type="hidden" name="id" id="idcard">
                              <input type="hidden" name="receiver" id="receiver">
+                             <input type="hidden" name="when" id="when">
+                             <input type="hidden" name="dr" id="dr">
+                             <input type="hidden" name="idlabor" id="idlabor">
                         
 
                           <div class="btn-group pull-right">
@@ -1388,6 +1391,8 @@ function prevTab(elem) {
               document.getElementById('amount').value = loc[i][5];
               document.getElementById('endamount').innerHTML = 'Monto a pagar: $' + loc[i][5];
               document.getElementById('receiver').value = loc[i][3];
+              document.getElementById('idlabor').value = loc[i][7];
+              document.getElementById('dr').value = loc[i][8];
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
@@ -1533,7 +1538,9 @@ function prevTab(elem) {
                          console.log(e.date.toISOString());
                          document.getElementById("onestep").disabled = false;
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
+                         var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
+                         document.getElementById('when').value = da2 +' '+ document.getElementById('endtime').value +':00';
                       });
              }
           })(marker, i));
