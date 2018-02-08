@@ -279,9 +279,8 @@
               @if(session()->has('message'))
 
                 @if(session()->has('success'))
-                <script type="text/javascript">
-                   $('#modalsuccess').modal('show');
-                 </script>
+
+
                  <!--Modal cita y pago success-->
                  <div class="modal fade" role="dialog" id="modalsuccess">
                     <div class="modal-dialog modal-sm">
@@ -301,12 +300,13 @@
                         </div>
                       </div> 
                     </div>
+              <script type="text/javascript">
+                   $('#modalsuccess').modal('show');
+               </script>
                  <!--Fin modal success-->
 
                 @elseif(session()->has('error'))
-                 <script type="text/javascript">
-                   $('#modalerror').modal('show');
-                 </script>
+  
                 <!--Modal cita y pago error-->
                  <div class="modal fade" role="dialog" id="modalerror">
                     <div class="modal-dialog modal-sm">
@@ -330,6 +330,9 @@
                         </div>
                       </div> 
                     </div>
+                                   <script type="text/javascript">
+                   $('#modalerror').modal('show');
+                 </script>
                  <!--Fin modal error-->
                  @endif
 
