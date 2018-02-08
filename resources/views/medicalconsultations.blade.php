@@ -1540,7 +1540,7 @@ function prevTab(elem) {
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
                          var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
-                         document.getElementById('when').value = da2 +' '+ document.getElementById('endtime').value +':00';
+                         document.getElementById('when').value = da2 +' '+ document.getElementById('timesByDay').value +':00';
                       });
              }
           })(marker, i));
