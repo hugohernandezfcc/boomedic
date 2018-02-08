@@ -602,6 +602,9 @@ $(document).ready(function () {
         if(document.getElementById('paymentMethodsFields').value != "Paypal"){
           $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
         }
+       if(document.getElementById('paymentMethodsFields').value == "Paypal"){
+          $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
+        }
 
     });
     $(".prev-step").click(function (e) {
