@@ -575,7 +575,9 @@
           <script type="text/javascript">
 $(document).ready(function () {
     //Initialize tooltips
-
+      $(".modal").on("hidden.bs.modal", function(){
+          $("#modal-register-cite").html("");
+      });
 
 
 
@@ -1334,9 +1336,9 @@ function prevTab(elem) {
           })(marker, i));
           google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {  
-              document.getElementById('enddate').value = '';
-              document.getElementById('endtime').value = '';
-              document.getElementById('endpayment').value = '';
+              document.getElementById('enddate').innerHTML = '';
+              document.getElementById('endtime').innerHTML = '';
+              document.getElementById('endpayment').innerHTML = '';
               $('#formulatio_paypal').trigger("reset");
               showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
               document.getElementById('amount').value = loc[i][5];
