@@ -230,10 +230,10 @@
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
     console.log(datos);
   
-     if(@php echo session()->has('success') @endphp){
+     if(@php echo session()->has('success'); @endphp){
        $('#modalsuccess').modal('show');
      }
-    if(@php echo session()->has('error') @endphp){
+    if(@php echo session()->has('error'); @endphp){
        $('#modalerror').modal('show');
      }
   </script>
