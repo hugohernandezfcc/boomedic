@@ -187,9 +187,10 @@
         .pac-container {
          z-index: 100000; 
        }
-         label {
-          margin-bottom: 8px;     
-      }
+
+      .box.box-primary {
+        border-top-color: #242627;
+        }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <!--  -->
@@ -298,24 +299,26 @@
                           </button>
                         </div>
                             <div class="modal-body" >
+                            <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"><br/>Dr: {{ session()->get('dr') }}</div>  <br/>
                               <div class="box box-primary">
                                 <div class="box-header with-border">
-                                  <h3 class="box-title">Información General de la cita</h3>
+                                  <h4 class="box-title">Información General de la cita</h3>
                                 </div>
                                 <div class="box-body">
-                              <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"><br/>Dr: {{ session()->get('dr') }}</div>  <br/>
+
                              Especialidad: {{ session()->get('spe') }}<br/>
-                            </div>
+                            
                              Fecha de Cita: {{ session()->get('fecha') }}<br/>
+                             </div>
                               </div>
                             </div>
                           <div class="modal-body" >
                               <div class="box box-primary">
                                 <div class="box-header with-border">
-                                  <h3 class="box-title">Información de Pago</h3>
+                                  <h4 class="box-title">Información de Pago</h3>
                                 </div>
                                 <div class="box-body">
-                              <div align="center">Transacción Nro: {{ session()->get('transacción') }}</div>  <br/>
+                              <div align="center">Transacción Nro: {{ session()->get('transaccion') }}</div>  <br/>
                              Método: {{ session()->get('card') }}<br/>
                             </div>
                              Monto de consulta: {{ session()->get('monto') }}<br/>
