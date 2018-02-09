@@ -298,7 +298,8 @@
                           </button>
                         </div>
                             <div class="modal-body" > 
-                            {{ session()->get('message') }}
+                            {{ session()->get('message') }} <br/>
+                             {{ session()->get('dr') }}
                             </div>
                         </div>
                       </div> 
