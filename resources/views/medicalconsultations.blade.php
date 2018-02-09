@@ -628,6 +628,17 @@ $(document).ready(function () {
         if ($target.parent().hasClass('disabled')) {
             return false;
         }
+        document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
+        document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
+        document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
+        if(document.getElementById('paymentMethodsFields').value != "Paypal"){
+          $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
+         document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+        }
+       if(document.getElementById('paymentMethodsFields').value == "Paypal"){
+          $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
+                   document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+        }
     });
 
     $(".next-step").click(function (e) {
@@ -640,7 +651,6 @@ $(document).ready(function () {
         document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
         if(document.getElementById('paymentMethodsFields').value != "Paypal"){
           $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
-
          document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
         }
        if(document.getElementById('paymentMethodsFields').value == "Paypal"){
