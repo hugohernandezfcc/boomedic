@@ -298,13 +298,28 @@
                           </button>
                         </div>
                             <div class="modal-body" >
-                              <div class="callout callout-black">
-                                <b>Información de Cita</b><br/>
-                              <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"></div><br/>
-                             Dr: {{ session()->get('dr') }}   <br/>
+                              <div class="box box-primary">
+                                <div class="box-header with-border">
+                                  <h3 class="box-title">Información General de la cita</h3>
+                                </div>
+                                <div class="box-body">
+                              <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"><br/>Dr: {{ session()->get('dr') }}</div>  <br/>
                              Especialidad: {{ session()->get('spe') }}<br/>
+                            </div>
                              Fecha de Cita: {{ session()->get('fecha') }}<br/>
-                           </div>
+                              </div>
+                            </div>
+                          <div class="modal-body" >
+                              <div class="box box-primary">
+                                <div class="box-header with-border">
+                                  <h3 class="box-title">Información de Pago</h3>
+                                </div>
+                                <div class="box-body">
+                              <div align="center">Transacción Nro: {{ session()->get('transacción') }}</div>  <br/>
+                             Método: {{ session()->get('card') }}<br/>
+                            </div>
+                             Monto de consulta: {{ session()->get('monto') }}<br/>
+                              </div>
                             </div>
                         </div>
                       </div> 
