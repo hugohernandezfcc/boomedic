@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['namespace' => 'Api', 'prefix' => '/users'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/users', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'users', 'uses' => 'UserController@index']);
 	Route::put('/',['as' => 'users.store', 'uses' => 'UserController@store']);
@@ -28,7 +28,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/users'], function(){
 
 }); 
 
-Route::group(['namespace' => 'Api', 'prefix' => '/professionalInfo'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/professionalInfo', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'professionalInfo', 'uses' => 'ProfessionalInfoController@index']);
 	Route::put('/',['as' => 'professionalInfo.store', 'uses' => 'ProfessionalInfoController@store']);
@@ -37,7 +37,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/professionalInfo'], function()
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/laborInfo'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/laborInfo', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'laborInfo', 'uses' => 'LaborInfoController@index']);
 	Route::put('/',['as' => 'laborInfo.store', 'uses' => 'LaborInfoController@store']);
@@ -46,7 +46,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/laborInfo'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/supportTicket'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/supportTicket', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'supportTicket', 'uses' => 'SupportTicketController@index']);
 	Route::put('/',['as' => 'supportTicket.store', 'uses' => 'SupportTicketController@store']);
@@ -55,7 +55,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/supportTicket'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/workboard'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/workboard', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'workboard', 'uses' => 'WorkboardController@index']);
 	Route::put('/',['as' => 'workboard.store', 'uses' => 'WorkboardController@store']);
@@ -64,7 +64,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/workboard'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/paymentMethod'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/paymentMethod', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'paymentMethod', 'uses' => 'paymentMethodController@index']);
 	Route::put('/',['as' => 'paymentMethod.store', 'uses' => 'paymentMethodController@store']);
@@ -73,7 +73,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/paymentMethod'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/transactionBank'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/transactionBank', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'transactionBank', 'uses' => 'transactionBankController@index']);
 	Route::put('/',['as' => 'transactionBank.store', 'uses' => 'transactionBankController@store']);
@@ -82,7 +82,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/transactionBank'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/medicalAppointment'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/medicalAppointment', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'medicalAppo', 'uses' => 'medicalAppointmentsController@index']);
 	Route::put('/',['as' => 'medicalAppo.store', 'uses' => 'medicalAppointmentsController@store']);
@@ -91,7 +91,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/medicalAppointment'], function
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/diagnostics'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/diagnostics', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'diagnostic', 'uses' => 'DiagnosticsController@index']);
 	Route::put('/',['as' => 'diagnostic.store', 'uses' => 'DiagnosticsController@store']);
@@ -100,7 +100,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/diagnostics'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/diagnosticTest'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/diagnosticTest', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'diagTest', 'uses' => 'DiagnosticsTestController@index']);
 	Route::put('/',['as' => 'diagTest.store', 'uses' => 'DiagnosticsTestController@store']);
@@ -109,7 +109,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/diagnosticTest'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/medicines'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/medicines', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'medicine', 'uses' => 'MedicinesController@index']);
 	Route::put('/',['as' => 'medicine.store', 'uses' => 'MedicinesController@store']);
@@ -118,7 +118,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/medicines'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/emails'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/emails', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'email', 'uses' => 'EmailsController@index']);
 	Route::put('/',['as' => 'email.store', 'uses' => 'EmailsController@store']);
@@ -127,7 +127,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/emails'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/privacyStatements'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/privacyStatements', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'ps', 'uses' => 'PrivacyStatementController@index']);
 	//Route::put('/',['as' => 'ps.store', 'uses' => 'PrivacyStatementController@store']);
@@ -136,7 +136,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/privacyStatements'], function(
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/menus'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/menus', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'menu', 'uses' => 'MenuController@index']);
 	//Route::put('/',['as' => 'menu.store', 'uses' => 'MenuController@store']);
@@ -145,7 +145,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/menus'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/historySessions'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/historySessions', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'hs', 'uses' => 'historySessionController@index']);
 	Route::put('/',['as' => 'hs.store', 'uses' => 'historySessionController@store']);
@@ -154,7 +154,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/historySessions'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/recipes'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/recipes', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'recipe', 'uses' => 'recipesTestController@index']);
 	Route::put('/',['as' => 'recipe.store', 'uses' => 'recipesTestController@store']);
@@ -163,7 +163,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/recipes'], function(){
 
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => '/cli_recipes'], function(){
+Route::group(['namespace' => 'Api', 'prefix' => '/cli_recipes', 'middleware' => ['auth:api']], function(){
 
 	Route::get('/',['as' => 'cliRecipe', 'uses' => 'cli_recipesTestController@index']);
 	Route::put('/',['as' => 'cliRecipe.store', 'uses' => 'cli_recipesTestController@store']);
