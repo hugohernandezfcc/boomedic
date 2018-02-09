@@ -31,7 +31,7 @@ class SupportTicketTransformer extends TransformerAbstract
      * @var $resource
      * @return array
      */
-    public function transform(SupporTicket $st)
+    public function transform(SupportTicket $st)
     {
         return [
 
