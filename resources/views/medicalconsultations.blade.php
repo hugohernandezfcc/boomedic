@@ -618,15 +618,9 @@ $(document).ready(function () {
        $('#modalsuccess').modal('show');
        $('#modalerror').modal('show');
 
-          $('.nav-tabs > li a[title]').tooltip();
-    
-    //Wizard
-    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
 
-        var $target = $(e.target);
-    
-        if ($target.parent().hasClass('disabled')) {
-         document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
+ $("#paymentMethodsFields").on("change", function(){
+                                  document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
         document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
         document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
         if(document.getElementById('paymentMethodsFields').value != "Paypal"){
@@ -637,6 +631,17 @@ $(document).ready(function () {
           $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
                    document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
         }
+                        })
+
+
+          $('.nav-tabs > li a[title]').tooltip();
+    
+    //Wizard
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
             return false;
         }
 
