@@ -379,12 +379,20 @@ class payments extends Controller
                                     break;
                                 }
                             }
+                            $doc = User::find($request->dr); 
+                            $work = DB::table('labor_information')->where('id', $request->idlabor)->first();    
                             /** add payment ID to session **/
                             session()->put('paypal_payment_id', $payment->getId());
                             session()->put('receiver', $request->get('receiver'));
-                            session()->put('dr', $request->get('dr'));
+                            session()->put('dr', $doc->name);
+                            session()->put('monto', $request->amount);
+                            session()->put('spe', $request->spe);
+                            session()->put('work', $work->workplace);
+                            session()->put('drphoto', $doc->profile_photo);
                             session()->put('idlabor', $request->get('idlabor'));
                             session()->put('when', $request->get('when'));
+
+
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
                                 return redirect($redirect_url);   
@@ -404,10 +412,21 @@ class payments extends Controller
                             $dr = $request->session()->get('dr');
                             $idlabor = $request->session()->get('idlabor');
                             $when = $request->session()->get('when');
+                            $drphoto = $request->session()->get('drphoto');
+                            $work = $request->session()->get('work');
+                            $monto = $request->session()->get('monto');
+                            $spe = $request->session()->get('spe');
 
                             // clear the session payment ID
                             $request->session()->forget('paypal_payment_id');
                             $request->session()->forget('receiver');
+                            $request->session()->forget('when');
+                            $request->session()->forget('dr');
+                            $request->session()->forget('idlabor');
+                            $request->session()->forget('drphoto');
+                            $request->session()->forget('work');
+                            $request->session()->forget('monto');
+                            $request->session()->forget('spe');
                             
                             if (empty($request->input('PayerID')) || empty($request->input('token'))) {
                                     session()->put('error','Unknown error occurred');
@@ -430,6 +449,7 @@ class payments extends Controller
                               // Payment is successful do your business logic here
                                 //Add payment method
                                 $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
+                                $idp = $paypalExist->id;
                                 if(empty($paypalExist)){
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
@@ -440,7 +460,7 @@ class payments extends Controller
                                 $pmethods->owner         = Auth::id();
                                 $pmethods->notified      = 'false';
                                 $pmethods->save();
-
+                                $idp = $pmethods->id;
                               }
                                
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
@@ -462,7 +482,16 @@ class payments extends Controller
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
                                     'message' => 'Procesado su pago de paypal, Correo: ' .$result->getPayer()->getPayerInfo()->getEmail().', Id de transacción: '. $payment_id, 
-                                    'success' => 'success'
+                                    'success' => 'success',
+                                    'dr'      => $dr,
+                                    'drphoto'      => $drphoto,
+                                    'fecha'   => $when,
+                                    'monto'   => $monto,
+                                    'transaccion' => $payment_id,
+                                    'card'        => 'Paypal: ' .$result->getPayer()->getPayerInfo()->getEmail(),
+                                    'idcard'      => $idp,
+                                    'spe'         => $spe,
+                                    'work'        => $work
                                 );
 
 
