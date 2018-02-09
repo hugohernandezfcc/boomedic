@@ -26,7 +26,7 @@ Route::group(['namespace' => 'Api', 'prefix' => '/users'], function(){
 	Route::post('/{user}',['as' => 'user.update', 'uses' => 'UserController@update']);
 	//Route::delete('/{article}',['as' => 'articles.destroy', 'uses' => 'ArticleController@destroy']);
 
-});
+}); 
 
 Route::group(['namespace' => 'Api', 'prefix' => '/professionalInfo'], function(){
 

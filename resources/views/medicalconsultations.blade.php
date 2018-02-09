@@ -5,7 +5,6 @@
 @section('content')
     
   <style type="text/css">
-
       #mapaC{
         position: relative;
         height: 100%;
