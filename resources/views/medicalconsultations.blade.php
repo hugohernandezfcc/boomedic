@@ -305,9 +305,9 @@
                                   <b>Información General de la cita</b>
                                 </div>
                                 <div class="box-body">
-                             Lugar: {{ session()->get('work') }}<br/>
-                             Especialidad: {{ session()->get('spe') }}<br/>
-                             Fecha de Cita: {{ session()->get('fecha') }}
+                             <span class="text-black">Lugar:</span> {{ session()->get('work') }}<br/>
+                             <span class="text-black">Especialidad:</span> {{ session()->get('spe') }}<br/>
+                             <span class="text-black">Fecha de Cita:</span> {{ session()->get('fecha') }}
 
                              </div>
                               </div>
@@ -317,12 +317,10 @@
                                   <b>Información de Pago</b>
                                 </div>
                                 <div class="box-body">
-                               @php 
-                              $cardfin = substr_replace(session()->get('card'), '••••••••••••', 0, 12);
-                               @endphp
+
                              Monto: $ {{ session()->get('monto') }}<br/>  
-                             Transacción Nro: <a href = "payment/Transactions/{{ session()->get('idcard') }}" class="btn">{{ session()->get('transaccion') }}</a><br/>
-                             Método de pago: {{ $cardfin }}
+                             Transacción: <a href = "payment/Transactions/{{ session()->get('idcard') }}" class="btn">{{ session()->get('transaccion') }}</a><br/>
+                             Método de pago: {{ session()->get('card') }}
                              <br/><br/><div align="center"><a href = "https://site-boomedic.herokuapp.com/login" class="btn btn-secondary btn-flat btn-sm">Facture aquí</a></div>
                             </div>
                               </div>
