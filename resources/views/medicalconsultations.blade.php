@@ -293,10 +293,10 @@
 
                         <div class="modal-header" >
                           <!-- Tachecito para cerrar -->
-                          <h3 class="box-title">¡Cita registrada!</h3>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                          <h3>¡Cita registrada!</h3>
                         </div>
                             <div class="modal-body" >
                             <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"><br/><b>Dr: {{ session()->get('dr') }}</b></div>  <br/>
@@ -308,11 +308,10 @@
 
                              Especialidad: {{ session()->get('spe') }}<br/>
                             
-                             Fecha de Cita: {{ session()->get('fecha') }}<br/>
+                             Fecha de Cita: {{ session()->get('fecha') }}
                              </div>
                               </div>
-                            </div>
-                          <div class="modal-body" >
+
                               <div class="box box-primary">
                                 <div class="box-header with-border">
                                   <b>Información de Pago</b>
@@ -320,11 +319,10 @@
                                 <div class="box-body">
                              Transacción Nro: {{ session()->get('transaccion') }}<br/>
                              Método: {{ session()->get('card') }}<br/>
-                             Monto: {{ session()->get('monto') }}<br/>
+                             Monto: {{ session()->get('monto') }}
                             </div>
                               </div>
-                            </div>
-                            <div class="modal-body" >
+
                               <div class="box box-primary">
                                 <div class="box-header with-border">
                                   <b>Facturación</b>
