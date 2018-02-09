@@ -293,16 +293,16 @@
 
                         <div class="modal-header" >
                           <!-- Tachecito para cerrar -->
-                          <strong>¡Cita registrada!</strong> 
+                          <h3 class="box-title">¡Cita registrada!</h3>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                             <div class="modal-body" >
-                            <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"><br/>Dr: {{ session()->get('dr') }}</div>  <br/>
+                            <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"><br/><b>Dr: {{ session()->get('dr') }}</b></div>  <br/>
                               <div class="box box-primary">
                                 <div class="box-header with-border">
-                                  <h4 class="box-title">Información General de la cita</h3>
+                                  <b>Información General de la cita</b>
                                 </div>
                                 <div class="box-body">
 
@@ -315,13 +315,22 @@
                           <div class="modal-body" >
                               <div class="box box-primary">
                                 <div class="box-header with-border">
-                                  <h4 class="box-title">Información de Pago</h3>
+                                  <b>Información de Pago</b>
                                 </div>
                                 <div class="box-body">
-                              <div align="center">Transacción Nro: {{ session()->get('transaccion') }}</div>  <br/>
+                             Transacción Nro: {{ session()->get('transaccion') }}<br/>
                              Método: {{ session()->get('card') }}<br/>
+                             Monto: {{ session()->get('monto') }}<br/>
                             </div>
-                             Monto de consulta: {{ session()->get('monto') }}<br/>
+                              </div>
+                            </div>
+                            <div class="modal-body" >
+                              <div class="box box-primary">
+                                <div class="box-header with-border">
+                                  <b>Facturación</b>
+                                </div>
+                                <div class="box-body">
+                            </div>
                               </div>
                             </div>
                         </div>
