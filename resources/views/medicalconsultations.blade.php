@@ -710,6 +710,7 @@ function prevTab(elem) {
                     if(result[i].provider != 'Paypal'){
                     option.text = result[i].provider + ": " + result[i].cardnumber;
                     option.value = result[i].id;
+                    option.setAttribute("data-icon", "glyphicon glyphicon-eye-open");
                     x.add(option);
                         }
                         
