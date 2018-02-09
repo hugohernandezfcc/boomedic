@@ -698,9 +698,9 @@ function prevTab(elem) {
 
                   var x = document.getElementById("paymentMethodsFields");
                    var option = document.createElement("option");
-                   option.text = "Paypal";
+                    option.text = "Paypal";
                     option.value = "Paypal";
-                    option.data-icon ="glyphicon glyphicon-eye-open";
+                    option.setAttribute("data-icon", "glyphicon glyphicon-eye-open");
                     x.add(option);
 
                   for (var i = result.length - 1; i >= 0; i--) {
