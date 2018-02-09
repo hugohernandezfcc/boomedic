@@ -698,7 +698,7 @@ function prevTab(elem) {
 
                   var x = document.getElementById("paymentMethodsFields");
                    var option = document.createElement("option");
-                   option.text = "Paypal";
+                   option.text = "<span class='fa fa-clock-o'></span>Paypal";
                     option.value = "Paypal";
                     x.add(option);
 
