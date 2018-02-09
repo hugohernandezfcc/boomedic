@@ -292,14 +292,18 @@
 
                         <div class="modal-header" >
                           <!-- Tachecito para cerrar -->
-                          <strong>¡Enhorabuena!</strong> 
+                          <strong>¡Cita registrada!</strong> 
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                            <div class="modal-body" > 
-                            {{ session()->get('message') }} <br/>
-                             {{ session()->get('dr') }}
+                            <div class="modal-body" >
+                              <div class="callout callout-info">
+                                <h4>Información de Cita</h4><br/>
+                             <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="user-image" alt="User Image"> Dr: {{ session()->get('dr') }}   <br/>
+                             Especialidad: {{ session()->get('spe') }}<br/>
+                             Fecha de Cita: {{ session()->get('fecha') }}<br/>
+                           </div>
                             </div>
                         </div>
                       </div> 
