@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\PaymentMethod;
-use App\laborInformation
+use App\laborInformation;
 use App\menu;
 use App\transaction_bank;
 use App\Http\Controllers\VisaAPIClient;
