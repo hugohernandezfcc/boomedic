@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\PaymentMethod;
+use App\laborInformation
 use App\menu;
 use App\transaction_bank;
 use App\Http\Controllers\VisaAPIClient;
@@ -251,7 +252,8 @@ class payments extends Controller
                     $medical->when          = $request->when;
             
            if ($medical->save()) {
-            $doc = User::find($request->dr);     
+            $doc = User::find($request->dr); 
+            $work = laborInformation::find($request->idlabor);       
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
             'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->amount.', para más información consulte su cartera de pago... ', 
@@ -263,7 +265,9 @@ class payments extends Controller
             'transaccion' => $statusCode[1],
             'card'        => $card->cardnumber,
             'idcard'      => $card->id,
-            'spe'         => $request->spe
+            'spe'         => $request->spe,
+            'work'        => $work->workplace
+
 
             );
 

@@ -299,16 +299,16 @@
                           <h3>¡Cita registrada!</h3>
                         </div>
                             <div class="modal-body" >
-                            <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"><br/><b>Dr: {{ session()->get('dr') }}</b></div>  <br/>
+                            <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"><br/><b>Dr. {{ session()->get('dr') }}</b></div>  <br/>
                               <div class="box box-primary">
                                 <div class="box-header with-border">
                                   <b>Información General de la cita</b>
                                 </div>
                                 <div class="box-body">
-
+                             Lugar: {{ session()->get('work') }}<br/>
                              Especialidad: {{ session()->get('spe') }}<br/>
-                            
                              Fecha de Cita: {{ session()->get('fecha') }}
+
                              </div>
                               </div>
 
@@ -317,9 +317,13 @@
                                   <b>Información de Pago</b>
                                 </div>
                                 <div class="box-body">
-                             Transacción Nro: {{ session()->get('transaccion') }}<br/>
-                             Método: {{ session()->get('card') }}<br/>
-                             Monto: {{ session()->get('monto') }}
+                               @php 
+                              $cardfin = substr_replace(session()->get('card'), '••••••••••••', 0, 12);
+                               @endphp
+
+                             Transacción Nro:  <a href = "Transactions/{{ session()->get('idcard') }}" class="btn">{{ session()->get('transaccion') }}</a><br/>
+                             Método de pago: {{ $cardfin }}<br/>
+                             Monto: $ {{ session()->get('monto') }} 
                             </div>
                               </div>
 
