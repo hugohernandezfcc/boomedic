@@ -579,6 +579,7 @@
                             <input type="hidden" name="id" id="idcard">
                              <input type="hidden" name="receiver" id="receiver">
                              <input type="hidden" name="when" id="when">
+                             <input type="hidden" name="when1" id="when1">
                              <input type="hidden" name="dr" id="dr">
                              <input type="hidden" name="idlabor" id="idlabor">
                         
@@ -639,11 +640,12 @@ $(document).ready(function () {
         document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
         if(document.getElementById('paymentMethodsFields').value != "Paypal"){
           $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
-         document.getElementById('when').value = document.getElementById('when') +' '+ document.getElementById('timesByDay').value +':00';
+
+         document.getElementById('when').value = document.getElementById('when1') +' '+ document.getElementById('timesByDay').value +':00';
         }
        if(document.getElementById('paymentMethodsFields').value == "Paypal"){
           $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
-                   document.getElementById('when').value = document.getElementById('when') +' '+ document.getElementById('timesByDay').value +':00';
+                   document.getElementById('when').value = document.getElementById('when1') +' '+ document.getElementById('timesByDay').value +':00';
         }
 
     });
@@ -1542,7 +1544,7 @@ function prevTab(elem) {
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
                          var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
-                         document.getElementById('when').value = da2;
+                         document.getElementById('when1').value = da2;
                       });
              }
           })(marker, i));
