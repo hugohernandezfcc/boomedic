@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use App\SupporTicket;
+use App\SupportTicket;
 use League\Fractal;
 use League\Fractal\TransformerAbstract;
 use League\Fractal\Resource\Collection;
