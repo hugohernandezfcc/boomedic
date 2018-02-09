@@ -568,7 +568,7 @@
                         <br/>
                         <div class="form-group">
                          <div class="col-sm-12">
-                             <select id="paymentMethodsFields" class="form-control">
+                             <select id="paymentMethodsFields" class="form-control selectpicker">
                              </select>
                          </div>
                        </div>
@@ -698,8 +698,9 @@ function prevTab(elem) {
 
                   var x = document.getElementById("paymentMethodsFields");
                    var option = document.createElement("option");
-                   option.text = "<span class='fa fa-clock-o'></span>Paypal";
+                   option.text = "Paypal";
                     option.value = "Paypal";
+                    option.data-icon ="glyphicon glyphicon-eye-open";
                     x.add(option);
 
                   for (var i = result.length - 1; i >= 0; i--) {
