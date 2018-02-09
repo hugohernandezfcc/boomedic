@@ -307,7 +307,7 @@
                                 <div class="box-body">
                              Lugar: <span class="text-muted">{{ session()->get('work') }}</span><br/>
                              Especialidad: <span class="text-muted">{{ session()->get('spe') }}</span><br/>
-                             Fecha de Cita: <span class="text-muted">{{ session()->get('fecha') }}</span>
+                             Fecha de Cita: <span class="text-muted">{{ \Carbon\Carbon::parse(session()->get('fecha'))->format('d-m-Y h:i A') }}</span>
 
                              </div>
                               </div>
