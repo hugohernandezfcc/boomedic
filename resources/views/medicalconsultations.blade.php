@@ -320,18 +320,10 @@
                                @php 
                               $cardfin = substr_replace(session()->get('card'), '••••••••••••', 0, 12);
                                @endphp
-
-                             Transacción Nro:  <a href = "Transactions/{{ session()->get('idcard') }}" class="btn">{{ session()->get('transaccion') }}</a><br/>
-                             Método de pago: {{ $cardfin }}<br/>
-                             Monto: $ {{ session()->get('monto') }} 
-                            </div>
-                              </div>
-
-                              <div class="box box-primary">
-                                <div class="box-header with-border">
-                                  <b>Facturación</b>
-                                </div>
-                                <div class="box-body">
+                             Monto: $ {{ session()->get('monto') }}<br/>  
+                             Transacción Nro: <a href = "payment/Transactions/{{ session()->get('idcard') }}" class="btn">{{ session()->get('transaccion') }}</a><br/>
+                             Método de pago: {{ $cardfin }}
+                             <br/><br/><div align="center"><a href = "https://site-boomedic.herokuapp.com/login" class="btn btn-secondary btn-flat btn-sm">Facture aquí</a></div>
                             </div>
                               </div>
                             </div>
