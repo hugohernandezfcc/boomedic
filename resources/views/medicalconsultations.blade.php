@@ -641,11 +641,11 @@ $(document).ready(function () {
         if(document.getElementById('paymentMethodsFields').value != "Paypal"){
           $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
 
-         document.getElementById('when').value = document.getElementById('when1') +' '+ document.getElementById('timesByDay').value +':00';
+         document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
         }
        if(document.getElementById('paymentMethodsFields').value == "Paypal"){
           $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
-                   document.getElementById('when').value = document.getElementById('when1') +' '+ document.getElementById('timesByDay').value +':00';
+                   document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
         }
 
     });
