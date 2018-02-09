@@ -384,7 +384,7 @@ class payments extends Controller
                             /** add payment ID to session **/
                             session()->put('paypal_payment_id', $payment->getId());
                             session()->put('receiver', $request->get('receiver'));
-                            session()->put('dr', $doc->name);
+                            session()->put('dr', $doc->id);
                             session()->put('monto', $request->amount);
                             session()->put('spe', $request->spe);
                             session()->put('work', $work->workplace);
@@ -483,7 +483,7 @@ class payments extends Controller
                                         //If it has been rejected, the internal error code is sent.
                                     'message' => 'Procesado su pago de paypal, Correo: ' .$result->getPayer()->getPayerInfo()->getEmail().', Id de transacción: '. $payment_id, 
                                     'success' => 'success',
-                                    'dr'      => $dr,
+                                    'dr'      => $receiver,
                                     'drphoto'      => $drphoto,
                                     'fecha'   => $when,
                                     'monto'   => $monto,
