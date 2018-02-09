@@ -300,7 +300,7 @@
                             <div class="modal-body" >
                               <div class="callout callout-info">
                                 <h4>Información de Cita</h4><br/>
-                             <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="user-image" alt="User Image"> Dr: {{ session()->get('dr') }}   <br/>
+                              <img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image"> Dr: {{ session()->get('dr') }}   <br/>
                              Especialidad: {{ session()->get('spe') }}<br/>
                              Fecha de Cita: {{ session()->get('fecha') }}<br/>
                            </div>
