@@ -168,8 +168,8 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
-        \Laravel\Passport\PassportServiceProvider::class,
-        \Cyvelnet\Laravel5Fractal\Laravel5FractalServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
+        Cyvelnet\Laravel5Fractal\Laravel5FractalServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
 
         /*
