@@ -614,7 +614,6 @@
 $(document).ready(function () {
     //Initialize tooltips
 
-
        $('#modalsuccess').modal('show');
        $('#modalerror').modal('show');
 
@@ -638,10 +637,6 @@ $(document).ready(function () {
          document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
         document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
         document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
-        var d = document.getElementById('when').value;
-        var y = document.getElementById('timesByDay').value;
-        document.getElementById('when').value =  d +' '+ y +':00';
-
         if(document.getElementById('paymentMethodsFields').value != "Paypal"){
           $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
         }
@@ -1545,7 +1540,7 @@ function prevTab(elem) {
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
                          var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
-                         document.getElementById('when').value = da2;
+                         document.getElementById('when').value = da2 +' '+ document.getElementById('timesByDay').value +':00';
                       });
              }
           })(marker, i));
