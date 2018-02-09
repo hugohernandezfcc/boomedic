@@ -80,7 +80,7 @@ function fbRegister(){
                 document.getElementById('passwc').readOnly = true;
             });
 
-        }
+        } 
 
     })
 

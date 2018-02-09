@@ -108,7 +108,6 @@
                             <div class="box-body">
                                 <div class="row" align="center">
                                     <div class="g-signin2"  data-width="165" data-height="27" data-clientid="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com"data-onsuccess="onRegisterG"></div><br>
-                            <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
                                 </div>
                             </div>
                           </div>
