@@ -489,7 +489,7 @@ class payments extends Controller
                                     'fecha'   => $when,
                                     'monto'   => $monto,
                                     'transaccion' => $payment_id,
-                                    'card'        => 'Paypal: ' .$result->getPayer()->getPayerInfo()->getEmail(),
+                                    'card'        => 'Paypal ' .$result->getPayer()->getPayerInfo()->getEmail(),
                                     'idcard'      => $idp,
                                     'spe'         => $spe,
                                     'work'        => $work
