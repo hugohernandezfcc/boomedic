@@ -307,7 +307,7 @@
                                 <div class="box-body">
                              Lugar: <span class="text-muted">{{ session()->get('work') }}</span><br/>
                              Especialidad: <span class="text-muted">{{ session()->get('spe') }}</span><br/>
-                             Fecha de Cita:<span class="text-muted">{{ session()->get('fecha') }}</span>
+                             Fecha de Cita: <span class="text-muted">{{ session()->get('fecha') }}</span>
 
                              </div>
                               </div>
@@ -319,9 +319,9 @@
                                 <div class="box-body">
 
                              Monto: <span class="text-muted">${{ session()->get('monto') }}</span><br/>  
-                             Transacción: <a href = "payment/Transactions/{{ session()->get('idcard') }}" class="btn text-muted">{{ session()->get('transaccion') }}</a><br/>
+                             Transacción: <a href = "payment/Transactions/{{ session()->get('idcard') }}" class="btn">{{ session()->get('transaccion') }}</a><br/>
                              Método de pago: <span class="text-muted">{{ session()->get('card') }}</span>
-                             <br/><br/><div align="pull-right"><a href = "https://site-boomedic.herokuapp.com/login" class="btn btn-secondary btn-flat btn-sm">Facture aquí</a></div>
+                             <br/><br/><div align="right"><a href = "https://site-boomedic.herokuapp.com/login" class="btn btn-secondary btn-flat btn-sm">Facture aquí</a></div>
                             </div>
                               </div>
                             </div>
