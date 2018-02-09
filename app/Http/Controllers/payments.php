@@ -251,17 +251,19 @@ class payments extends Controller
                     $medical->when          = $request->when;
             
            if ($medical->save()) {
-                
+            $doc = User::find($request->dr);     
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
             'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->amount.', para más información consulte su cartera de pago... ', 
             'success' => 'success',
-            'dr'      => $request->dr,
+            'dr'      => $doc->name,
+            'drphoto'      => $doc->profile_photo,
             'fecha'   => $request->when,
             'monto'   => $request->amount,
             'transaccion' => $statusCode[1],
             'card'        => $card->cardnumber,
-            'idcard'      => $card->id
+            'idcard'      => $card->id,
+            'spe'         => $request->spe
 
             );
 

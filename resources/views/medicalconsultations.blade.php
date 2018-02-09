@@ -583,6 +583,7 @@
                              <input type="hidden" name="when1" id="when1">
                              <input type="hidden" name="dr" id="dr">
                              <input type="hidden" name="idlabor" id="idlabor">
+                             <input type="hidden" name="spe" id="spe">
                         
 
                           <div class="btn-group pull-right">
@@ -1416,6 +1417,7 @@ function prevTab(elem) {
               document.getElementById('receiver').value = loc[i][3];
               document.getElementById('idlabor').value = loc[i][7];
               document.getElementById('dr').value = loc[i][8];
+              document.getElementById('spe').value = loc[i][2];
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
