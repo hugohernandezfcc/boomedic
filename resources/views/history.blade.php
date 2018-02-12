@@ -4,6 +4,13 @@
 
 @section('content_header')
 
+<style type="text/css">
+.content{
+    overflow-y: auto;
+    height: 600px;
+  }
+</style>
+
 @stop
 
 @section('content')
@@ -69,6 +76,9 @@
                 	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
+                </div>
+                <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
               </div>
             </li>
@@ -152,6 +162,9 @@
                 	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
+                </div>
+               <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
               </div>
             </li>
@@ -238,6 +251,9 @@
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
                 </div>
+                <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
+                </div>
               </div>
             </li>
             @endif
@@ -322,6 +338,9 @@
                 	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
+                </div>
+               <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
               </div>
             </li>
