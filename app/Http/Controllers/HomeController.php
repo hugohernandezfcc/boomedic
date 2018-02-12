@@ -52,7 +52,7 @@ class HomeController extends Controller
                  $cite = array();
                   $cites = DB::table('medical_appointments') ->where('user_doctor', '=', $labor->dr)->get();
                           foreach($cites  as $cit){
-                            array_push($cite, '"fech" :'.$cit->when);
+                            array_push($cite, $cit->when);
                           }
 
                 $workboard = DB::table('workboard') ->where('workboard.labInformation', '=', $labor->id)->get();
