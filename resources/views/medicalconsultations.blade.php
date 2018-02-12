@@ -1533,10 +1533,10 @@ function prevTab(elem) {
 
                        
                         if (e.date.getDay() == 0) {
-
+                          var Dom = $(Dom).not(fech).get();
                           for(var d = 0; d < Dom.length; d++){
-                              var difference = $(Dom).not(fech).get();
-                              console.log(difference); 
+                              
+                              console.log(Dom); 
                              var option = document.createElement("option");
                               option.text = Dom[d].slice(0,-3);
                               option.value = Dom[d].slice(0,-3);
@@ -1545,9 +1545,10 @@ function prevTab(elem) {
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                         if (e.date.getDay() == 1) {
+                          var Lun = $(Lun).not(fech).get();
                           for(var d = 0; d < Lun.length; d++){
-                              var difference = $(Lun).not(fech).get();
-                              console.log(difference); 
+
+                              console.log(Lun); 
                              var option = document.createElement("option");
                               option.text = Lun[d].slice(0,-3);
                               option.value = Lun[d].slice(0,-3);
@@ -1556,9 +1557,9 @@ function prevTab(elem) {
                           $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 2) {
+                        var Mar = $(Mar).not(fech).get();
                           for(var d = 0; d < Mar.length; d++){
-                              var difference = $(Mar).not(fech).get();
-                              console.log(difference); 
+                              console.log(Mar); 
                              var option = document.createElement("option");
                               option.text = Mar[d].slice(0,-3);
                               option.value = Mar[d].slice(0,-3);
@@ -1567,9 +1568,9 @@ function prevTab(elem) {
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 3) {
+                           var Mie = $(Mie).not(fech).get();
                           for(var d = 0; d < Mie.length; d++){
-                              var difference = $(Mie).not(fech).get();
-                              console.log(difference); 
+                              console.log(Mie); 
                              var option = document.createElement("option");
                               option.text = Mie[d].slice(0,-3);
                               option.value = Mie[d].slice(0,-3);
@@ -1578,9 +1579,9 @@ function prevTab(elem) {
                            $("#timesByDay option[value='asueto ']").remove();
                         } 
                        if (e.date.getDay() == 4) {
+                          var Jue = $(Jue).not(fech).get();
                           for(var d = 0; d < Jue.length; d++){
-                             var difference = $(Jue).not(fech).get();
-                              console.log(difference); 
+                              console.log(Jue); 
                              var option = document.createElement("option");
                               option.text = Jue[d].slice(0,-3);
                               option.value = Jue[d].slice(0,-3);
