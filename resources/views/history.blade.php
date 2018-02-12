@@ -65,6 +65,7 @@
           @foreach($arraynow as $items) 
             <!-- timeline time label -->
 
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -73,13 +74,14 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} 
+                  <div class="col-sm-12">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
-                <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
+
               </div>
             </li>
             @endif
@@ -151,6 +153,7 @@
             
           @foreach($array1 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -159,13 +162,14 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} 
+                  <div class="col-sm-12">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
-               <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
+
               </div>
             </li>
             @endif
@@ -239,7 +243,8 @@
           @foreach($array2 as $items) 
             <!-- timeline time label -->
 
-            @if($items['Type'] == 'Medical Appointments')
+
+          @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
 
@@ -247,13 +252,14 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }}<br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} 
+                  <div class="col-sm-12">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
-                <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
+
               </div>
             </li>
             @endif
@@ -338,10 +344,11 @@
                 	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                 	<b>Estado:</b> {{ $items['status']}} <br/>
                 	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <div class="col-sm-12">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
-               <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
+
               </div>
             </li>
             @endif
@@ -415,6 +422,7 @@
           @foreach($array4 as $items) 
             <!-- timeline time label -->
 
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -423,10 +431,14 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} 
+                  <div class="col-sm-12">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
+                </div>
+
               </div>
             </li>
             @endif
@@ -499,6 +511,7 @@
           @foreach($array5 as $items) 
             <!-- timeline time label -->
 
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -507,10 +520,14 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} 
+                  <div class="col-sm-12">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
+                </div>
+
               </div>
             </li>
             @endif
@@ -583,6 +600,7 @@
             
           @foreach($array6 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -591,10 +609,14 @@
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} 
+                  <div class="col-sm-12">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; "> 
                 </div>
+                </div>
+
               </div>
             </li>
             @endif
