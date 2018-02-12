@@ -1525,15 +1525,18 @@ function prevTab(elem) {
                          document.getElementById('when1').value = da2;
                          var fech = Array();
                      for(var f = 0; f < whencites.length; f++){
-                        if(whencites[f].slice(0,-9) == da2)  
+                        if(whencites[f].slice(0,-9) == da2){  
                           console.log(whencites[f].slice(11));  
-                          fech.push(whencites[f].slice(11));     
+                          fech.push(whencites[f].slice(11));  
+                          }   
                         }
-                      console.log(fech);  
+
+                       
                         if (e.date.getDay() == 0) {
 
                           for(var d = 0; d < Dom.length; d++){
-
+                              var difference = $(Dom).not(fech).get();
+                              console.log(difference); 
                              var option = document.createElement("option");
                               option.text = Dom[d].slice(0,-3);
                               option.value = Dom[d].slice(0,-3);
@@ -1543,7 +1546,8 @@ function prevTab(elem) {
                         }
                         if (e.date.getDay() == 1) {
                           for(var d = 0; d < Lun.length; d++){
-
+                              var difference = $(Lun).not(fech).get();
+                              console.log(difference); 
                              var option = document.createElement("option");
                               option.text = Lun[d].slice(0,-3);
                               option.value = Lun[d].slice(0,-3);
@@ -1553,6 +1557,8 @@ function prevTab(elem) {
                         }
                        if (e.date.getDay() == 2) {
                           for(var d = 0; d < Mar.length; d++){
+                              var difference = $(Mar).not(fech).get();
+                              console.log(difference); 
                              var option = document.createElement("option");
                               option.text = Mar[d].slice(0,-3);
                               option.value = Mar[d].slice(0,-3);
@@ -1562,7 +1568,8 @@ function prevTab(elem) {
                         }
                        if (e.date.getDay() == 3) {
                           for(var d = 0; d < Mie.length; d++){
-
+                              var difference = $(Mie).not(fech).get();
+                              console.log(difference); 
                              var option = document.createElement("option");
                               option.text = Mie[d].slice(0,-3);
                               option.value = Mie[d].slice(0,-3);
@@ -1572,6 +1579,8 @@ function prevTab(elem) {
                         } 
                        if (e.date.getDay() == 4) {
                           for(var d = 0; d < Jue.length; d++){
+                             var difference = $(Jue).not(fech).get();
+                              console.log(difference); 
                              var option = document.createElement("option");
                               option.text = Jue[d].slice(0,-3);
                               option.value = Jue[d].slice(0,-3);
@@ -1581,6 +1590,8 @@ function prevTab(elem) {
                         }                                               
                         if (e.date.getDay() == 5) {
                           for(var d = 0; d < Vie.length; d++){
+                             var difference = $(Vie).not(fech).get();
+                              console.log(difference); 
                              var option = document.createElement("option");
                               option.text = Vie[d].slice(0,-3);
                               option.value = Vie[d].slice(0,-3);
@@ -1590,6 +1601,8 @@ function prevTab(elem) {
                         }
                        if (e.date.getDay() == 6) {
                           for(var d = 0; d < Sab.length; d++){
+                              var difference = $(Sab).not(fech).get();
+                              console.log(difference); 
                              var option = document.createElement("option");
                               option.text = Sab[d].slice(0,-3);
                               option.value = Sab[d].slice(0,-3);
