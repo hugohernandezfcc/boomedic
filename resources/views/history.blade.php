@@ -91,18 +91,17 @@
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-              </div>
-              <div class="modal-body">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+              
                                 <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;"></a>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
             @endif
 
@@ -173,6 +172,7 @@
             
           @foreach($array1 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -190,18 +190,17 @@
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-              </div>
-              <div class="modal-body">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+              
                                 <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;"></a>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
             @endif
             
@@ -273,6 +272,7 @@
             
           @foreach($array2 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -289,19 +289,18 @@
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-              </div>
-              <div class="modal-body">
-                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=18&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"> 
+          <div class="modal-dialog modal-sm">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+              
+                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;"></a>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
             @endif
 
@@ -391,18 +390,17 @@
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-              </div>
-              <div class="modal-body">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+              
                                 <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;"></a>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
             @endif
 
@@ -474,6 +472,7 @@
             
           @foreach($array4 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -491,18 +490,17 @@
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-              </div>
-              <div class="modal-body">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+              
                                 <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;"></a>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
             @endif
 
@@ -591,18 +589,17 @@
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-              </div>
-              <div class="modal-body">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+              
                                 <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;"></a>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
             @endif
 
@@ -692,18 +689,17 @@
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-              </div>
-              <div class="modal-body">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+              
                                 <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;"></a>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
             @endif
             
