@@ -1304,13 +1304,13 @@ function prevTab(elem) {
         if(keyWordValue == ''){
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9]]);
             }
           }
         }else{
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue && datos[i][3] == keyWordValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9]]);
             }
           }          
         }
@@ -1321,7 +1321,7 @@ function prevTab(elem) {
           console.log('Nombre:: '+res[i][3]);
           if(metros < rangeValue){
             //loc[latitud, longitud, especialidad, nombre, hospital, dirección, workid, iddr]
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8]]);
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9]]);
           }
         }
         console.log(res);
@@ -1348,7 +1348,7 @@ function prevTab(elem) {
           console.log('KEYWORD SEARCH VÁLIDO:: '+keyWordValue);
           for(var i = 0; i < generalM.length; i++) {
             if(generalM[i][2] == keyWordValue){
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4],generalM[i][5],generalM[i][6],generalM[i][7]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4],generalM[i][5],generalM[i][6],generalM[i][7],generalM[i][8]]);
             }
           }
           for(var i = 0; i < res.length; i++) {
@@ -1358,7 +1358,7 @@ function prevTab(elem) {
             console.log('Nombre:: '+res[i][3]);
             if(metros < rangeValue){
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio, intervalos]
-               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8]]);
+               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9]]);
              }
           }
           if(loc.length <= 0){
@@ -1379,12 +1379,12 @@ function prevTab(elem) {
             if(metros < rangeValue){
               console.log('Nombre:: '+generalM[i][2]);
               console.log(metros +'<'+ rangeValue);
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4], generalM[i][5], generalM[i][6], generalM[i][7]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4], generalM[i][5], generalM[i][6], generalM[i][7], generalM[i][8]]);
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
             }
           }
           for(var i = 0; i < res.length; i++) {
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8]]);
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9]]);
           }
           if(loc.length <= 0){
             console.log('NO ENCONTRO MÉDICO');
@@ -1442,6 +1442,7 @@ function prevTab(elem) {
               document.getElementById('idlabor').value = loc[i][7];
               document.getElementById('dr').value = loc[i][8];
               document.getElementById('spe').value = loc[i][2];
+              var whencites = loc[i][9];
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
@@ -1517,7 +1518,16 @@ function prevTab(elem) {
                   }
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es' }).on('changeDate',function(e){
                      $('#timesByDay').children().remove();
+                         document.getElementById("onestep").disabled = false;
+                         var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
+                         var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
+                         document.getElementById("enddate").innerHTML = "Fecha: " + da;
+                         document.getElementById('when1').value = da2;
+                 for(var f = 0; f < whencites.length; f++){  
+                  console.log(whencites);       
+                }
                         if (e.date.getDay() == 0) {
+                          whencites
                           for(var d = 0; d < Dom.length; d++){
 
                              var option = document.createElement("option");
@@ -1585,11 +1595,7 @@ function prevTab(elem) {
                         }    
                         $('#dateSelectedForCite').val = e.date.toISOString();                  
                          console.log(e.date.toISOString());
-                         document.getElementById("onestep").disabled = false;
-                         var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
-                         var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
-                         document.getElementById("enddate").innerHTML = "Fecha: " + da;
-                         document.getElementById('when1').value = da2;
+
                       });
              }
           })(marker, i));

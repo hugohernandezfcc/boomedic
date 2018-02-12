@@ -49,15 +49,24 @@ class HomeController extends Controller
 
              foreach($join as $labor){
                  $workArray = array();
+                 $cite = array();
+                  $cites = DB::table('medical_appointments') ->where('user_doctor', '=', $labor->dr)->get();
+                          foreach($cites  as $cit){
+                            array_push($cite, '"fech" :'.$cit->when);
+                          }
+
                 $workboard = DB::table('workboard') ->where('workboard.labInformation', '=', $labor->id)->get();
                           foreach($workboard  as $work){
                             array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
                           }
+
+
+
                     if($labor->specialty == 'Médico General'){
-                        $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'"]';
+                        $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).']';
                     }
                     else{
-                    $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'"]';
+                    $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).']';
 
                     $sp[] = '["'.$labor->specialty.'"]';
                     $mg = '0';
