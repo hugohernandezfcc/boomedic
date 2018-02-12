@@ -1533,31 +1533,29 @@ function prevTab(elem) {
 
                        
                         if (e.date.getDay() == 0) {
-                          var Dom = $(Dom).not(fech).get();
-                          for(var d = 0; d < Dom.length; d++){
-                              
-                              console.log(Dom); 
+                          var Dom1 = $(Dom).not(fech).get();                              
+                              console.log(Dom1); console.log(Dom); 
+                          for(var d = 0; d < Dom1.length; d++){
                              var option = document.createElement("option");
-                              option.text = Dom[d].slice(0,-3);
-                              option.value = Dom[d].slice(0,-3);
+                              option.text = Dom1[d].slice(0,-3);
+                              option.value = Dom1[d].slice(0,-3);
                               x.add(option);
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                         if (e.date.getDay() == 1) {
-                          var Lun = $(Lun).not(fech).get();
-                          for(var d = 0; d < Lun.length; d++){
-
-                              console.log(Lun); 
-                             var option = document.createElement("option");
-                              option.text = Lun[d].slice(0,-3);
-                              option.value = Lun[d].slice(0,-3);
+                          var Lun1 = $(Lun).not(fech).get();
+                          console.log(Lun1); console.log(Lun);
+                          for(var d = 0; d < Lun1.length; d++){
+                              var option = document.createElement("option");
+                              option.text = Lun1[d].slice(0,-3);
+                              option.value = Lun1[d].slice(0,-3);
                               x.add(option);
                           }
                           $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 2) {
-                        var Mar1 = $(Mar).not(fech).get();
+                          var Mar1 = $(Mar).not(fech).get();
                           console.log(Mar1); console.log(Mar); 
                           for(var d = 0; d < Mar1.length; d++){
                              var option = document.createElement("option");
@@ -1590,23 +1588,23 @@ function prevTab(elem) {
                            $("#timesByDay option[value='asueto ']").remove();
                         }                                               
                         if (e.date.getDay() == 5) {
-                          for(var d = 0; d < Vie.length; d++){
-                             var difference = $(Vie).not(fech).get();
-                              console.log(difference); 
+                              var Vie1 = $(Vie).not(fech).get();
+                              console.log(Vie1); console.log(Vie); 
+                          for(var d = 0; d < Vie1.length; d++){
                              var option = document.createElement("option");
-                              option.text = Vie[d].slice(0,-3);
-                              option.value = Vie[d].slice(0,-3);
+                              option.text = Vie1[d].slice(0,-3);
+                              option.value = Vie1[d].slice(0,-3);
                               x.add(option);
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 6) {
-                          for(var d = 0; d < Sab.length; d++){
-                              var difference = $(Sab).not(fech).get();
-                              console.log(difference); 
+                              var Sab1 = $(Sab).not(fech).get();
+                              console.log(Sab1); console.log(Sab); 
+                          for(var d = 0; d < Sab1.length; d++){
                              var option = document.createElement("option");
-                              option.text = Sab[d].slice(0,-3);
-                              option.value = Sab[d].slice(0,-3);
+                              option.text = Sab1[d].slice(0,-3);
+                              option.value = Sab1[d].slice(0,-3);
                               x.add(option);
                           }
                            $("#timesByDay option[value='asueto ']").remove();
