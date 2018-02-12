@@ -1525,8 +1525,8 @@ function prevTab(elem) {
                          document.getElementById('when1').value = da2;
                 
                  for(var f = 0; f < whencites.length; f++){
-                if(whencites[f].slice(0,-8))  
-                  console.log(whencites[f]);       
+                if(whencites[f].slice(0,-8) ==  da2)  
+                  console.log(whencites[f].slice(11));       
                 }
                         if (e.date.getDay() == 0) {
                           whencites
