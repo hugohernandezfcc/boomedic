@@ -1557,34 +1557,34 @@ function prevTab(elem) {
                           $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 2) {
-                        var Mar = $(Mar).not(fech).get();
-                          for(var d = 0; d < Mar.length; d++){
-                              console.log(Mar); 
+                        var Mar1 = $(Mar).not(fech).get();
+                          console.log(Mar1); console.log(Mar); 
+                          for(var d = 0; d < Mar1.length; d++){
                              var option = document.createElement("option");
-                              option.text = Mar[d].slice(0,-3);
-                              option.value = Mar[d].slice(0,-3);
+                              option.text = Mar1[d].slice(0,-3);
+                              option.value = Mar1[d].slice(0,-3);
                               x.add(option);
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 3) {
-                           var Mie = $(Mie).not(fech).get();
-                          for(var d = 0; d < Mie.length; d++){
-                              console.log(Mie); 
+                           var Mie1 = $(Mie).not(fech).get();
+                          console.log(Mie1); console.log(Mie); 
+                          for(var d = 0; d < Mie1.length; d++){
                              var option = document.createElement("option");
-                              option.text = Mie[d].slice(0,-3);
-                              option.value = Mie[d].slice(0,-3);
+                              option.text = Mie1[d].slice(0,-3);
+                              option.value = Mie1[d].slice(0,-3);
                               x.add(option);
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         } 
                        if (e.date.getDay() == 4) {
-                          var Jue = $(Jue).not(fech).get();
-                          for(var d = 0; d < Jue.length; d++){
-                              console.log(Jue); 
+                          var Jue1 = $(Jue).not(fech).get();
+                          console.log(Jue1); console.log(Jue); 
+                          for(var d = 0; d < Jue1.length; d++){
                              var option = document.createElement("option");
-                              option.text = Jue[d].slice(0,-3);
-                              option.value = Jue[d].slice(0,-3);
+                              option.text = Jue1[d].slice(0,-3);
+                              option.value = Jue1[d].slice(0,-3);
                               x.add(option);
                           }
                            $("#timesByDay option[value='asueto ']").remove();
