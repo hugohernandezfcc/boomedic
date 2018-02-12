@@ -90,7 +90,7 @@
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog">
           <div class="modal-content">  
             <div class="modal-body">
                           <button type="button" class="close" data-dismiss="modal hide" aria-label="Close">
@@ -189,7 +189,7 @@
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog">
           <div class="modal-content">  
             <div class="modal-body">
                           <button type="button" class="close" data-dismiss="modal hide" aria-label="Close">
@@ -289,7 +289,7 @@
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog">
           <div class="modal-content">  
             <div class="modal-body">
                           <button type="button" class="close" data-dismiss="modal hide" aria-label="Close">
@@ -389,7 +389,7 @@
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog">
           <div class="modal-content">  
             <div class="modal-body">
                           <button type="button" class="close" data-dismiss="modal hide" aria-label="Close">
@@ -489,7 +489,7 @@
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog">
           <div class="modal-content">  
             <div class="modal-body">
                           <button type="button" class="close" data-dismiss="modal hide" aria-label="Close">
@@ -588,7 +588,7 @@
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog">
           <div class="modal-content">  
             <div class="modal-body">
                           <button type="button" class="close" data-dismiss="modal hide" aria-label="Close">
@@ -688,7 +688,7 @@
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog">
           <div class="modal-content">  
             <div class="modal-body">
                           <button type="button" class="close" data-dismiss="modal hide" aria-label="Close">
