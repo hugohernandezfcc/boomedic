@@ -1523,13 +1523,15 @@ function prevTab(elem) {
                          var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
                          document.getElementById('when1').value = da2;
-                
-                 for(var f = 0; f < whencites.length; f++){
-                if(whencites[f].slice(0,-9) == da2)  
-                  console.log(whencites[f].slice(0,-9));       
-                }
+                         var fech = Array();
+                     for(var f = 0; f < whencites.length; f++){
+                        if(whencites[f].slice(0,-9) == da2)  
+                          console.log(whencites[f].slice(11));  
+                          fech.push(whencites[f].slice(11));     
+                        }
+                      console.log(fech);  
                         if (e.date.getDay() == 0) {
-                          whencites
+
                           for(var d = 0; d < Dom.length; d++){
 
                              var option = document.createElement("option");
