@@ -1523,8 +1523,10 @@ function prevTab(elem) {
                          var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
                          document.getElementById('when1').value = da2;
-                 for(var f = 0; f < whencites.length; f++){  
-                  console.log(whencites);       
+                
+                 for(var f = 0; f < whencites.length; f++){
+                 if(whencites->fech.slice(0,-8))  
+                  console.log(whencites->fech);       
                 }
                         if (e.date.getDay() == 0) {
                           whencites
