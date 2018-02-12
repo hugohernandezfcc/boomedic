@@ -86,7 +86,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45pX "> 
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
                 </div>
               </div>
             </li>
@@ -159,6 +159,7 @@
             
           @foreach($array1 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -170,7 +171,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45pX "> 
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
                 </div>
               </div>
             </li>
@@ -244,6 +245,7 @@
             
           @foreach($array2 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -255,7 +257,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45pX "> 
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
                 </div>
               </div>
             </li>
@@ -329,6 +331,7 @@
             
           @foreach($array3 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -340,7 +343,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45pX "> 
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
                 </div>
               </div>
             </li>
@@ -414,6 +417,7 @@
             
           @foreach($array4 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -425,12 +429,12 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45pX "> 
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
                 </div>
               </div>
             </li>
             @endif
-            
+
             @if($items['Type'] == 'Support Ticket')
             <li class="support">
               <i class="fa fa-wrench bg-black"></i>
@@ -498,6 +502,7 @@
             
           @foreach($array5 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -509,7 +514,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45pX "> 
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
                 </div>
               </div>
             </li>
@@ -584,6 +589,7 @@
           @foreach($array6 as $items) 
             <!-- timeline time label -->
 
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -595,7 +601,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x60&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45pX "> 
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
                 </div>
               </div>
             </li>
