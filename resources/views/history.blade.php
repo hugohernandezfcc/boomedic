@@ -89,7 +89,7 @@
                 </div>
               </div>
             </li>
-            <div class="modal fade in" id="modalmap" style="display: block;">
+            <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -97,7 +97,7 @@
                   <span aria-hidden="true">×</span></button>
               </div>
               <div class="modal-body">
-                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=19&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
+                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=18&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"> 
               </div>
             </div>
             <!-- /.modal-content -->
@@ -189,7 +189,7 @@
                 </div>
               </div>
             </li>
-            <div class="modal fade in" id="modalmap" style="display: block;">
+            <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -197,7 +197,7 @@
                   <span aria-hidden="true">×</span></button>
               </div>
               <div class="modal-body">
-                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=19&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
+                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=18&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"> 
               </div>
             </div>
             <!-- /.modal-content -->
@@ -289,7 +289,7 @@
                 </div>
               </div>
             </li>
-            <div class="modal fade in" id="modalmap" style="display: block;">
+            <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -297,7 +297,7 @@
                   <span aria-hidden="true">×</span></button>
               </div>
               <div class="modal-body">
-                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=19&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
+                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=18&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"> 
               </div>
             </div>
             <!-- /.modal-content -->
@@ -390,7 +390,7 @@
                 </div>
               </div>
             </li>
-            <div class="modal fade in" id="modalmap" style="display: block;">
+            <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -398,7 +398,7 @@
                   <span aria-hidden="true">×</span></button>
               </div>
               <div class="modal-body">
-                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=19&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
+                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=18&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"> 
               </div>
             </div>
             <!-- /.modal-content -->
@@ -475,7 +475,6 @@
             
           @foreach($array4 as $items) 
             <!-- timeline time label -->
-
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -491,7 +490,7 @@
                 </div>
               </div>
             </li>
-            <div class="modal fade in" id="modalmap" style="display: block;">
+            <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -499,7 +498,7 @@
                   <span aria-hidden="true">×</span></button>
               </div>
               <div class="modal-body">
-                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=19&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
+                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=18&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"> 
               </div>
             </div>
             <!-- /.modal-content -->
@@ -591,7 +590,7 @@
                 </div>
               </div>
             </li>
-            <div class="modal fade in" id="modalmap" style="display: block;">
+            <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -599,7 +598,7 @@
                   <span aria-hidden="true">×</span></button>
               </div>
               <div class="modal-body">
-                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=19&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
+                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=18&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"> 
               </div>
             </div>
             <!-- /.modal-content -->
@@ -693,7 +692,7 @@
                 </div>
               </div>
             </li>
-            <div class="modal fade in" id="modalmap" style="display: block;">
+            <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -701,7 +700,7 @@
                   <span aria-hidden="true">×</span></button>
               </div>
               <div class="modal-body">
-                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=19&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
+                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=18&amp;size=300x300&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"> 
               </div>
             </div>
             <!-- /.modal-content -->
