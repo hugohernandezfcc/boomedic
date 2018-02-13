@@ -172,61 +172,8 @@
 
     </div>
     <!-- ./wrapper -->
-    @if(!$mode)
-    &nbsp;
-    @elseif($mode == 'labor')
 
-    <footer class="main-footer">
-  
-            @if($labor-&gt;isEmpty())
-                         <span class="text-black">No hay ningún consultorio asociado a su cuenta.</span>
-            @else
 
-                <div class="box-group" id="accordion">
-                <div class="panel box box-default" style="border-top-color: gray;">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black collapsed" style="font-size: 12px;">
-                 <div class="box-header with-border"> 
-                       <div align="left"><i class="fa fa-chevron-down text-muted"></i> <b>Consultorios agregados recientemente</b></div>
-                     </div> 
-                    </a>
-                  <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                    <div class="box-body">
-                    @foreach($labor-&gt;sortByDesc('created_at') as $labor) 
-                    
-                                @if($loop-&gt;iteration &lt; 3)
-                                <div class="form-group">
-                                    <div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
-                                      <div class="info-box sm bg-gray">
-                                        <a href="{{ url('workboardDr/index') }}/{{$labor-&gt;id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar"></i></span></a>
-                                        <div class="info-box-content sm">
-                                          <b> {{ $labor-&gt;workplace}}</b>
-                                         <span class="text-black">{{ $labor-&gt;country }}, {{ $labor-&gt;state }}, {{ $labor-&gt;colony }}, {{ $labor-&gt;delegation }}, {{ $labor-&gt;street }} {{ $labor-&gt;streetNumber }}. CP: {{ $labor-&gt;postalcode }}</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-
-                                    <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor-&gt;latitude }},{{ $labor-&gt;longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor-&gt;latitude }},{{ $labor-&gt;longitude }}&amp;zoom=15&amp;size=350x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%; height:45px;">    
-                                    </div>
-                                        
-                               @endif   
-                               @if($loop-&gt;iteration &gt; 2)
-                               <div class="col-sm-12" style="text-align: right;" align="right">
-                                <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="text-muted">
-                               Ver todos... <i class="fa fa-arrow-right"></i>
-                               </a>
-                               </div>
-                               </div>
-                               @break
-                               @endif           
-                    @endforeach
-                </div>   
-            </div>
-                    </div>
-                  </div>
-        @endif
-    </footer>
-    @endif
 
 @stop
 
