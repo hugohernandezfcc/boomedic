@@ -36,7 +36,7 @@
             <div class="form-group">
               <div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
                     <div class="info-box bg-gray">
-                    <span class="info-box-icon bg-black"><i class="fa fa-calendar"></i></span>
+                    <span class="info-box-icon bg-black"><i class="fa fa-clipboard"></i></span>
                       <div class="info-box-content">
                         <b>{{ $app->workplace}}</b><br/>
                        <span class="text-black">{{ $app->country }}, {{ $app->state }}, {{ $app->colony }}, {{ $app->delegation }}, {{ $app->street }} {{ $app->streetNumber }}. CP: {{ $app->postalcode }}</span>
