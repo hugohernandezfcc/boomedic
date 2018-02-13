@@ -263,7 +263,7 @@
                                  @endif 
                                                          @if($loop->iteration > 2)
                                                          <div class="col-sm-12" style="text-align: right;">
-                                                          <a href="{{ url('/medicalconsultations') }}" style="font-size: 12px;">
+                                                          <a href="{{ url('/appointments') }}" style="font-size: 12px;">
                                                          Más detalles...
                                                          </a>
                                                          </div>
