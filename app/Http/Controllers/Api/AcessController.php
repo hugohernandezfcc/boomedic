@@ -51,35 +51,11 @@ class AcessController extends Controller
 		curl_close($curl);
 
 		if ($err) {
-		    return $err;
+		    return response()->json($err);
 		} else {
-		    return response()->json($response);
+		    //return response()->json($response);
+		    return response()->json(json_encode(json_decode($response)));
 		}
-
-
-
-
-    	/*$url = url('/oauth/token');
-    	$headers = ['Accept' => 'application/json'];
-    	$http = new Client;
-
-    	if($request->has('username') && $request->has('password')){
-    		$username = $request->username;
-    		$password = $request->password;
-    	}
-
-    	$response = $http->post($url, [
-        'headers' => $headers,
-        'form_params' => [
-            'grant_type' => $password,
-            'client_id' => $clientID,
-            'client_secret' => $clientSecret,
-            'username' => $username,
-            'password' => $password
-        	],
-    	]);
-
-    	return json_decode((string)$response->getBody(), true);*/
 
     }
 }
