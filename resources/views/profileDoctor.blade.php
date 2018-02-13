@@ -902,7 +902,7 @@
 				 </div>
 				 				</form>	
 
-
+		</div>	
 				
 
 				<!-- form for map -->
@@ -1035,17 +1035,6 @@
 		  
 		</form>
 			</div>
-		</div>	
-
-
-
-
-
-
-				
-
-
-
 				
     		<script type="text/javascript">
     	
@@ -1368,6 +1357,8 @@
       }
 
 		    </script> 
+		</div>
+
 		    			<footer class="main-footer">
   
 			@if($labor->isEmpty())
