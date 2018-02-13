@@ -47,16 +47,16 @@ class AcessController extends Controller
 
 		$response = curl_exec($curl);
 		$err = curl_error($curl);
-		$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
 
 		curl_close($curl);
-		$body = substr($response, $header_size);
 
 		if ($err) {
 		    return response()->json($err);
 		} else {
-		    return response()->json($body);
-		    //return response()->json(json_decode(json_encode($response)));
+		    //return response()->json($response);
+		    $json = json_decode($response);
+		    return response()->json($json);
+		    //return response()->json(json_encode(json_decode($response)));
 		}
 
     }
