@@ -1393,7 +1393,6 @@
 					</div>   	
 			@endif
 @stop
-@section('footer')
 @if($mode == 'labor')
 		    			<footer class="main-footer">
   
@@ -1446,4 +1445,3 @@
         @endif
            </footer>  
 @endif
-@stop           
