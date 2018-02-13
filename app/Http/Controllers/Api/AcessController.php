@@ -53,13 +53,7 @@ class AcessController extends Controller
 		if ($err) {
 		    return $err;
 		} else {
-			$respuesta = [
-				'token_type' => $response->token_type,
-				'expires_in' => $response->expires_in,
-				'access_token' => $response->access_token,
-				'refresh_token' => $response->refresh_token,
-			];
-		    return json_encode($respuesta, JSON_PRETTY_PRINT);
+		    echo $response;
 		}
 
 
