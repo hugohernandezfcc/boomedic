@@ -1354,7 +1354,8 @@
       }
 
 		    </script> 
-			    
+
+				    @endif
 
 			@if($mode == 'viewlabor')
 					<div class="box">
@@ -1391,10 +1392,9 @@
 					</div>
 					</div>   	
 			@endif
-
 @stop
 @section('footer')
- @if($mode == 'labor')
+@if($mode == 'labor')
 		    			<footer class="main-footer">
   
 			@if($labor->isEmpty())
@@ -1444,6 +1444,6 @@
                     </div>
                   </div>
         @endif
-           </footer>  	
-				    @endif
-@stop
+           </footer>  
+@endif
+@stop           

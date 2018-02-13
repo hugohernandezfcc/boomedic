@@ -7,7 +7,7 @@
     @yield('css')
 @stop
 
-@section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
+@section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' fixed sidebar-mini sidebar-mini-expand-feature' . (config('adminlte.layout') ? [
     'boxed' => 'layout-boxed',
     'fixed' => 'fixed',
     'top-nav' => 'layout-top-nav'
