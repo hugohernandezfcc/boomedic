@@ -32,6 +32,7 @@
 			.dropzone .dz-message {
 			    margin: 1em 0 !important;
 			}
+			
     </style>
 @stop
 
@@ -580,7 +581,7 @@
 									          <!-- /.info-box -->
 							</div>
 							<div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; ">	
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height:45px;">	
 							</div>
 							</div>		
 							@endforeach
@@ -1066,7 +1067,7 @@
 					        </div>
 					        <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
 
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=350x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%; ">	
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=350x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%; height:45px;">	
 							</div>
 								
 					   @endif	
@@ -1116,13 +1117,13 @@
 
 				$("#openform").click(
 				function(event) {
-					document.getElementById("boxlabor").style.paddingBottom = "160px";
+					document.getElementById("boxlabor").style.paddingBottom = "180px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form1").style.display = "block";
 				})
 				$("#openform2").click(
 				function(event) {
-					document.getElementById("boxlabor").style.paddingBottom = "190px";
+					document.getElementById("boxlabor").style.paddingBottom = "220px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";		  
 				  setTimeout(function(){ 
