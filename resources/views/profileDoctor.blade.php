@@ -1066,13 +1066,11 @@
 
 				$("#openform").click(
 				function(event) {
-					document.getElementById("boxlabor").style.paddingBottom = "180px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form1").style.display = "block";
 				})
 				$("#openform2").click(
 				function(event) {
-					document.getElementById("boxlabor").style.paddingBottom = "220px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";		  
 				  setTimeout(function(){ 
@@ -1086,7 +1084,6 @@
 				   $("#buttonOpen").show();
 				   document.getElementById("form1").style.display = "none";
 				   document.getElementById("form2").style.display = "none";
-				   document.getElementById("boxlabor").style.paddingBottom = "";
 				   initMap();
 				 
 				})
@@ -1358,7 +1355,7 @@
 
 		    </script> 
 		</div>
-
+@stop
 		    			<footer class="main-footer">
   
 			@if($labor->isEmpty())
