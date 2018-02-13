@@ -41,7 +41,7 @@ Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsul
 
 Route::post('/medicalconsultations/recent', 'HomeController@recent')->name('medicalconsultations/recent');
 Route::get('/medicalconsultations/showrecent', 'HomeController@showrecent')->name('medicalconsultations/showrecent');
-
+Route::get('/appointments', 'HomeController@appointments')->name('/appointments');
 
 Route::get('/homemedical', function () {
     return view('homemedical');

@@ -168,5 +168,21 @@ class HomeController extends Controller
         return response()->json($user->recent_search);
     }
 
+
+     /**
+     * Method responsable of list of recent
+     */
+    public function appointments()
+    {
+         $user = User::find(Auth::id());
+                 return view('appointments', [
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
+            ]
+        );
+    }
 }
 
