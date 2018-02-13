@@ -14,7 +14,7 @@ class AcessController extends Controller
     	$clientID = '2';
     	$clientSecret = 'UKCNKCjp0Joy5zmuNW0cTbtPGbCQ1IPoid9SIgjt';
     	$url = url('/');
-    	$url.'/oauth/token'
+    	$url.'/oauth/token';
 
     	if($request->has('username') && $request->has('password')){
     		$username = $request->username;
