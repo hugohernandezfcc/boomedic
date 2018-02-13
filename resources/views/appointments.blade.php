@@ -46,7 +46,7 @@
                     </div>
                   </div>
                   <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-              <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $app->latitude }},{{ $app->longitude }}&amp;zoom=15&amp;size=400x90&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
+              <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $app->latitude }},{{ $app->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $app->latitude }},{{ $app->longitude }}&amp;zoom=15&amp;size=400x90&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
               </div></div>  <br/>    
       
       @endforeach
