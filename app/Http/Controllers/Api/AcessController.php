@@ -53,7 +53,7 @@ class AcessController extends Controller
 		if ($err) {
 		    return $err;
 		} else {
-		    return json_decode((String)$response);
+		    return json_encode($response, JSON_PRETTY_PRINT);
 		}
 
 
