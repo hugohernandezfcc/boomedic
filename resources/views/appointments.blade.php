@@ -50,14 +50,12 @@
               </div></div>  <br/>    
       
       @endforeach
-      <div class="form-group">
-      <div class="col-sm-6">&nbsp;</div>
-                <div class="col-sm-6 pull-right">
+                <br/>
+                <div class="pull-right">
                     <a href="{{ url('/medicalconsultations') }}" class="btn btn-secondary btn-block btn-flat">
                             Volver al inicio
                         </a>
                       </div>
-                    </div>
     </div>
 
  	
