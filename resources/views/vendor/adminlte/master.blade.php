@@ -144,10 +144,20 @@
                   line-height: 45px;        
               }
 
-         .info-box-icon-2 {
-        font-size: 12px !important;
-        background: rgba(0,0,0,0) !important;
-        line-height: 0 !important;
+
+.info-box-icon-2 {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 2px;
+    display: block;
+    float: left;
+    height: 90px;
+    width: 90px;
+    text-align: center;
+    font-size: 12px;
+    background: rgba(0,0,0,0);
+    line-height: 0;
 }
 
     </style>
