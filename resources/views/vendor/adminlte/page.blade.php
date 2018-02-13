@@ -94,12 +94,10 @@
 
                                       </small>
                                     </p>
-                                  </li>
-                                  <!-- Menu Footer-->
-                                  <li class="user-footer bg-darken-4">
+
                                     <div class="pull-center">
                                  @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
-                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" class="btn btn-secondary btn-block btn-flat">
+                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" class="btn btn-default btn-block btn-flat">
                                     <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
                             @else
