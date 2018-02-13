@@ -13,14 +13,7 @@
     'top-nav' => 'layout-top-nav'
 ][config('adminlte.layout')] : '') . (config('adminlte.collapse_sidebar') ? ' sidebar-collapse ' : ''))
 
-<style type="text/css">
-    @media (max-width: 991px){
 
-   .main-header .navbar-custom-menu a, .main-header .navbar-right a {
-    background: white !important; 
-    }
-}
-</style>
 @section('body')
     <div class="wrapper">
 
