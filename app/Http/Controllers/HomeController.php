@@ -172,7 +172,7 @@ class HomeController extends Controller
      /**
      * Method responsable of list of recent
      */
-    public function appointments()
+    public function appointments(){
 
          $user = User::find(Auth::id());
          $appointments = DB::table('medical_appointments')
