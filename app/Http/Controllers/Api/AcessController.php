@@ -54,7 +54,7 @@ class AcessController extends Controller
 		    return response()->json($err);
 		} else {
 		    //return response()->json($response);
-		    return response()->json(json_encode(json_decode($response)));
+		    return response()->json(json_decode(json_encode($response)));
 		}
 
     }
