@@ -1035,11 +1035,6 @@
 		  
 		</form>
 			</div>
-
-
-
-
-
 			<footer class="main-footer">
   
 			@if($labor->isEmpty())
@@ -1090,6 +1085,11 @@
                   </div>
         @endif
            </footer> 
+
+
+
+
+
 				
 
 
