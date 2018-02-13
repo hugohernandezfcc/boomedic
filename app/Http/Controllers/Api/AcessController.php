@@ -32,7 +32,7 @@ class AcessController extends Controller
     	$curl = curl_init();
 
     	curl_setopt_array($curl, array(
-	    CURLOPT_URL => "/oauth/token",
+	    CURLOPT_URL => "http://sbx03.herokuapp.com/oauth/token",
 	    CURLOPT_RETURNTRANSFER => true,
 	    CURLOPT_MAXREDIRS => 10,
 	    CURLOPT_TIMEOUT => 60000,
