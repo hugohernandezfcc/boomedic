@@ -13,6 +13,14 @@
     'top-nav' => 'layout-top-nav'
 ][config('adminlte.layout')] : '') . (config('adminlte.collapse_sidebar') ? ' sidebar-collapse ' : ''))
 
+<style type="text/css">
+    @media (max-width: 991px){
+
+   .main-header .navbar-custom-menu a, .main-header .navbar-right a {
+    background: white !important; 
+    }
+}
+</style>
 @section('body')
     <div class="wrapper">
 
@@ -68,7 +76,7 @@
                                 </a>
                                 <ul class="dropdown-menu bg-darken-4">
                                   <!-- User image -->
-                                  <li class="user-header bg-darken-4">
+                                  <li class="user-header" style="background-color: #222;">
                                     @if($photo == '')
                                         <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image">
                                     @else
@@ -96,7 +104,7 @@
                                     </p>
                                   </li>
                                   <!-- Menu Footer-->
-                                  <li class="user-body bg-darken-4">
+                                  <li class="user-footer" style="background-color: #222;">
                                     <div class="pull-center">
                                  @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                 <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" class="btn btn-default btn-block btn-flat">
