@@ -32,16 +32,16 @@ class AcessController extends Controller
     	$curl = curl_init();
 
     	curl_setopt_array($curl, array(
-	    CURLOPT_URL => $url,
+	    CURLOPT_URL => "/oauth/token",
 	    CURLOPT_RETURNTRANSFER => true,
-	    CURLOPT_ENCODING => "",
 	    CURLOPT_MAXREDIRS => 10,
 	    CURLOPT_TIMEOUT => 60000,
-	    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	    CURLOPT_CUSTOMREQUEST => "POST",
+	    CURLOPT_POST = 1,
 	    CURLOPT_POSTFIELDS => json_encode($data, JSON_PRETTY_PRINT),
 	    CURLOPT_HTTPHEADER => array(
-	        "content-type: application/json",
+	        "Content-type: application/json",
+	        "Accept: application/json",
 	    	),
 		));
 
