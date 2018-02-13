@@ -146,6 +146,7 @@
 
 
 .info-box-icon-2 {
+    margin-top: 6px;
     border-top-left-radius: 2px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -157,7 +158,7 @@
     text-align: center;
     font-size: 12px;
     background: rgba(0,0,0,0);
-    line-height: 0;
+    line-height: 1.2;
 }
 
     </style>
