@@ -173,14 +173,23 @@ class HomeController extends Controller
      * Method responsable of list of recent
      */
     public function appointments()
-    {
+
          $user = User::find(Auth::id());
+         $appointments = DB::table('medical_appointments')
+           ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
+           ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+           ->where('medical_appointments.user', '=', Auth::id())
+            ->where('medical_appointments.when', '>', Carbon::now())
+           ->select('medical_appointments.id','medical_appointments.created_at','users.name','medical_appointments.when', 'medical_appointments.status', 'labor_information.*')->get();
+
+
                  return view('appointments', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
+                'app'       => $appointments
             ]
         );
     }
