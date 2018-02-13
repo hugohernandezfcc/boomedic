@@ -115,14 +115,6 @@
         }
 
 
-          .footer {
-          position:fixed;
-          bottom:0;
-          padding-right: 15px;
-          min-height: 1px;
-          box-sizing: border-box;
-          z-index: 100;
-          }
           .info-box.sm {
               min-height: 45px;
               font-size: 2vmin;

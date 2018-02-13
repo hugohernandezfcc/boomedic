@@ -1040,15 +1040,12 @@
 
 
 
-			<div class="footer">
+			<footer class="main-footer">
+  
 			@if($labor->isEmpty())
-			<div class="box-footer">
 						 <span class="text-black">No hay ningún consultorio asociado a su cuenta.</span>
-			</div>
-			
 			@else
-			
-			<div class="box-footer">
+
 				<div class="box-group" id="accordion">
                 <div class="panel box box-default" style="border-top-color: gray;">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
@@ -1091,9 +1088,8 @@
 			</div>
                     </div>
                   </div>
-                </div>
         @endif
-            </div>    
+           </footer> 
 				
 
 
