@@ -39,7 +39,7 @@ class AcessController extends Controller
 	    CURLOPT_TIMEOUT => 60000,
 	    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	    CURLOPT_CUSTOMREQUEST => "POST",
-	    CURLOPT_POSTFIELDS => json_encode($data),
+	    CURLOPT_POSTFIELDS => json_encode($data, JSON_PRETTY_PRINT),
 	    CURLOPT_HTTPHEADER => array(
 	        "content-type: application/json",
 	    	),
@@ -53,7 +53,7 @@ class AcessController extends Controller
 		if ($err) {
 		    return $err;
 		} else {
-		    return json_decode((string) $response->getBody(), true);
+		    return $response;
 		}
 
 
