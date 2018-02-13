@@ -177,10 +177,11 @@ class HomeController extends Controller
          $user = User::find(Auth::id());
          $appointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
+           ->join('professional_information', 'labor_information.profInformation', '=', 'professional_information.id')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
            ->where('medical_appointments.user', '=', Auth::id())
             ->where('medical_appointments.when', '>', Carbon::now())
-           ->select('medical_appointments.id','medical_appointments.created_at','users.name','medical_appointments.when', 'medical_appointments.status', 'labor_information.*')->get();
+           ->select('medical_appointments.id','medical_appointments.created_at','users.name','medical_appointments.when', 'medical_appointments.status', 'labor_information.*', 'professional_information.specialty')->get();
 
 
                  return view('appointments', [

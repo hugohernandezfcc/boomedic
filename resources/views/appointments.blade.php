@@ -38,8 +38,11 @@
                     <div class="info-box bg-gray">
                     <span class="info-box-icon bg-black"><i class="fa fa-clipboard"></i></span>
                       <div class="info-box-content">
-                        <b>{{ $app->workplace}}</b><br/>
-                       <span class="text-black">{{ $app->country }}, {{ $app->state }}, {{ $app->colony }}, {{ $app->delegation }}, {{ $app->street }} {{ $app->streetNumber }}. CP: {{ $app->postalcode }}</span>
+                        <b>Asignada para: {{ \Carbon\Carbon::parse($app->when)->format('d-m-Y h:i A') }}</b><br/>
+                       Especialidad: {{ $app->specialty }}<br/>
+                       Doctor: {{ $app->name }}<br/>
+                       Lugar: {{ $app->workplace}}<br/>
+                       Dirección: {{ $app->country }}, {{ $app->state }}, {{ $app->colony }}, {{ $app->delegation }}, {{ $app->street }} {{ $app->streetNumber }}. CP: {{ $app->postalcode }}
                       </div>
                     </div>
                   </div>
@@ -48,12 +51,14 @@
               </div></div>  <br/>    
       
       @endforeach
+      <div class="form-group">
       <div class="col-sm-6">&nbsp;</div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 pull-right">
                     <a href="{{ url('/medicalconsultations') }}" class="btn btn-secondary btn-block btn-flat">
                             Volver al inicio
                         </a>
                       </div>
+                    </div>
     </div>
 
  	
