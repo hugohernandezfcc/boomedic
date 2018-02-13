@@ -172,9 +172,6 @@
 
     </div>
     <!-- ./wrapper -->
-
-
-
 @stop
 
 @section('adminlte_js')
