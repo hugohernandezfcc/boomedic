@@ -53,7 +53,7 @@ class AcessController extends Controller
 		if ($err) {
 		    return $err;
 		} else {
-		    return json_decode($response);
+		    return json_decode((string) $response->getBody(), true);
 		}
 
 
