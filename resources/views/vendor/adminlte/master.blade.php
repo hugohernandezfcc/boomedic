@@ -140,12 +140,13 @@
               .info-box-icon.sm {
                   height: 45px;
                   width: 45px;
-                  font-size: 23px;
+                  font-size: 14px;
                   line-height: 45px;        
               }
 
-         
-
+         .info-box-icon {
+    font-size: 14px !important;
+}
 
     </style>
 

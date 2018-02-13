@@ -36,11 +36,10 @@
             <div class="form-group">
               <div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
                     <div class="info-box bg-gray">
-                    <span class="info-box-icon bg-black"><i class="fa fa-bookmark"></i></span>
+                    <div class="info-box-icon bg-black"><img src="{{ $app->profile_photo }}" class="img-circle" alt="User Image" style="height: 80px;"><br/><b>Dr. {{ $app->name }}</b></div>
                       <div class="info-box-content">
                         <b>Asignada {{ \Carbon\Carbon::parse($app->when)->format('d-m-Y h:i A') }}</b><br/>
                        Especialidad: {{ $app->specialty }}<br/>
-                       Doctor: {{ $app->name }}<br/>
                        Lugar: {{ $app->workplace}}<br/>
                        Dirección: {{ $app->country }}, {{ $app->state }}, {{ $app->colony }}, {{ $app->delegation }}, {{ $app->street }} {{ $app->streetNumber }}. CP: {{ $app->postalcode }}
                       </div>
