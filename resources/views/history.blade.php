@@ -85,7 +85,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> 
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa drección</a>
                 </div>
               </div>
             </li>
@@ -97,7 +97,7 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
               
-                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%; height: 45px"></a>
+                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;"></a>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -184,7 +184,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45px"> 
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa drección</a>
                 </div>
               </div>
             </li>
@@ -273,6 +273,7 @@
           @foreach($array2 as $items) 
             <!-- timeline time label -->
 
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -284,7 +285,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45px"> 
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa drección</a>
                 </div>
               </div>
             </li>
@@ -296,7 +297,7 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
               
-                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%"></a>
+                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;"></a>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -373,6 +374,7 @@
           @foreach($array3 as $items) 
             <!-- timeline time label -->
 
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
               <i class="fa fa-calendar-check-o bg-blue"></i>
@@ -384,7 +386,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45px"> 
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa drección</a>
                 </div>
               </div>
             </li>
@@ -396,7 +398,7 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
               
-                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;"></a>
+                                <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;"></a>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -484,7 +486,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45px"> 
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa drección</a>
                 </div>
               </div>
             </li>
@@ -583,7 +585,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45px"> 
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa drección</a>
                 </div>
               </div>
             </li>
@@ -683,7 +685,7 @@
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
                   <b>Lugar:</b> {{ $items['workplace']}} <br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 45px"> 
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa drección</a>
                 </div>
               </div>
             </li>
