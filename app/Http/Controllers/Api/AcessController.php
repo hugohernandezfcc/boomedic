@@ -37,7 +37,7 @@ class AcessController extends Controller
 	    CURLOPT_MAXREDIRS => 10,
 	    CURLOPT_TIMEOUT => 60000,
 	    CURLOPT_CUSTOMREQUEST => "POST",
-	    CURLOPT_POST = 1,
+	    CURLOPT_POST => 1,
 	    CURLOPT_POSTFIELDS => json_encode($data, JSON_PRETTY_PRINT),
 	    CURLOPT_HTTPHEADER => array(
 	        "Content-type: application/json",
