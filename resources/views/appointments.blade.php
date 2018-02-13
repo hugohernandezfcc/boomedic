@@ -39,8 +39,7 @@
                     <span class="info-box-icon bg-black"><i class="fa fa-calendar"></i></span>
                       <div class="info-box-content">
                         <b>{{ $app->workplace}}</b><br/>
-                       <span class="text-black">{{ $app->country }}, {{ $app->state }}, {{ $app->colony }}, {{ $app->delegation }}, {{ $app->street }} {{ $app->streetNumber }}. CP: {{ $app->postalcode }}</span><a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar esta cita?')"><i class="fa fa-trash text-muted"></i></a>
-                                  
+                       <span class="text-black">{{ $app->country }}, {{ $app->state }}, {{ $app->colony }}, {{ $app->delegation }}, {{ $app->street }} {{ $app->streetNumber }}. CP: {{ $app->postalcode }}</span>
                       </div>
                     </div>
                   </div>
