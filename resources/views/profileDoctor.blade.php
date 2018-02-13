@@ -763,7 +763,7 @@
 
 
 				    @if($mode == 'labor')
-				   			<div class="box" id="boxlabor">
+				<div class="box" id="boxlabor">
 							  	<div class="box-header with-border">
 								    <h3 class="box-title">Alta de nuevo consultorio</h3>
 							  	</div>
@@ -903,7 +903,7 @@
 				 				</form>	
 
 
-				</div>	
+				
 
 				<!-- form for map -->
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
@@ -1035,56 +1035,8 @@
 		  
 		</form>
 			</div>
-			<footer class="main-footer">
-  
-			@if($labor->isEmpty())
-						 <span class="text-black">No hay ningún consultorio asociado a su cuenta.</span>
-			@else
+		</div>	
 
-				<div class="box-group" id="accordion">
-                <div class="panel box box-default" style="border-top-color: gray;">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
-                 <div class="box-header with-border"> 
-                       <div align="left"><i class="fa fa-chevron-down text-muted"></i> <b>Consultorios agregados recientemente</b></div>
-                     </div> 
-                    </a>
-                  <div id="collapseOne" class="panel-collapse collapse" >
-                    <div class="box-body">
-					@foreach($labor->sortByDesc('created_at') as $labor)	
-					
-								@if($loop->iteration < 3)
-								<div class="form-group">
-									<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
-							          <div class="info-box sm bg-gray">
-							          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar"></i></span></a>
-							            <div class="info-box-content sm">
-							              <b> {{ $labor->workplace}}</b>
-							             <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span>
-							            </div>
-							          </div>
-							        </div>
-							        <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-
-									<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=350x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%; height:45px;">	
-									</div>
-										
-							   @endif	
-							   @if($loop->iteration > 2)
-							   <div class="col-sm-12" style="text-align: right;" align="right">
-							   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="text-muted">
-							   Ver todos... <i class="fa fa-arrow-right"></i>
-							   </a>
-							   </div>
-							   </div>
-							   @break
-					 		   @endif			
-					@endforeach
-				</div>	 
-			</div>
-                    </div>
-                  </div>
-        @endif
-           </footer> 
 
 
 
@@ -1415,7 +1367,57 @@
 
       }
 
-		    </script>  	
+		    </script> 
+		    			<footer class="main-footer">
+  
+			@if($labor->isEmpty())
+						 <span class="text-black">No hay ningún consultorio asociado a su cuenta.</span>
+			@else
+
+				<div class="box-group" id="accordion">
+                <div class="panel box box-default" style="border-top-color: gray;">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
+                 <div class="box-header with-border"> 
+                       <div align="left"><i class="fa fa-chevron-down text-muted"></i> <b>Consultorios agregados recientemente</b></div>
+                     </div> 
+                    </a>
+                  <div id="collapseOne" class="panel-collapse collapse" >
+                    <div class="box-body">
+					@foreach($labor->sortByDesc('created_at') as $labor)	
+					
+								@if($loop->iteration < 3)
+								<div class="form-group">
+									<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
+							          <div class="info-box sm bg-gray">
+							          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar"></i></span></a>
+							            <div class="info-box-content sm">
+							              <b> {{ $labor->workplace}}</b>
+							             <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span>
+							            </div>
+							          </div>
+							        </div>
+							        <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+
+									<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=350x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%; height:45px;">	
+									</div>
+										
+							   @endif	
+							   @if($loop->iteration > 2)
+							   <div class="col-sm-12" style="text-align: right;" align="right">
+							   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="text-muted">
+							   Ver todos... <i class="fa fa-arrow-right"></i>
+							   </a>
+							   </div>
+							   </div>
+							   @break
+					 		   @endif			
+					@endforeach
+				</div>	 
+			</div>
+                    </div>
+                  </div>
+        @endif
+           </footer>  	
 				    @endif
 
 			@if($mode == 'viewlabor')
