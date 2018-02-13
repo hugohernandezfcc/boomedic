@@ -172,3 +172,9 @@ Route::group(['namespace' => 'Api', 'prefix' => '/cli_recipes', 'middleware' => 
 
 });
 
+Route::group(['namespace' => 'Api', 'prefix' => '/access'], function(){
+	Route::post('/{request}',['as' => 'access', 'uses' => 'AcessController@getAccesToken']);
+});
+
+
+
