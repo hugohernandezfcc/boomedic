@@ -39,9 +39,9 @@
                     <div class="info-box-icon-2"><img src="{{ $app->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"><br/>Dr. {{ $app->name }}</div>
                       <div class="info-box-content">
                         <b>Asignada {{ \Carbon\Carbon::parse($app->when)->format('d-m-Y h:i A') }}</b><br/>
-                       Especialidad: {{ $app->specialty }}<br/>
-                       Lugar: {{ $app->workplace}}<br/>
-                       Dirección: {{ $app->country }}, {{ $app->state }}, {{ $app->colony }}, {{ $app->delegation }}, {{ $app->street }} {{ $app->streetNumber }}. CP: {{ $app->postalcode }}
+                       Especialidad: <span class="text-muted">{{ $app->specialty }}<br/></span>
+                       Lugar: <span class="text-muted">{{ $app->workplace}}<br/></span>
+                       Dirección: <span class="text-muted">{{ $app->country }}, {{ $app->state }}, {{ $app->colony }}, {{ $app->delegation }}, {{ $app->street }} {{ $app->streetNumber }}. CP: {{ $app->postalcode }}</span>
                       </div>
                     </div>
                   </div>

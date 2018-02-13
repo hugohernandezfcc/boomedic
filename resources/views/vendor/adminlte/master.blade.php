@@ -146,7 +146,7 @@
 
 
 .info-box-icon-2 {
-    margin-top: 6px;
+    margin-top: 9px;
     border-top-left-radius: 2px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -156,7 +156,7 @@
     height: 90px;
     width: 90px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
     background: rgba(0,0,0,0);
     line-height: 1.2;
 }
