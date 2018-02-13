@@ -1392,9 +1392,9 @@
 					</div>
 					</div>   	
 			@endif
-			    @if($mode == 'labor')
-
-    <footer class="main-footer">
+@stop
+@section('footer')
+@if($mode == 'labor')
   
             @if($labor->isEmpty())
                          <span class="text-black">No hay ningún consultorio asociado a su cuenta.</span>
@@ -1411,7 +1411,7 @@
                     <div class="box-body">
                     @foreach($labor->sortByDesc('created_at') as $labor) 
                     
-                                @if($loop->iteration > 3)
+                                @if($loop->iteration < 3)
                                 <div class="form-group">
                                     <div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
                                       <div class="info-box sm bg-gray">
@@ -1443,6 +1443,6 @@
                     </div>
                   </div>
         @endif
-    </footer>
     @endif
 @stop
+
