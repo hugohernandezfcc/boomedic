@@ -140,7 +140,7 @@
               .info-box-icon.sm {
                   height: 45px;
                   width: 45px;
-                  font-size: 12px;
+                  font-size: 23px;
                   line-height: 45px;        
               }
 
@@ -158,7 +158,7 @@
     text-align: center;
     font-size: 11px;
     background: rgba(0,0,0,0);
-    line-height: 1.2;
+    line-height: 13px;
 }
 
     </style>
