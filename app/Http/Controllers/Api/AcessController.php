@@ -32,9 +32,9 @@ class AcessController extends Controller
     	$curl = curl_init();
 
     	curl_setopt_array($curl, array(
-	    CURLOPT_URL => "",
+	    CURLOPT_URL => $url,
 	    CURLOPT_RETURNTRANSFER => true,
-	    CURLOPT_ENCODING => $url,
+	    CURLOPT_ENCODING => "",
 	    CURLOPT_MAXREDIRS => 10,
 	    CURLOPT_TIMEOUT => 60000,
 	    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
