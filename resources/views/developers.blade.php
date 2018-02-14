@@ -77,7 +77,7 @@
               				<label>Nombre de la Aplicación:</label>
                         </div>
                         <div class="col-sm-7">
-                        	<input id="appName" type="textbox" class="form-control">
+                        	<input id="appName" type="textbox" class="form-control"><br/><br/>
                     	</div>
                     	<div class="col-sm-5">
                         	<label>URL de Redireccionamiento:</label>
