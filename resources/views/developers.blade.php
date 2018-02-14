@@ -73,16 +73,16 @@
               	</div>
               	<div class="modal-body">
               		<div class="input-group input-group-sm">
-              			<div class="col-sm-4">
+              			<div class="col-sm-5">
               				<label>Nombre de la Aplicación:</label>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                         	<input id="appName" type="textbox" class="form-control">
-                    	</div>
-                    	<div class="col-sm-4">
+                    	</div><br/>
+                    	<div class="col-sm-5">
                         	<label>URL de Redireccionamiento:</label>
                     	</div>
-                    	<div class="col-sm-8">
+                    	<div class="col-sm-7">
                     		<input id="appURL" type="textbox" class="form-control">
                     	</div>
                     </div>
