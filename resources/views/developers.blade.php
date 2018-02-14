@@ -22,7 +22,7 @@
 	<div class="input-group">
 	    <div class="form-control" align="center"><label id="labeltext">Agregar</label></div>
 	    <div class="input-group-btn" id="div_profile2">
-		<button class="btn btn-default btn-circle" type="button" data-toggle="modal" data-target="#modalAddApp">
+		<button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalAddApp">
 		    <i class="fa fa-plus text-muted" id="i_button2"></i>
 		</button>
 	   	</div>
