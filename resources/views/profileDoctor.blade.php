@@ -1399,8 +1399,8 @@
 @stop
 @section('footer')
 @if($mode == 'labor')
-<div id="micapa" style="background-color:red;width:100px;height:100px"></div><b>Consultorios agregados recientemente</b><b>Consultorios agregados recientemente</b>
-  <div class="box-body" id="showw" style="display: none;">
+<div id="micapa"><b>Consultorios agregados recientemente</b></div>
+  <div class="box-body" id="showw" style="display: none">
             @if($labor->isEmpty())
                          <span class="text-black">No hay ningún consultorio asociado a su cuenta.</span>
             @else
