@@ -236,10 +236,7 @@ class profile extends Controller
                 $height = $height / 3;
                 $width = $width / 3;
               }
-          if($height > '1300' || $width > '1000'){
-                $height = $height / 4;
-                $width = $width / 4;
-              }
+
 
 
         $img = Image::make($file);
@@ -251,9 +248,10 @@ class profile extends Controller
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
 
        
-        $user->profile_photo = $path2;   
+        $user->profile_photo = $path2;
+        $user->save();  
+        if(Storage::disk('s3')->exists('$filename')){
                 Session(['val' => 'true']);
-        if($user->save()){
         return redirect('/user/edit/complete');
       }
     }
