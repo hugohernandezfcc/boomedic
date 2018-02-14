@@ -58,7 +58,7 @@
 				  setTimeout(function(){ 
 				  	document.getElementById('loadingGif').style.display = "none";
 				  	window.location.reload(true);
-				  },24000);
+				  },15000);
 				     	}
 			    //autoProcessQueue : false 
 			 };
@@ -66,8 +66,8 @@
 			 		if(val == "true"){
 
 			 		setTimeout(function() {
-					    $('#modal').modal({ backdrop: 'static' }, 'show');
-					}, 1000);	
+			 			 $('#modal').modal();
+					}, 3000);	
 				}
 
 				    
@@ -91,7 +91,7 @@
 
 	@endif
 
-<div id="modal" class="modal fade" role="dialog" style="width: 100%">
+<div id="modal" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content" >
@@ -106,7 +106,7 @@
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 					@endphp
-						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;"id="target" >	
+						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;" id="target" >	
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
