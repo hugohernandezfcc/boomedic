@@ -136,11 +136,18 @@
                   font-size: 23px;
                   line-height: 45px;        
               }
-              .info-box-icon2.sm {
+              .info-box-icon2-sm {
+                  padding: 5px 10px;
                   height: 45px;
                   width: 45px;
                   font-size: 9px;
-                  margin-top: 2px;      
+                  margin-top: 2px;
+                  padding: 5px 10px;
+                  text-align: center; 
+                  font-size: 11px;
+                  background: rgba(0,0,0,0);
+                  display: block;
+                  float: left;     
               }
 
 .info-box-icon-2 {
