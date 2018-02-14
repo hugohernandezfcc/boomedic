@@ -1407,13 +1407,13 @@
                     @foreach($labor->sortByDesc('created_at') as $labor) 
                     
                                 @if($loop->iteration < 3)
-                                <div class="form-group">
+
                                     <div class="pull-center">
                                       <div class="info-box sm bg-gray">
                                         <a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar"></i></span></a>
                                         <div class="info-box-content sm">
                                           <b> {{ $labor->workplace}}</b>
-                                         <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span>
+                                         <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}.</span>
                                         </div>
                                       </div>
                                     </div>
@@ -1424,7 +1424,6 @@
                                 <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" style="font-size: 11px;" class="text-muted">
                                Ver todos... <i class="fa fa-arrow-right"></i>
                                </a>
-                               </div>
                                </div>
                                @break
                                @endif           
