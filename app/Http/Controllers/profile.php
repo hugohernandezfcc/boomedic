@@ -250,7 +250,8 @@ class profile extends Controller
        
         $user->profile_photo = $path2;
         $user->save();  
-        if(Storage::disk('s3')->exists('$filename')){
+        if(Storage::disk('s3')->exists($path2)){
+                $user->save();
                 Session(['val' => 'true']);
         return redirect('/user/edit/complete');
       }
