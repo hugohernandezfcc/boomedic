@@ -13,8 +13,6 @@ class AcessController extends Controller
     	$password = '';
     	$clientID = '2';
     	$clientSecret = 'UKCNKCjp0Joy5zmuNW0cTbtPGbCQ1IPoid9SIgjt';
-    	$url = url('/');
-    	$url.'/oauth/token';
 
     	if($request->has('username') && $request->has('password')){
     		$username = $request->username;
@@ -53,10 +51,8 @@ class AcessController extends Controller
 		if ($err) {
 		    return response()->json($err);
 		} else {
-		    //return response()->json($response);
 		    $json = json_decode($response);
 		    return response()->json($json);
-		    //return response()->json(json_encode(json_decode($response)));
 		}
 
     }

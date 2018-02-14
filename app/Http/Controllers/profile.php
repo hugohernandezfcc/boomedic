@@ -290,4 +290,18 @@ class profile extends Controller
     {
         //
     }
+
+    public function developers()
+    {
+        $user = User::find(Auth::id());
+        return view('developers', [
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
+
+            ]
+        );
+    }
 }

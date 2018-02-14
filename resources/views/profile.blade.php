@@ -445,6 +445,11 @@
                           <div id="mapAddressUser" ></div>
                     </div>
                   </div>
+                  	<div class="box-body">
+					    <a href="{{url('user/developers')}}" class="btn btn-secondary">
+						    Desarrolladores
+						</a>
+					</div>
                 </div>
               </div>
             </div>

@@ -79,6 +79,12 @@ Route::group(['prefix' => 'user'], function(){
 			'as'	=>	'redirecting'
 		]
 	);
+
+	Route::get('developers', [
+			'uses'	=>	'profile@developers',
+			'as'	=>	'developers'
+		]
+	);
 });
 
 
