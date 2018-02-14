@@ -89,54 +89,27 @@
             </div>
 
         <div class="modal fade" id="modalAddApp" style="display: none;">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Nueva App</h4>
-              </div>
-              <div class="modal-body">
-               <div class="label-group">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="Estacionamiento">
-                      Estacionamiento
-                    </label>
-                  </div>
-
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="Ambulancias">
-                      Ambulancias
-                    </label>
-                  </div>
-
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="Cafetería">
-                      Cafetería
-                    </label>
-                  </div>
-                 <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="Elevador">
-                     Elevador
-                    </label>
-                  </div>
-                   <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="Wifi">
-                     Wifi
-                    </label>
-                  </div>
-                </div>
-              </div>
+          	<div class="modal-dialog">
+            	<div class="modal-content">
+              		<div class="modal-header">
+              			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    		<span aria-hidden="true">&times;</span>
+                		</button>
+                		<h4 class="modal-title">Nueva App</h4>
+              		</div>
+              		<div class="modal-body">
+              			<div class="input-group input-group-sm">
+              				<label>Nombre de la Aplicación</label>
+                          	<input id="address" type="textbox" value="" class="form-control">
+                        </div>
+              		</div>
              
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
-              </div>
-            </div>
+              		<div class="modal-footer">
+                		<button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
+              		</div>
+            	</div>
             <!-- /.modal-content -->
-          </div>
+            </div>
           <!-- /.modal-dialog -->
         </div>	
 @stop
