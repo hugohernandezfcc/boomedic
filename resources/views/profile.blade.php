@@ -102,7 +102,7 @@
 
                         <div align="center">
 
-						<img src="{{ $photo }}" id="target">	
+						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">	
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x">
