@@ -8,10 +8,6 @@
 
 @section('content')
 
-
-
-@if($mode == 'Null')
-
 <div class="box">
   	<div class="box-header with-border">
 	    <h3 class="box-title">Desarrolladores</h3>
