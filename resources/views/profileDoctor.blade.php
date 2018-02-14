@@ -1395,7 +1395,7 @@
 @stop
 @section('footer')
 @if($mode == 'labor')
-  
+  <div class="box-body">
             @if($labor->isEmpty())
                          <span class="text-black">No hay ningún consultorio asociado a su cuenta.</span>
             @else
@@ -1428,6 +1428,8 @@
                     @endforeach
 
         @endif
+</div>
     @endif
+
 @stop
 
