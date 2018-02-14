@@ -67,7 +67,7 @@
 
 			 		setTimeout(function() {
 			 			 $('#modal').modal();
-			 			 $('#crop').attr('src','{{ $photo }}?{{ \Carbon\Carbon::now()->format("h:i") }}');
+			 			 $('#crop').addClass('target');
 					}, 2000);	
 				}
 
@@ -102,7 +102,7 @@
                   <div class="modal-body" >
 
                         <div align="center">
-						<img src="" class="target" id="crop">	
+						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format("h:i") }}" id="crop">	
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x">
