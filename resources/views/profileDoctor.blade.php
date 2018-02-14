@@ -588,7 +588,7 @@
 							@endif
 									<div class="pull-right">
 									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
-									   	<button type="submit" class="btn btn-secondary btn-sm"><i class="fa fa-plus"></i>Agregar consultorio</button>
+									   	<button type="submit" class="btn btn-secondary btn-xs"><i class="fa fa-plus"></i> Agregar consultorio</button>
 									   </form></div>
                   </div>
                 </div>
@@ -1028,7 +1028,7 @@
 			<div class="col-sm-7">
 			<div id="loadingGif2" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
 		  	<div id="map"></div>
-		  	<div class="col-sm-12" align=" center">	
+		  	<div class="pull-center">	
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 			</div>	
 		  </div></div>
@@ -1378,7 +1378,7 @@
 					          </div>
 					        </div>
 					        <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x90&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; ">	
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x90&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 91px;">	
 							</div></div>	<br/>    
 			
 			@endforeach
@@ -1405,7 +1405,7 @@
                     
                                 @if($loop->iteration < 3)
                                 <div class="form-group">
-                                    <div class="col-sm-12">
+                                    <div class="pull-center">
                                       <div class="info-box sm bg-gray">
                                         <a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar"></i></span></a>
                                         <div class="info-box-content sm">
@@ -1413,6 +1413,9 @@
                                          <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span>
                                         </div>
                                       </div>
+			                             <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+										<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height:45px;">	
+										</div>
                                     </div>
                                         
                                @endif   

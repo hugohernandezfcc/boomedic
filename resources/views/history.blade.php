@@ -8,7 +8,6 @@
 
 .content{
     overflow-y: auto;
-    height: 600px;
   }
 
   .timeline>li {
