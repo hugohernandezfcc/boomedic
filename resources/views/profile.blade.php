@@ -101,9 +101,8 @@
                   <div class="modal-body" >
 
                         <div align="center">
-                   
 
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}temporal.jpg" id="target">
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}temporal.jpg?{{ \Carbon\Carbon::now() }}" id="target">
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
