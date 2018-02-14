@@ -101,7 +101,7 @@
                   <div class="modal-body" >
 
                         <div align="center">
-						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}">	
+						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" class="target">	
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x">
@@ -600,9 +600,10 @@
 	<script type="text/javascript">
 
     $(function(){ $.Jcrop('#target'); });
-     $.Jcrop('#target',{
+     $.Jcrop('.target',{
       aspectRatio: 1,
       onSelect: updateCoords,
+      onChange: updateCoords,
 	  setSelect: [0, 0, 300, 300],
       bgColor:     'black'
      });

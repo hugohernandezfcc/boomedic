@@ -248,11 +248,10 @@ class profile extends Controller
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
 
        
-        $user->profile_photo = $path2;
-        $user->save();  
-        if(Storage::disk('s3')->exists($path2)){
-                $user->save();
-                Session(['val' => 'true']);
+        $user->profile_photo = $path2;   
+               
+        if($user->save()){
+        Session(['val' => 'true']);
         return redirect('/user/edit/complete');
       }
     }
