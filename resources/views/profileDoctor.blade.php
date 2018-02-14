@@ -1399,12 +1399,13 @@
 @stop
 @section('footer')
 @if($mode == 'labor')
-  <div class="box-body">
+<div id="micapa" style="background-color:red;width:100px;height:100px"></div><b>Consultorios agregados recientemente</b><b>Consultorios agregados recientemente</b>
+  <div class="box-body" id="showw" style="display: none;">
             @if($labor->isEmpty())
                          <span class="text-black">No hay ningún consultorio asociado a su cuenta.</span>
             @else
 
-                    <b>Consultorios agregados recientemente</b>
+                    
                     @foreach($labor->sortByDesc('created_at') as $labor) 
                     
                                 @if($loop->iteration < 3)
@@ -1438,6 +1439,12 @@
         @endif
 </div>
     @endif
-
+<script type="text/javascript">
+	$(document).ready(function(){
+  $("#micapa").click(function(){		
+    $("#showw").show("slide", { direction: "top" }, 1000);
+  });
+});
+</script>
 @stop
 
