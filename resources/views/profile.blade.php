@@ -66,7 +66,7 @@
 			 		if(val == "true"){
 			 		setTimeout(function() {
 					    $('#modal').modal({ backdrop: 'static' }, 'show');
-					}, 1000);	
+					}, 2000);	
 				}
 
 				    
@@ -126,7 +126,7 @@
 		    <h3 class="box-title">Información de usuario</h3>
 	    	<!-- /.box-tools -->
 	  	</div>
-	  	<div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
+	  	<div id="loadingGif" style="display:none" align="center"><center><h2><i class="fa fa-refresh fa-spin"></i> Cargando foto, por favor espere...</h2></center></div>
 
 	  	<!-- /.box-header -->
 	  	<div class="box-body">

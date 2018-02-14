@@ -11,6 +11,7 @@ use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 use Image;
+use Carbon\Carbon;
 
 class profile extends Controller
 {
@@ -236,8 +237,8 @@ class profile extends Controller
         $img = Image::make($file);
         $img->resize($width, $height);
         $img->encode('jpg');
-        Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
-        $filename = $id.'.jpg';
+        Storage::disk('s3')->put( $id.'temporal.jpg',  (string) $img, 'public');
+        $filename = $id.'temporal.jpg';
         $path = Storage::cloud()->url($filename);
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
 
@@ -276,7 +277,7 @@ class profile extends Controller
          Session(['val' => 'false']);
        
         $user->profile_photo = $path2;   
-
+        Storage::disk('s3')->delete('https://s3.amazonaws.com/abiliasf/'.$user->id.'temporal.jpg');
         if($user->save())
             return redirect('/user/edit/complete');
     }
