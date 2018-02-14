@@ -117,7 +117,7 @@
 
 
 					@endphp
-						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target" style="width:{{ $width }}px !important; height: {{ $height }}px !Important;" >	
+						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}">	
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x">
