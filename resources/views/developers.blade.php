@@ -9,7 +9,7 @@
 @section('content')
 <style type="text/css">
 
-.modal-header, .close {
+.modal-header, h4, .close {
           color:black;
           text-align: center;
           font-size: 100%;
@@ -26,7 +26,7 @@
 	        	<div class="form-control" align="left"><label id="labeltext">Agregar</label></div>
 	        	<div class="input-group-btn" id="div_profile">
 		          	<button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalAddApp">
-		    			<i class="fa fa-plus text-muted" id="i_button2"></i>
+		    			<i class="fa fa-plus text-muted" ></i>
 					</button>
 	        	</div>
 	      	</div>
@@ -61,61 +61,41 @@
 
 	</div>
 
-	<!-- Modal Busqueda por lugar -->
 
-            <div id="AddClient" class="modal fade" role="dialog" style="display: none;">
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">   
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                    <label>Prueba de Modal</label>
-                  </div>
-                  <!--<div class="modal-body">
-                        <div class="input-group input-group-sm">
-                          <input id="address" type="textbox" value="" class="form-control">
-                          <span class="input-group-btn">
-                          <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
-                       </div>
-                            <br/>                    
-                          <div id ="ubi" class="input-group input-group-sm" style="display:none">
-                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" onclick="initMap()">
-                          </div>
-                  </div>-->
-                </div>
-              </div>
-            </div>
-
-        <div class="modal fade" id="modalAddApp" style="display: none;">
-          	<div class="modal-dialog">
-            	<div class="modal-content">
-              		<div class="modal-header">
-              			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    		<span aria-hidden="true">&times;</span>
-                		</button>
-                		<h4 class="modal-title">Nueva App</h4>
-              		</div>
-              		<div class="modal-body">
-              			<div class="input-group input-group-sm">
-              				<label>Nombre de la Aplicación:
-                          		<input id="appName" type="textbox" value="" class="form-control">
-                          	</label>
-                          	<label>URL de Redireccionamiento:
-                          		<input id="appURL" type="textbox" value="" class="form-control">
-                          	</label>
+    <div class="modal fade" id="modalAddApp" style="display: none;">
+        <div class="modal-dialog">
+           	<div class="modal-content">
+              	<div class="modal-header">
+              		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    	<span aria-hidden="true">&times;</span>
+                	</button>
+                	<h4 class="modal-title">Nueva App</h4>
+              	</div>
+              	<div class="modal-body">
+              		<div class="input-group input-group-sm">
+              			<div class="col-sm-4">
+              				<label>Nombre de la Aplicación:</label>
                         </div>
-              		</div>
+                        <div class="col-sm-8">
+                        	<input id="appName" type="textbox" class="form-control">
+                    	</div>
+                    	<div class="col-sm-4">
+                        	<label>URL de Redireccionamiento:</label>
+                    	</div>
+                    	<div class="col-sm-8">
+                    		<input id="appURL" type="textbox" class="form-control">
+                    	</div>
+                    </div>
+              	</div>
              
-              		<div class="modal-footer">
-                		<button type="button" class="btn btn-default pull-right" data-dismiss="modal">
-                			Guardar
-                		</button>
-              		</div>
-            	</div>
-            <!-- /.modal-content -->
+              	<div class="modal-footer">
+                	<button type="button" class="btn btn-default pull-right" data-dismiss="modal">
+                		Guardar
+                	</button>
+              	</div>
             </div>
+            <!-- /.modal-content -->
+        </div>
           <!-- /.modal-dialog -->
-        </div>	
+    </div>	
 @stop
