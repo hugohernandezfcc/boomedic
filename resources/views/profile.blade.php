@@ -449,12 +449,12 @@
               </div>
             </div>
             <!-- /.box-body -->
-            <div class="box-body">
+          </div>
+          <div class="box-body">
 				<a href="{{url('user/developers')}}" class="btn btn-secondary">
 						    Desarrolladores
 				</a>
-			</div>
-          </div>
+		  </div>
           <!-- /.box -->
         </div>
         <!-- /.col -->

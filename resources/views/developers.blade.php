@@ -9,7 +9,7 @@
 @section('content')
 <style type="text/css">
 
-.modal-headerD, h4, .close {
+.modal-headerD, .closeD {
           color:black;
           text-align: center;
           font-size: 100%;
@@ -20,10 +20,10 @@
 
 <div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 	<div class="input-group">
-	    <div class="form-control" align="left"><label id="labeltext">Agregar</label></div>
+	    <div class="form-control" align="center"><label id="labeltext">Agregar</label></div>
 	    <div class="input-group-btn" id="div_profile2">
-		<button class="btn btn-default btn-circle" type="button">
-		    <i class="fa fa-plus text-muted" id="i_button2" data-target="#AddClient"></i>
+		<button class="btn btn-default btn-circle" type="button"  data-toggle="modal" data-target="#modal-default1">
+		    <i class="fa fa-plus text-muted" id="i_button2"></i>
 		</button>
 	   	</div>
 	</div>
@@ -63,7 +63,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                   <div class="modal-headerD">   
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="closeD" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                     <label for="Busqueda">Prueba de Modal</label>
@@ -81,5 +81,57 @@
                   </div>-->
                 </div>
               </div>
-            </div>  	
+            </div>
+
+        <div class="modal fade" id="modal-default1" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Servicios disponibles en este lugar</h4>
+              </div>
+              <div class="modal-body">
+               <div class="label-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Estacionamiento">
+                      Estacionamiento
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Ambulancias">
+                      Ambulancias
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Cafetería">
+                      Cafetería
+                    </label>
+                  </div>
+                 <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Elevador">
+                     Elevador
+                    </label>
+                  </div>
+                   <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Wifi">
+                     Wifi
+                    </label>
+                  </div>
+                </div>
+              </div>
+             
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>	
 @stop
