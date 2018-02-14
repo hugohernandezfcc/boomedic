@@ -67,7 +67,7 @@
 
 			 		setTimeout(function() {
 			 			 $('#modal').modal();
-			 			 $("#crop").append("<div class="modal-body" ><div align="center"><img src="{{ $photo }}" id="target" ><form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();"><input type="hidden" id="x" name="x" /><input type="hidden" id="y" name="y" /><input type="hidden" id="w" name="w" /><input type="hidden" id="h" name="h" /><br/><span class="input-group-btn"><input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span></form></div></div>");
+			 			 $('#crop').append('<div class="modal-body" ><div align="center"><img src="{{ $photo }}" id="target" ><form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();"><input type="hidden" id="x" name="x" /><input type="hidden" id="y" name="y" /><input type="hidden" id="w" name="w" /><input type="hidden" id="h" name="h" /><br/><span class="input-group-btn"><input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span></form></div></div>');
 					}, 3000);	
 				}
 
