@@ -58,15 +58,19 @@
 				  setTimeout(function(){ 
 				  	document.getElementById('loadingGif').style.display = "none";
 				  	window.location.reload(true);
-				  },25000);
+				  },24000);
 				     	}
 			    //autoProcessQueue : false 
 			 };
 			 var val = "@php echo session()->get('val'); @endphp";
 			 		if(val == "true"){
+			 							  setTimeout(function(){ 
+				  	document.getElementById('loadingGif').style.display = "none";
+				  	window.location.reload(true);
+				  },100);
 			 		setTimeout(function() {
 					    $('#modal').modal({ backdrop: 'static' }, 'show');
-					}, 2000);	
+					}, 1000);	
 				}
 
 				    
@@ -102,7 +106,7 @@
                         <div align="center">
                    
 
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target">
+                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}temporal.jpg" id="target">
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
