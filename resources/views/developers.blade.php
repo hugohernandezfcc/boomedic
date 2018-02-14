@@ -21,10 +21,9 @@
 <div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 	<div class="input-group">
 	    <div class="form-control" align="left"><label id="labeltext">Agregar</label></div>
-	    <input type="hidden" name="id" value="{{ $userId }}">
-	    <div class="input-group-btn" id="div_profile">
-		<button class="btn btn-default btn-circle" data-target="#AddClient">
-		    <i class="fa fa-plus text-muted" id="i_button"></i>
+	    <div class="input-group-btn" id="div_profile2">
+		<button class="btn btn-default btn-circle" type="button">
+		    <i class="fa fa-plus text-muted" id="i_button2" data-target="#AddClient"></i>
 		</button>
 	   	</div>
 	</div>
