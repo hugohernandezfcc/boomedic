@@ -9,7 +9,7 @@
 @section('content')
 <style type="text/css">
 
-.modal-headerD, .closeD {
+.modal-header, .close {
           color:black;
           text-align: center;
           font-size: 100%;
@@ -99,13 +99,19 @@
               		</div>
               		<div class="modal-body">
               			<div class="input-group input-group-sm">
-              				<label>Nombre de la Aplicación</label>
-                          	<input id="address" type="textbox" value="" class="form-control">
+              				<label>Nombre de la Aplicación:
+                          		<input id="appName" type="textbox" value="" class="form-control">
+                          	</label>
+                          	<label>URL de Redireccionamiento:
+                          		<input id="appURL" type="textbox" value="" class="form-control">
+                          	</label>
                         </div>
               		</div>
              
               		<div class="modal-footer">
-                		<button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
+                		<button type="button" class="btn btn-default pull-right" data-dismiss="modal">
+                			Guardar
+                		</button>
               		</div>
             	</div>
             <!-- /.modal-content -->
