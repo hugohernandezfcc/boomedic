@@ -224,13 +224,21 @@ class profile extends Controller
           $width = $imagen[0];              //Ancho
           $height = $imagen[1];  
 
-          if($height > '800' || $width > '600'){
+          if($height > '600' || $width > '400'){
             $height = $height / 2;
             $width = $width / 2;
+          }
+          if($height > '800' || $width > '600'){
+            $height = $height / 2.5;
+            $width = $width / 2.5;
           }
             if($height > '1000' || $width > '900'){
                 $height = $height / 3;
                 $width = $width / 3;
+              }
+          if($height > '1300' || $width > '1000'){
+                $height = $height / 4;
+                $width = $width / 4;
               }
 
 
