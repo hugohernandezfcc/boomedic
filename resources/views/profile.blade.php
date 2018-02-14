@@ -101,8 +101,12 @@
                   <div class="modal-body" >
 
                         <div align="center">
-
-                           <img src="{{ $photo }}" id="target">
+					@php 
+					  $imagen = getimagesize($photo);    //Sacamos la información
+			          $width = $imagen[0];              //Ancho
+			          $height = $imagen[1];  
+					@endphp
+						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;"id="target" >	
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x" />
