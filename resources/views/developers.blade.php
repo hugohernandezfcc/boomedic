@@ -22,7 +22,7 @@
 	<div class="input-group">
 	    <div class="form-control" align="center"><label id="labeltext">Agregar</label></div>
 	    <div class="input-group-btn" id="div_profile2">
-		<button class="btn btn-default btn-circle" type="button"  data-toggle="modal" data-target="#AddClient">
+		<button class="btn btn-default btn-circle" type="button" data-toggle="modal" data-target="#modalAddApp">
 		    <i class="fa fa-plus text-muted" id="i_button2"></i>
 		</button>
 	   	</div>
@@ -62,11 +62,11 @@
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
-                  <div class="modal-headerD">   
-                    <button type="button" class="closeD" data-dismiss="modal" aria-label="Close">
+                  <div class="modal-header">   
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                    <label for="Busqueda">Prueba de Modal</label>
+                    <label>Prueba de Modal</label>
                   </div>
                   <!--<div class="modal-body">
                         <div class="input-group input-group-sm">
@@ -83,11 +83,11 @@
               </div>
             </div>
 
-        <div class="modal fade" id="modal-default1" style="display: none;">
+        <div class="modal fade" id="modalAddApp" style="display: none;">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title">Servicios disponibles en este lugar</h4>
+                <h4 class="modal-title">Nueva App</h4>
               </div>
               <div class="modal-body">
                <div class="label-group">
