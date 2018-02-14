@@ -281,6 +281,7 @@ class profile extends Controller
             return redirect('/user/edit/complete');
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
