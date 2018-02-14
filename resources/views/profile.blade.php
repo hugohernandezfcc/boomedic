@@ -64,10 +64,7 @@
 			 };
 			 var val = "@php echo session()->get('val'); @endphp";
 			 		if(val == "true"){
-			 							  setTimeout(function(){ 
-				  	document.getElementById('loadingGif').style.display = "none";
-				  	window.location.reload(true);
-				  },100);
+
 			 		setTimeout(function() {
 					    $('#modal').modal({ backdrop: 'static' }, 'show');
 					}, 1000);	
