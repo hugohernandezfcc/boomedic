@@ -281,6 +281,22 @@ class profile extends Controller
             return redirect('/user/edit/complete');
     }
 
+
+    public function developers()
+    {
+        $user = User::find(Auth::id());
+        return view('developers', [
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
+
+            ]
+        );
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
