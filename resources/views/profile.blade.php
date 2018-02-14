@@ -456,7 +456,7 @@
                   </div>
                   <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
                     <div class="box-body">
-                    	 <a href="{{ url('developers')" class="btn btn-secondary">Desarrolladores</a>
+                    	 <a href="{{ url('developers') }}" class="btn btn-secondary">Desarrolladores</a>
                           <div id="mapAddressUser" ></div>
                     </div>
                   </div>
