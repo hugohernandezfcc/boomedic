@@ -7,7 +7,10 @@
 @stop
 
 @section('content')
+<br/>
 
+@include('headerprofile')
+    
 
 <div class="box">
   	<div class="box-header with-border">
@@ -17,7 +20,7 @@
 	  
 	  	<div class="alert alert-info">
 		    <i class="icon fa fa-info"></i>Aqui puedes crear tus Applicaciones para poder utilizar nuestra API mediante su Id de cliente y cliente secreto que se proporcionan a continuación. Recuerde consultar nuestra documentación para poder realizar su integración.
-		</div><br/><br/>
+		</div><br/>
 
 		<table id="ClientsApi" class="table table-bordered table-striped" cellspacing="0" width="100%">
 	                <thead>
