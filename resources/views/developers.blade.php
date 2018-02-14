@@ -15,8 +15,22 @@
   	</div>
   	<div class="box-body">
 	  
-	  		<div class="alert alert-info">
-		        <i class="icon fa fa-info"></i>Lee detenidamente el aviso de privacidad de nuestra compañia, estos terminos representan la disponibilidad del uso de esta aplicación, el rechazo del mismo limita el acceso a los servicios de la compañia.
-		    </div>        				      
+	  	<div class="alert alert-info">
+		    <i class="icon fa fa-info"></i>Aqui puedes crear tus Applicaciones para poder utilizar nuestra API mediante su Id de cliente y cliente secreto que se proporcionan a continuación. Recuerde consultar nuestra documentación para poder realizar su integración.
+		</div><br/><br/>
+
+		<table id="ClientsApi" class="table table-bordered table-striped" cellspacing="0" width="100%">
+	                <thead>
+	                    <tr>
+	                    	<th>Nombre</th>
+	                        <th>Id de Cliente </th>
+	                        <th>Cliente Secreto </th>
+	                        <th>Url de Redireccionamiento</th>
+	                        <th> - </th>
+	                    </tr>
+	                </thead>
+	                
+	                
+	            </table><br/><br/>        				      
 	</div>  	
 @stop
