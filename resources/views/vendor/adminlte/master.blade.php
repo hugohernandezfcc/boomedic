@@ -136,7 +136,12 @@
                   font-size: 23px;
                   line-height: 45px;        
               }
-
+              .info-box-icon2.sm {
+                  height: 45px;
+                  width: 45px;
+                  font-size: 9px;
+                  margin-top: 2px;      
+              }
 
 .info-box-icon-2 {
     margin-top: 9px;
