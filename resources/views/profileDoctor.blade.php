@@ -58,7 +58,7 @@
 				  setTimeout(function(){ 
 				  	document.getElementById('loadingGif').style.display = "none";
 				  	window.location.reload(true);
-				  },20000);
+				  },25000);
 				     	}
 			    //autoProcessQueue : false 
 			 };
@@ -66,7 +66,7 @@
 			 		if(val == "true"){
 			 		setTimeout(function() {
 					    $('#modal').modal({ backdrop: 'static' }, 'show');
-					}, 4000);	
+					}, 1000);	
 				}
 
 				    
