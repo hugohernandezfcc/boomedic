@@ -1399,29 +1399,23 @@
 @stop
 @section('footer')
 @if($mode == 'labor')
-<div id="micapa"><b>Consultorios agregados recientemente</b></div>
-  <div class="box-body" id="showw" style="display: none">
+  <div class="box-body">
             @if($labor->isEmpty())
                          <span class="text-black">No hay ningún consultorio asociado a su cuenta.</span>
             @else
-
-                    
+                    <span class="text-black" style="font-size: 12px;">Consultorios agregados recientemente</span>
                     @foreach($labor->sortByDesc('created_at') as $labor) 
                     
                                 @if($loop->iteration < 3)
                                 <div class="form-group">
                                     <div class="pull-center">
-                                    <div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
                                       <div class="info-box sm bg-gray">
                                         <a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar"></i></span></a>
                                         <div class="info-box-content sm">
                                           <b> {{ $labor->workplace}}</b>
                                          <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span>
                                         </div>
-                                      </div></div>
-			                             <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-										<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height:45px;">	
-										</div>
+                                      </div>
                                     </div>
                                         
                                @endif   
@@ -1439,12 +1433,6 @@
         @endif
 </div>
     @endif
-<script type="text/javascript">
-	$(document).ready(function(){
-  $("#micapa").click(function(){		
-    $("#showw").show("slide", { direction: "top" }, 1000);
-  });
-});
-</script>
+
 @stop
 
