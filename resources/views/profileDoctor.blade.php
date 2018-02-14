@@ -588,7 +588,7 @@
 							@endif
 									<div class="pull-right">
 									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
-									   	<button type="submit" class="btn btn-secondary"><i class="fa fa-plus"></i>Agregar consultorio</button>
+									   	<button type="submit" class="btn btn-secondary btn-sm"><i class="fa fa-plus"></i>Agregar consultorio</button>
 									   </form></div>
                   </div>
                 </div>
@@ -1418,7 +1418,7 @@
                                @endif   
                                @if($loop->iteration > 2)
                                <div class="pull-right">
-                                <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="text-muted">
+                                <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" style="font-size: 11px;" class="text-muted">
                                Ver todos... <i class="fa fa-arrow-right"></i>
                                </a>
                                </div>

@@ -255,7 +255,7 @@
                                                   <div class="info-box sm bg-gray">
                                                     <div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div>
                                                     <div class="info-box-content sm">
-                                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}"> 
+                                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" class="text-muted"> 
                                                       <b>Lugar:</b> {{ $appo->workplace}}.</a><br/>
                                                      <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
                                                     </div>
@@ -263,7 +263,7 @@
                                  @endif 
                                                          @if($loop->iteration > 2)
                                                          <div class="col-sm-12" style="text-align: right;">
-                                                          <a href="{{ url('/appointments') }}" style="font-size: 12px;">
+                                                          <a href="{{ url('/appointments') }}" style="font-size: 11px;" class="text-muted">
                                                          Más detalles...
                                                          </a>
                                                          </div>

@@ -117,7 +117,7 @@
 
           .info-box.sm {
               min-height: 45px;
-              font-size: 2vmin;
+              font-size: 12px;
               margin-bottom: 3px;
                }
           .info-box {
