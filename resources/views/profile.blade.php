@@ -67,7 +67,7 @@
 
 			 		setTimeout(function() {
 			 			 $('#modal').modal();
-					}, 3000);	
+					}, 2000);	
 				}
 
 				    
@@ -101,8 +101,23 @@
                   <div class="modal-body" >
 
                         <div align="center">
+					@php 
+					  $imagen = getimagesize($photo);    //Sacamos la información
+			          $width = $imagen[0];              //Ancho
+			          $height = $imagen[1];  
 
-						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">	
+			        if($height > '800' || $width > '800'){
+			            $height = $height / 2;
+			            $width = $width / 2;
+			        }
+			      if($height > '800' || $width > '1200'){
+			            $height = $height / 3;
+			            $width = $width / 3;
+			        }
+
+
+					@endphp
+						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target" style="width:{{ $width }}px !important; height: {{ $height }}px !Important;" >	
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x">
