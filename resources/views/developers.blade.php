@@ -22,7 +22,7 @@
 	<div class="input-group">
 	    <div class="form-control" align="center"><label id="labeltext">Agregar</label></div>
 	    <div class="input-group-btn" id="div_profile2">
-		<button class="btn btn-default btn-circle" type="button"  data-toggle="modal" data-target="#modal-default1">
+		<button class="btn btn-default btn-circle" type="button"  data-toggle="modal" data-target="#AddClient">
 		    <i class="fa fa-plus text-muted" id="i_button2"></i>
 		</button>
 	   	</div>
@@ -58,7 +58,7 @@
 
 	<!-- Modal Busqueda por lugar -->
 
-            <div id="AddClient" class="modal fade" role="dialog">
+            <div id="AddClient" class="modal fade" role="dialog" style="display: none;">
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
