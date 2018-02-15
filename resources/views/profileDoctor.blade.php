@@ -32,7 +32,16 @@
 			.dropzone .dz-message {
 			    margin: 1em 0 !important;
 			}
+.modal-content-2 {
+    position: relative;
+    background-color: transparent;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    color: white;
+    margin-top: 50%;
+    width: 100%;
 
+}
     </style>
 @stop
 
@@ -94,11 +103,11 @@
 	    	<!-- /.box-tools -->
 	  	</div>
 	  			<!-- Modal photo settings-->
-	<div id="loadingmodal" class="modal fade" role="dialog">
+	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
 	    <div class="modal-dialog">
-	        <div class="modal-content" >
+	        <div class="modal-content-2">
 	        	<div align="center">
-					<h1><i class="fa fa-refresh fa-spin"></i><br/>Subiendo foto de perfil, por favor espere...</h1>
+					<h1><i class="fa fa-spinner fa-spin"></i><br/>Cargando..</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
 	          	</div>
 	        </div>
 	    </div>
