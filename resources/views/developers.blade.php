@@ -103,7 +103,7 @@
                 	<h4 class="modal-title">Nueva App</h4>
               	</div>
               	<div class="modal-body">
-              		<form class="form-horizontal" role="form" id="form-direction" method="post" action="/developers/addApp">
+              		<form class="form-horizontal" role="form" id="form-direction" method="post" action="developers/addApp">
 	              		<div class="input-group input-group-sm">
 	              			<div class="col-sm-5">
 	              				<label>Nombre de la Aplicación:</label>
