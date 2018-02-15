@@ -600,7 +600,7 @@
 	<script type="text/javascript">
 
     $(function(){ $.Jcrop('#target'); });
-     $.Jcrop('.target',{
+     $.Jcrop('#target',{
       aspectRatio: 1,
       onSelect: updateCoords,
       onChange: updateCoords,
