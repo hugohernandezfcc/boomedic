@@ -377,9 +377,9 @@ question
         );
     }
 
- public function updateProfile(Request $request, $id)
+    public function updateDoctor(Request $request, $id)
     {
-       // $path = $request->photo->store('images', 's3');
+
         $user = User::find($id);
         $file = $request->file('file');
          $imagen = getimagesize($file);    //Sacamos la información
@@ -414,13 +414,14 @@ question
                
         if($user->save()){
         Session(['val' => 'true']);
-        return redirect('/user/edit/complete');
-      }
+        return redirect('doctor/doctor/' . $id );
+        }
     }
 
-    public function cropProfile(Request $request, $id)
+    public function cropDoctor(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
+
         $user = User::find($id);
         $targ_w = $targ_h = 300;
         $jpeg_quality = 90;
@@ -445,11 +446,10 @@ question
          Session(['val' => 'false']);
        
         $user->profile_photo = $path2;   
-        Storage::disk('s3')->delete('https://s3.amazonaws.com/abiliasf/'.$user->id.'temporal.jpg');
-        if($user->save())
-            return redirect('/user/edit/complete');
-    }
 
+        if($user->save())
+            return redirect('doctor/edit/complete' . $id );
+    }
 
 
     /**
