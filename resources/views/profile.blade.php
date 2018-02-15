@@ -54,9 +54,9 @@
 			    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 			     success: function(file, response){
 				        //alert(response);
-				  document.getElementById('loadingGif').style.display = "block";
+				 $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
 				  setTimeout(function(){ 
-				  	document.getElementById('loadingGif').style.display = "none";
+				  	$('#loadingmodal').modal('toggle');
 				  	window.location.reload(true);
 				  },21000);
 				     	}
@@ -99,7 +99,15 @@
 		    <h3 class="box-title">Información de usuario</h3>
 	    	<!-- /.box-tools -->
 	  	</div>
-	  	<div id="loadingGif" style="display:none" align="center"><center><h2><i class="fa fa-refresh fa-spin"></i> Cargando foto, por favor espere...</h2></center></div>
+	  	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
+	    <div class="modal-dialog">
+	        <div class="modal-content-2">
+	        	<div align="center">
+					<h1><i class="fa fa-spinner fa-spin"></i><br/>Cargando..</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
+	          	</div>
+	        </div>
+	    </div>
+ 	</div>
 
 	  	<!-- /.box-header -->
 	  	<div class="box-body">
