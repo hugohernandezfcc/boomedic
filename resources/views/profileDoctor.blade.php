@@ -104,8 +104,7 @@
 	          	<div class="modal-header"><label for="recorte">Recorte de imagen:</label></div>
 	          	<div class="modal-body" >
 	                <div align="center">
-	                	<div id="cropper-loading" style="display: none;"><i class="fa fa-refresh fa-spin"></i></div>
-	                   	<img src="{{ $photo }}" id="target" style="display: none;">
+	                   	<img src="{{ $photo }}" id="target">
 	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
 		                   	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
@@ -743,11 +742,7 @@
 	<script type="text/javascript">
 
 window.onload = function(){
-	 $('#cropper-loading').css('display', 'block');
-	 $('#target').attr('src', '{{ $photo }}'); 
 
-        $('#cropper-loading').css('display', 'none');                                      
-        $('#target').css('display', 'block');
 
 $('#target').Jcrop({
         boxWidth: 300,
