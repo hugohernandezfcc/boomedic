@@ -67,7 +67,6 @@
 
 			 		setTimeout(function() {
 			 			 $('#modal').modal();
-			 			 $('#crop').addClass('target');
 					}, 2000);	
 				}
 
@@ -102,7 +101,7 @@
                   <div class="modal-body" >
 
                         <div align="center">
-						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format("h:i") }}" id="crop">	
+						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format("h:i") }}" id="target">	
                     
                            <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
                            	<input type="hidden" id="x" name="x">
@@ -600,8 +599,8 @@
 
 	<script type="text/javascript">
 
-    $(function(){ $('.target').Jcrop(); });
-     $('.target').Jcrop({
+    $(function(){ $.Jcrop('#target'); });
+     $.Jcrop('.target',{
       aspectRatio: 1,
       onSelect: updateCoords,
       onChange: updateCoords,
