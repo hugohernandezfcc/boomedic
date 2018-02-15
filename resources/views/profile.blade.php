@@ -572,6 +572,7 @@
 					          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
 					        });
 
+
 					        var image = "{{ asset('maps-and-flags_1.png') }}";
 					        
 					        var beachMarker = new google.maps.Marker({

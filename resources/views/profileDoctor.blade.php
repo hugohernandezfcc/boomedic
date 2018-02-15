@@ -65,7 +65,7 @@
 			 var val = "@php echo session()->get('val'); @endphp";
 			 		if(val == "true"){
 			 		setTimeout(function() {
-					    $('#modal').modal({ backdrop: 'static' }, 'show');
+					    $('#modal').modal();
 					}, 1000);	
 				}
 
@@ -86,7 +86,18 @@
 	@endif
 
 	
-	<!-- Modal photo settings-->
+
+
+    <div class="box">
+	  	<div class="box-header with-border">
+		    <h3 class="box-title">Información de Médico</h3>
+	    	<!-- /.box-tools -->
+	  	</div>
+	  	<div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
+	  	<!-- /.box-header -->
+	  	<div class="box-body">
+	  		@if( !empty($status) )
+	  			<!-- Modal photo settings-->
 	<div id="modal" class="modal fade" role="dialog" style="width: 100%">
 	    <div class="modal-dialog">
 	        <div class="modal-content" >
@@ -108,16 +119,6 @@
 	    </div>
  	</div>
  	<!-- Modal photo settings-->
-
-    <div class="box">
-	  	<div class="box-header with-border">
-		    <h3 class="box-title">Información de Médico</h3>
-	    	<!-- /.box-tools -->
-	  	</div>
-	  	<div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
-	  	<!-- /.box-header -->
-	  	<div class="box-body">
-	  		@if( !empty($status) )
 
 		  		@if ($status == "In Progress")
 		  			<div class="callout callout-success">
@@ -732,9 +733,7 @@
 		    	</script>
 
 			@endif
-	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
-	<script src="{{ asset('js/jquery.color.js') }}"></script>
-	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+
 	  	</div>	  	
 	</div>
 	<script type="text/javascript">
