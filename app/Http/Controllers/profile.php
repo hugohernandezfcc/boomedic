@@ -311,16 +311,42 @@ class profile extends Controller
 
     public function createClient(Request $request)
     {
-      $userId = Auth::id();
+      /*$userId = Auth::id();
 
       $appName = $request->appName;
       $appRedirect = $request->appURL;
 
       DB::table('oauth_clients')->insert(
         ['user_id' => $userId, 'name' => $appName, 'redirect' => $appRedirect, 'personal_access_client' => 0, 'password_client' => 1, 'revoked' => 0]
-      );
+      );*/
 
-      return redirect('/developers');
+      $data = [
+        'name' => $request->appName,
+        'redirect' => $request->appURL,
+      ];
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+      CURLOPT_URL => "http://sbx03.herokuapp.com/oauth/clients",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 60000,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POST => 1,
+      CURLOPT_POSTFIELDS => json_encode($data, JSON_PRETTY_PRINT),
+      CURLOPT_HTTPHEADER => array(
+          "Content-type: application/json",
+          "Accept: application/json",
+        ),
+      ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    return redirect('/developers');
 
     }
 }
