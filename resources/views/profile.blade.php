@@ -91,32 +91,6 @@
 
 	@endif
 
-<div id="modal" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content" >
-                  <div class="modal-header">   
-                    <label for="recorte">Recorte de imagen:</label>
-                  </div>
-                  <div class="modal-body" >
-
-                        <div align="center">
-						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format("h:i") }}" id="target">	
-                    
-                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
-                           	<input type="hidden" id="x" name="x">
-							<input type="hidden" id="y" name="y">
-							<input type="hidden" id="w" name="w">
-							<input type="hidden" id="h" name="h"><br/>
-	                        <span class="input-group-btn">
-	                        <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
-                          </form>
-                       </div>
-                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-                  </div>
-                </div>
-              </div>
- </div>
 
  
 
@@ -130,6 +104,34 @@
 	  	<!-- /.box-header -->
 	  	<div class="box-body">
 	  		@if( !empty($status) )
+
+
+					<div id="modal" class="modal fade" role="dialog">
+					              <div class="modal-dialog">
+					                <!-- Modal content-->
+					                <div class="modal-content" >
+					                  <div class="modal-header">   
+					                    <label for="recorte">Recorte de imagen:</label>
+					                  </div>
+					                  <div class="modal-body" >
+
+					                        <div align="center">
+											<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">	
+					                    
+					                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
+					                           	<input type="hidden" id="x" name="x">
+												<input type="hidden" id="y" name="y">
+												<input type="hidden" id="w" name="w">
+												<input type="hidden" id="h" name="h"><br/>
+						                        <span class="input-group-btn">
+						                        <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
+					                          </form>
+					                       </div>
+					                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+					                  </div>
+					                </div>
+					              </div>
+					 </div>
 
 		  		@if ($status == "In Progress")
 		  			<div class="callout callout-success">
@@ -587,40 +589,37 @@
 
 			@endif
 
-	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+<script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+		<script type="text/javascript">
 
-	<script src="{{ asset('js/jquery.color.js') }}"></script>
-	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+					$('#target').Jcrop({
+					        boxWidth: 300,
+					        boxHeight: 300,
+					        setSelect: [0,0,300,300],
+					        bgOpacity: .8,
+					         bgColor:     'black',
+					        onSelect: updateCoords,
+					        onChange: updateCoords
+					    }, function(){
+					        CropAPI = this;
+					    });
 
+			     function updateCoords(c){
+			      $('#x').val(c.x);
+			      $('#y').val(c.y);
+			      $('#w').val(c.w);
+			      $('#h').val(c.h);
+			     };
+			     function checkCoords()
+			    {
+			      if (parseInt($('#w').val())>0) return true;
+			      alert('Seleccione una coordenada para subir');
+			      return false;
+			    };
 
-
-	  	</div>	  	
-	</div>
-
-
-	<script type="text/javascript">
-
-    $(function(){ $.Jcrop('#target'); });
-     $.Jcrop('#target',{
-      aspectRatio: 1,
-      onSelect: updateCoords,
-      onChange: updateCoords,
-	  setSelect: [0, 0, 300, 300],
-      bgColor:     'black'
-     });
-     function updateCoords(c){
-      $('#x').val(c.x);
-      $('#y').val(c.y);
-      $('#w').val(c.w);
-      $('#h').val(c.h);
-     };
-     function checkCoords()
-    {
-      if (parseInt($('#w').val())>0) return true;
-      alert('Seleccione una coordenada para subir');
-      return false;
-    };
-    </script>
+	    </script>
 
 
 
