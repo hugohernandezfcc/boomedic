@@ -446,7 +446,7 @@ question
          Session(['val' => 'false']);
        
         $user->profile_photo = $path2;   
-
+        Storage::disk('s3')->delete('https://s3.amazonaws.com/abiliasf/'.$user->id.'temporal.jpg');
         if($user->save())
             return redirect('doctor/edit/complete' . $id );
     }

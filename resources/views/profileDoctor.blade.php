@@ -745,10 +745,11 @@
 
 
 $('#target').Jcrop({
+	    aspectRatio: 1,
         boxWidth: 300,
         boxHeight: 300,
         setSelect: [0,0,300,300],
-        bgOpacity: .8,
+        bgOpacity: .9,
          bgColor:     'black',
         onSelect: updateCoords,
         onChange: updateCoords
