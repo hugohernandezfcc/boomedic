@@ -326,6 +326,7 @@ class payments extends Controller
                    
          
      }
+     
 
             public function postPaymentWithpaypal(Request $request)
 
