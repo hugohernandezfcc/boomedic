@@ -54,6 +54,37 @@
 	                        <th> - </th>
 	                    </tr>
 	                </thead>
+	                <tfoot>
+	                    <tr>
+	                    	<th>Nombre</th>
+	                        <th>Id de Cliente </th>
+	                        <th>Cliente Secreto </th>
+	                        <th>Url de Redireccionamiento</th>
+	                        <th> - </th>
+	                    </tr>
+	                </tfoot>
+	                <tbody>
+	                	@if(!is_null($clients))
+	                	@foreach ($clients as $client)
+	                        <tr>
+	                            <td>{{ $client->name }}</td>
+	                            <td>{{ $client->id }}</td>
+	                            <td>{{ $client->secret }}</td>
+	                            <td>{{ $client->redirect }}</td>
+
+	                            <td align="center">
+	                            <div class="input-group-btn">
+		          				<!-- Delete button that goes to a destroy type driver for the user to delete badly entered payment methods or that he no longer wants to have 
+		          					href = 'delete/{{ $client->id }}' onclick ="return confirm('¿Seguro desea eliminar este método de pago?')"-->
+			          				<a class="btn" >
+			          				<i class="fa fa-trash text-muted"></i>
+			          				</a>
+	        					</div>
+	        					</td>
+	                        </tr>
+	                	@endforeach
+	                	@endif
+	                </tbody>
 	                
 	                
 	    </table><br/><br/>
@@ -61,7 +92,7 @@
 
 	</div>
 
-
+	<!--Modal Crear nuevo cliente-->
     <div class="modal fade" id="modalAddApp" style="display: none;">
         <div class="modal-dialog">
            	<div class="modal-content">
@@ -72,30 +103,33 @@
                 	<h4 class="modal-title">Nueva App</h4>
               	</div>
               	<div class="modal-body">
-              		<div class="input-group input-group-sm">
-              			<div class="col-sm-5">
-              				<label>Nombre de la Aplicación:</label>
-                        </div>
-                        <div class="col-sm-7">
-                        	<input id="appName" type="textbox" class="form-control"><br/><br/>
-                    	</div>
-                    	<div class="col-sm-5">
-                        	<label>URL de Redireccionamiento:</label>
-                    	</div>
-                    	<div class="col-sm-7">
-                    		<input id="appURL" type="textbox" class="form-control">
-                    	</div>
-                    </div>
+              		<form class="form-horizontal" role="form" id="form-direction" method="post" action="/developers/addApp">
+	              		<div class="input-group input-group-sm">
+	              			<div class="col-sm-5">
+	              				<label>Nombre de la Aplicación:</label>
+	                        </div>
+	                        <div class="col-sm-7">
+	                        	<input id="appName" name="appName" type="textbox" class="form-control"><br/><br/>
+	                    	</div>
+	                    	<div class="col-sm-5">
+	                        	<label>URL de Redireccionamiento:</label>
+	                    	</div>
+	                    	<div class="col-sm-7">
+	                    		<input id="appURL" name="appURL" type="textbox" class="form-control">
+	                    	</div>
+	                    </div>
+	                    <div>
+	                		<button type="submit" class="btn btn-secondary pull-right" data-dismiss="modal">
+	                			Guardar
+	                		</button>
+	                	</div>
+                    </form>
               	</div>
              
-              	<div class="modal-footer">
-                	<button type="button" class="btn btn-default pull-right" data-dismiss="modal">
-                		Guardar
-                	</button>
-              	</div>
             </div>
             <!-- /.modal-content -->
         </div>
           <!-- /.modal-dialog -->
-    </div>	
+    </div>
+
 @stop

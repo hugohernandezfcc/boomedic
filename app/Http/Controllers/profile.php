@@ -294,14 +294,33 @@ class profile extends Controller
     public function developers()
     {
         $user = User::find(Auth::id());
+
+        $clients = DB::table('oauth_clients')->where('user_id', Auth::id() )->get();
+
         return view('developers', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
+                'clients'   => $clients,
 
             ]
         );
+    }
+
+    public function createClient(Request $request)
+    {
+      $userId = Auth::id();
+
+      $appName = $request->appName;
+      $appRedirect = $request->appURL;
+
+      DB::table('oauth_clients')->insert(
+        ['user_id' => $userId, 'name' => $appName, 'redirect' => $appRedirect]
+      );
+
+      return redirect('/developers');
+
     }
 }

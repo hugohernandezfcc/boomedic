@@ -85,6 +85,12 @@ Route::group(['prefix' => 'user'], function(){
 			'as'	=>	'developers'
 		]
 	);
+
+	Route::post('/developers/addApp', [
+			'uses'	=>	'profile@createClient',
+			'as'	=>	'developers.createClient'
+		]
+	);
 });
 
 
