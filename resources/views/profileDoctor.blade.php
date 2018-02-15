@@ -32,16 +32,16 @@
 			.dropzone .dz-message {
 			    margin: 1em 0 !important;
 			}
-.modal-content-2 {
-    position: relative;
-    background-color: transparent;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    color: white;
-    margin-top: 50%;
-    width: 100%;
+		.modal-content-2 {
+		    position: relative;
+		    background-color: transparent;
+		    -webkit-background-clip: padding-box;
+		    background-clip: padding-box;
+		    color: white;
+		    margin-top: 50%;
+		    width: 100%;
 
-}
+		}
     </style>
 @stop
 
@@ -107,7 +107,7 @@
 	    <div class="modal-dialog">
 	        <div class="modal-content-2">
 	        	<div align="center">
-					<h1><i class="fa fa-spinner fa-spin"></i><br/>Cargando..</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
+					<h1><i class="fa fa-spinner fa-spin"></i><br/>Cargando...</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
 	          	</div>
 	        </div>
 	    </div>
@@ -126,7 +126,7 @@
 	          	<div class="modal-header"><label for="recorte">Recorte de imagen:</label></div>
 	          	<div class="modal-body" >
 	                <div align="center">
-	                   	<img src="{{ $photo }}" id="target">
+	                   	<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">
 	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
 		                   	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
@@ -182,7 +182,7 @@
 			        }
 
 					@endphp
-						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 		    			
 		    		</div>

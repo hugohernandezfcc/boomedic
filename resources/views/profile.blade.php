@@ -31,6 +31,16 @@
 			.dropzone .dz-message {
 			    margin: 1em 0 !important;
 			}
+			.modal-content-2 {
+			    position: relative;
+			    background-color: transparent;
+			    -webkit-background-clip: padding-box;
+			    background-clip: padding-box;
+			    color: white;
+			    margin-top: 50%;
+			    width: 100%;
+
+			}
 
 
     </style>
@@ -103,7 +113,7 @@
 	    <div class="modal-dialog">
 	        <div class="modal-content-2">
 	        	<div align="center">
-					<h1><i class="fa fa-spinner fa-spin"></i><br/>Cargando..</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
+					<h1><i class="fa fa-spinner fa-spin"></i><br/>Cargando...</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
 	          	</div>
 	        </div>
 	    </div>
@@ -180,7 +190,7 @@
 			        }
 
 					@endphp
-						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 	    			
 	    		</div>
