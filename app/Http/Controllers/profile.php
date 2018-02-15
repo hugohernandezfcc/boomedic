@@ -295,7 +295,7 @@ class profile extends Controller
     {
         $user = User::find(Auth::id());
 
-        $clients = DB::table('oauth_clients')->where('id', 2 )->get();
+        $clients = DB::table('oauth_clients')->where('user_id', Auth::id() )->get();
 
         return view('developers', [
                 'userId'    => $user->id,

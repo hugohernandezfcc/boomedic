@@ -54,7 +54,7 @@
 	                        <th> - </th>
 	                    </tr>
 	                </thead>
-	                <tfoot>
+	                <!--<tfoot>
 	                    <tr>
 	                    	<th>Nombre</th>
 	                        <th>Id de Cliente </th>
@@ -62,13 +62,13 @@
 	                        <th>Url de Redireccionamiento</th>
 	                        <th> - </th>
 	                    </tr>
-	                </tfoot>
+	                </tfoot>-->
 	                <tbody>
 	                	@if(!is_null($clients))
 	                	@foreach ($clients as $client)
 	                        <tr>
 	                            <td>{{ $client->name }}</td>
-	                            <td>{{ $client->id }}</td>
+	                            <td align="center">{{ $client->id }}</td>
 	                            <td>{{ $client->secret }}</td>
 	                            <td>{{ $client->redirect }}</td>
 
