@@ -419,6 +419,8 @@ question
     }
 
     public function cropDoctor(Request $request, $id)
+    {
+       // $path = $request->photo->store('images', 's3');
        // $path = $request->photo->store('images', 's3');
         $user = User::find($id);
         $targ_w = $targ_h = 300;
