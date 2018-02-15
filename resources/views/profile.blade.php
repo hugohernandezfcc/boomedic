@@ -58,7 +58,7 @@
 				  setTimeout(function(){ 
 				  	document.getElementById('loadingGif').style.display = "none";
 				  	window.location.reload(true);
-				  },20000);
+				  },21000);
 				     	}
 			    //autoProcessQueue : false 
 			 };
@@ -67,7 +67,7 @@
 
 			 		setTimeout(function() {
 			 			 $('#modal').modal();
-					}, 2000);	
+					}, 1000);	
 				}
 
 				    
@@ -595,10 +595,11 @@
 		<script type="text/javascript">
 
 					$('#target').Jcrop({
+						    aspectRatio: 1,  
 					        boxWidth: 300,
 					        boxHeight: 300,
 					        setSelect: [0,0,300,300],
-					        bgOpacity: .8,
+					        bgOpacity: .9,
 					         bgColor:     'black',
 					        onSelect: updateCoords,
 					        onChange: updateCoords
