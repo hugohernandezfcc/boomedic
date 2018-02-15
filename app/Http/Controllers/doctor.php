@@ -377,46 +377,50 @@ question
         );
     }
 
-    public function updateDoctor(Request $request, $id)
+ public function updateProfile(Request $request, $id)
     {
-
+       // $path = $request->photo->store('images', 's3');
         $user = User::find($id);
         $file = $request->file('file');
          $imagen = getimagesize($file);    //Sacamos la información
           $width = $imagen[0];              //Ancho
           $height = $imagen[1];  
 
-          if($height > '800' || $width > '600'){
+          if($height > '600' || $width > '400'){
             $height = $height / 2;
             $width = $width / 2;
+          }
+          if($height > '800' || $width > '600'){
+            $height = $height / 2.5;
+            $width = $width / 2.5;
           }
             if($height > '1000' || $width > '900'){
                 $height = $height / 3;
                 $width = $width / 3;
               }
 
+
+
         $img = Image::make($file);
         $img->resize($width, $height);
         $img->encode('jpg');
-        Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
-        $filename = $id.'.jpg';
+        Storage::disk('s3')->put( $id.'temporal.jpg',  (string) $img, 'public');
+        $filename = $id.'temporal.jpg';
         $path = Storage::cloud()->url($filename);
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
 
        
         $user->profile_photo = $path2;   
-        
-
+               
         if($user->save()){
-            Session(['val' => 'true']);
-        return redirect('doctor/doctor/' . $id );
-        }
+        Session(['val' => 'true']);
+        return redirect('/user/edit/complete');
+      }
     }
 
-    public function cropDoctor(Request $request, $id)
+    public function cropProfile(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
-
         $user = User::find($id);
         $targ_w = $targ_h = 300;
         $jpeg_quality = 90;
@@ -441,10 +445,11 @@ question
          Session(['val' => 'false']);
        
         $user->profile_photo = $path2;   
-
+        Storage::disk('s3')->delete('https://s3.amazonaws.com/abiliasf/'.$user->id.'temporal.jpg');
         if($user->save())
-            return redirect('doctor/edit/complete' . $id );
+            return redirect('/user/edit/complete');
     }
+
 
 
     /**

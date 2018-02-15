@@ -105,7 +105,7 @@
 	          	<div class="modal-body" >
 	                <div align="center">
 	                	<div id="cropper-loading" style="display: none;"><i class="fa fa-refresh fa-spin"></i></div>
-	                   	<img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="display: none;">
+	                   	<img src="{{ $photo }}" id="target" style="display: none;">
 	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
 		                   	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
@@ -749,15 +749,18 @@ window.onload = function(){
         $('#cropper-loading').css('display', 'none');                                      
         $('#target').css('display', 'block');
 
+$('#target').Jcrop({
+        boxWidth: 300,
+        boxHeight: 300,
+        setSelect: [0,0,300,300],
+        bgOpacity: .8,
+         bgColor:     'black',
+        onSelect: updateCoords,
+        onChange: updateCoords
+    }, function(){
+        CropAPI = this;
+    });
 
-		  $(function(){ $.Jcrop('#target',{
-		      aspectRatio: 1,
-		      onSelect: updateCoords,
-		      onChange: updateCoords,
-			  setSelect: [0, 0, 300, 300],
-		      bgColor:     'black'
-		     	});
-      		});
      function updateCoords(c){
       $('#x').val(c.x);
       $('#y').val(c.y);
