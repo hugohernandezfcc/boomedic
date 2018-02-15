@@ -741,7 +741,7 @@
 <script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 	<script type="text/javascript">
 
-window.onload = function(){
+
 
 
 $('#target').Jcrop({
@@ -768,7 +768,7 @@ $('#target').Jcrop({
       alert('Seleccione una coordenada para subir');
       return false;
     };
-}
+
     </script>
     @endif
 
