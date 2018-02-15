@@ -66,7 +66,7 @@
 			 		if(val == "true"){
 
 			 		setTimeout(function() {
-			 			 $('#modal').modal();
+			 			$('#modal').modal({backdrop: 'static', keyboard: false})
 					}, 1000);	
 				}
 

@@ -54,9 +54,9 @@
 			    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 			     success: function(file, response){
 				        //alert(response);
-				  document.getElementById('loadingGif').style.display = "block";
+				 $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
 				  setTimeout(function(){ 
-				  	document.getElementById('loadingGif').style.display = "none";
+				  	d$('#loadingmodal').modal('hide');
 				  	window.location.reload(true);
 				  },21000);
 				     	}
@@ -65,7 +65,7 @@
 			 var val = "@php echo session()->get('val'); @endphp";
 			 		if(val == "true"){
 			 		setTimeout(function() {
-					    $('#modal').modal();
+			 			$('#modal').modal({backdrop: 'static', keyboard: false})
 					}, 1000);	
 				}
 
@@ -93,7 +93,20 @@
 		    <h3 class="box-title">Información de Médico</h3>
 	    	<!-- /.box-tools -->
 	  	</div>
-	  	<div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
+	  			<!-- Modal photo settings-->
+	<div id="loadingmodal" class="modal fade" role="dialog">
+	    <div class="modal-dialog">
+	        <div class="modal-content" >
+	        	<div class="pull-center">
+					<h1><i class="fa fa-refresh fa-spin"></i><br/>Subiendo foto de perfil, por favor espere...</h1>
+	          	</div>
+	        </div>
+	    </div>
+ 	</div>
+ 	<!-- Modal photo settings-->
+
+
+
 	  	<!-- /.box-header -->
 	  	<div class="box-body">
 	  		@if( !empty($status) )
