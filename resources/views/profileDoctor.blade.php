@@ -56,7 +56,7 @@
 				        //alert(response);
 				 $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
 				  setTimeout(function(){ 
-				  	d$('#loadingmodal').modal('hide');
+				  	$('#loadingmodal').modal('toggle');
 				  	window.location.reload(true);
 				  },21000);
 				     	}
@@ -97,7 +97,7 @@
 	<div id="loadingmodal" class="modal fade" role="dialog">
 	    <div class="modal-dialog">
 	        <div class="modal-content" >
-	        	<div class="pull-center">
+	        	<div align="center">
 					<h1><i class="fa fa-refresh fa-spin"></i><br/>Subiendo foto de perfil, por favor espere...</h1>
 	          	</div>
 	        </div>
