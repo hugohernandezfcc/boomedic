@@ -736,6 +736,9 @@
 
 	  	</div>	  	
 	</div>
+<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+<script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 	<script type="text/javascript">
     $(function(){ $.Jcrop('#target'); });
      $.Jcrop('#target',{
