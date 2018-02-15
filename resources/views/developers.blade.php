@@ -117,11 +117,11 @@
 	                    	<div class="col-sm-7">
 	                    		<input id="appURL" name="appURL" type="textbox" class="form-control">
 	                    	</div>
-	                    </div>
-	                    <div>
-	                		<button type="submit" class="btn btn-secondary pull-right" data-dismiss="modal">
-	                			Guardar
-	                		</button>
+		                    <div style="text-align: right; margin-top:5px" class="col-sm-12">
+		                		<button type="submit" class="btn btn-secondary pull-right" data-dismiss="modal">
+		                			Guardar
+		                		</button>
+		                	</div>
 	                	</div>
                     </form>
               	</div>
