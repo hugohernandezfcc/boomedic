@@ -104,7 +104,7 @@
 	          	<div class="modal-header"><label for="recorte">Recorte de imagen:</label></div>
 	          	<div class="modal-body" >
 	                <div align="center">
-	                	<div id="cropper-loading" style="display: none;"><img src="images/analytics/ajax-loader.gif" /></div>
+	                	<div id="cropper-loading" style="display: none;"><i class="fa fa-refresh fa-spin"></i></div>
 	                   	<img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target" style="display: none;">
 	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
 		                   	<input type="hidden" id="x" name="x" />
@@ -741,23 +741,23 @@
 <script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 	<script type="text/javascript">
-$(document).ready(function() {
+
+window.onload = function(){
 	 $('#cropper-loading').css('display', 'block');
 	 $('#target').attr('src', '{{ $photo }}'); 
 
-	 function createJcropArea() {
         $('#cropper-loading').css('display', 'none');                                      
         $('#target').css('display', 'block');
-        var jcrop_api = $.Jcrop('#target', {
-            boxWidth: 300, 
-            boxHeight: 300,
-            onSelect: updateCoords,
-            onChange: updateCoords
-        });
-        clearInterval(interval);
-    };
-    var interval = setInterval(createJcropArea, 2000);
 
+
+		  $(function(){ $.Jcrop('#target',{
+		      aspectRatio: 1,
+		      onSelect: updateCoords,
+		      onChange: updateCoords,
+			  setSelect: [0, 0, 300, 300],
+		      bgColor:     'black'
+		     	});
+      		});
      function updateCoords(c){
       $('#x').val(c.x);
       $('#y').val(c.y);
@@ -770,7 +770,7 @@ $(document).ready(function() {
       alert('Seleccione una coordenada para subir');
       return false;
     };
-});
+}
     </script>
     @endif
 
