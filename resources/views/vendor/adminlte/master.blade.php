@@ -406,9 +406,6 @@ span.round-tab:hover {
 <script src="{{ asset('js/GoogleLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInRegister.js') }}"></script>
-<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
-<script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
 
