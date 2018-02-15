@@ -63,7 +63,7 @@
                                   @if($photo == '')
                                         <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="user-image" alt="User Image">
                                     @else
-                                        <img src="{{ $photo }}" class="user-image" alt="User Image">            
+                                        <img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" class="user-image" alt="User Image">            
                                     @endif 
                                   <span class="hidden-xs">{{ $name }}</span>
                                 </a>
