@@ -741,6 +741,7 @@
      $.Jcrop('#target',{
       aspectRatio: 1,
       onSelect: updateCoords,
+      onChange: updateCoords,
 	  setSelect: [0, 0, 300, 300],
       bgColor:     'black'
      });

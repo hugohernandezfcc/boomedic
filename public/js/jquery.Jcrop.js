@@ -1654,7 +1654,7 @@
     baseClass: 'jcrop',
     addClass: null,
     bgColor: 'black',
-    bgOpacity: 0.6,
+    bgOpacity: 0.9,
     bgFade: false,
     borderOpacity: 0.4,
     handleOpacity: 0.5,
