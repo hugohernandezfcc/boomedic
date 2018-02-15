@@ -317,7 +317,7 @@ class profile extends Controller
       $appRedirect = $request->appURL;
 
       DB::table('oauth_clients')->insert(
-        ['user_id' => $userId, 'name' => $appName, 'redirect' => $appRedirect]
+        ['user_id' => $userId, 'name' => $appName, 'redirect' => $appRedirect, 'personal_access_client' => 0, 'password_client' => 1, 'revoked' => 0]
       );
 
       return redirect('/developers');
