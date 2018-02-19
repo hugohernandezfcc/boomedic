@@ -276,12 +276,13 @@
 	
 	 $(function () {
     $('#calendar').fullCalendar({
+      lang: 'es',
       header: {
+      	left:   '',
         center: 'title',
         right: 'agendaWeek,agendaDay,listWeek'
       },
-      lang: 'es',
-      defaultDate: '2018-02-12',
+      defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       eventLimit: true, // allow "more" link when too many events
@@ -340,7 +341,8 @@
           url: 'http://google.com/',
           start: '2018-02-28'
         }
-      ]
+      ],
+       eventColor: '#9F9F9F'
     });
     });		 				
 
