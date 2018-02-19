@@ -153,79 +153,80 @@
 
 		@if($mode == 'calendar')
 				<div id="calendar"></div>
-		@endif
+
 		<script type="text/javascript">
-			$(document).ready(function() {
-			var date = new Date()
-            var d    = date.getDate(),
-                m    = date.getMonth(),
-                y    = date.getFullYear()
 
-            $('#calendar').fullCalendar({
-                  header    : {
-                    left  : 'prev,next today',
-                    center: 'title',
-                    right : 'month,agendaWeek,agendaDay'
-                  },
-                  buttonText: {
-                    today: 'today',
-                    month: 'month',
-                    week : 'week',
-                    day  : 'day'
-                  },
-                  defaultView: 'month',
-
-                  //Random default events
-                  events    : [
-                    {
-                      title          : 'All Day Event',
-                      start          : new Date(y, m, 1),
-                      backgroundColor: '#f56954', //red
-                      borderColor    : '#f56954' //red
-                    },
-                    {
-                      title          : 'Long Event',
-                      start          : new Date(y, m, d - 5),
-                      end            : new Date(y, m, d - 2),
-                      backgroundColor: '#f39c12', //yellow
-                      borderColor    : '#f39c12' //yellow
-                    },
-                    {
-                      title          : 'Meeting',
-                      start          : new Date(y, m, d, 10, 30),
-                      allDay         : false,
-                      backgroundColor: '#0073b7', //Blue
-                      borderColor    : '#0073b7' //Blue
-                    },
-                    {
-                      title          : 'Lunch',
-                      start          : new Date(y, m, d, 12, 0),
-                      end            : new Date(y, m, d, 14, 0),
-                      allDay         : false,
-                      backgroundColor: '#00c0ef', //Info (aqua)
-                      borderColor    : '#00c0ef' //Info (aqua)
-                    },
-                    {
-                      title          : 'Birthday Party',
-                      start          : new Date(y, m, d + 1, 19, 0),
-                      end            : new Date(y, m, d + 1, 22, 30),
-                      allDay         : false,
-                      backgroundColor: '#00a65a', //Success (green)
-                      borderColor    : '#00a65a' //Success (green)
-                    },
-                    {
-                      title          : 'Click for Google',
-                      start          : new Date(y, m, 28),
-                      end            : new Date(y, m, 29),
-                      url            : 'http://google.com/',
-                      backgroundColor: '#3c8dbc', //Primary (light-blue)
-                      borderColor    : '#3c8dbc' //Primary (light-blue)
-                    }
-                  ],
-                  editable  : true,
-        });
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listWeek'
+      },
+      defaultDate: '2018-02-12',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2018-02-01',
+        },
+        {
+          title: 'Long Event',
+          start: '2018-02-07',
+          end: '2018-02-10'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2018-02-09T16:00:00'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2018-02-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2018-02-11',
+          end: '2018-02-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2018-02-12T10:30:00',
+          end: '2018-02-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2018-02-12T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2018-02-12T14:30:00'
+        },
+        {
+          title: 'Happy Hour',
+          start: '2018-02-12T17:30:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2018-02-12T20:00:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2018-02-13T07:00:00'
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2018-02-28'
+        }
+      ]
     });
+  });
 		</script>
+				@endif
 </div>
 </div>
 <script type="text/javascript">
