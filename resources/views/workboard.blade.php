@@ -288,7 +288,7 @@
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-     /*'addEventSource', function(start, end, callback) {
+     'addEventSource', function(start, end, callback) {
         // When requested, dynamically generate a
         // repeatable event for every monday.
         var optionhour = "{{ $workboard }}";
@@ -371,7 +371,7 @@
                         }
 		}
 	 callback(events);
-	},*/
+	},
        eventColor: '#393838'
     });
     });		 				
