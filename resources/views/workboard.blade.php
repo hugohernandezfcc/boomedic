@@ -152,11 +152,39 @@
 @endif
 
 		@if($mode == 'calendar')
-		<div id="calendar"></div>
+		<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
+		<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
+		<script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+		<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+				<div id="calendar2"></div>
 		@endif
 </div>
 </div>
 <script type="text/javascript">
+$(document).ready(function() {
+    // página cargada, inicializamos el calendario...
+    $('#calendar').fullCalendar({
+        height : 450,
+        width  : 650,
+        events : [
+        {
+            title  : 'event1',
+            start  : '2010-01-01'
+        },
+        {
+            title  : 'event2',
+            start  : '2010-01-05',
+            end    : '2010-01-07'
+        },
+        {
+            title  : 'event3',
+            start  : '2010-01-09 12:30:00',
+            allDay : false // will make the time show
+        }
+    ]
+    })
+});
+
   $('#timepicker1').timepicker({
     showInputs: false,
      showMeridian:false,
