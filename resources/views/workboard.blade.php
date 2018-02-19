@@ -31,6 +31,7 @@
 	    
   	</div>
   	<div class="box-body">
+  		@if($mode != 'calendar')
 @if(count($workboard) > 0)
 <div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> Tienes un horario registrado en este lugar. Si guardas un nuevo horario se perderá el registro anterior.</b>
 </div>
@@ -147,6 +148,13 @@
  	</div>
 
 </form>
+</div>
+@endif
+
+		@if($mode == 'calendar')
+		<div id="calendar"></div>
+		@endif
+</div>
 </div>
 <script type="text/javascript">
   $('#timepicker1').timepicker({

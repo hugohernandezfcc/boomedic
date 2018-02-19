@@ -41,7 +41,8 @@ class workboardDr extends Controller
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
                 'work'      => $work,
-                'workboard' => $workboard 
+                'workboard' => $workboar,
+                'mode'      => 'null'
             ]
         );
     }
@@ -185,7 +186,17 @@ foreach($request->day as $day){
 
 }
 
-      return redirect('workboardDr/index/'.$id);
+       return view('workboard', [
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
+                'work'      => $work,
+                'workboard' => $workboard,
+                'mode'      => 'calendar' 
+            ]
+        );
     }
 
     /**
