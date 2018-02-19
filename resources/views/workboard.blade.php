@@ -292,11 +292,10 @@
         // When requested, dynamically generate a
         // repeatable event for every monday.
         var optionhour = "{{ $workboard }}";
-	 	optionhour = optionhour.reverse();
         var events = [];
           var resp = Array();
           var resp2 = Array();
-         for(var y = optionhour.length - 1; y >= 0; y--){ 
+         for(var y = 0; y < optionhour.length; y++){ 
                      resp = optionhour[y].split(":",2); 
                      resp2 = JSON.parse(optionhour[y].slice(4));
 					 if(resp[0] == 'Dom'){
