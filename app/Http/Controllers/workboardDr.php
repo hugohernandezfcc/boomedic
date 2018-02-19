@@ -189,7 +189,7 @@ foreach($request->day as $day){
 }
  $workboard2 = DB::table('workboard') ->where('workboard.labInformation', '=', $id)->get();
   $workArray = array();
-                          foreach($workboard  as $work){
+                          foreach($workboard2  as $work){
                             array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
                           }
 
@@ -200,7 +200,7 @@ foreach($request->day as $day){
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'workboard' => $workArray,
+                'workboard' => json_encode($workArray),
                 'mode'      => 'calendar' 
             ]
         );
