@@ -275,8 +275,7 @@
 		        })
 	
 	 $(function () {
-	 	 var optionhour = "{{ $workboard }}";
-	 	  optionhour = optionhour.reverse();
+
     $('#calendar').fullCalendar({
       lang: 'es',
       defaultView: 'agendaWeek',
@@ -292,7 +291,11 @@
      'addEventSource', function(start, end, callback) {
         // When requested, dynamically generate a
         // repeatable event for every monday.
+        var optionhour = "{{ $workboard }}";
+	 	optionhour = optionhour.reverse();
         var events = [];
+          var resp = Array();
+          var resp2 = Array();
          for(var y = optionhour.length - 1; y >= 0; y--){ 
                      resp = optionhour[y].split(":",2); 
                      resp2 = JSON.parse(optionhour[y].slice(4));
