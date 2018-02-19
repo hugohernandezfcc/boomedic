@@ -288,7 +288,7 @@
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-     'addEventSource', function(start, end, callback) {
+      events: function(start, end, timezone, callback) {
         // When requested, dynamically generate a
         // repeatable event for every monday.
         var optionhour = "{{ $workboard }}";
@@ -304,7 +304,7 @@
 						 events.push({  
 						 	title: 'Cita',
 						    start:  resp2[d],
-						    end:  resp2[d++],        
+						    end:  resp2[d],        
 						    dow: [ 7 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -314,7 +314,7 @@
 						 events.push({  
 						 	title: 'Cita',
 						    start:  resp2[d],
-						    end:  resp2[d++],        
+						    end:  resp2[d],        
 						    dow: [ 1 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -324,7 +324,7 @@
 						 events.push({  
 						 	title: 'Cita',
 						    start:  resp2[d],
-						    end:  resp2[d++],        
+						    end:  resp2[d],        
 						    dow: [ 2 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -334,7 +334,7 @@
 						 events.push({  
 						 	title: 'Cita',
 						    start:  resp2[d],
-						    end:  resp2[d++],        
+						    end:  resp2[d],        
 						    dow: [ 3 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -344,7 +344,7 @@
 						 events.push({  
 						 	title: 'Cita',
 						    start:  resp2[d],
-						    end:  resp2[d++],        
+						    end:  resp2[d],        
 						    dow: [ 4 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -354,7 +354,7 @@
 						 events.push({  
 						 	title: 'Cita',
 						    start:  resp2[d],
-						    end:  resp2[d++],        
+						    end:  resp2[d],        
 						    dow: [ 5 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -364,7 +364,7 @@
 						 events.push({  
 						 	title: 'Cita',
 						    start:  resp2[d],
-						    end:  resp2[d++],        
+						    end:  resp2[d],        
 						    dow: [ 6 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -374,7 +374,7 @@
 	},
        eventColor: '#393838'
     });
-    });		 				
+});		 				
 
 </script>
 
