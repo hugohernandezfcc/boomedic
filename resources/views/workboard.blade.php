@@ -277,10 +277,10 @@
 	 $(function () {
     $('#calendar').fullCalendar({
       header: {
-        left: 'prev,next today',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay,listWeek'
+        right: 'agendaWeek,agendaDay,listWeek'
       },
+      lang: 'es',
       defaultDate: '2018-02-12',
       navLinks: true, // can click day/week names to navigate views
       editable: true,
