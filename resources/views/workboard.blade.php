@@ -282,11 +282,6 @@
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
       },
-      timeFormat: {
-                agendaWeek: 'h(:mm)tt { - h(:mm)tt}',
-                agendaDay: 'h(:mm)tt { - h(:mm)tt}',
-                month: 'h(:mm)tt { - h(:mm)tt}',
-            },
 
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
