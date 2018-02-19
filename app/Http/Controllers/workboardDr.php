@@ -41,7 +41,7 @@ class workboardDr extends Controller
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
                 'work'      => $work,
-                'workboard' => $workboar,
+                'workboard' => $workboard,
                 'mode'      => 'null'
             ]
         );
