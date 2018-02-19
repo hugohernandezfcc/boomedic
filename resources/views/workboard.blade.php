@@ -275,6 +275,8 @@
 		        })
 	
 	 $(function () {
+	 	 var optionhour = "{{ $workboard }}";
+	 	  optionhour = optionhour.reverse();
     $('#calendar').fullCalendar({
       lang: 'es',
       defaultView: 'agendaWeek',
@@ -288,44 +290,77 @@
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
       events: [
+         for (var y = optionhour.length - 1; y >= 0; y--){ 
+                     resp = optionhour[y].split(":",2); 
+                     resp2 = JSON.parse(optionhour[y].slice(4));
+					 if(resp[0] == 'Dom'){
+						     for(var d = 0; d < resp2.length; d++){
+						{   title: 'Cita',
+						    start:  resp2[d],
+						    end:  resp2[d++],        
+						    dow: [ 7 ] // Repetir Lunes y Jueves
+						},
+                          }
+                        }
+                        if(resp[0] == 'Lun'){
+						for(var d = 0; d < resp2.length; d++){
+						{   title: 'Cita',
+						    start:  resp2[d],
+						    end:  resp2[d++],        
+						    dow: [ 1 ] // Repetir Lunes y Jueves
+						},
+                          }
+                        }
+                        if(resp[0] == 'Mar'){
+						     for(var d = 0; d < resp2.length; d++){
+						{   title: 'Cita',
+						    start:  resp2[d],
+						    end:  resp2[d++],        
+						    dow: [ 2 ] // Repetir Lunes y Jueves
+						},
+                          }
+                        }
+                        if(resp[0] == 'Mie'){
+						     for(var d = 0; d < resp2.length; d++){
+						{   title: 'Cita',
+						    start:  resp2[d],
+						    end:  resp2[d++],        
+						    dow: [ 3 ] // Repetir Lunes y Jueves
+						},
+                          }
+                        }
+                        if(resp[0] == 'Jue'){
+						     for(var d = 0; d < resp2.length; d++){
+						{   title: 'Cita',
+						    start:  resp2[d],
+						    end:  resp2[d++],        
+						    dow: [ 4 ] // Repetir Lunes y Jueves
+						},
+                          }
+                        }
+                        if(resp[0] == 'Vie'){
+						     for(var d = 0; d < resp2.length; d++){
+						{   title: 'Cita',
+						    start:  resp2[d],
+						    end:  resp2[d++],        
+						    dow: [ 5 ] // Repetir Lunes y Jueves
+						},
+                          }
+                        }
+                        if(resp[0] == 'Sab'){
+						     for(var d = 0; d < resp2.length; d++){
+						{   title: 'Cita',
+						    start:  resp2[d],
+						    end:  resp2[d++],        
+						    dow: [ 6 ] // Repetir Lunes y Jueves
+						},
+                          }
+                        }
 
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2018-02-19T16:00:00'
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2018-02-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2018-02-11',
-          end: '2018-02-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2018-02-12T10:30:00',
-          end: '2018-02-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2018-02-12T12:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2018-02-28'
-        },
-		{
-		    title:"Repeticion evento",
-		    start: '10:00',
-		    end: '14:00',        
-		    dow: [ 1, 4 ] // Repetir Lunes y Jueves
 		}
+	
+	}
       ],
-       timeFormat: 'H(:mm)',
        eventColor: '#393838'
     });
     });		 				
