@@ -289,14 +289,9 @@
       events: [
 
         {
-          title: 'Long Event',
-          start: '2018-02-19',
-          end: '2018-02-19'
-        },
-        {
           id: 999,
           title: 'Repeating Event',
-          start: '2018-02-09T16:00:00'
+          start: '2018-02-19T16:00:00'
         },
         {
           id: 999,
@@ -316,22 +311,6 @@
         {
           title: 'Lunch',
           start: '2018-02-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2018-02-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2018-02-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2018-02-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2018-02-13T07:00:00'
         },
         {
           title: 'Click for Google',
