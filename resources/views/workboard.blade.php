@@ -163,7 +163,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
     // página cargada, inicializamos el calendario...
-    $('#calendar').fullCalendar({
+    $('#calendar2').fullCalendar({
         height : 450,
         width  : 650,
         events : [
