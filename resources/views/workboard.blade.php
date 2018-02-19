@@ -282,6 +282,12 @@
         center: 'title',
         right: 'agendaWeek,agendaDay,listWeek'
       },
+      timeFormat: {
+                agendaWeek: 'h(:mm)tt { - h(:mm)tt}',
+                agendaDay: 'h(:mm)tt { - h(:mm)tt}',
+                listWeek: 'h(:mm)tt { - h(:mm)tt}',
+            },
+
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true,
