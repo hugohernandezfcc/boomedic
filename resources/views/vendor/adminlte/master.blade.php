@@ -412,8 +412,7 @@ span.round-tab:hover {
 
 
 <script type="text/javascript">
- $(document).ready(function() {
-
+  $(document).ready(function() {
     $('#calendar').fullCalendar({
       header: {
         left: 'prev,next today',
@@ -481,9 +480,7 @@ span.round-tab:hover {
         }
       ]
     });
-
   });
-
     $(function () {
 
         //Datemask dd/mm/yyyy
