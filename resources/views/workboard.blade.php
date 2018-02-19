@@ -277,6 +277,7 @@
 	 $(function () {
     $('#calendar').fullCalendar({
       lang: 'es',
+      defaultView: 'agendaWeek',
       header: {
       	left:   '',
         center: 'title',
@@ -316,7 +317,13 @@
           title: 'Click for Google',
           url: 'http://google.com/',
           start: '2018-02-28'
-        }
+        },
+		{
+		    title:"Repeticion evento",
+		    start: '10:00',
+		    end: '14:00',        
+		    dow: [ 1, 4 ] // Repetir Lunes y Jueves
+		}
       ],
        timeFormat: 'H(:mm)',
        eventColor: '#393838'
