@@ -285,8 +285,7 @@
 
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
+      editable: true, // allow "more" link when too many events
       events: [
 
         {
@@ -340,7 +339,8 @@
           start: '2018-02-28'
         }
       ],
-       eventColor: '#9F9F9F'
+       timeFormat: 'H(:mm)',
+       eventColor: '#393838'
     });
     });		 				
 
