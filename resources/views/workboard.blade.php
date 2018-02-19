@@ -280,12 +280,12 @@
       header: {
       	left:   '',
         center: 'title',
-        right: 'agendaWeek,agendaDay,listWeek'
+        right: 'month,agendaWeek,agendaDay'
       },
       timeFormat: {
                 agendaWeek: 'h(:mm)tt { - h(:mm)tt}',
                 agendaDay: 'h(:mm)tt { - h(:mm)tt}',
-                listWeek: 'h(:mm)tt { - h(:mm)tt}',
+                month: 'h(:mm)tt { - h(:mm)tt}',
             },
 
       defaultDate: '2018-02-19',
@@ -293,14 +293,11 @@
       editable: true,
       eventLimit: true, // allow "more" link when too many events
       events: [
-        {
-          title: 'All Day Event',
-          start: '2018-02-01',
-        },
+
         {
           title: 'Long Event',
-          start: '2018-02-07',
-          end: '2018-02-10'
+          start: '2018-02-19',
+          end: '2018-02-19'
         },
         {
           id: 999,
