@@ -260,7 +260,7 @@
 	 $(function () {
         var optionhour = @php echo $workboard;  @endphp;
         console.log(optionhour);
-         var events = new Object();
+        var events = [];
           var resp = Array();
           var resp2 = Array();
          for(var y = 0; y < optionhour.length; y++){ 
