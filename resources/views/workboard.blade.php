@@ -411,7 +411,7 @@
 		console.log(hor);
 
     $('#calendar').fullCalendar({
-      lang: 'es',
+      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
       defaultView: 'month',
       header: {
       	left:   '',
@@ -423,16 +423,8 @@
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
       droppable: true,
-      eventColor: '#393838',
-      eventDrop: function(event, delta, revertFunc) {
-
-        alert(event.title + " was dropped on " + event.start.format());
-
-        if (!confirm("Are you sure about this change?")) {
-            revertFunc();
-        }
-
-		}
+      eventColor: '#393838'
+    
     });
 });		 				
 </script>
