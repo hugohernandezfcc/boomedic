@@ -257,7 +257,7 @@
 						$("#sel").append('<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>').trigger('change.select2');
 		        })
 	
-	 $(function () {
+ $(document).ready(function() {
         var optionhour = @php echo $workboard;  @endphp;
         console.log(optionhour);
         var hor = [];
