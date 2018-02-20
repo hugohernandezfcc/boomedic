@@ -28,10 +28,7 @@ class workboardDr extends Controller
     $work = $id;
 
     $workboard = DB::table('workboard')->where('labInformation', $work)->get();
-      $workArray = array();
-                          foreach($workboard  as $work){
-                            array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
-                          }
+
         return view('workboard', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
@@ -40,7 +37,6 @@ class workboardDr extends Controller
                 'date'      => $user->created_at,
                 'work'      => $work,
                 'workboard' => $workboard,
-                'workboard1' => json_encode($workArray),
                 'mode'      => 'null'
             ]
         );
