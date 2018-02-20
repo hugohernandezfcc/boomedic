@@ -33,7 +33,9 @@ class workboardDr extends Controller
     $user = User::find(Auth::id());   
     $work = $id;
     $workboard = DB::table('workboard')->where('labInformation', $work)->get();
-    $workArray = array();
+
+ $workboard2 = DB::table('workboard') ->where('workboard.labInformation', '=', $id)->get();
+  $workArray = array();
                           foreach($workboard2  as $work){
                             array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
                           }
