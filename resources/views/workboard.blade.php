@@ -291,14 +291,14 @@
       events: function(start, end, timezone, callback) {
         // When requested, dynamically generate a
         // repeatable event for every monday.
-        var optionhour = JSON.stringify(@php echo $work1; @endphp);
-        console.log(JSON.stringify(optionhour));
+        var optionhour = @php echo $work1; @endphp;
+        console.log(optionhour);
         var events = [];
           var resp = Array();
           var resp2 = Array();
          for(var y = 0; y < optionhour.length; y++){ 
                      resp = optionhour[y].split(":",2); 
-                     resp2 = optionhour[y].slice(4);
+                     resp2 = JSON.parse(optionhour[y].slice(4));
                      console.log(resp2);
 					 if(resp[0] == 'Dom'){
 						for(var d = 0; d < resp2.length; d++){
