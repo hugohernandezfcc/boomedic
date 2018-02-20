@@ -19,7 +19,7 @@
 	opacity: 1;				
 }
   #calendar {
-    max-width: 900px;
+    max-width: 700px;
     margin: 0 auto;
   }
 </style>
@@ -278,7 +278,8 @@
                           } else {
                           	hor.push({  
 						 	title: 'Asueto',
-						    start:  '00:00',  
+						    start:  '00:00', 
+						    end: '00:'+ resp2[d].slice(8),  						     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -296,7 +297,8 @@
                           } else {
                           	hor.push({  
 						 	title: 'Asueto',
-						    start:  '00:00',  
+						    start:  '00:00',
+						    end: '00:'+ resp2[d].slice(8),  						      
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -314,7 +316,8 @@
                           } else {
                           	hor.push({  
 						 	title: 'Asueto',
-						    start:  '00:00',  
+						    start:  '00:00', 
+						    end: '00:'+ resp2[d].slice(8),  						     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -333,6 +336,7 @@
                           	hor.push({  
 						 	title: 'Asueto',
 						    start:  '00:00',  
+						    end: '00:'+ resp2[d].slice(8),  
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -350,7 +354,8 @@
                           } else {
                           	hor.push({  
 						 	title: 'Asueto',
-						    start:  '00:00',  
+						    start:  '00:00',
+						    end: '00:'+ resp2[d].slice(8),    
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -368,7 +373,8 @@
                           } else {
                           	hor.push({  
 						 	title: 'Asueto',
-						    start:  '00:00',  
+						    start:  '00:00',
+						    end: '00:'+ resp2[d].slice(8),  
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
