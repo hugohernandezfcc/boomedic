@@ -33,7 +33,10 @@ class workboardDr extends Controller
     $user = User::find(Auth::id());   
     $work = $id;
     $workboard = DB::table('workboard')->where('labInformation', $work)->get();
-
+    $workArray = array();
+                          foreach($workboard2  as $work){
+                            array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
+                          }
         return view('workboard', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
@@ -42,6 +45,7 @@ class workboardDr extends Controller
                 'date'      => $user->created_at,
                 'work'      => $work,
                 'workboard' => $workboard,
+                'work1' => json_encode($workArray),
                 'mode'      => 'null'
             ]
         );
@@ -200,7 +204,7 @@ foreach($request->day as $day){
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'work' => json_encode($workArray),
+                'work1' => json_encode($workArray),
                 'mode'      => 'calendar' 
             ]
         );
