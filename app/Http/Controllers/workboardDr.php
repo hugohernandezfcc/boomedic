@@ -1,18 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\Workboard;
 use Carbon\Carbon;
-
-
 class workboardDr extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
@@ -23,7 +18,6 @@ class workboardDr extends Controller
         $this->middleware('auth');
        
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -33,12 +27,6 @@ class workboardDr extends Controller
     $user = User::find(Auth::id());   
     $work = $id;
     $workboard = DB::table('workboard')->where('labInformation', $work)->get();
-
- $workboard2 = DB::table('workboard') ->where('workboard.labInformation', '=', $id)->get();
-  $workArray = array();
-                          foreach($workboard2  as $work){
-                            array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
-                          }
         return view('workboard', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
@@ -47,12 +35,10 @@ class workboardDr extends Controller
                 'date'      => $user->created_at,
                 'work'      => $work,
                 'workboard' => $workboard,
-                'work1'     => $workArray,
                 'mode'      => 'null'
             ]
         );
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -61,50 +47,35 @@ class workboardDr extends Controller
     public function create(Request $request, $id )
     {
         $user = User::find(Auth::id());   
-
   $workboard = DB::table('workboard')->where('labInformation', $id)->get();
  if(count($workboard) > 0){
     DB::table('workboard')->where('labInformation', $id)->delete();   
  }
-
 if ($request->type == 'false') {
-
         $user = User::find(Auth::id()); 
         
         $startTime = Carbon::parse($request->start);
         $finishTime = Carbon::parse($request->end);
-
         $totalDuration = $finishTime->diffInMinutes($startTime);
         $consultation = $request->prom - 5;
         $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
-
-
     $hora_inicio = new \DateTime(  $startTime );
     $hora_fin    = new \DateTime(  $finishTime );
     $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que nos muestre $hora_fin
-
     // Establecemos el intervalo en minutos        
     $intervalo = new \DateInterval('PT'.$consultation.'M');
-
     // Sacamos los periodos entre las horas
     $periodo   = new \DatePeriod($hora_inicio, $intervalo, $hora_fin);        
-
     foreach( $periodo as $hora ) {
-
         // Guardamos las horas intervalos 
         $horas[] =  $hora->format('H:i:s');
     }
-
-
     $timeend = Carbon::parse(\end($horas)); 
-
     if($timeend !=  $finishTime){
          $timedeath = $finishTime->diffInMinutes($timeend);
          array_push($horas, "asueto :".$timedeath);
     }
-
 foreach($request->day as $day){   
-
          $workboard = new workboard;
         
          if($day == 'Lun'){
@@ -139,44 +110,31 @@ foreach($request->day as $day){
          $workboard->save();
         
         }
-
 } if ($request->type == 'true')  {
-
     $json = json_decode($request->vardays);
     foreach ($json as $json2) {
         $horas = array();
         $startTime = Carbon::parse($json2->start);
         $finishTime = Carbon::parse($json2->end);
-
         $totalDuration = $finishTime->diffInMinutes($startTime);
         $consultation = $request->prom - 5;
         $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
-
-
     $hora_inicio = new \DateTime(  $startTime );
     $hora_fin    = new \DateTime(  $finishTime );
     $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que nos muestre $hora_fin
-
     // Establecemos el intervalo en minutos        
     $intervalo = new \DateInterval('PT'.$consultation.'M');
-
     // Sacamos los periodos entre las horas
     $periodo   = new \DatePeriod($hora_inicio, $intervalo, $hora_fin);        
-
     foreach( $periodo as $hora ) {
-
         // Guardamos las horas intervalos 
         $horas[] =  $hora->format('H:i:s');
     }
-
-
     $timeend = Carbon::parse(\end($horas)); 
-
     if($timeend !=  $finishTime){
          $timedeath = $finishTime->diffInMinutes($timeend);
          array_push($horas, "asueto :".$timedeath);
     }
-
        
          $workboard = new workboard;
          $workboard->workingHours = number_format(($totalDuration / 60), 0, '.', ',');
@@ -186,32 +144,26 @@ foreach($request->day as $day){
          $workboard->labInformation = $id;
          $workboard->patient_duration_attention =  json_encode($horas);
          $workboard->fixed_schedule = 'False';
-
-
          $workboard->save();
         
  }
-
 }
  $workboard2 = DB::table('workboard') ->where('workboard.labInformation', '=', $id)->get();
   $workArray = array();
                           foreach($workboard2  as $work){
                             array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
                           }
-
-
        return view('workboard', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'work1'     => $workArray,
+                'workboard' => json_encode($workArray),
                 'mode'      => 'calendar' 
             ]
         );
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -220,15 +172,11 @@ foreach($request->day as $day){
      */
     public function store(Request $request)
     {
-
        return redirect('medicalconsultations');
     }
-
     /**
      * Method responsable of list of paymentmethods
      */
-
-
     /**
      * Display the specified resource.
      *
@@ -239,7 +187,6 @@ foreach($request->day as $day){
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -250,7 +197,6 @@ foreach($request->day as $day){
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -260,10 +206,7 @@ foreach($request->day as $day){
      */
     public function update(Request $request, $id)
     {
-
     }
-
-
     public function redirecting($page)
     {
         switch ($page) {
@@ -276,7 +219,6 @@ foreach($request->day as $day){
                 break;
         }   
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -285,8 +227,6 @@ foreach($request->day as $day){
      */
     public function destroy($id)
     {
-
     }
-
     
 }

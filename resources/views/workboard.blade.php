@@ -191,14 +191,12 @@
 				function(event) {
 					var json = new Array();	
 					var group =  $("#sel").val();
-
 				if (!group) {
 				document.getElementById("al").style.display = "block";	
 				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="danger"><b><i class="icon fa fa-warning"></i> No has seleccionado ningún día </b></div>');
 					$("#danger").fadeTo(2000, 500).slideUp(500, function(){
 					    $("#danger").alert('close');
 					});
-
 					} 
 				if (!document.getElementById('prom').value) {
 				document.getElementById("al").style.display = "block";	
@@ -206,25 +204,19 @@
 					$("#danger2").fadeTo(2000, 500).slideUp(500, function(){
 					    $("#danger2").alert('close');
 					});
-
 					}
 					else {
 				document.getElementById("al").style.display = "block";	
 				var selects = group.toString().split(',');
 				  $('.al').append('<div class="alert alert-info alert-dismissible" id="'+ selects[0] +'"><button type="button" class="clo'+selects[0]+' close" data-dismiss="alert" aria-hidden="true">×</button><b><i class="icon fa fa-info"></i> Grupo de horario pre-agregado</b> &nbsp; Días: <span>'+ group +'</span>. Hora inicial: '+ $("#timepicker2").val() +'. Hora Final: '+ $("#timepicker1").val() +'</div>');
 				
-
-
 					
-
-
 				for(var z=0; z < selects.length; z++){
 					json.push({"day" : selects[z], "start": $("#timepicker2").val() , "end" : $("#timepicker1").val(), "prom" : $("#prom").val() });
 					$("#sel").val('"+ selects[z] +"').trigger('change');
 					$("#sel option[value='"+ selects[z] +"']").attr('disabled','disabled');
 				}
 				
-
 				if(!document.getElementById("vardays").value){
 				document.getElementById("vardays").value = JSON.stringify(json);
 			
@@ -233,15 +225,10 @@
 				var jsonend = json.concat(JSON.parse(document.getElementById("vardays").value));
 				document.getElementById("vardays").value = JSON.stringify(jsonend);
 				console.log(document.getElementById("vardays").value);
-
-
 				}
-
 					$("#sel").val('0').trigger('change.select2');
 					$(".filter-option").html("Seleccione uno o varios días");
-
 				$(".clo"+selects[0]).click(function () {
-
 					var valor = $('#'+selects[0]+'').children('span').text();
 					var unselect =	valor.toString().split(',');
 					
@@ -261,13 +248,9 @@
 					 $("al").alert('close');
 				}
 					});
-
 				}
 			
 				}) 
-
-
-
 </script>
 <script type="text/javascript">
 			 $(' input[type=checkbox]').each(function(event) {
@@ -275,7 +258,6 @@
 		        })
 	
 	 $(function () {
-
     $('#calendar').fullCalendar({
       lang: 'es',
       defaultView: 'agendaWeek',
@@ -284,21 +266,20 @@
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
       },
-
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
       events: function(start, end, timezone, callback) {
         // When requested, dynamically generate a
         // repeatable event for every monday.
-        var optionhour = @php echo $work1; @endphp;
+        var optionhour = "{{ $workboard }}";
         console.log(optionhour);
         var events = [];
           var resp = Array();
           var resp2 = Array();
          for(var y = 0; y < optionhour.length; y++){ 
                      resp = optionhour[y].split(":",2); 
-                     resp2 = JSON.parse(optionhour[y].slice(4));
+                     resp2 = optionhour[y].slice(4);
                      console.log(resp2);
 					 if(resp[0] == 'Dom'){
 						for(var d = 0; d < resp2.length; d++){
@@ -376,7 +357,6 @@
        eventColor: '#393838'
     });
 });		 				
-
 </script>
 
 @stop
