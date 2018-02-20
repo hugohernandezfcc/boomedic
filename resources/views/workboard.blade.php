@@ -419,10 +419,20 @@
         right: 'month,agendaWeek'
       },
       defaultDate: '2018-02-19',
+      events: hor,
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-      events: hor,
-       eventColor: '#393838'
+      droppable: true,
+      eventColor: '#393838',
+      eventDrop: function(event, delta, revertFunc) {
+
+        alert(event.title + " was dropped on " + event.start.format());
+
+        if (!confirm("Are you sure about this change?")) {
+            revertFunc();
+        }
+
+		}
     });
 });		 				
 </script>
