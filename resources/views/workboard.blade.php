@@ -268,65 +268,71 @@
                      resp2 = JSON.parse(optionhour[y].slice(4));
 					 if(resp[0] == 'Dom'){
 						for(var d = 0; d < resp2.length; d++){
+					var da = '[0]';		
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  resp2[d].slice(0,-3),
-						    end:  resp2[d].slice(0,-3),        
-						    dow: [7] // Repetir Lunes y Jueves
+						    start:  resp2[d].slice(0,-3),  
+						    dow: da // Repetir Lunes y Jueves
 						});
                           }
                         }
                         if(resp[0] == 'Lun'){
 						for(var d = 0; d < resp2.length; d++){
+							var da = '[1]';		
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  "'" + resp2[d].slice(0,-3) +"'",
-						    dow: [1] // Repetir Lunes y Jueves
+						    start:  resp2[d].slice(0,-3),
+						    dow: da // Repetir Lunes y Jueves
 						});
                           }
                         }
                         if(resp[0] == 'Mar'){
 						     for(var d = 0; d < resp2.length; d++){
+						     	var da = '[2]';		
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  "'" + resp2[d].slice(0,-3) +"'",   
-						    dow: [2] // Repetir Lunes y Jueves
+						    start:  resp2[d].slice(0,-3), 
+						    dow: da // Repetir Lunes y Jueves
 						});
                           }
                         }
                         if(resp[0] == 'Mie'){
 						     for(var d = 0; d < resp2.length; d++){
+						     	var da = '[3]';		
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  "'" + resp2[d].slice(0,-3) +"'",
-						    dow: [3] // Repetir Lunes y Jueves
+						    start:  resp2[d].slice(0,-3),
+						    dow: da // Repetir Lunes y Jueves
 						});
                           }
                         }
                         if(resp[0] == 'Jue'){
 						     for(var d = 0; d < resp2.length; d++){
+						     	var da = '[4]';		
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  "'" + resp2[d].slice(0,-3) +"'",    
-						    dow: [4] // Repetir Lunes y Jueves
+						    start:  resp2[d].slice(0,-3),  
+						    dow: da // Repetir Lunes y Jueves
 						});
                           }
                         }
                         if(resp[0] == 'Vie'){
 						     for(var d = 0; d < resp2.length; d++){
+						     	var da = '[5]';		
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  "'" + resp2[d].slice(0,-3) +"'",      
-						    dow: [5] // Repetir Lunes y Jueves
+						    start:  resp2[d].slice(0,-3),    
+						    dow: da // Repetir Lunes y Jueves
 						});
                           }
                         }
                         if(resp[0] == 'Sab'){
 						     for(var d = 0; d < resp2.length; d++){
+						     	var da = '[6]';		
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  "'" + resp2[d].slice(0,-3) +"'",
-						    dow: [6] // Repetir Lunes y Jueves
+						    start:  resp2[d].slice(0,-3),
+						    dow: da // Repetir Lunes y Jueves
 						});
                           }
                         }
