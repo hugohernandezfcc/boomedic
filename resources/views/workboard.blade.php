@@ -270,8 +270,9 @@
 						for(var d = 0; d < resp2.length; d++){
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  '2010-01-09T12:30:00',
-
+						    start:  resp2[d].slice(0,-3),
+						    end:  resp2[d].slice(0,-3),        
+						    dow: [7] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -279,8 +280,8 @@
 						for(var d = 0; d < resp2.length; d++){
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  '2010-01-09T12:30:00',
-
+						    start:  "'" + resp2[d].slice(0,-3) +"'",
+						    dow: [1] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -288,8 +289,8 @@
 						     for(var d = 0; d < resp2.length; d++){
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  '2010-01-09T12:30:00',
-
+						    start:  "'" + resp2[d].slice(0,-3) +"'",   
+						    dow: [2] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -297,8 +298,8 @@
 						     for(var d = 0; d < resp2.length; d++){
 						 hor.push({  
 						 	title: 'Cita',
-						    start: '2010-01-09T12:30:00',
-
+						    start:  "'" + resp2[d].slice(0,-3) +"'",
+						    dow: [3] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -306,8 +307,8 @@
 						     for(var d = 0; d < resp2.length; d++){
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  '2010-01-09T12:30:00',
-
+						    start:  "'" + resp2[d].slice(0,-3) +"'",    
+						    dow: [4] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -315,8 +316,8 @@
 						     for(var d = 0; d < resp2.length; d++){
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  '2010-01-09T12:30:00',
-
+						    start:  "'" + resp2[d].slice(0,-3) +"'",      
+						    dow: [5] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -324,8 +325,8 @@
 						     for(var d = 0; d < resp2.length; d++){
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  '2010-01-09T12:30:00',
-
+						    start:  "'" + resp2[d].slice(0,-3) +"'",
+						    dow: [6] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -340,7 +341,7 @@
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
       },
-      defaultDate: '2010-01-09',
+      defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
       events: hor,
