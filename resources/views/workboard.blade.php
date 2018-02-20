@@ -19,7 +19,7 @@
 	opacity: 1;				
 }
   #calendar {
-    max-width: 700px;
+    max-width: 900px;
     margin: 0 auto;
   }
 </style>
@@ -279,7 +279,8 @@
                           	hor.push({  
 						 	title: 'Asueto',
 						    start:  '00:00', 
-						    end: '00:'+ resp2[d].slice(8),  						     
+						    end: '00:'+ resp2[d].slice(8),
+						    color: 'green',   						     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -298,7 +299,8 @@
                           	hor.push({  
 						 	title: 'Asueto',
 						    start:  '00:00',
-						    end: '00:'+ resp2[d].slice(8),  						      
+						    end: '00:'+ resp2[d].slice(8),
+						    color: 'green',   						      
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -317,7 +319,8 @@
                           	hor.push({  
 						 	title: 'Asueto',
 						    start:  '00:00', 
-						    end: '00:'+ resp2[d].slice(8),  						     
+						    end: '00:'+ resp2[d].slice(8), 
+						    color: 'green',  						     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -336,7 +339,8 @@
                           	hor.push({  
 						 	title: 'Asueto',
 						    start:  '00:00',  
-						    end: '00:'+ resp2[d].slice(8),  
+						    end: '00:'+ resp2[d].slice(8), 
+						    color: 'green',  
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -355,7 +359,8 @@
                           	hor.push({  
 						 	title: 'Asueto',
 						    start:  '00:00',
-						    end: '00:'+ resp2[d].slice(8),    
+						    end: '00:'+ resp2[d].slice(8),
+						    color: 'green',     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -374,7 +379,8 @@
                           	hor.push({  
 						 	title: 'Asueto',
 						    start:  '00:00',
-						    end: '00:'+ resp2[d].slice(8),  
+						    end: '00:'+ resp2[d].slice(8),
+						    color: 'green', 
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
