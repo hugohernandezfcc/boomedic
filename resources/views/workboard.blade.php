@@ -258,20 +258,6 @@
 		        })
 	
 	 $(function () {
-    $('#calendar').fullCalendar({
-      lang: 'es',
-      defaultView: 'agendaWeek',
-      header: {
-      	left:   '',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-      },
-      defaultDate: '2018-02-19',
-      navLinks: true, // can click day/week names to navigate views
-      editable: true, // allow "more" link when too many events
-      events: function(start, end, timezone, callback) {
-        // When requested, dynamically generate a
-        // repeatable event for every monday.
         var optionhour = @php echo $workboard;  @endphp;
         console.log(optionhour);
         var events = [];
@@ -352,8 +338,19 @@
                           }
                         }
 		}
-	 callback(events);
-	},
+
+    $('#calendar').fullCalendar({
+      lang: 'es',
+      defaultView: 'agendaWeek',
+      header: {
+      	left:   '',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      defaultDate: '2018-02-19',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true, // allow "more" link when too many events
+      events: events,
        eventColor: '#393838'
     });
 });		 				
