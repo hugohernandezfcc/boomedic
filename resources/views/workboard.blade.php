@@ -258,7 +258,7 @@
 		        })
 	
 	 $(function () {
-        var optionhour = @php echo $workboard1;  @endphp;
+        var optionhour = @php echo $workboard;  @endphp;
         console.log(optionhour);
         var hor = [];
           var resp = Array();
