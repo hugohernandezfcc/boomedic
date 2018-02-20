@@ -274,6 +274,7 @@
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),  
 						    editable: true, 
+						    startEditable: true,
 						    dow: da // Repetir Lunes y Jueves
 
 						});
@@ -283,7 +284,8 @@
 						    start:  '00:00', 
 						    end: '00:'+ resp2[d].slice(8),
 						    color: 'green',   		
-						    editable: true, 				     
+						    editable: true, 
+						    startEditable: true,				     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -296,7 +298,8 @@
 						 hor.push({  
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3), 
-						    editable: true,  
+						    editable: true, 
+						    startEditable: true, 
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -305,7 +308,8 @@
 						    start:  '00:00',
 						    end: '00:'+ resp2[d].slice(8),
 						    color: 'green',   			
-						    editable: true, 			      
+						    editable: true,
+						    startEditable: true, 			      
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -319,6 +323,7 @@
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),  
 						    editable: true, 
+						    startEditable: true,
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -327,7 +332,8 @@
 						    start:  '00:00', 
 						    end: '00:'+ resp2[d].slice(8), 
 						    color: 'green',  	
-						    editable: true, 					     
+						    editable: true, 
+						    startEditable: true,					     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -340,7 +346,8 @@
 						 hor.push({  
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),
-						    editable: true,   
+						    editable: true, 
+						    startEditable: true,  
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -349,7 +356,8 @@
 						    start:  '00:00', 
 						    end: '00:'+ resp2[d].slice(8), 
 						    color: 'green',  				
-						    editable: true, 		     
+						    editable: true, 
+						    startEditable: true,		     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -362,7 +370,8 @@
 						 hor.push({  
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),  
-						    editable: true, 
+						    editable: true,
+						    startEditable: true, 
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -372,6 +381,7 @@
 						    end: '00:'+ resp2[d].slice(8), 
 						    color: 'green',  
 						    editable: true, 
+						    startEditable: true,
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -385,6 +395,7 @@
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3), 
 						    editable: true,  
+						    startEditable: true,
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -393,7 +404,8 @@
 						    start:  '00:00',
 						    end: '00:'+ resp2[d].slice(8),
 						    color: 'green',
-						    editable: true,      
+						    editable: true, 
+						    startEditable: true,     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -406,7 +418,8 @@
 						 hor.push({  
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3), 
-						    editable: true,  
+						    editable: true, 
+						    startEditable: true, 
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -416,6 +429,7 @@
 						    end: '00:'+ resp2[d].slice(8),
 						    color: 'green',
 						    editable: true, 
+						    startEditable: true,
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
