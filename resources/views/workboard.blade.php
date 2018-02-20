@@ -292,6 +292,7 @@
         // When requested, dynamically generate a
         // repeatable event for every monday.
         var optionhour = "{{ $workboard }}";
+        console.log(optionhour);
         var events = [];
           var resp = Array();
           var resp2 = Array();
