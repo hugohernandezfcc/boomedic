@@ -47,7 +47,7 @@ class workboardDr extends Controller
                 'date'      => $user->created_at,
                 'work'      => $work,
                 'workboard' => $workboard,
-                'work1' => json_encode($workArray),
+                'work1'     => json_encode($workArray),
                 'mode'      => 'null'
             ]
         );
@@ -206,7 +206,7 @@ foreach($request->day as $day){
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'work1' => json_encode($workArray),
+                'work1'     => json_encode($workArray),
                 'mode'      => 'calendar' 
             ]
         );
