@@ -19,7 +19,7 @@
 	opacity: 1;				
 }
   #calendar {
-    max-width: 900px;
+    max-width: 700px;
     margin: 0 auto;
   }
 </style>
@@ -339,20 +339,7 @@
 		}
 		console.log(hor);
 
-    $('#calendar').fullCalendar({
-      lang: 'es',
-      defaultView: 'agendaWeek',
-      header: {
-      	left:   '',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-      },
-      defaultDate: '2018-02-19',
-      navLinks: true, // can click day/week names to navigate views
-      editable: true, // allow "more" link when too many events
-      events: hor,
-       eventColor: '#393838'
-    });
+    $('#calendar').fullCalendar( 'renderEvent', hor, true);
 });		 				
 </script>
 
