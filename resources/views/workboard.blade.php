@@ -340,7 +340,7 @@
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
       },
-      defaultDate: '2018-02-19',
+      defaultDate: '2010-01-09',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
       events: hor,
