@@ -272,7 +272,7 @@
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),
 						    end:  resp2[d].slice(0,-3),        
-						    dow: '[7]' // Repetir Lunes y Jueves
+						    dow: [7] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -282,7 +282,7 @@
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),
 						    end:  resp2[d].slice(0,-3),      
-						    dow: '[1]' // Repetir Lunes y Jueves
+						    dow: [1] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -292,7 +292,7 @@
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),
 						    end:  resp2[d].slice(0,-3),     
-						    dow: '[2]' // Repetir Lunes y Jueves
+						    dow: [2] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -302,7 +302,7 @@
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),
 						    end:  resp2[d].slice(0,-3),   
-						    dow: '[3]' // Repetir Lunes y Jueves
+						    dow: [3] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -312,7 +312,7 @@
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),
 						    end:  resp2[d].slice(0,-3),      
-						    dow: '[4]' // Repetir Lunes y Jueves
+						    dow: [4] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -322,7 +322,7 @@
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),
 						    end:  resp2[d].slice(0,-3),          
-						    dow: '[5]' // Repetir Lunes y Jueves
+						    dow: [5] // Repetir Lunes y Jueves
 						});
                           }
                         }
@@ -332,12 +332,12 @@
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),
 						    end:  resp2[d].slice(0,-3),      
-						    dow: '[6]' // Repetir Lunes y Jueves
+						    dow: [6] // Repetir Lunes y Jueves
 						});
                           }
                         }
 		}
-		console.log(events);
+		console.log(hor);
 
     $('#calendar').fullCalendar({
       lang: 'es',
