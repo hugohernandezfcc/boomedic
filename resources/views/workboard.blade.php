@@ -266,7 +266,6 @@
          for(var y = 0; y < optionhour.length; y++){ 
                      resp = optionhour[y].split(":",2); 
                      resp2 = JSON.parse(optionhour[y].slice(4));
-                     console.log(resp2);
 					 if(resp[0] == 'Dom'){
 						for(var d = 0; d < resp2.length; d++){
 						 events.push({  
@@ -338,6 +337,7 @@
                           }
                         }
 		}
+		console.log(events);
 
     $('#calendar').fullCalendar({
       lang: 'es',
@@ -350,7 +350,7 @@
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-      events: events,
+      events: [events],
        eventColor: '#393838'
     });
 });		 				
