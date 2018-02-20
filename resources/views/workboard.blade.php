@@ -268,72 +268,110 @@
                      resp2 = JSON.parse(optionhour[y].slice(4));
 					 if(resp[0] == 'Dom'){
 						for(var d = 0; d < resp2.length; d++){
-					var da = '[0]';		
+						var da = '[0]';	
+						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
+                          } else {
+                          	hor.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',  
+						    dow: da // Repetir Lunes y Jueves
+						});
                           }
+                     	 }
                         }
                         if(resp[0] == 'Lun'){
 						for(var d = 0; d < resp2.length; d++){
 							var da = '[1]';		
+						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  resp2[d].slice(0,-3),
+						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
+                          } else {
+                          	hor.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',  
+						    dow: da // Repetir Lunes y Jueves
+						});
+                          }
                           }
                         }
                         if(resp[0] == 'Mar'){
 						     for(var d = 0; d < resp2.length; d++){
 						     	var da = '[2]';		
-						 hor.push({  
-						 	title: 'Cita',
-						    start:  resp2[d].slice(0,-3), 
-						    dow: da // Repetir Lunes y Jueves
-						});
-                          }
-                        }
-                        if(resp[0] == 'Mie'){
-						     for(var d = 0; d < resp2.length; d++){
-						     	var da = '[3]';		
-						 hor.push({  
-						 	title: 'Cita',
-						    start:  resp2[d].slice(0,-3),
-						    dow: da // Repetir Lunes y Jueves
-						});
-                          }
-                        }
-                        if(resp[0] == 'Jue'){
-						     for(var d = 0; d < resp2.length; d++){
-						     	var da = '[4]';		
+						 if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
+                          } else {
+                          	hor.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',  
+						    dow: da // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+                        if(resp[0] == 'Jue'){
+						     for(var d = 0; d < resp2.length; d++){
+						     	var da = '[4]';		
+						if(resp2[d].slice(0,-3) != 'asueto '){	
+						 hor.push({  
+						 	title: 'Cita',
+						    start:  resp2[d].slice(0,-3),  
+						    dow: da // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	hor.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',  
+						    dow: da // Repetir Lunes y Jueves
+						});
+                          }
                           }
                         }
                         if(resp[0] == 'Vie'){
 						     for(var d = 0; d < resp2.length; d++){
 						     	var da = '[5]';		
+						 if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  resp2[d].slice(0,-3),    
+						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
+                          } else {
+                          	hor.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',  
+						    dow: da // Repetir Lunes y Jueves
+						});
+                          }
                           }
                         }
                         if(resp[0] == 'Sab'){
 						     for(var d = 0; d < resp2.length; d++){
 						     	var da = '[6]';		
+						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  resp2[d].slice(0,-3),
+						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
+                          } else {
+                          	hor.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',  
+						    dow: da // Repetir Lunes y Jueves
+						});
+                          }
                           }
                         }
 		}
@@ -341,7 +379,7 @@
 
     $('#calendar').fullCalendar({
       lang: 'es',
-      defaultView: 'agendaWeek',
+      defaultView: 'month',
       header: {
       	left:   '',
         center: 'title',
