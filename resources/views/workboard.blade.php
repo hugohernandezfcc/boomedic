@@ -272,7 +272,7 @@
       events: function(start, end, timezone, callback) {
         // When requested, dynamically generate a
         // repeatable event for every monday.
-        var optionhour = "{{ $workboard }}";
+        var optionhour = @php echo $workboard;  @endphp;
         console.log(optionhour);
         var events = [];
           var resp = Array();
