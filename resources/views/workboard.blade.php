@@ -298,12 +298,13 @@
          for(var y = 0; y < optionhour.length; y++){ 
                      resp = optionhour[y].split(":",2); 
                      resp2 = JSON.parse(optionhour[y].slice(4));
+                     console.log(resp2);
 					 if(resp[0] == 'Dom'){
 						for(var d = 0; d < resp2.length; d++){
 						 events.push({  
 						 	title: 'Cita',
-						    start:  resp2[d],
-						    end:  resp2[d],        
+						    start:  resp2[d].slice(0,-3),
+						    end:  resp2[d].slice(0,-3),        
 						    dow: [ 7 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -312,8 +313,8 @@
 						for(var d = 0; d < resp2.length; d++){
 						 events.push({  
 						 	title: 'Cita',
-						    start:  resp2[d],
-						    end:  resp2[d],        
+						    start:  resp2[d].slice(0,-3),
+						    end:  resp2[d].slice(0,-3),      
 						    dow: [ 1 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -322,8 +323,8 @@
 						     for(var d = 0; d < resp2.length; d++){
 						 events.push({  
 						 	title: 'Cita',
-						    start:  resp2[d],
-						    end:  resp2[d],        
+						    start:  resp2[d].slice(0,-3),
+						    end:  resp2[d].slice(0,-3),     
 						    dow: [ 2 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -332,8 +333,8 @@
 						     for(var d = 0; d < resp2.length; d++){
 						 events.push({  
 						 	title: 'Cita',
-						    start:  resp2[d],
-						    end:  resp2[d],        
+						    start:  resp2[d].slice(0,-3),
+						    end:  resp2[d].slice(0,-3),   
 						    dow: [ 3 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -342,8 +343,8 @@
 						     for(var d = 0; d < resp2.length; d++){
 						 events.push({  
 						 	title: 'Cita',
-						    start:  resp2[d],
-						    end:  resp2[d],        
+						    start:  resp2[d].slice(0,-3),
+						    end:  resp2[d].slice(0,-3),      
 						    dow: [ 4 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -352,8 +353,8 @@
 						     for(var d = 0; d < resp2.length; d++){
 						 events.push({  
 						 	title: 'Cita',
-						    start:  resp2[d],
-						    end:  resp2[d],        
+						    start:  resp2[d].slice(0,-3),
+						    end:  resp2[d].slice(0,-3),          
 						    dow: [ 5 ] // Repetir Lunes y Jueves
 						});
                           }
@@ -362,8 +363,8 @@
 						     for(var d = 0; d < resp2.length; d++){
 						 events.push({  
 						 	title: 'Cita',
-						    start:  resp2[d],
-						    end:  resp2[d],        
+						    start:  resp2[d].slice(0,-3),
+						    end:  resp2[d].slice(0,-3),      
 						    dow: [ 6 ] // Repetir Lunes y Jueves
 						});
                           }
