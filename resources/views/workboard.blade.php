@@ -258,7 +258,7 @@
 		        })
 	
 	 $(function () {
-        var optionhour = @php echo $workboard;  @endphp;
+        var optionhour = @php echo $workboard1;  @endphp;
         console.log(optionhour);
         var hor = [];
           var resp = Array();
@@ -273,14 +273,17 @@
 						 hor.push({  
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),  
+						    editable: true, 
 						    dow: da // Repetir Lunes y Jueves
+
 						});
                           } else {
                           	hor.push({  
 						 	title: 'Asueto',
 						    start:  '00:00', 
 						    end: '00:'+ resp2[d].slice(8),
-						    color: 'green',   						     
+						    color: 'green',   		
+						    editable: true, 				     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -292,7 +295,8 @@
 						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  resp2[d].slice(0,-3),  
+						    start:  resp2[d].slice(0,-3), 
+						    editable: true,  
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -300,7 +304,8 @@
 						 	title: 'Asueto',
 						    start:  '00:00',
 						    end: '00:'+ resp2[d].slice(8),
-						    color: 'green',   						      
+						    color: 'green',   			
+						    editable: true, 			      
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -313,6 +318,7 @@
 						 hor.push({  
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),  
+						    editable: true, 
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -320,7 +326,8 @@
 						 	title: 'Asueto',
 						    start:  '00:00', 
 						    end: '00:'+ resp2[d].slice(8), 
-						    color: 'green',  						     
+						    color: 'green',  	
+						    editable: true, 					     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -332,7 +339,8 @@
 						 if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  resp2[d].slice(0,-3),  
+						    start:  resp2[d].slice(0,-3),
+						    editable: true,   
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -340,7 +348,8 @@
 						 	title: 'Asueto',
 						    start:  '00:00', 
 						    end: '00:'+ resp2[d].slice(8), 
-						    color: 'green',  						     
+						    color: 'green',  				
+						    editable: true, 		     
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -353,6 +362,7 @@
 						 hor.push({  
 						 	title: 'Cita',
 						    start:  resp2[d].slice(0,-3),  
+						    editable: true, 
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -361,6 +371,7 @@
 						    start:  '00:00',  
 						    end: '00:'+ resp2[d].slice(8), 
 						    color: 'green',  
+						    editable: true, 
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -372,7 +383,8 @@
 						 if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  resp2[d].slice(0,-3),  
+						    start:  resp2[d].slice(0,-3), 
+						    editable: true,  
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -380,7 +392,8 @@
 						 	title: 'Asueto',
 						    start:  '00:00',
 						    end: '00:'+ resp2[d].slice(8),
-						    color: 'green',     
+						    color: 'green',
+						    editable: true,      
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -392,7 +405,8 @@
 						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
 						 	title: 'Cita',
-						    start:  resp2[d].slice(0,-3),  
+						    start:  resp2[d].slice(0,-3), 
+						    editable: true,  
 						    dow: da // Repetir Lunes y Jueves
 						});
                           } else {
@@ -400,7 +414,8 @@
 						 	title: 'Asueto',
 						    start:  '00:00',
 						    end: '00:'+ resp2[d].slice(8),
-						    color: 'green', 
+						    color: 'green',
+						    editable: true, 
 						    dow: da // Repetir Lunes y Jueves
 						});
                           }
@@ -415,7 +430,7 @@
       header: {
       	left:   '',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay'
+        right: 'month,agendaWeek'
       },
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
