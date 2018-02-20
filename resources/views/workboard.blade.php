@@ -409,12 +409,7 @@
                         }
 		}
 		console.log(hor);
-               var splitted = hor.split("|");
-                var event_array=[];
-                for(i=0; i < splitted.length  ;i++){
-                   event_array.push(JSON.parse(splitted[i]));
-                 }
-                console.log(event_array);
+
     $('#calendar').fullCalendar({
       lang: 'es',
       defaultView: 'month',
@@ -426,7 +421,7 @@
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-      events: event_array,
+      events: hor,
        eventColor: '#393838'
     });
 });		 				
