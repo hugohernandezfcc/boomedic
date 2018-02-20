@@ -200,7 +200,7 @@ foreach($request->day as $day){
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'workboard' => json_decode($workArray),
+                'workboard' => json_encode($workArray),
                 'mode'      => 'calendar' 
             ]
         );
