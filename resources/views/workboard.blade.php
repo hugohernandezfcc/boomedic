@@ -260,7 +260,7 @@
 	 $(function () {
         var optionhour = @php echo $workboard;  @endphp;
         console.log(optionhour);
-        var events = [];
+         var events = new Object();
           var resp = Array();
           var resp2 = Array();
          for(var y = 0; y < optionhour.length; y++){ 
@@ -350,8 +350,8 @@
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-      events: events,
-       eventColor: '#393838'
+       eventColor: '#393838',
+      'addEventSource', events
     });
 });		 				
 </script>
