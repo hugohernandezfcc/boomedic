@@ -419,6 +419,7 @@
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
+      eventLimit: true,
       events: hor,
        eventColor: '#393838'
     });
