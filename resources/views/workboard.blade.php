@@ -422,7 +422,10 @@
       defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-      events: hor,
+      events: [{ title: 'Test 1'
+      			 start: '00:00',
+      			 dow: [5]
+   		}],
        eventColor: '#393838'
     });
 });	 				
