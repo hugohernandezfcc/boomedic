@@ -189,10 +189,13 @@
         border-top-color: #242627;
         }
 
-        #modalDr {
-        top: 65%;
-        outline: none;
-        }
+    .callout {
+        bottom: 0;
+        left: 0; 
+        right: 0;
+        position: fixed;
+        z-index: 1050;
+    }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <!--  -->
@@ -360,24 +363,12 @@
 
               @endif
             <!-- Here ends the code for the alert --> 
-              <div class="modal fade" role="dialog" id="modalDr">
-                    <div class="modal-dialog">
 
-                      <div class="modal-content">
+<div class="callout callout-info" id="infDr" style="display: none;">
+        <h4>Información del Médico</h4>
+     <div id="bodyDr"></div>
+      </div>
 
-                        <div class="modal-header" >
-                          <!-- Tachecito para cerrar -->
-                            <strong>Información del médico</strong>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                            <div class="modal-body" id="bodyDr">
-
-                            </div>
-                        </div>
-                      </div> 
-              </div>
 
     <div id="mapaC">
       <!-- Trigger the modal with a checkbox -->
@@ -1407,7 +1398,7 @@ function prevTab(elem) {
               infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
               infowindow.open(map, marker);
               console.log(marker);
-              $('#modalDr').modal('show');
+              $('#infDr').show();
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5];
               showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
           
