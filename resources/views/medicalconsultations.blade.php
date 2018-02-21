@@ -1411,7 +1411,7 @@ function prevTab(elem) {
           
             }
           })(marker, i));
-          document.getElementById('btncita').addEventListener('click', return function() {
+           document.getElementById('btncita').addEventListener('click', function() {
               $('#tab1').trigger('click');
               document.getElementById("onestep").disabled = true;
                $('#s2').addClass("disabled");
