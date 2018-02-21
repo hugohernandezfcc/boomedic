@@ -406,8 +406,8 @@
                         }
 		}
 		console.log(hor);
-
-    $('#calendar').fullCalendar({
+    $('#calendar').fullCalendar('renderEvent', hor);
+    /*$('#calendar').fullCalendar({
       lang: 'es',
       defaultView: 'month',
       header: {
@@ -420,7 +420,7 @@
       eventLimit: true,
       events: hor,
        eventColor: '#393838'
-    });
+    });*/
 });	 				
 </script>
 
