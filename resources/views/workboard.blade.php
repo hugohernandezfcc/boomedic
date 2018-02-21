@@ -152,7 +152,7 @@
 @endif
 
 		@if($mode == 'calendar')
-				<div id='calendar'></div>
+				<div id='calendar' ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div>
 
 				@endif
 </div>
@@ -406,7 +406,7 @@
                         }
 		}
 		console.log(hor);
-
+    uiCalendarConfig.calendars['calendar'].fullCalendar('refetchEvents');
 
     $('#calendar').fullCalendar({
       lang: 'es',
