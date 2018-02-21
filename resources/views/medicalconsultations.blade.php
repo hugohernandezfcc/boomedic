@@ -1379,7 +1379,7 @@ function prevTab(elem) {
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-          google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
               infowindow.open(map, marker);
