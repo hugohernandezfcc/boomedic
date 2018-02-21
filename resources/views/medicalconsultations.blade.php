@@ -197,6 +197,9 @@
     width: 83%;
     margin: 0 0 0 0 !important;
     }
+    #bodyDr{
+       margin-left: 90px; 
+    }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <!--  -->
@@ -409,6 +412,7 @@
    <a class="close" onclick="$('.alert').hide()" style="text-decoration: none">×</a>  
     <div class="info-box-icon2-sm" id="Drp"></div>                                           
      <div id="bodyDr"></div>
+     <div class="pull-right"><button type="button" class="btn btn-default btn-xs" id="btncita">Concretar Cita</button></div>
       </div>
 
     <div id='rango'>
@@ -1407,7 +1411,7 @@ function prevTab(elem) {
           
             }
           })(marker, i));
-          google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
+          document.getElementById('btncita').addListener('click', (function(marker, i) {
             return function() {  
               $('#tab1').trigger('click');
               document.getElementById("onestep").disabled = true;
