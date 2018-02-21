@@ -355,7 +355,25 @@
 
               @endif
             <!-- Here ends the code for the alert --> 
-    
+              <div class="modal fade" role="dialog" id="modalDr">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                            <strong>Información del médico</strong>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                            <div class="modal-body" id="bodyDr">
+
+                            </div>
+                        </div>
+                      </div> 
+              </div>
+
     <div id="mapaC">
       <!-- Trigger the modal with a checkbox -->
       <div class="checkStyle">
@@ -1384,7 +1402,8 @@ function prevTab(elem) {
               infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
               infowindow.open(map, marker);
               console.log(marker);
-              
+              $('#modalDr').modal('show');
+              document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5];
               showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
           
             }
