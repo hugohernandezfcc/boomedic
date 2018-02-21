@@ -1411,7 +1411,7 @@ function prevTab(elem) {
           
             }
           })(marker, i));
-          document.getElementById('btncita').addListener('click', (function(marker, i) {
+          google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
             return function() {  
               $('#tab1').trigger('click');
               document.getElementById("onestep").disabled = true;
