@@ -406,7 +406,7 @@
     <div id="map"></div>
 
 <div class="alert alert-info alert-dismissable" id="infDr" style="display: none; background-color: rgba(0, 0, 0, 0.9) !important; border-color: rgba(0, 0, 0, 0.9) !important;">
-   <a class="close text-white" onclick="$('.alert').hide();" style="text-decoration: none">×</a>  
+   <a class="close text-white" onclick="$('.alert').hide()" style="text-decoration: none">×</a>  
     <div class="info-box-icon2-sm" id="Drp"></div>
                                                     
      <div class="info-box-content sm" id="bodyDr"></div>
@@ -1401,8 +1401,8 @@ function prevTab(elem) {
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
 
-              $('#infDr').show("slide", {direction: "right"}, 1000);
-              document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 35px;">';
+              $('#infDr').show();
+              document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 45px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5];
 
           
