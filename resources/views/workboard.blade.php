@@ -152,7 +152,7 @@
 @endif
 
 		@if($mode == 'calendar')
-				<div id='calendar' ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div>
+				<div id='calendar'></div>
 
 				@endif
 </div>
@@ -406,7 +406,6 @@
                         }
 		}
 		console.log(hor);
-    uiCalendarConfig.calendars['calendar'].fullCalendar('refetchEvents');
 
     $('#calendar').fullCalendar({
       lang: 'es',
@@ -416,7 +415,6 @@
         center: 'title',
         right: 'month,agendaWeek'
       },
-      defaultDate: '2018-02-19',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
       eventLimit: true,
