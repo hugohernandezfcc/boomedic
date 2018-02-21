@@ -253,11 +253,8 @@
 			 $(' input[type=checkbox]').each(function(event) {
 						$("#sel").append('<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>').trigger('change.select2');
 		        })
-
+	
  $(document).ready(function() {
- 	    var mode = @php echo $mode; @endphp;
- 	    console.log(mode);
- 	    if(mode == 'calendar'){	
         var optionhour = @php echo $workboard;  @endphp;
         console.log(optionhour);
         var hor = [];
@@ -409,21 +406,21 @@
                         }
 		}
 		console.log(hor);
+$('#calendar').fullCalendar( 'destroy' )
+  $('#calendar').fullCalendar({
 
-    $('#calendar').fullCalendar({
-
+      navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-       events: (start, end, timezone, callback) => {
+     events: (start, end, timezone, callback) => {
       setTimeout(() => {
       	callback(hor)
-      }, 500)
+      }, 1000)
     }
-       
+    
     });
-    $('#calendar').fullCalendar('gotoDate', '2018-02-21');
-  }
-});
-
+  
+  $('#calendar').fullCalendar('gotoDate', '2018-02-21')
+});	 				
 </script>
 
 @stop
