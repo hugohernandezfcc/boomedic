@@ -189,9 +189,10 @@
         border-top-color: #242627;
         }
 
-        .modal.dr {
-    top: !important;
-}
+        #modalDr {
+        top: 65%;
+        outline: none;
+        }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <!--  -->
@@ -359,7 +360,7 @@
 
               @endif
             <!-- Here ends the code for the alert --> 
-              <div class="modal dr fade" role="dialog" id="modalDr">
+              <div class="modal fade" role="dialog" id="modalDr">
                     <div class="modal-dialog">
 
                       <div class="modal-content">
