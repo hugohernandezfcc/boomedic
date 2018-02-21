@@ -1411,8 +1411,7 @@ function prevTab(elem) {
           
             }
           })(marker, i));
-          document.getElementById('btncita').addEventListener('click', function() {
-            
+          document.getElementById('btncita').addEventListener('click', return function() {
               $('#tab1').trigger('click');
               document.getElementById("onestep").disabled = true;
                $('#s2').addClass("disabled");
@@ -1593,8 +1592,8 @@ function prevTab(elem) {
                         }    
                         $('#dateSelectedForCite').val = e.date.toISOString();                  
                          console.log(e.date.toISOString());
-
                       });
+             
           });
           setTimeout(dropMarker(i), i * 250);
         }
