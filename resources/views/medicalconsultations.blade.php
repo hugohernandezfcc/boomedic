@@ -412,7 +412,7 @@
    <a class="close" onclick="$('.alert').hide()" style="text-decoration: none">×</a>  
     <div class="info-box-icon2-sm" id="Drp"></div>                                           
      <div id="bodyDr"></div>
-     <div class="pull-right"><button type="button" class="btn btn-default btn-xs" id="btncita">Concretar Cita</button></div>
+     <div class="pull-right"><button type="button" class="btn btn-default btn-flat btn-xs" id="btncita"><b>Concretar Cita</b></button></div>
       </div>
 
     <div id='rango'>
