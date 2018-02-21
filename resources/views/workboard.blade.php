@@ -410,31 +410,22 @@
 		}
 		console.log(hor);
 
+
     $('#calendar').fullCalendar({
-      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+      lang: 'es',
       defaultView: 'month',
       header: {
       	left:   '',
         center: 'title',
         right: 'month,agendaWeek'
       },
-      allDaySlot: false,
-      editable: true,
-      eventDragStart: () => {},
-      eventDrop: () => {},
+      defaultDate: '2018-02-19',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true, // allow "more" link when too many events
       events: hor,
-       height: 'auto',
-	    maxTime: '18:00:00',
-	    minTime: '08:00:00',
-	    select: () => {},
-	    selectable: true,
-	    slotDuration: '00:15:00',
-	    timezone: 'local',
-	    titleFormat: 'DD MMM Y',
-      eventColor: '#393838'
-    
+       eventColor: '#393838'
     });
-});		 				
+});	 				
 </script>
 
 @stop
