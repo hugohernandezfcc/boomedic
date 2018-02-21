@@ -408,20 +408,12 @@
 		console.log(hor);
 
     $('#calendar').fullCalendar({
-      lang: 'es',
-      defaultView: 'month',
-      header: {
-      	left:   '',
-        center: 'title',
-        right: 'month,agendaWeek'
-      },
-      eventColor: '#393838',
-      navLinks: true, // can click day/week names to navigate views
+    	defaultDate: '2018-02-21',
       editable: true, // allow "more" link when too many events
        events: (start, end, timezone, callback) => {
       setTimeout(() => {
       	callback(hor)
-      }, 1000)
+      }, 500)
     }
        
     });
