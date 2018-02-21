@@ -365,8 +365,8 @@
               @endif
             <!-- Here ends the code for the alert --> 
 
-<div class="alert alert-info" id="infDr" style="display: none; background-color: black;">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+<div class="alert alert-info alert-dismissable" id="infDr" style="display: none; background: black !important; border-color: black !important;">
+   <a class="close" onclick="$('.alert').hide()">×</a>  
         <h4>Información del Médico</h4>
      <div id="bodyDr"></div>
       </div>
