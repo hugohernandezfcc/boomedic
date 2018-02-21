@@ -406,8 +406,8 @@
                         }
 		}
 		console.log(hor);
-    $('#calendar').fullCalendar('renderEvent', hor);
-    /*$('#calendar').fullCalendar({
+
+    $('#calendar').fullCalendar({
       lang: 'es',
       defaultView: 'month',
       header: {
@@ -415,12 +415,17 @@
         center: 'title',
         right: 'month,agendaWeek'
       },
+      eventColor: '#393838',
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-      eventLimit: true,
-      events: hor,
-       eventColor: '#393838'
-    });*/
+       events: (start, end, timezone, callback) => {
+      setTimeout(() => {
+      	callback(hor)
+      }, 1000)
+    }
+       
+    });
+    $('#calendar').fullCalendar('gotoDate', '2018-02-21')
 });	 				
 </script>
 
