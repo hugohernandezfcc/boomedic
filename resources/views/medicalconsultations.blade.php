@@ -1411,6 +1411,7 @@ function prevTab(elem) {
           
 
            document.getElementById('btncita').addEventListener('click', function() {
+              $('#infDr').hide();
               $('#tab1').trigger('click');
               document.getElementById("onestep").disabled = true;
                $('#s2').addClass("disabled");
