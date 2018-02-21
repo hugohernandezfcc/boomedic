@@ -194,7 +194,7 @@
     right: 0;
     position: fixed;
     z-index: 1050;
-    width: 80%;
+    width: 83%;
     margin: 0 0 0 0 !important;
     }
   </style>
@@ -406,10 +406,9 @@
     <div id="map"></div>
 
 <div class="alert alert-info alert-dismissable" id="infDr" style="display: none; background-color: rgba(0, 0, 0, 0.9) !important; border-color: rgba(0, 0, 0, 0.9) !important;">
-   <a class="close text-white" onclick="$('.alert').hide()" style="text-decoration: none">×</a>  
-    <div class="info-box-icon2-sm" id="Drp"></div>
-                                                    
-     <div class="info-box-content sm" id="bodyDr"></div>
+   <a class="close" onclick="$('.alert').hide()" style="text-decoration: none">×</a>  
+    <div class="info-box-icon2-sm" id="Drp"></div>                                           
+     <div id="bodyDr"></div>
       </div>
 
     <div id='rango'>
@@ -1402,7 +1401,7 @@ function prevTab(elem) {
             return function() {
 
               $('#infDr').show();
-              document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 45px;">';
+              document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5];
 
           
