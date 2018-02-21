@@ -1,3 +1,4 @@
+
 @extends('adminlte::page')
 
 @section('title', 'Boomedic')
@@ -176,18 +177,14 @@
           box-shadow: 1px 2px 5px #000000;   
       }
         .box {
-
              margin-bottom: 0;
-
         }
-
         .panel {
              margin-bottom: 0; 
         }
         .pac-container {
          z-index: 100000; 
        }
-
       .box.box-primary {
         border-top-color: #242627;
         }
@@ -227,12 +224,8 @@
      */
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
-
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
     console.log(datos);
-
-
-
   </script>
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
@@ -640,11 +633,8 @@
           <script type="text/javascript">
 $(document).ready(function () {
     //Initialize tooltips
-
        $('#modalsuccess').modal('show');
        $('#modalerror').modal('show');
-
-
  $("#paymentMethodsFields").on("change", function(){
                                   document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
         document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
@@ -658,23 +648,17 @@ $(document).ready(function () {
                    document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
         }
                         })
-
-
           $('.nav-tabs > li a[title]').tooltip();
     
     //Wizard
     $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-
         var $target = $(e.target);
     
         if ($target.parent().hasClass('disabled')) {
             return false;
         }
-
     });
-
     $(".next-step").click(function (e) {
-
         var $active = $('.wizard .nav-tabs li.active');
         $active.next().removeClass('disabled');
         nextTab($active);
@@ -689,16 +673,12 @@ $(document).ready(function () {
           $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
                    document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
         }
-
     });
     $(".prev-step").click(function (e) {
-
         var $active = $('.wizard .nav-tabs li.active');
         prevTab($active);
-
     });
 });
-
 function nextTab(elem) {
     $(elem).next().find('a[data-toggle="tab"]').click();
 }
@@ -706,33 +686,26 @@ function prevTab(elem) {
     $(elem).prev().find('a[data-toggle="tab"]').click();
 }
                
-
           $(function () {
-
             $('select').select2({
                 width: "100%",
             });
-
           });
-
             $.ajax(
               {
                 type: "GET",    
                 url: "medicalappointments/showPaymentMethods", 
                 success: function(result){
                   console.log(result);
-
                   var x = document.getElementById("paymentMethodsFields");
                    var option = document.createElement("option");
                     option.text = "Paypal";
                     option.value = "Paypal";
                     option.setAttribute("data-icon", "glyphicon glyphicon-eye-open");
                     x.add(option);
-
                   for (var i = result.length - 1; i >= 0; i--) {
                     
                     var option = document.createElement("option");
-
                     if(result[i].provider != 'Paypal'){
                     option.text = result[i].provider + ": " + result[i].cardnumber;
                     option.value = result[i].id;
@@ -744,7 +717,6 @@ function prevTab(elem) {
                 }
               }
             );
-
            $.ajax(
               {
                 type: "GET",    
@@ -777,8 +749,6 @@ function prevTab(elem) {
 
 
     <script type="text/javascript">
-
-
     $("#alert").fadeTo(3000, 500).fadeOut(500, function(){
     $("#alert").fadeOut(500);
 });
@@ -928,7 +898,6 @@ function prevTab(elem) {
         $('#modal').modal('hide');
          document.getElementById('ubi').style.display = 'none'; 
         infoWindow = new google.maps.InfoWindow();
-
         //Current position
         if (navigator.geolocation) {
           console.log('POSICION ACTUAL');
@@ -1221,7 +1190,6 @@ function prevTab(elem) {
             });
             var input = document.getElementById('address');
               new google.maps.places.Autocomplete(input);
-
             var markerUser = "{{ asset('markerUser.png') }}";
             //Marker
               markerP = new google.maps.Marker({
@@ -1246,9 +1214,7 @@ function prevTab(elem) {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
-
                  var address1 = document.getElementById('address').value;
-
                            $.ajax({     
                              type: "POST",                 
                              url: "medicalconsultations/recent",  
@@ -1430,7 +1396,6 @@ function prevTab(elem) {
                $('#s2').addClass("disabled");
                $('#s3').addClass("disabled");
                $('#s4').addClass("disabled");
-
               document.getElementById('enddate').innerHTML = '';
               document.getElementById('endtime').innerHTML = '';
               document.getElementById('endpayment').innerHTML = '';
@@ -1456,14 +1421,12 @@ function prevTab(elem) {
                   var Jue = Array();
                   var Vie = Array();                
                   var Sab = Array();
-
                   $('#calendar1').datepicker('destroy');
                  $('#timesByDay').children().remove();
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                      resp = optionhour[y].split(":",2); 
                      resp2 = JSON.parse(optionhour[y].slice(4));
                   console.log(optionhour[y].slice(4));
-
                       if(resp[0] == 'Dom'){
                         Dom = resp2;
                       var index = days.indexOf(0);
@@ -1513,8 +1476,6 @@ function prevTab(elem) {
                                days.splice(index, 1);
                             }
                         }
-
-
                   }
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es' }).on('changeDate',function(e){
                      $('#timesByDay').children().remove();
@@ -1530,7 +1491,6 @@ function prevTab(elem) {
                           fech.push(whencites[f].slice(11));  
                           }   
                         }
-
                        
                         if (e.date.getDay() == 0) {
                           var Dom1 = $(Dom).not(fech).get();                              
@@ -1611,7 +1571,6 @@ function prevTab(elem) {
                         }    
                         $('#dateSelectedForCite').val = e.date.toISOString();                  
                          console.log(e.date.toISOString());
-
                       });
              }
           })(marker, i));
@@ -1667,7 +1626,6 @@ function prevTab(elem) {
           }
         });
     });
-
         
     </script>
 
