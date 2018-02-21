@@ -418,11 +418,19 @@
         center: 'title',
         right: 'month,agendaWeek'
       },
-      defaultDate: '2018-02-19',
+      allDaySlot: false,
+      editable: true,
+      eventDragStart: () => {},
+      eventDrop: () => {},
       events: hor,
-      navLinks: true, // can click day/week names to navigate views
-      editable: true, // allow "more" link when too many events
-      droppable: true,
+       height: 'auto',
+	    maxTime: '18:00:00',
+	    minTime: '08:00:00',
+	    select: () => {},
+	    selectable: true,
+	    slotDuration: '00:15:00',
+	    timezone: 'local',
+	    titleFormat: 'DD MMM Y',
       eventColor: '#393838'
     
     });
