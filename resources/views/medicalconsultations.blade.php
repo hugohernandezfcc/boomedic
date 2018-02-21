@@ -189,12 +189,13 @@
         border-top-color: #242627;
         }
 
-    .callout {
-        bottom: 0;
-        left: 0; 
-        right: 0;
-        position: fixed;
-        z-index: 1050;
+    .alert {
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: 1050;
+    width: 85%;
+    margin: 0 0 0 0 !important;
     }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
@@ -364,7 +365,8 @@
               @endif
             <!-- Here ends the code for the alert --> 
 
-<div class="callout callout-info" id="infDr" style="display: none;">
+<div class="alert alert-info" id="infDr" style="display: none; background-color: black;">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4>Información del Médico</h4>
      <div id="bodyDr"></div>
       </div>
