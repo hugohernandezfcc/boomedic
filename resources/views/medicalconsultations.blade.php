@@ -1199,7 +1199,7 @@ function prevTab(elem) {
               map: map
             });
             //Evento to open infowindow
-            markerP.addListener('mouseover', function() {
+            markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
               infoWindow.setContent(message01);
             });
