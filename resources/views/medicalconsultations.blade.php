@@ -1409,8 +1409,7 @@ function prevTab(elem) {
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5];
 
           
-            }
-          })(marker, i));
+
            document.getElementById('btncita').addEventListener('click', function() {
               $('#tab1').trigger('click');
               document.getElementById("onestep").disabled = true;
@@ -1595,6 +1594,8 @@ function prevTab(elem) {
                       });
              
           });
+            }
+          })(marker, i));
           setTimeout(dropMarker(i), i * 250);
         }
       }
