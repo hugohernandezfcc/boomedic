@@ -365,10 +365,7 @@
               @endif
             <!-- Here ends the code for the alert --> 
 
-<div class="alert alert-info alert-dismissable" id="infDr" style="display: none; background-color: rgba(0, 0, 0, 0.6) !important; border-color: black !important;">
-   <a class="close" onclick="$('.alert').hide()">×</a>  
-     <div id="bodyDr"></div>
-      </div>
+
 
 
     <div id="mapaC">
@@ -407,7 +404,10 @@
 
 
     <div id="map"></div>
-
+<div class="alert alert-info alert-dismissable" id="infDr" style="display: none; background-color: rgba(0, 0, 0, 0.9) !important; border-color: rgba(0, 0, 0, 0.9) !important;">
+   <a class="close text-white" onclick="$('.alert').hide()" style="text-decoration: no">×</a>  
+     <div id="bodyDr"></div>
+      </div>
     <div id='rango'>
         <strong><label for="rango01" id="label04"></label> <span id="rango03"></span></strong><br/>
         <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
