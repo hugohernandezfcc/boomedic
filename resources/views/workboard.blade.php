@@ -24,9 +24,7 @@
 @stop
 
 @section('content')
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.print.min.css" media="print">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.js"></script>
+
 <div class="box">
 
   	<div class="box-header with-border">
@@ -255,7 +253,7 @@
 <script type="text/javascript">
 			 $(' input[type=checkbox]').each(function(event) {
 						$("#sel").append('<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>').trigger('change.select2');
-		        })
+		        });
 	
  $(document).ready(function() {
         var optionhour = @php echo $workboard;  @endphp;
