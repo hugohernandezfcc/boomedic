@@ -409,7 +409,7 @@
                         }
 		}
 		console.log(hor);
-/*	$('#calendar').fullCalendar( 'destroy' );
+/*	$('#calendar').fullCalendar( 'destroy' );*/
 
   
     $('#calendar').fullCalendar({
@@ -432,7 +432,7 @@
 	    titleFormat: 'DD MMM Y',
       eventColor: '#222D32'
     
-    });*/
+    });
 });	 				
 </script>
 
