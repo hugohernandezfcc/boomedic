@@ -409,7 +409,7 @@
 		}
 		console.log(hor);
 /*	$('#calendar').fullCalendar( 'destroy' );*/
-
+jQuery.noConflict(false);
     $('#calendar').fullCalendar({
       defaultView: 'month',
       header: {
