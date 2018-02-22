@@ -911,7 +911,7 @@ function prevTab(elem) {
             height = window.screen.availHeight;
                         alert("Altura: "+height);
                         if(height >= 1000 && height <= 1300){
-                            var h = height*0.45;
+                            var h = height*0.38;
                             height = Math.floor(h);
                         }else{
                           height -= 1440;
