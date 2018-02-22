@@ -419,7 +419,7 @@ jQuery.noConflict(false);
       },
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-      eventLimit: true,
+      height: 600,
      events: (start, end, timezone, callback) => {
       setTimeout(() => {
       	callback(hor)

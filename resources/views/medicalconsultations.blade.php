@@ -788,7 +788,7 @@ function prevTab(elem) {
         if (!document.getElementById('general').checked){
           startProcess = false;
           typeC = 'TypeSpeciality';
-          $("#myModal").modal({backdrop: "static"});
+          $("#myModal").modal();
         }
         if (document.getElementById('general').checked){
           startProcess = false;
