@@ -59,7 +59,6 @@
             background-color: #333333; 
             border-color: #444; 
         }
-
         .btn-secondary:focus, 
         .btn-secondary:active, 
         .open .dropdown-toggle.btn-secondary
@@ -68,22 +67,18 @@
             background-color: #696969; 
             border-color: #444; 
         }
-
         .nav-tabs-custom>.nav-tabs>li.active {
             border-top-color: #222d32;
         }
-
         .nav-tabs-custom>.nav-tabs>li {
             border-top: 3px solid rgb(210, 214, 222);
             margin-bottom: -2px;
             margin-right: 5px;
         }
-
         #mapAddressUser {
             height: 100%;
             width: 95%;
         }
-
         #calendar1 {
         max-width: 900px;
         margin: 0 auto;
@@ -113,8 +108,6 @@
           line-height: 1.33;
           border-radius: 35px;
         }
-
-
           .info-box.sm {
               min-height: 45px;
               font-size: 12px;
@@ -149,7 +142,6 @@
                   display: block;
                   float: left;     
               }
-
 .info-box-icon-2 {
     margin-top: 9px;
     border-top-left-radius: 2px;
@@ -165,12 +157,9 @@
     background: rgba(0,0,0,0);
     line-height: 13px;
 }
-
-
     </style>
 
     <style>
-
     /* The Modal (background) */
     .modal-danger2 {
         display: none; /* Hidden by default */
@@ -185,7 +174,6 @@
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
-
     /* Modal Content */
     .modal-content-danger2 {
         position: relative;
@@ -200,18 +188,15 @@
         animation-name: animatetop;
         animation-duration: 0.4s
     }
-
     /* Add Animation */
     @-webkit-keyframes animatetop {
         from {top:-300px; opacity:0} 
         to {top:0; opacity:1}
     }
-
     @keyframes animatetop {
         from {top:-300px; opacity:0}
         to {top:0; opacity:1}
     }
-
     /* The Close Button */
     .close-danger2 {
         color: white;
@@ -219,20 +204,17 @@
         font-size: 26px;
         font-weight: bold;
     }
-
     .close-danger2:hover,
     .close2-danger:focus {
         color: #000;
         text-decoration: none;
         cursor: pointer;
     }
-
     .modal-header-danger2 {
         padding: 1px 10px;
         background-color: #e62e00;
         color: white;
     }
-
     .modal-body-danger2 {padding: 2px 16px;}
    table.dataTable.dtr-column>tbody>tr>td.control:before, table.dataTable.dtr-column>tbody>tr>th.control:before{
    background-color: #000000 !important;
@@ -248,18 +230,15 @@
     font-family: "FontAwesome" !important;
     background-color: #6E6E6E !important;
 }
-
 /*styles Wizard */
     .wizard .nav-tabs {
         position: relative;
         margin-bottom: 0;
         border-bottom-color: #e0e0e0;
     }
-
     .wizard > div.wizard-inner {
         position: relative;
     }
-
 .connecting-line {
     height: 2px;
     background: #e0e0e0;
@@ -271,14 +250,12 @@
     top: 50%;
     z-index: 1;
 }
-
 .wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
     color: #555555;
     cursor: default;
     border: 0;
     border-bottom-color: transparent;
 }
-
 span.round-tab {
     width: 30px;
     height: 30px;
@@ -304,16 +281,13 @@ span.round-tab i{
 .wizard li.active span.round-tab i{
     color: #5bc0de;
 }
-
 span.round-tab:hover {
     color: #333;
     border: 2px solid #333;
 }
-
 .wizard .nav-tabs > li {
     width: 25%;
 }
-
 .wizard li:after {
     content: " ";
     position: absolute;
@@ -325,7 +299,6 @@ span.round-tab:hover {
     border-bottom-color: #5bc0de;
     transition: 0.1s ease-in-out;
 }
-
 .wizard li.active:after {
     content: " ";
     position: absolute;
@@ -336,7 +309,6 @@ span.round-tab:hover {
     border: 10px solid transparent;
     border-bottom-color: #5bc0de;
 }
-
 .wizard .nav-tabs > li a {
     width: 30px;
     height: 30px;
@@ -344,35 +316,27 @@ span.round-tab:hover {
     border-radius: 100%;
     padding: 0;
 }
-
     .wizard .nav-tabs > li a:hover {
         background: transparent;
     }
-
 .wizard .tab-pane {
     position: relative;
 }
-
-
 @media( max-width : 1300px ) {
-
     .wizard {
         height: auto !important;
     }
-
     span.round-tab {
         font-size: 15px;
         width: 30px;
         height: 30px;
         line-height: 30px;
     }
-
     .wizard .nav-tabs > li a {
         width: 30px;
         height: 30px;
         line-height: 30px;
     }
-
     .wizard li.active:after {
         content: " ";
         position: absolute;
@@ -400,7 +364,7 @@ span.round-tab:hover {
 @yield('body')
 
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="{{ asset('vendor/adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/GoogleLogin.js') }}"></script>
@@ -411,9 +375,7 @@ span.round-tab:hover {
 
 
 <script type="text/javascript">
-
     $(function () {
-
         //Datemask dd/mm/yyyy
         //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
          $.fn.datepicker.dates['es'] = {
@@ -433,13 +395,9 @@ span.round-tab:hover {
             language: "es",
             autoclose: true
         });
-
-
         $('#datepicker').datepicker().on('show', function(e) {
             $('div.datepicker').removeClass( "datepicker-dropdown" );
         });*/
-
-
         //$('#mobile').inputmask({"mask": "(999) 999-9999"});
         $('form').on('keyup keypress', function(e) {
             var keyCode = e.keyCode || e.which;
@@ -490,14 +448,10 @@ span.round-tab:hover {
         } ]
             });
         }
-
         $('.select2').select2();
     
         
     });
-
-
-
 </script>
 
 @if(config('adminlte.plugins.datatables'))
@@ -521,6 +475,3 @@ span.round-tab:hover {
 
 </body>
 </html>
-
-
-
