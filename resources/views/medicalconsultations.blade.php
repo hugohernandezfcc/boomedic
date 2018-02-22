@@ -646,11 +646,14 @@
       window.onload = function(){
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
-            var mensaje2 = "@php echo $agent->version('Android'); @endphp";
-            height = window.screen.availHeight-115;
-            alert("Altura: "+height+ " \nVersion de android: "+mensaje2 );
-            if(height >= 1700){
-              height -= 1325;
+            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
+            height = window.screen.availHeight;
+            alert("Altura: "+height);
+            if(height >= 1000 && height <= 1300){
+                var h = height*0.45;
+                height = Math.floor(h);
+            }else{
+              height -= 1440;
             }
         }else{
           height = window.screen.availHeight-115;
