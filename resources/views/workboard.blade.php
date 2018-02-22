@@ -420,7 +420,6 @@
         center: 'title',
         right: 'month,agendaWeek'
       },
-      allDaySlot: false,
       editable: true,
       eventDragStart: () => {},
       eventDrop: () => {},
