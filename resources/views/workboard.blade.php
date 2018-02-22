@@ -406,7 +406,7 @@
                         }
 		}
 		console.log(hor);
-$('#calendar').fullCalendar( 'destroy' )
+	$('#calendar').fullCalendar( 'destroy' );
     $('#calendar').fullCalendar({
       lang: 'es',
       defaultView: 'month',
@@ -417,7 +417,6 @@ $('#calendar').fullCalendar( 'destroy' )
       },
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-      eventLimit: true,
 	     events: (start, end, timezone, callback) => {
 	      setTimeout(() => {
 	      	callback(hor)
