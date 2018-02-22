@@ -19,7 +19,10 @@
 .btn.active span.glyphicon {				
 	opacity: 1;				
 }
-
+ #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 </style>
 @stop
 
