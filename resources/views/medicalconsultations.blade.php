@@ -906,8 +906,17 @@ function prevTab(elem) {
        * 
        */
       window.onload = function(){
-        var height = window.screen.availHeight-115;
-        console.log(height);
+      var height;
+        if("@php echo $agent->isMobile(); @endphp"){
+            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
+            height = window.screen.availHeight-115;
+            //alert("Altura: "+height+ " \nVersion de android: "+mensaje2 );
+            if(height >= 1700){
+              height -= 1325;
+            }
+        }else{
+          height = window.screen.availHeight-115;
+        }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
         infoSelect();
