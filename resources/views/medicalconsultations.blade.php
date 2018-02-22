@@ -909,7 +909,7 @@ function prevTab(elem) {
       var height;
         if("@php echo $agent->isMobile(); @endphp"){
             height = window.screen.availHeight;
-                        alert("Altura: "+height);
+                       // alert("Altura: "+height);
                         if(height >= 1000 && height <= 1300){
                             var h = height*0.38;
                             height = Math.floor(h);
