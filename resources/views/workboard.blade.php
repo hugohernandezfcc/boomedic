@@ -11,7 +11,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-alpha/css/bootstrap-select.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-alpha/js/bootstrap-select.js"></script>
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.print.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.js"></script>
 <style type="text/css">
+
 .btn span.glyphicon {    			
 	opacity: 0;				
 }
@@ -407,26 +411,29 @@
 		}
 		console.log(hor);
 	$('#calendar').fullCalendar( 'destroy' );
+
+  
     $('#calendar').fullCalendar({
-      lang: 'es',
+      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
       defaultView: 'month',
       header: {
       	left:   '',
         center: 'title',
         right: 'month,agendaWeek'
       },
-      navLinks: true, // can click day/week names to navigate views
-      editable: true, // allow "more" link when too many events
-	     events: (start, end, timezone, callback) => {
-	      setTimeout(() => {
-	      	callback(hor)
-	      }, 500)
-	    },
-	     eventColor: '#222D32',
-	     height: 700
+      allDaySlot: false,
+      editable: true,
+      eventDragStart: () => {},
+      eventDrop: () => {},
+      events: hor,
+       height: 'auto',
+	    select: () => {},
+	    selectable: true,
+	    timezone: 'local',
+	    titleFormat: 'DD MMM Y',
+      eventColor: '#222D32'
     
     });
-  
 });	 				
 </script>
 
