@@ -407,19 +407,27 @@
 		}
 		console.log(hor);
 $('#calendar').fullCalendar( 'destroy' )
-  $('#calendar').fullCalendar({
-
+    $('#calendar').fullCalendar({
+      lang: 'es',
+      defaultView: 'month',
+      header: {
+      	left:   '',
+        center: 'title',
+        right: 'month,agendaWeek'
+      },
       navLinks: true, // can click day/week names to navigate views
       editable: true, // allow "more" link when too many events
-     events: (start, end, timezone, callback) => {
-      setTimeout(() => {
-      	callback(hor)
-      }, 1000)
-    }
+      eventLimit: true,
+	     events: (start, end, timezone, callback) => {
+	      setTimeout(() => {
+	      	callback(hor)
+	      }, 500)
+	    },
+	     eventColor: '#222D32',
+	     height: 700
     
     });
   
-  $('#calendar').fullCalendar('gotoDate', '2018-02-21')
 });	 				
 </script>
 
