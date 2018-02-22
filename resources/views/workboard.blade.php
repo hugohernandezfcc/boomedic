@@ -250,9 +250,7 @@
 			
 				}) 
 </script>
-     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.print.css" media="print">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.js"></script>
+
 <script type="text/javascript">
 			 $(' input[type=checkbox]').each(function(event) {
 						$("#sel").append('<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>').trigger('change.select2');
@@ -412,27 +410,25 @@
 		console.log(hor);
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 
-  
     $('#calendar').fullCalendar({
-      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
       defaultView: 'month',
       header: {
       	left:   '',
         center: 'title',
         right: 'month,agendaWeek'
       },
-      editable: true,
-      eventDragStart: () => {},
-      eventDrop: () => {},
-      events: hor,
-       height: 'auto',
-	    select: () => {},
-	    selectable: true,
-	    timezone: 'local',
-	    titleFormat: 'DD MMM Y',
-      eventColor: '#222D32'
+      navLinks: true, // can click day/week names to navigate views
+      editable: true, // allow "more" link when too many events
+      eventLimit: true,
+     events: (start, end, timezone, callback) => {
+      setTimeout(() => {
+      	callback(hor)
+      }, 1000)
+    }
     
     });
+  
+  $('#calendar').fullCalendar('gotoDate', '2018-02-22')
 });	 				
 </script>
 
