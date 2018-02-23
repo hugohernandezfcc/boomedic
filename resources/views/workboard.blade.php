@@ -430,7 +430,7 @@ jQuery.noConflict(false);
 		editable: true,
 		eventLimit: true, // allow "more" link when too many events
 		navLinks: true,
-		events: hor /*[
+		events: JSON.stringify(hor) /*[
 			{
 				title: 'All Day Event',
 				start: YM + '-01'
