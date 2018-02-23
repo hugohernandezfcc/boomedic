@@ -263,7 +263,7 @@ $(function() {
 
         var optionhour = @php echo $workboard;  @endphp;
         console.log(optionhour);
-          var hor = [];
+          var hor = Array();
           var resp = Array();
           var resp2 = Array();
          for(var y = 0; y < optionhour.length; y++){ 
@@ -422,7 +422,7 @@ jQuery.noConflict(false);
 	var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
 
 	$('#calendar').fullCalendar({
-		lang: es,
+		
 		header: {
 			left: 'prev,next today',
 			center: 'title',
