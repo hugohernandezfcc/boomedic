@@ -431,6 +431,7 @@ jQuery.noConflict(false);
 		editable: true,
 		eventLimit: true, // allow "more" link when too many events
 		navLinks: true,
+		lang: 'es',
 		events: hor /*[
 			{
 				title: 'All Day Event',
