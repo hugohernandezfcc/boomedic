@@ -411,7 +411,7 @@ $(function() {
                           }
                         }
 		}
-		console.log(JSON.stringify(hor));
+		console.log(JSON.parse(hor));
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
 
@@ -422,6 +422,7 @@ jQuery.noConflict(false);
 	var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
 
 	$('#calendar').fullCalendar({
+		locale: es,
 		header: {
 			left: 'prev,next today',
 			center: 'title',
@@ -430,7 +431,7 @@ jQuery.noConflict(false);
 		editable: true,
 		eventLimit: true, // allow "more" link when too many events
 		navLinks: true,
-		events: JSON.stringify(hor) /*[
+		events: hor /*[
 			{
 				title: 'All Day Event',
 				start: YM + '-01'
