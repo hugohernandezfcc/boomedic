@@ -429,10 +429,7 @@ jQuery.noConflict(false);
 			right: 'month,agendaWeek,agendaDay,listWeek'
 		},
 		editable: true,
-		eventLimit: true, // allow "more" link when too many events
-		navLinks: true,
 		lang: 'es',
-		locale: 'es',
 		events: hor /*[
 			{
 				title: 'All Day Event',

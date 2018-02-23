@@ -59,7 +59,7 @@ if ($request->type == 'false') {
         $startTime = Carbon::parse($request->start);
         $finishTime = Carbon::parse($request->end);
         $totalDuration = $finishTime->diffInMinutes($startTime);
-        $consultation = $request->prom - 5;
+        $consultation = $request->prom + 5;
         $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
     $hora_inicio = new \DateTime(  $startTime );
     $hora_fin    = new \DateTime(  $finishTime );
