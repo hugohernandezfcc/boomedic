@@ -411,7 +411,7 @@ $(function() {
                           }
                         }
 		}
-		console.log(JSON.parse(hor));
+		console.log(hor);
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
 
