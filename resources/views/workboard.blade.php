@@ -432,6 +432,7 @@ jQuery.noConflict(false);
 		eventLimit: true, // allow "more" link when too many events
 		navLinks: true,
 		lang: 'es',
+		locale: 'es',
 		events: hor /*[
 			{
 				title: 'All Day Event',
