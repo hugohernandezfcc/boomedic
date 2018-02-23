@@ -411,7 +411,7 @@ $(function() {
                           }
                         }
 		}
-		console.log(hor);
+		console.log(JSON.stringify(hor));
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
 
@@ -430,7 +430,7 @@ jQuery.noConflict(false);
 		editable: true,
 		eventLimit: true, // allow "more" link when too many events
 		navLinks: true,
-		events: JSON.parse(hor) /*[
+		events: hor /*[
 			{
 				title: 'All Day Event',
 				start: YM + '-01'
