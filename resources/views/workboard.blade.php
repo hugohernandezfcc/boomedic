@@ -422,7 +422,7 @@ jQuery.noConflict(false);
 	var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
 
 	$('#calendar').fullCalendar({
-		locale: es,
+		lang: es,
 		header: {
 			left: 'prev,next today',
 			center: 'title',
