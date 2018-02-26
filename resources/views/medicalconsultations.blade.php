@@ -1437,18 +1437,16 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           var doctor = loc[i][10];
-          markers[i] = new google.maps.Marker({
-            position: new google.maps.LatLng(lat,lon),
-            animation: google.maps.Animation.DROP,
-                icon: {
-                    url: doctor,
-                    scaledSize: new google.maps.Size(50, 50),
-                    anchor: new google.maps.Point(25,60)
 
-                  }
-          });
           var infowindow = new google.maps.InfoWindow();
-          var marker = markers[i];
+
+            var marker = new RichMarker({
+            position: new google.maps.LatLng(lat,lon),
+            map: map,
+             animation: google.maps.Animation.DROP,
+            content: '<div class="markers"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image"></img></div>',
+            shadow: 0
+          });
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
 
