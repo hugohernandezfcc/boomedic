@@ -1442,8 +1442,9 @@ function prevTab(elem) {
             animation: google.maps.Animation.DROP,
                 icon: {
                     url: doctor,
-                    scaledSize: new google.maps.Size(20, 20),
-                    
+                    scaledSize: new google.maps.Size(35, 35),
+                    anchor: new google.maps.Point(35,35)
+
                   }
           });
           var infowindow = new google.maps.InfoWindow();
