@@ -1450,7 +1450,10 @@ function prevTab(elem) {
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
                 icon: {
-                    path: "M-60,0a60,60 0 3,0 120,0a60,60 0 3,0 -120,0",
+                        path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
+                        fillColor: '#000000',
+                        fillOpacity: 1,
+                        scale: 2
                   }
           });
           var infowindow = new google.maps.InfoWindow();
