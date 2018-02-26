@@ -234,7 +234,6 @@
 }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-<script src="https://googlemaps.github.io/js-rich-marker/src/richmarker.js"></script>
 
 
   <!--  -->
@@ -1439,10 +1438,15 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           var doctor = loc[i][10];
-          markers[i] = new RichMarker({
+          markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-            content: '<div class="markers"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png"></img></div>'
+                icon: {
+                    url: doctor,
+                    scaledSize: new google.maps.Size(50, 50),
+                    shape:{coords:[17,17,18],type:'circle'},
+                    optimized:false
+                  }
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
