@@ -200,37 +200,35 @@
     #bodyDr{
        margin-left: 90px; 
     }
-    .markers {
-  position: absolute;
-  cursor: pointer;
-  background: #424242;
-  width: 100px;
-  height: 100px;
-  /* -width/2 */
-  margin-left: -50px;
-  /* -height + arrow */
-  margin-top: -110px;
-  border-radius: 50%;
-  padding: 0px;
+.customMarker {
+    position:absolute;
+    cursor:pointer;
+    background:#424242;
+    width:100px;
+    height:100px;
+    /* -width/2 */
+    margin-left:-50px;
+    /* -height + arrow */
+    margin-top:-110px;
+    border-radius:50%;
+    padding:0px;
 }
-
-.markers:after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 40px;
-  border-width: 10px 10px 0;
-  border-style: solid;
-  border-color: #424242 transparent;
-  display: block;
-  width: 0;
+.customMarker:after {
+    content:"";
+    position: absolute;
+    bottom: -10px;
+    left: 40px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #424242 transparent;
+    display: block;
+    width: 0;
 }
-
-.markers img {
-  width: 90px;
-  height: 90px;
-  margin: 5px;
-  border-radius: 50%;
+.customMarker img {
+    width:90px;
+    height:90px;
+    margin:5px;
+    border-radius:50%;
 }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
@@ -1430,12 +1428,12 @@ function prevTab(elem) {
         console.log(loc);
       }
       //adapted from http://gmaps-samples-v3.googlecode.com/svn/trunk/overlayview/custommarker.html
-function CustomMarker(latlng, map, imageSrc) {
+function CustomMarker(latlng, maps, imageSrc) {
   this.latlng_ = latlng;
   this.imageSrc = imageSrc;
   // Once the LatLng and text are set, add the overlay to the map.  This will
   // trigger a call to panes_changed which should in turn call draw.
-  this.setMap(map);
+  this.setMap(maps);
 }
 
 CustomMarker.prototype = new google.maps.OverlayView();
