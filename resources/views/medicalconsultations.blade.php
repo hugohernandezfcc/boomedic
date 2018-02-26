@@ -200,7 +200,7 @@
     #bodyDr{
        margin-left: 90px; 
     }
-    .marker {
+    .markers {
   position: absolute;
   cursor: pointer;
   background: #424242;
@@ -214,7 +214,7 @@
   padding: 0px;
 }
 
-.marker:after {
+.markers:after {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -226,7 +226,7 @@
   width: 0;
 }
 
-.marker img {
+.markers img {
   width: 90px;
   height: 90px;
   margin: 5px;
@@ -1440,7 +1440,10 @@ function prevTab(elem) {
           markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-            icon: doctor
+                icon: {
+                    url: doctor,
+                    scaledSize: new google.maps.Size(96, 96)
+                  }
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
