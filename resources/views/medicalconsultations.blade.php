@@ -931,6 +931,7 @@ function prevTab(elem) {
 
     <script type="text/javascript">
       var markers = [];
+      var markers2 = [];
       var map;
       var infoWindow;
       /**
@@ -1656,13 +1657,16 @@ function prevTab(elem) {
       function dropMarker(i) {
         return function() {
           markers[i].setMap(map);
+           markers2[i].setMap(map);
         };
       }
       function clearMarkers() {
         for (var i = 0; i < markers.length; i++) {
           markers[i].setMap(null);
+           markers2[i].setMap(null);
         }
         markers = [];
+         markers2 = [];
       }
       function showInfo(info){ 
         document.getElementById("info").innerHTML = '<strong>Información del médico:</strong> <br/>'+ info +'';
