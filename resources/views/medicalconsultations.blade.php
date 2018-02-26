@@ -1408,7 +1408,9 @@ function prevTab(elem) {
           markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-            icon: doctor
+            icon: { path: doctor.CIRCLE,
+                    scale: 10
+            }
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
