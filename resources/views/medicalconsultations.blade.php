@@ -200,7 +200,7 @@
     #bodyDr{
        margin-left: 90px; 
     }
-    .mark {
+    .markers {
   position: absolute;
   cursor: pointer;
   background: #424242;
@@ -214,7 +214,7 @@
   padding: 0px;
 }
 
-.mark:after {
+.markers:after {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -226,16 +226,14 @@
   width: 0;
 }
 
-.mark img {
+.markers img {
   width: 90px;
   height: 90px;
   margin: 5px;
   border-radius: 50%;
 }
   </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-<script src="https://rawgit.com/googlemaps/v3-utility-library/master/richmarker/src/richmarker.js"></script>
-<script src="https://rawgit.com/googlemaps/v3-utility-library/master/richmarker/src/richmarker-compiled.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
   <!--  -->
   <script type="text/javascript">
@@ -1439,15 +1437,24 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           var doctor = loc[i][10];
-          markers[i] = new RichMarker({
+          markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-            content: '<div class="mark"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image"></img></div>'
+                icon: {
+                    url: doctor,
+                    scaledSize: new google.maps.Size(50, 50)
+                  }
+          });
+         markers2[i] = new google.maps.Marker({
+            position: new google.maps.LatLng(lat,lon),
+            animation: google.maps.Animation.DROP,
+                icon: {
+                    path: "M-60,0a60,60 0 3,0 120,0a60,60 0 3,0 -120,0",
+                  }
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-          google.maps.event.addDomListener(window, 'load', init);
-          google.maps.event.addListener(markers, 'click', (function(marker, i) {
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
 
               $('#infDr').show();
