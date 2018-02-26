@@ -204,12 +204,12 @@
   position: absolute;
   cursor: pointer;
   background: #424242;
-  width: 55px;
-  height: 55px;
+  width: 100px;
+  height: 100px;
   /* -width/2 */
-  margin-left: -25px;
+  margin-left: -50px;
   /* -height + arrow */
-  margin-top: -55px;
+  margin-top: -110px;
   border-radius: 50%;
   padding: 0px;
 }
@@ -217,8 +217,8 @@
 .markers:after {
   content: "";
   position: absolute;
-  bottom: -5px;
-  left: 20px;
+  bottom: -10px;
+  left: 40px;
   border-width: 10px 10px 0;
   border-style: solid;
   border-color: #424242 transparent;
@@ -227,14 +227,14 @@
 }
 
 .markers img {
-  width: 45px;
-  height: 45px;
+  width: 90px;
+  height: 90px;
   margin: 5px;
   border-radius: 50%;
 }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-
+<script src="https://rawgit.com/googlemaps/v3-utility-library/master/richmarker/src/richmarker.js"></script>
   <!--  -->
   <script type="text/javascript">
     /**
@@ -1438,14 +1438,15 @@ function prevTab(elem) {
           console.log(lon);
           var doctor = loc[i][10];
 
-          var infowindow = new google.maps.InfoWindow();
 
-            marker = new RichMarker({
+            markers[i] = new RichMarker({
             position: new google.maps.LatLng(lat,lon),
             map: map,
             content: '<div class="markers"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image"></img></div>',
             shadow: 0
           });
+          var infowindow = new google.maps.InfoWindow();
+          var marker = markers[i];
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
 
