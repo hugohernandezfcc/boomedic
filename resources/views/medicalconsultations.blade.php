@@ -1442,7 +1442,7 @@ function prevTab(elem) {
             animation: google.maps.Animation.DROP,
                 icon: {
                     url: doctor,
-                    scaledSize: new google.maps.Size(96, 96)
+                    scaledSize: new google.maps.Size(20, 20),
                   }
           });
           var infowindow = new google.maps.InfoWindow();
