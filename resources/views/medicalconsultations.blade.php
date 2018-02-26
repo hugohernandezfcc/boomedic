@@ -1442,7 +1442,6 @@ function prevTab(elem) {
 
             var marker = new RichMarker({
             position: new google.maps.LatLng(lat,lon),
-            map: map,
              animation: google.maps.Animation.DROP,
             content: '<div class="markers"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image"></img></div>',
             shadow: 0
