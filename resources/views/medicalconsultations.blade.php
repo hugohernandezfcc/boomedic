@@ -200,6 +200,38 @@
     #bodyDr{
        margin-left: 90px; 
     }
+    .markers {
+  position: absolute;
+  cursor: pointer;
+  background: #424242;
+  width: 100px;
+  height: 100px;
+  /* -width/2 */
+  margin-left: -50px;
+  /* -height + arrow */
+  margin-top: -110px;
+  border-radius: 50%;
+  padding: 0px;
+}
+
+.markers:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 40px;
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: #424242 transparent;
+  display: block;
+  width: 0;
+}
+
+.markers img {
+  width: 90px;
+  height: 90px;
+  margin: 5px;
+  border-radius: 50%;
+}
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
@@ -1404,13 +1436,11 @@ function prevTab(elem) {
           var lon = loc[i][1];
           console.log(lat);
           console.log(lon);
-          var doctor = "{{ asset('doctors.png') }}";
+          var doctor = loc[i][10];
           markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-            icon: { path: doctor,
-                    scale: 10
-            }
+            icon: doctor
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
