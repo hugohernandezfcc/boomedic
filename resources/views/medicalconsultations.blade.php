@@ -931,7 +931,6 @@ function prevTab(elem) {
 
     <script type="text/javascript">
       var markers = [];
-      var markers2 = [];
       var map;
       var infoWindow;
       /**
@@ -1443,17 +1442,9 @@ function prevTab(elem) {
             animation: google.maps.Animation.DROP,
                 icon: {
                     url: doctor,
-                    scaledSize: new google.maps.Size(50, 50)
-                  }
-          });
-         markers2[i] = new google.maps.Marker({
-            position: new google.maps.LatLng(lat,lon),
-            animation: google.maps.Animation.DROP,
-                icon: {
-                        path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
-                        fillColor: '#000000',
-                        fillOpacity: 1,
-                        scale: 2
+                    scaledSize: new google.maps.Size(55, 55),
+                    shape:{coords:[17,17,18],type:'circle'},
+                    optimized:false
                   }
           });
           var infowindow = new google.maps.InfoWindow();
@@ -1660,16 +1651,13 @@ function prevTab(elem) {
       function dropMarker(i) {
         return function() {
           markers[i].setMap(map);
-           markers2[i].setMap(map);
         };
       }
       function clearMarkers() {
         for (var i = 0; i < markers.length; i++) {
           markers[i].setMap(null);
-           markers2[i].setMap(null);
         }
         markers = [];
-         markers2 = [];
       }
       function showInfo(info){ 
         document.getElementById("info").innerHTML = '<strong>Información del médico:</strong> <br/>'+ info +'';
