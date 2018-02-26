@@ -1440,10 +1440,9 @@ function prevTab(elem) {
 
           var infowindow = new google.maps.InfoWindow();
 
-            var marker = new RichMarker({
+            marker = new RichMarker({
             position: new google.maps.LatLng(lat,lon),
-             animation: google.maps.Animation.DROP,
-             map: map,
+            map: map,
             content: '<div class="markers"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image"></img></div>',
             shadow: 0
           });
