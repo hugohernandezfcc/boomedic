@@ -200,7 +200,7 @@
     #bodyDr{
        margin-left: 90px; 
     }
-    .markers {
+    .marker {
   position: absolute;
   cursor: pointer;
   background: #424242;
@@ -214,7 +214,7 @@
   padding: 0px;
 }
 
-.markers:after {
+.marker:after {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -226,7 +226,7 @@
   width: 0;
 }
 
-.markers img {
+.marker img {
   width: 90px;
   height: 90px;
   margin: 5px;
