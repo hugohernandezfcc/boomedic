@@ -200,35 +200,37 @@
     #bodyDr{
        margin-left: 90px; 
     }
-.customMarker {
-    position:absolute;
-    cursor:pointer;
-    background:#424242;
-    width:100px;
-    height:100px;
-    /* -width/2 */
-    margin-left:-50px;
-    /* -height + arrow */
-    margin-top:-110px;
-    border-radius:50%;
-    padding:0px;
+    .markers {
+  position: absolute;
+  cursor: pointer;
+  background: #424242;
+  width: 100px;
+  height: 100px;
+  /* -width/2 */
+  margin-left: -50px;
+  /* -height + arrow */
+  margin-top: -110px;
+  border-radius: 50%;
+  padding: 0px;
 }
-.customMarker:after {
-    content:"";
-    position: absolute;
-    bottom: -10px;
-    left: 40px;
-    border-width: 10px 10px 0;
-    border-style: solid;
-    border-color: #424242 transparent;
-    display: block;
-    width: 0;
+
+.markers:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 40px;
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: #424242 transparent;
+  display: block;
+  width: 0;
 }
-.customMarker img {
-    width:90px;
-    height:90px;
-    margin:5px;
-    border-radius:50%;
+
+.markers img {
+  width: 90px;
+  height: 90px;
+  margin: 5px;
+  border-radius: 50%;
 }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
@@ -935,11 +937,6 @@ function prevTab(elem) {
        * Function responsable of execute the main functions 
        * 
        */
-             //adapted from http://gmaps-samples-v3.googlecode.com/svn/trunk/overlayview/custommarker.html
-
-
-
-
       window.onload = function(){
       var height;
         if("@php echo $agent->isMobile(); @endphp"){
@@ -1432,58 +1429,6 @@ function prevTab(elem) {
         console.log(res);
         console.log(loc);
       }
-function CustomMarker(latlng, map, imageSrc) {
-  this.latlng_ = latlng;
-  this.imageSrc = imageSrc;
-  // Once the LatLng and text are set, add the overlay to the map.  This will
-  // trigger a call to panes_changed which should in turn call draw.
-  this.setMap(map);
-}
-
-CustomMarker.prototype = new google.maps.OverlayView();
-
-CustomMarker.prototype.draw = function() {
-  // Check if the div has been created.
-  var div = this.div_;
-  if (!div) {
-    // Create a overlay text DIV
-    div = this.div_ = document.createElement('div');
-    // Create the DIV representing our CustomMarker
-    div.className = "customMarker"
-
-
-    var img = document.createElement("img");
-    img.src = this.imageSrc;
-    div.appendChild(img);
-    google.maps.event.addDomListener(div, "click", function(event) {
-      google.maps.event.trigger(me, "click");
-    });
-
-    // Then add the overlay to the DOM
-    var panes = this.getPanes();
-    panes.overlayImage.appendChild(div);
-  }
-
-  // Position the overlay 
-  var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
-  if (point) {
-    div.style.left = point.x + 'px';
-    div.style.top = point.y + 'px';
-  }
-};
-
-CustomMarker.prototype.remove = function() {
-  // Check if the overlay was on the map and needs to be removed.
-  if (this.div_) {
-    this.div_.parentNode.removeChild(this.div_);
-    this.div_ = null;
-  }
-};
-
-CustomMarker.prototype.getPosition = function() {
-  return this.latlng_;
-};
-
       function drop() {
         clearMarkers();
         for (var i = 0; i < loc.length; i++) {
@@ -1492,11 +1437,18 @@ CustomMarker.prototype.getPosition = function() {
           console.log(lat);
           console.log(lon);
           var doctor = loc[i][10];
+          markers[i] = new google.maps.Marker({
+            position: new google.maps.LatLng(lat,lon),
+            animation: google.maps.Animation.DROP,
+                icon: {
+                    url: doctor,
+                    scaledSize: new google.maps.Size(50, 50),
+                    anchor: new google.maps.Point(25,60)
 
+                  }
+          });
           var infowindow = new google.maps.InfoWindow();
-         
-           new CustomMarker(new google.maps.LatLng(loc[i][0], loc[i][1]), map, loc[i][10]);
-            var marker = Custommarker;
+          var marker = markers[i];
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
 
