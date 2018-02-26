@@ -234,7 +234,8 @@
 }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-<script src='//cdn.rawgit.com/googlemaps/js-rich-marker/gh-pages/src/richmarker-compiled.js' type='text/javascript'></script>
+<script src='https://rawgit.com/googlemaps/v3-utility-library/master/richmarker/src/richmarker.js' type='text/javascript'></script>
+<script src='https://rawgit.com/googlemaps/v3-utility-library/master/richmarker/src/richmarker-compiled.js' type='text/javascript'></script>
   <!--  -->
   <script type="text/javascript">
     /**
