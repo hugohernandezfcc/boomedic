@@ -200,7 +200,7 @@
     #bodyDr{
        margin-left: 90px; 
     }
-    .markers {
+    .mark {
   position: absolute;
   cursor: pointer;
   background: #424242;
@@ -214,7 +214,7 @@
   padding: 0px;
 }
 
-.markers:after {
+.mark:after {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -226,7 +226,7 @@
   width: 0;
 }
 
-.markers img {
+.mark img {
   width: 90px;
   height: 90px;
   margin: 5px;
@@ -1442,7 +1442,7 @@ function prevTab(elem) {
           markers[i] = new RichMarker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-            content: '<div class="markers"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image"></img></div>'
+            content: '<div class="mark"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image"></img></div>'
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
