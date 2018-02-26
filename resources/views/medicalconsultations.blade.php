@@ -233,7 +233,9 @@
   border-radius: 50%;
 }
   </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+<script src="https://rawgit.com/googlemaps/v3-utility-library/master/richmarker/src/richmarker.js"></script>
+<script src="https://rawgit.com/googlemaps/v3-utility-library/master/richmarker/src/richmarker-compiled.js"></script>
 
   <!--  -->
   <script type="text/javascript">
@@ -1437,13 +1439,10 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           var doctor = loc[i][10];
-          markers[i] = new google.maps.Marker({
+          markers[i] = new RichMarker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-                icon: {
-                    url: doctor,
-                    scaledSize: new google.maps.Size(50, 50)
-                  }
+            content: '<div class="markers"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image"></img></div>'
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
