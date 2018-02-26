@@ -1492,18 +1492,11 @@ CustomMarker.prototype.getPosition = function() {
           console.log(lat);
           console.log(lon);
           var doctor = loc[i][10];
-          markers[i] = new google.maps.Marker({
-            position: new google.maps.LatLng(lat,lon),
-            animation: google.maps.Animation.DROP,
-                icon: {
-                    url: doctor,
-                    scaledSize: new google.maps.Size(50, 50),
 
-                  }
-          });
           var infowindow = new google.maps.InfoWindow();
-          var marker = markers[i];
+         
            new CustomMarker(new google.maps.LatLng(loc[i][0], loc[i][1]), map, loc[i][10]);
+            var marker = Custommarker;
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
 
