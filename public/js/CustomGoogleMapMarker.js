@@ -1,9 +1,8 @@
 function CustomMarker(latlng, map, imageSrc) {
-    this.latlng_ = latlng;
+    this.latlng = latlng;
     this.imageSrc = imageSrc;
     // Once the LatLng and text are set, add the overlay to the map.  This will
     // trigger a call to panes_changed which should in turn call draw.
-     this.setMap(map);
 }
 
 CustomMarker.prototype = new google.maps.OverlayView();
@@ -36,7 +35,7 @@ CustomMarker.prototype.draw = function () {
     }
 
     // Position the overlay 
-    var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
+    var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
     if (point) {
         div.style.left = point.x + 'px';
         div.style.top = point.y + 'px';
@@ -45,13 +44,13 @@ CustomMarker.prototype.draw = function () {
 
 CustomMarker.prototype.remove = function () {
     // Check if the overlay was on the map and needs to be removed.
-    if (this.div_) {
-        this.div_.parentNode.removeChild(this.div_);
-        this.div_ = null;
+    if (this.div) {
+        this.div.parentNode.removeChild(this.div);
+        this.div = null;
         this.setMap(null);
     }
 };
 
 CustomMarker.prototype.getPosition = function () {
-    return this.latlng_;
+    return this.latlng;
 };
