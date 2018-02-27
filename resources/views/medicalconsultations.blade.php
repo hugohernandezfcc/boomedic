@@ -1449,7 +1449,7 @@ function prevTab(elem) {
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
 
-          console.log(markers[i]);
+          console.log(marker);
           google.maps.event.addDomListener(marker, 'click', (function(marker, i) {
             return function() {
 
@@ -1646,7 +1646,7 @@ function prevTab(elem) {
           });
             }
           })(marker, i));
-          setTimeout(dropMarker(i), i * 250);
+          setTimeout(dropMarker(i), 250);
         }
       }
       function dropMarker(i) {
