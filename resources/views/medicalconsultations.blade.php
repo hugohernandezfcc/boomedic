@@ -1439,12 +1439,18 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           var doctor = "{{ asset('doctors.png') }}";
-          markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon), "http://placekitten.com/90/90");
-          console.log(map);
+         new CustomMarker(new google.maps.LatLng(lat,lon), map, "http://placekitten.com/90/90");
+          var doctor = "{{ asset('doctors.png') }}";
+          markers[i] = new google.maps.Marker({
+            position: new google.maps.LatLng(lat,lon),
+            animation: google.maps.Animation.DROP,
+            icon: doctor
+          });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          console.log(marker.length);
+          console.log(marker);
+          google.maps.event.addDomListener(marker, 'click', (function(marker, i) {
             return function() {
 
               $('#infDr').show();
