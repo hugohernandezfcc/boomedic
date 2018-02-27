@@ -1441,7 +1441,7 @@ function prevTab(elem) {
           markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-            icon: doctor;
+            icon: doctor
                 /*icon: {
                     url: doctor,
                     scaledSize: new google.maps.Size(50, 50),
