@@ -1,9 +1,9 @@
-function CustomMarker(latlng, map, imageSrc) {
+function CustomMarker(latlng, imageSrc) {
     this.latlng_ = latlng;
     this.imageSrc = imageSrc;
     // Once the LatLng and text are set, add the overlay to the map.  This will
     // trigger a call to panes_changed which should in turn call draw.
-    this.setMap(map);
+
 }
 
 CustomMarker.prototype = new google.maps.OverlayView();
