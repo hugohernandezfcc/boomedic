@@ -1259,12 +1259,7 @@ function prevTab(elem) {
               new google.maps.places.Autocomplete(input);
             var markerUser = "{{ asset('markerUser.png') }}";
             //Marker
-              markerP = new google.maps.Marker({
-              draggable: true,
-              position: new google.maps.LatLng(pos),
-              icon: markerUser,
-              map: map
-            });
+              markerP = new CustomMarker(new google.maps.LatLng(pos), map, "https://s3.amazonaws.com/abiliasf/16.jpg");
             //Evento to open infowindow
             markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
