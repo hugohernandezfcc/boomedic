@@ -49,3 +49,10 @@ CustomMarker.prototype.remove = function () {
 CustomMarker.prototype.getPosition = function () {
     return this.latlng_;
 };
+/**
+ * Implementaion of the interface method.
+ * @ignore
+ */
+CustomMarker.prototype.onRemove = function () {
+    this.setReady_(true);
+};
