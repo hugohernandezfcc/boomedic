@@ -3,7 +3,7 @@ function CustomMarker(latlng, map, imageSrc) {
     this.imageSrc = imageSrc;
     // Once the LatLng and text are set, add the overlay to the map.  This will
     // trigger a call to panes_changed which should in turn call draw.
-    this.setMap(map);
+
 }
 
 CustomMarker.prototype = new google.maps.OverlayView();
@@ -53,6 +53,3 @@ CustomMarker.prototype.getPosition = function () {
  * Implementaion of the interface method.
  * @ignore
  */
-CustomMarker.prototype.onRemove = function () {
-    this.setReady_(true);
-};
