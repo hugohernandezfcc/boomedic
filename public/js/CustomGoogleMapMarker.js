@@ -1,3 +1,4 @@
+jQuery.noConflict(false);
 function CustomMarker(latlng, map, imageSrc) {
     this.latlng = latlng;
     this.imageSrc = imageSrc;
@@ -13,7 +14,7 @@ CustomMarker.prototype.draw = function () {
     var div = this.div;
     if (!div) {
         // Create a overlay text DIV
-        div = this.div = document.createElement('div');
+        div = this.div = document.createElement("div");
         // Create the DIV representing our CustomMarker
         div.className = "customMarker";
 
