@@ -1441,7 +1441,7 @@ function prevTab(elem) {
           var doctor = "{{ asset('doctors.png') }}";
 
           markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon), map, "https://s3.amazonaws.com/abiliasf/16.jpg");
-           markers[i].setMap(map);
+           
         /*  markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
@@ -1449,7 +1449,6 @@ function prevTab(elem) {
           });*/
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-          console.log(marker.length);
           console.log(marker);
          
    
