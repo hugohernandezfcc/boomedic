@@ -1450,8 +1450,8 @@ function prevTab(elem) {
           var marker = markers[i];
 
           console.log(markers[i]);
-          google.maps.event.addDomListener(marker, 'click', (function(marker, i) {
-            return function() {
+          google.maps.event.addDomListener(marker, 'click', function(event) {
+            
 
               $('#infDr').show();
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
@@ -1644,8 +1644,8 @@ function prevTab(elem) {
                       });
              
           });
-            }
-          })(marker, i));
+            
+          });
          setTimeout(dropMarker(i), i * 250);
         }
       }
