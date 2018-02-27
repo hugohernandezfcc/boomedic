@@ -234,7 +234,8 @@
 }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script type="text/javascript" src="{{ asset('js/CustomGoogleMapMarker.js') }}"></script>
 
   <!--  -->
   <script type="text/javascript">
@@ -1438,17 +1439,8 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           var doctor = "{{ asset('doctors.png') }}";
-          markers[i] = new google.maps.Marker({
-            position: new google.maps.LatLng(lat,lon),
-            animation: google.maps.Animation.DROP,
-            icon: doctor
-                /*icon: {
-                    url: doctor,
-                    scaledSize: new google.maps.Size(50, 50),
-                    shape:{coords:[17,17,18],type:'circle'},
-                    optimized:false
-                  }*/
-          });
+          markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon), map,  "http://placekitten.com/90/90");
+
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
