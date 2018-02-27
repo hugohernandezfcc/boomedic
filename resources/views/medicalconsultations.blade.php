@@ -1265,8 +1265,7 @@ function prevTab(elem) {
               icon: markerUser,
               map: map
             });
-              var mar = new CustomMarker(new google.maps.LatLng(pos), map,  "https://s3.amazonaws.com/abiliasf/16.jpg");
-              mar.setMap(map);
+
             //Evento to open infowindow
             markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
@@ -1451,7 +1450,7 @@ function prevTab(elem) {
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
 
-          console.log(marker);
+          console.log(markers[i]);
           google.maps.event.addDomListener(marker, 'click', (function(marker, i) {
             return function() {
 
