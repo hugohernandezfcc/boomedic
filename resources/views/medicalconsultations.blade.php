@@ -1638,7 +1638,7 @@ function prevTab(elem) {
           });
             }
           })(marker, i));
-          /*setTimeout(dropMarker(i), i * 250);*/
+         setTimeout(dropMarker(i), i * 250);
         }
       }
       function dropMarker(i) {
