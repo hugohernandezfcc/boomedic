@@ -1440,9 +1440,8 @@ function prevTab(elem) {
           console.log(lon);
           var doctor = "{{ asset('doctors.png') }}";
 
-         markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon), map, "https://s3.amazonaws.com/abiliasf/16.jpg");
-        
-        /*   markers[i] = new google.maps.Marker({
+           markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon), map, "https://s3.amazonaws.com/abiliasf/16.jpg");
+          /*  markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
             icon: doctor
@@ -1450,7 +1449,7 @@ function prevTab(elem) {
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
 
-          console.log(marker);
+          console.log(markers[i]);
           google.maps.event.addDomListener(marker, 'click', (function(marker, i) {
             return function() {
 
@@ -1645,10 +1644,9 @@ function prevTab(elem) {
                       });
              
           });
-
             }
           })(marker, i));
-               markers[i].setMap(map);
+    
         }
       }
       function dropMarker(i) {
