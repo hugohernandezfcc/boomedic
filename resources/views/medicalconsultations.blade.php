@@ -1439,9 +1439,7 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           var doctor = "{{ asset('doctors.png') }}";
-          new CustomMarker(new google.maps.LatLng(lat,lon),map, "http://placekitten.com/90/90");
-          var doctor = "{{ asset('doctors.png') }}";
-          
+
           markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
