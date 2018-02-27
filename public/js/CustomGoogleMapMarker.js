@@ -46,7 +46,7 @@ CustomMarker.prototype.draw = function () {
 CustomMarker.prototype.remove = function () {
     // Check if the overlay was on the map and needs to be removed.
     if (this.div_) {
-        this.div_.parentNode.rsemoveChild(this.div_);
+        this.div_.parentNode.removeChild(this.div_);
         this.div_ = null;
         this.setMap(null);
     }
