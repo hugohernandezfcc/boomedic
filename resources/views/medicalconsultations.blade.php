@@ -188,7 +188,6 @@
       .box.box-primary {
         border-top-color: #242627;
         }
-
     #infDr {
     bottom: 0;
     right: 0;
@@ -213,7 +212,6 @@
   border-radius: 50%;
   padding: 0px;
 }
-
 .customMarker:after {
   content: "";
   position: absolute;
@@ -225,7 +223,6 @@
   display: block;
   width: 0;
 }
-
 .customMarker img {
   width: 90px;
   height: 90px;
@@ -234,7 +231,7 @@
 }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-<script src="{{ asset('js/CustomGoogleMapMarker.js') }}"></script>
+
 
 
   <!--  -->
@@ -1265,7 +1262,6 @@ function prevTab(elem) {
               icon: markerUser,
               map: map
             });
-
             //Evento to open infowindow
             markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
@@ -1440,26 +1436,22 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           var doctor = "{{ asset('doctors.png') }}";
-
-           markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon), map, "https://s3.amazonaws.com/abiliasf/16.jpg");
-          /*  markers[i] = new google.maps.Marker({
+          markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon), map, "https://s3.amazonaws.com/abiliasf/16.jpg");
+        /*  markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
             icon: doctor
           });*/
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-
-          console.log(markers[i]);
+          console.log(marker.length);
+          console.log(marker);
           google.maps.event.addDomListener(marker, 'click', (function(marker, i) {
             return function() {
-
               $('#infDr').show();
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5];
-
           
-
            document.getElementById('btncita').addEventListener('click', function() {
               $('#infDr').hide();
               $('#tab1').trigger('click');
@@ -1647,7 +1639,7 @@ function prevTab(elem) {
           });
             }
           })(marker, i));
-          setTimeout(dropMarker(i), 250);
+         setTimeout(dropMarker(i), i * 250);
         }
       }
       function dropMarker(i) {
