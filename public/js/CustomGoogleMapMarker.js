@@ -6,7 +6,7 @@ function CustomMarker(latlng, map, imageSrc) {
 }
 
 CustomMarker.prototype = new google.maps.OverlayView();
-customMarker.prototype.setMap(map);
+
 CustomMarker.prototype.draw = function () {
     // Check if the div has been created.
 
