@@ -1439,7 +1439,7 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           var doctor = "{{ asset('doctors.png') }}";
-          var marker = new CustomMarker(new google.maps.LatLng(lat,lon), map, "http://placekitten.com/90/90");
+          var markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon), map, "http://placekitten.com/90/90");
           var infowindow = new google.maps.InfoWindow();
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -1638,7 +1638,7 @@ function prevTab(elem) {
           });
             }
           })(marker, i));
-          setTimeout(dropMarker(i), i * 250);
+          /*setTimeout(dropMarker(i), i * 250);*/
         }
       }
       function dropMarker(i) {
