@@ -11,10 +11,10 @@ CustomMarker.prototype = new google.maps.OverlayView();
 CustomMarker.prototype.draw = function () {
     // Check if the div has been created.
 
-    var div = this.div_;
+    var div = this.div;
     if (!div) {
         // Create a overlay text DIV
-        div = this.div_ = document.createElement('div');
+        div = this.div = document.createElement('div');
         // Create the DIV representing our CustomMarker
         div.className = "customMarker";
 
