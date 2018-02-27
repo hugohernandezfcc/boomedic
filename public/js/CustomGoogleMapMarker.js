@@ -21,8 +21,11 @@ CustomMarker.prototype.draw = function () {
         var img = document.createElement("img");
         img.src = this.imageSrc;
         div.appendChild(img);
+       this.getPanes().overlayMouseTarget.appendChild(div);
+        var me = this;
         google.maps.event.addDomListener(div, "click", function (event) {
             google.maps.event.trigger(me, "click");
+            console.log('click');
         });
 
         // Then add the overlay to the DOM
