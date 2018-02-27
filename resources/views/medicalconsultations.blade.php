@@ -1440,7 +1440,7 @@ function prevTab(elem) {
           console.log(lon);
           var doctor = "{{ asset('doctors.png') }}";
 
-          markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon),  "https://s3.amazonaws.com/abiliasf/16.jpg");
+          markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon), map, "https://s3.amazonaws.com/abiliasf/16.jpg");
         /*  markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,

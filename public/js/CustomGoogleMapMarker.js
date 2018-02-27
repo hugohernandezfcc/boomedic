@@ -1,27 +1,28 @@
-function CustomMarker(latlng, imageSrc) {
+function CustomMarker(latlng, map, imageSrc) {
     this.latlng_ = latlng;
     this.imageSrc = imageSrc;
     // Once the LatLng and text are set, add the overlay to the map.  This will
     // trigger a call to panes_changed which should in turn call draw.
-
 }
 
 CustomMarker.prototype = new google.maps.OverlayView();
 
 CustomMarker.prototype.draw = function () {
     // Check if the div has been created.
+
     var div = this.div_;
     if (!div) {
         // Create a overlay text DIV
         div = this.div_ = document.createElement('div');
         // Create the DIV representing our CustomMarker
-        div.className = "customMarker"
+        div.className = "customMarker";
 
 
         var img = document.createElement("img");
         img.src = this.imageSrc;
         div.appendChild(img);
-       this.getPanes().overlayMouseTarget.appendChild(div);
+        //add element to clickable layer 
+        this.getPanes().overlayMouseTarget.appendChild(div);
         var me = this;
         google.maps.event.addDomListener(div, "click", function (event) {
             google.maps.event.trigger(me, "click");
