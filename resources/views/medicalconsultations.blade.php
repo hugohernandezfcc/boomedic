@@ -1440,18 +1440,19 @@ function prevTab(elem) {
           console.log(lon);
           var doctor = "{{ asset('doctors.png') }}";
 
-         /*  markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon), map, "https://s3.amazonaws.com/abiliasf/16.jpg");*/
-         markers[i] = new google.maps.Marker({
+        markers[i] = new CustomMarker(new google.maps.LatLng(data[i].pos[0],data[i].pos[1]), map,  data[i].profileImage);
+          markers[i].setMap(map);
+         /*markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
             icon: doctor
-          });
+          });*/
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
 
           console.log(markers[i]);
-          google.maps.event.addDomListener(marker, 'click', function(event) {
-            
+          google.maps.event.addDomListener(marker, 'click', (function(marker, i) {
+            return function() {
 
               $('#infDr').show();
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
@@ -1644,9 +1645,9 @@ function prevTab(elem) {
                       });
              
           });
-            
-          });
-         setTimeout(dropMarker(i), i * 250);
+            }
+          })(marker, i));
+    
         }
       }
       function dropMarker(i) {
