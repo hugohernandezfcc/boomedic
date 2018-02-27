@@ -1437,16 +1437,17 @@ function prevTab(elem) {
           var lon = loc[i][1];
           console.log(lat);
           console.log(lon);
-          var doctor = loc[i][10];
+          var doctor = "{{ asset('doctors.png') }}";
           markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-                icon: {
+            icon: doctor;
+                /*icon: {
                     url: doctor,
                     scaledSize: new google.maps.Size(50, 50),
                     shape:{coords:[17,17,18],type:'circle'},
                     optimized:false
-                  }
+                  }*/
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
