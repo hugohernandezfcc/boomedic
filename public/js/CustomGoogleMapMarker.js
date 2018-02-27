@@ -6,7 +6,7 @@ function CustomMarker(latlng, map, imageSrc) {
 }
 
 CustomMarker.prototype = new google.maps.OverlayView();
-
+customMarker.prototype.setMap(map);
 CustomMarker.prototype.draw = function () {
     // Check if the div has been created.
 
@@ -35,11 +35,12 @@ CustomMarker.prototype.draw = function () {
     }
 
     // Position the overlay 
-    var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
-    if (point) {
-        div.style.left = point.x + 'px';
-        div.style.top = point.y + 'px';
-    }
+        var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
+            
+        if (point) {
+            div.style.left = point.x + 'px';
+            div.style.top = point.y + 'px';
+        }
 };
 
 CustomMarker.prototype.remove = function () {
