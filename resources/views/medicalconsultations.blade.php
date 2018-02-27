@@ -234,7 +234,7 @@
 }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>-->
 <script type="text/javascript" src="{{ asset('js/CustomGoogleMapMarker.js') }}"></script>
 
   <!--  -->
