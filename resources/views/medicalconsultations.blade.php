@@ -1670,10 +1670,10 @@ function prevTab(elem) {
   this.div_ = null;
 
   // Explicitly call setMap on this overlay.
-  this.setMap(map);
+
 
 }
-initMap();
+
  USGSOverlay.prototype = new google.maps.OverlayView();
 
 USGSOverlay.prototype.onAdd = function() {
