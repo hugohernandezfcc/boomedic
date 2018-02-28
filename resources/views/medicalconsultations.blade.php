@@ -1442,7 +1442,9 @@ function prevTab(elem) {
         markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-            icon: doctor
+            icon: {
+              url: "https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png"
+            }
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
