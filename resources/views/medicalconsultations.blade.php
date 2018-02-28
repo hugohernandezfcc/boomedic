@@ -1430,7 +1430,6 @@ function prevTab(elem) {
       }
       function drop() {
         clearMarkers();
-        var markers = [];
         for (var i = 0; i < loc.length; i++) {
           var lat = loc[i][0];
           var lon = loc[i][1];
