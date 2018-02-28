@@ -34,22 +34,22 @@ class history extends Controller
           $user = User::find(Auth::id());
 
         $dateUser = DB::table('users')->where('id', Auth::id())
-           ->where( 'updated_at', '>', Carbon::now()->subDays(21))
+           ->where( 'updated_at', '>', Carbon::now()->subDays(7))
             ->select('id','created_at','updated_at')->get();
 
         $dateSupport = DB::table('support_tickets')->where('userId', Auth::id())
-           ->where( 'created_at', '>', Carbon::now()->subDays(21))
+           ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->select('id','created_at','updated_at','ticketDescription')->get();
 
         $datePayment = DB::table('paymentsmethods')->where('owner', Auth::id())
-           ->where( 'created_at', '>', Carbon::now()->subDays(21))
+           ->where( 'created_at', '>', Carbon::now()->subDays(7))
            ->select('id','created_at','updated_at','provider','cardnumber')->get();
 
 
         $dateAppointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
-           ->where( 'medical_appointments.created_at', '>', Carbon::now()->subDays(21))
+           ->where( 'medical_appointments.created_at', '>', Carbon::now()->subDays(7))
            ->select('medical_appointments.id','medical_appointments.created_at','medical_appointments.updated_at','medical_appointments.user_doctor','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.latitude', 'labor_information.longitude')->get();
 
            $array = collect();
@@ -188,26 +188,26 @@ class history extends Controller
       $sumDays = session()->get('history') + 7;
        Session(['history' => $sumDays]);
        $varnewnow = Carbon::now()->subDays(session()->get('history'));
-        Session(['history2' => $varnewnow]);
+        Session(['history2' => $varnewnow->subDays(14)]);
                   $user = User::find(Auth::id());
 
         $dateUser = DB::table('users')->where('id', Auth::id())
-           ->where( 'updated_at', '>', $varnewnow->subDays(21))
+           ->where( 'updated_at', '>', $varnewnow->subDays(14))
             ->select('id','created_at','updated_at')->get();
 
         $dateSupport = DB::table('support_tickets')->where('userId', Auth::id())
-           ->where( 'created_at', '>', $varnewnow->subDays(21))
+           ->where( 'created_at', '>', $varnewnow->subDays(14))
            ->select('id','created_at','updated_at','ticketDescription')->get();
 
         $datePayment = DB::table('paymentsmethods')->where('owner', Auth::id())
-           ->where( 'created_at', '>', $varnewnow->subDays(21))
+           ->where( 'created_at', '>', $varnewnow->subDays(14))
            ->select('id','created_at','updated_at','provider','cardnumber')->get();
 
 
          $dateAppointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
-           ->where( 'medical_appointments.created_at', '>', Carbon::now()->subDays(21))
+           ->where( 'medical_appointments.created_at', '>',  $varnewnow->subDays(14))
            ->select('medical_appointments.id','medical_appointments.created_at','medical_appointments.updated_at','medical_appointments.user_doctor','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.latitude', 'labor_information.longitude')->get();
 
            $array = collect();
