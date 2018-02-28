@@ -1,57 +1,57 @@
-function CustomMarker(latlng, map, imageSrc) {
-    this.latlng = latlng;
-    this.imageSrc = imageSrc;
-    // Once the LatLng and text are set, add the overlay to the map.  This will
-    // trigger a call to panes_changed which should in turn call draw.
+function CustomMarker(latlng, map, args) {
+    this.latlng = latlng;   
+    this.args = args;   
+    this.setMap(map);   
 }
 
 CustomMarker.prototype = new google.maps.OverlayView();
 
-CustomMarker.prototype.draw = function () {
-    // Check if the div has been created.
-
+CustomMarker.prototype.draw = function() {
+    
+    var self = this;
+    
     var div = this.div;
+    
     if (!div) {
-        // Create a overlay text DIV
+    
         div = this.div = document.createElement('div');
-        // Create the DIV representing our CustomMarker
-        div.className = "customMarker";
+        
+       div.className = "customMarker";
 
 
         var img = document.createElement("img");
         img.src = this.imageSrc;
         div.appendChild(img);
-        //add element to clickable layer 
+        
+        if (typeof(self.args.marker_id) !== 'undefined') {
+            div.dataset.marker_id = self.args.marker_id;
+        }
         this.getPanes().overlayMouseTarget.appendChild(div);
         var me = this;
-        google.maps.event.addDomListener(div, "click", function (event) {
-            google.maps.event.trigger(me, "click");
-            console.log('click');
+        google.maps.event.addDomListener(div, "click", function(event) {
+            alert('You clicked on a custom marker!');           
+            google.maps.event.trigger(self, "click");
         });
-
-        // Then add the overlay to the DOM
+        
         var panes = this.getPanes();
         panes.overlayImage.appendChild(div);
     }
-
-    // Position the overlay 
-        var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
-            
-        if (point) {
+    
+    var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
+    
+    if (point) {
             div.style.left = point.x + 'px';
             div.style.top = point.y + 'px';
-        }
-};
-
-CustomMarker.prototype.remove = function () {
-    // Check if the overlay was on the map and needs to be removed.
-    if (this.div) {
-        this.div.parentNode.removeChild(this.div);
-        this.div = null;
-        this.setMap(null);
     }
 };
 
-CustomMarker.prototype.getPosition = function () {
-    return this.latlng;
+CustomMarker.prototype.remove = function() {
+    if (this.div) {
+        this.div.parentNode.removeChild(this.div);
+        this.div = null;
+    }   
+};
+
+CustomMarker.prototype.getPosition = function() {
+    return this.latlng; 
 };

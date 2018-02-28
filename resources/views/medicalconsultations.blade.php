@@ -1444,7 +1444,6 @@ function prevTab(elem) {
           });*/
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-          console.log(markers.length);
           console.log(markers[i]);
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
