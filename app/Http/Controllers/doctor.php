@@ -453,9 +453,9 @@ question
         $mask = imagecreatetruecolor( $targ_w, $targ_h);
         $transparent = imagecolorallocate($mask, 255, 0, 0);
         imagecolortransparent($mask,$transparent);
-        imagefilledellipse($mask,  $targ_w/2, $targ_h/2, $newwidth, $targ_h, $transparent);
+        imagefilledellipse($mask,  $targ_w/2, $targ_h/2, $targ_w, $targ_h, $transparent);
         $red = imagecolorallocate($mask, 0, 0, 0);
-        imagecopymerge($image, $mask, 0, 0, 0, 0, $targ_w, $newheight, 100);
+        imagecopymerge($image, $mask, 0, 0, 0, 0, $targ_w, $targ_h, 100);
         imagecolortransparent($image,$red);
         imagefill($image, 0, 0, $red);
         ob_start();
