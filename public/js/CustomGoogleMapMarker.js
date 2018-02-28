@@ -1,6 +1,6 @@
 
 function CustomMarker(latlng, map, imageSrc) {
-    this.latlng_ = latlng;
+    this.latlng = latlng;
     this.imageSrc = imageSrc;
 
 }
@@ -14,7 +14,7 @@ CustomMarker.prototype.draw = function() {
     
     if (!div) {
     
-        div = this.div = document.createElement('div');
+        div = this.div = document.createElement("div");
         
        div.className = "customMarker";
 

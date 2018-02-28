@@ -199,35 +199,36 @@
     #bodyDr{
        margin-left: 90px; 
     }
-    .customMarker {
-  position: absolute;
-  cursor: pointer;
-  background: #424242;
-  width: 100px;
-  height: 100px;
-  /* -width/2 */
-  margin-left: -50px;
-  /* -height + arrow */
-  margin-top: -110px;
-  border-radius: 50%;
-  padding: 0px;
+.customMarker {
+    position:absolute;
+    cursor:pointer;
+    background:#424242;
+    width:50px;
+    height:50px;
+    /* -width/2 */
+    margin-left:-25px;
+    /* -height + arrow */
+    margin-top:-55px;
+    border-radius:50%;
+    padding:0px;
 }
 .customMarker:after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 40px;
-  border-width: 10px 10px 0;
-  border-style: solid;
-  border-color: #424242 transparent;
-  display: block;
-  width: 0;
+    content:"";
+    position: absolute;
+    bottom: -5px;
+    left: 20px;
+    border-width: 5px 5px 0;
+    border-style: solid;
+    border-color: #424242 transparent;
+    display: block;
+    width: 0;
 }
 .customMarker img {
-  width: 90px;
-  height: 90px;
-  margin: 5px;
-  border-radius: 50%;
+    width:45px;
+    height:45px;
+    margin:3px;
+    border-radius:50%;
+    pointer-events: auto;
 }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
