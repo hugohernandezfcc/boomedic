@@ -442,20 +442,27 @@ question
         Storage::disk('s3')->put( $id.'.jpg',  $jpeg_file_contents, 'public');
         
         $path = Storage::cloud()->url($filename);
+         Session(['val' => 'false']);
+       
+        $user->profile_photo = $path2;   
+        Storage::disk('s3')->delete('https://s3.amazonaws.com/abiliasf/'.$user->id.'temporal.jpg');
+        if($user->save()){
 
         //Imagen copia circular//
         $image = imagecreatetruecolor( $targ_w, $targ_h);
-        $image_s = imagecreatefromstring(file_get_contents($src));
+        $image_s = imagecreatefromstring(file_get_contents($path2));
+        $width = imagesx($image_s);
+        $height = imagesy($image_s);
         imagealphablending($image, true);
 
-        imagecopyresampled($image, $image_s, 0, 0, 0, 0, $targ_w, $targ_h,$request->w,$request->h);
+        imagecopyresampled($image, $image_s, 0, 0, 0, 0, $width, $height,$width,$height);
         //create masking
         $mask = imagecreatetruecolor( $targ_w, $targ_h);
         $transparent = imagecolorallocate($mask, 255, 0, 0);
         imagecolortransparent($mask,$transparent);
-        imagefilledellipse($mask,  $targ_w/2, $targ_h/2, $targ_w, $targ_h, $transparent);
+        imagefilledellipse($mask,  $width/2, $height/2, $width, $height, $transparent);
         $red = imagecolorallocate($mask, 0, 0, 0);
-        imagecopymerge($image, $mask, 0, 0, 0, 0, $targ_w, $targ_h, 100);
+        imagecopymerge($image, $mask, 0, 0, 0, 0, $width,$height, 100);
         imagecolortransparent($image,$red);
         imagefill($image, 0, 0, $red);
         ob_start();
@@ -465,12 +472,9 @@ question
         Storage::disk('s3')->put( $id.'-circle.png',  $png_file, 'public');
         //Imagen copia circular//
 
-         Session(['val' => 'false']);
-       
-        $user->profile_photo = $path2;   
-        Storage::disk('s3')->delete('https://s3.amazonaws.com/abiliasf/'.$user->id.'temporal.jpg');
-        if($user->save())
+
             return redirect('doctor/edit/complete' . $id );
+        }
     }
 
 
