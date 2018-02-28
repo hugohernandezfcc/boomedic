@@ -1437,12 +1437,12 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           var doctor = "{{ asset('doctors.png') }}";
-         /* markers[i] = new CustomMarker(new google.maps.LatLng(lat,lon), map, "https://s3.amazonaws.com/abiliasf/16.jpg");*/
-         markers[i] = new google.maps.Marker({
+        markers[i] = new USGSOverlay(new google.maps.LatLng(lat,lon), "http://placekitten.com/90/90", map);
+        /* markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
             icon: doctor
-          });
+          });*/
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
           console.log(markers[i]);

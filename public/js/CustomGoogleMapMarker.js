@@ -1,54 +1,60 @@
+function USGSOverlay(bounds, image, map) {
 
-function CustomMarker(latlng, map, imageSrc) {
-    this.latlng = latlng;
-    this.imageSrc = imageSrc;
+  // Initialize all properties.
+  this.bounds_ = bounds;
+  this.image_ = image;
+  this.map_ = map;
+
+  // Define a property to hold the image's div. We'll
+  // actually create this div upon receipt of the onAdd()
+  // method so we'll leave it null for now.
+  this.div_ = null;
+
+  // Explicitly call setMap on this overlay.
+  this.setMap(map);
 
 }
+ USGSOverlay.prototype = new google.maps.OverlayView();
 
-CustomMarker.prototype = new google.maps.OverlayView();
+USGSOverlay.prototype.onAdd = function() {
 
-CustomMarker.prototype.draw = function() {
-    
-    
-    var div = this.div;
-    
-    if (!div) {
-    
-        div = this.div = document.createElement("div");
-        
-       div.className = "customMarker";
+  var div = document.createElement('div');
+   div.className = 'customMarker';
 
 
-        var img = document.createElement("img");
-        img.src = this.imageSrc;
-        div.appendChild(img);
-        
+  // Create the img element and attach it to the div.
+  var img = document.createElement('img');
+  img.src = this.image_;
+  div.appendChild(img);
 
-        this.getPanes().overlayMouseTarget.appendChild(div);
+  this.div_ = div;
+
+  // Add the element to the "overlayLayer" pane.
+  var panes = this.getPanes();
+  panes.overlayLayer.appendChild(div);
+   this.getPanes().overlayMouseTarget.appendChild(div);
         var me = this;
         google.maps.event.addDomListener(div, "click", function(event) {       
             google.maps.event.trigger(me, "click");
         });
         
-        var panes = this.getPanes();
-        panes.overlayImage.appendChild(div);
-    }
-    
-    var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
-    
-    if (point) {
-            div.style.left = point.x + 'px';
-            div.style.top = point.y + 'px';
-    }
 };
 
-CustomMarker.prototype.remove = function() {
-    if (this.div) {
-        this.div.parentNode.removeChild(this.div);
-        this.div = null;
-    }   
+USGSOverlay.prototype.draw = function() {
+
+  var overlayProjection = this.getProjection();
+
+  var point = overlayProjection.fromLatLngToDivPixel(this.bounds_);
+
+
+  // Resize the image's div to fit the indicated dimensions.
+  var div = this.div_;
+  div.style.left = point.x + 'px';
+  div.style.top = point.y + 'px';
+
 };
 
-CustomMarker.prototype.getPosition = function() {
-    return this.latlng; 
+USGSOverlay.prototype.onRemove = function() {
+  this.div_.parentNode.removeChild(this.div_);
+  this.div_ = null;
 };
