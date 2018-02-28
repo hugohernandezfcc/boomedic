@@ -1370,8 +1370,7 @@ USGSOverlay.prototype.onRemove = function() {
             infoWindow.setPosition({lat: 20.42, lng: -99.18});
             infoWindow.setContent(message03);
         }
-      }
-      //Filter geocode Address
+        //Filter geocode Address
         function geocodeAddress(geocoder, resultsMap, markerP) {
         var address = document.getElementById('address').value;
         geocoder.geocode({'address': address}, function(results, status) {
@@ -1718,6 +1717,8 @@ USGSOverlay.prototype.onRemove = function() {
         document.getElementById("info").innerHTML = '<strong>Información del médico:</strong> <br/>'+ info +'';
       }
      
+      }
+      
     </script>
 
     <!-- Calculate distance -->
