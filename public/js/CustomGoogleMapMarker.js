@@ -1,14 +1,14 @@
-function CustomMarker(latlng, map, args) {
-    this.latlng = latlng;   
-    this.args = args;   
-    this.setMap(map);   
+
+function CustomMarker(latlng, map, imageSrc) {
+    this.latlng_ = latlng;
+    this.imageSrc = imageSrc;
+
 }
 
 CustomMarker.prototype = new google.maps.OverlayView();
 
 CustomMarker.prototype.draw = function() {
     
-    var self = this;
     
     var div = this.div;
     
@@ -23,14 +23,11 @@ CustomMarker.prototype.draw = function() {
         img.src = this.imageSrc;
         div.appendChild(img);
         
-        if (typeof(self.args.marker_id) !== 'undefined') {
-            div.dataset.marker_id = self.args.marker_id;
-        }
+
         this.getPanes().overlayMouseTarget.appendChild(div);
         var me = this;
-        google.maps.event.addDomListener(div, "click", function(event) {
-            alert('You clicked on a custom marker!');           
-            google.maps.event.trigger(self, "click");
+        google.maps.event.addDomListener(div, "click", function(event) {       
+            google.maps.event.trigger(me, "click");
         });
         
         var panes = this.getPanes();
