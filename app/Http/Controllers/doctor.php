@@ -449,8 +449,8 @@ question
         if($user->save()){
 
         //Imagen copia circular//
-            $newwidth = 150;
-            $newheight = 150;
+            $newwidth = 50;
+            $newheight = 50;
         $image = imagecreatetruecolor( $newwidth, $newheight);
         $image_s = imagecreatefromstring(file_get_contents($path2));
         $width = imagesx($image_s);
