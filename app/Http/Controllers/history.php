@@ -187,8 +187,8 @@ class history extends Controller
     public function moredays(){
       $sumDays = session()->get('history') + 7;
        Session(['history' => $sumDays]);
+       Session(['history2' => Carbon::now()->subDays($sumDays)]);
        $varnewnow = Carbon::now()->subDays($sumDays);
-        Session(['history2' => Carbon::now()->subDays($sumDays + 1)->format('d-m-Y')]);
                   $user = User::find(Auth::id());
 
         $dateUser = DB::table('users')->where('id', Auth::id())
@@ -283,7 +283,6 @@ class history extends Controller
            }
 
            $tot = $sumDays - 7;
-             Session(['history3' => $tot]);
            foreach($array->sortByDesc('updated_at') as $items){
             //if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
                 //$arraynow[] = $items;

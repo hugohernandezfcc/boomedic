@@ -763,13 +763,13 @@
           	@endif
           	@if($mode == 'more')
            <div  align="right">
-              <a href="{{ url('/history/index') }}" class="btn btn-default btn-flat btn-xs"> Volver</a>
-              <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> Ver más del histórico </a>
+              <a href="{{ url('/history/index') }}" class="btn btn-default btn-flat btn-xs">Volver a fecha actual</a>
+              <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs">Más del histórico</a>
           	</div>
           	
           	@if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
           	<div align="center">
-              No hay más histórico registrado en los días anteriores.
+              No hay histórico registrado hasta la fecha: {{ session()->get('history2') }}.
           	</div>
           	@endif
           	@endif
@@ -789,7 +789,7 @@
 
  <script type="text/javascript">
 console.log(@php echo session()->get('history'); @endphp);
-console.log(@php echo session()->get('history2'); @endphp);
+
 		$("#userli").click(function () {
 
 			var x = document.getElementsByClassName("support");
