@@ -1430,7 +1430,7 @@ function prevTab(elem) {
         console.log(loc);
       }
       function drop() {
-        clearMarkers();
+        /*clearMarkers();*/
         for (var i = 0; i < loc.length; i++) {
           var lat = loc[i][0];
           var lon = loc[i][1];
@@ -1438,6 +1438,7 @@ function prevTab(elem) {
           console.log(lon);
           var doctor = "{{ asset('doctors.png') }}";
         markers[i] = new USGSOverlay(new google.maps.LatLng(lat,lon), "http://placekitten.com/90/90", map);
+        console.log(markers[i]);
         /* markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
@@ -1445,7 +1446,6 @@ function prevTab(elem) {
           });*/
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-          console.log(markers[i]);
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               $('#infDr').show();

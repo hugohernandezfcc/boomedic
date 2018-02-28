@@ -3,7 +3,7 @@ function USGSOverlay(bounds, image, map) {
   // Initialize all properties.
   this.bounds_ = bounds;
   this.image_ = image;
-  this.map_ = map;
+
 
   // Define a property to hold the image's div. We'll
   // actually create this div upon receipt of the onAdd()
