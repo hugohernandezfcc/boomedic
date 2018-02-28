@@ -188,8 +188,7 @@ class history extends Controller
       $sumDays = session()->get('history') + 7;
        Session(['history' => $sumDays]);
        $varnewnow = Carbon::now()->subDays($sumDays);
-       $suma = $sumDays + 1;
-        Session(['history2' => Carbon::now()->subDays($suma)->format('d-m-Y')]);
+        Session(['history2' => Carbon::now()->subDays($sumDays + 1)->format('d-m-Y')]);
                   $user = User::find(Auth::id());
 
         $dateUser = DB::table('users')->where('id', Auth::id())
@@ -283,30 +282,31 @@ class history extends Controller
 
            }
 
-
+           $tot = $sumDays - 7;
+             Session(['history3' => $tot]);
            foreach($array->sortByDesc('updated_at') as $items){
             //if(Carbon::parse($items['created_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
                 //$arraynow[] = $items;
             //}
-             if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays(1)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($sumDays + 1)->format('d-m-Y')){
+             if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 1)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays($tot + 1)->format('d-m-Y')){
                 $array1[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays(2)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($sumDays + 2)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==  Carbon::now()->subDays($tot+ 2)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') == Carbon::now()->subDays($tot + 2)->format('d-m-Y')){
                 $array2[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays(3)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($sumDays + 3)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 3)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 3)->format('d-m-Y')){
                 $array3[] = $items;
             }
-           if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays(4)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($sumDays + 4)->format('d-m-Y')){
+           if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 4)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 4)->format('d-m-Y')){
                 $array4[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==  Carbon::now()->subDays(5)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($sumDays + 5)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 5)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 5)->format('d-m-Y')){
                 $array5[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays(6)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($sumDays + 6)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 6)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 6)->format('d-m-Y')){
                 $array6[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($sumDays)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==  Carbon::now()->subDays($sumDays)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==  Carbon::now()->subDays($tot)->format('d-m-Y')){
                 $arraynow[] = $items;
             }
            }
