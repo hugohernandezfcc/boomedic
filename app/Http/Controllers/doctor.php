@@ -449,20 +449,22 @@ question
         if($user->save()){
 
         //Imagen copia circular//
-        $image = imagecreatetruecolor( $targ_w, $targ_h);
+            $newwidth = 50;
+            $newheight = 50;
+        $image = imagecreatetruecolor( $newwidth, $newheight);
         $image_s = imagecreatefromstring(file_get_contents($path2));
         $width = imagesx($image_s);
         $height = imagesy($image_s);
         imagealphablending($image, true);
 
-        imagecopyresampled($image, $image_s, 0, 0, 0, 0, $width, $height,$width,$height);
+        imagecopyresampled($image, $image_s, 0, 0, 0, 0, $newwidth, $newheight,$width,$height);
         //create masking
         $mask = imagecreatetruecolor( $targ_w, $targ_h);
         $transparent = imagecolorallocate($mask, 255, 0, 0);
         imagecolortransparent($mask,$transparent);
-        imagefilledellipse($mask,  $width/2, $height/2, $width, $height, $transparent);
+        imagefilledellipse($mask,  $newwidth/2, $newheight/2, $newwidth, $newheight, $transparent);
         $red = imagecolorallocate($mask, 0, 0, 0);
-        imagecopymerge($image, $mask, 0, 0, 0, 0, $width,$height, 100);
+        imagecopymerge($image, $mask, 0, 0, 0, 0, $newwidth,$newheight, 100);
         imagecolortransparent($image,$red);
         imagefill($image, 0, 0, $red);
         ob_start();
