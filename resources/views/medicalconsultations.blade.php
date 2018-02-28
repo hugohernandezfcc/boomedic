@@ -1640,7 +1640,7 @@ function prevTab(elem) {
           });
             }
           })(marker, i));
-         dropMarker(i);
+         setTimeout(dropMarker(i), i * 250);
         }
       }
       function dropMarker(i) {
