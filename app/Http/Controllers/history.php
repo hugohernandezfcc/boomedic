@@ -198,11 +198,12 @@ class history extends Controller
            ->where( 'created_at', '>', Carbon::now()->subDays(21))
            ->select('id','created_at','updated_at','provider','cardnumber')->get();
 
-        $dateAppointments = DB::table('medical_appointments')
+
+         $dateAppointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
            ->where( 'medical_appointments.created_at', '>', Carbon::now()->subDays(21))
-           ->select('medical_appointments.id','medical_appointments.created_at','medical_appointments.updated_at','medical_appointments.user_doctor','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace')->get();   
+           ->select('medical_appointments.id','medical_appointments.created_at','medical_appointments.updated_at','medical_appointments.user_doctor','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.latitude', 'labor_information.longitude')->get();
 
            $array = collect();
            $array1 = collect();
@@ -269,9 +270,10 @@ class history extends Controller
                             'time'       => $car->diffForHumans(),
                             'when'       => $date->when,
                             'workplace' => $date->workplace,
+                            'latitude'  => $date->latitude,
+                            'longitude'  => $date->longitude,
                             'status'    => $date->status
                             ]);
-
 
            }
 
