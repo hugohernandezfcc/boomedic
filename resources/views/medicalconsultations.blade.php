@@ -1668,7 +1668,6 @@ function prevTab(elem) {
   // actually create this div upon receipt of the onAdd()
   // method so we'll leave it null for now.
   this.div_ = null;
-initMap();
   // Explicitly call setMap on this overlay.
 
 
