@@ -789,7 +789,7 @@
 
  <script type="text/javascript">
 console.log(@php echo session()->get('history'); @endphp);
-
+console.log(@php echo session()->get('history2'); @endphp);
 		$("#userli").click(function () {
 
 			var x = document.getElementsByClassName("support");
