@@ -1437,13 +1437,13 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           var doctor = "{{ asset('doctors.png') }}";
-        markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);
+         /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
 
-        /* markers[i] = new google.maps.Marker({
+        markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
             icon: doctor
-          });*/
+          });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
           console.log(marker);
@@ -1663,11 +1663,8 @@ function prevTab(elem) {
   this.bounds_ = bounds;
   this.image_ = image;
 
-
-  // Define a property to hold the image's div. We'll
-  // actually create this div upon receipt of the onAdd()
-  // method so we'll leave it null for now.
   this.div_ = null;
+
   // Explicitly call setMap on this overlay.
 
 
