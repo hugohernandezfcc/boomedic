@@ -1439,7 +1439,7 @@ function prevTab(elem) {
           if(var loc[i][10] != "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"){
           var doctor = "https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png";
         }else{
-           var doctor =
+           var doctor = "https://s3.amazonaws.com/abiliasf/doctor-png-image-29624.png";
          /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
         }
 
