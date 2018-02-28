@@ -1313,21 +1313,6 @@ USGSOverlay.prototype.onRemove = function() {
   this.div_.parentNode.removeChild(this.div_);
   this.div_ = null;
 };
-    </script>
-
-    <!-- Calculate distance -->
-    <script type="text/javascript">
-      function distancia(lat1, lng1, lat2, lng2){
-        var earthRadius = 6371000; //meters
-        var dLat = Math.toRadians(lat2-lat1);
-        var dLng = Math.toRadians(lng2-lng1);
-        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-               Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-               Math.sin(dLng/2) * Math.sin(dLng/2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        var dist = (earthRadius * c);
-        return dist;
-      }
             var input = document.getElementById('address');
               new google.maps.places.Autocomplete(input);
             var markerUser = "{{ asset('markerUser.png') }}";
@@ -1733,6 +1718,21 @@ USGSOverlay.prototype.onRemove = function() {
         document.getElementById("info").innerHTML = '<strong>Información del médico:</strong> <br/>'+ info +'';
       }
      
+    </script>
+
+    <!-- Calculate distance -->
+    <script type="text/javascript">
+      function distancia(lat1, lng1, lat2, lng2){
+        var earthRadius = 6371000; //meters
+        var dLat = Math.toRadians(lat2-lat1);
+        var dLng = Math.toRadians(lng2-lng1);
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+               Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
+               Math.sin(dLng/2) * Math.sin(dLng/2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        var dist = (earthRadius * c);
+        return dist;
+      }
     </script>
 
     <!-- Hides modal -->
