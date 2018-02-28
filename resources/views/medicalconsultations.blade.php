@@ -1447,7 +1447,8 @@ function prevTab(elem) {
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
             icon: {
-              url: doctor
+              url: doctor,
+              scaledSize: new google.maps.Size(50, 50),
             }
           });
           var infowindow = new google.maps.InfoWindow();
