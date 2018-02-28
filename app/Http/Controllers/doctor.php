@@ -445,7 +445,7 @@ question
 
         //Imagen copia circular//
         $image = imagecreatetruecolor( $targ_w, $targ_h);
-        $image_s = imagecreatefrompng($src);
+        $image_s = imagecreatefromstring(file_get_contents($src));
         imagealphablending($image, true);
 
         imagecopyresampled($image, $image_s, 0, 0, 0, 0, $targ_w, $targ_h,$request->w,$request->h);
