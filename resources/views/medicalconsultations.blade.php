@@ -1490,10 +1490,7 @@ USGSOverlay.prototype.onRemove = function() {
   this.div_ = null;
 };
       function drop() {
-        for (var i = 0; i < markers.length; i++) {
-          markers[i].setMap(null);
-        }
-        markers = [];
+      clearMarkers();
 
         for (var i = 0; i < loc.length; i++) {
           var lat = loc[i][0];
@@ -1707,7 +1704,10 @@ USGSOverlay.prototype.onRemove = function() {
          setTimeout(dropMarker(i), i * 250);
         }
       }
-      function dropMarker(i) {
+
+     
+      }
+            function dropMarker(i) {
         return function() {
           markers[i].setMap(map);
         };
@@ -1721,9 +1721,6 @@ USGSOverlay.prototype.onRemove = function() {
       function showInfo(info){ 
         document.getElementById("info").innerHTML = '<strong>Información del médico:</strong> <br/>'+ info +'';
       }
-     
-      }
-      
     </script>
 
     <!-- Calculate distance -->
