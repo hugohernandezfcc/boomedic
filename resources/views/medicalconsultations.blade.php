@@ -1430,6 +1430,7 @@ function prevTab(elem) {
       }
       function drop() {
         clearMarkers();
+        var markers = [];
         for (var i = 0; i < loc.length; i++) {
           var lat = loc[i][0];
           var lon = loc[i][1];
@@ -1444,9 +1445,9 @@ function prevTab(elem) {
           });*/
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-          console.log(marker.length);
-          console.log(marker);
-          google.maps.event.addDomListener(marker, 'click', (function(marker, i) {
+          console.log(markers.length);
+          console.log(markers[i]);
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               $('#infDr').show();
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
