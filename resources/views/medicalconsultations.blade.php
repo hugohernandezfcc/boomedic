@@ -1436,14 +1436,18 @@ function prevTab(elem) {
           var lon = loc[i][1];
           console.log(lat);
           console.log(lon);
-          var doctor = "{{ asset('doctors.png') }}";
+          if(var loc[i][10] != "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"){
+          var doctor = "https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png";
+        }else{
+           var doctor =
          /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
+        }
 
         markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
             icon: {
-              url: "https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png"
+              url: doctor
             }
           });
           var infowindow = new google.maps.InfoWindow();

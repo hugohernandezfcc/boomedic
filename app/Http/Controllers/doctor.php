@@ -462,7 +462,7 @@ question
         $mask = imagecreatetruecolor( $targ_w, $targ_h);
         $transparent = imagecolorallocate($mask, 255, 0, 0);
         imagecolortransparent($mask,$transparent);
-        imagefilledellipse($mask,  $newwidth/2, $newheight/2, $newwidth, $newheight, $transparent);
+        imagefilledellipse($mask,  $newwidth/2, $newheight/2, $newwidth, $newheight, imagecolorallocate($mask, 0, 0, 0));
         $red = imagecolorallocate($mask, 0, 0, 0);
         imagecopymerge($image, $mask, 0, 0, 0, 0, $newwidth,$newheight, 100);
         imagecolortransparent($image,$red);
