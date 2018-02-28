@@ -762,8 +762,9 @@
           	</div>
           	@endif
           	@if($mode == 'more')
-           <div align="right">
-              <a href="{{ url('/history/index') }}" class="btn btn-secondary btn-flat btn-xs"> Volver </a>
+           <div align="right" class="btn-group">
+              <a href="{{ url('/history/index') }}" class="btn btn-secondary btn-flat btn-xs"> Volver</a>
+              <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> Ver más del histórico </a>
           	</div>
           	
           	@if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
@@ -787,7 +788,7 @@
  	</div>
 
  <script type="text/javascript">
-
+console.log(@php echo session()->get('history'); @endphp);
 		$("#userli").click(function () {
 
 			var x = document.getElementsByClassName("support");

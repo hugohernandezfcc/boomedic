@@ -30,6 +30,7 @@ class history extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+      Session(['history' => '7']);
           $user = User::find(Auth::id());
 
         $dateUser = DB::table('users')->where('id', Auth::id())
@@ -184,6 +185,8 @@ class history extends Controller
      */
 
     public function moredays(){
+      $sumDays = session()->get('history') + 7;
+       Session(['history' => $sumDays]);
                   $user = User::find(Auth::id());
 
         $dateUser = DB::table('users')->where('id', Auth::id())
