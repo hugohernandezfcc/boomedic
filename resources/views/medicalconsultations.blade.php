@@ -1244,7 +1244,7 @@ function prevTab(elem) {
                 ]
               }
             ], 
-              // disableDefaultUI: true,
+              disableDefaultUI: true,
               zoomControl: true,
               mapTypeControl: false,
               scaleControl: false,
