@@ -188,7 +188,7 @@ class history extends Controller
       $sumDays = session()->get('history') + 7;
        Session(['history' => $sumDays]);
        $varnewnow = Carbon::now()->subDays($sumDays);
-        Session(['history2' => Carbon::now()->subDays($sumDays)]);
+        Session(['history2' => Carbon::now()->subDays($sumDays + 1)->format('d-m-Y')]);
                   $user = User::find(Auth::id());
 
         $dateUser = DB::table('users')->where('id', Auth::id())
