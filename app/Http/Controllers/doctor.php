@@ -443,6 +443,28 @@ question
         
         $path = Storage::cloud()->url($filename);
 
+        //Imagen copia circular//
+        $image = imagecreatetruecolor( $targ_w, $targ_h);
+        $image_s = imagecreatefrompng($src);
+        imagealphablending($image, true);
+
+        imagecopyresampled($image, $image_s, 0, 0, 0, 0, $targ_w, $targ_h,$request->w,$request->h);
+        //create masking
+        $mask = imagecreatetruecolor( $targ_w, $targ_h);
+        $transparent = imagecolorallocate($mask, 255, 0, 0);
+        imagecolortransparent($mask,$transparent);
+        imagefilledellipse($mask,  $targ_w/2, $targ_h/2, $newwidth, $targ_h, $transparent);
+        $red = imagecolorallocate($mask, 0, 0, 0);
+        imagecopymerge($image, $mask, 0, 0, 0, 0, $targ_w, $newheight, 100);
+        imagecolortransparent($image,$red);
+        imagefill($image, 0, 0, $red);
+        ob_start();
+        imagepng($image);
+        $png_file = ob_get_contents();
+        ob_end_clean();
+        Storage::disk('s3')->put( $id.'-circle.png',  $png_file, 'public');
+        //Imagen copia circular//
+
          Session(['val' => 'false']);
        
         $user->profile_photo = $path2;   
