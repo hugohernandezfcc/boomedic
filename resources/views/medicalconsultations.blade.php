@@ -1437,9 +1437,9 @@ function prevTab(elem) {
           console.log(lat);
           console.log(lon);
           if(loc[i][10] != "https://s3.amazonaws.com/abiliasf/doctor-png-image-29624.png"){
-          var doctor = { url : "https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png" };
+          var doctor = '{ url : "https://s3.amazonaws.com/abiliasf/"' + loc[i][8] + '"-circle.png" }';
         }else{
-           var doctor = { url : "https://s3.amazonaws.com/abiliasf/doctor-png-image-29624.png", scaledSize: new google.maps.Size(55, 55) };
+           var doctor = '{ url : "https://s3.amazonaws.com/abiliasf/doctor-png-image-29624.png", scaledSize: new google.maps.Size(55, 55) }';
          /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
         }
 
@@ -1661,7 +1661,7 @@ function prevTab(elem) {
       function showInfo(info){ 
         document.getElementById("info").innerHTML = '<strong>Información del médico:</strong> <br/>'+ info +'';
       }
-      function USGSOverlay(bounds, image, map) {
+   /*   function USGSOverlay(bounds, image, map) {
 
   // Initialize all properties.
   this.bounds_ = bounds;
@@ -1717,7 +1717,7 @@ USGSOverlay.prototype.draw = function() {
 USGSOverlay.prototype.onRemove = function() {
   this.div_.parentNode.removeChild(this.div_);
   this.div_ = null;
-};
+};*/
     </script>
 
     <!-- Calculate distance -->
