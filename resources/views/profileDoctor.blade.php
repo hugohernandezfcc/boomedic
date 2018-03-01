@@ -296,7 +296,7 @@
 	                			{{ $specialty }}
 	                			@foreach($asso as $asso)
 	                			@if($asso->name == $medical_society)
-	                				<option value="{{ $asso->name }}" selected> {{ $asso->name }}</option>
+	                				<option value="{{ $medical_society }}" selected> {{ $medical_society }}</option>
 	                			@else	
 	                				<option value="{{ $asso->name }}"> {{ $asso->name }}</option>
 	                			@endif
