@@ -74,7 +74,7 @@ class doctor extends Controller
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
-        $asso = DB::table('medical_association')->get();
+        $asso = DB::table('medical_association')->where('parent', '>', '1')->get();
         return view('profileDoctor', [
                 'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
 
