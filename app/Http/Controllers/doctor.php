@@ -459,10 +459,12 @@ question
 
         imagecopyresampled($image, $image_s, 0, 0, 0, 0, $newwidth, $newheight,$width,$height);
         //create masking
-        $mask = imagecreatetruecolor( $targ_w, $targ_h);
+        $mask = imagecreatetruecolor( $width,$height);
+        $black = imagecolorallocatealpha($mask, 0, 0, 0, 50);
         $transparent = imagecolorallocate($mask, 255, 0, 0);
         imagecolortransparent($mask,$transparent);
         imagefilledellipse($mask,  $newwidth/2, $newheight/2, $newwidth, $newheight, $transparent);
+        imageellipse($mask,  $newwidth/2, $newheight/2, $newwidth, $newheight, $black);
         $red = imagecolorallocate($mask, 0, 0, 0);
         imagecopymerge($image, $mask, 0, 0, 0, 0, $newwidth,$newheight, 100);
         imagecolortransparent($image,$red);
