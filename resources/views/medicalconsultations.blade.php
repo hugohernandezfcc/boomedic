@@ -1439,12 +1439,12 @@ function prevTab(elem) {
           if(loc[i][10] != "https://s3.amazonaws.com/abiliasf/doctor-png-image-29624.png"){
           var doctor = {
               url:"https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png",
-              scaledSize: new google.maps.Size(45, 45)
+              scaledSize: new google.maps.Size(40, 40)
             };
         }else{
            var doctor = {
               url:"https://s3.amazonaws.com/abiliasf/doctor-png-image-29624.png",
-              scaledSize: new google.maps.Size(50, 50)
+              scaledSize: new google.maps.Size(45, 45)
             };
          /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
         }
