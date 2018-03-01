@@ -460,7 +460,7 @@ question
         imagecopyresampled($image, $image_s, 0, 0, 0, 0, $newwidth, $newheight,$width,$height);
         //create masking
         $mask = imagecreatetruecolor( $width,$height);
-        imagecolorallocate($mask, 0, 0, 0);
+        $black = imagecolorallocate($mask, 0, 0, 0);
         $transparent = imagecolorallocate($mask, 255, 0, 0);
         imagecolortransparent($mask,$transparent);
         imagefilledellipse($mask,  $newwidth/2, $newheight/2, $newwidth, $newheight, $transparent);
