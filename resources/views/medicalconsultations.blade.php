@@ -1443,7 +1443,7 @@ function prevTab(elem) {
         }else{
            var doctor = {
               url:"https://s3.amazonaws.com/abiliasf/doctor-png-image-29624.png",
-              scaledSize: new google.maps.Size(50, 50)
+              scaledSize: new google.maps.Size(60, 60)
             };
          /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
         }
