@@ -1439,7 +1439,7 @@ function prevTab(elem) {
           if(loc[i][10] != "https://s3.amazonaws.com/abiliasf/doctor-png-image-29624.png"){
           var doctor = {
               url:"https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png",
-              scaledSize: new google.maps.Size(40, 40)
+              scaledSize: new google.maps.Size(45, 45)
             };
         }else{
            var doctor = {
