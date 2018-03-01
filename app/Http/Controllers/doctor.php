@@ -74,7 +74,7 @@ class doctor extends Controller
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
-        $asso = DB::table('medical_association')->where('parent', '>', '1')->get();
+        $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
         return view('profileDoctor', [
                 'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
 
@@ -167,7 +167,7 @@ question
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
-        $asso = DB::table('medical_association')->where('parent', '>', '1')->get();
+        $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
         return view('profileDoctor', [
 
                 /** SYSTEM INFORMATION */
@@ -233,7 +233,7 @@ question
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
-         $asso = DB::table('medical_association')->where('parent', '>', '1')->get();
+         $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
 
         if ($request->change == "true") {
         $user->status        = $request->status;         
