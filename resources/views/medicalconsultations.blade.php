@@ -939,15 +939,14 @@ function prevTab(elem) {
       window.onload = function(){
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
-            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight;
-            alert("Altura: "+height);
-            if(height >= 1000 && height <= 1300){
-                var h = height*0.45;
-                height = Math.floor(h);
-            }else{
-              height -= 1440;
-            }
+                       // alert("Altura: "+height);
+                        if(height >= 1000 && height <= 1300){
+                            var h = height*0.38;
+                            height = Math.floor(h);
+                        }else{
+                          height -= 1440;
+                        }
         }else{
           height = window.screen.availHeight-115;
         }
@@ -1452,11 +1451,10 @@ function prevTab(elem) {
         markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-            icon: doctor
+            icon: doctor 
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-          console.log(marker);
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               $('#infDr').show();
@@ -1650,7 +1648,7 @@ function prevTab(elem) {
           });
             }
           })(marker, i));
-         setTimeout(dropMarker(i), i * 250);
+          setTimeout(dropMarker(i), i * 250);
         }
       }
       function dropMarker(i) {
@@ -1667,7 +1665,6 @@ function prevTab(elem) {
       function showInfo(info){ 
         document.getElementById("info").innerHTML = '<strong>Información del médico:</strong> <br/>'+ info +'';
       }
-    
     </script>
 
     <!-- Calculate distance -->
