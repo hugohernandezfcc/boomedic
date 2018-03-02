@@ -67,9 +67,12 @@
                 </div>
 
                <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
-                   <select class="form-control selectpicker" name="medical_society" id="medical_society" data-live-search="true">
-                    <script type="text/javascript">
+                   <select class="form-control" name="medical_society" id="medical_society">
 
+                    <script type="text/javascript">
+                                $('select').select2({
+                                    width: "100%",
+                                });
 
                                 $.ajax(
                                       {
@@ -91,11 +94,6 @@
                                         }
                                       }
                                     );
-
-                        var x = document.getElementById("medical_society");
-                        var s = x.selectedIndex;
-                        var selectedValue = x.options[s].text;         
-                        x.selectedIndex = 0;
 
                                 </script>
 
