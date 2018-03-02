@@ -2,6 +2,7 @@
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
     @yield('css')
 @stop
 
@@ -66,7 +67,7 @@
                 </div>
 
                <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
-                   <select class="form-control" name="medical_society" id="medical_society" size="1">
+                   <select class="form-control selectpicker" name="medical_society" id="medical_society" data-live-search="true">
                     <script type="text/javascript">
 
 
