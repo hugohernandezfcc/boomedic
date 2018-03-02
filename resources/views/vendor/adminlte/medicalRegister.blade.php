@@ -66,7 +66,7 @@
                 </div>
 
                <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
-                   <select class="form-control" name="medical_society" id="medical_society">
+                   <select class="form-control select2" name="medical_society" id="medical_society" size="1">
                     <option default>Sociedad de médicos</option>
                     <script type="text/javascript">
 
@@ -95,9 +95,6 @@
                                     );
 
 
-                              $('select').select2({
-                                    width: "100%",
-                                });
 
                                 </script>
 
