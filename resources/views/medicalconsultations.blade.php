@@ -652,8 +652,11 @@
             if(height >= 1000 && height <= 1300){
                 var h = height*0.45;
                 height = Math.floor(h);
-            }else{
+            }else if(height >=1800){
               height -= 1440;
+            }else
+            {
+              height -=115;
             }
         }else{
           height = window.screen.availHeight-115;
