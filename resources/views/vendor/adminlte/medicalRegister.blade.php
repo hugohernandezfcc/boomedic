@@ -66,14 +66,11 @@
                 </div>
 
                <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
-                   <select class="form-control" name="medical_society" id="medical_society" size="1">
+                   <select class="form-control" name="medical_society" id="medical_society">
                     <option default>Sociedad de médicos</option>
                     <script type="text/javascript">
 
-                              $('select').select2({
-                                    width: "100%",
-                                });
-                              
+
                                 $.ajax(
                                       {
                                         type: "GET",    
@@ -95,10 +92,10 @@
                                       }
                                     );
 
-                        var x = document.getElementById("medical_society");
-                        var s = x.selectedIndex;
-                        var selectedValue = x.options[s].text;         
-                        x.selectedIndex = 0;
+
+                              $('select').select2({
+                                    width: "100%",
+                                });
 
                                 </script>
 
