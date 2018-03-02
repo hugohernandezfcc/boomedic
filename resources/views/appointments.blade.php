@@ -30,7 +30,7 @@
 
   	<div class="box-body">
 
-              @foreach($app->sortByDesc('when') as $app)  
+              @foreach($app->sortBy('when') as $app)  
       
             <div class="form-group">
               <div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
