@@ -980,7 +980,7 @@ function prevTab(elem) {
         infoSelect();
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
-        }, 3000);
+        }, 2000);
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
