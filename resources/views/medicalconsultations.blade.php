@@ -437,6 +437,15 @@
 
         <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
       </div>
+        <div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
+      <div class="modal-dialog">
+          <div class="modal-content-2">
+            <div align="center">
+          <h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
+              </div>
+          </div>
+      </div>
+  </div>
 
 
 
@@ -940,6 +949,8 @@ function prevTab(elem) {
        * Function responsable of execute the main functions 
        */
       window.onload = function(){
+         $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
+         
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
             height = window.screen.availHeight;
@@ -961,7 +972,7 @@ function prevTab(elem) {
         initMap();
         infoSelect();
         setTimeout(function(){
-          document.getElementById('loadermap-to-remove').style.display = 'none';
+          $('#loadingmodal').modal('toggle');
         }, 4000);
       };
       function initMap() {
