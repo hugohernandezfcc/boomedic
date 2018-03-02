@@ -230,6 +230,16 @@
     border-radius:50%;
     pointer-events: auto;
 }
+    .modal-content-2 {
+        position: relative;
+        background-color: transparent;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        color: white;
+        margin-top: 50%;
+        width: 100%;
+
+    }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
@@ -433,10 +443,7 @@
         </div>
       </div>
 
-      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:33%;padding-top: 20%;">
 
-        <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
-      </div>
         <div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
       <div class="modal-dialog">
           <div class="modal-content-2">
@@ -950,7 +957,7 @@ function prevTab(elem) {
        */
       window.onload = function(){
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
-         
+
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
             height = window.screen.availHeight;
