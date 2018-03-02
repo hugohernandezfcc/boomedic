@@ -1392,7 +1392,7 @@ $('#target').Jcrop({
 
 
       }
-      		document.getElementById('footerw').style.display = "block";
+      		document.getElementById('footerw').style.visibility = "visible";
 		    </script> 
 
 				    @endif
