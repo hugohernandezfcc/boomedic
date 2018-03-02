@@ -69,7 +69,7 @@
                    <select class="form-control" name="medical_society" id="medical_society" size="1">
                     <option default>Sociedad de médicos</option>
                     <script type="text/javascript">
-                    
+
                         var x = document.getElementById("medical_society");
                         var s = x.selectedIndex;
                         var selectedValue = x.options[s].text;         
@@ -85,11 +85,11 @@
                                           var x = document.getElementById("medical_society");
                                           
                                           for (var i = 0; i < result.length; i++) {
+                                                    var c = document.createElement("option");
+                                                    c.text = specialities1[i][0];
+                                                    x.options.add(c, 1);
                                             console.log(result[i].name);
-                                            var option = document.createElement("option");
-                                            option.text = result[i].name;
-                                            option.value = result[i].name;
-                                            x.add(option);
+
 
                                           }
                                         }
