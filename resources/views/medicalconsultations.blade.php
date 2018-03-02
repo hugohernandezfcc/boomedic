@@ -237,6 +237,7 @@
 
   <!--  -->
   <script type="text/javascript">
+   document.getElementById('footerw').style.display = "none";
     /**
      * Text of labels
      */
