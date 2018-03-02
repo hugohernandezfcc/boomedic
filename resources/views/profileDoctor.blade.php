@@ -1392,7 +1392,7 @@ $('#target').Jcrop({
 
 
       }
-
+      		document.getElementById('footerw').style.display = "block";
 		    </script> 
 
 				    @endif
@@ -1438,6 +1438,7 @@ $('#target').Jcrop({
 			@endif
 @stop
 @section('footer')
+
 @if($mode == 'labor')
   <div class="box-body">
             @if($labor->isEmpty())
