@@ -343,9 +343,7 @@ span.round-tab:hover {
         left: 35%;
     }
 }
-.main-sidebar .sidebar {
-    overflow-y: scroll;
-}
+
 </style>
 
 
