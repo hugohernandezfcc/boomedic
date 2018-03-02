@@ -648,7 +648,7 @@
         if("@php echo $agent->isMobile(); @endphp"){
             //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight;
-            alert("Altura: "+height);
+            //alert("Altura: "+height);
             if(height >= 1000 && height <= 1300){
                 var h = height*0.45;
                 height = Math.floor(h);
