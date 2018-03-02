@@ -293,8 +293,7 @@
 		            <div class="form-group">
 		            	<label for="medical_society" class="col-sm-2 control-label">Sociedad de Médicos</label>
 	                	<div class="col-sm-10">
-	                		<select class="form-control" name="medical_society" id="medical_society">
-	                			{{ $specialty }}
+	                		<select class="form-control select2" name="medical_society" id="medical_society" size="1">
 	                			@foreach($asso as $asso)
 	                			@if($asso->name == $medical_society)
 	                				<option value="{{ $medical_society }}" selected> {{ $medical_society }}</option>
