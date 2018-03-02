@@ -935,19 +935,19 @@ function prevTab(elem) {
       var infoWindow;
       /**
        * Function responsable of execute the main functions 
-       * 
        */
       window.onload = function(){
-      var height;
+        var height;
         if("@php echo $agent->isMobile(); @endphp"){
+            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight;
-                       // alert("Altura: "+height);
-                        if(height >= 1000 && height <= 1300){
-                            var h = height*0.38;
-                            height = Math.floor(h);
-                        }else{
-                          height -= 1440;
-                        }
+            alert("Altura: "+height);
+            if(height >= 1000 && height <= 1300){
+                var h = height*0.45;
+                height = Math.floor(h);
+            }else{
+              height -= 1440;
+            }
         }else{
           height = window.screen.availHeight-115;
         }
@@ -1245,7 +1245,7 @@ function prevTab(elem) {
                 ]
               }
             ], 
-              disableDefaultUI: true,
+              // disableDefaultUI: true,
               zoomControl: true,
               mapTypeControl: false,
               scaleControl: false,
@@ -1430,7 +1430,7 @@ function prevTab(elem) {
         console.log(loc);
       }
       function drop() {
-        /*clearMarkers();*/
+        clearMarkers();
         for (var i = 0; i < loc.length; i++) {
           var lat = loc[i][0];
           var lon = loc[i][1];
