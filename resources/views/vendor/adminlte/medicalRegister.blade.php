@@ -79,15 +79,13 @@
                                           console.log(result);
 
                                           var x = document.getElementById("medical_society");
-                                          var result1 = result.sort();
-                                                result1 = result.reverse();
-
-
-                                          for (var i = 0; i < result1.length; i++) {
-                                            console.log(result1[i].name);
-                                                    var c = document.createElement("option");
-                                                    c.text = result1[i][0];
-                                                    x.options.add(c, 1);
+                                          
+                                          for (var i = 0; i < result.length; i++) {
+                                            console.log(result[i].name);
+                                            var option = document.createElement("option");
+                                            option.text = result[i].name;
+                                            option.value = result[i].name;
+                                            x.add(option);
 
                                           }
                                         }
