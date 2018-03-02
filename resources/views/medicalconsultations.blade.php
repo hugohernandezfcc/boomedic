@@ -237,7 +237,7 @@
 
   <!--  -->
   <script type="text/javascript">
-   document.getElementById('footerw').style.display = "none";
+
     /**
      * Text of labels
      */
@@ -689,6 +689,8 @@
           <script type="text/javascript">
 $(document).ready(function () {
     //Initialize tooltips
+
+       $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
        $('#modalerror').modal('show');
  $("#paymentMethodsFields").on("change", function(){
