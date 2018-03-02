@@ -944,12 +944,16 @@ function prevTab(elem) {
         if("@php echo $agent->isMobile(); @endphp"){
             height = window.screen.availHeight;
                        // alert("Altura: "+height);
-                        if(height >= 1000 && height <= 1300){
-                            var h = height*0.38;
-                            height = Math.floor(h);
-                        }else{
-                          height -= 1440;
-                        }
+                        //Para Android Puro
+            if(height >= 1000 && height <= 1300){
+                var h = height*0.45;
+                height = Math.floor(h);
+            }else if(height >=1800){ //para android con capa personalizada
+              height -= 1440;
+            }else
+            {
+              height -=115; //android avierto desde chrome
+            }
         }else{
           height = window.screen.availHeight-115;
         }
