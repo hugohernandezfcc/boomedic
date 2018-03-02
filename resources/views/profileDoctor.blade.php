@@ -91,6 +91,7 @@
       var elemento = document.getElementById("i_button");
       elemento.className = "fa fa-pencil text-muted";
       document.forms.form_profile.action = "/doctor/edit/complete";
+      document.getElementById('footerw').style.display = "block";
     </script>
 	@endif
 
@@ -1392,7 +1393,7 @@ $('#target').Jcrop({
 
 
       }
-      		document.getElementById('footerw').style.visibility = "visible";
+
 		    </script> 
 
 				    @endif

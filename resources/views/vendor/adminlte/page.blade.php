@@ -169,7 +169,7 @@
             @endif
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer" id="footerw" style="visibility: hidden;">
+        <footer class="main-footer" id="footerw" style="display: none;">
             @yield('footer')
         </footer>
 
