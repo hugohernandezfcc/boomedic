@@ -2,7 +2,6 @@
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
     @yield('css')
 @stop
 
@@ -67,13 +66,14 @@
                 </div>
 
                <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
-                   <select class="form-control" name="medical_society" id="medical_society">
-
+                   <select class="form-control" name="medical_society" id="medical_society" size="1">
+                    <option default>Sociedad de médicos</option>
                     <script type="text/javascript">
-                                $('select').select2({
+
+                              $('select').select2({
                                     width: "100%",
                                 });
-
+                              
                                 $.ajax(
                                       {
                                         type: "GET",    
@@ -94,6 +94,11 @@
                                         }
                                       }
                                     );
+
+                        var x = document.getElementById("medical_society");
+                        var s = x.selectedIndex;
+                        var selectedValue = x.options[s].text;         
+                        x.selectedIndex = 0;
 
                                 </script>
 
