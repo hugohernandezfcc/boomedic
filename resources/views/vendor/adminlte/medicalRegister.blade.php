@@ -12,6 +12,7 @@
 .select2-container--default .select2-selection--single {
 
    border-radius: 0px !important; 
+   border-color: #d2d6de;
 }
 .select2-container {
 
