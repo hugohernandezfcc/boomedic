@@ -605,7 +605,7 @@
 
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
-                       <span style="font-size: 16px;">Fecha</span><br/>
+                       <span style="font-size: 18px;">Fecha</span><br/><br/>
                                   <div class="box box-solid bg-black-gradient">
                                         <div class="box-header">
                                           <i class="fa fa-calendar"></i>
@@ -633,7 +633,7 @@
                         </div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
-                       <span style="font-size: 16px;">Seleccionar Horario</span><br/>
+                       <span style="font-size: 18px;">Seleccionar Horario</span><br/><br/>
 
                            <div class="form-group">
                           <div class="col-sm-12">
@@ -650,8 +650,8 @@
 
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
-                        <span style="font-size: 16px;">Programar pago</span>
-                        <br/>
+                        <span style="font-size: 18px;">Programar pago</span>
+                        <br/><br/>
                         <div class="form-group">
                          <div class="col-sm-12">
                              <select id="paymentMethodsFields" class="form-control selectpicker">
@@ -678,7 +678,7 @@
 
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
-                        <span style="font-size: 16px;">Confirmar</span><br/>
+                        <span style="font-size: 18px;">Confirmar</span><br/><br/>
                        <label id="enddate"> </label><br/>
                        <label id="endtime"> </label><br/>
                        <label id="endpayment"> </label><br/>
