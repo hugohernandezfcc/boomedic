@@ -8,7 +8,17 @@
 @section('body_class', 'register-page')
 
 @section('body')
+<style type="text/css">
+.select2-container--default .select2-selection--single {
 
+   border-radius: 0px !important; 
+}
+.select2-container {
+
+    width: 100% !important;
+}
+   
+</style>
   <script type="text/javascript">
                                 $.ajax(
                                       {
@@ -92,7 +102,7 @@
                     @endif
                 </div>
 
-               <div class="pull-center">
+               <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
                    <select class="form-control select2" name="medical_society" id="medical_society">
                     <option default>--Ninguna--</option>
                     </select>
