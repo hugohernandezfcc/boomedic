@@ -9,8 +9,6 @@
 
 @section('body')
   <script type="text/javascript">
-                    $('.datepicker1').datepicker();
-
                                 $.ajax(
                                       {
                                         type: "GET",    
@@ -32,7 +30,9 @@
                                       }
                                     );
 
-
+$('.datepicker1').datepicker({
+    format: 'dd/mm/yyyy',
+});
 
                                 </script>
 
