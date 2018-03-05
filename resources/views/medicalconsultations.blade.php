@@ -240,7 +240,7 @@
         width: 100%;
 
     }
-    
+
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
@@ -574,7 +574,7 @@
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Paso 1" id="tab1">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Fecha" id="tab1">
                             <span class="round-tab">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -582,14 +582,14 @@
                     </li>
 
                     <li role="presentation" class="disabled" id="s2">
-                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Paso 2">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Horario">
                             <span class="round-tab">
                                 <i class="fa fa-clock-o"></i>
                             </span>
                         </a>
                     </li>
                     <li role="presentation" class="disabled" id="s3">
-                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Paso 3">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Programar pago">
                             <span class="round-tab">
                                 <i class="fa fa-credit-card"></i>
                             </span>
@@ -597,7 +597,7 @@
                     </li>
 
                     <li role="presentation" class="disabled" id="s4">
-                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Confirmar">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-ok"></i>
                             </span>
@@ -608,7 +608,7 @@
 
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
-                        <h3>Paso 1</h3>
+                        <h4>Fecha</h4>
                                   <div class="box box-solid bg-black-gradient">
                                         <div class="box-header">
                                           <i class="fa fa-calendar"></i>
@@ -636,7 +636,7 @@
                         </div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
-                        <h3>Paso 2</h3>
+                        <h4>Horario</h4>
                            <b>Seleccionar Hora de la cita</b>
                            <br/>
                            <div class="form-group">
@@ -654,7 +654,7 @@
 
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
-                        <h3>Paso 3</h3>
+                        <h4>Programar pago</h4>
                         <b>Seleccionar método de pago</b>
                         <br/>
                         <div class="form-group">
@@ -683,7 +683,7 @@
 
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
-                        <h3>Finalizar</h3>
+                        <h3>Confirmar</h3>
                        <label id="enddate"> </label><br/>
                        <label id="endtime"> </label><br/>
                        <label id="endpayment"> </label><br/>
@@ -1689,7 +1689,7 @@ function prevTab(elem) {
         markers = [];
       }
       function showInfo(info){ 
-        document.getElementById("info").innerHTML = '<strong>Información del médico:</strong> <br/>'+ info +'';
+        document.getElementById("info").innerHTML = '<strong>Detalle del médico:</strong> <br/><span style="font-size:11px;">'+ info +'</span>';
       }
     </script>
 
