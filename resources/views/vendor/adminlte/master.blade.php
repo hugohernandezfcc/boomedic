@@ -344,7 +344,20 @@ span.round-tab:hover {
         left: 35%;
     }
 }
+        .select2-container--default .select2-selection--single {
+        border-radius: 0px !important; 
+        border-color: #d2d6de;
+        }
 
+        .select2-container {
+            width: 100% !important;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: #444 !important;
+        }
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            padding-left: 0px !important;
+        }
 </style>
 
 

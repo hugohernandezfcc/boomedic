@@ -240,6 +240,7 @@
         width: 100%;
 
     }
+    
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
