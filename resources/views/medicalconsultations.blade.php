@@ -560,8 +560,7 @@
 
 
               <div class="modal-body">
-                <div>
-                  <p id="info"></p>
+                <div id="info">
                 </div>
 
                 <!--WIZARD TEST-->
@@ -608,7 +607,7 @@
 
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
-                        <h4>Fecha</h4>
+                       <span style="font-size: 15px;">Fecha</span>
                                   <div class="box box-solid bg-black-gradient">
                                         <div class="box-header">
                                           <i class="fa fa-calendar"></i>
@@ -636,7 +635,7 @@
                         </div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
-                        <h4>Horario</h4>
+                       <span style="font-size: 15px;">Horario</span>
                            <b>Seleccionar Hora de la cita</b>
                            <br/>
                            <div class="form-group">
@@ -654,7 +653,7 @@
 
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
-                        <h4>Programar pago</h4>
+                        <span style="font-size: 15px;">Programar pago</span>
                         <b>Seleccionar método de pago</b>
                         <br/>
                         <div class="form-group">
@@ -683,7 +682,7 @@
 
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
-                        <h3>Confirmar</h3>
+                        <span style="font-size: 15px;">Confirmar</span>
                        <label id="enddate"> </label><br/>
                        <label id="endtime"> </label><br/>
                        <label id="endpayment"> </label><br/>
@@ -1689,7 +1688,7 @@ function prevTab(elem) {
         markers = [];
       }
       function showInfo(info){ 
-        document.getElementById("info").innerHTML = '<strong>Detalle del médico:</strong> <br/><span style="font-size:11px;">'+ info +'</span>';
+        document.getElementById("info").innerHTML = '<strong>Detalle del médico:</strong> <br/><span style="font-size:12px;">'+ info +'</span>';
       }
     </script>
 
