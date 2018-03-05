@@ -453,7 +453,7 @@ question
             $newheight = 150;
         $image = imagecreatetruecolor( $newwidth, $newheight);
         $image_s = imagecreatefromstring(file_get_contents($path2));
-        $image_z = imagecreatefromstring(file_get_contents('https://s3.amazonaws.com/abiliasf/circle.png'));
+       /* $image_z = imagecreatefromstring(file_get_contents('https://s3.amazonaws.com/abiliasf/circle.png'));*/
         $width = imagesx($image_s);
         $height = imagesy($image_s);
         imagealphablending($image, true);
@@ -468,7 +468,7 @@ question
         imagecopymerge($image, $mask, 0, 0, 0, 0, $newwidth,$newheight, 100);
         imagecolortransparent($image,$red);
         imagefill($image, 0, 0, $red);
-        imagecopyresampled(
+      /*  imagecopyresampled(
             $image,
             $image_z,
             0, 0, 0, 0,
@@ -476,7 +476,7 @@ question
             imagesy($image_z),
             imagesx($image_z),
             imagesy($image_z)
-            );
+            );*/
         ob_start();
         imagepng($image);
         $png_file = ob_get_contents();

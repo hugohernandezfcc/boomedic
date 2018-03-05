@@ -66,7 +66,8 @@
                 </div>
 
                <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
-                   <select class="form-control select2" name="medical_society" id="medical_society" size="1">
+                <div class="col-sm-12">
+                   <select class="form-control select2" name="medical_society" id="medical_society">
                     <option default>--Ninguna--</option>
                     <script type="text/javascript">
 
@@ -98,7 +99,7 @@
 
                     </select>
                 </div>
-
+               </div> 
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                     <input type="password" name="password" class="form-control" placeholder="{{ trans('adminlte::adminlte.password') }}">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
