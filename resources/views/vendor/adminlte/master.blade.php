@@ -374,6 +374,7 @@ span.round-tab:hover {
 <script src="{{ asset('js/LinkedInRegister.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
+<script src="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js"></script>   
 
 
 
@@ -382,7 +383,8 @@ span.round-tab:hover {
     $(function () {
         $('#datepicker1').datepicker({
     format: 'dd/mm/yyyy',
-    autoclose: true
+    autoclose: true,
+    language: 'es'
         });
         //Datemask dd/mm/yyyy
         //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
@@ -397,7 +399,7 @@ span.round-tab:hover {
             titleFormat: "MM yyyy",
             weekStart: 0
           };
-
+}
                     //Date picker
        /* $('#datepicker').datepicker({
             format: "mm/dd/yyyy",
