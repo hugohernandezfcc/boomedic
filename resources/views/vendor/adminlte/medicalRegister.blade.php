@@ -8,6 +8,34 @@
 @section('body_class', 'register-page')
 
 @section('body')
+  <script type="text/javascript">
+                    $('.datepicker1').datepicker();
+
+                                $.ajax(
+                                      {
+                                        type: "GET",    
+                                        url: "{{ url('/medicalRegister/society') }}", 
+                                        success: function(result){
+                                          console.log(result);
+
+                                          var x = document.getElementById("medical_society");
+                                          
+                                          for (var i = 0; i < result.length; i++) {
+                                            console.log(result[i].name);
+                                            var option = document.createElement("option");
+                                            option.text = result[i].name;
+                                            option.value = result[i].name;
+                                            x.add(option);
+
+                                          }
+                                        }
+                                      }
+                                    );
+
+
+
+                                </script>
+
     <div class="register-box">
         <div class="register-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
@@ -66,36 +94,8 @@
                 </div>
 
                <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
-                   <select class="form-control select2" name="medical_society" id="medical_society">
+                   <select class="form-control select2" name="medical_society" id="medical_society" size="1">
                     <option default>--Ninguna--</option>
-                    <script type="text/javascript">
-
-
-                                $.ajax(
-                                      {
-                                        type: "GET",    
-                                        url: "{{ url('/medicalRegister/society') }}", 
-                                        success: function(result){
-                                          console.log(result);
-
-                                          var x = document.getElementById("medical_society");
-                                          
-                                          for (var i = 0; i < result.length; i++) {
-                                            console.log(result[i].name);
-                                            var option = document.createElement("option");
-                                            option.text = result[i].name;
-                                            option.value = result[i].name;
-                                            x.add(option);
-
-                                          }
-                                        }
-                                      }
-                                    );
-
-
-
-                                </script>
-
                     </select>
                 </div> 
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
