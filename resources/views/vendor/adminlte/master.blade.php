@@ -397,6 +397,10 @@ span.round-tab:hover {
             autoclose: true,
             language: 'es'
                 });
+        $('#datepicker2').datepicker({
+            autoclose: true,
+            language: 'es'
+         });
         //Datemask dd/mm/yyyy
         //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
          $.fn.datepicker.dates['es'] = {
