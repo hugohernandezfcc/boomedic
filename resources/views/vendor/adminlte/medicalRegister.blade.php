@@ -15,8 +15,10 @@
    border-color: #d2d6de;
 }
 .select2-container {
-
     width: 100% !important;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #444 !important;
 }
 </style>
   <script type="text/javascript">
@@ -103,7 +105,7 @@
                 </div>
 
                <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
-                   <select class="form-control select2" name="medical_society" id="medical_society">
+                   <select class="form-control select2" name="medical_society" id="medical_society" size="1">
                     <option default>--Ninguna--</option>
                     </select>
                 </div> 
