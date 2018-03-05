@@ -8,6 +8,12 @@
 @section('body_class', 'register-page')
 
 @section('body')
+<style type="text/css">
+    .select2 {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+}
+</style>
   <script type="text/javascript">
                                 $.ajax(
                                       {
