@@ -448,7 +448,7 @@
       <div class="modal-dialog">
           <div class="modal-content-2">
             <div align="center">
-          <h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
+          <h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/>(Esto podría tardar unos segundos)
               </div>
           </div>
       </div>
