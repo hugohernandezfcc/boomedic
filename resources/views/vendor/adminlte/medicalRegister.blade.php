@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('birthdate') ? 'has-error' : '' }}">
-                    <input type="text" name="birthdate" class="form-control" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker">
+                    <input type="text" name="birthdate" class="form-control datepicker1" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}">
                     <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     @if ($errors->has('birthdate'))
                         <span class="help-block">
@@ -66,7 +66,6 @@
                 </div>
 
                <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
-                <div class="col-sm-12">
                    <select class="form-control select2" name="medical_society" id="medical_society">
                     <option default>--Ninguna--</option>
                     <script type="text/javascript">
@@ -98,8 +97,7 @@
                                 </script>
 
                     </select>
-                </div>
-               </div> 
+                </div> 
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                     <input type="password" name="password" class="form-control" placeholder="{{ trans('adminlte::adminlte.password') }}">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>

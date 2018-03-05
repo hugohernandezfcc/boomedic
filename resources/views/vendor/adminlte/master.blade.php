@@ -378,6 +378,7 @@ span.round-tab:hover {
 
 
 <script type="text/javascript">
+                    $('.datepicker1').datepicker();
     $(function () {
         //Datemask dd/mm/yyyy
         //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
