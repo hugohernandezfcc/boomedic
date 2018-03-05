@@ -557,8 +557,6 @@
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Concretar cita</h4>
               </div>
-
-
               <div class="modal-body">
                 <div id="info">
                 </div>
@@ -607,7 +605,7 @@
 
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
-                       <span style="font-size: 15px;">Fecha</span>
+                       <span style="font-size: 16px;">Fecha</span><br/>
                                   <div class="box box-solid bg-black-gradient">
                                         <div class="box-header">
                                           <i class="fa fa-calendar"></i>
@@ -635,9 +633,8 @@
                         </div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
-                       <span style="font-size: 15px;">Horario</span>
-                           <b>Seleccionar Hora de la cita</b>
-                           <br/>
+                       <span style="font-size: 16px;">Seleccionar Horario</span><br/>
+
                            <div class="form-group">
                           <div class="col-sm-12">
                           <select id="timesByDay" class="form-control">
@@ -653,8 +650,7 @@
 
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
-                        <span style="font-size: 15px;">Programar pago</span>
-                        <b>Seleccionar método de pago</b>
+                        <span style="font-size: 16px;">Programar pago</span>
                         <br/>
                         <div class="form-group">
                          <div class="col-sm-12">
@@ -682,7 +678,7 @@
 
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
-                        <span style="font-size: 15px;">Confirmar</span>
+                        <span style="font-size: 16px;">Confirmar</span><br/>
                        <label id="enddate"> </label><br/>
                        <label id="endtime"> </label><br/>
                        <label id="endpayment"> </label><br/>
