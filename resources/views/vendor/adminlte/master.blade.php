@@ -374,15 +374,28 @@ span.round-tab:hover {
 <script src="{{ asset('js/LinkedInRegister.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
-<script src="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js"></script>   
+
 
 
 
 <script type="text/javascript">
 
     $(function () {
+        
+        $.fn.datepicker.dates['es'] = {
+        days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+        daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+        daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+        monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+        today: "Hoy",
+        monthsTitle: "Meses",
+        clear: "Borrar",
+        weekStart: 1,
+        format: "dd/mm/yyyy"
+    };
+
         $('#datepicker1').datepicker({
-    format: 'dd/mm/yyyy',
     autoclose: true,
     language: 'es'
         });
