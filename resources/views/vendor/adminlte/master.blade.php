@@ -377,11 +377,9 @@ span.round-tab:hover {
 
 
 
-
 <script type="text/javascript">
 
     $(function () {
-        
         $.fn.datepicker.dates['es'] = {
         days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
@@ -396,9 +394,9 @@ span.round-tab:hover {
     };
 
         $('#datepicker1').datepicker({
-    autoclose: true,
-    language: 'es'
-        });
+            autoclose: true,
+            language: 'es'
+                });
         //Datemask dd/mm/yyyy
         //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
          $.fn.datepicker.dates['es'] = {
@@ -412,7 +410,7 @@ span.round-tab:hover {
             titleFormat: "MM yyyy",
             weekStart: 0
           };
-}
+
                     //Date picker
        /* $('#datepicker').datepicker({
             format: "mm/dd/yyyy",
