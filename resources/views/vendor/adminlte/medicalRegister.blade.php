@@ -17,7 +17,6 @@
 
     width: 100% !important;
 }
-   
 </style>
   <script type="text/javascript">
                                 $.ajax(
