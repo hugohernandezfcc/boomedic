@@ -10,8 +10,8 @@
 @section('body')
 <style type="text/css">
     .select2 {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0px;
+  -webkit-appearance: none !important;
+  -webkit-border-radius: 0px !important;
 }
 </style>
   <script type="text/javascript">
@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('birthdate') ? 'has-error' : '' }}">
-                    <input type="text" name="birthdate" class="form-control datepicker1" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}">
+                    <input type="text" name="birthdate" class="form-control" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker1">
                     <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     @if ($errors->has('birthdate'))
                         <span class="help-block">
