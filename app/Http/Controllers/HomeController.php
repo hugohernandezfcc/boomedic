@@ -161,7 +161,7 @@ class HomeController extends Controller
             }
         }
        } 
-       if($user->recent_search == '' && $request->search != null){
+       if($user->recent_search == null){
             array_push($recent, $request->search);
              $user->recent_search  = json_encode($recent); 
          }
