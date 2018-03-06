@@ -195,11 +195,15 @@
     width: 70%;
     margin: 0 0 0 0 !important;
     }
-    @media( max-width : 900px ) {
+    @media( max-width : 600px ) {
        #infDr {
          width: 95%;
        }
     }
+    .alert .close {
+    color: white !important;
+    opacity: .8 !important;
+}
     #bodyDr{
        margin-left: 90px; 
     }
