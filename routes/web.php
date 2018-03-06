@@ -243,6 +243,33 @@ Route::group(['prefix' => 'medicalappointments'], function(){
 	);
 });
 
+Route::group(['prefix' => 'clinicHistory'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'clinicHistory@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('update/{id}', [
+			'uses'	=>	'clinicHistory@update',
+			'as'	=>	'update'
+		]
+	);
+
+	Route::get('store/{id}', [
+			'uses'	=>	'clinicHistory@store',
+			'as'	=>	'store'
+		]
+	);
+	
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'clinicHistory@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+});
 
 Route::group(['prefix' => 'workboardDr'], function(){
 
