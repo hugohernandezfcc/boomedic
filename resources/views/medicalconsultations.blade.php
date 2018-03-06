@@ -496,7 +496,7 @@
                         
                   </div>
                   <div class="modal-body">
-                   <div id="resp" align="left" style="display:none;"><b>Busquedas recientes:</b><br/></div>                
+                   <div id="resp" align="left" style="visibility: hidden;"><b>Busquedas recientes:</b><br/></div>                
                           <div id ="ubi" class="input-group input-group-sm" style="display:none;">
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
                           </div>
@@ -794,7 +794,7 @@ function prevTab(elem) {
                 success: function(result){
                    var result1 = JSON.parse(result).reverse(); 
                    if(result1.length > 0){
-                    document.getElementById('resp').style.display = 'block';   
+                    document.getElementById('resp').style.visibility = 'visible';   
                     }        
                               for(var z=0; z < result1.length; z++){
                                  $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ result1[z] +'<br/></a>');
@@ -1315,7 +1315,7 @@ function prevTab(elem) {
                        var data1 = JSON.parse(data).reverse(); 
                        $(".recent").remove();           
                     if(data1.length > 0){
-                    document.getElementById('resp').style.display = 'block';   
+                    document.getElementById('resp').style.visibility = 'visible';   
                     }        
                               for(var z=0; z < data1.length; z++){
                                  $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ data1[z] +'<br/></a>');
