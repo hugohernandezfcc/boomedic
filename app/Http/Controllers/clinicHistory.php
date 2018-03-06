@@ -32,13 +32,19 @@ class clinicHistory extends Controller
      */
     public function index(){
         $user = User::find(Auth::id());
+        $clinic_history = DB::table('clinic_history')->get();
+        $answers_clinic_history = DB::table('answers_clinic_history')->get();
+        $questions_clinic_history = DB::table('questions_clinic_history')->get();
 
         return view('clinicHistory', [
-                'userId'    => $user->id,
-                'username'  => $user->username,
-                'name'      => $user->name,
-                'photo'     => $user->profile_photo,
-                'date'      => $user->created_at,
+                'userId'            => $user->id,
+                'username'          => $user->username,
+                'name'              => $user->name,
+                'photo'             => $user->profile_photo,
+                'date'              => $user->created_at,
+                'q_clinic_history'  => $questions_clinic_history,
+                'a_clinic_history'  => $answers_clinic_history,
+                'clinic_history'    => $clinic_history,
             ]
         );
     }
