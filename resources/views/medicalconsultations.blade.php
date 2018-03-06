@@ -496,7 +496,7 @@
                         
                   </div>
                   <div class="modal-body">
-                    <div id="resp5" align="left"><b>Busquedas recientes:</b><br/></div>    
+                   <div id="resp5" align="left"><b>Busquedas recientes:</b><br/></div>    
                    <div id="resp" align="left"></div>                
                           <div id ="ubi" class="input-group input-group-sm" style="display:none;">
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
@@ -794,7 +794,11 @@ function prevTab(elem) {
                 url: "medicalconsultations/showrecent", 
                 success: function(result){
                    var result1 = JSON.parse(result).reverse; 
-                              $('#resp5').show;       
+                   if(!result){
+                              $('#resp5').hidden;  
+                              }else   {
+                                $('#resp5').show;
+                              }  
                               for(var z=0; z < result1.length; z++){
                                  $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ result1[z] +'<br/></a>');
                                }
