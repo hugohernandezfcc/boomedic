@@ -496,7 +496,7 @@
                         
                   </div>
                   <div class="modal-body">
-                   <div id="resp" align="left" display:none;><b>Busquedas recientes:</b><br/></div>                
+                   <div id="resp" align="left" style="display:none;"><b>Busquedas recientes:</b><br/></div>                
                           <div id ="ubi" class="input-group input-group-sm" style="display:none;">
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
                           </div>
