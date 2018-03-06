@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 
 @section('title', 'Boomedic')
@@ -238,9 +237,7 @@
         color: white;
         margin-top: 50%;
         width: 100%;
-
     }
-
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
@@ -248,7 +245,6 @@
 
   <!--  -->
   <script type="text/javascript">
-
     /**
      * Text of labels
      */
@@ -496,8 +492,7 @@
                         
                   </div>
                   <div class="modal-body">
-                   <div id="resp5" align="left" style="display: none;"><b>Busquedas recientes:</b><br/></div>    
-                   <div id="resp" align="left"></div>                
+                   <div id="resp" align="left"><b>Busquedas recientes:</b><br/></div>                
                           <div id ="ubi" class="input-group input-group-sm" style="display:none;">
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
                           </div>
@@ -702,7 +697,6 @@
           <script type="text/javascript">
 $(document).ready(function () {
     //Initialize tooltips
-
        $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
        $('#modalerror').modal('show');
@@ -793,8 +787,7 @@ function prevTab(elem) {
                 type: "GET",    
                 url: "medicalconsultations/showrecent", 
                 success: function(result){
-                   var result1 = JSON.parse(result).reverse; 
-                    document.getElementById('resp5').style.display= "block";
+                   var result1 = JSON.parse(result).reverse();            
                               for(var z=0; z < result1.length; z++){
                                  $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ result1[z] +'<br/></a>');
                                }
@@ -955,7 +948,6 @@ function prevTab(elem) {
        */
       window.onload = function(){
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
-
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
             height = window.screen.availHeight;
@@ -1296,7 +1288,6 @@ function prevTab(elem) {
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
-
                 $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1313,8 +1304,6 @@ function prevTab(elem) {
                       console.log(JSON.parse(data).reverse());
                        var data1 = JSON.parse(data).reverse(); 
                        $(".recent").remove();           
-                   document.getElementById('resp5').style.display= "block";
-    
                               for(var z=0; z < data1.length; z++){
                                  $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ data1[z] +'<br/></a>');
                                }
@@ -1473,7 +1462,6 @@ function prevTab(elem) {
             };
          /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
         }
-
         markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
