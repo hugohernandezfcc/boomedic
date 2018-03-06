@@ -781,13 +781,16 @@ function prevTab(elem) {
                         
                   }
                 }
-              }
-            );
-           $.ajax(
-              {
+              });
+
+           $.ajax({
                 type: "GET",    
                 url: "medicalconsultations/showrecent", 
                 success: function(result){
+                 console.log(result.length);
+                  console.log(result);
+                  if(result.length > '0'){
+
                    $('#recentS').show();
                    var result1 = JSON.parse(result).reverse();            
                               for(var z=0; z < result1.length; z++){
@@ -795,8 +798,8 @@ function prevTab(elem) {
                                }
                   
                     }
-                }
-            );
+                  }
+                });
 
               function showvalue (link){
                   var value = link.getAttribute("data-value");
