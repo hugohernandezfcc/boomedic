@@ -192,8 +192,13 @@
     right: 0;
     position: fixed;
     z-index: 1050;
-    width: 83%;
+    width: 70%;
     margin: 0 0 0 0 !important;
+    }
+    @media( max-width : 1300px ) {
+       #infDr {
+         width: 90%;
+       }
     }
     #bodyDr{
        margin-left: 90px; 
