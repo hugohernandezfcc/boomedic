@@ -142,8 +142,9 @@ class HomeController extends Controller
         $userSearch = json_decode($user->recent_search);
         $recent = array();
         $json = json_decode($request);
-    if($request->search != null && !in_array($request->search,  $userSearch)){
-        if(!$user->recent_search){
+    if($request->search != null){
+       if(!in_array($request->search,  $userSearch)) {
+        if(!$userSearch){
            
             array_push($recent, $request->search);
              $user->recent_search  = json_encode($recent); 
@@ -161,8 +162,14 @@ class HomeController extends Controller
             }
         }
        } 
+        else {
+            array_push($recent, $request->search);
+             $user->recent_search  = json_encode($recent); 
+   }
+   }
      
             $user->save();
+   }
 
         return response()->json($user->recent_search);
 
