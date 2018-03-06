@@ -1316,7 +1316,7 @@ function prevTab(elem) {
                               for(var z=0; z < data1.length; z++){
                                  $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ data1[z] +'<br/></a>');
                                }
-                                address1 = ' ';     
+                                document.getElementById('address').value = " ";     
                              }
                          });
                 });
