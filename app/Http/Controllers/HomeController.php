@@ -143,6 +143,7 @@ class HomeController extends Controller
         $recent = array();
         $json = json_decode($request);
     if($request->search != null){
+        
        if(!in_array($request->search,  $userSearch)) {
         if(!$userSearch){
            
@@ -169,7 +170,7 @@ class HomeController extends Controller
    }
      
             $user->save();
-   }
+   
 
         return response()->json($user->recent_search);
 
