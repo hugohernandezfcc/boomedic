@@ -792,7 +792,7 @@ function prevTab(elem) {
                 type: "GET",    
                 url: "medicalconsultations/showrecent", 
                 success: function(result){
-                   var result1 = JSON.parse(result).reverse(); 
+                   var result1 = JSON.parse(result); 
                    if(result1.length > 0){
                     document.getElementById('resp').style.visibility = 'visible';   
                     }        
@@ -1311,8 +1311,8 @@ function prevTab(elem) {
                               dataType: 'json',                
                              success: function(data)             
                              {
-                      console.log(JSON.parse(data).reverse());
-                       var data1 = JSON.parse(data).reverse(); 
+                      console.log(JSON.parse(data));
+                       var data1 = JSON.parse(data); 
                        $(".recent").remove();           
                     if(data1.length > 0){
                     document.getElementById('resp').style.visibility = 'visible';   
