@@ -143,7 +143,7 @@ class HomeController extends Controller
         $recent = array();
         $json = json_decode($request);
     if($request->search != null){
-        if(!$userSearch){
+        if(empty($user->recent_search)){
             array_push($recent, $request->search);
              $user->recent_search  = json_encode($recent); 
       } 
