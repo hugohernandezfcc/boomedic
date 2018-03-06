@@ -161,24 +161,11 @@ class HomeController extends Controller
             }
         }
        } 
-      if($request->search != null && !$user->recent_search){
-        if(!$userSearch){
-           
+      if($request->search != null && !$userSearch){
+
             array_push($recent, $request->search);
              $user->recent_search  = json_encode($recent); 
-         
-      } else{
-         
-        if(count($userSearch) == 4 ){
-            unset($userSearch[0]);
-            $userSearch = array_values($userSearch);
-            array_push($userSearch, $request->search);
-            $user->recent_search  = json_encode($userSearch); 
-        } else{
-            array_push($userSearch, $request->search);
-            $user->recent_search  = json_encode($userSearch); 
-            }
-        }
+
        } 
 
             $user->save();
