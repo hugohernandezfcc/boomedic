@@ -195,7 +195,7 @@
     width: 70%;
     margin: 0 0 0 0 !important;
     }
-    @media( max-width : 700px ) {
+    @media( max-width : 800px ) {
        #infDr {
          width: 95%;
        }
