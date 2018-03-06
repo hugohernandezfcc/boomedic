@@ -314,7 +314,7 @@ span.round-tab:hover {
 .wizard .nav-tabs > li a {
     width: 30px;
     height: 30px;
-    margin: 30px auto;
+    margin: 15px auto;
     border-radius: 100%;
     padding: 0;
 }
