@@ -1,11 +1,8 @@
 @extends('adminlte::page')
 
 @section('title', 'Boomedic')
-@section('content_header')
 
-@stop
 @section('content')
-
 
 <div class="box">
   	<div class="box-header with-border">
@@ -13,13 +10,9 @@
   	</div>
   	<div class="box-body">
   <div class="container" id="myWizard">
-  
-   <h3>Bootstrap Wizard</h3>
-  
-   <hr>
-  
+
    <div class="progress">
-     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 20%;">
+     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 20%;">
        Step 1 of 5
      </div>
    </div>
@@ -86,24 +79,20 @@
       </div>
    </div>
   
-   <hr>
-  
-   <a href="http://www.bootply.com/wj9gWh8ulj">Edit on Bootply</a>
-  
-   <hr>
   
 </div>
             </div>
         </div>
 
 				<script>
+				$(document).ready(function () {
 					$('.next').click(function(){
 
 					  var nextId = $(this).parents('.tab-pane').next().attr("id");
 					  $('[href=#'+nextId+']').tab('show');
 					  return false;
 					  
-					})
+					});
 
 					$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 					  
@@ -116,13 +105,15 @@
 					  
 					  //e.relatedTarget // previous tab
 					  
-					})
+					});
 
 					$('.first').click(function(){
 
 					  $('#myWizard a:first').tab('show')
 
-					})
+					});
+
+				})
 				</script>
 
 @stop
