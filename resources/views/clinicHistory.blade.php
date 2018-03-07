@@ -3,11 +3,11 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js"></script>
 @stop
 
 @section('content')
-<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js"></script>
+
 
 <script type="text/javascript">
 	$(document).ready(function() {
