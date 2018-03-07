@@ -3,22 +3,12 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js"></script>
+
 @stop
 
 @section('content')
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js"></script>
 
-
-<script type="text/javascript">
-	$(document).ready(function() {
-  	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
-		var $total = navigation.find('li').length;
-		var $current = index+1;
-		var $percent = ($current/$total) * 100;
-		$('#rootwizard .progress-bar').css({width:$percent+'%'});
-	}});
-});
-</script>
 
 <div class="box">
   	<div class="box-header with-border">
@@ -75,5 +65,16 @@
 	</div>
 </div>
  	</div>
-</div>	  	
+</div>	
+jQuery.noConflict(false);
+<script>
+	$(document).ready(function() {
+  	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+		var $total = navigation.find('li').length;
+		var $current = index+1;
+		var $percent = ($current/$total) * 100;
+		$('#rootwizard .progress-bar').css({width:$percent+'%'});
+	}});
+});
+</script>  	
 @stop
