@@ -14,6 +14,16 @@
 		.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
     border-top-color: #3E3E3E;
 }
+ .navbar-nav {
+    width: 100% !important;
+    text-align: center !important;
+
+  }
+
+  .navbar-nav > li {
+      float: none !important;
+      display: inline-block !important;
+    }
 	</style>
 <div class="box">
   	<div class="box-header with-border">
@@ -30,7 +40,7 @@
   
    <div class="navbar">
       <div class="navbar-inner">
-            <ul class="nav nav-pills">
+            <ul class="nav nav-pills pull-center">
                <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
                <li><a href="#step2" data-toggle="tab" data-step="2">2</a></li>
                <li><a href="#step3" data-toggle="tab" data-step="3">3</a></li>
@@ -44,7 +54,7 @@
          
         <div class="well"> 
           
-            <label>Security Question 1</label>
+            <label>Question 1</label>
             <select class="form-control input-lg">
               <option value="What was the name of your first pet?">What was the name of your first pet?</option>
               <option value="Where did you first attend school?">Where did you first attend school?</option>
