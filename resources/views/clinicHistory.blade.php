@@ -48,7 +48,7 @@
    <div class="progress">
    	@php
    	$percent = (1 /count($questions)) * 100;
-    $per = bcdiv($percent, '1', 0);
+    $per = $percent;
    	@endphp
      <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: {{ $percent }}%;">
        {{ $per }}%
