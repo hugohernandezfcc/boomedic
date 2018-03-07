@@ -31,20 +31,7 @@
   	</div>
   	<div class="box-body">
   <div class="container" id="myWizard">
-   <div class="navbar" style="visibility: hidden">
-      <div class="navbar-inner">
-            <ul class="nav nav-pills pull-center">
-          @foreach($questions as $question) 
-              @if($loop->iteration == 1)
-               <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
-              @endif
-               @if($loop->iteration > 1)
-               <li><a href="#step{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
-               @endif
-            @endforeach
-            </ul>
-      </div>
-   </div>
+
    <div class="progress">
    	@php
    	$percent = (1 /count($questions)) * 100;
@@ -76,20 +63,23 @@
          @if(($loop->iteration > 1) && !$loop->last)
       <div class="tab-pane fade" id="step{{ $loop->iteration }}">
          <div class="well"> 
-          
             <label>{{ $questions1->question }}</label>
             <br>
             <label>Enter Response</label>
             <input class="form-control  input-lg">
-            
          </div>
          <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
          <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
       </div>
       @endif
        @if($loop->last)
-        <div class="tab-pane fade" id="step{{ $loop->iteration }}">
-        <div class="well"> <h2>{{ $questions1->question }}</h2> You're Done!</div>
+      <div class="tab-pane fade" id="step{{ $loop->iteration }}">
+         <div class="well"> 
+            <label>{{ $questions1->question }}</label>
+            <br>
+            <label>Enter Response</label>
+            <input class="form-control  input-lg">
+         </div>
         <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
         <a class="btn btn-secondary btn-flat first pull-left" href="#">Volver a iniciar</a>
         <a class="btn btn-secondary btn-flat pull-right" href="#">Guardar historia</a>
@@ -98,8 +88,20 @@
       @endforeach
 
    </div>
-  
-  
+   <div class="navbar" style="visibility: hidden" id="wiz">
+      <div class="navbar-inner">
+            <ul class="nav nav-pills pull-center">
+          @foreach($questions as $question) 
+              @if($loop->iteration == 1)
+               <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
+              @endif
+               @if($loop->iteration > 1)
+               <li><a href="#step{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
+               @endif
+            @endforeach
+            </ul>
+      </div>
+   </div>
 </div>
             </div>
         </div>
@@ -137,7 +139,7 @@
 
 					$('.first').click(function(){
 
-					  $('#myWizard a:first').tab('show')
+					  $('#wiz a:first').tab('show')
 
 					});
 
