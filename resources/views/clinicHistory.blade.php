@@ -2,11 +2,6 @@
 
 @section('title', 'Boomedic')
 
-@section('content_header')
-    <script src="{{ asset('js/jquery.bootstrap.wizard.js') }}"></script>
-    <script src="{{ asset('js/jquery.bootstrap.wizard.min.js') }}"></script>
-@stop
-
 @section('content')
 
 <div class="box">
@@ -67,7 +62,6 @@
 </div>	
 
 <script>
-jQuery.noConflict(false);
 	$(document).ready(function() {
   	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
 		var $total = navigation.find('li').length;

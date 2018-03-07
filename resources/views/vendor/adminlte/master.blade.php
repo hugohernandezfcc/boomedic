@@ -44,7 +44,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/locale/es.js"></script>
     
-
+    <script src="{{ asset('js/jquery.bootstrap.wizard.js') }}"></script>
+    <script src="{{ asset('js/jquery.bootstrap.wizard.min.js') }}"></script>
 
 
     <style type="text/css">
