@@ -66,8 +66,9 @@
 </div>
  	</div>
 </div>	
-jQuery.noConflict(false);
+
 <script>
+jQuery.noConflict(false);
 	$(document).ready(function() {
   	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
 		var $total = navigation.find('li').length;
