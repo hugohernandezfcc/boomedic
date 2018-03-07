@@ -3,7 +3,18 @@
 @section('title', 'Boomedic')
 
 @section('content')
-
+	<style type="text/css">
+	 .progress-bar {
+	 	background-color: #3E3E3E;
+	 }
+	 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: #3E3E3E;
+		}
+		.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+    border-top-color: #3E3E3E;
+}
+	</style>
 <div class="box">
   	<div class="box-header with-border">
 	    <h3 class="box-title">Historia Clínica</h3>
@@ -13,18 +24,18 @@
 
    <div class="progress">
      <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 20%;">
-       Step 1 of 5
+       1 de 5
      </div>
    </div>
   
    <div class="navbar">
       <div class="navbar-inner">
             <ul class="nav nav-pills">
-               <li class="active"><a href="#step1" data-toggle="tab" data-step="1">Step 1</a></li>
-               <li><a href="#step2" data-toggle="tab" data-step="2">Step 2</a></li>
-               <li><a href="#step3" data-toggle="tab" data-step="3">Step 3</a></li>
-               <li><a href="#step4" data-toggle="tab" data-step="4">Step 4</a></li>
-               <li><a href="#step5" data-toggle="tab" data-step="5">Step 5</a></li>
+               <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
+               <li><a href="#step2" data-toggle="tab" data-step="2">2</a></li>
+               <li><a href="#step3" data-toggle="tab" data-step="3">3</a></li>
+               <li><a href="#step4" data-toggle="tab" data-step="4">4</a></li>
+               <li><a href="#step5" data-toggle="tab" data-step="5">5</a></li>
             </ul>
       </div>
    </div>
@@ -101,7 +112,7 @@
 					  var percent = (parseInt(step) / 5) * 100;
 					  
 					  $('.progress-bar').css({width: percent + '%'});
-					  $('.progress-bar').text("Step " + step + " of 5");
+					  $('.progress-bar').text(step + " de 5");
 					  
 					  //e.relatedTarget // previous tab
 					  
