@@ -14,13 +14,13 @@
 		.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
     border-top-color: #3E3E3E;
 }
- .navbar-nav {
+ .nav-pills {
     width: 100% !important;
     text-align: center !important;
 
   }
 
-  .navbar-nav > li {
+  .nav-pills > li {
       float: none !important;
       display: inline-block !important;
     }
@@ -34,7 +34,7 @@
 
    <div class="progress">
      <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 20%;">
-       1 de 5
+       20%
      </div>
    </div>
   
@@ -122,7 +122,7 @@
 					  var percent = (parseInt(step) / 5) * 100;
 					  
 					  $('.progress-bar').css({width: percent + '%'});
-					  $('.progress-bar').text(step + " de 5");
+					  $('.progress-bar').text(percent + "%");
 					  
 					  //e.relatedTarget // previous tab
 					  
