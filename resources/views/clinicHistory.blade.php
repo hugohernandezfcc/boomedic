@@ -7,8 +7,6 @@
 @stop
 
 @section('content')
-<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js"></script>
-
 
 <div class="box">
   	<div class="box-header with-border">
@@ -68,7 +66,7 @@
 </div>	
 
 <script>
-jQuery.noConflict(false);
+
 	$(document).ready(function() {
   	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
 		var $total = navigation.find('li').length;
