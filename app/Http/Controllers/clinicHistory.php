@@ -42,7 +42,7 @@ class clinicHistory extends Controller
                 'name'              => $user->name,
                 'photo'             => $user->profile_photo,
                 'date'              => $user->created_at,
-                'q_clinic_history'  => $questions_clinic_history,
+                'questions'         => $questions_clinic_history,
                 'a_clinic_history'  => $answers_clinic_history,
                 'clinic_history'    => $clinic_history,
             ]

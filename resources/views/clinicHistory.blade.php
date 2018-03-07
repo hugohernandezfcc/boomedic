@@ -33,7 +33,10 @@
   <div class="container" id="myWizard">
 
    <div class="progress">
-     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 20%;">
+   	@php
+   	$percent = count($questions)/100;
+   	@endphp
+     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 0%;">
        20%
      </div>
    </div>
@@ -41,26 +44,25 @@
    <div class="navbar">
       <div class="navbar-inner">
             <ul class="nav nav-pills pull-center">
+          @foreach($questions as $question) 
+           	  @if($loop->iteration == 1)
                <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
-               <li><a href="#step2" data-toggle="tab" data-step="2">2</a></li>
-               <li><a href="#step3" data-toggle="tab" data-step="3">3</a></li>
-               <li><a href="#step4" data-toggle="tab" data-step="4">4</a></li>
-               <li><a href="#step5" data-toggle="tab" data-step="5">5</a></li>
+              @endif
+               @if($loop->iteration > 1)
+               <li><a href="#step{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
+               @endif
+            @endforeach
             </ul>
       </div>
    </div>
    <div class="tab-content">
+   	@foreach($questions as $questions1) 
+      @if($loop->iteration == 1)
       <div class="tab-pane fade in active" id="step1">
          
         <div class="well"> 
           
-            <label>Question 1</label>
-            <select class="form-control input-lg">
-              <option value="What was the name of your first pet?">What was the name of your first pet?</option>
-              <option value="Where did you first attend school?">Where did you first attend school?</option>
-              <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
-              <option value="What is your favorite car model?">What is your favorite car model?</option>
-            </select>
+            <label>{{ $questions1->question }}</label>
             <br>
             <label>Enter Response</label>
             <input class="form-control input-lg">
@@ -69,16 +71,12 @@
 
          <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
       </div>
-      <div class="tab-pane fade" id="step2">
+        @endif
+         @if($loop->iteration > 1)
+      <div class="tab-pane fade" id="step{{ $loop->iteration }}">
          <div class="well"> 
           
-            <label>Security Question 2</label>
-            <select class="form-control  input-lg">
-              <option value="What was the name of your first pet?">What was the name of your first pet?</option>
-              <option selected="" value="Where did you first attend school?">Where did you first attend school?</option>
-              <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
-              <option value="What is your favorite car model?">What is your favorite car model?</option>
-            </select>
+            <label>{{ $questions1->question }}</label>
             <br>
             <label>Enter Response</label>
             <input class="form-control  input-lg">
@@ -87,24 +85,17 @@
          <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
          <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
       </div>
-      <div class="tab-pane fade" id="step3">
-        <div class="well"> <h2>Step 3</h2> Add another step here..</div>
-        <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
-         <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
-      </div>
-      <div class="tab-pane fade" id="step4">
-        <div class="well"> <h2>Step 4</h2> Add another almost done step here..</div>
-        <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
-         <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
-      </div>
-      <div class="tab-pane fade" id="step5">
-        <div class="well"> <h2>Step 5</h2> You're Done!</div>
+      @endif
+       @if($loop->last)
+        <div class="tab-pane fade" id="step{{ $loop->iteration }}">
+        <div class="well"> <h2>{{ $questions1->question }}</h2> You're Done!</div>
         <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
         <a class="btn btn-secondary btn-flat first pull-left" href="#">Volver a iniciar</a>
         <a class="btn btn-secondary btn-flat pull-right" href="#">Guardar historia</a>
-        
-
       </div>
+       @endif
+      @endforeach
+
    </div>
   
   
@@ -133,7 +124,8 @@
 					  
 					  //update progress
 					  var step = $(e.target).data('step');
-					  var percent = (parseInt(step) / 5) * 100;
+					  var percent = (parseInt(step) / @php echo count($questions); @endphp) * 100;
+					  console.log(@php echo count($questions); @endphp);
 					  
 					  $('.progress-bar').css({width: percent + '%'});
 					  $('.progress-bar').text(percent + "%");
