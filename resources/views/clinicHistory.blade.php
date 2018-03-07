@@ -31,7 +31,20 @@
   	</div>
   	<div class="box-body">
   <div class="container" id="myWizard">
-
+   <div class="navbar" style="visibility: hidden">
+      <div class="navbar-inner">
+            <ul class="nav nav-pills pull-center">
+          @foreach($questions as $question) 
+              @if($loop->iteration == 1)
+               <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
+              @endif
+               @if($loop->iteration > 1)
+               <li><a href="#step{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
+               @endif
+            @endforeach
+            </ul>
+      </div>
+   </div>
    <div class="progress">
    	@php
    	$percent = (1 /count($questions)) * 100;
@@ -42,20 +55,7 @@
      </div>
    </div>
   
-   <div class="navbar" style="visibility: hidden">
-      <div class="navbar-inner">
-            <ul class="nav nav-pills pull-center">
-          @foreach($questions as $question) 
-           	  @if($loop->iteration == 1)
-               <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
-              @endif
-               @if($loop->iteration > 1)
-               <li><a href="#step{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
-               @endif
-            @endforeach
-            </ul>
-      </div>
-   </div>
+
    <div class="tab-content">
    	@foreach($questions as $questions1) 
       @if($loop->iteration == 1)
