@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
 @section('title', 'Boomedic')
+@section('content_header')
 <style type="text/css">
 .com { color: #93a1a1; }
 .lit { color: #195f91; }
@@ -33,10 +34,13 @@ ol.linenums li {
   text-shadow: 0 1px 0 #fff;
 }
 </style>
-@section('content')
     <script src="{{ asset('js/jquery.bootstrap.wizard.js') }}"></script>
     <script src="{{ asset('js/jquery.bootstrap.wizard.min.js') }}"></script>
     <script src="{{ asset('js/prettify.js') }}"></script>
+     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+@stop
+@section('content')
+
 
 <div class="box">
   	<div class="box-header with-border">
@@ -95,7 +99,7 @@ ol.linenums li {
  	</div>
 </div>	
 
-<script>
+<script type="text/javascript">
 jQuery.noConflict(false);
 	$(function () {
   	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
