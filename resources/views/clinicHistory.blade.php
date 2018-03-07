@@ -34,10 +34,11 @@
 
    <div class="progress">
    	@php
-   	$percent = count($questions)/100;
+   	$percent = (1 /count($questions)) * 100;
+    $per = bcdiv($percent, '1', 0);
    	@endphp
-     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 0%;">
-       20%
+     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: {{ $percent }}%;">
+       {{ $per }}%
      </div>
    </div>
   
@@ -128,7 +129,7 @@
 					  console.log(@php echo count($questions); @endphp);
 					  
 					  $('.progress-bar').css({width: percent + '%'});
-					  $('.progress-bar').text(percent + "%");
+					  $('.progress-bar').text(parseInt(percent) + "%");
 					  
 					  //e.relatedTarget // previous tab
 					  
