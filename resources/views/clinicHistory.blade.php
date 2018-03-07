@@ -67,7 +67,7 @@
             
         </div>
 
-         <a class="btn btn-default btn-lg next" href="#">Continue</a>
+         <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
       </div>
       <div class="tab-pane fade" id="step2">
          <div class="well"> 
@@ -84,19 +84,23 @@
             <input class="form-control  input-lg">
             
          </div>
-         <a class="btn btn-default next" href="#">Continue</a>
+         <a class="btn btn-default btn-flat prev pull-left" href="#">Atras</a>
+         <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
       </div>
       <div class="tab-pane fade" id="step3">
         <div class="well"> <h2>Step 3</h2> Add another step here..</div>
-         <a class="btn btn-default next" href="#">Continue</a>
+        <a class="btn btn-default btn-flat prev pull-left" href="#">Atras</a>
+         <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
       </div>
       <div class="tab-pane fade" id="step4">
         <div class="well"> <h2>Step 4</h2> Add another almost done step here..</div>
-         <a class="btn btn-default next" href="#">Continue</a>
+        <a class="btn btn-default btn-flat prev pull-left" href="#">Atras</a>
+         <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
       </div>
       <div class="tab-pane fade" id="step5">
         <div class="well"> <h2>Step 5</h2> You're Done!</div>
-         <a class="btn btn-success first" href="#">Start over</a>
+        <a class="btn btn-default btn-flat prev pull-left" href="#">Atras</a>
+        <a class="btn btn-secondary btn-flat first pull-right" href="#">Start over</a>
       </div>
    </div>
   
@@ -111,6 +115,13 @@
 
 					  var nextId = $(this).parents('.tab-pane').next().attr("id");
 					  $('[href=#'+nextId+']').tab('show');
+					  return false;
+					  
+					});
+					$('.prev').click(function(){
+
+					  var prevId = $(this).parents('.tab-pane').prev().attr("id");
+					  $('[href=#'+prevId+']').tab('show');
 					  return false;
 					  
 					});
