@@ -84,23 +84,26 @@
             <input class="form-control  input-lg">
             
          </div>
-         <a class="btn btn-default btn-flat prev pull-left" href="#">Atras</a>
+         <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
          <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
       </div>
       <div class="tab-pane fade" id="step3">
         <div class="well"> <h2>Step 3</h2> Add another step here..</div>
-        <a class="btn btn-default btn-flat prev pull-left" href="#">Atras</a>
+        <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
          <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
       </div>
       <div class="tab-pane fade" id="step4">
         <div class="well"> <h2>Step 4</h2> Add another almost done step here..</div>
-        <a class="btn btn-default btn-flat prev pull-left" href="#">Atras</a>
+        <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
          <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
       </div>
       <div class="tab-pane fade" id="step5">
         <div class="well"> <h2>Step 5</h2> You're Done!</div>
-        <a class="btn btn-default btn-flat prev pull-left" href="#">Atras</a>
-        <a class="btn btn-secondary btn-flat first pull-right" href="#">Start over</a>
+        <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
+        <a class="btn btn-secondary btn-flat first pull-left" href="#">Volver a iniciar</a>
+        <a class="btn btn-secondary btn-flat pull-right" href="#">Guardar historia</a>
+        
+
       </div>
    </div>
   
