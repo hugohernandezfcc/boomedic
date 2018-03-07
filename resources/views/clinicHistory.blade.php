@@ -36,7 +36,6 @@ ol.linenums li {
 </style>
     <script src="{{ asset('js/jquery.bootstrap.wizard.js') }}"></script>
     <script src="{{ asset('js/prettify.js') }}"></script>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
 @stop
 @section('content')
 
@@ -99,14 +98,14 @@ ol.linenums li {
 
 
 	<script>
-	$(document).ready(function() {
-	  	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
-			var $total = navigation.find('li').length;
-			var $current = index+1;
-			var $percent = ($current/$total) * 100;
-			$('#rootwizard').find('.progress-bar').css({width:$percent+'%'});
-		}});
-	});
+		$(document).ready(function(e) {
+		  	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+				var $total = navigation.find('li').length;
+				var $current = index+1;
+				var $percent = ($current/$total) * 100;
+				$('#rootwizard').find('.progress-bar').css({width:$percent+'%'});
+			}});
+		});
 	</script>
 
 @stop
