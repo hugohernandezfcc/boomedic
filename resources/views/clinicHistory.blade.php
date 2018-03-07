@@ -42,7 +42,7 @@
      </div>
    </div>
   
-   <div class="navbar">
+   <div class="navbar" style="visibility: hidden">
       <div class="navbar-inner">
             <ul class="nav nav-pills pull-center">
           @foreach($questions as $question) 
