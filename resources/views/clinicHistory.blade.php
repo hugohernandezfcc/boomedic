@@ -96,6 +96,7 @@ ol.linenums li {
 </div>	
 
 <script>
+jQuery.noConflict(true);
 	$(document).ready(function() {
   	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
 		var $total = navigation.find('li').length;
