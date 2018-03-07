@@ -73,7 +73,7 @@
          <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
       </div>
         @endif
-         @if($loop->iteration > 1)
+         @if(($loop->iteration > 1) && !$loop->last)
       <div class="tab-pane fade" id="step{{ $loop->iteration }}">
          <div class="well"> 
           
