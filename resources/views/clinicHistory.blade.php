@@ -168,7 +168,7 @@
              @endforeach     
          </div>
         <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
-        <a class="btn btn-default btn-flat first pull-left" href="#">Volver a iniciar</a>
+        <a class="btn btn-default btn-flat first pull-left" href="#">Volver a iniciar &nbsp;<span class="fa fa-undo"></span></a>
         <a class="btn btn-secondary btn-flat pull-right" href="#">Finalizar</a>
       </div>
        @endif
@@ -197,7 +197,10 @@
 				$(document).ready(function () {
 
 					$('.next').click(function(){
-                       /*     $.ajaxSetup({
+
+					  var nextId = $(this).parents('.tab-pane').next().attr("id");
+					  $('[href=#'+nextId+']').tab('show');
+                                   /*     $.ajaxSetup({
                                   headers: {
                                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                   }
@@ -221,9 +224,6 @@
                                           document.getElementById('address').value = " ";     
                                        }
                                    });*/
-
-					  var nextId = $(this).parents('.tab-pane').next().attr("id");
-					  $('[href=#'+nextId+']').tab('show');
 					  return false;
 					  
 					});
