@@ -35,7 +35,7 @@ class clinicHistory extends Controller
         $clinic_history = DB::table('clinic_history')->get();
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
-            ->select('answers_clinic_history.answer', 'questions_clinic_history.question', 'questions_clinic_history.id')
+            ->select('answers_clinic_history.answer', 'questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
             ->get();
 
 
@@ -132,7 +132,18 @@ class clinicHistory extends Controller
 
         $json = json_decode($request);
         $answers = json_decode($request->answers);
-        $questionsId = $request->question;
+        $question =  DB::table('questions_clinic_history')->where('id',  $request->question)->get();
+
+        $clinic_history = DB::table('clinic_history')->where('user', Auth::id())->get();
+        if(!$clinic_history){
+            $clinic = new clinic_history;
+            $clinic->question_id =  $request->question;
+            $clinic->question = $question->question;
+            $clinic->user = Auth::id();
+            $clinic->answer = $request->answers;
+            $clinic->answer_Id = $request->ansId;
+            $clinic->save();
+        }
 
         return response()->json($request->answers);
 

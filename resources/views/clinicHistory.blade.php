@@ -115,7 +115,8 @@
             <br>
           @php $an = json_decode($questions1->answer); @endphp
             <label>Respuestas:</label><br>
-            <input type="hidden" class="ques" value="{{ $questions1->id }}">
+            <input type="hidden" class="quesId" value="{{ $questions1->id }}">
+            <input type="hidden" class="ansId" value="{{ $questions1->a }}">
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
                         <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]">
@@ -201,10 +202,18 @@
 					  var nextId = $(this).parents('.tab-pane').next().attr("id");
 					  $('[href=#'+nextId+']').tab('show');
             var tab = $(this).parents('.tab-pane').attr("id");
-            var json = JSON.stringify($('#'+tab+' [name="resp[]"]').serializeArray());
-            var ques = $('#'+tab+ ' input[type=hidden]').val();
-            console.log(json);
-            console.log(ques);
+
+                   var values = $('#'+tab+' input:checkbox').map(function() {
+                    if (this.checked) {
+                    return this.value; // obtienes el valor de todos los checkboxes
+                        }
+                    }).get();
+
+            var ques = $('#'+tab+ ' .ques').val();
+            var ansId = $('#'+tab+ ' .ansId').val();
+            console.log(values);
+            console.log(ansId);
+            console.log(quesId);
                       $.ajaxSetup({
                                   headers: {
                                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -214,8 +223,9 @@
                                      $.ajax({     
                                        type: "POST",                 
                                         url: "save",  
-                                        data: { "answers" : json, 
-                                                "question" : ques
+                                        data: { "answers" : values, 
+                                                "question" : ques,
+                                                "ansId"    : ansId
                                       }, 
                                         dataType: 'json',                
                                        success: function(data)             
