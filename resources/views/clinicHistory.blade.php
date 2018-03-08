@@ -213,10 +213,9 @@
 
                                      $.ajax({     
                                        type: "POST",                 
-                                        url: "clinicHistory/save",  
+                                        url: "save",  
                                         data: { "answers" : json, 
-                                                "question" : ques, 
-
+                                                "question" : ques
                                       }, 
                                         dataType: 'json',                
                                        success: function(data)             
