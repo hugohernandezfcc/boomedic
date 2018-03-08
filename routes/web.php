@@ -258,12 +258,15 @@ Route::group(['prefix' => 'clinicHistory'], function(){
 	);
 
 	Route::get('store/{id}', [
+			'uses'	=>	'clinicHistory@save',
+			'as'	=>	'save'
+		]
+	);
+	Route::get('save', [
 			'uses'	=>	'clinicHistory@store',
 			'as'	=>	'store'
 		]
 	);
-	
-
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'clinicHistory@redirecting',
 			'as'	=>	'redirecting'

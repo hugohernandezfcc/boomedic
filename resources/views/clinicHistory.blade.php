@@ -200,30 +200,22 @@
 
 					  var nextId = $(this).parents('.tab-pane').next().attr("id");
 					  $('[href=#'+nextId+']').tab('show');
-                                   /*     $.ajaxSetup({
+                      $.ajaxSetup({
                                   headers: {
                                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                   }
                               });
-                           var address1 = document.getElementById('address').value;
+
                                      $.ajax({     
                                        type: "POST",                 
                                         url: "clinicHistory/save",  
-                                        data: { "search" : address1 }, 
+                                        data: { "search" : 'address1' }, 
                                         dataType: 'json',                
                                        success: function(data)             
                                        {
-                                console.log(JSON.parse(data).reverse());
-                                 var data1 = JSON.parse(data).reverse(); 
-                                 $('#recentS').show();
-                                 $(".recent").remove();
-
-                                        for(var z=0; z < data1.length; z++){
-                                           $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ data1[z] +'<br/></a>');
-                                         }
-                                          document.getElementById('address').value = " ";     
+                                        alert('Hola mundo');
                                        }
-                                   });*/
+                                   });
 					  return false;
 					  
 					});

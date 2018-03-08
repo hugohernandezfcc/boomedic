@@ -127,14 +127,13 @@ class clinicHistory extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function save(Request $request)
+  {     $user = User::find(Auth::id());
 
-    DB::delete('delete from privacy_statement where id = ?',[$id]) ;
-    
-    // redirect
-    
-        return redirect('clinicHistory/index');
+        $json = json_decode($request);
+
+        return response()->json($request);
+
     }
 
     
