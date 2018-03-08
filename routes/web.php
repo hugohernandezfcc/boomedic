@@ -257,7 +257,7 @@ Route::group(['prefix' => 'clinicHistory'], function(){
 		]
 	);
 
-	Route::get('save', [
+	Route::post('save', [
 			'uses'	=>	'clinicHistory@save',
 			'as'	=>	'save'
 		]
