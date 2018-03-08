@@ -3,7 +3,9 @@
 @section('title', 'Boomedic')
 
 @section('content')
+
 	<style type="text/css">
+
 	 .progress-bar {
 	 	background-color: #3E3E3E;
 	 }
@@ -24,6 +26,64 @@
       float: none !important;
       display: inline-block !important;
     }
+    .checkbox {
+    padding-left: 20px; }
+
+    .checkbox label {
+    display: inline-block;
+    position: relative;
+    padding-left: 5px; }
+
+    .checkbox label::before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      width: 17px;
+      height: 17px;
+      left: 0;
+      margin-left: -20px;
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+      background-color: #fff;
+      -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+      -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+      transition: border 0.15s ease-in-out, color 0.15s ease-in-out; }
+
+    .checkbox label::after {
+      display: inline-block;
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      left: 0;
+      top: 0;
+      margin-left: -20px;
+      padding-left: 3px;
+      padding-top: 1px;
+      font-size: 11px;
+      color: #555555; }
+
+    .checkbox input[type="checkbox"] {
+      opacity: 0; }
+
+
+    .checkbox input[type="checkbox"]:checked + label::after {
+      font-family: 'FontAwesome';
+      content: "\f00c"; }
+
+    .checkbox input[type="checkbox"]:disabled + label {
+      opacity: 0.65; }
+
+      .checkbox input[type="checkbox"]:disabled + label::before {
+        background-color: #eeeeee;
+        cursor: not-allowed; }
+
+        .checkbox-primary input[type="checkbox"]:checked + label::before {
+  background-color: #3E3E3E;
+  border-color: #3E3E3E; }
+
+.checkbox-primary input[type="checkbox"]:checked + label::after {
+  color: #fff; }
+
 	</style>
 <div class="box">
   	<div class="box-header with-border">
