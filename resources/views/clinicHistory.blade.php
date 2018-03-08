@@ -45,16 +45,21 @@
 
    <div class="tab-content">
    	@foreach($questions as $questions1) 
+
       @if($loop->iteration == 1)
       <div class="tab-pane fade in active" id="step1">
          
         <div class="well"> 
           
-            <label>{{ $questions1->question }}</label>
+            <h3>{{ $questions1->question }}</h3>
             <br>
-            <label>Enter Response</label>
-            <input class="form-control input-lg">
-            
+          @php $an = json_decode($questions1->answer); @endphp
+            <label>Respuestas:</label><br>
+            @foreach($an as $an)
+
+                        <input type="checkbox" id="{{ $an }}" value="{{ $an }}"> <label for="{{ $an }}">{{ $an }}</label><br>
+             @endforeach         
+
         </div>
 
          <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
@@ -63,10 +68,14 @@
          @if(($loop->iteration > 1) && !$loop->last)
       <div class="tab-pane fade" id="step{{ $loop->iteration }}">
          <div class="well"> 
-            <label>{{ $questions1->question }}</label>
+            <h3>{{ $questions1->question }}</h3>
             <br>
-            <label>Enter Response</label>
-            <input class="form-control  input-lg">
+            @php $an = json_decode($questions1->answer); @endphp
+            <label>Respuestas:</label><br>
+            @foreach($an as $an)
+                        <input type="checkbox" id="{{ $an }}" value="{{ $an }}"> <label for="{{ $an }}">{{ $an }}</label><br>
+             @endforeach         
+
          </div>
          <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
          <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
@@ -75,10 +84,13 @@
        @if($loop->last)
       <div class="tab-pane fade" id="step{{ $loop->iteration }}">
          <div class="well"> 
-            <label>{{ $questions1->question }}</label>
+            <h3>{{ $questions1->question }}</h3>
             <br>
-            <label>Enter Response</label>
-            <input class="form-control  input-lg">
+            @php $an = json_decode($questions1->answer); @endphp
+            <label>Respuestas:</label><br>
+            @foreach($an as $an)
+                        <input type="checkbox" id="{{ $an }}" value="{{ $an }}"> <label for="{{ $an }}">{{ $an }}</label><br>
+             @endforeach     
          </div>
         <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
         <a class="btn btn-secondary btn-flat first pull-left" href="#">Volver a iniciar</a>
@@ -108,6 +120,7 @@
 
 				<script>
 				$(document).ready(function () {
+
 					$('.next').click(function(){
 
 					  var nextId = $(this).parents('.tab-pane').next().attr("id");
