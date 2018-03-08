@@ -115,9 +115,10 @@
             <br>
           @php $an = json_decode($questions1->answer); @endphp
             <label>Respuestas:</label><br>
+            <input type="hidden" id="$questions1->id" value="$questions1->id">
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]">
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
@@ -126,7 +127,7 @@
 
         </div>
 
-         <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
+         <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
       </div>
         @endif
          @if(($loop->iteration > 1) && !$loop->last)
@@ -146,8 +147,8 @@
              @endforeach         
 
          </div>
-         <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
-         <a class="btn btn-secondary btn-flat next pull-right" href="#">Siguiente</a>
+         <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
+         <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
       </div>
       @endif
        @if($loop->last)
@@ -166,9 +167,9 @@
                     </div>
              @endforeach     
          </div>
-        <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
-        <a class="btn btn-secondary btn-flat first pull-left" href="#">Volver a iniciar</a>
-        <a class="btn btn-secondary btn-flat pull-right" href="#">Guardar historia</a>
+        <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
+        <a class="btn btn-default btn-flat first pull-left" href="#">Volver a iniciar</a>
+        <a class="btn btn-secondary btn-flat pull-right" href="#">Finalizar</a>
       </div>
        @endif
       @endforeach
@@ -196,6 +197,30 @@
 				$(document).ready(function () {
 
 					$('.next').click(function(){
+                       /*     $.ajaxSetup({
+                                  headers: {
+                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                  }
+                              });
+                           var address1 = document.getElementById('address').value;
+                                     $.ajax({     
+                                       type: "POST",                 
+                                        url: "clinicHistory/save",  
+                                        data: { "search" : address1 }, 
+                                        dataType: 'json',                
+                                       success: function(data)             
+                                       {
+                                console.log(JSON.parse(data).reverse());
+                                 var data1 = JSON.parse(data).reverse(); 
+                                 $('#recentS').show();
+                                 $(".recent").remove();
+
+                                        for(var z=0; z < data1.length; z++){
+                                           $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ data1[z] +'<br/></a>');
+                                         }
+                                          document.getElementById('address').value = " ";     
+                                       }
+                                   });*/
 
 					  var nextId = $(this).parents('.tab-pane').next().attr("id");
 					  $('[href=#'+nextId+']').tab('show');
