@@ -131,8 +131,10 @@ class clinicHistory extends Controller
   {     $user = User::find(Auth::id());
 
         $json = json_decode($request);
+        $answers = json_decode($request->answers);
+        $questionsId = $request->question;
 
-        return response()->json($request);
+        return response()->json($request->answers);
 
     }
 
