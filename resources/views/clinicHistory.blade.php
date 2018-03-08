@@ -56,8 +56,12 @@
           @php $an = json_decode($questions1->answer); @endphp
             <label>Respuestas:</label><br>
             @foreach($an as $an)
-
-                        <input type="checkbox" id="{{ $an }}" value="{{ $an }}"> <label for="{{ $an }}">{{ $an }}</label><br>
+                    <div class="checkbox checkbox-primary">
+                        <input id="{{ $an }}" type="checkbox" value="{{ $an }}">
+                        <label for="{{ $an }}">
+                            {{ $an }}
+                        </label>
+                    </div>
              @endforeach         
 
         </div>
@@ -73,7 +77,12 @@
             @php $an = json_decode($questions1->answer); @endphp
             <label>Respuestas:</label><br>
             @foreach($an as $an)
-                        <input type="checkbox" id="{{ $an }}" value="{{ $an }}"> <label for="{{ $an }}">{{ $an }}</label><br>
+                    <div class="checkbox checkbox-primary">
+                        <input id="{{ $an }}" type="checkbox" value="{{ $an }}">
+                        <label for="{{ $an }}">
+                            {{ $an }}
+                        </label>
+                    </div>
              @endforeach         
 
          </div>
@@ -89,7 +98,12 @@
             @php $an = json_decode($questions1->answer); @endphp
             <label>Respuestas:</label><br>
             @foreach($an as $an)
-                        <input type="checkbox" id="{{ $an }}" value="{{ $an }}"> <label for="{{ $an }}">{{ $an }}</label><br>
+                    <div class="checkbox checkbox-primary">
+                        <input id="{{ $an }}" type="checkbox" value="{{ $an }}">
+                        <label for="{{ $an }}">
+                            {{ $an }}
+                        </label>
+                    </div>
              @endforeach     
          </div>
         <a class="btn btn-default btn-flat prev pull-left" href="#">Atrás</a>
