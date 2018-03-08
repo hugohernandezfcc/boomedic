@@ -138,14 +138,17 @@
             <br>
             @php $an = json_decode($questions1->answer); @endphp
             <label>Respuestas:</label><br>
+            <input type="hidden" class="quesId" value="{{ $questions1->id }}">
+            <input type="hidden" class="ansId" value="{{ $questions1->a }}">
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]">
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
                     </div>
              @endforeach         
+     
 
          </div>
          <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
@@ -159,14 +162,17 @@
             <br>
             @php $an = json_decode($questions1->answer); @endphp
             <label>Respuestas:</label><br>
+             <input type="hidden" class="quesId" value="{{ $questions1->id }}">
+            <input type="hidden" class="ansId" value="{{ $questions1->a }}">
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]">
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
                     </div>
-             @endforeach     
+             @endforeach         
+
          </div>
         <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
         <a class="btn btn-default btn-flat first pull-left" href="#">Volver a iniciar &nbsp;<span class="fa fa-undo"></span></a>
@@ -209,11 +215,11 @@
                         }
                     }).get();
 
-            var ques = $('#'+tab+ ' .ques').val();
+            var ques = $('#'+tab+ ' .quesId').val();
             var ansId = $('#'+tab+ ' .ansId').val();
-            console.log(values);
+            console.log(JSON.stringify(values));
             console.log(ansId);
-            console.log(quesId);
+            console.log(ques);
                       $.ajaxSetup({
                                   headers: {
                                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -223,14 +229,14 @@
                                      $.ajax({     
                                        type: "POST",                 
                                         url: "save",  
-                                        data: { "answers" : values, 
+                                        data: { "answers" : JSON.stringify(values), 
                                                 "question" : ques,
                                                 "ansId"    : ansId
                                       }, 
                                         dataType: 'json',                
                                        success: function(data)             
                                        {
-                                        alert('Hola mundo');
+                                        alert(data);
                                        }
                                    });
 					  return false;

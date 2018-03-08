@@ -132,13 +132,13 @@ class clinicHistory extends Controller
 
         $json = json_decode($request);
         $answers = json_decode($request->answers);
-        $question =  DB::table('questions_clinic_history')->where('id',  $request->question)->get();
+        $q = DB::table('questions_clinic_history')->where('id', $request->question)->first();
 
         $clinic_history = DB::table('clinic_history')->where('user', Auth::id())->get();
         if(!$clinic_history){
             $clinic = new clinic_history;
             $clinic->question_id =  $request->question;
-            $clinic->question = $question->question;
+            $clinic->question = $q->question;
             $clinic->user = Auth::id();
             $clinic->answer = $request->answers;
             $clinic->answer_Id = $request->ansId;
