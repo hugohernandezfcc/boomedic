@@ -13,7 +13,7 @@ class clinic_history extends Model
 		'answer_id',
 		'question_id',
 		'question',
-		'user'
+		'userid'
     ];
 
     public function user(){

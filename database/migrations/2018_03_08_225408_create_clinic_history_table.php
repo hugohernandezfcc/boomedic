@@ -15,8 +15,8 @@ class CreateClinicHistoryTable extends Migration
     {
         Schema::create('clinic_history', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user')->unsigned();
-            $table->foreign('user')->references('id')->on('users');
+            $table->integer('userid')->unsigned();
+            $table->foreign('userid')->references('id')->on('users');
             $table->integer('question_id')->nullable();
             $table->text('question')->nullable();
             $table->integer('answer_id')->nullable();
