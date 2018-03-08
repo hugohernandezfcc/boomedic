@@ -117,8 +117,8 @@
             <label>Respuestas:</label><br>
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                        <input id="{{ $an }}" type="checkbox" value="{{ $an }}">
-                        <label for="{{ $an }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}">
+                        <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
                     </div>
@@ -138,8 +138,8 @@
             <label>Respuestas:</label><br>
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                        <input id="{{ $an }}" type="checkbox" value="{{ $an }}">
-                        <label for="{{ $an }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}">
+                        <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
                     </div>
@@ -159,8 +159,8 @@
             <label>Respuestas:</label><br>
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                        <input id="{{ $an }}" type="checkbox" value="{{ $an }}">
-                        <label for="{{ $an }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}">
+                        <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
                     </div>

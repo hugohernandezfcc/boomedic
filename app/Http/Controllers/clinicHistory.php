@@ -35,7 +35,7 @@ class clinicHistory extends Controller
         $clinic_history = DB::table('clinic_history')->get();
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
-            ->select('answers_clinic_history.answer', 'questions_clinic_history.question')
+            ->select('answers_clinic_history.answer', 'questions_clinic_history.question', 'questions_clinic_history.id')
             ->get();
 
 
