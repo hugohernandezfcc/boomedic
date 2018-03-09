@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
-use App\clinic;
+use App\clinic_history;
 use App\answers_clinic_history;
 use App\questions_clinic_history;
 
@@ -122,20 +122,30 @@ class clinicHistory extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Store a newly created resource in storage.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function save(Request $request)
-  {    
- 
+  {     $user = User::find(Auth::id());
 
-            $clinic = new clinic;
+        $json = json_decode($request);
+        $answers = json_decode($request->answers);
+        $q = DB::table('questions_clinic_history')->where('id', $request->question)->first();
+
+        $history = DB::table('clinic_history')->where('userid', Auth::id())->get();
+        if(!$history){
+            $clinic = new clinic_history;
             $clinic->userid = Auth::id();
+            $clinic->question_id =  $request->question;
+            $clinic->question = $q->question;
+            $clinic->answer = $request->answers;
+            $clinic->answer_Id = $request->ansId;
+            $clinic->save();
+        }
 
-           if ($clinic->save()) 
-         return redirect('/medicalconsultations');
+        return response()->json($request->answers);
 
     }
 
