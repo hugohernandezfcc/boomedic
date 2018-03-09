@@ -17,6 +17,6 @@ class clinic_history extends Model
     ];
 
     public function userid(){
-	  eturn $this->belongsTo('App\User', 'userid');
+	  return $this->belongsTo('App\User', 'userid');
 	}
 }
