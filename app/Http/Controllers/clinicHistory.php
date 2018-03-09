@@ -174,7 +174,7 @@ class clinicHistory extends Controller
 
         $history = DB::table('clinic_history')->where('userid', Auth::id())->where('question_id', $request->question)->first();
         
-
+        
         if($history){
                 $clinic = clinic_history::find($history->id);
                 $clinic->answer = $request->answers;
