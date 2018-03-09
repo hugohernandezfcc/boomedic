@@ -154,14 +154,14 @@ class clinicHistory extends Controller
 
         $q = DB::table('questions_clinic_history')->where('id', $request->question)->first();
 
-        $history = DB::table('clinic_history')->where('userid', Auth::id())->orWhere('question_id', $request->question)->first();
+        $history = DB::table('clinic_history')->where('userid', Auth::id())->where('question_id', $request->question)->first();
         
 
         if($history){
-                $history2 = clinic_history::find($history->id);
-                $history2->answer = $request->answers;
-                $history2->answer_id = $request->ansId;
-                $history2->save();
+                $clinic = clinic_history::find($history->id);
+                $clinic->answer = $request->answers;
+                $clinic->answer_id = $request->ansId;
+               
          } else {
             $clinic = new clinic_history;
             $clinic->userid = Auth::id();
@@ -169,11 +169,11 @@ class clinicHistory extends Controller
             $clinic->question = $q->question;
             $clinic->answer = $request->answers;
             $clinic->answer_id = $request->ansId;
-            $clinic->save();
+
                 }
          
-
-        return response()->json($history->id);
+        if( $clinic->save())        
+        return response()->json($clinic->id);
 
     }
 
