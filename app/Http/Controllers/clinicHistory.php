@@ -70,18 +70,27 @@ class clinicHistory extends Controller
      */
     public function store(Request $request)
     {
-         $user = User::find(Auth::id());
+        $user = User::find(Auth::id());
 
-        $history = DB::table('clinic_history')->where('userid', Auth::id())->get();
-                    $clinic = new clinic_history;
 
+        $history = DB::table('clinic_history')->where('userid', Auth::id())->orWhere('question_id', '1')->first();
+
+
+        if($history){
+                $history2 = clinic_history::find($history->id);
+                $history2->answer = '["papa"]';
+                $history2->answer_id = '3';
+                $history2->save();
+         } else {
+            $clinic = new clinic_history;
             $clinic->userid = Auth::id();
             $clinic->question_id =  '1';
             $clinic->question = 'question1';
             $clinic->answer = '["papa"]';
             $clinic->answer_id = '2';
+            $clinic->save();
+                }
 
-        if ($clinic->save()) 
          return redirect('medicalconsultations');
     
     }
@@ -143,21 +152,28 @@ class clinicHistory extends Controller
     public function save(Request $request)
   {     $user = User::find(Auth::id());
 
-        $json = json_decode($request);
-        $answers = json_decode($request->answers);
         $q = DB::table('questions_clinic_history')->where('id', $request->question)->first();
 
-        $history = DB::table('clinic_history')->where('userid', Auth::id())->get();
-        $clinic = new clinic_history;
+        $history = DB::table('clinic_history')->where('userid', Auth::id())->orWhere('question_id', $request->question)->first();
         
+
+        if($history){
+                $history2 = clinic_history::find($history->id);
+                $history2->answer = $request->answers;
+                $history2->answer_id = $request->ansId;
+                $history2->save();
+         } else {
+            $clinic = new clinic_history;
             $clinic->userid = Auth::id();
             $clinic->question_id =  $request->question;
             $clinic->question = $q->question;
             $clinic->answer = $request->answers;
             $clinic->answer_id = $request->ansId;
+            $clinic->save();
+                }
          
-        if ($clinic->save()) 
-        return response()->json($request->answers);
+
+        return response()->json($history->id);
 
     }
 
