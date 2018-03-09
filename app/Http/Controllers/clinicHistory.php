@@ -70,7 +70,17 @@ class clinicHistory extends Controller
      */
     public function store(Request $request)
     {
+         $user = User::find(Auth::id());
 
+        $history = DB::table('clinic_history')->where('userid', Auth::id())->get();
+        if(!$history){
+            $clinic = new clinic;
+            $clinic->userid = Auth::id();
+            $clinic->save();
+        }
+
+       return redirect('medicalconsultations');
+    
     }
 
     /**

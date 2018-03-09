@@ -262,7 +262,7 @@ Route::group(['prefix' => 'clinicHistory'], function(){
 			'as'	=>	'save'
 		]
 	);
-	Route::get('save', [
+	Route::get('store', [
 			'uses'	=>	'clinicHistory@store',
 			'as'	=>	'store'
 		]
