@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class clinic_history extends Model
+class clinic extends Model
 {
     protected $table = "clinic_history";
     protected $fillable = [
@@ -16,7 +16,7 @@ class clinic_history extends Model
 		'userid'
     ];
 
-    public function userid(){
+    public function user(){
 	  return $this->belongsTo('App\User', 'userid');
 	}
 }
