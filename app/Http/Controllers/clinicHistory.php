@@ -47,6 +47,7 @@ class clinicHistory extends Controller
                 'date'              => $user->created_at,
                 'questions'         => $question,
                 'clinic_history'    => $clinic_history,
+                'mode'              => 'null'
             ]
         );
     }
@@ -101,9 +102,26 @@ class clinicHistory extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $user = User::find(Auth::id());
+        $clinic_history = DB::table('clinic_history')->get();
+        $question = DB::table('questions_clinic_history')
+            ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+            ->select('answers_clinic_history.answer', 'questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
+            ->get();
+        return view('clinicHistory', [
+                'userId'            => $user->id,
+                'username'          => $user->username,
+                'name'              => $user->name,
+                'photo'             => $user->profile_photo,
+                'date'              => $user->created_at,
+                'questions'         => $question,
+                'clinic_history'    => $clinic_history,
+                'mode'              => 'finish'
+            ]
+        );
+    
     }
 
     /**

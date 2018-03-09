@@ -89,6 +89,7 @@
   	<div class="box-header with-border">
 	    <h3 class="box-title">Historia Clínica</h3>
   	</div>
+  @if($mode == 'null')  
   	<div class="box-body">
   <div class="container" id="myWizard">
 
@@ -176,7 +177,8 @@
          </div>
         <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
         <a class="btn btn-default btn-flat first pull-left" href="#">Volver a iniciar &nbsp;<span class="fa fa-undo"></span></a>
-        <a class="btn btn-secondary btn-flat pull-right" href="#">Finalizar</a>
+        <a class="btn btn-secondary btn-flat pull-right finish" href="#">Finalizar</a>
+        <a id="finish" href="cHistory" style="visibility: hidden;"></a>
       </div>
        @endif
       @endforeach
@@ -197,6 +199,9 @@
       </div>
    </div>
 </div>
+@endif
+@if($mode == 'finish')
+@endif
             </div>
         </div>
 
@@ -269,6 +274,43 @@
 					  $('#wiz a:first').tab('show')
 
 					});
+          $('.finish').click(function(){
+
+                        var tab = $(this).parents('.tab-pane').attr("id");
+                         var values = $('#'+tab+' input:checkbox').map(function() {
+                          if (this.checked) {
+                          return this.value; // obtienes el valor de todos los checkboxes
+                              }
+                          }).get();
+
+                        var ques = $('#'+tab+ ' .quesId').val();
+                        var ansId = $('#'+tab+ ' .ansId').val();
+                        console.log(JSON.stringify(values));
+                        console.log(ansId);
+                        console.log(ques);
+                                  $.ajaxSetup({
+                                  headers: {
+                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                  }
+                              });
+
+                                     $.ajax({     
+                                       type: "POST",                 
+                                        url: "save",  
+                                        data: { "answers" : JSON.stringify(values), 
+                                                "question" : ques,
+                                                "ansId"    : ansId
+                                      }, 
+                                        dataType: 'json',                
+                                       success: function(data)             
+                                       {
+                                          
+                                        console.log(data);
+                                       }
+                                   });
+                         window.open('cHistory', '_self');
+
+          })
 
 				})
 				</script>
