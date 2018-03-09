@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
-use App\clinic;
+use App\clinic_history;
 use App\answers_clinic_history;
 use App\questions_clinic_history;
 
@@ -73,13 +73,16 @@ class clinicHistory extends Controller
          $user = User::find(Auth::id());
 
         $history = DB::table('clinic_history')->where('userid', Auth::id())->get();
-        if(!$history){
-            $clinic = new clinic;
-            $clinic->userid = Auth::id();
-            $clinic->save();
-        }
+                    $clinic = new clinic_history;
 
-       return redirect('medicalconsultations');
+            $clinic->userid = Auth::id();
+            $clinic->question_id =  '1';
+            $clinic->question = 'question1';
+            $clinic->answer = '["papa"]';
+            $clinic->answer_id = '2';
+
+        if ($clinic->save()) 
+         return redirect('medicalconsultations');
     
     }
 
@@ -145,16 +148,15 @@ class clinicHistory extends Controller
         $q = DB::table('questions_clinic_history')->where('id', $request->question)->first();
 
         $history = DB::table('clinic_history')->where('userid', Auth::id())->get();
-        if(!$history){
-            $clinic = new clinic;
+        $clinic = new clinic_history;
+        
             $clinic->userid = Auth::id();
             $clinic->question_id =  $request->question;
             $clinic->question = $q->question;
             $clinic->answer = $request->answers;
-            $clinic->answer_Id = $request->ansId;
-            $clinic->save();
-        }
-
+            $clinic->answer_id = $request->ansId;
+         
+        if ($clinic->save()) 
         return response()->json($request->answers);
 
     }
