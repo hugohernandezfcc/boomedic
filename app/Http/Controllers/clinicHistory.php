@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
-use App\clinic_history;
+use App\clinic;
 use App\answers_clinic_history;
 use App\questions_clinic_history;
 
@@ -136,10 +136,12 @@ class clinicHistory extends Controller
 
         $history = DB::table('clinic_history')->where('userid', Auth::id())->get();
         if(!$history){
-            $clinic = new questions_clinic_history;
-
+            $clinic = new clinic;
+            $clinic->userid = Auth::id();
+            $clinic->question_id =  $request->question;
             $clinic->question = $q->question;
-
+            $clinic->answer = $request->answers;
+            $clinic->answer_Id = $request->ansId;
             $clinic->save();
         }
 
