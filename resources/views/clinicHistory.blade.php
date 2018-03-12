@@ -220,7 +220,7 @@
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline">
-      @foreach($clinic_history->sortByDesc('type') as $clinic)
+      @foreach($clinic_history->sortBy('type') as $clinic)
 
             <!-- timeline time label -->
             @if($clinic->type == 'Antecedentes Familiares')
@@ -262,7 +262,7 @@
             <!-- timeline item -->
 
             <li>
-              <i class="fa fa-users bg-gray"></i>
+              <i class="fa fa-stethoscope bg-gray"></i>
 
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
@@ -287,7 +287,7 @@
             <!-- timeline item -->
 
             <li>
-              <i class="fa fa-users bg-black"></i>
+              <i class="fa fa-medkit bg-black"></i>
 
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
@@ -312,7 +312,7 @@
             <!-- timeline item -->
 
             <li>
-              <i class="fa fa-users bg-green"></i>
+              <i class="fa fa-coffee bg-green"></i>
 
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
