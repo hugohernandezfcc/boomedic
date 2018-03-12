@@ -222,7 +222,7 @@
             <!-- /.timeline-label -->
             <!-- timeline item -->
             <li>
-              <i class="fa fa-user bg-blue"></i>
+              <i class="fa fa-stethoscope bg-blue"></i>
 
               <div class="timeline-item">
               <!-- <span class="time"><i class="fa fa-clock-o"></i> </span> -->
@@ -230,10 +230,8 @@
                 <h3 class="timeline-header">Tipo Heredofamiliares</h3>
 
                 <div class="timeline-body">
-                  Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                  weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                  jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                  quora plaxo ideeli hulu weebly balihoo...
+                  question <br>
+                  answer
                 </div>
               </div>
             </li>
