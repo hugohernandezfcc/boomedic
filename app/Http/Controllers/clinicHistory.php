@@ -105,7 +105,11 @@ class clinicHistory extends Controller
     public function show()
     {
         $user = User::find(Auth::id());
-        $clinic_history = DB::table('clinic_history')->get();
+        $clinic_history = DB::table('clinic_history')
+                ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                ->where('userid', Auth::id())
+                ->select('clinic_history.*', 'questions_clinic_history.text_help')
+                ->get();
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
             ->select('answers_clinic_history.answer', 'questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
@@ -172,7 +176,8 @@ class clinicHistory extends Controller
 
         $q = DB::table('questions_clinic_history')->where('id', $request->question)->first();
 
-        $history = DB::table('clinic_history')->where('userid', Auth::id())->where('question_id', $request->question)->first();
+        $history = DB::table('clinic_history')
+        ->where('userid', Auth::id())->where('question_id', $request->question)->first();
         
         
         if($history){
