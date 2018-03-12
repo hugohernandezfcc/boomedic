@@ -85,11 +85,13 @@
   color: #fff; }
 
 	</style>
+     @if($mode == 'null')  
 <div class="box">
+
   	<div class="box-header with-border">
 	    <h3 class="box-title">Historia Clínica</h3>
   	</div>
-  @if($mode == 'null')  
+ 
   	<div class="box-body">
   <div class="container" id="myWizard">
 
@@ -203,19 +205,6 @@
 @if($mode == 'finish')
 
 
-
-    <section class="content-header">
-      <h1>
-        Timeline
-        <small>example</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">UI</a></li>
-        <li class="active">Timeline</li>
-      </ol>
-    </section>
-
     <!-- Main content -->
     <section class="content">
 
@@ -226,29 +215,25 @@
           <ul class="timeline">
             <!-- timeline time label -->
             <li class="time-label">
-                  <span class="bg-red">
-                    10 Feb. 2014
+                  <span class="bg-black">
+                    Historia Clínica
                   </span>
             </li>
             <!-- /.timeline-label -->
             <!-- timeline item -->
             <li>
-              <i class="fa fa-envelope bg-blue"></i>
+              <i class="fa fa-user bg-blue"></i>
 
               <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+              <!-- <span class="time"><i class="fa fa-clock-o"></i> </span> -->
 
-                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                <h3 class="timeline-header">Tipo Heredofamiliares</h3>
 
                 <div class="timeline-body">
                   Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
                   weebly ning heekya handango imeem plugg dopplr jibjab, movity
                   jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
                   quora plaxo ideeli hulu weebly balihoo...
-                </div>
-                <div class="timeline-footer">
-                  <a class="btn btn-primary btn-xs">Read more</a>
-                  <a class="btn btn-danger btn-xs">Delete</a>
                 </div>
               </div>
             </li>
@@ -301,6 +286,7 @@
                 <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
 
                 <div class="timeline-body">
+                  
                   <img src="http://placehold.it/150x100" alt="..." class="margin">
                   <img src="http://placehold.it/150x100" alt="..." class="margin">
                   <img src="http://placehold.it/150x100" alt="..." class="margin">
@@ -338,56 +324,6 @@
       </div>
       <!-- /.row -->
 
-      <div class="row" style="margin-top: 10px;">
-        <div class="col-md-12">
-          <div class="box box-primary">
-            <div class="box-header">
-              <h3 class="box-title"><i class="fa fa-code"></i> Timeline Markup</h3>
-            </div>
-            <div class="box-body">
-                  <pre style="font-weight: 600;">&lt;ul class="timeline"&gt;
-
-    &lt;!-- timeline time label --&gt;
-    &lt;li class="time-label"&gt;
-        &lt;span class="bg-red"&gt;
-            10 Feb. 2014
-        &lt;/span&gt;
-    &lt;/li&gt;
-    &lt;!-- /.timeline-label --&gt;
-
-    &lt;!-- timeline item --&gt;
-    &lt;li&gt;
-        &lt;!-- timeline icon --&gt;
-        &lt;i class="fa fa-envelope bg-blue"&gt;&lt;/i&gt;
-        &lt;div class="timeline-item"&gt;
-            &lt;span class="time"&gt;&lt;i class="fa fa-clock-o"&gt;&lt;/i&gt; 12:05&lt;/span&gt;
-
-            &lt;h3 class="timeline-header"&gt;&lt;a href="#"&gt;Support Team&lt;/a&gt; ...&lt;/h3&gt;
-
-            &lt;div class="timeline-body"&gt;
-                ...
-                Content goes here
-            &lt;/div&gt;
-
-            &lt;div class="timeline-footer"&gt;
-                &lt;a class="btn btn-primary btn-xs"&gt;...&lt;/a&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/li&gt;
-    &lt;!-- END timeline item --&gt;
-
-    ...
-
-&lt;/ul&gt;
-                  </pre>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
 
     <div><div class="row docs-premium-template">
                     <div class="col-sm-12 col-md-6">
