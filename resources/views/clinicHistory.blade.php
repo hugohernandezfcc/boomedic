@@ -220,17 +220,25 @@
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline">
+            @php
+            $t1 = 0; 
+            $t2 = 0; 
+            $t3 = 0;
+            $t4 = 0;
+            $t5 = 0;                         
+            @endphp
       @foreach($clinic_history->sortBy('type') as $clinic)
 
             <!-- timeline time label -->
             @if($clinic->type == 'Antecedentes Familiares')
-
+             @php $t1++; @endphp
+             @if($t1 == 1)
             <li class="time-label">
                   <span class="bg-blue">
-                   {{ $clinic->type }}
+                   {{ $clinic->type }} 
                   </span>
             </li>
-
+            @endif
 
 
             <!-- /.timeline-label -->
@@ -253,11 +261,14 @@
             </li>
             @endif
              @if($clinic->type == 'Antecedentes Morbidos')
+             @php $t2++; @endphp
+             @if($t2 == 1)
             <li class="time-label">
                   <span class="bg-gray">
                    Antecedentes Mórbidos
                   </span>
             </li>
+            @endif
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
@@ -278,11 +289,14 @@
             </li>
             @endif
            @if($clinic->type == 'Alergias')
+           @php $t3++; @endphp
+             @if($t3 == 1)
             <li class="time-label">
                   <span class="bg-black">
                    Alergias
                   </span>
             </li>
+            @endif
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
@@ -302,12 +316,15 @@
               </div>
             </li>
             @endif
-                       @if($clinic->type == 'Habitos')
+           @if($clinic->type == 'Habitos')
+            @php $t4++; @endphp
+             @if($t4 == 1)
             <li class="time-label">
                   <span class="bg-green">
                    Hábitos
                   </span>
             </li>
+            @endif
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
