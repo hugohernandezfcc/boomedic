@@ -208,29 +208,41 @@
 
 
     <!-- Main content -->
-    <section class="content">
+     <div class="box-header">
+      <h3 class="box-title">
+                Historia Clínica
 
+              </h3>
+     </div><br/>
+        <div class="box-body">
       <!-- row -->
-      <div class="row">
+     <div class="row">
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline">
+      @foreach($clinic_history->sortByDesc('type') as $clinic)
+
             <!-- timeline time label -->
+            @if($clinic->type == 'Antecedentes Familiares')
+
             <li class="time-label">
-                  <span class="bg-black">
-                    Historia Clínica
+                  <span class="bg-blue">
+                   {{ $clinic->type }}
                   </span>
             </li>
+
+
+
             <!-- /.timeline-label -->
             <!-- timeline item -->
-            @foreach($clinic_history->sortByDesc('updated_at') as $clinic)
+
             <li>
-              <i class="fa fa-stethoscope bg-green"></i>
+              <i class="fa fa-users bg-blue"></i>
 
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a> <span class="text-muted" style="font-size: 11px;"> Heredofamiliares </span></h3>
+                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -239,12 +251,91 @@
                 </div>
               </div>
             </li>
+            @endif
+             @if($clinic->type == 'Antecedentes Morbidos')
+            <li class="time-label">
+                  <span class="bg-gray">
+                   Antecedentes Mórbidos
+                  </span>
+            </li>
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+
+            <li>
+              <i class="fa fa-users bg-gray"></i>
+
+              <div class="timeline-item">
+              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
+
+                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <div class="timeline-body">
+                   @php $a = json_decode($clinic->answer); @endphp
+                  @foreach($a as $answer)
+                 <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }}<br>
+                  @endforeach
+                </div>
+              </div>
+            </li>
+            @endif
+           @if($clinic->type == 'Alergias')
+            <li class="time-label">
+                  <span class="bg-black">
+                   Alergias
+                  </span>
+            </li>
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+
+            <li>
+              <i class="fa fa-users bg-black"></i>
+
+              <div class="timeline-item">
+              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
+
+                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <div class="timeline-body">
+                   @php $a = json_decode($clinic->answer); @endphp
+                  @foreach($a as $answer)
+                 <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }}<br>
+                  @endforeach
+                </div>
+              </div>
+            </li>
+            @endif
+                       @if($clinic->type == 'Habitos')
+            <li class="time-label">
+                  <span class="bg-green">
+                   Hábitos
+                  </span>
+            </li>
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+
+            <li>
+              <i class="fa fa-users bg-green"></i>
+
+              <div class="timeline-item">
+              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
+
+                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <div class="timeline-body">
+                   @php $a = json_decode($clinic->answer); @endphp
+                  @foreach($a as $answer)
+                 <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }}<br>
+                  @endforeach
+                </div>
+              </div>
+            </li>
+            @endif
             <!-- END timeline item -->
             @endforeach
+              <li>
+              <i class="fa fa-clock-o bg-gray"></i>
+            </li>
         </ul>     
       </div>
      </div>   
-    </section> 
+    </div> 
 @endif
 
 

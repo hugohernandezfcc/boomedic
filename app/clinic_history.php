@@ -13,7 +13,8 @@ class clinic_history extends Model
 		'answer_id',
 		'question_id',
 		'question',
-		'userid'
+		'userid',
+		'type'
     ];
 
     public function userid(){
