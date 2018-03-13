@@ -120,7 +120,15 @@ class HomeController extends Controller
          */
         if ($profInfo->count() > 0 && $statusRecordUser != 'In Progress') 
             return view('homemedical', [
-                    'photo'  => $user->profile_photo,
+                    'username'  => $user->username,
+                    'name'      => $user->name,
+                    'firstname' => $user->firstname,
+                    'lastname'  => $user->lastname,
+                    'photo'     => $user->profile_photo,
+                    'date'      => $user->created_at,
+                    'userId'    => $user->id,
+                    'labor'     => $join,
+                    'photo'     => $user->profile_photo
                 ]);       
         
 
