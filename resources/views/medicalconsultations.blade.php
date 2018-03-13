@@ -193,7 +193,7 @@
      * Text of labels
      */
     var title = "Programar Cita";
-    var check01 = "Médico General";
+    var check01 = "Médico General :D";
     var select01 = "Seleccionar especialidad";
     var firstValue = '- Ninguna -';
     var fieldSearch = 'Buscar';//'Nombre del Médico';
