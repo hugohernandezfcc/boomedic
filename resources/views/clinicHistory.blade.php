@@ -361,9 +361,10 @@
 
                 <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $test->name }}</a></h3>
                 <div class="timeline-body">
+                  Doctor: {{ $test->doc}}<br>
                   Detalles:<br>
-                  {{ $test->details }}
-                  <a href="{{ $test->url }}" class="btn btn-secondary btn-flat btn-xs"> Descargar aquí</a>
+                  {{ $test->details }}<br><br>
+                  <a href="{{ $test->url }}" class="btn btn-secondary btn-flat btn-xs"> Ver más</a>
                 </div>
               </div>
             </li>

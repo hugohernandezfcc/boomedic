@@ -116,8 +116,10 @@ class clinicHistory extends Controller
             ->get();
         $test_result = DB::table('diagnostic_test_result')
         ->join('diagnostic_tests', 'diagnostic_test_result.diagnostic_test', '=', 'diagnostic_tests.id')
-        ->where('patient', Auth::id())
-        ->select('diagnostic_test_result.*', 'diagnostic_tests.name')
+        ->join('recipes_tests', 'diagnostic_test_result.recipes_test', '=', 'recipes_tests.id')
+        ->join('users', 'recipes_tests.doctor', '=', 'users.id')
+        ->where('diagnostic_test_result.patient', Auth::id())
+        ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.folio')
         ->get();    
 
         return view('clinicHistory', [
