@@ -83,7 +83,37 @@
 
 .checkbox-primary input[type="checkbox"]:checked + label::after {
   color: #fff; }
+.modal.dialog1 { /* customized styles. this way you can have N dialogs, each one with its own size styles */
+    width: 60%;
+    height: 50%;
+    left: 20%; /* ( window's width [100%] - dialog's width [60%] ) / 2 */
+}
 
+/* media query for mobile devices */
+@media ( max-width: 480px ) {
+    .modal.dialog1 {
+        height: 90%;
+        left: 5%; /* ( window's width [100%] - dialog's width [90%] ) / 2 */
+        top: 5%;
+        width: 90%;
+    }
+}
+
+/* split the modal in two divs (header and body) with defined heights */
+.modal .modal-header {
+    height: 10%;
+}
+
+.modal .modal-body {
+    height: 90%;
+}
+
+/* The div inside modal-body is the key; there's where we put the content (which may need the vertical scrollbar) */
+.modal .modal-body div {
+    height: 100%;
+
+    width: 100%;
+}
 	</style>
      @if($mode == 'null')  
 <div class="box">
@@ -368,7 +398,7 @@
                   <input type="hidden" id="">
                   <button class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#myModal">Ver estudio</button>
                   <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade  dialog1" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 0px !important;"/>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
