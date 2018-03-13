@@ -7,13 +7,8 @@
 @stop
 
 @section('content')
-	hugo daniel hernández meneses
+	
 
-	<div class="box box-primary">
-	    <div class="box-body no-padding">
-	      <!-- THE cristina CALENDAR -->
-	      <div id="calendar"></div>
-	    </div>
-	    <!-- /.box-body -->
-	  </div>
+	This a home page of doctor.
+	
 @stop

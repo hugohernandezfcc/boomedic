@@ -88,7 +88,9 @@ class HomeController extends Controller
              Session(['sp' => $sp]);
              Session(['mg' => $mg]);
 
-
+        /**
+         * Validate if the user doctor or patient agree the privacy statement.
+         */
         if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
@@ -108,13 +110,20 @@ class HomeController extends Controller
                             ->where('user', Auth::id() )
                             ->get();
 
-        if ($profInfo->count() > 0 && DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress') 
+        $statusRecordUser = DB::table('users')->where('id', Auth::id() )->value('status');
+
+        if ($profInfo->count() > 0 && $statusRecordUser == 'In Progress') 
             return redirect('doctor/edit/In%20Progress');
+
+        /**
+         * In this validation redirect user doctor to interface correct.
+         */
+        if ($profInfo->count() > 0 && $statusRecordUser != 'In Progress') 
+            return redirect('/homemedical');        
         
 
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress')
             return redirect('user/edit/In%20Progress');
-        
         else {
             return view('medicalconsultations', [
                     'username'  => $user->username,

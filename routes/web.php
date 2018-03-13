@@ -43,6 +43,8 @@ Route::post('/medicalconsultations/recent', 'HomeController@recent')->name('medi
 Route::get('/medicalconsultations/showrecent', 'HomeController@showrecent')->name('medicalconsultations/showrecent');
 Route::get('/appointments', 'HomeController@appointments')->name('/appointments');
 
+
+
 Route::get('/homemedical', function () {
     return view('homemedical');
 });
@@ -145,10 +147,6 @@ Route::group(['prefix' => 'payment'], function(){
 		    'as' => 'getPaymentStatus',
 		    'uses' => 'payments@getPaymentStatus'
 		]);
-
-
-
-
 });
 
 
