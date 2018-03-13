@@ -237,7 +237,7 @@
                   <input type="hidden" id="">
                   <button class="btn btn-default btn-flat btn-sm" data-toggle="modal" data-target="#myModal">Ver estudio</button>
                   <!-- Modal -->
-                        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 0px !important;">
+                        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -245,7 +245,7 @@
                               </div>
                               <div class="modal-body">
 
-                              <iframe src="{{ $test->url }}#zoom=200&view=fitH" frameborder="0" width="100%" scrolling="no" onload="resizeIframe(this)"></iframe>
+                              <iframe src="{{ $test->url }}#zoom=200&view=fitH" frameborder="0" width="100%" onload="resizeIframe(this)"></iframe>
 
                               </div>
                             </div>
@@ -410,7 +410,24 @@
 
 				<script>
           function resizeIframe(obj) {
-            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+            if("@php echo $agent->isMobile(); @endphp"){
+            height = window.screen.availHeight;
+                       // alert("Altura: "+height);
+                        //Para Android Puro
+            if(height >= 1000 && height <= 1300){
+                var h = height*0.45;
+                height = Math.floor(h);
+            }else if(height >=1800){ //para android con capa personalizada
+              height -= 1540;
+            }else
+            {
+              height -=215; //android avierto desde chrome
+            }
+        }else{
+          height = window.screen.availHeight-215;
+        }
+            obj.style.height =  height + 'px';
+            console.log(height);
           }
 				$(document).ready(function () {
 
