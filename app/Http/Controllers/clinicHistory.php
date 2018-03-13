@@ -114,6 +114,8 @@ class clinicHistory extends Controller
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
             ->select('answers_clinic_history.answer', 'questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
             ->get();
+        $test_result = DB::table('diagnostic_test_result')->where('patient', Auth::id())->get();    
+
         return view('clinicHistory', [
                 'userId'            => $user->id,
                 'username'          => $user->username,
@@ -122,6 +124,7 @@ class clinicHistory extends Controller
                 'date'              => $user->created_at,
                 'questions'         => $question,
                 'clinic_history'    => $clinic_history,
+                'tets_result'       => $test_result,
                 'mode'              => 'finish'
             ]
         );
