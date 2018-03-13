@@ -368,7 +368,7 @@
                   <input type="hidden" id="">
                   <button class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#myModal">Ver estudio</button>
                   <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 0px !important;"/>
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -376,7 +376,7 @@
       </div>
       <div class="modal-body">
 
-      <iframe src="{{ $test->url }}#zoom=100&view=fitH" frameborder="0" width="100%" height="100%" marginheight="0" marginwidth="0" id="pdf"  
+      <iframe src="{{ $test->url }}#zoom=100&view=fitH" frameborder="0" width="655" height="550" marginheight="0" marginwidth="0" id="pdf"  
 ></iframe>
 
       </div>
