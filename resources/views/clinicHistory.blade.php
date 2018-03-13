@@ -418,13 +418,13 @@
                 var h = height*0.45;
                 height = Math.floor(h);
             }else if(height >=1800){ //para android con capa personalizada
-              height -= 1540;
+              height -= 1490;
             }else
             {
-              height -=215; //android avierto desde chrome
+              height -=160; //android avierto desde chrome
             }
         }else{
-          height = window.screen.availHeight-215;
+          height = window.screen.availHeight-160;
         }
             obj.style.height =  height + 'px';
             console.log(height);
