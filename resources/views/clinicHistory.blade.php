@@ -348,13 +348,13 @@
             @endforeach
             @foreach($test_result as $test)
             <li class="time-label">
-                  <span class="bg-yellow">
+                  <span class="bg-aqua">
                    Examen médico
                   </span>
             </li>
 
             <li>
-              <i class="fa fa-users bg-blue"></i>
+              <i class="fa fa-file-alt bg-aqua"></i>
 
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->updated_at)->diffForHumans() }}</span>

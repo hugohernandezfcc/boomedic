@@ -124,7 +124,7 @@ class clinicHistory extends Controller
                 'date'              => $user->created_at,
                 'questions'         => $question,
                 'clinic_history'    => $clinic_history,
-                'tets_result'       => $test_result,
+                'test_result'       => $test_result,
                 'mode'              => 'finish'
             ]
         );
