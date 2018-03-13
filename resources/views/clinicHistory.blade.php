@@ -346,6 +346,28 @@
             @endif
             <!-- END timeline item -->
             @endforeach
+            @foreach($test_result as $test)
+            <li class="time-label">
+                  <span class="bg-yellow">
+                   Examen médico
+                  </span>
+            </li>
+
+            <li>
+              <i class="fa fa-users bg-blue"></i>
+
+              <div class="timeline-item">
+              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->updated_at)->diffForHumans() }}</span>
+
+                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $test->diagnostic_test }}</a></h3>
+                <div class="timeline-body">
+                  Detalles:<br>
+                  {{ $test->details }}
+                  <a href="{{ $test->url }}" class="btn btn-secondary btn-flat"> Descargar aquí</a>
+                </div>
+              </div>
+            </li>
+            @endforeach
               <li>
               <i class="fa fa-clock-o bg-gray"></i>
             </li>
