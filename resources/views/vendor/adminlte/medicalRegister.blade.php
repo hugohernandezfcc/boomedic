@@ -8,6 +8,33 @@
 @section('body_class', 'register-page')
 
 @section('body')
+
+  <script type="text/javascript">
+                                $.ajax(
+                                      {
+                                        type: "GET",    
+                                        url: "{{ url('/medicalRegister/society') }}", 
+                                        success: function(result){
+                                          console.log(result);
+
+                                          var x = document.getElementById("medical_society");
+                                          
+                                          for (var i = 0; i < result.length; i++) {
+                                            console.log(result[i].name);
+                                            var option = document.createElement("option");
+                                            option.text = result[i].name;
+                                            option.value = result[i].name;
+                                            x.add(option);
+
+                                          }
+                                        }
+                                      }
+                                    );
+
+
+
+                                </script>
+
     <div class="register-box">
         <div class="register-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
@@ -46,7 +73,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('birthdate') ? 'has-error' : '' }}">
-                    <input type="text" name="birthdate" class="form-control" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker">
+                    <input type="text" name="birthdate" class="form-control" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker2">
                     <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     @if ($errors->has('birthdate'))
                         <span class="help-block">
@@ -65,6 +92,11 @@
                     @endif
                 </div>
 
+               <div class="form-group has-feedback {{ $errors->has('medical_society') ? 'has-error' : '' }}">
+                   <select class="form-control select2" name="medical_society" id="medical_society" size="1">
+                    <option default>--Ninguna--</option>
+                    </select>
+                </div> 
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                     <input type="password" name="password" class="form-control" placeholder="{{ trans('adminlte::adminlte.password') }}">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -91,14 +123,17 @@
                     {{ trans('adminlte::adminlte.register_a_new_membership_doctor') }}
                 </button><br/>
                 <div class="row">
-                <div class="col-sm-7" align="center">
+                <div class="col-sm-6" align="center">
                         <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="btn btn-default btn-block btn-flat">
                              <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;
                          {{ trans('adminlte::adminlte.i_already_have_a_membership') }}
                         </a> 
                 </div>
-                <div class="col-sm-5" align="center">
-                    &nbsp;
+                <div class="col-sm-6" align="center">
+                    <a class="btn btn-default btn-block btn-flat" href="{{ url(config('adminlte.register__doctor_url', 'register')) }}" >
+                        <i class="fa fa-user"></i>&nbsp;&nbsp;
+                        {{ trans('adminlte::adminlte.i_am_a_patient') }}
+                    </a> 
                 </div>
             </div>
             </form>

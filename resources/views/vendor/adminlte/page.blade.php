@@ -7,11 +7,12 @@
     @yield('css')
 @stop
 
-@section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
+@section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' fixed sidebar-mini sidebar-mini-expand-feature' . (config('adminlte.layout') ? [
     'boxed' => 'layout-boxed',
     'fixed' => 'fixed',
     'top-nav' => 'layout-top-nav'
 ][config('adminlte.layout')] : '') . (config('adminlte.collapse_sidebar') ? ' sidebar-collapse ' : ''))
+
 
 @section('body')
     <div class="wrapper">
@@ -62,17 +63,17 @@
                                   @if($photo == '')
                                         <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="user-image" alt="User Image">
                                     @else
-                                        <img src="{{ $photo }}" class="user-image" alt="User Image">            
+                                        <img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" class="user-image" alt="User Image">            
                                     @endif 
                                   <span class="hidden-xs">{{ $name }}</span>
                                 </a>
                                 <ul class="dropdown-menu bg-darken-4">
                                   <!-- User image -->
-                                  <li class="user-header bg-darken-4">
+                                  <li class="user-header" style="background-color: #222;">
                                     @if($photo == '')
                                         <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image">
                                     @else
-                                        <img src="{{ $photo }}" class="img-circle" alt="User Image">            
+                                        <img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" class="img-circle" alt="User Image">            
                                     @endif 
 
                                     <p>
@@ -96,16 +97,16 @@
                                     </p>
                                   </li>
                                   <!-- Menu Footer-->
-                                  <li class="user-footer bg-darken-4">
+                                  <li class="user-footer" style="background-color: #222;">
                                     <div class="pull-center">
                                  @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
-                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" class="btn btn-secondary btn-block btn-flat">
+                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" class="btn btn-default btn-block btn-flat" style="background:white; color:black;">
                                     <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
                             @else
                                 <a href="#"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                 class="btn btn-secondary btn-block btn-flat">
+                                 class="btn btn-default btn-block btn-flat" style="background:white; color: black;">
                                     <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
                                 <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
@@ -168,6 +169,9 @@
             @endif
         </div>
         <!-- /.content-wrapper -->
+        <footer class="main-footer" id="footerw">
+            @yield('footer')
+        </footer>
 
     </div>
     <!-- ./wrapper -->

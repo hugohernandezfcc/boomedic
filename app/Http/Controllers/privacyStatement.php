@@ -29,8 +29,9 @@ class privacyStatement extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+        $user = User::find(Auth::id());
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
-        $StatementForUser = DB::table('users')->where('id', Auth::id() )->value('privacy_statement');
+        $StatementForUser = $user->privacy_statement;
 
         if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id)
             $mode = 'Null';
@@ -40,11 +41,11 @@ class privacyStatement extends Controller
 
         return view('privacyStatement', [
                 'privacy'   => $privacyStatement[0],
-                'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
-                'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'photo'  =>    DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'date'  =>    DB::table('users')->where('id', Auth::id() )->value('created_at'),
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
                 'mode'      => $mode
             ]
         );

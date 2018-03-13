@@ -11,6 +11,7 @@ use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 use Image;
+use Carbon\Carbon;
 
 class profile extends Controller
 {
@@ -67,8 +68,7 @@ class profile extends Controller
     {
         $users = DB::table('users')->where('id', Auth::id() )->get();
         return view('profile', [
-                'name' => DB::table('users')->where('id', Auth::id() )->value('name'),
-
+                
                  /** SYSTEM INFORMATION */
 
                 'userId'        => Auth::id(),
@@ -187,7 +187,7 @@ class profile extends Controller
     public function update(Request $request, $id)
     {
        // $path = $request->photo->store('images', 's3');
-         $user = User::find($id);
+        $user = User::find($id);
         $user->status        = $request->status;         
         $user->firstname     = $request->firstname;         
         $user->lastname      = $request->lastname;         
@@ -224,28 +224,36 @@ class profile extends Controller
           $width = $imagen[0];              //Ancho
           $height = $imagen[1];  
 
-          if($height > '600' || $width > '600'){
+          if($height > '600' || $width > '400'){
             $height = $height / 2;
             $width = $width / 2;
           }
-            if($height > '900' || $width > '900'){
+          if($height > '800' || $width > '600'){
+            $height = $height / 2.5;
+            $width = $width / 2.5;
+          }
+            if($height > '1000' || $width > '900'){
                 $height = $height / 3;
                 $width = $width / 3;
               }
 
+
+
         $img = Image::make($file);
         $img->resize($width, $height);
         $img->encode('jpg');
-        Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
-        $filename = $id.'.jpg';
+        Storage::disk('s3')->put( $id.'temporal.jpg',  (string) $img, 'public');
+        $filename = $id.'temporal.jpg';
         $path = Storage::cloud()->url($filename);
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
 
        
         $user->profile_photo = $path2;   
+               
+        if($user->save()){
         Session(['val' => 'true']);
-        $user->save();
         return redirect('/user/edit/complete');
+      }
     }
 
     public function cropProfile(Request $request, $id)
@@ -275,10 +283,11 @@ class profile extends Controller
          Session(['val' => 'false']);
        
         $user->profile_photo = $path2;   
-
+        Storage::disk('s3')->delete('https://s3.amazonaws.com/abiliasf/'.$user->id.'temporal.jpg');
         if($user->save())
             return redirect('/user/edit/complete');
     }
+
 
     /**
      * Remove the specified resource from storage.

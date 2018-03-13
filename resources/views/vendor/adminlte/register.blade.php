@@ -13,6 +13,7 @@
 @section('body_class', 'register-page')
 
 @section('body')
+
     <div class="register-box">
         <div class="register-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
@@ -45,7 +46,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('birthdate') ? 'has-error' : '' }}">
-                    <input type="text" name="birthdate" class="form-control" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker">
+                    <input type="text" name="birthdate" class="form-control" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker1">
                     <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     @if ($errors->has('birthdate'))
                         <span class="help-block">
