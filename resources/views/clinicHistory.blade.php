@@ -349,7 +349,7 @@
             @foreach($test_result as $test)
             <li class="time-label">
                   <span class="bg-aqua">
-                   Examen médico
+                   Estudio médico
                   </span>
             </li>
 
@@ -361,10 +361,11 @@
 
                 <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $test->name }}</a></h3>
                 <div class="timeline-body">
-                  Doctor: {{ $test->doc}}<br>
+                  Prescribe. {{ $test->doc}}.<br>
+                  Recipe. {{ $test->folio}}.<br>
                   Detalles:<br>
                   {{ $test->details }}<br><br>
-                  <a href="{{ $test->url }}" class="btn btn-secondary btn-flat btn-xs"> Ver más</a>
+                  <a href="{{ $test->url }}" class="btn btn-secondary btn-flat btn-sm pull-right"> Ver más</a>
                 </div>
               </div>
             </li>
