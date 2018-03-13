@@ -119,7 +119,9 @@ class HomeController extends Controller
          * In this validation redirect user doctor to interface correct.
          */
         if ($profInfo->count() > 0 && $statusRecordUser != 'In Progress') 
-            return redirect('/homemedical');        
+            return view('/homemedical', [
+                    'photo'  => $user->profile_photo,
+                ]);       
         
 
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress')
