@@ -375,9 +375,9 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
       <div class="modal-body">
-     <object data="{{ $test->url }}" type="application/pdf">
-        <embed src="{{ $test->url }}" type="application/pdf" />
-      </object>
+
+      <iframe src="{{ $test->url }}#zoom=100&view=fitH" frameborder="0" width="655" height="550" marginheight="0" marginwidth="0" id="pdf"  
+></iframe>
 
       </div>
     </div>
