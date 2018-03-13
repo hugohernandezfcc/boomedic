@@ -376,7 +376,7 @@
       </div>
       <div class="modal-body">
 
-      <iframe src="{{ $test->url }}#zoom=100&view=fitH" frameborder="0" width="655" height="550" marginheight="0" marginwidth="0" id="pdf"  
+      <iframe src="{{ $test->url }}#zoom=100&view=fitH" frameborder="0" width="100%" height="100%" marginheight="0" marginwidth="0" id="pdf"  
 ></iframe>
 
       </div>
