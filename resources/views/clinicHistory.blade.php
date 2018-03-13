@@ -211,7 +211,6 @@
      <div class="box-header">
       <h3 class="box-title">
                 Expediente médico
-
               </h3>
      </div><br/>
         <div class="box-body">
@@ -220,12 +219,8 @@
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline">
-                        @foreach($test_result as $test)
-            <li class="time-label">
-                  <span class="bg-aqua">
-                   Estudio médico
-                  </span>
-            </li>
+                        @foreach($test_result->sortBy('created_at') as $test)
+
 
             <li>
               <i class="fa fa-file bg-aqua"></i>
