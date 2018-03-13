@@ -235,7 +235,7 @@
                   Detalles:<br>
                   {{ $test->details }}<br><br>
                   <input type="hidden" id="">
-                  <button class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#myModal">Ver estudio</button>
+                  <button class="btn btn-default btn-flat btn-sm" data-toggle="modal" data-target="#myModal">Ver estudio</button>
                   <!-- Modal -->
                         <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
@@ -245,7 +245,7 @@
                               </div>
                               <div class="modal-body">
 
-                              <iframe src="{{ $test->url }}#zoom=200&view=fitH" frameborder="0" width="100%" height="600" marginheight="0" marginwidth="0" id="pdf"></iframe>
+                              <iframe src="{{ $test->url }}#zoom=200&view=fitH" frameborder="0" width="100%" scrolling="no" onload="resizeIframe(this)"></iframe>
 
                               </div>
                             </div>
@@ -409,6 +409,9 @@
 
 
 				<script>
+          function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+          }
 				$(document).ready(function () {
 
 					$('.next').click(function(){
