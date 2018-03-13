@@ -237,7 +237,7 @@
                   <input type="hidden" id="">
                   <button class="btn btn-default btn-flat btn-sm" data-toggle="modal" data-target="#myModal">Ver estudio</button>
                   <!-- Modal -->
-                        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 0px !important;">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
