@@ -365,7 +365,28 @@
                   Recipe. {{ $test->folio}}.<br>
                   Detalles:<br>
                   {{ $test->details }}<br><br>
-                  <a href="{{ $test->url }}" class="btn btn-secondary btn-flat btn-sm pull-right"> Ver más</a>
+                  <input type="hidden" id="">
+                  <button class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#myModal">Ver estudio</button>
+                  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 0px !important;"/>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+
+      <iframe src="{{ $test->url }}#zoom=100&view=fitH" frameborder="0" width="100%" height="100%" marginheight="0" marginwidth="0" id="pdf"  
+></iframe>
+
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
                 </div>
               </div>
             </li>
