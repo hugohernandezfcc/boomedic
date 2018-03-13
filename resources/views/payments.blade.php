@@ -49,69 +49,72 @@
 		<div class="box-body">
 
             @if($mode == 'listPaymentMethods')
-            	<table id="paymentmethodtable" class="table table-bordered table-striped" cellspacing="0" width="100%">
+            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
-	                    	<th>Tarjeta</th>
-	                        <th>Banco </th>
-	                        <th>Proveedor </th>
-	                        <th>Tipo</th>
-	                        <th>Pago</th>
-	                        <th> - </th>
+	                    	<th></th>
+	                    	<th class="all">Tarjeta</th>
+	                        <th class="min-phone-l">Banco </th>
+	                        <th class="desktop">Proveedor </th>
+	                        <th class="desktop">Tipo</th>
+	                        <th class="desktop"></th>
 	                    </tr>
 	                </thead>
 	                <tfoot>
 	                    <tr>
-	                       <th>Tarjeta</th>
+	                    	<th></th>
+	                        <th>Tarjeta</th>
 	                        <th>Banco </th>
 	                        <th>Proveedor </th>
-	                        <th>Tipo</th>
-	                        <th>Pago</th>
-	                        <th> - </th>
+	                        <th>Tipo</th>          
+	                        <th></th>
 	                    </tr>
 	                </tfoot>
 	                <tbody>
 	                    @foreach ($cards as $card)
-	                        <tr><form action="PaymentAuthorizations" method="post" id="regForm">
+	                           <tr><form action="PaymentAuthorizations" method="post" id="regForm">
 	                        	@if($card->provider != 'Paypal')
+	                        	<td></td>
 	                        	<td>
 	                             @php 
 	                            $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12)
 	                             @endphp
-	                            <a href = 'Transactions/{{ $card->id }}' class="btn"> {{ $cardfin }}</a></td>
+	                            <a href = 'Transactions/{{ $card->id }}' class="btn">{{ $cardfin }}</a></td>
 	                            <td>{{ $card->bank }}</td>
 	                            <td>{{ $card->provider }}</td>
 	                            <td>{{ $card->credit_debit }}</td>
 	          
 	                           
-	                            <td><input type="number" name="pay" value="" style="text-align: center;" class="form-control" required> <input type="hidden" name="id" value=" {{$card->id }} "></td>
+	                            <!--  <td><input type="number" name="pay" value="" style="text-align: center;" class="form-control" required> <input type="hidden" name="id" value=" {{$card->id }} "></td> -->
 
-	                            <td align="center">
+	                            <td>
 	                            <div class="input-group-btn">
 		          				<!-- Delete button that goes to a destroy type driver for the user to delete badly entered payment methods or that he no longer wants to have -->
-		          				<a href = 'delete/{{ $card->id }}' class="btn" onclick ="return confirm('¿Seguro desea eliminar este método de pago?')">
-		          				<i class="fa fa-trash text-muted"></i>
+		          				<a href = 'delete/{{ $card->id }}' class="btn btn-default btn-xs" onclick ="return confirm('¿Seguro desea eliminar este método de pago?')">
+		          				<i class="fa fa-trash text-muted"></i> Eliminar
 		          				</a>
 	        					</div>
-	                            <div class="input-group-btn">
-	                            	<!-- Summit button to process the payment, this points to the PaymentAuthorizations -->
+	                            <!-- <div class="input-group-btn">
+	                            
 	                            	<button type="submit" class="btn"><i class="fa fa-credit-card text-muted" id="reg"></i></button>
 		          		
-	        					</div></td>
+	        					</div> -->
+	        				</td>
 
 	        					 @endif
 	        					 @if($card->provider == 'Paypal')
+	        					 <td></td>
 	        					 <td>
 	                            <a href = 'Transactions/{{ $card->id }}' class="btn"> {{ $card->cardnumber }}</a></td>
 	                            <td>{{ $card->bank }}</td>
 	                            <td>{{ $card->provider }}</td>
 	                            <td>{{ $card->credit_debit }}</td>
-	        					 <td></td>
-	                            <td align="center">
+	        					
+	                            <td>
 	                            <div class="input-group-btn">
 		          				<!-- Delete button that goes to a destroy type driver for the user to delete badly entered payment methods or that he no longer wants to have -->
-		          				<a href = 'delete/{{ $card->id }}' class="btn" onclick ="return confirm('¿Seguro desea eliminar este método de pago?')">
-		          				<i class="fa fa-trash text-muted"></i>
+		          				<a href = 'delete/{{ $card->id }}' class="btn btn-default btn-xs" onclick ="return confirm('¿Seguro desea eliminar este método de pago?')">
+		          				<i class="fa fa-trash text-muted"></i> Eliminar
 		          				</a>
 	        					</div>
 	                           </td>
@@ -330,14 +333,13 @@
 			                </div>
 			              </div><br/><br/>
 
-			            	<table id="transactions" class="table table-bordered table-striped" cellspacing="0" width="100%">
+			            	<table id="transaction" class="display responsive nowrap" cellspacing="0" width="100%">
 				                <thead>
 				                    <tr>
-				                    
-				                        <th>Nro. Transacción</th>
-				                        <th>Destinatario</th>
-				                        <th>Monto</th>
-				                        <th>Fecha de Transacción</th>
+				                        <th class="all">Nro. Transacción</th>
+				                        <th class="desktop">Destinatario</th>
+				                        <th class="min-phone-l">Monto</th>
+				                        <th class"min-phone-l">Fecha de Transacción</th>
 				                    </tr>
 				                </thead>
 				                <tbody>
@@ -380,19 +382,21 @@
 			                	</div>
 			              </div><br/><br/>
 
-			            	<table id="transactions" class="table table-bordered table-striped" cellspacing="0" width="100%">
+			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
 				                    <tr>
-				                    
-				                        <th>Nro. Transacción</th>
-				                        <th>Destinatario</th>
-				                        <th>Monto</th>
-				                        <th>Fecha de Transacción</th>
+				                    	 <th></th>
+				                        <th class="all">Nro. Transacción</th>
+				                        <th class="desktop">Destinatario</th>
+				                        <th class="desktop">Monto</th>
+				                        <th class="desktop">Fecha de Transacción</th>
 				                    </tr>
 				                </thead>
+
 				                <tbody>
 					     	@foreach ($transactions as $transaction)
 								     <tr>
+								     	<td></td>
 						             	<td>{{ $transaction->transaction }} <br/></td>
 						             	<td>{{ $transaction->receiver}}<br/></td>
 						             	<td>{{ $transaction->amount }}</td>

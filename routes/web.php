@@ -32,10 +32,16 @@ Auth::routes();
 *Rutas para registro con redes sociales
 */
 Route::post('SMRegister', ['as' => 'SMRegister.createbySocialMedia', 'uses' => 'Auth\RegisterController@createbySocialMedia']);
+Route::get('medicalRegister/society', ['as' => 'medicalRegister/society', 'uses' => 'Auth\RegisterController@index']);
+
 
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
 
+
+Route::post('/medicalconsultations/recent', 'HomeController@recent')->name('medicalconsultations/recent');
+Route::get('/medicalconsultations/showrecent', 'HomeController@showrecent')->name('medicalconsultations/showrecent');
+Route::get('/appointments', 'HomeController@appointments')->name('/appointments');
 
 Route::get('/homemedical', function () {
     return view('homemedical');
@@ -78,6 +84,7 @@ Route::group(['prefix' => 'user'], function(){
 			'uses'	=>	'profile@redirecting',
 			'as'	=>	'redirecting'
 		]
+		
 	);
 });
 
@@ -222,13 +229,12 @@ Route::group(['prefix' => 'medicalappointments'], function(){
 			'as'	=>	'store'
 		]
 	);
-
-	Route::get('showPaymentMethods', [
+	
+		Route::get('showPaymentMethods', [
 			'uses'	=>	'medicalappointments@showPaymentMethods',
 			'as'	=>	'showPaymentMethods'
 		]
 	);
-	
 
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'medicalappointments@redirecting',
@@ -237,6 +243,69 @@ Route::group(['prefix' => 'medicalappointments'], function(){
 	);
 });
 
+Route::group(['prefix' => 'clinicHistory'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'clinicHistory@index',
+			'as'	=>	'index'
+		]
+	);
+		Route::get('cHistory', [
+			'uses'	=>	'clinicHistory@show',
+			'as'	=>	'cHistory'
+		]
+	);
+
+	Route::get('update/{id}', [
+			'uses'	=>	'clinicHistory@update',
+			'as'	=>	'update'
+		]
+	);
+
+	Route::post('save', [
+			'uses'	=>	'clinicHistory@save',
+			'as'	=>	'save'
+		]
+	);
+	Route::get('store', [
+			'uses'	=>	'clinicHistory@store',
+			'as'	=>	'store'
+		]
+	);
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'clinicHistory@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+});
+
+Route::group(['prefix' => 'workboardDr'], function(){
+
+	Route::get('index/{id}', [
+			'uses'	=>	'workboardDr@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('update/{id}', [
+			'uses'	=>	'workboardDr@update',
+			'as'	=>	'update'
+		]
+	);
+
+	Route::post('create/{id}', [
+			'uses'	=>	'workboardDr@create',
+			'as'	=>	'create'
+		]
+	);
+	
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'workboardDr@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+});
 
 
 Route::group(['prefix' => 'privacyStatement'], function(){

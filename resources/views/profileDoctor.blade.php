@@ -21,7 +21,28 @@
 			padding-top: 0;
 		    width: 100%;
 		    height: 300px;
+		    z-index: 30;
 		      }
+		.dropzone {
+			     min-height: 10px !important; 
+			    border-style: dotted  !important;
+			    /* background: white; */
+			     padding: 0 !important;
+			}
+			.dropzone .dz-message {
+			    margin: 1em 0 !important;
+			}
+		.modal-content-2 {
+		    position: relative;
+		    background-color: transparent;
+		    -webkit-background-clip: padding-box;
+		    background-clip: padding-box;
+		    color: white;
+		    margin-top: 50%;
+		    width: 100%;
+
+		}
+
     </style>
 @stop
 
@@ -43,18 +64,18 @@
 			    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 			     success: function(file, response){
 				        //alert(response);
-				  document.getElementById('loadingGif').style.display = "block";
+				 $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
 				  setTimeout(function(){ 
-				  	document.getElementById('loadingGif').style.display = "none";
+				  	$('#loadingmodal').modal('toggle');
 				  	window.location.reload(true);
-				  },12000);
+				  },21000);
 				     	}
 			    //autoProcessQueue : false 
 			 };
 			 var val = "@php echo session()->get('val'); @endphp";
 			 		if(val == "true"){
 			 		setTimeout(function() {
-					    $('#modal').modal({ backdrop: 'static' }, 'show');
+			 			$('#modal').modal({backdrop: 'static', keyboard: false})
 					}, 1000);	
 				}
 
@@ -71,18 +92,43 @@
       var elemento = document.getElementById("i_button");
       elemento.className = "fa fa-pencil text-muted";
       document.forms.form_profile.action = "/doctor/edit/complete";
+
     </script>
 	@endif
 
 	
-	<!-- Modal photo settings-->
+
+
+    <div class="box">
+	  	<div class="box-header with-border">
+		    <h3 class="box-title">Información de Médico</h3>
+	    	<!-- /.box-tools -->
+	  	</div>
+	  			<!-- Modal photo settings-->
+	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
+	    <div class="modal-dialog">
+	        <div class="modal-content-2">
+	        	<div align="center">
+					<h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
+	          	</div>
+	        </div>
+	    </div>
+ 	</div>
+ 	<!-- Modal photo settings-->
+
+
+
+	  	<!-- /.box-header -->
+	  	<div class="box-body">
+	  		@if( !empty($status) )
+	  			<!-- Modal photo settings-->
 	<div id="modal" class="modal fade" role="dialog" style="width: 100%">
 	    <div class="modal-dialog">
 	        <div class="modal-content" >
 	          	<div class="modal-header"><label for="recorte">Recorte de imagen:</label></div>
 	          	<div class="modal-body" >
 	                <div align="center">
-	                   	<img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target">
+	                   	<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">
 	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
 		                   	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
@@ -98,16 +144,6 @@
  	</div>
  	<!-- Modal photo settings-->
 
-    <div class="box">
-	  	<div class="box-header with-border">
-		    <h3 class="box-title">Información de Médico</h3>
-	    	<!-- /.box-tools -->
-	  	</div>
-	  	<div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
-	  	<!-- /.box-header -->
-	  	<div class="box-body">
-	  		@if( !empty($status) )
-
 		  		@if ($status == "In Progress")
 		  			<div class="callout callout-success">
 		                <h4>Ya casi estamos listos {{ $firstname }} !!!</h4>
@@ -116,43 +152,59 @@
 		            </div>
 	    		@endif
 	    		<!-- Photo Zone. -->
-	    		<div class="row">
-	    			<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
+	 <label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
+	    		<div class="row" align="center">
+
 		    		<div class="col-sm-4" align="center">
-		    			@if($photo == '')
-			    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
-						@else
+						@if($photo == '')
+		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
+					@else
 					@php 
 					  $imagen = getimagesize($photo);    //Sacamos la información
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 
 			          if($height > '500' || $width > '500'){
-			            $height = $height / 2.5;
-			            $width = $width / 2.5;
+			            $height = $height / 2.8;
+			            $width = $width / 2.8;
 			        }
 			        if($height > '800' || $width > '800'){
 			            $height = $height / 4;
 			            $width = $width / 4;
 			        }
+			      if($height > '800' || $width > '1200'){
+			            $height = $height / 6;
+			            $width = $width / 6;
+			        }
 
 
 			          if($height < '400' || $width < '400'){
-			            $height = $height / 1.3;
-			            $width = $width / 1.3;
+			            $height = $height / 1.6;
+			            $width = $width / 1.6;
 			        }
 
 					@endphp
-							<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
-				    	@endif 
+						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+			    	@endif 
 		    			
 		    		</div>
-						<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+						<div class="col-sm-6" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
 	    		</div>
 	    		<!-- Photo Zone. -->
 	    		<br/>
 
-	    		<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal">
+	    		<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="formDr">
+	    <div id="modalAlert" class="modal fade" role="dialog">
+	    <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">La foto de perfil es obligatoria, recuerde que es la imagen que verá el ppaciente.</h4>
+              </div>
+            </div>
+          </div>
+      </div>
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -171,7 +223,7 @@
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="email" class="col-sm-2 control-label">Corre electrónico</label>
+	                    <label for="email" class="col-sm-2 control-label">Correo electrónico</label>
 	                	<div class="col-sm-10">
 	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
 	                	</div>
@@ -240,6 +292,19 @@
 		                <b>Información Profesional</b>
 		            </div>
 		            <div class="form-group">
+		            	<label for="medical_society" class="col-sm-2 control-label">Sociedad de Médicos</label>
+	                	<div class="col-sm-10">
+	                		<select class="form-control select2" name="medical_society" id="medical_society" size="1">
+	                			@foreach($asso as $asso)
+	                			@if($asso->name == $medical_society)
+	                				<option value="{{ $medical_society }}" selected> {{ $medical_society }}</option>
+	                			@else	
+	                				<option value="{{ $asso->name }}"> {{ $asso->name }}</option>
+	                			@endif
+	                			@endforeach
+	                		</select>
+	                	</div></div>
+	               <div class="form-group"> 	
 	                	<label for="professional_license" class="col-sm-2 control-label">Licencia Profesional</label>
 	                	<div class="col-sm-10">
 		                  	<input type="text" name="professional_license" id="professional_license" value="{{ $professional_license }}" class="form-control">
@@ -251,7 +316,7 @@
 	                	<div class="col-sm-10">
 		                  	<select class="form-control" name="specialty" id="specialty">
 		                    	<option value="{{ $specialty }}" selected> {{ $specialty }}</option>
-		                    	<option value="Alergología"> Médico General </option>
+		                    	<option value="Médico General"> Médico General </option>
 		                    	<option value="Alergología"> Alergología </option>
 		                    	<option value="Cardiología">Cardiología</option>
 		                    	<option value="Gastroenterología"> Gastroenterología </option>
@@ -299,9 +364,9 @@
 		                <b>Dirección</b>
 		            </div>
 		            <div class="form-group">
-		            	<label for="autocomplete" class="col-sm-2 control-label">
-		            		<i class="fa fa-location-arrow"></i>
-		            	</label>
+		            	<div class="col-sm-2" align="right">
+		            		&nbsp;
+		            	</div>
 		            	<div id="locationField" class="col-sm-10">
 					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"></input>
 					    </div>
@@ -483,6 +548,12 @@
                             <div class="col-sm-8" align="left">{{ $professional_license }}</div>
                           </div>
                         </div>
+                         <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-4" align="left"><b>Sociedad de Médicos:</b></div>
+                            <div class="col-sm-8" align="left">{{ $medical_society }}</div>
+                          </div>
+                        </div>
                         <div class="col-sm-12">
                           <div class="row">
                             <div class="col-sm-4" align="left"><b>Especialidad:</b></div>
@@ -515,35 +586,39 @@
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
-                        Información Laboral      
+                        Consultorios    
                   </a> 
                   </h4> 
                   </div>
                   <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
                     <div class="box-body">
                           @if($labor->isEmpty())
-						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>			
+						 <span class="text-black">No hay ningún centro asociado a su cuenta.</span>			
 							@else
 							
-							@foreach($labor->sortByDesc('created_at') as $labor)	
-							<div class="col-sm-12">
+							@foreach($labor->sortByDesc('created_at') as $labor)
+							<div class="form-group">	
+							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
 									          <div class="info-box sm bg-gray">
-									            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
+									          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar"></i></span></a> 
 									            <div class="info-box-content sm">
-									              <b>{{ $labor->workplace}}</b><br/>
+									              <b>{{ $labor->workplace}}</b> 
 									              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
 									            </div>
 									            <!-- /.info-box-content -->
 									          </div>
 									          <!-- /.info-box -->
+							</div>
+							<div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height:45px;">	
+							</div>
 							</div>		
 							@endforeach
 							@endif
-									<div class="col-sm-12" style="text-align: right;">
+									<div class="pull-right">
 									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
-									   	<button type="submit" class="btn btn-secondary"><i class="fa fa-plus"></i>Agregar otro centro</button>
+									   	<button type="submit" class="btn btn-secondary btn-xs"><i class="fa fa-plus"></i> Agregar consultorio</button>
 									   </form></div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -564,6 +639,16 @@
 
     		<script type="text/javascript">
 
+    		$(document).ready(function(){
+				  $("#formDr").submit(function() {
+				    var x = "{{ $photo }}"; 
+				      if (x == '') {
+				        $('#modalAlert').modal()	
+				        return false;
+				      } else 
+				          return true;			
+				    });
+				});
 
     			window.onload = function(){
     			$('#collapseTwo').collapse("toggle");
@@ -676,19 +761,30 @@
 		    	</script>
 
 			@endif
-	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
-	<script src="{{ asset('js/jquery.color.js') }}"></script>
-	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+
 	  	</div>	  	
 	</div>
+<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+<script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 	<script type="text/javascript">
-    $(function(){ $.Jcrop('#target'); });
-     $.Jcrop('#target',{
-      aspectRatio: 1,
-      onSelect: updateCoords,
-	  setSelect: [0, 0, 300, 300],
-      bgColor:     'black'
-     });
+
+
+
+
+$('#target').Jcrop({
+	    aspectRatio: 1,
+        boxWidth: 300,
+        boxHeight: 300,
+        setSelect: [0,0,300,300],
+        bgOpacity: .9,
+         bgColor:     'black',
+        onSelect: updateCoords,
+        onChange: updateCoords
+    }, function(){
+        CropAPI = this;
+    });
+
      function updateCoords(c){
       $('#x').val(c.x);
       $('#y').val(c.y);
@@ -701,30 +797,87 @@
       alert('Seleccione una coordenada para subir');
       return false;
     };
+
     </script>
     @endif
 
 
 
 				    @if($mode == 'labor')
-				   			<div class="box" id="boxlabor">
+				<div class="box" id="boxlabor">
 							  	<div class="box-header with-border">
-								    <h3 class="box-title">Información Laboral</h3>
+								    <h3 class="box-title">Alta de nuevo consultorio</h3>
 							  	</div>
 						  	<!-- /.box-header -->
 				<div class="box-body">
 					   <div id="buttonOpen" class="col-sm-12">
-					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar Dirección</button>
-					      <br/><br/>
+					   	<div  class="col-sm-5">
+					      <button type="button" id="openform" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Ingresar dirección</button>
+					     </div> <div  class="col-sm-2" align="center">
+					      ó 
+					  </div><div  class="col-sm-5">
 					       <button type="button" id="openform2" class="btn btn-secondary btn-block btn-flat"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Registrar por ubicación actual</button>
+					   </div>
 					   </div>
 
 					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
+		<div class="modal fade" id="modal-default1" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Servicios disponibles en este lugar</h4>
+              </div>
+              <div class="modal-body">
+               <div class="label-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Estacionamiento">
+                      Estacionamiento
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Ambulancias">
+                      Ambulancias
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Cafetería">
+                      Cafetería
+                    </label>
+                  </div>
+                 <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Elevador">
+                     Elevador
+                    </label>
+                  </div>
+                   <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Wifi">
+                     Wifi
+                    </label>
+                  </div>
+                </div>
+              </div>
+             
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 					<div class="callout callout-default">
 				 <div class="form-group">
-	                	<label for="workplace" class="col-sm-2 control-label">Lugar de trabajo</label>
+	                	<label for="workplace" class="col-sm-2 control-label">Nombre del Lugar</label>
 	                	<div class="col-sm-10">
-		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control">
+	                		<label id="labelwork" class="text-red"></label>
+		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros.">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
@@ -739,82 +892,120 @@
 	                	</div>
 	                </div>
 	                	
-		            <div class="form-group">
-		            	<label for="autocomplete" class="col-sm-2 control-label">
-		            		<i class="fa fa-location-arrow"></i>
-		            	</label>
-		            	<div id="locationField" class="col-sm-10">
-					      	<input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del centro de salud donde trabajas" onFocus="geolocate()" type="text"></input>
-					    </div>
-		            </div>
-
-		            <div class="form-group">
-		            	<label  class="col-sm-2 control-label">
-		            	</label>
+	                <div class="form-group">
 		            	
-			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
+		            		<label for="professionalPosition" class="col-sm-2 control-label">Dirección</label>
+		            	<div id="locationField" class="col-sm-10">
+					      	 <input id="autocomplete" class="form-control" placeholder="Ingresa la dirección del consultorio" onFocus="geolocate()" type="text"/>
+					    </div>
+					</div>   
+
+			            	<div class="col-sm-6">
+			            		<input type="text" value="" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
-			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
+			            	<div class="col-sm-6">
+			            		<input type="text" value="" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }} placeholder="Colonia"/>
 			            	</div>
-			        </div>
-			        <div class="form-group">  
-			        <label  class="col-sm-2 control-label">
-		            	</label>  	
-			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
+
+			            	<div class="col-sm-6">
+			            		<input type="text" value="" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"/>
 			            	</div>
-			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
+			            	<div class="col-sm-6">
+			            		<input type="text" value="" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
-			        </div>
-			        <div class="form-group"> 
-			        <label  class="col-sm-2 control-label">
-		            	</label>  	
-			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
+			            	<div class="col-sm-6">
+			            		<input type="text" value="" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"/>
 			            	</div>
-			            	<div class="col-sm-5">
-			            		<input type="text" value="" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
+			            	<div class="col-sm-6">
+			            		<input type="text" value="" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
-			         </div>
 		         
 
 		            <input type="hidden" name="lati" id="latitude"/>
 		            <input type="hidden" name="long" id="longitude"/>
 		            <br/>
 		            <!-- /.box-body -->
-		            <div class="row">
-					<div class="col-sm-4">
-					            	&nbsp;
+		            <div class="form-group" align="left">
+								<div class="col-sm-6">
+									<br/>
+					    		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default1">
+						                Agregar servicios
+						        </button>
 					            </div>
-					       		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+					       		<div class="col-sm-6" align="right">
+					       			<br/>
+						    		<button type="submit" class="btn btn-secondary">
 						                Guardar
 						            </button>
+					    			<button type="button" id="cancel" class="btn btn-default ">Cancelar</button>
 					            </div>
-					    		<div class="col-sm-4">
-					    			<button type="button" id="cancel" class="btn btn-default btn-block btn-flat">Cancelar</button>
-					            </div>
-					            <div class="col-sm-4">
-					            	&nbsp;
-					            </div>
+
 				 </div>
 				 				</form>	
 
-
-				</div>	
+		</div>	
+				
 
 				<!-- form for map -->
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
+			<div class="modal fade" id="modal-default" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Servicios disponibles en este lugar</h4>
+              </div>
+              <div class="modal-body">
+               <div class="label-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Estacionamiento">
+                      Estacionamiento
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Ambulancias">
+                      Ambulancias
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Cafeteria">
+                      Cafetería
+                    </label>
+                  </div>
+                 <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Elevador">
+                     Elevador
+                    </label>
+                  </div>
+                   <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="Wifi">
+                     Wifi
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-check"></i></button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 			<div class="form-group">
 			<div class="col-sm-5">
 				<div class="col-sm-12">
 					 <div class="form-group">
-	                	<label for="workplace" class="col-sm-4 control-label">Lugar de trabajo</label>
+	                	<label for="workplace" class="col-sm-4 control-label">Nombre del lugar</label>
 	                	<div class="col-sm-8">
-		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control">
+	                		<label id="labelwork2" class="text-red"></label>
+		                  	<input type="text" name="workplace" id="workplace2" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros...">
 	                	</div>
 	                	<!-- /.input group -->
 	              	</div>
@@ -832,124 +1023,95 @@
 	                	</div>
 	                </div>
 				</div>	
-			<div class="col-sm-12">	
-				
-				<div class="col-sm-12">	 
 					 <input type="hidden" name="lati" id="lati"/>
 		            <input type="hidden" name="long" id="long"/>
-		      </div>
+			<div class="col-sm-12">			
+			            	<div class="col-sm-6">
+			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true" placeholder="País"/>
+			            	</div>
+			            	<div class="col-sm-6">
+			            		<input type="text" value="" class="form-control" name="state" id="state" disabled="true" placeholder="Estado"/>
+			            	</div>		  
+			            	<div class="col-sm-6">
+			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true" placeholder="Calle"/>
+			            	</div>
+			            	<div class="col-sm-6">
+			            		<input type="text" class="form-control" name="colony" id="rout" disabled="true" placeholder="Colonia"/>
+			            	</div>
+			            	<div class="col-sm-6">
+			            		<input type="text" value="" class="form-control" name="delegation" id="localit" disabled="true" placeholder="Delegación"/>
+			            	</div>
+
+			        
+			            	<div class="col-sm-6">
+			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"/>
+			            	</div>
 
 			</div>
-			<div class="col-sm-12">
-				<br/>
-					  <div class="form-group">
-		            	
-			            	<div class="col-sm-6">
-			            		<input type="text" class="form-control" name="street" id="street_numbe" disabled="true"></input>
-			            	</div>
-			            	<div class="col-sm-6">
-			            		<input type="text" class="form-control" name="colony" id="rout" disabled="true"></input>
-			            	</div>
-			        </div>
-
-			        <div class="form-group">  
-			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="delegation" id="localit" disabled="true"></input>
-			            	</div>
-			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="state" id="state" disabled="true" placeholder="Estado"></input>
-			            	</div>
-			        </div>
-			        <div class="form-group"> 
-			            	<div class="col-sm-6">
-			            		<input type="text" class="form-control" name="postalcode" id="postalcode" disabled="true" placeholder="Código Postal"></input>
-			            	</div>
-			            	<div class="col-sm-6">
-			            		<input type="text" value="" class="form-control" name="country" id="countr" placeholder="País" disabled="true"></input>
-			            	</div>
-			         </div>
-				</div>
-				<div class="col-sm-12">
-					       		<div class="col-sm-6">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+				<div class="col-sm-12 form-group" align="right">
+								<div class="col-sm-6" align="left">
+									<br/>
+					    		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+						                Agregar servicios
+						        </button>	
+					            </div>
+					       		<div class="col-sm-6" align="right">
+					       			<br/>
+						    		<button type="submit" class="btn btn-secondary ">
 						                Guardar
 						            </button>
+						            <button type="button" id="cancel2" class="btn btn-default ">Cancelar</button>
 					            </div>
-					    		<div class="col-sm-6">
-					    			<button type="button" id="cancel2" class="btn btn-default btn-block btn-flat">Cancelar</button>
-					            </div>
+
+					            
 				</div>
 			</div>
 			<div class="col-sm-7">
 			<div id="loadingGif2" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
 		  	<div id="map"></div>
-		  	<div class="col-sm-12">	
+		  	<div class="pull-center">	
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 			</div>	
 		  </div></div>
 		  
 		</form>
 			</div>
-
-
-
-
-
-			<div class="footer">
-			@if($labor->isEmpty())
-			<div class="box-footer">
-						 <span class="text-black">No hay ningún centro asociado a su cuenta...</span>
-			</div>
-			
-			@else
-			
-			<div class="box-footer">
-			@foreach($labor->sortByDesc('created_at') as $labor)	
-			
-						@if($loop->iteration < 3)
-							<div class="col-sm-12">
-					          <div class="info-box sm bg-gray">
-					          	@if($loop->iteration == 1)
-					            <span class="info-box-icon sm bg-lighten-1"><i class="fa fa-hospital-o"></i></span>
-					            @endif
-					            @if($loop->iteration == 2)
-					            <span class="info-box-icon sm bg-black"><i class="fa fa-hospital-o"></i></span>
-					            @endif
-					            <div class="info-box-content sm">
-					              <b>{{ $labor->workplace}}</b>
-					             <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span><a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a>
-					            
-					            </div>
-					          </div>
-					        </div>
-					   @endif	
-					   @if($loop->iteration > 2)
-					   <div class="col-sm-12" style="text-align: right;">
-					   	<a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" class="btn btn-default">
-					   Ver todos... <i class="fa fa-arrow-right"></i>
-					   </a>
-					   </div>
-					   @break
-			 		   @endif			
-			@endforeach
-			</div>	 
-			@endif
-			</div>
-
-
 				
     		<script type="text/javascript">
+    	
+
 
     		$(document).ready(function() {
+
+				$("input#workplace").bind('change keyup input', function() {
+    			var workplace =  document.getElementById('workplace').value;
+
+    			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') >= 0 || workplace.indexOf('hospital') >= 0 || workplace.indexOf('HOSPITAL') >= 0 || workplace.indexOf('consultorio') >= 0 || workplace.indexOf('CONSULTORIO') >= 0){
+    					document.getElementById('labelwork').innerHTML = '* Las palabras hospital, o consultorio están restringidas.'
+    			}
+    			else{
+    				document.getElementById('labelwork').innerHTML = ''
+    			}
+    		})
+
+				$("input#workplace2").bind('change keyup input', function() {
+    			var workplace =  document.getElementById('workplace2').value;
+
+    			if(workplace.indexOf('Hospital') >= 0 || workplace.indexOf('Consultorio') >= 0 || workplace.indexOf('hospital') >= 0 || workplace.indexOf('HOSPITAL') >= 0 || workplace.indexOf('consultorio') >= 0 || workplace.indexOf('CONSULTORIO') >= 0){
+    					document.getElementById('labelwork2').innerHTML = '* Las palabras hospital, o consultorio están restringidas.'
+    			}
+    			else{
+    				document.getElementById('labelwork2').innerHTML = ''
+    			}
+    		})
+
 				$("#openform").click(
 				function(event) {
-					document.getElementById("boxlabor").style.paddingBottom = "130px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form1").style.display = "block";
 				})
 				$("#openform2").click(
 				function(event) {
-					document.getElementById("boxlabor").style.paddingBottom = "140px";
 				   $("#buttonOpen").hide();
 				   document.getElementById("form2").style.display = "block";		  
 				  setTimeout(function(){ 
@@ -963,7 +1125,6 @@
 				   $("#buttonOpen").show();
 				   document.getElementById("form1").style.display = "none";
 				   document.getElementById("form2").style.display = "none";
-				   document.getElementById("boxlabor").style.paddingBottom = "";
 				   initMap();
 				 
 				})
@@ -1233,39 +1394,86 @@
 
       }
 
-		    </script>  	
+		    </script> 
+
 				    @endif
 
 			@if($mode == 'viewlabor')
 					<div class="box">
 						<div class="box-header with-border">
-								    <h3 class="box-title">Registro de Centros Laborales</h3>
+								    <h3 class="box-title">Consultorios agregados</h3>
 							    	<!-- /.box-tools -->
 						</div>
 					<div class="box-body"><br/>
+						<div class="form-group">
 				@foreach($labor->sortByDesc('created_at') as $labor)	
-			
 
-							<div class="col-sm-12">
+						<div class="pull-center">
+							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
 					          <div class="info-box bg-gray">
-					            <span class="info-box-icon bg-black"><i class="fa fa-hospital-o"></i></span>
+					          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon bg-black"><i class="fa fa-calendar"></i></span></a>
 					            <div class="info-box-content">
 					              <b>{{ $labor->workplace}}</b><br/>
 					             <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. CP: {{ $labor->postalcode }}</span><a href = "{{ url('doctor/delete') }}/{{ $labor->id }}" class="btn" onclick ="return confirm('¿Seguro desea eliminar este lugar?')"><i class="fa fa-trash text-muted"></i></a>
 					     						        
 					            </div>
 					          </div>
-					        </div><br/>    
+					        </div>
+					        <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;size=400x90&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 91px;">	
+							</div>
+						</div>  
 			
 			@endforeach
+			<br/>
 			<div class="col-sm-6">&nbsp;</div>
-								<div class="col-sm-6">
+								<div class="pull-right">
 					    			<a href="{{ url('doctor/doctor') }}/{{ $userId }}" class="btn btn-secondary btn-block btn-flat">
 						                Volver al Perfil
 						            </a>
 					            </div>
+					        </div>
 
 					</div>
 					</div>   	
 			@endif
 @stop
+@section('footer')
+
+@if($mode == 'labor')
+  <div class="box-body">
+            @if($labor->isEmpty())
+                         <span class="text-black">No hay ningún consultorio asociado a su cuenta.</span>
+            @else
+                    <span class="text-black" style="font-size: 12px;">Consultorios agregados recientemente</span>
+                    @foreach($labor->sortByDesc('created_at') as $labor) 
+                    
+                                @if($loop->iteration < 3)
+
+                                    <div class="pull-center">
+                                      <div class="info-box sm bg-gray">
+                                        <a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar"></i></span></a>
+                                        <div class="info-box-content sm">
+                                          <b> {{ $labor->workplace}}</b>
+                                         <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}.</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                        
+                               @endif   
+                               @if($loop->iteration > 2)
+                               <div class="pull-right">
+                                <a href="{{ url('doctor/laborInformationView') }}/{{ $userId }}" style="font-size: 11px;" class="text-muted">
+                               Ver todos... <i class="fa fa-arrow-right"></i>
+                               </a>
+                               </div>
+                               @break
+                               @endif           
+                    @endforeach
+
+        @endif
+</div>
+    @endif
+
+@stop
+

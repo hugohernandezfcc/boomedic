@@ -74,6 +74,7 @@ class doctor extends Controller
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
+        $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
         return view('profileDoctor', [
                 'username' => DB::table('users')->where('id', Auth::id() )->value('name'),
 
@@ -107,6 +108,7 @@ class doctor extends Controller
                 'schoolOfMedicine' => $professionali[0]->schoolOfMedicine,
                 'facultyOfSpecialization' => $professionali[0]->facultyOfSpecialization,
                 'practiseProfessional'    => $professionali[0]->practiseProfessional,
+                'medical_society'         => $professionali[0]->medical_society,  
 
                 /** ADDRESS FISICAL USER  */
 
@@ -121,7 +123,8 @@ class doctor extends Controller
                 'longitude'     => (   empty($users[0]->longitude)      ) ? '' : $users[0]->longitude,
                 'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
                 'mode'          => 'doctor',
-                'labor'         => $labor
+                'labor'         => $labor,
+                 'asso'          => $asso
             ]
         );
     }
@@ -164,6 +167,7 @@ question
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
+        $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
         return view('profileDoctor', [
 
                 /** SYSTEM INFORMATION */
@@ -195,6 +199,7 @@ question
                 'schoolOfMedicine' => $professionali[0]->schoolOfMedicine,
                 'facultyOfSpecialization' => $professionali[0]->facultyOfSpecialization,
                 'practiseProfessional'    => $professionali[0]->practiseProfessional,
+                'medical_society'         => $professionali[0]->medical_society,  
 
                 /** ADDRESS FISICAL USER  */
 
@@ -207,7 +212,8 @@ question
                 'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
                 'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
                 'mode'          => 'doctor',
-                'labor'         => $labor  
+                'labor'         => $labor,
+                'asso'          => $asso
 
             ]
         );
@@ -227,6 +233,7 @@ question
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
+         $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
 
         if ($request->change == "true") {
         $user->status        = $request->status;         
@@ -258,6 +265,7 @@ question
         $prof->schoolOfMedicine         = $request->schoolOfMedicine;
         $prof->facultyOfSpecialization  = $request->facultyOfSpecialization;
         $prof->practiseProfessional     = $request->practiseProfessional;
+        $prof->medical_society          = $request->medical_society ;  
 
         $prof->save();
         $user->save();
@@ -271,6 +279,7 @@ question
                 'photo'         => $user->profile_photo,
                 'date'         => $user->created_at,
                 'mode'          => 'labor',
+                'asso'          => $asso,
 
                 /* DIRECTION LABOR PROFESSIONAL  */
                 'labor'         => $labor,
@@ -285,6 +294,23 @@ question
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
+        $services = array();
+        if($request->Estacionamiento){
+         array_push($services,'Estacionamiento');
+        }
+        if($request->Cafeteria){
+          array_push($services,'Cafeteria');
+        }
+        if($request->Ambulancias){
+           array_push($services,'Ambulancias');
+        }
+        if($request->Elevador){
+           array_push($services,'Elevador');
+        }
+        if($request->Wifi){
+           array_push($services,'Wifi');
+        }
+
 
         $laborInformation = new laborInformation;
 
@@ -305,6 +331,7 @@ question
         $laborInformation->general_amount = $request->cost;
 
         $laborInformation->profInformation  =   $prof->id;
+        $laborInformation->services         = json_encode($services);
    
         $laborInformation->save();
 
@@ -313,10 +340,10 @@ question
 
                 /** SYSTEM INFORMATION */
 
-                'userId'        => Auth::id(),
-                'name'      => $user->name,
+                'userId'        => $user->id,
+                'name'          => $user->name,
                 'photo'         => $user->profile_photo,
-                'date'         => $user->created_at,
+                'date'          => $user->created_at,
                 'mode'          => 'labor',
 
                 /* DIRECTION LABOR PROFESSIONAL  */
@@ -325,7 +352,7 @@ question
         );
     }
 
-           public function laborInformationView($id)
+    public function laborInformationView($id)
     {
         $user = user::find(Auth::id());
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
@@ -338,10 +365,10 @@ question
 
                 /** SYSTEM INFORMATION */
 
-                'userId'        => Auth::id(),
-                'name'      => $user->name,
+                'userId'        => $user->id,
+                'name'          => $user->name,
                 'photo'         => $user->profile_photo,
-                'date'         => $user->created_at,
+                'date'          => $user->created_at,
                 'mode'          => 'viewlabor',
 
                 /* DIRECTION LABOR PROFESSIONAL  */
@@ -359,32 +386,41 @@ question
           $width = $imagen[0];              //Ancho
           $height = $imagen[1];  
 
-          if($height > '600' || $width > '600'){
+          if($height > '600' || $width > '400'){
             $height = $height / 2;
             $width = $width / 2;
           }
-            if($height > '900' || $width > '900'){
+          if($height > '800' || $width > '600'){
+            $height = $height / 2.5;
+            $width = $width / 2.5;
+          }
+            if($height > '1000' || $width > '900'){
                 $height = $height / 3;
                 $width = $width / 3;
               }
 
+
+
         $img = Image::make($file);
         $img->resize($width, $height);
         $img->encode('jpg');
-        Storage::disk('s3')->put( $id.'.jpg',  (string) $img, 'public');
-        $filename = $id.'.jpg';
+        Storage::disk('s3')->put( $id.'temporal.jpg',  (string) $img, 'public');
+        $filename = $id.'temporal.jpg';
         $path = Storage::cloud()->url($filename);
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
 
        
         $user->profile_photo = $path2;   
+               
+        if($user->save()){
         Session(['val' => 'true']);
-        $user->save();
         return redirect('doctor/doctor/' . $id );
+        }
     }
 
     public function cropDoctor(Request $request, $id)
     {
+       // $path = $request->photo->store('images', 's3');
        // $path = $request->photo->store('images', 's3');
         $user = User::find($id);
         $targ_w = $targ_h = 300;
@@ -406,13 +442,51 @@ question
         Storage::disk('s3')->put( $id.'.jpg',  $jpeg_file_contents, 'public');
         
         $path = Storage::cloud()->url($filename);
-
          Session(['val' => 'false']);
        
         $user->profile_photo = $path2;   
+        Storage::disk('s3')->delete('https://s3.amazonaws.com/abiliasf/'.$user->id.'temporal.jpg');
+        if($user->save()){
 
-        if($user->save())
+        //Imagen copia circular//
+            $newwidth = 150;
+            $newheight = 150;
+        $image = imagecreatetruecolor( $newwidth, $newheight);
+        $image_s = imagecreatefromstring(file_get_contents($path2));
+       /* $image_z = imagecreatefromstring(file_get_contents('https://s3.amazonaws.com/abiliasf/circle.png'));*/
+        $width = imagesx($image_s);
+        $height = imagesy($image_s);
+        imagealphablending($image, true);
+
+        imagecopyresampled($image, $image_s, 0, 0, 0, 0, $newwidth, $newheight,$width,$height);
+        //create masking
+        $mask = imagecreatetruecolor( $width,$height);
+        $transparent = imagecolorallocate($mask, 255, 0, 0);
+        imagecolortransparent($mask,$transparent);
+        imagefilledellipse($mask,  $newwidth/2, $newheight/2, $newwidth, $newheight, $transparent);
+        $red = imagecolorallocate($mask, 0, 0, 0);
+        imagecopymerge($image, $mask, 0, 0, 0, 0, $newwidth,$newheight, 100);
+        imagecolortransparent($image,$red);
+        imagefill($image, 0, 0, $red);
+      /*  imagecopyresampled(
+            $image,
+            $image_z,
+            0, 0, 0, 0,
+            imagesx($image_z),
+            imagesy($image_z),
+            imagesx($image_z),
+            imagesy($image_z)
+            );*/
+        ob_start();
+        imagepng($image);
+        $png_file = ob_get_contents();
+        ob_end_clean();
+        Storage::disk('s3')->put( $id.'-circle.png',  $png_file, 'public');
+        //Imagen copia circular//
+
+
             return redirect('doctor/edit/complete' . $id );
+        }
     }
 
 
@@ -424,11 +498,19 @@ question
      */
     public function destroy($id)
     {
+  $workboard = DB::table('workboard')->where('labInformation', $id)->get();
+  $appointments = DB::table('medical_appointments')->where('workplace', $id)->get();
+ if(count($workboard) > 0){
+    DB::table('workboard')->where('labInformation', $id)->delete();   
+ }
+  if(count($appointments) > 0){
+    DB::table('medical_appointments')->where('workplace', $id)->delete();   
+ }
     DB::delete('delete from labor_information where id = ?',[$id]) ;    
 
     
     // redirect
     
-   return redirect('doctor/doctor/'.Auth::id() );
+   return redirect('doctor/laborInformationView/'.Auth::id() );
     }
 }

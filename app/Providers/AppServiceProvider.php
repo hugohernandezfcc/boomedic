@@ -6,8 +6,8 @@ use App\User;
 use App\menu;
 use App\ProfessionalInformation;
 use Carbon\Carbon;
-
-
+use Jenssegers\Agent\Agent;
+use View;
 use Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -29,7 +29,9 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale(config('app.locale'));
       
         \URL::forceScheme('https');
+        $agent = new Agent();
 
+        View::share('agent', $agent);
 
 
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {

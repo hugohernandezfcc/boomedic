@@ -13,10 +13,14 @@ class medical_appointments extends Model
 		'user_doctor',
 		'when',
 		'status',
-		'workplace'
+		'workplace',
+		'appointment'
     ];
 
     public function user(){
 	  return $this->belongsTo('App\User', 'user');
+	}
+	public function appointment(){
+	  return $this->belongsTo('App\medical_appointments', 'appointment');
 	}
 }

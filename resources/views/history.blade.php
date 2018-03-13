@@ -4,6 +4,21 @@
 
 @section('content_header')
 
+<style type="text/css">
+
+.content{
+    overflow-y: auto;
+  }
+
+  .timeline>li {
+    margin-right: 0 !important;
+}
+
+.timeline>li>.timeline-item {
+   margin-right: 0 !important;
+}
+</style>
+
 @stop
 
 @section('content')
@@ -34,11 +49,11 @@
 			@else 
 
 			<div class="btn-group">
-			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo citas"><i class="fa fa-heartbeat"></i></button>		
+			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo citas"><i class="fa fa-calendar-check-o"></i></button>		
 			<button id="support" type="button"  class="btn bg-black" title="Mostrar solo soporte"><i class="fa fa-wrench "></i></button>
 			<button id="payment" type="button" class="btn bg-yellow" title="Métodos de pagos registrados"> <i class="fa fa-credit-card-alt"></i></button>	
 			<button id="userli" type="button" class="btn bg-green" title="Mostrar solo actualización de usuario"><i class="fa fa-user "></i></button>
-			<button id="all" type="button" class="btn black bg-darken-4" title="Ver todo"><i> • • • </i></button>				
+			<button id="all" type="button" class="btn black bg-darken-4" title="Ver todo"><b>Ver todo</b></button>				
 			</div>
 
 	 
@@ -60,18 +75,32 @@
 
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-heartbeat bg-blue"></i>
+              <i class="fa fa-calendar-check-o bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                 </div>
               </div>
             </li>
+            <div class="modal fade" id="modalmap" role="dialog">
+          <div class="modal-dialog">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -141,20 +170,35 @@
             
           @foreach($array1 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-heartbeat bg-blue"></i>
+              <i class="fa fa-calendar-check-o bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                 </div>
               </div>
             </li>
+            <div class="modal fade" id="modalmap" role="dialog">
+          <div class="modal-dialog">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
             @endif
             
             @if($items['Type'] == 'Support Ticket')
@@ -226,20 +270,34 @@
           @foreach($array2 as $items) 
             <!-- timeline time label -->
 
-            @if($items['Type'] == 'Medical Appointments')
+          @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-heartbeat bg-blue"></i>
+              <i class="fa fa-calendar-check-o bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }}<br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                 </div>
               </div>
             </li>
+            <div class="modal fade" id="modalmap" role="dialog">
+          <div class="modal-dialog">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -313,18 +371,32 @@
 
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-heartbeat bg-blue"></i>
+              <i class="fa fa-calendar-check-o bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                 </div>
               </div>
             </li>
+            <div class="modal fade" id="modalmap" role="dialog">
+          <div class="modal-dialog">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -398,18 +470,32 @@
 
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-heartbeat bg-blue"></i>
+              <i class="fa fa-calendar-check-o bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                 </div>
               </div>
             </li>
+            <div class="modal fade" id="modalmap" role="dialog">
+          <div class="modal-dialog">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -479,21 +565,34 @@
             
           @foreach($array5 as $items) 
             <!-- timeline time label -->
-
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-heartbeat bg-blue"></i>
+              <i class="fa fa-calendar-check-o bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                 </div>
               </div>
             </li>
+            <div class="modal fade" id="modalmap" role="dialog">
+          <div class="modal-dialog">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -564,20 +663,35 @@
             
           @foreach($array6 as $items) 
             <!-- timeline time label -->
+
           @if($items['Type'] == 'Medical Appointments')
             <li class="appointment">
-              <i class="fa fa-heartbeat bg-blue"></i>
+              <i class="fa fa-calendar-check-o bg-blue"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
                 <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
-                	<b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                	<b>Estado:</b> {{ $items['status']}} <br/>
-                	<b>Lugar:</b> {{ $items['workplace']}} 
+                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                  <b>Estado:</b> {{ $items['status']}} <br/>
+                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
+                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                 </div>
               </div>
             </li>
+            <div class="modal fade" id="modalmap" role="dialog">
+          <div class="modal-dialog">
+          <div class="modal-content">  
+            <div class="modal-body">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
             @endif
             
             @if($items['Type'] == 'Support Ticket')
@@ -593,6 +707,7 @@
               </div>
             </li>
             @endif
+
 
            @if($items['Type'] == 'User')
             <li class="userli">
@@ -643,17 +758,20 @@
 			<br/>
 			@if($mode != 'more')
             <div align="right">
-              <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> Ver más del histórico </a>
+              <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> 7 días más </a>
           	</div>
           	@endif
           	@if($mode == 'more')
-           <div align="right">
-              <a href="{{ url('/history/index') }}" class="btn btn-secondary btn-flat btn-xs"> Volver </a>
+           <div  align="right">
+              <a href="{{ url('/history/index') }}" class="btn btn-default btn-flat btn-xs"> Volver </a>
+              <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> 7 días más </a>
           	</div>
           	
           	@if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
           	<div align="center">
-              No hay más histórico registrado en los días anteriores.
+               <div class="timeline-item">
+              No hay histórico en la semana {{ session()->get('history2') }}.
+               </div>
           	</div>
           	@endif
           	@endif
@@ -672,6 +790,7 @@
  	</div>
 
  <script type="text/javascript">
+console.log(@php echo session()->get('history'); @endphp);
 
 		$("#userli").click(function () {
 

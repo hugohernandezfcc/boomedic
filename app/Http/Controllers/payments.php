@@ -26,7 +26,7 @@ use config;
 use Mail;
 use email;
 use Mailgun\Mailgun;
-
+use App\medical_appointments;
 
 class payments extends Controller
 {
@@ -55,16 +55,16 @@ class payments extends Controller
      */
     public function index()
     {
+        $user = User::find(Auth::id());
         $cards = DB::table('paymentsmethods')->where('owner', Auth::id() )->get();
 
         return view('payments', [
                 'cards'     => $cards,
-                'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
-                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at'),
-
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
                 'mode'      => 'listPaymentMethods'
             ]
         );
@@ -78,13 +78,13 @@ class payments extends Controller
     public function create()
     {
 
-
+        $user = User::find(Auth::id());
         return view('payments', [
-                'userId'    => Auth::id(),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('username'),
-                'name'      => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at'),
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
                 'mode'      => 'createPaymentMethod'
             ]
         );
@@ -218,7 +218,7 @@ class payments extends Controller
                     $this->VisaAPIClient = new VisaAPIClient;
                     //Build json with payment details
                     $this->paymentAuthorizationRequest = json_encode ( [ 
-                    'amount' => $request->pay,
+                    'amount' => $request->amount,
                     'currency' => 'USD',
                     'payment' => [
                       'cardNumber'=> $card->cardnumber,
@@ -238,33 +238,56 @@ class payments extends Controller
              /* Insert_bank*/
                         $Transaction = new transaction_bank;
                         $Transaction->paymentmethod = $request->id;
-                        $Transaction->receiver = 'receiver prueba';
-                        $Transaction->amount = $request->pay;
+                        $Transaction->receiver = $request->receiver;
+                        $Transaction->amount = $request->amount;
                         $Transaction->transaction = $statusCode[1];
                         $Transaction->save();
                     /* Insert Transaction_bank*/    
+                    /* Insert Cita */
+                    $medical = new medical_appointments;
+                    $medical->user           = Auth::id();
+                    $medical->user_doctor    = $request->dr;
+                    $medical->workplace       = $request->idlabor;
+                    $medical->when          = $request->when;
+            
+           if ($medical->save()) {
+            $doc = User::find($request->dr); 
+            $work = DB::table('labor_information')->where('id', $request->idlabor)->first();    
+            $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12);
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->pay.', para más información consulte su cartera de pago... ', 
-            'success' => 'success'
+            'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->amount.', para más información consulte su cartera de pago... ', 
+            'success' => 'success',
+            'dr'      => $doc->name,
+            'drphoto'      => $doc->profile_photo,
+            'fecha'   => $request->when,
+            'monto'   => $request->amount,
+            'transaccion' => $statusCode[1],
+            'card'        => $cardfin,
+            'idcard'      => $card->id,
+            'spe'         => $request->spe,
+            'work'        => $work->workplace
+
+
             );
 
 
             $data = [
-            'name'     => $user->name,
-            'email'    => $user->email, 
+            'name'      => $user->name,
+            'email'     => $user->email, 
             'username'  => $user->username,                 
             'firstname' => $user->firstname,                
             'lastname'  => $user->lastname,    
-            'number'   => $statusCode[1],
-            'amount'   => '$'.$request->pay         
-            ];
+            'number'    => $statusCode[1],
+            'amount'    => '$'.$request->amount       
+            ]; 
                 $email = $user->email;
              Mail::send('emails.transaction', $data, function ($message) {
                         $message->subject('Transacción de pago en Boomedic');
                         $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
-            return redirect('payment/index')->with($notification);
+         }
+            return redirect('medicalconsultations')->with($notification);
          }
          else {
              $notification = array(
@@ -272,36 +295,38 @@ class payments extends Controller
             'message' => $statusCode, 
             'error' => 'error'
         );
-            return redirect('payment/index')->with($notification);
+            return redirect('medicalconsultations')->with($notification);
          }
          
      }
 
      public function transactions(Request $request) {
+        $user = User::find(Auth::id());
         $id = $request->id;
         //Look in the table of methods of saved payments all the information of the selected method.
         $transactions = DB::table('transaction_bank')->where('paymentmethod', $id)->get();
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
          return view('payments', [
-                'type'      => $card->typemethod,
+                'type'              => $card->typemethod,
                 'paypal_email'      => $card->paypal_email,
-                'cardnumber' => $card->cardnumber,
-                'bank' => $card->bank,
-                'provider' => $card->provider,
-                'credit_debit' => $card->credit_debit,
-                'created' => $card->created_at,
-                'transactions'     => $transactions,
-                'userId'    => Auth::id(),
-                'photo'  => DB::table('users')->where('id', Auth::id() )->value('profile_photo'),
-                'username'  => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'name'  => DB::table('users')->where('id', Auth::id() )->value('name'),
-                'mode'      => 'historyTransaction',
-                'date'  => DB::table('users')->where('id', Auth::id() )->value('created_at')
+                'cardnumber'        => $card->cardnumber,
+                'bank'              => $card->bank,
+                'provider'          => $card->provider,
+                'credit_debit'      => $card->credit_debit,
+                'created'           => $card->created_at,
+                'transactions'      => $transactions,
+                'userId'            => $user->id,
+                'photo'             => $user->profile_photo,
+                'username'          => $user->username,
+                'name'              => $user->name,
+                'mode'              => 'historyTransaction',
+                'date'              => $user->created_at
             ]
         );
                    
          
      }
+     
 
             public function postPaymentWithpaypal(Request $request)
 
@@ -311,7 +336,7 @@ class payments extends Controller
                     $payer = new Payer();
                             $payer->setPaymentMethod('paypal');
                             $item_1 = new Item();
-                            $item_1->setName('Item 1') /** item name **/
+                            $item_1->setName('Consulta') /** item name **/
                                 ->setCurrency('USD')
                                 ->setQuantity(1)
                                 ->setPrice($request->get('amount')); /** unit price **/
@@ -356,8 +381,20 @@ class payments extends Controller
                                     break;
                                 }
                             }
+                            $doc = User::find($request->dr); 
+                            $work = DB::table('labor_information')->where('id', $request->idlabor)->first();    
                             /** add payment ID to session **/
                             session()->put('paypal_payment_id', $payment->getId());
+                            session()->put('receiver', $request->get('receiver'));
+                            session()->put('dr', $doc->id);
+                            session()->put('monto', $request->amount);
+                            session()->put('spe', $request->spe);
+                            session()->put('work', $work->workplace);
+                            session()->put('drphoto', $doc->profile_photo);
+                            session()->put('idlabor', $request->get('idlabor'));
+                            session()->put('when', $request->get('when'));
+
+
                             if(isset($redirect_url)) {
                                 /** redirect to paypal **/
                                 return redirect($redirect_url);   
@@ -373,13 +410,29 @@ class payments extends Controller
                         {
                             // Get the payment ID before session clear
                             $payment_id = $request->session()->get('paypal_payment_id');
+                            $receiver = $request->session()->get('receiver');
+                            $dr = $request->session()->get('dr');
+                            $idlabor = $request->session()->get('idlabor');
+                            $when = $request->session()->get('when');
+                            $drphoto = $request->session()->get('drphoto');
+                            $work = $request->session()->get('work');
+                            $monto = $request->session()->get('monto');
+                            $spe = $request->session()->get('spe');
 
                             // clear the session payment ID
                             $request->session()->forget('paypal_payment_id');
+                            $request->session()->forget('receiver');
+                            $request->session()->forget('when');
+                            $request->session()->forget('dr');
+                            $request->session()->forget('idlabor');
+                            $request->session()->forget('drphoto');
+                            $request->session()->forget('work');
+                            $request->session()->forget('monto');
+                            $request->session()->forget('spe');
                             
                             if (empty($request->input('PayerID')) || empty($request->input('token'))) {
                                     session()->put('error','Unknown error occurred');
-                              return redirect('payment/index');
+                              return redirect('medicalconsultations');
                             }
                             
                             $payment = Payment::get($payment_id, $this->_api_context);
@@ -398,53 +451,73 @@ class payments extends Controller
                               // Payment is successful do your business logic here
                                 //Add payment method
                                 $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
+                                $idp = $paypalExist->id;
                                 if(empty($paypalExist)){
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
                                 $pmethods->typemethod    = 'Paypal';
-                                $pmethods->bank         = 'Paypal';
+                                $pmethods->bank          = 'Paypal';
                                 $pmethods->paypal_email  = $result->getPayer()->getPayerInfo()->getEmail();
                                 $pmethods->cardnumber    = $request->input('PayerID');
                                 $pmethods->owner         = Auth::id();
                                 $pmethods->notified      = 'false';
                                 $pmethods->save();
-
+                                $idp = $pmethods->id;
                               }
                                
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
                                             $Trans = new transaction_bank;
                                             $Trans->paymentmethod = $paypalExist2->id;
-                                            $Trans->receiver = 'receiver prueba';
+                                            $Trans->receiver = $receiver;
                                             $Trans->amount = $payment->transactions[0]->amount->total;
                                             $Trans->transaction = $payment_id;
                                             $Trans->save();    
-                                        
+                                                   /* Insert Cita */
+                                        $medical = new medical_appointments;
+                                        $medical->user           = Auth::id();
+                                        $medical->user_doctor    = $dr;
+                                        $medical->workplace       = $idlabor;
+                                        $medical->when          = $when;
+                                
+                            if ($medical->save()) {         
 
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
                                     'message' => 'Procesado su pago de paypal, Correo: ' .$result->getPayer()->getPayerInfo()->getEmail().', Id de transacción: '. $payment_id, 
-                                    'success' => 'success'
+                                    'success' => 'success',
+                                    'dr'      => $receiver,
+                                    'drphoto'      => $drphoto,
+                                    'fecha'   => $when,
+                                    'monto'   => $monto,
+                                    'transaccion' => $payment_id,
+                                    'card'        => 'Paypal ' .$result->getPayer()->getPayerInfo()->getEmail(),
+                                    'idcard'      => $idp,
+                                    'spe'         => $spe,
+                                    'work'        => $work
                                 );
+
+
                                 $user = User::find(Auth::id());
                                 $data = [
-                                'name'     => $user->name,
-                                'email'    => $user->email, 
+                                'name'      => $user->name,
+                                'email'     => $user->email, 
                                 'username'  => $user->username,                 
                                 'firstname' => $user->firstname,                
                                 'lastname'  => $user->lastname,    
-                                'number'   => $payment_id,
-                                'amount'   => '$'.$payment->transactions[0]->amount->total        
+                                'number'    => $payment_id,
+                                'amount'    => '$'.$payment->transactions[0]->amount->total        
                                 ];
                                 $email = $user->email;
                                  Mail::send('emails.transaction', $data, function ($message) {
                                             $message->subject('Transacción de pago en Boomedic');
                                             $message->to('rebbeca.goncalves@doitcloud.consulting');
                                         });
-                              return redirect('payment/index')->with($notification);
+                             }
+                              return redirect('medicalconsultations')->with($notification);
                             }
                             
                             session()->put('error','Unknown error occurred');
-                            return redirect('payment/index');
+                            return redirect('medicalconsultations');
                           }
 
                                          

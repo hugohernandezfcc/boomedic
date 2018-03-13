@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -41,7 +42,19 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }    
+     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function index()
+    {
+    $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
+        return response()->json($asso);
     }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -128,6 +141,7 @@ class RegisterController extends Controller
 
             $profInformation = professional_information::create([ 
                 'professional_license'  => $data['professional_license'],
+                'medical_society'  => $data['medical_society'],
                 'user'                  => $userCreated->id
             ]);
 

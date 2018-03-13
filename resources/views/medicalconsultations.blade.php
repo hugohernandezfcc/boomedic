@@ -3,7 +3,7 @@
 @section('title', 'Boomedic')
 
 @section('content')
-    
+<meta name="csrf-token" content="{{ csrf_token() }}">
   <style type="text/css">
       #mapaC{
         position: relative;
@@ -17,12 +17,12 @@
       }
       #rango{ 
         position: absolute;
-        width: 70%; 
-        bottom: 4.5%;
-        left: 15%;
-        right: 15%;
+        width: 50%;
+        bottom: 7%;
+        left: 25%;
+        right: 25%;
         padding-top: 0.7%;
-        padding-bottom: 0%;
+        padding-bottom: 0.7%;
         padding-right: 0.7%;
         padding-left: 0.7%;
         /*background-color: rgba(255,255,255,0.7);*/
@@ -66,16 +66,7 @@
         border-radius: 1px;
       }
      .checkStyl2{
-        position: absolute;
-        bottom: 4.5%;
-        left: 1%;
-        z-index: 100;
-        font-size: 90%;
-        line-height: 15%;
-        padding-top: 0.5%;
-        padding-bottom: 0.5%;
-        padding-right: 0.5%;
-        padding-left: 0.5%;
+      text-align: center;
       }
       .infoSpStyle{
         position: absolute;
@@ -184,8 +175,82 @@
       .btn-default {
           box-shadow: 1px 2px 5px #000000;   
       }
-    
+        .box {
+             margin-bottom: 0;
+        }
+        .panel {
+             margin-bottom: 0; 
+        }
+        .pac-container {
+         z-index: 100000; 
+       }
+      .box.box-primary {
+        border-top-color: #242627;
+        }
+    #infDr {
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: 1050;
+    width: 70%;
+    margin: 0 0 0 0 !important;
+    }
+    @media( max-width : 700px ) {
+       #infDr {
+         width: 95%;
+       }
+    }
+    .alert .close {
+    color: white !important;
+    opacity: .8 !important;
+}
+    #bodyDr{
+       margin-left: 90px; 
+    }
+.customMarker {
+    position:absolute;
+    cursor:pointer;
+    background:#424242;
+    width:50px;
+    height:50px;
+    /* -width/2 */
+    margin-left:-25px;
+    /* -height + arrow */
+    margin-top:-55px;
+    border-radius:50%;
+    padding:0px;
+}
+.customMarker:after {
+    content:"";
+    position: absolute;
+    bottom: -5px;
+    left: 20px;
+    border-width: 5px 5px 0;
+    border-style: solid;
+    border-color: #424242 transparent;
+    display: block;
+    width: 0;
+}
+.customMarker img {
+    width:45px;
+    height:45px;
+    margin:3px;
+    border-radius:50%;
+    pointer-events: auto;
+}
+    .modal-content-2 {
+        position: relative;
+        background-color: transparent;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        color: white;
+        margin-top: 50%;
+        width: 100%;
+    }
   </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+
+
 
   <!--  -->
   <script type="text/javascript">
@@ -222,38 +287,38 @@
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
+    console.log(datos);
   </script>
- @if($appointments->isEmpty())
-<div class="alert alert-info alert-dismissible" id="alert">
-                <h4><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h4>               
-</div>
- @else
-      <div class="box-group" id="accordion">
+             @if($appointments->isEmpty())
+            <div class="alert alert-info alert-dismissible" id="alert">
+                            <h4><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h4>               
+            </div>
+             @else
+        <div class="box-group" id="accordion">
                 <div class="panel box box-default" style="border-top-color: gray;">
-                
-                 <div class="box-header with-border"> 
-                  <h4 class="panel-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
-                   <div align="left"><i class="fa fa-chevron-down text-muted"></i> Citas médicas registradas</div>
-                  </a>
-              </h4>
-                    </div> 
+                 <div class="box-header with-border"> 
+                       <div align="left"><i class="fa fa-chevron-down text-muted"></i> <b>Citas médicas registradas</b></div>
+                     </div> 
+                    </a>
                   <div id="collapseOne" class="panel-collapse collapse" >
                     <div class="box-body">
                          @foreach($appointments->sortBy('when') as $appo)
                               @if($loop->iteration < 3)
-
+                                <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" target="_blank">
                                             <div class="col-sm-12">
                                                   <div class="info-box sm bg-gray">
-                                                    <span class="info-box-icon sm bg-black"><i class="fa fa-heartbeat"></i></span>
+                                                    <div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div>
                                                     <div class="info-box-content sm">
-                                                      <b>Lugar:</b> {{ $appo->workplace}}.<br/>
+                                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" class="text-muted"> 
+                                                      <b>Lugar:</b> {{ $appo->workplace}}.</a><br/>
                                                      <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
                                                     </div>
+
                                  @endif 
                                                          @if($loop->iteration > 2)
                                                          <div class="col-sm-12" style="text-align: right;">
-                                                          <a href="{{ url('/medicalconsultations') }}" style="font-size: 12px;">
+                                                          <a href="{{ url('/appointments') }}" style="font-size: 11px;" class="text-muted">
                                                          Más detalles...
                                                          </a>
                                                          </div>
@@ -269,8 +334,93 @@
             </div>    
  @endif
           
-   
-    
+              <!-- Charge Alert whether payment was processed or not -->
+              @if(session()->has('message'))
+
+                @if(session()->has('success'))
+
+
+                 <!--Modal cita y pago success-->
+                 <div class="modal fade" role="dialog" id="modalsuccess">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h3>¡Cita registrada!</h3>
+                        </div>
+                            <div class="modal-body" >
+                            <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"><br/><b>Dr. {{ session()->get('dr') }}</b></div>  <br/>
+                              <div class="box box-primary">
+                                <div class="box-header with-border">
+                                  <b>Información General de la cita</b>
+                                </div>
+                                <div class="box-body">
+                             Lugar: <span class="text-muted">{{ session()->get('work') }}</span><br/>
+                             Especialidad: <span class="text-muted">{{ session()->get('spe') }}</span><br/>
+                             Fecha de Cita: <span class="text-muted">{{ \Carbon\Carbon::parse(session()->get('fecha'))->format('d-m-Y h:i A') }}</span>
+
+                             </div>
+                              </div>
+
+                              <div class="box box-primary">
+                                <div class="box-header with-border">
+                                  <b>Información de Pago</b>
+                                </div>
+                                <div class="box-body">
+
+                             Monto: <span class="text-muted">${{ session()->get('monto') }}</span><br/>  
+                             Transacción: <a href = "payment/Transactions/{{ session()->get('idcard') }}" class="btn">{{ session()->get('transaccion') }}</a><br/>
+                             Método de pago: <span class="text-muted">{{ session()->get('card') }}</span>
+                             <br/><br/><div align="right"><a href = "https://site-boomedic.herokuapp.com/login" class="btn btn-secondary btn-flat btn-sm">Facture aquí</a></div>
+                            </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+
+                 <!--Fin modal success-->
+
+                @elseif(session()->has('error'))
+  
+                <!--Modal cita y pago error-->
+                 <div class="modal fade" role="dialog" id="modalerror">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                            <strong>¡Hubo un error en tu pago y no fue procesado!</strong>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                            <div class="modal-body" >
+                                 @php
+                                  $code = session()->get('message');
+                                 @endphp
+                          <!-- Error codes are defined within the adminlte -->
+                              {{ trans('adminlte::adminlte.'.$code) }}
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+
+                 <!--Fin modal error-->
+                 @endif
+
+              @endif
+            <!-- Here ends the code for the alert --> 
+
+
+
+
     <div id="mapaC">
       <!-- Trigger the modal with a checkbox -->
       <div class="checkStyle">
@@ -290,7 +440,7 @@
         <input type="text" name="keyWordSearch" class="form-control input-sm" id="kWSearch"> -->
       
         <div class="input-group input-group-sm">
-          <input type="text" class="form-control" placeholder="Buscar ..."  name="keyWordSearch"  id="kWSearch" >
+          <input type="text" class="form-control" placeholder="Buscar firma, médico, hospital..."  name="keyWordSearch"  id="kWSearch" >
           <span class="input-group-btn">
             <button type="button" class="btn btn-info btn-flat" onclick="start();">
               <span class="fa fa-search"></span>
@@ -299,21 +449,36 @@
         </div>
       </div>
 
-      <div class="overlay" align="center" id="loadermap-to-remove" style="position:absolute;left:33%;padding-top: 20%;">
 
-        <center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center>
+        <div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
+      <div class="modal-dialog">
+          <div class="modal-content-2">
+            <div align="center">
+          <h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/>(Esto podría tardar unos segundos)
+              </div>
+          </div>
       </div>
+  </div>
 
 
 
     <div id="map"></div>
-         <div class="checkStyl2">      
-      <a class="btn btn-secondary btn-block btn-flat" data-backdrop="static" data-toggle="modal" data-target="#modal">Búsqueda</a>
-    </div>
-    <div id='rango'>
-        <strong><label for="rango01" id="label04" class="textStyle01"></label> <span id="rango03"></span></strong><br/>
-        <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
+
+<div class="alert alert-info alert-dismissable" id="infDr" style="display: none; background-color: rgba(0, 0, 0, 0.9) !important; border-color: rgba(0, 0, 0, 0.9) !important;">
+   <a class="close" onclick="$('.alert').hide()" style="text-decoration: none">×</a>  
+    <div class="info-box-icon2-sm" id="Drp"></div>                                           
+     <div id="bodyDr"></div>
+     <div class="pull-right"><button type="button" class="btn btn-default btn-flat btn-xs" id="btncita"><b>Concretar Cita</b></button></div>
       </div>
+
+    <div id='rango'>
+        <strong><label for="rango01" id="label04"></label> <span id="rango03"></span></strong><br/>
+        <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
+             <div class="checkStyl2">      
+      <a class="btn btn-secondary btn-xs" data-backdrop="static" data-toggle="modal" data-target="#modal"><li class="fa fa-map-marker"></li> Cambiar de ubicación</a>
+    </div>
+      </div>
+
   </div> 
 
       
@@ -327,19 +492,22 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                    <label for="Busqueda">Búqueda de lugar:</label>
-                  </div>
-                  <div class="modal-body">
+                    <label for="Busqueda">Nueva ubicación:</label>
                         <div class="input-group input-group-sm">
-                          <input id="address" type="textbox" value="" class="form-control">
+                          <input id="address" type="textbox" value="" class="form-control" placeholder="Puede ingresar direcciones específicas..">
                           <span class="input-group-btn">
                           <input id="submit" type="button" class="btn btn-secondary btn-block btn-flat" value="Buscar"></span>
                        </div>
-                            <br/>                    
-                          <div id ="ubi" class="input-group input-group-sm" style="display:none">
-                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación" onclick="initMap()">
+                        
+                  </div>
+                  <div class="modal-body">
+                   <div id="recentS" align="left" style="display: none;"><b>Busquedas recientes:</b><br/></div>         
+                   <div id="resp" align="left"></div>                
+                          <div id ="ubi" class="input-group input-group-sm" style="display:none;">
+                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
                           </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+                    
                   </div>
                 </div>
               </div>
@@ -395,114 +563,263 @@
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Concretar cita</h4>
               </div>
-
-
               <div class="modal-body">
-                <div >
-                  <p id="info"></p>
+                <div id="info">
                 </div>
-              <hr width="100%">
-                <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
-            <div class="box-header">
-              <i class="fa fa-calendar"></i>
 
-              <h3 class="box-title">Seleccionar día</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="calendar" style="width: 80%"></div>
-            </div>
-            <!-- /.box-body -->
-            
-          </div>
+                <!--WIZARD TEST-->
 
-          <input type="hidden" id="dateSelectedForCite">
- 
-          <!-- /.box -->
-          <select id="timesByDay" class="form-control" style="display: none;">
-            <option>10:00 A.M.</option>
-            <option>11:00 A.M.</option>
-            <option>12:00 P.M.</option>
-            <option>13:00 P.M.</option>
-            <option>14:00 P.M.</option>
-            <option>15:00 P.M.</option>
-            <option>16:00 P.M.</option>
-            <option>17:00 P.M.</option>
-            <option>18:00 P.M.</option>
-          </select>
-          <br/>
-          <br/>
-          <select id="paymentMethodsFields" class="form-control" style="display: none;">
-            
-          
-          </select>
+
+    <section>
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+
+                    <li role="presentation" class="active">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Fecha" id="tab1">
+                            <span class="round-tab">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled" id="s2">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Horario">
+                            <span class="round-tab">
+                                <i class="fa fa-clock-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="disabled" id="s3">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Programar pago">
+                            <span class="round-tab">
+                                <i class="fa fa-credit-card"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled" id="s4">
+                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Confirmar">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+                       <span style="font-size: 18px;">Fecha</span><br/><br/>
+                                  <div class="box box-solid bg-black-gradient">
+                                        <div class="box-header">
+                                          <i class="fa fa-calendar"></i>
+
+                                          <h3 class="box-title">Seleccionar día</h3>
+                                          <!-- tools box -->
+                                          <div class="pull-right box-tools">
+                                            <button type="button" class="btn btn-secondary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                          </div>
+                                          <!-- /. tools -->
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body no-padding">
+                                          <!--The calendar -->
+                                          <div id="calendar1" style="width: 80%"></div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        
+                                      </div>
+
+                                      <input type="hidden" id="dateSelectedForCite" value="">
+                                       <br/>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-secondary btn-flat btn-sm next-step" id="onestep" disabled="disabled">Siguiente</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="step2">
+                       <span style="font-size: 18px;">Seleccionar Horario</span><br/><br/>
+
+                           <div class="form-group">
+                          <div class="col-sm-12">
+                          <select id="timesByDay" class="form-control">
+                          </select>
+                         </div>
+                         </div>
+                          <br/>
+
+                          <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-flat btn-sm prev-step">Anterior</button>
+                        <button type="button" class="btn btn-secondary btn-flat btn-sm next-step">Siguiente</button>
+                         </div>
+
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="step3">
+                        <span style="font-size: 18px;">Programar pago</span>
+                        <br/><br/>
+                        <div class="form-group">
+                         <div class="col-sm-12">
+                             <select id="paymentMethodsFields" class="form-control selectpicker">
+                             </select>
+                         </div>
+                       </div>
+                         <br/>     
+                          <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
+                                  {{ csrf_field() }}
+                            <input id="amount" type="hidden" class="form-control" name="amount">
+                            <input type="hidden" name="id" id="idcard">
+                             <input type="hidden" name="receiver" id="receiver">
+                             <input type="hidden" name="when" id="when">
+                             <input type="hidden" name="when1" id="when1">
+                             <input type="hidden" name="dr" id="dr">
+                             <input type="hidden" name="idlabor" id="idlabor">
+                             <input type="hidden" name="spe" id="spe">
+                        
+
+                          <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-flat btn-sm prev-step">Anterior</button>
+                            <button type="button" class="btn btn-secondary btn-flat btn-sm next-step">Siguiente</button>
+                          </div>
+
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="complete">
+                        <span style="font-size: 18px;">Confirmar</span><br/><br/>
+                       <label id="enddate"> </label><br/>
+                       <label id="endtime"> </label><br/>
+                       <label id="endpayment"> </label><br/>
+                       <label id="endamount"></label><br/>
+                       
+
+                         <button type="submit" id="cite" class="btn btn-secondary btn-block btn-flat btn-sm">
+                            Confirmar y programar cita
+                          </button>
+                          </form>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+        </div>
+    </section>
+
+                <!--WIZARD TEST-->
+
 
           <script type="text/javascript">
+$(document).ready(function () {
+    //Initialize tooltips
+       $('#footerw').css("display", "none");
+       $('#modalsuccess').modal('show');
+       $('#modalerror').modal('show');
+ $("#paymentMethodsFields").on("change", function(){
+                                  document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
+        document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
+        document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
+        if(document.getElementById('paymentMethodsFields').value != "Paypal"){
+          $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
+         document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+        }
+       if(document.getElementById('paymentMethodsFields').value == "Paypal"){
+          $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
+                   document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+        }
+                        })
+          $('.nav-tabs > li a[title]').tooltip();
+    
+    //Wizard
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+    $(".next-step").click(function (e) {
+        var $active = $('.wizard .nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+         document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
+        document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
+        document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
+        if(document.getElementById('paymentMethodsFields').value != "Paypal"){
+          $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
+         document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+        }
+       if(document.getElementById('paymentMethodsFields').value == "Paypal"){
+          $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
+                   document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+        }
+    });
+    $(".prev-step").click(function (e) {
+        var $active = $('.wizard .nav-tabs li.active');
+        prevTab($active);
+    });
+});
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+}
+               
           $(function () {
-
-            $('#calendar').datepicker();
-
-            $('#calendar').on('changeDate', function() {
-                $('#dateSelectedForCite').val(
-                    $('#calendar').datepicker('getFormattedDate')
-                );
-            });
-
-
-            $(".datepicker .datepicker-days").on('click', 'td.day', function () {
-                document.getElementById('paymentMethodsFields').style.display = "block";
-                document.getElementById('timesByDay').style.display = "block";
-            });
-
-
-
-            $.ajax(
-              {
-                url: "medicalappointments/showPaymentMethods", 
-                success: function(result){
-                  console.log(result);
-
-                  var x = document.getElementById("paymentMethodsFields");
-
-                  for (var i = result.length - 1; i >= 0; i--) {
-                    
-                    var option = document.createElement("option");
-                    option.text = result[i].provider + ": " + result[i].cardnumber;
-                    option.value = result[i].provider + "_" + result[i].cardnumber;
-                    option.setAttribute("data-icon", result[i].provider);
-                    x.add(option);
-
-                  }
-                }
-              }
-            );
-
             $('select').select2({
                 width: "100%",
             });
-
           });
+            $.ajax(
+              {
+                type: "GET",    
+                url: "medicalappointments/showPaymentMethods", 
+                success: function(result){
+                  console.log(result);
+                  var x = document.getElementById("paymentMethodsFields");
+                   var option = document.createElement("option");
+                    option.text = "Paypal";
+                    option.value = "Paypal";
+                    option.setAttribute("data-icon", "glyphicon glyphicon-eye-open");
+                    x.add(option);
+                  for (var i = result.length - 1; i >= 0; i--) {
+                    
+                    var option = document.createElement("option");
+                    if(result[i].provider != 'Paypal'){
+                    option.text = result[i].provider + ": " + result[i].cardnumber;
+                    option.value = result[i].id;
+                    option.setAttribute("data-icon", "glyphicon glyphicon-eye-open");
+                    x.add(option);
+                        }
+                        
+                  }
+                }
+              });
+
+           $.ajax({
+                type: "GET",    
+                url: "medicalconsultations/showrecent", 
+                success: function(result){
+                 console.log(result.length);
+                  console.log(result);
+                  if(result.length > '0'){
+
+                   $('#recentS').show();
+                   var result1 = JSON.parse(result).reverse();            
+                              for(var z=0; z < result1.length; z++){
+                                 $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ result1[z] +'<br/></a>');
+                               }
+                  
+                    }
+                  }
+                });
+
+              function showvalue (link){
+                  var value = link.getAttribute("data-value");
+                  document.getElementById('address').value = value;
+                  document.getElementById('submit').click();
+              }
           </script>
 
 
           </div>
-              <div class="modal-footer">
-                <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
-                        {{ csrf_field() }}
-                  <input id="amount" type="hidden" class="form-control" name="amount" required>
-                  
-                <button type="submit" id="button01" class="btn btn-secondary btn-block btn-flat">
-                  Confirmar y programar cita
-                </button>
-                </form>
-              </div>
+
 
             </div>
         </div>
@@ -517,9 +834,11 @@
 });
       function infoSelect(){
         var x = document.getElementById("mySelect");
-        for (var i = 0; i < specialities.length; i++) {
+        var specialities1 = specialities.sort();
+        specialities1 = specialities.reverse();
+        for (var i = 0; i < specialities1.length; i++) {
         var c = document.createElement("option");
-        c.text = specialities[i][0];
+        c.text = specialities1[i][0];
         x.options.add(c, 1);
         }
       }
@@ -527,7 +846,7 @@
         if (!document.getElementById('general').checked){
           startProcess = false;
           typeC = 'TypeSpeciality';
-          $("#myModal").modal({backdrop: "static"});
+          $("#myModal").modal();
         }
         if (document.getElementById('general').checked){
           startProcess = false;
@@ -642,17 +961,32 @@
       var infoWindow;
       /**
        * Function responsable of execute the main functions 
-       * 
        */
       window.onload = function(){
-        var height = window.screen.availHeight-115;
-        console.log(height);
+         $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
+        var height;
+        if("@php echo $agent->isMobile(); @endphp"){
+            height = window.screen.availHeight;
+                       // alert("Altura: "+height);
+                        //Para Android Puro
+            if(height >= 1000 && height <= 1300){
+                var h = height*0.45;
+                height = Math.floor(h);
+            }else if(height >=1800){ //para android con capa personalizada
+              height -= 1440;
+            }else
+            {
+              height -=115; //android avierto desde chrome
+            }
+        }else{
+          height = window.screen.availHeight-115;
+        }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
         infoSelect();
         setTimeout(function(){
-          document.getElementById('loadermap-to-remove').style.display = 'none';
-        }, 4000);
+          $('#loadingmodal').modal('toggle');
+        }, 2000);
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
@@ -949,6 +1283,8 @@
               rotateControl: false,
               fullscreenControl: false
             });
+            var input = document.getElementById('address');
+              new google.maps.places.Autocomplete(input);
             var markerUser = "{{ asset('markerUser.png') }}";
             //Marker
               markerP = new google.maps.Marker({
@@ -958,15 +1294,40 @@
               map: map
             });
             //Evento to open infowindow
-            markerP.addListener('mouseover', function() {
+            markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
               infoWindow.setContent(message01);
             });
                 var geocoder = new google.maps.Geocoder();
+               
                 document.getElementById('submit').addEventListener('click', function() {
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
                 document.getElementById('ubi').style.display = 'inline'; 
+                $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                 var address1 = document.getElementById('address').value;
+                           $.ajax({     
+                             type: "POST",                 
+                             url: "medicalconsultations/recent",  
+                              data: { "search" : address1 }, 
+                              dataType: 'json',                
+                             success: function(data)             
+                             {
+                      console.log(JSON.parse(data).reverse());
+                       var data1 = JSON.parse(data).reverse(); 
+                       $('#recentS').show();
+                       $(".recent").remove();
+
+                              for(var z=0; z < data1.length; z++){
+                                 $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ data1[z] +'<br/></a>');
+                               }
+                                document.getElementById('address').value = " ";     
+                             }
+                         });
                 });
           },
           //****Error
@@ -1007,13 +1368,13 @@
         if(keyWordValue == ''){
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9], datos[i][10]]);
             }
           }
         }else{
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue && datos[i][3] == keyWordValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9], datos[i][10]]);
             }
           }          
         }
@@ -1023,8 +1384,8 @@
           console.log('metros:: '+metros);
           console.log('Nombre:: '+res[i][3]);
           if(metros < rangeValue){
-            //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
+            //loc[latitud, longitud, especialidad, nombre, hospital, dirección, workid, iddr]
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
           }
         }
         console.log(res);
@@ -1051,7 +1412,7 @@
           console.log('KEYWORD SEARCH VÁLIDO:: '+keyWordValue);
           for(var i = 0; i < generalM.length; i++) {
             if(generalM[i][2] == keyWordValue){
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4],generalM[i][5],generalM[i][6],generalM[i][7],generalM[i][8],generalM[i][9]]);
             }
           }
           for(var i = 0; i < res.length; i++) {
@@ -1060,8 +1421,8 @@
             console.log('metros:: '+metros);
             console.log('Nombre:: '+res[i][3]);
             if(metros < rangeValue){
-               //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio]
-               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
+               //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio, intervalos]
+               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
              }
           }
           if(loc.length <= 0){
@@ -1082,12 +1443,12 @@
             if(metros < rangeValue){
               console.log('Nombre:: '+generalM[i][2]);
               console.log(metros +'<'+ rangeValue);
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4], generalM[i][5], generalM[i][6], generalM[i][7], generalM[i][8], generalM[i][9]]);
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
             }
           }
           for(var i = 0; i < res.length; i++) {
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5]]);
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
           }
           if(loc.length <= 0){
             console.log('NO ENCONTRO MÉDICO');
@@ -1108,30 +1469,216 @@
           var lon = loc[i][1];
           console.log(lat);
           console.log(lon);
-          var doctor = "{{ asset('doctors.png') }}";
-          markers[i] = new google.maps.Marker({
+          if(loc[i][10] != "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png"){
+          var doctor = {
+              url:"https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png",
+              scaledSize: new google.maps.Size(45, 45)
+            };
+        }else{
+           var doctor = {
+              url:"https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",
+              scaledSize: new google.maps.Size(45, 45)
+            };
+         /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
+        }
+        markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
             animation: google.maps.Animation.DROP,
-            icon: doctor
+            icon: doctor 
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-          google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-              infowindow.setContent("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
-              infowindow.open(map, marker);
-              console.log(marker);
-              
-              showInfo("<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5]);
+              $('#infDr').show();
+              document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
+              document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5];
           
-            }
-          })(marker, i));
-          google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
-            return function() {  
-              
+           document.getElementById('btncita').addEventListener('click', function() {
+              $('#infDr').hide();
+              $('#tab1').trigger('click');
+              document.getElementById("onestep").disabled = true;
+               $('#s2').addClass("disabled");
+               $('#s3').addClass("disabled");
+               $('#s4').addClass("disabled");
+              document.getElementById('enddate').innerHTML = '';
+              document.getElementById('endtime').innerHTML = '';
+              document.getElementById('endpayment').innerHTML = '';
+              $('#formulatio_paypal').trigger("reset");
               showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
               document.getElementById('amount').value = loc[i][5];
+              document.getElementById('endamount').innerHTML = 'Monto a pagar: $' + loc[i][5];
+              document.getElementById('receiver').value = loc[i][3];
+              document.getElementById('idlabor').value = loc[i][7];
+              document.getElementById('dr').value = loc[i][8];
+              document.getElementById('spe').value = loc[i][2];
+              var whencites = loc[i][9];
               $('#modal-register-cite').modal('show');
+                  var x = document.getElementById("timesByDay");
+                  var optionhour = loc[i][6].reverse();
+                  var days = [0,1,2,3,4,5,6];
+                  var resp = Array();
+                  var resp2 = Array();
+                  var Dom = Array();
+                  var Lun = Array();
+                  var Mar = Array();
+                  var Mie = Array();
+                  var Jue = Array();
+                  var Vie = Array();                
+                  var Sab = Array();
+                  $('#calendar1').datepicker('destroy');
+                 $('#timesByDay').children().remove();
+                  for (var y = optionhour.length - 1; y >= 0; y--) { 
+                     resp = optionhour[y].split(":",2); 
+                     resp2 = JSON.parse(optionhour[y].slice(4));
+                  console.log(optionhour[y].slice(4));
+                      if(resp[0] == 'Dom'){
+                        Dom = resp2;
+                      var index = days.indexOf(0);
+                       if (index > -1) {
+                               days.splice(index, 1);
+                            }
+                        }
+                        if(resp[0] == 'Lun'){
+                          Lun = resp2;
+                        var index = days.indexOf(1);
+                        if (index > -1) {
+                               days.splice(index, 1);
+                            }
+                        }
+                        if(resp[0] == 'Mar'){
+                          Mar = resp2;
+                          var index = days.indexOf(2);
+                           if (index > -1) {
+                               days.splice(index, 1);
+                            }
+                        }
+                        if(resp[0] == 'Mie'){
+                          Mie = resp2;
+                          var index = days.indexOf(3);
+                        if (index > -1) {
+                               days.splice(index, 1);
+                            }
+                        }
+                        if(resp[0] == 'Jue'){
+                         Jue = resp2;
+                          var index = days.indexOf(4);
+                        if (index > -1) {
+                               days.splice(index, 1);
+                            }
+                        }
+                        if(resp[0] == 'Vie'){
+                          Vie = resp2;
+                          var index = days.indexOf(5);
+                        if (index > -1) {
+                               days.splice(index, 1);
+                            }
+                        }
+                        if(resp[0] == 'Sab'){
+                          Sab = resp2;
+                          var index = days.indexOf(6);
+                          if (index > -1) {
+                               days.splice(index, 1);
+                            }
+                        }
+                  }
+                     $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es' }).on('changeDate',function(e){
+                     $('#timesByDay').children().remove();
+                         document.getElementById("onestep").disabled = false;
+                         var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
+                         var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
+                         document.getElementById("enddate").innerHTML = "Fecha: " + da;
+                         document.getElementById('when1').value = da2;
+                         var fech = Array();
+                     for(var f = 0; f < whencites.length; f++){
+                        if(whencites[f].slice(0,-9) == da2){  
+                          console.log(whencites[f].slice(11));  
+                          fech.push(whencites[f].slice(11));  
+                          }   
+                        }
+                       
+                        if (e.date.getDay() == 0) {
+                          var Dom1 = $(Dom).not(fech).get();                              
+                              console.log(Dom1); console.log(Dom); 
+                          for(var d = 0; d < Dom1.length; d++){
+                             var option = document.createElement("option");
+                              option.text = Dom1[d].slice(0,-3);
+                              option.value = Dom1[d].slice(0,-3);
+                              x.add(option);
+                          }
+                           $("#timesByDay option[value='asueto ']").remove();
+                        }
+                        if (e.date.getDay() == 1) {
+                          var Lun1 = $(Lun).not(fech).get();
+                          console.log(Lun1); console.log(Lun);
+                          for(var d = 0; d < Lun1.length; d++){
+                              var option = document.createElement("option");
+                              option.text = Lun1[d].slice(0,-3);
+                              option.value = Lun1[d].slice(0,-3);
+                              x.add(option);
+                          }
+                          $("#timesByDay option[value='asueto ']").remove();
+                        }
+                       if (e.date.getDay() == 2) {
+                          var Mar1 = $(Mar).not(fech).get();
+                          console.log(Mar1); console.log(Mar); 
+                          for(var d = 0; d < Mar1.length; d++){
+                             var option = document.createElement("option");
+                              option.text = Mar1[d].slice(0,-3);
+                              option.value = Mar1[d].slice(0,-3);
+                              x.add(option);
+                          }
+                           $("#timesByDay option[value='asueto ']").remove();
+                        }
+                       if (e.date.getDay() == 3) {
+                           var Mie1 = $(Mie).not(fech).get();
+                          console.log(Mie1); console.log(Mie); 
+                          for(var d = 0; d < Mie1.length; d++){
+                             var option = document.createElement("option");
+                              option.text = Mie1[d].slice(0,-3);
+                              option.value = Mie1[d].slice(0,-3);
+                              x.add(option);
+                          }
+                           $("#timesByDay option[value='asueto ']").remove();
+                        } 
+                       if (e.date.getDay() == 4) {
+                          var Jue1 = $(Jue).not(fech).get();
+                          console.log(Jue1); console.log(Jue); 
+                          for(var d = 0; d < Jue1.length; d++){
+                             var option = document.createElement("option");
+                              option.text = Jue1[d].slice(0,-3);
+                              option.value = Jue1[d].slice(0,-3);
+                              x.add(option);
+                          }
+                           $("#timesByDay option[value='asueto ']").remove();
+                        }                                               
+                        if (e.date.getDay() == 5) {
+                              var Vie1 = $(Vie).not(fech).get();
+                              console.log(Vie1); console.log(Vie); 
+                          for(var d = 0; d < Vie1.length; d++){
+                             var option = document.createElement("option");
+                              option.text = Vie1[d].slice(0,-3);
+                              option.value = Vie1[d].slice(0,-3);
+                              x.add(option);
+                          }
+                           $("#timesByDay option[value='asueto ']").remove();
+                        }
+                       if (e.date.getDay() == 6) {
+                              var Sab1 = $(Sab).not(fech).get();
+                              console.log(Sab1); console.log(Sab); 
+                          for(var d = 0; d < Sab1.length; d++){
+                             var option = document.createElement("option");
+                              option.text = Sab1[d].slice(0,-3);
+                              option.value = Sab1[d].slice(0,-3);
+                              x.add(option);
+                          }
+                           $("#timesByDay option[value='asueto ']").remove();
+                        }    
+                        $('#dateSelectedForCite').val = e.date.toISOString();                  
+                         console.log(e.date.toISOString());
+                      });
+             
+          });
             }
           })(marker, i));
           setTimeout(dropMarker(i), i * 250);
@@ -1149,7 +1696,7 @@
         markers = [];
       }
       function showInfo(info){ 
-        document.getElementById("info").innerHTML = '<strong>Información del médico:</strong> <br/>'+ info +'';
+        document.getElementById("info").innerHTML = '<strong>Detalle del médico:</strong> <br/><span style="font-size:12px;">'+ info +'</span>';
       }
     </script>
 
@@ -1186,6 +1733,7 @@
           }
         });
     });
+        
     </script>
 
 

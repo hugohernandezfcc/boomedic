@@ -22,7 +22,25 @@
 		    color: gray;
 		    margin-right: 1em; 
 		}
+			.dropzone {
+			     min-height: 10px !important; 
+			    border-style: dotted  !important;
+			    /* background: white; */
+			     padding: 0 !important;
+			}
+			.dropzone .dz-message {
+			    margin: 1em 0 !important;
+			}
+			.modal-content-2 {
+			    position: relative;
+			    background-color: transparent;
+			    -webkit-background-clip: padding-box;
+			    background-clip: padding-box;
+			    color: white;
+			    margin-top: 50%;
+			    width: 100%;
 
+			}
 
 
     </style>
@@ -46,18 +64,19 @@
 			    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
 			     success: function(file, response){
 				        //alert(response);
-				  document.getElementById('loadingGif').style.display = "block";
+				 $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
 				  setTimeout(function(){ 
-				  	document.getElementById('loadingGif').style.display = "none";
+				  	$('#loadingmodal').modal('toggle');
 				  	window.location.reload(true);
-				  },10000);
+				  },21000);
 				     	}
 			    //autoProcessQueue : false 
 			 };
 			 var val = "@php echo session()->get('val'); @endphp";
 			 		if(val == "true"){
+
 			 		setTimeout(function() {
-					    $('#modal').modal({ backdrop: 'static' }, 'show');
+			 			$('#modal').modal({backdrop: 'static', keyboard: false})
 					}, 1000);	
 				}
 
@@ -82,34 +101,6 @@
 
 	@endif
 
-<div id="modal" class="modal fade" role="dialog" style="width: 100%">
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content" >
-                  <div class="modal-header">   
-                    <label for="recorte">Recorte de imagen:</label>
-                  </div>
-                  <div class="modal-body" >
-
-                        <div align="center">
-                   
-
-                           <img src="https://s3.amazonaws.com/abiliasf/{{ $userId }}.jpg" id="target">
-                    
-                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
-                           	<input type="hidden" id="x" name="x" />
-							<input type="hidden" id="y" name="y" />
-							<input type="hidden" id="w" name="w" />
-							<input type="hidden" id="h" name="h" /><br/>
-	                        <span class="input-group-btn">
-	                        <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
-                          </form>
-                       </div>
-                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-                  </div>
-                </div>
-              </div>
- </div>
 
  
 
@@ -118,11 +109,47 @@
 		    <h3 class="box-title">Información de usuario</h3>
 	    	<!-- /.box-tools -->
 	  	</div>
-	  	<div id="loadingGif" style="display:none" align="center"><center><h1><i class="fa fa-refresh fa-spin"></i> Cargando ...</h1></center></div>
+	  	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
+	    <div class="modal-dialog">
+	        <div class="modal-content-2">
+	        	<div align="center">
+					<h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
+	          	</div>
+	        </div>
+	    </div>
+ 	</div>
 
 	  	<!-- /.box-header -->
 	  	<div class="box-body">
 	  		@if( !empty($status) )
+
+
+					<div id="modal" class="modal fade" role="dialog">
+					              <div class="modal-dialog">
+					                <!-- Modal content-->
+					                <div class="modal-content" >
+					                  <div class="modal-header">   
+					                    <label for="recorte">Recorte de imagen:</label>
+					                  </div>
+					                  <div class="modal-body" >
+
+					                        <div align="center">
+											<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">	
+					                    
+					                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
+					                           	<input type="hidden" id="x" name="x">
+												<input type="hidden" id="y" name="y">
+												<input type="hidden" id="w" name="w">
+												<input type="hidden" id="h" name="h"><br/>
+						                        <span class="input-group-btn">
+						                        <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
+					                          </form>
+					                       </div>
+					                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+					                  </div>
+					                </div>
+					              </div>
+					 </div>
 
 		  		@if ($status == "In Progress")
 		  			<div class="callout callout-success">
@@ -131,8 +158,9 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-	    		<div class="row">
-	    		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
+          <label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
+	    		<div class="row" align="center">
+	    		
 	    		<div class="col-sm-3" align="center">
 	    			@if($photo == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
@@ -143,26 +171,31 @@
 			          $height = $imagen[1];  
 
 			          if($height > '500' || $width > '500'){
-			            $height = $height / 2.5;
-			            $width = $width / 2.5;
+			            $height = $height / 2.8;
+			            $width = $width / 2.8;
 			        }
 			        if($height > '800' || $width > '800'){
 			            $height = $height / 4;
 			            $width = $width / 4;
 			        }
+			      if($height > '800' || $width > '1200'){
+			            $height = $height / 6;
+			            $width = $width / 6;
+			        }
 
 
 			          if($height < '400' || $width < '400'){
-			            $height = $height / 1.3;
-			            $width = $width / 1.3;
+			            $height = $height / 1.6;
+			            $width = $width / 1.6;
 			        }
 
 					@endphp
-						<img src="{{ $photo }}" style="width:{{ $width }}px; height: {{ $height }}px;">			
+						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-3" align="center"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div></div><br/>
+	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+	    	</div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
@@ -251,39 +284,39 @@
 		                <b>Dirección</b>
 		            </div>
 		            <div class="form-group">
-		            	<label for="autocomplete" class="col-sm-2 control-label">
-		            		<i class="fa fa-location-arrow"></i>
-		            	</label>
-		            	<div id="locationField" class="col-sm-10">
-					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"></input>
+		            	<div class="col-sm-2" align="right">
+		            		&nbsp;
+		            	</div>
+		            	<div id="locationField" class="col-sm-10" align="right">
+					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"/>
 					    </div>
 		            </div>
 
 		            <div align="right">
 		            	<div class="row" style="width: 90%;" >
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
 			            </div>
 						<br />              	
 		              	<div class="row" style="width: 90%;" >
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
+			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"/>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
 			            </div>
 						<br />
 			            <div class="row" style="width: 90%;" >
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
+			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"/>
 			            	</div>
 			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}/>
 			            	</div>
 			            </div>
 		            </div>
@@ -559,6 +592,7 @@
 					          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
 					        });
 
+
 					        var image = "{{ asset('maps-and-flags_1.png') }}";
 					        
 					        var beachMarker = new google.maps.Marker({
@@ -573,39 +607,38 @@
 
 			@endif
 
-	<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+<script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+		<script type="text/javascript">
 
-	<script src="{{ asset('js/jquery.color.js') }}"></script>
-	<script src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+					$('#target').Jcrop({
+						    aspectRatio: 1,  
+					        boxWidth: 300,
+					        boxHeight: 300,
+					        setSelect: [0,0,300,300],
+					        bgOpacity: .9,
+					         bgColor:     'black',
+					        onSelect: updateCoords,
+					        onChange: updateCoords
+					    }, function(){
+					        CropAPI = this;
+					    });
 
+			     function updateCoords(c){
+			      $('#x').val(c.x);
+			      $('#y').val(c.y);
+			      $('#w').val(c.w);
+			      $('#h').val(c.h);
+			     };
+			     function checkCoords()
+			    {
+			      if (parseInt($('#w').val())>0) return true;
+			      alert('Seleccione una coordenada para subir');
+			      return false;
+			    };
 
-
-	  	</div>	  	
-	</div>
-
-
-	<script type="text/javascript">
-
-    $(function(){ $.Jcrop('#target'); });
-     $.Jcrop('#target',{
-      aspectRatio: 1,
-      onSelect: updateCoords,
-	  setSelect: [0, 0, 300, 300],
-      bgColor:     'black'
-     });
-     function updateCoords(c){
-      $('#x').val(c.x);
-      $('#y').val(c.y);
-      $('#w').val(c.w);
-      $('#h').val(c.h);
-     };
-     function checkCoords()
-    {
-      if (parseInt($('#w').val())>0) return true;
-      alert('Seleccione una coordenada para subir');
-      return false;
-    };
-    </script>
+	    </script>
 
 
 

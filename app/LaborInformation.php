@@ -23,7 +23,8 @@ class LaborInformation extends Model
 		'latitude', 
 		'longitude',
 		'postalcode',
-		'general_amount'
+		'general_amount',
+		'services'
     ];
 
     public function user(){

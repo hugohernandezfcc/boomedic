@@ -25,7 +25,7 @@
                     <li class="{{ $subitem['top_nav_class'] }}">
                         <form id="logout-form" action="{{ url( $subitem['href'] ) }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
-                            <a href="#">
+                            <a href="">
                                 <i class="fa fa-{{ $subitem['icon'] or 'circle-o' }} {{ isset($subitem['icon_color']) ? 'text-' . $subitem['icon_color'] : '' }}"></i>
                                 {{ $subitem['text'] }}
                                 @if (isset($subitem['label']))
