@@ -210,7 +210,7 @@
     <!-- Main content -->
      <div class="box-header">
       <h3 class="box-title">
-                Historia Clínica
+                Expediente médico
 
               </h3>
      </div><br/>
@@ -220,6 +220,62 @@
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline">
+                        @foreach($test_result as $test)
+            <li class="time-label">
+                  <span class="bg-aqua">
+                   Estudio médico
+                  </span>
+            </li>
+
+            <li>
+              <i class="fa fa-file bg-aqua"></i>
+
+              <div class="timeline-item">
+              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->updated_at)->diffForHumans() }}</span>
+
+                <h3 class="timeline-header"><a href="#">{{ $test->name }}</a></h3>
+                <div class="timeline-body">
+                  Prescribe. {{ $test->doc}}.<br>
+                  Recipe. {{ $test->folio}}.<br>
+                  Detalles:<br>
+                  {{ $test->details }}<br><br>
+                  <input type="hidden" id="">
+                  <button class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#myModal">Ver estudio</button>
+                  <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              </div>
+                              <div class="modal-body">
+
+                              <iframe src="{{ $test->url }}#zoom=200&view=fitH" frameborder="0" width="100%" height="600" marginheight="0" marginwidth="0" id="pdf"></iframe>
+
+                              </div>
+                            </div>
+                            <!-- /.modal-content -->
+                          </div>
+                          <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+
+                </div>
+              </div>
+            </li>
+            @endforeach
+             <li>
+              <i class="fa fa-clock-o bg-gray"></i>
+            </li>
+         </ul>  
+
+         
+    <div class="box-header">
+      <h3 class="box-title">
+                Historia clínica
+              </h3>
+     </div><br/>
+     <ul class="timeline">   
             @php
             $t1 = 0; 
             $t2 = 0; 
@@ -346,50 +402,7 @@
             @endif
             <!-- END timeline item -->
             @endforeach
-            @foreach($test_result as $test)
-            <li class="time-label">
-                  <span class="bg-aqua">
-                   Estudio médico
-                  </span>
-            </li>
 
-            <li>
-              <i class="fa fa-file bg-aqua"></i>
-
-              <div class="timeline-item">
-              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->updated_at)->diffForHumans() }}</span>
-
-                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $test->name }}</a></h3>
-                <div class="timeline-body">
-                  Prescribe. {{ $test->doc}}.<br>
-                  Recipe. {{ $test->folio}}.<br>
-                  Detalles:<br>
-                  {{ $test->details }}<br><br>
-                  <input type="hidden" id="">
-                  <button class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#myModal">Ver estudio</button>
-                  <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      </div>
-      <div class="modal-body">
-
-      <iframe src="{{ $test->url }}#zoom=200&view=fitH" frameborder="0" width="100%" height="600" marginheight="0" marginwidth="0" id="pdf"></iframe>
-
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
-                </div>
-              </div>
-            </li>
-            @endforeach
               <li>
               <i class="fa fa-clock-o bg-gray"></i>
             </li>
