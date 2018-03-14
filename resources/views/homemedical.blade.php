@@ -12,6 +12,7 @@
 	<div>
 		<div class="col-sm-4">
 			<div class="form-group">
+				<label for="selectWorkPlace" > Citas del día: </label>
             	<select class="form-control" name="selectWorkPlace" id="selectWorkPlace" size="1">
             	  	@foreach($workplaces as $workplace)
 
