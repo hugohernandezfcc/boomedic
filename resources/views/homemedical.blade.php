@@ -29,7 +29,9 @@
           	@foreach($medAppoints as $cite)
 	          	<div class="info-box ">
 			        <span class="info-box-icon">
-			        	<i class="ion ion-ios-heart-outline"></i>
+
+			        	<img src="{{$cite->profile_photo}}" class="img-circle" alt="User Image">
+			        
 			        </span>
 
 			        <div class="info-box-content">
