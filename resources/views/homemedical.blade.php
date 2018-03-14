@@ -72,6 +72,7 @@
 
           	<div id="listMedicalExam">
 	          	@foreach($medAppoints as $cite)
+
 		          	<div class="info-box ">
 				        <span class="info-box-icon bg-green">
 				        	<img src="{{$cite->profile_photo}}" class="img-circle" alt="User Image">
@@ -84,7 +85,10 @@
 				        </div>
 				    </div>
 				    <br/>
-				    @php break; @endphp
+
+				    @if($cite->firstname == "Rebbeca")
+				    	@php break; @endphp
+				    @endif
 			    @endforeach
 		    </div>
 		</div>
