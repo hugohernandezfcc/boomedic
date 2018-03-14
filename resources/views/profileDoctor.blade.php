@@ -1002,10 +1002,11 @@ $('#target').Jcrop({
 			<div class="form-group">
 			<div class="col-sm-5">
 				<div class="col-sm-12">
+					<label id="labelwork2" class="text-red"></label>
 					 <div class="form-group">
 	                	<label for="workplace" class="col-sm-4 control-label">Nombre del lugar</label>
 	                	<div class="col-sm-8">
-	                		<label id="labelwork2" class="text-red"></label>
+
 		                  	<input type="text" name="workplace" id="workplace2" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros...">
 	                	</div>
 	                	<!-- /.input group -->
