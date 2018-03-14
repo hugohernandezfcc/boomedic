@@ -52,7 +52,9 @@
 		    </div>
 		</div>
 		<div class="col-sm-4">
-
+			<h3>5 Resultados recibidos</h3>
+			<br/>
+			<br/>
           	<div id="listMedicalExam">
 	          	@foreach($medAppoints as $cite)
 		          	<div class="info-box ">

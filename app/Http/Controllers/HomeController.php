@@ -177,7 +177,8 @@ class HomeController extends Controller
                     ['medical_appointments.user_doctor', '=', Auth::id()],
                     ['when', '<', Carbon::now()]
                 ]
-            )->get();
+            )->limit(5)
+            ->get();
     }
 
 
