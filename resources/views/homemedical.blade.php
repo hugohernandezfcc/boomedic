@@ -26,6 +26,7 @@
 		<div class="col-sm-4">
 			<br/>
 			<br/>
+			<br/>
 			<div class="info-box">
 	            <span class="info-box-icon ">
 	            	<i class="fa fa-calendar"></i>
