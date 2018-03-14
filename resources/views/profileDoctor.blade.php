@@ -1069,13 +1069,16 @@ $('#target').Jcrop({
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 			</div>	
 		  </div>
-							    <div class="col-sm-12" align="left">
+							    <div class="col-sm-5" align="right">
 					       			<br/>
 						    		<button type="submit" class="btn btn-secondary ">
 						                Guardar
 						            </button>
 						            <button type="button" id="cancel2" class="btn btn-default ">Cancelar</button>
-					            </div></div>
+					            </div>
+					            <div class="col-sm-7"></div>
+
+					        </div>
 		  
 		</form>
 			</div>
