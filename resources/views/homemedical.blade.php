@@ -53,10 +53,10 @@
 		</div>
 		<div class="col-sm-4">
 			<div class="row">
-				<div class="col-sm-10">
-					<h2>5 Resultados recibidos</h2>
+				<div class="col-sm-9">
+					<h4>5 Resultados recibidos</h4>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<button type="button" class="btn btn-block btn-default">
 						<i class="fa fa-refresh"></i>
 					</button>
