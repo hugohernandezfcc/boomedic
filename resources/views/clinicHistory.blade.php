@@ -81,9 +81,12 @@
   background-color: #3E3E3E;
   border-color: #3E3E3E; }
 
-.checkbox-primary input[type="checkbox"]:checked + label::after {
-  color: #fff; }
+        .checkbox-primary input[type="checkbox"]:checked + label::after {
+          color: #fff; }
 
+          iframe {
+            max-width: 100%;
+          }
 	</style>
      @if($mode == 'null')  
 <div class="box">
@@ -246,7 +249,7 @@
                               </div>
                               <div class="modal-body">
 
-                              <iframe src="{{ $test->url }}#zoom=200&view=fitH" frameborder="0" width="100%" onload="resizeIframe(this)"></iframe>
+                              <iframe src="{{ $test->url }}#zoom=200&view=fitH" frameborder="0" width="100%" class="obj" ></iframe>
 
                               </div>
                             </div>
@@ -410,9 +413,10 @@
 
 
 				<script>
-          function resizeIframe(obj) {
+
+				$(document).ready(function () {
             if("@php echo $agent->isMobile(); @endphp"){
-            height = window.screen.availHeight;
+            var height = window.screen.availHeight;
                        // alert("Altura: "+height);
                         //Para Android Puro
             if(height >= 1000 && height <= 1300){
@@ -428,12 +432,7 @@
         }else{
           height = window.screen.availHeight-160;
         }
-            obj.style.height =  height + 'px';
-
-
-          }
-				$(document).ready(function () {
-
+            $('.obj').attr( "height", height + 'px' );
 					$('.next').click(function(){
 
 					  var nextId = $(this).parents('.tab-pane').next().attr("id");
