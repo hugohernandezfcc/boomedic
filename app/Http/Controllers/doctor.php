@@ -228,12 +228,12 @@ question
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        $user           = User::find($id);
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
-        $bus = $professionali[0]->id;
-        $prof = professional_information::find($bus);
-        $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
-         $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
+        $bus            = $professionali[0]->id;
+        $prof           = professional_information::find($bus);
+        $labor          = DB::table('labor_information')->where('profInformation', $bus)->get();
+        $asso           = DB::table('medical_association')->where('parent', '>', '0')->get();
 
         if ($request->change == "true") {
         $user->status        = $request->status;         
