@@ -1057,13 +1057,7 @@ $('#target').Jcrop({
 						                Agregar servicios
 						        </button>	
 					            </div>
-					       		<div class="col-sm-6" align="right">
-					       			<br/>
-						    		<button type="submit" class="btn btn-secondary ">
-						                Guardar
-						            </button>
-						            <button type="button" id="cancel2" class="btn btn-default ">Cancelar</button>
-					            </div>
+
 
 					            
 				</div>
@@ -1074,7 +1068,14 @@ $('#target').Jcrop({
 		  	<div class="pull-center">	
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 			</div>	
-		  </div></div>
+		  </div>
+							    <div class="col-sm-12" align="left">
+					       			<br/>
+						    		<button type="submit" class="btn btn-secondary ">
+						                Guardar
+						            </button>
+						            <button type="button" id="cancel2" class="btn btn-default ">Cancelar</button>
+					            </div></div>
 		  
 		</form>
 			</div>
