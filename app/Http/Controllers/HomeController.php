@@ -120,16 +120,17 @@ class HomeController extends Controller
          */
         if ($profInfo->count() > 0 && $statusRecordUser != 'In Progress') 
             return view('homemedical', [
-                    'username'  => $user->username,
-                    'name'      => $user->name,
-                    'firstname' => $user->firstname,
-                    'lastname'  => $user->lastname,
-                    'photo'     => $user->profile_photo,
-                    'date'      => $user->created_at,
-                    'userId'    => $user->id,
-                    'labor'     => $join,
-                    'photo'     => $user->profile_photo,
-                    'workplaces'=> $this->getWorkPlaces()
+                    'username'      => $user->username,
+                    'name'          => $user->name,
+                    'firstname'     => $user->firstname,
+                    'lastname'      => $user->lastname,
+                    'photo'         => $user->profile_photo,
+                    'date'          => $user->created_at,
+                    'userId'        => $user->id,
+                    'labor'         => $join,
+                    'photo'         => $user->profile_photo,
+                    'workplaces'    => $this->getWorkPlaces(),
+                    'medAppoints'   => $this->getMedicalAppointments(),
                 ]);       
         
 
@@ -161,6 +162,22 @@ class HomeController extends Controller
         return DB::table('labor_information')
             ->join('professional_information', 'labor_information.profInformation', '=', 'professional_information.id')
             ->where('professional_information.user', '=', Auth::id())->get();
+    }
+
+    /**
+     * Method responsable of return the Medical Appoinments registered to current doctor.
+     * @author  Hugo Hernández <hugo@doitcloud.consulting>
+     * @return [Array] [List of Medical Appointments]
+     */
+    public function getMedicalAppointments(){
+        return DB::table('medical_appointments')
+            ->join('users', 'medical_appointments.user', '=', 'users.id')
+            ->where(
+                [
+                    ['medical_appointments.user_doctor', '=', Auth::id()],
+                    ['when', '>', Carbon::now()]
+                ]
+            )->get();
     }
 
 
