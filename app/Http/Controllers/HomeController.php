@@ -175,7 +175,7 @@ class HomeController extends Controller
             ->where(
                 [
                     ['medical_appointments.user_doctor', '=', Auth::id()],
-                    ['when', '>', Carbon::now()]
+                    ['when', '<', Carbon::now()]
                 ]
             )->get();
     }
