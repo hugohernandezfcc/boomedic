@@ -40,9 +40,7 @@
 			          	<div class="progress">
 			            	<div class="progress-bar" style="width: 20%"></div>
 			          	</div>
-			          	<span class="progress-description">
-			                20% Increase in 30 Days
-			            </span>
+			          	<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 			        </div>
 			    </div>
 		    @endforeach
