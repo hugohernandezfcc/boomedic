@@ -51,8 +51,24 @@
 			    @endforeach
 		    </div>
 		</div>
-		<div class="col-sm-8">
+		<div class="col-sm-4">
 
+          	<div id="listMedicalAppointment">
+	          	@foreach($medAppoints as $cite)
+		          	<div class="info-box ">
+				        <span class="info-box-icon bg-green">
+				        	<img src="{{$cite->profile_photo}}" class="img-circle" alt="User Image">
+				        </span>
+
+				        <div class="info-box-content">
+				          	<span class="info-box-number">Estudio de sangre recibido</span>
+				          	<span class="info-box-text">{{$cite->firstname}} {{$cite->lastname}} </span>
+				          	<a href="#" class="small-box-footer">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
+				        </div>
+				    </div>
+				    <br/>
+			    @endforeach
+		    </div>
 		</div>
 	</div>
 
