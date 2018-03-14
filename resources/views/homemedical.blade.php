@@ -40,7 +40,7 @@
 	        <br/>
 	          <div class="info-box">
 	            <span class="info-box-icon bg-aqua">
-	            	<i class="ion ion-ios-gear-outline"></i>
+	            	<i class="fa fa-money"></i>
 	            </span>
 
 	            <div class="info-box-content">
@@ -51,17 +51,21 @@
 	          </div>
 	          <br/>
 	          <div class="info-box">
-	            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-gear-outline"></i></span>
+	            <span class="info-box-icon bg-yellow">
+	            	<i class="fa fa-h-square"></i>
+	            </span>
 
 	            <div class="info-box-content">
 	              <span class="info-box-text">Expedientes</span>
-	              <span class="info-box-number">90<small>%</small></span>
+	              <span class="info-box-number">19</span>
 	            </div>
 	            <!-- /.info-box-content -->
 	          </div>
 	          <br/>
 	          <div class="info-box">
-	            <span class="info-box-icon bg-red"><i class="ion ion-ios-gear-outline"></i></span>
+	            <span class="info-box-icon bg-red">
+	            	<i class="fa fa-calendar"></i>
+	            </span>
 
 	            <div class="info-box-content">
 	              <span class="info-box-text">Citas canceladas</span>
