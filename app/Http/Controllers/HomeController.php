@@ -154,10 +154,10 @@ class HomeController extends Controller
 
 
     public function getWorkPlaces(){
-        
-        dd(DB::table('labor_information')
-                        ->join('professional_information', 'labor_information.profInformation', '=', 'professional_information.id')
-                        ->where('professional_information.user', '=', Auth::id()));
+        $labor_information = DB::table('labor_information')
+            ->join('professional_information', 'labor_information.profInformation', '=', 'professional_information.id')
+            ->where('professional_information.user', '=', Auth::id());
+        dd($labor_information);
 
     }
 
