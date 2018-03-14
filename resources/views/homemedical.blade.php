@@ -46,8 +46,8 @@
 				          	</div>
 				          	<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				        </div>
-				        <br/>
 				    </div>
+				    <br/>
 			    @endforeach
 		    </div>
 		</div>
@@ -64,7 +64,7 @@
 
             var height;
 			height = window.screen.availHeight;
-			height = window.screen.availHeight-115;
+			height = window.screen.availHeight-315;
 			document.getElementById('listMedicalAppointment').setAttribute("style","height:" + height + "px;overflow-y: auto;");
 
          });
