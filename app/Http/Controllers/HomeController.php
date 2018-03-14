@@ -128,7 +128,8 @@ class HomeController extends Controller
                     'date'      => $user->created_at,
                     'userId'    => $user->id,
                     'labor'     => $join,
-                    'photo'     => $user->profile_photo
+                    'photo'     => $user->profile_photo,
+                    'workplaces'=> $this->getWorkPlaces();
                 ]);       
         
 
@@ -150,36 +151,50 @@ class HomeController extends Controller
             );
         }
     }
+
+
+    public function getWorkPlaces(){
+        
+        dd(DB::table('labor_information')
+                        ->join('professional_information', 'labor_information.profInformation', '=', 'professional_information.id')
+                        ->where('professional_information.user', '=', Auth::id()));
+
+    }
+
+
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function recent(Request $request)
-  {     $user = User::find(Auth::id());
+    public function recent(Request $request){     
+
+        $user = User::find(Auth::id());
         $userSearch = json_decode($user->recent_search);
         $recent = array();
         $json = json_decode($request);
-    if($request->search != null){
-     if(!$user->recent_search){
-         array_push($recent, $request->search);
-             $user->recent_search  = json_encode($recent); 
-     } else{  
+    
 
-      if(!in_array($request->search,  $userSearch)){
-         
-        if(count($userSearch) == 4 ){
-            unset($userSearch[0]);
-            $userSearch = array_values($userSearch);
-            array_push($userSearch, $request->search);
-            $user->recent_search  = json_encode($userSearch); 
-        } else{
-            array_push($userSearch, $request->search);
-            $user->recent_search  = json_encode($userSearch); 
-            }
-        } 
-    }
+        if($request->search != null){
+            if(!$user->recent_search){
+                array_push($recent, $request->search);
+                $user->recent_search  = json_encode($recent); 
+            }else{  
+
+          if(!in_array($request->search,  $userSearch)){
+             
+            if(count($userSearch) == 4 ){
+                unset($userSearch[0]);
+                $userSearch = array_values($userSearch);
+                array_push($userSearch, $request->search);
+                $user->recent_search  = json_encode($userSearch); 
+            } else{
+                array_push($userSearch, $request->search);
+                $user->recent_search  = json_encode($userSearch); 
+                }
+            } 
+        }
 
         $user->save();
        } 
