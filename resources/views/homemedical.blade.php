@@ -39,12 +39,12 @@
 				        </span>
 
 				        <div class="info-box-content">
-				          	<span class="info-box-text">{{$cite->firstname}} {{$cite->lastname}}</span>
-				          	<span class="info-box-number">{{$cite->age}} de edad</span>
+				          	<span class="info-box-number">{{$cite->firstname}} {{$cite->lastname}}</span>
+				          	<span class="info-box-text">{{$cite->age}} de edad / {{$cite->gender}}</span>
 				          	<div class="progress">
 				            	<div class="progress-bar" style="width: 20%"></div>
 				          	</div>
-				          	<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+				          	<a href="#" class="small-box-footer">Ver detalle <i class="fa fa-arrow-circle-right"></i></a>
 				        </div>
 				    </div>
 				    <br/>
@@ -64,7 +64,7 @@
 
             var height;
 			height = window.screen.availHeight;
-			height = window.screen.availHeight-315;
+			height = window.screen.availHeight-290;
 			document.getElementById('listMedicalAppointment').setAttribute("style","height:" + height + "px;overflow-y: auto;");
 
          });
