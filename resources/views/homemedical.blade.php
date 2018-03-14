@@ -84,6 +84,7 @@
 				        </div>
 				    </div>
 				    <br/>
+				    @php break; @endphp
 			    @endforeach
 		    </div>
 		</div>
