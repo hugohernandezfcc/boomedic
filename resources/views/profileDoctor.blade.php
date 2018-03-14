@@ -1051,7 +1051,7 @@ $('#target').Jcrop({
 
 			</div>
 				<div class="col-sm-12 form-group" align="right">
-								<div class="col-sm-6" align="left">
+								<div class="col-sm-6" align="right">
 									<br/>
 					    		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
 						                Agregar servicios
