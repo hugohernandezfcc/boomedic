@@ -17,9 +17,15 @@
 		    max-width: 75%;
 		}
 
+		.bg-green, .callout.callout-success, .alert-success, .label-success, .modal-success .modal-body {
+		    background-color: #b8d3c7 !important;
+		}
 	</style>
 
 	<div>
+		<div class="col-sm-4">
+			
+		</div>
 		<div class="col-sm-4">
 			<div class="form-group">
 				<label for="selectWorkPlace" > Citas del día: </label>
