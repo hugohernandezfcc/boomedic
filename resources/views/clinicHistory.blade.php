@@ -238,26 +238,23 @@
                   Detalles:<br>
                   {{ $test->details }}<br><br>
 
-                  <button class="btn btn-default btn-flat btn-sm" data-toggle="modal" data-target="#myModal">Ver estudio</button>
-                  <!-- Modal -->
-                        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                               <span style="font-size: 15px;"><b> {{ $test->name }} </b></span>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              </div>
-                              <div class="modal-body">
 
-                              <iframe src="{{ $test->url }}#zoom=200&view=fitH" frameborder="0" width="100%" class="obj" ></iframe>
+                  <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $test->url }}" data-target="#myModal">Ver estudio</a>
 
-                              </div>
-                            </div>
-                            <!-- /.modal-content -->
-                          </div>
-                          <!-- /.modal-dialog -->
-                        </div>
-                        <!-- /.modal -->
+
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                 <span style="font-size: 15px;"><b> {{ $test->name }} </b></span>
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                  <div class="modal-body">
+                                  </div>
+                                  </div><!-- /.modal-content -->
+                              </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                                                    <!-- /.modal -->
 
                 </div>
               </div>
@@ -415,24 +412,35 @@
 				<script>
 
 				$(document).ready(function () {
-            if("@php echo $agent->isMobile(); @endphp"){
-            var height = window.screen.availHeight;
-                       // alert("Altura: "+height);
-                        //Para Android Puro
-            if(height >= 1000 && height <= 1300){
-                var h = height*0.45;
-                height = Math.floor(h);
 
-            }else if(height >=1800){ //para android con capa personalizada
-              height -= 1490;
-            }else
-            {
-              height -=160; //android avierto desde chrome
-            }
-        }else{
-          height = window.screen.availHeight-160;
-        }
-            $('.obj').attr( "height", height + 'px' );
+
+  $('a.external').on('click', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+ 
+    });
+ 
+    $('#myModal').on('show.bs.modal', function () {
+ 
+        $(this).find('.modal-dialog').css({
+                  width:'40%x', //choose your width
+                  height:'100%', 
+                  'padding':'0'
+           });
+         $(this).find('.modal-content').css({
+                  height:'100%', 
+                  'border-radius':'0',
+                  'padding':'0'
+           });
+         $(this).find('.modal-body').css({
+                  width:'auto',
+                  height:'100%', 
+                  'padding':'0'
+           });
+    })
+
+
 					$('.next').click(function(){
 
 					  var nextId = $(this).parents('.tab-pane').next().attr("id");
