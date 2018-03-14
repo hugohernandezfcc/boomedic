@@ -24,42 +24,51 @@
 
 	<div>
 		<div class="col-sm-4">
+			<br/>
+			<br/>
 			<div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+	            <span class="info-box-icon ">
+	            	<i class="fa fa-calendar"></i>
+	           	</span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">CPU Traffic</span>
-              <span class="info-box-number">90<small>%</small></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+	            <div class="info-box-content">
+	              <span class="info-box-text">Citas completadas</span>
+	              <span class="info-box-number">32</span>
+	            </div>
+	            <!-- /.info-box-content -->
+	        </div>
+	        <br/>
+	          <div class="info-box">
+	            <span class="info-box-icon bg-aqua">
+	            	<i class="ion ion-ios-gear-outline"></i>
+	            </span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">CPU Traffic</span>
-              <span class="info-box-number">90<small>%</small></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+	            <div class="info-box-content">
+	              <span class="info-box-text">Saldos</span>
+	              <span class="info-box-number">$8,700</span>
+	            </div>
+	            <!-- /.info-box-content -->
+	          </div>
+	          <br/>
+	          <div class="info-box">
+	            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-gear-outline"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">CPU Traffic</span>
-              <span class="info-box-number">90<small>%</small></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+	            <div class="info-box-content">
+	              <span class="info-box-text">Expedientes</span>
+	              <span class="info-box-number">90<small>%</small></span>
+	            </div>
+	            <!-- /.info-box-content -->
+	          </div>
+	          <br/>
+	          <div class="info-box">
+	            <span class="info-box-icon bg-red"><i class="ion ion-ios-gear-outline"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">CPU Traffic</span>
-              <span class="info-box-number">90<small>%</small></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
+	            <div class="info-box-content">
+	              <span class="info-box-text">Citas canceladas</span>
+	              <span class="info-box-number">7</span>
+	            </div>
+	            <!-- /.info-box-content -->
+	          </div>
 		</div>
 		<div class="col-sm-4">
 			<div class="form-group">
