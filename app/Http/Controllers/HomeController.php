@@ -129,7 +129,7 @@ class HomeController extends Controller
                     'userId'    => $user->id,
                     'labor'     => $join,
                     'photo'     => $user->profile_photo,
-                    'workplaces'=> $this->getWorkPlaces();
+                    'workplaces'=> $this->getWorkPlaces()
                 ]);       
         
 
