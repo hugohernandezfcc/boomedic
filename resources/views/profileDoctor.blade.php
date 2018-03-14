@@ -873,10 +873,11 @@ $('#target').Jcrop({
           <!-- /.modal-dialog -->
         </div>
 					<div class="callout callout-default">
+					<label id="labelwork" class="text-red"></label>
 				 <div class="form-group">
 	                	<label for="workplace" class="col-sm-2 control-label">Nombre del Lugar</label>
 	                	<div class="col-sm-10">
-	                		<label id="labelwork" class="text-red"></label>
+
 		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros.">
 	                	</div>
 	                	<!-- /.input group -->
