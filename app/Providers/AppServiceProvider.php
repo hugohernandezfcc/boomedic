@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Dispatcher $events)
     {
-       Blade::setEchoFormat('e(utf8_encode(%s))');
+       
         Carbon::setLocale(config('app.locale'));
       
         \URL::forceScheme('https');
