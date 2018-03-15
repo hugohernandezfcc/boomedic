@@ -123,28 +123,28 @@
             <label>Respuestas:</label><br>
             <input type="hidden" class="quesId" value="{{ $questions1->id }}">
             <input type="hidden" class="ansId" value="{{ $questions1->a }}">
+
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]">
+                        <input type="hidden" id="{{ $an }}" value="{{ $questions1->parent_answer }}">
+                        <input type="hidden" id="p{{ $an }}" value="{{ $questions1->parent }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]" class="checkbox">>
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
+                        <div id="div{{ $an }}"></div>
                     </div>
               @if($questions1->parent)
                 @foreach($questions as $questionsSearch) 
                  @if($questions1->parent == $questionsSearch->id)
                      <br><div>
-                    <h3>{{ $questionsSearch->question }}</h3>
-                    <br>
                         @php $an2 = json_decode($questionsSearch->answer); @endphp
-                        <input type="hidden" class="quesId" value="{{ $questionsSearch->id }}">
-                        <input type="hidden" class="ansId" value="{{ $questionsSearch->a }}">
                         @foreach($an2 as $an2)
                         @if($an2 == "texto")
                         <textarea class="form-control" rows="3" id="{{ $questionsSearch->id }}{{ $loop->iteration }}" name="resp2[]"></textarea>
                         @else
                         <div class="checkbox checkbox-primary">
-                        <input id="{{ $questionsSearch->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an2 }}" name="resp2[]">
+                        <input id="{{ $questionsSearch->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an2 }}" name="resp2[]" class="checkbox">
                         <label for="{{ $questionsSearch->id }}{{ $loop->iteration }}">
                             {{ $an2 }}
                         </label>
@@ -154,9 +154,10 @@
                      </div>
                    @endif
                  @endforeach
-              @endif    
-                             
+              @endif   
+
              @endforeach          
+
         </div>
 
          <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
@@ -173,7 +174,8 @@
             <input type="hidden" class="ansId" value="{{ $questions1->a }}">
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]">
+                        <input type="hidden" id="{{ $an }}" value="{{ $questions1->parent_answer }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]" class="checkbox">>
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
@@ -183,8 +185,6 @@
                 @foreach($questions as $questionsSearch) 
                  @if($questions1->parent == $questionsSearch->id)
                      <br><div>
-                    <h3>{{ $questionsSearch->question }}</h3>
-                    <br>
                         @php $an2 = json_decode($questionsSearch->answer); @endphp
                         <input type="hidden" class="quesId" value="{{ $questionsSearch->id }}">
                         <input type="hidden" class="ansId" value="{{ $questionsSearch->a }}">
@@ -221,7 +221,8 @@
             <input type="hidden" class="ansId" value="{{ $questions1->a }}">
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]">
+                       <input type="hidden" id="{{ $an }}" value="{{ $questions1->parent_answer }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]" class="checkbox">>
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
@@ -232,11 +233,10 @@
                 @foreach($questions as $questionsSearch) 
                  @if($questions1->parent == $questionsSearch->id)
                      <br><div>
-                    <h3>{{ $questionsSearch->question }}</h3>
-                    <br>
                         @php $an2 = json_decode($questionsSearch->answer); @endphp
                         <input type="hidden" class="quesId" value="{{ $questionsSearch->id }}">
                         <input type="hidden" class="ansId" value="{{ $questionsSearch->a }}">
+
                         @foreach($an2 as $an2)
                         @if($an2 == "texto")
                         <textarea class="form-control" rows="3" id="{{ $questionsSearch->id }}{{ $loop->iteration }}" name="resp2[]"></textarea>
@@ -489,6 +489,23 @@
 				$(document).ready(function () {
 
 
+
+  $('input[type=checkbox]').click(function() {
+                     if(this.checked) {
+
+                            var value2 = $(this).val();
+                            var parent_answer = JSON.parse($('#'+value2).val());
+                            var parent = $('#p'+value2).val();
+                            for(var i=0; i < parent_answer.length; i++){
+                              if(parent_answer[i] == value2)
+                               console.log('parent: ' + parent);
+                              
+                            }
+
+                       }
+
+    });
+
   $('a.external').on('click', function(e) {
         e.preventDefault();
         var url = $(this).attr('href');
@@ -530,9 +547,7 @@
 
             var ques = $('#'+tab+ ' .quesId').val();
             var ansId = $('#'+tab+ ' .ansId').val();
-            console.log(JSON.stringify(values));
-            console.log(ansId);
-            console.log(ques);
+
                       $.ajaxSetup({
                                   headers: {
                                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
