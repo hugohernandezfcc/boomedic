@@ -17,6 +17,7 @@ class AddParentAnswersTable extends Migration
             $table->integer('parent')->unsigned()->nullable();
             $table->foreign('parent')->references('id')->on('answers_clinic_history');
             $table->text('parent_answer')->nullable();
+            $table->integer('question')->unsigned()->nullable()->change();
         });
     }
 
