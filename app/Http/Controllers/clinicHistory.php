@@ -121,7 +121,7 @@ class clinicHistory extends Controller
         ->where('diagnostic_test_result.patient', Auth::id())
         ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.folio')
         ->get();    
-        $
+        
 
         return view('clinicHistory', [
                 'userId'            => $user->id,
