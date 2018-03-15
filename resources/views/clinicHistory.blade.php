@@ -112,7 +112,6 @@
 
    <div class="tab-content">
    	@foreach($questions as $questions1) 
-
       @if($loop->iteration == 1)
       <div class="tab-pane fade in active" id="step1">
          
