@@ -130,6 +130,15 @@
                             {{ $an }}
                         </label>
                     </div>
+                    @if($questions1->parent)
+                      @foreach($questions as $questionsSearch) 
+                       @if($question1->parent == $questionsSearch->id)
+                     <br><div>
+                    <h3>{{ $questionsSearch->question }}</h3><br>
+                     </div>
+                     @endif
+                      @endforeach
+                    @endif
              @endforeach         
 
         </div>

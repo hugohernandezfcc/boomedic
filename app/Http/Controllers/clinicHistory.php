@@ -112,7 +112,7 @@ class clinicHistory extends Controller
                 ->get();
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
-            ->select('answers_clinic_history.answer', 'questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
+            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
             ->get();
         $test_result = DB::table('diagnostic_test_result')
         ->join('diagnostic_tests', 'diagnostic_test_result.diagnostic_test', '=', 'diagnostic_tests.id')
@@ -121,6 +121,7 @@ class clinicHistory extends Controller
         ->where('diagnostic_test_result.patient', Auth::id())
         ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.folio')
         ->get();    
+        $
 
         return view('clinicHistory', [
                 'userId'            => $user->id,
