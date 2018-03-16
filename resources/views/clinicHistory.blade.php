@@ -569,8 +569,8 @@
                         var tab = $(this).parents('.tab-pane').attr("id");
                          var values = $('#'+tab+' input:checkbox').map(function() {
                           if (this.checked) {
-                            if(this.siblings('div').parents().find('textarea').eq(0)){
-                              var check2 =  this.siblings('div').parents().val();;
+                            if(this.find('textarea').eq(0)){
+                              var check2 =  this.find('textarea').val();;
                             } else{
                             var check2 =  this.siblings('div').parents().prop('checked',true).val();
                           }
@@ -578,7 +578,7 @@
                           return resu; // obtienes el valor de todos los checkboxes
                               }
                           }).get();
-                         console.log(values);
+
                         var ques = $('#'+tab+ ' .quesId').val();
                         var ansId = $('#'+tab+ ' .ansId').val();
                         console.log(JSON.stringify(values));
