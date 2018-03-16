@@ -132,8 +132,8 @@
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
-                        <div id="div{{ $an }}"></div>
                     </div>
+                       <div id="div{{ $an }}"  class="well"></div>
              @endforeach          
 
         </div>
@@ -159,6 +159,7 @@
                             {{ $an }}
                         </label>
                     </div>
+                    <div id="div{{ $an }}"  class="well"></div>
              @endforeach         
 
          </div>
@@ -184,7 +185,7 @@
                             {{ $an }}
                         </label>
                     </div>
-
+                    <div id="div{{ $an }}"  class="well"></div>
              @endforeach    
 
 
@@ -436,10 +437,14 @@
                               if(parent_answer[i] == value2){
                                 var ques = @php echo $questions_parent; @endphp;
                                   console.log(parent);
-                                 for(var z=0; z < ques.length; z++){
-                                if(ques[z]['id'] == parent)
-                                    console.log(ques[z]['answer']);
+                               for(var z=0; z < ques.length; z++){
+                                if(ques[z]['id'] == parent){
+                                  var xanswer = JSON.parse(ques[z]['answer']);
+                                     for(var x=0; x < xanswer.length; x++){
+                                      console.log(xanswer[x]);
+                                        }
                                     }
+                                }
                               }
                             }
                           }
