@@ -425,20 +425,24 @@
 
 
   $('input[type=checkbox]').click(function() {
-                     if(this.checked) {
+             if(this.checked) {
 
                             var value2 = $(this).val();
-                            var parent_answer = JSON.parse($('#'+value2).val());
                             var parent = $('#p'+value2).val();
+                            if(parent > 0){
+                            var parent_answer = JSON.parse($('#'+value2).val());
+
                             for(var i=0; i < parent_answer.length; i++){
                               if(parent_answer[i] == value2){
                                 var ques = @php echo $questions_parent; @endphp;
+                                  console.log(parent);
                                  for(var z=0; z < ques.length; z++){
-                               console.log(ques);
-
-                              }
+                                if(ques[z]['id'] == parent)
+                                    console.log(ques[z]['answer']);
+                                    }
                               }
                             }
+                          }
                        }
 
     });
