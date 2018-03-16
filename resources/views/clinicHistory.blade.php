@@ -508,8 +508,14 @@
 
                    var values = $('#'+tab+' input:checkbox').map(function() {
                     if (this.checked) {
-                    return this.value; // obtienes el valor de todos los checkboxes
-                        }
+                            if( this.siblings('div').parents('textarea').val().length > 0){
+                              var check2 =  this.siblings('div').parents('textarea').val();
+                            } else{
+                            var check2 =  this.siblings('div').parents().prop('checked',true).val();
+                          }
+                            var resu = this.value + check2;
+                          return resu; // obtienes el valor de todos los checkboxes
+                              }
                     }).get();
 
             var ques = $('#'+tab+ ' .quesId').val();
@@ -569,8 +575,8 @@
                         var tab = $(this).parents('.tab-pane').attr("id");
                          var values = $('#'+tab+' input:checkbox').map(function() {
                           if (this.checked) {
-                            if(this.siblings('div').find('textarea').eq(0)){
-                              var check2 =  this.siblings('div').find('textarea').val();
+                            if( this.siblings('div').parents('textarea').val().length > 0){
+                              var check2 =  this.siblings('div').parents('textarea').val();
                             } else{
                             var check2 =  this.siblings('div').parents().prop('checked',true).val();
                           }
