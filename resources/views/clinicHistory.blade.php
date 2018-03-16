@@ -126,13 +126,14 @@
 
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                        <input type="hidden" id="{{ $an }}" value="{{ $questions1->parent_answer }}">
-                        <input type="hidden" id="p{{ $an }}" value="{{ $questions1->parent }}">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]" class="checkbox">>
+                      @php  $a2 = str_replace(" ", "_", $an); @endphp
+                        <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
+                        <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">>
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
-                         <div class="well" style="display: none"></div>
+                         <div class="well" style="display: none; background-color: #a2a0a7;"></div>
                     </div>
              @endforeach          
 
@@ -152,13 +153,14 @@
             <input type="hidden" class="ansId" value="{{ $questions1->a }}">
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                        <input type="hidden" id="{{ $an }}" value="{{ $questions1->parent_answer }}">
-                        <input type="hidden" id="p{{ $an }}" value="{{ $questions1->parent }}">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]" class="checkbox">>
+                      @php  $a2 = str_replace(" ", "_", $an); @endphp
+                        <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
+                        <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">>
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
-                       <div class="well" style="display: none"></div>
+                         <div class="well" style="display: none; background-color: #a2a0a7;"></div>
                     </div>
 
              @endforeach         
@@ -179,15 +181,15 @@
             <input type="hidden" class="ansId" value="{{ $questions1->a }}">
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
-                       <input type="hidden" id="{{ $an }}" value="{{ $questions1->parent_answer }}">
-                       <input type="hidden" id="p{{ $an }}" value="{{ $questions1->parent }}">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]" class="checkbox">>
+                      @php  $a2 = str_replace(" ", "_", $an); @endphp
+                        <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
+                        <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
+                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">>
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
-                         <div class="well" style="display: none"></div>
+                         <div class="well" style="display: none; background-color: #a2a0a7;"></div>
                     </div>
-
              @endforeach    
 
 
@@ -437,17 +439,22 @@
                             var parent_answer = JSON.parse($('#'+value2).val());
 
                             for(var i=0; i < parent_answer.length; i++){
-                              if(parent_answer[i] == value2){
+
+                              if(parent_answer[i].replace(" ","_")  == value2){
                                 var ques = @php echo $questions_parent; @endphp;
                                   console.log(parent);
                                for(var z=0; z < ques.length; z++){
                                 if(ques[z]['id'] == parent){
                                   var xanswer = JSON.parse(ques[z]['answer']);
-                                     for(var x=0; x < xanswer.length; x++){
+                                   for(var x=0; x < xanswer.length; x++){
 
-                                      if(xanswer[x] == "texto"){
+                                   if(xanswer[x] == "texto"){
                                       thi.siblings('div').css("display", "block");
-                                      thi.siblings('div').append('<textarea class="form-control" rows="2" placeholder="Especifique"></textarea>');
+                                      thi.siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="'+ value2 + xanswer[x]+'"></textarea>');
+                                      console.log(xanswer[x]);
+                                    } else{
+                                      thi.siblings('div').css("display", "block");
+                                      thi.siblings('div').append('<div class="checkbox checkbox-primary"><input id="'+ value2 + xanswer[x]+ '" type="checkbox" value="'+xanswer[x]+'" name="resp2[]" class="checkbox"><label for="'+ value2 + xanswer[x]+ '">'+xanswer[x]+'</label></div>');
                                       console.log(xanswer[x]);
                                     }
                                         }
@@ -456,6 +463,10 @@
                               }
                             }
                           }
+                       }
+                       else{
+                        $(this).siblings('div').html('');
+                        $(this).siblings('div').css("display", "none");
                        }
 
     });
