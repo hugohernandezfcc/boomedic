@@ -124,7 +124,7 @@ class clinicHistory extends Controller
         ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.folio')
         ->get();    
         
-
+        $question_parent = DB::table('answers_clinic_history')->get();
         return view('clinicHistory', [
                 'userId'            => $user->id,
                 'username'          => $user->username,
@@ -134,6 +134,7 @@ class clinicHistory extends Controller
                 'questions'         => $question,
                 'clinic_history'    => $clinic_history,
                 'test_result'       => $test_result,
+                'questions_parent'  => $question_parent,
                 'mode'              => 'finish'
             ]
         );
