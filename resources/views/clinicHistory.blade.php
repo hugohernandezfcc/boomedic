@@ -132,8 +132,8 @@
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
+                         <div class="well" style="display: none"></div>
                     </div>
-                       <div id="div{{ $an }}"  class="well"></div>
              @endforeach          
 
         </div>
@@ -158,8 +158,9 @@
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
+                       <div class="well" style="display: none"></div>
                     </div>
-                    <div id="div{{ $an }}"  class="well"></div>
+
              @endforeach         
 
          </div>
@@ -184,8 +185,9 @@
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
+                         <div class="well" style="display: none"></div>
                     </div>
-                    <div id="div{{ $an }}"  class="well"></div>
+
              @endforeach    
 
 
@@ -430,6 +432,7 @@
 
                             var value2 = $(this).val();
                             var parent = $('#p'+value2).val();
+                            var thi = $(this);
                             if(parent > 0){
                             var parent_answer = JSON.parse($('#'+value2).val());
 
@@ -441,7 +444,12 @@
                                 if(ques[z]['id'] == parent){
                                   var xanswer = JSON.parse(ques[z]['answer']);
                                      for(var x=0; x < xanswer.length; x++){
+
+                                      if(xanswer[x] == "texto"){
+                                      thi.siblings('div').css("display", "block");
+                                      thi.siblings('div').append('<textarea class="form-control" rows="2" placeholder="Especifique"></textarea>');
                                       console.log(xanswer[x]);
+                                    }
                                         }
                                     }
                                 }
