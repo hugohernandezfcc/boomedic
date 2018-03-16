@@ -508,8 +508,8 @@
 
                    var values = $('#'+tab+' input:checkbox').map(function() {
                     if (this.checked) {
-                            if( this.siblings('div').parents('textarea').val().length > 0){
-                              var check2 =  this.siblings('div').parents('textarea').val();
+                            if( $.trim(this.siblings('div').parents().val()) != ""){
+                              var check2 =  this.siblings('div').parents().val();
                             } else{
                             var check2 =  this.siblings('div').parents().prop('checked',true).val();
                           }
@@ -575,8 +575,8 @@
                         var tab = $(this).parents('.tab-pane').attr("id");
                          var values = $('#'+tab+' input:checkbox').map(function() {
                           if (this.checked) {
-                            if( this.siblings('div').parents('textarea').val().length > 0){
-                              var check2 =  this.siblings('div').parents('textarea').val();
+                            if( $.trim(this.siblings('div').parents().val()) != ""){
+                              var check2 =  this.siblings('div').parents().val();
                             } else{
                             var check2 =  this.siblings('div').parents().prop('checked',true).val();
                           }
