@@ -569,8 +569,8 @@
                         var tab = $(this).parents('.tab-pane').attr("id");
                          var values = $('#'+tab+' input:checkbox').map(function() {
                           if (this.checked) {
-                            if(this.siblings('div').parents('textarea').val() != ''){
-                              var check2 =  this.siblings('div').parents().val();
+                            if(this.siblings('div').parents().find('textarea').eq(0)){
+                              var check2 =  this.siblings('div').parents().val();;
                             } else{
                             var check2 =  this.siblings('div').parents().prop('checked',true).val();
                           }
