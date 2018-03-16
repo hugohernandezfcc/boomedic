@@ -129,6 +129,7 @@
                       @php  $a2 = str_replace(" ", "_", $an); @endphp
                         <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
                         <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
+                        <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
                         <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">>
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
@@ -156,6 +157,7 @@
                       @php  $a2 = str_replace(" ", "_", $an); @endphp
                         <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
                         <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
+                        <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
                         <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">>
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
@@ -184,6 +186,7 @@
                       @php  $a2 = str_replace(" ", "_", $an); @endphp
                         <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
                         <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
+                        <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
                         <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">>
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
@@ -435,6 +438,7 @@
                             var value2 = $(this).val();
                             var parent = $('#p'+value2).val();
                             var thi = $(this);
+                            var n = $(this).parents('.tab-pane').attr("id");
                             if(parent > 0){
                             var parent_answer = JSON.parse($('#'+value2).val());
 
@@ -442,7 +446,6 @@
 
                               if(parent_answer[i].replace(" ","_")  == value2){
                                 var ques = @php echo $questions_parent; @endphp;
-                                  console.log(parent);
                                for(var z=0; z < ques.length; z++){
                                 if(ques[z]['id'] == parent){
                                   var xanswer = JSON.parse(ques[z]['answer']);
@@ -450,12 +453,11 @@
 
                                    if(xanswer[x] == "texto"){
                                       thi.siblings('div').css("display", "block");
-                                      thi.siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="'+ value2 + xanswer[x]+'"></textarea>');
-                                      console.log(xanswer[x]);
+                                      thi.siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="'+ n + value2 + xanswer[x]+'"></textarea>');
+       
                                     } else{
                                       thi.siblings('div').css("display", "block");
-                                      thi.siblings('div').append('<div class="checkbox checkbox-primary"><input id="'+ value2 + xanswer[x]+ '" type="checkbox" value="'+xanswer[x]+'" name="resp2[]" class="checkbox"><label for="'+ value2 + xanswer[x]+ '">'+xanswer[x]+'</label></div>');
-                                      console.log(xanswer[x]);
+                                      thi.siblings('div').append('<div class="checkbox checkbox-primary"><input id="'+ n + value2 + xanswer[x]+ '[]" type="checkbox" value="'+xanswer[x]+'" name="resp2[]" class="checkbox"><label for="'+ n + value2 + xanswer[x]+ '[]">'+xanswer[x]+'</label></div>');
                                     }
                                         }
                                     }
@@ -567,10 +569,16 @@
                         var tab = $(this).parents('.tab-pane').attr("id");
                          var values = $('#'+tab+' input:checkbox').map(function() {
                           if (this.checked) {
-                          return this.value; // obtienes el valor de todos los checkboxes
+                            if(this.siblings('div').parents('textarea').val() != ''){
+                              var check2 =  this.siblings('div').parents().val();
+                            } else{
+                            var check2 =  this.siblings('div').parents().prop('checked',true).val();
+                          }
+                            var resu = this.value + check2;
+                          return resu; // obtienes el valor de todos los checkboxes
                               }
                           }).get();
-
+                         console.log(values);
                         var ques = $('#'+tab+ ' .quesId').val();
                         var ansId = $('#'+tab+ ' .ansId').val();
                         console.log(JSON.stringify(values));
