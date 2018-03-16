@@ -38,10 +38,7 @@ class clinicHistory extends Controller
             ->where('answers_clinic_history.question','!=', null)
             ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
             ->get();
-        $question_parent = DB::table('questions_clinic_history')
-            ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
-            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
-            ->get();
+        $question_parent = DB::table('answers_clinic_history')->get();
 
         return view('clinicHistory', [
                 'userId'            => $user->id,

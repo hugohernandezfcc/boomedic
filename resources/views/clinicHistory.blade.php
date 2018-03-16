@@ -134,28 +134,6 @@
                         </label>
                         <div id="div{{ $an }}"></div>
                     </div>
-              @if($questions1->parent)
-                @foreach($questions as $questionsSearch) 
-                 @if($questions1->parent == $questionsSearch->id)
-                     <br><div>
-                        @php $an2 = json_decode($questionsSearch->answer); @endphp
-                        @foreach($an2 as $an2)
-                        @if($an2 == "texto")
-                        <textarea class="form-control" rows="3" id="{{ $questionsSearch->id }}{{ $loop->iteration }}" name="resp2[]"></textarea>
-                        @else
-                        <div class="checkbox checkbox-primary">
-                        <input id="{{ $questionsSearch->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an2 }}" name="resp2[]" class="checkbox">
-                        <label for="{{ $questionsSearch->id }}{{ $loop->iteration }}">
-                            {{ $an2 }}
-                        </label>
-                    </div>
-                 @endif
-                       @endforeach   
-                     </div>
-                   @endif
-                 @endforeach
-              @endif   
-
              @endforeach          
 
         </div>
@@ -175,35 +153,13 @@
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
                         <input type="hidden" id="{{ $an }}" value="{{ $questions1->parent_answer }}">
+                        <input type="hidden" id="p{{ $an }}" value="{{ $questions1->parent }}">
                         <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]" class="checkbox">>
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
                         </label>
                     </div>
              @endforeach         
-              @if($questions1->parent)
-                @foreach($questions as $questionsSearch) 
-                 @if($questions1->parent == $questionsSearch->id)
-                     <br><div>
-                        @php $an2 = json_decode($questionsSearch->answer); @endphp
-                        <input type="hidden" class="quesId" value="{{ $questionsSearch->id }}">
-                        <input type="hidden" class="ansId" value="{{ $questionsSearch->a }}">
-                        @foreach($an2 as $an2)
-                        @if($an2 == "texto")
-                        <textarea class="form-control" rows="3" id="{{ $questionsSearch->id }}{{ $loop->iteration }}" name="resp2[]"></textarea>
-                        @else
-                        <div class="checkbox checkbox-primary">
-                        <input id="{{ $questionsSearch->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an2 }}" name="resp2[]">
-                        <label for="{{ $questionsSearch->id }}{{ $loop->iteration }}">
-                            {{ $an2 }}
-                        </label>
-                    </div>
-                   @endif
-                       @endforeach   
-                     </div>
-                   @endif
-                 @endforeach
-              @endif   
 
          </div>
          <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
@@ -222,6 +178,7 @@
             @foreach($an as $an)
                     <div class="checkbox checkbox-primary">
                        <input type="hidden" id="{{ $an }}" value="{{ $questions1->parent_answer }}">
+                       <input type="hidden" id="p{{ $an }}" value="{{ $questions1->parent }}">
                         <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an }}" name="resp[]" class="checkbox">>
                         <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                             {{ $an }}
@@ -229,30 +186,7 @@
                     </div>
 
              @endforeach    
-              @if($questions1->parent)
-                @foreach($questions as $questionsSearch) 
-                 @if($questions1->parent == $questionsSearch->id)
-                     <br><div>
-                        @php $an2 = json_decode($questionsSearch->answer); @endphp
-                        <input type="hidden" class="quesId" value="{{ $questionsSearch->id }}">
-                        <input type="hidden" class="ansId" value="{{ $questionsSearch->a }}">
 
-                        @foreach($an2 as $an2)
-                        @if($an2 == "texto")
-                        <textarea class="form-control" rows="3" id="{{ $questionsSearch->id }}{{ $loop->iteration }}" name="resp2[]"></textarea>
-                        @else
-                        <div class="checkbox checkbox-primary">
-                        <input id="{{ $questionsSearch->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $an2 }}" name="resp2[]">
-                        <label for="{{ $questionsSearch->id }}{{ $loop->iteration }}">
-                            {{ $an2 }}
-                        </label>
-                    </div>
-                  @endif
-                       @endforeach   
-                     </div>
-                   @endif
-                 @endforeach
-              @endif    
 
          </div>
         <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
@@ -497,11 +431,14 @@
                             var parent_answer = JSON.parse($('#'+value2).val());
                             var parent = $('#p'+value2).val();
                             for(var i=0; i < parent_answer.length; i++){
-                              if(parent_answer[i] == value2)
-                               console.log('parent: ' + parent);
-                              
-                            }
+                              if(parent_answer[i] == value2){
+                                var ques = @php echo $questions_parent; @endphp;
+                                 for(var z=0; z < ques.length; z++){
+                               console.log(ques);
 
+                              }
+                              }
+                            }
                        }
 
     });
