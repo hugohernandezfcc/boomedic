@@ -508,8 +508,8 @@
 
                    var values = $('#'+tab+' input:checkbox').map(function() {
                     if (this.checked) {
-                            if( $.trim(this.siblings('div').parents().val()) != ""){
-                              var check2 =  this.siblings('div').parents().val();
+                            if( $('#'+tab+' textarea').val() != " "){
+                              var check2 =  $('#'+tab+' textarea').val();
                             } else{
                             var check2 =  this.siblings('div').parents().prop('checked',true).val();
                           }
