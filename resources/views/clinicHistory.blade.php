@@ -511,8 +511,8 @@
                             if( $('#'+tab+' textarea').val() != " "){
                               var check2 =  $('#'+tab+' textarea').val();
                               var resu =  this.value + ','+ check2;
-                          } if( this.siblings('div').parents().checked){
-                            
+                          } if(this.siblings('div').parents().checked){
+
                             var check2 =  this.siblings('div').parents().prop('checked',true).val();
                             var resu = this.value + ','+ check2;
                           } else{
@@ -579,11 +579,12 @@
 
                         var tab = $(this).parents('.tab-pane').attr("id");
                          var values = $('#'+tab+' input:checkbox').map(function() {
-                          if (this.checked) {
-                            if( $.trim(this.siblings('div').parents().val()) != ""){
-                              var check2 =  this.siblings('div').parents().val();
-                             var resu =  this.value + ','+ check2;
-                            } if( this.siblings('div').parents().checked){
+                           if (this.checked) {
+                            if( $('#'+tab+' textarea').val() != " "){
+                              var check2 =  $('#'+tab+' textarea').val();
+                              var resu =  this.value + ','+ check2;
+                          } if(this.siblings('div').parents().checked){
+
                             var check2 =  this.siblings('div').parents().prop('checked',true).val();
                             var resu = this.value + ','+ check2;
                           } else{
@@ -592,7 +593,7 @@
                           }
                           return resu; // obtienes el valor de todos los checkboxes
                               }
-                          }).get();
+                    }).get();
 
                         var ques = $('#'+tab+ ' .quesId').val();
                         var ansId = $('#'+tab+ ' .ansId').val();
