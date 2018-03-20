@@ -512,6 +512,7 @@
                               var check2 =  $('#'+tab+' textarea').val();
                               var resu =  this.value + ','+ check2;
                           } if( this.siblings('div').parents().checked){
+                            
                             var check2 =  this.siblings('div').parents().prop('checked',true).val();
                             var resu = this.value + ','+ check2;
                           } else{
