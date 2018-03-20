@@ -457,7 +457,7 @@
        
                                     } else{
                                       thi.siblings('div').css("display", "block");
-                                      thi.siblings('div').append('<div class="checkbox checkbox-primary"><input id="'+ n + value2 + xanswer[x]+ '[]" type="checkbox" value="'+xanswer[x]+'" name="resp2[]" class="checkbox"><label for="'+ n + value2 + xanswer[x]+ '[]">'+xanswer[x]+'</label></div>');
+                                      thi.siblings('div').append('<div class="checkbox checkbox-primary"><input id="'+ n + value2 + xanswer[x]+ '[]" type="checkbox" value="'+xanswer[x]+'" name="resp2[]" class="checkbox2"><label for="'+ n + value2 + xanswer[x]+ '[]">'+xanswer[x]+'</label></div>');
                                     }
                                         }
                                     }
@@ -505,18 +505,13 @@
 					  var nextId = $(this).parents('.tab-pane').next().attr("id");
 					  $('[href=#'+nextId+']').tab('show');
             var tab = $(this).parents('.tab-pane').attr("id");
-
                          var values = $('#'+tab+' input:checkbox').map(function() {
 
                                  if (this.checked) {
-                                  var check2 = this.value;
+                                  var check2 = this.value.replace(/_/gi, " ");
                                   if($('#'+tab+' textarea').val()){
-                                    check2 = this.value + '=' + $('#'+tab+' textarea').val();
+                                    check2 =  $('#'+tab+' textarea').val();
 
-                                } if( $(this).siblings().find('div').parents().checked){
-
-                                  check2 =  this.value;
-                                  
                                 } 
                                 return check2; // obtienes el valor de todos los checkboxes
                                     }
@@ -582,14 +577,10 @@
                          var values = $('#'+tab+' input:checkbox').map(function() {
 
                                  if (this.checked) {
-                                  var check2 = this.value;
+                                  var check2 = this.value.replace(/_/gi, " ");
                                   if($('#'+tab+' textarea').val()){
-                                    check2 = this.value + '=' + $('#'+tab+' textarea').val();
+                                    check2 =  $('#'+tab+' textarea').val();
 
-                                } if( $(this).siblings().find('div').parents().checked){
-
-                                  check2 =  this.value;
-                                  
                                 } 
                                 return check2; // obtienes el valor de todos los checkboxes
                                     }
