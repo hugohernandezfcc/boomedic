@@ -510,16 +510,16 @@
                                  if (this.checked) {
                                   if($('#'+tab+' textarea').val() != ""){
                                     var check2 =  $('#'+tab+' textarea').val();
-
+                                    var resu = this.value +  check2;
                                 } if( $(this).siblings().find('div').parents().checked){
-
                                   var check2 =   $(this).siblings().find('div').parents().prop('checked',true).val();
+                                  var resu = this.value +  check2;
                                   
                                 } else{
 
                                   var resu = this.value;
                                 }
-                                var resu = this.value +  check2;
+
                                 return resu; // obtienes el valor de todos los checkboxes
                                     }
                           }).get();
@@ -584,16 +584,16 @@
                                  if (this.checked) {
                                   if($('#'+tab+' textarea').val() != ""){
                                     var check2 =  $('#'+tab+' textarea').val();
-
+                                    var resu = this.value +  check2;
                                 } if( $(this).siblings().find('div').parents().checked){
-
                                   var check2 =   $(this).siblings().find('div').parents().prop('checked',true).val();
+                                  var resu = this.value +  check2;
                                   
                                 } else{
 
                                   var resu = this.value;
                                 }
-                                var resu = this.value +  check2;
+
                                 return resu; // obtienes el valor de todos los checkboxes
                                     }
                           }).get();
