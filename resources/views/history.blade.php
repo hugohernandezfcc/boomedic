@@ -25,6 +25,18 @@
 
   	<div class="box-header">
 	    <h3 class="box-title">Historial</h3>
+      @if($array->isEmpty())
+          
+                <h4> No tiene historial registrado en estos últimos días. </h4>
+      @else 
+
+      <div class="btn-group pull-right">
+      <button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo citas"><i class="fa fa-calendar-check-o"></i></button>   
+      <button id="support" type="button"  class="btn bg-black" title="Mostrar solo soporte"><i class="fa fa-wrench "></i></button>
+      <button id="payment" type="button" class="btn bg-yellow" title="Métodos de pagos registrados"> <i class="fa fa-credit-card-alt"></i></button> 
+      <button id="userli" type="button" class="btn bg-green" title="Mostrar solo actualización de usuario"><i class="fa fa-user "></i></button>
+      <button id="all" type="button" class="btn black bg-darken-4" title="Ver todo"><b>Ver todo</b></button>        
+      </div>
   	</div>
 
 
@@ -35,32 +47,7 @@
 			<br/>
           <!-- The time line -->
           <ul class="timeline">
-		  	 @if($array->isEmpty())
 					
-			<li>
-              <i class="fa fa-warning bg-red"></i>
-
-              <div class="timeline-item">
-                <h3 class="timeline-header no-border"> No tiene historial registrado en estos últimos días. </h3>
-              </div>
-            </li>
-					
-					
-			@else 
-
-			<div class="btn-group">
-			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo citas"><i class="fa fa-calendar-check-o"></i></button>		
-			<button id="support" type="button"  class="btn bg-black" title="Mostrar solo soporte"><i class="fa fa-wrench "></i></button>
-			<button id="payment" type="button" class="btn bg-yellow" title="Métodos de pagos registrados"> <i class="fa fa-credit-card-alt"></i></button>	
-			<button id="userli" type="button" class="btn bg-green" title="Mostrar solo actualización de usuario"><i class="fa fa-user "></i></button>
-			<button id="all" type="button" class="btn black bg-darken-4" title="Ver todo"><b>Ver todo</b></button>				
-			</div>
-
-	 
-	 	
-	 <br/><br/><br/>
-
-
 			<!-- Now -->
 		@if(!$arraynow->isEmpty())
             <!-- 1 day -->
@@ -91,10 +78,13 @@
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
           <div class="modal-content">  
-            <div class="modal-body">
+                         <div class="modal-header" >
+                            <strong style="text-align: center;">Mapa de ubicación</strong>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                        </div>
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -188,11 +178,15 @@
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
-          <div class="modal-content">  
-            <div class="modal-body">
+          <div class="modal-content"> 
+                         <div class="modal-header" >
+                            <strong style="text-align: center;">Mapa de ubicación</strong>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                        </div>
+            <div class="modal-body">
+
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -288,10 +282,13 @@
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
           <div class="modal-content">  
-            <div class="modal-body">
+                         <div class="modal-header" >
+                            <strong style="text-align: center;">Mapa de ubicación</strong>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                        </div>
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -386,11 +383,14 @@
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
-          <div class="modal-content">  
-            <div class="modal-body">
+          <div class="modal-content"> 
+                         <div class="modal-header" >
+                            <strong style="text-align: center;">Mapa de ubicación</strong>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                        </div>
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -486,10 +486,13 @@
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
           <div class="modal-content">  
-            <div class="modal-body">
+                         <div class="modal-header" >
+                            <strong style="text-align: center;">Mapa de ubicación</strong>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                        </div>
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -583,10 +586,13 @@
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
           <div class="modal-content">  
-            <div class="modal-body">
+                         <div class="modal-header" >
+                            <strong style="text-align: center;">Mapa de ubicación</strong>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                        </div>
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -682,10 +688,13 @@
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
           <div class="modal-content">  
-            <div class="modal-body">
+                         <div class="modal-header" >
+                            <strong style="text-align: center;">Mapa de ubicación</strong>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                        </div>
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>

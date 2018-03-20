@@ -323,7 +323,7 @@
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
-                 <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }}<br>
+                 <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }} &nbsp;
                   @endforeach
                 </div>
               </div>
