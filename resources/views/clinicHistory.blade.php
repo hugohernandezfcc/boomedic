@@ -506,22 +506,23 @@
 					  $('[href=#'+nextId+']').tab('show');
             var tab = $(this).parents('.tab-pane').attr("id");
 
-                   var values = $('#'+tab+' input:checkbox').map(function() {
-                           if (this.checked) {
-                            if( $('#'+tab+' textarea').val() != " "){
-                              var check2 =  $('#'+tab+' textarea').val();
-                              var resu =  this.value + check2;
-                          } if( $(this).siblings().find('div').parents().checked){
+                         var values = $('#'+tab+' input:checkbox').map(function() {
+                                 if (this.checked) {
+                                  if($('#'+tab+' textarea').val() != ""){
+                                    var check2 =  $('#'+tab+' textarea').val();
 
-                            var check2 =   $(this).siblings().find('div').parents().prop('checked',true).val();
-                            var resu = this.value +  check2;
-                          } else{
+                                } if( $(this).siblings().find('div').parents().checked){
 
-                            var resu = this.value;
-                          }
-                          return resu; // obtienes el valor de todos los checkboxes
-                              }
-                    }).get();
+                                  var check2 =   $(this).siblings().find('div').parents().prop('checked',true).val();
+                                  
+                                } else{
+
+                                  var resu = this.value;
+                                }
+                                var resu = this.value +  check2;
+                                return resu; // obtienes el valor de todos los checkboxes
+                                    }
+                          }).get();
 
 
             var ques = $('#'+tab+ ' .quesId').val();
@@ -581,17 +582,18 @@
                         var tab = $(this).parents('.tab-pane').attr("id");
                          var values = $('#'+tab+' input:checkbox').map(function() {
                                  if (this.checked) {
-                                  if( $('#'+tab+' textarea').val() != " "){
+                                  if($('#'+tab+' textarea').val() != ""){
                                     var check2 =  $('#'+tab+' textarea').val();
-                                    var resu =  this.value + check2;
+
                                 } if( $(this).siblings().find('div').parents().checked){
 
                                   var check2 =   $(this).siblings().find('div').parents().prop('checked',true).val();
-                                  var resu = this.value +  check2;
+                                  
                                 } else{
 
                                   var resu = this.value;
                                 }
+                                var resu = this.value +  check2;
                                 return resu; // obtienes el valor de todos los checkboxes
                                     }
                           }).get();
