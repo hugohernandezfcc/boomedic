@@ -81,7 +81,12 @@
 	                             @endphp
 	                            <a href = 'Transactions/{{ $card->id }}' class="btn">{{ $cardfin }}</a></td>
 	                            <td>{{ $card->bank }}</td>
-	                            <td>{{ $card->provider }}</td>
+	                            @if($card->provider == 'Visa')
+	                            <td><span class="fa fa-cc-visa" style="font-size: 25px;"></span></td>
+	                            @endif
+	                            @if($card->provider == 'MasterCard')
+	                            <td><span class="fa fa-cc-mastercard" style="font-size: 25px;"></span></td>
+	                            @endif
 	                            <td>{{ $card->credit_debit }}</td>
 	          
 	                           
@@ -107,7 +112,7 @@
 	        					 <td>
 	                            <a href = 'Transactions/{{ $card->id }}' class="btn"> {{ $card->cardnumber }}</a></td>
 	                            <td>{{ $card->bank }}</td>
-	                            <td>{{ $card->provider }}</td>
+	                            <td><span class="fa fa-cc-paypal" style="font-size: 25px;"></span></td>
 	                            <td>{{ $card->credit_debit }}</td>
 	        					
 	                            <td>
@@ -162,7 +167,6 @@
 		                  	<select class="form-control" name="typemethod" onchange="showMethodRegister(this.value);">
 		                    	<option value="">Seleccionar ...</option>
 		                    	<option value="card">Credito / Debito</option>
-		                    	<option value="paypal">Paypal</option>
 		                  	</select>
 	                  	</div>
 	                </div>
@@ -302,35 +306,39 @@
 					     <div style="font-size: 17px;">Transacciones</div>
 					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
 				             <div class="row">
-			                	<div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Tarjeta:</b></div>
+				             	<div class="col-sm-1"></div>
+			                	<div class="col-sm-4">
+			                			<div class="col-sm-6" align="right"><b>Tarjeta:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $cardnumber }}</div>
-			                		</div>
 			                	</div>
-			                	<div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Banco:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $bank }}</div>
-			                		</div>
+
+			                	<div class="col-sm-4">
+			                			<div class="col-sm-6" align="right"><b>Débito/Crédito:</b></div>
+			                			<div class="col-sm-6" align="left">{{ $credit_debit }}</div>
+
 			                	</div>
+
 			                </div>		
 			                <br/>
 			                <div class="row"> 
-			                <div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Proveedor:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $provider }}</div>
+			                <div class="col-sm-1"></div>
+			                <div class="col-sm-4">
+			                			<div class="col-sm-6" align="right"><b>Proveedor:</b></div>
+			                			<div class="col-sm-6" align="left">@if($provider == 'Visa')
+			                            <i class="fa fa-cc-visa" style="font-size: 25px;"></i>
+			                            @endif
+			                            @if($provider == 'MasterCard')
+			                            <i class="fa fa-cc-mastercard" style="font-size: 25px;"></i>
+			                            @endif
+			                            @if($provider == 'Paypal')
+			                            <i class="fa fa-cc-Paypal" style="font-size: 25px;"></i>
+			                            @endif
+			                        </div>
 			                		</div>
+			                	<div class="col-sm-4">
+			                			<div class="col-sm-6" align="right"><b>Banco:</b></div>
+			                			<div class="col-sm-6">{{ $bank }}</div>	
 			                	</div>
-			                <div class="row">
-			                	<div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Débito/Crédito:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $credit_debit }}</div>
-			                		</div>
-			                	</div>
-			                </div>
 			              </div><br/><br/>
 
 			            	<table id="transaction" class="display responsive nowrap" cellspacing="0" width="100%">
