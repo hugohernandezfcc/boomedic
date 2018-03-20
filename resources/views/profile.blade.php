@@ -505,16 +505,16 @@
 				                       // alert("Altura: "+height);
 				                        //Para Android Puro
 				            if(height >= 1000 && height <= 1300){
-				                var h = height*0.70;
+				                var h = height*0.80;
 				                height = Math.floor(h);
 				            }else if(height >=1800){ //para android con capa personalizada
-				              height -= 1700;
+				              height -= 1600;
 				            }else
 				            {
-				              height -=215; //android avierto desde chrome
+				              height -=315; //android avierto desde chrome
 				            }
 				        }else{
-				          height = window.screen.availHeight-215;
+				          height = window.screen.availHeight-315;
 				        }
 				        document.getElementById('mapAddressUser').setAttribute("style","height:" + height + "px");
 
