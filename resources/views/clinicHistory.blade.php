@@ -507,19 +507,17 @@
             var tab = $(this).parents('.tab-pane').attr("id");
 
                          var values = $('#'+tab+' input:checkbox').map(function() {
-                          var check2 = "";
+
                                  if (this.checked) {
+                                  var check2 = this.value;
                                   if($('#'+tab+' textarea').val() != ""){
                                     check2 = this.value + $('#'+tab+' textarea').val();
 
-                                } if( $(this).siblings().find('div').parents().checked){
+                                } else{
 
                                   check2 =  this.value + $(this).siblings().find('div').parents().prop('checked',true).val();
                                   
-                                } else{
-
-                                  check2 = this.value;
-                                }
+                                } 
                                 return check2; // obtienes el valor de todos los checkboxes
                                     }
                           }).get();
