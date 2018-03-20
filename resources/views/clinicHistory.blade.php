@@ -506,24 +506,24 @@
 					  $('[href=#'+nextId+']').tab('show');
             var tab = $(this).parents('.tab-pane').attr("id");
 
+
                          var values = $('#'+tab+' input:checkbox').map(function() {
-                           var check2 = "";
                                  if (this.checked) {
                                   if($('#'+tab+' textarea').val() != ""){
-                                   check2 =  $('#'+tab+' textarea').val();
-                                } if( $(this).siblings().find('div').parents().checked){
-                                 check2 =   $(this).siblings().find('div').parents().prop('checked',true).val();
+                                    var check2 =  $('#'+tab+' textarea').val();
 
+                                } if( $(this).siblings().find('div').parents().checked){
+
+                                  var check2 =   $(this).siblings().find('div').parents().prop('checked',true).val();
                                   
                                 } else{
 
-                                  check2 = "";
+                                  var check2 = "";
                                 }
-                                 var resu = this.value +  check2;
+                                var resu = this.value +  check2;
                                 return resu; // obtienes el valor de todos los checkboxes
                                     }
                           }).get();
-
 
 
             var ques = $('#'+tab+ ' .quesId').val();
@@ -582,19 +582,19 @@
 
                         var tab = $(this).parents('.tab-pane').attr("id");
                          var values = $('#'+tab+' input:checkbox').map(function() {
-                           var check2 = "";
                                  if (this.checked) {
                                   if($('#'+tab+' textarea').val() != ""){
-                                   check2 =  $('#'+tab+' textarea').val();
-                                } if( $(this).siblings().find('div').parents().checked){
-                                 check2 =   $(this).siblings().find('div').parents().prop('checked',true).val();
+                                    var check2 =  $('#'+tab+' textarea').val();
 
+                                } if( $(this).siblings().find('div').parents().checked){
+
+                                  var check2 =   $(this).siblings().find('div').parents().prop('checked',true).val();
                                   
                                 } else{
 
-                                  check2 = "";
+                                  var check2 = "";
                                 }
-                                 var resu = this.value +  check2;
+                                var resu = this.value +  check2;
                                 return resu; // obtienes el valor de todos los checkboxes
                                     }
                           }).get();
