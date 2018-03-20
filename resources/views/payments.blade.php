@@ -338,8 +338,15 @@
 			                			<div class="col-sm-6" align="right"><b>Banco:</b></div>
 			                			<div class="col-sm-6">{{ $bank }}</div>	
 			                	</div>
-			              </div><br/><br/>
-			              	<div style="font-size: 17px;">Transacciones</div>
+			              </div>        </div>	  	
+	</div>
+
+	<div class="box">
+	  	<div class="box-header with-border">
+		    <h3 class="box-title">Transacciones</h3>
+	  	</div>
+		<div class="box-body">
+
 			              	@if(count($transactions) < 1)
 			              	No hay Transacciones registradas para este método de pago.
 			              	@else
@@ -391,8 +398,14 @@
 			                            <div class="col-sm-6" align="left"><i class="fa fa-cc-paypal" style="font-size: 25px;"></i></div>
 			                		</div>
 			                	</div>
-			              </div><br/><br/>
-			              <div style="font-size: 17px;">Transacciones</div>
+			              </div><br/>  </div>	  	
+	</div>
+
+	<div class="box">
+	  	<div class="box-header with-border">
+		    <h3 class="box-title">Transacciones</h3>
+	  	</div>
+		<div class="box-body">
 			              	@if(count($transactions) < 1)
 			              	No hay Transacciones registradas para este método de pago.
 			              	@else

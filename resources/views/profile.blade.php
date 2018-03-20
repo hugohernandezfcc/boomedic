@@ -621,7 +621,7 @@
 					        var beachMarker = new google.maps.Marker({
 					          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
 					          map: map,
-					          icon: { url: image,  scaledSize: new google.maps.Size(45, 45) }
+					          icon: image
 					        });
 					    }
 				        counter++;
