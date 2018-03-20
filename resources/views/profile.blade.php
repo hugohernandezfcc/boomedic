@@ -616,7 +616,7 @@
 					        });
 
 
-					        var image = "{{ asset('maps-and-flags_1.png') }}";
+					        var image = "https://s3.amazonaws.com/abiliasf/markerCasa.png";
 					        
 					        var beachMarker = new google.maps.Marker({
 					          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
