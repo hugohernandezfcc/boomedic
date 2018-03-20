@@ -510,12 +510,12 @@
 
                                  if (this.checked) {
                                   var check2 = this.value;
-                                  if($('#'+tab+' textarea').val() != ""){
-                                    check2 = this.value + '-' + $('#'+tab+' textarea').val();
+                                  if($('#'+tab+' textarea').val()){
+                                    check2 = this.value + '=' + $('#'+tab+' textarea').val();
 
-                                } else{
+                                } if( $(this).siblings().find('div').parents().checked){
 
-                                  check2 =  this.value + $(this).siblings().find('div').parents().prop('checked',true).val();
+                                  check2 =  this.value;
                                   
                                 } 
                                 return check2; // obtienes el valor de todos los checkboxes
@@ -583,12 +583,12 @@
 
                                  if (this.checked) {
                                   var check2 = this.value;
-                                  if($('#'+tab+' textarea').val() != ""){
-                                    check2 = this.value + '-' + $('#'+tab+' textarea').val();
+                                  if($('#'+tab+' textarea').val()){
+                                    check2 = this.value + '=' + $('#'+tab+' textarea').val();
 
-                                } else{
+                                } if( $(this).siblings().find('div').parents().checked){
 
-                                  check2 =  this.value + $(this).siblings().find('div').parents().prop('checked',true).val();
+                                  check2 =  this.value;
                                   
                                 } 
                                 return check2; // obtienes el valor de todos los checkboxes
