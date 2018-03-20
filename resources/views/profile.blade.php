@@ -41,7 +41,11 @@
 			    width: 100%;
 
 			}
-
+      #mapAddressUser{
+        position: relative;
+        width: 95%;
+        z-index: 30;
+      }
 
     </style>
 @stop
@@ -474,8 +478,8 @@
                   </h4> 
                   </div>
                   <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
-                    <div class="box-body">
-                          <div id="mapAddressUser" ></div>
+                    <div class="box-body" align="center">
+                          <div id="mapAddressUser"></div>
                     </div>
                   </div>
                 </div>
@@ -495,11 +499,30 @@
     		<script type="text/javascript">
 
 			window.onload = function(){
+
+				        if("@php echo $agent->isMobile(); @endphp"){
+				            height = window.screen.availHeight;
+				                       // alert("Altura: "+height);
+				                        //Para Android Puro
+				            if(height >= 1000 && height <= 1300){
+				                var h = height*0.70;
+				                height = Math.floor(h);
+				            }else if(height >=1800){ //para android con capa personalizada
+				              height -= 1700;
+				            }else
+				            {
+				              height -=215; //android avierto desde chrome
+				            }
+				        }else{
+				          height = window.screen.availHeight-215;
+				        }
+				        document.getElementById('mapAddressUser').setAttribute("style","height:" + height + "px");
+
 				$('#collapseTwo').collapse("toggle");
 				$('#collapseThree').collapse("toggle");
 	
     				initAutocomplete();
-    				@if( empty($status) )
+    				@if(empty($status) )
     					initMapAddressUser();
 					@endif
     			};
@@ -588,7 +611,7 @@
 
 				      	if(!counter > 0){
 				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
-					          zoom: 7,
+					          zoom: 14,
 					          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
 					        });
 
