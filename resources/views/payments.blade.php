@@ -303,7 +303,7 @@
 
 			            	 @if($type == 'card')
 
-					     <div style="font-size: 17px;">Transacciones</div>
+
 					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
 				             <div class="row">
 				             	<div class="col-sm-1"></div>
@@ -324,15 +324,14 @@
 			                <div class="col-sm-1"></div>
 			                <div class="col-sm-4">
 			                			<div class="col-sm-6" align="right"><b>Proveedor:</b></div>
-			                			<div class="col-sm-6" align="left">@if($provider == 'Visa')
+			                			<div class="col-sm-6" align="left">
+			                		   @if($provider == 'Visa')
 			                            <i class="fa fa-cc-visa" style="font-size: 25px;"></i>
 			                            @endif
 			                            @if($provider == 'MasterCard')
 			                            <i class="fa fa-cc-mastercard" style="font-size: 25px;"></i>
 			                            @endif
-			                            @if($provider == 'Paypal')
-			                            <i class="fa fa-cc-Paypal" style="font-size: 25px;"></i>
-			                            @endif
+
 			                        </div>
 			                		</div>
 			                	<div class="col-sm-4">
@@ -340,19 +339,25 @@
 			                			<div class="col-sm-6">{{ $bank }}</div>	
 			                	</div>
 			              </div><br/><br/>
-
-			            	<table id="transaction" class="display responsive nowrap" cellspacing="0" width="100%">
+			              	<div style="font-size: 17px;">Transacciones</div>
+			              	@if(count($transactions) < 1)
+			              	No hay Transacciones registradas para este método de pago.
+			              	@else
+			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
 				                    <tr>
+				                    	 <th></th>
 				                        <th class="all">Nro. Transacción</th>
 				                        <th class="desktop">Destinatario</th>
-				                        <th class="min-phone-l">Monto</th>
-				                        <th class"min-phone-l">Fecha de Transacción</th>
+				                        <th class="desktop">Monto</th>
+				                        <th class="desktop">Fecha de Transacción</th>
 				                    </tr>
 				                </thead>
+
 				                <tbody>
 					     	@foreach ($transactions as $transaction)
 								     <tr>
+								     	<td></td>
 						             	<td>{{ $transaction->transaction }} <br/></td>
 						             	<td>{{ $transaction->receiver}}<br/></td>
 						             	<td>{{ $transaction->amount }}</td>
@@ -362,33 +367,35 @@
 								<tbody>
 				    	 </table>
 				    	 @endif
-
+				    	 	@endif
 				    	 @if($type == 'Paypal')
-				    	 					     <div style="font-size: 17px;">Transacciones</div>
+
 					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
 				             <div class="row">
-			                	<div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Id Paypal:</b></div>
+				             	<div class="col-sm-1"></div>
+			                	<div class="col-sm-4">
+			                			<div class="col-sm-6" align="right"><b>Id Paypal:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $cardnumber }}</div>
 			                		</div>
-			                	</div>
-			                	<div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Email:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $paypal_email }}</div>
-			                		</div>
+			                	<div class="col-sm-4">
+			                			<div class="col-sm-3" align="right"><b>Email:</b></div>
+			                			<div class="col-sm-9" align="left">{{ $paypal_email }}</div>
 			                	</div>
 			                </div>		
 			                <br/>
-			                <div class="row"> 
-			                <div class="col-sm-6">
+			                <div class="row">
+			                <div class="col-sm-1"></div> 
+			                <div class="col-sm-4">
 			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Proveedor:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $provider }}</div>
+			                			<div class="col-sm-6" align="right"><b>Proveedor:</b></div>
+			                            <div class="col-sm-6" align="left"><i class="fa fa-cc-paypal" style="font-size: 25px;"></i></div>
 			                		</div>
 			                	</div>
 			              </div><br/><br/>
+			              <div style="font-size: 17px;">Transacciones</div>
+			              	@if(count($transactions) < 1)
+			              	No hay Transacciones registradas para este método de pago.
+			              	@else
 
 			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
@@ -413,6 +420,7 @@
 			             	@endforeach
 								<tbody>
 				    	 </table>
+				    	 	@endif
 				    	 @endif
 
             @endif
