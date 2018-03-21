@@ -274,7 +274,7 @@
               <i class="fa fa-file bg-aqua"></i>
 
               <div class="timeline-item">
-              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->updated_at)->diffForHumans() }}</span>
+              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->created_at)->diffForHumans() }}</span>
 
                 <h3 class="timeline-header"><a href="#">{{ $test->name }}</a></h3>
                 <div class="timeline-body">
@@ -315,6 +315,14 @@
                 <h3 class="box-title">
                           Historia clínica
                  </h3>
+                       <div class="btn-group pull-right">
+                            <button id="familiares" type="button" class="btn bg-blue btn-flat" title="Antecedentes Familiares"><i class="fa fa-users"></i></button>   
+                            <button id="morbidos" type="button"  class="btn bg-gray btn-flat" title="Antecedentes Mórbidos"><i class="fa fa-stethoscope"></i></button>
+                            <button id="alergias" type="button" class="btn bg-black btn-flat" title="Alergias"> <i class="fa fa-medkit"></i></button> 
+                            <button id="habitos" type="button" class="btn bg-green btn-flat" title="Hábitos"><i class="fa fa-coffee"></i></button><br>
+                            <button id="all" type="button" class="btn btn-default btn-block btn-xs" title="Ver todo"><b>Ver Todo</b></button>        
+                      </div>
+
            </div><br/>
            <ul class="timeline">   
             @php
@@ -330,7 +338,7 @@
             @if($clinic->type == 'Antecedentes Familiares')
              @php $t1++; @endphp
              @if($t1 == 1)
-            <li class="time-label">
+            <li class="time-label familiares">
                   <span class="bg-blue">
                    {{ $clinic->type }} 
                   </span>
@@ -341,7 +349,7 @@
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
-            <li>
+            <li class="familiares">
               <i class="fa fa-users bg-blue"></i>
 
               <div class="timeline-item">
@@ -360,7 +368,7 @@
              @if($clinic->type == 'Antecedentes Morbidos')
              @php $t2++; @endphp
              @if($t2 == 1)
-            <li class="time-label">
+            <li class="time-label morbidos">
                   <span class="bg-gray">
                    Antecedentes Mórbidos
                   </span>
@@ -369,7 +377,7 @@
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
-            <li>
+            <li class="morbidos">
               <i class="fa fa-stethoscope bg-gray"></i>
 
               <div class="timeline-item">
@@ -388,7 +396,7 @@
            @if($clinic->type == 'Alergias')
            @php $t3++; @endphp
              @if($t3 == 1)
-            <li class="time-label">
+            <li class="time-label alergias">
                   <span class="bg-black">
                    Alergias
                   </span>
@@ -397,7 +405,7 @@
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
-            <li>
+            <li class="alergias">
               <i class="fa fa-medkit bg-black"></i>
 
               <div class="timeline-item">
@@ -416,7 +424,7 @@
            @if($clinic->type == 'Habitos')
             @php $t4++; @endphp
              @if($t4 == 1)
-            <li class="time-label">
+            <li class="time-label habitos">
                   <span class="bg-green">
                    Hábitos
                   </span>
@@ -425,7 +433,7 @@
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
-            <li>
+            <li class="habitos">
               <i class="fa fa-coffee bg-green"></i>
 
               <div class="timeline-item">
@@ -457,87 +465,218 @@
 				<script>
 
 				$(document).ready(function () {
+                      $("#familiares").click(function () {
 
-
-
-  $('input[type=checkbox]').click(function() {
-             if(this.checked) {
-
-                            var value2 = $(this).val();
-                            var parent = $('#p'+value2).val();
-                            var thi = $(this);
-                            var n = $(this).parents('.tab-pane').attr("id");
-                            if(parent > 0){
-                            var parent_answer = JSON.parse($('#'+value2).val());
-
-                            for(var i=0; i < parent_answer.length; i++){
-
-                              if(parent_answer[i].replace(" ","_")  == value2){
-                                var ques = @php echo $questions_parent; @endphp;
-                               for(var z=0; z < ques.length; z++){
-                                if(ques[z]['id'] == parent){
-                                  var xanswer = JSON.parse(ques[z]['answer']);
-                                   for(var x=0; x < xanswer.length; x++){
-
-                                   if(xanswer[x] == "texto"){
-                                      thi.siblings('div').css("display", "block");
-                                      thi.siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="'+ n + value2 + xanswer[x]+'"></textarea>');
-       
-                                    } else{
-                                      thi.siblings('div').css("display", "block");
-                                      thi.siblings('div').append('<div class="checkbox checkbox-primary"><input id="'+ n + value2 + xanswer[x]+ '" name="'+ n + value2 + '" type="radio" value="'+xanswer[x]+'"><label for="'+ n + value2 + xanswer[x]+ '">'+xanswer[x]+'</label></div>');
-                                    }
-                                        }
-                                    }
-                                }
-                              }
+                            var x = document.getElementsByClassName("habitos");
+                            var i;
+                            for (i = 0; i < x.length; i++) {
+                                x[i].style.display = 'none';
                             }
-                          }
-                       }
-                       else{
-                        $(this).siblings('div').html('');
-                        $(this).siblings('div').css("display", "none");
-                       }
-
-    });
-
-  $('input[type=radio]').click(function() {
-
-
-                            var value2 = $(this).val();
-                            var parent = $('#p'+value2).val();
-                            var thi = $(this);
-                            var n = $(this).parents('.tab-pane').attr("id");
-                            
-                            if(parent > 0){
-                            var parent_answer = JSON.parse($('#'+value2).val());
-
-                            for(var i=0; i < parent_answer.length; i++){
-
-                              if(parent_answer[i].replace(" ","_")  == value2){
-                                var ques = @php echo $questions_parent; @endphp;
-                               for(var z=0; z < ques.length; z++){
-                                if(ques[z]['id'] == parent){
-                                  var xanswer = JSON.parse(ques[z]['answer']);
-                                   for(var x=0; x < xanswer.length; x++){
-
-                                   if(xanswer[x] == "texto"){
-                                      thi.siblings('div').css("display", "block");
-                                      thi.siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="'+ n + value2 + xanswer[x]+'"></textarea>');
-       
-                                    } 
-                                        }
-                                    }
-                                }
-                              } else{
-                                         $('input[type=radio]').siblings('div').html('');
-                                         $('input[type=radio]').siblings('div').css("display", "none");
-                                    }
+                            var y = document.getElementsByClassName("alergias");
+                            var i;
+                            for (i = 0; i < y.length; i++) {
+                                y[i].style.display = 'none';
                             }
-                          } 
+
+                            var z = document.getElementsByClassName("morbidos");
+                            var i;
+                            for (i = 0; i < z.length; i++) {
+                                z[i].style.display = 'none';
+                            }
+
+                            var u = document.getElementsByClassName("familiares");
+                            var i;
+                            for (i = 0; i < u.length; i++) {
+                                u[i].style.display = 'block';
+                            }
+                          });      
+
+                          $("#morbidos").click(function () {
+                        
+
+                            var x = document.getElementsByClassName("habitos");
+                            var i;
+                            for (i = 0; i < x.length; i++) {
+                                x[i].style.display = 'none';
+                            }
+                            var y = document.getElementsByClassName("alergias");
+                            var i;
+                            for (i = 0; i < y.length; i++) {
+                                y[i].style.display = 'none';
+                            }
+
+                            var z = document.getElementsByClassName("familiares");
+                            var i;
+                            for (i = 0; i < z.length; i++) {
+                                z[i].style.display = 'none';
+                            }
+
+                            var u = document.getElementsByClassName("morbidos");
+                            var i;
+                            for (i = 0; i < u.length; i++) {
+                                u[i].style.display = 'block';
+                            }
+                            });  
+
+                          $("#alergias").click(function () {
+                        
+                            var x = document.getElementsByClassName("habitos");
+                            var i;
+                            for (i = 0; i < x.length; i++) {
+                                x[i].style.display = 'none';
+                            }
+                            var y = document.getElementsByClassName("familiares");
+                            var i;
+                            for (i = 0; i < y.length; i++) {
+                                y[i].style.display = 'none';
+                            }
+
+                            var z = document.getElementsByClassName("morbidos");
+                            var i;
+                            for (i = 0; i < z.length; i++) {
+                                z[i].style.display = 'none';
+                            }
+                            var u = document.getElementsByClassName("alergias");
+                            var i;
+                            for (i = 0; i < u.length; i++) {
+                                u[i].style.display = 'block';
+                            }
+
+                            });  
+
+                          $("#habitos").click(function () {
+                        
+                            var x = document.getElementsByClassName("alergias");
+                            var i;
+                            for (i = 0; i < x.length; i++) {
+                                x[i].style.display = 'none';
+                            }
+                            var y = document.getElementsByClassName("familiares");
+                            var i;
+                            for (i = 0; i < y.length; i++) {
+                                y[i].style.display = 'none';
+                            }
+
+                            var z = document.getElementsByClassName("morbidos");
+                            var i;
+                            for (i = 0; i < z.length; i++) {
+                                z[i].style.display = 'none';
+                            }
+                            var u = document.getElementsByClassName("habitos");
+                            var i;
+
+                            for (i = 0; i < u.length; i++) {
+                                u[i].style.display = 'block';
+
+                            }
+                            });  
+
+                            $("#all").click(function () {
+                        
+                            var x = document.getElementsByClassName("alergias");
+                            var i;
+                            for (i = 0; i < x.length; i++) {
+                                x[i].style.display = 'block';
+                            }
+                            var y = document.getElementsByClassName("familiares");
+                            var i;
+                            for (i = 0; i < y.length; i++) {
+                                y[i].style.display = 'block';
+                            }
+
+                            var z = document.getElementsByClassName("morbidos");
+                            var i;
+                            for (i = 0; i < z.length; i++) {
+                                z[i].style.display = 'block';
+                            }
+                            var u = document.getElementsByClassName("habitos");
+                            var i;
+                            for (i = 0; i < u.length; i++) {
+                                u[i].style.display = 'block';
+                            }
+                                
+
+                            });              
 
 
-    });
+                    $('input[type=checkbox]').click(function() {
+                               if(this.checked) {
+
+                                              var value2 = $(this).val();
+                                              var parent = $('#p'+value2).val();
+                                              var thi = $(this);
+                                              var n = $(this).parents('.tab-pane').attr("id");
+                                              if(parent > 0){
+                                              var parent_answer = JSON.parse($('#'+value2).val());
+
+                                              for(var i=0; i < parent_answer.length; i++){
+
+                                                if(parent_answer[i].replace(" ","_")  == value2){
+                                                  var ques = @php echo $questions_parent; @endphp;
+                                                 for(var z=0; z < ques.length; z++){
+                                                  if(ques[z]['id'] == parent){
+                                                    var xanswer = JSON.parse(ques[z]['answer']);
+                                                     for(var x=0; x < xanswer.length; x++){
+
+                                                     if(xanswer[x] == "texto"){
+                                                        thi.siblings('div').css("display", "block");
+                                                        thi.siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="'+ n + value2 + xanswer[x]+'"></textarea>');
+                         
+                                                      } else{
+                                                        thi.siblings('div').css("display", "block");
+                                                        thi.siblings('div').append('<div class="checkbox checkbox-primary"><input id="'+ n + value2 + xanswer[x]+ '" name="'+ n + value2 + '" type="radio" value="'+xanswer[x]+'"><label for="'+ n + value2 + xanswer[x]+ '">'+xanswer[x]+'</label></div>');
+                                                      }
+                                                          }
+                                                      }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                         }
+                                         else{
+                                          $(this).siblings('div').html('');
+                                          $(this).siblings('div').css("display", "none");
+                                         }
+
+                      });
+
+                    $('input[type=radio]').click(function() {
+
+
+                                              var value2 = $(this).val();
+                                              var parent = $('#p'+value2).val();
+                                              var thi = $(this);
+                                              var n = $(this).parents('.tab-pane').attr("id");
+                                              
+                                              if(parent > 0){
+                                              var parent_answer = JSON.parse($('#'+value2).val());
+
+                                              for(var i=0; i < parent_answer.length; i++){
+
+                                                if(parent_answer[i].replace(" ","_")  == value2){
+                                                  var ques = @php echo $questions_parent; @endphp;
+                                                 for(var z=0; z < ques.length; z++){
+                                                  if(ques[z]['id'] == parent){
+                                                    var xanswer = JSON.parse(ques[z]['answer']);
+                                                     for(var x=0; x < xanswer.length; x++){
+
+                                                     if(xanswer[x] == "texto"){
+                                                        thi.siblings('div').css("display", "block");
+                                                        thi.siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="'+ n + value2 + xanswer[x]+'"></textarea>');
+                         
+                                                      } 
+                                                          }
+                                                      }
+                                                  }
+                                                } else{
+                                                           $('input[type=radio]').siblings('div').html('');
+                                                           $('input[type=radio]').siblings('div').css("display", "none");
+                                                      }
+                                              }
+                                            } 
+
+
+                      });
 
   $('a.external').on('click', function(e) {
         e.preventDefault();
