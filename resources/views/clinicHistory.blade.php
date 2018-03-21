@@ -147,7 +147,7 @@
                                     {{ $an }}
                                 </label>
                                 @endif
-                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 6px;"></div>
+                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 1px;"></div>
                             </div>
                      @endforeach          
 
@@ -183,7 +183,7 @@
                                     {{ $an }}
                                 </label>
                                 @endif
-                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 6px;"></div>
+                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 1px;"></div>
                             </div>
                      @endforeach               
 
@@ -219,7 +219,7 @@
                                     {{ $an }}
                                 </label>
                                 @endif
-                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 6px;"></div>
+                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 1px;"></div>
                             </div>
                      @endforeach      
 
