@@ -63,26 +63,27 @@
       font-size: 11px;
       color: #555555; }
 
-
+    .checkbox input[type="radio"],  
     .checkbox input[type="checkbox"] {
       opacity: 0; }
 
+    .checkbox input[type="radio"]:checked + label::after,
     .checkbox input[type="checkbox"]:checked + label::after {
       font-family: 'FontAwesome';
       content: "\f00c"; }
 
-
+    .checkbox input[type="radio"]:disabled + label,  
     .checkbox input[type="checkbox"]:disabled + label {
       opacity: 0.65; }
-
+       .checkbox input[type="radio"]:disabled + label::before,
       .checkbox input[type="checkbox"]:disabled + label::before {
         background-color: #eeeeee;
         cursor: not-allowed; }
-
+         .checkbox-primary input[type="radio"]:checked + label::before,
         .checkbox-primary input[type="checkbox"]:checked + label::before {
   background-color: #3E3E3E;
   border-color: #3E3E3E; }
-
+         .checkbox-primary input[type="radio"]:checked + label::after,
         .checkbox-primary input[type="checkbox"]:checked + label::after {
           color: #fff; }
 
@@ -324,7 +325,7 @@
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
-                 <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }} &nbsp;
+                 <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }} <br>
                   @endforeach
                 </div>
               </div>
@@ -458,7 +459,7 @@
        
                                     } else{
                                       thi.siblings('div').css("display", "block");
-                                      thi.siblings('div').append('<div><input id="'+ n + value2 + xanswer[x] +'" type="radio" value="'+xanswer[x]+'"><label for="'+ n + value2 + xanswer[x]+ '">'+xanswer[x]+'</label></div>');
+                                      thi.siblings('div').append('<div class="checkbox checkbox-primary"><input id="'+ n + value2 + xanswer[x]+ '" name="'+ n + value2 + '" type="radio" value="'+xanswer[x]+'"><label for="'+ n + value2 + xanswer[x]+ '">'+xanswer[x]+'</label></div>');
                                     }
                                         }
                                     }
@@ -508,11 +509,13 @@
             var tab = $(this).parents('.tab-pane').attr("id");
                          var values = $('#'+tab+' input:checkbox').map(function() {
 
-                                 if (this.checked) {
+                              if (this.checked) {
                                   var check2 = this.value.replace(/_/gi, " ");
                                   if($('#'+tab+' textarea').val()){
                                     check2 =  $('#'+tab+' textarea').val();
-
+                                } 
+                                if($('#'+tab+' input:radio').is(':checked')){
+                                    check2 =  this.value.replace(/_/gi, " ") + ' (' + $('#'+tab+' input:radio:checked').val() + ')';
                                 } 
                                 return check2; // obtienes el valor de todos los checkboxes
                                     }
@@ -577,11 +580,13 @@
 
                          var values = $('#'+tab+' input:checkbox').map(function() {
 
-                                 if (this.checked) {
+                              if (this.checked) {
                                   var check2 = this.value.replace(/_/gi, " ");
                                   if($('#'+tab+' textarea').val()){
                                     check2 =  $('#'+tab+' textarea').val();
-
+                                } 
+                                if($('#'+tab+' input:radio').is(':checked')){
+                                    check2 =  this.value.replace(/_/gi, " ") + ' (' + $('#'+tab+' input:radio:checked').val() + ')';
                                 } 
                                 return check2; // obtienes el valor de todos los checkboxes
                                     }
