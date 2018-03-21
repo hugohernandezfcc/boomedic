@@ -866,7 +866,7 @@
 
                                      $.ajax({     
                                        type: "POST",                 
-                                        url: "save",  
+                                        url: '{{ url("clinicHistory/save") }}',  
                                         data: { "answers" : JSON.stringify(values), 
                                                 "question" : ques,
                                                 "ansId"    : ansId
@@ -878,7 +878,7 @@
                                         console.log(data);
                                        }
                                    });
-                         window.open('cHistory', '_self');
+                         window.open('{{ url("clinicHistory/cHistory") }}', '_self');
 
           })
 
