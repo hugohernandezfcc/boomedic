@@ -255,6 +255,11 @@ Route::group(['prefix' => 'clinicHistory'], function(){
 			'as'	=>	'cHistory'
 		]
 	);
+	Route::get('edit/{id}', [
+			'uses'	=>	'clinicHistory@edit',
+			'as'	=>	'edit'
+		]
+	);
 
 	Route::get('update/{id}', [
 			'uses'	=>	'clinicHistory@update',

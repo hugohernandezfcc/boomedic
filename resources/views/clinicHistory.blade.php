@@ -122,8 +122,44 @@
   
 
            <div class="tab-content">
-           	@foreach($questions as $questions1) 
-              @if($loop->iteration == 1)
+           	@foreach($questions as $questions1)
+             @if($loop->iteration == 1 && count($questions) == 1)
+              <div class="tab-pane fade in active" id="step1">
+                 
+                <div class="well"> 
+                  
+                    <h3>{{ $questions1->question }}</h3>
+                    <br>
+                  @php $an = json_decode($questions1->answer); @endphp
+                    <label>Respuestas:</label><br>
+                    <input type="hidden" class="quesId" value="{{ $questions1->id }}">
+                    <input type="hidden" class="ansId" value="{{ $questions1->a }}">
+
+                    @foreach($an as $an)
+                            <div class="checkbox checkbox-primary">
+                              @php  $a2 = str_replace(" ", "_", $an); @endphp
+                                <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
+                                <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
+                                <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
+                                @if($a2 == "Si" OR $a2 == "No")
+                                <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
+                                    {{ $an }}
+                                </label>
+                                @else
+                                <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                    {{ $an }}
+                                </label>
+                                @endif
+                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
+                            </div>
+                     @endforeach          
+                </div>
+                <a class="btn btn-secondary btn-flat pull-right finish" href="#">Finalizar</a>
+                </div>
+                  @endif 
+              @if($loop->iteration == 1 && count($questions) != 1)
               <div class="tab-pane fade in active" id="step1">
                  
                 <div class="well"> 
@@ -315,11 +351,12 @@
             </li>
          </ul>  
 
-         
+         <br>
           <div class="box-header">
                 <h3 class="box-title">
-                          Historia clínica
+                          Historia clínica  &nbsp;<a href="edit/" class=" btn"><i class="fa fa-pencil text-muted"></i></a>  
                  </h3>
+
                        <div class="btn-group pull-right">
                             <button id="familiares" type="button" class="btn bg-blue btn-flat" title="Antecedentes Familiares"><i class="fa fa-users"></i></button>   
                             <button id="morbidos" type="button"  class="btn bg-gray btn-flat" title="Antecedentes Mórbidos"><i class="fa fa-stethoscope"></i></button>

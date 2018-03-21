@@ -167,9 +167,37 @@ class clinicHistory extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $user = User::find(Auth::id());
+        $clinic_history = DB::table('clinic_history')
+                ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                ->where('question_id', $id)
+                ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+                ->get();
+
+        $question = DB::table('questions_clinic_history')
+            ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+            ->where('questions_clinic_history.id', $id)
+            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
+            ->get();
+
+            
+        $question_parent = DB::table('answers_clinic_history')->get();
+
+
+        return view('clinicHistory', [
+                'userId'            => $user->id,
+                'username'          => $user->username,
+                'name'              => $user->name,
+                'photo'             => $user->profile_photo,
+                'date'              => $user->created_at,
+                'questions'         => $question,
+                'questions_parent'  => $question_parent,
+                'clinic_history'    => $clinic_history,
+                'mode'              => "null"
+            ]
+        );
     }
 
     /**
