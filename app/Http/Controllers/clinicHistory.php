@@ -32,14 +32,33 @@ class clinicHistory extends Controller
      */
     public function index(){
         $user = User::find(Auth::id());
-        $clinic_history = DB::table('clinic_history')->get();
+                $clinic_history = DB::table('clinic_history')
+                ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                ->where('userid', Auth::id())
+                ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+                ->get();
+
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
             ->where('answers_clinic_history.question','!=', null)
             ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
             ->get();
+
+        $test_result = DB::table('diagnostic_test_result')
+        ->join('diagnostic_tests', 'diagnostic_test_result.diagnostic_test', '=', 'diagnostic_tests.id')
+        ->join('recipes_tests', 'diagnostic_test_result.recipes_test', '=', 'recipes_tests.id')
+        ->join('users', 'recipes_tests.doctor', '=', 'users.id')
+        ->where('diagnostic_test_result.patient', Auth::id())
+        ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.folio')
+        ->get();  
+            
         $question_parent = DB::table('answers_clinic_history')->get();
 
+        if(count($clinic_history) == 0){
+            $mode = "null";
+        } else{
+            $mode = "finish";
+        }
         return view('clinicHistory', [
                 'userId'            => $user->id,
                 'username'          => $user->username,
@@ -49,7 +68,8 @@ class clinicHistory extends Controller
                 'questions'         => $question,
                 'questions_parent'  => $question_parent,
                 'clinic_history'    => $clinic_history,
-                'mode'              => 'null'
+                'test_result'       => $test_result,
+                'mode'              => $mode
             ]
         );
     }
