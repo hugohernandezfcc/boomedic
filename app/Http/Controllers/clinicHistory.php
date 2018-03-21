@@ -191,19 +191,42 @@ class clinicHistory extends Controller
 
         $history = DB::table('clinic_history')
         ->where('userid', Auth::id())->where('question_id', $request->question)->first();
-        
-        
+        $newArray = array();
+        $answers = json_decode($request->answers);
+            if (in_array("Fallecido", $answers) && in_array("Vivo", $answers)) {
+                $z = 1;
+               for($i = 0; $i < count($answers); $i++){
+                $z = $z++;
+                            if($answers[$z] == "Vivo" && $answers[$z] === "Fallecido"){
+                                $comp = $answers[$i] . $answers[$z];
+                                array_push($newArray, $comp);
+                            } else{
+                                array_push($newArray, $answers[$i]);
+                            }
+                         
+                      }
+                   } 
+
         if($history){
                 $clinic = clinic_history::find($history->id);
-                $clinic->answer = $request->answers;
                 $clinic->answer_id = $request->ansId;
+                if(!count($newArray)){
+                $clinic->answer = $request->answers;
+            }else {
+                $clinic->answer = json_encode($newArray);
+            }
+
                
          } else {
             $clinic = new clinic_history;
             $clinic->userid = Auth::id();
             $clinic->question_id =  $request->question;
             $clinic->question = $q->question;
+            if(!count($newArray)){
             $clinic->answer = $request->answers;
+              }else {
+                $clinic->answer = json_encode($newArray);
+            }
             $clinic->answer_id = $request->ansId;
 
                 }

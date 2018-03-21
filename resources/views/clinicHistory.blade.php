@@ -63,13 +63,14 @@
       font-size: 11px;
       color: #555555; }
 
+
     .checkbox input[type="checkbox"] {
       opacity: 0; }
-
 
     .checkbox input[type="checkbox"]:checked + label::after {
       font-family: 'FontAwesome';
       content: "\f00c"; }
+
 
     .checkbox input[type="checkbox"]:disabled + label {
       opacity: 0.65; }
@@ -457,7 +458,7 @@
        
                                     } else{
                                       thi.siblings('div').css("display", "block");
-                                      thi.siblings('div').append('<div class="checkbox checkbox-primary"><input id="'+ n + value2 + xanswer[x]+ '[]" type="checkbox" value="'+xanswer[x]+'" name="resp2[]" class="checkbox2"><label for="'+ n + value2 + xanswer[x]+ '[]">'+xanswer[x]+'</label></div>');
+                                      thi.siblings('div').append('<div><input id="'+ n + value2 + xanswer[x] +'" type="radio" value="'+xanswer[x]+'"><label for="'+ n + value2 + xanswer[x]+ '">'+xanswer[x]+'</label></div>');
                                     }
                                         }
                                     }
