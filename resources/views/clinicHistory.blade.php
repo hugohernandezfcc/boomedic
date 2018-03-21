@@ -571,18 +571,24 @@
 					  var nextId = $(this).parents('.tab-pane').next().attr("id");
 					  $('[href=#'+nextId+']').tab('show');
             var tab = $(this).parents('.tab-pane').attr("id");
-                         var values = $('#'+tab+' input:checkbox').map(function() {
+                         var values = $('#'+tab+' input').map(function() {
+                          if($(this).is(':checkbox') && this.checked){
 
-                              if (this.checked) {
                                   var check2 = this.value.replace(/_/gi, " ");
-                                  if($('#'+tab+' textarea').val()){
-                                    check2 =  $('#'+tab+' textarea').val();
-                                } 
                                 if($('#'+tab+' input:radio').is(':checked')){
                                     check2 =  this.value.replace(/_/gi, " ") + ' (' + $('#'+tab+' input:radio:checked').val() + ')';
                                 } 
+                                    
+                                  }
+                          if($(this).is(':radio')){
+                                if($(this).is(':checked') && $('#'+tab+' input:radio:checked').val() == "Si"){
+                                   var check2 =  $('#'+tab+' textarea').val();
+                                } 
+                                if($(this).is(':checked') && $('#'+tab+' input:radio:checked').val() == "No"){
+                                   var check2 =    $('#'+tab+' input:radio:checked').val();
+                                } }
                                 return check2; // obtienes el valor de todos los checkboxes
-                                    }
+                                  
                           }).get();
 
 
@@ -642,18 +648,24 @@
 
                         var tab = $(this).parents('.tab-pane').attr("id");
 
-                         var values = $('#'+tab+' input:checkbox').map(function() {
+                         var values = $('#'+tab+' input').map(function() {
+                          if($(this).is(':checkbox') && this.checked){
 
-                              if (this.checked) {
                                   var check2 = this.value.replace(/_/gi, " ");
-                                  if($('#'+tab+' textarea').val()){
-                                    check2 =  $('#'+tab+' textarea').val();
-                                } 
                                 if($('#'+tab+' input:radio').is(':checked')){
                                     check2 =  this.value.replace(/_/gi, " ") + ' (' + $('#'+tab+' input:radio:checked').val() + ')';
                                 } 
+                                    
+                                  }
+                          if($(this).is(':radio')){
+                                if($(this).is(':checked') && $('#'+tab+' input:radio:checked').val() == "Si"){
+                                   var check2 =  $('#'+tab+' textarea').val();
+                                } 
+                                if($(this).is(':checked') && $('#'+tab+' input:radio:checked').val() == "No"){
+                                   var check2 =    $('#'+tab+' input:radio:checked').val();
+                                } }
                                 return check2; // obtienes el valor de todos los checkboxes
-                                    }
+                                  
                           }).get();
 
                         var ques = $('#'+tab+ ' .quesId').val();
