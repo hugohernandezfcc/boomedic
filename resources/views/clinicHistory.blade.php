@@ -354,7 +354,7 @@
          <br>
           <div class="box-header">
                 <h3 class="box-title">
-                          Historia clínica  &nbsp;<a href="edit/" class=" btn"><i class="fa fa-pencil text-muted"></i></a>  
+                          Historia clínica<a href="{{ url('clinicHistory/edit/0')}}" class=" btn"><i class="fa fa-pencil text-muted"></i></a>  
                  </h3>
 
                        <div class="btn-group pull-right">
