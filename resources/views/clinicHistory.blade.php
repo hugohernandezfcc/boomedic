@@ -93,6 +93,11 @@
           iframe {
             max-width: 100%;
           }
+                .down {
+                  position:absolute;
+                  bottom:5px;
+                  right:10px;
+                }  
 	   </style>
 
 
@@ -361,6 +366,7 @@
                   @foreach($a as $answer)
                  <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }} <br>
                   @endforeach
+                 <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
                 </div>
               </div>
             </li>
@@ -389,6 +395,7 @@
                   @foreach($a as $answer)
                  <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }}<br>
                   @endforeach
+                  <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
                 </div>
               </div>
             </li>
@@ -418,6 +425,7 @@
                  <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }}<br>
                   @endforeach
                 </div>
+                <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
               </div>
             </li>
             @endif
@@ -445,6 +453,7 @@
                   @foreach($a as $answer)
                  <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }}<br>
                   @endforeach
+                 <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> 
                 </div>
               </div>
             </li>
