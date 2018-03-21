@@ -5,229 +5,255 @@
 @section('content')
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-	<style type="text/css">
+	     <style type="text/css">
 
-	 .progress-bar {
-	 	background-color: #3E3E3E;
-	 }
-	 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
-    color: #fff;
-    background-color: #3E3E3E;
-		}
-		.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
-    border-top-color: #3E3E3E;
-}
- .nav-pills {
-    width: 100% !important;
-    text-align: center !important;
+      	 .progress-bar {
+      	 	background-color: #3E3E3E;
+      	 }
+      	 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+          color: #fff;
+          background-color: #3E3E3E;
+      		}
+      		.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+          border-top-color: #3E3E3E;
+      }
+       .nav-pills {
+          width: 100% !important;
+          text-align: center !important;
 
-  }
+        }
 
-  .nav-pills > li {
-      float: none !important;
-      display: inline-block !important;
-    }
-    .checkbox {
-    padding-left: 20px; }
+        .nav-pills > li {
+            float: none !important;
+            display: inline-block !important;
+          }
+        .checkbox {
+        padding-left: 20px; }
 
-    .checkbox label {
-    display: inline-block;
-    position: relative;
-    padding-left: 5px; }
+        .checkbox label {
+        display: inline-block;
+        position: relative;
+        padding-left: 5px; }
 
-    .checkbox label::before {
-      content: "";
-      display: inline-block;
-      position: absolute;
-      width: 17px;
-      height: 17px;
-      left: 0;
-      margin-left: -20px;
-      border: 1px solid #cccccc;
-      border-radius: 3px;
-      background-color: #fff;
-      -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-      -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-      transition: border 0.15s ease-in-out, color 0.15s ease-in-out; }
+        .checkbox label::before {
+          content: "";
+          display: inline-block;
+          position: absolute;
+          width: 17px;
+          height: 17px;
+          left: 0;
+          margin-left: -20px;
+          border: 1px solid #cccccc;
+          border-radius: 3px;
+          background-color: #fff;
+          -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+          -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+          transition: border 0.15s ease-in-out, color 0.15s ease-in-out; }
 
-    .checkbox label::after {
-      display: inline-block;
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      left: 0;
-      top: 0;
-      margin-left: -20px;
-      padding-left: 3px;
-      padding-top: 1px;
-      font-size: 11px;
-      color: #555555; }
+        .checkbox label::after {
+          display: inline-block;
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          left: 0;
+          top: 0;
+          margin-left: -20px;
+          padding-left: 3px;
+          padding-top: 1px;
+          font-size: 11px;
+          color: #555555; }
 
-    .checkbox input[type="radio"],  
-    .checkbox input[type="checkbox"] {
-      opacity: 0; }
+        .checkbox input[type="radio"],  
+        .checkbox input[type="checkbox"] {
+          opacity: 0; }
 
-    .checkbox input[type="radio"]:checked + label::after,
-    .checkbox input[type="checkbox"]:checked + label::after {
-      font-family: 'FontAwesome';
-      content: "\f00c"; }
+        .checkbox input[type="radio"]:checked + label::after,
+        .checkbox input[type="checkbox"]:checked + label::after {
+          font-family: 'FontAwesome';
+          content: "\f00c"; }
 
-    .checkbox input[type="radio"]:disabled + label,  
-    .checkbox input[type="checkbox"]:disabled + label {
-      opacity: 0.65; }
-       .checkbox input[type="radio"]:disabled + label::before,
-      .checkbox input[type="checkbox"]:disabled + label::before {
+        .checkbox input[type="radio"]:disabled + label,  
+        .checkbox input[type="checkbox"]:disabled + label {
+          opacity: 0.65; }
+       
+        .checkbox input[type="radio"]:disabled + label::before,
+        .checkbox input[type="checkbox"]:disabled + label::before {
         background-color: #eeeeee;
         cursor: not-allowed; }
-         .checkbox-primary input[type="radio"]:checked + label::before,
+
+        .checkbox-primary input[type="radio"]:checked + label::before,
         .checkbox-primary input[type="checkbox"]:checked + label::before {
-  background-color: #3E3E3E;
-  border-color: #3E3E3E; }
-         .checkbox-primary input[type="radio"]:checked + label::after,
+         background-color: #3E3E3E;
+         border-color: #3E3E3E; }
+        
+        .checkbox-primary input[type="radio"]:checked + label::after,
         .checkbox-primary input[type="checkbox"]:checked + label::after {
           color: #fff; }
 
           iframe {
             max-width: 100%;
           }
-	</style>
-     @if($mode == 'null')  
-<div class="box">
+	   </style>
 
-  	<div class="box-header with-border">
-	    <h3 class="box-title">Historia Clínica</h3>
-  	</div>
- 
-  	<div class="box-body">
-  <div class="container" id="myWizard">
 
-   <div class="progress">
-   	@php
-   	$percent = (1 /count($questions)) * 100;
-    $per = intval($percent);
-   	@endphp
-     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: {{ $percent }}%;">
-       {{ $per }}%
-     </div>
-   </div>
+ @if($mode == 'null')  
+        <div class="box">
+              	<div class="box-header with-border">
+            	    <h3 class="box-title">Historia Clínica</h3>
+              	</div>
+             
+              	<div class="box-body">
+                <div class="container" id="myWizard">
+
+                 <div class="progress">
+                   	@php
+                   	$percent = (1 /count($questions)) * 100;
+                    $per = intval($percent);
+                   	@endphp
+                 <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: {{ $percent }}%;">
+                   {{ $per }}%
+                 </div>
+           </div>
   
 
-   <div class="tab-content">
-   	@foreach($questions as $questions1) 
-      @if($loop->iteration == 1)
-      <div class="tab-pane fade in active" id="step1">
-         
-        <div class="well"> 
-          
-            <h3>{{ $questions1->question }}</h3>
-            <br>
-          @php $an = json_decode($questions1->answer); @endphp
-            <label>Respuestas:</label><br>
-            <input type="hidden" class="quesId" value="{{ $questions1->id }}">
-            <input type="hidden" class="ansId" value="{{ $questions1->a }}">
-
-            @foreach($an as $an)
-                    <div class="checkbox checkbox-primary">
-                      @php  $a2 = str_replace(" ", "_", $an); @endphp
-                        <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
-                        <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
-                        <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">>
-                        <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                            {{ $an }}
-                        </label>
-                         <div class="well" style="display: none; background-color: #a2a0a7;"></div>
-                    </div>
-             @endforeach          
-
-        </div>
-
-         <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
-      </div>
-        @endif
-         @if(($loop->iteration > 1) && !$loop->last)
-      <div class="tab-pane fade" id="step{{ $loop->iteration }}">
-         <div class="well"> 
-            <h3>{{ $questions1->question }}</h3>
-            <br>
-            @php $an = json_decode($questions1->answer); @endphp
-            <label>Respuestas:</label><br>
-            <input type="hidden" class="quesId" value="{{ $questions1->id }}">
-            <input type="hidden" class="ansId" value="{{ $questions1->a }}">
-            @foreach($an as $an)
-                    <div class="checkbox checkbox-primary">
-                      @php  $a2 = str_replace(" ", "_", $an); @endphp
-                        <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
-                        <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
-                        <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">>
-                        <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                            {{ $an }}
-                        </label>
-                         <div class="well" style="display: none; background-color: #a2a0a7;"></div>
-                    </div>
-
-             @endforeach         
-
-         </div>
-         <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
-         <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
-      </div>
-      @endif
-       @if($loop->last)
-      <div class="tab-pane fade" id="step{{ $loop->iteration }}">
-         <div class="well"> 
-            <h3>{{ $questions1->question }}</h3>
-            <br>
-            @php $an = json_decode($questions1->answer); @endphp
-            <label>Respuestas:</label><br>
-             <input type="hidden" class="quesId" value="{{ $questions1->id }}">
-            <input type="hidden" class="ansId" value="{{ $questions1->a }}">
-            @foreach($an as $an)
-                    <div class="checkbox checkbox-primary">
-                      @php  $a2 = str_replace(" ", "_", $an); @endphp
-                        <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
-                        <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
-                        <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
-                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">>
-                        <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                            {{ $an }}
-                        </label>
-                         <div class="well" style="display: none; background-color: #a2a0a7;"></div>
-                    </div>
-             @endforeach    
-
-
-         </div>
-        <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
-        <a class="btn btn-default btn-flat first pull-left" href="#">Volver a iniciar &nbsp;<span class="fa fa-undo"></span></a>
-        <a class="btn btn-secondary btn-flat pull-right finish" href="#">Finalizar</a>
-        <a id="finish" href="cHistory" style="visibility: hidden;"></a>
-      </div>
-       @endif
-      @endforeach
-
-   </div>
-   <div class="navbar" style="visibility: hidden" id="wiz">
-      <div class="navbar-inner">
-            <ul class="nav nav-pills pull-center">
-          @foreach($questions as $question) 
+           <div class="tab-content">
+           	@foreach($questions as $questions1) 
               @if($loop->iteration == 1)
-               <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
-              @endif
-               @if($loop->iteration > 1)
-               <li><a href="#step{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
-               @endif
-            @endforeach
-            </ul>
-      </div>
-   </div>
-</div>
+              <div class="tab-pane fade in active" id="step1">
+                 
+                <div class="well"> 
+                  
+                    <h3>{{ $questions1->question }}</h3>
+                    <br>
+                  @php $an = json_decode($questions1->answer); @endphp
+                    <label>Respuestas:</label><br>
+                    <input type="hidden" class="quesId" value="{{ $questions1->id }}">
+                    <input type="hidden" class="ansId" value="{{ $questions1->a }}">
+
+                    @foreach($an as $an)
+                            <div class="checkbox checkbox-primary">
+                              @php  $a2 = str_replace(" ", "_", $an); @endphp
+                                <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
+                                <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
+                                <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
+                                @if($a2 == "Si" OR $a2 == "No")
+                                <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
+                                    {{ $an }}
+                                </label>
+                                @else
+                                <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                    {{ $an }}
+                                </label>
+                                @endif
+                                 <div class="well" style="display: none; background-color: #a2a0a7;"></div>
+                            </div>
+                     @endforeach          
+
+                </div>
+
+           <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
+                </div>
+                  @endif
+                   @if(($loop->iteration > 1) && !$loop->last)
+                <div class="tab-pane fade" id="step{{ $loop->iteration }}">
+                   <div class="well"> 
+                      <h3>{{ $questions1->question }}</h3>
+                      <br>
+                      @php $an = json_decode($questions1->answer); @endphp
+                      <label>Respuestas:</label><br>
+                      <input type="hidden" class="quesId" value="{{ $questions1->id }}">
+                      <input type="hidden" class="ansId" value="{{ $questions1->a }}">
+
+                    @foreach($an as $an)
+                            <div class="checkbox checkbox-primary">
+                              @php  $a2 = str_replace(" ", "_", $an); @endphp
+                                <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
+                                <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
+                                <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
+                                @if($a2 == "Si" OR $a2 == "No")
+                                <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
+                                    {{ $an }}
+                                </label>
+                                @else
+                                <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                    {{ $an }}
+                                </label>
+                                @endif
+                                 <div class="well" style="display: none; background-color: #a2a0a7;"></div>
+                            </div>
+                     @endforeach               
+
+                   </div>
+                 <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
+                 <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
+              </div>
+        @endif
+       @if($loop->last)
+              <div class="tab-pane fade" id="step{{ $loop->iteration }}">
+                 <div class="well"> 
+                    <h3>{{ $questions1->question }}</h3>
+                    <br>
+                        @php $an = json_decode($questions1->answer); @endphp
+                    <label>Respuestas:</label><br>
+                      <input type="hidden" class="quesId" value="{{ $questions1->id }}">
+                      <input type="hidden" class="ansId" value="{{ $questions1->a }}">
+
+                    @foreach($an as $an)
+                            <div class="checkbox checkbox-primary">
+                              @php  $a2 = str_replace(" ", "_", $an); @endphp
+                                <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
+                                <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
+                                <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
+                                @if($a2 == "Si" OR $a2 == "No")
+                                <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
+                                    {{ $an }}
+                                </label>
+                                @else
+                                <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                    {{ $an }}
+                                </label>
+                                @endif
+                                 <div class="well" style="display: none; background-color: #a2a0a7;"></div>
+                            </div>
+                     @endforeach      
+
+
+                 </div>
+                <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
+                <a class="btn btn-default btn-flat first pull-left" href="#">Volver a iniciar &nbsp;<span class="fa fa-undo"></span></a>
+                <a class="btn btn-secondary btn-flat pull-right finish" href="#">Finalizar</a>
+                <a id="finish" href="cHistory" style="visibility: hidden;"></a>
+              </div>
+         @endif
+              @endforeach
+
+           </div>
+                     <div class="navbar" style="visibility: hidden" id="wiz">
+                <div class="navbar-inner">
+                      <ul class="nav nav-pills pull-center">
+                    @foreach($questions as $question) 
+                        @if($loop->iteration == 1)
+                         <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
+                        @endif
+                         @if($loop->iteration > 1)
+                         <li><a href="#step{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
+                         @endif
+                      @endforeach
+                      </ul>
+                </div>
+             </div>
+          </div>
             </div>
         </div>
 @endif
-@if($mode == 'finish')
 
+@if($mode == 'finish')
 
     <!-- Main content -->
      <div class="box-header">
@@ -285,12 +311,12 @@
          </ul>  
 
          
-    <div class="box-header">
-      <h3 class="box-title">
-                Historia clínica
-              </h3>
-     </div><br/>
-     <ul class="timeline">   
+          <div class="box-header">
+                <h3 class="box-title">
+                          Historia clínica
+                 </h3>
+           </div><br/>
+           <ul class="timeline">   
             @php
             $t1 = 0; 
             $t2 = 0; 
@@ -472,6 +498,44 @@
                         $(this).siblings('div').html('');
                         $(this).siblings('div').css("display", "none");
                        }
+
+    });
+
+  $('input[type=radio]').click(function() {
+
+
+                            var value2 = $(this).val();
+                            var parent = $('#p'+value2).val();
+                            var thi = $(this);
+                            var n = $(this).parents('.tab-pane').attr("id");
+                            
+                            if(parent > 0){
+                            var parent_answer = JSON.parse($('#'+value2).val());
+
+                            for(var i=0; i < parent_answer.length; i++){
+
+                              if(parent_answer[i].replace(" ","_")  == value2){
+                                var ques = @php echo $questions_parent; @endphp;
+                               for(var z=0; z < ques.length; z++){
+                                if(ques[z]['id'] == parent){
+                                  var xanswer = JSON.parse(ques[z]['answer']);
+                                   for(var x=0; x < xanswer.length; x++){
+
+                                   if(xanswer[x] == "texto"){
+                                      thi.siblings('div').css("display", "block");
+                                      thi.siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="'+ n + value2 + xanswer[x]+'"></textarea>');
+       
+                                    } 
+                                        }
+                                    }
+                                }
+                              } else{
+                                         $('input[type=radio]').siblings('div').html('');
+                                         $('input[type=radio]').siblings('div').css("display", "none");
+                                    }
+                            }
+                          } 
+
 
     });
 
