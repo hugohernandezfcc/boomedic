@@ -300,14 +300,16 @@
      <div class="box-header">
       <h3 class="box-title">
                 Expediente médico
-              </h3>
-     </div><br/>
+       </h3>
+       <div class="col-sm-3 pull-right"><input id="search" type="text" placeholder="Busqueda de expediente..." class="form-control"></div>     
+     </div>
+
         <div class="box-body">
       <!-- row -->
      <div class="row">
         <div class="col-md-12">
           <!-- The time line -->
-          <ul class="timeline">
+          <ul class="timeline"  id="exp">
                         @foreach($test_result->sortBy('created_at') as $test)
 
 
@@ -554,6 +556,12 @@
 
 				$(document).ready(function () {
 
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#exp li").filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+              });
                       $("#familiares").click(function () {
 
                             var x = document.getElementsByClassName("habitos");
