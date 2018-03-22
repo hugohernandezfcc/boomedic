@@ -105,7 +105,7 @@
                     padding: 5px 15px 5px 5px !important;
                     margin: 0 0 5px 0 !important;
                 }
-                .bg-green, .callout.callout-success, .alert-success, .label-success, .modal-success .modal-body {
+                .callout.callout-success {
                     background-color: #ffffff !important;
                 }
 	   </style>
