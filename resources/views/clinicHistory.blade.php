@@ -518,9 +518,19 @@
                   for(var i = 0; i < answer.length; i++){
                   
 
-                             var ids = $('input').map(function() {
-
-                                  if($(this).val() == "Si" && answer[i] != "No"){
+                  var ids = $('input').map(function() {
+                       var tro =  answer[i].split(" ");
+                       if(tro.length == 3){
+                        var result = tro[0] + '_' + tro[1];
+                        var result2 = tro[2].replace("(", "").replace(")", "");
+                         if($(this).val() == result){
+                                  $(this).click();
+                                   return result2;
+                                  }
+    
+                                 } 
+                       else{
+                             if($(this).val() == "Si" && answer[i] != "No"){
                                    $(this).prop('checked', true);
                                     $(this).siblings('div').css("display", "block");
                                     $(this).siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="text'+ answer[i]+'">'+ answer[i] +'</textarea>');
@@ -530,12 +540,16 @@
                                     $(this).prop('checked', true);
                                    return $(this).val();
                                  } 
+                               }  
                                 }).get();
-                              console.log(ids);
-                  
+                  $('input:radio').map(function() {
+                          if( $(this).val() == ids){
+                          $(this).click();
+                                  }  
+                     }).get();             
                   }
                 }
-         }
+              }
 
 
 				$(document).ready(function () {
