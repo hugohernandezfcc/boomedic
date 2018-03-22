@@ -233,7 +233,7 @@
                  <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
               </div>
         @endif
-       @if($loop->last)
+       @if($loop->last && count($questions) != 1)
               <div class="tab-pane fade" id="step{{ $loop->iteration }}">
                  <div class="well"> 
                     <h3>{{ $questions1->question }}</h3>
@@ -509,8 +509,37 @@
 
 
 				<script>
+         window.onload = function(){
+          var clinic_history = @php echo $clinic_history; @endphp;
+                    
+          for(var k = 0; k < clinic_history.length; k++){
+            var answer = JSON.parse(clinic_history[k]['answer']);
+           }
+            for(var i = 0; i < answer.length; i++){
+            
 
+           var ids = $('input').map(function() {
+
+                if($(this).val() == "Si" && answer[i] != "No"){
+                 $(this).prop('checked', true);
+                 return answer[i];
+                }
+                if($(this).val() == answer[i].replace(/ /gi,"_")){
+                  $(this).prop('checked', true);
+                 return $(this).val();
+               } 
+              }).get();
+                        console.log(ids);
+            
+            }
+
+      
+        $('.quesId').val();
+          
+
+         }
 				$(document).ready(function () {
+
                       $("#familiares").click(function () {
 
                             var x = document.getElementsByClassName("habitos");
@@ -645,7 +674,7 @@
                             });              
 
 
-                    $('input[type=checkbox]').click(function() {
+                    $('input[type=checkbox]').change(function() {
                                if(this.checked) {
 
                                               var value2 = $(this).val();
@@ -680,13 +709,14 @@
                                             }
                                          }
                                          else{
+                                          $(this).prop("checked", false);
                                           $(this).siblings('div').html('');
                                           $(this).siblings('div').css("display", "none");
                                          }
 
                       });
 
-                    $('input[type=radio]').click(function() {
+                    $('input[type=radio]').change(function() {
 
 
                                               var value2 = $(this).val();
@@ -852,6 +882,7 @@
                                 return check2; // obtienes el valor de todos los checkboxes
                                   
                           }).get();
+
 
                         var ques = $('#'+tab+ ' .quesId').val();
                         var ansId = $('#'+tab+ ' .ansId').val();
