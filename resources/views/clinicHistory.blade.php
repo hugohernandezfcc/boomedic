@@ -108,6 +108,12 @@
                 .callout.callout-success {
                     background-color: #ffffff !important;
                 }
+
+              .direct-chat-contacts {
+                    height: 55px !important;
+                    background: transparent !important; 
+                    top: 75% !important; 
+              }
 	   </style>
 
 
@@ -364,18 +370,22 @@
          </ul>  
 
          <br>
-          <div class="box-header">
+          <div class="box-header direct-chat">
                 <h3 class="box-title">
-                          Historia clínica<a href="{{ url('clinicHistory/edit/0')}}" class=" btn"><i class="fa fa-pencil text-muted"></i></a>  
+                          Historia clínica<a href="{{ url('clinicHistory/edit/0')}}" class="btn"><i class="fa fa-pencil text-muted"></i></a>  
                  </h3>
-
+                <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
+                 <span class="fa fa-search text-muted"></span></button>
+              <div class="direct-chat-contacts">
                        <div class="btn-group pull-right">
                             <button id="familiares" type="button" class="btn bg-blue btn-flat" title="Antecedentes Familiares"><i class="fa fa-users"></i></button>   
                             <button id="morbidos" type="button"  class="btn bg-gray btn-flat" title="Antecedentes Mórbidos"><i class="fa fa-stethoscope"></i></button>
                             <button id="alergias" type="button" class="btn bg-black btn-flat" title="Alergias"> <i class="fa fa-medkit"></i></button> 
-                            <button id="habitos" type="button" class="btn bg-green btn-flat" title="Hábitos"><i class="fa fa-coffee"></i></button><br>
-                            <button id="all" type="button" class="btn btn-default btn-block btn-xs" title="Ver todo"><b>Ver Todo</b></button>        
+                            <button id="habitos" type="button" class="btn bg-green btn-flat" title="Hábitos"><i class="fa fa-coffee"></i></button>
+                            <button id="all" type="button" class="btn btn-default btn-flat" title="Ver todo"><b>Ver Todo</b></button>   
                       </div>
+              </div>
+     
 
            </div><br/>
            <ul class="timeline">   
