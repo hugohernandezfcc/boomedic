@@ -301,7 +301,7 @@
       <h3 class="box-title">
                 Expediente médico
        </h3>
-       <div class="col-sm-3 pull-right"><input id="search" type="text" placeholder="Busqueda de expediente..." class="form-control"></div>     
+       <div class="col-sm-3 pull-right"><input id="search" type="text" placeholder="Buscar expedientes" class="form-control"></div>     
      </div>
 
         <div class="box-body">
