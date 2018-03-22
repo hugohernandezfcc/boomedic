@@ -313,12 +313,16 @@
 @if($mode == 'finish')
 
     <!-- Main content -->
-     <div class="box-header">
+     <div class="box-header direct-chat">
       <h3 class="box-title">
                 Expediente médico
        </h3>
+        <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
+                 <span class="fa fa-search text-muted"></span></button>
+      <div class="direct-chat-contacts">
        <div class="col-sm-3 pull-right"><input id="search" type="text" placeholder="Buscar expedientes" class="form-control"></div>     
      </div>
+   </div><br>
 
         <div class="box-body">
       <!-- row -->
