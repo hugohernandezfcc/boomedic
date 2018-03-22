@@ -98,6 +98,16 @@
                   bottom:5px;
                   right:10px;
                 }  
+                .callout.callout-success {
+                    border-color: #b7b7b7 !important;
+                }
+                .callout {
+                    padding: 5px 15px 5px 5px !important;
+                    margin: 0 0 5px 0 !important;
+                }
+                .bg-green, .callout.callout-success, .alert-success, .label-success, .modal-success .modal-body {
+                    background-color: #ffffff !important;
+                }
 	   </style>
 
 
@@ -403,7 +413,9 @@
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
-                 <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }} <br>
+                      <div class="callout callout-success" style="color: #000 !important;">
+                        <h5>{{ $answer }}</h5>
+                      </div>
                   @endforeach
                  <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
                 </div>
@@ -432,7 +444,9 @@
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
-                 <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }}<br>
+                      <div class="callout callout-success" style="color: #000 !important;">
+                        <h5>{{ $answer }}</h5>
+                      </div>
                   @endforeach
                   <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
                 </div>
@@ -461,7 +475,9 @@
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
-                 <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }}<br>
+                      <div class="callout callout-success" style="color: #000 !important;">
+                        <h5>{{ $answer }}</h5>
+                      </div>
                   @endforeach
                 </div>
                 <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
@@ -490,7 +506,9 @@
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
-                 <i class="fa fa-circle" style="vertical-align: middle; font-size: 6px "></i> {{ $answer }}<br>
+                      <div class="callout callout-success" style="color: #000 !important;">
+                        <h5>{{ $answer }}</h5>
+                      </div>
                   @endforeach
                  <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> 
                 </div>
