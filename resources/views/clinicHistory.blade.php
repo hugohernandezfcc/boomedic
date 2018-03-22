@@ -513,14 +513,16 @@
 				<script>
          window.onload = function(){
           var clinic_history = @php echo $clinic_history; @endphp;
-          if(clinic_history.length == 1){          
+
               for(var k = 0; k < clinic_history.length; k++){
+              var t = "step" + (k + 1);
+              console.log(t);
+                if(clinic_history[k]['question_id'] == $('#'+t+ ' .quesId').val()){
                 var answer = JSON.parse(clinic_history[k]['answer']);
-               }
                   for(var i = 0; i < answer.length; i++){
                   
 
-                  var ids = $('input').map(function() {
+                  var ids = $('#'+t+' input').map(function() {
                    var tro =  answer[i].split(" ");
                    var minus = answer[i].indexOf("(");
                     if(tro.length == 3 && minus != -1){
@@ -554,7 +556,7 @@
                                  } 
                                }  
                                 }).get();
-                  $('input:radio').map(function() {
+                  $('#'+t+' input:radio').map(function() {
                           if( $(this).val() == ids){
                           $(this).click();
                                   }  
@@ -562,6 +564,7 @@
                   }
                 }
               }
+            }
 
 
 				$(document).ready(function () {
