@@ -521,10 +521,20 @@
                   
 
                   var ids = $('input').map(function() {
-                       var tro =  answer[i].split(" ");
-                       if(tro.length == 3){
+                   var tro =  answer[i].split(" ");
+                   var minus = answer[i].indexOf("(");
+                    if(tro.length == 3 && minus != -1){
                         var result = tro[0] + '_' + tro[1];
                         var result2 = tro[2].replace("(", "").replace(")", "");
+                         if($(this).val() == result){
+                                  $(this).click();
+                                   return result2;
+                                  }
+    
+                                 } 
+                    if(tro.length == 2 && minus != -1){
+                        var result = tro[0];
+                        var result2 = tro[1].replace("(", "").replace(")", "");
                          if($(this).val() == result){
                                   $(this).click();
                                    return result2;
