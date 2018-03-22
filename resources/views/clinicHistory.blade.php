@@ -788,7 +788,7 @@
 
                                      $.ajax({     
                                        type: "POST",                 
-                                        url: "save",  
+                                        url: '{{ url("clinicHistory/save") }}',  
                                         data: { "answers" : JSON.stringify(values), 
                                                 "question" : ques,
                                                 "ansId"    : ansId
