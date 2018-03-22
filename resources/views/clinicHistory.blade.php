@@ -511,33 +511,33 @@
 				<script>
          window.onload = function(){
           var clinic_history = @php echo $clinic_history; @endphp;
-                    
-          for(var k = 0; k < clinic_history.length; k++){
-            var answer = JSON.parse(clinic_history[k]['answer']);
-           }
-            for(var i = 0; i < answer.length; i++){
-            
+          if(clinic_history.length == 1){          
+              for(var k = 0; k < clinic_history.length; k++){
+                var answer = JSON.parse(clinic_history[k]['answer']);
+               }
+                  for(var i = 0; i < answer.length; i++){
+                  
 
-           var ids = $('input').map(function() {
+                             var ids = $('input').map(function() {
 
-                if($(this).val() == "Si" && answer[i] != "No"){
-                 $(this).prop('checked', true);
-                 return answer[i];
+                                  if($(this).val() == "Si" && answer[i] != "No"){
+                                   $(this).prop('checked', true);
+                                    $(this).siblings('div').css("display", "block");
+                                    $(this).siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="text'+ answer[i]+'">'+ answer[i] +'</textarea>');
+                                   return answer[i];
+                                  }
+                                  if($(this).val() == answer[i].replace(/ /gi,"_")){
+                                    $(this).prop('checked', true);
+                                   return $(this).val();
+                                 } 
+                                }).get();
+                              console.log(ids);
+                  
+                  }
                 }
-                if($(this).val() == answer[i].replace(/ /gi,"_")){
-                  $(this).prop('checked', true);
-                 return $(this).val();
-               } 
-              }).get();
-                        console.log(ids);
-            
-            }
-
-      
-        $('.quesId').val();
-          
-
          }
+
+
 				$(document).ready(function () {
 
                       $("#familiares").click(function () {
