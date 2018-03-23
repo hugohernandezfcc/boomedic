@@ -2,13 +2,9 @@
 
 @section('title', 'Boomedic')
 
-@section('content_header')
-
+@section('content')
 <style type="text/css">
 
-.content{
-    overflow-y: auto;
-  }
 
   .timeline>li {
     margin-right: 0 !important;
@@ -17,29 +13,32 @@
 .timeline>li>.timeline-item {
    margin-right: 0 !important;
 }
+      .direct-chat-contacts {
+            height: 55px !important;
+            background: transparent !important; 
+            top: 75% !important; 
+      }
 </style>
 
-@stop
-
-@section('content')
-
-  	<div class="box-header">
+  	<div class="box-header direct-chat">
 	    <h3 class="box-title">Historial</h3>
       @if($array->isEmpty())
           
                 <h4> No tiene historial registrado en estos últimos días. </h4>
       @else 
 
-      <div class="btn-group pull-right">
-      <button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo citas"><i class="fa fa-calendar-check-o"></i></button>   
-      <button id="support" type="button"  class="btn bg-black" title="Mostrar solo soporte"><i class="fa fa-wrench "></i></button>
-      <button id="payment" type="button" class="btn bg-yellow" title="Métodos de pagos registrados"> <i class="fa fa-credit-card-alt"></i></button> 
-      <button id="userli" type="button" class="btn bg-green" title="Mostrar solo actualización de usuario"><i class="fa fa-user "></i></button>
-      <button id="all" type="button" class="btn black bg-darken-4" title="Ver todo"><b>Ver todo</b></button>        
-      </div>
+       <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
+                 <span class="fa fa-filter text-muted"></span></button>
+              <div class="direct-chat-contacts">
+                      <div class="btn-group pull-right">
+                      <button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo citas"><i class="fa fa-calendar-check-o"></i></button>   
+                      <button id="support" type="button"  class="btn bg-black" title="Mostrar solo soporte"><i class="fa fa-wrench "></i></button>
+                      <button id="payment" type="button" class="btn bg-yellow" title="Métodos de pagos registrados"> <i class="fa fa-credit-card-alt"></i></button> 
+                      <button id="userli" type="button" class="btn bg-green" title="Mostrar solo actualización de usuario"><i class="fa fa-user "></i></button>
+                      <button id="all" type="button" class="btn btn-default" title="Ver todo"><b>Ver todo</b></button>        
+                      </div>
+              </div>
   	</div>
-
-
   	<div class="box-body">
 	  <div class="row">
         <div class="col-md-12">

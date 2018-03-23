@@ -110,13 +110,12 @@
                     background-color: #ffffff !important;
                     border-left: 3px solid #cacaca !important;
                 }
-
-              .direct-chat-contacts {
-                    height: 55px !important;
-                    background: transparent !important; 
-                    top: 75% !important; 
-              }
-	   </style>
+                      .direct-chat-contacts {
+            height: 55px !important;
+            background: transparent !important; 
+            top: 75% !important; 
+      }
+</style>
 
 
  @if($mode == 'null')  
@@ -333,8 +332,6 @@
           <!-- The time line -->
           <ul class="timeline"  id="exp">
                         @foreach($test_result->sortBy('created_at') as $test)
-
-
             <li>
               <i class="fa fa-file bg-aqua"></i>
 
@@ -374,14 +371,16 @@
               <i class="fa fa-clock-o bg-gray"></i>
             </li>
          </ul>  
-
+          </div>
+        </div>
+      </div>  
          <br>
           <div class="box-header direct-chat">
                 <h3 class="box-title">
                           Historia clínica<a href="{{ url('clinicHistory/edit/0')}}" class="btn"><i class="fa fa-pencil text-muted"></i></a>  
                  </h3>
                 <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
-                 <span class="fa fa-search text-muted"></span></button>
+                 <span class="fa fa-filter text-muted"></span></button>
               <div class="direct-chat-contacts">
                        <div class="btn-group pull-right">
                             <button id="familiares" type="button" class="btn bg-blue btn-flat" title="Antecedentes Familiares"><i class="fa fa-users"></i></button>   
@@ -394,6 +393,9 @@
      
 
            </div><br/>
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-md-12">
            <ul class="timeline">   
             @php
             $t1 = 0; 
@@ -414,8 +416,6 @@
                   </span>
             </li>
             @endif
-
-
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
