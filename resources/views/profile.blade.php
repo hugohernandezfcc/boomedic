@@ -491,7 +491,7 @@
 						var w = screen.width-100,
 							h = h;
 
-								    var circleWidth = 30;
+								    var circleWidth = 40;
 
 								    var palette = {
 								      "lightgray": "#819090",
@@ -514,8 +514,8 @@
 								    }
 
 								    var nodes = [{
-								      name: "iPhone",
-								       photo: "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"
+								      name: "Yo",
+								       photo: "{{ $photo }}"
 								    }, {
 								      name: "Core",
 								      target: [0],
@@ -582,16 +582,16 @@
 											    .attr('id', function(d,i){
 											      return d.name
 											    })
-											    .attr('height',60)
-											    .attr('width',60)
+											    .attr('height',circleWidth * 2)
+											    .attr('width',circleWidth * 2)
 											    .attr('x',0)
 											    .attr('y',0)
 											    .append('image')
 											    .attr('xlink:href',function(d,i){
 											      return d.photo
 											    })
-											    .attr('height',60)
-											    .attr('width',60)
+											    .attr('height',circleWidth * 2)
+											    .attr('width',circleWidth * 2)
 											    .attr('x',0)
 											    .attr('y',0);
 
@@ -607,12 +607,6 @@
 								          return palette.pink
 								        } else {
 								          return palette.darkgray
-								        }
-								      }).attr('stroke-width', 2).attr('fill', function(d, i) {
-								        if (i > 0) {
-								          return palette.white
-								        } else {
-								          return palette.mediumgray
 								        }
 								      }).style("fill", function(d,i){ return 'url(#' + d.name +')'})
 
