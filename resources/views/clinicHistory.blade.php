@@ -104,9 +104,11 @@
                 .callout {
                     padding: 5px 15px 5px 5px !important;
                     margin: 0 0 5px 0 !important;
+                    border-left: 3px solid #cacaca !important;
                 }
                 .callout.callout-success {
                     background-color: #ffffff !important;
+                    border-left: 3px solid #cacaca !important;
                 }
 
               .direct-chat-contacts {
