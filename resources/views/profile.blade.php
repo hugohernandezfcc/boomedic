@@ -480,7 +480,7 @@
 				            if(h >= 1000 && h <= 1300){
 				            	circleWidth = 30;
 								charge = -300;
-				                h = h*0.35;
+				                h = h*0.30;
 				                h = Math.floor(h);
 				                w = w*0.40;
 				                w = Math.floor(w);
@@ -588,6 +588,7 @@
 								      .charge(charge)
 								      .size([w, h])
 
+
 								    var link = myChart.selectAll('line')
 								      .data(links).enter().append('line')
 								      .attr('stroke', palette.mediumgray)
@@ -604,19 +605,51 @@
 											      return d.name
 											    })
 											     .attr('patternUnits',"userSpaceOnUse")
-											    .attr('height',circleWidth * 2)
-											    .attr('width',circleWidth * 2)
-											    .attr('x', function(d) {
-											        return circleWidth;
-											      }).attr('y', function(d) {
-											        return circleWidth;
+											    .attr('height', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-15) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('width', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-15) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('x', function(d, i) {
+											        if (i > 0) {
+											          return circleWidth-15
+											        } else {
+											          return circleWidth
+											        }
+											      }).attr('y', function(d, i) {
+											        if (i > 0) {
+											          return circleWidth-15
+											        } else {
+											          return circleWidth
+											        }
 											      })
 											    .append('svg:image')
 											    .attr('xlink:href',function(d,i){
 											      return d.photo
 											    })
-											    .attr('height',circleWidth * 2)
-											    .attr('width',circleWidth * 2)
+											    .attr('height', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-15) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('width', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-15) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
 											      .attr('x', 0)
 											      .attr('y', 0);
 
@@ -626,7 +659,13 @@
 								      }).attr('cy', function(d) {
 								        return d.y;
 								      })
-								      .attr('r', circleWidth)
+								      .attr('r', function(d, i) {
+								        if (i > 0) {
+								          return circleWidth - 10
+								        } else {
+								          return circleWidth
+								        }
+								      })
 								      .attr('stroke', function(d, i) {
 								        if (i > 0) {
 								          return palette.darkgray
@@ -650,14 +689,14 @@
 								      })
 								      .attr('x', function(d, i) {
 								        if (i > 0) {
-								          return - 25
+								          return -20
 								        } else {
 								          return circleWidth - 15
 								        }
 								      })
 								      .attr('y', function(d, i) {
 								        if (i > 0) {
-								          return circleWidth + 25
+								          return circleWidth + 5
 								        } else {
 								          return 8
 								        }
@@ -671,9 +710,9 @@
 								      })
 								      .attr('font-size', function(d, i) {
 								        if (i > 0) {
-								          return '1.7em'
+								          return '1em'
 								        } else {
-								          return '1.7em'
+								          return '1em'
 								        }
 								      })
 
