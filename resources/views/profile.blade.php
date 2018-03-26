@@ -491,7 +491,7 @@
 							 charge = -400;
 				            }
 				       	 }else{
-				          h = window.screen.availHeight-115;
+				          h = window.screen.availHeight-215;
 				           circleWidth = 50;
 				        }
 						var w = screen.width-100,
@@ -570,6 +570,7 @@
 								      .append('svg')
 								      .attr('width', w)
 								      .attr('height', h)
+								      .style('margin-left', 'auto').style('margin-right', 'auto').style('display','block')
 
 								    var force = d3.layout.force()
 								      .nodes(nodes)
