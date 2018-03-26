@@ -491,7 +491,7 @@
 						var w = screen.width-100,
 							h = h;
 
-								    var circleWidth = 30;
+								    var circleWidth = 40;
 
 								    var palette = {
 								      "lightgray": "#819090",
@@ -541,6 +541,10 @@
 								      name: "Geometry",
 								      target: [0],
 								       photo: "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"
+								    }, {
+								      name: "Geometry",
+								      target: [0],
+								       photo: "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"
 								    }];
 
 								    var links = [];
@@ -572,7 +576,7 @@
 								      .data(links).enter().append('line')
 								      .attr('stroke', palette.darkgray)
 
-								    var node = myChart.selectAll('circle')
+								    var node = myChart.selectAll('pattern')
 								      .data(nodes).enter()
 								      .append('g')
 								      .call(force.drag);
@@ -582,26 +586,38 @@
 											    .attr('id', function(d,i){
 											      return d.name
 											    })
+											     .attr('patternUnits',"userSpaceOnUse")
 											    .attr('height',circleWidth * 2)
 											    .attr('width',circleWidth * 2)
-    											.attr("patternUnits", "userSpaceOnUse")
+											    .attr('x', function(d) {
+											        return circleWidth;
+											      }).attr('y', function(d) {
+											        return circleWidth;
+											      })
 											    .append('svg:image')
 											    .attr('xlink:href',function(d,i){
 											      return d.photo
 											    })
 											    .attr('height',circleWidth * 2)
 											    .attr('width',circleWidth * 2)
-											    .attr('x',0)
-											    .attr('y',0);
+											      .attr('x', 0)
+											      .attr('y', 0);
 
 								    node.append('circle')
 								      .attr('cx', function(d) {
-								        return circleWidth;
+								        return d.x;
 								      }).attr('cy', function(d) {
-								        return circleWidth;
+								        return d.y;
 								      })
 								      .attr('r', circleWidth)
-								      .style("fill", "#fff").style("fill", "#fff").style("fill", function(d,i){ return 'url(#' + d.name+')'})
+								      .attr('stroke', function(d, i) {
+								        if (i > 0) {
+								          return palette.pink
+								        } else {
+								          return palette.darkgray
+								        }
+								      })
+								      .style("fill", "#fff").style("fill", function(d,i){ return 'url(#' + d.name+')'})
 
 								    node.append('text')
 								      .text(function(d) {
