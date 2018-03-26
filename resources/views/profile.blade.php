@@ -456,16 +456,44 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
                	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" id="two" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Familia
                 </a>
             </h4>
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
                     <div class="box-body" id="demo">
+						<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
+							      	<div class="input-group">
+							        	<div class="form-control" align="left"><label id="labeltext">Agregar Familiar</label></div>
+							        	<div class="input-group-btn">
+								          	<a class="btn btn-default" data-toggle="modal" data-target="#modalfamily">
+								          		<i class="fa fa-plus text-muted"></i>
+								          	</a>
+							        	</div>
+							      	</div>
+							</div>
+				<div class="modal fade" role="dialog" id="modalfamily">
+                    <div class="modal-dialog modal-sm">
 
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                            <b>Agregue su familiar</b>
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                            <div class="modal-body" >
+ 
+                        	</div>
+                      </div> 
+                    </div>
+                </div>
 				<script type="text/javascript">
-	+ function(d3) {
+				$('#two').on('click', function(e) {
+       				 e.preventDefault();
+					+ function(d3) {
 
 						var swatches = function(el) {
 						var circleWidth = 45;	
@@ -720,7 +748,7 @@
 								    force.on('tick', function(e) {
 								      node.attr('transform', function(d, i) {
 								        return 'translate(' + d.x + ', ' + d.y + ')';
-								      }).style('transition', 'all 0.01s linear')
+								      })
 
 								      link
 								        .attr('x1', function(d) {
@@ -742,6 +770,7 @@
 								  }('#demo');
 
 								}(window.d3);
+								  });
                     	</script>
                     </div>
                   </div>
