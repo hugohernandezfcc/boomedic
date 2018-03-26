@@ -465,7 +465,7 @@
                     <div class="box-body" id="demo">
 						<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 							      	<div class="input-group">
-							        	<div class="form-control" align="left"><label id="labeltext">Agregar Familiar</label></div>
+							        	<div class="form-control" align="center"><label id="labeltext">Agregar Familiar</label></div>
 							        	<div class="input-group-btn">
 								          	<a class="btn btn-default" data-toggle="modal" data-target="#modalfamily">
 								          		<i class="fa fa-plus text-muted"></i>
@@ -479,13 +479,28 @@
                       <div class="modal-content">
 
                         <div class="modal-header" >
-                            <b>Agregue su familiar</b>
+                            <b>Información de Familiar</b>
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                             <div class="modal-body" >
- 
+                            	<h5>Ingrese su nombre y apellido</h5>	
+ 								<input type="text" name="name" class="form-control">
+ 								<h5>Identifique la relación</h5>
+ 								<select class="form-control">
+ 									<option value="Hijo">Hijo</option>
+ 									<option value="Hija">Hija</option>
+ 									<option value="Padre">Padre</option>
+ 									<option value="Madre">Madre</option>
+ 									<option value="Abuela">Abuela</option>
+ 									<option value="Abuelo">Abuelo</option>
+ 									<option value="Pareja">Pareja</option>
+ 								</select>
+ 								<br>
+ 								<div align="right">
+ 								<button class="btn btn-secondary btn-flat">Guardar</button>
+ 							</div>
                         	</div>
                       </div> 
                     </div>
