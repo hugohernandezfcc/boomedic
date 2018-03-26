@@ -479,7 +479,7 @@
 				          
 				            if(h >= 1000 && h <= 1300){
 				            	circleWidth = 30;
-								charge = -400;
+								charge = -300;
 				                h = h*0.35;
 				                h = Math.floor(h);
 				                w = w*0.40;
@@ -489,13 +489,13 @@
 				              h-= 1840;
 				              w-= 1200;
 				             circleWidth = 30;
-							 charge = -400;
+							 charge = -300;
 				            }else
 				            {
 				              h-=315;
 				              w-=100
 				              circleWidth = 30;
-							 charge = -400;
+							 charge = -300;
 				            }
 				       	 }else{
 				          h = window.screen.availHeight-215;
