@@ -589,6 +589,7 @@
 								      .size([w, h])
 
 
+
 								    var link = myChart.selectAll('line')
 								      .data(links).enter().append('line')
 								      .attr('stroke', palette.mediumgray)
@@ -719,7 +720,7 @@
 								    force.on('tick', function(e) {
 								      node.attr('transform', function(d, i) {
 								        return 'translate(' + d.x + ', ' + d.y + ')';
-								      })
+								      }).style('transition', 'all 0.01s linear')
 
 								      link
 								        .attr('x1', function(d) {
