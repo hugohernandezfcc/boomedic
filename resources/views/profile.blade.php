@@ -470,6 +470,8 @@
 						var swatches = function(el) {
 						var circleWidth = 45;	
 						var charge = -800;
+						var h = 0;
+						var w= 0;
 				        if("@php echo $agent->isMobile(); @endphp"){
 				            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
 				              h= window.screen.availHeight;
@@ -478,10 +480,10 @@
 				            if(h >= 1000 && h <= 1300){
 				            	circleWidth = 30;
 								charge = -400;
-				                var h = h*0.45;
+				                h = h*0.75;
 				                h = Math.floor(h);
 				            }else if(h>=1800){
-				              h-= 1640;
+				              h-= 1840;
 				             circleWidth = 30;
 							 charge = -400;
 				            }else
@@ -492,9 +494,11 @@
 				            }
 				       	 }else{
 				          h = window.screen.availHeight-215;
+				          w = window.screen.availWidth-100;
 				           circleWidth = 50;
 				        }
-						var w = screen.width-100,
+
+						    w = window.screen.availWidth-100;
 							h = h;
 
 								    
@@ -570,7 +574,7 @@
 								      .append('svg')
 								      .attr('width', w)
 								      .attr('height', h)
-								      .style('margin-left', 'auto').style('margin-right', 'auto').style('display','block')
+								      .style('margin-left', '0').style('display','block')
 
 								    var force = d3.layout.force()
 								      .nodes(nodes)
