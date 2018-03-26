@@ -480,9 +480,9 @@
 				            if(h >= 1000 && h <= 1300){
 				            	circleWidth = 30;
 								charge = -400;
-				                h = h*0.90;
+				                h = h*0.30;
 				                h = Math.floor(h);
-				                w = w*0.55;
+				                w = w*0.35;
 				                w = Math.floor(w);
 				                  alert("Altura: "+h + "anchura " + w);
 				            }else if(h>=1800){
