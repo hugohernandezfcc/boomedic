@@ -462,7 +462,7 @@
             </h4>
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
-                    <div class="box-body" style="background-color: #CACACA;" id="demo">
+                    <div class="box-body" id="demo">
 
 				<script type="text/javascript">
 	+ function(d3) {
@@ -480,11 +480,11 @@
 				            if(h >= 1000 && h <= 1300){
 				            	circleWidth = 30;
 								charge = -400;
-				                h = h*0.30;
+				                h = h*0.40;
 				                h = Math.floor(h);
-				                w = w*0.35;
+				                w = w*0.40;
 				                w = Math.floor(w);
-				                  alert("Altura: "+h + "anchura " + w);
+				                  //alert("Altura: "+h + "anchura " + w);
 				            }else if(h>=1800){
 				              h-= 1840;
 				              w-= 1200;
