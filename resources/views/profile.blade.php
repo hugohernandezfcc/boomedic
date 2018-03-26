@@ -470,7 +470,7 @@
 
 						var swatches = function(el) {
 						var circleWidth = 45;	
-						var charge = -1000;
+						var charge = -800;
 				        if("@php echo $agent->isMobile(); @endphp"){
 				            h= window.screen.availHeight;
 				            w= window.screen.availWidth;
@@ -504,8 +504,8 @@
 								    var palette = {
 								      "lightgray": "#819090",
 								      "gray": "#708284",
-								      "mediumgray": "#536870",
-								      "darkgray": "#475B62",
+								      "mediumgray": "#808486",
+								      "darkgray": "#272B2C",
 								      "darkblue": "#0A2933",
 								      "darkerblue": "#042029",
 								      "paleryellow": "#FCF4DC",
@@ -582,7 +582,8 @@
 
 								    var link = myChart.selectAll('line')
 								      .data(links).enter().append('line')
-								      .attr('stroke', palette.darkgray)
+								      .attr('stroke', palette.mediumgray)
+								      .attr('stroke-width', 1);
 
 								    var node = myChart.selectAll('pattern')
 								      .data(nodes).enter()
@@ -620,7 +621,7 @@
 								      .attr('r', circleWidth)
 								      .attr('stroke', function(d, i) {
 								        if (i > 0) {
-								          return palette.pink
+								          return palette.darkgray
 								        } else {
 								          return palette.darkgray
 								        }
@@ -632,23 +633,23 @@
 								      .text(function(d) {
 								        return d.name
 								      })
-								      .attr('font-family', 'Roboto Slab')
+								      .attr('font-family', 'sans-serif')
 								      .attr('fill', function(d, i) {
 								        if (i > 0) {
-								          return palette.pink
+								          return palette.darkgray
 								        } else {
 								          return "transparent"						        }
 								      })
 								      .attr('x', function(d, i) {
 								        if (i > 0) {
-								          return circleWidth + 20
+								          return - 25
 								        } else {
 								          return circleWidth - 15
 								        }
 								      })
 								      .attr('y', function(d, i) {
 								        if (i > 0) {
-								          return circleWidth
+								          return circleWidth + 25
 								        } else {
 								          return 8
 								        }
@@ -662,9 +663,9 @@
 								      })
 								      .attr('font-size', function(d, i) {
 								        if (i > 0) {
-								          return '2em'
+								          return '1.7em'
 								        } else {
-								          return '2em'
+								          return '1.7em'
 								        }
 								      })
 
