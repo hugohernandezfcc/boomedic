@@ -480,7 +480,7 @@
 				            if(h >= 1000 && h <= 1300){
 				            	circleWidth = 30;
 								charge = -400;
-				                h = h*0.40;
+				                h = h*0.35;
 				                h = Math.floor(h);
 				                w = w*0.40;
 				                w = Math.floor(w);
@@ -744,7 +744,7 @@
 				                       // alert("Altura: "+height);
 				                        //Para Android Puro
 				            if(height >= 1000 && height <= 1300){
-				                var h = height*0.80;
+				                var h = height*0.40;
 				                height = Math.floor(h);
 				            }else if(height >=1800){ //para android con capa personalizada
 				              height -= 1600;
