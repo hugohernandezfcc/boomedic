@@ -491,7 +491,7 @@
 						var w = screen.width-100,
 							h = h;
 
-								    var circleWidth = 40;
+								    var circleWidth = 30;
 
 								    var palette = {
 								      "lightgray": "#819090",
@@ -565,7 +565,7 @@
 								      .nodes(nodes)
 								      .links([])
 								      .gravity(0.1)
-								      .charge(-1000)
+								      .charge(-600)
 								      .size([w, h])
 
 								    var link = myChart.selectAll('line')
@@ -577,16 +577,15 @@
 								      .append('g')
 								      .call(force.drag);
 
-								       node.append('defs')
-											    .append('pattern')
+								       node.append('svg:defs')
+											    .append('svg:pattern')
 											    .attr('id', function(d,i){
 											      return d.name
 											    })
 											    .attr('height',circleWidth * 2)
 											    .attr('width',circleWidth * 2)
-											    .attr('x',0)
-											    .attr('y',0)
-											    .append('image')
+    											.attr("patternUnits", "userSpaceOnUse")
+											    .append('svg:image')
 											    .attr('xlink:href',function(d,i){
 											      return d.photo
 											    })
@@ -597,18 +596,12 @@
 
 								    node.append('circle')
 								      .attr('cx', function(d) {
-								        return d.x;
+								        return circleWidth;
 								      }).attr('cy', function(d) {
-								        return d.y;
+								        return circleWidth;
 								      })
 								      .attr('r', circleWidth)
-								      .attr('stroke', function(d, i) {
-								        if (i > 0) {
-								          return palette.pink
-								        } else {
-								          return palette.darkgray
-								        }
-								      }).style("fill", function(d,i){ return 'url(#' + d.name +')'})
+								      .style("fill", "#fff").style("fill", "#fff").style("fill", function(d,i){ return 'url(#' + d.name+')'})
 
 								    node.append('text')
 								      .text(function(d) {
@@ -619,7 +612,7 @@
 								        if (i > 0) {
 								          return palette.pink
 								        } else {
-								          return palette.green							        }
+								          return "transparent"						        }
 								      })
 								      .attr('x', function(d, i) {
 								        if (i > 0) {
