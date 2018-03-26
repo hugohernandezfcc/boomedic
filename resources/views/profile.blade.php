@@ -462,36 +462,44 @@
             </h4>
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
-                    <div class="box-body">
+                    <div class="box-body" style="background-color: #CACACA;">
    
                          <div id="demo"></div>
 				<script type="text/javascript">
 	+ function(d3) {
 
 						var swatches = function(el) {
-
+						var circleWidth = 45;	
+						var charge = -1000;
 				        if("@php echo $agent->isMobile(); @endphp"){
 				            h= window.screen.availHeight;
 				            w= window.screen.availWidth;
 				                       // alert("Altura: "+height);
 				                        //Para Android Puro
 				            if(h >= 1000 && h <= 1300){
+				              circleWidth = 30;
+				              charge = -400;
 				                var h = h*0.80;
 				                h= Math.floor(h);
 				            }else if(h >=1800){ //para android con capa personalizada
 				              h-= 1600;
+				              circleWidth = 30;
+				              charge = -400;
 				            }else
 				            {
-				              h -=315; //android avierto desde chrome
+				              h -= 315; //android avierto desde chrome
+				              circleWidth = 30;
+				              charge = -400;
 				            }
 						        }else{
 						          h= window.screen.availHeight-315;
+						           circleWidth = 50;
 						        }
 
 						var w = screen.width-100,
 							h = h;
 
-								    var circleWidth = 40;
+								    
 
 								    var palette = {
 								      "lightgray": "#819090",
@@ -569,7 +577,7 @@
 								      .nodes(nodes)
 								      .links([])
 								      .gravity(0.1)
-								      .charge(-600)
+								      .charge(charge)
 								      .size([w, h])
 
 								    var link = myChart.selectAll('line')
@@ -617,6 +625,7 @@
 								          return palette.darkgray
 								        }
 								      })
+								      .attr('stroke-width', 2)
 								      .style("fill", "#fff").style("fill", function(d,i){ return 'url(#' + d.name+')'})
 
 								    node.append('text')
