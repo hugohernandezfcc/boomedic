@@ -475,20 +475,24 @@
 				        if("@php echo $agent->isMobile(); @endphp"){
 				            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
 				              h= window.screen.availHeight;
-							  w= '100%';
+							  w= window.screen.availWidth;
 				            //alert("Altura: "+height);
 				            if(h >= 1000 && h <= 1300){
 				            	circleWidth = 30;
 								charge = -400;
 				                h = h*0.75;
 				                h = Math.floor(h);
+				                w = w*0.45;
+				                w = Math.floor(w);
 				            }else if(h>=1800){
 				              h-= 1840;
+				              w-= 1000;
 				             circleWidth = 30;
 							 charge = -400;
 				            }else
 				            {
 				              h-=315;
+				              w-=100
 				              circleWidth = 30;
 							 charge = -400;
 				            }
@@ -498,7 +502,7 @@
 				           circleWidth = 50;
 				        }
 
-						    w = window.screen.availWidth-100;
+						    w = w;
 							h = h;
 
 								    
