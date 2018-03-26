@@ -476,7 +476,7 @@
 				            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
 				              h= window.screen.availHeight;
 							  w= window.screen.availWidth;
-				            //alert("Altura: "+height);
+				            alert("Altura: "+h + "anchura " + w);
 				            if(h >= 1000 && h <= 1300){
 				            	circleWidth = 30;
 								charge = -400;
