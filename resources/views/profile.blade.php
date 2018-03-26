@@ -462,9 +462,8 @@
             </h4>
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
-                    <div class="box-body" style="background-color: #CACACA;">
-   
-                         <div id="demo"></div>
+                    <div class="box-body" style="background-color: #CACACA;" id="demo">
+
 				<script type="text/javascript">
 	+ function(d3) {
 
@@ -472,30 +471,29 @@
 						var circleWidth = 45;	
 						var charge = -800;
 				        if("@php echo $agent->isMobile(); @endphp"){
-				            h= window.screen.availHeight;
-				            w= '100%';
-				                       // alert("Altura: "+height);
-				                        //Para Android Puro
+				            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
+				              h= window.screen.availHeight;
+							  w= '100%';
+				            //alert("Altura: "+height);
 				            if(h >= 1000 && h <= 1300){
-				              circleWidth = 30;
-				              charge = -400;
-				                var h = h*0.80;
-				                h= Math.floor(h);
-				            }else if(h >=1800){ //para android con capa personalizada
-				              h-= 1600;
-				              circleWidth = 30;
-				              charge = -400;
+				            	circleWidth = 30;
+								charge = -400;
+				                var h = h*0.45;
+				                h = Math.floor(h);
+				            }else if(h>=1800){
+				              h-= 1640;
+				             circleWidth = 30;
+							 charge = -400;
 				            }else
 				            {
-				              h -= 315; //android avierto desde chrome
+				              h-=315;
 				              circleWidth = 30;
-				              charge = -400;
+							 charge = -400;
 				            }
-						        }else{
-						          h= window.screen.availHeight-315;
-						           circleWidth = 50;
-						        }
-
+				       	 }else{
+				          h = window.screen.availHeight-115;
+				           circleWidth = 50;
+				        }
 						var w = screen.width-100,
 							h = h;
 

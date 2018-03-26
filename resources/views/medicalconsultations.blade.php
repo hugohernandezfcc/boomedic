@@ -966,17 +966,17 @@ function prevTab(elem) {
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
+            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight;
-                       // alert("Altura: "+height);
-                        //Para Android Puro
+            //alert("Altura: "+height);
             if(height >= 1000 && height <= 1300){
                 var h = height*0.45;
                 height = Math.floor(h);
-            }else if(height >=1800){ //para android con capa personalizada
+            }else if(height >=1800){
               height -= 1440;
             }else
             {
-              height -=115; //android avierto desde chrome
+              height -=115;
             }
         }else{
           height = window.screen.availHeight-115;
