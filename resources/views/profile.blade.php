@@ -473,7 +473,7 @@
 						var charge = -800;
 				        if("@php echo $agent->isMobile(); @endphp"){
 				            h= window.screen.availHeight;
-				            w= window.screen.availWidth;
+				            w= '100%';
 				                       // alert("Altura: "+height);
 				                        //Para Android Puro
 				            if(h >= 1000 && h <= 1300){
