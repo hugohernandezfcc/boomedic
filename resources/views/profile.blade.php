@@ -565,7 +565,7 @@
 								      .nodes(nodes)
 								      .links([])
 								      .gravity(0.1)
-								      .charge(-600)
+								      .charge(-1000)
 								      .size([w, h])
 
 								    var link = myChart.selectAll('line')
