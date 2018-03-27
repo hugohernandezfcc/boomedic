@@ -487,11 +487,12 @@
                           </button>
                         </div>
                             <div class="modal-body" >
-                            	<b>Ingrese su nombre y apellido</b>	
- 								<input type="text" name="name" id="sea" class="form-control"><br>
+                            	<b>Nombre completo</b>	
+ 								<input type="text" name="name" id="sea" class="form-control" placeholder="Ingrese el nombre y apellido"><br>
  								<div id="resp" class="text-muted"></div><br>
  								<b>Identifique la relación</b>
  								<select class="form-control select2">
+ 									<option value="0" default>--Ninguna--</option>
  									<option value="Hijo">Hijo</option>
  									<option value="Hija">Hija</option>
  									<option value="Padre">Padre</option>
