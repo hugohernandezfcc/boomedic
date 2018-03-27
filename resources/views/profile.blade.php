@@ -488,7 +488,7 @@
                         </div>
                             <div class="modal-body" >
                             	<b>Ingrese su nombre y apellido</b>	
- 								<input type="text" name="name" id="sea" class="form-control">
+ 								<input type="text" name="name" id="sea" class="form-control"><br>
  								<div id="resp" class="text-muted"></div><br>
  								<b>Identifique la relación</b>
  								<select class="form-control select2">
