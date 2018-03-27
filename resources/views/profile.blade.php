@@ -489,7 +489,8 @@
                             <div class="modal-body" >
                             	<h5>Ingrese su nombre y apellido</h5>	
  								<input type="text" name="name" id="sea" class="form-control">
- 								<div id="resp"></div>
+ 								<br>
+ 								<div id="resp"></div><br>
  								<h5>Identifique la relación</h5>
  								<select class="form-control">
  									<option value="Hijo">Hijo</option>
@@ -827,6 +828,7 @@
     		<script type="text/javascript">
     			function fun(a) {
 							    document.getElementById('sea').value = a.getAttribute("data-value");
+							    console.log(a.getAttribute("data-id"))
 							    document.getElementById("resp").innerHTML = "";
 							}
 				$(document).ready(function(){
@@ -834,7 +836,7 @@
  						 	$("#sea").on("keypress", function(e) {
 
 						    		if(e.which == 32) {
-					                                  $.ajaxSetup({
+					                   $.ajaxSetup({
 				                        headers: {
 				                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				                        }
@@ -854,15 +856,19 @@
 
     													document.getElementById("resp").innerHTML = " ";
     												for(var i= 0; i < data.length; i++){
-				                     				console.log(data[i]['name']);
-				                     				 $('#resp').append('<a data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a><br>');
+				                     				if(data[i]['profile_photo'] == null){
+				                     				$('#resp').append('<div><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+				                     				}else{
+				                     				 $('#resp').append('<div><img src="'+ data[i]['profile_photo'] +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+				                     				}
+				                     				}
 				                             	} 
     											}
-				                             }
+				                            
 				                         });
 					            } else{
 					        	 var value = $(this).val().toLowerCase();
-						   		 $("#resp *").filter(function() {
+						   		 $("#resp div").filter(function() {
 						    	  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 						    });
 					            }
