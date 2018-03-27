@@ -478,6 +478,7 @@
 
                       <div class="modal-content">
 
+
                         <div class="modal-header" >
                             <b>Información de Familiar</b>
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
