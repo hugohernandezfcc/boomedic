@@ -501,7 +501,7 @@
  									<option value="Abuelo">Abuelo</option>
  									<option value="Pareja">Pareja</option>
  								</select>
- 								<br>
+ 								<br><br>
  								<div align="right">
  								<button class="btn btn-secondary btn-flat">Guardar</button>
  								</div>
