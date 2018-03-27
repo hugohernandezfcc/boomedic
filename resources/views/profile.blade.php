@@ -825,11 +825,11 @@
 
 
     		<script type="text/javascript">
-				$(document).ready(function(){
-
-							function fun(a) {
+    			function fun(a) {
 							    document.getElementById('sea').value = a.getAttribute("data-value");
+							    document.getElementById("resp").innerHTML = "";
 							}
+				$(document).ready(function(){
 
  						 	$("#sea").on("keypress", function(e) {
 
