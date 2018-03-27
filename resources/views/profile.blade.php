@@ -843,11 +843,16 @@
 				                              dataType: 'json',                
 				                             success: function(data)             
 				                             {
-				                             	for(var i= 0; i < data.length; i++){
+				                             if(data.length == 0){
+				                             	document.getElementById("resp").innerHTML = "No existe como usuario registrado...";
+				                             	
+    											}else {
+    											document.getElementById("resp").innerHTML = " ";	
+    												for(var i= 0; i < data.length; i++){
 				                     				console.log(data[i]['name']);
 				                     				 $('#resp').append('<label>'+ data[i]['name'] +'</label><br>');
 				                             	} 
-    
+    											}
 				                             }
 				                         });
 					            }
