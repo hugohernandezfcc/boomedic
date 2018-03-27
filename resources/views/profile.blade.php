@@ -826,10 +826,14 @@
 
     		<script type="text/javascript">
 				$(document).ready(function(){
- 
-					      $("#sea").keypress(function(e) {  
-					            //13 es el código de la tecla
-					            if(e.which == 32) {
+
+							function fun(a) {
+							    document.getElementById('sea').value = a.getAttribute("data-value");
+							}
+
+ 						 	$("#sea").on("keypress", function(e) {
+
+						    		if(e.which == 32) {
 					                                  $.ajaxSetup({
 				                        headers: {
 				                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -844,20 +848,26 @@
 				                             success: function(data)             
 				                             {
 				                             if(data.length == 0){
-				                             	document.getElementById("resp").innerHTML = "No existe como usuario registrado...";
+				                             	document.getElementById("resp").innerHTML = "No existe usuario registrado...";
 				                             	
     											}else {
-    											document.getElementById("resp").innerHTML = " ";	
+
+    													document.getElementById("resp").innerHTML = " ";
     												for(var i= 0; i < data.length; i++){
 				                     				console.log(data[i]['name']);
-				                     				 $('#resp').append('<label>'+ data[i]['name'] +'</label><br>');
+				                     				 $('#resp').append('<a data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a><br>');
 				                             	} 
     											}
 				                             }
 				                         });
+					            } else{
+					        	 var value = $(this).val().toLowerCase();
+						   		 $("#resp *").filter(function() {
+						    	  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+						    });
 					            }
-					 
-					      });         
+						  });
+
 					                   
 					});
 			window.onload = function(){

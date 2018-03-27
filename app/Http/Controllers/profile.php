@@ -300,7 +300,7 @@ class profile extends Controller
            
         if($request->search != null){
           $search =  DB::table('users')->where('name', 'ILIKE','%'.$request->search.'%')->get();
-
+          
             return response()->json($search);
               }
         }
