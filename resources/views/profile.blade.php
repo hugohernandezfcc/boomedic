@@ -48,6 +48,7 @@
       }
 
     </style>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
 @section('content')
@@ -487,7 +488,8 @@
                         </div>
                             <div class="modal-body" >
                             	<h5>Ingrese su nombre y apellido</h5>	
- 								<input type="text" name="name" class="form-control">
+ 								<input type="text" name="name" id="sea" class="form-control">
+ 								<div id="resp"></div>
  								<h5>Identifique la relación</h5>
  								<select class="form-control">
  									<option value="Hijo">Hijo</option>
@@ -507,6 +509,8 @@
                     </div>
                 </div>
 				<script type="text/javascript">
+
+
 				$('#two').on('click', function(e) {
        				 e.preventDefault();
 					+ function(d3) {
@@ -821,7 +825,36 @@
 
 
     		<script type="text/javascript">
-
+				$(document).ready(function(){
+ 
+					      $("#sea").keypress(function(e) {  
+					            //13 es el código de la tecla
+					            if(e.which == 32) {
+					                                  $.ajaxSetup({
+				                        headers: {
+				                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				                        }
+				                    });
+				                 var sea = document.getElementById('sea').value;
+				                           $.ajax({     
+				                             type: "POST",                 
+				                             url: "{{ url('user/userSearch') }}",  
+				                              data: { "search" : sea }, 
+				                              dataType: 'json',                
+				                             success: function(data)             
+				                             {
+				                             	for(var i= 0; i < data.length; i++){
+				                     				console.log(data[i]['name']);
+				                     				 $('#resp').append('<label>'+ data[i]['name'] +'</label><br>');
+				                             	} 
+    
+				                             }
+				                         });
+					            }
+					 
+					      });         
+					                   
+					});
 			window.onload = function(){
 
 				        if("@php echo $agent->isMobile(); @endphp"){
@@ -958,6 +991,7 @@
 <script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 		<script type="text/javascript">
+
 
 					$('#target').Jcrop({
 						    aspectRatio: 1,  

@@ -287,7 +287,23 @@ class profile extends Controller
         if($user->save())
             return redirect('/user/edit/complete');
     }
+        
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+        public function userSearch (Request $request)
+      {     $user = User::find(Auth::id());
+           
+        if($request->search != null){
+          $search =  DB::table('users')->where('name', 'ILIKE','%'.$request->search.'%')->get();
+
+            return response()->json($search);
+              }
+        }
 
     /**
      * Remove the specified resource from storage.

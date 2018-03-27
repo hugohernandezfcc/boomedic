@@ -62,6 +62,12 @@ Route::group(['prefix' => 'user'], function(){
 		]
 	);
 
+	Route::post('userSearch/', [
+			'uses'	=>	'profile@userSearch',
+			'as'	=>	'userSearch'
+		]
+	);
+
 	Route::post('updateProfile/{id}', [
 			'uses'	=>	'profile@updateProfile',
 			'as'	=>	'updateProfile'
