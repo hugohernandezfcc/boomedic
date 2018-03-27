@@ -833,7 +833,7 @@
 							}
 				$(document).ready(function(){
 
- 						 	$("#sea").on("keypress", function(e) {
+ 						 	$("#sea").on("keyup", function(e) {
 
 						    		if(e.which == 32) {
 					                   $.ajaxSetup({
