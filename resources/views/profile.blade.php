@@ -480,19 +480,18 @@
                       <div class="modal-content">
 
 
-                        <div class="modal-header" >
-                            <b>Información de Familiar</b>
+                        <div class="modal-header" align="center" style="padding-bottom: 1px !important;">
+                            <label>Información de Familiar</label>
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                             <div class="modal-body" >
-                            	<h5>Ingrese su nombre y apellido</h5>	
- 								<input type="text" name="name" id="sea" class="form-control">
- 								<br>
- 								<div id="resp"></div><br>
- 								<h5>Identifique la relación</h5>
- 								<select class="form-control">
+                            	<b>Ingrese su nombre y apellido</b>	
+ 								<input type="text" name="name" id="sea" class="form-control"><br>
+ 								<div id="resp"></div>
+ 								<b>Identifique la relación</b>
+ 								<select class="form-control select2">
  									<option value="Hijo">Hijo</option>
  									<option value="Hija">Hija</option>
  									<option value="Padre">Padre</option>
@@ -504,7 +503,7 @@
  								<br>
  								<div align="right">
  								<button class="btn btn-secondary btn-flat">Guardar</button>
- 							</div>
+ 								</div>
                         	</div>
                       </div> 
                     </div>

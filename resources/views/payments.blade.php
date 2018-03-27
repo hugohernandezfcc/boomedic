@@ -181,7 +181,7 @@
 		              			<div class="form-group has-feedback {{ $errors->has('year') ? 'has-error' : '' }}">
 				                    <label for="year" class="col-sm-2 control-label">Fecha de Exp.</label>
 				        <div class="col-sm-2">
-				        <select name="month" class="form-control select1">
+				        <select name="month" class="form-control select2">
                             <option value="01">01</option>
                             <option value="02">02</option>
                             <option value="03">03</option>
@@ -195,7 +195,7 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select></div><div class="col-sm-2">
-                        <select name="year" class="form-control select1">
+                        <select name="year" class="form-control select2">
                             <option value="17"> 2017</option>
                             <option value="18"> 2018</option>
                             <option value="19"> 2019</option>
@@ -203,7 +203,7 @@
                             <option value="21"> 2021</option>
                              <option value="22"> 2022</option>
                         </select></div><div class="col-sm-3">
-                        <select name="CreDeb" class="form-control select1">
+                        <select name="CreDeb" class="form-control select2">
                             <option value="Credit">Crédito</option>
                             <option value="Debit">Débito</option>
                         </select>
