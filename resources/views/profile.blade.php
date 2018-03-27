@@ -579,7 +579,7 @@
 
 								    var nodes = [{
 								      name: "Yo",
-								       photo: "{{ $photo }}"
+								       photo: "{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}"
 								    }, {
 								      name: "Core",
 								      target: [0],
