@@ -13,8 +13,7 @@ class family extends Model
 		'passiveUser',
 		'relationship',
 		'activeUserStatus',
-		'parent',
-		'type'
+		'parent'
     ];
 
     public function parent(){

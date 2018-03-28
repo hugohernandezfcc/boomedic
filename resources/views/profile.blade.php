@@ -487,8 +487,10 @@
                           </button>
                         </div>
                             <div class="modal-body" >
+                             <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post" class="form-horizontal">	
                             	<b>Nombre completo</b>	
- 								<input type="text" name="name" id="sea" class="form-control" placeholder="Ingrese el nombre y apellido"><br>
+ 								<input type="text" name="name" id="sea" class="form-control" placeholder="Ingrese el nombre y apellido">
+ 								<input type="hidden" name="idfam" id="idfam"><br>
  								<div id="resp" class="text-muted"></div><br>
  								<b>Identifique la relación</b>
  								<select class="form-control select2" id="relationship" name="relationship">
@@ -504,8 +506,9 @@
  								</select>
  								<br><br>
  								<div align="right">
- 								<button class="btn btn-secondary btn-flat">Guardar</button>
+ 								<button  type="submit" class="btn btn-secondary btn-flat" id="sav">Guardar</button>
  								</div>
+ 							</form>
                         	</div>
                       </div> 
                     </div>
@@ -578,39 +581,8 @@
 								      "yellowgreen": "#738A05"
 								    }
 
-								    var nodes = [{
-								      name: "Yo",
-								       photo: "{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}"
-								    }, {
-								      name: "Core",
-								      target: [0],
-								      photo: "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"
-
-								    }, {
-								      name: "Hugo",
-								      target: [0],
-								      photo: "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"
-								    }, {
-								      name: "SVG",
-								      target: [0],
-								      photo: "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"
-								    }, {
-								      name: "Time",
-								      target: [0],
-								      photo: "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"
-								    }, {
-								      name: "Time",
-								      target: [0],
-								       photo: "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"
-								    }, {
-								      name: "Geometry",
-								      target: [0],
-								       photo: "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"
-								    }, {
-								      name: "Geometry",
-								      target: [0],
-								       photo: "https://s3.amazonaws.com/abiliasf/profile-42914_640.png"
-								    }];
+								    var nodes =@php echo $nodes; @endphp;
+								    console.log(@php echo $nodes; @endphp);
 
 								    var links = [];
 
@@ -829,9 +801,13 @@
     		<script type="text/javascript">
     			function fun(a) {
 							    document.getElementById('sea').value = a.getAttribute("data-value");
+							    document.getElementById('idfam').value = a.getAttribute("data-id");
 							    console.log(a.getAttribute("data-id"))
 							    document.getElementById("resp").innerHTML = "";
 							}
+
+
+
 				$(document).ready(function(){
 
  						 	$("#sea").on("keyup", function(e) {
@@ -877,6 +853,7 @@
 
 					                   
 					});
+
 			window.onload = function(){
 
 				        if("@php echo $agent->isMobile(); @endphp"){

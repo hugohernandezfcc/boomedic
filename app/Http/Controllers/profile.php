@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
+use App\Family;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
@@ -67,6 +68,12 @@ class profile extends Controller
     public function show($id)
     {
         $users = DB::table('users')->where('id', Auth::id() )->get();
+        $family = DB::table('family')->where('parent', Auth::id() )->get();
+        $nodes = array();
+        array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i')]);
+        for($i = 0; $i < count($family); $i++){
+        array_push($nodes, ['name' => $family[$i]->id, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png']);
+        }
         return view('profile', [
                 
                  /** SYSTEM INFORMATION */
@@ -106,7 +113,8 @@ class profile extends Controller
                 'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
                 'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
                 'longitude'     => (   empty($users[0]->longitude)      ) ? '' : $users[0]->longitude,
-                'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude
+                'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
+                'nodes'         => json_encode($nodes)
             ]
         );
     }
@@ -304,6 +312,29 @@ class profile extends Controller
             return response()->json($search);
               }
         }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+        public function saveFamily (Request $request)
+      {     $user = User::find(Auth::id());
+           
+        if($request->idfam != null){
+
+          $userFam =  DB::table('users')->where('id', $request->idfam)->get();
+          $family = new Family;
+          $family->parent = $user->id;
+          $family->relationship = $request->relationship;
+          $family->activeUser = $request->idfam;
+          $family->activeUserStatus = 'inactive';
+          $family->save();
+          
+             return redirect('user/profile/' . Auth::id() );
+              }
+        }        
 
     /**
      * Remove the specified resource from storage.

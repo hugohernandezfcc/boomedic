@@ -68,6 +68,12 @@ Route::group(['prefix' => 'user'], function(){
 		]
 	);
 
+	Route::post('saveFamily/', [
+			'uses'	=>	'profile@saveFamily',
+			'as'	=>	'saveFamily'
+		]
+	);
+
 	Route::post('updateProfile/{id}', [
 			'uses'	=>	'profile@updateProfile',
 			'as'	=>	'updateProfile'
