@@ -581,8 +581,8 @@
 								      "yellowgreen": "#738A05"
 								    }
 
-								    var nodes =@php echo $nodes; @endphp;
-								    console.log(@php echo $nodes; @endphp);
+								    var nodes = @php echo $nodes; @endphp;
+								    console.log(nodes);
 
 								    var links = [];
 
@@ -625,32 +625,32 @@
 								       node.append('svg:defs')
 											    .append('svg:pattern')
 											    .attr('id', function(d,i){
-											      return d.name
+											      return d.id
 											    })
 											     .attr('patternUnits',"userSpaceOnUse")
 											    .attr('height', function(d, i) {
 											        if (i > 0) {
-											          return (circleWidth-15) *2
+											          return (circleWidth-10) *2
 											        } else {
 											          return circleWidth * 2 
 											        }
 											      })
 											    .attr('width', function(d, i) {
 											        if (i > 0) {
-											          return (circleWidth-15) *2
+											          return (circleWidth-10) *2
 											        } else {
 											          return circleWidth * 2 
 											        }
 											      })
 											    .attr('x', function(d, i) {
 											        if (i > 0) {
-											          return circleWidth-15
+											          return circleWidth-10
 											        } else {
 											          return circleWidth
 											        }
 											      }).attr('y', function(d, i) {
 											        if (i > 0) {
-											          return circleWidth-15
+											          return circleWidth-10
 											        } else {
 											          return circleWidth
 											        }
@@ -661,14 +661,14 @@
 											    })
 											    .attr('height', function(d, i) {
 											        if (i > 0) {
-											          return (circleWidth-15) *2
+											          return (circleWidth-10) *2
 											        } else {
 											          return circleWidth * 2 
 											        }
 											      })
 											    .attr('width', function(d, i) {
 											        if (i > 0) {
-											          return (circleWidth-15) *2
+											          return (circleWidth-10) *2
 											        } else {
 											          return circleWidth * 2 
 											        }
@@ -697,7 +697,7 @@
 								        }
 								      })
 								      .attr('stroke-width', 2)
-								      .style("fill", "#fff").style("fill", function(d,i){ return 'url(#' + d.name+')'})
+								      .style("fill", "#fff").style("fill", function(d,i){ return 'url(#' + d.id+')'})
 
 								    node.append('text')
 								      .text(function(d) {

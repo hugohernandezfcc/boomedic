@@ -68,11 +68,17 @@ class profile extends Controller
     public function show($id)
     {
         $users = DB::table('users')->where('id', Auth::id() )->get();
-        $family = DB::table('family')->where('parent', Auth::id() )->get();
+        $family = DB::table('family')
+            ->join('users', 'family.activeUser', '=', 'users.id')
+            ->where('family.parent', Auth::id())
+            ->select('family.*', 'users.name', 'users.profile_photo')
+            ->get();
+
+
         $nodes = array();
-        array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i')]);
+        array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
         for($i = 0; $i < count($family); $i++){
-        array_push($nodes, ['name' => $family[$i]->id, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png']);
+        array_push($nodes, ['name' => $family[$i]->name, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser]);
         }
         return view('profile', [
                 
