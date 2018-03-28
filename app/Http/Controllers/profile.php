@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
-use App\Family;
+use App\family;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
@@ -77,8 +77,8 @@ class profile extends Controller
     //Json que guarda datos de familiares para generar externalidad//
       if(count($family) < 1){
          array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
-          for($i = 1; $i < 7; $i++){
-                array_push($nodes, ['name' => 'Agregue familiares', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconos-gratis/signo-de-interrogacion_318-52837.jpg' , 'id' => $i]);
+          for($i = 1; $i < 2; $i++){
+                array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconos-gratis/signo-de-interrogacion_318-52837.jpg' , 'id' => $i]);
             }
       }   else {      
       
@@ -344,7 +344,7 @@ class profile extends Controller
         if($request->idfam != null){
 
           $userFam =  DB::table('users')->where('id', $request->idfam)->get();
-          $family = new Family;
+          $family = new family;
           $family->parent = $user->id;
           $family->relationship = $request->relationship;
           $family->activeUser = $request->idfam;

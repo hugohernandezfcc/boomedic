@@ -463,7 +463,8 @@
             </h4>
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
-                  			<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
+                  	<div class="box-body">
+                  			<div class="lockscreen-item" style="margin: 10px 0 0 auto !important;">
 							      	<div class="input-group">
 							        	<div class="form-control" align="center"><label id="labeltext">Agregar Familiar</label></div>
 							        	<div class="input-group-btn">
@@ -474,7 +475,8 @@
 							      	</div>
 							</div>
 
-                    <div class="box-body" id="demo"></div>
+                    <div id="demo"></div>
+                    </div>
                    <div class="modal fade" role="dialog" id="modalfamily">
                     <div class="modal-dialog modal-sm">
 
