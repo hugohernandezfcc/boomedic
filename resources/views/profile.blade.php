@@ -866,7 +866,7 @@
 				                       // alert("Altura: "+height);
 				                        //Para Android Puro
 				            if(height >= 1000 && height <= 1300){
-				                var h = height*0.35;
+				                var h = height*0.30;
 				                height = Math.floor(h);
 				            }else if(height >=1800){ //para android con capa personalizada
 				              height -= 1600;
