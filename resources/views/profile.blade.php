@@ -491,15 +491,16 @@
  								<input type="text" name="name" id="sea" class="form-control" placeholder="Ingrese el nombre y apellido"><br>
  								<div id="resp" class="text-muted"></div><br>
  								<b>Identifique la relación</b>
- 								<select class="form-control select2">
+ 								<select class="form-control select2" id="relationship" name="relationship">
  									<option value="0" default>--Ninguna--</option>
- 									<option value="Hijo">Hijo</option>
- 									<option value="Hija">Hija</option>
- 									<option value="Padre">Padre</option>
- 									<option value="Madre">Madre</option>
- 									<option value="Abuela">Abuela</option>
- 									<option value="Abuelo">Abuelo</option>
- 									<option value="Pareja">Pareja</option>
+ 									<option value="father">Padre</option>
+ 									<option value="mother">Madre</option>
+ 									<option value="son">Hijo(a)</option>
+ 									<option value="siblings">Hermano(a)</option>
+ 									<option value="grandparents">Abuelo(a)</option>
+ 									<option value="uncles">Tío(a)</option>
+ 									<option value="wife">Esposa</option>
+ 									<option value="husband">Esposo</option>
  								</select>
  								<br><br>
  								<div align="right">

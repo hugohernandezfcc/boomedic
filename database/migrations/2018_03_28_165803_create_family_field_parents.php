@@ -16,6 +16,8 @@ class CreateFamilyFieldParents extends Migration
         Schema::table('family', function (Blueprint $table) {
             $table->integer('parent')->unsigned()->nullable();
             $table->foreign('parent')->references('id')->on('users');
+            $table->integer('activeUser')->unsigned()->nullable()->change();
+            $table->integer('passiveUser')->unsigned()->nullable()->change();
         });
     }
 
