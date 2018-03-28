@@ -463,8 +463,7 @@
             </h4>
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
-                    <div class="box-body" id="demo">
-						<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
+                  			<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
 							      	<div class="input-group">
 							        	<div class="form-control" align="center"><label id="labeltext">Agregar Familiar</label></div>
 							        	<div class="input-group-btn">
@@ -474,7 +473,9 @@
 							        	</div>
 							      	</div>
 							</div>
-				<div class="modal fade" role="dialog" id="modalfamily">
+
+                    <div class="box-body" id="demo"></div>
+                   <div class="modal fade" role="dialog" id="modalfamily">
                     <div class="modal-dialog modal-sm">
 
                       <div class="modal-content">
@@ -518,6 +519,7 @@
 
 				$('#two').on('click', function(e) {
        				 e.preventDefault();
+       				 document.getElementById('demo').innerHTML='';
 					+ function(d3) {
 
 						var swatches = function(el) {

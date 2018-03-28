@@ -73,9 +73,15 @@ class profile extends Controller
             ->where('family.parent', Auth::id())
             ->select('family.*', 'users.firstname', 'users.profile_photo')
             ->get();
-
-    //Json que guarda datos de familiares para generar externalidad//         
         $nodes = array();
+    //Json que guarda datos de familiares para generar externalidad//
+      if(count($family) < 1){
+         array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
+          for($i = 1; $i < 7; $i++){
+                array_push($nodes, ['name' => 'Agregue familiares', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconos-gratis/signo-de-interrogacion_318-52837.jpg' , 'id' => $i]);
+            }
+      }   else {      
+      
           array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
           for($i = 0; $i < count($family); $i++){
             if($family[$i]->profile_photo != null){
@@ -84,6 +90,7 @@ class profile extends Controller
                         array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $family[$i]->activeUser]);
                   }
             }
+          }
     //Json que guarda datos de familiares para generar externalidad//   
 
         return view('profile', [
