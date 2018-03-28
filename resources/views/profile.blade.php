@@ -708,7 +708,8 @@
 								        if (i > 0) {
 								          return palette.darkgray
 								        } else {
-								          return "transparent"						        }
+								          return "transparent"						   
+								         }
 								      })
 								      .attr('x', function(d, i) {
 								        if (i > 0) {

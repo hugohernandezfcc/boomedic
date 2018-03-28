@@ -71,19 +71,21 @@ class profile extends Controller
         $family = DB::table('family')
             ->join('users', 'family.activeUser', '=', 'users.id')
             ->where('family.parent', Auth::id())
-            ->select('family.*', 'users.name', 'users.profile_photo')
+            ->select('family.*', 'users.firstname', 'users.profile_photo')
             ->get();
 
-
+    //Json que guarda datos de familiares para generar externalidad//         
         $nodes = array();
-        array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
-        for($i = 0; $i < count($family); $i++){
-          if($family[$i]->profile_photo != null){
-        array_push($nodes, ['name' => $family[$i]->name, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser]);
-          }else {
-                array_push($nodes, ['name' => $family[$i]->name, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $family[$i]->activeUser]);
-          }
-        }
+          array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
+          for($i = 0; $i < count($family); $i++){
+            if($family[$i]->profile_photo != null){
+                array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser]);
+                  }else {
+                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $family[$i]->activeUser]);
+                  }
+            }
+    //Json que guarda datos de familiares para generar externalidad//   
+
         return view('profile', [
                 
                  /** SYSTEM INFORMATION */
