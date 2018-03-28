@@ -78,7 +78,11 @@ class profile extends Controller
         $nodes = array();
         array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
         for($i = 0; $i < count($family); $i++){
+          if($family[$i]->profile_photo != null){
         array_push($nodes, ['name' => $family[$i]->name, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser]);
+          }else {
+                array_push($nodes, ['name' => $family[$i]->name, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $family[$i]->activeUser]);
+          }
         }
         return view('profile', [
                 
