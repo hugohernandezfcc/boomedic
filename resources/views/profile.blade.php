@@ -537,7 +537,7 @@
 				            if(h >= 1000 && h <= 1300){
 				            	circleWidth = 30;
 								charge = -300;
-				                h = h*0.30;
+				                h = h*0.25;
 				                h = Math.floor(h);
 				                w = w*0.40;
 				                w = Math.floor(w);
