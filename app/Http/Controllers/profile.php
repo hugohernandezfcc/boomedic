@@ -78,7 +78,7 @@ class profile extends Controller
       if(count($family) < 1){
          array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
           for($i = 1; $i < 2; $i++){
-                array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconos-gratis/signo-de-interrogacion_318-52837.jpg' , 'id' => $i]);
+                array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconos-gratis/signo-de-interrogacion_318-52837.jpg' , 'id' => 'n']);
             }
       }   else {      
       
