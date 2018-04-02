@@ -513,17 +513,12 @@
  								</div>
  								<div id="reg" style="display: none;">
 					                <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-					                    <input type="email" name="email" class="form-control" placeholder="{{ trans('adminlte::adminlte.email') }}">
+					                    <input type="email" name="email" class="form-control" placeholder="{{ trans('adminlte::adminlte.email') }}" required>
 					                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-					                    @if ($errors->has('email'))
-					                        <span class="help-block">
-					                            <strong>{{ $errors->first('email') }}</strong>
-					                        </span>
-					                    @endif
 					                </div>
 
 					                <div class="form-group has-feedback {{ $errors->has('birthdate') ? 'has-error' : '' }}">
-					                    <input type="text" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker2">
+					                    <input type="text" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker2" required>
 					                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
 					                    @if ($errors->has('birthdate'))
 					                        <span class="help-block">
@@ -559,6 +554,7 @@
        				 	document.getElementById("formulatio").reset();
        				 	document.getElementById("sav").disabled = false;
        				 	document.getElementById("val").value ="true";
+       				 	document.getElementById('resp').style.display = "none";
        				});
 				$('#inac2').on('click', function(e) {
        				 e.preventDefault();
@@ -568,6 +564,8 @@
        				 	document.getElementById("formulatio").reset();
        				 	document.getElementById("sav").disabled = true;
        				 	document.getElementById("val").value ="false";
+       				 	document.getElementById('resp').style.display = "inline";
+       				 	document.getElementById("resp").innerHTML = "";
 
        				})
 

@@ -339,10 +339,11 @@ class profile extends Controller
      */
 
         public function saveFamily (Request $request)
-      {     $user = User::find(Auth::id());
+      {     
+        $user = User::find(Auth::id());
            
         if($request->idfam != null){
-
+          
           $userFam =  DB::table('users')->where('id', $request->idfam)->get();
           $family = new family;
           $family->parent = $user->id;
