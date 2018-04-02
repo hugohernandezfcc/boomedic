@@ -5,7 +5,7 @@
 @section('content_header')
 <style type="text/css">
 	      table.dataTable>tbody>tr.child ul.dtr-details {
-        margin-left: 45%;
+        margin-left: 65px;
       }
 </style>
 @stop
@@ -361,7 +361,7 @@
 				                        <th class="all">Nro. Transacción</th>
 				                        <th class="desktop">Destinatario</th>
 				                        <th class="desktop">Monto</th>
-				                        <th class="desktop">Fecha de Transacción</th>
+				                        <th class="desktop">Fecha</th>
 				                    </tr>
 				                </thead>
 
