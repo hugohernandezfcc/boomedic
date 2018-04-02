@@ -18,6 +18,7 @@
             background: transparent !important; 
             top: 75% !important; 
       }
+
 </style>
 
   	<div class="box-header direct-chat">

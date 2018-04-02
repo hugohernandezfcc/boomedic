@@ -3,7 +3,11 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-
+<style type="text/css">
+	      table.dataTable>tbody>tr.child ul.dtr-details {
+        margin-left: 45%;
+      }
+</style>
 @stop
 
 @section('content')
