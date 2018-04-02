@@ -512,19 +512,14 @@
  								</select>
  								</div>
  								<div id="reg" style="display: none;">
-					                <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-					                    <input type="email" name="email" class="form-control" placeholder="{{ trans('adminlte::adminlte.email') }}" required>
+					                <div class="form-group has-feedback">
+					                    <input type="email" name="email" class="form-control" placeholder="{{ trans('adminlte::adminlte.email') }}">
 					                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 					                </div>
 
-					                <div class="form-group has-feedback {{ $errors->has('birthdate') ? 'has-error' : '' }}">
-					                    <input type="text" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker2" required>
+					                <div class="form-group has-feedback">
+					                    <input type="text" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker2">
 					                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-					                    @if ($errors->has('birthdate'))
-					                        <span class="help-block">
-					                            <strong>{{ $errors->first('birthdate') }}</strong>
-					                        </span>
-					                    @endif
 					                </div>
 
 					                <div class="form-group has-feedback">
@@ -552,7 +547,7 @@
        				 	document.getElementById('inac2').style.display = "inline";
        				 	document.getElementById('inac').style.display = "none";
        				 	document.getElementById("formulatio").reset();
-       				 	document.getElementById("sav").disabled = false;
+       				 	$("#sav").removeAttr("disabled");
        				 	document.getElementById("val").value ="true";
        				 	document.getElementById('resp').style.display = "none";
        				});
@@ -562,7 +557,7 @@
        				 	document.getElementById('inac').style.display = "inline";
        				 	document.getElementById('inac2').style.display = "none";
        				 	document.getElementById("formulatio").reset();
-       				 	document.getElementById("sav").disabled = true;
+       				 	$("#sav").attr("disabled", "disabled");
        				 	document.getElementById("val").value ="false";
        				 	document.getElementById('resp').style.display = "inline";
        				 	document.getElementById("resp").innerHTML = "";
@@ -870,7 +865,7 @@
 							    document.getElementById('idfam').value = a.getAttribute("data-id");
 							    console.log(a.getAttribute("data-id"))
 							    document.getElementById("resp").innerHTML = "";
-							    document.getElementById("sav").disabled = false;
+							    $("#sav").removeAttr("disabled");   
 							}
 
 
