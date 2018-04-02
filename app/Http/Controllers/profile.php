@@ -343,7 +343,7 @@ class profile extends Controller
         $user = User::find(Auth::id());
            
         if($request->idfam != null){
-          
+         if($request->val == "false") {
           $userFam =  DB::table('users')->where('id', $request->idfam)->get();
           $family = new family;
           $family->parent = $user->id;
@@ -351,9 +351,59 @@ class profile extends Controller
           $family->activeUser = $request->idfam;
           $family->activeUserStatus = 'inactive';
           $family->save();
-          
+          }
+        } else{
+
+        $age = date("Y") - substr($request->birthdate, -4);
+        $namesUser = array();
+
+        //$pos = strpos(' ', $data['name']);
+
+        //if($pos !== false){
+            $explodeName = explode(' ', $request->name);
+
+            
+            
+            if(count($explodeName) == 2){
+
+                $namesUser['first'] = $explodeName[0];
+                $namesUser['last'] = $explodeName[1];
+            
+            }elseif (count($explodeName) == 3) {
+
+                $namesUser['first'] = $explodeName[0];
+                $namesUser['last'] = $explodeName[1] . ' ' . $explodeName[2];
+
+            }elseif (count($explodeName) == 4) {
+
+                $namesUser['first'] = $explodeName[0] . ' ' . $explodeName[1];
+                $namesUser['last'] = $explodeName[2] . ' ' . $explodeName[3];
+            }
+
+        $uName = explode('@', $request->email);
+        $uName['username'] = $uName[0] . '@boomedic.mx';
+        $unew = User::create([
+                'name'      => $request->name,
+                'email'     => $request->email,
+                'birthdate' => $request->birthdate,
+                'age'       => (int) $age,
+                'status'    => 'In Progress',
+                'firstname' => $namesUser['first'],
+                'lastname'  => $namesUser['last'],
+                'username'  => $uName['username'],
+                'password'  => bcrypt('123456')
+            ]);
+
+         $userFam =  DB::table('users')->where('id', $unew->id)->get();
+          $family = new family;
+          $family->parent = $user->id;
+          $family->relationship = $request->relationship;
+          $family->activeUser = $unew->id;
+          $family->activeUserStatus = 'inactive';
+          $family->save();
+          }
              return redirect('user/profile/' . Auth::id() );
-              }
+              
         }        
 
     /**
