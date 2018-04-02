@@ -778,9 +778,13 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
+                @if($latitude != "" && $longitude != "")	 		
                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
+                @else   
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
+                   @endif   	
                         Dirección de usuario      
-                      
+   
                   </a> 
                   </h4> 
                   </div>
@@ -788,9 +792,11 @@
                     <div class="box-body" align="center">
                     	@if($latitude == "" && $longitude == "")
                     	   No ha registrado ninguna dirección.
+                    	   <input type="hidden" id="nullmap" value="true">
                     	@else   
                           <div id="mapAddressUser"></div>
-                          @endif
+                          <input type="hidden" id="nullmap" value="false">
+                        @endif
                     </div>
                   </div>
                 </div>
@@ -881,13 +887,15 @@
 				        }else{
 				          height = window.screen.availHeight-315;
 				        }
+				       @if(!empty($latitude) && !empty($longitude))
 				        document.getElementById('mapAddressUser').setAttribute("style","height:" + height + "px");
+				        @endif
 
 				$('#collapseTwo').collapse("toggle");
 				$('#collapseThree').collapse("toggle");
 	
     				initAutocomplete();
-    				@if(empty($status) )
+    				@if(empty($status) && !empty($latitude))
     					initMapAddressUser();
 					@endif
     			};
@@ -971,9 +979,7 @@
 		    	
 
 		    		var counter = -1;
-
-			      	function initMapAddressUser() {
-
+			      	function initMapAddressUser() {	
 				      	if(!counter > 0){
 				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
 					          zoom: 14,
@@ -990,9 +996,9 @@
 					        });
 					    }
 				        counter++;
-			      	}
+			      	
+			      }
 		    	</script>
-
 			@endif
 
 <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
