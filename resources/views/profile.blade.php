@@ -786,7 +786,11 @@
                   </div>
                   <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
                     <div class="box-body" align="center">
+                    	@if($latitude == "" && $longitude == "")
+                    	   No ha registrado ninguna dirección.
+                    	@else   
                           <div id="mapAddressUser"></div>
+                          @endif
                     </div>
                   </div>
                 </div>
