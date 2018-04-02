@@ -507,8 +507,18 @@
  									<option value="wife">Esposa</option>
  									<option value="husband">Esposo</option>
  								</select>
- 								<br><br>
+ 								<br>
+ 								<div id="reg" style="display: none;">
+ 								<b>Email</b>	
+ 								<input type="text" name="email" class="form-control" placeholder="Ingrese email" required>
+ 								<br>
+ 								<b>Fecha de nacimiento</b>	
+ 								<input type="text" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker1">
+ 								</div>	
+ 								<br>
  								<div align="right">
+ 								<button  type="button" class="btn btn-default btn-flat" id="inac2" style="display: none;">Mi familiar tiene usuario</button>	
+ 								<button  type="button" class="btn btn-default btn-flat" id="inac">Registrar familiar sin usuario</button>
  								<button  type="submit" class="btn btn-secondary btn-flat" id="sav">Guardar</button>
  								</div>
  							</form>
@@ -517,7 +527,18 @@
                     </div>
                 </div>
 				<script type="text/javascript">
-
+				$('#inac').on('click', function(e) {
+       				 e.preventDefault();
+       				 	document.getElementById('reg').style.display = "block";
+       				 	document.getElementById('inac2').style.display = "inline";
+       				 	document.getElementById('inac').style.display = "none";
+       				});
+				$('#inac2').on('click', function(e) {
+       				 e.preventDefault();
+       				 	document.getElementById('reg').style.display = "none";
+       				 	document.getElementById('inac').style.display = "inline";
+       				 	document.getElementById('inac2').style.display = "none";
+       				})
 
 				$('#two').on('click', function(e) {
        				 e.preventDefault();
@@ -710,6 +731,7 @@
 								      .attr('font-family', 'sans-serif')
 								      .attr('fill', function(d, i) {
 								        if (i > 0) {
+
 								          return palette.darkgray
 								        } else {
 								          return "transparent"						   
