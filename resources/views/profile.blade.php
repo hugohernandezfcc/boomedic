@@ -478,7 +478,7 @@
                     <div id="demo"></div>
                     </div>
                    <div class="modal fade" role="dialog" id="modalfamily">
-                    <div class="modal-dialog modal-sm">
+                    <div class="modal-dialog">
 
                       <div class="modal-content">
 
@@ -489,9 +489,9 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                            <div class="modal-body" >
                              <div class="register-box-body">	
                              <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post">
+                             	<input type="hidden" name="val" id="val" value="false">
                                 <div class="form-group has-feedback">	
  								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>
  								<span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -542,12 +542,11 @@
 
  								<div align="right">
  								<button  type="button" class="btn btn-default btn-flat" id="inac2" style="display: none;">Mi familiar tiene usuario</button>	
- 								<button  type="button" class="btn btn-default btn-flat" id="inac">Registrar familiar sin usuario</button>
+ 								<button  type="button" class="btn btn-default btn-flat" id="inac">Agregar familiar sin usuario</button>
  								<button  type="submit" class="btn btn-secondary btn-flat" id="sav" disabled>Guardar</button>
  								</div>
  							</form>
  						</div>
-                        	</div>
                       </div> 
                     </div>
                 </div>
@@ -557,14 +556,18 @@
        				 	document.getElementById('reg').style.display = "block";
        				 	document.getElementById('inac2').style.display = "inline";
        				 	document.getElementById('inac').style.display = "none";
+       				 	document.getElementById("formulatio").reset();
        				 	document.getElementById("sav").disabled = false;
+       				 	document.getElementById("val").value ="true";
        				});
 				$('#inac2').on('click', function(e) {
        				 e.preventDefault();
        				 	document.getElementById('reg').style.display = "none";
        				 	document.getElementById('inac').style.display = "inline";
        				 	document.getElementById('inac2').style.display = "none";
+       				 	document.getElementById("formulatio").reset();
        				 	document.getElementById("sav").disabled = true;
+       				 	document.getElementById("val").value ="false";
 
        				})
 
