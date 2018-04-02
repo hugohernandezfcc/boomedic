@@ -490,14 +490,17 @@
                           </button>
                         </div>
                             <div class="modal-body" >
-                             <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post" class="form-horizontal">	
-                            	<b>Nombre completo</b>	
- 								<input type="text" name="name" id="sea" class="form-control" placeholder="Ingrese el nombre y apellido" required>
- 								<input type="hidden" name="idfam" id="idfam" required><br>
- 								<div id="resp" class="text-muted"></div><br>
- 								<b>Identifique la relación</b>
- 								<select class="form-control select2" id="relationship" name="relationship">
- 									<option value="0" default>--Ninguna--</option>
+                             <div class="register-box-body">	
+                             <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post">
+                                <div class="form-group has-feedback">	
+ 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>
+ 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
+ 							   </div>
+ 							    <input type="hidden" name="idfam" id="idfam" required>
+ 								<div id="resp" class="form-group text-muted"></div>
+ 								 <div class="form-group has-feedback">	
+ 								<select class="form-control select2" id="relationship" name="relationship" size="1">
+ 									<option value="0" default>--Seleccione parentesco--</option>
  									<option value="father">Padre</option>
  									<option value="mother">Madre</option>
  									<option value="son">Hijo(a)</option>
@@ -507,21 +510,43 @@
  									<option value="wife">Esposa</option>
  									<option value="husband">Esposo</option>
  								</select>
- 								<br>
+ 								</div>
  								<div id="reg" style="display: none;">
- 								<b>Email</b>	
- 								<input type="text" name="email" class="form-control" placeholder="Ingrese email" required>
- 								<br>
- 								<b>Fecha de nacimiento</b>	
- 								<input type="text" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker1">
+					                <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+					                    <input type="email" name="email" class="form-control" placeholder="{{ trans('adminlte::adminlte.email') }}">
+					                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					                    @if ($errors->has('email'))
+					                        <span class="help-block">
+					                            <strong>{{ $errors->first('email') }}</strong>
+					                        </span>
+					                    @endif
+					                </div>
+
+					                <div class="form-group has-feedback {{ $errors->has('birthdate') ? 'has-error' : '' }}">
+					                    <input type="text" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker2">
+					                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+					                    @if ($errors->has('birthdate'))
+					                        <span class="help-block">
+					                            <strong>{{ $errors->first('birthdate') }}</strong>
+					                        </span>
+					                    @endif
+					                </div>
+
+					                <div class="form-group has-feedback">
+					                  <select class="form-control" name="gender" size="1">
+					                  	<option value="female">Femenino</option>
+					                  	<option value="male">Masculino</option>
+					                  </select>
+					                </div>
  								</div>	
- 								<br>
+
  								<div align="right">
  								<button  type="button" class="btn btn-default btn-flat" id="inac2" style="display: none;">Mi familiar tiene usuario</button>	
  								<button  type="button" class="btn btn-default btn-flat" id="inac">Registrar familiar sin usuario</button>
- 								<button  type="submit" class="btn btn-secondary btn-flat" id="sav">Guardar</button>
+ 								<button  type="submit" class="btn btn-secondary btn-flat" id="sav" disabled>Guardar</button>
  								</div>
  							</form>
+ 						</div>
                         	</div>
                       </div> 
                     </div>
@@ -532,12 +557,15 @@
        				 	document.getElementById('reg').style.display = "block";
        				 	document.getElementById('inac2').style.display = "inline";
        				 	document.getElementById('inac').style.display = "none";
+       				 	document.getElementById("sav").disabled = false;
        				});
 				$('#inac2').on('click', function(e) {
        				 e.preventDefault();
        				 	document.getElementById('reg').style.display = "none";
        				 	document.getElementById('inac').style.display = "inline";
        				 	document.getElementById('inac2').style.display = "none";
+       				 	document.getElementById("sav").disabled = true;
+
        				})
 
 				$('#two').on('click', function(e) {
@@ -841,6 +869,7 @@
 							    document.getElementById('idfam').value = a.getAttribute("data-id");
 							    console.log(a.getAttribute("data-id"))
 							    document.getElementById("resp").innerHTML = "";
+							    document.getElementById("sav").disabled = false;
 							}
 
 
