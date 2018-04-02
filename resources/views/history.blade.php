@@ -42,7 +42,7 @@
   	<div class="box-body">
 	  <div class="row">
         <div class="col-md-12">
-        <div align="center"><label id="response"></label></div>
+        <div align="center"><label id="response" style="margin-top: 20px; margin-botton: 0 !important"></label></div>
 			<br/>
           <!-- The time line -->
           <ul class="timeline">

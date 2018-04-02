@@ -492,8 +492,8 @@
                             <div class="modal-body" >
                              <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post" class="form-horizontal">	
                             	<b>Nombre completo</b>	
- 								<input type="text" name="name" id="sea" class="form-control" placeholder="Ingrese el nombre y apellido" required oninvalid="this.setCustomValidity('Llene el campo si el familiar ya tiene usuario, de lo contrario registre')">
- 								<input type="hidden" name="idfam" id="idfam"><br>
+ 								<input type="text" name="name" id="sea" class="form-control" placeholder="Ingrese el nombre y apellido" required>
+ 								<input type="hidden" name="idfam" id="idfam" required><br>
  								<div id="resp" class="text-muted"></div><br>
  								<b>Identifique la relación</b>
  								<select class="form-control select2" id="relationship" name="relationship">
