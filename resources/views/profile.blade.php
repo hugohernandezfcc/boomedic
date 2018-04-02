@@ -494,13 +494,13 @@
                              	<div class="alert alert-info alert-dismissible" id="alert1">
 					                <i class="icon fa fa-info"></i> Este formulario es solo si tu familiar ya es un usuario de la App.
 					                 <div align="right">
- 										<a class="btn btn-xs btn-flat" id="inac" style="text-decoration: none; color: black">¿No es un usuario de la App? <i class="fa fa-arrow-right"></i></a>
+ 										<a class="btn btn-sm btn-flat" id="inac" style="text-decoration: none; color: #6D6D6D"><b>¿No es un usuario de la App? <i class="fa fa-arrow-right"></i></b></a>
  									</div>
 					            </div>
 					            <div class="alert alert-info alert-dismissible" id="alert2" style="display: none;">
 					                <i class="icon fa fa-info"></i> Este formulario es para registrar familiares que no tienen usuarios registrados en la App.
 					                 <div align="right">
- 										<a class="btn btn-xs btn-flat" id="inac2" style="text-decoration: none; color: black"><i class="fa fa-arrow-left"></i> Volver a formulario anterior</a>
+ 										<a class="btn btn-sm btn-flat" id="inac2" style="text-decoration: none; color: #6D6D6D"><b><i class="fa fa-arrow-left"></i> Formulario anterior</b></a>
  									</div>
 					            </div>
                              	<input type="hidden" name="val" id="val" value="false">
