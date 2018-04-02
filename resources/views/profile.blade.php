@@ -491,6 +491,18 @@
                         </div>
                              <div class="register-box-body">	
                              <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post">
+                             	<div class="alert alert-info alert-dismissible" id="alert1">
+					                <i class="icon fa fa-info"></i> Este formulario es solo si tu familiar ya es un usuario de la App.
+					                 <div align="right">
+ 										<a class="btn btn-xs btn-flat" id="inac" style="text-decoration: none; color: black">¿No es un usuario de la App? <i class="fa fa-arrow-right"></i></a>
+ 									</div>
+					            </div>
+					            <div class="alert alert-info alert-dismissible" id="alert2" style="display: none;">
+					                <i class="icon fa fa-info"></i> Este formulario es para registrar familiares que no tienen usuarios registrados en la App.
+					                 <div align="right">
+ 										<a class="btn btn-xs btn-flat" id="inac2" style="text-decoration: none; color: black"><i class="fa fa-arrow-left"></i> Volver a formulario anterior</a>
+ 									</div>
+					            </div>
                              	<input type="hidden" name="val" id="val" value="false">
                                 <div class="form-group has-feedback">	
  								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>
@@ -529,11 +541,8 @@
 					                  </select>
 					                </div>
  								</div>	
-
  								<div align="right">
- 								<button  type="button" class="btn btn-default btn-flat" id="inac2" style="display: none;">Mi familiar tiene usuario</button>	
- 								<button  type="button" class="btn btn-default btn-flat" id="inac">Agregar familiar sin usuario</button>
- 								<button  type="submit" class="btn btn-secondary btn-flat" id="sav" disabled>Guardar</button>
+ 								<button  type="submit" class="btn btn-default btn-flat" id="sav"><i class="fa fa-plus text-muted"></i>&nbsp; Agregar Familiar</button>
  								</div>
  							</form>
  						</div>
@@ -550,6 +559,8 @@
        				 	$("#sav").removeAttr("disabled");
        				 	document.getElementById("val").value ="true";
        				 	document.getElementById('resp').style.display = "none";
+       				 	document.getElementById('alert1').style.display = "none";
+       				 	document.getElementById('alert2').style.display = "block";
        				});
 				$('#inac2').on('click', function(e) {
        				 e.preventDefault();
@@ -561,6 +572,8 @@
        				 	document.getElementById("val").value ="false";
        				 	document.getElementById('resp').style.display = "inline";
        				 	document.getElementById("resp").innerHTML = "";
+       				 	document.getElementById('alert1').style.display = "block";
+       				 	document.getElementById('alert2').style.display = "none";
 
        				})
 
