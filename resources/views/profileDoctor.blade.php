@@ -540,41 +540,29 @@
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
                     <div class="box-body">
-                            <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Licencia Profesional:</b></div>
-                            <div class="col-sm-8" align="left">{{ $professional_license }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Licencia Profesional:</b></div>
+                            <div class="col-sm-10" align="left">{{ $professional_license }}</div>
                         </div>
-                         <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Sociedad de Médicos:</b></div>
-                            <div class="col-sm-8" align="left">{{ $medical_society }}</div>
-                          </div>
+                         <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Sociedad de Médicos:</b></div>
+                            <div class="col-sm-10" align="left">{{ $medical_society }}</div>
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Especialidad:</b></div>
-                            <div class="col-sm-8" align="left">{{ $specialty }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Especialidad:</b></div>
+                            <div class="col-sm-10" align="left">{{ $specialty }}</div>
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Escuela de Medicina:</b></div>
-                            <div class="col-sm-8" align="left">{{ $schoolOfMedicine }}</div>
-                          </div>
+                       <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Escuela de Medicina:</b></div>
+                            <div class="col-sm-10" align="left">{{ $schoolOfMedicine }}</div>
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Facultad de Especialización:</b></div>
-                            <div class="col-sm-8" align="left">{{ $facultyOfSpecialization }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Facultad de Especialización:</b></div>
+                            <div class="col-sm-10" align="left">{{ $facultyOfSpecialization }}</div>
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Práctica Profesional:</b></div>
-                            <div class="col-sm-8" align="left">{{ $practiseProfessional }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Práctica Profesional:</b></div>
+                            <div class="col-sm-10" align="left">{{ $practiseProfessional }}</div>
                         </div>
                     </div>
                   </div>
