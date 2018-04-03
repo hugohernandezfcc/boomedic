@@ -489,20 +489,14 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                             <div class="register-box-body">	
-                             <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post">
-                             	<div class="alert alert-info alert-dismissible" id="alert1">
-					                <i class="icon fa fa-info"></i> Este formulario es solo si tu familiar ya es un usuario de la App.
-					                 <div align="right">
- 										<a class="btn btn-sm btn-flat" id="inac" style="text-decoration: none; color: #6D6D6D"><b>¿No es un usuario de la App? <i class="fa fa-arrow-right"></i></b></a>
+                             <div class="register-box-body">
+					                 <div align="form-group">
+ 										<a class="btn btn-default btn-flat btn-block" id="inac">No es un usuario de la App</a>
+ 									</div><div align="form-group">
+ 										<a class="btn btn-default btn-flat btn-block" id="inac2">Si es un usuario activo de la App</a>
  									</div>
-					            </div>
-					            <div class="alert alert-info alert-dismissible" id="alert2" style="display: none;">
-					                <i class="icon fa fa-info"></i> Este formulario es para registrar familiares que no tienen usuarios registrados en la App.
-					                 <div align="right">
- 										<a class="btn btn-sm btn-flat" id="inac2" style="text-decoration: none; color: #6D6D6D"><b><i class="fa fa-arrow-left"></i> Formulario anterior</b></a>
- 									</div>
-					            </div>
+                             <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post" style="display: none;">
+
                              	<input type="hidden" name="val" id="val" value="false">
                                 <div class="form-group has-feedback">	
  								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>
@@ -535,13 +529,14 @@
 					                </div>
 
 					                <div class="form-group has-feedback">
-					                  <select class="form-control" name="gender" size="1">
+					                  <select class="form-control select2" name="gender" size="1">
 					                  	<option value="female">Femenino</option>
 					                  	<option value="male">Masculino</option>
 					                  </select>
 					                </div>
  								</div>	
  								<div align="right">
+ 								<button  type="button" class="btn btn-default btn-flat" id="back"><i class="fa fa-arrow-left text-muted"></i>&nbsp; Regresar</button>
  								<button  type="submit" class="btn btn-default btn-flat" id="sav"><i class="fa fa-plus text-muted"></i>&nbsp; Agregar Familiar</button>
  								</div>
  							</form>
@@ -550,30 +545,41 @@
                     </div>
                 </div>
 				<script type="text/javascript">
+				$('#modalfamily [data-dismiss=modal]').on('click', function (e) {
+						document.getElementById('formulatio').style.display = "none";
+						document.getElementById('inac2').style.display = "block";
+						document.getElementById('inac').style.display = "block";
+
+				})
+				$('#back').on('click', function(e) {
+						document.getElementById('formulatio').style.display = "none";
+						document.getElementById('inac2').style.display = "block";
+						document.getElementById('inac').style.display = "block";
+
+				})
 				$('#inac').on('click', function(e) {
        				 e.preventDefault();
+       				    document.getElementById('formulatio').style.display = "block";
        				 	document.getElementById('reg').style.display = "block";
-       				 	document.getElementById('inac2').style.display = "inline";
+       				 	document.getElementById('inac2').style.display = "none";
        				 	document.getElementById('inac').style.display = "none";
        				 	document.getElementById("formulatio").reset();
        				 	$("#sav").removeAttr("disabled");
        				 	document.getElementById("val").value ="true";
        				 	document.getElementById('resp').style.display = "none";
-       				 	document.getElementById('alert1').style.display = "none";
-       				 	document.getElementById('alert2').style.display = "block";
+
        				});
 				$('#inac2').on('click', function(e) {
        				 e.preventDefault();
+       				 document.getElementById('formulatio').style.display = "block";
        				 	document.getElementById('reg').style.display = "none";
-       				 	document.getElementById('inac').style.display = "inline";
+       				 	document.getElementById('inac').style.display = "none";
        				 	document.getElementById('inac2').style.display = "none";
        				 	document.getElementById("formulatio").reset();
        				 	$("#sav").attr("disabled", "disabled");
        				 	document.getElementById("val").value ="false";
        				 	document.getElementById('resp').style.display = "inline";
        				 	document.getElementById("resp").innerHTML = "";
-       				 	document.getElementById('alert1').style.display = "block";
-       				 	document.getElementById('alert2').style.display = "none";
 
        				})
 
@@ -644,8 +650,6 @@
 								    }
 
 								    var nodes = @php echo $nodes; @endphp;
-								    console.log(nodes);
-
 								    var links = [];
 
 								    for (var i = 0; i < nodes.length; i++) {
@@ -1018,8 +1022,6 @@
 		              lat: position.coords.latitude,
 		              lng: position.coords.longitude
 		            };
-
-		            console.log(geolocation.lat + ' ' + geolocation.lng);
 		            document.getElementById('latitudeFend').value = geolocation.lat; 
 		            document.getElementById('longitudeFend').value = geolocation.lng;
 		            var circle = new google.maps.Circle({
