@@ -200,12 +200,13 @@
                             <option value="12">12</option>
                         </select></div><div class="col-sm-2">
                         <select name="year" class="form-control select2">
-                            <option value="17"> 2017</option>
+
                             <option value="18"> 2018</option>
                             <option value="19"> 2019</option>
                             <option value="20"> 2020</option>
                             <option value="21"> 2021</option>
-                             <option value="22"> 2022</option>
+                            <option value="22"> 2022</option>
+                            <option value="23"> 2023</option>
                         </select></div><div class="col-sm-3">
                         <select name="CreDeb" class="form-control select2">
                             <option value="Credit">Crédito</option>
@@ -309,25 +310,20 @@
 
 
 					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
-				             <div class="row">
-				             	<div class="col-sm-1"></div>
-			                	<div class="col-sm-4">
-			                			<div class="col-sm-6" align="right"><b>Tarjeta:</b></div>
+			                	<div class="col-xs-6 col-md-4">
+			                			<div class="col-sm-6"><b>Tarjeta:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $cardnumber }}</div>
 			                	</div>
 
-			                	<div class="col-sm-4">
-			                			<div class="col-sm-6" align="right"><b>Débito/Crédito:</b></div>
+			                	<div class="col-xs-6 col-md-4">
+			                			<div class="col-sm-6"><b>Débito/Crédito:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $credit_debit }}</div>
 
 			                	</div>
-
-			                </div>		
+	
 			                <br/>
-			                <div class="row"> 
-			                <div class="col-sm-1"></div>
-			                <div class="col-sm-4">
-			                			<div class="col-sm-6" align="right"><b>Proveedor:</b></div>
+			                <div class="col-xs-6 col-md-4">
+			                			<div class="col-sm-6"><b>Proveedor:</b></div>
 			                			<div class="col-sm-6" align="left">
 			                		   @if($provider == 'Visa')
 			                            <i class="fa fa-cc-visa" style="font-size: 25px;"></i>
@@ -338,11 +334,11 @@
 
 			                        </div>
 			                		</div>
-			                	<div class="col-sm-4">
-			                			<div class="col-sm-6" align="right"><b>Banco:</b></div>
+			                	<div class="col-xs-6 col-md-4">
+			                			<div class="col-sm-6"><b>Banco:</b></div>
 			                			<div class="col-sm-6">{{ $bank }}</div>	
 			                	</div>
-			              </div>        </div>	  	
+			                </div>	  	
 	</div>
 
 	<div class="box">
