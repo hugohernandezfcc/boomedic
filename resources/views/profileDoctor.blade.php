@@ -472,61 +472,59 @@
 
                     <div class="box-body">
                       <br/>
-
+                        <div class="col-xs-12">
+                          
+                            <div class="col-sm-2" align="left"><b>Correo:</b></div>
+                            <div class="col-sm-10" align="left">{{ $email }}</div>
+                         
+                        </div>
+                        <div class="col-xs-12">
+                          
+                            <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
+                            <div class="col-sm-10" align="left">{{ $username }}</div>
+                         
+                        </div>
+                        <div class="col-xs-12">
+                          
+                            <div class="col-sm-2" align="left"><b>Edad:</b></div>
+                            <div class="col-sm-10" align="left">{{ $age }}</div>
+                         
+                        </div>
+                        <div class="col-xs-12">
+                         
+                            <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
+                            <div class="col-sm-10" align="left">{{ $occupation }}</div>
+                         
+                        </div>
+                        <div class="col-xs-12">
+                        
+                            <div class="col-sm-2" align="left"><b>Genero:</b></div>
+                            <div class="col-sm-10" align="left">{{ $gender }}</div>
                       
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-8" align="left">{{ $email }}</div>
-                          </div>
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-8" align="left">{{ $username }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                         
+                            <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
+                            <div class="col-sm-10" align="left">{{ $scholarship }}</div>
+                    
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Edad:</b></div>
-                            <div class="col-sm-8" align="left">{{ $age }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                         
+                            <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
+                            <div class="col-sm-10" align="left">{{ $maritalstatus }}</div>
+                      
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-8" align="left">{{ $occupation }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                        
+                            <div class="col-sm-2" align="left"><b># Móvil:</b></div>
+                            <div class="col-sm-10" align="left">{{ $mobile }}</div>
+                       
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Genero:</b></div>
-                            <div class="col-sm-8" align="left">{{ $gender }}</div>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-8" align="left">{{ $scholarship }}</div>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Estado civil:</b></div>
-                            <div class="col-sm-8" align="left">{{ $maritalstatus }}</div>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-8" align="left">{{ $mobile }}</div>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-8" align="left">{{ $updated_at }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                        
+                            <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
+                            <div class="col-sm-10" align="left">{{ $updated_at }}</div>
+                        
                         </div>
                     </div>
                   </div>
