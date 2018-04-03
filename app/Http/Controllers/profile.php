@@ -13,11 +13,12 @@ use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 use Image;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class profile extends Controller
 {
 
-
+     use SendsPasswordResetEmails;
     /**
      * Create a new controller instance.
      *
@@ -394,13 +395,17 @@ class profile extends Controller
                 'password'  => bcrypt('123456')
             ]);
 
-         $userFam =  DB::table('users')->where('id', $unew->id)->get();
+
+          $userFam  =  DB::table('users')->where('id', $unew->id)->get();
           $family = new family;
           $family->parent = $user->id;
           $family->relationship = $request->relationship;
           $family->activeUser = $unew->id;
           $family->activeUserStatus = 'inactive';
           $family->save();
+         $response = $this->broker()->sendResetLink(
+            $request->only('email')
+        );
           }
              return redirect('user/profile/' . Auth::id() );
               

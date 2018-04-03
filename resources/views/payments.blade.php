@@ -311,20 +311,20 @@
 
 					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
 			                	<div class="col-xs-6 col-md-4">
-			                			<div class="col-sm-6"><b>Tarjeta:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $cardnumber }}</div>
+			                			<div class="col-sm-4"><b>Tarjeta:</b></div>
+			                			<div class="col-sm-8" align="left">{{ $cardnumber }}</div>
 			                	</div>
 
 			                	<div class="col-xs-6 col-md-4">
-			                			<div class="col-sm-6"><b>Débito/Crédito:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $credit_debit }}</div>
+			                			<div class="col-sm-4"><b>Débito/Crédito:</b></div>
+			                			<div class="col-sm-8" align="left">{{ $credit_debit }}</div>
 
 			                	</div>
 	
 			                <br/>
 			                <div class="col-xs-6 col-md-4">
-			                			<div class="col-sm-6"><b>Proveedor:</b></div>
-			                			<div class="col-sm-6" align="left">
+			                			<div class="col-sm-4"><b>Proveedor:</b></div>
+			                			<div class="col-sm-8" align="left">
 			                		   @if($provider == 'Visa')
 			                            <i class="fa fa-cc-visa" style="font-size: 25px;"></i>
 			                            @endif
@@ -335,8 +335,8 @@
 			                        </div>
 			                		</div>
 			                	<div class="col-xs-6 col-md-4">
-			                			<div class="col-sm-6"><b>Banco:</b></div>
-			                			<div class="col-sm-6">{{ $bank }}</div>	
+			                			<div class="col-sm-4"><b>Banco:</b></div>
+			                			<div class="col-sm-8">{{ $bank }}</div>	
 			                	</div>
 			                </div>	  	
 	</div>
