@@ -423,7 +423,8 @@ span.round-tab:hover {
         $('#datepicker2').datepicker({
             autoclose: true,
             format: "yyyy-mm-dd",
-            language: 'es'
+            language: 'es',
+            orientation: 'top auto'
          });
         //Datemask dd/mm/yyyy
         //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
@@ -438,6 +439,7 @@ span.round-tab:hover {
             titleFormat: "MM yyyy",
             weekStart: 0
           };
+
 
                     //Date picker
        /* $('#datepicker').datepicker({
