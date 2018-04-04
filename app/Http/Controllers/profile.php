@@ -375,29 +375,95 @@ class profile extends Controller
 
         //if($pos !== false){
             $explodeName = explode(' ', $request->name);
-
-            
+            $porcent = 0;
             
             if(count($explodeName) == 2){
 
                 $namesUser['first'] = $explodeName[0];
                 $namesUser['last'] = $explodeName[1];
+
+             $search =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[0].'%')->get();
+                 if(count($search) > 0){
+                     $porcent++;
+                 }
+
+             $search2 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[1].'%')->get();
+               if(count($search2) > 0){
+                     $porcent++;
+                 }
+            $search3 =  DB::table('users')->where('name', 'ILIKE','%'.$request->name.'%')->get();
+               if(count($search3) > 0){
+                     $porcent++;
+                 }
+                 $total = $porcent * 100 / 3;
             
             }elseif (count($explodeName) == 3) {
 
                 $namesUser['first'] = $explodeName[0];
                 $namesUser['last'] = $explodeName[1] . ' ' . $explodeName[2];
+             $search =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[0].'%')->get();
+                 if(count($search) > 0){
+                     $porcent++;
+                 }
+
+             $search2 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[1].'%')->get();
+               if(count($search2) > 0){
+                     $porcent++;
+                 }
+            $search3 =  DB::table('users')->where('name', 'ILIKE','%'.$request->name.'%')->get();
+               if(count($search3) > 0){
+                     $porcent++;
+                 }
+            $search4 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[2].'%')->get();
+               if(count($search4) > 0){
+                     $porcent++;
+                 }
+                 $total = $porcent * 100 / 4;
 
             }elseif (count($explodeName) == 4) {
 
                 $namesUser['first'] = $explodeName[0] . ' ' . $explodeName[1];
                 $namesUser['last'] = $explodeName[2] . ' ' . $explodeName[3];
+
+            $search =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[0].'%')->get();
+                 if(count($search) > 0){
+                     $porcent++;
+                 }
+
+             $search2 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[1].'%')->get();
+               if(count($search2) > 0){
+                     $porcent++;
+                 }
+            $search3 =  DB::table('users')->where('name', 'ILIKE','%'.$request->name.'%')->get();
+               if(count($search3) > 0){
+                     $porcent++;
+                 }
+            $search4 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[2].'%')->get();
+               if(count($search4) > 0){
+                     $porcent++;
+                 }
+            $search5 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[3].'%')->get();
+               if(count($search5) > 0){
+                     $porcent++;
+                 }                 
+                 $total = (int)($porcent * 100 / 5);
             }
 
         $uName = explode('@', $request->email);
         $uName['username'] = $uName[0] . '@boomedic.mx';
+
+
+
+
         $create = DB::table('users')->where('email', $request->email)->get();
-         if(count($create) == 0){
+
+      if(count($create) == 0){
+        if($total > 74){
+            $notification = array(
+            'message' => 'El nombre está repetido en un:'. $total. '%', 
+            'error' => 'error'
+            );
+        }else{
         $unew = User::create([
                 'name'      => $request->name,
                 'email'     => $request->email,
@@ -418,7 +484,7 @@ class profile extends Controller
           $family->activeUser = $unew->id;
           $family->activeUserStatus = 'inactive';
           $family->save();
-         $response = $this->broker()->sendResetLink(
+          $response = $this->broker()->sendResetLink(
             $request->only('email')
         );
 
@@ -430,13 +496,15 @@ class profile extends Controller
             );
 
         }
+      }
          else{
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'nel perro', 
+            'message' => 'No se pudo registrar, el correo que utilizaste  ya está en uso.', 
             'error' => 'error'
             );
           }
+
       }
              return redirect('user/profile/' . Auth::id() )->with($notification);
               
