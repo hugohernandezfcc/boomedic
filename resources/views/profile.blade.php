@@ -372,6 +372,31 @@
 
 	    	@else
 
+						<!-- Charge Alert whether payment was processed or not -->
+							@if(session()->has('message'))
+
+								@if(session()->has('success'))
+							    <div class="alert alert-success alert-dismissable fade in" role="alert">
+							    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									    <span aria-hidden="true">&times;</span>
+									</button>
+									<strong>¡Familiar Agregado!</strong><br/><br/>		
+							        {{ session()->get('message') }}
+							    </div>
+							   
+								@elseif(session()->has('error'))
+								 <div class="alert alert-danger alert-dismissable fade in" role="alert">
+								 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									    <span aria-hidden="true">&times;</span>
+									</button>
+									<strong>¡Hubo un error al agregar tu familiar!</strong><br/><br/>		
+							 		<!-- Error codes are defined within the adminlte -->
+							          {{ session()->get('message') }}
+							    </div>
+							   @endif
+
+							@endif
+						<!-- Here ends the code for the alert -->
       <div class="row">
         <div class="col-md-12">
           <div class="box box-solid">

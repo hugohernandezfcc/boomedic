@@ -351,7 +351,20 @@ class profile extends Controller
           $family->relationship = $request->relationship;
           $family->activeUser = $request->idfam;
           $family->activeUserStatus = 'inactive';
-          $family->save();
+          if($family->save()){
+           $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'Bien', 
+            'success' => 'success'
+            );
+         }else{
+           $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'Bien', 
+            'error' => 'error'
+            );
+
+         }
           }
         } else{
 
@@ -408,10 +421,24 @@ class profile extends Controller
          $response = $this->broker()->sendResetLink(
             $request->only('email')
         );
+
           }
+         $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'Bien', 
+            'success' => 'success'
+            );
+
         }
+                  else{
+            $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'nel perro', 
+            'error' => 'error'
+            );
+          }
       }
-             return redirect('user/profile/' . Auth::id() );
+             return redirect('user/profile/' . Auth::id() )->with($notification);
               
         }        
 
