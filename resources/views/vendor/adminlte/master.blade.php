@@ -424,7 +424,7 @@ span.round-tab:hover {
             autoclose: true,
             format: "yyyy-mm-dd",
             language: 'es',
-            orientation: 'top auto'
+            orientation: 'auto'
          });
         //Datemask dd/mm/yyyy
         //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
