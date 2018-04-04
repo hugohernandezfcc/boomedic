@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class family extends Model
 {
@@ -24,6 +25,9 @@ class family extends Model
 	}
 	public function passiveUser(){
 	  return $this->belongsTo('App\User', 'passiveUser');
+	}
+	public static function ilike($a){
+  	return DB::table('users')->where('name', 'ILIKE','%'.$a.'%')->get();
 	}
 }
 

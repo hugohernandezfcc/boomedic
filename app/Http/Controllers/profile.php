@@ -327,7 +327,7 @@ class profile extends Controller
       {     $user = User::find(Auth::id());
            
         if($request->search != null){
-          $search =  DB::table('users')->where('name', 'ILIKE','%'.$request->search.'%')->get();
+          $search = family::ilike($request->search);
           
             return response()->json($search);
               }
@@ -354,13 +354,13 @@ class profile extends Controller
           if($family->save()){
            $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Bien', 
+            'message' => 'Usuario emparentado como familiar de manera exitosa.', 
             'success' => 'success'
             );
          }else{
            $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Bien', 
+            'message' => 'No se pudo emparentar el usuario, vuelva a intentarlo más tarde.', 
             'error' => 'error'
             );
 
@@ -382,16 +382,16 @@ class profile extends Controller
                 $namesUser['first'] = $explodeName[0];
                 $namesUser['last'] = $explodeName[1];
 
-             $search =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[0].'%')->get();
+             $search =  family::ilike($explodeName[0]);
                  if(count($search) > 0){
                      $porcent++;
                  }
 
-             $search2 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[1].'%')->get();
+             $search2 =  family::ilike($explodeName[1]);
                if(count($search2) > 0){
                      $porcent++;
                  }
-            $search3 =  DB::table('users')->where('name', 'ILIKE','%'.$request->name.'%')->get();
+            $search3 =  family::ilike($request->name);
                if(count($search3) > 0){
                      $porcent++;
                  }
@@ -401,20 +401,20 @@ class profile extends Controller
 
                 $namesUser['first'] = $explodeName[0];
                 $namesUser['last'] = $explodeName[1] . ' ' . $explodeName[2];
-             $search =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[0].'%')->get();
+             $search =  family::ilike($explodeName[0]); 
                  if(count($search) > 0){
                      $porcent++;
                  }
 
-             $search2 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[1].'%')->get();
+             $search2 = family::ilike($explodeName[1]); 
                if(count($search2) > 0){
                      $porcent++;
                  }
-            $search3 =  DB::table('users')->where('name', 'ILIKE','%'.$request->name.'%')->get();
+            $search3 =  family::ilike($request->name);
                if(count($search3) > 0){
                      $porcent++;
                  }
-            $search4 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[2].'%')->get();
+            $search4 =  family::ilike($explodeName[2]); 
                if(count($search4) > 0){
                      $porcent++;
                  }
@@ -425,28 +425,28 @@ class profile extends Controller
                 $namesUser['first'] = $explodeName[0] . ' ' . $explodeName[1];
                 $namesUser['last'] = $explodeName[2] . ' ' . $explodeName[3];
 
-            $search =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[0].'%')->get();
+            $search = family::ilike($explodeName[0]);
                  if(count($search) > 0){
                      $porcent++;
                  }
 
-             $search2 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[1].'%')->get();
+             $search2 = family::ilike($explodeName[1]);
                if(count($search2) > 0){
                      $porcent++;
                  }
-            $search3 =  DB::table('users')->where('name', 'ILIKE','%'.$request->name.'%')->get();
+            $search3 = family::ilike($request->name);
                if(count($search3) > 0){
                      $porcent++;
                  }
-            $search4 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[2].'%')->get();
+            $search4 =  family::ilike($explodeName[2]);
                if(count($search4) > 0){
                      $porcent++;
                  }
-            $search5 =  DB::table('users')->where('name', 'ILIKE','%'.$explodeName[3].'%')->get();
+            $search5 =  family::ilike($explodeName[3]);
                if(count($search5) > 0){
                      $porcent++;
                  }                 
-                 $total = (int)($porcent * 100 / 5);
+                 $total = intval($porcent * 100 / 5);
             }
 
         $uName = explode('@', $request->email);
@@ -456,23 +456,48 @@ class profile extends Controller
 
 
         $create = DB::table('users')->where('email', $request->email)->get();
-
+        $coin = 0;  
+ 
       if(count($create) == 0){
         if($total > 74){
 
             $bir =  DB::table('users')->where('birthdate', $request->birthdate)->where('name', 'ILIKE','%'.$request->name.'%')->get();
                 if(count($bir) > 0){
-                  $notification = array(
-                  'message' => 'El nombre está repetido en un: '. $total. '% y cumplen el mismo día' . count($bir), 
-                  'error' => 'error'
-                  );
-                } else{
-                                    $notification = array(
-                  'message' => 'El nombre está repetido en un: '. $total. '% pero no cumplen el mismo día' , 
-                  'error' => 'error'
-                  );
+                    $coincidences =  DB::table('family')->where('parent', Auth::id())->get();
+                      for($y = 0; $y < count($bir); $y++){ 
+                          for($z = 0; $z < count($coincidences); $z++){
+                       
+                                if($bir[$y]->id === $coincidences[$z]->activeUser ){
+                                      $coin++;
+                                }
+                                if($bir[$y]->id === $coincidences[$z]->passiveUser ){
+                                      $coin++;
+                                } 
+                           }   
+                     }
+                     if($coin > 0){
+                                   $notification = array(
+                                    'message' => 'El nombre está repetido en un: '. $total. '% y cumplen el mismo día' . count($bir). ' y usuarios parentado', 
+                                    'error' => 'error'
+                                    );
+                     } else{
+                                $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'test validacion.', 
+            'success' => 'success'
+            );
+                     }
                 }
-        }else{
+                else{
+                                $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'test validacion.', 
+            'success' => 'success'
+            );
+                     } 
+        }
+
+        else{
         $unew = User::create([
                 'name'      => $request->name,
                 'email'     => $request->email,
@@ -493,6 +518,7 @@ class profile extends Controller
           $family->activeUser = $unew->id;
           $family->activeUserStatus = 'inactive';
           $family->save();
+          //Envío de correo para modificar contraseña
           $response = $this->broker()->sendResetLink(
             $request->only('email')
         );
@@ -500,7 +526,7 @@ class profile extends Controller
           
          $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Bien', 
+            'message' => 'Se creó correctamente un usuario para tu familiar y se emparentó.', 
             'success' => 'success'
             );
 
