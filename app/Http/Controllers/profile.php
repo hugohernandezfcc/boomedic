@@ -397,7 +397,7 @@ class profile extends Controller
         $uName = explode('@', $request->email);
         $uName['username'] = $uName[0] . '@boomedic.mx';
         $create = DB::table('users')->where('email', $request->email)->get();
-         if(!$create){
+         if(count($create) == 0){
         $unew = User::create([
                 'name'      => $request->name,
                 'email'     => $request->email,
@@ -410,7 +410,7 @@ class profile extends Controller
                 'password'  => bcrypt('123456')
             ]);
 
-        if(count($unew) > 0){
+        
           $userFam  =  DB::table('users')->where('id', $unew->id)->get();
           $family = new family;
           $family->parent = $user->id;
@@ -422,7 +422,7 @@ class profile extends Controller
             $request->only('email')
         );
 
-          }
+          
          $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
             'message' => 'Bien', 
@@ -430,7 +430,7 @@ class profile extends Controller
             );
 
         }
-                  else{
+         else{
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
             'message' => 'nel perro', 
