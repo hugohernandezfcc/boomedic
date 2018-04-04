@@ -477,23 +477,72 @@ class profile extends Controller
                      }
                      if($coin > 0){
                                    $notification = array(
-                                    'message' => 'El nombre está repetido en un: '. $total. '% y cumplen el mismo día' . count($bir). ' y usuarios parentado', 
+                                    'message' => 'Hubo una coincidencia en nombre, fecha de nacimiento y un usuario que registraste antes, asegurate de no estar duplicando.', 
                                     'error' => 'error'
                                     );
-                     } else{
-                                $notification = array(
-                //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'test validacion.', 
-            'success' => 'success'
-            );
+                     } 
+                else{
+                      $unew = User::create([
+                              'name'      => $request->name,
+                              'email'     => $request->email,
+                              'birthdate' => $request->birthdate,
+                              'age'       => (int) $age,
+                              'status'    => 'In Progress',
+                              'firstname' => $namesUser['first'],
+                              'lastname'  => $namesUser['last'],
+                              'username'  => $uName['username'],
+                              'password'  => bcrypt('123456')
+                          ]);
+                        $family = family::create([
+                              'activeUser'        => $unew->id,
+                              'relationship'      => $request->relationship,
+                              'activeUserStatus'  => 'inactive',
+                              'parent'            => $user->id
+                        ]);
+
+                        //Envío de correo para modificar contraseña
+                        $response = $this->broker()->sendResetLink(
+                          $request->only('email')
+                      );
+
+                        
+                       $notification = array(
+                              //In case the payment is approved it shows a message reminding you the amount you paid.
+                          'message' => 'Se creó correctamente un usuario para tu familiar y se emparentó correctamente.', 
+                          'success' => 'success'
+                          );
                      }
                 }
                 else{
-                                $notification = array(
-                //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'test validacion.', 
-            'success' => 'success'
-            );
+                      $unew = User::create([
+                              'name'      => $request->name,
+                              'email'     => $request->email,
+                              'birthdate' => $request->birthdate,
+                              'age'       => (int) $age,
+                              'status'    => 'In Progress',
+                              'firstname' => $namesUser['first'],
+                              'lastname'  => $namesUser['last'],
+                              'username'  => $uName['username'],
+                              'password'  => bcrypt('123456')
+                          ]);
+                        $family = family::create([
+                              'activeUser'        => $unew->id,
+                              'relationship'      => $request->relationship,
+                              'activeUserStatus'  => 'inactive',
+                              'parent'            => $user->id
+                        ]);
+
+                        //Envío de correo para modificar contraseña
+                        $response = $this->broker()->sendResetLink(
+                          $request->only('email')
+                      );
+
+                        
+                       $notification = array(
+                              //In case the payment is approved it shows a message reminding you the amount you paid.
+                          'message' => 'Se creó correctamente un usuario para tu familiar y se emparentó correctamente.', 
+                          'success' => 'success'
+                          );
                      } 
         }
 
@@ -509,15 +558,13 @@ class profile extends Controller
                 'username'  => $uName['username'],
                 'password'  => bcrypt('123456')
             ]);
+          $family = family::create([
+                'activeUser'        => $unew->id,
+                'relationship'      => $request->relationship,
+                'activeUserStatus'  => 'inactive',
+                'parent'            => $user->id
+          ]);
 
-        
-          $userFam  =  DB::table('users')->where('id', $unew->id)->get();
-          $family = new family;
-          $family->parent = $user->id;
-          $family->relationship = $request->relationship;
-          $family->activeUser = $unew->id;
-          $family->activeUserStatus = 'inactive';
-          $family->save();
           //Envío de correo para modificar contraseña
           $response = $this->broker()->sendResetLink(
             $request->only('email')
@@ -526,7 +573,7 @@ class profile extends Controller
           
          $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Se creó correctamente un usuario para tu familiar y se emparentó.', 
+            'message' => 'Se creó correctamente un usuario para tu familiar y se emparentó correctamente.', 
             'success' => 'success'
             );
 
