@@ -422,6 +422,7 @@ span.round-tab:hover {
                 });
         $('#datepicker2').datepicker({
             autoclose: true,
+            format: "yyyy-mm-dd",
             language: 'es'
          });
         //Datemask dd/mm/yyyy

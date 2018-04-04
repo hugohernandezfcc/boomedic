@@ -459,10 +459,19 @@ class profile extends Controller
 
       if(count($create) == 0){
         if($total > 74){
-            $notification = array(
-            'message' => 'El nombre está repetido en un:'. $total. '%', 
-            'error' => 'error'
-            );
+
+            $bir =  DB::table('users')->where('birthdate', $request->birthdate)->where('name', 'ILIKE','%'.$request->name.'%')->get();
+                if(count($bir) > 0){
+                  $notification = array(
+                  'message' => 'El nombre está repetido en un: '. $total. '% y cumplen el mismo día' . count($bir), 
+                  'error' => 'error'
+                  );
+                } else{
+                                    $notification = array(
+                  'message' => 'El nombre está repetido en un: '. $total. '% pero no cumplen el mismo día' , 
+                  'error' => 'error'
+                  );
+                }
         }else{
         $unew = User::create([
                 'name'      => $request->name,
