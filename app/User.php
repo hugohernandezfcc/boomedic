@@ -46,7 +46,9 @@ class User extends Authenticatable
         'latitude',
         'longitude',
         'profile_photo',
-        'recent_search'
+        'recent_search',
+        'confirmed',
+        'confirmation_code'
     ];
 
     /**
