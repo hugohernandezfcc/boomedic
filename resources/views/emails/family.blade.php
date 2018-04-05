@@ -6,7 +6,7 @@
 <body>
     <img src="{!! $message->embed(public_path() . '/images/logoD.png') !!}" width="170" height="150" style="background-color: gray; align-self: right;" />
     <br>
-    <h2>{!! $name !!} te ha añadido como {!! $relationship) !!}</h2>
+    <h2>{!! $name !!} te ha añadido como familiar</h2>
     
 
     <p>
