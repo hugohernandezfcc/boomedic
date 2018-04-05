@@ -5,7 +5,7 @@ return [
     'full_name'                   => 'Nombre completo',
     'email'                       => 'Correo electrónico',
     'password'                    => 'Contraseña',
-    'retype_password'             => 'Vuelva la contraseña',
+    'retype_password'             => 'Confirmar contraseña',
     'birthdate'                   => 'Fecha de nacimiento',
     
 
