@@ -14,6 +14,8 @@ use League\Flysystem\Filesystem;
 use Image;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Mail;
+
 
 class profile extends Controller
 {
@@ -345,30 +347,32 @@ class profile extends Controller
            
         if($request->idfam != null){
          if($request->val == "false") {
-          $userFam =  DB::table('users')->where('id', $request->idfam)->get();
+         
           $family = new family;
           $family->parent = $user->id;
           $family->relationship = $request->relationship;
           $family->activeUser = $request->idfam;
           $family->activeUserStatus = 'inactive';
           if($family->save()){
+             $userfam=  DB::table('users')->where('id', $family->activeUser)->first();
            $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
             'message' => 'Usuario emparentado como familiar de manera exitosa.', 
             'success' => 'success'
             );
                                 $data = [
+                                'username'      => $user->username,
                                 'name'      => $user->name,
                                 'email'     => $user->email,                
                                 'firstname' => $user->firstname,                
                                 'lastname'  => $user->lastname,    
-                                'relationship'      => $request->relationship
+                                'relationship'      => $request->relationship,
                                 'activeUser'        => $request->idfam
                                 ];
                                 $email = $user->email;
                                  Mail::send('emails.family', $data, function ($message) {
                                             $message->subject('Tienes una solicitud de parentesco familiar');
-                                            $message->to( $userFam[0]->email);
+                                            $message->to('rebbeca.goncalves@doitcloud.consulting');
                                         });
          }else{
            $notification = array(
@@ -583,12 +587,13 @@ class profile extends Controller
             $request->only('email')
         );
                              $data = [
+                                'username'      => $user->username,
                                 'name'      => $user->name,
                                 'email'     => $user->email,                
                                 'firstname' => $user->firstname,                
                                 'lastname'  => $user->lastname,    
-                                'relationship'      => $request->relationship
-                                'activeUser'        => $unew->id,
+                                'relationship'      => $request->relationship,
+                                'activeUser'        => $unew->id
                                 ];
                                 $email = $user->email;
                                  Mail::send('emails.family', $data, function ($message) {
