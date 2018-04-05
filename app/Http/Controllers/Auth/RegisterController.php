@@ -208,7 +208,7 @@ class RegisterController extends Controller
             $user->confirmation_code = null;
             $user->save();
 
-            return redirect('/medicalconsultations')->with('notification', 'Has confirmado correctamente tu correo!');
+            return redirect('/home')->with('notification', 'Has confirmado correctamente tu correo!');
         }
 
 }
