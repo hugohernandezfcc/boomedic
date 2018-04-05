@@ -4,9 +4,9 @@
     <meta charset="utf-8">
 </head>
 <body>
-    <img src="{!! $message->embed(public_path() . '/images/logoD.png') !!}" width="170" height="150" style="align-self: right;" />
+    <img src="{!! $message->embed(public_path() . '/images/logoD.png') !!}" width="170" height="150" style="background-color: gray; align-self: right;" />
     <br>
-    <h2>{!! $name !!} te ha añadido como {!! trans('adminlte::adminlte.'.$relationship) !!}</h2>
+    <h2>{!! $name !!} te ha añadido como {!! $relationship) !!}</h2>
     
 
     <p>
@@ -17,7 +17,7 @@
     <br/><br/>
 
     <strong>Para aceptar el vinculo familiar has click en el enlace</strong><br/>
-        <a href="#" class="btn btn-secondary btn-flat">aqui test</a>
+        <a href="#" class="btn btn-secondary btn-flat">Test a enlace</a>
     </p>
 
     

@@ -350,7 +350,7 @@ class profile extends Controller
          
           $family = new family;
           $family->parent = $user->id;
-          $family->relationship = $request->relationship;
+          $family->relationship = trans('adminlte::adminlte.'. $request->relationship);
           $family->activeUser = $request->idfam;
           $family->activeUserStatus = 'inactive';
           if($family->save()){
