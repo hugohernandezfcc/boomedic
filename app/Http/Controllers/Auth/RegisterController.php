@@ -152,7 +152,7 @@ class RegisterController extends Controller
             ]);
 
             if($profInformation && $userCreated)
-                return view('confirme');
+                return $userCreated;
             else
                 return false;
 
@@ -160,7 +160,7 @@ class RegisterController extends Controller
                      Mail::send('emails.confirmation_code', $data, function($message) use ($data) {
                     $message->to($data['email'], $data['name'])->subject('Por favor confirma tu correo');
                 });
-                $userCreated =  User::create([
+            return User::create([
                 'name'      => $data['name'],
                 'email'     => $data['email'],
                 'birthdate' => $data['birthdate'],
@@ -172,7 +172,6 @@ class RegisterController extends Controller
                 'password'  => bcrypt($data['password']),
                 'confirmation_code' => $data['confirmation_code']
             ]);
-            return  view('confirme');
         }
     }
 
@@ -199,17 +198,17 @@ class RegisterController extends Controller
 
     }
         public function verify($code)
-        {
-            $user = User::where('confirmation_code', $code)->first();
+            {
+                $user = User::where('confirmation_code', $code)->first();
 
-            if (! $user)
-                return redirect('/');
+                if (! $user)
+                    return redirect('/');
 
-            $user->confirmed = true;
-            $user->confirmation_code = null;
-            $user->save();
+                $user->confirmed = true;
+                $user->confirmation_code = null;
+                $user->save();
 
-            return redirect('/home')->with('notification', 'Has confirmado correctamente tu correo!');
-        }
+                return redirect('/medicalconsultations')->with('notification', 'Has confirmado correctamente tu correo!');
+            }
 
 }
