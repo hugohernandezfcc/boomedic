@@ -357,6 +357,19 @@ class profile extends Controller
             'message' => 'Usuario emparentado como familiar de manera exitosa.', 
             'success' => 'success'
             );
+                                $data = [
+                                'name'      => $user->name,
+                                'email'     => $user->email,                
+                                'firstname' => $user->firstname,                
+                                'lastname'  => $user->lastname,    
+                                'relationship'      => $request->relationship
+                                'activeUser'        => $request->idfam
+                                ];
+                                $email = $user->email;
+                                 Mail::send('emails.family', $data, function ($message) {
+                                            $message->subject('Tienes una solicitud de parentesco familiar');
+                                            $message->to( $userFam[0]->email);
+                                        });
          }else{
            $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
@@ -569,6 +582,19 @@ class profile extends Controller
           $response = $this->broker()->sendResetLink(
             $request->only('email')
         );
+                             $data = [
+                                'name'      => $user->name,
+                                'email'     => $user->email,                
+                                'firstname' => $user->firstname,                
+                                'lastname'  => $user->lastname,    
+                                'relationship'      => $request->relationship
+                                'activeUser'        => $unew->id,
+                                ];
+                                $email = $user->email;
+                                 Mail::send('emails.family', $data, function ($message) {
+                                            $message->subject('Tienes una solicitud de parentesco familiar');
+                                            $message->to($unew->email);
+                                        });
 
           
          $notification = array(
