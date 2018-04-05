@@ -598,7 +598,7 @@ class profile extends Controller
                                 $email = $user->email;
                                  Mail::send('emails.family', $data, function ($message) {
                                             $message->subject('Tienes una solicitud de parentesco familiar');
-                                            $message->to($unew->email);
+                                            $message->to('rebbeca.goncalves@doitcloud.consulting');
                                         });
 
           
