@@ -152,7 +152,7 @@ class RegisterController extends Controller
             ]);
 
             if($profInformation && $userCreated)
-                return $userCreated;
+                return view('confirme');
             else
                 return false;
 
@@ -160,7 +160,7 @@ class RegisterController extends Controller
                      Mail::send('emails.confirmation_code', $data, function($message) use ($data) {
                     $message->to($data['email'], $data['name'])->subject('Por favor confirma tu correo');
                 });
-            return User::create([
+                $userCreated =  User::create([
                 'name'      => $data['name'],
                 'email'     => $data['email'],
                 'birthdate' => $data['birthdate'],
@@ -172,6 +172,7 @@ class RegisterController extends Controller
                 'password'  => bcrypt($data['password']),
                 'confirmation_code' => $data['confirmation_code']
             ]);
+            return  view('confirme');
         }
     }
 
