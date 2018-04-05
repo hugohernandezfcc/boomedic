@@ -33,7 +33,7 @@ Auth::routes();
 */
 Route::post('SMRegister', ['as' => 'SMRegister.createbySocialMedia', 'uses' => 'Auth\RegisterController@createbySocialMedia']);
 Route::get('medicalRegister/society', ['as' => 'medicalRegister/society', 'uses' => 'Auth\RegisterController@index']);
-Route::get('/register/verify/{code}', 'GuessController@verify');
+Route::get('verify/{code}', ['as' => 'verify/{code}', 'uses' => 'Auth\RegisterController@verify']);
 
 
 
