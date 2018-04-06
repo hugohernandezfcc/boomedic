@@ -57,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
                     'icon' => ''
                 ]);
             }
+            else{
 
             if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
                 $event->menu->add([
@@ -107,7 +108,7 @@ class AppServiceProvider extends ServiceProvider
                                 'url'  => 'medicalconsultations',
                                 'icon' => ''
                             ]);
-                        }
+                        } else{
                     if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
                      $event->menu->add([
                                         'text' => 'Aviso de Privacidad',
@@ -142,6 +143,8 @@ class AppServiceProvider extends ServiceProvider
                         }
                     }
                 } 
+            }
+            }
             }
         });
     
