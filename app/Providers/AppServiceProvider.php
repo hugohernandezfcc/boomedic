@@ -49,8 +49,16 @@ class AppServiceProvider extends ServiceProvider
                             ->where('id', Auth::id() )
                             ->value('privacy_statement');
 
+            $confirmed = User::find(Auth::id())->first();               
+            if($confirmed->confirmed == false){
+                $event->menu->add([
+                    'text' => ' Confirmación de correo',
+                    'url'  => 'confirme',
+                    'icon' => ''
+                ]);
+            }
 
-            if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+            elseif($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
                 $event->menu->add([
                     'text' => 'Aviso de Privacidad',
                     'url'  => 'privacyStatement/index',
@@ -93,8 +101,14 @@ class AppServiceProvider extends ServiceProvider
                     }
 
                 }else{
-
-                    if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+                        if($confirmed->confirmed == false){
+                            $event->menu->add([
+                                'text' => ' Confirmación de correo',
+                                'url'  => 'confirme',
+                                'icon' => ''
+                            ]);
+                        }
+                    elseif(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
                      $event->menu->add([
                                         'text' => 'Aviso de Privacidad',
                                         'url'  => 'privacyStatement/index',
