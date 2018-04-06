@@ -201,26 +201,16 @@ class RegisterController extends Controller
 
     }
         public function verify($code)
-                    {
-                if( ! $confirmation_code)
-                {
-                    throw new InvalidConfirmationCodeException;
-                }
-
-                $user = User::whereConfirmationCode($confirmation_code)->first();
-
-                if ( ! $user)
-                {
-                    throw new InvalidConfirmationCodeException;
-                }
-
-                $user->confirmed = 1;
+           {
+             $user = User::where('confirmation_code', $code)->first();
+                if (!$user)
+                    return redirect('/');
+                $user->confirmed = true;
                 $user->confirmation_code = null;
                 $user->save();
-
-
-                return redirect('/medicalconsultations')->with('You have successfully verified your account.');;
+                return redirect('/medicalconsultations')->with('notification', 'Has confirmado correctamente tu correo!');
             }
+
             public function returnverify()
             {
                 $user = User::find(Auth::id());
