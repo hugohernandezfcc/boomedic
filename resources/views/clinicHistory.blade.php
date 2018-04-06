@@ -550,7 +550,6 @@
 
               for(var k = 0; k < clinic_history.length; k++){
               var t = "step" + (k + 1);
-              console.log(t);
                 if(clinic_history[k]['question_id'] == $('#'+t+ ' .quesId').val()){
                 var answer = JSON.parse(clinic_history[k]['answer']);
                   for(var i = 0; i < answer.length; i++){
@@ -955,9 +954,6 @@
 
                         var ques = $('#'+tab+ ' .quesId').val();
                         var ansId = $('#'+tab+ ' .ansId').val();
-                        console.log(JSON.stringify(values));
-                        console.log(ansId);
-                        console.log(ques);
                                   $.ajaxSetup({
                                   headers: {
                                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
