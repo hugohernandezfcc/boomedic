@@ -217,13 +217,14 @@ class RegisterController extends Controller
             {
                 $user = User::find(Auth::id());
                 $user->confirmation_code = str_random(25);
-                $user->save();
+                if($user->save()){
                 $data = [
                 'confirmation_code'      => $user->confirmation_code
             ];
                 Mail::send('emails.confirmation_code', $data, function ($message) {
-                    $message->to($user->email, $user->name)->subject('Por favor confirma tu correo');
+                    $message->to("rebbecagt@gmail.com")->subject('Por favor confirma tu correo');
                 });
+            }
                 return redirect('/medicalconsultations');
             }
 
