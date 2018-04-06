@@ -88,8 +88,18 @@ class HomeController extends Controller
              Session(['sp' => $sp]);
              Session(['mg' => $mg]);
 
-
-        if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+        if($user->confirmed == false){
+               return view('confirme', [
+                    'userId'    => $user->id,
+                    'username'  => $user->username,
+                    'name'      => $user->name,
+                    'photo'     => $user->profile_photo,
+                    'date'      => $user->created_at,
+                   
+                ]
+            );
+        }     
+        elseif(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
                     'privacy'   => $privacyStatement[0],
