@@ -227,8 +227,8 @@ class HomeController extends Controller
                 Mail::send('emails.confirmation_code', $data, function ($message) {
                     $message->to('rebbecagt@gmail.com')->subject('Por favor confirma tu correo');
                 });
-            
-                return redirect('/medicalconsultations');
+                      \Auth::logout();
+                    return redirect('/login');
             } else{
                       \Auth::logout();
                     return redirect('/login');
