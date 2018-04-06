@@ -50,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
                             ->value('privacy_statement');
 
             $confirmed = User::find(Auth::id());           
-            if($confirmed->confirmed == false){
+            if($profInfo->count() > 0 && $confirmed->confirmed == false){
                 $event->menu->add([
                     'text' => ' Confirmación de correo',
                     'url'  => 'medicalconsultations',
@@ -101,6 +101,13 @@ class AppServiceProvider extends ServiceProvider
                     }
 
                 }else{
+                     if($confirmed->confirmed == false){
+                            $event->menu->add([
+                                'text' => ' Confirmación de correo',
+                                'url'  => 'medicalconsultations',
+                                'icon' => ''
+                            ]);
+                     }else{
 
                     if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
                      $event->menu->add([
@@ -134,6 +141,7 @@ class AppServiceProvider extends ServiceProvider
                                 }
                             }
                         }
+                    }
                     }
                 } 
             
