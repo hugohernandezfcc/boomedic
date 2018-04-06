@@ -214,6 +214,26 @@ class HomeController extends Controller
         );
     }
 
+                public function returnverify()
+            {
+                $user = User::find(Auth::id());
+                $user->confirmation_code = str_random(25);
+                if($user->save()){
+                $data = [
+                'confirmation_code'      => $user->confirmation_code,
+                'name'                   => $user->name
+            ];
+                Mail::send('emails.confirmation_code', $data, function ($message) {
+                    $message->to($user->email, $user->name)->subject('Por favor confirma tu correo');
+                });
+            
+                return redirect('/medicalconsultations');
+            } else{
+                      \Auth::logout();
+                    return redirect('/login');
+            }
+            }
+
     
 }
 
