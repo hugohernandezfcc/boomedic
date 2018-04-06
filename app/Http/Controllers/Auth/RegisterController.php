@@ -206,9 +206,9 @@ class RegisterController extends Controller
                 if (!$user){
                     return redirect('/');
                 }else{
-                $user->confirmed = 1;
+                $user->confirmed = true;
                 $user->confirmation_code = null;
-                $user->save();
+                if($user->save())
                 return redirect('/medicalconsultations')->with('notification', 'Has confirmado correctamente tu correo!');
             }
             }
