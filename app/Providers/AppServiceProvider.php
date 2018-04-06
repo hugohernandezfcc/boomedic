@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
                 ]);
             }
 
-            elseif($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+            if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
                 $event->menu->add([
                     'text' => 'Aviso de Privacidad',
                     'url'  => 'privacyStatement/index',
@@ -101,14 +101,14 @@ class AppServiceProvider extends ServiceProvider
                     }
 
                 }else{
-                        if($confirmed->confirmed == false){
+                    if($confirmed->confirmed == false){
                             $event->menu->add([
                                 'text' => ' Confirmación de correo',
                                 'url'  => 'medicalconsultations',
                                 'icon' => ''
                             ]);
                         }
-                    elseif(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+                    if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
                      $event->menu->add([
                                         'text' => 'Aviso de Privacidad',
                                         'url'  => 'privacyStatement/index',
