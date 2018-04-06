@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
                             ->where('id', Auth::id() )
                             ->value('privacy_statement');
 
-            $confirmed = User::find(Auth::id())->first();               
+            $confirmed = User::find(Auth::id());           
             if($confirmed->confirmed == false){
                 $event->menu->add([
                     'text' => ' Confirmación de correo',
