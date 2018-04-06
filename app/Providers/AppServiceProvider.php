@@ -49,8 +49,16 @@ class AppServiceProvider extends ServiceProvider
                             ->where('id', Auth::id() )
                             ->value('privacy_statement');
 
+            $confirmed = User::find(Auth::id());
 
-            if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+            if($confirmed->confirmed == "1"){
+                  $event->menu->add([
+                    'text' => 'Ayuda',
+                    'url'  => 'supportTicket/index',
+                    'icon' => ''
+                ]);
+            }
+            elseif($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
                 $event->menu->add([
                     'text' => 'Aviso de Privacidad',
                     'url'  => 'privacyStatement/index',
@@ -94,13 +102,22 @@ class AppServiceProvider extends ServiceProvider
 
                 }else{
 
-                    if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
-                     $event->menu->add([
-                                        'text' => 'Aviso de Privacidad',
-                                        'url'  => 'privacyStatement/index',
-                                        'icon' => ''
-                                    ]);
-                    }else{
+            if($confirmed->confirmed == false){
+                  $event->menu->add([
+                    'text' => 'Ayuda',
+                    'url'  => 'supportTicket/index',
+                    'icon' => ''
+                ]);
+            }
+            elseif($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+                $event->menu->add([
+                    'text' => 'Aviso de Privacidad',
+                    'url'  => 'privacyStatement/index',
+                    'icon' => ''
+                ]);
+
+
+            }else{
 
                         $menusInfo = DB::table('menus')
                                         ->where('to', 'Patient' )

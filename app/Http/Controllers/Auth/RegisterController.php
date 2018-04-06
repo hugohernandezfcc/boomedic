@@ -160,7 +160,9 @@ class RegisterController extends Controller
                      Mail::send('emails.confirmation_code', $data, function($message) use ($data) {
                     $message->to($data['email'], $data['name'])->subject('Por favor confirma tu correo');
                 });
-            return User::create([
+
+        Flash::message('Thanks for signing up! Please check your email.');
+            $usermor        = User::create([
                 'name'      => $data['name'],
                 'email'     => $data['email'],
                 'birthdate' => $data['birthdate'],
@@ -172,6 +174,8 @@ class RegisterController extends Controller
                 'password'  => bcrypt($data['password']),
                 'confirmation_code' => $data['confirmation_code']
             ]);
+           return Redirect::home();
+ 
         }
     }
 
@@ -198,17 +202,26 @@ class RegisterController extends Controller
 
     }
         public function verify($code)
-            {
-                $user = User::where('confirmation_code', $code)->first();
+                    {
+                if( ! $confirmation_code)
+                {
+                    throw new InvalidConfirmationCodeException;
+                }
 
-                if (! $user)
-                    return redirect('/');
+                $user = User::whereConfirmationCode($confirmation_code)->first();
 
-                $user->confirmed = true;
+                if ( ! $user)
+                {
+                    throw new InvalidConfirmationCodeException;
+                }
+
+                $user->confirmed = 1;
                 $user->confirmation_code = null;
                 $user->save();
 
-                return redirect('/medicalconsultations')->with('notification', 'Has confirmado correctamente tu correo!');
+                Flash::message('You have successfully verified your account.');
+
+                return redirect('/medicalconsultations');
             }
 
 }
