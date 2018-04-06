@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
             if($confirmed->confirmed == false){
                 $event->menu->add([
                     'text' => ' Confirmación de correo',
-                    'url'  => 'confirme',
+                    'url'  => 'medicalconsultations',
                     'icon' => ''
                 ]);
             }
@@ -104,7 +104,7 @@ class AppServiceProvider extends ServiceProvider
                         if($confirmed->confirmed == false){
                             $event->menu->add([
                                 'text' => ' Confirmación de correo',
-                                'url'  => 'confirme',
+                                'url'  => 'medicalconsultations',
                                 'icon' => ''
                             ]);
                         }
