@@ -203,12 +203,14 @@ class RegisterController extends Controller
         public function verify($code)
            {
              $user = User::where('confirmation_code', $code)->first();
-                if (!$user)
+                if (!$user){
                     return redirect('/');
-                $user->confirmed = true;
+                }else{
+                $user->confirmed = 1;
                 $user->confirmation_code = null;
                 $user->save();
                 return redirect('/medicalconsultations')->with('notification', 'Has confirmado correctamente tu correo!');
+            }
             }
 
             public function returnverify()
