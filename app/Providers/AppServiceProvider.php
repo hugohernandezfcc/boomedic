@@ -56,9 +56,9 @@ class AppServiceProvider extends ServiceProvider
                     'url'  => 'medicalconsultations',
                     'icon' => ''
                 ]);
-            }else{
+            }
 
-            if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+            if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id && $confirmed->confirmed == true){
                 $event->menu->add([
                     'text' => 'Aviso de Privacidad',
                     'url'  => 'privacyStatement/index',
@@ -107,9 +107,9 @@ class AppServiceProvider extends ServiceProvider
                                 'url'  => 'medicalconsultations',
                                 'icon' => ''
                             ]);
-                     }else{
+                     }
 
-                    if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+                    if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id && $confirmed->confirmed == true){
                      $event->menu->add([
                                         'text' => 'Aviso de Privacidad',
                                         'url'  => 'privacyStatement/index',
@@ -146,7 +146,7 @@ class AppServiceProvider extends ServiceProvider
                 } 
             
             }
-            }
+            
         });
     
 }
