@@ -4,9 +4,7 @@
     <meta charset="utf-8">
 </head>
 <body>
-    <h2>Hola {{ $name }}, gracias por registrarte en <strong>Boomedic</strong> !</h2>
-    <p>Por favor confirma tu correo electrónico.</p>
-    <p>Para ello debes hacer click en el siguiente enlace:</p>
+    <h2>Hola {{ $name }}, gracias por registrarte en <strong>Boomedic</strong> !</h2> Por favor confirma tu correo electrónico, Para ello haz clic aquí:
 
 		    <table>
     <tr>
