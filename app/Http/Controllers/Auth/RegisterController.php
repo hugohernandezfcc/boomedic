@@ -173,7 +173,7 @@ class RegisterController extends Controller
                 'password'  => bcrypt($data['password']),
                 'confirmation_code' => $data['confirmation_code']
             ]);
-           return redirect('/medicalconsultations')->with('Thanks for signing up! Please check your email.');
+           return  $usermor;
  
         }
     }
