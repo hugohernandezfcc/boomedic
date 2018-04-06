@@ -234,6 +234,20 @@ class HomeController extends Controller
                     return redirect('/login');
             }
             }
+                    public function verify($code)
+           {
+             $user = User::where('confirmation_code', $code)->first();
+                if (!$user){
+                 \Auth::logout();
+                    return redirect('/login');
+                }else{
+                $user->confirmed = true;
+                $user->confirmation_code = null;
+                if($user->save())
+                return redirect('/medicalconsultations')->with('notification', 'Has confirmado correctamente tu correo!');
+            }
+            }
+
 
     
 }
