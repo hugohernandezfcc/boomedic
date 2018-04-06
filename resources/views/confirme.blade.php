@@ -5,7 +5,7 @@
 
 @section('content')
 
-	  		<div class="alert alert-info">
+<div class="box">
 		        <i class="icon fa fa-info"></i>Por favor confirme la cuenta con el correo enviado
 		    <table>
     <tr>
@@ -15,6 +15,7 @@
             </a>
         </td>
     </tr>
-		    </div>        				      
+</table>
+</div>		   				      
  	
 @stop
