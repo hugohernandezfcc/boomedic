@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\professional_information;
 use Carbon\Carbon;
 use App\User;
+use Mail;
 
 class HomeController extends Controller
 {
