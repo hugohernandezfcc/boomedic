@@ -8,17 +8,16 @@
 
 @section('content')
 
-<div class="box">
-  	<div class="box-header with-border">
-	    <h3 class="box-title">Se ha creado el usuario</h3>
-  	</div>
-  	<div class="box-body">
-	  
 	  		<div class="alert alert-info">
 		        <i class="icon fa fa-info"></i>Por favor confirme la cuenta con el correo enviado
-		        <br> <button class="btn bttn-secondary">Volver a enviar</button>
+		    <table>
+    <tr>
+        <td style="background-color: black;border-color: black;border: 2px solid blx¿ck;padding: 10px;text-align: center;">
+            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;text-transform: uppercase;"  href="{{ url('returnverify/') }}">
+                 Reenviar email de confirmación
+            </a>
+        </td>
+    </tr>
 		    </div>        				      
-		
- 	</div>
-</div>	  	
+ 	
 @stop

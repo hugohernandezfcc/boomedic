@@ -223,5 +223,15 @@ class RegisterController extends Controller
 
                 return redirect('/medicalconsultations');
             }
+            public function returnverify()
+            {
+                $user = User::find(Auth::id());
+                $user->confirmation_code = str_random(25);
+                $user->save();
+                Mail::send('emails.confirmation_code', $user, function($message) use ($user) {
+                    $message->to($user->email, $user->name)->subject('Por favor confirma tu correo');
+                });
+                return redirect('/medicalconsultations');
+            }
 
 }
