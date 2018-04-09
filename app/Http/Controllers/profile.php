@@ -360,14 +360,39 @@ class profile extends Controller
             'message' => 'Usuario emparentado como familiar de manera exitosa.', 
             'success' => 'success'
             );
-                                $data = [
+          if($request->relationship == "siblings"){
+            $rela = "Hermano(a)";
+          }
+          if($request->relationship == "mother"){
+            $rela = "Madre";
+          }
+          if($request->relationship == "father"){
+            $rela = "Padre";
+          }
+          if($request->relationship == "son"){
+            $rela = "Hijo(a)";
+          }
+          if($request->relationship == "wife"){
+            $rela = "Esposa";
+          }  
+          if($request->relationship == "husband"){
+            $rela = "Esposo";
+          }  
+          if($request->relationship == "uncles"){
+            $rela = "Tío(a)";
+          } 
+          if($request->relationship == "grandparents"){
+            $rela = "Abuelo(a)";
+          }                                                           
+                             $data = [
                                 'username'      => $user->username,
                                 'name'      => $user->name,
                                 'email'     => $user->email,                
                                 'firstname' => $user->firstname,                
                                 'lastname'  => $user->lastname,    
-                                'relationship'      => $request->relationship,
-                                'activeUser'        => $request->idfam
+                                'relationship'      => $rela,
+                                'activeUser'        => $unew->id,
+                                'id'                => $family->id
                                 ];
                                 $email = $user->email;
                                  Mail::send('emails.family', $data, function ($message) {
