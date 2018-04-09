@@ -737,8 +737,13 @@ class profile extends Controller
                 $family2->relationship = $rela;
                 $family2->activeUser = $family->parent;
                 $family2->activeUserStatus = 'active';
-                if($family2->save())
-                return redirect('user/profile/' . Auth::id())->with('success', 'Has confirmado correctamente tu relación y se ha generado automaticamente en tu perfíl!');
+                if($family2->save()){
+                    $notification = array(
+                        'message' => 'Fue confirmado el parentesco y se agregó por defecto a tu perfil', 
+                        'success' => 'success'
+                        );
+                return redirect('user/profile/' . Auth::id())->with($notification);
+              }
             }
-            }
+        }
 }
