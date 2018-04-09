@@ -58,6 +58,12 @@ Route::group(['prefix' => 'user'], function(){
 		]
 	);
 
+	Route::get('verify/{id}', [
+			'uses'	=>	'profile@verify',
+			'as'	=>	'verify'
+		]
+	);	
+
 	Route::post('update/{id}', [
 			'uses'	=>	'profile@update',
 			'as'	=>	'update'

@@ -6,7 +6,7 @@
 <body>
     <img src="{!! $message->embed(public_path() . '/images/logoD.png') !!}" width="170" height="150" style="background-color: gray; align-self: right;" />
     <br>
-    <h2>{!! $name !!} te ha añadido como familiar</h2>
+    <h2>{!! $name !!} te ha añadido como {!! $rela !!}</h2>
     
 
     <p>
@@ -18,7 +18,7 @@
         <table>
     <tr>
          <td style="background-color: black;border-color: black;border: 2px solid black;padding: 10px;text-align: center;">
-            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;"  href="#">
+            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;"  href="{{ url('user/verify/' . $id) }}">
                  Clic para confirmar parentesco
         </td>
     </tr>
