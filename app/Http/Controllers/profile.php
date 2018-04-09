@@ -685,4 +685,60 @@ class profile extends Controller
     {
         //
     }
+
+     public function verify($id)
+           {
+             $family= family::where('id', $id)->first();
+                if (!$family){
+             $notification = array(
+                            //In case the payment is approved it shows a message reminding you the amount you paid.
+                        'message' => 'Ha ocurrido un error con el parentesco familiar, al parecer fue eliminado', 
+                        'error' => 'error'
+                        );
+                      
+                    return  redirect('user/profile/' . Auth::id() )->with($notification);
+                }
+                else{
+
+          $user = User::where('id', $family->activeUser)->first();
+
+          if($family->relationship == "siblings"){
+            $rela = "siblings";
+          }
+          if($family->relationship == "mother"){
+            $rela = "son";
+          }
+          if($family->relationship == "father"){
+            $rela = "son";
+          }
+          if($family->relationship == "son" && $user->gender == "female"){
+            $rela = "mother";
+          }
+          if($family->relationship == "son" && $user->gender == "male"){
+            $rela = "father";
+          }
+          if($family->relationship == "wife"){
+            $rela = "husband";
+          }  
+          if($family->relationship == "husband"){
+            $rela = "wife";
+          }  
+          if($family->relationship == "uncles"){
+            $rela = "son";
+          } 
+          if($family->relationship == "grandparents"){
+            $rela = "son";
+          }    
+
+                $family->activeUserStatus = 'active';
+                $family->save();
+                $family2 = new family;
+                $family2->parent = $family->activeUser;
+                $family2->relationship = $rela;
+                $family2->activeUser = $family->parent;
+                $family2->activeUserStatus = 'active';
+                if($family2->save())
+                return redirect('user/profile/' . Auth::id())->with('success', 'Has confirmado correctamente tu relación y se ha generado automaticamente en tu perfíl!');
+            }
+            }
 }
