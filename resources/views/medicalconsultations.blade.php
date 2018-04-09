@@ -1718,22 +1718,7 @@ function prevTab(elem) {
     <!-- Hides modal -->
     <script>
     $(document).ready(function(){
-        $("#myModal").on('hidden.bs.modal', function () {
-          //console.log(startProcess);
-          //alert(startProcess);
-           if(!startProcess){
-            /*alert('The modal is now hidden.');*/
-            var x = document.getElementById("mySelect");
-            var s = x.selectedIndex;
-            var selectedValue = x.options[s].text;
-            //alert(s);
-            document.getElementById("general").checked = true;            
-            x.selectedIndex = 0;
-            typeC = 'TypeGeneral';
-          }
-        });
-    });
-        
+
     </script>
 
 
