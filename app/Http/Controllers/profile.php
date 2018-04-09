@@ -588,28 +588,28 @@ class profile extends Controller
         );
 
           if($request->relationship == "siblings"){
-            $rela = "Hermano(a)"
+            $rela = "Hermano(a)";
           }
           if($request->relationship == "mother"){
-            $rela = "Madre"
+            $rela = "Madre";
           }
           if($request->relationship == "father"){
-            $rela = "Padre"
+            $rela = "Padre";
           }
           if($request->relationship == "son"){
-            $rela = "Hijo(a)"
+            $rela = "Hijo(a)";
           }
           if($request->relationship == "wife"){
-            $rela = "Esposa"
+            $rela = "Esposa";
           }  
           if($request->relationship == "husband"){
-            $rela = "Esposo"
+            $rela = "Esposo";
           }  
           if($request->relationship == "uncles"){
-            $rela = "Tío(a)"
+            $rela = "Tío(a)";
           } 
           if($request->relationship == "grandparents"){
-            $rela = "Abuelo(a)"
+            $rela = "Abuelo(a)";
           }                                                           
                              $data = [
                                 'username'      => $user->username,
