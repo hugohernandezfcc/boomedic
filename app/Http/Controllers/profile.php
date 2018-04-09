@@ -360,6 +360,7 @@ class profile extends Controller
             'message' => 'Usuario emparentado como familiar de manera exitosa.', 
             'success' => 'success'
             );
+
           if($request->relationship == "siblings"){
             $rela = "Hermano(a)";
           }
@@ -391,7 +392,7 @@ class profile extends Controller
                                 'firstname' => $user->firstname,                
                                 'lastname'  => $user->lastname,    
                                 'relationship'      => $rela,
-                                'activeUser'        => $unew->id,
+                                'activeUser'        => $family->activeUser,
                                 'id'                => $family->id
                                 ];
                                 $email = $user->email;
