@@ -225,7 +225,7 @@ class HomeController extends Controller
                 'name'                   => $user->name
             ];
                 Mail::send('emails.confirmation_code', $data, function ($message) {
-                    $message->to('rebbecagt@gmail.com')->subject('Por favor confirma tu correo');
+                    $message->to('contacto@doitcloud.consulting')->subject('Por favor confirma tu correo');
                 });
                     return redirect('/medicalconsultations');
             } else{
