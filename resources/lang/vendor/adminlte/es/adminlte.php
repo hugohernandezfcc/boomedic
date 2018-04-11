@@ -7,6 +7,8 @@ return [
     'password'                    => 'Contraseña',
     'retype_password'             => 'Confirmar contraseña',
     'birthdate'                   => 'Fecha de nacimiento',
+    'female'                      => 'Femenino',
+    'male'                        => 'Masculino'    
     
 
     'remember_me'                 => 'Recuerdame',

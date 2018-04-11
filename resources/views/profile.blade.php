@@ -448,6 +448,7 @@
                         <div class="col-xs-12">
                         
                             <div class="col-sm-2" align="left"><b>Genero:</b></div>
+                            
                             <div class="col-sm-10" align="left">{{ $gender }}</div>
                       
                         </div>
