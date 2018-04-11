@@ -448,8 +448,12 @@
                         <div class="col-xs-12">
                         
                             <div class="col-sm-2" align="left"><b>Genero:</b></div>
-                            
-                            <div class="col-sm-10" align="left">{{ $gender }}</div>
+                            @if($gender == "female")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+                            @endif
+                            @if($gender == "male")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+                            @endif
                       
                         </div>
                         <div class="col-xs-12">
@@ -461,7 +465,12 @@
                         <div class="col-xs-12">
                          
                             <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
-                            <div class="col-sm-10" align="left">{{ $maritalstatus }}</div>
+                              @if($maritalstatus == "single")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+                             @endif
+                            @if($maritalstatus == "married")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+                             @endif	
                       
                         </div>
                         <div class="col-xs-12">
