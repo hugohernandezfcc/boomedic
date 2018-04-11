@@ -25,6 +25,7 @@ return [
     'messageLogout'               => 'Se ha cerrado tu sesión.',
 
 
+
     'i_am_a_doctor'                      => 'Soy médico',
     'i_am_a_patient'                     => 'Soy paciente',   
     'Message_to_doctor'                  => 'Este formulario es solo para Médicos.',
