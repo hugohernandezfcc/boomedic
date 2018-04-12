@@ -193,7 +193,6 @@
             </div>
             <!-- /.modal-content -->
           </div>
-        </div>
             @endif
             
             @if($items['Type'] == 'Support Ticket')
