@@ -168,7 +168,7 @@
 	            	<div class="form-group has-feedback {{ $errors->has('typemethod') ? 'has-error' : '' }}">
 	                  	<label for="typemethod" class="col-sm-2 control-label">Tipo de método</label>
 	                  	<div class="col-sm-10">
-		                  	<select class="form-control" name="typemethod" onchange="showMethodRegister(this.value);">
+		                  	<select class="form-control select2" name="typemethod" onchange="showMethodRegister(this.value);">
 		                    	<option value="">Seleccionar ...</option>
 		                    	<option value="card">Credito / Debito</option>
 		                  	</select>
