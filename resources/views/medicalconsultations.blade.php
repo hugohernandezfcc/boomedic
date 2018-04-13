@@ -422,9 +422,7 @@
 
     <div id="mapaC">
       <!-- Trigger the modal with a checkbox -->
-      <div class="checkStyle">
 
-      </div>
 
       <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
         <strong>
