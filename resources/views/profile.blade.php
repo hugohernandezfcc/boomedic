@@ -518,11 +518,12 @@
                       <div class="modal-content">
 
 
-                        <div class="modal-header" align="center" style="padding-bottom: 1px !important;">
-                            <label>Información de Familiar</label>
+                        <div class="modal-header" style="padding-bottom: 1px !important;">
+                            
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                          <div align="left"><label>Información de Familiar</label></div>
                         </div>
                              <div class="register-box-body">
 					                 <div align="form-group">

@@ -351,7 +351,7 @@
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <h3>¡Cita registrada!</h3>
+                          <div align="left"><label>¡Cita registrada!</label></div>
                         </div>
                             <div class="modal-body" >
                             <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"><br/><b>Dr. {{ session()->get('dr') }}</b></div>  <br/>
@@ -396,10 +396,11 @@
 
                         <div class="modal-header" >
                           <!-- Tachecito para cerrar -->
-                            <strong>¡Hubo un error en tu pago y no fue procesado!</strong>
+
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                           <div align="left"><label>¡Hubo un error en tu pago y no fue procesado!</label></div>
                         </div>
                             <div class="modal-body" >
                                  @php
@@ -561,7 +562,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Concretar cita</h4>
+                <div align="left"><label>Concretar cita</label></div>
               </div>
               <div class="modal-body">
                 <div id="info">
