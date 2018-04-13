@@ -432,21 +432,7 @@
         </strong>
       </div>
  
-      <div id="searchDiv">
-        <!-- <strong>
-          <label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;
-        </strong>
-        <input type="text" name="keyWordSearch" class="form-control input-sm" id="kWSearch"> -->
-      
-        <div class="input-group input-group-sm">
-          <input type="text" class="form-control" placeholder="Buscar firma, médico, hospital..."  name="keyWordSearch"  id="kWSearch" >
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-info btn-flat" onclick="start();">
-              <span class="fa fa-search"></span>
-            </button>
-          </span>
-        </div>
-      </div>
+
 
 
         <div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
@@ -476,11 +462,13 @@
               <button type="button" class="btn btn-default btn-sm"><b>Médico general</b></button>
               <a class="btn btn btn-default btn-sm" data-backdrop="static" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
               <a class="btn btn btn-default btn-sm" data-backdrop="static" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
-              <button type="button" class="btn btn-default btn-sm"><b>Busqueda</b></button>
+              <a class="btn btn btn-default btn-sm" data-backdrop="static" data-toggle="modal" data-target="#modalsearch"><b>Busqueda</b></a>
               </div>
       </div>
 
   </div> 
+
+
 
         <div id="modalrango" class="modal fade" role="dialog">
               <div class="modal-dialog">
@@ -495,6 +483,37 @@
                   <div class="modal-body">
                           <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
                   </div>
+                </div>
+              </div>
+            </div>
+
+
+
+        <div id="modalsearch" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">   
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div align="left"><label>Busqueda</label></div>       
+                  </div>
+                  <div class="modal-body">
+                        <!-- <strong>
+                          <label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;
+                        </strong>
+                        <input type="text" name="keyWordSearch" class="form-control input-sm" id="kWSearch"> -->
+                      
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Buscar firma, médico, hospital..."  name="keyWordSearch"  id="kWSearch" >
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-flat" onclick="start();">
+                              <span class="fa fa-search"></span>
+                            </button>
+                          </span>
+                        </div>
+                      </div>
                 </div>
               </div>
             </div>
