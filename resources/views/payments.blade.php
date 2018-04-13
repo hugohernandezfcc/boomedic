@@ -7,6 +7,7 @@
 	      table.dataTable>tbody>tr.child ul.dtr-details {
         margin-left: 65px;
       }
+      
 </style>
 @stop
 

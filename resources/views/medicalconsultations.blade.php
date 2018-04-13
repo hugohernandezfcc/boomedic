@@ -492,7 +492,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                    <label for="Busqueda">Nueva ubicación:</label>
+                    <div align="left"><label for="Busqueda">Nueva ubicación:</label></div>
                         <div class="input-group input-group-sm">
                           <input id="address" type="textbox" value="" class="form-control" placeholder="Puede ingresar direcciones específicas..">
                           <span class="input-group-btn">
@@ -501,7 +501,7 @@
                         
                   </div>
                   <div class="modal-body">
-                   <div id="recentS" align="left" style="display: none;"><b>Busquedas recientes:</b><br/></div>         
+                   <div id="recentS" align="left" style="display: none; font-weight:500;">Busquedas recientes:<br/></div>         
                    <div id="resp" align="left"></div>                
                           <div id ="ubi" class="input-group input-group-sm" style="display:none;">
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
@@ -528,7 +528,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <label for="Speciality" id="label02"></label>
+            <div align="left"><label for="Speciality" id="label02"></label></div>
 
           </div>
 
@@ -803,7 +803,7 @@ function prevTab(elem) {
                    $('#recentS').show();
                    var result1 = JSON.parse(result).reverse();            
                               for(var z=0; z < result1.length; z++){
-                                 $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ result1[z] +'<br/></a>');
+                                 $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ result1[z] +'<br/></a>');
                                }
                   
                     }
@@ -1323,7 +1323,7 @@ function prevTab(elem) {
                        $(".recent").remove();
 
                               for(var z=0; z < data1.length; z++){
-                                 $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ data1[z] +'<br/></a>');
+                                 $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ data1[z] +'<br/></a>');
                                }
                                 document.getElementById('address').value = " ";     
                              }
