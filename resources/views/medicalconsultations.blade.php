@@ -428,7 +428,7 @@
 
       <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
         <strong>
-          <span id="infoSpDetail" class="textStyle01"></span>
+          <span id="infoSpDetail" class="textStyle01" style="visibility: hidden;"></span>
         </strong>
       </div>
  
