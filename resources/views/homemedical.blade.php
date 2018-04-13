@@ -17,7 +17,7 @@
             <div class="inner">
               <h3>150</h3>
 
-              <p>New Orders</p>
+              <p>Solicitudes de cita</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -32,7 +32,7 @@
             <div class="inner">
               <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-              <p>Bounce Rate</p>
+              <p>Saldos</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -47,7 +47,7 @@
             <div class="inner">
               <h3>44</h3>
 
-              <p>User Registrations</p>
+              <p>Expedientes</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -75,7 +75,7 @@
   </section>
 
 
-
+<!-- 
 	<style type="text/css">
 		.info-box .progress .progress-bar {
 		    background: #160404;
@@ -104,7 +104,7 @@
 	              <span class="info-box-text">Citas completadas</span>
 	              <span class="info-box-number">32</span>
 	            </div>
-	            <!-- /.info-box-content -->
+	            <!- /.info-box-content ->
 	        </div>
 	        <br/>
 	          <div class="info-box">
@@ -116,7 +116,7 @@
 	              <span class="info-box-text">Saldos</span>
 	              <span class="info-box-number">$8,700</span>
 	            </div>
-	            <!-- /.info-box-content -->
+	            <!- /.info-box-content ->
 	          </div>
 	          <br/>
 	          <div class="info-box">
@@ -128,7 +128,7 @@
 	              <span class="info-box-text">Expedientes</span>
 	              <span class="info-box-number">19</span>
 	            </div>
-	            <!-- /.info-box-content -->
+	            <!- /.info-box-content ->
 	          </div>
 	          <br/>
 	          <div class="info-box">
@@ -140,7 +140,7 @@
 	              <span class="info-box-text">Citas canceladas</span>
 	              <span class="info-box-number">7</span>
 	            </div>
-	            <!-- /.info-box-content -->
+	            <!- /.info-box-content ->
 	          </div>
 		</div>
 		<div class="col-sm-4">
@@ -224,6 +224,6 @@
 			document.getElementById('listMedicalExam').setAttribute("style","height:" + height + "px;overflow-y: auto;");
 
          });
-    </script>
+    </script> -->
 	
 @stop
