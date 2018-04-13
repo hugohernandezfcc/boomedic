@@ -72,6 +72,7 @@
 				     	}
 			    //autoProcessQueue : false 
 			 };
+			 
 			 var val = "@php echo session()->get('val'); @endphp";
 			 		if(val == "true"){
 
