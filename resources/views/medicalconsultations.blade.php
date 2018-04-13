@@ -1284,6 +1284,7 @@ function prevTab(elem) {
               rotateControl: false,
               fullscreenControl: false
             });
+
             var input = document.getElementById('address');
               new google.maps.places.Autocomplete(input);
             var markerUser = "{{ asset('markerUser.png') }}";
@@ -1294,6 +1295,8 @@ function prevTab(elem) {
               icon: markerUser,
               map: map
             });
+            var opt = { minZoom: 6, maxZoom: 20 };
+             map.setOptions(opt);
             //Evento to open infowindow
             markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
