@@ -17,10 +17,10 @@
       }
       #rango{ 
         position: absolute;
-        width: 50%;
+        width: 90%;
         bottom: 7%;
-        left: 25%;
-        right: 25%;
+        left: 5%;
+        right: 5%;
         padding-top: 0.7%;
         padding-bottom: 0.7%;
         padding-right: 0.7%;
@@ -65,9 +65,7 @@
         padding-left: 0.5%;
         border-radius: 1px;
       }
-     .checkStyl2{
-      text-align: center;
-      }
+
       .infoSpStyle{
         position: absolute;
         top: 19%;
@@ -463,6 +461,7 @@
 
 
 
+
     <div id="map"></div>
 
 <div class="alert alert-info alert-dismissable" id="infDr" style="display: none; background-color: rgba(0, 0, 0, 0.9) !important; border-color: rgba(0, 0, 0, 0.9) !important;">
@@ -473,16 +472,33 @@
       </div>
 
     <div id='rango'>
-        <strong><label for="rango01" id="label04"></label> <span id="rango03"></span></strong><br/>
-        <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
-             <div class="checkStyl2">      
-      <a class="btn btn-secondary btn-xs" data-backdrop="static" data-toggle="modal" data-target="#modal"><li class="fa fa-map-marker"></li> Cambiar de ubicación</a>
-    </div>
+              <div class="btn-group">
+              <button type="button" class="btn btn-default btn-sm"><b>Médico general</b></button>
+              <a class="btn btn btn-default btn-sm" data-backdrop="static" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
+              <a class="btn btn btn-default btn-sm" data-backdrop="static" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
+              <button type="button" class="btn btn-default btn-sm"><b>Busqueda</b></button>
+              </div>
       </div>
 
   </div> 
 
-      
+        <div id="modalrango" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">   
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div align="left"><label for="rango01" id="label04"></label> <span id="rango03"></span></div>       
+                  </div>
+                  <div class="modal-body">
+                          <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
          <!-- Modal Busqueda por lugar -->
 
             <div id="modal" class="modal fade" role="dialog">
@@ -882,10 +898,13 @@ function prevTab(elem) {
     <script>
       var slider = document.getElementById("rango01");
       var output2 = document.getElementById("rango03");
+      var output3 = document.getElementById("rango04");
       var defaultVal = slider.defaultValue;
       output2.innerHTML = slider.value;
+      output3.innerHTML = slider.value;
       slider.oninput = function() {
         output2.innerHTML = this.value;
+        output3.innerHTML = this.value;
       }
     </script>
 
