@@ -423,7 +423,7 @@
     <div id="mapaC">
       <!-- Trigger the modal with a checkbox -->
       <div class="checkStyle">
-        <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><strong><label for="general" id="label01" class="textStyle01"></label></strong>
+
       </div>
 
       <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
@@ -459,10 +459,10 @@
 
     <div id='rango'>
               <div class="btn-group">
-              <button type="button" class="btn btn-default btn-sm"><b>Médico general</b></button>
-              <a class="btn btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
-              <a class="btn btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
-              <a class="btn btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
+              <a class="btn btn-default btn-sm"><input type="checkbox" name="general" id="general" checked onchange="changeCheck();" style="margin: 0 0 0;"><b><label for="general" id="label01" style="margin-bottom:0 !important;"></label></b></a>
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
               </div>
       </div>
 
@@ -652,17 +652,17 @@
                                         <div class="box-header">
                                           <i class="fa fa-calendar"></i>
 
-                                          <h3 class="box-title">Seleccionar día</h3>
+                                            <h3 class="box-title">Seleccionar día</h3>
                                           <!-- tools box -->
-                                          <div class="pull-right box-tools">
-                                            <button type="button" class="btn btn-secondary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                          </div>
+                                              <div class="pull-right box-tools">
+                                                <button type="button" class="btn btn-secondary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                              </div>
                                           <!-- /. tools -->
                                         </div>
                                         <!-- /.box-header -->
                                         <div class="box-body no-padding">
                                           <!--The calendar -->
-                                          <div id="calendar1" style="width: 80%"></div>
+                                            <div id="calendar1" style="width: 80%"></div>
                                         </div>
                                         <!-- /.box-body -->
                                         
