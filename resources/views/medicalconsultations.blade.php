@@ -459,7 +459,7 @@
 
     <div id='rango'>
               <div class="btn-group">
-              <a class="btn btn-default btn-sm"><input type="checkbox" name="general" id="general" checked onchange="changeCheck();" style="margin: 0 0 0;"><b><label for="general" id="label01" style="margin-bottom:0 !important;"></label></b></a>
+              <a class="btn btn-default btn-sm"><input type="checkbox" name="general" id="general" checked onchange="changeCheck();" style="margin: 0 0 0; visibility: hidden;"><b><label for="general" id="label01" style="margin-bottom:0 !important;"></label></b></a>
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
@@ -891,6 +891,7 @@ function prevTab(elem) {
           typeC = 'TypeGeneral';
           document.getElementById("infoSpDetail").innerHTML = ' ';
           document.getElementById('infoSp').style.display = 'none';
+          document.getElementById("label01").innerHTML = "Médico General";
           start();
         }
       }
@@ -974,6 +975,7 @@ function prevTab(elem) {
             document.getElementById("ShowDetails").innerHTML = ' ';
             document.getElementById("info").innerHTML = ' ';
             document.getElementById('infoSp').style.display = 'none';
+            document.getElementById("label01").innerHTML = "Médico General";
             startProcess = false;
           }
           if(selectedValue !== firstValue){
@@ -981,6 +983,7 @@ function prevTab(elem) {
             hideM2();
             document.getElementById('infoSp').style.display = 'block';
             document.getElementById("infoSpDetail").innerHTML = selectedValue;
+             document.getElementById("label01").innerHTML = selectedValue;
             functionEsp(selectedValue, keySearch, markerLatLng, currentVal);
             drop();
             }
@@ -988,6 +991,7 @@ function prevTab(elem) {
           if(typeC == 'TypeGeneral'){
             console.log('CITA GENERAL');
             document.getElementById('infoSp').style.display = 'none';
+            document.getElementById("label01").innerHTML = "Médico General";
             functionGen(keySearch, markerLatLng, currentVal);
             drop();
           }
