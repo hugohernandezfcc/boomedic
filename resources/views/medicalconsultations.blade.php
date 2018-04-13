@@ -460,9 +460,9 @@
     <div id='rango'>
               <div class="btn-group">
               <button type="button" class="btn btn-default btn-sm"><b>Médico general</b></button>
-              <a class="btn btn btn-default btn-sm" data-backdrop="static" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
-              <a class="btn btn btn-default btn-sm" data-backdrop="static" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
-              <a class="btn btn btn-default btn-sm" data-backdrop="static" data-toggle="modal" data-target="#modalsearch"><b>Busqueda</b></a>
+              <a class="btn btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
+              <a class="btn btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
+              <a class="btn btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
               </div>
       </div>
 
