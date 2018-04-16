@@ -911,9 +911,8 @@ function prevTab(elem) {
        if (document.getElementById('general').checked){
           $('#mySelect').prop('disabled', 'disabled');
         }else{
-          $('#mySelect').prop('disabled', false);
+           $('#mySelect').prop('disabled', false);
         }
-        $('#mySelect').prop('selectedIndex',0);
           $("#myModal").modal();
         }
       }
