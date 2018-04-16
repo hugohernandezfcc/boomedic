@@ -908,8 +908,13 @@ function prevTab(elem) {
         }
       }
     function showMy(){
+       if (document.getElementById('general').checked){
           $('#mySelect').prop('disabled', 'disabled');
+        }else{
+          $('#mySelect').prop('disabled', false);
+        }
           $("#myModal").modal();
+        }
       }
       function hideM(){
         if (document.getElementById('general').checked)
