@@ -885,6 +885,7 @@ function prevTab(elem) {
           startProcess = false;
           typeC = 'TypeSpeciality';
            $('#mySelect').prop('disabled', false);
+           start();
           
         }
         if (document.getElementById('general').checked){
@@ -995,7 +996,7 @@ function prevTab(elem) {
             document.getElementById("infoSpDetail").innerHTML = selectedValue;
             document.getElementById("labelextra").innerHTML = selectedValue;
             functionEsp(selectedValue, keySearch, markerLatLng, currentVal);
-            startProcess = false;
+            drop();
             }
           }
           if(typeC == 'TypeGeneral'){
@@ -1004,7 +1005,7 @@ function prevTab(elem) {
             document.getElementById("label01").innerHTML = "Médico General";
             document.getElementById("labelextra").innerHTML = "Médico General";
             functionGen(keySearch, markerLatLng, currentVal);
-            startProcess = false;
+            drop();
           }
       }
     </script>
