@@ -900,6 +900,7 @@ function prevTab(elem) {
           $('#mySelect').val("- Ninguna -").trigger("change");
           $('#mySelect').prop('disabled', 'disabled');
           start();
+          $("#myModal").modal("hide");
         }
       }
       function showM(){
