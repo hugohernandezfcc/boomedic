@@ -1331,7 +1331,7 @@ function prevTab(elem) {
               }
             ], 
               // disableDefaultUI: true,
-              zoomControl: false,
+              zoomControl: true,
               mapTypeControl: false,
               scaleControl: false,
               streetViewControl: false,
@@ -1348,9 +1348,14 @@ function prevTab(elem) {
               position: new google.maps.LatLng(pos),
               icon: markerUser,
               map: map
-            });
-            var opt = { minZoom: 6, maxZoom: 20 };
+            });   
+            if("@php echo $agent->isMobile(); @endphp"){
+            var opt = { minZoom: 6, maxZoom: 20, zoomControl: false};
              map.setOptions(opt);
+           }else{
+           var opt = { minZoom: 6, maxZoom: 20, zoomControl: true };
+             map.setOptions(opt);
+           }
             //Evento to open infowindow
             markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
