@@ -12,8 +12,7 @@
 @stop
 
 @section('content')
-    
-    <br/>
+
 @if($mode == 'listPaymentMethods')    
 @include('headerprofile')
 @endif

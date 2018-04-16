@@ -88,11 +88,6 @@
 				    
 	</script>
 
-
-
-
-	<br/>
-
 	@if( empty($status) )
 
     @include('headerprofile')

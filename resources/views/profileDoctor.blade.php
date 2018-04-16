@@ -81,7 +81,6 @@
 
 				    
 	</script>
-	<br/>
 	@if($mode == 'doctor')
 	@if( empty($status) )
 
