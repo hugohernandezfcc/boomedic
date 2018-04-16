@@ -255,6 +255,7 @@
     /**
      * Text of labels
      */
+
     var title = "Programar Cita";
     var check01 = "Médico General";
     var select01 = "Seleccionar especialidad";
@@ -457,7 +458,7 @@
 
     <div id='rango'>
               <div class="btn-group">
-              <a class="btn btn-default btn-sm"><label id="labelextra"></label></b></a>
+              <a class="btn btn-default btn-sm" onclick="showMy();"><b><span id="labelextra"></span></b></a>
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
@@ -883,7 +884,8 @@ function prevTab(elem) {
         if (!document.getElementById('general').checked){
           startProcess = false;
           typeC = 'TypeSpeciality';
-          $("#myModal").modal();
+           $('#mySelect').prop('disabled', false);
+          
         }
         if (document.getElementById('general').checked){
           startProcess = false;
@@ -893,6 +895,7 @@ function prevTab(elem) {
           document.getElementById("infoSpDetail").innerHTML = ' ';
           document.getElementById('infoSp').style.display = 'none';
           document.getElementById("label01").innerHTML = "Médico General";
+          $('#mySelect').prop('disabled', 'disabled');
           start();
         }
       }
@@ -902,6 +905,10 @@ function prevTab(elem) {
           typeC = 'TypeSpeciality';
           $("#myModal").modal({backdrop: "static"});
         }
+      }
+    function showMy(){
+          $('#mySelect').prop('disabled', 'disabled');
+          $("#myModal").modal({backdrop: "static"});
       }
       function hideM(){
         if (document.getElementById('general').checked)
@@ -943,6 +950,7 @@ function prevTab(elem) {
       document.getElementById('label04').innerHTML = Rango01;
       /*document.getElementById('label08').innerHTML = Button02;*/
       document.getElementById('label07').innerHTML = Button01;
+      document.getElementById("labelextra").innerHTML = "Médico General";
     </script>
 
     <script type="text/javascript">
