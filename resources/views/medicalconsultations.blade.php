@@ -914,7 +914,7 @@ function prevTab(elem) {
            $('#mySelect').prop('disabled', false);
         }
           $("#myModal").modal();
-        }
+        
       }
       function hideM(){
         if (document.getElementById('general').checked)
