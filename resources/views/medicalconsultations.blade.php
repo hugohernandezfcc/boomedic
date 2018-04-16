@@ -569,7 +569,7 @@
 
           <div class="modal-body" >
             <div class="form-group">
-              <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><b><label for="general" id="label01"></label></b>
+              <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><b>&nbsp;<label for="general" id="label01"></label></b>
             </div>
               <div class="form-group">
                 <select class="form-control" name="Speciality" id="mySelect" size="1">
@@ -993,10 +993,9 @@ function prevTab(elem) {
             hideM2();
             document.getElementById('infoSp').style.display = 'block';
             document.getElementById("infoSpDetail").innerHTML = selectedValue;
-            document.getElementById("label01").innerHTML = selectedValue;
             document.getElementById("labelextra").innerHTML = selectedValue;
             functionEsp(selectedValue, keySearch, markerLatLng, currentVal);
-            drop();
+            startProcess = false;
             }
           }
           if(typeC == 'TypeGeneral'){
@@ -1005,7 +1004,7 @@ function prevTab(elem) {
             document.getElementById("label01").innerHTML = "Médico General";
             document.getElementById("labelextra").innerHTML = "Médico General";
             functionGen(keySearch, markerLatLng, currentVal);
-            drop();
+            startProcess = false;
           }
       }
     </script>
