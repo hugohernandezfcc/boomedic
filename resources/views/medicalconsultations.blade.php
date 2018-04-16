@@ -457,10 +457,10 @@
 
     <div id='rango'>
               <div class="btn-group">
-              <a class="btn btn-default btn-sm btn-flat"><input type="checkbox" name="general" id="general" checked onchange="changeCheck();" style="visibility: hidden;"><b><label for="general" id="label01" style="margin-bottom:0 !important;"></label></b></a>
-              <a class="btn btn-default btn-sm btn-flat" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
-              <a class="btn btn-default btn-sm btn-flat" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
-              <a class="btn btn-default btn-sm btn-flat" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
+              <a class="btn btn-default btn-sm"><input type="checkbox" name="general" id="general" checked onchange="changeCheck();" style="visibility: hidden;"><b><label for="general" id="label01" style="margin-bottom:0 !important;"></label></b></a>
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
               </div>
       </div>
 
