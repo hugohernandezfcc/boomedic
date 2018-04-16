@@ -162,7 +162,7 @@
     line-height: 13px;
 }
 .lockscreen-item {
-    margin: 0 0 20px auto !important;
+    margin: 0 0 13px auto !important;
 }
     </style>
 
@@ -172,7 +172,7 @@
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */margin: 0 0 20px auto !important
+        padding-top: 100px; /* Location of the box */
         left: 0;
         top: 0;
         width: 100%; /* Full width */
