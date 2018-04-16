@@ -457,7 +457,7 @@
 
     <div id='rango'>
               <div class="btn-group">
-              <a class="btn btn-default btn-sm"><input type="checkbox" name="general" id="general" checked onchange="changeCheck();" style="visibility: hidden;"><b><label for="general" id="label01" style="margin-bottom:0 !important;"></label></b></a>
+              <a class="btn btn-default btn-sm"><label id="labelextra"></label></b></a>
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
@@ -567,6 +567,9 @@
           </div>
 
           <div class="modal-body" >
+            <div class="form-group">
+              <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><b><label for="general" id="label01"></label></b>
+            </div>
               <div class="form-group">
                 <select class="form-control" name="Speciality" id="mySelect" size="1">
                   <option id="opc01"></option>
@@ -974,6 +977,7 @@ function prevTab(elem) {
             document.getElementById("info").innerHTML = ' ';
             document.getElementById('infoSp').style.display = 'none';
             document.getElementById("label01").innerHTML = "Médico General";
+            document.getElementById("labelextra").innerHTML = "Médico General";
             startProcess = false;
           }
           if(selectedValue !== firstValue){
@@ -981,7 +985,8 @@ function prevTab(elem) {
             hideM2();
             document.getElementById('infoSp').style.display = 'block';
             document.getElementById("infoSpDetail").innerHTML = selectedValue;
-             document.getElementById("label01").innerHTML = selectedValue;
+            document.getElementById("label01").innerHTML = selectedValue;
+            document.getElementById("labelextra").innerHTML = selectedValue;
             functionEsp(selectedValue, keySearch, markerLatLng, currentVal);
             drop();
             }
@@ -990,6 +995,7 @@ function prevTab(elem) {
             console.log('CITA GENERAL');
             document.getElementById('infoSp').style.display = 'none';
             document.getElementById("label01").innerHTML = "Médico General";
+            document.getElementById("labelextra").innerHTML = "Médico General";
             functionGen(keySearch, markerLatLng, currentVal);
             drop();
           }
