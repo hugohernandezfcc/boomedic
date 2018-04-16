@@ -912,6 +912,7 @@ function prevTab(elem) {
       }
     function showMy(){
        $('#general').attr('checked', false);
+        $('#mySelect').prop('disabled', false);
           $('#mySelect').val("- Ninguna -").trigger("change");
           $("#myModal").modal();
         
