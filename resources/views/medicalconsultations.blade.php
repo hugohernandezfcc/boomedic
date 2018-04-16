@@ -911,11 +911,7 @@ function prevTab(elem) {
         }
       }
     function showMy(){
-       if (document.getElementById('general').checked){
-          $('#mySelect').prop('disabled', 'disabled');
-        }else{
-           $('#mySelect').prop('disabled', false);
-        }
+       $('#general').attr('checked', false);
           $('#mySelect').val("- Ninguna -").trigger("change");
           $("#myModal").modal();
         
