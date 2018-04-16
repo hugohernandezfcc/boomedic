@@ -909,7 +909,7 @@ function prevTab(elem) {
       }
     function showMy(){
           $('#mySelect').prop('disabled', 'disabled');
-          $("#myModal").modal({backdrop: "static"});
+          $("#myModal").modal();
       }
       function hideM(){
         if (document.getElementById('general').checked)
@@ -1020,8 +1020,10 @@ function prevTab(elem) {
       window.onload = function(){
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
+        var zcontrol;
         if("@php echo $agent->isMobile(); @endphp"){
             //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
+            zcontrol = false;
             height = window.screen.availHeight;
             //alert("Altura: "+height);
             if(height >= 1000 && height <= 1300){
@@ -1034,6 +1036,7 @@ function prevTab(elem) {
               height -=115;
             }
         }else{
+          zcontrol = true;
           height = window.screen.availHeight-115;
         }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
@@ -1331,7 +1334,7 @@ function prevTab(elem) {
               }
             ], 
               // disableDefaultUI: true,
-              zoomControl: true,
+              zoomControl: zcontrol,
               mapTypeControl: false,
               scaleControl: false,
               streetViewControl: false,
