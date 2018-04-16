@@ -475,7 +475,7 @@
                 <div class="modal-content">
                   <div class="modal-header">   
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
+                      <span aria-hidden="true" style="font-size: 21px;">&times;</span>
                     </button>
                     <div align="left"><label for="rango01" id="label04"></label> <span id="rango03"></span></div>       
                   </div>
@@ -494,7 +494,7 @@
                 <div class="modal-content">
                   <div class="modal-header">   
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
+                      <span aria-hidden="true" style="font-size: 21px;">&times;</span>
                     </button>
                     <div align="left"><label>Busqueda</label></div>       
                   </div>
@@ -525,7 +525,7 @@
                 <div class="modal-content">
                   <div class="modal-header">   
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
+                      <span aria-hidden="true" style="font-size: 21px;">&times;</span>
                     </button>
                     <div align="left"><label for="Busqueda">Nueva ubicación:</label></div>
                         <div class="input-group input-group-sm">
@@ -561,7 +561,7 @@
             <!-- Tachecito para cerrar -->
           
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true" style="font-size: 21px;">&times;</span>
             </button>
             <div align="left"><label for="Speciality" id="label02"></label></div>
 
@@ -598,7 +598,7 @@
 
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
+                  <span aria-hidden="true" style="font-size: 21px;">&times;</span></button>
                 <div align="left"><label>Concretar cita</label></div>
               </div>
               <div class="modal-body">
