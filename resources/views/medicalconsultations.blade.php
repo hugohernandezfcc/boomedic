@@ -885,6 +885,7 @@ function prevTab(elem) {
           startProcess = false;
           typeC = 'TypeSpeciality';
            $('#mySelect').prop('disabled', false);
+            $('#mySelect').prop('selectedIndex',0);
            start();
           
         }
@@ -913,6 +914,7 @@ function prevTab(elem) {
         }else{
            $('#mySelect').prop('disabled', false);
         }
+        $('#mySelect').prop('selectedIndex',0);
           $("#myModal").modal();
         
       }
