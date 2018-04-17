@@ -38,7 +38,7 @@
         </div>
 
         <div class="col-lg-3 col-xs-6">
-          	<div class="small-box bg-yellow">
+          	<div class="small-box bg-primary">
             	<div class="inner">
               		<h3>44</h3>
               		<p>Expedientes</p>
@@ -53,7 +53,7 @@
 
 
          <div class="col-lg-3 col-xs-6">
-          	<div class="small-box bg-red">
+          	<div class="small-box bg-teal">
             	<div class="inner">
               		<h3>44</h3>
               		<p>Interacciones</p>
@@ -68,6 +68,8 @@
 
       </div>
   </section>
+
+
 
 
 <!-- 
