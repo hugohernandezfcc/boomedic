@@ -18,6 +18,9 @@
             background: transparent !important; 
             top: 75% !important; 
       }
+ .timeline>li>.timeline-item>.timeline-header {
+    border-bottom: 1px solid #e0e0e0 !important;
+}
 
 </style>
 
@@ -66,7 +69,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -100,7 +103,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -114,7 +117,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -168,7 +171,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -202,7 +205,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -216,7 +219,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -271,7 +274,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -304,7 +307,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -318,7 +321,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -373,7 +376,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -406,7 +409,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -420,7 +423,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -475,7 +478,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -508,7 +511,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -522,7 +525,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -575,7 +578,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -608,7 +611,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -622,7 +625,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -677,7 +680,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -710,7 +713,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -725,7 +728,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
