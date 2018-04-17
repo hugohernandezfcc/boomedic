@@ -120,21 +120,15 @@ class HomeController extends Controller
                             ->get();
 
         if ($profInfo->count() > 0 && DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
-            Session(['utype' => 'doctor']);
             return redirect('doctor/edit/In%20Progress');
         }
 
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
-            Session(['utype' => 'mortal']); 
             return redirect('user/edit/In%20Progress');
         }
         
         else {
-        if($profInfo->count() > 0){
-             Session(['utype' => 'doctor']);
-        }else{
-             Session(['utype' => 'mortal']); 
-        } 
+
             return view('medicalconsultations', [
                     'username'  => $user->username,
                     'name'      => $user->name,
