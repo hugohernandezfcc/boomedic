@@ -255,7 +255,7 @@
     /**
      * Text of labels
      */
-
+     console.log("@php echo session()->get('utype'); @endphp");
     var title = "Programar Cita";
     var check01 = "Médico General";
     var select01 = "Seleccionar especialidad";
