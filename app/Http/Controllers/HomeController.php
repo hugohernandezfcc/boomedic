@@ -130,7 +130,7 @@ class HomeController extends Controller
         }
         
         else {
-        if($profInfo->count > 0){
+        if($profInfo->count() > 0){
              Session(['utype' => 'doctor']);
         }else{
              Session(['utype' => 'mortal']); 
