@@ -255,7 +255,7 @@
     /**
      * Text of labels
      */
-     console.log("@php echo session()->get('utype'); @endphp");
+
     var title = "Programar Cita";
     var check01 = "Médico General";
     var select01 = "Seleccionar especialidad";
@@ -1027,6 +1027,7 @@ function prevTab(elem) {
        * Function responsable of execute the main functions 
        */
       window.onload = function(){
+         console.log("@php echo session()->get('utype'); @endphp");
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
