@@ -21,7 +21,10 @@
  .timeline>li>.timeline-item>.timeline-header {
     border-bottom: 1px solid #e0e0e0 !important;
 }
-
+.timeline-footer {
+    padding: 5px 0 0 0;
+    border-top: 1px solid #e0e0e0 !important;
+}
 </style>
 
   	<div class="box-header direct-chat">
@@ -73,9 +76,11 @@
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
@@ -175,9 +180,11 @@
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
@@ -278,9 +285,11 @@
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
@@ -380,9 +389,11 @@
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
@@ -482,9 +493,11 @@
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
@@ -582,9 +595,11 @@
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
@@ -684,9 +699,11 @@
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
