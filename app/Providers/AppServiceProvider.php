@@ -51,7 +51,6 @@ class AppServiceProvider extends ServiceProvider
 
             $confirmed = User::find(Auth::id());           
             if($profInfo->count() > 0 && $confirmed->confirmed == false){
-                 Session(['utype' => 'doctor']);
                 $event->menu->add([
                     'text' => ' Confirmación de correo',
                     'url'  => 'medicalconsultations',
@@ -60,7 +59,6 @@ class AppServiceProvider extends ServiceProvider
             }
 
             if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id && $confirmed->confirmed == true){
-                 Session(['utype' => 'doctor']);
                 $event->menu->add([
                     'text' => 'Aviso de Privacidad',
                     'url'  => 'privacyStatement/index',
@@ -78,7 +76,6 @@ class AppServiceProvider extends ServiceProvider
 
                 if($profInfo->count() > 0){
                     //es un médico
-                   Session(['utype' => 'doctor']); 
                     $menusInfo = DB::table('menus')
                                     ->where('to', 'Doctor')->orderBy('order')
                                     ->get();
@@ -105,7 +102,6 @@ class AppServiceProvider extends ServiceProvider
 
                 }else{
                      if($confirmed->confirmed == false){
-                     Session(['utype' => 'mortal']);    
                             $event->menu->add([
                                 'text' => ' Confirmación de correo',
                                 'url'  => 'medicalconsultations',
@@ -114,14 +110,13 @@ class AppServiceProvider extends ServiceProvider
                      }
 
                     elseif(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id && $confirmed->confirmed == true){
-                     Session(['utype' => 'mortal']); 
                      $event->menu->add([
                                         'text' => 'Aviso de Privacidad',
                                         'url'  => 'privacyStatement/index',
                                         'icon' => ''
                                     ]);
                     }else{
-                        Session(['utype' => 'mortal']); 
+
                         $menusInfo = DB::table('menus')
                                         ->where('to', 'Patient' )
                                         ->orWhere('to', 'Both')->orderBy('order')
