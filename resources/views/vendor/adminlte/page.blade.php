@@ -120,6 +120,11 @@
                                   </li>
                                 </ul>
                               </li>
+                            @if(session()->get('utype') == "doctor")
+                            <li>
+                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                              </li>
+                            @endif
                     </ul>
                 </div>
                 @if(config('adminlte.layout') == 'top-nav')
@@ -172,7 +177,7 @@
         <footer class="main-footer" id="footerw">
             @yield('footer')
         </footer>
-
+        
     </div>
     <!-- ./wrapper -->
 @stop
