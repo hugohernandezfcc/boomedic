@@ -334,14 +334,14 @@ Route::group(['prefix' => 'workboardDr'], function(){
 
 Route::group(['prefix' => 'drApppoinments'], function(){
 
-	Route::get('drApppoinments/{id}', [
-			'uses'	=>	'drApppoinments@index',
-			'as'	=>	'drApppoinments'
+	Route::get('drAppoinments/{id}', [
+			'uses'	=>	'drAppoinments@index',
+			'as'	=>	'drAppoinments'
 		]
 	);
 
 	Route::get('redirecting/{page}', [
-			'uses'	=>	'drApppoinments@redirecting',
+			'uses'	=>	'drAppoinments@redirecting',
 			'as'	=>	'redirecting'
 		]
 	);
