@@ -22,9 +22,13 @@
     	<div class="col-sm-3">
     		<div class="box">
 			  	<div class="box-header with-border">
-				    <h3 class="box-title">Información del paciente</h3>
+				    <h3 class="box-title">Paciente</h3>
 			  	</div>
 			  	<div class="box-body">
+
+			  		<img class="profile-user-img img-responsive img-circle" src="https://s3.amazonaws.com/abiliasf/3.jpg?10:37" alt="User profile picture">
+			  		
+			  		<p class="text-muted text-center">De cada paciente podras ver:</p>
 			  		<ul class="list-group list-group-unbordered">
 		                <li class="list-group-item">
 		                  	<b>Followers</b> <a class="pull-right">1,322</a>
