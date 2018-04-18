@@ -39,14 +39,14 @@ class drAppointments extends Controller
 
                 $array = array();
                         foreach($appo  as $ap){
-                            if(Carbon::parse($ap->when)->format('d-m-Y') < Carbon::now()->format('d-m-Y')){
+                            if(Carbon::parse($ap->when)->format('m-d-Y') < Carbon::now()->format('m-d-Y')){
                                     array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "gray"]);
                                 }
-                            if(Carbon::parse($ap->when)->format('d-m-Y') > Carbon::now()->format('d-m-Y')){
-                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "blue"]);
-                                }
-                            if(Carbon::parse($ap->when)->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
+                            if(Carbon::now()->format('m-d-Y') < Carbon::parse($ap->when)->format('m-d-Y')){
                                     array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "black"]);
+                                }
+                            if(Carbon::parse($ap->when)->format('m-d-Y') == Carbon::now()->format('m-d-Y')){
+                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "blue"]);
                                 }
                                   }
 

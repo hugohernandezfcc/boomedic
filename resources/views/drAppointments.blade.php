@@ -40,7 +40,8 @@ $(function() {
                      if( optionhour[y].color == "gray"){
                      hor.push({  
 						 	title: resp2,
-						    start:  resp, 
+						    start:  resp,
+						    end:    resp, 
 						    color: 'gray',   						     
 						});
                  }
@@ -48,6 +49,7 @@ $(function() {
                      hor.push({  
 						 	title: resp2,
 						    start:  resp, 
+						    end:    resp, 
 						    color: 'black',   						     
 						});
                  }
@@ -55,6 +57,7 @@ $(function() {
                      hor.push({  
 						 	title: resp2,
 						    start:  resp, 
+						    end:    resp, 
 						    color: 'green',   						     
 						});
                  }
