@@ -50,7 +50,7 @@ $(function() {
 						 	title: resp2,
 						    start:  resp, 
 						    end:    resp, 
-						    color: 'black',   						     
+						    color: 'teal',   						     
 						});
                  }
                 if( optionhour[y].color == "blue"){
