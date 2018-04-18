@@ -334,9 +334,9 @@ Route::group(['prefix' => 'workboardDr'], function(){
 
 Route::group(['prefix' => 'drApppoinments'], function(){
 
-	Route::get('index/{id}', [
+	Route::get('drApppoinments/{id}', [
 			'uses'	=>	'drApppoinments@index',
-			'as'	=>	'index'
+			'as'	=>	'drApppoinments'
 		]
 	);
 
