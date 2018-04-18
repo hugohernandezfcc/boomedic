@@ -31,10 +31,12 @@ $(function() {
         console.log(optionhour);
           var hor = Array();
           var resp = Array();
+          var resp2 = Array();
          for(var y = 0; y < optionhour.length; y++){ 
-                     resp = optionhour[y]; 
+                     resp = optionhour[y].start;
+                     resp2 = optionhour[y].user;
                      hor.push({  
-						 	title: 'Cita',
+						 	title: resp2,
 						    start:  resp, 
 						    end: resp,
 						    color: 'green',   						     

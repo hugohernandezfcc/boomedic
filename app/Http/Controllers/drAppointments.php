@@ -30,10 +30,15 @@ class drAppointments extends Controller
      */
     public function index(){
         $user = User::find(Auth::id());
-        $appo =  DB::table('medical_appointments') ->where('user_doctor', $user->id)->get();
+           $appo =DB::table('medical_appointments')
+            ->join('users', 'medical_appointments.user', '=', 'users.id')
+            ->where('user_doctor', $user->id)
+            ->select('medical_appointments.*', 'users.name')
+            ->get();
+
                 $array = array();
                         foreach($appo  as $ap){
-                                    array_push($array, $ap->when);
+                                    array_push($array, ["start" => $ap->when, "user" => $ap->name]);
                                   }
 
 
