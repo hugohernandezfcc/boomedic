@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head></head>
 <body>
-	<div class="lockscreen-item" style="margin: 10px 0 30px auto;">
+	<div class="lockscreen-item">
 
 	    <!-- lockscreen credentials (contains the form) -->
 	    <form class="lockscreen-credentials" action="create" method="get" id="form_profile">

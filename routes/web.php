@@ -33,6 +33,8 @@ Auth::routes();
 */
 Route::post('SMRegister', ['as' => 'SMRegister.createbySocialMedia', 'uses' => 'Auth\RegisterController@createbySocialMedia']);
 Route::get('medicalRegister/society', ['as' => 'medicalRegister/society', 'uses' => 'Auth\RegisterController@index']);
+Route::get('verify/{code}', 'HomeController@verify')->name('verify/{code}');
+Route::get('/returnverify', 'HomeController@returnverify')->name('/returnverify');
 
 
 
@@ -56,9 +58,27 @@ Route::group(['prefix' => 'user'], function(){
 		]
 	);
 
+	Route::get('verify/{id}', [
+			'uses'	=>	'profile@verify',
+			'as'	=>	'verify'
+		]
+	);	
+
 	Route::post('update/{id}', [
 			'uses'	=>	'profile@update',
 			'as'	=>	'update'
+		]
+	);
+
+	Route::post('userSearch/', [
+			'uses'	=>	'profile@userSearch',
+			'as'	=>	'userSearch'
+		]
+	);
+
+	Route::post('saveFamily/', [
+			'uses'	=>	'profile@saveFamily',
+			'as'	=>	'saveFamily'
 		]
 	);
 
@@ -253,6 +273,11 @@ Route::group(['prefix' => 'clinicHistory'], function(){
 		Route::get('cHistory', [
 			'uses'	=>	'clinicHistory@show',
 			'as'	=>	'cHistory'
+		]
+	);
+	Route::get('edit/{id}', [
+			'uses'	=>	'clinicHistory@edit',
+			'as'	=>	'edit'
 		]
 	);
 

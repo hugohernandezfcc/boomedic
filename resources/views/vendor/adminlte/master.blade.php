@@ -48,7 +48,7 @@
 
 
     <style type="text/css">
-    
+
         .btn-secondary { 
             color: #ffffff; 
             background-color: #000000; 
@@ -160,6 +160,9 @@
     font-size: 11px;
     background: rgba(0,0,0,0);
     line-height: 13px;
+}
+.lockscreen-item {
+    margin: 0 0 13px auto !important;
 }
     </style>
 
@@ -362,6 +365,12 @@ span.round-tab:hover {
         .select2-container .select2-selection--single .select2-selection__rendered {
             padding-left: 0px !important;
         }
+
+            .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+
+                background-color: #333;
+                border-color: #333;
+            }
 </style>
 
 
@@ -416,7 +425,9 @@ span.round-tab:hover {
                 });
         $('#datepicker2').datepicker({
             autoclose: true,
-            language: 'es'
+            format: "yyyy-mm-dd",
+            language: 'es',
+            orientation: 'auto'
          });
         //Datemask dd/mm/yyyy
         //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': "{{ trans('adminlte::adminlte.birthDate') }}" })
@@ -431,6 +442,7 @@ span.round-tab:hover {
             titleFormat: "MM yyyy",
             weekStart: 0
           };
+
 
                     //Date picker
        /* $('#datepicker').datepicker({

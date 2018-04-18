@@ -62,7 +62,7 @@
 	    		<div class="form-group has-feedback">	
 	    			<label for="cause" class="col-sm-2 control-label">Causa</label>
 	    			 <div class="col-sm-10">
-				        <select name="cause" class="form-control select1">
+				        <select name="cause" class="form-control select2">
                             <option value="01">Error "No es posible determinar mi ubicación"</option>
                             <option value="02">La app no está sonando</option>
                             <option value="03">La app se congela o se cierra en iOS</option>

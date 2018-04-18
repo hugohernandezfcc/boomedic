@@ -32,13 +32,33 @@ class clinicHistory extends Controller
      */
     public function index(){
         $user = User::find(Auth::id());
-        $clinic_history = DB::table('clinic_history')->get();
+                $clinic_history = DB::table('clinic_history')
+                ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                ->where('userid', Auth::id())
+                ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+                ->get();
+
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
-            ->select('answers_clinic_history.answer', 'questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
+            ->where('answers_clinic_history.question','!=', null)
+            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
             ->get();
 
+        $test_result = DB::table('diagnostic_test_result')
+        ->join('diagnostic_tests', 'diagnostic_test_result.diagnostic_test', '=', 'diagnostic_tests.id')
+        ->join('recipes_tests', 'diagnostic_test_result.recipes_test', '=', 'recipes_tests.id')
+        ->join('users', 'recipes_tests.doctor', '=', 'users.id')
+        ->where('diagnostic_test_result.patient', Auth::id())
+        ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.folio')
+        ->get();  
+            
+        $question_parent = DB::table('answers_clinic_history')->get();
 
+        if(count($clinic_history) == 0){
+            $mode = "null";
+        } else{
+            $mode = "finish";
+        }
         return view('clinicHistory', [
                 'userId'            => $user->id,
                 'username'          => $user->username,
@@ -46,8 +66,10 @@ class clinicHistory extends Controller
                 'photo'             => $user->profile_photo,
                 'date'              => $user->created_at,
                 'questions'         => $question,
+                'questions_parent'  => $question_parent,
                 'clinic_history'    => $clinic_history,
-                'mode'              => 'null'
+                'test_result'       => $test_result,
+                'mode'              => $mode
             ]
         );
     }
@@ -112,7 +134,7 @@ class clinicHistory extends Controller
                 ->get();
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
-            ->select('answers_clinic_history.answer', 'questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
+            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
             ->get();
         $test_result = DB::table('diagnostic_test_result')
         ->join('diagnostic_tests', 'diagnostic_test_result.diagnostic_test', '=', 'diagnostic_tests.id')
@@ -121,7 +143,8 @@ class clinicHistory extends Controller
         ->where('diagnostic_test_result.patient', Auth::id())
         ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.folio')
         ->get();    
-
+        
+        $question_parent = DB::table('answers_clinic_history')->get();
         return view('clinicHistory', [
                 'userId'            => $user->id,
                 'username'          => $user->username,
@@ -131,6 +154,7 @@ class clinicHistory extends Controller
                 'questions'         => $question,
                 'clinic_history'    => $clinic_history,
                 'test_result'       => $test_result,
+                'questions_parent'  => $question_parent,
                 'mode'              => 'finish'
             ]
         );
@@ -143,9 +167,51 @@ class clinicHistory extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+      $user = User::find(Auth::id());
+        if($id == '0'){
+        $clinic_history = DB::table('clinic_history')
+        ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+        ->where('userid', Auth::id())
+        ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+        ->get();
+
+        $question = DB::table('questions_clinic_history')
+            ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+            ->where('answers_clinic_history.question','!=', null)
+            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
+            ->get();
+        } else{
+
+        $clinic_history = DB::table('clinic_history')
+                ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                ->where('question_id', $id)
+                ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+                ->get();
+
+        $question = DB::table('questions_clinic_history')
+            ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+            ->where('questions_clinic_history.id', $id)
+            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
+            ->get();
+        }
+            
+        $question_parent = DB::table('answers_clinic_history')->get();
+
+
+        return view('clinicHistory', [
+                'userId'            => $user->id,
+                'username'          => $user->username,
+                'name'              => $user->name,
+                'photo'             => $user->profile_photo,
+                'date'              => $user->created_at,
+                'questions'         => $question,
+                'questions_parent'  => $question_parent,
+                'clinic_history'    => $clinic_history,
+                'mode'              => "null"
+            ]
+        );
     }
 
     /**
@@ -187,19 +253,42 @@ class clinicHistory extends Controller
 
         $history = DB::table('clinic_history')
         ->where('userid', Auth::id())->where('question_id', $request->question)->first();
-        
-        
+        $newArray = array();
+        $answers = json_decode($request->answers);
+            if (in_array("Fallecido", $answers) && in_array("Vivo", $answers)) {
+                $z = 1;
+               for($i = 0; $i < count($answers); $i++){
+                $z = $z++;
+                            if($answers[$z] == "Vivo" && $answers[$z] === "Fallecido"){
+                                $comp = $answers[$i] . $answers[$z];
+                                array_push($newArray, $comp);
+                            } else{
+                                array_push($newArray, $answers[$i]);
+                            }
+                         
+                      }
+                   } 
+
         if($history){
                 $clinic = clinic_history::find($history->id);
-                $clinic->answer = $request->answers;
                 $clinic->answer_id = $request->ansId;
+                if(!count($newArray)){
+                $clinic->answer = $request->answers;
+            }else {
+                $clinic->answer = json_encode($newArray);
+            }
+
                
          } else {
             $clinic = new clinic_history;
             $clinic->userid = Auth::id();
             $clinic->question_id =  $request->question;
             $clinic->question = $q->question;
+            if(!count($newArray)){
             $clinic->answer = $request->answers;
+              }else {
+                $clinic->answer = json_encode($newArray);
+            }
             $clinic->answer_id = $request->ansId;
 
                 }

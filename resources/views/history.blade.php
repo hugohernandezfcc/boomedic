@@ -2,13 +2,9 @@
 
 @section('title', 'Boomedic')
 
-@section('content_header')
-
+@section('content')
 <style type="text/css">
 
-.content{
-    overflow-y: auto;
-  }
 
   .timeline>li {
     margin-right: 0 !important;
@@ -17,50 +13,47 @@
 .timeline>li>.timeline-item {
    margin-right: 0 !important;
 }
+      .direct-chat-contacts {
+            height: 55px !important;
+            background: transparent !important; 
+            top: 75% !important; 
+      }
+ .timeline>li>.timeline-item>.timeline-header {
+    border-bottom: 1px solid #e0e0e0 !important;
+}
+.timeline-footer {
+    padding: 5px 0 0 0;
+    border-top: 1px solid #e0e0e0 !important;
+}
 </style>
 
-@stop
-
-@section('content')
-
-  	<div class="box-header">
+  	<div class="box-header direct-chat">
 	    <h3 class="box-title">Historial</h3>
+      @if($array->isEmpty())
+          
+                <h4> No tiene historial registrado en estos últimos días. </h4>
+      @else 
+
+       <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
+                 <span class="fa fa-filter text-muted"></span></button>
+              <div class="direct-chat-contacts">
+                      <div class="btn-group pull-right">
+                      <button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo citas"><i class="fa fa-calendar-check-o"></i></button>   
+                      <button id="support" type="button"  class="btn bg-black" title="Mostrar solo soporte"><i class="fa fa-wrench "></i></button>
+                      <button id="payment" type="button" class="btn bg-yellow" title="Métodos de pagos registrados"> <i class="fa fa-credit-card-alt"></i></button> 
+                      <button id="userli" type="button" class="btn bg-green" title="Mostrar solo actualización de usuario"><i class="fa fa-user "></i></button>
+                      <button id="all" type="button" class="btn btn-default" title="Ver todo"><b>Ver todo</b></button>        
+                      </div>
+              </div>
   	</div>
-
-
   	<div class="box-body">
 	  <div class="row">
         <div class="col-md-12">
-        <div align="center"><label id="response"></label></div>
+        <div align="center"><label id="response" style="margin-top: 20px; margin-botton: 0 !important"></label></div>
 			<br/>
           <!-- The time line -->
           <ul class="timeline">
-		  	 @if($array->isEmpty())
 					
-			<li>
-              <i class="fa fa-warning bg-red"></i>
-
-              <div class="timeline-item">
-                <h3 class="timeline-header no-border"> No tiene historial registrado en estos últimos días. </h3>
-              </div>
-            </li>
-					
-					
-			@else 
-
-			<div class="btn-group">
-			<button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo citas"><i class="fa fa-calendar-check-o"></i></button>		
-			<button id="support" type="button"  class="btn bg-black" title="Mostrar solo soporte"><i class="fa fa-wrench "></i></button>
-			<button id="payment" type="button" class="btn bg-yellow" title="Métodos de pagos registrados"> <i class="fa fa-credit-card-alt"></i></button>	
-			<button id="userli" type="button" class="btn bg-green" title="Mostrar solo actualización de usuario"><i class="fa fa-user "></i></button>
-			<button id="all" type="button" class="btn black bg-darken-4" title="Ver todo"><b>Ver todo</b></button>				
-			</div>
-
-	 
-	 	
-	 <br/><br/><br/>
-
-
 			<!-- Now -->
 		@if(!$arraynow->isEmpty())
             <!-- 1 day -->
@@ -79,22 +72,28 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
           <div class="modal-content">  
-            <div class="modal-body">
+                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                            <div align="left"><label>Mapa de ubicación</label></div>
+                        </div>
+
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -109,7 +108,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -123,7 +122,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -177,28 +176,34 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
-          <div class="modal-content">  
-            <div class="modal-body">
+          <div class="modal-content"> 
+                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                            <div align="left"><label>Mapa de ubicación</label></div>
+                        </div>
+                        </div>
+            <div class="modal-body">
+
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
-        </div>
             @endif
             
             @if($items['Type'] == 'Support Ticket')
@@ -207,7 +212,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -221,7 +226,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -276,22 +281,27 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
           <div class="modal-content">  
-            <div class="modal-body">
+                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                            <div align="left"><label>Mapa de ubicación</label></div>
+                        </div>
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -306,7 +316,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -320,7 +330,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -375,22 +385,27 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
-          <div class="modal-content">  
-            <div class="modal-body">
+          <div class="modal-content"> 
+                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                            <div align="left"><label>Mapa de ubicación</label></div>
+                        </div>
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -405,7 +420,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -419,7 +434,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -474,22 +489,27 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
           <div class="modal-content">  
-            <div class="modal-body">
+                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                            <div align="left"><label>Mapa de ubicación</label></div>
+                        </div>
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -504,7 +524,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -518,7 +538,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -571,22 +591,27 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
           <div class="modal-content">  
-            <div class="modal-body">
+                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                            <div align="left"><label>Mapa de ubicación</label></div>
+                        </div>
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -601,7 +626,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -615,7 +640,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -670,22 +695,27 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}} <br/><br/>
-                  <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
+                 <div class="timeline-footer">
+                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                 </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
           <div class="modal-dialog">
           <div class="modal-content">  
-            <div class="modal-body">
+                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                            <div align="left"><label>Mapa de ubicación</label></div>
+                        </div>
+            <div class="modal-body">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
               </div>
             </div>
@@ -700,7 +730,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
+                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
                 <div class="timeline-body">
                 	<b>Asunto:</b> {{ $items['des']}} 
                 </div>
@@ -715,7 +745,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header no-border"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>

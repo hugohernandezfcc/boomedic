@@ -62,6 +62,7 @@ return [
             'username' => env('DB_USERNAME', 'lndmaznznkoimq'),
             'password' => env('DB_PASSWORD', '3c684a1dcd1400065cbabac5c7eb8d0ec14438e156a51e799d7751fa21ea3ee0'),
             'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
             'prefix' => '',
             'schema' => 'public',
             'sslmode' => 'require',

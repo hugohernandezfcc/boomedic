@@ -81,7 +81,6 @@
 
 				    
 	</script>
-	<br/>
 	@if($mode == 'doctor')
 	@if( empty($status) )
 
@@ -472,61 +471,69 @@
 
                     <div class="box-body">
                       <br/>
-
+                        <div class="col-xs-12">
+                          
+                            <div class="col-sm-2" align="left"><b>Correo:</b></div>
+                            <div class="col-sm-10" align="left">{{ $email }}</div>
+                         
+                        </div>
+                        <div class="col-xs-12">
+                          
+                            <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
+                            <div class="col-sm-10" align="left">{{ $username }}</div>
+                         
+                        </div>
+                        <div class="col-xs-12">
+                          
+                            <div class="col-sm-2" align="left"><b>Edad:</b></div>
+                            <div class="col-sm-10" align="left">{{ $age }}</div>
+                         
+                        </div>
+                        <div class="col-xs-12">
+                         
+                            <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
+                            <div class="col-sm-10" align="left">{{ $occupation }}</div>
+                         
+                        </div>
+                        <div class="col-xs-12">
+                        
+                            <div class="col-sm-2" align="left"><b>Genero:</b></div>
+                            @if($gender == "female")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+                            @endif
+                            @if($gender == "male")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+                            @endif
                       
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-8" align="left">{{ $email }}</div>
-                          </div>
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-8" align="left">{{ $username }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                         
+                            <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
+                            <div class="col-sm-10" align="left">{{ $scholarship }}</div>
+                    
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Edad:</b></div>
-                            <div class="col-sm-8" align="left">{{ $age }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                         
+                            <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
+                              @if($maritalstatus == "single")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+                             @endif
+                            @if($maritalstatus == "married")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+                             @endif	
+                      
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-8" align="left">{{ $occupation }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                        
+                            <div class="col-sm-2" align="left"><b># Móvil:</b></div>
+                            <div class="col-sm-10" align="left">{{ $mobile }}</div>
+                       
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Genero:</b></div>
-                            <div class="col-sm-8" align="left">{{ $gender }}</div>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-8" align="left">{{ $scholarship }}</div>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Estado civil:</b></div>
-                            <div class="col-sm-8" align="left">{{ $maritalstatus }}</div>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-8" align="left">{{ $mobile }}</div>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-8" align="left">{{ $updated_at }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                        
+                            <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
+                            <div class="col-sm-10" align="left">{{ $updated_at }}</div>
+                        
                         </div>
                     </div>
                   </div>
@@ -542,41 +549,29 @@
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
                     <div class="box-body">
-                            <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Licencia Profesional:</b></div>
-                            <div class="col-sm-8" align="left">{{ $professional_license }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Licencia Profesional:</b></div>
+                            <div class="col-sm-10" align="left">{{ $professional_license }}</div>
                         </div>
-                         <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Sociedad de Médicos:</b></div>
-                            <div class="col-sm-8" align="left">{{ $medical_society }}</div>
-                          </div>
+                         <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Sociedad de Médicos:</b></div>
+                            <div class="col-sm-10" align="left">{{ $medical_society }}</div>
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Especialidad:</b></div>
-                            <div class="col-sm-8" align="left">{{ $specialty }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Especialidad:</b></div>
+                            <div class="col-sm-10" align="left">{{ $specialty }}</div>
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Escuela de Medicina:</b></div>
-                            <div class="col-sm-8" align="left">{{ $schoolOfMedicine }}</div>
-                          </div>
+                       <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Escuela de Medicina:</b></div>
+                            <div class="col-sm-10" align="left">{{ $schoolOfMedicine }}</div>
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Facultad de Especialización:</b></div>
-                            <div class="col-sm-8" align="left">{{ $facultyOfSpecialization }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Facultad de Especialización:</b></div>
+                            <div class="col-sm-10" align="left">{{ $facultyOfSpecialization }}</div>
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Práctica Profesional:</b></div>
-                            <div class="col-sm-8" align="left">{{ $practiseProfessional }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                            <div class="col-sm-2" align="left"><b>Práctica Profesional:</b></div>
+                            <div class="col-sm-10" align="left">{{ $practiseProfessional }}</div>
                         </div>
                     </div>
                   </div>
@@ -873,10 +868,11 @@ $('#target').Jcrop({
           <!-- /.modal-dialog -->
         </div>
 					<div class="callout callout-default">
+					<label id="labelwork" class="text-red"></label>
 				 <div class="form-group">
 	                	<label for="workplace" class="col-sm-2 control-label">Nombre del Lugar</label>
 	                	<div class="col-sm-10">
-	                		<label id="labelwork" class="text-red"></label>
+
 		                  	<input type="text" name="workplace" id="workplace" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros.">
 	                	</div>
 	                	<!-- /.input group -->
@@ -1001,10 +997,11 @@ $('#target').Jcrop({
 			<div class="form-group">
 			<div class="col-sm-5">
 				<div class="col-sm-12">
+					<label id="labelwork2" class="text-red"></label>
 					 <div class="form-group">
 	                	<label for="workplace" class="col-sm-4 control-label">Nombre del lugar</label>
 	                	<div class="col-sm-8">
-	                		<label id="labelwork2" class="text-red"></label>
+
 		                  	<input type="text" name="workplace" id="workplace2" value="" class="form-control" placeholder="Particular, Los Angeles, Traumatología del Valle, entre otros...">
 	                	</div>
 	                	<!-- /.input group -->
@@ -1049,19 +1046,13 @@ $('#target').Jcrop({
 
 			</div>
 				<div class="col-sm-12 form-group" align="right">
-								<div class="col-sm-6" align="left">
+								
 									<br/>
 					    		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
 						                Agregar servicios
 						        </button>	
-					            </div>
-					       		<div class="col-sm-6" align="right">
-					       			<br/>
-						    		<button type="submit" class="btn btn-secondary ">
-						                Guardar
-						            </button>
-						            <button type="button" id="cancel2" class="btn btn-default ">Cancelar</button>
-					            </div>
+				
+
 
 					            
 				</div>
@@ -1072,7 +1063,14 @@ $('#target').Jcrop({
 		  	<div class="pull-center">	
 					<span class="btn btn-secondary btn-block btn-flat" onclick="initMap();"><i class="fa fa-map-marker"></i>&nbsp; Ubícame</span>
 			</div>	
-		  </div></div>
+		  </div>
+							    <div class="col-sm-12" align="right">
+					       			<br/>
+						    		<button type="submit" class="btn btn-secondary">
+						                Guardar
+						            </button>
+						            <button type="button" id="cancel2" class="btn btn-default ">Cancelar</button>
+					            </div></div>
 		  
 		</form>
 			</div>

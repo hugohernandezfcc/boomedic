@@ -3,12 +3,16 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-
+<style type="text/css">
+	      table.dataTable>tbody>tr.child ul.dtr-details {
+        margin-left: 65px;
+      }
+      
+</style>
 @stop
 
 @section('content')
-    
-    <br/>
+
 @if($mode == 'listPaymentMethods')    
 @include('headerprofile')
 @endif
@@ -81,7 +85,12 @@
 	                             @endphp
 	                            <a href = 'Transactions/{{ $card->id }}' class="btn">{{ $cardfin }}</a></td>
 	                            <td>{{ $card->bank }}</td>
-	                            <td>{{ $card->provider }}</td>
+	                            @if($card->provider == 'Visa')
+	                            <td><span class="fa fa-cc-visa" style="font-size: 25px;"></span></td>
+	                            @endif
+	                            @if($card->provider == 'MasterCard')
+	                            <td><span class="fa fa-cc-mastercard" style="font-size: 25px;"></span></td>
+	                            @endif
 	                            <td>{{ $card->credit_debit }}</td>
 	          
 	                           
@@ -107,7 +116,7 @@
 	        					 <td>
 	                            <a href = 'Transactions/{{ $card->id }}' class="btn"> {{ $card->cardnumber }}</a></td>
 	                            <td>{{ $card->bank }}</td>
-	                            <td>{{ $card->provider }}</td>
+	                            <td><span class="fa fa-cc-paypal" style="font-size: 25px;"></span></td>
 	                            <td>{{ $card->credit_debit }}</td>
 	        					
 	                            <td>
@@ -159,10 +168,9 @@
 	            	<div class="form-group has-feedback {{ $errors->has('typemethod') ? 'has-error' : '' }}">
 	                  	<label for="typemethod" class="col-sm-2 control-label">Tipo de método</label>
 	                  	<div class="col-sm-10">
-		                  	<select class="form-control" name="typemethod" onchange="showMethodRegister(this.value);">
+		                  	<select class="form-control select2" name="typemethod" onchange="showMethodRegister(this.value);">
 		                    	<option value="">Seleccionar ...</option>
 		                    	<option value="card">Credito / Debito</option>
-		                    	<option value="paypal">Paypal</option>
 		                  	</select>
 	                  	</div>
 	                </div>
@@ -177,7 +185,7 @@
 		              			<div class="form-group has-feedback {{ $errors->has('year') ? 'has-error' : '' }}">
 				                    <label for="year" class="col-sm-2 control-label">Fecha de Exp.</label>
 				        <div class="col-sm-2">
-				        <select name="month" class="form-control select1">
+				        <select name="month" class="form-control select2">
                             <option value="01">01</option>
                             <option value="02">02</option>
                             <option value="03">03</option>
@@ -191,15 +199,16 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select></div><div class="col-sm-2">
-                        <select name="year" class="form-control select1">
-                            <option value="17"> 2017</option>
+                        <select name="year" class="form-control select2">
+
                             <option value="18"> 2018</option>
                             <option value="19"> 2019</option>
                             <option value="20"> 2020</option>
                             <option value="21"> 2021</option>
-                             <option value="22"> 2022</option>
+                            <option value="22"> 2022</option>
+                            <option value="23"> 2023</option>
                         </select></div><div class="col-sm-3">
-                        <select name="CreDeb" class="form-control select1">
+                        <select name="CreDeb" class="form-control select2">
                             <option value="Credit">Crédito</option>
                             <option value="Debit">Débito</option>
                         </select>
@@ -299,52 +308,63 @@
 
 			            	 @if($type == 'card')
 
-					     <div style="font-size: 17px;">Transacciones</div>
-					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
-				             <div class="row">
-			                	<div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Tarjeta:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $cardnumber }}</div>
-			                		</div>
-			                	</div>
-			                	<div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Banco:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $bank }}</div>
-			                		</div>
-			                	</div>
-			                </div>		
-			                <br/>
-			                <div class="row"> 
-			                <div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Proveedor:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $provider }}</div>
-			                		</div>
-			                	</div>
-			                <div class="row">
-			                	<div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Débito/Crédito:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $credit_debit }}</div>
-			                		</div>
-			                	</div>
-			                </div>
-			              </div><br/><br/>
 
-			            	<table id="transaction" class="display responsive nowrap" cellspacing="0" width="100%">
+					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
+			                	<div class="col-xs-6 col-md-4">
+			                			<div class="col-sm-4"><b>Tarjeta:</b></div>
+			                			<div class="col-sm-8" align="left">{{ $cardnumber }}</div>
+			                	</div>
+
+			                	<div class="col-xs-6 col-md-4">
+			                			<div class="col-sm-4"><b>Débito/Crédito:</b></div>
+			                			<div class="col-sm-8" align="left">{{ $credit_debit }}</div>
+
+			                	</div>
+	
+			                <br/>
+			                <div class="col-xs-6 col-md-4">
+			                			<div class="col-sm-4"><b>Proveedor:</b></div>
+			                			<div class="col-sm-8" align="left">
+			                		   @if($provider == 'Visa')
+			                            <i class="fa fa-cc-visa" style="font-size: 25px;"></i>
+			                            @endif
+			                            @if($provider == 'MasterCard')
+			                            <i class="fa fa-cc-mastercard" style="font-size: 25px;"></i>
+			                            @endif
+
+			                        </div>
+			                		</div>
+			                	<div class="col-xs-6 col-md-4">
+			                			<div class="col-sm-4"><b>Banco:</b></div>
+			                			<div class="col-sm-8">{{ $bank }}</div>	
+			                	</div>
+			                </div>	  	
+	</div>
+
+	<div class="box">
+	  	<div class="box-header with-border">
+		    <h3 class="box-title">Transacciones</h3>
+	  	</div>
+		<div class="box-body">
+
+			              	@if(count($transactions) < 1)
+			              	No hay Transacciones registradas para este método de pago.
+			              	@else
+			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
 				                    <tr>
+				                    	 <th></th>
 				                        <th class="all">Nro. Transacción</th>
 				                        <th class="desktop">Destinatario</th>
-				                        <th class="min-phone-l">Monto</th>
-				                        <th class"min-phone-l">Fecha de Transacción</th>
+				                        <th class="desktop">Monto</th>
+				                        <th class="desktop">Fecha</th>
 				                    </tr>
 				                </thead>
+
 				                <tbody>
 					     	@foreach ($transactions as $transaction)
 								     <tr>
+								     	<td></td>
 						             	<td>{{ $transaction->transaction }} <br/></td>
 						             	<td>{{ $transaction->receiver}}<br/></td>
 						             	<td>{{ $transaction->amount }}</td>
@@ -354,33 +374,41 @@
 								<tbody>
 				    	 </table>
 				    	 @endif
-
+				    	 	@endif
 				    	 @if($type == 'Paypal')
-				    	 					     <div style="font-size: 17px;">Transacciones</div>
+
 					    <div style="font-size: 12px; font-style: oblique;">Fecha de Creación: {{ $created }} </div> <br/>
 				             <div class="row">
-			                	<div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Id Paypal:</b></div>
+				             	<div class="col-sm-1"></div>
+			                	<div class="col-sm-4">
+			                			<div class="col-sm-6" align="right"><b>Id Paypal:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $cardnumber }}</div>
 			                		</div>
-			                	</div>
-			                	<div class="col-sm-6">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Email:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $paypal_email }}</div>
-			                		</div>
+			                	<div class="col-sm-4">
+			                			<div class="col-sm-3" align="right"><b>Email:</b></div>
+			                			<div class="col-sm-9" align="left">{{ $paypal_email }}</div>
 			                	</div>
 			                </div>		
 			                <br/>
-			                <div class="row"> 
-			                <div class="col-sm-6">
+			                <div class="row">
+			                <div class="col-sm-1"></div> 
+			                <div class="col-sm-4">
 			                		<div class="row">
-			                			<div class="col-sm-6" align="left"><b>Proveedor:</b></div>
-			                			<div class="col-sm-6" align="left">{{ $provider }}</div>
+			                			<div class="col-sm-6" align="right"><b>Proveedor:</b></div>
+			                            <div class="col-sm-6" align="left"><i class="fa fa-cc-paypal" style="font-size: 25px;"></i></div>
 			                		</div>
 			                	</div>
-			              </div><br/><br/>
+			              </div><br/>  </div>	  	
+	</div>
+
+	<div class="box">
+	  	<div class="box-header with-border">
+		    <h3 class="box-title">Transacciones</h3>
+	  	</div>
+		<div class="box-body">
+			              	@if(count($transactions) < 1)
+			              	No hay Transacciones registradas para este método de pago.
+			              	@else
 
 			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
@@ -405,6 +433,7 @@
 			             	@endforeach
 								<tbody>
 				    	 </table>
+				    	 	@endif
 				    	 @endif
 
             @endif

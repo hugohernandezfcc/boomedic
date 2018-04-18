@@ -49,8 +49,16 @@ class AppServiceProvider extends ServiceProvider
                             ->where('id', Auth::id() )
                             ->value('privacy_statement');
 
+            $confirmed = User::find(Auth::id());           
+            if($profInfo->count() > 0 && $confirmed->confirmed == false){
+                $event->menu->add([
+                    'text' => ' Confirmación de correo',
+                    'url'  => 'medicalconsultations',
+                    'icon' => ''
+                ]);
+            }
 
-            if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+            if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id && $confirmed->confirmed == true){
                 $event->menu->add([
                     'text' => 'Aviso de Privacidad',
                     'url'  => 'privacyStatement/index',
@@ -93,8 +101,15 @@ class AppServiceProvider extends ServiceProvider
                     }
 
                 }else{
+                     if($confirmed->confirmed == false){
+                            $event->menu->add([
+                                'text' => ' Confirmación de correo',
+                                'url'  => 'medicalconsultations',
+                                'icon' => ''
+                            ]);
+                     }
 
-                    if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+                    elseif(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id && $confirmed->confirmed == true){
                      $event->menu->add([
                                         'text' => 'Aviso de Privacidad',
                                         'url'  => 'privacyStatement/index',
@@ -127,8 +142,10 @@ class AppServiceProvider extends ServiceProvider
                             }
                         }
                     }
+                    }
                 } 
-            }
+            
+            
         });
     
 }

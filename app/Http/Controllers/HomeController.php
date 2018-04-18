@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\professional_information;
 use Carbon\Carbon;
 use App\User;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -88,8 +89,18 @@ class HomeController extends Controller
              Session(['sp' => $sp]);
              Session(['mg' => $mg]);
 
-
-        if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+        if($user->confirmed == false){
+               return view('confirme', [
+                    'userId'    => $user->id,
+                    'username'  => $user->username,
+                    'name'      => $user->name,
+                    'photo'     => $user->profile_photo,
+                    'date'      => $user->created_at,
+                   
+                ]
+            );
+        }     
+        elseif(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
                     'privacy'   => $privacyStatement[0],
@@ -107,29 +118,73 @@ class HomeController extends Controller
         $profInfo = DB::table('professional_information')
                             ->where('user', Auth::id() )
                             ->get();
-
-        if ($profInfo->count() > 0 && DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress') 
+        $statusRecordUser = DB::table('users')->where('id', Auth::id() )->value('status');
+        if ($profInfo->count() > 0 && $statusRecordUser == 'In Progress') {
+            Session(['utype' => 'doctor']);
             return redirect('doctor/edit/In%20Progress');
-        
-
-        if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress')
-            return redirect('user/edit/In%20Progress');
-        
-        else {
-            return view('medicalconsultations', [
-                    'username'  => $user->username,
-                    'name'      => $user->name,
-                    'firstname' => $user->firstname,
-                    'lastname'  => $user->lastname,
-                    'photo'     => $user->profile_photo,
-                    'date'      => $user->created_at,
-                    'userId'    => $user->id,
-                    'labor'     => $join,
-                    'appointments' => $appointments
-
-                ]
-            );
         }
+        if ($profInfo->count() > 0 && $statusRecordUser != 'In Progress') {
+             Session(['utype' => 'doctor']);
+            return view('homemedical', [
+                    'username'      => $user->username,
+                    'name'          => $user->name,
+                    'firstname'     => $user->firstname,
+                    'lastname'      => $user->lastname,
+                    'photo'         => $user->profile_photo,
+                    'date'          => $user->created_at,
+                    'userId'        => $user->id,
+                    'labor'         => $join,
+                    'photo'         => $user->profile_photo,
+                    'workplaces'    => $this->getWorkPlaces(),
+                    'medAppoints'   => $this->getMedicalAppointments(),
+                ]);   
+        }
+        if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
+            Session(['utype' => 'mortal']); 
+            return redirect('user/edit/In%20Progress');
+        }
+        else {
+             Session(['utype' => 'mortal']); 
+                return view('medicalconsultations', [
+                        'username'  => $user->username,
+                        'name'      => $user->name,
+                        'firstname' => $user->firstname,
+                        'lastname'  => $user->lastname,
+                        'photo'     => $user->profile_photo,
+                        'date'      => $user->created_at,
+                        'userId'    => $user->id,
+                        'labor'     => $join,
+                        'appointments' => $appointments
+
+                    ]
+                );
+        }
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @author  Hugo Hernández <hugo@doitcloud.consulting>
+     * @return [Array] [List of workplaces]
+     */
+    public function getWorkPlaces(){
+        return DB::table('labor_information')
+            ->join('professional_information', 'labor_information.profInformation', '=', 'professional_information.id')
+            ->where('professional_information.user', '=', Auth::id())->get();
+    }
+    /**
+     * Method responsable of return the Medical Appoinments registered to current doctor.
+     * @author  Hugo Hernández <hugo@doitcloud.consulting>
+     * @return [Array] [List of Medical Appointments]
+     */
+    public function getMedicalAppointments(){
+        return DB::table('medical_appointments')
+            ->join('users', 'medical_appointments.user', '=', 'users.id')
+            ->where(
+                [
+                    ['medical_appointments.user_doctor', '=', Auth::id()],
+                    ['when', '<', Carbon::now()]
+                ]
+            )->get();
     }
     /**
      * Show the application dashboard.
@@ -137,37 +192,36 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
     public function recent(Request $request)
   {     $user = User::find(Auth::id());
         $userSearch = json_decode($user->recent_search);
         $recent = array();
         $json = json_decode($request);
-    if($request->search != null){
-     if(!$user->recent_search){
-         array_push($recent, $request->search);
-             $user->recent_search  = json_encode($recent); 
-     } else{  
+        if($request->search != null){
+             if(!$user->recent_search){
+                 array_push($recent, $request->search);
+                     $user->recent_search  = json_encode($recent); 
+             } else{  
 
-      if(!in_array($request->search,  $userSearch)){
-         
-        if(count($userSearch) == 4 ){
-            unset($userSearch[0]);
-            $userSearch = array_values($userSearch);
-            array_push($userSearch, $request->search);
-            $user->recent_search  = json_encode($userSearch); 
-        } else{
-            array_push($userSearch, $request->search);
-            $user->recent_search  = json_encode($userSearch); 
-            }
-        } 
+              if(!in_array($request->search,  $userSearch)){
+                 
+                if(count($userSearch) == 4 ){
+                    unset($userSearch[0]);
+                    $userSearch = array_values($userSearch);
+                    array_push($userSearch, $request->search);
+                    $user->recent_search  = json_encode($userSearch); 
+                } else{
+                    array_push($userSearch, $request->search);
+                    $user->recent_search  = json_encode($userSearch); 
+                    }
+                } 
+        }
+
+            $user->save();
+           } 
+            return response()->json($user->recent_search);
     }
-
-        $user->save();
-       } 
-        return response()->json($user->recent_search);
-
-    }
-
      /**
      * Method responsable of list of recent
      */
@@ -192,7 +246,6 @@ class HomeController extends Controller
             ->where('medical_appointments.when', '>', Carbon::now())
            ->select('medical_appointments.id','medical_appointments.created_at','users.name','medical_appointments.when', 'medical_appointments.status', 'labor_information.*', 'professional_information.specialty','users.profile_photo')->get();
 
-
                  return view('appointments', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
@@ -203,5 +256,40 @@ class HomeController extends Controller
             ]
         );
     }
+
+        public function returnverify()
+            {
+                $user = User::find(Auth::id());
+                $user->confirmation_code = str_random(25);
+                if($user->save()){
+                $data = [
+                'confirmation_code'      => $user->confirmation_code,
+                'name'                   => $user->name
+            ];
+                Mail::send('emails.confirmation_code', $data, function ($message) {
+                    $message->to('contacto@doitcloud.consulting')->subject('Por favor confirma tu correo');
+                });
+                    return redirect('/medicalconsultations');
+                } else{
+                          \Auth::logout();
+                        return redirect('/login');
+                }
+            }
+        public function verify($code)
+           {
+             $user = User::where('confirmation_code', $code)->first();
+                if (!$user){
+                 \Auth::logout();
+                    return redirect('/login');
+                }else{
+                $user->confirmed = true;
+                $user->confirmation_code = null;
+                if($user->save())
+                return redirect('/medicalconsultations')->with('notification', 'Has confirmado correctamente tu correo!');
+            }
+            }
+
+
+    
 }
 

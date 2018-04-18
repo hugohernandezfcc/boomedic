@@ -41,15 +41,20 @@
 			    width: 100%;
 
 			}
-
+      #mapAddressUser{
+        position: relative;
+        width: 95%;
+        z-index: 30;
+      }
 
     </style>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
 @section('content')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 	<script type="text/javascript">
 
 			Dropzone.options.myAwesomeDropzone = { 
@@ -82,11 +87,6 @@
 
 				    
 	</script>
-
-
-
-
-	<br/>
 
 	@if( empty($status) )
 
@@ -367,6 +367,31 @@
 
 	    	@else
 
+						<!-- Charge Alert whether payment was processed or not -->
+							@if(session()->has('message'))
+
+								@if(session()->has('success'))
+							    <div class="alert alert-success alert-dismissable fade in" role="alert">
+							    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									    <span aria-hidden="true">&times;</span>
+									</button>
+									<strong>¡Familiar Agregado!</strong><br/><br/>		
+							        {{ session()->get('message') }}
+							    </div>
+							   
+								@elseif(session()->has('error'))
+								 <div class="alert alert-danger alert-dismissable fade in" role="alert">
+								 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									    <span aria-hidden="true">&times;</span>
+									</button>
+									<strong>¡Hubo un error al agregar tu familiar!</strong><br/><br/>		
+							 		<!-- Error codes are defined within the adminlte -->
+							          {{ session()->get('message') }}
+							    </div>
+							   @endif
+
+							@endif
+						<!-- Here ends the code for the alert -->
       <div class="row">
         <div class="col-md-12">
           <div class="box box-solid">
@@ -391,59 +416,69 @@
                       <br/>
 
                       
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-8" align="left">{{ $email }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                          
+                            <div class="col-sm-2" align="left"><b>Correo:</b></div>
+                            <div class="col-sm-10" align="left">{{ $email }}</div>
+                         
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-8" align="left">{{ $username }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                          
+                            <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
+                            <div class="col-sm-10" align="left">{{ $username }}</div>
+                         
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Edad:</b></div>
-                            <div class="col-sm-8" align="left">{{ $age }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                          
+                            <div class="col-sm-2" align="left"><b>Edad:</b></div>
+                            <div class="col-sm-10" align="left">{{ $age }}</div>
+                         
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-8" align="left">{{ $occupation }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                         
+                            <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
+                            <div class="col-sm-10" align="left">{{ $occupation }}</div>
+                         
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Genero:</b></div>
-                            <div class="col-sm-8" align="left">{{ $gender }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                        
+                            <div class="col-sm-2" align="left"><b>Genero:</b></div>
+                            @if($gender == "female")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+                            @endif
+                            @if($gender == "male")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+                            @endif
+                      
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-8" align="left">{{ $scholarship }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                         
+                            <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
+                            <div class="col-sm-10" align="left">{{ $scholarship }}</div>
+                    
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Estado civil:</b></div>
-                            <div class="col-sm-8" align="left">{{ $maritalstatus }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                         
+                            <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
+                              @if($maritalstatus == "single")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+                             @endif
+                            @if($maritalstatus == "married")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+                             @endif	
+                      
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-8" align="left">{{ $mobile }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                        
+                            <div class="col-sm-2" align="left"><b># Móvil:</b></div>
+                            <div class="col-sm-10" align="left">{{ $mobile }}</div>
+                       
                         </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-4" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-8" align="left">{{ $updated_at }}</div>
-                          </div>
+                        <div class="col-xs-12">
+                        
+                            <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
+                            <div class="col-sm-10" align="left">{{ $updated_at }}</div>
+                        
                         </div>
                     </div>
                   </div>
@@ -452,14 +487,384 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
                	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" id="two" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Familia
                 </a>
             </h4>
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
-                    <div class="box-body">
-                            space..
+                  	<div class="box-body">
+                  			<div class="lockscreen-item pull-right">
+							      	<div class="input-group">
+							        	<div class="form-control" align="center"><label id="labeltext">Agregar Familiar</label></div>
+							        	<div class="input-group-btn">
+								          	<a class="btn btn-default" data-toggle="modal" data-target="#modalfamily">
+								          		<i class="fa fa-plus text-muted"></i>
+								          	</a>
+							        	</div>
+							      	</div>
+							</div>
+
+                    <div id="demo"></div>
+                    </div>
+                   <div class="modal fade" role="dialog" id="modalfamily">
+                    <div class="modal-dialog">
+
+                      <div class="modal-content">
+
+
+                        <div class="modal-header" style="padding-bottom: 1px !important;">
+                            
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div align="left"><label>Información de Familiar</label></div>
+                        </div>
+                             <div class="register-box-body">
+					                 <div align="form-group" style="margin-bottom: 6px;">
+ 										<a class="btn btn-default btn-flat btn-block" id="inac">No es un usuario de la App</a>
+ 									</div><div align="form-group">
+ 										<a class="btn btn-default btn-flat btn-block" id="inac2">Si es un usuario activo de la App</a>
+ 									</div>
+                             <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post" style="display: none;">
+
+                             	<input type="hidden" name="val" id="val" value="false">
+                                <div class="form-group has-feedback">	
+ 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>
+ 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
+ 							   </div>
+ 							    <input type="hidden" name="idfam" id="idfam" required>
+ 								<div id="resp" class="form-group text-muted"></div>
+ 								 <div class="form-group has-feedback">	
+ 								<select class="form-control select2" id="relationship" name="relationship" size="1">
+ 									<option value="0" default>--Seleccione parentesco--</option>
+ 									<option value="father">Padre</option>
+ 									<option value="mother">Madre</option>
+ 									<option value="son">Hijo(a)</option>
+ 									<option value="siblings">Hermano(a)</option>
+ 									<option value="grandparents">Abuelo(a)</option>
+ 									<option value="uncles">Tío(a)</option>
+ 									<option value="wife">Esposa</option>
+ 									<option value="husband">Esposo</option>
+ 								</select>
+ 								</div>
+ 								<div id="reg" style="display: none;">
+					                <div class="form-group has-feedback">
+					                    <input type="email" name="email" class="form-control" placeholder="{{ trans('adminlte::adminlte.email') }}">
+					                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					                </div>
+
+					                <div class="form-group has-feedback">
+					                    <input type="text" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker2">
+					                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+					                </div>
+
+					                <div class="form-group has-feedback">
+					                  <select class="form-control select2" name="gender" size="1">
+					                  	<option value="female">Femenino</option>
+					                  	<option value="male">Masculino</option>
+					                  </select>
+					                </div>
+ 								</div>	
+ 								<div align="right">
+ 								<button  type="button" class="btn btn-default btn-flat" id="back"><i class="fa fa-arrow-left text-muted"></i>&nbsp; Regresar</button>
+ 								<button  type="submit" class="btn btn-default btn-flat" id="sav"><i class="fa fa-plus text-muted"></i>&nbsp; Agregar Familiar</button>
+ 								</div>
+ 							</form>
+ 						</div>
+                      </div> 
+                    </div>
+                </div>
+				<script type="text/javascript">
+				$('#modalfamily [data-dismiss=modal]').on('click', function (e) {
+						document.getElementById('formulatio').style.display = "none";
+						document.getElementById('inac2').style.display = "block";
+						document.getElementById('inac').style.display = "block";
+
+				})
+				$('#back').on('click', function(e) {
+						document.getElementById('formulatio').style.display = "none";
+						document.getElementById('inac2').style.display = "block";
+						document.getElementById('inac').style.display = "block";
+
+				})
+				$('#inac').on('click', function(e) {
+       				 e.preventDefault();
+       				    document.getElementById('formulatio').style.display = "block";
+       				 	document.getElementById('reg').style.display = "block";
+       				 	document.getElementById('inac2').style.display = "none";
+       				 	document.getElementById('inac').style.display = "none";
+       				 	document.getElementById("formulatio").reset();
+       				 	$("#sav").removeAttr("disabled");
+       				 	document.getElementById("val").value ="true";
+       				 	document.getElementById('resp').style.display = "none";
+
+       				});
+				$('#inac2').on('click', function(e) {
+       				 e.preventDefault();
+       				 document.getElementById('formulatio').style.display = "block";
+       				 	document.getElementById('reg').style.display = "none";
+       				 	document.getElementById('inac').style.display = "none";
+       				 	document.getElementById('inac2').style.display = "none";
+       				 	document.getElementById("formulatio").reset();
+       				 	$("#sav").attr("disabled", "disabled");
+       				 	document.getElementById("val").value ="false";
+       				 	document.getElementById('resp').style.display = "inline";
+       				 	document.getElementById("resp").innerHTML = "";
+
+       				})
+
+				$('#two').on('click', function(e) {
+       				 e.preventDefault();
+       				 document.getElementById('demo').innerHTML='';
+					+ function(d3) {
+
+						var swatches = function(el) {
+						var circleWidth = 45;	
+						var charge = -800;
+						var h = 0;
+						var w= 0;
+				        if("@php echo $agent->isMobile(); @endphp"){
+				            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
+				              h= window.screen.availHeight;
+							  w= window.screen.availWidth;
+				          
+				            if(h >= 1000 && h <= 1300){
+				            	circleWidth = 30;
+								charge = -300;
+				                h = h*0.20;
+				                h = Math.floor(h);
+				                w = w*0.40;
+				                w = Math.floor(w);
+				                  //alert("Altura: "+h + "anchura " + w);
+				            }else if(h>=1800){
+				              h-= 1840;
+				              w-= 1200;
+				             circleWidth = 30;
+							 charge = -300;
+				            }else
+				            {
+				              h-=315;
+				              w-=100
+				              circleWidth = 30;
+							 charge = -300;
+				            }
+				       	 }else{
+				          h = window.screen.availHeight-215;
+				          w = window.screen.availWidth-100;
+				           circleWidth = 50;
+				        }
+
+						    w = w;
+							h = h;
+
+								    
+
+								    var palette = {
+								      "lightgray": "#819090",
+								      "gray": "#708284",
+								      "mediumgray": "#808486",
+								      "darkgray": "#272B2C",
+								      "darkblue": "#0A2933",
+								      "darkerblue": "#042029",
+								      "paleryellow": "#FCF4DC",
+								      "paleyellow": "#EAE3CB",
+								      "yellow": "#A57706",
+								      "orange": "#BD3613",
+								      "red": "#D11C24",
+								      "pink": "#C61C6F",
+								      "purple": "#595AB7",
+								      "blue": "#2176C7",
+								      "green": "#259286",
+								      "white": "#fefefe",
+								      "yellowgreen": "#738A05"
+								    }
+
+								    var nodes = @php echo $nodes; @endphp;
+								    var links = [];
+
+								    for (var i = 0; i < nodes.length; i++) {
+								      if (nodes[i].target !== undefined) {
+								        for (var x = 0; x < nodes[i].target.length; x++) {
+								          links.push({
+								            source: nodes[i],
+								            target: nodes[nodes[i].target[x]]
+								          })
+								        }
+								      }
+								    }
+
+								    var myChart = d3.select(el)
+								      .append('svg')
+								      .attr('width', w)
+								      .attr('height', h)
+								      .style('margin-left', '0').style('display','block')
+
+								    var force = d3.layout.force()
+								      .nodes(nodes)
+								      .links([])
+								      .gravity(0.1)
+								      .charge(charge)
+								      .size([w, h])
+
+
+
+								    var link = myChart.selectAll('line')
+								      .data(links).enter().append('line')
+								      .attr('stroke', palette.mediumgray)
+								      .attr('stroke-width', 1);
+
+								    var node = myChart.selectAll('pattern')
+								      .data(nodes).enter()
+								      .append('g')
+								      .call(force.drag);
+
+								       node.append('svg:defs')
+											    .append('svg:pattern')
+											    .attr('id', function(d,i){
+											      return d.id
+											    })
+											     .attr('patternUnits',"userSpaceOnUse")
+											    .attr('height', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('width', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('x', function(d, i) {
+											        if (i > 0) {
+											          return circleWidth-10
+											        } else {
+											          return circleWidth
+											        }
+											      }).attr('y', function(d, i) {
+											        if (i > 0) {
+											          return circleWidth-10
+											        } else {
+											          return circleWidth
+											        }
+											      })
+											    .append('svg:image')
+											    .attr('xlink:href',function(d,i){
+											      return d.photo
+											    })
+											    .attr('height', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('width', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											      .attr('x', 0)
+											      .attr('y', 0);
+
+								    node.append('circle')
+								      .attr('cx', function(d) {
+								        return d.x;
+								      }).attr('cy', function(d) {
+								        return d.y;
+								      })
+								      .attr('r', function(d, i) {
+								        if (i > 0) {
+								          return circleWidth - 10
+								        } else {
+								          return circleWidth
+								        }
+								      })
+								      .attr('stroke', function(d, i) {
+								        if (i > 0) {
+								          return palette.darkgray
+								        } else {
+								          return palette.darkgray
+								        }
+								      })
+								      .attr('stroke-width', 2)
+								      .style("fill", "#fff").style("fill", function(d,i){ return 'url(#' + d.id+')'})
+
+								    node.append('text')
+								      .text(function(d) {
+								        return d.name
+								      })
+								      .attr('font-family', 'sans-serif')
+								      .attr('fill', function(d, i) {
+								        if (i > 0) {
+
+								          return palette.darkgray
+								        } else {
+								          return "transparent"						   
+								         }
+								      })
+								      .attr('x', function(d, i) {
+								        if (i > 0) {
+								          return -20
+								        } else {
+								          return circleWidth - 15
+								        }
+								      })
+								      .attr('y', function(d, i) {
+								        if (i > 0) {
+								          return circleWidth + 5
+								        } else {
+								          return 8
+								        }
+								      })
+								      .attr('text-anchor', function(d, i) {
+								        if (i > 0) {
+								          return 'beginning'
+								        } else {
+								          return 'end'
+								        }
+								      })
+								      .attr('font-size', function(d, i) {
+								        if (i > 0) {
+								          return '1em'
+								        } else {
+								          return '1em'
+								        }
+								      })
+
+								    force.on('tick', function(e) {
+								      node.attr('transform', function(d, i) {
+								        return 'translate(' + d.x + ', ' + d.y + ')';
+								      })
+
+								      link
+								        .attr('x1', function(d) {
+								          return d.source.x
+								        })
+								        .attr('y1', function(d) {
+								          return d.source.y
+								        })
+								        .attr('x2', function(d) {
+								          return d.target.x
+								        })
+								        .attr('y2', function(d) {
+								          return d.target.y
+								        })
+								    })
+
+								    force.start();
+
+								  }('#demo');
+
+								}(window.d3);
+								  });
+                    	</script>
                     </div>
                   </div>
                 </div>
@@ -467,15 +872,25 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
+                @if($latitude != "" && $longitude != "")	 		
                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
+                @else   
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
+                   @endif   	
                         Dirección de usuario      
-                      
+   
                   </a> 
                   </h4> 
                   </div>
                   <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
-                    <div class="box-body">
-                          <div id="mapAddressUser" ></div>
+                    <div class="box-body" align="center">
+                    	@if($latitude == "" && $longitude == "")
+                    	   No ha registrado ninguna dirección.
+                    	   <input type="hidden" id="nullmap" value="true">
+                    	@else   
+                          <div id="mapAddressUser"></div>
+                          <input type="hidden" id="nullmap" value="false">
+                        @endif
                     </div>
                   </div>
                 </div>
@@ -493,13 +908,89 @@
 
 
     		<script type="text/javascript">
+    			function fun(a) {
+							    document.getElementById('sea').value = a.getAttribute("data-value");
+							    document.getElementById('idfam').value = a.getAttribute("data-id");
+							    console.log(a.getAttribute("data-id"))
+							    document.getElementById("resp").innerHTML = "";
+							    $("#sav").removeAttr("disabled");   
+							}
+
+
+
+				$(document).ready(function(){
+
+ 						 	$("#sea").on("keyup", function(e) {
+
+						    		if(e.which == 32) {
+					                   $.ajaxSetup({
+				                        headers: {
+				                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				                        }
+				                    });
+				                 var sea = document.getElementById('sea').value;
+				                           $.ajax({     
+				                             type: "POST",                 
+				                             url: "{{ url('user/userSearch') }}",  
+				                              data: { "search" : sea }, 
+				                              dataType: 'json',                
+				                             success: function(data)             
+				                             {
+				                             if(data.length == 0){
+				                             	document.getElementById("resp").innerHTML = "No existe usuario registrado...";
+				                             	
+    											}else {
+
+    													document.getElementById("resp").innerHTML = "Coincidencias: ";
+    												for(var i= 0; i < data.length; i++){
+				                     				if(data[i]['profile_photo'] == null){
+				                     				$('#resp').append('<div style="margin-left:5%;"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+				                     				}else{
+				                     				 $('#resp').append('<div style="margin-left:5%;"><img src="'+ data[i]['profile_photo'] +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+				                     				}
+				                     				}
+				                             	} 
+    											}
+				                            
+				                         });
+					            } else{
+					        	 var value = $(this).val().toLowerCase();
+						   		 $("#resp div").filter(function() {
+						    	  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+						    });
+					            }
+						  });
+
+					                   
+					});
 
 			window.onload = function(){
+
+				        if("@php echo $agent->isMobile(); @endphp"){
+				            height = window.screen.availHeight;
+				                       // alert("Altura: "+height);
+				                        //Para Android Puro
+				            if(height >= 1000 && height <= 1300){
+				                var h = height*0.30;
+				                height = Math.floor(h);
+				            }else if(height >=1800){ //para android con capa personalizada
+				              height -= 1600;
+				            }else
+				            {
+				              height -=315; //android avierto desde chrome
+				            }
+				        }else{
+				          height = window.screen.availHeight-315;
+				        }
+				       @if(!empty($latitude) && !empty($longitude))
+				        document.getElementById('mapAddressUser').setAttribute("style","height:" + height + "px");
+				        @endif
+
 				$('#collapseTwo').collapse("toggle");
 				$('#collapseThree').collapse("toggle");
 	
     				initAutocomplete();
-    				@if( empty($status) )
+    				@if(empty($status) && !empty($latitude))
     					initMapAddressUser();
 					@endif
     			};
@@ -562,8 +1053,6 @@
 		              lat: position.coords.latitude,
 		              lng: position.coords.longitude
 		            };
-
-		            console.log(geolocation.lat + ' ' + geolocation.lng);
 		            document.getElementById('latitudeFend').value = geolocation.lat; 
 		            document.getElementById('longitudeFend').value = geolocation.lng;
 		            var circle = new google.maps.Circle({
@@ -583,17 +1072,15 @@
 		    	
 
 		    		var counter = -1;
-
-			      	function initMapAddressUser() {
-
+			      	function initMapAddressUser() {	
 				      	if(!counter > 0){
 				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
-					          zoom: 7,
+					          zoom: 14,
 					          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
 					        });
 
 
-					        var image = "{{ asset('maps-and-flags_1.png') }}";
+					        var image = "https://s3.amazonaws.com/abiliasf/markerCasa.png";
 					        
 					        var beachMarker = new google.maps.Marker({
 					          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
@@ -602,15 +1089,16 @@
 					        });
 					    }
 				        counter++;
-			      	}
+			      	
+			      }
 		    	</script>
-
 			@endif
 
 <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
 <script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 		<script type="text/javascript">
+
 
 					$('#target').Jcrop({
 						    aspectRatio: 1,  

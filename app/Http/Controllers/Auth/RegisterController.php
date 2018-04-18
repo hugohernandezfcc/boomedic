@@ -11,6 +11,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -83,6 +84,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $data['confirmation_code'] = str_random(25);
+
         $age = date("Y") - substr($data['birthdate'], -4);
         $namesUser = array();
 
@@ -137,8 +140,11 @@ class RegisterController extends Controller
                 'lastname'  => (isset($namesUser['last'])) ? $namesUser['last'] : ' ',
                 'username'  => $uName['username'],
                 'password'  => bcrypt($data['password']),
+                'confirmation_code' => $data['confirmation_code']
             ]);
-
+                 Mail::send('emails.confirmation_code', $data, function($message) use ($data) {
+                $message->to('contacto@doitcloud.consulting', $data['name'])->subject('Por favor confirma tu correo');
+            });
             $profInformation = professional_information::create([ 
                 'professional_license'  => $data['professional_license'],
                 'medical_society'  => $data['medical_society'],
@@ -151,7 +157,11 @@ class RegisterController extends Controller
                 return false;
 
         }else{
-            return User::create([
+                     Mail::send('emails.confirmation_code', $data, function($message) use ($data) {
+                    $message->to('contacto@doitcloud.consulting', $data['name'])->subject('Por favor confirma tu correo');
+                });
+
+            $usermor        = User::create([
                 'name'      => $data['name'],
                 'email'     => $data['email'],
                 'birthdate' => $data['birthdate'],
@@ -161,7 +171,10 @@ class RegisterController extends Controller
                 'lastname'  => $namesUser['last'],
                 'username'  => $uName['username'],
                 'password'  => bcrypt($data['password']),
+                'confirmation_code' => $data['confirmation_code']
             ]);
+           return  $usermor;
+ 
         }
     }
 
@@ -187,4 +200,7 @@ class RegisterController extends Controller
         }
 
     }
+
+
+
 }

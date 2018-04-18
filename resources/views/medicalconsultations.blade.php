@@ -17,10 +17,10 @@
       }
       #rango{ 
         position: absolute;
-        width: 50%;
+        width: 90%;
         bottom: 7%;
-        left: 25%;
-        right: 25%;
+        left: 5%;
+        right: 5%;
         padding-top: 0.7%;
         padding-bottom: 0.7%;
         padding-right: 0.7%;
@@ -65,9 +65,7 @@
         padding-left: 0.5%;
         border-radius: 1px;
       }
-     .checkStyl2{
-      text-align: center;
-      }
+
       .infoSpStyle{
         position: absolute;
         top: 19%;
@@ -257,6 +255,7 @@
     /**
      * Text of labels
      */
+
     var title = "Programar Cita";
     var check01 = "Médico General";
     var select01 = "Seleccionar especialidad";
@@ -351,7 +350,7 @@
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <h3>¡Cita registrada!</h3>
+                          <div align="left"><label>¡Cita registrada!</label></div>
                         </div>
                             <div class="modal-body" >
                             <div align="center"><img src="{{ session()->get('drphoto') }}" class="img-circle" alt="User Image" style="height: 80px;"><br/><b>Dr. {{ session()->get('dr') }}</b></div>  <br/>
@@ -396,10 +395,11 @@
 
                         <div class="modal-header" >
                           <!-- Tachecito para cerrar -->
-                            <strong>¡Hubo un error en tu pago y no fue procesado!</strong>
+
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                           <div align="left"><label>¡Hubo un error en tu pago y no fue procesado!</label></div>
                         </div>
                             <div class="modal-body" >
                                  @php
@@ -423,31 +423,15 @@
 
     <div id="mapaC">
       <!-- Trigger the modal with a checkbox -->
-      <div class="checkStyle">
-        <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><strong><label for="general" id="label01" class="textStyle01"></label></strong>
-      </div>
+
 
       <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
         <strong>
-          <span id="infoSpDetail" class="textStyle01"></span>
+          <span id="infoSpDetail" class="textStyle01" style="visibility: hidden;"></span>
         </strong>
       </div>
  
-      <div id="searchDiv">
-        <!-- <strong>
-          <label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;
-        </strong>
-        <input type="text" name="keyWordSearch" class="form-control input-sm" id="kWSearch"> -->
-      
-        <div class="input-group input-group-sm">
-          <input type="text" class="form-control" placeholder="Buscar firma, médico, hospital..."  name="keyWordSearch"  id="kWSearch" >
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-info btn-flat" onclick="start();">
-              <span class="fa fa-search"></span>
-            </button>
-          </span>
-        </div>
-      </div>
+
 
 
         <div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
@@ -462,6 +446,7 @@
 
 
 
+
     <div id="map"></div>
 
 <div class="alert alert-info alert-dismissable" id="infDr" style="display: none; background-color: rgba(0, 0, 0, 0.9) !important; border-color: rgba(0, 0, 0, 0.9) !important;">
@@ -472,16 +457,66 @@
       </div>
 
     <div id='rango'>
-        <strong><label for="rango01" id="label04"></label> <span id="rango03"></span></strong><br/>
-        <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
-             <div class="checkStyl2">      
-      <a class="btn btn-secondary btn-xs" data-backdrop="static" data-toggle="modal" data-target="#modal"><li class="fa fa-map-marker"></li> Cambiar de ubicación</a>
-    </div>
+              <div class="btn-group">
+              <a class="btn btn-default btn-sm" onclick="showMy();"><b><span id="labelextra"></span></b></a>
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
+              </div>
       </div>
 
   </div> 
 
-      
+
+
+        <div id="modalrango" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">   
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true" style="font-size: 21px;">&times;</span>
+                    </button>
+                    <div align="left"><label for="rango01" id="label04"></label> <span id="rango03"></span></div>       
+                  </div>
+                  <div class="modal-body">
+                          <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+        <div id="modalsearch" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">   
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true" style="font-size: 21px;">&times;</span>
+                    </button>
+                    <div align="left"><label>Busqueda</label></div>       
+                  </div>
+                  <div class="modal-body">
+                        <!-- <strong>
+                          <label for="keyWordSearch" id="label03" class="textStyle01"></label>&nbsp;
+                        </strong>
+                        <input type="text" name="keyWordSearch" class="form-control input-sm" id="kWSearch"> -->
+                      
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Buscar firma, médico, hospital..."  name="keyWordSearch"  id="kWSearch" >
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-flat" onclick="start();">
+                              <span class="fa fa-search"></span>
+                            </button>
+                          </span>
+                        </div>
+                      </div>
+                </div>
+              </div>
+            </div>
+
          <!-- Modal Busqueda por lugar -->
 
             <div id="modal" class="modal fade" role="dialog">
@@ -490,9 +525,9 @@
                 <div class="modal-content">
                   <div class="modal-header">   
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
+                      <span aria-hidden="true" style="font-size: 21px;">&times;</span>
                     </button>
-                    <label for="Busqueda">Nueva ubicación:</label>
+                    <div align="left"><label for="Busqueda">Nueva ubicación:</label></div>
                         <div class="input-group input-group-sm">
                           <input id="address" type="textbox" value="" class="form-control" placeholder="Puede ingresar direcciones específicas..">
                           <span class="input-group-btn">
@@ -501,7 +536,7 @@
                         
                   </div>
                   <div class="modal-body">
-                   <div id="recentS" align="left" style="display: none;"><b>Busquedas recientes:</b><br/></div>         
+                   <div id="recentS" align="left" style="display: none; font-weight:500;">Busquedas recientes:<br/></div>         
                    <div id="resp" align="left"></div>                
                           <div id ="ubi" class="input-group input-group-sm" style="display:none;">
                           <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
@@ -526,13 +561,16 @@
             <!-- Tachecito para cerrar -->
           
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true" style="font-size: 21px;">&times;</span>
             </button>
-            <label for="Speciality" id="label02"></label>
+            <div align="left"><label for="Speciality" id="label02"></label></div>
 
           </div>
 
           <div class="modal-body" >
+            <div class="form-group">
+              <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><b>&nbsp;<label for="general" id="label01"></label></b>
+            </div>
               <div class="form-group">
                 <select class="form-control" name="Speciality" id="mySelect" size="1">
                   <option id="opc01"></option>
@@ -560,8 +598,8 @@
 
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Concretar cita</h4>
+                  <span aria-hidden="true" style="font-size: 21px;">&times;</span></button>
+                <div align="left"><label>Concretar cita</label></div>
               </div>
               <div class="modal-body">
                 <div id="info">
@@ -616,17 +654,17 @@
                                         <div class="box-header">
                                           <i class="fa fa-calendar"></i>
 
-                                          <h3 class="box-title">Seleccionar día</h3>
+                                            <h3 class="box-title">Seleccionar día</h3>
                                           <!-- tools box -->
-                                          <div class="pull-right box-tools">
-                                            <button type="button" class="btn btn-secondary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                          </div>
+                                              <div class="pull-right box-tools">
+                                                <button type="button" class="btn btn-secondary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                              </div>
                                           <!-- /. tools -->
                                         </div>
                                         <!-- /.box-header -->
                                         <div class="box-body no-padding">
                                           <!--The calendar -->
-                                          <div id="calendar1" style="width: 80%"></div>
+                                            <div id="calendar1" style="width: 80%"></div>
                                         </div>
                                         <!-- /.box-body -->
                                         
@@ -803,7 +841,7 @@ function prevTab(elem) {
                    $('#recentS').show();
                    var result1 = JSON.parse(result).reverse();            
                               for(var z=0; z < result1.length; z++){
-                                 $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ result1[z] +'<br/></a>');
+                                 $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ result1[z] +'<br/></a>');
                                }
                   
                     }
@@ -846,7 +884,10 @@ function prevTab(elem) {
         if (!document.getElementById('general').checked){
           startProcess = false;
           typeC = 'TypeSpeciality';
-          $("#myModal").modal();
+           $('#mySelect').prop('disabled', false);
+           $('#mySelect').val("- Ninguna -").trigger("change");
+           start();
+          
         }
         if (document.getElementById('general').checked){
           startProcess = false;
@@ -855,7 +896,11 @@ function prevTab(elem) {
           typeC = 'TypeGeneral';
           document.getElementById("infoSpDetail").innerHTML = ' ';
           document.getElementById('infoSp').style.display = 'none';
+          document.getElementById("label01").innerHTML = "Médico General";
+          $('#mySelect').val("- Ninguna -").trigger("change");
+          $('#mySelect').prop('disabled', 'disabled');
           start();
+          $("#myModal").modal("hide");
         }
       }
       function showM(){
@@ -864,6 +909,16 @@ function prevTab(elem) {
           typeC = 'TypeSpeciality';
           $("#myModal").modal({backdrop: "static"});
         }
+      }
+    function showMy(){
+       if (document.getElementById('general').checked){
+          $('#mySelect').prop('disabled', 'disabled');
+        }else{
+           $('#mySelect').prop('disabled', false);
+        }
+          $('#mySelect').val("- Ninguna -").trigger("change");
+          $("#myModal").modal();
+        
       }
       function hideM(){
         if (document.getElementById('general').checked)
@@ -881,10 +936,13 @@ function prevTab(elem) {
     <script>
       var slider = document.getElementById("rango01");
       var output2 = document.getElementById("rango03");
+      var output3 = document.getElementById("rango04");
       var defaultVal = slider.defaultValue;
       output2.innerHTML = slider.value;
+      output3.innerHTML = slider.value;
       slider.oninput = function() {
         output2.innerHTML = this.value;
+        output3.innerHTML = this.value;
       }
     </script>
 
@@ -902,6 +960,7 @@ function prevTab(elem) {
       document.getElementById('label04').innerHTML = Rango01;
       /*document.getElementById('label08').innerHTML = Button02;*/
       document.getElementById('label07').innerHTML = Button01;
+      document.getElementById("labelextra").innerHTML = "Médico General";
     </script>
 
     <script type="text/javascript">
@@ -935,6 +994,8 @@ function prevTab(elem) {
             document.getElementById("ShowDetails").innerHTML = ' ';
             document.getElementById("info").innerHTML = ' ';
             document.getElementById('infoSp').style.display = 'none';
+            document.getElementById("label01").innerHTML = "Médico General";
+            document.getElementById("labelextra").innerHTML = "Médico General";
             startProcess = false;
           }
           if(selectedValue !== firstValue){
@@ -942,6 +1003,7 @@ function prevTab(elem) {
             hideM2();
             document.getElementById('infoSp').style.display = 'block';
             document.getElementById("infoSpDetail").innerHTML = selectedValue;
+            document.getElementById("labelextra").innerHTML = selectedValue;
             functionEsp(selectedValue, keySearch, markerLatLng, currentVal);
             drop();
             }
@@ -949,6 +1011,8 @@ function prevTab(elem) {
           if(typeC == 'TypeGeneral'){
             console.log('CITA GENERAL');
             document.getElementById('infoSp').style.display = 'none';
+            document.getElementById("label01").innerHTML = "Médico General";
+            document.getElementById("labelextra").innerHTML = "Médico General";
             functionGen(keySearch, markerLatLng, currentVal);
             drop();
           }
@@ -963,20 +1027,21 @@ function prevTab(elem) {
        * Function responsable of execute the main functions 
        */
       window.onload = function(){
+         console.log("@php echo session()->get('utype'); @endphp");
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
+            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight;
-                       // alert("Altura: "+height);
-                        //Para Android Puro
+            //alert("Altura: "+height);
             if(height >= 1000 && height <= 1300){
                 var h = height*0.45;
                 height = Math.floor(h);
-            }else if(height >=1800){ //para android con capa personalizada
+            }else if(height >=1800){
               height -= 1440;
             }else
             {
-              height -=115; //android avierto desde chrome
+              height -=115;
             }
         }else{
           height = window.screen.availHeight-115;
@@ -1283,6 +1348,7 @@ function prevTab(elem) {
               rotateControl: false,
               fullscreenControl: false
             });
+
             var input = document.getElementById('address');
               new google.maps.places.Autocomplete(input);
             var markerUser = "{{ asset('markerUser.png') }}";
@@ -1292,7 +1358,14 @@ function prevTab(elem) {
               position: new google.maps.LatLng(pos),
               icon: markerUser,
               map: map
-            });
+            });   
+            if("@php echo $agent->isMobile(); @endphp"){
+            var opt = { minZoom: 6, maxZoom: 20, zoomControl: false};
+             map.setOptions(opt);
+           }else{
+           var opt = { minZoom: 6, maxZoom: 20, zoomControl: true };
+             map.setOptions(opt);
+           }
             //Evento to open infowindow
             markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
@@ -1323,7 +1396,7 @@ function prevTab(elem) {
                        $(".recent").remove();
 
                               for(var z=0; z < data1.length; z++){
-                                 $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-clock-o"></i> '+ data1[z] +'<br/></a>');
+                                 $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ data1[z] +'<br/></a>');
                                }
                                 document.getElementById('address').value = " ";     
                              }

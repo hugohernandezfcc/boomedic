@@ -5,8 +5,12 @@ return [
     'full_name'                   => 'Nombre completo',
     'email'                       => 'Correo electrónico',
     'password'                    => 'Contraseña',
-    'retype_password'             => 'Vuelva la contraseña',
+    'retype_password'             => 'Confirmar contraseña',
     'birthdate'                   => 'Fecha de nacimiento',
+    'female'                      => 'Femenino',
+    'male'                        => 'Masculino', 
+    'single'                      => 'soltero(a)',
+    'married'                     => 'Casado(a)',     
     
 
     'remember_me'                 => 'Recuerdame',
@@ -25,12 +29,14 @@ return [
     'messageLogout'               => 'Se ha cerrado tu sesión.',
 
 
+
     'i_am_a_doctor'                      => 'Soy médico',
     'i_am_a_patient'                     => 'Soy paciente',   
     'Message_to_doctor'                  => 'Este formulario es solo para Médicos.',
     'register_a_new_membership_doctor'   => 'Registrarme como Médico',
     'professional_license'               => 'Cédula profesional de médico',
     'medical_society'                    => 'Sociedad de médicos',
+    'sibling'                            => 'Hermanos',
 
 
 
