@@ -27,17 +27,23 @@
 			  	<div class="box-body">
 
 			  		<img class="profile-user-img img-responsive img-circle" src="https://s3.amazonaws.com/abiliasf/3.jpg?10:37" alt="User profile picture">
-			  		
+
 			  		<p class="text-muted text-center">De cada paciente podras ver:</p>
 			  		<ul class="list-group list-group-unbordered">
 		                <li class="list-group-item">
-		                  	<b>Followers</b> <a class="pull-right">1,322</a>
+		                  	<b>Información personal</b> 
 		                </li>
 		                <li class="list-group-item">
-		                  	<b>Following</b> <a class="pull-right">543</a>
+		                  	<b>Expediente médico</b> 
 		                </li>
 		                <li class="list-group-item">
-		                  	<b>Friends</b> <a class="pull-right">13,287</a>
+		                  	<b>Historia clínica</b>
+		                  	<ul class="list-group list-group-unbordered">
+		                  		<li class="list-group-item"><b>Alergias</b></li>
+		                  		<li class="list-group-item"><b>Antecedentes familiares</b></li>
+		                  		<li class="list-group-item"><b>Antecedentes mórbidos</b></li>
+		                  		<li class="list-group-item"><b>Habitos</b></li>
+		                  	</ul>
 		                </li>
 	              	</ul>
 
