@@ -51,7 +51,7 @@ class drAppointments extends Controller
     {
         switch ($page) {
             case 'index':
-                return redirect('drAppointments'); //show
+                return redirect('drAppointments/index/'. Auth::id()); //show
                 break;
             
             default:

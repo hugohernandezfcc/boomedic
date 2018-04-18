@@ -113,9 +113,9 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        $medical = menu::find('21');
+        $medical = menu::find('14');
 
-        $medical->order = '10';
+        $medical->url = 'drAppointments/redirecting/index';
 
         if ($medical->save()) 
        return redirect('medicalconsultations');
