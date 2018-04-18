@@ -521,7 +521,7 @@
                           <div align="left"><label>Información de Familiar</label></div>
                         </div>
                              <div class="register-box-body">
-					                 <div align="form-group">
+					                 <div align="form-group" style="margin-bottom: 6px;">
  										<a class="btn btn-default btn-flat btn-block" id="inac">No es un usuario de la App</a>
  									</div><div align="form-group">
  										<a class="btn btn-default btn-flat btn-block" id="inac2">Si es un usuario activo de la App</a>
