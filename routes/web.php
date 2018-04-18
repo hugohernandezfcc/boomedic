@@ -332,16 +332,16 @@ Route::group(['prefix' => 'workboardDr'], function(){
 	);
 });
 
-Route::group(['prefix' => 'drApppoinments'], function(){
+Route::group(['prefix' => 'drAppointments'], function(){
 
-	Route::get('drAppoinments/{id}', [
-			'uses'	=>	'drAppoinments@index',
-			'as'	=>	'drAppoinments'
+	Route::get('index/{id}', [
+			'uses'	=>	'drAppointments@index',
+			'as'	=>	'index'
 		]
 	);
 
 	Route::get('redirecting/{page}', [
-			'uses'	=>	'drAppoinments@redirecting',
+			'uses'	=>	'drAppointments@redirecting',
 			'as'	=>	'redirecting'
 		]
 	);

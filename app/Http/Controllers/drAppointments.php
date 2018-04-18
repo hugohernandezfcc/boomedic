@@ -51,7 +51,7 @@ class drAppointments extends Controller
     {
         switch ($page) {
             case 'index':
-                return redirect('drAppointments/index'); //show
+                return redirect('drAppointments'); //show
                 break;
             
             default:
