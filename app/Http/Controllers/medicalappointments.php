@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\medical_appointments;
+use App\menu;
 
 class medicalappointments extends Controller
 {
@@ -56,13 +57,14 @@ class medicalappointments extends Controller
      */
     public function store(Request $request)
     {
-        $medical = new medical_appointments;
-   
-        $medical->user           = Auth::id();
-        $medical->user_doctor    = '16';
-        $medical->latitude       = '19.343255357777';
-        $medical->longitude     = '-99.1379801140335';
-        $medical->when          = '2018-11-03 11:00:00';
+        $medical = new menu;
+        $medical->text   = 'Ayuda';
+        $medical->order    = '13';
+        $medical->to       = 'Doctor';
+        $medical->typeitem    = 'item';
+        $medical->parent    = '22';
+        $medical->url   = 'supportTicket/index';
+        $medical->label_color   = 'aqua';
             
         if ($medical->save()) 
        return redirect('medicalconsultations');
@@ -111,9 +113,9 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        $medical = medical_appointments::find($id);
+        $medical = menu::find('21');
 
-        $medical->when = '2017-12-30 09:00:00';
+        $medical->order = '10';
 
         if ($medical->save()) 
        return redirect('medicalconsultations');

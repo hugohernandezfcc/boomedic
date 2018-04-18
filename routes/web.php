@@ -332,6 +332,21 @@ Route::group(['prefix' => 'workboardDr'], function(){
 	);
 });
 
+Route::group(['prefix' => 'drApppoinments'], function(){
+
+	Route::get('index/{id}', [
+			'uses'	=>	'drApppoinments@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'drApppoinments@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+});
+
 
 Route::group(['prefix' => 'privacyStatement'], function(){
 
