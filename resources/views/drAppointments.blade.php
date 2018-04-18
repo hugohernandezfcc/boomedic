@@ -42,7 +42,7 @@ $(function() {
 						 	title: resp2,
 						    start:  resp,
 						    end:    resp, 
-						    color: 'gray',   						     
+						    color: '#bfbfbf',   						     
 						});
                  }
                 if( optionhour[y].color == "black"){
@@ -50,7 +50,7 @@ $(function() {
 						 	title: resp2,
 						    start:  resp, 
 						    end:    resp, 
-						    color: 'teal',   						     
+						    color: '#5ad6f5',   						     
 						});
                  }
                 if( optionhour[y].color == "blue"){
