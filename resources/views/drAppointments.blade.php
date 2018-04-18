@@ -36,7 +36,7 @@ $(function() {
          for(var y = 0; y < optionhour.length; y++){ 
                      resp = optionhour[y].start;
                      resp2 = optionhour[y].user;
-                     resp2 = optionhour[y].color;
+                     resp3 = optionhour[y].color;
                      if( optionhour[y].color == "gray"){
                      hor.push({  
 						 	title: resp2,
