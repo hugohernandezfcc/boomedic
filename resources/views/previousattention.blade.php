@@ -39,7 +39,7 @@
               		</ul>
             	</div>
           	</div>
-    	</div>
+    	</div> 
     	<div class="col-sm-9">
     		<div class="box">
 			  	<div class="box-header with-border">
