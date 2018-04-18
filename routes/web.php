@@ -399,8 +399,12 @@ Route::group(['prefix' => 'history'], function(){
 			'as'	=>	'store'
 		]
 	);
+});
 
 
+Route::group(['prefix' => 'previousattention'], function(){
+
+	return view('previousattention');
 
 });
 
