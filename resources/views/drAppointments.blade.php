@@ -32,15 +32,32 @@ $(function() {
           var hor = Array();
           var resp = Array();
           var resp2 = Array();
+          var resp3 = Array();
          for(var y = 0; y < optionhour.length; y++){ 
                      resp = optionhour[y].start;
                      resp2 = optionhour[y].user;
+                     resp2 = optionhour[y].color;
+                     if( optionhour[y].color == "gray"){
                      hor.push({  
 						 	title: resp2,
 						    start:  resp, 
-						    end: resp,
+						    color: 'gray',   						     
+						});
+                 }
+                if( optionhour[y].color == "black"){
+                     hor.push({  
+						 	title: resp2,
+						    start:  resp, 
+						    color: 'black',   						     
+						});
+                 }
+                if( optionhour[y].color == "blue"){
+                     hor.push({  
+						 	title: resp2,
+						    start:  resp, 
 						    color: 'green',   						     
 						});
+                 }
                           
                        
 		}
