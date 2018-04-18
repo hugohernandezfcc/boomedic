@@ -13,7 +13,16 @@
 @stop
 
 @section('content')
-<div id='calendar'></div>
+
+<div class="box">
+
+  	<div class="box-header with-border">
+	    <h3 class="box-title">Citas</h3>
+	    
+  	</div>
+  	<div class="box-body">
+		<div id='calendar'></div>
+	</div>
 <script type="text/javascript">
 	
 $(function() {
