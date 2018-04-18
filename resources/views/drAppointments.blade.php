@@ -27,6 +27,22 @@
 	
 $(function() {
 
+ var optionhour = @php echo $array;  @endphp;
+        console.log(optionhour);
+          var hor = Array();
+          var resp = Array();
+         for(var y = 0; y < optionhour.length; y++){ 
+                     resp = optionhour[y]; 
+                     hor.push({  
+						 	title: 'Cita',
+						    start:  resp, 
+						    end: resp,
+						    color: 'green',   						     
+						});
+                          
+                       
+		}
+		console.log(hor);
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
 
@@ -35,7 +51,7 @@ jQuery.noConflict(false);
 	var YESTERDAY = todayDate.clone().subtract(1, 'day').format('YYYY-MM-DD');
 	var TODAY = todayDate.format('YYYY-MM-DD');
 	var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
-
+    
 	$('#calendar').fullCalendar({
 		
 		header: {
@@ -45,7 +61,7 @@ jQuery.noConflict(false);
 		},
 		editable: true,
 		lang: 'es',
-		events: [
+		events: hor /* [
 			{
 				title: 'All Day Event',
 				start: YM + '-01'
@@ -100,7 +116,7 @@ jQuery.noConflict(false);
 				url: 'http://google.com/',
 				start: YM + '-28'
 			}
-		]
+		]*/
 	});
 });	 				
 </script>

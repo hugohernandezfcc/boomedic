@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
+use App\medical_appointments;
 
 
 class drAppointments extends Controller
@@ -29,6 +30,12 @@ class drAppointments extends Controller
      */
     public function index(){
         $user = User::find(Auth::id());
+        $appo =  DB::table('medical_appointments') ->where('user_doctor', $user->id)->get();
+                $array = array();
+                        foreach($appo  as $ap){
+                                    array_push($array, $ap->when);
+                                  }
+
 
         return view('drAppointments', [
                 'userId'    => $user->id,
@@ -36,6 +43,7 @@ class drAppointments extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
+                'array'     => json_encode($array)
             ]
         );
     }
