@@ -31,7 +31,7 @@ class PreviousAttention extends Controller
     public function index(){
         $user = User::find(Auth::id());
         
-        return view('privacyStatement', [
+        return view('previousattention', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
