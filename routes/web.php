@@ -403,9 +403,9 @@ Route::group(['prefix' => 'history'], function(){
 
 
 Route::group(['prefix' => 'previousattention'], function(){
-
-	return view('previousattention');
-
+	Route::get('/', function () {
+		return view('previousattention');
+	});
 });
 
 Route::post('/bye' , 'Auth\LoginController@logout');
