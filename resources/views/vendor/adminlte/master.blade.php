@@ -425,7 +425,7 @@ span.round-tab:hover {
                 });
         $('#datepicker2').datepicker({
             autoclose: true,
-            format: "yyyy-mm-dd",
+            format: "dd/mm/yyyy",
             language: 'es',
             orientation: 'auto'
          });
