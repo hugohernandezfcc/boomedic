@@ -347,6 +347,21 @@ Route::group(['prefix' => 'drAppointments'], function(){
 	);
 });
 
+Route::group(['prefix' => 'reports'], function(){
+
+	Route::get('index/{id}', [
+			'uses'	=>	'reports@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'reports@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+});
+
 
 Route::group(['prefix' => 'privacyStatement'], function(){
 
