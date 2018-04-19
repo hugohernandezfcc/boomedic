@@ -24,7 +24,7 @@
             <!-- Add the bg color to the header using any of the bg-* classes -->
 	            <div class="widget-user-header bg-teal">
 	              	<div class="widget-user-image">
-	                	<img class="img-circle" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png?10:37" alt="User Avatar">
+	                	<img class="img-circle" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Avatar">
 	              	</div>
 	              
 	              	<h3 class="widget-user-username">Nombre de paciente</h3>
@@ -35,6 +35,7 @@
                 		<li><a >Información personal </a></li>
                 		<li><a >Expediente médico </a></li>
                 		<li><a >Historia clínica </a></li>
+                		<li><a >Historia clínica por familiar </a></li>
                 		<li><a >Hábitos	 </a></li>
               		</ul>
             	</div>
