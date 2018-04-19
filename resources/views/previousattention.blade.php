@@ -46,20 +46,38 @@
 
     		@foreach ($keys as $information)
 
-	    		<div class="box" id="{{$information}}">
-				  	<div class="box-header with-border">
-					    <h3 class="box-title">Solicitudes de información</h3>
-				  	</div>
-				  	<div class="box-body">
+    			@if($loop->first)
+		    		<div class="box" id="{{$information}}" style="display: block;">
+					  	<div class="box-header with-border">
+						    <h3 class="box-title">Solicitudes de información</h3>
+					  	</div>
+					  	<div class="box-body">
 
-				  		<ul class="nav nav-stacked">
-					  		@for ($i = 0; $i < count($info[$information]); $i++)
-								<li><a >{{ $info[$information][$i] }} </a></li>
-							@endfor  
-						</ul>
+					  		<ul class="nav nav-stacked">
+						  		@for ($i = 0; $i < count($info[$information]); $i++)
+									<li><a >{{ $info[$information][$i] }} </a></li>
+								@endfor  
+							</ul>
+						</div>
 					</div>
-				</div>
-				   
+				@else
+
+					<div class="box" id="{{$information}}" style="display: none;">
+					  	<div class="box-header with-border">
+						    <h3 class="box-title">Solicitudes de información</h3>
+					  	</div>
+					  	<div class="box-body">
+
+					  		<ul class="nav nav-stacked">
+						  		@for ($i = 0; $i < count($info[$information]); $i++)
+									<li><a >{{ $info[$information][$i] }} </a></li>
+								@endfor  
+							</ul>
+						</div>
+					</div>
+
+				@endif
+
 			@endforeach
 
     	</div>
