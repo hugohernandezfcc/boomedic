@@ -18,9 +18,26 @@
 
   	<div class="box-header with-border">
 	    <h3 class="box-title">Citas</h3>
-	    
   	</div>
   	<div class="box-body">
+  		    <div class="modal fade" role="dialog" id="modalsuccess">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div align="left"><label>Información general de la cita</label></div>
+                        </div>
+                            <div class="modal-body" >
+                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img><br/><br/><label id="namep"></label></div> <br/>
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
 		<div id='calendar'></div>
 	</div>
 <script type="text/javascript">
@@ -42,7 +59,8 @@ $(function() {
 						 	title: resp2,
 						    start:  resp,
 						    end:    resp, 
-						    color: '#bfbfbf',   						     
+						    color: '#bfbfbf',
+						    photo: optionhour[y].photo   						     
 						});
                  }
                 if( optionhour[y].color == "black"){
@@ -50,7 +68,8 @@ $(function() {
 						 	title: resp2,
 						    start:  resp, 
 						    end:    resp, 
-						    color: '#5ad6f5',   						     
+						    color: '#5ad6f5',   
+						    photo: optionhour[y].photo     						     
 						});
                  }
                 if( optionhour[y].color == "blue"){
@@ -58,7 +77,8 @@ $(function() {
 						 	title: resp2,
 						    start:  resp, 
 						    end:    resp, 
-						    color: 'green',   						     
+						    color: 'green',   
+						    photo: optionhour[y].photo     						     
 						});
                  }
                           
@@ -140,10 +160,11 @@ jQuery.noConflict(false);
 			}
 		]*/
 		  eventClick: function(calEvent, jsEvent, view) {
-
-		    alert(calEvent.title);
-
-
+		  	console.log(calEvent);
+		  	$('#userp').attr('src', calEvent.photo);
+		  	$('#namep').html('Paciente: '+ calEvent.title);
+		  	jQuery("#modalsuccess").modal('toggle');
+	
 		  }
 	});
 });	 				

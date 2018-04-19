@@ -34,19 +34,19 @@ class drAppointments extends Controller
            $appo =DB::table('medical_appointments')
             ->join('users', 'medical_appointments.user', '=', 'users.id')
             ->where('user_doctor', $user->id)
-            ->select('medical_appointments.*', 'users.name')
+            ->select('medical_appointments.*', 'users.name', 'users.profile_photo')
             ->get();
 
                 $array = array();
                         foreach($appo  as $ap){
                             if(Carbon::parse($ap->when)->format('m-d-Y') < Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "gray"]);
+                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "gray", "photo" => $ap->profile_photo]);
                                 }
                             if(Carbon::now()->format('m-d-Y') < Carbon::parse($ap->when)->format('m-d-Y')){
-                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "black"]);
+                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "black", "photo" => $ap->profile_photo]);
                                 }
                             if(Carbon::parse($ap->when)->format('m-d-Y') == Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "blue"]);
+                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "blue", "photo" => $ap->profile_photo]);
                                 }
                                   }
 
