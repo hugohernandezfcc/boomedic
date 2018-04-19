@@ -123,7 +123,7 @@ jQuery.noConflict(false);
 		  	$('#namep').html('Nombre: '+ calEvent.title);
 		  	$('#age').html('Edad: '+ calEvent.age);
 		  	$('#lug').html('Consultorio: '+ calEvent.lug);
-		  	$('#start').html('Hora: '+ calEvent.start);
+		  	$('#start').html('Fecha: '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
 		  	jQuery("#modalsuccess").modal('toggle');
 	
 		  }
