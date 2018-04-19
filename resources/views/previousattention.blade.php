@@ -45,22 +45,22 @@
     	<div class="col-sm-9">
 
     		@foreach ($keys as $information)
-			    @for ($i = 0; $i < count($info[$information]); $i++)
-			    	{{ $info[$information][$i] }}
-				@endfor     
-			@endforeach
 
-    		<div class="box">
-			  	<div class="box-header with-border">
-				    <h3 class="box-title">Solicitudes de información</h3>
-			  	</div>
-			  	<div class="box-body">
-			  		<p align="justify">
-			  			El presente apartado pretende que puedas enriquecer la información que deseas ver al momento de atender al paciente.
-			  		</p>
+	    		<div class="box" id="{{$information}}">
+				  	<div class="box-header with-border">
+					    <h3 class="box-title">Solicitudes de información</h3>
+				  	</div>
+				  	<div class="box-body">
+
+				  		<ul class="nav nav-stacked">
+					  		@for ($i = 0; $i < count($info[$information]); $i++)
+								<li><a >{{ $info[$information][$i] }} </a></li>
+							@endfor  
+						</ul>
+					</div>
 				</div>
-			</div>
-
+				   
+			@endforeach
 
     	</div>
     </div>
