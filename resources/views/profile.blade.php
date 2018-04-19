@@ -530,7 +530,7 @@
 
                              	<input type="hidden" name="val" id="val" value="false">
                                 <div class="form-group has-feedback">	
- 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>
+ 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required autocomplete="off">
  								<span class="glyphicon glyphicon-user form-control-feedback"></span>
  							   </div>
  							    <input type="hidden" name="idfam" id="idfam" required>
