@@ -49,7 +49,14 @@
     			@if($loop->first)
 		    		<div class="box" id="{{$information}}" style="display: block;">
 					  	<div class="box-header with-border">
-						    <h3 class="box-title">Solicitudes de información</h3>
+						    <h3 class="box-title">
+						    	<div class="input-group input-group-sm">
+					                <input class="form-control" type="text">
+				                    <span class="input-group-btn">
+				                      	<button type="button" class="btn btn-info btn-default">Agregar</button>
+				                    </span>
+					            </div>
+						    </h3>
 					  	</div>
 					  	<div class="box-body">
 
