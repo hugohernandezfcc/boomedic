@@ -18,7 +18,7 @@
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
-              <h3 class="box-title">Sales Graph</h3>
+              <h3 class="box-title">Avance en citas</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
