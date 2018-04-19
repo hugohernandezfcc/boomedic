@@ -349,7 +349,7 @@ Route::group(['prefix' => 'drAppointments'], function(){
 
 Route::group(['prefix' => 'reports'], function(){
 
-	Route::get('index/{id}', [
+	Route::get('index', [
 			'uses'	=>	'reports@index',
 			'as'	=>	'index'
 		]

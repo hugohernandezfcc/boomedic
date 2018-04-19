@@ -52,7 +52,7 @@ class reports extends Controller
     {
         switch ($page) {
             case 'index':
-                return redirect('reports/index/'. Auth::id()); //show
+                return redirect('reports/index'); //show
                 break;
             
             default:
