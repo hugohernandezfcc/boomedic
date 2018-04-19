@@ -23,6 +23,7 @@
     		<div class="box box-widget widget-user-2">
             <!-- Add the bg color to the header using any of the bg-* classes -->
 	            <div class="widget-user-header bg-teal">
+
 	              	<div class="widget-user-image">
 	                	<img class="img-circle" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Avatar">
 	              	</div>
@@ -42,6 +43,11 @@
           	</div>
     	</div> 
     	<div class="col-sm-9">
+
+    		@foreach ($info as $information)
+			    {{ $information }}
+			@endforeach
+
     		<div class="box">
 			  	<div class="box-header with-border">
 				    <h3 class="box-title">Solicitudes de información</h3>
@@ -51,7 +57,9 @@
 			  			El presente apartado pretende que puedas enriquecer la información que deseas ver al momento de atender al paciente.
 			  		</p>
 				</div>
-			</div>	
+			</div>
+
+
     	</div>
     </div>
 @stop

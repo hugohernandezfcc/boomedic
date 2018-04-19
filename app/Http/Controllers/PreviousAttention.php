@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
-use App\privacy_statement;
+
 
 
 class PreviousAttention extends Controller
@@ -31,69 +31,40 @@ class PreviousAttention extends Controller
     public function index(){
         $user = User::find(Auth::id());
         
+        $questions = DB::table('questions_clinic_history')->get();
+        $clinic = array();
+        for ($i=0; $i < count($questions); $i++)  
+            array_push($clinic, $questions[$i]->name);
+
+        array_push($clinic, 'Familiares relacionados');
+        
+
+        $informationUser = array(
+            'personalInformation' => array(
+                    'Nombre',
+                    'Edad',
+                    'Ocupación',
+                    'Genero',
+                    'Estado civil'
+                ), 
+            'medicalRecord' => array(
+                    'Cita',
+                    'Fecha de cita',
+                    'Médico',
+                    'Prescripción',
+                ), 
+            'clinicHistory'=> $clinic,  
+            'habits' => array()
+        );
+
         return view('previousattention', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
-                'date'      => $user->created_at
+                'date'      => $user->created_at,
+                'info'      => $informationUser
             ]
         );
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }    
+    } 
 }
