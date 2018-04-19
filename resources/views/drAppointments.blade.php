@@ -79,11 +79,11 @@ jQuery.noConflict(false);
 		header: {
 			left: 'prev,next today',
 			center: 'title',
-			right: 'month,agendaWeek,agendaDay,listWeek'
+			right: 'month,agendaWeek,agendaDay'
 		},
 		editable: true,
 		lang: 'es',
-		events: hor /* [
+		events: hor, /* [
 			{
 				title: 'All Day Event',
 				start: YM + '-01'
@@ -139,6 +139,12 @@ jQuery.noConflict(false);
 				start: YM + '-28'
 			}
 		]*/
+		  eventClick: function(calEvent, jsEvent, view) {
+
+		    alert(calEvent.title);
+
+
+		  }
 	});
 });	 				
 </script>
