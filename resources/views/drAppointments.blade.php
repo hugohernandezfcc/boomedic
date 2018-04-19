@@ -6,7 +6,7 @@
 <style type="text/css">
 
  #calendar {
-    max-width: 900px;
+    max-width: 98%;
     margin: 0 auto;
   }
 </style>
