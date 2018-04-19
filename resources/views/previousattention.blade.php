@@ -33,11 +33,11 @@
 	            </div>
             	<div class="box-footer no-padding">
               		<ul class="nav nav-stacked">
-                		<li><a >Información personal </a></li>
-                		<li><a >Expediente médico </a></li>
-                		<li><a >Historia clínica </a></li>
-                		<li><a >Historia clínica por familiar </a></li>
-                		<li><a >Hábitos	 </a></li>
+                		<li id="itemPersonalInformation"><a >Información personal </a></li>
+                		<li id="itemmedicalRecord"><a >Expediente médico </a></li>
+                		<li id="itemclinicHistory"><a >Historia clínica </a></li>
+                		<li id="itemPersonalInformation"><a >Historia clínica por familiar </a></li>
+                		<li id="itemPersonalInformation"><a >Hábitos	 </a></li>
               		</ul>
             	</div>
           	</div>
@@ -50,7 +50,7 @@
 		    		<div class="box" id="{{$information}}" style="display: block;">
 					  	<div class="box-header with-border">
 						    <h3 class="box-title">
-						    	<div class="input-group input-group-sm">
+						    	<div class="input-group input-group-sm" style="width: 150%;">
 					                <input class="form-control" type="text">
 				                    <span class="input-group-btn">
 				                      	<button type="button" class="btn btn-info btn-default">Agregar</button>
@@ -59,7 +59,6 @@
 						    </h3>
 					  	</div>
 					  	<div class="box-body">
-
 					  		<ul class="nav nav-stacked">
 						  		@for ($i = 0; $i < count($info[$information]); $i++)
 									<li><a >{{ $info[$information][$i] }} </a></li>
@@ -68,13 +67,11 @@
 						</div>
 					</div>
 				@else
-
-					<div class="box" id="{{$information}}" style="display: none;">
+					<div class="box" id="{{$information}}" style="display: block;">
 					  	<div class="box-header with-border">
 						    <h3 class="box-title">Solicitudes de información</h3>
 					  	</div>
 					  	<div class="box-body">
-
 					  		<ul class="nav nav-stacked">
 						  		@for ($i = 0; $i < count($info[$information]); $i++)
 									<li><a >{{ $info[$information][$i] }} </a></li>
@@ -82,9 +79,7 @@
 							</ul>
 						</div>
 					</div>
-
 				@endif
-
 			@endforeach
 
     	</div>
