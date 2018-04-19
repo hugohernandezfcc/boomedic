@@ -44,8 +44,10 @@
     	</div> 
     	<div class="col-sm-9">
 
-    		@foreach ($info as $information)
-			    {{ $information }}
+    		@foreach ($keys as $information)
+			    @for ($i = 0; $i < count($info[$information]); $i++)
+			    	{{ $info[$information][$i] }}
+				@endfor     
 			@endforeach
 
     		<div class="box">

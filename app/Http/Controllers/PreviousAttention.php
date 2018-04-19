@@ -65,7 +65,8 @@ class PreviousAttention extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'info'      => $informationUser
+                'info'      => $informationUser,
+                'keys'      => ['personalInformation', 'medicalRecord', 'clinicHistory', 'habits']
             ]
         );
     } 
