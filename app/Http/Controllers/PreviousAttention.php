@@ -34,7 +34,7 @@ class PreviousAttention extends Controller
         $questions = DB::table('questions_clinic_history')->get();
         $clinic = array();
         for ($i=0; $i < count($questions); $i++)  
-            array_push($clinic, $questions[$i]->name);
+            array_push($clinic, $questions[$i]->question);
 
         array_push($clinic, 'Familiares relacionados');
         
