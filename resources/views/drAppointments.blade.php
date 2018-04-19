@@ -33,7 +33,7 @@
                           <div align="left"><label>Información general de la cita</label></div>
                         </div>
                             <div class="modal-body">
-                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img></div><br/><br/>
+                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img></div><br/>
                             	<ul class="nav nav-stacked">
 	                  				<li><a href="#" id="namep"></a></li>
 	                  				<li><a href="#" id="age"></a></li>
