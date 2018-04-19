@@ -57,7 +57,7 @@ class PreviousAttention extends Controller
             'habits' => array()
         );
 
-        dd($informationUser);
+
 
         return view('previousattention', [
                 'userId'    => $user->id,
