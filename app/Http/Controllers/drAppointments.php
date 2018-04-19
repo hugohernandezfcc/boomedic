@@ -33,20 +33,21 @@ class drAppointments extends Controller
         $user = User::find(Auth::id());
            $appo =DB::table('medical_appointments')
             ->join('users', 'medical_appointments.user', '=', 'users.id')
+            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
             ->where('user_doctor', $user->id)
-            ->select('medical_appointments.*', 'users.name', 'users.profile_photo')
+            ->select('medical_appointments.*', 'users.name', 'users.profile_photo','users.age', 'labor_information.workplace as place')
             ->get();
 
                 $array = array();
                         foreach($appo  as $ap){
                             if(Carbon::parse($ap->when)->format('m-d-Y') < Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "gray", "photo" => $ap->profile_photo]);
+                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "gray", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place]);
                                 }
                             if(Carbon::now()->format('m-d-Y') < Carbon::parse($ap->when)->format('m-d-Y')){
-                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "black", "photo" => $ap->profile_photo]);
+                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "black", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place]);
                                 }
                             if(Carbon::parse($ap->when)->format('m-d-Y') == Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "blue", "photo" => $ap->profile_photo]);
+                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "blue", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place]);
                                 }
                                   }
 

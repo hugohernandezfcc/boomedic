@@ -32,8 +32,15 @@
                           </button>
                           <div align="left"><label>Información general de la cita</label></div>
                         </div>
-                            <div class="modal-body" >
-                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img><br/><br/><label id="namep"></label></div> <br/>
+                            <div class="modal-body">
+                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img></div><br/><br/>
+                            	<ul class="nav nav-stacked">
+	                  				<li><a href="#" id="namep"></a></li>
+	                  				<li><a href="#" id="age"></a></li>
+	                  				<li><a href="#" id="lug"></a></li>
+	                  				<li><a href="#" id="start"></a></li>
+	                			</ul>
+	            				 <br/>
                             </div>
                         </div>
                       </div> 
@@ -60,7 +67,9 @@ $(function() {
 						    start:  resp,
 						    end:    resp, 
 						    color: '#bfbfbf',
-						    photo: optionhour[y].photo   						     
+						    photo: optionhour[y].photo,
+						    age:  optionhour[y].age,
+						    lug: optionhour[y].lug  						     
 						});
                  }
                 if( optionhour[y].color == "black"){
@@ -69,7 +78,9 @@ $(function() {
 						    start:  resp, 
 						    end:    resp, 
 						    color: '#5ad6f5',   
-						    photo: optionhour[y].photo     						     
+						    photo: optionhour[y].photo,
+						    age:  optionhour[y].age,
+						    lug: optionhour[y].lug       						     
 						});
                  }
                 if( optionhour[y].color == "blue"){
@@ -78,7 +89,9 @@ $(function() {
 						    start:  resp, 
 						    end:    resp, 
 						    color: 'green',   
-						    photo: optionhour[y].photo     						     
+						    photo: optionhour[y].photo,
+						    age:  optionhour[y].age,
+						    lug: optionhour[y].lug       						     
 						});
                  }
                           
@@ -107,7 +120,10 @@ jQuery.noConflict(false);
 		  eventClick: function(calEvent, jsEvent, view) {
 		  	console.log(calEvent);
 		  	$('#userp').attr('src', calEvent.photo);
-		  	$('#namep').html('Paciente: '+ calEvent.title);
+		  	$('#namep').html('Nombre: '+ calEvent.title);
+		  	$('#age').html('Edad: '+ calEvent.age);
+		  	$('#lug').html('Consultorio: '+ calEvent.lug);
+		  	$('#start').html('Hora: '+ calEvent.start);
 		  	jQuery("#modalsuccess").modal('toggle');
 	
 		  }
