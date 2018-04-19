@@ -119,7 +119,7 @@ jQuery.noConflict(false);
 		events: hor, 
 		  eventClick: function(calEvent, jsEvent, view) {
 		  	console.log(calEvent);
-		  	$('#userp').attr('src', calEvent.photo);
+		  	$('#userp').attr('src', calEvent.photo + '?1');
 		  	$('#namep').html('Nombre: '+ calEvent.title);
 		  	$('#age').html('Edad: '+ calEvent.age);
 		  	$('#lug').html('Consultorio: '+ calEvent.lug);
