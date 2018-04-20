@@ -985,7 +985,7 @@
 				       @if(!empty($latitude) && !empty($longitude))
 				        document.getElementById('mapAddressUser').setAttribute("style","height:" + height + "px");
 				        @endif
-
+				$('#collapseOne').collapse("toggle");        
 				$('#collapseTwo').collapse("toggle");
 				$('#collapseThree').collapse("toggle");
 	
