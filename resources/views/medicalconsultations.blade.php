@@ -884,7 +884,6 @@ function prevTab(elem) {
         if (!document.getElementById('general').checked){
           startProcess = false;
           typeC = 'TypeSpeciality';
-           $('#mySelect').prop('disabled', false);
            $('#mySelect').val("- Ninguna -").trigger("change");
            start();
           
@@ -898,7 +897,6 @@ function prevTab(elem) {
           document.getElementById('infoSp').style.display = 'none';
           document.getElementById("label01").innerHTML = "Médico General";
           $('#mySelect').val("- Ninguna -").trigger("change");
-          $('#mySelect').prop('disabled', 'disabled');
           start();
           $("#myModal").modal("hide");
         }
@@ -911,11 +909,6 @@ function prevTab(elem) {
         }
       }
     function showMy(){
-       if (document.getElementById('general').checked){
-          $('#mySelect').prop('disabled', 'disabled');
-        }else{
-           $('#mySelect').prop('disabled', false);
-        }
           $('#mySelect').val("- Ninguna -").trigger("change");
           $("#myModal").modal();
         
