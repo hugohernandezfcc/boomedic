@@ -744,7 +744,18 @@
 
           <script type="text/javascript">
 $(document).ready(function () {
+ $('#mySelect').on('change', function() {
+        if( $('#mySelect').val() == "- Ninguna -"){
+          $("#general" ).prop( "checked", true);
+          $('#general').attr('checked', true); 
 
+        }
+        if( $('#mySelect').val() != "- Ninguna -"){
+          $(
+            "#general" ).prop( "checked", false );
+          $('#general').attr('checked', false);
+        }
+      })
     //Initialize tooltips
        $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
@@ -980,7 +991,7 @@ function prevTab(elem) {
         
         if(typeC == 'TypeSpeciality'){
           if(selectedValue == firstValue){
-            
+
             console.log('NULO ESPECIALIDAD:: '+selectedValue);
             clearMarkers();
             /*document.getElementById("ShowDetails").innerHTML = error01;*/
