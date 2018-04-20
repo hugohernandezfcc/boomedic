@@ -12,12 +12,12 @@
 		}
 		.panel-title > a.collapsed:before {
 		float: left !important;
-		content:"\f068";
+		content:"\f067";
 		}
 		.panel-title > a:before {
 		    float: left !important;
 		    font-family: FontAwesome;
-		    content:"\f067";
+		    content:"\f068";
 		    padding-left: 5px;
 		    color: gray;
 		    margin-right: 1em; 
@@ -985,9 +985,9 @@
 				       @if(!empty($latitude) && !empty($longitude))
 				        document.getElementById('mapAddressUser').setAttribute("style","height:" + height + "px");
 				        @endif
-
-				$('#collapseTwo').collapse();
-				$('#collapseThree').collapse();
+				//$('#collapseOne').collapse("toggle");        
+				//$('#collapseTwo').collapse("toggle");
+				//$('#collapseThree').collapse("toggle");
 	
     				initAutocomplete();
     				@if(empty($status) && !empty($latitude))
