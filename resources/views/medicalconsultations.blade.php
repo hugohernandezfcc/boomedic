@@ -752,13 +752,10 @@ $(document).ready(function () {
           typeC = 'TypeSpeciality';
         }
        if( $('#mySelect').val() == firstValue){
+          $("#general" ).prop( "checked", true);
+          $('#general').attr('checked', true);
           startProcess = false;
           typeC = 'TypeGeneral';
-          document.getElementById("infoSpDetail").innerHTML = ' ';
-          document.getElementById('infoSp').style.display = 'none';
-          document.getElementById("label01").innerHTML = "Médico General";
-          start();
-          $("#myModal").modal("hide");
         }
       })
     //Initialize tooltips
@@ -836,7 +833,7 @@ function prevTab(elem) {
                   for (var i = result.length - 1; i >= 0; i--) {
                     
                     var option = document.createElement("option");
-                    if(result[i].provider != 'Paypal'){KEYWORD SEARCH NULO
+                    if(result[i].provider != 'Paypal'){
                     option.text = result[i].provider + ": " + result[i].cardnumber;
                     option.value = result[i].id;
                     option.setAttribute("data-icon", "glyphicon glyphicon-eye-open");
@@ -995,6 +992,7 @@ function prevTab(elem) {
         console.log('RANGO INDICADO:: '+currentVal);
         
         if(typeC == 'TypeSpeciality'){
+
           if(selectedValue !== firstValue){
             console.log('VÁLIDO ESPECIALIDAD:: '+selectedValue);
             hideM2();
@@ -1519,6 +1517,14 @@ function prevTab(elem) {
           }
           for(var i = 0; i < res.length; i++) {
             loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
+          }
+          if(loc.length <= 0){
+            console.log('NO ENCONTRO MÉDICO');
+            console.log('TAMAÑO:: '+loc.length);
+            document.getElementById("ShowDetails").innerHTML = '<strong>'+error02+'.</strong>';
+            document.getElementById("info").innerHTML = ' ';
+          }else{
+            document.getElementById("ShowDetails").innerHTML = '<strong>'+ result01 + ' ' + rangeValue + ' ' + result02 +'.</strong>';
           }
         }      
         console.log(res);
