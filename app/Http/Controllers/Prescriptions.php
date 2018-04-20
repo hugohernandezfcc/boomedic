@@ -36,7 +36,7 @@ class Prescriptions extends Controller
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
-                'date'      => $user->created_at 
+                'date'      => $user->created_at, 
                 'isMobile'  => $agent->isMobile()
             ]
         );
