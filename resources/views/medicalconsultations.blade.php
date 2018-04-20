@@ -757,6 +757,8 @@ $(document).ready(function () {
           document.getElementById("infoSpDetail").innerHTML = ' ';
           document.getElementById('infoSp').style.display = 'none';
           document.getElementById("label01").innerHTML = "Médico General";
+          start();
+          $("#myModal").modal("hide");
         }
       })
     //Initialize tooltips
@@ -834,7 +836,7 @@ function prevTab(elem) {
                   for (var i = result.length - 1; i >= 0; i--) {
                     
                     var option = document.createElement("option");
-                    if(result[i].provider != 'Paypal'){
+                    if(result[i].provider != 'Paypal'){KEYWORD SEARCH NULO
                     option.text = result[i].provider + ": " + result[i].cardnumber;
                     option.value = result[i].id;
                     option.setAttribute("data-icon", "glyphicon glyphicon-eye-open");
