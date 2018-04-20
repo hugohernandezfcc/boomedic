@@ -753,15 +753,10 @@ $(document).ready(function () {
         }
        if( $('#mySelect').val() == firstValue){
           startProcess = false;
-          var x = document.getElementById("mySelect");   
-          x.selectedIndex = 0;
           typeC = 'TypeGeneral';
           document.getElementById("infoSpDetail").innerHTML = ' ';
           document.getElementById('infoSp').style.display = 'none';
           document.getElementById("label01").innerHTML = "Médico General";
-          $('#mySelect').val("- Ninguna -").trigger("change");
-          start();
-          $("#myModal").modal("hide");
         }
       })
     //Initialize tooltips
@@ -998,18 +993,6 @@ function prevTab(elem) {
         console.log('RANGO INDICADO:: '+currentVal);
         
         if(typeC == 'TypeSpeciality'){
-          if(selectedValue == firstValue){
-
-            console.log('NULO ESPECIALIDAD:: '+selectedValue);
-            clearMarkers();
-            /*document.getElementById("ShowDetails").innerHTML = error01;*/
-            document.getElementById("ShowDetails").innerHTML = ' ';
-            document.getElementById("info").innerHTML = ' ';
-            document.getElementById('infoSp').style.display = 'none';
-            document.getElementById("label01").innerHTML = "Médico General";
-            document.getElementById("labelextra").innerHTML = "Médico General";
-            startProcess = false;
-          }
           if(selectedValue !== firstValue){
             console.log('VÁLIDO ESPECIALIDAD:: '+selectedValue);
             hideM2();
