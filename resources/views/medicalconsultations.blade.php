@@ -750,7 +750,6 @@ $(document).ready(function () {
           $('#general').attr('checked', false);
           startProcess = false;
           typeC = 'TypeSpeciality';
-           start();
         }
       })
     //Initialize tooltips
