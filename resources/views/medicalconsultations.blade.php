@@ -991,12 +991,11 @@ function prevTab(elem) {
             startProcess = false;
           }
           if(selectedValue !== firstValue){
-            console.log('VÁLIDO ESPECIALIDAD:: '+selectedValue);
-            hideM2();
-            document.getElementById('infoSp').style.display = 'block';
-            document.getElementById("infoSpDetail").innerHTML = selectedValue;
-            document.getElementById("labelextra").innerHTML = selectedValue;
-            functionEsp(selectedValue, keySearch, markerLatLng, currentVal);
+            console.log('CITA GENERAL');
+            document.getElementById('infoSp').style.display = 'none';
+            document.getElementById("label01").innerHTML = "Médico General";
+            document.getElementById("labelextra").innerHTML = "Médico General";
+            functionGen(keySearch, markerLatLng, currentVal);
             drop();
             }
           }
