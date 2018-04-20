@@ -272,7 +272,7 @@
     var message02 = 'Sólo se permiten origenes seguros';
     var message03 = 'Error: Geolocation no soportada';
     var result01 = 'Mostrando resultados para';
-    var result02 = 'Kilómetros a la redonda';
+    var result02 = 'Metros a la redonda';
     /**
      * Variables
      */
@@ -993,7 +993,6 @@ function prevTab(elem) {
             document.getElementById('infoSp').style.display = 'none';
             document.getElementById("label01").innerHTML = "Médico General";
             document.getElementById("labelextra").innerHTML = "Médico General";
-            hideM2();
             startProcess = false;
           }
           if(selectedValue !== firstValue){
