@@ -124,8 +124,7 @@
             	    <h3 class="box-title">Historia Clínica</h3>
               	</div>
              
-              	<div class="box-body">
-                <div class="container" id="myWizard">
+              	<div class="box-body"  id="myWizard">
 
                  <div class="progress">
                    	@php
@@ -307,7 +306,6 @@
                 </div>
              </div>
           </div>
-            </div>
         </div>
 @endif
 
