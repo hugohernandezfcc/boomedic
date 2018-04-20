@@ -744,16 +744,7 @@
 
           <script type="text/javascript">
 $(document).ready(function () {
-        $('#mySelect').on('change', function() {
-        if( $('#mySelect').val() == "- Ninguna -"){
-          $("#general" ).prop( "checked", true);
-
-        }
-        if( $('#mySelect').val() != "- Ninguna -"){
-          $(
-            "#general" ).prop( "checked", false );
-        }
-      })
+  
     //Initialize tooltips
        $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
