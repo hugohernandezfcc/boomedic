@@ -751,6 +751,18 @@ $(document).ready(function () {
           startProcess = false;
           typeC = 'TypeSpeciality';
         }
+       if( $('#mySelect').val() == firstValue){
+          startProcess = false;
+          var x = document.getElementById("mySelect");   
+          x.selectedIndex = 0;
+          typeC = 'TypeGeneral';
+          document.getElementById("infoSpDetail").innerHTML = ' ';
+          document.getElementById('infoSp').style.display = 'none';
+          document.getElementById("label01").innerHTML = "Médico General";
+          $('#mySelect').val("- Ninguna -").trigger("change");
+          start();
+          $("#myModal").modal("hide");
+        }
       })
     //Initialize tooltips
        $('#footerw').css("display", "none");
