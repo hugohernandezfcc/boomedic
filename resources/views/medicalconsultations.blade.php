@@ -459,7 +459,7 @@
     <div id='rango'>
               <div class="btn-group">
               <a class="btn btn-default btn-sm" onclick="showMy();"><b><span id="labelextra"></span></b></a>
-              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>Km</b></a>             
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
               </div>
@@ -507,7 +507,7 @@
                         <div class="input-group">
                           <input type="text" class="form-control" placeholder="Buscar firma, médico, hospital..."  name="keyWordSearch"  id="kWSearch" >
                           <span class="input-group-btn">
-                            <button type="button" class="btn btn-info btn-flat" onclick="start();">
+                            <button type="button" class="btn btn-secondary btn-flat" onclick="start();">
                               <span class="fa fa-search"></span>
                             </button>
                           </span>
