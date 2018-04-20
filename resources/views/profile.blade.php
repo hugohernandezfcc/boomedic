@@ -12,12 +12,12 @@
 		}
 		.panel-title > a.collapsed:before {
 		float: left !important;
-		content:"\f067";
+		content:"\f068";
 		}
 		.panel-title > a:before {
 		    float: left !important;
 		    font-family: FontAwesome;
-		    content:"\f068";
+		    content:"\f067";
 		    padding-left: 5px;
 		    color: gray;
 		    margin-right: 1em; 
@@ -410,7 +410,7 @@
               </h4>
                   	</div>
                    
-                  <div id="collapseOne" class="panel-collapse collapse in" aria-labelledby="headingOne">
+                  <div id="collapseOne" class="panel-collapse collapse" aria-labelledby="headingOne">
 
                     <div class="box-body">
                       <br/>
@@ -492,7 +492,7 @@
                 </a>
             </h4>
                 </div>
-                  <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
+                  <div id="collapseTwo" class="panel-collapse collapse" aria-labelledby="headingTwo">
                   	<div class="box-body">
                   			<div class="lockscreen-item pull-right">
 							      	<div class="input-group">
@@ -882,7 +882,7 @@
                   </a> 
                   </h4> 
                   </div>
-                  <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
+                  <div id="collapseThree" class="panel-collapse collapse" aria-labelledby="headingThree">
                     <div class="box-body" align="center">
                     	@if($latitude == "" && $longitude == "")
                     	   No ha registrado ninguna dirección.
@@ -986,8 +986,8 @@
 				        document.getElementById('mapAddressUser').setAttribute("style","height:" + height + "px");
 				        @endif
 
-				$('#collapseTwo').collapse("toggle");
-				$('#collapseThree').collapse("toggle");
+				$('#collapseTwo').collapse();
+				$('#collapseThree').collapse();
 	
     				initAutocomplete();
     				@if(empty($status) && !empty($latitude))
