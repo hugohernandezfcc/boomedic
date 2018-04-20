@@ -1476,7 +1476,7 @@ function prevTab(elem) {
         console.log('positionValue:: '+positionValue);
         console.log('rangeValue:: '+rangeValue);
         
-        if(keyWordValue != ''){
+        
           console.log('KEYWORD SEARCH VÁLIDO:: '+keyWordValue);
           for(var i = 0; i < generalM.length; i++) {
             if(generalM[i][2] == keyWordValue){
@@ -1501,32 +1501,7 @@ function prevTab(elem) {
           }else{
             document.getElementById("ShowDetails").innerHTML = '<strong>' + result01 + ' ' + keyWordValue +'.</strong>';
           }
-        }else{
-          console.log('KEYWORD SEARCH NULO:: '+keyWordValue);
-          for(var i = 0; i < generalM.length; i++) {
-            var posB = new google.maps.LatLng(generalM[i][0], generalM[i][1]);
-            metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
-            console.log('metros:: '+metros);
-            console.log('Nombre:: '+generalM[i][2]);
-            if(metros < rangeValue){
-              console.log('Nombre:: '+generalM[i][2]);
-              console.log(metros +'<'+ rangeValue);
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4], generalM[i][5], generalM[i][6], generalM[i][7], generalM[i][8], generalM[i][9]]);
-               //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
-            }
-          }
-          for(var i = 0; i < res.length; i++) {
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
-          }
-          if(loc.length <= 0){
-            console.log('NO ENCONTRO MÉDICO');
-            console.log('TAMAÑO:: '+loc.length);
-            document.getElementById("ShowDetails").innerHTML = '<strong>'+error02+'.</strong>';
-            document.getElementById("info").innerHTML = ' ';
-          }else{
-            document.getElementById("ShowDetails").innerHTML = '<strong>'+ result01 + ' ' + rangeValue + ' ' + result02 +'.</strong>';
-          }
-        }      
+        
         console.log(res);
         console.log(loc);
       }
