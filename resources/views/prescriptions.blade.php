@@ -33,7 +33,7 @@
 		        </div>
 		        <div class="box-body no-padding">
 		            <ul class="nav nav-pills nav-stacked">
-		                <li class="active">
+		                <li >
 		                	<a href="#">
 		                		<i class="fa fa-comments"></i> Comentarios <span class="label label-primary pull-right">0</span>
 		                	</a>
@@ -43,7 +43,7 @@
 		                		<i class="fa fa-calendar-minus-o"></i> Ultimos 7 días
 		                	</a>
 		                </li>
-		                <li>
+		                <li class="active">
 		                	<a href="#">
 		                		<i class="fa fa-edit"></i> Todas las recetas
 		                	</a>
@@ -51,7 +51,6 @@
 		            </ul>
 		        </div>
 		    </div>
-
 
 		</div>
 		<div class="col-md-9">
