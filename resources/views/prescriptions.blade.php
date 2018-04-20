@@ -23,7 +23,11 @@
 
 		            <div class="box-tools">
 		                <button type="button" class="btn btn-box-tool" data-widget="collapse">
-		                	<i class="fa fa-minus"></i>
+		                	@if($isMobile)
+								<i class="fa fa-plus"></i>
+							@else
+		                		<i class="fa fa-minus"></i>
+							@endif
 		                </button>
 		            </div>
 		        </div>
@@ -41,7 +45,7 @@
 		                </li>
 		                <li>
 		                	<a href="#">
-		                		<i class="fa fa-edit"></i> Todo
+		                		<i class="fa fa-edit"></i> Todas las recetas
 		                	</a>
 		                </li>
 		            </ul>
@@ -52,7 +56,24 @@
 		</div>
 		<div class="col-md-9">
 
-			djoasdjfoaisdffjaosidfjisdf
+			<div class="box" id="{{$information}}" style="display: block;">
+			  	<div class="box-header with-border">
+				    <h3 class="box-title">Solicitudes de información</h3>
+			  	</div>
+			  	<div class="box-body">
+			  		<ul class="nav nav-stacked">
+						<li><a >Hugo hernández </a></li>
+						<li><a >Hugo hernández </a></li>
+						<li><a >Hugo hernández </a></li>
+						<li><a >Hugo hernández </a></li>
+						<li><a >Hugo hernández </a></li>
+						<li><a >Hugo hernández </a></li>
+						<li><a >Hugo hernández </a></li>
+						<li><a >Hugo hernández </a></li>
+						<li><a >Hugo hernández </a></li>
+					</ul>
+				</div>
+			</div>
 
 		</div>
 	</div>
