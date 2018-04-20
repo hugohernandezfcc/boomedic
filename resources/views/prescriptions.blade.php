@@ -10,7 +10,7 @@
 	<div class="row">
         <div class="col-md-3">
         	
-        	<a href="/" class="btn btn-secondary btn-block btn-flat margin-bottom">Crear</a>
+        	<a href="/" class="btn btn-secondary btn-block btn-flat margin-bottom">Generar receta</a>
 
         	@if($isMobile)
 				<div class="box box-solid collapsed-box">
@@ -31,25 +31,19 @@
 		            <ul class="nav nav-pills nav-stacked">
 		                <li class="active">
 		                	<a href="#">
-		                		<i class="fa fa-envelope-o"></i> Sent
+		                		<i class="fa fa-comments"></i> Comentarios <span class="label label-primary pull-right">0</span>
 		                	</a>
 		                </li>
 		                <li>
 		                	<a href="#">
-		                		<i class="fa fa-envelope-o"></i> Sent
+		                		<i class="fa fa-calendar-minus-o"></i> Ultimos 7 días
 		                	</a>
 		                </li>
 		                <li>
 		                	<a href="#">
-		                		<i class="fa fa-file-text-o"></i> Drafts
+		                		<i class="fa fa-edit"></i> Todo
 		                	</a>
 		                </li>
-		                <li>
-		                	<a href="#">
-		                		<i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span>
-		                	</a>
-		                </li>
-		                <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
 		            </ul>
 		        </div>
 		    </div>
