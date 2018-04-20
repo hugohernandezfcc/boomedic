@@ -1518,14 +1518,6 @@ function prevTab(elem) {
           for(var i = 0; i < res.length; i++) {
             loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
           }
-          if(loc.length <= 0){
-            console.log('NO ENCONTRO MÉDICO');
-            console.log('TAMAÑO:: '+loc.length);
-            document.getElementById("ShowDetails").innerHTML = '<strong>'+error02+'.</strong>';
-            document.getElementById("info").innerHTML = ' ';
-          }else{
-            document.getElementById("ShowDetails").innerHTML = '<strong>'+ result01 + ' ' + rangeValue + ' ' + result02 +'.</strong>';
-          }
         }      
         console.log(res);
         console.log(loc);
