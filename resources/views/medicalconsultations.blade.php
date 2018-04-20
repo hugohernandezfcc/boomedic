@@ -261,9 +261,9 @@
     var select01 = "Seleccionar especialidad";
     var firstValue = '- Ninguna -';
     var fieldSearch = 'Buscar';//'Nombre del Médico';
-    var Rango01 = 'Rango de búsqueda (metros):';
-    var Rango02 = 'Rango de búsqueda predefinido (metros):';
-    var Rango03 = 'Rango de búsqueda actual (metros):';
+    var Rango01 = 'Rango de búsqueda (Kilómetros):';
+    var Rango02 = 'Rango de búsqueda predefinido (Kilómetros):';
+    var Rango03 = 'Rango de búsqueda actual (Kilómetros):';
     var Button02 = 'Mostrar filtros';
     var Button01 = 'Buscar';
     var error01 = 'Seleccione una especialidad';
@@ -272,7 +272,7 @@
     var message02 = 'Sólo se permiten origenes seguros';
     var message03 = 'Error: Geolocation no soportada';
     var result01 = 'Mostrando resultados para';
-    var result02 = 'Metros a la redonda';
+    var result02 = 'Kilómetros a la redonda';
     /**
      * Variables
      */
@@ -459,7 +459,7 @@
     <div id='rango'>
               <div class="btn-group">
               <a class="btn btn-default btn-sm" onclick="showMy();"><b><span id="labelextra"></span></b></a>
-              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>Km</b></a>             
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
               </div>
