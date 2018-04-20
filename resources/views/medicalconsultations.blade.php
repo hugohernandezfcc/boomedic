@@ -744,7 +744,7 @@
 
           <script type="text/javascript">
 $(document).ready(function () {
-  
+
     //Initialize tooltips
        $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
@@ -980,15 +980,13 @@ function prevTab(elem) {
         
         if(typeC == 'TypeSpeciality'){
           if(selectedValue == firstValue){
-            console.log('NULO ESPECIALIDAD:: '+selectedValue);
-            clearMarkers();
-            /*document.getElementById("ShowDetails").innerHTML = error01;*/
-            document.getElementById("ShowDetails").innerHTML = ' ';
-            document.getElementById("info").innerHTML = ' ';
+            typeC = 'TypeGeneral';
+            console.log('CITA GENERAL');
             document.getElementById('infoSp').style.display = 'none';
             document.getElementById("label01").innerHTML = "Médico General";
             document.getElementById("labelextra").innerHTML = "Médico General";
-            startProcess = false;
+            functionGen(keySearch, markerLatLng, currentVal);
+            drop();
           }
           if(selectedValue !== firstValue){
             console.log('VÁLIDO ESPECIALIDAD:: '+selectedValue);
