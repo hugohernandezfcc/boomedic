@@ -980,7 +980,7 @@ function prevTab(elem) {
         
         if(typeC == 'TypeSpeciality'){
           if(selectedValue == firstValue){
-            typeC = 'TypeGeneral';
+            
             console.log('NULO ESPECIALIDAD:: '+selectedValue);
             clearMarkers();
             /*document.getElementById("ShowDetails").innerHTML = error01;*/
