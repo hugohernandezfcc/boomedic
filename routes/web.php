@@ -410,5 +410,21 @@ Route::group(['prefix' => 'previousattention'], function(){
 	);
 });
 
+Route::group(['prefix' => 'prescriptions'], function(){
+	Route::get('/', [
+			'uses'	=>	'Prescriptions@index',
+			'as'	=>	'index'
+		]
+	);
+});
+
 Route::post('/bye' , 'Auth\LoginController@logout');
+
+
+
+
+
+
+
+
 
