@@ -480,7 +480,7 @@
                     <div align="left"><label for="rango01" id="label04"></label> <span id="rango03"></span></div>       
                   </div>
                   <div class="modal-body">
-                          <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
+                          <input type="range" name="rango01" id="rango01" value="1" min="1" max="10" step="0.1" autocomplete="off" onchange="start();" class="rangeStyle"/>
                   </div>
                 </div>
               </div>
@@ -983,7 +983,7 @@ function prevTab(elem) {
         console.log('NUEVA POSICION::'+markerLatLng);
         //Value of Range to search
         var x = document.getElementById("rango01");
-        var currentVal = x.value;
+        var currentVal = x.value * 1000;
         console.log('RANGO INDICADO:: '+currentVal);
         
         if(typeC == 'TypeSpeciality'){
