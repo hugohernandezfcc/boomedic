@@ -898,7 +898,6 @@ function prevTab(elem) {
         if (!document.getElementById('general').checked){
           startProcess = false;
           typeC = 'TypeSpeciality';
-           $('#mySelect').val("- Ninguna -").trigger("change");
            start();
           
         }
@@ -923,7 +922,6 @@ function prevTab(elem) {
         }
       }
     function showMy(){
-          $('#mySelect').val("- Ninguna -").trigger("change");
           $("#myModal").modal();
         
       }
