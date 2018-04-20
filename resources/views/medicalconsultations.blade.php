@@ -981,12 +981,15 @@ function prevTab(elem) {
         if(typeC == 'TypeSpeciality'){
           if(selectedValue == firstValue){
             typeC = 'TypeGeneral';
-            console.log('CITA GENERAL');
+            console.log('NULO ESPECIALIDAD:: '+selectedValue);
+            clearMarkers();
+            /*document.getElementById("ShowDetails").innerHTML = error01;*/
+            document.getElementById("ShowDetails").innerHTML = ' ';
+            document.getElementById("info").innerHTML = ' ';
             document.getElementById('infoSp').style.display = 'none';
             document.getElementById("label01").innerHTML = "Médico General";
             document.getElementById("labelextra").innerHTML = "Médico General";
-            functionGen(keySearch, markerLatLng, currentVal);
-            drop();
+            startProcess = false;
           }
           if(selectedValue !== firstValue){
             console.log('VÁLIDO ESPECIALIDAD:: '+selectedValue);
