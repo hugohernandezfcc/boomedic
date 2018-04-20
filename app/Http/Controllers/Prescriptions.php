@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
-
+use Jenssegers\Agent\Agent;
 
 
 class Prescriptions extends Controller
@@ -29,14 +29,15 @@ class Prescriptions extends Controller
      */
     public function index(){
         $user = User::find(Auth::id());
-        
+        $agent = new Agent();
 
         return view('prescriptions', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
-                'date'      => $user->created_at
+                'date'      => $user->created_at 
+                'isMobile'  => $agent->isMobile();
             ]
         );
     }

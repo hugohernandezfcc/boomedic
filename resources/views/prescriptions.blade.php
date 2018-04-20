@@ -9,9 +9,15 @@
 @section('content')
 	<div class="row">
         <div class="col-md-3">
-			<div class="box box-solid collapsed-box">
+        	
+        	@if($isMobile)
+				<div class="box box-solid collapsed-box">
+			@else
+				<div class="box box-solid">
+			@endif
+
 		        <div class="box-header with-border">
-		            <h3 class="box-title">Folders</h3>
+		            <h3 class="box-title">Opciones</h3>
 
 		            <div class="box-tools">
 		                <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -22,9 +28,7 @@
 		        <div class="box-body no-padding">
 		            <ul class="nav nav-pills nav-stacked">
 		                <li class="active">
-		                	<a href="#">
-		                		<i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">12</span>
-		                	</a>
+		                	<a href="compose.html" class="btn btn-primary btn-block margin-bottom">Compose</a>
 		                </li>
 		                <li>
 		                	<a href="#">
@@ -45,9 +49,13 @@
 		            </ul>
 		        </div>
 		    </div>
+
+		    
 		</div>
 		<div class="col-md-9">
+
 			djoasdjfoaisdffjaosidfjisdf
+
 		</div>
 	</div>
 
