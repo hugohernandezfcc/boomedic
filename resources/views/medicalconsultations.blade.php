@@ -924,9 +924,6 @@ function prevTab(elem) {
         if (document.getElementById('general').checked)
           $("#myModal").modal("hide");
       }
-      function showM2(){
-        $("#myModal").modal({backdrop: "static"});
-      }
       function hideM2(){
         $("#myModal").modal("hide");
       }
@@ -996,6 +993,7 @@ function prevTab(elem) {
             document.getElementById('infoSp').style.display = 'none';
             document.getElementById("label01").innerHTML = "Médico General";
             document.getElementById("labelextra").innerHTML = "Médico General";
+            hideM2();
             startProcess = false;
           }
           if(selectedValue !== firstValue){
