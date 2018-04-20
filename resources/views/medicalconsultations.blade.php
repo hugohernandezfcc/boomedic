@@ -259,7 +259,7 @@
     var title = "Programar Cita";
     var check01 = "Médico General";
     var select01 = "Seleccionar especialidad";
-    var firstValue = '- Ninguna -';
+    var firstValue = 'Médico General';
     var fieldSearch = 'Buscar';//'Nombre del Médico';
     var Rango01 = 'Rango de búsqueda (Kilómetros):';
     var Rango02 = 'Rango de búsqueda predefinido (Kilómetros):';
@@ -744,6 +744,16 @@
 
           <script type="text/javascript">
 $(document).ready(function () {
+        $('#mySelect').on('change', function() {
+        if( $('#mySelect').val() == "Médico General"){
+          $("#general" ).prop( "checked", true);
+
+        }
+        if( $('#mySelect').val() != "Médico General"){
+          $(
+            "#general" ).prop( "checked", false );
+        }
+      })
     //Initialize tooltips
        $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
@@ -884,7 +894,7 @@ function prevTab(elem) {
         if (!document.getElementById('general').checked){
           startProcess = false;
           typeC = 'TypeSpeciality';
-           $('#mySelect').val("- Ninguna -").trigger("change");
+           $('#mySelect').val("Médico General").trigger("change");
            start();
           
         }
@@ -896,7 +906,7 @@ function prevTab(elem) {
           document.getElementById("infoSpDetail").innerHTML = ' ';
           document.getElementById('infoSp').style.display = 'none';
           document.getElementById("label01").innerHTML = "Médico General";
-          $('#mySelect').val("- Ninguna -").trigger("change");
+          $('#mySelect').val("Médico General").trigger("change");
           start();
           $("#myModal").modal("hide");
         }
@@ -909,7 +919,7 @@ function prevTab(elem) {
         }
       }
     function showMy(){
-          $('#mySelect').val("- Ninguna -").trigger("change");
+          $('#mySelect').val("Médico General").trigger("change");
           $("#myModal").modal();
         
       }
@@ -920,6 +930,7 @@ function prevTab(elem) {
       function hideM2(){
         $("#myModal").modal("hide");
       }
+
     </script>
 
     <!-- Current range -->
@@ -989,12 +1000,11 @@ function prevTab(elem) {
             startProcess = false;
           }
           if(selectedValue !== firstValue){
-            console.log('VÁLIDO ESPECIALIDAD:: '+selectedValue);
-            hideM2();
-            document.getElementById('infoSp').style.display = 'block';
-            document.getElementById("infoSpDetail").innerHTML = selectedValue;
-            document.getElementById("labelextra").innerHTML = selectedValue;
-            functionEsp(selectedValue, keySearch, markerLatLng, currentVal);
+            console.log('CITA GENERAL');
+            document.getElementById('infoSp').style.display = 'none';
+            document.getElementById("label01").innerHTML = "Médico General";
+            document.getElementById("labelextra").innerHTML = "Médico General";
+            functionGen(keySearch, markerLatLng, currentVal);
             drop();
             }
           }
