@@ -143,7 +143,7 @@
              @if($loop->iteration == 1 && count($questions) == 1)
               <div class="tab-pane fade in active" id="step1">
                  
-                <div class="well"> 
+                <div class="well well-sm"> 
                   
                     <h3>{{ $questions1->question }}</h3>
                     <br>
@@ -169,7 +169,7 @@
                                     {{ $an }}
                                 </label>
                                 @endif
-                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
+                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
                      @endforeach          
                 </div>
@@ -179,7 +179,7 @@
               @if($loop->iteration == 1 && count($questions) != 1)
               <div class="tab-pane fade in active" id="step1">
                  
-                <div class="well"> 
+                <div class="well well-sm"> 
                   
                     <h3>{{ $questions1->question }}</h3>
                     <br>
@@ -205,7 +205,7 @@
                                     {{ $an }}
                                 </label>
                                 @endif
-                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
+                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
                      @endforeach          
 
@@ -216,7 +216,7 @@
                   @endif
                    @if(($loop->iteration > 1) && !$loop->last)
                 <div class="tab-pane fade" id="step{{ $loop->iteration }}">
-                   <div class="well"> 
+                   <div class="well well-sm"> 
                       <h3>{{ $questions1->question }}</h3>
                       <br>
                       @php $an = json_decode($questions1->answer); @endphp
@@ -241,7 +241,7 @@
                                     {{ $an }}
                                 </label>
                                 @endif
-                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
+                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
                      @endforeach               
 
@@ -252,7 +252,7 @@
         @endif
        @if($loop->last && count($questions) != 1)
               <div class="tab-pane fade" id="step{{ $loop->iteration }}">
-                 <div class="well"> 
+                 <div class="well well-sm"> 
                     <h3>{{ $questions1->question }}</h3>
                     <br>
                         @php $an = json_decode($questions1->answer); @endphp
@@ -277,7 +277,7 @@
                                     {{ $an }}
                                 </label>
                                 @endif
-                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
+                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
                      @endforeach      
 
