@@ -56,7 +56,7 @@
 		</div>
 		<div class="col-md-9">
 
-			<div class="box" id="{{$information}}" style="display: block;">
+			<div class="box" >
 			  	<div class="box-header with-border">
 				    <h3 class="box-title">Solicitudes de información</h3>
 			  	</div>
