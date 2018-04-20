@@ -745,11 +745,6 @@
           <script type="text/javascript">
 $(document).ready(function () {
  $('#mySelect').on('change', function() {
-        if( $('#mySelect').val() == "- Ninguna -"){
-          $("#general" ).prop( "checked", true);
-          $('#general').attr('checked', true); 
-
-        }
         if( $('#mySelect').val() != "- Ninguna -"){
           $(
             "#general" ).prop( "checked", false );
