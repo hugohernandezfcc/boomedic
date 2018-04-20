@@ -259,7 +259,7 @@
     var title = "Programar Cita";
     var check01 = "Médico General";
     var select01 = "Seleccionar especialidad";
-    var firstValue = '- Ninguna -';
+    var firstValue = 'Médico General';
     var fieldSearch = 'Buscar';//'Nombre del Médico';
     var Rango01 = 'Rango de búsqueda (Kilómetros):';
     var Rango02 = 'Rango de búsqueda predefinido (Kilómetros):';
@@ -425,7 +425,7 @@
       <!-- Trigger the modal with a checkbox -->
 
 
-      <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
+      <div id="infoSp" class="infoSpStyle" style="display:none;">
         <strong>
           <span id="infoSpDetail" class="textStyle01" style="visibility: hidden;"></span>
         </strong>
@@ -568,9 +568,6 @@
           </div>
 
           <div class="modal-body" >
-            <div class="form-group">
-              <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><b>&nbsp;<label for="general" id="label01"></label></b>
-            </div>
               <div class="form-group">
                 <select class="form-control" name="Speciality" id="mySelect" size="1">
                   <option id="opc01"></option>
@@ -909,7 +906,7 @@ function prevTab(elem) {
         }
       }
     function showMy(){
-          $('#mySelect').val("- Ninguna -").trigger("change");
+          $('#mySelect').val("Médico General").trigger("change");
           $("#myModal").modal();
         
       }
@@ -978,15 +975,12 @@ function prevTab(elem) {
         
         if(typeC == 'TypeSpeciality'){
           if(selectedValue == firstValue){
-            console.log('NULO ESPECIALIDAD:: '+selectedValue);
-            clearMarkers();
-            /*document.getElementById("ShowDetails").innerHTML = error01;*/
-            document.getElementById("ShowDetails").innerHTML = ' ';
-            document.getElementById("info").innerHTML = ' ';
+            console.log('CITA GENERAL');
             document.getElementById('infoSp').style.display = 'none';
             document.getElementById("label01").innerHTML = "Médico General";
             document.getElementById("labelextra").innerHTML = "Médico General";
-            startProcess = false;
+            functionGen(keySearch, markerLatLng, currentVal);
+            drop();
           }
           if(selectedValue !== firstValue){
             console.log('VÁLIDO ESPECIALIDAD:: '+selectedValue);
