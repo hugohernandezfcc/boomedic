@@ -425,7 +425,11 @@
       <!-- Trigger the modal with a checkbox -->
 
 
-
+      <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
+        <strong>
+          <span id="infoSpDetail" class="textStyle01" style="visibility: hidden;"></span>
+        </strong>
+      </div>
  
 
 
@@ -564,7 +568,9 @@
           </div>
 
           <div class="modal-body" >
-
+            <div class="form-group">
+              <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><b>&nbsp;<label for="general" id="label01"></label></b>
+            </div>
               <div class="form-group">
                 <select class="form-control" name="Speciality" id="mySelect" size="1">
                   <option id="opc01"></option>
