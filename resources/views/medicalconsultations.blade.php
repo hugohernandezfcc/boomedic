@@ -748,7 +748,9 @@ $(document).ready(function () {
         if( $('#mySelect').val() !== firstValue){
           $("#general" ).prop( "checked", false );
           $('#general').attr('checked', false);
-          changeCheck();
+          startProcess = false;
+          typeC = 'TypeSpeciality';
+           start();
         }
       })
     //Initialize tooltips
