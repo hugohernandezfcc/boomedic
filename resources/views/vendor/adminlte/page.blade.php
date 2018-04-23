@@ -104,7 +104,7 @@
                                     <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
                             @else
-                                <a href="#"
+                                <a
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                  class="btn btn-default btn-block btn-flat" style="background:white; color: black;">
                                     <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
@@ -122,7 +122,7 @@
                               </li>
                             @if(session()->get('utype') == "doctor")
                             <li>
-                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                                <a data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                               </li>
                             @endif
                     </ul>
