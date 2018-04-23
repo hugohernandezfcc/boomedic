@@ -61,11 +61,13 @@ $(function() {
                      resp = optionhour[y].start;
                      resp2 = optionhour[y].user;
                      resp3 = optionhour[y].color;
+
                      if( optionhour[y].color == "gray"){
+          
                      hor.push({  
 						 	title: resp2,
 						    start:  resp,
-						    end:    resp, 
+						    end:    optionhour[y].end['date'], 
 						    color: '#bfbfbf',
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
@@ -76,7 +78,7 @@ $(function() {
                      hor.push({  
 						 	title: resp2,
 						    start:  resp, 
-						    end:    resp, 
+						    end:    optionhour[y].end['date'], 
 						    color: '#5ad6f5',   
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
@@ -87,7 +89,7 @@ $(function() {
                      hor.push({  
 						 	title: resp2,
 						    start:  resp, 
-						    end:    resp, 
+						    end:    optionhour[y].end['date'], 
 						    color: 'green',   
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
