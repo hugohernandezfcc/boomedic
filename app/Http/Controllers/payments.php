@@ -510,7 +510,7 @@ class payments extends Controller
                                 $email = $user->email;
                                  Mail::send('emails.transaction', $data, function ($message) {
                                             $message->subject('Transacción de pago en Boomedic');
-                                            $message->to('rebbeca.goncalves@doitcloud.consulting');
+                                            $message->to('contacto@doitcloud.consulting');
                                         });
                              }
                               return redirect('medicalconsultations')->with($notification);
