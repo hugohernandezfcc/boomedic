@@ -855,7 +855,7 @@ function prevTab(elem) {
                    $('#recentS').show();
                    var result1 = JSON.parse(result).reverse();            
                               for(var z=0; z < result1.length; z++){
-                                 $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ result1[z] +'<br/></a>');
+                                 $('#resp').append('<a data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ result1[z] +'<br/></a>');
                                }
                   
                     }
@@ -1389,7 +1389,7 @@ function prevTab(elem) {
                        $(".recent").remove();
 
                               for(var z=0; z < data1.length; z++){
-                                 $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ data1[z] +'<br/></a>');
+                                 $('#resp').append('<a data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ data1[z] +'<br/></a>');
                                }
                                 document.getElementById('address').value = " ";     
                              }
