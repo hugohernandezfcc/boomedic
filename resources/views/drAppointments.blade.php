@@ -35,10 +35,10 @@
                             <div class="modal-body">
                             <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img></div><br/>
                             	<ul class="nav nav-stacked">
-	                  				<li><a href="#" id="namep"></a></li>
-	                  				<li><a href="#" id="age"></a></li>
-	                  				<li><a href="#" id="lug"></a></li>
-	                  				<li><a href="#" id="start"></a></li>
+	                  				<li><a id="namep"></a></li>
+	                  				<li><a id="age"></a></li>
+	                  				<li><a id="lug"></a></li>
+	                  				<li><a id="start"></a></li>
 	                			</ul>
 	            				 <br/>
                             </div>

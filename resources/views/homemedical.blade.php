@@ -20,7 +20,7 @@
 	            <div class="icon">
 	              	<i class="fa fa-calendar"></i>
 	            </div>
-	            <a href="#" class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
+	            <a class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
         </div>
 
@@ -33,7 +33,7 @@
             	<div class="icon">
               		<i class="ion ion-stats-bars"></i>
             	</div>
-            	<a href="#" class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
+            	<a class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
         </div>
 
@@ -46,7 +46,7 @@
             	<div class="icon">
               		<i class="ion ion-person-add"></i>
             	</div>
-            	<a href="#" class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
+            	<a class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
         </div>
 
@@ -61,7 +61,7 @@
             	<div class="icon">
               		<i class="fa fa-comments"></i>
             	</div>
-            	<a href="#" class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
+            	<a class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
         </div>
 

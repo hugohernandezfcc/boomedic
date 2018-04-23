@@ -79,7 +79,7 @@
                   <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
                  <div class="timeline-footer">
-                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                    <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                  </div>
               </div>
             </li>
@@ -136,7 +136,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -183,7 +183,7 @@
                   <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
                  <div class="timeline-footer">
-                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                    <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                  </div>
               </div>
             </li>
@@ -240,7 +240,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -288,7 +288,7 @@
                   <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
                  <div class="timeline-footer">
-                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                    <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                  </div>
               </div>
             </li>
@@ -344,7 +344,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -392,7 +392,7 @@
                   <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
                  <div class="timeline-footer">
-                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                    <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                  </div>
               </div>
             </li>
@@ -448,7 +448,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -496,7 +496,7 @@
                   <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
                  <div class="timeline-footer">
-                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                    <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                  </div>
               </div>
             </li>
@@ -552,7 +552,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -598,7 +598,7 @@
                   <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
                  <div class="timeline-footer">
-                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                    <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                  </div>
               </div>
             </li>
@@ -654,7 +654,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -702,7 +702,7 @@
                   <b>Lugar:</b> {{ $items['workplace']}}<br/>
                 </div>
                  <div class="timeline-footer">
-                    <a href="#" data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                    <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
                  </div>
               </div>
             </li>
@@ -759,7 +759,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a href="#">Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
