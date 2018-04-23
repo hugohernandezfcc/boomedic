@@ -172,7 +172,7 @@
                             </div>
                      @endforeach          
                 </div>
-                <a class="btn btn-secondary btn-flat pull-right finish" href="#">Finalizar</a>
+                <a class="btn btn-secondary btn-flat pull-right finish">Finalizar</a>
                 </div>
                   @endif 
               @if($loop->iteration == 1 && count($questions) != 1)
@@ -210,7 +210,7 @@
 
                 </div>
 
-           <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
+           <a class="btn btn-default btn-flat next pull-right">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
                 </div>
                   @endif
                    @if(($loop->iteration > 1) && !$loop->last)
@@ -245,8 +245,8 @@
                      @endforeach               
 
                    </div>
-                 <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
-                 <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
+                 <a class="btn btn-default btn-flat prev pull-left"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
+                 <a class="btn btn-default btn-flat next pull-right">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
               </div>
         @endif
        @if($loop->last && count($questions) != 1)
@@ -282,9 +282,9 @@
 
 
                  </div>
-                <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
-                <a class="btn btn-default btn-flat first pull-left" href="#">Volver a iniciar &nbsp;<span class="fa fa-undo"></span></a>
-                <a class="btn btn-secondary btn-flat pull-right finish" href="#">Finalizar</a>
+                <a class="btn btn-default btn-flat prev pull-left"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
+                <a class="btn btn-default btn-flat first pull-left">Volver a iniciar &nbsp;<span class="fa fa-undo"></span></a>
+                <a class="btn btn-secondary btn-flat pull-right finish">Finalizar</a>
                 <a id="finish" href="cHistory" style="visibility: hidden;"></a>
               </div>
          @endif
@@ -336,7 +336,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->created_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a href="#">{{ $test->name }}</a></h3>
+                <h3 class="timeline-header"><a>{{ $test->name }}</a></h3>
                 <div class="timeline-body">
                   Prescribe. {{ $test->doc}}.<br>
                   Recipe. {{ $test->folio}}.<br>
@@ -423,7 +423,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -454,7 +454,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -485,7 +485,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -516,7 +516,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
