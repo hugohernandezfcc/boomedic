@@ -337,13 +337,13 @@ class payments extends Controller
                             $payer->setPaymentMethod('paypal');
                             $item_1 = new Item();
                             $item_1->setName('Consulta') /** item name **/
-                                ->setCurrency('USD')
+                                ->setCurrency('MXN')
                                 ->setQuantity(1)
                                 ->setPrice($request->get('amount')); /** unit price **/
                             $item_list = new ItemList();
                             $item_list->setItems(array($item_1));
                             $amount = new Amount();
-                            $amount->setCurrency('USD')
+                            $amount->setCurrency('MXN')
                                 ->setTotal($request->get('amount'));
                             $transaction = new Transaction();
                             $transaction->setAmount($amount)
