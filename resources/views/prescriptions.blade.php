@@ -10,7 +10,7 @@
 	<div class="row">
         <div class="col-md-3">
         	
-        	<a href="/" class="btn btn-secondary btn-block btn-flat margin-bottom">Generar receta</a>
+        	<a class="btn btn-secondary btn-block btn-flat margin-bottom" data-toggle="modal" data-target="#prescription-form-modal">Generar receta</a>
 
         	@if($isMobile)
 				<div class="box box-solid collapsed-box">
@@ -61,15 +61,15 @@
 			  	</div>
 			  	<div class="box-body">
 			  		<ul class="nav nav-stacked">
-						<li><a >Hugo hernández </a></li>
-						<li><a >Hugo hernández </a></li>
-						<li><a >Hugo hernández </a></li>
-						<li><a >Hugo hernández </a></li>
-						<li><a >Hugo hernández </a></li>
-						<li><a >Hugo hernández </a></li>
-						<li><a >Hugo hernández </a></li>
-						<li><a >Hugo hernández </a></li>
-						<li><a >Hugo hernández </a></li>
+						<li><a > Hugo hernández </a></li>
+						<li><a > Hugo hernández </a></li>
+						<li><a > Hugo hernández </a></li>
+						<li><a > Hugo hernández </a></li>
+						<li><a > Hugo hernández </a></li>
+						<li><a > Hugo hernández </a></li>
+						<li><a > Hugo hernández </a></li>
+						<li><a > Hugo hernández </a></li>
+						<li><a > Hugo hernández </a></li>
 					</ul>
 				</div>
 			</div>

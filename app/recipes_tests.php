@@ -16,9 +16,11 @@ class recipes_tests extends Model
 		'type', //['Recipe', 'Test']
 		'doctor', // who created it
 		'patient',// who recived it
-		'notes',	
+		'notes', 	
 		'folio',
 		'date',
+		'Data_frontend', //body recipe
+		'appointment',
 
     ];
 
