@@ -786,6 +786,9 @@
 								          return circleWidth
 								        }
 								      })
+								      .attr('id', function(d, i) {
+								          return d.id
+								      })
 								      .attr('stroke', function(d, i) {
 								        if (i > 0) {
 								          return palette.darkgray
