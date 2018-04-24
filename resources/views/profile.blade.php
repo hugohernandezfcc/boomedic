@@ -898,6 +898,7 @@
 										  		$('#idpa').val(d.id);
 										  		$('#init1').css({ 'display': "block" });
 										  		$('#init').css({ 'display': "block" });
+										  		$('#init').text('Iniciar sesión como ' + d.name);
 										  	}else{
 										  		$('#init1').css({ 'display': "none" });
 												$('#init').css({ 'display': "none" });
