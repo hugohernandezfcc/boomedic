@@ -522,7 +522,9 @@
                         </div>
                             <div class="modal-body">
                             <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img><br><br><b><div id="namep"></div></b></div><br>
-	                  				<a id="init" class="btn btn-secondary btn-flat" style="display: none;">Iniciar Sesión</a>
+                            <form id="init1" style="display: none;">
+	                  				<button type="submit" id="init" class="btn btn-secondary btn-flat btn-block" style="display: none;">Iniciar Sesión</button>
+	                  		</form>
                             </div>
                         </div>
                       </div> 
@@ -892,8 +894,10 @@
 										  }	else{
 										  	$('#namep').html(d.namecom + ' - ' + d.relationship);
 										  	if(d.session == 1){
+										  		$('#init1').css({ 'display': "block" });
 										  		$('#init').css({ 'display': "block" });
 										  	}else{
+										  		$('#init1').css({ 'display': "none" });
 												$('#init').css({ 'display': "none" });
 										  	}
 										  }
