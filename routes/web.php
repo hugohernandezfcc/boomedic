@@ -87,8 +87,13 @@ Route::group(['prefix' => 'user'], function(){
 			'as'	=>	'updateProfile'
 		]
 	);
+	Route::post('loginSon', [
+			'uses'	=>	'profile@loginSon',
+			'as'	=>	'loginSon'
+		]
+	);
 
-		Route::post('cropProfile/{id}', [
+	Route::post('cropProfile/{id}', [
 			'uses'	=>	'profile@cropProfile',
 			'as'	=>	'cropProfile'
 		]

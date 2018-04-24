@@ -522,7 +522,8 @@
                         </div>
                             <div class="modal-body">
                             <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img><br><br><b><div id="namep"></div></b></div><br>
-                            <form id="init1" style="display: none;">
+                            <form id="init1" style="display: none;" action="{{ url('/user/loginSon') }}" method="post">
+                            	<input type="hidden" name="id" id="idpa">
 	                  				<button type="submit" id="init" class="btn btn-secondary btn-flat btn-block" style="display: none;">Iniciar Sesión</button>
 	                  		</form>
                             </div>
@@ -894,6 +895,7 @@
 										  }	else{
 										  	$('#namep').html(d.namecom + ' - ' + d.relationship);
 										  	if(d.session == 1){
+										  		$('#idpa').val(d.id);
 										  		$('#init1').css({ 'display': "block" });
 										  		$('#init').css({ 'display': "block" });
 										  	}else{

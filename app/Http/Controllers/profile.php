@@ -750,4 +750,22 @@ class profile extends Controller
               }
             }
         }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+        public function loginSon (Request $request)
+      {    
+        $user = User::find($request->id);
+        if (Auth::login($user, true)) {
+        // if successful, then redirect to their intended location
+        return redirect('/medicalconsultations');
+      } 
+
+              return redirect()->back();
+          }
+  
 }
