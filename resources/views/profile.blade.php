@@ -860,13 +860,18 @@
 								          return d.target.y
 								        })
 								    })
-
-								    force.start();
+								    node.on("click", click);
+										function click(d) 
+										{
+										    alert(d.id); //considering dot has a id attribute
+										}
+									force.start();
 
 								  }('#demo');
 
 								}(window.d3);
 								  });
+
                     	</script>
                     </div>
                   </div>
