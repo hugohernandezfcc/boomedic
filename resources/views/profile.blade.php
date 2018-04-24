@@ -507,6 +507,28 @@
 
                     <div id="demo"></div>
                     </div>
+                  <!--Other modal -->
+                  <div class="modal fade" role="dialog" id="modalfamily2">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div align="left"><label>Información del Familiar</label></div>
+                        </div>
+                            <div class="modal-body">
+                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img><br><br><b><div id="namep"></div></b></div><br>
+	                  				<a id="init" class="btn btn-secondary btn-flat" style="display: none;">Iniciar Sesión</a>
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+
+                    <!--Other modal -->
                    <div class="modal fade" role="dialog" id="modalfamily">
                     <div class="modal-dialog">
 
@@ -863,7 +885,14 @@
 								    node.on("click", click);
 										function click(d) 
 										{
-										    alert(d.relationship +'  ' +d.session); //considering dot has a id attribute
+											$('#userp').attr('src', d.photo + '?1');
+										  	$('#namep').html(d.namecom + ' - ' + d.relationship);
+										  	if(d.session == 1){
+										  		$('#init').css({ 'display': "block" });
+										  	}else{
+												$('#init').css({ 'display': "none" });
+										  	}
+										  	$("#modalfamily2").modal('toggle');
 										}
 									force.start();
 

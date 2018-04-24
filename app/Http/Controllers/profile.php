@@ -74,7 +74,7 @@ class profile extends Controller
         $family = DB::table('family')
             ->join('users', 'family.activeUser', '=', 'users.id')
             ->where('family.parent', Auth::id())
-            ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age')
+            ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name')
             ->get();
         $nodes = array();
     //Json que guarda datos de familiares para generar externalidad//
@@ -92,9 +92,9 @@ class profile extends Controller
                 $session = "1";
             } 
             if($family[$i]->profile_photo != null){
-                array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser, 'relationship' => $family[$i]->relationship, "session" => $session]);
+                array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
                   }else {
-                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $family[$i]->activeUser, 'relationship' => $family[$i]->relationship, "session" => $session]);
+                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
                   }
             }
           }
