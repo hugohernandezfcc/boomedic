@@ -99,10 +99,16 @@
                                   <!-- Menu Footer-->
                                   <li class="user-footer" style="background-color: #222;">
                                     <div class="pull-center">
-                                 @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
+                            @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
+                              @if(!session()->get('parental'))
                                 <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" class="btn btn-default btn-block btn-flat" style="background:white; color:black;">
                                     <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
+                                @else
+                               <a href="{{ url('logoutback') }}" class="btn btn-default btn-block btn-flat" style="background:white; color:black;">
+                                    <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                </a>
+                                @endif
                             @else
                                 <a
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
