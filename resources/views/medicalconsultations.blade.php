@@ -1020,7 +1020,7 @@ function prevTab(elem) {
        * Function responsable of execute the main functions 
        */
       window.onload = function(){
-         console.log("@php echo session()->get('utype'); @endphp");
+         console.log("@php echo session()->get('parental'); @endphp");
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
