@@ -39,6 +39,7 @@ Route::get('/returnverify', 'HomeController@returnverify')->name('/returnverify'
 
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
+Route::get('logoutback', 'HomeController@logoutback')->name('logoutback');
 
 
 Route::post('/medicalconsultations/recent', 'HomeController@recent')->name('medicalconsultations/recent');

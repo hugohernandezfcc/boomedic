@@ -257,6 +257,17 @@ class HomeController extends Controller
         );
     }
 
+        public function logoutback(){
+
+        $parental = session()->get('parental');
+        $user = DB::table('users')->where('username', $parental)->first();
+        $user2 = User::find($user->id);
+        Auth::login($user2, true);
+
+        // if successful, then redirect to their intended location
+        return redirect()->intended(route('medicalconsultations'));
+    }
+
         public function returnverify()
             {
                 $user = User::find(Auth::id());
