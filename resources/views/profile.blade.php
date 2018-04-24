@@ -863,7 +863,7 @@
 								    node.on("click", click);
 										function click(d) 
 										{
-										    alert(d.id); //considering dot has a id attribute
+										    alert(d.relationship +'  ' +d.session); //considering dot has a id attribute
 										}
 									force.start();
 
