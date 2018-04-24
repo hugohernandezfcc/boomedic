@@ -885,13 +885,18 @@
 								    node.on("click", click);
 										function click(d) 
 										{
-											$('#userp').attr('src', d.photo + '?1');
+
+										$('#userp').attr('src', d.photo + '?1');
+										if(!d.namecom){
+										  	$('#namep').html('Yo');
+										  }	else{
 										  	$('#namep').html(d.namecom + ' - ' + d.relationship);
 										  	if(d.session == 1){
 										  		$('#init').css({ 'display': "block" });
 										  	}else{
 												$('#init').css({ 'display': "none" });
 										  	}
+										  }
 										  	$("#modalfamily2").modal('toggle');
 										}
 									force.start();
