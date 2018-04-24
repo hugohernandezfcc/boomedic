@@ -759,9 +759,11 @@ class profile extends Controller
 
         public function loginSon (Request $request)
       {    
-
+        $parental = User::find(Auth::id());
         $user = User::find($request->id);
         Auth::login($user, true);
+        Session(['parental' => $parental->username]);
+
         // if successful, then redirect to their intended location
         return redirect()->intended(route('medicalconsultations'));
 
