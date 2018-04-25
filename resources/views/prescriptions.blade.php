@@ -11,7 +11,7 @@
         <div class="col-md-3">
         	
         	<a class="btn btn-secondary btn-block btn-flat margin-bottom" data-toggle="modal" data-target="#prescription-form-modal">Generar receta </a>
-        	@include('attentions.prescriptionsform')
+        	@include('attentions.prescriptionsform',  ['isMobile' => $isMobile])
 
         	@if($isMobile)
 				<div class="box box-solid collapsed-box">
@@ -39,6 +39,7 @@
 		                		<i class="fa fa-comments"></i> Comentarios <span class="label label-primary pull-right">0</span>
 		                	</a>
 		                </li>
+		                <li class="header">VISTAS</li>
 		                <li>
 		                	<a href="#">
 		                		<i class="fa fa-calendar-minus-o"></i> Ultimos 7 días
@@ -47,6 +48,12 @@
 		                <li class="active">
 		                	<a href="#">
 		                		<i class="fa fa-edit"></i> Todas las recetas
+		                	</a>
+		                </li>
+		                <li class="header">CONFIGURACIÓN</li>
+		                <li class="active">
+		                	<a href="#">
+		                		<i class="fa fa-config"></i> Formato de receta
 		                	</a>
 		                </li>
 		            </ul>
