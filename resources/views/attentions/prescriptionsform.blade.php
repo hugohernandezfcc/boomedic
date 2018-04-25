@@ -58,4 +58,5 @@
   <!-- /.modal-dialog -->
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.8.4/jquery.textcomplete.js"></script>
+<script type="text/javascript" src="{{ asset('jquery-textcomplete/packages/jquery-textcomplete/src/main.js') }}"></script>
+
