@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('birthdate') ? 'has-error' : '' }}">
-                    <input type="text" name="birthdate" class="form-control" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker1" autocomplete="off">
+                    <input type="date" name="birthdate" class="form-control" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" autocomplete="off">
                     <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     @if ($errors->has('birthdate'))
                         <span class="help-block">
