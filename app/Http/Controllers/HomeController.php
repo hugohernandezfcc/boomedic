@@ -262,8 +262,9 @@ class HomeController extends Controller
         $parental = session()->get('parental');
         $user = DB::table('users')->where('username', $parental)->first();
         $user2 = User::find($user->id);
-        Auth::login($user2, true);
 
+        Auth::login($user2, true);
+        session()->flush();
         // if successful, then redirect to their intended location
         return redirect()->intended(route('medicalconsultations'));
     }
