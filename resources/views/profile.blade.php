@@ -580,7 +580,7 @@
 					                </div>
 
 					                <div class="form-group has-feedback">
-					                    <input type="text" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker2">
+					                    <input type="date" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}">
 					                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
 					                </div>
 

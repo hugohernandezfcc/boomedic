@@ -426,7 +426,7 @@ span.round-tab:hover {
         monthsTitle: "Meses",
         clear: "Borrar",
         weekStart: 1,
-        format: "dd/mm/yyyy"
+        format: "yyyy/mm/dd"
     };
 
         $('#datepicker1').datepicker({
@@ -435,7 +435,7 @@ span.round-tab:hover {
                 });
         $('#datepicker2').datepicker({
             autoclose: true,
-            format: "dd/mm/yyyy",
+            format: "yyyy/mm/dd",
             language: 'es',
             orientation: 'auto'
          });
@@ -448,7 +448,7 @@ span.round-tab:hover {
             days: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
             daysShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
             daysMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-            format: "mm/dd/yyyy",
+            format: "yyyy/mm/dd",
             titleFormat: "MM yyyy",
             weekStart: 0
           };
