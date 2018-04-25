@@ -86,8 +86,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $data['confirmation_code'] = str_random(25);
-
-        $age = date("Y") - substr($data['birthdate'], -4);
+        $dato = explode("/", $fecha); 
+        $age = date("Y") - $dato[2];
         $namesUser = array();
 
         //$pos = strpos(' ', $data['name']);
