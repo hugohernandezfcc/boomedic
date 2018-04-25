@@ -705,6 +705,7 @@ class profile extends Controller
                 else{
 
           $user = User::where('id', $family->activeUser)->first();
+          $user2 = User::where('id', $family->parent)->first();
 
           if($family->relationship == "siblings"){
             $rela = "siblings";
@@ -715,10 +716,10 @@ class profile extends Controller
           if($family->relationship == "father"){
             $rela = "son";
           }
-          if($family->relationship == "son" && $user->gender == "female"){
+          if($family->relationship == "son" && $user2->gender == "female"){
             $rela = "mother";
           }
-          if($family->relationship == "son" && $user->gender == "male"){
+          if($family->relationship == "son" && $user2->gender == "male"){
             $rela = "father";
           }
           if($family->relationship == "wife"){
