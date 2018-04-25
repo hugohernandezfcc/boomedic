@@ -371,7 +371,7 @@
 							@if(session()->has('message'))
 
 								@if(session()->has('success'))
-							    <div class="alert alert-success alert-dismissable fade in" role="alert">
+							    <div class="alert alert-success alert-dismissable fade in" role="alert" id="alertf">
 							    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									    <span aria-hidden="true">&times;</span>
 									</button>
@@ -380,7 +380,7 @@
 							    </div>
 							   
 								@elseif(session()->has('error'))
-								 <div class="alert alert-danger alert-dismissable fade in" role="alert">
+								 <div class="alert alert-danger alert-dismissable fade in" role="alert" id="alertf">
 								 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									    <span aria-hidden="true">&times;</span>
 									</button>
@@ -968,7 +968,9 @@
 
 
 				$(document).ready(function(){
-
+					    $("#alertf").fadeTo(3000, 500).fadeOut(500, function(){
+						    $("#alertf").fadeOut(500);
+						});
  						 	$("#sea").on("keyup", function(e) {
 
 						    		if(e.which == 32) {

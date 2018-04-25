@@ -35,10 +35,10 @@
                             <div class="modal-body">
                             <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img></div><br/>
                             	<ul class="nav nav-stacked">
-	                  				<li><a>Nombre: </a><a id="namep"></a></li>
-	                  				<li><a>Edad: </a><a id="age"></a></li>
-	                  				<li><a>Consultorio: </a><a id="lug"></a></li>
-	                  				<li><a>Fecha: </a><a id="start"></a></li>
+	                  				<li><a id="namep"></a></li>
+	                  				<li><a id="age"></a></li>
+	                  				<li><a id="lug"></a></li>
+	                  				<li><a id="start"></a></li>
 	                			</ul>
 	            				 <br/>
                             </div>
@@ -116,10 +116,10 @@ jQuery.noConflict(false);
 		  eventClick: function(calEvent, jsEvent, view) {
 		  	console.log(calEvent);
 		  	$('#userp').attr('src', calEvent.photo + '?1');
-		  	$('#namep').html(calEvent.title);
-		  	$('#age').html(calEvent.age);
-		  	$('#lug').html(calEvent.lug);
-		  	$('#start').html(moment(calEvent.start).format('DD MMM YYYY h:mm A'));
+		  	$('#namep').html('<label class="text-muted">Nombre: </label> '+ calEvent.title);
+		  	$('#age').html('<label class="text-muted">Edad: </label> '+ calEvent.age);
+		  	$('#lug').html('<label class="text-muted">Consultorio: </label> '+ calEvent.lug);
+		  	$('#start').html('<label class="text-muted">Fecha: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
 		  	jQuery("#modalsuccess").modal('toggle');
 	
 		  }

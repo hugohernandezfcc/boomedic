@@ -86,10 +86,7 @@
             height: 100%;
             width: 95%;
         }
-        #calendar1 {
-        max-width: 900px;
-        margin: 0 auto;
-    }
+
         .btn-circle {
           width: 30px;
           height: 30px;
