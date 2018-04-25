@@ -45,8 +45,15 @@ class Prescriptions extends Controller
 
     public function medicinesCatalogue(){
 
+        $medicines = DB::table('medicines')->get();
+
+        for ($i=0; $i < count(var); $i++) { 
+            $medicines[$i]->name = strtolower($medicines[$i]->name);
+        }
+
+
         return response()->json(
-            DB::table('medicines')->get()
+            $medicines   
         );
 
     }
