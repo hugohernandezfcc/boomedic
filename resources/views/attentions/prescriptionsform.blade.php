@@ -23,8 +23,6 @@
       </div>
       <div class="modal-body">
 
-        legalicen la mota putos...
-        <br/>
        <textarea class="receta" id="receta" ></textarea>
 
         <script type="text/javascript">
