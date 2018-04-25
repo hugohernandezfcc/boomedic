@@ -15,7 +15,7 @@
         
 
         $(document).ready(function(){
-          
+          jQuery.noConflict(false);
 
           $('.editable').textcomplete([{
             match: /(^|\b)(\w{2,})$/,
