@@ -13,7 +13,7 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.8.4/jquery.textcomplete.js"></script>
+
 
 
 <div class="modal fade" id="prescription-form-modal">
