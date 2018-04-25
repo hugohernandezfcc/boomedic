@@ -10,7 +10,7 @@
   </style>
 @endif
 
-
+<link rel="stylesheet" type="text/css" href="https://yuku-t.com/jquery-textcomplete/media/stylesheets/main.css">
 
 <div class="modal fade" id="prescription-form-modal">
   <div class="modal-dialog">
@@ -42,6 +42,8 @@
   <!-- /.modal-dialog -->
 </div>
 
+<script type="text/javascript" src="https://yuku-t.com/jquery-overlay/jquery.overlay.js"></script>
+<script type="text/javascript" src="https://yuku-t.com/jquery-textcomplete/media/javascripts/jquery.textcomplete.js"></script>
 <script type="text/javascript" src="{{ asset('jquery-textcomplete/packages/jquery-textcomplete/src/main.js') }}"></script>
 <script type="text/javascript">
   $('#textareatest').textcomplete([{ // tech companies
