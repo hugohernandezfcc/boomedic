@@ -64,7 +64,7 @@
                      },
                      error: function( data ){
                         console.log('Submission was error.');
-                        console.log(data.responseText);
+                        console.log(data);
                      }
                   });
 
