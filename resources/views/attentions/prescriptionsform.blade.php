@@ -5,7 +5,7 @@
         margin: 30px auto;
       }
     @endif
-    
+
     #textcomplete-dropdown-1{
       z-index: 1100;
     }
@@ -25,7 +25,7 @@
 
         legalicen la mota putos...
         <br/>
-       <textarea class="editable" id="one"></textarea>
+       <textarea class="receta" id="receta" ></textarea>
 
         <script type="text/javascript">
         
@@ -33,12 +33,20 @@
         $(document).ready(function(){
           jQuery.noConflict(false);
 
-          $('.editable').textcomplete([{
+          $('#receta').textcomplete([{
             match: /(^|\b)(\w{2,})$/,
             search: function (term, callback) {
               var words = ['google', 'google1','google13','goog3le1','google1','google1', 'facebook', 'github', 'microsoft', 'yahoo'];
+              
               callback($.map(words, function (word) {
-                return word.indexOf(term) === 0 ? word : null;
+
+                document.getElementById('receta').style.zIndex = "1100";
+
+                if(word.indexOf(term) === 0)
+                  return word;
+                else
+                  return null;
+                  
               }));
             },
             replace: function (word) {
