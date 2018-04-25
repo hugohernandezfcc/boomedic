@@ -45,7 +45,7 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_2" data-toggle="tab" aria-expanded="false">Actual</a></li>
-              <li class=""><a href="#tab_1" data-toggle="tab" aria-expanded="true">Agregar nuevo</a></li>
+              <li class=""><a href="#tab_1" data-toggle="tab" aria-expanded="true">Configurar Horario</a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane" id="tab_1">
