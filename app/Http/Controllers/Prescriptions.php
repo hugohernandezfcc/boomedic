@@ -47,7 +47,7 @@ class Prescriptions extends Controller
 
         $medicines = DB::table('medicines')->get();
 
-        for ($i=0; $i < count(var); $i++) { 
+        for ($i=0; $i < count($medicines); $i++) { 
             $medicines[$i]->name = strtolower($medicines[$i]->name);
         }
 
