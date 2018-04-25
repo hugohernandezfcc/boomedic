@@ -28,23 +28,7 @@
 
 
 
-        <script type="text/javascript">
-          $('#textareatest').textcomplete([
-    { // tech companies
-        words: ['apple', 'google', 'facebook', 'github'],
-        match: /\b(\w{2,})$/,
-        search: function (term, callback) {
-            callback($.map(this.words, function (word) {
-                return word.indexOf(term) === 0 ? word : null;
-            }));
-        },
-        index: 1,
-        replace: function (word) {
-            return word + ' ';
-        }
-    }
-]);
-        </script>
+        
 
 
       </div>
@@ -59,4 +43,19 @@
 </div>
 
 <script type="text/javascript" src="{{ asset('jquery-textcomplete/packages/jquery-textcomplete/src/main.js') }}"></script>
-
+<script type="text/javascript">
+  $('#textareatest').textcomplete([{ // tech companies
+          words: ['apple', 'google', 'facebook', 'github'],
+          match: /\b(\w{2,})$/,
+          search: function (term, callback) {
+              callback($.map(this.words, function (word) {
+                  return word.indexOf(term) === 0 ? word : null;
+              }));
+          },
+          index: 1,
+          replace: function (word) {
+              return word + ' ';
+          }
+      }
+  ]);
+</script>
