@@ -40,7 +40,7 @@
               
               callback($.map(words, function (word) {
 
-                document.getElementById('receta').style.zIndex = "1100";
+                document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
 
                 if(word.indexOf(term) === 0)
                   return word;
