@@ -12,9 +12,10 @@
 
 <script src="https://code.jquery.com/jquery-3.1.0.js" type="text/javascript"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.10/adapters/jquery.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.7.1/jquery.textcomplete.min.js"></script>
-<script type="text/javascript" src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.8.4/jquery.textcomplete.js"></script>
+
+  <script type="text/javascript" src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+
 
 <div class="modal fade" id="prescription-form-modal">
   <div class="modal-dialog">
@@ -50,6 +51,7 @@ $(document).ready(function(){
 });
 
 </script>
+
         
 
 
