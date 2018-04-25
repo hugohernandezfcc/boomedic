@@ -25,7 +25,9 @@
             <script type="text/javascript">
            
 
-               var words = ['ANSIL 5 MG TABLETAS 30 UNIDADES', 'TENSINOR H 160 MG / 25 MG TABLETAS DE 20 UNIDADES ','DAZEL DUO PACK 40 MG TABLETAS DE 20 UNIDADES','FLUCONAZOL 150 MG CAPSULA DE 1 UNIDAD','DICLOFENACO 10 TAB 50 MG','ADIABET 500 5 MG CAJA X 30 TABS', 'ADIABET PLUS 1000 5 MG CAJA X 30 TABS ', 'ADIABET PLUS 2.5 MG CAJA X 30 TABS', 'microsoft', 'yahoo'];
+               var words = [];
+               var medicinesSelected = [];
+
               $(document).ready(function(){
                   jQuery.noConflict(false);
 
@@ -49,9 +51,25 @@
                      }
                   }]);
                });
-
+              
               function loadMedicines() {
                  document.getElementById('load-medicines').value = true;
+
+                 $.ajax({
+                    method: "get",
+                    url: '/previousattention/medicinescatalogue'
+                  }).done(function( medicines ) {
+                     medicinesSelected = medicines;
+                     console.log(medicines);
+                     $.map(medicines, function (word) {
+
+                        words.push(word.name);
+
+                     });
+
+                 });
+                    
+
               }
             </script>
          </div>
