@@ -408,13 +408,15 @@ span.round-tab:hover {
       if(!par){
           $("body").removeClass("skin-black-light");
           $("body").addClass("skin-black");
-                  $("#uh").css("background-color", "#222");
-        $("#uf").css("background-color", "#222");
+          $("#uh").css("background-color", "#222");
+          $("#uf").css("background-color", "#222");
+          $("au").removeClass("text-black");
       }else{
         $("body").removeClass("skin-black");
         $("body").addClass("skin-black-light");
         $("#uh").css("background-color", "#31b7b0");
         $("#uf").css("background-color", "#31b7b0");
+        $("au").addClass("text-black");
       }
     $(function () {
         $.fn.datepicker.dates['es'] = {

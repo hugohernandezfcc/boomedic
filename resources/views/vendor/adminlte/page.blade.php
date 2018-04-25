@@ -77,7 +77,7 @@
                                     @endif 
 
                                     <p>
-                                        <a href="{{ url('/user/profile') }}/{{Auth::id()}}" class="text"> {{ $name }} </a>
+                                        <a href="{{ url('/user/profile') }}/{{Auth::id()}}" class="text" id="au"> {{ $name }} </a>
                                       <small>Miembro desde
                                         @if(\Carbon\Carbon::parse($date)->format('m') == '01') Ene. @endif
                                         @if(\Carbon\Carbon::parse($date)->format('m') == '02') Feb. @endif
