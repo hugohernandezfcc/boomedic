@@ -56,18 +56,31 @@
                  document.getElementById('load-medicines').value = true;
 
                  $.ajax({
-                    method: "get",
-                    url: '/previousattention/medicinescatalogue'
-                  }).done(function( medicines ) {
+                     method: "get",
+                     url: '/previousattention/medicinescatalogue',
+                     success: function( data ){
+                        console.log('Submission was successful.');
+                        console.log(data);
+                     },
+                     error: function( data ){
+                        console.log('Submission was error.');
+                        console.log(data);
+                     }
+                  });
+
+                 /**
+                  * .done(function( medicines ) {
                      medicinesSelected = medicines;
                      console.log(medicines);
+                     
                      $.map(medicines, function (word) {
 
                         words.push(word.name);
 
                      });
 
-                 });
+                 })
+                  */
                     
 
               }
