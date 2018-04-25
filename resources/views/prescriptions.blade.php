@@ -8,30 +8,8 @@
 
 @section('content')
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.8.4/jquery.textcomplete.js"></script>
-<textarea class="editable" id="one"></textarea>
+	
 
-        <script type="text/javascript">
-        
-
-        $(document).ready(function(){
-          jQuery.noConflict(false);
-
-          $('.editable').textcomplete([{
-            match: /(^|\b)(\w{2,})$/,
-            search: function (term, callback) {
-              var words = ['google', 'facebook', 'github', 'microsoft', 'yahoo'];
-              callback($.map(words, function (word) {
-                return word.indexOf(term) === 0 ? word : null;
-              }));
-            },
-            replace: function (word) {
-              return word + ' ';
-            }
-          }]);
-        });
-
-        </script>
 	<div class="row">
         <div class="col-md-3">
         	
