@@ -134,7 +134,7 @@ class RegisterController extends Controller
             $userCreated =  User::create([
                 'name'      => $data['name'],
                 'email'     => $data['email'],
-                'birthdate' => (Carbon::parse($data['birthdate'])->format('m-d-Y'),
+                'birthdate' => Carbon::parse($data['birthdate'])->format('m-d-Y'),
                 'age'       => (int) $age,
                 'status'    => 'In Progress',
                 'firstname' => $namesUser['first'],
@@ -165,7 +165,7 @@ class RegisterController extends Controller
             $usermor        = User::create([
                 'name'      => $data['name'],
                 'email'     => $data['email'],
-                'birthdate' => (Carbon::parse($data['birthdate'])->format('m-d-Y'),
+                'birthdate' => Carbon::parse($data['birthdate'])->format('m-d-Y'),
                 'age'       => (int) $age,
                 'status'    => 'In Progress',
                 'firstname' => $namesUser['first'],
