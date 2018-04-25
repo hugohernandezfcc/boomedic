@@ -779,7 +779,11 @@
 											      })
 											    .append('svg:image')
 											    .attr('xlink:href',function(d,i){
-											      return d.photo
+											    	if(d.photo.length == 0){
+                                                       return 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png'
+											    	}else{
+											     	 return d.photo
+											  		}
 											    })
 											    .attr('height', function(d, i) {
 											        if (i > 0) {
@@ -891,8 +895,13 @@
 											if(d.id == "n"){
 											$("#modalfamily").modal('toggle');		
 											}else{
+
 										$('#userp').attr('src', d.photo + '?1');
 										if(!d.namecom){
+											console.log(d.photo);
+											if(d.photo == " "){ 
+												$('#userp').attr('src', 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png');
+											}
 										  	$('#namep').html('Yo');
 										  }	else{
 										  	$('#namep').html(d.namecom + ' - ' + d.relationship);
