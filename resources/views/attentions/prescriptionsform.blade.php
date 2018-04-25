@@ -10,11 +10,11 @@
   </style>
 @endif
 
-<script src="https://code.jquery.com/jquery-3.1.0.js" type="text/javascript"></script>
 
+  <!-- <script src="https://code.jquery.com/jquery-3.1.0.js" type="text/javascript"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.8.4/jquery.textcomplete.js"></script>
-
   <script type="text/javascript" src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+
 
 
 <div class="modal fade" id="prescription-form-modal">
@@ -31,26 +31,26 @@
         <br/>
        <textarea class="editable" id="one"></textarea>
 
-<script type="text/javascript">
-  
+        <script type="text/javascript">
+        
 
-$(document).ready(function(){
-  tinymce.init({ selector:'#three' });
-  $('.editable').textcomplete([{
-    match: /(^|\b)(\w{2,})$/,
-    search: function (term, callback) {
-      var words = ['google', 'facebook', 'github', 'microsoft', 'yahoo'];
-      callback($.map(words, function (word) {
-        return word.indexOf(term) === 0 ? word : null;
-      }));
-    },
-    replace: function (word) {
-      return word + ' ';
-    }
-  }]);
-});
+        $(document).ready(function(){
+          tinymce.init({ selector:'#three' });
+          $('.editable').textcomplete([{
+            match: /(^|\b)(\w{2,})$/,
+            search: function (term, callback) {
+              var words = ['google', 'facebook', 'github', 'microsoft', 'yahoo'];
+              callback($.map(words, function (word) {
+                return word.indexOf(term) === 0 ? word : null;
+              }));
+            },
+            replace: function (word) {
+              return word + ' ';
+            }
+          }]);
+        });
 
-</script>
+        </script>
 
         
 
