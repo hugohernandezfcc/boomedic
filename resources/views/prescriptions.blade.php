@@ -37,26 +37,24 @@
 		        </div>
 		        <div class="box-body no-padding">
 		            <ul class="nav nav-pills nav-stacked">
-		                <li >
-		                	<a href="#">
-		                		<i class="fa fa-comments"></i> Comentarios <span class="label label-primary pull-right">0</span>
-		                	</a>
-		                </li>
-		                <li class="header">VISTAS</li>
-		                <li>
-		                	<a href="#">
-		                		<i class="fa fa-calendar-minus-o"></i> Ultimos 7 días
-		                	</a>
-		                </li>
 		                <li class="active">
 		                	<a href="#">
 		                		<i class="fa fa-edit"></i> Todas las recetas
 		                	</a>
 		                </li>
-		                <li class="header">CONFIGURACIÓN</li>
-		                <li class="active">
+		                <li >
 		                	<a href="#">
-		                		<i class="fa fa-config"></i> Formato de receta
+		                		<i class="fa fa-comments"></i> Comentarios <span class="label label-primary pull-right">0</span>
+		                	</a>
+		                </li>
+		                <li>
+		                	<a href="#">
+		                		<i class="fa fa-calendar-minus-o"></i> Ultimos 7 días
+		                	</a>
+		                </li>
+		                <li >
+		                	<a href="#">
+		                		<i class="fa fa-cog"></i> Formato de receta
 		                	</a>
 		                </li>
 		            </ul>

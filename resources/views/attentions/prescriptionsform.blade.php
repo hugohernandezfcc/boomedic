@@ -5,10 +5,6 @@
         margin: 30px auto;
       }
     @endif
-
-    #textcomplete-dropdown-1{
-      z-index: 1100;
-    }
   </style>
 
 
