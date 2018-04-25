@@ -410,13 +410,13 @@ span.round-tab:hover {
           $("body").addClass("skin-black");
           $("#uh").css("background-color", "#222");
           $("#uf").css("background-color", "#222");
-          $("#au").removeClass("text-black");
+          $("#au").removeAttr("style");
       }else{
         $("body").removeClass("skin-black");
         $("body").addClass("skin-black-light");
         $("#uh").css("background-color", "#31b7b0");
         $("#uf").css("background-color", "#31b7b0");
-        $("#au").addClass("text-black");
+        $("#au").css("color", "white");
       }
     $(function () {
         $.fn.datepicker.dates['es'] = {
