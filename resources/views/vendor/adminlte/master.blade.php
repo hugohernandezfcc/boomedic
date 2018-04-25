@@ -18,10 +18,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-black-light.min.css') }}">
 
     <link rel="stylesheet" type="text/css" href="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/skins/_all-skins.min.css">
+
     <link rel="stylesheet" type="text/css" href="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" type="text/css" href="https://adminlte.io/themes/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" type="text/css" href="https://adminlte.io/themes/AdminLTE/bower_components/select2/dist/css/select2.min.css"/>
@@ -78,6 +78,9 @@
             border-top: 3px solid rgb(210, 214, 222);
             margin-bottom: -2px;
             margin-right: 5px;
+        }
+        .navbar-custom-menu>.navbar-nav>li>.dropdown-menu {
+            right: 0 !important; 
         }
         #mapAddressUser {
             height: 100%;

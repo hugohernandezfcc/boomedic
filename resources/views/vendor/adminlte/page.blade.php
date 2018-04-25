@@ -378,6 +378,18 @@
                             @endif
     </div>
     <!-- ./wrapper -->
+    <script type="text/javascript">
+    var par = "@php echo session()->get('parental'); @endphp";
+      if(!par){
+          $("body").removeClass("skin-black-light");
+          $("body").addClass("skin-black");
+      }else{
+        $("body").removeClass("skin-black");
+        $("body").addClass("skin-black-light");
+      }
+
+    </script>
+      
 @stop
 
 @section('adminlte_js')
