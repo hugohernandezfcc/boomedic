@@ -32,6 +32,7 @@
     "jquery": "^3.2.1",
     "laravel-mix": "^0.12.1",
     "lodash": "^4.17.4",
+    "textcomplete": "^0.17.1",
     "toastr": "^2.1.2",
     "vue": "^2.4.4"
   },

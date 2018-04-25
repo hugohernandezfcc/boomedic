@@ -22,6 +22,31 @@
       <div class="modal-body">
 
         legalicen la mota putos...
+        <textarea id="textareatest"></textarea>
+
+        <script type="text/javascript">
+          // Shared strategy for all demos.
+          window.emojiStrategy = {
+            id: 'emoji',
+            match: /(^|\s):([a-z0-9+\-\_]*)$/,
+            search: function (term, callback) {
+              callback(Object.keys(emojis).filter(function (name) {
+                return name.startsWith(term);
+              }));
+            },
+            template: function (name) {
+              return '<img src="' + emojis[name] + '"></img> ' + name;
+            },
+            replace: function (name) {
+              return '$1:' + name + ': ';
+            }
+          };
+
+          var editor = new Textarea(document.getElementById('textareatest'));
+
+          var textcomplete = new Textcomplete(editor);
+          textcomplete.register([emojiStrategy]);
+        </script>
 
       </div>
       <div class="modal-footer">
