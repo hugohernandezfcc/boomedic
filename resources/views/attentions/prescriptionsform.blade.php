@@ -10,7 +10,11 @@
   </style>
 @endif
 
-<link rel="stylesheet" type="text/css" href="https://yuku-t.com/jquery-textcomplete/media/stylesheets/main.css">
+<script src="https://code.jquery.com/jquery-3.1.0.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.10/adapters/jquery.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.7.1/jquery.textcomplete.min.js"></script>
+<script type="text/javascript" src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
 
 <div class="modal fade" id="prescription-form-modal">
   <div class="modal-dialog">
@@ -24,25 +28,28 @@
 
         legalicen la mota putos...
         <br/>
-        <textarea id="textareatest"></textarea>
+       <textarea class="editable" id="one"></textarea>
 
-        <script type="text/javascript">
-  $('#textareatest').textcomplete([{ // tech companies
-          words: ['apple', 'google', 'facebook', 'github'],
-          match: /\b(\w{2,})$/,
-          search: function (term, callback) {
-              callback($.map(this.words, function (word) {
-                  return word.indexOf(term) === 0 ? word : null;
-              }));
-          },
-          index: 1,
-          replace: function (word) {
-              return word + ' ';
-          }
-      }
-  ]);
+<script type="text/javascript">
+  
+
+$(document).ready(function(){
+  tinymce.init({ selector:'#three' });
+  $('.editable').textcomplete([{
+    match: /(^|\b)(\w{2,})$/,
+    search: function (term, callback) {
+      var words = ['google', 'facebook', 'github', 'microsoft', 'yahoo'];
+      callback($.map(words, function (word) {
+        return word.indexOf(term) === 0 ? word : null;
+      }));
+    },
+    replace: function (word) {
+      return word + ' ';
+    }
+  }]);
+});
+
 </script>
-
         
 
 
@@ -57,7 +64,4 @@
   <!-- /.modal-dialog -->
 </div>
 
-<script type="text/javascript" src="https://yuku-t.com/jquery-overlay/jquery.overlay.js"></script>
-<script type="text/javascript" src="https://yuku-t.com/jquery-textcomplete/media/javascripts/jquery.textcomplete.js"></script>
-<script type="text/javascript" src="{{ asset('jquery-textcomplete/packages/jquery-textcomplete/src/main.js') }}"></script>
 
