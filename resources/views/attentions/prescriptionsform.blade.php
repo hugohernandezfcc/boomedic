@@ -21,7 +21,7 @@
       </div>
       <div class="modal-body">
 
-
+        legalicen la mota putos...
 
       </div>
       <div class="modal-footer">
