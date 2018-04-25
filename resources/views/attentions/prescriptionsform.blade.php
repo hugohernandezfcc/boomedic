@@ -10,6 +10,7 @@
   </style>
 @endif
 
+<script type="text/javascript" src="{{ asset('node_modules/textcomplete/docs/main.js') }}"></script>
 
 <div class="modal fade" id="prescription-form-modal">
   <div class="modal-dialog">

@@ -6,4 +6,4 @@
  */
 
 require('./bootstrap');
-var { Textcomplete, Textarea } = require('textcomplete');
+
