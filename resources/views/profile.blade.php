@@ -888,7 +888,9 @@
 								    node.on("click", click);
 										function click(d) 
 										{
-
+											if(d.id == "n"){
+											$("#modalfamily").modal('toggle');		
+											}else{
 										$('#userp').attr('src', d.photo + '?1');
 										if(!d.namecom){
 										  	$('#namep').html('Yo');
@@ -905,6 +907,7 @@
 										  	}
 										  }
 										  	$("#modalfamily2").modal('toggle');
+										  }
 										}
 									force.start();
 
