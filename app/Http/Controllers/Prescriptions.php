@@ -41,4 +41,26 @@ class Prescriptions extends Controller
             ]
         );
     }
+
+
+    public function medicinesCatalogue(){
+
+        return response()->json(
+            DB::table('medicines')->get()
+        );
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
