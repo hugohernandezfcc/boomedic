@@ -34,7 +34,8 @@
         
 
         $(document).ready(function(){
-          tinymce.init({ selector:'#three' });
+          
+
           $('.editable').textcomplete([{
             match: /(^|\b)(\w{2,})$/,
             search: function (term, callback) {
