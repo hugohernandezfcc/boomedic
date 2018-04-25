@@ -10,7 +10,7 @@
   </style>
 @endif
 
-<script type="text/javascript" src="{{ asset('node_modules/textcomplete/docs/main.js') }}"></script>
+
 
 <div class="modal fade" id="prescription-form-modal">
   <div class="modal-dialog">
@@ -23,31 +23,29 @@
       <div class="modal-body">
 
         legalicen la mota putos...
+        <br/>
         <textarea id="textareatest"></textarea>
 
+
+
         <script type="text/javascript">
-          // Shared strategy for all demos.
-          window.emojiStrategy = {
-            id: 'emoji',
-            match: /(^|\s):([a-z0-9+\-\_]*)$/,
-            search: function (term, callback) {
-              callback(Object.keys(emojis).filter(function (name) {
-                return name.startsWith(term);
-              }));
-            },
-            template: function (name) {
-              return '<img src="' + emojis[name] + '"></img> ' + name;
-            },
-            replace: function (name) {
-              return '$1:' + name + ': ';
-            }
-          };
-
-          var editor = new Textarea(document.getElementById('textareatest'));
-
-          var textcomplete = new Textcomplete(editor);
-          textcomplete.register([emojiStrategy]);
+          $('#textareatest').textcomplete([
+    { // tech companies
+        words: ['apple', 'google', 'facebook', 'github'],
+        match: /\b(\w{2,})$/,
+        search: function (term, callback) {
+            callback($.map(this.words, function (word) {
+                return word.indexOf(term) === 0 ? word : null;
+            }));
+        },
+        index: 1,
+        replace: function (word) {
+            return word + ' ';
+        }
+    }
+]);
         </script>
+
 
       </div>
       <div class="modal-footer">
@@ -59,3 +57,5 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.8.4/jquery.textcomplete.js"></script>
