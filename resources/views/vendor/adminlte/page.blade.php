@@ -69,7 +69,7 @@
                                 </a>
                                 <ul class="dropdown-menu bg-darken-4">
                                   <!-- User image -->
-                                  <li class="user-header" style="background-color: #222;">
+                                  <li class="user-header" style="background-color: #222;" id="uh">
                                     @if($photo == '')
                                         <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image">
                                     @else
@@ -97,7 +97,7 @@
                                     </p>
                                   </li>
                                   <!-- Menu Footer-->
-                                  <li class="user-footer" style="background-color: #222;">
+                                  <li class="user-footer" style="background-color: #222;" id="uf">
                                     <div class="pull-center">
                             @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                               
