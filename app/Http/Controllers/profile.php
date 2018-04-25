@@ -415,7 +415,7 @@ class profile extends Controller
           }
         } else{
 
-        $age = date("Y") - substr($request->birthdate, -4);
+        $age = date("Y") - Carbon::parse($request->birthdate)->format('Y');
         $namesUser = array();
 
         //$pos = strpos(' ', $data['name']);
@@ -532,7 +532,7 @@ class profile extends Controller
                       $unew = User::create([
                               'name'      => $request->name,
                               'email'     => $request->email,
-                              'birthdate' => $request->birthdate,
+                              'birthdate' => Carbon::parse($request->birthdate)->format('m-d-Y'),
                               'age'       => (int) $age,
                               'status'    => 'In Progress',
                               'firstname' => $namesUser['first'],
@@ -564,7 +564,7 @@ class profile extends Controller
                       $unew = User::create([
                               'name'      => $request->name,
                               'email'     => $request->email,
-                              'birthdate' => $request->birthdate,
+                              'birthdate' => Carbon::parse($request->birthdate)->format('m-d-Y'),
                               'age'       => (int) $age,
                               'status'    => 'In Progress',
                               'firstname' => $namesUser['first'],
@@ -597,7 +597,7 @@ class profile extends Controller
         $unew = User::create([
                 'name'      => $request->name,
                 'email'     => $request->email,
-                'birthdate' => $request->birthdate,
+                'birthdate' => Carbon::parse($request->birthdate)->format('m-d-Y'),
                 'age'       => (int) $age,
                 'status'    => 'In Progress',
                 'firstname' => $namesUser['first'],
