@@ -14,7 +14,7 @@
         <div class="col-md-3">
         	
         	<a class="btn btn-secondary btn-block btn-flat margin-bottom" data-toggle="modal" data-target="#prescription-form-modal">Generar receta </a>
-        	@include('prescriptionsform', ['isMobile' => $isMobile])
+        	@include('attentions.prescriptionsform', ['isMobile' => $isMobile])
 
         	@if($isMobile)
 				<div class="box box-solid collapsed-box">
