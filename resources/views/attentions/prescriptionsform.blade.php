@@ -1,18 +1,15 @@
-
-
-
-@if(!$isMobile)
   <style type="text/css">
-    .modal-dialog {
-      width: 90%;
-      margin: 30px auto;
+    @if(!$isMobile)
+      .modal-dialog {
+        width: 90%;
+        margin: 30px auto;
+      }
+    @endif
+    
+    #textcomplete-dropdown-1{
+      z-index: 1100;
     }
   </style>
-@endif
-
-
-
-
 
 
 
@@ -39,7 +36,7 @@
           $('.editable').textcomplete([{
             match: /(^|\b)(\w{2,})$/,
             search: function (term, callback) {
-              var words = ['google', 'facebook', 'github', 'microsoft', 'yahoo'];
+              var words = ['google', 'google1','google13','goog3le1','google1','google1', 'facebook', 'github', 'microsoft', 'yahoo'];
               callback($.map(words, function (word) {
                 return word.indexOf(term) === 0 ? word : null;
               }));
@@ -52,9 +49,6 @@
 
         </script>
 
-        
-
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -65,5 +59,4 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
-
 
