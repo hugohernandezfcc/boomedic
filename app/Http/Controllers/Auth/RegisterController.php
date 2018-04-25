@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mail;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -133,7 +134,7 @@ class RegisterController extends Controller
             $userCreated =  User::create([
                 'name'      => $data['name'],
                 'email'     => $data['email'],
-                'birthdate' => $data['birthdate'],
+                'birthdate' => (Carbon::parse($data['birthdate'])->format('m-d-Y'),
                 'age'       => (int) $age,
                 'status'    => 'In Progress',
                 'firstname' => $namesUser['first'],
@@ -164,7 +165,7 @@ class RegisterController extends Controller
             $usermor        = User::create([
                 'name'      => $data['name'],
                 'email'     => $data['email'],
-                'birthdate' => $data['birthdate'],
+                'birthdate' => (Carbon::parse($data['birthdate'])->format('m-d-Y'),
                 'age'       => (int) $age,
                 'status'    => 'In Progress',
                 'firstname' => $namesUser['first'],
