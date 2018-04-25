@@ -26,7 +26,22 @@
         <br/>
         <textarea id="textareatest"></textarea>
 
-
+        <script type="text/javascript">
+  $('#textareatest').textcomplete([{ // tech companies
+          words: ['apple', 'google', 'facebook', 'github'],
+          match: /\b(\w{2,})$/,
+          search: function (term, callback) {
+              callback($.map(this.words, function (word) {
+                  return word.indexOf(term) === 0 ? word : null;
+              }));
+          },
+          index: 1,
+          replace: function (word) {
+              return word + ' ';
+          }
+      }
+  ]);
+</script>
 
         
 
@@ -45,19 +60,4 @@
 <script type="text/javascript" src="https://yuku-t.com/jquery-overlay/jquery.overlay.js"></script>
 <script type="text/javascript" src="https://yuku-t.com/jquery-textcomplete/media/javascripts/jquery.textcomplete.js"></script>
 <script type="text/javascript" src="{{ asset('jquery-textcomplete/packages/jquery-textcomplete/src/main.js') }}"></script>
-<script type="text/javascript">
-  $('#textareatest').textcomplete([{ // tech companies
-          words: ['apple', 'google', 'facebook', 'github'],
-          match: /\b(\w{2,})$/,
-          search: function (term, callback) {
-              callback($.map(this.words, function (word) {
-                  return word.indexOf(term) === 0 ? word : null;
-              }));
-          },
-          index: 1,
-          replace: function (word) {
-              return word + ' ';
-          }
-      }
-  ]);
-</script>
+
