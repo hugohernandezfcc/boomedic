@@ -21,7 +21,7 @@
 
             <div class="row">
                <div class="col-md-6">
-                  <select class="form-control select2" style="width: 100%;">
+                  <select class="form-control" id="testtest" style="width: 100%;">
                      <option selected="selected">Alabama</option>
                      <option>Alaska</option>
                      <option>California</option>
@@ -38,7 +38,7 @@
 
             <div class="form-group">
                <!-- The validation is to change the cols number in textarea -->
-               @if(!$isMobile)
+               @if($isMobile)
                   <textarea class="form-control" id="receta" rows="10" cols="35" placeholder="Describe la prescripción médica ..."></textarea>
                @endif
                <textarea class="form-control" id="receta" rows="10" cols="30" placeholder="Describe la prescripción médica ..."></textarea>
@@ -73,7 +73,7 @@
                      }
                   }]);
 
-                  $('select').select2({ width: "100%" });
+                  $('#testtest').select2({ width: "100%" });
                });
               
                function loadMedicines() {
