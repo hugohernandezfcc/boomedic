@@ -61,8 +61,8 @@
                      success: function( data ){
                         console.log('Submission was successful.');
 
-                        console.log(data);
                         medicinesSelected = data;
+                        console.log(medicinesSelected);
                         
                         $.map(data, function (word) {
 
