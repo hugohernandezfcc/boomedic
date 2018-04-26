@@ -648,7 +648,9 @@
     			window.onload = function(){
     			$('#collapseTwo').collapse("toggle");
 				$('#collapseThree').collapse("toggle");
+    				@if(!empty($status))
     				initAutocomplete();
+    				@endif
     				@if( empty($status) )
     					initMapAddressUser();
 					@endif
