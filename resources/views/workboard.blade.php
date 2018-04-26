@@ -74,40 +74,40 @@
 			  	<div class="col-sm-8">	
 			  		<div data-toggle="buttons" class="btn-group">
 
-			  			<label for="Dom" class="btn btn-secondary">
+			  			<label for="Dom" class="btn btn-default">
 							<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off">
 							<span class="glyphicon glyphicon-ok"></span>
-							 <b>Dom</b>
+							 <b>Domingo</b>
 						</label>		
 				  		<label for="Lun" class="btn btn-default">
 							<input type="checkbox" value="Lun" name="day[]" id="Lun" autocomplete="off">
 							<span class="glyphicon glyphicon-ok"></span>
-							<b>Lun</b>
+							<b>Lunes</b>
 						</label>
 						<label for="Mar" class="btn btn-default">
 							<input type="checkbox" value="Mar" name="day[]" id="Mar" autocomplete="off">
 							<span class="glyphicon glyphicon-ok"></span>
-							<b>Mar</b>
+							<b>Martes</b>
 						</label>
 						<label for="Mie"  class="btn btn-default">
 							<input type="checkbox" value="Mie" name="day[]" id="Mier" autocomplete="off">
 							<span class="glyphicon glyphicon-ok"></span>
-							<b>Mier</b>
+							<b>Miercoles</b>
 						</label>
 						<label for="Jue" class="btn btn-default">
 							<input type="checkbox" value="Jue" name="day[]" id="Jue" autocomplete="off">
 							<span class="glyphicon glyphicon-ok"></span>
-							<b>Jue</b>
+							<b>Jueves</b>
 						</label>
 						<label for="Vie" class="btn btn-default">
 							<input type="checkbox" value="Vie" name="day[]" id="Vie" autocomplete="off">
 							<span class="glyphicon glyphicon-ok"></span>
-							<b>Vier</b>
+							<b>Viernes</b>
 						</label>
 						<label for="Sab" class="btn btn-default">
 							<input type="checkbox" value="Sab" name="day[]" id="Sab" autocomplete="off">
 							<span class="glyphicon glyphicon-ok"></span>
-							<b>Sáb</b>
+							<b>Sábado</b>
 						</label>				
 					</div>
 				</div>
@@ -127,40 +127,40 @@
                             <div class="modal-body">
 			                         <div data-toggle="buttons" class="btn-group-vertical" align="center" style="display: inline !important;">
 
-						  			<label for="Dom" class="btn btn-secondary btn-block">
+						  			<label for="Dom" class="btn btn-default btn-block">
 										<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
-										 <b>Dom</b>
+										 <b>Domingo</b>
 									</label>		
 							  		<label for="Lun" class="btn btn-default btn-block">
 										<input type="checkbox" value="Lun" name="day[]" id="Lun" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
-										<b>Lun</b>
+										<b>Lunes</b>
 									</label>
 									<label for="Mar" class="btn btn-default btn-block">
 										<input type="checkbox" value="Mar" name="day[]" id="Mar" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
-										<b>Mar</b>
+										<b>Martes</b>
 									</label>
 									<label for="Mie"  class="btn btn-default btn-block">
 										<input type="checkbox" value="Mie" name="day[]" id="Mier" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
-										<b>Mier</b>
+										<b>Miercoles</b>
 									</label>
 									<label for="Jue" class="btn btn-default btn-block">
 										<input type="checkbox" value="Jue" name="day[]" id="Jue" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
-										<b>Jue</b>
+										<b>Jueves</b>
 									</label>
 									<label for="Vie" class="btn btn-default btn-block">
 										<input type="checkbox" value="Vie" name="day[]" id="Vie" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
-										<b>Vier</b>
+										<b>Viernes</b>
 									</label>
 									<label for="Sab" class="btn btn-default btn-block">
 										<input type="checkbox" value="Sab" name="day[]" id="Sab" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
-										<b>Sáb</b>
+										<b>Sábado</b>
 									</label>				
 								</div>
                             </div>
