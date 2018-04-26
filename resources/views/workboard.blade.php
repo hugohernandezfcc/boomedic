@@ -254,7 +254,6 @@
 				//json.push(document.getElementById("vardays").value);
 				var jsonend = json.concat(JSON.parse(document.getElementById("vardays").value));
 				document.getElementById("vardays").value = JSON.stringify(jsonend);
-				console.log(document.getElementById("vardays").value);
 				}
 					$("#sel").val('0').trigger('change.select2');
 					$(".filter-option").html("Seleccione uno o varios días");
@@ -274,7 +273,6 @@
 						   }
 						}
 						document.getElementById("vardays").value = JSON.stringify(jsonfind);
-							console.log(JSON.stringify(jsonfind))
 					 $("al").alert('close');
 				}
 					});
@@ -439,7 +437,7 @@ $(function() {
                           }
                         }
 		}
-		console.log(hor);
+
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
 
