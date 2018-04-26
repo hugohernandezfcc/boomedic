@@ -300,7 +300,7 @@ $(function() {
 						var da = '[0]';	
 						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio para cita disponible',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 
@@ -321,7 +321,7 @@ $(function() {
 							var da = '[1]';		
 						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio para cita disponible',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
@@ -341,7 +341,7 @@ $(function() {
 						     	var da = '[2]';		
 						 if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio para cita disponible',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
@@ -361,7 +361,7 @@ $(function() {
 						     	var da = '[3]';		
 						 if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio para cita disponible',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
@@ -381,7 +381,7 @@ $(function() {
 						     	var da = '[4]';		
 						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio para cita disponible',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
@@ -401,7 +401,7 @@ $(function() {
 						     	var da = '[5]';		
 						 if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio para cita disponible',
 						    start:  resp2[d].slice(0,-3), 
 						    dow: da // Repetir Lunes y Jueves
 						});
@@ -421,7 +421,7 @@ $(function() {
 						     	var da = '[6]';		
 						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio para cita disponible',
 						    start:  resp2[d].slice(0,-3), 
 						    dow: da // Repetir Lunes y Jueves
 						});
