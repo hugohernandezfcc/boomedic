@@ -73,7 +73,7 @@ $(function() {
     gridTextFamily   : 'Open Sans',
     gridTextSize     : 10
   });
-  $('.knob').knob();
+
 
 });
 
