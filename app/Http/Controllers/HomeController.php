@@ -119,7 +119,18 @@ class HomeController extends Controller
                             ->where('user', Auth::id() )
                             ->get();
         $statusRecordUser = DB::table('users')->where('id', Auth::id() )->value('status');
-        if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+        if($profInfo->count() > 0 && $user->confirmed == false){
+               return view('confirme', [
+                    'userId'    => $user->id,
+                    'username'  => $user->username,
+                    'name'      => $user->name,
+                    'photo'     => $user->profile_photo,
+                    'date'      => $user->created_at,
+                   
+                ]
+            );
+        }  
+        elseif($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
                     'privacy'   => $privacyStatement[0],
