@@ -75,21 +75,6 @@ class AppServiceProvider extends ServiceProvider
                  */
 
                 if($profInfo->count() > 0){
-                   if($confirmed->confirmed == false){
-                            $event->menu->add([
-                                'text' => ' Confirmación de correo',
-                                'url'  => 'medicalconsultations',
-                                'icon' => ''
-                            ]);
-                     }
-
-                    elseif(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id && $confirmed->confirmed == true){
-                     $event->menu->add([
-                                        'text' => 'Aviso de Privacidad',
-                                        'url'  => 'privacyStatement/index',
-                                        'icon' => ''
-                                    ]);
-                    }else{ 
                     //es un médico
                     $menusInfo = DB::table('menus')
                                     ->where('to', 'Doctor')->orderBy('order')
@@ -114,7 +99,7 @@ class AppServiceProvider extends ServiceProvider
                             }
                         }
                     }
-                   } 
+
                 }else{
                      if($confirmed->confirmed == false){
                             $event->menu->add([
