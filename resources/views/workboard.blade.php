@@ -341,7 +341,7 @@
 </script>
 
 <script type="text/javascript">
-			 $(' input[type=checkbox]').each(function(event) {
+			 $('#menu1 input[type=checkbox]').each(function(event) {
 						$("#sel").append('<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>').trigger('change.select2');
 		        });
 	
