@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
                 ]);
             }
 
-            if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id && $confirmed->confirmed == true){
+            elseif($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id && $confirmed->confirmed == true){
                 $event->menu->add([
                     'text' => 'Aviso de Privacidad',
                     'url'  => 'privacyStatement/index',
