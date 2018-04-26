@@ -506,8 +506,9 @@ jQuery.noConflict(false);
 		header: {
 			left: 'prev,next',
 			center: 'title',
-			right: 'month,listWeek'
+			right: 'month,basicWeek,listWeek'
 		},
+		defaultView: 'basicWeek',
 		editable: false,
 		lang: 'es',
 		events: hor	
@@ -517,8 +518,9 @@ jQuery.noConflict(false);
 		header: {
 			left: 'prev,next',
 			center: 'title',
-			right: 'month,listWeek'
+			right: 'month,basicWeek,listWeek'
 		},
+		defaultView: 'basicWeek',
 		editable: false,
 		lang: 'es',
 		events: hor	
