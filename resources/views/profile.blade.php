@@ -1042,8 +1042,9 @@
 
 				$('#collapseTwo').collapse("toggle");
 				$('#collapseThree').collapse("toggle");
-	
+					@if(!empty($status))
     				initAutocomplete();
+    				@endif
     				@if(empty($status) && !empty($latitude))
     					initMapAddressUser();
 					@endif
