@@ -61,6 +61,14 @@
                      success: function( data ){
                         console.log('Submission was successful.');
                         console.log(data);
+                        medicinesSelected = medicines;
+                        console.log(medicines);
+                        
+                        $.map(medicines, function (word) {
+
+                           words.push(word.name);
+
+                        });
                      },
                      error: function( data ){
                         console.log('Submission was error.');
