@@ -820,7 +820,7 @@
  	</div>
 
  <script type="text/javascript">
-console.log(@php echo session()->get('history'); @endphp);
+
 
 		$("#userli").click(function () {
 

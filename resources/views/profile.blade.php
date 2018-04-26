@@ -555,7 +555,7 @@
 
                              	<input type="hidden" name="val" id="val" value="false">
                                 <div class="form-group has-feedback">	
- 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required autocomplete="off">
+ 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>
  								<span class="glyphicon glyphicon-user form-control-feedback"></span>
  							   </div>
  							    <input type="hidden" name="idfam" id="idfam" required>
@@ -964,7 +964,6 @@
     			function fun(a) {
 							    document.getElementById('sea').value = a.getAttribute("data-value");
 							    document.getElementById('idfam').value = a.getAttribute("data-id");
-							    console.log(a.getAttribute("data-id"))
 							    document.getElementById("resp").innerHTML = "";
 							    $("#sav").removeAttr("disabled");   
 							}
