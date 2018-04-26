@@ -62,16 +62,16 @@
                         console.log('Submission was successful.');
 
                         medicinesSelected = data;
-                        console.log(medicinesSelected);
                         
                         $.map(data, function (word) {
                            words.push(word.name);
                         });
 
                         $.map(medicinesSelected, function (word) { 
-                           medicinesSelected[word.name] = word; 
+                           medicinesSelected[word.name] = word.medicine; 
                         });
 
+                        console.log(medicinesSelected);
 
                      },
                      error: function( data ){
