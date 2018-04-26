@@ -65,10 +65,14 @@
                         console.log(medicinesSelected);
                         
                         $.map(data, function (word) {
-
                            words.push(word.name);
-
                         });
+
+                        $.map(medicinesSelected, function (word) { 
+                           medicinesSelected[word.name] = word; 
+                        });
+
+
                      },
                      error: function( data ){
                         console.log('Submission was error.');
