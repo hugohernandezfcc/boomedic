@@ -733,7 +733,7 @@
 
 
 
-		    	<!--<script type="text/javascript">
+		    	<script type="text/javascript">
 		    		var counter = -1;
 
 			      	function initMapAddressUser() {
@@ -755,7 +755,7 @@
 					    }
 				        counter++;
 			      	}
-		    	</script>-->
+		    	</script>
 
 
 	  	</div>	  	
