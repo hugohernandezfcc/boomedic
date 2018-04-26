@@ -79,7 +79,11 @@ class profile extends Controller
         $nodes = array();
     //Json que guarda datos de familiares para generar externalidad//
       if(count($family) < 1){
+        if($users[0]->profile_photo != null)
          array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
+            else{
+                array_push( $nodes, ['name' => 'Yo', 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png?'. Carbon::now()->format('h:i'), 'id' => '0']);
+            }
           for($i = 1; $i < 2; $i++){
                 array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
             }
