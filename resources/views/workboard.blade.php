@@ -113,7 +113,7 @@
 				</div>
 			</div>
 			<div class="form-group col-sm-12" id="menu1mob" style="display: none;" align="center">
-				<a data-target="#modalmobile" data-toggle="modal" class="btn btn-default">Seleccione días de la semana</a>
+				<a data-target="#modalmobile" data-toggle="modal" class="btn btn-default btn-block">Seleccione días de la semana</a>
 
 			<!-- Modal button mobile-->
                  <div class="modal fade" role="dialog" id="modalmobile">
