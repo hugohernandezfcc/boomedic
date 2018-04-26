@@ -21,7 +21,7 @@
 
             <div class="row">
                <div class="col-md-6">
-                  <select class="form-control" id="testtest" style="width: 100%;">
+                  <select class="form-control" id="currentMedicalAppointment" style="width: 100%;">
                      <option selected="selected">Alabama</option>
                      <option>Alaska</option>
                      <option>California</option>
@@ -35,6 +35,7 @@
                   
                </div>
             </div>
+            <br />
             <div class="row">
                <div class="col-md-12">
                   <div class="form-group">
@@ -76,7 +77,7 @@
                      }
                   }]);
 
-                  $('#testtest').select2({ width: "100%" });
+                  $('#currentMedicalAppointment').select2({ width: "100%" });
                });
               
                function loadMedicines() {
@@ -109,7 +110,14 @@
             </script>
          </div>
          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-block btn-flat margin-bottom">Prescribir</button>
+            <div class="row">
+               <div class="col-md-6">
+               </div>
+               <div class="col-md-6">
+                  <button type="button" class="btn btn-secondary btn-block btn-flat margin-bottom">Prescribir</button>
+               </div>
+            </div>
+            
          </div>
       </div>
    </div>
