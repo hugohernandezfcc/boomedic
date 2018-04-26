@@ -56,7 +56,6 @@ class Prescriptions extends Controller
         return response()->json(
             $medicines   
         );
-
     }
 
 

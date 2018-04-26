@@ -20,6 +20,12 @@
          <div class="modal-body">
 
             <div class="form-group">
+               <!-- The validation is to change the cols number in textarea -->
+               @if(!$isMobile)
+                  <textarea class="form-control" id="receta" rows="10" cols="35" placeholder="Describe la prescripción médica ..."></textarea>
+               @endif
+
+
                <textarea class="form-control" id="receta" rows="10" cols="30" placeholder="Describe la prescripción médica ..."></textarea>
             </div>
             <script type="text/javascript">
@@ -53,10 +59,10 @@
                   }]);
                });
               
-              function loadMedicines() {
-                 document.getElementById('load-medicines').value = true;
+               function loadMedicines() {
+                  document.getElementById('load-medicines').value = true;
 
-                 $.ajax({
+                  $.ajax({
                      method: "get",
                      url: '/prescriptions/medicinescatalogue',
                      success: function( data ){
@@ -74,34 +80,17 @@
 
                         console.log(medicinesSelected);
 
-                     },
-                     error: function( data ){
+                     }, error: function( data ){
                         console.log('Submission was error.');
                         console.log(data);
                      }
                   });
-
-                 /**
-                  * .done(function( medicines ) {
-                     medicinesSelected = medicines;
-                     console.log(medicines);
-                     
-                     $.map(medicines, function (word) {
-
-                        words.push(word.name);
-
-                     });
-
-                 })
-                  */
-                    
-
-              }
+               }
             </script>
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary btn-block btn-flat margin-bottom">Prescribir</button>
          </div>
       </div>
    </div>
