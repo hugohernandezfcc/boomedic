@@ -19,13 +19,28 @@
          </div>
          <div class="modal-body">
 
+            <div class="row">
+               <div class="col-md-6">
+                  <select class="form-control select2" style="width: 100%;">
+                     <option selected="selected">Alabama</option>
+                     <option>Alaska</option>
+                     <option>California</option>
+                     <option>Delaware</option>
+                     <option>Tennessee</option>
+                     <option>Texas</option>
+                     <option>Washington</option>
+                  </select>
+               </div>
+               <div class="col-md-6">
+                  
+               </div>
+            </div>
+
             <div class="form-group">
                <!-- The validation is to change the cols number in textarea -->
                @if(!$isMobile)
                   <textarea class="form-control" id="receta" rows="10" cols="35" placeholder="Describe la prescripción médica ..."></textarea>
                @endif
-
-
                <textarea class="form-control" id="receta" rows="10" cols="30" placeholder="Describe la prescripción médica ..."></textarea>
             </div>
             <script type="text/javascript">
@@ -57,34 +72,38 @@
                         return word + ' ';
                      }
                   }]);
+
+                  $('select').select2({ width: "100%" });
                });
               
                function loadMedicines() {
-                  document.getElementById('load-medicines').value = true;
 
-                  $.ajax({
-                     method: "get",
-                     url: '/prescriptions/medicinescatalogue',
-                     success: function( data ){
-                        console.log('Submission was successful.');
+                  if (document.getElementById('load-medicines').value == false) {
+                     $.ajax({
+                        method: "get",
+                        url: '/prescriptions/medicinescatalogue',
+                        success: function( data ){
 
-                        medicinesSelected = data;
-                        
-                        $.map(data, function (word) {
-                           words.push(word.name);
-                        });
+                           medicinesSelected = data;
+                           
+                           $.map(data, function (word) {
+                              words.push(word.name);
+                           });
 
-                        $.map(medicinesSelected, function (word) { 
-                           medicinesSelected[word.name] = word.medicine; 
-                        });
+                           $.map(medicinesSelected, function (word) { 
+                              medicinesSelected[word.name] = word.medicine; 
+                           });
 
-                        console.log(medicinesSelected);
+                           console.log(medicinesSelected);
+                           document.getElementById('load-medicines').value = true;
+                        }, error: function( data ){
+                           console.log('Submission was error.');
+                           console.log(data);
+                        }
+                     });
+                  }
 
-                     }, error: function( data ){
-                        console.log('Submission was error.');
-                        console.log(data);
-                     }
-                  });
+
                }
             </script>
          </div>
