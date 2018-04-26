@@ -113,52 +113,51 @@
 				</div>
 			</div>
 			<div class="form-group col-sm-12" id="menu1mob" style="display: none;" align="center">
-				<a data-target="#modalmobile" data-toggle="modal" class="btn btn-default btn-block">Seleccione días de la semana</a>
+				<a data-target="#modalmobile" data-toggle="modal" class="btn btn-default btn-block">Seleccione los días que dará consulta</a>
 
 			<!-- Modal button mobile-->
                  <div class="modal fade" role="dialog" id="modalmobile">
-                    <div class="modal-dialog modal-sm">
+                    <div class="modal-dialog" style="width: 50% !important">
                       <div class="modal-content">
-                        <div class="modal-header" >
+                        <div class="modal-header" style="padding-bottom: 0 !important;">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                           <div align="left"><label>Seleccione los días de la semana que dará consulta con una jornada fija</label></div>
                         </div>
-                            <div class="modal-body" >
-			                         <div data-toggle="buttons" class="btn-group-vertical" align="center">
+                            <div class="modal-body">
+			                         <div data-toggle="buttons" class="btn-group-vertical" align="center" style="display: inline !important;">
 
-						  			<label for="Dom" class="btn btn-secondary">
+						  			<label for="Dom" class="btn btn-secondary btn-block">
 										<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
 										 <b>Dom</b>
 									</label>		
-							  		<label for="Lun" class="btn btn-default">
+							  		<label for="Lun" class="btn btn-default btn-block">
 										<input type="checkbox" value="Lun" name="day[]" id="Lun" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
 										<b>Lun</b>
 									</label>
-									<label for="Mar" class="btn btn-default">
+									<label for="Mar" class="btn btn-default btn-block">
 										<input type="checkbox" value="Mar" name="day[]" id="Mar" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
 										<b>Mar</b>
 									</label>
-									<label for="Mie"  class="btn btn-default">
+									<label for="Mie"  class="btn btn-default btn-block">
 										<input type="checkbox" value="Mie" name="day[]" id="Mier" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
 										<b>Mier</b>
 									</label>
-									<label for="Jue" class="btn btn-default">
+									<label for="Jue" class="btn btn-default btn-block">
 										<input type="checkbox" value="Jue" name="day[]" id="Jue" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
 										<b>Jue</b>
 									</label>
-									<label for="Vie" class="btn btn-default">
+									<label for="Vie" class="btn btn-default btn-block">
 										<input type="checkbox" value="Vie" name="day[]" id="Vie" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
 										<b>Vier</b>
 									</label>
-									<label for="Sab" class="btn btn-default">
+									<label for="Sab" class="btn btn-default btn-block">
 										<input type="checkbox" value="Sab" name="day[]" id="Sab" autocomplete="off">
 										<span class="glyphicon glyphicon-ok"></span>
 										<b>Sáb</b>
