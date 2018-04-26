@@ -40,9 +40,10 @@
                            $.map(words, function (word) {
                               document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
 
-                              if(word.indexOf(term) === 0)
+                              if(word.indexOf(term) === 0){
+                                 console.log('Selected: ' + word);
                                  return word;
-                              else
+                              }else
                                  return null;
                            }
                         ));

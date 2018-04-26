@@ -50,8 +50,6 @@ class Prescriptions extends Controller
         for ($i=0; $i < count($medicines); $i++) { 
             $medicines[$i]->name = strtolower($medicines[$i]->name);
             $medicines[$i]->medicine = 'name:' . $medicines[$i]->name . '---id:' . $medicines[$i]->id;
-
-
         }
 
 
