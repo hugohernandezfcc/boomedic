@@ -57,14 +57,14 @@
 
                  $.ajax({
                      method: "get",
-                     url: '/previousattention/medicinescatalogue',
+                     url: '/prescriptions/medicinescatalogue',
                      success: function( data ){
                         console.log('Submission was successful.');
+
                         console.log(data);
                         medicinesSelected = data;
-                        console.log(medicines);
                         
-                        $.map(medicines, function (word) {
+                        $.map(data, function (word) {
 
                            words.push(word.name);
 

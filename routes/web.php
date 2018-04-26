@@ -409,18 +409,18 @@ Route::group(['prefix' => 'previousattention'], function(){
 		]
 	);
 
-	Route::get('medicinescatalogue', [
-			'uses'	=>	'Prescriptions@medicinesCatalogue',
-			'as'	=>	'medicinescatalogue'
-		]
-	);
-
 });
 
 Route::group(['prefix' => 'prescriptions'], function(){
 	Route::get('/', [
 			'uses'	=>	'Prescriptions@index',
 			'as'	=>	'index'
+		]
+	);
+
+	Route::get('medicinescatalogue', [
+			'uses'	=>	'Prescriptions@medicinesCatalogue',
+			'as'	=>	'medicinescatalogue'
 		]
 	);
 });
