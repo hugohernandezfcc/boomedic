@@ -410,7 +410,7 @@ Route::group(['prefix' => 'previousattention'], function(){
 	);
 
 	Route::get('medicinescatalogue', [
-			'uses'	=>	'PreviousAttention@medicinesCatalogue',
+			'uses'	=>	'Prescriptions@medicinesCatalogue',
 			'as'	=>	'medicinescatalogue'
 		]
 	);
