@@ -35,13 +35,16 @@
                   
                </div>
             </div>
-
-            <div class="form-group">
-               <!-- The validation is to change the cols number in textarea -->
-               @if($isMobile)
-                  <textarea class="form-control" id="receta" rows="10" cols="35" placeholder="Describe la prescripción médica ..."></textarea>
-               @endif
-               <textarea class="form-control" id="receta" rows="10" cols="30" placeholder="Describe la prescripción médica ..."></textarea>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="form-group">
+                     <!-- The validation is to change the cols number in textarea -->
+                     @if($isMobile)
+                        <textarea class="form-control" id="receta" rows="10" cols="35" placeholder="Describe la prescripción médica ..."></textarea>
+                     @endif
+                     <textarea class="form-control" id="receta" rows="10" cols="30" placeholder="Describe la prescripción médica ..."></textarea>
+                  </div>
+               </div>
             </div>
             <script type="text/javascript">
            
