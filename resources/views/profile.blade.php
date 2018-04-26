@@ -199,14 +199,14 @@
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
-	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+	    			<div class="form-group has-feedback {{ $errors->has('firstname') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
 	                	<div class="col-sm-10">
 	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
 	                	</div>
 	              	</div>
 
-	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+	              	<div class="form-group has-feedback {{ $errors->has('lastname') ? 'has-error' : '' }}">
 	                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
 	                	<div class="col-sm-10">
 	                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}">
@@ -220,14 +220,14 @@
 	                	</div>
 	              	</div>
 
-	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+	              	<div class="form-group has-feedback {{ $errors->has('username') ? 'has-error' : '' }}">
 	                    <label for="username" class="col-sm-2 control-label">Nombre de usuario</label>
 	                	<div class="col-sm-10">
 	                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}">
 	                	</div>
 	              	</div>
 
-	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+	              	<div class="form-group has-feedback {{ $errors->has('age') ? 'has-error' : '' }}">
 	                    <label for="age" class="col-sm-2 control-label">Edad</label>
 	                	<div class="col-sm-10">
 	                  		<input type="text" name="age" class="form-control" id="age" value="{{ $age }}">
