@@ -119,6 +119,20 @@ class HomeController extends Controller
                             ->where('user', Auth::id() )
                             ->get();
         $statusRecordUser = DB::table('users')->where('id', Auth::id() )->value('status');
+        if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+            $mode = 'Null';
+            return view('privacyStatement', [
+                    'privacy'   => $privacyStatement[0],
+                    'userId'    => $user->id,
+                    'username'  => $user->username,
+                    'name'      => $user->name,
+                    'photo'     => $user->profile_photo,
+                    'date'      => $user->created_at,
+                    'mode'      => $mode
+                   
+                ]
+            );
+        }
         if ($profInfo->count() > 0 && $statusRecordUser == 'In Progress') {
             Session(['utype' => 'doctor']);
             return redirect('doctor/edit/In%20Progress');
