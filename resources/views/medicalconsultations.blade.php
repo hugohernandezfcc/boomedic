@@ -286,7 +286,7 @@
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
-    console.log(datos);
+    /*console.log(datos);*/
   </script>
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
@@ -823,7 +823,7 @@ function prevTab(elem) {
                 type: "GET",    
                 url: "medicalappointments/showPaymentMethods", 
                 success: function(result){
-                  console.log(result);
+                  /*console.log(result);*/
                   var x = document.getElementById("paymentMethodsFields");
                    var option = document.createElement("option");
                     option.text = "Paypal";
@@ -848,8 +848,8 @@ function prevTab(elem) {
                 type: "GET",    
                 url: "medicalconsultations/showrecent", 
                 success: function(result){
-                 console.log(result.length);
-                  console.log(result);
+                 /*console.log(result.length);
+                  console.log(result);*/
                   if(result.length > '0'){
 
                    $('#recentS').show();
@@ -977,22 +977,17 @@ function prevTab(elem) {
         var x = document.getElementById("mySelect");
         var s = x.selectedIndex;
         var selectedValue = x.options[s].text;
-        console.log('ESPECIALIDAD::'+selectedValue);
         //Value of word for search
         var keySearch = document.getElementById("kWSearch").value;
-        console.log('PALABRA BÚSQUEDA::'+keySearch);
         //Value of indicated Position
         markerLatLng = markerP.getPosition();
-        console.log('NUEVA POSICION::'+markerLatLng);
         //Value of Range to search
         var x = document.getElementById("rango01");
         var currentVal = x.value * 1000;
-        console.log('RANGO INDICADO:: '+currentVal);
         
         if(typeC == 'TypeSpeciality'){
 
           if(selectedValue !== firstValue){
-            console.log('VÁLIDO ESPECIALIDAD:: '+selectedValue);
             hideM2();
             document.getElementById('infoSp').style.display = 'block';
             document.getElementById("infoSpDetail").innerHTML = selectedValue;
@@ -1002,7 +997,6 @@ function prevTab(elem) {
             }
           }
           if(typeC == 'TypeGeneral'){
-            console.log('CITA GENERAL');
             document.getElementById('infoSp').style.display = 'none';
             document.getElementById("label01").innerHTML = "Médico General";
             document.getElementById("labelextra").innerHTML = "Médico General";
@@ -1020,7 +1014,6 @@ function prevTab(elem) {
        * Function responsable of execute the main functions 
        */
       window.onload = function(){
-         console.log("@php echo session()->get('parental'); @endphp");
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
@@ -1053,7 +1046,6 @@ function prevTab(elem) {
         infoWindow = new google.maps.InfoWindow();
         //Current position
         if (navigator.geolocation) {
-          console.log('POSICION ACTUAL');
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
               lat: position.coords.latitude,
@@ -1383,7 +1375,6 @@ function prevTab(elem) {
                               dataType: 'json',                
                              success: function(data)             
                              {
-                      console.log(JSON.parse(data).reverse());
                        var data1 = JSON.parse(data).reverse(); 
                        $('#recentS').show();
                        $(".recent").remove();
@@ -1427,10 +1418,10 @@ function prevTab(elem) {
       function functionEsp(specialityValue, keyWordValue, positionValue, rangeValue) {
         var res = [];
         loc = [];
-        console.log('specialityValue:: '+specialityValue);
+       /* console.log('specialityValue:: '+specialityValue);
         console.log('keyWordValue:: '+keyWordValue);
         console.log('positionValue:: '+positionValue);
-        console.log('rangeValue:: '+rangeValue);
+        console.log('rangeValue:: '+rangeValue);*/
         if(keyWordValue == ''){
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue){
@@ -1447,19 +1438,19 @@ function prevTab(elem) {
         for(var i = 0; i < res.length; i++) {
           var posB = new google.maps.LatLng(res[i][0], res[i][1]);
           metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
-          console.log('metros:: '+metros);
-          console.log('Nombre:: '+res[i][3]);
+         /* console.log('metros:: '+metros);
+          console.log('Nombre:: '+res[i][3]);*/
           if(metros < rangeValue){
             //loc[latitud, longitud, especialidad, nombre, hospital, dirección, workid, iddr]
             loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
           }
         }
-        console.log(res);
-        console.log(loc);
+       /* console.log(res);
+        console.log(loc);*/
         
         if(loc.length <= 0){
-          console.log('NO ENCONTRO MÉDICO');
-          console.log('TAMAÑO:: '+loc.length);
+          /*console.log('NO ENCONTRO MÉDICO');
+          console.log('TAMAÑO:: '+loc.length);*/
           document.getElementById("ShowDetails").innerHTML = '<strong>'+error02+'.</strong>';
           document.getElementById("info").innerHTML = ' ';
         }else{
@@ -1470,12 +1461,10 @@ function prevTab(elem) {
       function functionGen(keyWordValue, positionValue, rangeValue) {
         var res = [];
         loc = [];
-        console.log('keyWordValue:: '+keyWordValue);
+        /*console.log('keyWordValue:: '+keyWordValue);
         console.log('positionValue:: '+positionValue);
-        console.log('rangeValue:: '+rangeValue);
-        
-        
-          console.log('KEYWORD SEARCH VÁLIDO:: '+keyWordValue);
+        console.log('rangeValue:: '+rangeValue);*/
+
           for(var i = 0; i < generalM.length; i++) {
             if(generalM[i][2] == keyWordValue){
                res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4],generalM[i][5],generalM[i][6],generalM[i][7],generalM[i][8],generalM[i][9]]);
@@ -1484,32 +1473,28 @@ function prevTab(elem) {
           for(var i = 0; i < res.length; i++) {
             var posB = new google.maps.LatLng(res[i][0], res[i][1]);
             metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
-            console.log('metros:: '+metros);
-            console.log('Nombre:: '+res[i][3]);
+            /*console.log('metros:: '+metros);
+            console.log('Nombre:: '+res[i][3]);*/
             if(metros < rangeValue){
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio, intervalos]
                loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
              }
           }
           if(loc.length <= 0){
-            console.log('NO ENCONTRO MÉDICO');
-            console.log('TAMAÑO:: '+loc.length);
+            /*console.log('NO ENCONTRO MÉDICO');
+            console.log('TAMAÑO:: '+loc.length);*/
             document.getElementById("ShowDetails").innerHTML = '<strong>'+error02+'.</strong>';
             document.getElementById("info").innerHTML = ' ';
           }else{
             document.getElementById("ShowDetails").innerHTML = '<strong>' + result01 + ' ' + keyWordValue +'.</strong>';
           }
-        
-        console.log(res);
-        console.log(loc);
       }
       function drop() {
         clearMarkers();
         for (var i = 0; i < loc.length; i++) {
           var lat = loc[i][0];
           var lon = loc[i][1];
-          console.log(lat);
-          console.log(lon);
+
           if(loc[i][10] != "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png"){
           var doctor = {
               url:"https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png",
@@ -1572,7 +1557,6 @@ function prevTab(elem) {
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                      resp = optionhour[y].split(":",2); 
                      resp2 = JSON.parse(optionhour[y].slice(4));
-                  console.log(optionhour[y].slice(4));
                       if(resp[0] == 'Dom'){
                         Dom = resp2;
                       var index = days.indexOf(0);
@@ -1633,14 +1617,12 @@ function prevTab(elem) {
                          var fech = Array();
                      for(var f = 0; f < whencites.length; f++){
                         if(whencites[f].slice(0,-9) == da2){  
-                          console.log(whencites[f].slice(11));  
                           fech.push(whencites[f].slice(11));  
                           }   
                         }
                        
                         if (e.date.getDay() == 0) {
                           var Dom1 = $(Dom).not(fech).get();                              
-                              console.log(Dom1); console.log(Dom); 
                           for(var d = 0; d < Dom1.length; d++){
                              var option = document.createElement("option");
                               option.text = Dom1[d].slice(0,-3);
@@ -1651,7 +1633,6 @@ function prevTab(elem) {
                         }
                         if (e.date.getDay() == 1) {
                           var Lun1 = $(Lun).not(fech).get();
-                          console.log(Lun1); console.log(Lun);
                           for(var d = 0; d < Lun1.length; d++){
                               var option = document.createElement("option");
                               option.text = Lun1[d].slice(0,-3);
@@ -1662,7 +1643,6 @@ function prevTab(elem) {
                         }
                        if (e.date.getDay() == 2) {
                           var Mar1 = $(Mar).not(fech).get();
-                          console.log(Mar1); console.log(Mar); 
                           for(var d = 0; d < Mar1.length; d++){
                              var option = document.createElement("option");
                               option.text = Mar1[d].slice(0,-3);
@@ -1673,7 +1653,6 @@ function prevTab(elem) {
                         }
                        if (e.date.getDay() == 3) {
                            var Mie1 = $(Mie).not(fech).get();
-                          console.log(Mie1); console.log(Mie); 
                           for(var d = 0; d < Mie1.length; d++){
                              var option = document.createElement("option");
                               option.text = Mie1[d].slice(0,-3);
@@ -1684,7 +1663,6 @@ function prevTab(elem) {
                         } 
                        if (e.date.getDay() == 4) {
                           var Jue1 = $(Jue).not(fech).get();
-                          console.log(Jue1); console.log(Jue); 
                           for(var d = 0; d < Jue1.length; d++){
                              var option = document.createElement("option");
                               option.text = Jue1[d].slice(0,-3);
@@ -1695,7 +1673,6 @@ function prevTab(elem) {
                         }                                               
                         if (e.date.getDay() == 5) {
                               var Vie1 = $(Vie).not(fech).get();
-                              console.log(Vie1); console.log(Vie); 
                           for(var d = 0; d < Vie1.length; d++){
                              var option = document.createElement("option");
                               option.text = Vie1[d].slice(0,-3);
@@ -1706,7 +1683,6 @@ function prevTab(elem) {
                         }
                        if (e.date.getDay() == 6) {
                               var Sab1 = $(Sab).not(fech).get();
-                              console.log(Sab1); console.log(Sab); 
                           for(var d = 0; d < Sab1.length; d++){
                              var option = document.createElement("option");
                               option.text = Sab1[d].slice(0,-3);
@@ -1716,7 +1692,6 @@ function prevTab(elem) {
                            $("#timesByDay option[value='asueto ']").remove();
                         }    
                         $('#dateSelectedForCite').val = e.date.toISOString();                  
-                         console.log(e.date.toISOString());
                       });
              
           });
