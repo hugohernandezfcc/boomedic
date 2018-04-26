@@ -52,7 +52,6 @@
 $(function() {
 
  var optionhour = @php echo $array;  @endphp;
-        console.log(optionhour);
           var hor = Array();
           var resp = Array();
           var resp2 = Array();
@@ -99,7 +98,7 @@ $(function() {
                           
                        
 		}
-		console.log(hor);
+
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
     
@@ -114,7 +113,6 @@ jQuery.noConflict(false);
 		lang: 'es',
 		events: hor, 
 		  eventClick: function(calEvent, jsEvent, view) {
-		  	console.log(calEvent);
 		  	$('#userp').attr('src', calEvent.photo + '?1');
 		  	$('#namep').html('<label class="text-muted">Nombre: </label> '+ calEvent.title);
 		  	$('#age').html('<label class="text-muted">Edad: </label> '+ calEvent.age);
