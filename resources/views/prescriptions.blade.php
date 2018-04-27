@@ -9,6 +9,7 @@
 @section('content')
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.8.4/jquery.textcomplete.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.js"></script>
 
 	<div class="row">
         <div class="col-md-3">
@@ -64,6 +65,34 @@
 		</div>
 		<div class="col-md-9">
 
+
+    <div id="example-basic">
+        <h3>Keyboard</h3>
+        <section>
+            <p>Try the keyboard navigation by clicking arrow left or right!</p>
+        </section>
+        <h3>Effects</h3>
+        <section>
+            <p>Wonderful transition effects.</p>
+        </section>
+        <h3>Pager</h3>
+        <section>
+            <p>The next and previous buttons help you to navigate through your content.</p>
+        </section>
+    </div>
+
+<script type="text/javascript">
+	
+
+    $("#example-basic").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        autoFocus: true
+    });
+
+
+</script>
 			<div class="box" >
 			  	<div class="box-header with-border">
 				    <h3 class="box-title">Solicitudes de información</h3>
