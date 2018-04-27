@@ -83,7 +83,7 @@
                function loadMedicines() {
 
 
-                  if (document.getElementById('load-medicines').value == false) {
+                  if (document.getElementById('load-medicines').value === false) {
                      console.log('hugo daniel');
                      $.ajax({
                         method: "get",
