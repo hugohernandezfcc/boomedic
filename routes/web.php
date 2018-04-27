@@ -424,6 +424,7 @@ Route::group(['prefix' => 'prescriptions'], function(){
 		]
 	);
 
+
 	Route::get('settings', function(){
 		return view('prescriptionsettings');
 	});

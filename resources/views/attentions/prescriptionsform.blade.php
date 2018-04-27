@@ -82,10 +82,12 @@
               
                function loadMedicines() {
 
+                  console.log('hugo daniel');
+
                   if (document.getElementById('load-medicines').value == false) {
                      $.ajax({
                         method: "get",
-                        url: '/prescriptions/medicinescatalogue',
+                        url: "{{ url('prescriptions/medicinescatalogue')}}",
                         success: function( data ){
 
                            medicinesSelected = data;
