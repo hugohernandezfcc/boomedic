@@ -7,7 +7,7 @@
    @endif
 </style>
 
-<input type="hidden" id="load-medicines" value="false" />
+<input type="hidden" id="load-medicines" value="" />
 
 <div class="modal fade" id="prescription-form-modal">
    <div class="modal-dialog">
@@ -83,7 +83,7 @@
                function loadMedicines() {
 
 
-                  if (document.getElementById('load-medicines').value === false) {
+                  if (document.getElementById('load-medicines').value == "") {
                      console.log('hugo daniel');
                      $.ajax({
                         method: "get",
