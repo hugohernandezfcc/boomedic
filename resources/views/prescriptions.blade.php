@@ -53,8 +53,8 @@
 		                	</a>
 		                </li>
 		                <li >
-		                	<a href="#">
-		                		<i class="fa fa-cog"></i> Formato de receta
+		                	<a href="{{ url('prescriptions/settings') }}">
+		                		<i class="fa fa-cog"></i> Configurar formato
 		                	</a>
 		                </li>
 		            </ul>

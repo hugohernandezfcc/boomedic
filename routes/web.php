@@ -423,6 +423,11 @@ Route::group(['prefix' => 'prescriptions'], function(){
 			'as'	=>	'medicinescatalogue'
 		]
 	);
+
+	Route::get('settings', function(){
+		return view('prescriptionsettings');
+	});
+
 });
 
 Route::post('/bye' , 'Auth\LoginController@logout');
