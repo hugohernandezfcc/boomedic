@@ -5,6 +5,10 @@
          margin: 30px auto;
       }
    @endif
+
+   .progress-bar {
+      background-color: #3E3E3E;
+   }
 </style>
 
 <input type="hidden" id="load-medicines" value="" />
@@ -32,7 +36,7 @@
                   </select>
                </div>
                <div class="col-md-6">
-                  
+                  <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 50%;"> 50% </div>
                </div>
             </div>
             <br />
