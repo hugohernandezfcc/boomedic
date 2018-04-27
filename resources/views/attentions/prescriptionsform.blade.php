@@ -66,7 +66,7 @@
                               document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
 
                               if(word.indexOf(term) === 0){
-                                 console.log('Selected: ' + word);
+
                                  return word;
                               }else
                                  return null;
@@ -82,14 +82,14 @@
               
                function loadMedicines() {
 
-                  console.log('hugo daniel');
 
                   if (document.getElementById('load-medicines').value == false) {
+                     console.log('hugo daniel');
                      $.ajax({
                         method: "get",
                         url: "{{ url('prescriptions/medicinescatalogue')}}",
                         success: function( data ){
-
+                           console.log('Submission was success.');
                            medicinesSelected = data;
                            
                            $.map(data, function (word) {
