@@ -67,10 +67,6 @@
 
 
     <div id="example-basic">
-        <h3>Keyboard</h3>
-        <section>
-            <p>Try the keyboard navigation by clicking arrow left or right!</p>
-        </section>
         <h3>Effects</h3>
         <section>
             <p>Wonderful transition effects.</p>

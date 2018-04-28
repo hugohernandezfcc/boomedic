@@ -42,6 +42,7 @@
             <br />
             <div class="row">
                <div class="col-md-12">
+                  
                   <div class="form-group">
                      <!-- The validation is to change the cols number in textarea -->
                      @if($isMobile)
@@ -50,6 +51,8 @@
                         <textarea class="form-control" id="receta" rows="10" cols="30" placeholder="Describe la prescripción médica ..."></textarea>
                      @endif
                   </div>
+
+                  
                </div>
             </div>
             <script type="text/javascript">
@@ -70,7 +73,7 @@
                               document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
 
                               if(word.indexOf(term) === 0){
-
+                                 console.log('word selected: '+ )
                                  return word;
                               }else
                                  return null;
@@ -85,8 +88,6 @@
                });
               
                function loadMedicines() {
-
-
                   if (document.getElementById('load-medicines').value == "") {
                      console.log('hugo daniel');
                      $.ajax({
@@ -112,10 +113,11 @@
                         }
                      });
                   }
-               }
-
-               
+               }               
             </script>
+
+
+
          </div>
          <div class="modal-footer">
             <div class="row">

@@ -402,14 +402,17 @@ Route::group(['prefix' => 'history'], function(){
 }); 
 
 
+
+
+
 Route::group(['prefix' => 'previousattention'], function(){
 	Route::get('/', [
 			'uses'	=>	'PreviousAttention@index',
 			'as'	=>	'index'
 		]
 	);
-
 });
+
 
 Route::group(['prefix' => 'prescriptions'], function(){
 	Route::get('/', [
