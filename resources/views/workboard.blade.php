@@ -522,6 +522,7 @@ jQuery.noConflict(false);
 			center: 'title',
 			right: 'month,basicWeek,listWeek'
 		},
+		contentHeight: 'auto',
 		defaultView: 'basicWeek',
 		editable: false,
 		lang: 'es',
@@ -534,6 +535,7 @@ jQuery.noConflict(false);
 			center: 'title',
 			right: 'month,basicWeek,listWeek'
 		},
+		contentHeight: 'auto',
 		defaultView: 'basicWeek',
 		editable: false,
 		lang: 'es',

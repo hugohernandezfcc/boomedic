@@ -128,6 +128,7 @@ jQuery.noConflict(false);
 		defaultView: 'agendaDay',
 		editable: false,
 		lang: 'es',
+		contentHeight: 'auto',
 		events: hor, 
 		  eventClick: function(calEvent, jsEvent, view) {
 		  	$('#userp').attr('src', calEvent.photo + '?1');
