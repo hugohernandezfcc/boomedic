@@ -68,29 +68,6 @@
 		<div class="col-md-9">
 
 
-    <div id="example-basic">
-        <h3>Effects</h3>
-        <section>
-            <p>Wonderful transition effects.</p>
-        </section>
-        <h3>Pager</h3>
-        <section>
-            <p>The next and previous buttons help you to navigate through your content.</p>
-        </section>
-    </div>
-
-	<script type="text/javascript">
-		
-
-	    $("#example-basic").steps({
-	        headerTag: "h3",
-	        bodyTag: "section",
-	        transitionEffect: "slideLeft",
-	        cssClass: "wizard",
-	        autoFocus: true
-	    });
-
-
 	</script>
 			<div class="box" >
 			  	<div class="box-header with-border">

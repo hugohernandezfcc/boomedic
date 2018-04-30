@@ -43,14 +43,26 @@
             <div class="row">
                <div class="col-md-12">
                   
-                  <div class="form-group">
-                     <!-- The validation is to change the cols number in textarea -->
-                     @if($isMobile)
-                        <textarea class="form-control" id="receta" rows="10" cols="35" placeholder="Describe la prescripción médica ..."></textarea>
-                     @else
-                        <textarea class="form-control" id="receta" rows="10" cols="30" placeholder="Describe la prescripción médica ..."></textarea>
-                     @endif
+                  <div id="wizardPrescription">
+                     <h3>Receta </h3>
+                     <section>
+                           <div class="form-group">
+                              <!-- The validation is to change the cols number in textarea -->
+                              @if($isMobile)
+                                 <textarea class="form-control" id="receta" rows="10" cols="35" placeholder="Describe la prescripción médica ..."></textarea>
+                              @else
+                                 <textarea class="form-control" id="receta" rows="10" cols="30" placeholder="Describe la prescripción médica ..."></textarea>
+                              @endif
+                           </div>
+                     </section>
+                     <h3>PDF </h3>
+                     <section>
+                           <p>The next and previous buttons help you to navigate through your content.</p>
+                     </section>
                   </div>
+
+
+                  
 
                   
                </div>
@@ -85,6 +97,15 @@
                   }]);
 
                   $('#currentMedicalAppointment').select2({ width: "100%" });
+
+
+                  $("#wizardPrescription").steps({
+                     headerTag: "h3",
+                     bodyTag: "section",
+                     transitionEffect: "slideLeft",
+                     cssClass: "wizard",
+                     autoFocus: true
+                  });
                });
               
                function loadMedicines() {
