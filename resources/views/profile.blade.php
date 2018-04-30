@@ -947,7 +947,7 @@
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;" onclick="initMapAddressUser();">	
-                        Consultorios    
+                       Dirección de usuario  
                   </a> 
                   </h4> 
                   </div>
