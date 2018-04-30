@@ -9,7 +9,16 @@
     max-width: 98%;
     margin: 0 auto;
   }
+  .fc-toolbar h2 {
+    font-size: 20px;
+    margin: 15px;
+}
+.fc-toolbar.fc-header-toolbar {
+  margin-bottom: 0;
+}
+
 </style>
+
 @stop
 
 @section('content')
@@ -101,7 +110,7 @@ $(function() {
 
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
-    
+
 	$('#calendar').fullCalendar({
 		
 		header: {
@@ -109,6 +118,7 @@ jQuery.noConflict(false);
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
+		defaultView: 'agendaDay',
 		editable: false,
 		lang: 'es',
 		events: hor, 
@@ -122,6 +132,8 @@ jQuery.noConflict(false);
 	
 		  }
 	});
+	    var title = element.find( '.fc-center' );
+	title.html("<h4>"+ title.text()+ "</h4>");
 });	 				
 </script>
 @stop
