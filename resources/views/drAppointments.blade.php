@@ -7,6 +7,7 @@
 
  #calendar {
     max-width: 98%;
+    min-width: 98%;
     margin: 0 auto;
   }
   .fc-toolbar h2 {
@@ -15,6 +16,12 @@
 }
 .fc-toolbar.fc-header-toolbar {
   margin-bottom: 0;
+} 
+ .content-wrapper{
+  min-height: auto !important;
+}
+.wrapper{
+	overflow-y: hidden;
 }
 
 </style>

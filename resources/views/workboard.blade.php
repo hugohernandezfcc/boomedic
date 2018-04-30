@@ -27,6 +27,20 @@
     max-width: 98%;
     margin: 0 auto;
   }
+   .content-wrapper{
+  min-height: auto !important;
+}
+.wrapper{
+	overflow-y: hidden;
+}
+  .fc-toolbar h2 {
+    font-size: 20px;
+    margin: 15px;
+}
+.fc-toolbar.fc-header-toolbar {
+  margin-bottom: 0;
+} 
+
 </style>
 @stop
 
