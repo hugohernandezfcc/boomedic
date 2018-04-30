@@ -4,19 +4,43 @@
 
 @section('content_header')
     <style type="text/css">
-
-		.panel-title > a.collapsed:before {
-		float: left !important;
-		content:"\f067";
-		}
-		.panel-title > a:before {
-		    float: left !important;
-		    font-family: FontAwesome;
-		    content:"\f068";
-		    padding-left: 5px;
-		    color: gray;
-		    margin-right: 1em; 
-		}
+.accordion-toggle {
+  position: relative;
+}
+.accordion-toggle::before,
+.accordion-toggle::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: -18px;
+  width: 12px;
+  height: 4px;
+  margin-top: -2px;
+  background-color: #585858;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+.accordion-toggle::before {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  opacity: 0;
+}
+.accordion-toggle.collapsed::before {
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  opacity: 1;
+}
+.accordion-toggle.collapsed::after {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
 		#map {
 			padding-top: 0;
 		    width: 100%;
@@ -454,20 +478,20 @@
           <div class="box box-solid">
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="box-group" id="accordion" aria-multiselectable="true">
+              <div class="box-group" id="accordion">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
              
                 <div class="panel box box-default" style="border-top-color: black;">
                 
                  <div class="box-header with-border"> 
                  	<h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="accordion-toggle text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información personal
                   </a>
               </h4>
                   	</div>
                    
-                  <div id="collapseOne" class="panel-collapse collapse in" aria-labelledby="headingOne">
+                  <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
 
                     <div class="box-body">
                       <br/>
@@ -542,12 +566,12 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
                	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"  class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información Profesional
                 </a>
             </h4>
                 </div>
-                  <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
+                  <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
                     <div class="box-body">
                         <div class="col-xs-12">
                             <div class="col-sm-2" align="left"><b>Licencia Profesional:</b></div>
@@ -580,12 +604,12 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
                         Consultorios    
                   </a> 
                   </h4> 
                   </div>
-                  <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
+                  <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
                     <div class="box-body">
                           @if($labor->isEmpty())
 						 <span class="text-black">No hay ningún centro asociado a su cuenta.</span>			
@@ -646,8 +670,6 @@
 				});
 
     			window.onload = function(){
-    			$('#collapseTwo').collapse("toggle");
-				$('#collapseThree').collapse("toggle");
     				@if(!empty($status))
     				initAutocomplete();
     				@endif

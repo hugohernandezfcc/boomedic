@@ -48,7 +48,10 @@
 
 
     <style type="text/css">
-
+        a:hover img {
+        border: none !important;
+        background: none!important;
+        }
         .btn-secondary { 
             color: #ffffff; 
             background-color: #000000; 

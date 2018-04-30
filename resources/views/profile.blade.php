@@ -940,17 +940,18 @@
                     	</script>
                     </div>
                   </div>
-                </div>
                 <br/>
+                
+
                 <div class="panel box box-default" style="border-top-color: black;">
-		            <div class="box-header with-border">
-		               	<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" class="accordion-toggle collapsed text-black" id="three" style="display:block; height:100%; width:100%;font-size: 17px;">
-		                       Dirección de usuario  
-		                </a>
-		            	</h4>
-		            </div>
-                 <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
+                	 <div class="box-header with-border">
+                	 	<h4 class="panel-title">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;" onclick="initMapAddressUser();">	
+                        Consultorios    
+                  </a> 
+                  </h4> 
+                  </div>
+                  <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
                     <div class="box-body" align="center">
                     	@if($latitude == "" && $longitude == "")
                     	   No ha registrado ninguna dirección.
@@ -960,8 +961,10 @@
                           <input type="hidden" id="nullmap" value="false">
                         @endif
                     </div>
-                  </div>
                 </div>
+              </div>
+
+
               </div>
             </div>
             <!-- /.box-body -->
