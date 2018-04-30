@@ -137,7 +137,7 @@
                                     }
                                  ));
                               }, replace: function (word) {
-                                 console.log('word selected: '+ term);
+                                 console.log('word selected: '+ word);
                                  return word + ' ';
                               }
                            }]);
