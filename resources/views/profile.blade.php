@@ -5,23 +5,43 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
-    	.panel-title > a:hover, 
-		.panel-title > a:active, 
-		.panel-title > a:focus  {
-		    text-decoration:none;
-		}
-		.panel-title > a.collapsed:before {
-		float: left !important;
-		content:"\f067";
-		}
-		.panel-title > a:before {
-		    float: left !important;
-		    font-family: FontAwesome;
-		    content:"\f068";
-		    padding-left: 5px;
-		    color: gray;
-		    margin-right: 1em; 
-		}
+.accordion-toggle {
+  position: relative;
+}
+.accordion-toggle::before,
+.accordion-toggle::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: -18px;
+  width: 12px;
+  height: 4px;
+  margin-top: -2px;
+  background-color: #585858;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+.accordion-toggle::before {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  opacity: 0;
+}
+.accordion-toggle.collapsed::before {
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  opacity: 1;
+}
+.accordion-toggle.collapsed::after {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
 			.dropzone {
 			     min-height: 10px !important; 
 			    border-style: dotted  !important;
@@ -404,7 +424,7 @@
                 
                  <div class="box-header with-border"> 
                  	<h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="accordion-toggle text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información personal
                   </a>
               </h4>
@@ -487,12 +507,12 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
                	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" id="two" style="display:block; height:100%; width:100%;font-size: 17px;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="accordion-toggle collapsed text-black" id="two" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Familia
                 </a>
             </h4>
                 </div>
-                  <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
+                  <div id="collapseTwo" class="panel-collapse collapse" aria-labelledby="headingTwo">
                   	<div class="box-body">
                   			<div class="lockscreen-item pull-right">
 							      	<div class="input-group">
@@ -925,17 +945,12 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
-                @if($latitude != "" && $longitude != "")	 		
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
-                @else   
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
-                   @endif   	
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;">		
                         Dirección de usuario      
-   
                   </a> 
                   </h4> 
                   </div>
-                  <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
+                  <div id="collapseThree" class="panel-collapse collapse" aria-labelledby="headingThree">
                     <div class="box-body" align="center">
                     	@if($latitude == "" && $longitude == "")
                     	   No ha registrado ninguna dirección.
@@ -1040,8 +1055,7 @@
 				        document.getElementById('mapAddressUser').setAttribute("style","height:" + height + "px");
 				        @endif
 
-				$('#collapseTwo').collapse("toggle");
-				$('#collapseThree').collapse("toggle");
+
 					@if(!empty($status))
     				initAutocomplete();
     				@endif
