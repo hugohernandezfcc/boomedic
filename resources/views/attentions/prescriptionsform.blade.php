@@ -131,13 +131,13 @@
                                        document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
 
                                        if(word.indexOf(term) === 0){
-                                          console.log('word selected: '+ term);
                                           return word;
                                        }else
                                           return null;
                                     }
                                  ));
                               }, replace: function (word) {
+                                 console.log('word selected: '+ term);
                                  return word + ' ';
                               }
                            }]);
@@ -147,27 +147,6 @@
                            console.log(data);
                         }
                      });
-
-                     $('#receta').textcomplete([{
-                     match: /(^|\b)(\w{2,})$/,
-                     search: function (term, callback) {
-                        
-                        callback(
-                           $.map(words, function (word) {
-                              document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
-
-                              if(word.indexOf(term) === 0){
-                                 return word;
-                              }else
-                                 return null;
-                           }
-                        ));
-                     }, replace: function (word) {
-                        console.log('word selected: '+ word);
-                        return word + ' ';
-                     }
-                  }]);
-                     
                   }
                }               
             </script>
