@@ -106,20 +106,20 @@
                   $('#currentMedicalAppointment').select2({ width: "100%" });
 
 
-                  // $("#wizardPrescription").steps({
-                  //    headerTag: "h3",
-                  //    bodyTag: "section",
-                  //    transitionEffect: "slideLeft",
-                  //    cssClass: "wizard",
-                  //    autoFocus: true,
-                  //    labels: {
-                  //       pagination: "Paginación",
-                  //       finish:     "Prescribir",
-                  //       next:       "Imprimir",
-                  //       previous:   "Prescribir",
-                  //       loading:    "Cargando"
-                  //    }
-                  // });
+                  $("#wizardPrescription").steps({
+                     headerTag: "h3",
+                     bodyTag: "section",
+                     transitionEffect: "slideLeft",
+                     cssClass: "wizard",
+                     autoFocus: true,
+                     labels: {
+                        pagination: "Paginación",
+                        finish:     "Prescribir",
+                        next:       "Imprimir",
+                        previous:   "Prescribir",
+                        loading:    "Cargando"
+                     }
+                  });
                });
               
                function loadMedicines() {
