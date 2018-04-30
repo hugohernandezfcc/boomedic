@@ -105,7 +105,15 @@
                      transitionEffect: "slideLeft",
                      cssClass: "wizard",
                      autoFocus: true,
-                     enablePagination: false
+                     labels: {
+                        //cancel: "Cancel",
+                        //current: "current step:",
+                        pagination: "Paginación",
+                        finish: "Prescribir",
+                        next: "Prescribir",
+                        previous: "Receta",
+                        loading: "Cargando"
+                     }
                   });
                });
               
@@ -141,16 +149,16 @@
 
 
          </div>
-         <div class="modal-footer">
+         <!-- <div class="modal-footer">
             <div class="row">
                <div class="col-md-6">
                </div>
                <div class="col-md-6">
-                  <a href="#next" role="menuitem" >Prescribir</a>
+                  <a href="#next" role="menuitem" ></a>
                </div>
             </div>
             
-         </div>
+         </div> -->
       </div>
    </div>
 </div>
