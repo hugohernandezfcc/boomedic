@@ -106,13 +106,11 @@
                      cssClass: "wizard",
                      autoFocus: true,
                      labels: {
-                        //cancel: "Cancel",
-                        //current: "current step:",
                         pagination: "Paginación",
-                        finish: "Prescribir",
-                        next: "Prescribir",
-                        previous: "Receta",
-                        loading: "Cargando"
+                        finish:     "Prescribir",
+                        next:       "Imprimir",
+                        previous:   "Prescribir",
+                        loading:    "Cargando"
                      }
                   });
                });

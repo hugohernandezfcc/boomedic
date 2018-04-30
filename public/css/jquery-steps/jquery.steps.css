@@ -139,17 +139,13 @@
 
 .wizard > .content
 {
-    background: #eee;
+
     display: block;
-    margin: 0.5em;
-    min-height: 22em;
+
+    min-height: 19em;
     overflow: hidden;
     position: relative;
     width: auto;
-
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
 }
 
 .wizard.vertical > .content
@@ -166,7 +162,7 @@
     position: absolute;
     width: 95%;
     height: 95%;
-    padding: 2.5%;
+    padding: 0%;
 }
 
 .wizard > .content > .body ul
