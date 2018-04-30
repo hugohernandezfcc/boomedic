@@ -147,7 +147,7 @@
                            console.log(data);
                         }
                      });
-                     
+
                      $('#receta').textcomplete([{
                      match: /(^|\b)(\w{2,})$/,
                      search: function (term, callback) {
@@ -157,7 +157,7 @@
                               document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
 
                               if(word.indexOf(term) === 0){
-                                 console.log('word selected: '+ term);
+                                 console.log('word selected: '+ word);
                                  return word;
                               }else
                                  return null;
@@ -171,9 +171,6 @@
                   }
                }               
             </script>
-
-
-
          </div>
          <!-- <div class="modal-footer">
             <div class="row">
