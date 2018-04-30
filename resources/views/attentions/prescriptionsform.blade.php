@@ -24,20 +24,27 @@
          <div class="modal-body">
 
             <div class="row">
+               
                <div class="col-md-6">
-                  <select class="form-control" id="currentMedicalAppointment" style="width: 100%;">
-                     <option selected="selected">Alabama</option>
-                     <option>Alaska</option>
-                     <option>California</option>
-                     <option>Delaware</option>
-                     <option>Tennessee</option>
-                     <option>Texas</option>
-                     <option>Washington</option>
-                  </select>
+                  <div style="padding: 3px;">
+                     <select class="form-control" id="currentMedicalAppointment" style="width: 100%;">
+                        <option selected="selected">Alabama</option>
+                        <option>Alaska</option>
+                        <option>California</option>
+                        <option>Delaware</option>
+                        <option>Tennessee</option>
+                        <option>Texas</option>
+                        <option>Washington</option>
+                     </select>
+                  </div>
                </div>
+
                <div class="col-md-6">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 50%;"> 50% </div>
+                  <div style="padding: 3px;">
+                     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 50%;"> 50% </div>
+                  </div>
                </div>
+
             </div>
             <br />
             <div class="row">
