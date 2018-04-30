@@ -145,6 +145,10 @@
                         }, error: function( data ){
                            console.log('Submission was error.');
                            console.log(data);
+
+                           if(data.error == "Unauthenticated.")
+                              window.location.href = "{{ url('/login') }}";
+                           
                         }
                      });
                   }
