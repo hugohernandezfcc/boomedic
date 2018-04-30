@@ -104,7 +104,8 @@
                      bodyTag: "section",
                      transitionEffect: "slideLeft",
                      cssClass: "wizard",
-                     autoFocus: true
+                     autoFocus: true,
+                     enablePagination: false
                   });
                });
               
