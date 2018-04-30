@@ -17,12 +17,6 @@
 .fc-toolbar.fc-header-toolbar {
   margin-bottom: 0;
 } 
- .content-wrapper{
-  min-height: auto !important;
-}
-.wrapper{
-	overflow-y: hidden;
-}
 
 </style>
 
