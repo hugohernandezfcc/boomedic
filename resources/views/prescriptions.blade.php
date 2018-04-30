@@ -11,6 +11,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.8.4/jquery.textcomplete.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.js"></script>
 
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-steps/jquery.steps.css') }}">
+
 	<div class="row">
         <div class="col-md-3">
         	
@@ -84,7 +86,7 @@
 	        headerTag: "h3",
 	        bodyTag: "section",
 	        transitionEffect: "slideLeft",
-	        cssClass: "wizard-prescriptions",
+	        cssClass: "wizard",
 	        autoFocus: true
 	    });
 

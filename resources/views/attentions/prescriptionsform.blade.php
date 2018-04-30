@@ -73,7 +73,7 @@
                               document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
 
                               if(word.indexOf(term) === 0){
-                                 console.log('word selected: '+ )
+                                 console.log('word selected: '+ term);
                                  return word;
                               }else
                                  return null;
