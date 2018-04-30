@@ -71,9 +71,9 @@
                                   <!-- User image -->
                                   <li class="user-header" style="background-color: #222;" id="uh">
                                     @if($photo == '')
-                                         <a href="{{ url('/user/profile') }}/{{Auth::id()}}"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image" width="100" height="100"></a>
+                                         <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image" width="100" height="100" onclick="window.location.href='{{ url('/user/profile') }}/{{Auth::id()}}'">
                                     @else
-                                        <a href="{{ url('/user/profile') }}/{{Auth::id()}}"><img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" class="img-circle" alt="User Image" width="100" height="100"></a>            
+                                       <img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" class="img-circle" alt="User Image" width="100" height="100" onclick="window.location.href='{{ url('/user/profile') }}/{{Auth::id()}}'">           
                                     @endif 
 
                                     <p>
