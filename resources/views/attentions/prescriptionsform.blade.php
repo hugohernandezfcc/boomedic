@@ -82,26 +82,21 @@
               $(document).ready(function(){
                   jQuery.noConflict(false);
 
-
-                  $('#receta').textcomplete([{
-                     match: /(^|\b)(\w{2,})$/,
-                     search: function (term, callback) {
-                        
-                        callback(
-                           $.map(words, function (word) {
-                              document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
-
-                              if(word.indexOf(term) === 0){
-                                 console.log('word selected: '+ term);
-                                 return word;
-                              }else
-                                 return null;
-                           }
-                        ));
-                     }, replace: function (word) {
-                        return word + ' ';
-                     }
-                  }]);
+                  $("#wizardPrescription").steps({
+                        headerTag: "h3",
+                        bodyTag: "section",
+                        transitionEffect: "slideLeft",
+                        cssClass: "wizard",
+                        autoFocus: true,
+                        labels: {
+                           pagination: "Paginación",
+                           finish:     "Prescribir",
+                           next:       "Imprimir",
+                           previous:   "Prescribir",
+                           loading:    "Cargando"
+                        }
+                     });
+                  
 
                   $('#currentMedicalAppointment').select2({ width: "100%" });
                });
@@ -126,26 +121,53 @@
 
                            console.log(medicinesSelected);
                            document.getElementById('load-medicines').value = true;
+
+                           $('#receta').textcomplete([{
+                              match: /(^|\b)(\w{2,})$/,
+                              search: function (term, callback) {
+                                 
+                                 callback(
+                                    $.map(words, function (word) {
+                                       document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
+
+                                       if(word.indexOf(term) === 0){
+                                          console.log('word selected: '+ term);
+                                          return word;
+                                       }else
+                                          return null;
+                                    }
+                                 ));
+                              }, replace: function (word) {
+                                 return word + ' ';
+                              }
+                           }]);
+
                         }, error: function( data ){
                            console.log('Submission was error.');
                            console.log(data);
                         }
                      });
+                     
+                     $('#receta').textcomplete([{
+                     match: /(^|\b)(\w{2,})$/,
+                     search: function (term, callback) {
+                        
+                        callback(
+                           $.map(words, function (word) {
+                              document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
 
-                     $("#wizardPrescription").steps({
-                        headerTag: "h3",
-                        bodyTag: "section",
-                        transitionEffect: "slideLeft",
-                        cssClass: "wizard",
-                        autoFocus: true,
-                        labels: {
-                           pagination: "Paginación",
-                           finish:     "Prescribir",
-                           next:       "Imprimir",
-                           previous:   "Prescribir",
-                           loading:    "Cargando"
-                        }
-                     });
+                              if(word.indexOf(term) === 0){
+                                 console.log('word selected: '+ term);
+                                 return word;
+                              }else
+                                 return null;
+                           }
+                        ));
+                     }, replace: function (word) {
+                        return word + ' ';
+                     }
+                  }]);
+                     
                   }
                }               
             </script>
