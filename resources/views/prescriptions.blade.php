@@ -77,18 +77,19 @@
         </section>
     </div>
 
-<script type="text/javascript">
-	
+	<script type="text/javascript">
+		
 
-    $("#example-basic").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        autoFocus: true
-    });
+	    $("#example-basic").steps({
+	        headerTag: "h3",
+	        bodyTag: "section",
+	        transitionEffect: "slideLeft",
+	        cssClass: "wizard-prescriptions",
+	        autoFocus: true
+	    });
 
 
-</script>
+	</script>
 			<div class="box" >
 			  	<div class="box-header with-border">
 				    <h3 class="box-title">Solicitudes de información</h3>
