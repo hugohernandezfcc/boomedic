@@ -138,7 +138,7 @@
     background: #eee;
     display: block;
     margin: 0.5em;
-    min-height: 35em;
+    min-height: 22em;
     overflow: hidden;
     position: relative;
     width: auto;
@@ -245,20 +245,23 @@
     margin: 0 0 0 1em;
 }
 
-.wizard > .actions a,
+.wizard > .actions a
+{
+    color: #ffffff; 
+    background-color: #000000; 
+    border-color: #555; 
+    padding: 0.5em 1em;
+}
+
+
 .wizard > .actions a:hover,
 .wizard > .actions a:active
 {
-    background: #2184be;
-    color: #fff;
-    display: block;
-    padding: 0.5em 1em;
-    text-decoration: none;
-
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    color: #ffffff; 
+    background-color: #333333; 
+    border-color: #444; 
 }
+
 
 .wizard > .actions .disabled a,
 .wizard > .actions .disabled a:hover,
