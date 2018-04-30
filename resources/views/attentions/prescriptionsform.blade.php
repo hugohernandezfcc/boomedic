@@ -157,13 +157,13 @@
                               document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
 
                               if(word.indexOf(term) === 0){
-                                 console.log('word selected: '+ word);
                                  return word;
                               }else
                                  return null;
                            }
                         ));
                      }, replace: function (word) {
+                        console.log('word selected: '+ word);
                         return word + ' ';
                      }
                   }]);
