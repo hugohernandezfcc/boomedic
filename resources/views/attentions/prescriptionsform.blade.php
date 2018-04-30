@@ -46,8 +46,8 @@
                   <div id="wizardPrescription">
                      <h3>Receta </h3>
                      <section>
+                           <!-- The validation is to change the cols number in textarea -->
                            <div class="form-group">
-                              <!-- The validation is to change the cols number in textarea -->
                               @if($isMobile)
                                  <textarea class="form-control" id="receta" rows="10" cols="35" placeholder="Describe la prescripción médica ..."></textarea>
                               @else
@@ -145,7 +145,7 @@
                <div class="col-md-6">
                </div>
                <div class="col-md-6">
-                  <button type="button" class="btn btn-secondary btn-block btn-flat margin-bottom">Prescribir</button>
+                  <a href="#next" role="menuitem" >Prescribir</a>
                </div>
             </div>
             
