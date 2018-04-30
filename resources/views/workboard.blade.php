@@ -21,18 +21,19 @@
 }
  #calendar {
     max-width: 98%;
+    min-width: 98%;
     margin: 0 auto;
   }
    #calendar2 {
     max-width: 98%;
+    min-width: 98%;
     margin: 0 auto;
   }
-   .content-wrapper{
-  min-height: auto !important;
-}
-.wrapper{
-	overflow-y: hidden;
-}
+ #calendar {
+    max-width: 98%;
+    min-width: 98%;
+    margin: 0 auto;
+  }
   .fc-toolbar h2 {
     font-size: 20px;
     margin: 15px;
@@ -40,6 +41,12 @@
 .fc-toolbar.fc-header-toolbar {
   margin-bottom: 0;
 } 
+ .content-wrapper{
+  min-height: auto !important;
+}
+.wrapper{
+	overflow-y: hidden;
+}
 
 </style>
 @stop
