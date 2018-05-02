@@ -75,7 +75,7 @@
                         <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image">
                       </div>
                       <h4>
-                        Support Team
+                        Equipo de Soporte
                         <small><i class="fa fa-clock-o"></i> 5 mins</small>
                       </h4>
                       <p>Why not buy a new awesome theme?</p>
@@ -93,7 +93,7 @@
               <span class="label label-warning" style="background-color: #000000 !important;">10</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+              <li class="header">Tienes 10 notificaciones</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
