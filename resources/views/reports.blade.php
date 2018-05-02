@@ -83,7 +83,7 @@ $(function() {
 
   /* Morris.js Charts */
   // Sales chart
-
+/*Enfermedades*/
   var line = new Morris.Line({
     element          : 'line-chart',
     resize           : true,
@@ -122,18 +122,18 @@ $(function() {
     xkey             : 'y',
     ykeys            : ['item1', 'item2','item3'],
     labels           : ['Item 1', 'item 2', 'item 3'],
-    lineColors       : ['#efefef','#FF35B2', 'red'],
+    lineColors       : ['#efefef','#FF9EDA', 'black'],
     lineWidth        : 2,
     hideHover        : 'auto',
     gridTextColor    : '#fff',
     gridStrokeWidth  : 0.4,
     pointSize        : 4,
-    pointStrokeColors: ['#efefef','#FF35B2','red'],
-    gridLineColor    : ['#efefef','#FF35B2','red'],
+    pointStrokeColors: ['#efefef','#FF9EDA','black'],
+    gridLineColor    : ['#efefef','#FF9EDA','black'],
     gridTextFamily   : 'Open Sans',
     gridTextSize     : 10
   });
-
+/*generos*/
 data = {
     datasets: [{
         data: [40, 60],
@@ -146,6 +146,7 @@ data = {
         'Masculino',
     ]
 };
+/*edades*/
 data2 = {
     datasets: [{
         data: [40, 60, 15 ,3, 18, 24],
@@ -159,6 +160,7 @@ data2 = {
         '40', '60', '15' ,'3', '18', '24'
     ]
 };
+/*generos*/
 var ctx = document.getElementById('myChart').getContext('2d');
 
 var myPieChart = new Chart(ctx,{
@@ -171,7 +173,7 @@ var myDoughnutChart = new Chart(ctx, {
     type: 'doughnut',
     data: data
 });
-
+/*Edades*/
 var ctz = document.getElementById('myChart2').getContext('2d');
 var myBarChart = new Chart(ctz, {
     type: 'bar',
