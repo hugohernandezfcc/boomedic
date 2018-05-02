@@ -8,13 +8,15 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <div class="box">
 
   	<div class="box-header with-border">
 	    <h3 class="box-title">Reportes</h3>
   	</div>
   	<div class="box-body">
-  			<div class="box box-solid bg-teal-gradient" style="width: 315px;">
+      <div class="col-md-12">
+  			<div class="box box-solid bg-teal-gradient">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
@@ -22,8 +24,6 @@
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
                 </button>
               </div>
             </div>
@@ -34,7 +34,47 @@
             
             <!-- /.box-footer -->
           </div>
+        </div>
             <!-- /.box-footer -->
+            <div class="col-md-6">
+         <div class="box box-secondary">
+            <div class="box-header ui-sortable-handle" style="cursor: move;">
+              <i class="fa fa-th"></i>
+
+              <h3 class="box-title">Gráfico de Género</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body border-radius-none">
+            <canvas id="myChart" class="chartjs" style="height: 250px;"></canvas>
+            </div>
+          </div>
+        </div>
+
+                    <!-- /.box-footer -->
+            <div class="col-md-6">
+         <div class="box box-secondary">
+            <div class="box-header ui-sortable-handle" style="cursor: move;">
+              <i class="fa fa-th"></i>
+
+              <h3 class="box-title">Edades</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body border-radius-none">
+            <canvas id="myChart2" class="chartjs" style="height: 250px;"></canvas>
+            </div>
+            <!-- /.box-body -->
+            
+            <!-- /.box-footer -->
+          </div>
+        </div>
           </div>
 
 <script type="text/javascript">
@@ -74,8 +114,64 @@ $(function() {
     gridTextSize     : 10
   });
 
+data = {
+    datasets: [{
+        data: [40, 60],
+        backgroundColor: ['black', 'gray']
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+        'Femenino',
+        'Masculino',
+    ]
+};
+data2 = {
+    datasets: [{
+        data: [40, 60, 15 ,3, 18, 24],
+        backgroundColor: '#656565',
+        label: 'Edad paciente'
+
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+        '40', '60', '15' ,'3', '18', '24'
+    ]
+};
+var ctx = document.getElementById('myChart').getContext('2d');
+
+var myPieChart = new Chart(ctx,{
+    type: 'pie',
+    data: data
+});
+// And for a doughnut chart
+
+var myDoughnutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: data
+});
+
+var ctz = document.getElementById('myChart2').getContext('2d');
+var myBarChart = new Chart(ctz, {
+    type: 'bar',
+    data: data2,
+        options: {
+        scales: {
+            xAxes: [{
+                stacked: true
+            }],
+            yAxes: [{
+                stacked: true
+            }]
+        }
+    }
+});
+
 
 });
+
+
 
 </script>
 
