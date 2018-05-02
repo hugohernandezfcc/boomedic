@@ -110,7 +110,6 @@ $(function() {
 		}
 		console.log(optionhour);
 		console.log(hor);
-		console.log( @php echo $array2;  @endphp);
 
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
