@@ -64,7 +64,7 @@
               <i class="fa fa-envelope-o"></i>
               <span class="label label-success">1</span>
             </a>
-            <ul class="dropdown-menu" style="background-color: #e6e5e5;">
+            <ul class="dropdown-menu">
               <li class="header">Tienes 1 mensaje</li>
               <li>
                 <!-- inner menu: contains the actual data -->
