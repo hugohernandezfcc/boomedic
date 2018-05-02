@@ -20,7 +20,7 @@
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
-              <h3 class="box-title">Avance en citas</h3>
+              <h3 class="box-title">Polígono de Enfermedades</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -41,7 +41,7 @@
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
-              <h3 class="box-title">Gráfico de Género</h3>
+              <h3 class="box-title">Género</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -156,16 +156,6 @@ var ctz = document.getElementById('myChart2').getContext('2d');
 var myBarChart = new Chart(ctz, {
     type: 'bar',
     data: data2,
-        options: {
-        scales: {
-            xAxes: [{
-                stacked: true
-            }],
-            yAxes: [{
-                stacked: true
-            }]
-        }
-    }
 });
 
 
