@@ -60,9 +60,9 @@
                     <ul class="nav navbar-nav">
           <!--barra de notificaciones -->    
                           <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="mess">
                               <i class="fa fa-envelope-o"></i>
-                              <span class="label label-success">1</span>
+                              <span class="label label-success" id="messN">1</span>
                             </a>
                             <ul class="dropdown-menu">
                               <li class="header">Tienes 1 mensaje</li>
@@ -88,9 +88,9 @@
                                   <!-- end message -->
                               
                           <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="not">
                               <i class="fa fa-bell-o"></i>
-                              <span class="label label-warning" style="background-color: #000000 !important;">10</span>
+                              <span class="label label-warning" style="background-color: #000000 !important;" id="notN">10</span>
                             </a>
                             <ul class="dropdown-menu">
                               <li class="header">Tienes 10 notificaciones</li>

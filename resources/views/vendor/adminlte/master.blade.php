@@ -474,6 +474,12 @@ span.round-tab:hover {
                 return false;
             }
         });
+    $('#mess').on('click', function(e) {
+            $('#messN').css("display", "none");
+     });
+    $('#not').on('click', function(e) {
+            $('#notN').css("display", "none");
+     });
         
         if (document.getElementById('paymentmethodtable')) {
             $('#paymentmethodtable').DataTable({
