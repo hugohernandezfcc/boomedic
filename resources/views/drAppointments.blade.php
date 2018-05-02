@@ -118,7 +118,7 @@ jQuery.noConflict(false);
 		header: {
 			left: 'prev,next',
 			center: 'title',
-			right: 'month,agendaWeek,agendaDay'
+			right: 'month,basicWeek,agendaDay'
 		},
 		defaultView: 'agendaDay',
 		editable: false,
