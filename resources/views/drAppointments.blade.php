@@ -108,6 +108,9 @@ $(function() {
                           
                        
 		}
+		console.log(optionhour);
+		console.log(hor);
+		console.log( @php echo $array2;  @endphp);
 
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
@@ -134,8 +137,6 @@ jQuery.noConflict(false);
 	
 		  }
 	});
-	    var title = element.find( '.fc-center' );
-	title.html("<h4>"+ title.text()+ "</h4>");
 });	 				
 </script>
 @stop

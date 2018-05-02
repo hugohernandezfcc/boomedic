@@ -32,15 +32,16 @@ class drAppointments extends Controller
     public function index(){
         $user = User::find(Auth::id());
            $appo =DB::table('medical_appointments')
-            ->join('users', 'medical_appointments.user', '=', 'users.id')
             ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
             ->join('workboard', 'labor_information.id', '=', 'workboard.labInformation')
-            ->where('user_doctor', $user->id)
+            ->join('users', 'medical_appointments.user', '=', 'users.id')
+            ->where('medical_appointments.user_doctor', '=', Auth::id())
             ->select('medical_appointments.*', 'users.name', 'users.profile_photo','users.age', 'labor_information.workplace as place', 'workboard.patient_duration_attention')
             ->get();
+            $appo2 = $appo->unique('id');
 
                 $array = array();
-                        foreach($appo  as $ap){
+                        foreach($appo2  as $ap){
                             $a = json_decode($ap->patient_duration_attention);
                             $end1 = Carbon::parse('12-12-2012 ' .$a[0]);
                             $end2 = Carbon::parse('12-12-2012 ' .$a[1]);
@@ -48,17 +49,17 @@ class drAppointments extends Controller
                             $end = Carbon::parse($ap->when)->addMinutes($end3);
 
                             if(Carbon::parse($ap->when)->format('m-d-Y') < Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "gray", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place, "end" => $end]);
+                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "gray", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place, "end" => $end]);
                                 }
-                            if(Carbon::now()->format('m-d-Y') < Carbon::parse($ap->when)->format('m-d-Y')){
-                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "black", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place, "end" => $end]);
+                            if(Carbon::parse($ap->when)->format('m-d-Y') > Carbon::now()->format('m-d-Y')){
+                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "black", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place, "end" => $end]);
                                 }
-                            if(Carbon::parse($ap->when)->format('m-d-Y') == Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["start" => $ap->when, "user" => $ap->name, "color" => "blue", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place, "end" => $end]);
+                            if(Carbon::parse($ap->when)->format('m-d-Y') === Carbon::now()->format('m-d-Y')){
+                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "blue", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place, "end" => $end]);
                                 }
                                   }
 
-
+            
         return view('drAppointments', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
