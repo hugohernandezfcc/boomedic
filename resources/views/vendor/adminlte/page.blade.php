@@ -58,78 +58,78 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
-          <!--barra de mesajes -->    
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">1</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">Tienes 1 mensaje</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Equipo de Soporte
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-                  <!-- end message -->
-              
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning" style="background-color: #000000 !important;">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">Tienes 10 notificaciones</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
+          <!--barra de notificaciones -->    
+                          <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                              <i class="fa fa-envelope-o"></i>
+                              <span class="label label-success">1</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li class="header">Tienes 1 mensaje</li>
+                              <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                  <li><!-- start message -->
+                                    <a href="#">
+                                      <div class="pull-left">
+                                        <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image">
+                                      </div>
+                                      <h4 style="text-align: left;">
+                                        Equipo de Soporte
+                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                      </h4>
+                                      <p>Why not buy a new awesome theme?</p>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                                  <!-- end message -->
+                              
+                          <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                              <i class="fa fa-bell-o"></i>
+                              <span class="label label-warning" style="background-color: #000000 !important;">10</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li class="header">Tienes 10 notificaciones</li>
+                              <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                  <li>
+                                    <a href="#">
+                                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+                                      page and may cause design problems
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      <i class="fa fa-users text-red"></i> 5 new members joined
+                                    </a>
+                                  </li>
 
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!--Colocando arriba mensajes-->
+                                  <li>
+                                    <a href="#">
+                                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      <i class="fa fa-user text-red"></i> You changed your username
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                          </li>
+          <!--Terminando barra de notificaciones-->
                         <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                   @if($photo == '')
