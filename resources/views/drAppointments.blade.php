@@ -108,8 +108,7 @@ $(function() {
                           
                        
 		}
-		console.log(optionhour);
-		console.log(hor);
+
 
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
