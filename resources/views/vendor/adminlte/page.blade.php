@@ -86,7 +86,6 @@
                             </ul>
                           </li>
                                   <!-- end message -->
-                              
                           <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="not">
                               <i class="fa fa-bell-o"></i>

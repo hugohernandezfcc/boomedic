@@ -474,12 +474,14 @@ span.round-tab:hover {
                 return false;
             }
         });
+    /* Function notifications Page nav Bar */    
     $('#mess').on('click', function(e) {
             $('#messN').css("display", "none");
      });
     $('#not').on('click', function(e) {
             $('#notN').css("display", "none");
      });
+   /* Function notifications */  
         
         if (document.getElementById('paymentmethodtable')) {
             $('#paymentmethodtable').DataTable({
