@@ -28,13 +28,14 @@
                <div class="col-md-6">
                   <div style="padding: 3px;">
                      <select class="form-control" id="currentMedicalAppointment" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
+
+                        @foreach($medAppointments as $medApp)
+                           <option>
+                              {{$medApp->firstname}} {{$medApp->lastname}} <img src="https://lh4.ggpht.com/wKrDLLmmxjfRG2-E-k5L5BUuHWpCOe4lWRF7oVs1Gzdn5e5yvr8fj-ORTlBF43U47yI=w54" /> 
+                           </option>
+                        @endforeach
+
+                  
                      </select>
                   </div>
                </div>

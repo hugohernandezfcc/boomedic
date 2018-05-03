@@ -42,21 +42,24 @@ class Prescriptions extends Controller
                             ])->select('medical_appointments.*', 'users.firstname', 'users.lastname', 'users.gender', 'users.age' )
                             ->get();
 
-        dd($medAppointments);
+
 
         return view('prescriptions', [
-                'userId'    => $user->id,
-                'username'  => $user->username,
-                'name'      => $user->name,
-                'photo'     => $user->profile_photo,
-                'date'      => $user->created_at, 
-                'isMobile'  => $agent->isMobile(),
-                'medAppointments'  => $medAppointments,
+                'userId'            => $user->id,
+                'username'          => $user->username,
+                'name'              => $user->name,
+                'photo'             => $user->profile_photo,
+                'date'              => $user->created_at, 
+                'isMobile'          => $agent->isMobile(),
+                'medAppointments'   => $medAppointments
             ]
         );
     }
 
-
+    /**
+     * Collections of medicines to frontend.
+     * @return [JSON] [Collection with a column added named "medicine"]
+     */
     public function medicinesCatalogue(){
 
         $medicines = DB::table('medicines')->get();
