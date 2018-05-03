@@ -95,7 +95,7 @@
                         labels: {
                            pagination: "Paginación",
                            finish:     "Terminar",
-                           next:       "Terminar",
+                           next:       "Revisar",
                            previous:   "Redactar",
                            loading:    "Cargando"
                         },
@@ -114,6 +114,17 @@
                   
 
                   $('#currentMedicalAppointment').select2({ width: "100%" });
+
+                  var getLinks = document.getElementsByTagName('a');
+                  for (var i = getLinks.length - 1; i >= 0; i--) {
+                     if(getLinks[i].href == "#finish")
+                        getLinks[i].setAttribute('id', "linkfinish");
+                  }
+
+                  document.getElementById('linkfinish').parentNode.setAttribute('id', "optionlinkfinish");
+                  document.getElementById('optionlinkfinish').className = "disabled";
+                  
+
                });
               
                function loadMedicines() {
