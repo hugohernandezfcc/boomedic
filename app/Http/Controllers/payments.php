@@ -364,14 +364,21 @@ class payments extends Controller
 
                             } catch (\PayPal\Exception\PPConnectionException $ex) {
                                 if (\Config::get('app.debug')) {
-                                    \Session::put('error','Connection timeout');
-                                    return redirect('payment/index');
-                                    /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
-                                    /** $err_data = json_decode($ex->getData(), true); **/
-                                    /** exit; **/
+                              $notification2 = array(
+                                        //If it has been rejected, the internal error code is sent.
+                                    'message' => 'Hubo un error en tiempo de conexión', 
+                                    'error' => 'error',
+                                );
+
+                            return redirect('medicalconsultations')->with($notification2);
                                 } else {
-                                    \Session::put('error','Some error occur, sorry for inconvenient');
-                                     return redirect('payment/index');
+                              $notification2 = array(
+                                        //If it has been rejected, the internal error code is sent.
+                                    'message' => 'Hubo un error interno en Paypal', 
+                                    'error' => 'error',
+                                );
+
+                            return redirect('medicalconsultations')->with($notification2);
                                     /** die('Some error occur, sorry for inconvenient'); **/
                                 }
                             }
@@ -401,9 +408,13 @@ class payments extends Controller
                                 return redirect($redirect_url);   
                             }
                                  
-                            
-                            session()->put('error','Unknown error occurred');
-                            return redirect('payment/index');
+                              $notification2 = array(
+                                        //If it has been rejected, the internal error code is sent.
+                                    'message' => 'Hubo un error en su pago Paypal', 
+                                    'error' => 'error',
+                                );
+
+                            return redirect('medicalconsultations')->with($notification2);
 
                         }
 
@@ -517,9 +528,12 @@ class payments extends Controller
                              }
                               return redirect('medicalconsultations')->with($notification);
                             }
-                            
-                            session()->put('error','Unknown error occurred');
-                            return redirect('medicalconsultations');
+                              $notification2 = array(
+                                        //If it has been rejected, the internal error code is sent.
+                                    'message' => 'Hubo un error en su pago Paypal', 
+                                    'error' => 'error',
+                                );
+                            return redirect('medicalconsultations')->with($notification2);
                           }
 
                                          

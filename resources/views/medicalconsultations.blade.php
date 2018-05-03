@@ -406,7 +406,11 @@
                                   $code = session()->get('message');
                                  @endphp
                           <!-- Error codes are defined within the adminlte -->
+                          @if($code > 0)
                               {{ trans('adminlte::adminlte.'.$code) }}
+                          @else
+                              {{ $code }}
+                              @endif
                             </div>
                         </div>
                       </div> 
