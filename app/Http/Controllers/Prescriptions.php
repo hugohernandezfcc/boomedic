@@ -14,6 +14,8 @@ class Prescriptions extends Controller
 
     /**
      * Create a new controller instance.
+     * 
+     * Is used a middleware to validate if exist a valid session.
      *
      * @return void
      */
@@ -32,7 +34,7 @@ class Prescriptions extends Controller
         $agent = new Agent();
 
         $medAppointments = DB::table('medical_appointments')
-                            ->whereTime('when', '>=', '17:00')
+                            ->whereDate('when', '>=', '17:00')
                             ->get();
 
         dd($medAppointments);
