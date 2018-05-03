@@ -1612,7 +1612,6 @@ function prevTab(elem) {
                          document.getElementById("onestep").disabled = false;
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
                          var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
-                          var da3 = moment(e.date.toISOString()).format("DD-MM-YYYY HH:mm");
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
                          document.getElementById('when1').value = da2;
                          var fech = Array();
@@ -1625,24 +1624,20 @@ function prevTab(elem) {
                         if (e.date.getDay() == 0) {
                           var Dom1 = $(Dom).not(fech).get();                              
                           for(var d = 0; d < Dom1.length; d++){
-                            if(Dom1[d] > moment(Date.now()).format("DD-MM-YYYY HH:mm")){
                              var option = document.createElement("option");
                               option.text = Dom1[d].slice(0,-3);
                               option.value = Dom1[d].slice(0,-3);
                               x.add(option);
-                            }
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                         if (e.date.getDay() == 1) {
                           var Lun1 = $(Lun).not(fech).get();
                           for(var d = 0; d < Lun1.length; d++){
-                             if(Lun1[d] > moment(Date.now()).format("DD-MM-YYYY HH:mm")){
                               var option = document.createElement("option");
                               option.text = Lun1[d].slice(0,-3);
                               option.value = Lun1[d].slice(0,-3);
                               x.add(option);
-                            }
                           }
                           $("#timesByDay option[value='asueto ']").remove();
                         }
@@ -1669,24 +1664,20 @@ function prevTab(elem) {
                        if (e.date.getDay() == 4) {
                           var Jue1 = $(Jue).not(fech).get();
                           for(var d = 0; d < Jue1.length; d++){
-                            if(Jue1[d] > moment(Date.now()).format("DD-MM-YYYY HH:mm")){
                              var option = document.createElement("option");
                               option.text = Jue1[d].slice(0,-3);
                               option.value = Jue1[d].slice(0,-3);
                               x.add(option);
-                            }
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }                                               
                         if (e.date.getDay() == 5) {
                               var Vie1 = $(Vie).not(fech).get();
                           for(var d = 0; d < Vie1.length; d++){
-                             if(Vie1[d] > moment(Date.now()).format("DD-MM-YYYY HH:mm")){
                              var option = document.createElement("option");
                               option.text = Vie1[d].slice(0,-3);
                               option.value = Vie1[d].slice(0,-3);
                               x.add(option);
-                            }
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }
