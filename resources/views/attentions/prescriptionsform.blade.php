@@ -117,8 +117,10 @@
 
                   var getLinks = document.getElementsByTagName('a');
                   for (var i = getLinks.length - 1; i >= 0; i--) {
-                     if(getLinks[i].href == "#finish")
+                     if(getLinks[i].href == "#finish"){
                         getLinks[i].setAttribute('id', "linkfinish");
+                        console.log('entre');
+                     }
                   }
 
                   document.getElementById('linkfinish').parentNode.setAttribute('id', "optionlinkfinish");
