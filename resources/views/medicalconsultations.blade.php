@@ -1637,10 +1637,12 @@ function prevTab(elem) {
                         if (e.date.getDay() == 1) {
                           var Lun1 = $(Lun).not(fech).get();
                           for(var d = 0; d < Lun1.length; d++){
+                             if(Lun1[d] > moment(Date.now()).format("DD-MM-YYYY HH:mm")){
                               var option = document.createElement("option");
                               option.text = Lun1[d].slice(0,-3);
                               option.value = Lun1[d].slice(0,-3);
                               x.add(option);
+                            }
                           }
                           $("#timesByDay option[value='asueto ']").remove();
                         }
