@@ -104,14 +104,14 @@
                            loading:    "Cargando"
                         },
                         onFinished: function (event, currentIndex) { 
-
-                           console.log('terminado...');
-                        }
+                           console.log('terminado...' + event);
+                           console.log('terminado...' + currentIndex);
+                        },
                         onStepChanged: function (event, currentIndex, priorIndex) { 
                            console.log(event);
                            console.log(currentIndex);
                            console.log(priorIndex);
-                        },
+                        }
 
                      });
                   
