@@ -99,6 +99,7 @@
                            previous:   "Redactar",
                            loading:    "Cargando"
                         },
+                        showFinishButtonAlways: true,
                         onStepChanged: function (event, currentIndex, priorIndex) { 
 
                            console.log(currentIndex); // 1
