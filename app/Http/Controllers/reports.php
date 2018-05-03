@@ -53,7 +53,9 @@ class reports extends Controller
                 $porcentm = (100 * $mas) / $total;
 
                         foreach ($grap2 as $gr2) {
+                            if($gr2->age){
                              array_push($arrayAge, $gr2->age);
+                            }
                         }
                         $val = array_count_values($arrayAge);
 
