@@ -31,10 +31,9 @@
 
                         @foreach($medAppointments as $medApp)
                            <option value="{{$medApp->user}}">
-                              {{$medApp->firstname}} {{$medApp->lastname}} / {{$medApp->gender}} / {{$medApp->age}}  
+                              {{$medApp->firstname}} {{$medApp->lastname}} / {{ trans('adminlte::adminlte.' . $medApp->gender) }}  / {{$medApp->age}}  
                            </option>
                         @endforeach
-
                   
                      </select>
                   </div>

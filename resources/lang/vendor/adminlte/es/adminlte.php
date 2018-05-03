@@ -32,6 +32,10 @@ return [
     'professional_license'               => 'Cédula profesional de médico',
     'medical_society'                    => 'Sociedad de médicos',
 
+    
+
+    'female'                    => 'Mujer',
+    'male'                      => 'Hombre',
 
 
     /* System Error */
