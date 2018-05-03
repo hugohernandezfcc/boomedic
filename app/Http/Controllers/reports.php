@@ -29,6 +29,25 @@ class reports extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+          $grap = DB::table('medical_appointments')
+            ->join('users', 'medical_appointments.user', '=', 'users.id')
+            ->where('user_doctor', '=', Auth::id())
+            ->select('medical_appointments.*', 'users.id as us', 'users.gender', 'users.age')
+            ->get();
+            $grap2 = $grap->unique('us');
+            $total = count($grap2);
+            $fem = 0;
+            $mas = 0;
+                foreach($grap2 as $gr){
+                    if($gr->gender == "female"){
+                        $fem = $fem + 1;      
+                    }
+                   if($gr->gender == "male"){
+                        $mas = $mas + 1;   
+                    }
+                }
+                $porcentf = (100 * $fem) / $total;
+                $porcentm = (100 * $mas) / $total;
         $user = User::find(Auth::id());
 
         return view('reports', [
@@ -37,6 +56,9 @@ class reports extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
+                'fem'      => $porcentf,
+                'mas'      => $porcentm,
+
             ]
         );
     }

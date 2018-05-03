@@ -80,7 +80,9 @@
 <script type="text/javascript">
 	
 $(function() {
-
+  var fem = @php echo $fem; @endphp;
+  var mas = @php echo $mas; @endphp;
+  console.log(fem.toFixed(2) + ', '+ mas.toFixed(2));
   /* Morris.js Charts */
   // Sales chart
 /*Enfermedades*/
@@ -136,7 +138,7 @@ $(function() {
 /*generos*/
 data = {
     datasets: [{
-        data: [40, 60],
+        data: [fem.toFixed(2), mas.toFixed(2)],
         backgroundColor: ['black', 'gray']
     }],
 
