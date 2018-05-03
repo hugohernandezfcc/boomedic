@@ -95,22 +95,21 @@
                         transitionEffect: "slideLeft",
                         cssClass: "wizard",
                         autoFocus: true,
-                        enableFinishButton: true,
                         labels: {
                            pagination: "Paginación",
                            finish:     "Terminar",
-                           next:       "Revisar",
-                           previous:   "Prescribir",
+                           next:       "Terminar",
+                           previous:   "Redactar",
                            loading:    "Cargando"
+                        },
+                        onStepChanged: function (event, currentIndex, priorIndex) { 
+
+                           console.log(currentIndex); // 1
+                           console.log(priorIndex); // 0
                         },
                         onFinished: function (event, currentIndex) { 
                            console.log('terminado...' + event);
                            console.log('terminado...' + currentIndex);
-                        },
-                        onStepChanged: function (event, currentIndex, priorIndex) { 
-                           console.log(event);
-                           console.log(currentIndex);
-                           console.log(priorIndex);
                         }
 
                      });
