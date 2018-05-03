@@ -30,8 +30,8 @@
                      <select class="form-control" id="currentMedicalAppointment" style="width: 100%;">
 
                         @foreach($medAppointments as $medApp)
-                           <option>
-                              {{$medApp->firstname}} {{$medApp->lastname}} <img src="https://lh4.ggpht.com/wKrDLLmmxjfRG2-E-k5L5BUuHWpCOe4lWRF7oVs1Gzdn5e5yvr8fj-ORTlBF43U47yI=w54" /> 
+                           <option value="{{$medApp->user}}">
+                              {{$medApp->firstname}} {{$medApp->lastname}} / {{$medApp->gender}} / {{$medApp->age}}  
                            </option>
                         @endforeach
 
