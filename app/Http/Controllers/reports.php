@@ -34,10 +34,13 @@ class reports extends Controller
             ->where('user_doctor', '=', Auth::id())
             ->select('medical_appointments.*', 'users.id as us', 'users.gender', 'users.age')
             ->get();
-            $grap2 = $grap->unique('us');
-            $total = count($grap2);
-            $fem = 0;
-            $mas = 0;
+                $grap2 = $grap->unique('us');
+                $total = count($grap2);
+                $arrayAge = array();
+                $v = array();
+                $fem = 0;
+                $mas = 0;
+
                 foreach($grap2 as $gr){
                     if($gr->gender == "female"){
                         $fem = $fem + 1;      
@@ -48,6 +51,16 @@ class reports extends Controller
                 }
                 $porcentf = (100 * $fem) / $total;
                 $porcentm = (100 * $mas) / $total;
+
+                        foreach ($grap2 as $gr2) {
+                             array_push($arrayAge, $gr2->age);
+                        }
+                        $val = array_count_values($arrayAge);
+
+                        foreach ($val as $val2) {
+                              array_push($v, $val2);   
+                        }
+
         $user = User::find(Auth::id());
 
         return view('reports', [
@@ -56,9 +69,10 @@ class reports extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'fem'      => $porcentf,
-                'mas'      => $porcentm,
-
+                'fem'       => $porcentf,
+                'mas'       => $porcentm,
+                'arrayA'    => json_encode($arrayAge),
+                'count'     => json_encode($v)
             ]
         );
     }

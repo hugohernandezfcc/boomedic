@@ -82,7 +82,9 @@
 $(function() {
   var fem = @php echo $fem; @endphp;
   var mas = @php echo $mas; @endphp;
-  console.log(fem.toFixed(2) + ', '+ mas.toFixed(2));
+  var age = @php echo $arrayA; @endphp;
+  var count = @php echo $count; @endphp;
+  console.log(count);
   /* Morris.js Charts */
   // Sales chart
 /*Enfermedades*/
@@ -151,16 +153,14 @@ data = {
 /*edades*/
 data2 = {
     datasets: [{
-        data: [40, 60, 15 ,3, 18, 24],
+        data: count,
         backgroundColor: '#656565',
         label: 'Edad paciente'
 
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-        '40', '60', '15' ,'3', '18', '24'
-    ]
+    labels: age
 };
 /*generos*/
 var ctx = document.getElementById('myChart').getContext('2d');
