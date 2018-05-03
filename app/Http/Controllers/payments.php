@@ -247,8 +247,9 @@ class payments extends Controller
                     $medical = new medical_appointments;
                     $medical->user           = Auth::id();
                     $medical->user_doctor    = $request->dr;
-                    $medical->workplace       = $request->idlabor;
-                    $medical->when          = $request->when;
+                    $medical->workplace      = $request->idlabor;
+                    $medical->when           = $request->when;
+                    $medical->status         = 'Registered';
             
            if ($medical->save()) {
             $doc = User::find($request->dr); 
@@ -478,6 +479,7 @@ class payments extends Controller
                                         $medical->user_doctor    = $dr;
                                         $medical->workplace       = $idlabor;
                                         $medical->when          = $when;
+                                        $medical->status         = 'Registered';
                                 
                             if ($medical->save()) {         
 
