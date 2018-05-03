@@ -1612,6 +1612,7 @@ function prevTab(elem) {
                          document.getElementById("onestep").disabled = false;
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
                          var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
+                          var da3 = moment(e.date.toISOString()).format("DD-MM-YYYY HH:mm");
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
                          document.getElementById('when1').value = da2;
                          var fech = Array();
@@ -1620,14 +1621,16 @@ function prevTab(elem) {
                           fech.push(whencites[f].slice(11));  
                           }   
                         }
-                       
+
                         if (e.date.getDay() == 0) {
                           var Dom1 = $(Dom).not(fech).get();                              
                           for(var d = 0; d < Dom1.length; d++){
+                            if(Dom1[d] == moment(Date.now()).format("DD-MM-YYYY")){
                              var option = document.createElement("option");
                               option.text = Dom1[d].slice(0,-3);
                               option.value = Dom1[d].slice(0,-3);
                               x.add(option);
+                            }
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }
