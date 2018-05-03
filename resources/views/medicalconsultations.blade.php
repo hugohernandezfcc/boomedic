@@ -1625,7 +1625,7 @@ function prevTab(elem) {
                         if (e.date.getDay() == 0) {
                           var Dom1 = $(Dom).not(fech).get();                              
                           for(var d = 0; d < Dom1.length; d++){
-                            if(Dom1[d] == moment(Date.now()).format("DD-MM-YYYY")){
+                            if(Dom1[d] > moment(Date.now()).format("DD-MM-YYYY HH:mm")){
                              var option = document.createElement("option");
                               option.text = Dom1[d].slice(0,-3);
                               option.value = Dom1[d].slice(0,-3);
