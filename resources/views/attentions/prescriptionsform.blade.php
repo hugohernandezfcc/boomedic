@@ -72,10 +72,7 @@
                      <section>
                            <p>The next and previous buttons help you to navigate through your content.</p>
                      </section>
-                     <h3>PDF </h3>
-                     <section>
-                           <p>finish</p>
-                     </section>
+                     
                   </div>
 
                   
