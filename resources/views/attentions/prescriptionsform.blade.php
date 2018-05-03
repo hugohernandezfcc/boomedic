@@ -98,11 +98,21 @@
                         enableFinishButton: true,
                         labels: {
                            pagination: "Paginación",
-                           finish:     "Prescribir",
-                           next:       "Imprimir",
+                           finish:     "Terminar",
+                           next:       "Revisar",
                            previous:   "Prescribir",
                            loading:    "Cargando"
+                        },
+                        onFinished: function (event, currentIndex) { 
+
+                           console.log('terminado...');
                         }
+                        onStepChanged: function (event, currentIndex, priorIndex) { 
+                           console.log(event);
+                           console.log(currentIndex);
+                           console.log(priorIndex);
+                        },
+
                      });
                   
 
