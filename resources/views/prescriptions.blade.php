@@ -67,8 +67,6 @@
 		</div>
 		<div class="col-md-9">
 
-
-	</script>
 			<div class="box" >
 			  	<div class="box-header with-border">
 				    <h3 class="box-title">Solicitudes de información</h3>

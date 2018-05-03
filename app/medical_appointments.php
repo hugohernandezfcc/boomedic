@@ -12,9 +12,11 @@ class medical_appointments extends Model
 		'user',
 		'user_doctor',
 		'when',
-		'status',
+		'status', // 'Registered', 'Taked','No completed'
 		'workplace',
-		'appointment'
+		'appointment', 
+		'qualification',
+		'invoiced'
     ];
 
     public function user(){

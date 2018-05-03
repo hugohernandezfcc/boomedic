@@ -31,6 +31,12 @@ class Prescriptions extends Controller
         $user = User::find(Auth::id());
         $agent = new Agent();
 
+        $medAppointments = DB::table('medical_appointments')
+                            ->whereTime('when', '>=', '17:00')
+                            ->get();
+
+        dd($medAppointments);
+
         return view('prescriptions', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
@@ -38,6 +44,7 @@ class Prescriptions extends Controller
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at, 
                 'isMobile'  => $agent->isMobile(),
+                'medAppointments'  => $medAppointments,
             ]
         );
     }
