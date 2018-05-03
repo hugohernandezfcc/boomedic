@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use Jenssegers\Agent\Agent;
+use Carbon\Carbon;
 
 
 class Prescriptions extends Controller
@@ -34,7 +35,7 @@ class Prescriptions extends Controller
         $agent = new Agent();
 
         $medAppointments = DB::table('medical_appointments')
-                            ->whereDate('when', '>=', '17:00')
+                            ->whereDate('when', '>=', Carbon::today())
                             ->get();
 
         dd($medAppointments);
