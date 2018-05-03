@@ -39,7 +39,7 @@ class Prescriptions extends Controller
                             ->where([
                                 ['medical_appointments.when', '<=', Carbon::today()],
                                 ['medical_appointments.when', '>=', Carbon::today()],
-                            ])->select('medical_appointments.*', 'users.firsname', 'users.lastname', 'users.gender', 'users.age' )
+                            ])->select('medical_appointments.*', 'users.firstname', 'users.lastname', 'users.gender', 'users.age' )
                             ->get();
 
         dd($medAppointments);
