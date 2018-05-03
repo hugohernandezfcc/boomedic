@@ -35,7 +35,9 @@ class Prescriptions extends Controller
         $agent = new Agent();
 
         $medAppointments = DB::table('medical_appointments')
-                            ->whereDate('when', '=', Carbon::today())
+                            ->join('users', 'medical_appointments.user', '=', 'users.id')
+                            ->whereDate('medical_appointments.when', '=', Carbon::today())
+                            ->select('medical_appointments.*', 'users.firsname', 'users.lastname', 'users.gender', 'users.age' )
                             ->get();
 
         dd($medAppointments);
