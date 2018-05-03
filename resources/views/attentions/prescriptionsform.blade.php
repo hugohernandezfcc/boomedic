@@ -95,7 +95,7 @@
                         transitionEffect: "slideLeft",
                         cssClass: "wizard",
                         autoFocus: true,
-                        enableFinishButton: true
+                        enableFinishButton: true,
                         labels: {
                            pagination: "Paginación",
                            finish:     "Prescribir",
