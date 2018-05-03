@@ -36,8 +36,10 @@ class Prescriptions extends Controller
 
         $medAppointments = DB::table('medical_appointments')
                             ->join('users', 'medical_appointments.user', '=', 'users.id')
-                            ->whereDate('medical_appointments.when', '=', Carbon::today())
-                            ->select('medical_appointments.*', 'users.firsname', 'users.lastname', 'users.gender', 'users.age' )
+                            ->where([
+                                ['medical_appointments.when', '<=', Carbon::today()],
+                                ['medical_appointments.when', '>=', Carbon::today()],
+                            ])->select('medical_appointments.*', 'users.firsname', 'users.lastname', 'users.gender', 'users.age' )
                             ->get();
 
         dd($medAppointments);
