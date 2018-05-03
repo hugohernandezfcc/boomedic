@@ -236,7 +236,7 @@ class payments extends Controller
         
          if($statusCode[0] == '201'){
              /* Insert_bank*/
-                        $Transaction = new transaction_bank;
+                        $Transaction = new transaction_bank();
                         $Transaction->paymentmethod = $request->id;
                         $Transaction->receiver = $request->receiver;
                         $Transaction->amount = $request->amount;
@@ -244,7 +244,7 @@ class payments extends Controller
                         $Transaction->save();
                     /* Insert Transaction_bank*/    
                     /* Insert Cita */
-                    $medical = new medical_appointments;
+                    $medical = new medical_appointments();
                     $medical->user           = Auth::id();
                     $medical->user_doctor    = $request->dr;
                     $medical->workplace      = $request->idlabor;
@@ -464,7 +464,7 @@ class payments extends Controller
                                 //Add payment method
                                 $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
                                 $idp = $paypalExist->id;
-                                if(empty($paypalExist)){
+                                if(!$paypalExist){
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
                                 $pmethods->typemethod    = 'Paypal';
