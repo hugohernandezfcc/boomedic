@@ -1669,10 +1669,12 @@ function prevTab(elem) {
                        if (e.date.getDay() == 4) {
                           var Jue1 = $(Jue).not(fech).get();
                           for(var d = 0; d < Jue1.length; d++){
+                            if(Jue1[d] > moment(Date.now()).format("DD-MM-YYYY HH:mm")){
                              var option = document.createElement("option");
                               option.text = Jue1[d].slice(0,-3);
                               option.value = Jue1[d].slice(0,-3);
                               x.add(option);
+                            }
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }                                               
