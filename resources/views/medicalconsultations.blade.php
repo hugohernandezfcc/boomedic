@@ -1612,7 +1612,7 @@ function prevTab(elem) {
                          document.getElementById("onestep").disabled = false;
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
                          var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
-                         var da3 = moment(e.date.toISOString()).format("YYYY-MM-DD HH:mm");
+                         var da3 = moment(e.date.toISOString()).format("YYYY-MM-DD");
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
                          document.getElementById('when1').value = da2;
                          var fech = Array();
@@ -1665,7 +1665,7 @@ function prevTab(elem) {
                        if (e.date.getDay() == 4) {
                           var Jue1 = $(Jue).not(fech).get();
                           for(var d = 0; d < Jue1.length; d++){
-                          if(da3 > moment(Date.now()).format('YYYY-MM-DD') + ' ' + Jue1[d].slice(0,-3)){
+                          if(da3  + ' ' + Jue1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                              var option = document.createElement("option");
                               option.text = Jue1[d].slice(0,-3);
                               option.value = Jue1[d].slice(0,-3);
@@ -1677,7 +1677,7 @@ function prevTab(elem) {
                         if (e.date.getDay() == 5) {
                               var Vie1 = $(Vie).not(fech).get();
                           for(var d = 0; d < Vie1.length; d++){
-                            if(da3 > moment(Date.now()).format('YYYY-MM-DD') + ' ' +Vie1[d].slice(0,-3)){
+                            if(da3  + ' ' + Vie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                              var option = document.createElement("option");
                               option.text = Vie1[d].slice(0,-3);
                               option.value = Vie1[d].slice(0,-3);
