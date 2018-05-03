@@ -1612,6 +1612,7 @@ function prevTab(elem) {
                          document.getElementById("onestep").disabled = false;
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
                          var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
+                         var da3 = moment(e.date.toISOString()).format("YYYY-MM-DD HH:mm");
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
                          document.getElementById('when1').value = da2;
                          var fech = Array();
@@ -1664,21 +1665,25 @@ function prevTab(elem) {
                        if (e.date.getDay() == 4) {
                           var Jue1 = $(Jue).not(fech).get();
                           for(var d = 0; d < Jue1.length; d++){
+                          if(da3 > moment(Date.now()).format('YYYY-MM-DD') + ' ' + Jue1[d].slice(0,-3)){
                              var option = document.createElement("option");
                               option.text = Jue1[d].slice(0,-3);
                               option.value = Jue1[d].slice(0,-3);
                               x.add(option);
+                            }
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }                                               
                         if (e.date.getDay() == 5) {
                               var Vie1 = $(Vie).not(fech).get();
                           for(var d = 0; d < Vie1.length; d++){
+                            if(da3 > moment(Date.now()).format('YYYY-MM-DD') + ' ' +Vie1[d].slice(0,-3)){
                              var option = document.createElement("option");
                               option.text = Vie1[d].slice(0,-3);
                               option.value = Vie1[d].slice(0,-3);
                               x.add(option);
                           }
+                        }
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 6) {
