@@ -28,13 +28,19 @@
                <div class="col-md-6">
                   <div style="padding: 3px;">
                      <select class="form-control" id="currentMedicalAppointment" style="width: 100%;">
+                        @if(count($medAppointments) == 0)
+                           
+                           <option value="notUserSelected"> -- No hay citas para prescribit -- </option>
 
-                        @foreach($medAppointments as $medApp)
-                           <option value="{{$medApp->user}}">
-                              {{$medApp->firstname}} {{$medApp->lastname}} / {{ trans('adminlte::adminlte.' . $medApp->gender) }}  / {{$medApp->age}}  
-                           </option>
-                        @endforeach
-                  
+                        @else
+
+                           @foreach($medAppointments as $medApp)
+                              <option value="{{$medApp->user}}">
+                                 {{$medApp->firstname}} {{$medApp->lastname}} / {{ trans('adminlte::adminlte.' . $medApp->gender) }}  / {{$medApp->age}} años 
+                              </option>
+                           @endforeach
+
+                        @endif
                      </select>
                   </div>
                </div>
@@ -56,7 +62,7 @@
                            <!-- The validation is to change the cols number in textarea -->
                            <div class="form-group">
                               @if($isMobile)
-                                 <textarea class="form-control" id="receta" rows="10" cols="35" placeholder="Describe la prescripción médica ..."></textarea>
+                                 <textarea class="form-control" id="receta" rows="10" cols="33" placeholder="Describe la prescripción médica ..."></textarea>
                               @else
                                  <textarea class="form-control" id="receta" rows="10" cols="30" placeholder="Describe la prescripción médica ..."></textarea>
                               @endif
@@ -65,6 +71,10 @@
                      <h3>PDF </h3>
                      <section>
                            <p>The next and previous buttons help you to navigate through your content.</p>
+                     </section>
+                     <h3>PDF </h3>
+                     <section>
+                           <p>finish</p>
                      </section>
                   </div>
 
@@ -85,6 +95,7 @@
                         transitionEffect: "slideLeft",
                         cssClass: "wizard",
                         autoFocus: true,
+                        enableFinishButton: true
                         labels: {
                            pagination: "Paginación",
                            finish:     "Prescribir",
