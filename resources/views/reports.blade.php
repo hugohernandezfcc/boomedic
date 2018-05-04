@@ -102,11 +102,7 @@
 <script type="text/javascript">
 	
 $(function() {
-  if("@php echo $agent->isMobile(); @endphp"){
-    $('#myChart3').height('700');
-  }else{
-     $('#myChart3').height('200');
-  }
+
   var fem = @php echo $fem; @endphp;
   var mas = @php echo $mas; @endphp;
   var age = @php echo $arrayA; @endphp;
