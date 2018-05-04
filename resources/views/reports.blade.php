@@ -224,7 +224,7 @@ var myLineChart = new Chart(cty, {
         borderWidth: 2,
         yAxisID: 'y-axis-1'
       }, { 
-        data: [4500,350,411,809,635],
+        data: [2500,350,411,809,635],
         label: "Hepatitis",
         borderColor: "#8e5ea2",
         backgroundColor: "#8e5ea2",
@@ -233,7 +233,7 @@ var myLineChart = new Chart(cty, {
         borderWidth: 2,
         yAxisID: 'y-axis-1'
       }, { 
-        data: [168,1700,4965,190,5000],
+        data: [168,1700,2965,190,2000],
         label: "Dengue",
         borderColor: "white",
         backgroundColor: "white",
