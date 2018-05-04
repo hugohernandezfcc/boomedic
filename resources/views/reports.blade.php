@@ -75,6 +75,26 @@
             <!-- /.box-footer -->
           </div>
         </div>
+        <div class="col-md-12">
+        <div class="box box-solid bg-teal-gradient">
+            <div class="box-header ui-sortable-handle" style="cursor: move;">
+              <i class="fa fa-th"></i>
+
+              <h3 class="box-title">Polígono de Enfermedades</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body border-radius-none">
+              <canvas id="myChart3" class="chartjs" style="height: 150px;"></canvas>
+            </div>
+            <!-- /.box-body -->
+            
+            <!-- /.box-footer -->
+          </div>
+        </div>
           </div>
 
 <script type="text/javascript">
@@ -162,7 +182,7 @@ data2 = {
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: age
 };
-/*generos*/
+ 
 var ctx = document.getElementById('myChart').getContext('2d');
 
 var myPieChart = new Chart(ctx,{
@@ -180,6 +200,54 @@ var ctz = document.getElementById('myChart2').getContext('2d');
 var myBarChart = new Chart(ctz, {
     type: 'bar',
     data: data2,
+});
+
+var cty = document.getElementById('myChart3').getContext('2d');
+var myLineChart = new Chart(cty, {
+    type: 'line',
+  data: {
+    labels: [1500,1600,1700,1750,1800,1850,1900,1950],
+    datasets: [{ 
+        data: [86,114,106,106,107,111,133,221],
+        label: "Africa",
+        borderColor: "#333",
+        backgroundColor: "#333",
+        pointBorderWidth: 4,
+        fill: false
+      }, { 
+        data: [4500,350,411,809,635,809,947,1402],
+        label: "Asia",
+        borderColor: "#8e5ea2",
+        backgroundColor: "#8e5ea2",
+        pointBorderWidth: 4,
+        fill: false
+      }, { 
+        data: [168,1700,4965,190,203,276,408,547],
+        label: "Europe",
+        borderColor: "white",
+        backgroundColor: "white",
+        pointBorderWidth: 4,
+        fill: false
+      }, { 
+        data: [40,20,10,16,24,38,74,167],
+        label: "Latin America",
+        borderColor: "#FF9EDA",
+        backgroundColor: "#FF9EDA",
+        pointBorderWidth: 4,
+        fill: false
+      }, { 
+        data: [6,3,2,2,7,26,82,172],
+        label: "North America",
+        borderColor: "#c45850",
+        backgroundColor: "#c45850",
+        pointBorderWidth: 4,
+        fill: false
+      }
+    ]
+  },
+  options: {
+    responsive: true
+  }
 });
 
 

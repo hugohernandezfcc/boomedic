@@ -51,14 +51,14 @@ class reports extends Controller
                 }
                 $porcentf = (100 * $fem) / $total;
                 $porcentm = (100 * $mas) / $total;
-
+                        //array edades
                         foreach ($grap2 as $gr2) {
                             if($gr2->age){
                              array_push($arrayAge, $gr2->age);
                             }
                         }
+                        //Calculando total por edades array
                         $val = array_count_values($arrayAge);
-
                         foreach ($val as $val2) {
                               array_push($v, $val2);   
                         }
