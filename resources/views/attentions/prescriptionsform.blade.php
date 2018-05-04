@@ -83,6 +83,10 @@
                var words = [];
                var medicinesSelected = [];
 
+               function byId(argument) {
+                  return document.getElementById(argument);
+               }
+
               $(document).ready(function(){
                   jQuery.noConflict(false);
 
@@ -95,7 +99,7 @@
                         labels: {
                            pagination: "Paginación",
                            finish:     "Terminar",
-                           next:       "Revisar",
+                           next:       "Vista previa",
                            previous:   "Redactar",
                            loading:    "Cargando"
                         },
@@ -105,9 +109,10 @@
                            if(currentIndex){
                               document.getElementById('linkfinish').href = "#finish";
                               document.getElementById('optionlinkfinish').removeAttribute("class");
-                           }else
+                           }else{
                               document.getElementById('linkfinish').href = "return false;";
-                           
+                              document.getElementById('optionlinkfinish').className = "disabled";
+                           }
 
                            console.log(currentIndex); // 1
                            console.log(priorIndex); // 0
