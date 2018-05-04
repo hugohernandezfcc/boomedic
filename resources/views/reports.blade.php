@@ -88,7 +88,7 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
-              <canvas id="myChart3" width="400" height="100"></canvas>
+              <canvas id="myChart3" width="600" height="250"></canvas>
             </div>
             <!-- /.box-body -->
             
@@ -206,48 +206,48 @@ var cty = document.getElementById('myChart3').getContext('2d');
 var myLineChart = new Chart(cty, {
     type: 'line',
   data: {
-    labels: [1500,1600,1700,1750,1800,1850,1900,1950],
+   labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
     datasets: [{ 
-        data: [860,114,1060,106,1070,111,1330,221],
+        data: [860,114,1060,106,1070],
         label: "Africa",
-        borderColor: "#333",
-        backgroundColor: "#333",
+        borderColor: "black",
+        backgroundColor: "black",
         pointBorderWidth: 4,
-        fill: false
+        fill: false,
+        yAxisID: 'y-axis-1'
       }, { 
-        data: [4500,350,411,809,635,809,947,1402],
+        data: [4500,350,411,809,635],
         label: "Asia",
         borderColor: "#8e5ea2",
         backgroundColor: "#8e5ea2",
         pointBorderWidth: 4,
-        fill: false
+        fill: false,
+        yAxisID: 'y-axis-1'
       }, { 
-        data: [168,1700,4965,190,203,276,408,5000],
+        data: [168,1700,4965,190,5000],
         label: "Europe",
         borderColor: "white",
         backgroundColor: "white",
         pointBorderWidth: 4,
-        fill: false
+        fill: false,
+        yAxisID: 'y-axis-1'
       }, { 
-        data: [40,20,10,16,24,38,74,167],
+        data: [40,20,38,74,167],
         label: "Latin America",
         borderColor: "#FF9EDA",
         backgroundColor: "#FF9EDA",
         pointBorderWidth: 4,
-        fill: false
-      }, { 
-        data: [6,3,2,200,700,260,82,172],
-        label: "North America",
-        borderColor: "#c45850",
-        backgroundColor: "#c45850",
-        pointBorderWidth: 4,
-        fill: false
-      }
+        fill: false,
+        yAxisID: 'y-axis-2'
+      },
+
     ]
   },
   options: {
     responsive: true,
      scales: {
+
+
     xAxes: [{
       ticks:{
         fontColor:"white",
@@ -260,6 +260,23 @@ var myLineChart = new Chart(cty, {
         }
     }],
     yAxes: [{
+      type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+              display: true,
+              position: 'left',
+              id: 'y-axis-1',
+                ticks:{
+              fontColor:"white",
+              fontSize: 10,
+              fontStyle: "normal",
+               beginAtZero: true
+            },
+             gridLines:{
+                display: false
+            }}, {
+              type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+              display: true,
+              position: 'right',
+              id: 'y-axis-2',
       ticks:{
         fontColor:"white",
         fontSize: 10,
