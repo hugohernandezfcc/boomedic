@@ -117,6 +117,9 @@
 
                   var getLinks = document.getElementsByTagName('a');
                   for (var i = getLinks.length - 1; i >= 0; i--) {
+
+                     console.log(getLinks[i].href);
+
                      if(getLinks[i].href == "#finish"){
                         getLinks[i].setAttribute('id', "linkfinish");
                         console.log('entre');
