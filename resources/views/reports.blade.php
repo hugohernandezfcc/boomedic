@@ -88,7 +88,9 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
-              <canvas id="myChart3" width="400" height="100"></canvas>
+              <div class="chart">
+              <canvas id="myChart3" height="200"></canvas>
+            </div>
             </div>
             <!-- /.box-body -->
             
@@ -100,6 +102,11 @@
 <script type="text/javascript">
 	
 $(function() {
+  if("@php echo $agent->isMobile(); @endphp"){
+    $('#myChart3').height(700);
+  }else{
+     $('#myChart3').height(200);
+  }
   var fem = @php echo $fem; @endphp;
   var mas = @php echo $mas; @endphp;
   var age = @php echo $arrayA; @endphp;
@@ -209,35 +216,39 @@ var myLineChart = new Chart(cty, {
    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
     datasets: [{ 
         data: [860,114,1060,106,1070],
-        label: "Africa",
+        label: "Cancer",
         borderColor: "black",
         backgroundColor: "black",
-        pointBorderWidth: 4,
+        pointBorderWidth: 2,
         fill: false,
+        borderWidth: 2,
         yAxisID: 'y-axis-1'
       }, { 
         data: [4500,350,411,809,635],
-        label: "Asia",
+        label: "Hepatitis",
         borderColor: "#8e5ea2",
         backgroundColor: "#8e5ea2",
-        pointBorderWidth: 4,
+        pointBorderWidth: 2,
         fill: false,
+        borderWidth: 2,
         yAxisID: 'y-axis-1'
       }, { 
         data: [168,1700,4965,190,5000],
-        label: "Europe",
+        label: "Dengue",
         borderColor: "white",
         backgroundColor: "white",
-        pointBorderWidth: 4,
+        pointBorderWidth: 2,
         fill: false,
+        borderWidth: 2,
         yAxisID: 'y-axis-1'
       }, { 
         data: [40,20,38,74,167],
-        label: "Latin America",
+        label: "Otras",
         borderColor: "#FF9EDA",
         backgroundColor: "#FF9EDA",
-        pointBorderWidth: 4,
+        pointBorderWidth: 2,
         fill: false,
+        borderWidth: 2,
         yAxisID: 'y-axis-2'
       },
 
