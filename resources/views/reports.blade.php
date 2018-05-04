@@ -75,7 +75,7 @@
             <!-- /.box-footer -->
           </div>
         </div>
-        <div class="col-md-12">
+        <!--<div class="col-md-12">
         <div class="box box-solid bg-teal-gradient">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
@@ -92,11 +92,9 @@
               <canvas id="myChart3" height="200" style="height: 250px"></canvas>
             </div>
             </div>
-            <!-- /.box-body -->
-            
-            <!-- /.box-footer -->
+
           </div>
-        </div>
+        </div>-->
           </div>
 
 <script type="text/javascript">
