@@ -88,7 +88,7 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
-              <canvas id="myChart3" class="chartjs" style="height: 250px !important;"></canvas>
+              <canvas id="myChart3" width="400" height="100"></canvas>
             </div>
             <!-- /.box-body -->
             
@@ -208,7 +208,7 @@ var myLineChart = new Chart(cty, {
   data: {
     labels: [1500,1600,1700,1750,1800,1850,1900,1950],
     datasets: [{ 
-        data: [86,114,106,106,107,111,133,221],
+        data: [860,114,1060,106,1070,111,1330,221],
         label: "Africa",
         borderColor: "#333",
         backgroundColor: "#333",
@@ -236,7 +236,7 @@ var myLineChart = new Chart(cty, {
         pointBorderWidth: 4,
         fill: false
       }, { 
-        data: [6,3,2,2,7,26,82,172],
+        data: [6,3,2,200,700,260,82,172],
         label: "North America",
         borderColor: "#c45850",
         backgroundColor: "#c45850",
@@ -252,7 +252,8 @@ var myLineChart = new Chart(cty, {
       ticks:{
         fontColor:"white",
         fontSize: 10,
-        fontStyle: "normal"
+        fontStyle: "normal",
+         beginAtZero: true
       },
        gridLines:{ 
           display: false
@@ -262,7 +263,8 @@ var myLineChart = new Chart(cty, {
       ticks:{
         fontColor:"white",
         fontSize: 10,
-        fontStyle: "normal"
+        fontStyle: "normal",
+         beginAtZero: true
       },
        gridLines:{
           display: false
