@@ -120,7 +120,7 @@
 
                      console.log(getLinks[i].href);
 
-                     if(getLinks[i].href == "#finish"){
+                     if(getLinks[i].href == "{{ url('prescriptions#finish')}}"){
                         getLinks[i].setAttribute('id', "linkfinish");
                         console.log('entre');
                      }
