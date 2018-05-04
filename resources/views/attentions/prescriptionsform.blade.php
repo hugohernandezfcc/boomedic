@@ -103,8 +103,11 @@
                         onStepChanged: function (event, currentIndex, priorIndex) { 
 
                            if(currentIndex){
-                              document.getElementById('linkfinish').href = "#finish"
-                           }
+                              document.getElementById('linkfinish').href = "#finish";
+                              document.getElementById('optionlinkfinish').removeAttribute("class");
+                           }else
+                              document.getElementById('linkfinish').href = "return false;";
+                           
 
                            console.log(currentIndex); // 1
                            console.log(priorIndex); // 0
@@ -121,7 +124,7 @@
 
                   var getLinks = document.getElementsByTagName('a');
                   
-                  
+
                   for (var i = getLinks.length - 1; i >= 0; i--) 
                      if(getLinks[i].href == "{{ url('prescriptions#finish')}}")
                         getLinks[i].setAttribute('id', "linkfinish");
