@@ -102,6 +102,10 @@
                         showFinishButtonAlways: true,
                         onStepChanged: function (event, currentIndex, priorIndex) { 
 
+                           if(currentIndex){
+                              document.getElementById('linkfinish').href = "#finish"
+                           }
+
                            console.log(currentIndex); // 1
                            console.log(priorIndex); // 0
                         },
@@ -116,15 +120,13 @@
                   $('#currentMedicalAppointment').select2({ width: "100%" });
 
                   var getLinks = document.getElementsByTagName('a');
-                  for (var i = getLinks.length - 1; i >= 0; i--) {
-
-                     console.log(getLinks[i].href);
-
-                     if(getLinks[i].href == "{{ url('prescriptions#finish')}}"){
+                  
+                  
+                  for (var i = getLinks.length - 1; i >= 0; i--) 
+                     if(getLinks[i].href == "{{ url('prescriptions#finish')}}")
                         getLinks[i].setAttribute('id', "linkfinish");
-                        console.log('entre');
-                     }
-                  }
+                     
+                  
 
                   document.getElementById('linkfinish').parentNode.setAttribute('id', "optionlinkfinish");
                   document.getElementById('optionlinkfinish').className = "disabled";
