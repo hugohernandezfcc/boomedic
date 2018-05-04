@@ -128,7 +128,7 @@
 
                   document.getElementById('linkfinish').parentNode.setAttribute('id', "optionlinkfinish");
                   document.getElementById('optionlinkfinish').className = "disabled";
-                  document.getElementById('optionlinkfinish').href = "return false;";
+                  document.getElementById('linkfinish').href = "return false;";
                   
 
                });
