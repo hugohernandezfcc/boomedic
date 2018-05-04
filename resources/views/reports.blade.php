@@ -89,7 +89,7 @@
             </div>
             <div class="box-body border-radius-none">
               <div class="chart">
-              <canvas id="myChart3" height="200"></canvas>
+              <canvas id="myChart3" height="200" style="height: 250px"></canvas>
             </div>
             </div>
             <!-- /.box-body -->
