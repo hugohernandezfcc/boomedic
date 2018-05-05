@@ -189,8 +189,8 @@
 
                                  console.log(word);
                                  console.log(medicinesToSelect[word]);
-                                 
-                                 medicinesSelected.push(medicinesToSelect[word].medicine);
+
+                                 medicinesSelected.push(medicinesToSelect[word]);
                                  console.log('Words selected: ');
                                  console.log(medicinesSelected);
 
