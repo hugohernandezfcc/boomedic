@@ -185,6 +185,11 @@
                               }, replace: function (word) {
 
                                  word = word.toLowerCase();
+
+
+                                 console.log(word);
+                                 console.log(medicinesToSelect[word]);
+                                 
                                  medicinesSelected.push(medicinesToSelect[word].medicine);
                                  console.log('Words selected: ');
                                  console.log(medicinesSelected);
