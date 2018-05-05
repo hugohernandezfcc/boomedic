@@ -156,9 +156,9 @@
                 */
                function controlledActionsOnTheWrite(textBody) {
 
-                  if (textBody.length < lengthTextBody) {
+                  if (textBody.length <= lengthTextBody) {
                      console.log('borrando...');
-                  }else if(textBody.length > lengthTextBody){
+                  }else if(textBody.length >= lengthTextBody){
                      console.log('escribiendo...');
                   }
                   
