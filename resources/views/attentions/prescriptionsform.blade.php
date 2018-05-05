@@ -98,9 +98,9 @@
                         autoFocus: true,
                         labels: {
                            pagination: "Paginación",
-                           finish:     "Terminar",
+                           finish:     "Enviar",
                            next:       "Revisar",
-                           previous:   "Redactar",
+                           previous:   "Editar",
                            loading:    "Cargando"
                         },
                         showFinishButtonAlways: true,
