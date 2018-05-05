@@ -157,8 +157,10 @@
                function controlledActionsOnTheWrite(textBody) {
 
                   if (textBody.length <= lengthTextBody) {
+
                      console.log('borrando...');
                   }else if(textBody.length >= lengthTextBody){
+
                      console.log('escribiendo...');
                   }
                   
@@ -208,9 +210,18 @@
                                  console.log(word);
                                  console.log(medicinesToSelect[word]);
 
-                                 medicinesSelected.push(medicinesToSelect[word]);
+                                 
+                                 var record = {
+                                    "id"     : medicinesToSelect[word].split("---")[0].split(':'),
+                                    "name"   : medicinesToSelect[word].split("---")[1].split(':')
+                                 };
+                                 medicinesSelected.push(record);
+
+                                 //name:adiamyl plus 4 / 1000 mg caja x 20 tabs---id:25
                                  console.log('Words selected: ');
                                  console.log(medicinesSelected);
+
+
 
 
                                  return word + ' ';
