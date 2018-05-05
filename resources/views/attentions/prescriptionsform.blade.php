@@ -173,7 +173,7 @@
                                  callback(
                                     $.map(words, function (word) {
                                        byId('textcomplete-dropdown-1').style.zIndex = "1100";
-                                       (word.indexOf(term) === 0) ? return word; : return null;
+                                       return word.indexOf(term) === 0 ?  word : null;
                                     }
                                  ));
                               }, replace: function (word) {
