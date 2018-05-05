@@ -158,6 +158,15 @@
 
                   if (textBody.length <= lengthTextBody) {
 
+                     $.map(medicinesSelected, function (medicine) {
+                        
+                        return word.indexOf(term) === 0 ?  word : null;
+                     })
+
+                     // 1.- Agregar si existe la sustancia en el catalogo pero no fue seleccionada y se encuentra escrita en el textarea.
+                     // 2.- Validar que si esta seleccionada no agregue más de una versión al array medicinesSelected.
+                     // 3.- en caso de que se encuentre en el array y no en el textarea eliminarla del array medicinesSelected.
+
                      console.log('borrando...');
                   }else if(textBody.length >= lengthTextBody){
 
@@ -205,12 +214,6 @@
                               }, replace: function (word) {
 
                                  word = word.toLowerCase();
-
-
-                                 console.log(word);
-                                 console.log(medicinesToSelect[word]);
-
-                                 
                                  var record = {
                                     "id"     : medicinesToSelect[word].split("---")[0].split(':')[1],
                                     "name"   : medicinesToSelect[word].split("---")[1].split(':')[1]
