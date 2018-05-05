@@ -62,9 +62,9 @@
                            <!-- The validation is to change the cols number in textarea -->
                            <div class="form-group">
                               @if($isMobile)
-                                 <textarea class="form-control" id="receta" rows="10" cols="32" placeholder="Describe la prescripción médica ..."></textarea>
+                                 <textarea class="form-control" id="receta" rows="10" cols="32" onchange="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @else
-                                 <textarea class="form-control" id="receta" rows="10" cols="30" placeholder="Describe la prescripción médica ..."></textarea>
+                                 <textarea class="form-control" id="receta" rows="10" cols="30" onchange="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @endif
                            </div>
                      </section>
@@ -83,6 +83,7 @@
                var words = [];
                var medicinesToSelect = [];
                var medicinesSelected = [];
+               var lengthTextBody = 0;
 
 
                function byId(argument) {
@@ -148,6 +149,23 @@
 
                });
               
+
+               /**
+                * Función responsable de identificar los movimientos de escritura sobre la receta.
+                * @param  string textBody [valor actual del textarea]
+                */
+               function controlledActionsOnTheWrite(textBody) {
+
+                  if (textBody.length < lengthTextBody) {
+                     console.log('borrando...');
+                  }else if(textBody.length > lengthTextBody){
+                     console.log('escribiendo...');
+                  }
+                  
+                  lengthTextBody = textBody.length;
+               }
+
+
                function loadMedicines() {
                   if (byId('load-medicines').value == "") {
 
