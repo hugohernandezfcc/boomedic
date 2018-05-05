@@ -62,9 +62,9 @@
                            <!-- The validation is to change the cols number in textarea -->
                            <div class="form-group">
                               @if($isMobile)
-                                 <textarea class="form-control" id="receta" rows="10" cols="32" onchange="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
+                                 <textarea class="form-control" id="receta" rows="10" cols="32" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @else
-                                 <textarea class="form-control" id="receta" rows="10" cols="30" onchange="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
+                                 <textarea class="form-control" id="receta" rows="10" cols="30" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @endif
                            </div>
                      </section>
