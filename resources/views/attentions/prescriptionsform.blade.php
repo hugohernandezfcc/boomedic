@@ -30,7 +30,7 @@
                      <select class="form-control" id="currentMedicalAppointment" style="width: 100%;">
                         @if(count($medAppointments) == 0)
                            
-                           <option value="notUserSelected"> -- No hay citas para prescribit -- </option>
+                           <option value="notUserSelected"> -- No hay citas para prescribir -- </option>
 
                         @else
 
@@ -156,6 +156,8 @@
                            medicinesSelected = data;
                            
                            $.map(data, function (word) {
+                              words.push(word.name.charAt(0).toUpperCase() + word.name.slice(1));
+                              words.push(word.name.toUpperCase());
                               words.push(word.name);
                            });
 
@@ -177,7 +179,12 @@
                                     }
                                  ));
                               }, replace: function (word) {
-                                 console.log('word selected: '+ word);
+
+                                 console.log('Word selected: '+ word);
+
+
+                                 
+
                                  return word + ' ';
                               }
                            }]);
