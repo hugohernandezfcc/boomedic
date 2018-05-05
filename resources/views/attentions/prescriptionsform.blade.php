@@ -81,11 +81,14 @@
             <script type="text/javascript">
 
                var words = [];
+               var medicinesToSelect = [];
                var medicinesSelected = [];
+
 
                function byId(argument) {
                   return document.getElementById(argument);
                }
+
 
               $(document).ready(function(){
                   jQuery.noConflict(false);
@@ -153,7 +156,7 @@
                         url: "{{ url('prescriptions/medicinescatalogue')}}",
                         success: function( data ){
                            console.log('Submission was success.');
-                           medicinesSelected = data;
+                           medicinesToSelect = data;
                            
                            $.map(data, function (word) {
                               words.push(word.name.charAt(0).toUpperCase() + word.name.slice(1));
@@ -161,11 +164,11 @@
                               words.push(word.name);
                            });
 
-                           $.map(medicinesSelected, function (word) { 
-                              medicinesSelected[word.name] = word.medicine; 
+                           $.map(medicinesToSelect, function (word) { 
+                              medicinesToSelect[word.name] = word.medicine; 
                            });
 
-                           console.log(medicinesSelected);
+                           console.log(medicinesToSelect);
                            byId('load-medicines').value = true;
 
                            $('#receta').textcomplete([{
@@ -178,12 +181,14 @@
                                        return word.indexOf(term) === 0 ?  word : null;
                                     }
                                  ));
+
                               }, replace: function (word) {
 
-                                 console.log('Word selected: '+ word);
+                                 word = word.toLowerCase();
+                                 medicinesSelected.push(medicinesToSelect[word].medicine);
+                                 console.log('Words selected: ');
+                                 console.log(medicinesSelected);
 
-
-                                 
 
                                  return word + ' ';
                               }
