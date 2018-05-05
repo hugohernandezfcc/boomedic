@@ -212,8 +212,8 @@
 
                                  
                                  var record = {
-                                    "id"     : medicinesToSelect[word].split("---")[0].split(':'),
-                                    "name"   : medicinesToSelect[word].split("---")[1].split(':')
+                                    "id"     : medicinesToSelect[word].split("---")[0].split(':')[1],
+                                    "name"   : medicinesToSelect[word].split("---")[1].split(':')[1]
                                  };
                                  medicinesSelected.push(record);
 
