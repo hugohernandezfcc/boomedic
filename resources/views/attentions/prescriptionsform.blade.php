@@ -62,7 +62,7 @@
                            <!-- The validation is to change the cols number in textarea -->
                            <div class="form-group">
                               @if($isMobile)
-                                 <textarea class="form-control" id="receta" rows="10" cols="33" placeholder="Describe la prescripción médica ..."></textarea>
+                                 <textarea class="form-control" id="receta" rows="10" cols="32" placeholder="Describe la prescripción médica ..."></textarea>
                               @else
                                  <textarea class="form-control" id="receta" rows="10" cols="30" placeholder="Describe la prescripción médica ..."></textarea>
                               @endif
@@ -99,7 +99,7 @@
                         labels: {
                            pagination: "Paginación",
                            finish:     "Terminar",
-                           next:       "Vista previa",
+                           next:       "Revisar",
                            previous:   "Redactar",
                            loading:    "Cargando"
                         },
@@ -107,12 +107,14 @@
                         onStepChanged: function (event, currentIndex, priorIndex) { 
 
                            if(currentIndex){
-                              document.getElementById('linkfinish').href = "#finish";
-                              document.getElementById('optionlinkfinish').removeAttribute("class");
+                              byId('linkfinish').href = "#finish";
+                              byId('optionlinkfinish').removeAttribute("class");
                            }else{
-                              document.getElementById('linkfinish').href = "return false;";
-                              document.getElementById('optionlinkfinish').className = "disabled";
+                              byId('linkfinish').href = "return false;";
+                              byId('optionlinkfinish').className = "disabled";
                            }
+
+
 
                            console.log(currentIndex); // 1
                            console.log(priorIndex); // 0
@@ -136,15 +138,15 @@
                      
                   
 
-                  document.getElementById('linkfinish').parentNode.setAttribute('id', "optionlinkfinish");
-                  document.getElementById('optionlinkfinish').className = "disabled";
-                  document.getElementById('linkfinish').href = "return false;";
+                  byId('linkfinish').parentNode.setAttribute('id', "optionlinkfinish");
+                  byId('optionlinkfinish').className = "disabled";
+                  byId('linkfinish').href = "return false;";
                   
 
                });
               
                function loadMedicines() {
-                  if (document.getElementById('load-medicines').value == "") {
+                  if (byId('load-medicines').value == "") {
 
                      $.ajax({
                         method: "get",
@@ -162,7 +164,7 @@
                            });
 
                            console.log(medicinesSelected);
-                           document.getElementById('load-medicines').value = true;
+                           byId('load-medicines').value = true;
 
                            $('#receta').textcomplete([{
                               match: /(^|\b)(\w{2,})$/,
@@ -170,12 +172,8 @@
                                  
                                  callback(
                                     $.map(words, function (word) {
-                                       document.getElementById('textcomplete-dropdown-1').style.zIndex = "1100";
-
-                                       if(word.indexOf(term) === 0){
-                                          return word;
-                                       }else
-                                          return null;
+                                       byId('textcomplete-dropdown-1').style.zIndex = "1100";
+                                       (word.indexOf(term) === 0) ? return word; : return null;
                                     }
                                  ));
                               }, replace: function (word) {
@@ -185,6 +183,8 @@
                            }]);
 
                         }, error: function( data ){
+
+
                            console.log('Submission was error.');
                            console.log(data);
 
@@ -197,16 +197,7 @@
                }               
             </script>
          </div>
-         <!-- <div class="modal-footer">
-            <div class="row">
-               <div class="col-md-6">
-               </div>
-               <div class="col-md-6">
-                  <a href="#next" role="menuitem" ></a>
-               </div>
-            </div>
-            
-         </div> -->
+
       </div>
    </div>
 </div>
