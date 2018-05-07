@@ -44,6 +44,7 @@ Route::get('logoutback', 'HomeController@logoutback')->name('logoutback');
 
 Route::post('/medicalconsultations/recent', 'HomeController@recent')->name('medicalconsultations/recent');
 Route::get('/medicalconsultations/showrecent', 'HomeController@showrecent')->name('medicalconsultations/showrecent');
+Route::get('HomeController/notify', 'HomeController@notify')->name('HomeController/notify');
 Route::get('/appointments', 'HomeController@appointments')->name('/appointments');
 
 Route::get('/homemedical', function () {

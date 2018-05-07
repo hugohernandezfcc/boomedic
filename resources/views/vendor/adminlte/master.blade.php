@@ -404,6 +404,9 @@ span.round-tab:hover {
 
 
 <script type="text/javascript">
+
+
+
     var par = "@php echo session()->get('parental'); @endphp";
       if(!par){
           $("body").removeClass("skin-black-light");
@@ -419,6 +422,25 @@ span.round-tab:hover {
         $("#au").css("color", "white");
       }
     $(function () {
+         $.ajax(
+              {
+                type: "GET",    
+                url: "{{ url('HomeController/notify') }}", 
+                success: function(result){
+                  for (var i =0; i < result.length; i++) {
+                    if(i == 1){
+                    $('#countNot').html('Tiene '+ result.length + ' notificación');
+                     $('#notN').html('1');
+                    }else{
+                     $('#notN').html(result.length);
+                    $('#countNot').html('Tiene '+ result.length + ' notificaciones');
+                    }
+                            $('#notify').append('<li><a href="#"><i class="fa fa-warning text-yellow"></i>'+ result[i]['id'] +'</a></li>');
+                        }
+                        
+                    }
+              });
+
         $.fn.datepicker.dates['es'] = {
         days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],

@@ -194,7 +194,7 @@ var myBarChart = new Chart(ctz, {
     data: data2,
 });
 
-var cty = document.getElementById('myChart3').getContext('2d');
+/*var cty = document.getElementById('myChart3').getContext('2d');
 var myLineChart = new Chart(cty, {
     type: 'line',
   data: {
@@ -285,7 +285,7 @@ var myLineChart = new Chart(cty, {
     }]
   }
 }
-});
+});*/
 
 
 });

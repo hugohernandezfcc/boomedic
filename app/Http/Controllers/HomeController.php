@@ -257,6 +257,14 @@ class HomeController extends Controller
     }
 
 
+    //Function notify ajax master blade
+        public function notify()
+    {
+         $privacy = DB::table('privacy_statement')->get();
+        return response()->json($privacy);
+    }
+
+
      /**
      * Method responsable of list of recent
      */
@@ -312,6 +320,7 @@ class HomeController extends Controller
                         return redirect('/login');
                 }
             }
+
         public function verify($code)
            {
              $user = User::where('confirmation_code', $code)->first();
