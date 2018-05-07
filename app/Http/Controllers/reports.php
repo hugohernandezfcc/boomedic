@@ -44,7 +44,9 @@ class reports extends Controller
             ->get();
 
                  //Graphic poligone 
+
                     $arrayPol = array();
+                    $arraydis = array();
                         foreach($polig as $poli){
                          if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->format('Y-m')){
                            array_push($arrayPol, ['y' => Carbon::parse($poli->created_at)->format('Y-m'), $poli->name => '1']);      
@@ -54,10 +56,11 @@ class reports extends Controller
                            }
                         if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(2)->format('Y-m')){
                            array_push($arrayPol, ['y' => Carbon::parse($poli->created_at)->format('Y-m'), $poli->name => '1']);      
-                           }    
+                           }
+                           array_push($arraydis,  $poli->name);
                         }
 
-
+                        
                  //Graphic bar and donuts (ages, genders)   
                     $grap2 = $grap->unique('us');
                     $total = count($grap2);
@@ -102,7 +105,7 @@ class reports extends Controller
                 'mas'       => $porcentm,
                 'arrayA'    => json_encode($arrayAge),
                 'count'     => json_encode($v),
-                'report'    => json_encode($arrayPol)
+                'report'    => json_encode($arraydis)
             ]
         );
     }
