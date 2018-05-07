@@ -436,7 +436,7 @@ span.round-tab:hover {
                      $('#notN').html(result.length);
                     $('#countNot').html('Tiene '+ result.length + ' notificaciones');
                     }
-                            $('#notify').append('<li><a href="#"><i class="fa fa-warning text-yellow"></i>'+ result[i]['id'] +'</a></li>');
+                            $('#notify').append('<li><a href="#"><i class="fa fa-warning text-yellow"></i>Actualización de aviso de privacidad.</a></li>');
                         }
                         
                     }

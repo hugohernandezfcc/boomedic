@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\medical_appointments;
 use App\menu;
+use App\cli_recipes_tests;
 
 class medicalappointments extends Controller
 {
@@ -57,14 +58,11 @@ class medicalappointments extends Controller
      */
     public function store(Request $request)
     {
-        $medical = new menu;
-        $medical->text   = 'Ayuda';
-        $medical->order    = '13';
-        $medical->to       = 'Doctor';
-        $medical->typeitem    = 'item';
-        $medical->parent    = '22';
-        $medical->url   = 'supportTicket/index';
-        $medical->label_color   = 'aqua';
+        $medical = new cli_recipes_tests;
+        $medical->recipe_test   = '19';
+        $medical->diagnostic    = '677';
+
+ 
             
         if ($medical->save()) 
        return redirect('medicalconsultations');

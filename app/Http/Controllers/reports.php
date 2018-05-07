@@ -34,34 +34,61 @@ class reports extends Controller
             ->where('user_doctor', '=', Auth::id())
             ->select('medical_appointments.*', 'users.id as us', 'users.gender', 'users.age')
             ->get();
-                $grap2 = $grap->unique('us');
-                $total = count($grap2);
-                $arrayAge = array();
-                $v = array();
-                $fem = 0;
-                $mas = 0;
 
-                foreach($grap2 as $gr){
-                    if($gr->gender == "female"){
-                        $fem = $fem + 1;      
+            $polig = DB::table('cli_recipes_tests')
+            ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+            ->join('diagnostics', 'cli_recipes_tests.diagnostic', '=', 'diagnostics.id')
+            ->where('diagnostic', '>', 0)
+            ->where('recipes_tests.doctor', Auth::id())
+            ->select('recipes_tests.patient', 'diagnostics.name', 'cli_recipes_tests.created_at')
+            ->get();
+
+                 //Graphic poligone 
+                    $arrayPol = array();
+                        foreach($polig as $poli){
+                         if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->format('Y-m')){
+                           array_push($arrayPol, ['y' => Carbon::parse($poli->created_at)->format('Y-m'), $poli->name => '1']);      
+                           }
+                         if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(1)->format('Y-m')){
+                           array_push($arrayPol, ['y' => Carbon::parse($poli->created_at)->format('Y-m'), $poli->name => '1']);      
+                           }
+                        if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(2)->format('Y-m')){
+                           array_push($arrayPol, ['y' => Carbon::parse($poli->created_at)->format('Y-m'), $poli->name => '1']);      
+                           }    
+                        }
+
+
+                 //Graphic bar and donuts (ages, genders)   
+                    $grap2 = $grap->unique('us');
+                    $total = count($grap2);
+                    $arrayAge = array();
+                    $v = array();
+                    $fem = 0;
+                    $mas = 0;
+
+                    foreach($grap2 as $gr){
+                        if($gr->gender == "female"){
+                            $fem = $fem + 1;      
+                        }
+                       if($gr->gender == "male"){
+                            $mas = $mas + 1;   
+                        }
                     }
-                   if($gr->gender == "male"){
-                        $mas = $mas + 1;   
-                    }
-                }
-                $porcentf = (100 * $fem) / $total;
-                $porcentm = (100 * $mas) / $total;
-                        //array edades
-                        foreach ($grap2 as $gr2) {
-                            if($gr2->age){
-                             array_push($arrayAge, $gr2->age);
+                    $porcentf = (100 * $fem) / $total;
+                    $porcentm = (100 * $mas) / $total;
+                            //array edades
+                            foreach ($grap2 as $gr2) {
+                                if($gr2->age){
+                                 array_push($arrayAge, $gr2->age);
+                                }
                             }
-                        }
-                        //Calculando total por edades array
-                        $val = array_count_values($arrayAge);
-                        foreach ($val as $val2) {
-                              array_push($v, $val2);   
-                        }
+                            //Calculando total por edades array
+                            $val = array_count_values($arrayAge);
+                            foreach ($val as $val2) {
+                                  array_push($v, $val2);   
+                            }
+                    //End Graphic bar and donuts (ages, genders) 
+                
 
         $user = User::find(Auth::id());
 
@@ -74,7 +101,8 @@ class reports extends Controller
                 'fem'       => $porcentf,
                 'mas'       => $porcentm,
                 'arrayA'    => json_encode($arrayAge),
-                'count'     => json_encode($v)
+                'count'     => json_encode($v),
+                'report'    => json_encode($arrayPol)
             ]
         );
     }

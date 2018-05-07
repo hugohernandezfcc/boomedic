@@ -108,7 +108,7 @@
 <script type="text/javascript">
 	
 $(function() {
-
+  console.log(@php echo $report; @endphp);
   var fem = @php echo $fem; @endphp;
   var mas = @php echo $mas; @endphp;
   var age = @php echo $arrayA; @endphp;
