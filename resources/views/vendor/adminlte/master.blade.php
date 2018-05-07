@@ -422,6 +422,7 @@ span.round-tab:hover {
         $("#au").css("color", "white");
       }
     $(function () {
+        //Ajax function call notify set timeout
          $.ajax(
               {
                 type: "GET",    

@@ -12,6 +12,7 @@ class cli_recipes_tests extends Model
 		'medicine',
 		'test',
 		'recipe_test',
+		'diagnostic'
 
     ];
 
