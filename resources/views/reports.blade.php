@@ -1,7 +1,15 @@
 @extends('adminlte::page')
 
 @section('title', 'Boomedic')
-
+<style type="text/css">
+  .morris-hover.morris-default-style {
+    background: rgba(84, 84, 84, 0.8)  !important;
+    border: none !important; 
+  }
+  .morris-hover-row-label{
+    color: black !important;
+  }
+</style>
 @section('content')
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
@@ -109,54 +117,37 @@ $(function() {
   /* Morris.js Charts */
   // Sales chart
 /*Enfermedades*/
+var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+
   var line = new Morris.Line({
     element          : 'line-chart',
     resize           : true,
     data             : [
-      { y: '2011 Q1', item1: 2666 },
-      { y: '2011 Q2', item1: 2778 },
-      { y: '2011 Q3', item1: 4912 },
-      { y: '2011 Q4', item1: 3767},
-      { y: '2012 Q1', item1: 6810},
-      { y: '2012 Q2', item1: 5670 },
-      { y: '2012 Q3', item1: 4820 },
-      { y: '2012 Q4', item1: 15073},
-      { y: '2013 Q1', item1: 10687 },
-      { y: '2013 Q2', item1: 8432},
-      { y: '2011 Q1',  item2:0 },
-      { y: '2011 Q2', item2:1200 },
-      { y: '2011 Q3',  item2: 1500 },
-      { y: '2011 Q4', item2: 356 },
-      { y: '2012 Q1', item2:2500 },
-      { y: '2012 Q2',  item2:7800  },
-      { y: '2012 Q3',  item2: 3200 },
-      { y: '2012 Q4', item2:11000 },
-      { y: '2013 Q1',item2:6305 },
-      { y: '2013 Q2', item2:7552 },
-      { y: '2011 Q1',  item3:15000 },
-      { y: '2011 Q2', item3:2000 },
-      { y: '2011 Q3',  item3: 6500 },
-      { y: '2011 Q4', item3: 7800},
-      { y: '2012 Q1', item3:2500 },
-      { y: '2012 Q2',  item3:9000 },
-      { y: '2012 Q3',  item3: 3200 },
-      { y: '2012 Q4', item3:16000},
-      { y: '2013 Q1', item3:5600 },
-      { y: '2013 Q2', item3:7300 }
+      { y: '2018-01', Cancer: 2666, Hepatitis: 0, Dengue: 1500 },
+      { y: '2018-02', Cancer: 2778, Hepatitis: 1200, Dengue: 2000  },
+      { y: '2018-03', Cancer: 4912, Hepatitis: 1500, Dengue: 6500  },
+      { y: '2018-04', Cancer: 3767, Hepatitis: 356, Dengue: 7800 },
+      { y: '2018-05', Cancer: 870, Hepatitis: 8432, Dengue: 2500 },
+      { y: '2018-06', Cancer: 3010, Hepatitis: 2432, Dengue: 4500 }
+
     ],
     xkey             : 'y',
-    ykeys            : ['item1', 'item2','item3'],
-    labels           : ['Item 1', 'item 2', 'item 3'],
+    ykeys            : ['Cancer', 'Hepatitis','Dengue'],
+    labels           : ['Cancer', 'Hepatitis','Dengue'],
     lineColors       : ['#efefef','#FF9EDA', 'black'],
     lineWidth        : 2,
     hideHover        : 'auto',
     gridTextColor    : '#fff',
     gridStrokeWidth  : 0.4,
-    pointSize        : 4,
+    pointSize        : 3,
+    fillOpacity: 0.1,
     pointStrokeColors: ['#efefef','#FF9EDA','black'],
     gridLineColor    : ['#efefef','#FF9EDA','black'],
     gridTextFamily   : 'Open Sans',
-    gridTextSize     : 10
+    gridTextSize     : 10,
+    hideHover: 'auto',
+    xLabels: "month",
+    xLabelFormat: function (x) { return months[x.getMonth()]; }
   });
 /*generos*/
 data = {
