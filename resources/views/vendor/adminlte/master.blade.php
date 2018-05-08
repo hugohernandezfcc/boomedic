@@ -429,7 +429,7 @@ span.round-tab:hover {
                 url: "{{ url('HomeController/notify') }}", 
                 success: function(result){
                   for (var i =0; i < result.length; i++) {
-                    if(i == 1){
+                    if(i == 0){
                     $('#countNot').html('Tiene '+ result.length + ' notificación');
                      $('#notN').html('1');
                     }else{
