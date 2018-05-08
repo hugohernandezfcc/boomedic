@@ -517,6 +517,7 @@ span.round-tab:hover {
                 type: "GET",    
                 url: "{{ url('HomeController/notify2') }}", 
                 success: function(result){
+                    console.log(result);
                     if(result == true){
                       $('#notN').css("display", "none");  
                     }

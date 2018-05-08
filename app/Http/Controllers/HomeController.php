@@ -275,7 +275,7 @@ class HomeController extends Controller
         //if is for user or for all
          $user = User::find(Auth::id());
          $user->entered  = true;
-
+          Session(['entered' => $user->entered]);
         if($user->save())
         return response()->json($user->entered);
     }
