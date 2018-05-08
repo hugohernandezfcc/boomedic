@@ -118,8 +118,6 @@
                               byId('optionlinkfinish').className = "disabled";
                            }
 
-
-
                            console.log(currentIndex); // 1
                            console.log(priorIndex); // 0
                         },
@@ -155,25 +153,54 @@
                 * @param  string textBody [valor actual del textarea]
                 */
                function controlledActionsOnTheWrite(textBody) {
+                  var textBodyArray = textBody.split(" ");
 
                   if (textBody.length <= lengthTextBody) {
 
-                     $.map(medicinesSelected, function (medicine) {
+                     /**
+                      * Agregar si existe la sustancia en el catalogo pero no fue seleccionada y se encuentra escrita en el textarea.
+                      * (Validando para ver si lo agrego al array como optional)
+                      * @param  {[type]} 
+                      */
+                     $.map(words, function (medicine) {
                         
-                        return word.indexOf(term) === 0 ?  word : null;
-                     })
+                        if(textBodyArray.indexOf(medicine.split(" ")[0]) < 0){
+                           console.log( 'Se encontro: ' + medicine);
+                           return medicine;
+                        }
 
-                     // 1.- Agregar si existe la sustancia en el catalogo pero no fue seleccionada y se encuentra escrita en el textarea.
-                     // 2.- Validar que si esta seleccionada no agregue más de una versión al array medicinesSelected.
-                     // 3.- en caso de que se encuentre en el array y no en el textarea eliminarla del array medicinesSelected.
+                        //return word.indexOf(term) === 0 ?  word : null;
+                     });
 
                      console.log('borrando...');
                   }else if(textBody.length >= lengthTextBody){
+
+
+                     
 
                      console.log('escribiendo...');
                   }
                   
                   lengthTextBody = textBody.length;
+
+
+                  var toDeleted = [];
+
+                  // 3.- en caso de que se encuentre en el array y no en el textarea eliminarla del array medicinesSelected.
+                  $.map(medicinesSelected, function (medicine) {
+                     textBody.toLowerCase();
+
+                     if(textBody.indexOf(medicine.name) < 0)
+                        toDeleted.push(medicine.name);
+                     
+                  });
+
+
+                  if(toDeleted.length > 0)
+                     for (var o = toDeleted.length - 1; o >= 0; o--) 
+                        for (var i = medicinesSelected.length - 1; i >= 0; i--) 
+                           if (medicinesSelected[i].name == toDeleted[o]) 
+                              medicinesSelected.splice(i, 1);
                }
 
 
@@ -214,18 +241,25 @@
                               }, replace: function (word) {
 
                                  word = word.toLowerCase();
+                                    
+                                 // Validar que si esta seleccionada no agregue más de una versión al array medicinesSelected.
+                                 $.map(medicinesSelected, function (medicineSelected) {
+
+                                    if(word == medicineSelected.name){
+                                       console.log('Words selected but not added one more time: ' + word);
+                                       return word + ' ';
+                                    }
+                                 });
+
                                  var record = {
-                                    "id"     : medicinesToSelect[word].split("---")[0].split(':')[1],
-                                    "name"   : medicinesToSelect[word].split("---")[1].split(':')[1]
+                                    "id"     : medicinesToSelect[word].split("---")[1].split(':')[1],
+                                    "name"   : medicinesToSelect[word].split("---")[0].split(':')[1]
                                  };
                                  medicinesSelected.push(record);
 
                                  //name:adiamyl plus 4 / 1000 mg caja x 20 tabs---id:25
                                  console.log('Words selected: ');
                                  console.log(medicinesSelected);
-
-
-
 
                                  return word + ' ';
                               }
