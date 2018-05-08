@@ -80,12 +80,33 @@
             </div>
             <script type="text/javascript">
 
+               /**
+                * Se guardan los nombre de cada medicamento cuando se abre el Modal
+                * @type {Array}
+                */
                var words = [];
+
+               /**
+                * medicinesToSelect arreglo donde se encuentra la descripción total de todos los medicamentos que están 
+                * disponibles para seleccionar y con el nombre se puede acceder a la información completa
+                */
                var medicinesToSelect = [];
+
+               /**
+                * medicinesSelected medicamentos seleccionados en la receta.
+                */
                var medicinesSelected = [];
+
+               /**
+                * Contador utilizado para identificar si un doctor se encuentra escribiendo o borrando en la receta.
+                */
                var lengthTextBody = 0;
 
-
+               /**
+                * Función que reduce la escritura de selectores por id.
+                * @param  {[type]} argument [Dom element]
+                * @return {[type]}          [element selected]
+                */
                function byId(argument) {
                   return document.getElementById(argument);
                }
@@ -128,18 +149,22 @@
 
                      });
                   
-
+                  /**
+                   * Activa el framework select2 para la selección de la cita a la cual se dirigirá la receta.
+                   * @type {String}
+                   */
                   $('#currentMedicalAppointment').select2({ width: "100%" });
 
-                  var getLinks = document.getElementsByTagName('a');
                   
+                  /**
+                   * Permite que pueda establecer un id al botón y <LI> element de finalizar.
+                   */
 
+                  var getLinks = document.getElementsByTagName('a');
                   for (var i = getLinks.length - 1; i >= 0; i--) 
                      if(getLinks[i].href == "{{ url('prescriptions#finish')}}")
                         getLinks[i].setAttribute('id', "linkfinish");
                      
-                  
-
                   byId('linkfinish').parentNode.setAttribute('id', "optionlinkfinish");
                   byId('optionlinkfinish').className = "disabled";
                   byId('linkfinish').href = "return false;";
@@ -173,20 +198,18 @@
                      });
 
                      console.log('borrando...');
-                  }else if(textBody.length >= lengthTextBody){
-
-
-                     
-
-                     console.log('escribiendo...');
-                  }
+                  }else if(textBody.length >= lengthTextBody)
+                           console.log('escribiendo...');
+                  
                   
                   lengthTextBody = textBody.length;
 
 
-                  var toDeleted = [];
 
-                  // 3.- en caso de que se encuentre en el array y no en el textarea eliminarla del array medicinesSelected.
+                  var toDeleted = [];
+                  /**
+                   * En caso de que se encuentre en el array y no en el textarea eliminarla del array medicinesSelected.
+                   */
                   $.map(medicinesSelected, function (medicine) {
                      textBody.toLowerCase();
 
@@ -203,7 +226,15 @@
                               medicinesSelected.splice(i, 1);
                }
 
-
+               /**
+                * La función se ejecuta solo cuando se abre el modal para no hacer solicitudes que no sean
+                * estrictamente necesarias.
+                *
+                * @textcomplete
+                *
+                * Aquí se activa el framework textcomplete que predice las palabras que se escriben para proponer
+                * opciones de medicamentos.
+                */
                function loadMedicines() {
                   if (byId('load-medicines').value == "") {
 
