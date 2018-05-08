@@ -24,6 +24,9 @@
   	</div>
   	<div class="box-body">
       <div class="col-md-12">
+        @php
+        $r = json_decode($report);
+        @endphp
   			<div class="box box-solid bg-teal-gradient">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
@@ -36,12 +39,17 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
+         @if(count($r) > 0)
               <div class="chart" id="line-chart" style="height: 250px;"></div>
+          @else
+                   No hay diagnósticos registrados aún, por tanto no se puede generar la gráfica
+          @endif
             </div>
             <!-- /.box-body -->
             
             <!-- /.box-footer -->
           </div>
+
         </div>
             <!-- /.box-footer -->
             <div class="col-md-6">
@@ -108,19 +116,21 @@
 <script type="text/javascript">
 	
 $(function() {
- 
-  var report =JSON.stringify(@php echo $report; @endphp);
-  report =JSON.parse(report);
-   console.log(report);
   var dis = @php echo $dis; @endphp;
   var fem = @php echo $fem; @endphp;
   var mas = @php echo $mas; @endphp;
   var age = @php echo $arrayA; @endphp;
   var count = @php echo $count; @endphp;
+
+  var report =JSON.stringify(@php echo $report; @endphp);
+  report =JSON.parse(report);
+  console.log(report);
+
   console.log(count);
   /* Morris.js Charts */
   // Sales chart
 /*Enfermedades*/
+if(report.length > 0){
 var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
 
   var line = new Morris.Line({
@@ -145,6 +155,7 @@ var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oc
     xLabels: "month",
     xLabelFormat: function (x) { return months[x.getMonth()]; }
   });
+}
 /*generos*/
 data = {
     datasets: [{
