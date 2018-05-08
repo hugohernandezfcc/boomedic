@@ -78,7 +78,7 @@
                      </section>
                      <h3>PDF </h3>
                      <section>
-                           <p>The next and previous buttons help you to navigate through your content.</p>
+                           <iframe src="{{ url('prescriptions/pdf')}}"></iframe>
                      </section>
                      
                   </div>
@@ -127,7 +127,6 @@
                   byId('progressCompleteRecipe').setAttribute("style", "width: 30%;");
                   byId('progressCompleteRecipe').innerHTML = "30%";
                });
-
 
 
                $(document).ready(function(){
