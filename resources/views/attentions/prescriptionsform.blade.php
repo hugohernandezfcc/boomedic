@@ -47,7 +47,7 @@
 
                <div class="col-md-6">
                   <div style="padding: 3px;">
-                     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 50%;"> 50% </div>
+                     <div class="progress-bar" id="progressCompleteRecipe" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 50%;"> 50% </div>
                   </div>
                </div>
 
@@ -62,9 +62,9 @@
                            <!-- The validation is to change the cols number in textarea -->
                            <div class="form-group">
                               @if($isMobile)
-                                 <textarea class="form-control" id="receta" rows="10" cols="32" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
+                                 <textarea class="form-control" id="receta" rows="8" cols="32" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @else
-                                 <textarea class="form-control" id="receta" rows="10" cols="31" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
+                                 <textarea class="form-control" id="receta" rows="78" cols="34" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @endif
                            </div>
                      </section>
@@ -134,9 +134,17 @@
                            if(currentIndex){
                               byId('linkfinish').href = "#finish";
                               byId('optionlinkfinish').removeAttribute("class");
+
+                              byId('progressCompleteRecipe').setAttribute("style", "width: 90%;");
+                              byId('progressCompleteRecipe').innerHTML = "90%";
+
                            }else{
                               byId('linkfinish').href = "return false;";
                               byId('optionlinkfinish').className = "disabled";
+
+                              byId('progressCompleteRecipe').setAttribute("style", "width: 50%;");
+                              byId('progressCompleteRecipe').innerHTML = "50%";
+
                            }
 
                            console.log(currentIndex); // 1
