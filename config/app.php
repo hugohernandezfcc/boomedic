@@ -234,7 +234,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Agent' => Jenssegers\Agent\Facades\Agent::class
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
