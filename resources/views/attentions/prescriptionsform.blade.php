@@ -64,7 +64,7 @@
                               @if($isMobile)
                                  <textarea class="form-control" id="receta" rows="10" cols="32" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @else
-                                 <textarea class="form-control" id="receta" rows="10" cols="30" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
+                                 <textarea class="form-control" id="receta" rows="10" cols="31" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @endif
                            </div>
                      </section>
