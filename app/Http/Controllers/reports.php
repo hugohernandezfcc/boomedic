@@ -45,21 +45,43 @@ class reports extends Controller
 
                  //Graphic poligone 
 
-                    $arrayPol = array();
+                    $arrayM1 = array();
+                    $arrayM2 = array();
+                    $arrayM3 = array();
+                    $arrayM = array();
                     $arraydis = array();
+
                         foreach($polig as $poli){
                          if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->format('Y-m')){
-                           array_push($arrayPol, ['y' => Carbon::parse($poli->created_at)->format('Y-m'), $poli->name => '1']);      
+                           array_push($arrayM1, $poli->name);
+                           $m1 = Carbon::parse($poli->created_at)->format('Y-m');      
                            }
                          if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(1)->format('Y-m')){
-                           array_push($arrayPol, ['y' => Carbon::parse($poli->created_at)->format('Y-m'), $poli->name => '1']);      
+                           array_push($arrayM2, $poli->name);      
+                           $m2 = Carbon::parse($poli->created_at)->format('Y-m');   
                            }
                         if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(2)->format('Y-m')){
-                           array_push($arrayPol, ['y' => Carbon::parse($poli->created_at)->format('Y-m'), $poli->name => '1']);      
+                           array_push($arrayM3, $poli->name);  
+                           $m3 = Carbon::parse($poli->created_at)->format('Y-m');       
                            }
                            array_push($arraydis,  $poli->name);
                         }
-
+                        if($arrayM1){
+                        $arrayM1 = array_count_values($arrayM1); 
+                        $arrayM1 = array_merge(["y" => $m1], $arrayM1);
+                        array_push($arrayM, $arrayM1);
+                        }
+                        if($arrayM2){
+                        $arrayM2 = array_count_values($arrayM2);
+                        $arrayM2 = array_merge(["y" => $m2], $arrayM2);
+                        array_push($arrayM, $arrayM2);
+                        }
+                        if($arrayM3){ 
+                        $arrayM3 = array_count_values($arrayM3); 
+                        $arrayM3 = array_merge(["y" => $m3], $arrayM3);
+                        array_push($arrayM, $arrayM3);
+                        }
+                        $arraydis = array_unique($arraydis);
                         
                  //Graphic bar and donuts (ages, genders)   
                     $grap2 = $grap->unique('us');
@@ -105,7 +127,8 @@ class reports extends Controller
                 'mas'       => $porcentm,
                 'arrayA'    => json_encode($arrayAge),
                 'count'     => json_encode($v),
-                'report'    => json_encode($arraydis)
+                'report'    => json_encode($arrayM),
+                'dis'       => json_encode($arraydis)
             ]
         );
     }

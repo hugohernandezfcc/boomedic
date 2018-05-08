@@ -59,7 +59,7 @@ class medicalappointments extends Controller
     public function store(Request $request)
     {
         $medical = new cli_recipes_tests;
-        $medical->recipe_test   = '19';
+        $medical->recipe_test   = '21';
         $medical->diagnostic    = '677';
 
  
