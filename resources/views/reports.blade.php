@@ -157,6 +157,7 @@ var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oc
   });
 }
 /*generos*/
+
 data = {
     datasets: [{
         data: [fem.toFixed(2), mas.toFixed(2)],
@@ -169,6 +170,18 @@ data = {
         'Masculino',
     ]
 };
+var ctx = document.getElementById('myChart').getContext('2d');
+
+var myPieChart = new Chart(ctx,{
+    type: 'pie',
+    data: data
+});
+// And for a doughnut chart
+
+var myDoughnutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: data
+});
 /*edades*/
 data2 = {
     datasets: [{
@@ -182,18 +195,7 @@ data2 = {
     labels: age
 };
  
-var ctx = document.getElementById('myChart').getContext('2d');
 
-var myPieChart = new Chart(ctx,{
-    type: 'pie',
-    data: data
-});
-// And for a doughnut chart
-
-var myDoughnutChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: data
-});
 /*Edades*/
 var ctz = document.getElementById('myChart2').getContext('2d');
 var myBarChart = new Chart(ctz, {

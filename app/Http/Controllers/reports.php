@@ -43,8 +43,7 @@ class reports extends Controller
             ->select('recipes_tests.patient', 'diagnostics.name', 'cli_recipes_tests.created_at')
             ->get();
 
-                 //Graphic poligone 
-
+                 //Graphic polligone 
                     $arrayM1 = array();
                     $arrayM2 = array();
                     $arrayM3 = array();
@@ -54,6 +53,7 @@ class reports extends Controller
                         foreach($polig as $poli){
                          if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->format('Y-m')){
                            array_push($arrayM1, $poli->name);
+                           //array_push($arrayM2, $poli->name); 
                            $m1 = Carbon::parse($poli->created_at)->format('Y-m');      
                            }
                          if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(1)->format('Y-m')){
@@ -73,6 +73,7 @@ class reports extends Controller
                         }
                         if($arrayM2){
                         $arrayM2 = array_count_values($arrayM2);
+                        //$arrayM2 = array_merge(["y" => "2018-04"], $arrayM2);
                         $arrayM2 = array_merge(["y" => $m2], $arrayM2);
                         array_push($arrayM, $arrayM2);
                         }
@@ -82,7 +83,8 @@ class reports extends Controller
                         array_push($arrayM, $arrayM3);
                         }
                         $arraydis = array_unique($arraydis);
-                        
+                //End Graphic polligone  
+
                  //Graphic bar and donuts (ages, genders)   
                     $grap2 = $grap->unique('us');
                     $total = count($grap2);
@@ -90,6 +92,8 @@ class reports extends Controller
                     $v = array();
                     $fem = 0;
                     $mas = 0;
+                    $porcentf = 0;
+                    $porcentm = 0;
 
                     foreach($grap2 as $gr){
                         if($gr->gender == "female"){
@@ -99,7 +103,10 @@ class reports extends Controller
                             $mas = $mas + 1;   
                         }
                     }
+
+                    if($fem > 0)
                     $porcentf = (100 * $fem) / $total;
+                    if($mas > 0)
                     $porcentm = (100 * $mas) / $total;
                             //array edades
                             foreach ($grap2 as $gr2) {
@@ -112,7 +119,7 @@ class reports extends Controller
                             foreach ($val as $val2) {
                                   array_push($v, $val2);   
                             }
-                    //End Graphic bar and donuts (ages, genders) 
+                  //End Graphic bar and donuts (ages, genders) 
                 
 
         $user = User::find(Auth::id());
