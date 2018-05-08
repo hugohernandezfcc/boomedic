@@ -31,6 +31,7 @@ class HomeController extends Controller
     {
     
         $user = User::find(Auth::id());
+        Session(['entered' => $user->entered]);
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
         $StatementForUser = $user->privacy_statement;
         $appointments = DB::table('medical_appointments')
@@ -260,12 +261,13 @@ class HomeController extends Controller
     //Function notify ajax master blade
         public function notify()
     {
+          $user = User::find(Auth::id());
+          Session(['entered' => $user->entered]);
         //if is for user or for all
          $notifications = DB::table('notifications')->where(function($q) {
           $q->where('user_id', Auth::id())
             ->orWhere('type', 'Global');})->get();
-          $user = User::find(Auth::id());
-          Session(['entered' => $user->entered]);
+
 
         return response()->json($notifications);
     }
