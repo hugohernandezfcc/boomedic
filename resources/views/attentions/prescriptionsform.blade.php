@@ -9,6 +9,14 @@
    .progress-bar {
       background-color: #3E3E3E;
    }
+
+   .wizard > .content {
+       display: block;
+       min-height: 15em;
+       overflow: hidden;
+       position: relative;
+       width: auto;
+   }
 </style>
 
 <input type="hidden" id="load-medicines" value="" />
@@ -153,6 +161,9 @@
                         onFinished: function (event, currentIndex) { 
                            console.log('terminado...' + event);
                            console.log('terminado...' + currentIndex);
+
+                           byId('progressCompleteRecipe').setAttribute("style", "width: 100%;");
+                           byId('progressCompleteRecipe').innerHTML = "100%";
                         }
 
                      });
