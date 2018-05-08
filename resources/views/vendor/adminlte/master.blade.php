@@ -429,6 +429,10 @@ span.round-tab:hover {
                 url: "{{ url('HomeController/notify') }}", 
                 success: function(result){
                   for (var i =0; i < result.length; i++) {
+                    var com = "@php echo session()->get('entered'); @endphp";
+                    if(com != true){
+                      $('#notN').css("display", "initial");  
+                    }
                     if(i == 0){
                     $('#countNot').html('Tiene '+ result.length + ' notificación');
                      $('#notN').html('1');
@@ -436,12 +440,14 @@ span.round-tab:hover {
                      $('#notN').html(result.length);
                     $('#countNot').html('Tiene '+ result.length + ' notificaciones');
                     }
+                    console.log(result);
+
                     var u = result[i]['url'];
                     var url = "{{ url('') }}";
                             $('#notify').append('<li><a href="'+ url +'/'+ u +'"><i class="fa fa-warning text-yellow"></i>'+ result[i]['description']+'</a></li>');
-                        }
                         
-                    }
+                        }
+                                }
               });
 
         $.fn.datepicker.dates['es'] = {
@@ -504,7 +510,16 @@ span.round-tab:hover {
             $('#messN').css("display", "none");
      });
     $('#not').on('click', function(e) {
-            $('#notN').css("display", "none");
+                 $.ajax(
+              {
+                type: "GET",    
+                url: "{{ url('HomeController/notify2') }}", 
+                success: function(result){
+                    if(result == true){
+                      $('#notN').css("display", "none");  
+                    }
+                    }
+              }); 
      });
    /* Function notifications */  
         

@@ -260,8 +260,24 @@ class HomeController extends Controller
     //Function notify ajax master blade
         public function notify()
     {
-         $notifications = DB::table('notifications')->get();
+        //if is for user or for all
+         $notifications = DB::table('notifications')->where(function($q) {
+          $q->where('user_id', Auth::id())
+            ->orWhere('type', 'Global');})->get();
+          $user = User::find(Auth::id());
+          Session(['entered' => $user->entered]);
+
         return response()->json($notifications);
+    }
+
+        public function notify2()
+    {
+        //if is for user or for all
+         $user = User::find(Auth::id());
+         $user->entered  = true;
+
+        if($user->save())
+        return response()->json($user->entered);
     }
 
 

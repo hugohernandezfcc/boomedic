@@ -89,7 +89,7 @@
                           <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="not">
                               <i class="fa fa-bell-o"></i>
-                              <span class="label label-warning" style="background-color: #000000 !important;" id="notN"></span>
+                              <span class="label label-warning" style="background-color: #000000 !important; display: none;" id="notN"></span>
                             </a>
                             <ul class="dropdown-menu">
                               <li class="header" id="countNot"></li>
