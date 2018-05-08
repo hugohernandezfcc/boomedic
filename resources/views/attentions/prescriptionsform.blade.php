@@ -55,7 +55,7 @@
 
                <div class="col-md-6">
                   <div style="padding: 3px;">
-                     <div class="progress-bar" id="progressCompleteRecipe" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 50%;"> 50% </div>
+                     <div class="progress-bar" id="progressCompleteRecipe" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 10%;"> 10% </div>
                   </div>
                </div>
 
@@ -120,7 +120,17 @@
                }
 
 
-              $(document).ready(function(){
+               /**
+                * Utilizado para avanzar la barra de receta en cuanto se abra el Modal.
+                */
+               $('#prescription-form-modal').on('shown.bs.modal', function () {
+                  byId('progressCompleteRecipe').setAttribute("style", "width: 30%;");
+                  byId('progressCompleteRecipe').innerHTML = "30%";
+               });
+
+
+
+               $(document).ready(function(){
                   jQuery.noConflict(false);
 
                   $("#wizardPrescription").steps({
