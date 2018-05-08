@@ -78,7 +78,7 @@
                      </section>
                      <h3>PDF </h3>
                      <section>
-                           <iframe src="{{ url('prescriptions/pdf')}}"></iframe>
+                           <center><iframe src="{{ url('prescriptions/pdf')}}" width="105%"></iframe></center>
                      </section>
                      
                   </div>
