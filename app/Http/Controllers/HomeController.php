@@ -260,8 +260,8 @@ class HomeController extends Controller
     //Function notify ajax master blade
         public function notify()
     {
-         $privacy = DB::table('privacy_statement')->get();
-        return response()->json($privacy);
+         $notifications = DB::table('notifications')->get();
+        return response()->json($notifications);
     }
 
 
