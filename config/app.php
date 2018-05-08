@@ -180,9 +180,9 @@ return [
 
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Jenssegers\Agent\AgentServiceProvider::class
-        Barryvdh\DomPDF\ServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
 
+        Barryvdh\DomPDF\ServiceProvider::class,
 
 
     ],
