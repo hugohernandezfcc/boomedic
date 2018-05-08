@@ -429,7 +429,6 @@ span.round-tab:hover {
                 url: "{{ url('HomeController/notify') }}", 
                 success: function(result){
                  var com = "@php echo session()->get('entered'); @endphp";
-                    console.log(com);
                     if(com != 1){
                       $('#notN').css("display", "block");  
                     }else{
@@ -443,7 +442,6 @@ span.round-tab:hover {
                      $('#notN').html(result.length);
                     $('#countNot').html('Tiene '+ result.length + ' notificaciones');
                     }
-                    console.log(result);
                     var u = result[i]['url'];
                     var url = "{{ url('') }}";
                             $('#notify').append('<li><a href="'+ url +'/'+ u +'"><i class="fa fa-warning text-yellow"></i>'+ result[i]['description']+'</a></li>');
@@ -517,7 +515,6 @@ span.round-tab:hover {
                 type: "GET",    
                 url: "{{ url('HomeController/notify2') }}", 
                 success: function(result){
-                    console.log(result);
                     if(result == true){
                       $('#notN').css("display", "none");  
                     }
