@@ -164,7 +164,7 @@
                       */
                      $.map(words, function (medicine) {
                         
-                        if(textBodyArray.indexOf(medicine.split(" ")[0]) < 0){
+                        if(textBodyArray.indexOf(medicine.split(" ")[0]) > 0){
                            console.log( 'Se encontro: ' + medicine);
                            return medicine;
                         }
