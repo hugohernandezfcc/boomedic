@@ -6,7 +6,11 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 	     <style type="text/css">
-
+        .contacts-list>li {
+         border-bottom: 1px solid rgba(0,0,0,0.2);
+         padding: 10px;
+         margin: 0;
+      }
       	 .progress-bar {
       	 	background-color: #3E3E3E;
       	 }
@@ -110,7 +114,7 @@
                     background-color: #ffffff !important;
                     border-left: 3px solid #cacaca !important;
                 }
-                      .direct-chat-contacts {
+      .direct-chat-contacts.plus {
             height: 55px !important;
             background: transparent !important; 
             top: 75% !important; 
@@ -318,7 +322,7 @@
        </h3>
         <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-search text-muted"></span></button>
-      <div class="direct-chat-contacts">
+      <div class="direct-chat-contacts plus">
        <div class="col-sm-3 pull-right"><input id="search" type="text" placeholder="Buscar expedientes" class="form-control"></div>     
      </div>
    </div><br>
@@ -345,6 +349,8 @@
 
 
                   <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $test->url }}" data-target="#myModal">Ver estudio</a>
+                  <a class="btn btn-secondary btn-sm btn-flat" data-toggle="modal" data-target="#chat-form-modal">Comentarios</a>
+                  @include('conversations.conversationform')
 
 
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -379,7 +385,7 @@
                  </h3>
                 <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-filter text-muted"></span></button>
-              <div class="direct-chat-contacts">
+              <div class="direct-chat-contacts plus">
                        <div class="btn-group pull-right">
                             <button id="familiares" type="button" class="btn bg-blue btn-flat" title="Antecedentes Familiares"><i class="fa fa-users"></i></button>   
                             <button id="morbidos" type="button"  class="btn bg-gray btn-flat" title="Antecedentes Mórbidos"><i class="fa fa-stethoscope"></i></button>
