@@ -19,7 +19,7 @@
                   <h3 class="box-title"></h3>
 
                   <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-black" data-original-title="3 New Messages">3</span>
+                    <span data-toggle="tooltip" title="" class="badge bg-black" data-original-title="" id="count"></span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
@@ -31,7 +31,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                   <!-- Conversations are loaded here -->
-                  <div class="direct-chat-messages">
+                  <div class="direct-chat-messages" id="mess">
                     <!-- Message. Default to the left -->
                     <div class="direct-chat-msg">
                       <div class="direct-chat-info clearfix">
@@ -137,4 +137,18 @@
                 <!-- /.box-footer-->
               </div>
               <!--/.direct-chat -->
-          
+
+
+
+<script type="text/javascript">
+     $(function(){
+            var count = $("#mess .direct-chat-msg.right").length;
+            $("#count").html(count);
+         if(count == 1){
+             $("#count").attr("data-original-title", count + " nuevo mensaje");
+               } 
+         else{
+              $("#count").attr("data-original-title", count + " nuevos mensajes");
+            }
+     })
+</script>          
