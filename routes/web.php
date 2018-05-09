@@ -340,6 +340,22 @@ Route::group(['prefix' => 'workboardDr'], function(){
 	);
 });
 
+Route::group(['prefix' => 'Conversations'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'ConversationsController@index',
+			'as'	=>	'index'
+		]
+	);
+	
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'ConversationsController@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+});
+
+
 Route::group(['prefix' => 'drAppointments'], function(){
 
 	Route::get('index/{id}', [
