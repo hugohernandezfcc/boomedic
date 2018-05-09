@@ -142,13 +142,36 @@
 
 <script type="text/javascript">
      $(function(){
-            var count = $("#mess .direct-chat-msg.right").length;
-            $("#count").html(count);
+
+     var count = $("#mess .direct-chat-msg.right").length;
+     $("#count").html(count);
          if(count == 1){
              $("#count").attr("data-original-title", count + " nuevo mensaje");
                } 
          else{
               $("#count").attr("data-original-title", count + " nuevos mensajes");
             }
+
+
+             $.ajax(
+              {
+                type: "GET",    
+                url: "Conversations/messages", 
+                success: function(result){
+                  console.log(result);
+
+                 /* for (var i = result.length - 1; i >= 0; i--) {
+                    
+                    var option = document.createElement("option");
+                    if(result[i].provider != 'Paypal'){
+                    option.text = result[i].provider + ": " + result[i].cardnumber;
+                    option.value = result[i].id;
+                    option.setAttribute("data-icon", "glyphicon glyphicon-eye-open");
+                    x.add(option);
+                        }
+                        
+                  }*/
+                }
+              });
      })
 </script>          
