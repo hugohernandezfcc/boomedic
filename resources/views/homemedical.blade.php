@@ -3,15 +3,20 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-
+<style type="text/css">
+	.direct-chat-messages {
+    height: 300px;
+		}
+</style>
 @stop
 
 @section('content')
 	
-	<section class="content">
-      <div class="row">
-
-        <div class="col-lg-3 col-xs-6">
+	    <div class="col-sm-6">
+        	      @include('conversations.conversationform')
+        </div>
+      	<div class="col-sm-6">	
+        <div class="col-sm-6">
           	<div class="small-box bg-aqua">
 	            <div class="inner">
 	              	<h3>150</h3>
@@ -24,7 +29,7 @@
           	</div>
         </div>
 
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-sm-6">
           	<div class="small-box bg-green">
             	<div class="inner">
               		<h3>53<sup style="font-size: 20px">%</sup></h3>
@@ -37,7 +42,7 @@
           	</div>
         </div>
 
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-sm-6">
           	<div class="small-box bg-primary">
             	<div class="inner">
               		<h3>44</h3>
@@ -52,7 +57,7 @@
 
 
 
-         <div class="col-lg-3 col-xs-6">
+         <div class="col-sm-6">
           	<div class="small-box bg-teal">
             	<div class="inner">
               		<h3>44</h3>
@@ -64,11 +69,7 @@
             	<a class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
         </div>
-
-
-      </div>
-  </section>
-
+              </div>
 
 
 

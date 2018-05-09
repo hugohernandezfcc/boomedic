@@ -350,8 +350,20 @@
 
                   <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $test->url }}" data-target="#myModal">Ver estudio</a>
                   <a class="btn btn-secondary btn-sm btn-flat" data-toggle="modal" data-target="#chat-form-modal">Comentarios</a>
-                  @include('conversations.conversationform')
-
+                  <div class="modal fade" id="chat-form-modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                         <div class="modal-header">
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                             <h4 class="modal-title"> <i class="fa fa-comments"></i> Ventana de Conversación</h4>
+                             </div>
+                          <div class="modal-body">
+                             @include('conversations.conversationform')
+                             </div>
+                          </div>  
+                       </div>
+                    </div>    
 
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                               <div class="modal-dialog">
