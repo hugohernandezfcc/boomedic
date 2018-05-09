@@ -127,9 +127,9 @@
                 <div class="box-footer">
                   <form action="#" method="post">
                     <div class="input-group">
-                      <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                      <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control">
                       <span class="input-group-btn">
-                            <button type="button" class="btn btn-secondary btn-flat">Send</button>
+                            <button type="button" class="btn btn-secondary btn-flat">Enviar</button>
                           </span>
                     </div>
                   </form>
