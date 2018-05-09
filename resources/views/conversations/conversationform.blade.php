@@ -156,7 +156,7 @@
              $.ajax(
               {
                 type: "GET",    
-                url: "Conversations/messages", 
+                url: "{{ url('Conversations/messages') }}", 
                 success: function(result){
                   console.log(result.length);
 
