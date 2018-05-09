@@ -31,7 +31,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                   <!-- Conversations are loaded here -->
-                  <div class="direct-chat-messages" id="mess">
+                  <div class="direct-chat-messages" id="message">
                     <!-- Message. Default to the left -->
                     <div class="direct-chat-msg">
                       <div class="direct-chat-info clearfix">
@@ -143,7 +143,7 @@
 <script type="text/javascript">
      $(function(){
 
-     var count = $("#mess .direct-chat-msg.right").length;
+     var count = $("#message .direct-chat-msg.right").length;
      $("#count").html(count);
          if(count == 1){
              $("#count").attr("data-original-title", count + " nuevo mensaje");
@@ -158,7 +158,14 @@
                 type: "GET",    
                 url: "Conversations/messages", 
                 success: function(result){
-                  console.log(result);
+                  console.log(result.length);
+
+                  if(result.length == 0){
+                    $("#count").html("0");
+                    $("#count").attr("data-original-title", "0 mensajes");
+                    $("#message").text('');
+                    $("#message").append('<div align="center">No se ha empezado ninguna conversación</div>');
+                  }
 
                  /* for (var i = result.length - 1; i >= 0; i--) {
                     

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\Conversations;
+use App\Items_Conversations;
 
 
 class ConversationsController extends Controller
@@ -61,7 +62,13 @@ class ConversationsController extends Controller
     public function messages()
     {
          $user = User::find(Auth::id());
-        return response()->json(json_encode($user->name));
+         $messages = DB::table('items_conversations')
+            ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+            ->where('conversations.doctor', Auth::id())
+            ->select('items_conversations.*', 'conversations.name')
+            ->get();
+
+           return response()->json($messages);
     }
 
 
