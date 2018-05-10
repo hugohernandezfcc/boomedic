@@ -341,7 +341,7 @@
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->created_at)->diffForHumans() }}</span>
 
                 <h3 class="timeline-header"><a>{{ $test->name }}</a></h3>
-                <input type="hidden" id="middr" values="{{ $test->iddoc }}">
+                <input type="hidden" id="middr" values="{{ $test->doc }}">
                 <input type="hidden" id="midfield" values="{{ $test->id }}">
                 <input type="hidden" id="mname" values="{{ $test->name }}">
                  <input type="hidden" id="mtable" values="diagnostic_test_result">
