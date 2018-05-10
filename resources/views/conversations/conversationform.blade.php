@@ -26,79 +26,12 @@
                       <i class="fa fa-comments"></i></button>
                   </div>
                   <input type="hidden" id="userOrDr" value="1">
+                  <input type="hidden" id="mid" value="">
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                   <!-- Conversations are loaded here -->
                   <div class="direct-chat-messages" id="message">
-                    <!-- Message. Default to the left -->
-                    <div class="direct-chat-msg">
-                      <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-left">{{ $name }}</span>
-                        <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
-                      </div>
-                      <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="{{ $photo }}" alt="message user image">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        Is this template really for free? That's unbelievable!
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message to the right -->
-                    <div class="direct-chat-msg right">
-                      <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                        <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
-                      </div>
-                      <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="message user image">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        You better believe it!
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message. Default to the left -->
-                    <div class="direct-chat-msg">
-                      <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-left">{{ $name }}</span>
-                        <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span>
-                      </div>
-                      <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="{{ $photo }}" alt="message user image">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        Working with AdminLTE on a great new app! Wanna join?
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message to the right -->
-                    <div class="direct-chat-msg right">
-                      <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                        <span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span>
-                      </div>
-                      <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="message user image">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        I would love to.
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                  </div>
-                  <!--/.direct-chat-messages-->
-
-                  <!-- Contacts are loaded here -->
                   <div class="direct-chat-contacts">
                     <ul class="contacts-list">
                       <li>
@@ -126,7 +59,7 @@
                 <div class="box-footer">
                   <form action="#" method="post">
                     <div class="input-group">
-                      <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody">
+                      <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody" autocomplete="off">
                       <span class="input-group-btn">
                             <button type="button" class="btn btn-secondary btn-flat" onclick="send();">Enviar</button>
                           </span>
@@ -159,8 +92,8 @@
                   }
                   else{
                    for(var z = 0; z < result[0].length; z++){ 
-                      $(".direct-chat-messages").text('');
                       $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
+                      $("#mid").val(result[0][z]['id_record']);
                      }
                      count();
                     }
@@ -195,7 +128,10 @@
                                 };
                                 console.log(data);
                               }else {
-                                console.log('Aún no valido esto');
+                             var data = { 
+                                  "id_record" : $("#mid").val(),
+                                  "textbody"  : $(".textbody").val()
+                                };
                               }
                     //fin validación y datos          
                            $.ajax({     
@@ -207,7 +143,6 @@
                              {
                             console.log(result);
                               for(var z = 0; z < result.length; z++){ 
-                                $(".direct-chat-messages").text('');
                                 $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">Sarah Bullock</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result[z]['profile_photo'] +'" alt="message user image"><div class="direct-chat-text">'+ result[z]['text_body'] +'</div></div>');
                                }
                               }

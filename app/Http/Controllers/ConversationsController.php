@@ -76,7 +76,7 @@ class ConversationsController extends Controller
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
-            ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
+            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record', 'users.profile_photo')
             ->get();
         }
 
@@ -110,7 +110,17 @@ class ConversationsController extends Controller
                 }
             }                   
           }else{
+                $item2               = new Items_Conversations;
+                $item2->by           = $user->id;
+                $item2->name         = $user->name;
+                $item2->conversation = $exist[0]->id;
+                $item2->type         = "Answer";
+                $item2->text_body    = $request->textbody;
+                if($item2->save()){
+                    return response()->json($item2);
+                }else{
            return response()->json($request);
+                }
        }
     }
 
