@@ -341,10 +341,7 @@
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->created_at)->diffForHumans() }}</span>
 
                 <h3 class="timeline-header"><a>{{ $test->name }}</a></h3>
-                <input type="hidden" id="middr" values="{{ $test->doctor }}">
-                <input type="hidden" id="midfield" values="{{ $test->id }}">
-                <input type="hidden" id="mname" values="{{ $test->name }}">
-                 <input type="hidden" id="mtable" values="diagnostic_test_result">
+
                 <div class="timeline-body">
                   Prescribe. {{ $test->doc}}.<br>
                   Recipe. {{ $test->folio}}.<br>
@@ -363,8 +360,12 @@
                              <h4 class="modal-title"> <i class="fa fa-comments"></i> Ventana de Conversación</h4>
                              </div>
                           <div class="modal-body">
+                                <input type="hidden" class="middr" value="{{ $test->doctor }}">
+                                <input type="hidden" class="midfield" value="{{ $test->id }}">
+                                <input type="hidden" class="mname" value="{{ $test->name }}">
+                                <input type="hidden" class="mtable" value="diagnostic_test_result">
                              @include('conversations.conversationform')
-                             </div>
+                         </div>
                           </div>  
                        </div>
                     </div>    

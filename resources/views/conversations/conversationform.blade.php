@@ -182,10 +182,10 @@
                     //Valido para saber de que página envía los datos y si es paciente o doctor
                     if(window.location.href == "{{ url('clinicHistory/index') }}"){
                     var data = { 
-                                  "doc"       : $("#middr").val(),
-                                  "table"     : $("#mtable").val(),
-                                  "id_record" : $("#midfield").val(),
-                                  "name_mess" : $("#mname").val()
+                                  "doc"       : $(".in .middr").val(),
+                                  "table"     : $(".in .mtable").val(),
+                                  "id_record" : $(".in .midfield").val(),
+                                  "name_mess" : $(".in .mname").val()
                                 };
                                 console.log(data);
                               }else {
