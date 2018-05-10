@@ -354,6 +354,11 @@ Route::group(['prefix' => 'Conversations'], function(){
 			'as'	=>	'messages'
 		]
 	);	
+	Route::post('sendMessages', [
+			'uses'	=>	'ConversationsController@sendMessages',
+			'as'	=>	'sendMessages'
+		]
+	);	
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'ConversationsController@redirecting',
 			'as'	=>	'redirecting'
