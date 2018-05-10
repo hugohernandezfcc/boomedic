@@ -67,7 +67,7 @@ class ConversationsController extends Controller
                             ->get();
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
-            ->where('conversations.doctor', Auth::id())
+            ->where('items_conversations.by', Auth::id())
             ->select('items_conversations.*', 'conversations.name')
             ->get();
         $data = array();

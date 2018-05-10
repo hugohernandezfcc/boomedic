@@ -142,14 +142,6 @@
 <script type="text/javascript">
      $(function(){
 
-     var count = $("#message .direct-chat-msg.right").length;
-     $("#count").html(count);
-         if(count == 1){
-             $("#count").attr("data-original-title", count + " nuevo mensaje");
-               } 
-         else{
-              $("#count").attr("data-original-title", count + " nuevos mensajes");
-            }
 
 
              $.ajax({
@@ -165,11 +157,26 @@
                   if(result[0].length == 0){
                     $("#count").html("0");
                     $("#count").attr("data-original-title", "0 mensajes");
-                    $("#message").text('');
-                    $("#message").append('<div align="center">No se ha empezado ninguna conversación</div>');
+                    $(".direct-chat-messages").text('');
+                    $(".direct-chat-messages").append('<div align="center">No se ha empezado ninguna conversación</div>');
                   }
+                  else{
+                   for(var z = 0; z < result[0].length; z++){ 
+                      $(".direct-chat-messages").text('');
+                      $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">Sarah Bullock</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="message user image"><div class="direct-chat-text">I would love to. </div></div>');
+                     }
+                    }
                 }
               });
+
+     var count = $("#message .direct-chat-msg.right").length;
+     $("#count").html(count);
+         if(count == 1){
+             $("#count").attr("data-original-title", count + " nuevo mensaje");
+               } 
+         else{
+              $("#count").attr("data-original-title", count + " nuevos mensajes");
+            }
 
      })
 
