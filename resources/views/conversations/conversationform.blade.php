@@ -145,11 +145,11 @@
                              url: "{{ url('Conversations/sendMessages') }}",  
                               data: data, 
                               dataType: 'json',                
-                             success: function(result)             
+                             success: function(result2)             
                              {
                               $(".textbody").val("");
-                              console.log(result);
-                              for(var y = 0; y < result.length; y++){ 
+                              console.log(result2);
+                              for(var y = 0; y < result2.length; y++){ 
                                 $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">Sarah Bullock</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="" alt="message user image"><div class="direct-chat-text"></div></div>');
                                }
                               }
