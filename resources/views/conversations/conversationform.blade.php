@@ -179,6 +179,19 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
+                    //Valido para saber de que página envía los datos y si es paciente o doctor
+                    if(window.location.href == "{{ url('clinicHistory/index') }}"){
+                    var data = { 
+                                  "doc"       : $("#middr").val(),
+                                  "table"     : $("#mtable").val(),
+                                  "id_record" : $("#midfield").val(),
+                                  "name_mess" : $("#mname").val()
+                                };
+                                console.log(data);
+                              }else {
+                                console.log('Aún no valido esto');
+                              }
+                    //fin validación y datos          
                            $.ajax({     
                              type: "POST",                 
                              url: "{{ url('Conversations/sendMessages') }}",  
