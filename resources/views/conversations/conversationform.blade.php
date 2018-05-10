@@ -128,7 +128,7 @@
                     <div class="input-group">
                       <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control">
                       <span class="input-group-btn">
-                            <button type="button" class="btn btn-secondary btn-flat">Enviar</button>
+                            <button type="button" class="btn btn-secondary btn-flat" onclick="send();">Enviar</button>
                           </span>
                     </div>
                   </form>
@@ -170,5 +170,24 @@
                   }
                 }
               });
+
      })
+
+     function send(){
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                           $.ajax({     
+                             type: "POST",                 
+                             url: "{{ url('Conversations/sendMessages') }}",  
+                              data: { "search" : "success"}, 
+                              dataType: 'json',                
+                             success: function(data)             
+                             {
+                                console.log(data);
+                             }
+                         });
+     }
 </script>          

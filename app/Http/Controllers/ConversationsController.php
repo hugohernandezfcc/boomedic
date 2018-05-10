@@ -77,22 +77,10 @@ class ConversationsController extends Controller
            return response()->json($data);
     }
 
-        public function sendMessages()
+        public function sendMessages(Request $request)
     {
-         $user = User::find(Auth::id());
-         $profInfo = DB::table('professional_information')
-                            ->where('user', Auth::id() )
-                            ->get();
-         $messages = DB::table('items_conversations')
-            ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
-            ->where('conversations.doctor', Auth::id())
-            ->select('items_conversations.*', 'conversations.name')
-            ->get();
-        $data = array();
-        array_push($data, json_decode($messages));
-        array_push($data, json_decode($profInfo));    
 
-           return response()->json($data);
+           return response()->json($request);
     }
 
 
