@@ -22,7 +22,7 @@
                     <span data-toggle="tooltip" title="" class="badge bg-black" data-original-title="" id="count"></span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
-                    <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
+                    <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts" id="contacts">
                       <i class="fa fa-comments"></i></button>
                   </div>
                 </div>
@@ -156,9 +156,12 @@
                 type: "GET",    
                 url: "{{ url('Conversations/messages') }}", 
                 success: function(result){
-                  console.log(result.length);
-
-                  if(result.length == 0){
+                  console.log(result[0].length);
+                  console.log(result[1].length);
+                  if(result[1].length == 0){
+                    $("#contacts").css("display", "none");
+                  }
+                  if(result[0].length == 0){
                     $("#count").html("0");
                     $("#count").attr("data-original-title", "0 mensajes");
                     $("#message").text('');
