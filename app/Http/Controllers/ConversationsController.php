@@ -79,8 +79,28 @@ class ConversationsController extends Controller
 
         public function sendMessages(Request $request)
     {
-
+        $user = User::find(Auth::id());
+          $exist = DB::table('conversations')->where('id_record', $request->id_record)->get();
+          if(!$exist){
+            $Conversation              = new Conversations;
+            $Conversation->name        = $request->name_mess;
+            $Conversation->table       = $request->table;
+            $Conversation->id_record   = $request->id_record;
+            $Conversation->doctor      = $request->doc;
+            if($Conversation->save()){
+                $item               = new Items_Conversations;
+                $item->by           = $user->id;
+                $item->name         = $user->name;
+                $item->conversation = $Conversation->id;
+                $item->type         = "Answer";
+                $item->text_body    = $request->textbody;
+                if($item->save()){
+                    return response()->json($item);
+                }
+            }                   
+          }else{
            return response()->json($request);
+       }
     }
 
 

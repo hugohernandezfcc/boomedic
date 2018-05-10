@@ -196,11 +196,11 @@
                            $.ajax({     
                              type: "POST",                 
                              url: "{{ url('Conversations/sendMessages') }}",  
-                              data: { "search" : "success"}, 
+                              data: data, 
                               dataType: 'json',                
-                             success: function(data)             
+                             success: function(result)             
                              {
-                                console.log(data);
+                                console.log(result);
                              }
                          });
      }
