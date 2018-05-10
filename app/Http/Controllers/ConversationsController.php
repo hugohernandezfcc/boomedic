@@ -76,7 +76,6 @@ class ConversationsController extends Controller
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
-            ->where('coversations.doctor', Auth::id())
             ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
             ->get();
         }
