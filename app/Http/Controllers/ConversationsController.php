@@ -65,17 +65,28 @@ class ConversationsController extends Controller
          $profInfo = DB::table('professional_information')
                             ->where('user', Auth::id() )
                             ->get();
+       if(count($profInfo) == 0){                     
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('items_conversations.by', Auth::id())
             ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
             ->get();
+        }else{
+         $messages = DB::table('items_conversations')
+            ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+            ->join('users', 'items_conversations.by', '=', 'users.id')
+            ->where('coversations.doctor', Auth::id())
+            ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
+            ->get();
+        }
+
         $data = array();
         array_push($data, json_decode($messages));
         array_push($data, json_decode($profInfo));    
 
            return response()->json($data);
+       
     }
 
         public function sendMessages(Request $request)
