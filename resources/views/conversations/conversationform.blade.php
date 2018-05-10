@@ -147,9 +147,9 @@
                               dataType: 'json',                
                              success: function(result)             
                              {
-                            console.log(result);
+                              $(".textbody").val("");
                               for(var z = 0; z < result.length; z++){ 
-                                $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">Sarah Bullock</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result[z]['profile_photo'] +'" alt="message user image"><div class="direct-chat-text">'+ result[z]['text_body'] +'</div></div>');
+                                $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">Sarah Bullock</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="" alt="message user image"><div class="direct-chat-text"></div></div>');
                                }
                               }
                          });
