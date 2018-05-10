@@ -141,9 +141,6 @@
 
 <script type="text/javascript">
      $(function(){
-
-
-
              $.ajax({
                 type: "GET",    
                 url: "{{ url('Conversations/messages') }}", 
@@ -163,12 +160,13 @@
                   else{
                    for(var z = 0; z < result[0].length; z++){ 
                       $(".direct-chat-messages").text('');
-                      $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">Sarah Bullock</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="message user image"><div class="direct-chat-text">I would love to. </div></div>');
+                      $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
                      }
+                     count();
                     }
                 }
               });
-
+  function count(){
      var count = $("#message .direct-chat-msg.right").length;
      $("#count").html(count);
          if(count == 1){
@@ -177,7 +175,7 @@
          else{
               $("#count").attr("data-original-title", count + " nuevos mensajes");
             }
-
+          }
      })
 
      function send(){
@@ -210,7 +208,7 @@
                             console.log(result);
                               for(var z = 0; z < result.length; z++){ 
                                 $(".direct-chat-messages").text('');
-                                $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">Sarah Bullock</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result[z]['photo'] +'" alt="message user image"><div class="direct-chat-text">I would love to. </div></div>');
+                                $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">Sarah Bullock</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result[z]['profile_photo'] +'" alt="message user image"><div class="direct-chat-text">'+ result[z]['text_body'] +'</div></div>');
                                }
                               }
                          });

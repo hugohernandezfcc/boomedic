@@ -69,7 +69,7 @@ class ConversationsController extends Controller
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('items_conversations.by', Auth::id())
-            ->select('items_conversations.*', 'conversations.name', 'users.profile_photo')
+            ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
             ->get();
         $data = array();
         array_push($data, json_decode($messages));
