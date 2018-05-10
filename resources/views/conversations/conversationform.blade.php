@@ -126,7 +126,7 @@
                 <div class="box-footer">
                   <form action="#" method="post">
                     <div class="input-group">
-                      <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control">
+                      <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody">
                       <span class="input-group-btn">
                             <button type="button" class="btn btn-secondary btn-flat" onclick="send();">Enviar</button>
                           </span>
@@ -185,7 +185,8 @@
                                   "doc"       : $(".in .middr").val(),
                                   "table"     : $(".in .mtable").val(),
                                   "id_record" : $(".in .midfield").val(),
-                                  "name_mess" : $(".in .mname").val()
+                                  "name_mess" : $(".in .mname").val(),
+                                  "textbody"  : $(".in .textbody").val()
                                 };
                                 console.log(data);
                               }else {
