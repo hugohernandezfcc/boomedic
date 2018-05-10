@@ -81,7 +81,7 @@ class ConversationsController extends Controller
     {
         $user = User::find(Auth::id());
           $exist = DB::table('conversations')->where('id_record', $request->id_record)->get();
-          if(!$exist){
+          if(count($exist) == 0){
             $Conversation              = new Conversations;
             $Conversation->name        = $request->name_mess;
             $Conversation->table       = $request->table;
