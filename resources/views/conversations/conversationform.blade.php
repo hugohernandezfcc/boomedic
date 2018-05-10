@@ -207,8 +207,12 @@
                               dataType: 'json',                
                              success: function(result)             
                              {
-                                console.log(result);
-                             }
+                            console.log(result);
+                              for(var z = 0; z < result.length; z++){ 
+                                $(".direct-chat-messages").text('');
+                                $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">Sarah Bullock</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result[z]['photo'] +'" alt="message user image"><div class="direct-chat-text">I would love to. </div></div>');
+                               }
+                              }
                          });
      }
 </script>          
