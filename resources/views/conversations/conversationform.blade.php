@@ -25,6 +25,7 @@
                     <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts" id="contacts">
                       <i class="fa fa-comments"></i></button>
                   </div>
+                  <input type="hidden" id="userOrDr" value="1">
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -151,8 +152,7 @@
             }
 
 
-             $.ajax(
-              {
+             $.ajax({
                 type: "GET",    
                 url: "{{ url('Conversations/messages') }}", 
                 success: function(result){
@@ -160,6 +160,7 @@
                   console.log(result[1].length);
                   if(result[1].length == 0){
                     $("#contacts").css("display", "none");
+                    $("#userOrDr").val(result[1].length);
                   }
                   if(result[0].length == 0){
                     $("#count").html("0");
@@ -167,18 +168,6 @@
                     $("#message").text('');
                     $("#message").append('<div align="center">No se ha empezado ninguna conversación</div>');
                   }
-
-                 /* for (var i = result.length - 1; i >= 0; i--) {
-                    
-                    var option = document.createElement("option");
-                    if(result[i].provider != 'Paypal'){
-                    option.text = result[i].provider + ": " + result[i].cardnumber;
-                    option.value = result[i].id;
-                    option.setAttribute("data-icon", "glyphicon glyphicon-eye-open");
-                    x.add(option);
-                        }
-                        
-                  }*/
                 }
               });
      })
