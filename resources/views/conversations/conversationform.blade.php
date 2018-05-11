@@ -80,9 +80,22 @@
 
 <script type="text/javascript">
      $(function(){
+           $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    //Valido para saber de que página envía los datos y si es paciente o doctor
+                    if(window.location.href == "{{ url('clinicHistory/index') }}"){
+                      var data = {"id_record" : $(".in .midfield").val()}
+                    } else {
+                      var data = {"id_record : success"};
+                    }
              $.ajax({
-                type: "GET",    
-                url: "{{ url('Conversations/messages') }}", 
+                 type: "POST",                 
+                             url: "{{ url('Conversations/messages') }}",  
+                              data: data, 
+                              dataType: 'json',           
                 success: function(result){
                   console.log(result[0].length);
                   console.log(result[1].length);
