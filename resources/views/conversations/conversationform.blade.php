@@ -83,18 +83,15 @@
 
                     //Valido para saber de que página envía los datos y si es paciente o doctor
                     if(window.location.href == "{{ url('clinicHistory/index') }}" ){
-                      $('.modal-chat').click(function(){
-                        if($('.modal').hasClass('in')){
-                      var data = $(".in .midfield").val();
-                      get(data); 
-                    }
-                          });
+                      $('.modal-chat').on('show.bs.modal', function (e) {
+                        var data = $(this).find(".midfield").val();
+                         get(data); 
+                      })
                     }else{
                       var data = 0;
                       get(data);
                     }
-          function get(data){      
-                        console.log(data);    
+          function get(data){        
              $.ajax({
                  type: "GET",                 
                  url: "{{ url('Conversations/messages') }}/" + data,  
@@ -113,7 +110,6 @@
                   }
                   else{
                    for(var z = 0; z < result[0].length; z++){ 
-                    console.log(result[0]);
                       $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
                       $("#mid").val(result[0][z]['id_record']);
                      }
