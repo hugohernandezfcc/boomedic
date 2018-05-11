@@ -59,7 +59,7 @@ class ConversationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function messages()
+    public function messages($id)
     {
          $user = User::find(Auth::id());
          $profInfo = DB::table('professional_information')
@@ -69,7 +69,7 @@ class ConversationsController extends Controller
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
-            ->where('items_conversations.by', Auth::id())
+            ->where('conversations.id_record', $id)
             ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
             ->get();
         }else{

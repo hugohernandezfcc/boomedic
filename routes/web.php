@@ -349,7 +349,7 @@ Route::group(['prefix' => 'Conversations'], function(){
 		]
 	);
 
-	Route::post('messages', [
+	Route::get('messages/{id}', [
 			'uses'	=>	'ConversationsController@messages',
 			'as'	=>	'messages'
 		]

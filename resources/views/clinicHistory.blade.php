@@ -350,7 +350,7 @@
 
 
                   <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $test->url }}" data-target="#myModal">Ver estudio</a>
-                  <a class="btn btn-secondary btn-sm btn-flat" data-toggle="modal" data-target="#chat-form-modal">Comentarios</a>
+                  <a class="btn btn-secondary btn-sm btn-flat modal-chat" data-toggle="modal" data-target="#chat-form-modal">Comentarios</a>
                   <div class="modal fade" id="chat-form-modal">
                 <div class="modal-dialog">
                     <div class="modal-content">

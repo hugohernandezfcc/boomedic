@@ -80,23 +80,25 @@
 
 <script type="text/javascript">
      $(function(){
-           $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
+
                     //Valido para saber de que página envía los datos y si es paciente o doctor
-                    if(window.location.href == "{{ url('clinicHistory/index') }}"){
-                      var data = {"id_record" : $(".in .midfield").val() };
-                    } else {
-                      var data = {"id_record" : "success"};
+                    if(window.location.href == "{{ url('clinicHistory/index') }}" ){
+                      $('.modal-chat').click(function(){
+                        if($('.modal').hasClass('in')){
+                      var data = $(".in .midfield").val();
+                      get(data); 
                     }
+                          });
+                    }else{
+                      var data = 0;
+                      get(data);
+                    }
+          function get(data){      
+                        console.log(data);    
              $.ajax({
-                 type: "POST",                 
-                             url: "{{ url('Conversations/messages') }}",  
-                              data: data, 
-                              dataType: 'json',           
-                success: function(result){
+                 type: "GET",                 
+                 url: "{{ url('Conversations/messages') }}/" + data,  
+                 success: function(result){
                   console.log(result[0].length);
                   console.log(result[1].length);
                   if(result[1].length == 0){
@@ -111,6 +113,7 @@
                   }
                   else{
                    for(var z = 0; z < result[0].length; z++){ 
+                    console.log(result[0]);
                       $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
                       $("#mid").val(result[0][z]['id_record']);
                      }
@@ -118,6 +121,7 @@
                     }
                 }
               });
+           }
   function count(){
      var count = $("#message .direct-chat-msg.right").length;
      $("#count").html(count);
