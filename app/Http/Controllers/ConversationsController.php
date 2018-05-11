@@ -106,7 +106,13 @@ class ConversationsController extends Controller
                 $item->type         = "Answer";
                 $item->text_body    = $request->textbody;
                 if($item->save()){
-                    return response()->json($item);
+                   $message = DB::table('items_conversations')
+                    ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+                    ->join('users', 'items_conversations.by', '=', 'users.id')
+                    ->where('items_conversations.id', $item->id)
+                    ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
+                    ->get();
+                    return response()->json($message);
                 }
             }                   
           }else{
@@ -117,7 +123,13 @@ class ConversationsController extends Controller
                 $item2->type         = "Answer";
                 $item2->text_body    = $request->textbody;
                 if($item2->save()){
-                    return response()->json($item2);
+               $message = DB::table('items_conversations')
+                    ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+                    ->join('users', 'items_conversations.by', '=', 'users.id')
+                    ->where('items_conversations.id', $item2->id)
+                    ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
+                    ->get();
+                    return response()->json($message);
                 }else{
            return response()->json($request);
                 }
