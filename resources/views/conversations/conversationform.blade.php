@@ -87,9 +87,9 @@
                     });
                     //Valido para saber de que página envía los datos y si es paciente o doctor
                     if(window.location.href == "{{ url('clinicHistory/index') }}"){
-                      var data = {"id_record" : $(".in .midfield").val()}
+                      var data = {"id_record" : $(".in .midfield").val() };
                     } else {
-                      var data = {"id_record : success"};
+                      var data = {"id_record" : "success"};
                     }
              $.ajax({
                  type: "POST",                 
