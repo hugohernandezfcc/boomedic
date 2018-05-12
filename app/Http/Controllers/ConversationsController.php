@@ -71,12 +71,14 @@ class ConversationsController extends Controller
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.id_record', $id)
             ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
+            ->orderBy('items_conversations.created_at')
             ->get();
         }else{
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record', 'users.profile_photo')
+            ->orderBy('items_conversations.created_at')
             ->get();
         }
 

@@ -91,7 +91,8 @@
                       var data = 0;
                       get(data);
                     }
-          function get(data){        
+          function get(data){   
+          var oldscrollHeight = $("#message").attr("scrollHeight") - 20; //La altura del scroll      
              $.ajax({
                  type: "GET",                 
                  url: "{{ url('Conversations/messages') }}/" + data,  
@@ -113,6 +114,11 @@
                       $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
                       $("#mid").val(result[0][z]['id_record']);
                      }
+                     //Auto-scroll
+                      var newscrollHeight = $("#message").attr("scrollHeight") - 20;//La altura del scroll después del pedido
+                      if(newscrollHeight > oldscrollHeight){
+                      $("#message").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll hacia el fondo del div
+                      }
                      count();
                     }
                 }
