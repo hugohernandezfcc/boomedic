@@ -113,7 +113,8 @@
                   else{
                    $(".direct-chat-messages").html("");
                    for(var z = 0; z < result[0].length; z++){ 
-                      $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
+                      var mo = moment(result[0][z]['created_at']).startOf('day').fromNow();
+                      $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-left">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
                       $("#mid").val(result[0][z]['id_record']);
                      }
                      //Auto-scroll
