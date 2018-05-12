@@ -29,7 +29,7 @@
                   <input type="hidden" id="mid" value="">
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body">
+                <div class="box-body" id="message0">
                   <!-- Conversations are loaded here -->
                   <div class="direct-chat-messages" id="message">
 
@@ -117,7 +117,7 @@
                       $("#mid").val(result[0][z]['id_record']);
                      }
                      //Auto-scroll
-                        var altura = $("#message").height();
+                        var altura = $("#message").height()+300;
                         $("#message").animate({scrollTop:altura+"px"});
                      count();
                     }
@@ -175,7 +175,7 @@
                                 $("#mid").val(result2[y]['id_record']);
                                }
                               //Auto-scroll
-                              var altura = $("#message").height();
+                              var altura = $("#message").height()+300;
                               $("#message").animate({scrollTop:altura+"px"});
                               }
                          });
