@@ -93,7 +93,7 @@
                       setInterval (get(data), 2500);   
                     }
           function get(data){   
-          var oldscrollHeight = $("#message").attr("scrollHeight") - 20; //La altura del scroll      
+
              $.ajax({
                  type: "GET",                 
                  url: "{{ url('Conversations/messages') }}/" + data,  
@@ -117,10 +117,8 @@
                       $("#mid").val(result[0][z]['id_record']);
                      }
                      //Auto-scroll
-                      var newscrollHeight = $("#message").attr("scrollHeight") - 20;//La altura del scroll después del pedido
-                      if(newscrollHeight > oldscrollHeight){
-                      $("#message").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll hacia el fondo del div
-                      }
+                        var altura = $("#message").height();
+                        $("#message").animate({scrollTop:altura+"px"});
                      count();
                     }
                 }
@@ -176,6 +174,9 @@
                                 $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">'+ result2[y]['name'] +'</span><span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span></div><img class="direct-chat-img" src="'+ result2[y]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result2[y]['text_body'] +'</div></div>');
                                 $("#mid").val(result2[y]['id_record']);
                                }
+                              //Auto-scroll
+                              var altura = $("#message").height();
+                              $("#message").animate({scrollTop:altura+"px"});
                               }
                          });
      }
