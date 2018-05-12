@@ -19,7 +19,7 @@
                   <h3 class="box-title"></h3>
 
                   <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-black" data-original-title="" id="count"></span>
+                    <span data-toggle="tooltip" title="" class="badge bg-gray" data-original-title="" id="count"></span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts" id="contacts">
@@ -117,7 +117,7 @@
                       if(result[0][z]['profile_photo'] == "@php echo $photo; @endphp"){
                       $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-left">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
                     }else{
-                      $(".direct-chat-messages").append('<div class="direct-chat-msg"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-left">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-right">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
+                      $(".direct-chat-messages").append('<div class="direct-chat-msg other"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-left">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-right">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
                     }
                       $("#mid").val(result[0][z]['id_record']);
                      }
@@ -131,7 +131,7 @@
            }
 
   function count(){
-     var count = $("#message .direct-chat-msg.right").length;
+     var count = $("#message .direct-chat-msg.other").length;
      $("#count").html(count);
          if(count == 1){
              $("#count").attr("data-original-title", count + " nuevo mensaje");
@@ -166,6 +166,7 @@
                                 };
                               }
                     //fin validación y datos          
+
                            $.ajax({     
                              type: "POST",                 
                              url: "{{ url('Conversations/sendMessages') }}",  
