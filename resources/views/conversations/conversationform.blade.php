@@ -181,13 +181,20 @@
                                 };
                                 console.log(data);
                               }else {
-                             var data = { 
-                                  "id_record" : $("#mid").val(),
-                                  "textbody"  : $(".textbody").val()
-                                };
+                                if($("#mid").val().length > 0){
+
+                                   var data = { 
+                                        "id_record" : $("#mid").val(),
+                                        "textbody"  : $(".textbody").val()
+                                      };
+                                    }else{
+                                       var bool = 1;
+                                    }
                               }
                     //fin validación y datos          
-
+                        if(bool == 1){
+                            alert("No tienes habilitado poder iniciar conversaciones por ahora.");
+                        }else{
                            $.ajax({     
                              type: "POST",                 
                              url: "{{ url('Conversations/sendMessages') }}",  
@@ -212,5 +219,6 @@
                               $("#message").animate({scrollTop:altura+"px"});
                               }
                          });
+                         }
      }
 </script>          
