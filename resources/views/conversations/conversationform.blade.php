@@ -92,9 +92,7 @@
                       var data = 0;
                       get(data);
                     }
-                    $('.modal-chat').on('hidden.bs.modal', function (e) {
-                      $(this).removeData('bs.modal');
-                     })
+
           function get(data){   
 
               $.ajax({
@@ -134,7 +132,11 @@
            }
 
   function count(data){
-   setInterval(get(data),5000);
+    if ($('.modal-chat').is(':hidden')) {
+          clearInterval(timer);
+     }else{
+        var timer = setInterval(get(data),5000);
+     }
      var count = $("#message .direct-chat-msg.other").length;
      $("#count").html(count);
          if(count == 1){
