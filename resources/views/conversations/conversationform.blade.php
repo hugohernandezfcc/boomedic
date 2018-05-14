@@ -86,15 +86,18 @@
                       $('.modal-chat').on('show.bs.modal', function (e) {
                         var data = $(this).find(".midfield").val();
                         get(data);
+                         
                       })
                     }else{
                       var data = 0;
                       get(data);
-                      get(data);   
                     }
+                    $('.modal-chat').on('hidden.bs.modal', function (e) {
+                      $(this).removeData('bs.modal');
+                     })
           function get(data){   
 
-            setInterval(function(){ $.ajax({
+              $.ajax({
                  type: "GET",                 
                  url: "{{ url('Conversations/messages') }}/" + data,  
                  success: function(result){
@@ -124,13 +127,14 @@
                      //Auto-scroll
                         var altura = $("#message").height()+300;
                         $("#message").animate({scrollTop:altura+"px"});
-                     count();
+                     count(data);
                     }
                 }
-              });},2500);
+              });
            }
 
-  function count(){
+  function count(data){
+   setInterval(get(data),5000);
      var count = $("#message .direct-chat-msg.other").length;
      $("#count").html(count);
          if(count == 1){
