@@ -126,7 +126,7 @@
                      //Auto-scroll
                         var altura = $("#message").height()+300;
                         $("#message").animate({scrollTop:altura+"px"});
-                     setInterval(count(data),2000);
+                     setInterval(count(data),2500);
                     }
                 }
               });
@@ -136,7 +136,7 @@
          if ($('.modal-chat').is(':hidden')) {
                                   clearInterval(timer);
                              }else{
-                                var timer = setInterval(get(data),3000);
+                                var timer = setInterval(get(data),2500);
                              }
      var count = $("#message .direct-chat-msg.other").length;
      $("#count").html(count);
