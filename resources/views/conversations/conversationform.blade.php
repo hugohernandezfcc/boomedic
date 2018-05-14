@@ -86,7 +86,6 @@
                       $('.modal-chat').on('show.bs.modal', function (e) {
                         var data = $(this).find(".midfield").val();
                         get(data);
-                         
                       })
                     }else{
                       var data = 0;
@@ -135,7 +134,7 @@
     if ($('.modal-chat').is(':hidden')) {
           clearInterval(timer);
      }else{
-        var timer = setInterval(get(data),80000);
+        var timer = setInterval(get(data),200000);
      }
      var count = $("#message .direct-chat-msg.other").length;
      $("#count").html(count);
