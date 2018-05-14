@@ -40,22 +40,6 @@
                   <!-- Contacts are loaded here -->
                   <div class="direct-chat-contacts">
                     <ul class="contacts-list">
-                      <li>
-                        <a href="#">
-                          <img class="contacts-list-img" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image">
-
-                          <div class="contacts-list-info">
-                                <span class="contacts-list-name">
-                                  Count Dracula
-                                  <small class="contacts-list-date pull-right">2/28/2015</small>
-                                </span>
-                            <span class="contacts-list-msg">How have you been? I was...</span>
-                          </div>
-                          <!-- /.contacts-list-info -->
-                        </a>
-                      </li>
-                      <!-- End Contact Item -->
-
                     </ul>
                     <!-- /.contatcts-list -->
                   </div>
@@ -65,7 +49,7 @@
                 <div class="box-footer">
                   <form action="#" method="post">
                     <div class="input-group">
-                      <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody" autocomplete="off" onkeypress="send();">
+                      <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody" autocomplete="off" onkeypress="send();" autofocus="autofocus">
                       <span class="input-group-btn">
                             <button type="button" class="btn btn-secondary btn-flat" onclick="send();">Enviar</button>
                           </span>
@@ -104,6 +88,12 @@
                   if(result[1].length == 0){
                     $("#contacts").css("display", "none");
                     $("#userOrDr").val(result[1].length);
+                  }
+                  if(result[1].length > 0){
+                    $(".contacts-list").html("");
+                    for(var x = 0; x < result[2].length; x++){ 
+                     $(".contacts-list").append('<li><a href="#"><img class="contacts-list-img" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">Contacto<small class="contacts-list-date pull-right">2/28/2015</small></span><span class="contacts-list-msg">'+ result[2][x]['name'] +'</span></div></a></li>');
+                   }
                   }
                   if(result[0].length == 0){
                     $("#count").html("0");
