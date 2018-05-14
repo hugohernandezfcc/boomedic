@@ -135,7 +135,7 @@
     if ($('.modal-chat').is(':hidden')) {
           clearInterval(timer);
      }else{
-        var timer = setInterval(get(data),5000);
+        var timer = setInterval(get(data),20000);
      }
      var count = $("#message .direct-chat-msg.other").length;
      $("#count").html(count);
