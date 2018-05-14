@@ -119,6 +119,18 @@
             background: transparent !important; 
             top: 75% !important; 
       }
+      .modal.fade2 .modal-dialog{
+    top: 300px;
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+      }
+   .modal.fade2.in .modal-dialog {
+    -webkit-transform: translate3d(0, -300px, 0);
+    transform: translate3d(0, -300px, 0);
+    opacity: 1;
+}
 </style>
 
 
@@ -351,7 +363,7 @@
 
                   <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $test->url }}" data-target="#myModal">Ver estudio</a>
                   <a class="btn btn-secondary btn-sm btn-flat modal-chat" data-toggle="modal" data-target="#chat-form-modal">Comentarios</a>
-                  <div class="modal-chat modal" id="chat-form-modal">
+                  <div class="modal-chat fade2 modal" id="chat-form-modal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                          <div class="modal-header">
