@@ -221,4 +221,13 @@
                          });
                          }
      }
+     
+     $('.textbody').keypress(function(e) {
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode == '13') {
+        send();
+        e.preventDefault();
+        return false;
+    }
+});
 </script>          
