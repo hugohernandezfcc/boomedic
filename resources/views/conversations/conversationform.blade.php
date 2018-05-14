@@ -197,6 +197,8 @@
                     //fin validación y datos          
                         if(bool == 1){
                             alert("No tienes habilitado poder iniciar conversaciones por ahora.");
+                              $(".textbody").val("");
+                              $(".textbody").focus();
                         }else{
                            $.ajax({     
                              type: "POST",                 
