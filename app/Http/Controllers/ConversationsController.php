@@ -76,8 +76,13 @@ class ConversationsController extends Controller
             ->get();
         array_push($data, json_decode($messages));
         array_push($data, json_decode($profInfo));        
+       
         }else{
-         $conversations =  DB::table('conversations')->where('doctor', Auth::id())->orderBy('created_at', 'DESC')->get();
+            if($id == '0'){
+            $conversations =  DB::table('conversations')->where('doctor', Auth::id())->orderBy('created_at', 'DESC')->get();
+           }else{
+             $conversations =  DB::table('conversations')->where('id_record', $id)->get();
+           }
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
