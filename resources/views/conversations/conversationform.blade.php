@@ -85,16 +85,16 @@
                     if(window.location.href == "{{ url('clinicHistory/index') }}" ){
                       $('.modal-chat').on('show.bs.modal', function (e) {
                         var data = $(this).find(".midfield").val();
-                         get(data); 
+                        get(data);
                       })
                     }else{
                       var data = 0;
                       get(data);
-                      setInterval (get(data), 2500);   
+                      get(data);   
                     }
           function get(data){   
 
-             $.ajax({
+            setInterval(function(){ $.ajax({
                  type: "GET",                 
                  url: "{{ url('Conversations/messages') }}/" + data,  
                  success: function(result){
@@ -127,7 +127,7 @@
                      count();
                     }
                 }
-              });
+              });},2500);
            }
 
   function count(){
