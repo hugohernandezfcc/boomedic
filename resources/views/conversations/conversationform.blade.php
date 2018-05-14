@@ -65,7 +65,7 @@
                 <div class="box-footer">
                   <form action="#" method="post">
                     <div class="input-group">
-                      <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody" autocomplete="off">
+                      <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody" autocomplete="off" onkeypress="send();">
                       <span class="input-group-btn">
                             <button type="button" class="btn btn-secondary btn-flat" onclick="send();">Enviar</button>
                           </span>
