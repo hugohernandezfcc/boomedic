@@ -150,8 +150,7 @@
 
      function repeat(data){
       get(data);
-
-          }
+       }
      })
 
      function send(){
@@ -186,6 +185,7 @@
                              success: function(result2)             
                              {
                               $(".textbody").val("");
+                              $(".textbody").focus();
                               console.log(result2);
                               for(var y = 0; y < result2.length; y++){ 
                               var mo = moment(result2[y]['created_at']).fromNow();
