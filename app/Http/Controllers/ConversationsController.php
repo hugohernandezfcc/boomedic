@@ -61,6 +61,7 @@ class ConversationsController extends Controller
      */
     public function messages($id)
     {
+         $data = array();   
          $user = User::find(Auth::id());
          $profInfo = DB::table('professional_information')
                             ->where('user', Auth::id() )
@@ -74,15 +75,17 @@ class ConversationsController extends Controller
             ->orderBy('items_conversations.created_at')
             ->get();
         }else{
+        $conversations =  DB::table('conversations')->where('doctor', Auth::id())->orderBy('created_at', 'DESC')->get();
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
+            ->where('conversations.id', $conversations[0]->id)
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
         }
 
-        $data = array();
+
         array_push($data, json_decode($messages));
         array_push($data, json_decode($profInfo));    
 
