@@ -129,7 +129,7 @@
                    if ($('.modal-chat').is(':hidden')) {
                                   clearTimeout(timer);
                              }else{ 
-                       var timer = setTimeout(repeat(data),15000);
+                       var timer = setTimeout(function(){ repeat(data); },5000);
                      }
                     }
                 }
@@ -148,7 +148,7 @@
             }
           }
 
-     function repeat(){
+     function repeat(data){
       get(data);
 
           }
