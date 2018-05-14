@@ -389,7 +389,7 @@
                                  <span style="font-size: 15px;"><b> {{ $test->name }} </b></span>
                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
-                                  <div class="modal-body">
+                                  <div class="modal-body results">
                                   </div>
                                   </div><!-- /.modal-content -->
                               </div><!-- /.modal-dialog -->
@@ -858,7 +858,8 @@
   $('.external').on('click', function(e) {
         e.preventDefault();
         var url = $(this).attr('href');
-        $(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'" ></iframe>');
+        $(".modal-body.results").html(""),
+        $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'" ></iframe>');
  
     });
  
