@@ -87,9 +87,15 @@
                         var data = $(this).find(".midfield").val();
                         get(data);
                       })
+                  if ($('.modal-chat').is(':hidden')) {
+                                  clearInterval(timer);
+                             }else{
+                                var timer = setInterval(get(data),20000);
+                             }
                     }else{
                       var data = 0;
                       get(data);
+                      setInterval(get(data),20000);
                     }
 
           function get(data){   
@@ -131,11 +137,7 @@
            }
 
   function count(data){
-    if ($('.modal-chat').is(':hidden')) {
-          clearInterval(timer);
-     }else{
-        var timer = setInterval(get(data),200000);
-     }
+
      var count = $("#message .direct-chat-msg.other").length;
      $("#count").html(count);
          if(count == 1){
