@@ -83,10 +83,15 @@ class ConversationsController extends Controller
            }else{
              $conversations =  DB::table('conversations')->where('id_record', $id)->get();
            }
+           if(count($conversations) > 0){
+            $com = $conversations[0]->id;
+           }else{
+            $com = 0;
+            }  
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
-            ->where('conversations.id', $conversations[0]->id)
+            ->where('conversations.id', $com)
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
@@ -94,7 +99,8 @@ class ConversationsController extends Controller
 
         array_push($data, json_decode($messages));
         array_push($data, json_decode($profInfo));
-        array_push($data, json_decode($conversations2));    
+        array_push($data, json_decode($conversations2)); 
+
         }
 
            return response()->json($data);

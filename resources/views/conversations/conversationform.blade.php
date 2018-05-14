@@ -92,18 +92,22 @@
                  type: "GET",                 
                  url: "{{ url('Conversations/messages') }}/" + data,  
                  success: function(result){
-                  console.log(result[0].length);
-                  console.log(result[1].length);
+
                   if(result[1].length == 0){
                     $("#contacts").css("display", "none");
                     $("#userOrDr").val(result[1].length);
                   }
                   if(result[1].length > 0){
+                    console.log(result[1].length);
                     $(".contacts-list").html("");
-                    for(var x = 0; x < result[2].length; x++){ 
-                      var mo = moment(result[2][x]['created_at']).fromNow();
-                     $(".contacts-list").append('<li><a href="#" onclick="searchM('+ result[2][x]['id_record'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['name'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ result[2][x]['namec'] +'</span></div></a></li>');
-                   }
+                        if(result[2].length > 0){
+                        for(var x = 0; x < result[2].length; x++){ 
+                          var mo = moment(result[2][x]['created_at']).fromNow();
+                         $(".contacts-list").append('<li><a href="#" onclick="searchM('+ result[2][x]['id_record'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['name'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ result[2][x]['namec'] +'</span></div></a></li>');
+                       }
+                     }else{
+                      $(".contacts-list").append('<li>No hay ninguna conversación iniciada por paciente</li>');
+                     }
                   }
                   if(result[0].length == 0){
                     $("#count").html("0");
@@ -112,6 +116,7 @@
                     $(".direct-chat-messages").append('<div align="center">No se ha empezado ninguna conversación</div>');
                   }
                   else{
+                   console.log(result[0].length);
                    $(".direct-chat-messages").html("");
                    for(var z = 0; z < result[0].length; z++){ 
                       var mo = moment(result[0][z]['created_at']).fromNow();
