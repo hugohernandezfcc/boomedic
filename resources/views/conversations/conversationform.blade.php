@@ -10,6 +10,11 @@
 .direct-chat-warning .right>.direct-chat-text:after, .direct-chat-warning .right>.direct-chat-text:before {
     border-left-color: #000000 !important;
 }
+.contacts-list-msg {
+    width:50%;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
 </style>
 
 
@@ -120,7 +125,7 @@
                    if ($('.modal-chat').is(':hidden')) {
                                   clearTimeout(timer);
                              }else{ 
-                       var timer = setTimeout(function(){ repeat(data); },5000);
+                       var timer = setTimeout(function(){ repeat(data); },10000);
                      }
                     }
                 }
