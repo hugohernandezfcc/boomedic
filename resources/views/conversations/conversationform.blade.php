@@ -11,7 +11,7 @@
     border-left-color: #000000 !important;
 }
 .contacts-list-msg {
-    width:50%;
+    width:80%;
     white-space:nowrap;
     text-overflow: ellipsis;
 }
@@ -78,10 +78,14 @@
                       })
 
                     }else{
+                      if(!$("#mid").val()){
                       var data = 0;
+                    }else{
+                      var dat = $("#mid").val();
+                    }
                       get(data);
                     }
-
+     })
           function get(data){   
 
               $.ajax({
@@ -98,7 +102,7 @@
                     $(".contacts-list").html("");
                     for(var x = 0; x < result[2].length; x++){ 
                       var mo = moment(result[2][x]['created_at']).fromNow();
-                     $(".contacts-list").append('<li><a href="#"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['name'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ result[2][x]['namec'] +'</span></div></a></li>');
+                     $(".contacts-list").append('<li><a href="#" onclick="searchM('+ result[2][x]['id_record'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['name'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ result[2][x]['namec'] +'</span></div></a></li>');
                    }
                   }
                   if(result[0].length == 0){
@@ -147,7 +151,13 @@
      function repeat(data){
       get(data);
        }
-     })
+
+     function searchM(data){
+        get(data);
+        console.log(data);
+        $('#contacts').click();
+     }  
+
 
      function send(){
                     $.ajaxSetup({
