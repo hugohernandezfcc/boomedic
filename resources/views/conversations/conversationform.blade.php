@@ -86,6 +86,7 @@
                       get(data);
                     }
      })
+     var timer = null;
           function get(data){   
 
               $.ajax({
@@ -134,7 +135,7 @@
                    if ($('.modal-chat').is(':hidden')) {
                                   clearTimeout(timer);
                              }else{ 
-                       var timer = setTimeout(function(){ repeat(data); },10000);
+                        timer = setTimeout(function(){ repeat(data); },10000);
                      }
                     }
                 }
@@ -158,9 +159,11 @@
        }
 
      function searchM(data){
+      clearTimeout(timer);
         get(data);
         console.log(data);
         $('#contacts').click();
+        $("#mid").val(data);
      }  
 
 
@@ -221,7 +224,7 @@
                          });
                          }
      }
-     
+
      $('.textbody').keypress(function(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
