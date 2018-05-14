@@ -91,7 +91,6 @@
                     }else{
                       var data = 0;
                       get(data);
-                      setInterval(get(data),20000);
                     }
 
           function get(data){   
@@ -126,18 +125,19 @@
                      //Auto-scroll
                         var altura = $("#message").height()+300;
                         $("#message").animate({scrollTop:altura+"px"});
-                     count(data);
+                        count();
+                   if ($('.modal-chat').is(':hidden')) {
+                                  clearTimeout(timer);
+                             }else{ 
+                       var timer = setTimeout(repeat(data),15000);
+                     }
                     }
                 }
               });
            }
 
   function count(data){
-         if ($('.modal-chat').is(':hidden')) {
-                                  clearInterval(timer);
-                             }else{
-                                var timer = setInterval(get(data),3000);
-                             }
+
      var count = $("#message .direct-chat-msg.other").length;
      $("#count").html(count);
          if(count == 1){
@@ -148,6 +148,10 @@
             }
           }
 
+     function repeat(){
+      get(data);
+
+          }
      })
 
      function send(){
