@@ -92,7 +92,8 @@
                   if(result[1].length > 0){
                     $(".contacts-list").html("");
                     for(var x = 0; x < result[2].length; x++){ 
-                     $(".contacts-list").append('<li><a href="#"><img class="contacts-list-img" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">Contacto<small class="contacts-list-date pull-right">2/28/2015</small></span><span class="contacts-list-msg">'+ result[2][x]['name'] +'</span></div></a></li>');
+                      var mo = moment(result[2][x]['created_at']).fromNow();
+                     $(".contacts-list").append('<li><a href="#"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['name'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ result[2][x]['namec'] +'</span></div></a></li>');
                    }
                   }
                   if(result[0].length == 0){

@@ -77,7 +77,7 @@ class ConversationsController extends Controller
         array_push($data, json_decode($messages));
         array_push($data, json_decode($profInfo));        
         }else{
-        $conversations =  DB::table('conversations')->where('doctor', Auth::id())->orderBy('created_at', 'DESC')->get();
+         $conversations =  DB::table('conversations')->where('doctor', Auth::id())->orderBy('created_at', 'DESC')->get();
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
@@ -85,9 +85,11 @@ class ConversationsController extends Controller
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
+         $conversations2 = $messages->unique('conversations.id_record');   
+
         array_push($data, json_decode($messages));
         array_push($data, json_decode($profInfo));
-        array_push($data, json_decode($conversations));    
+        array_push($data, json_decode($conversations2));    
         }
 
            return response()->json($data);
