@@ -123,9 +123,9 @@
       .modal.fade2 .modal-dialog{
     top: 300px;
     opacity: 0;
-    -webkit-transition: all 0.9s;
-    -moz-transition: all 0.9s;
-    transition: all 0.9s;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    transition: all 0.8s;
       }
    .modal.fade2.in .modal-dialog {
     -webkit-transform: translate3d(0, -300px, 0);
