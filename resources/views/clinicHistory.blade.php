@@ -6,6 +6,7 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 	     <style type="text/css">
+
         .contacts-list>li {
          border-bottom: 1px solid rgba(0,0,0,0.2);
          padding: 10px;
@@ -858,8 +859,10 @@
   $('.external').on('click', function(e) {
         e.preventDefault();
         var url = $(this).attr('href');
-        $(".modal-body.results").html(""),
-        $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'" ></iframe>');
+        $(".modal-body.results").html("");
+        //Solo si es PDF
+        $(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
+        //$(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'" ></iframe>');
  
     });
  
