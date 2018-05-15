@@ -861,8 +861,8 @@
         var url = $(this).attr('href');
         $(".modal-body.results").html("");
         //Solo si es PDF
-        $(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
-        //$(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'" ></iframe>');
+        //$(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
+        $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/viewer?url='+url+'&embedded=true"" ></iframe>');
  
     });
  
