@@ -77,12 +77,14 @@
                         get(data);
                       })
 
-                    }else{
-                      if(!$("#mid").val()){
-                      var data = 0;
-                    }else{
-                      var dat = $("#mid").val();
                     }
+                      else{
+                          if(!$("#mid").val()){
+                          var data = 0;
+                       }
+                       else{
+                          var dat = $("#mid").val();
+                      }
                       get(data);
                     }
      })
@@ -102,41 +104,44 @@
                     console.log(result[1].length);
                     $(".contacts-list").html("");
                         if(result[2].length > 0){
-                        for(var x = 0; x < result[2].length; x++){ 
-                          var mo = moment(result[2][x]['created_at']).fromNow();
-                         $(".contacts-list").append('<li><a href="#" onclick="searchM('+ result[2][x]['id_record'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['name'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ result[2][x]['namec'] +'</span></div></a></li>');
-                       }
-                     }else{
-                      $(".contacts-list").append('<li>No hay ninguna conversación iniciada por paciente</li>');
-                     }
-                  }
-                  if(result[0].length == 0){
-                    $("#count").html("0");
-                    $("#count").attr("data-original-title", "0 mensajes");
-                    $(".direct-chat-messages").text('');
-                    $(".direct-chat-messages").append('<div align="center">No se ha empezado ninguna conversación</div>');
-                  }
+                          for(var x = 0; x < result[2].length; x++){ 
+                            var mo = moment(result[2][x]['created_at']).fromNow();
+                            $(".contacts-list").append('<li><a href="#" onclick="searchM('+ result[2][x]['id_record'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['name'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ result[2][x]['namec'] +'</span></div></a></li>');
+                          }
+                         }
+                           else{
+                              $(".contacts-list").append('<li>No hay ninguna conversación iniciada por paciente</li>');
+                           }
+                   }
+                      if(result[0].length == 0){
+                        $("#count").html("0");
+                        $("#count").attr("data-original-title", "0 mensajes");
+                        $(".direct-chat-messages").text('');
+                        $(".direct-chat-messages").append('<div align="center">No se ha empezado ninguna conversación</div>');
+                      }
                   else{
                    console.log(result[0].length);
                    $(".direct-chat-messages").html("");
-                   for(var z = 0; z < result[0].length; z++){ 
-                      var mo = moment(result[0][z]['created_at']).fromNow();
-                      if(result[0][z]['profile_photo'] == "@php echo $photo; @endphp"){
-                      $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-left">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
-                    }else{
-                      $(".direct-chat-messages").append('<div class="direct-chat-msg other"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-left">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-right">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
-                    }
-                      $("#mid").val(result[0][z]['id_record']);
+                     for(var z = 0; z < result[0].length; z++){ 
+                        var mo = moment(result[0][z]['created_at']).fromNow();
+                            if(result[0][z]['profile_photo'] == "@php echo $photo; @endphp"){
+                            $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-left">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
+                        }else{
+                          $(".direct-chat-messages").append('<div class="direct-chat-msg other"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-left">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-right">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
+                        }
+                          $("#mid").val(result[0][z]['id_record']);
                      }
                      //Auto-scroll
                         var altura = $("#message").height()+300;
                         $("#message").animate({scrollTop:altura+"px"});
                         count();
-                   if ($('.modal-chat').is(':hidden')) {
+
+                      if ($('.modal-chat').is(':hidden')) {
                                   clearTimeout(timer);
-                             }else{ 
-                        timer = setTimeout(function(){ repeat(data); },10000);
-                     }
+                        }
+                        else{ 
+                                 timer = setTimeout(function(){ repeat(data); },10000);
+                             }
                     }
                 }
               });
@@ -212,11 +217,11 @@
                               console.log(result2);
                               for(var y = 0; y < result2.length; y++){ 
                               var mo = moment(result2[y]['created_at']).fromNow();
-                              if(result2[y]['profile_photo'] == "@php echo $photo; @endphp"){
-                                $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">'+ result2[y]['name'] +'</span><span class="direct-chat-timestamp pull-left">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result2[y]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result2[y]['text_body'] +'</div></div>');
-                              }else{
-                                $(".direct-chat-messages").append('<div class="direct-chat-msg"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-left">'+ result2[y]['name'] +'</span><span class="direct-chat-timestamp pull-right">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result2[y]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result2[y]['text_body'] +'</div></div>');
-                              }
+                                  if(result2[y]['profile_photo'] == "@php echo $photo; @endphp"){
+                                    $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">'+ result2[y]['name'] +'</span><span class="direct-chat-timestamp pull-left">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result2[y]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result2[y]['text_body'] +'</div></div>');
+                                  }else{
+                                    $(".direct-chat-messages").append('<div class="direct-chat-msg"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-left">'+ result2[y]['name'] +'</span><span class="direct-chat-timestamp pull-right">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result2[y]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result2[y]['text_body'] +'</div></div>');
+                                  }
                                 $("#mid").val(result2[y]['id_record']);
                                }
                               //Auto-scroll
