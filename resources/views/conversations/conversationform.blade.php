@@ -33,22 +33,15 @@
                   <input type="hidden" id="userOrDr" value="1">
                   <input type="hidden" id="mid" value="">
                 </div>
-                <!-- /.box-header -->
                 <div class="box-body" id="message0">
                   <!-- Conversations are loaded here -->
                   <div class="direct-chat-messages" id="message">
-
-
                   </div>
-                  <!--/.direct-chat-messages-->
-
                   <!-- Contacts are loaded here -->
                   <div class="direct-chat-contacts">
                     <ul class="contacts-list">
                     </ul>
-                    <!-- /.contatcts-list -->
                   </div>
-                  <!-- /.direct-chat-pane -->
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
@@ -68,27 +61,25 @@
 
 
 <script type="text/javascript">
-     $(function(){
-
-                    //Valido para saber de que página envía los datos y si es paciente o doctor
-                    if(window.location.href == "{{ url('clinicHistory/index') }}" ){
-                      $('.modal-chat').on('show.bs.modal', function (e) {
-                        var data = $(this).find(".midfield").val();
-                        get(data);
-                      })
-
-                    }
-                      else{
-                          if(!$("#mid").val()){
-                          var data = 0;
-                       }
-                       else{
-                          var dat = $("#mid").val();
+       $(function(){
+                      //Valid to know who sends the data and if you are a patient or doctor
+                      if(window.location.href == "{{ url('clinicHistory/index') }}" ){
+                        $('.modal-chat').on('show.bs.modal', function (e) {
+                          var data = $(this).find(".midfield").val();
+                          get(data);
+                        })
                       }
-                      get(data);
-                    }
-     })
-     var timer = null;
+                      else{
+                            if(!$("#mid").val()){
+                            var data = 0;
+                         }
+                            else{
+                            var dat = $("#mid").val();
+                            }
+                        get(data);
+                      }
+       })
+          var timer = null;
           function get(data){   
 
               $.ajax({
@@ -149,8 +140,7 @@
               });
            }
 
-  function count(data){
-
+   function count(data){
      var count = $("#message .direct-chat-msg.other").length;
      $("#count").html(count);
          if(count == 1){
@@ -172,7 +162,6 @@
         $('#contacts').click();
         $("#mid").val(data);
      }  
-
 
      function send(){
                     $.ajaxSetup({
@@ -234,12 +223,12 @@
                          }
      }
 
-     $('.textbody').keypress(function(e) {
-    var keycode = (e.keyCode ? e.keyCode : e.which);
-    if (keycode == '13') {
-        send();
-        e.preventDefault();
-        return false;
-    }
-});
+                           $('.textbody').keypress(function(e) {
+                          var keycode = (e.keyCode ? e.keyCode : e.which);
+                              if (keycode == '13') {
+                                  send();
+                                  e.preventDefault();
+                                  return false;
+                              }
+                           });
 </script>          
