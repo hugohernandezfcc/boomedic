@@ -8,7 +8,7 @@
 
 @section('content')
 
-
+@if($mode == 'listTickets')
 @include('headerprofile')
 
 	<div class="box">
@@ -17,7 +17,7 @@
 	  	</div>
 		<div class="box-body">
 
-            @if($mode == 'listTickets')
+
             	<table id="paymentmethodtable" class="table table-bordered table-striped" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
@@ -56,6 +56,11 @@
 	                </tbody>
 	            </table>
 	        @elseif($mode == 'createTicket')
+	   <div class="box">
+	  	<div class="box-header with-border">
+		    <h3 class="box-title">Estado de Casos</h3>
+	  	</div>
+		<div class="box-body">
 
 	        	<form action="/supportTicket/store" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
