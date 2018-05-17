@@ -14,7 +14,8 @@ class Items_Conversations extends Model
 		'conversation',
 		'type',
 		'parent',
-		'text_body'
+		'text_body',
+		'viewed'
     ];
 
     public function by(){
