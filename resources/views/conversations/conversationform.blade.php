@@ -21,7 +21,7 @@
               <!-- DIRECT CHAT -->
               <div class="box box-warning direct-chat direct-chat-warning">
                 <div class="box-header with-border">
-                  <h3 class="box-title"></h3>
+                  <h5 id="titleC"></h5>
 
                   <div class="box-tools pull-right">
                     <span data-toggle="tooltip" title="" class="badge bg-gray" data-original-title="" id="count"></span>
@@ -123,6 +123,7 @@
                    console.log(result[0].length);
                    $(".direct-chat-messages").html("");
                      for(var z = 0; z < result[0].length; z++){ 
+                      var title = result[0][z]['namec'];
                         var mo = moment(result[0][z]['created_at']).fromNow();
                             if(result[0][z]['profile_photo'] == "@php echo $photo; @endphp"){
                             $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-left">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
@@ -131,6 +132,7 @@
                         }
                           $("#mid").val(result[0][z]['id_record']);
                      }
+                     $("#titleC").text(title);
                      //Auto-scroll
                         var altura = $("#message").height()+300;
                         $("#message").animate({scrollTop:altura+"px"});
