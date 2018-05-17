@@ -455,8 +455,9 @@ span.round-tab:hover {
                 type: "GET",    
                 url: "{{ url('HomeController/messages') }}", 
                 success: function(result){
-                    console.log(result);
+                     console.log(result);
                   for (var o =0; o < result.length; o++) {
+                     console.log(result);
                     if(o == 0){
                     $('#countMes').html('Tiene '+ result.length + ' mensaje');
                      $('#messN').html('1');
