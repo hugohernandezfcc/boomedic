@@ -268,7 +268,6 @@ class HomeController extends Controller
           $q->where('user_id', Auth::id())
             ->orWhere('type', 'Global');})->get();
 
-
         return response()->json($notifications);
     }
 
@@ -286,15 +285,26 @@ class HomeController extends Controller
         public function messages()
     {
           $user = User::find(Auth::id());
-          Session(['entered' => $user->entered]);
-        //if is for user or for all
-         $notifications = DB::table('notifications')->where(function($q) {
-          $q->where('user_id', Auth::id())
-            ->orWhere('type', 'Global');})->get();
-        return response()->json($notifications);
+          $array = array();
+        //if is for messages
+         $messages1 = DB::table('items_conversations')->where('by', $user->id)->get();
+         $search = $messages1->unique('conversation');
+         $messages = DB::table('items_conversations')
+            ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+            ->join('users', 'items_conversations.by', '=', 'users.id')
+            ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
+            ->orderBy('items_conversations.created_at')
+            ->get();
+
+            foreach($search as $s){
+                foreach($messages as $mess){
+                    if($s->conversation == $mess->conversation && $mess->viewed == 'false'){
+                       array_push($array, $mess);
+                    }
+                }
+            }
+        return response()->json(json_encode($array));
     }
-
-
 
      /**
      * Method responsable of list of recent

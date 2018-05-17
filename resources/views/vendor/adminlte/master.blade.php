@@ -450,6 +450,28 @@ span.round-tab:hover {
                                 }
               });
 
+                 $.ajax(
+              {
+                type: "GET",    
+                url: "{{ url('HomeController/messages') }}", 
+                success: function(result){
+                    console.log(result);
+                  for (var o =0; o < result.length; o++) {
+                    if(o == 0){
+                    $('#countMes').html('Tiene '+ result.length + ' mensaje');
+                     $('#messN').html('1');
+                    }else{
+                     $('#messN').html(result.length);
+                    $('#countNot').html('Tiene '+ result.length + ' mensajes');
+                    }
+                    //var u = result[i]['url'];
+                    var url = "{{ url('') }}";
+                            $('#newMess').append('<li><a href="#"><div class="pull-left"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">quipo de Soporte<small><i class="fa fa-clock-o"></i> 5 mins</small></h4><p>Why not buy a new awesome theme?</p></a></li>');
+                        
+                        }
+                                }
+              }); 
+
         $.fn.datepicker.dates['es'] = {
         days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],

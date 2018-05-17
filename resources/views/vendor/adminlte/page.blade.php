@@ -65,22 +65,11 @@
                               <span class="label label-success" id="messN">1</span>
                             </a>
                             <ul class="dropdown-menu">
-                              <li class="header">Tienes 1 mensaje</li>
+                              <li class="header" id="countMes">Tienes 1 mensaje</li>
                               <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu" id="newMess">
-                                  <li><!-- start message -->
-                                    <a href="#">
-                                      <div class="pull-left">
-                                        <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image">
-                                      </div>
-                                      <h4 style="text-align: left;">
-                                        Equipo de Soporte
-                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                      </h4>
-                                      <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                  </li>
+
                                 </ul>
                               </li>
                             </ul>
