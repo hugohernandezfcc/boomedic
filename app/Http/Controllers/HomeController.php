@@ -271,6 +271,18 @@ class HomeController extends Controller
 
         return response()->json($notifications);
     }
+        public function messages()
+    {
+          $user = User::find(Auth::id());
+          Session(['entered' => $user->entered]);
+        //if is for user or for all
+         $notifications = DB::table('notifications')->where(function($q) {
+          $q->where('user_id', Auth::id())
+            ->orWhere('type', 'Global');})->get();
+
+
+        return response()->json($notifications);
+    }
 
         public function notify2()
     {

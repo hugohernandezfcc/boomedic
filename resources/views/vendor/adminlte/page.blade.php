@@ -68,7 +68,7 @@
                               <li class="header">Tienes 1 mensaje</li>
                               <li>
                                 <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
+                                <ul class="menu" id="newMess">
                                   <li><!-- start message -->
                                     <a href="#">
                                       <div class="pull-left">
