@@ -9,16 +9,16 @@
 @section('content')
 
 @if($mode == 'listTickets')
+
+ @if(count($allTickets) == 0)
+           @include('empty.emptyData')
+		@else
+		@include('headerprofile')
 	<div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Estado de Casos</h3>
 	  	</div>
 		<div class="box-body">
- @if(count($allTickets) == 0)
-           @include('empty.emptyData')
-		@else
-		@include('headerprofile')
-
             	<table id="paymentmethodtable" class="table table-bordered table-striped" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
