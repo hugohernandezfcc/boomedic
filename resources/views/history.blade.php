@@ -29,14 +29,13 @@
 
   	<div class="box-header direct-chat">
 	    <h3 class="box-title">Historial</h3>
-        @if($mode == 'more')
-            @if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
+        @if($mode == 'more' && $arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
+
                                @include('empty.emptyData')
                              <script type="text/javascript">
                                 $('.buttonEmpty').css('display','none');
                                 $('.spanEmpty').css('display','none');
                              </script>
-            @endif
         @endif
       @if($array->isEmpty())
         @include('empty.emptyData')
