@@ -69,7 +69,8 @@ class clinicHistory extends Controller
                 'questions_parent'  => $question_parent,
                 'clinic_history'    => $clinic_history,
                 'test_result'       => $test_result,
-                'mode'              => $mode
+                'mode'              => $mode,
+                'title'             => "expedientes"
             ]
         );
     }
