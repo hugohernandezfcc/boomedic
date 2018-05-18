@@ -171,7 +171,8 @@ class history extends Controller
                 'array5'     => $array5,
                 'array6'     => $array6,
                 'arraynow'     => $arraynow,
-                'mode'       => 'null'
+                'mode'       => 'null',
+                'title'     => 'históricos en esta fecha'
 
 
             ]
@@ -328,7 +329,8 @@ class history extends Controller
                 'array5'     => $array5,
                 'array6'     => $array6,
                 'arraynow'     => $arraynow,
-                'mode'      => 'more'
+                'mode'      => 'more',
+                'title'     => 'Históricos en esta fecha'
 
 
             ]

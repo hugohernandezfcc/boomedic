@@ -29,11 +29,23 @@
 
   	<div class="box-header direct-chat">
 	    <h3 class="box-title">Historial</h3>
+        @if($mode == 'more')
+            @if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
+                               @include('empty.emptyData')
+                             <script type="text/javascript">
+                                $('.buttonEmpty').css('display','none');
+                                $('.spanEmpty').css('display','none');
+                             </script>
+            @endif
+        @endif
       @if($array->isEmpty())
-          
-                <h4> No tiene historial registrado en estos últimos días. </h4>
-      @else 
-
+        @include('empty.emptyData')
+               <script type="text/javascript">
+                  $('.buttonEmpty').css('display','none');
+                  $('.spanEmpty').css('display','none');
+               </script>
+      @endif
+    @if(!$arraynow->isEmpty())
        <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-filter text-muted"></span></button>
               <div class="direct-chat-contacts">
@@ -55,7 +67,7 @@
           <ul class="timeline">
 					
 			<!-- Now -->
-		@if(!$arraynow->isEmpty())
+
             <!-- 1 day -->
 			<li class="time-label">
                   <span class="bg-gray">
@@ -782,11 +794,10 @@
 
             @endforeach
          @endif  
-            @endif
             <!-- END timeline item -->
             
 			<br/>
-			@if($mode != 'more')
+			   @if($mode != 'more')
             <div align="right">
               <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> 7 días más </a>
           	</div>
@@ -795,15 +806,7 @@
            <div  align="right">
               <a href="{{ url('/history/index') }}" class="btn btn-default btn-flat btn-xs"> Volver </a>
               <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> 7 días más </a>
-          	</div>
-          	
-          	@if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
-          	<div align="center">
-               <div class="timeline-item">
-              No hay histórico en la semana {{ session()->get('history2') }}.
-               </div>
-          	</div>
-          	@endif
+          	</div>   	
           	@endif
           	<li>
               <i class="fa fa-clock-o bg-gray"></i>
@@ -813,8 +816,6 @@
           </ul>
 
           </div>
-        <!-- /.col -->
-
       </div>
 
  	</div>
