@@ -124,8 +124,9 @@
                           $("#mid").val(result[0][z]['id_record']);
                      }
                      $("#titleC").text(title);
-                     //Auto-scroll
-                        var altura = $("#message").scrollTop() + $("#message").height();
+                           //Auto-scroll
+                            var altura = (document.getElementById("message").scrollHeight + $("#message").height());
+                            console.log(altura);
                         $("#message").animate({scrollTop:altura+"px"});
                         count();
 
@@ -219,7 +220,7 @@
                                 $("#mid").val(result2[y]['id_record']);
                                }
                               //Auto-scroll
-                            var altura = $("#message").scrollTop() + $("#message").height();
+                            var altura = (document.getElementById("message").scrollHeight + $("#message").height());
                               $("#message").animate({scrollTop:altura+"px"});
                               }
                          });
