@@ -321,6 +321,7 @@ class payments extends Controller
                 'username'          => $user->username,
                 'name'              => $user->name,
                 'mode'              => 'historyTransaction',
+                'title'             => 'histórico de transacciones',
                 'date'              => $user->created_at
             ]
         );

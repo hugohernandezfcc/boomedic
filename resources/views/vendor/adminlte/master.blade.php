@@ -407,20 +407,7 @@ span.round-tab:hover {
 
 
 
-    var par = "@php echo session()->get('parental'); @endphp";
-      if(!par){
-          $("body").removeClass("skin-black-light");
-          $("body").addClass("skin-black");
-          $("#uh").css("background-color", "#222");
-          $("#uf").css("background-color", "#222");
-          $("#au").removeAttr("style");
-      }else{
-        $("body").removeClass("skin-black");
-        $("body").addClass("skin-black-light");
-        $("#uh").css("background-color", "#31b7b0");
-        $("#uf").css("background-color", "#31b7b0");
-        $("#au").css("color", "white");
-      }
+
               //Ajax function call notify set timeout
             function notifications(){
               $.ajax(
@@ -485,6 +472,20 @@ span.round-tab:hover {
             notifications();
         }
     $(function () {
+            var par = "@php echo session()->get('parental'); @endphp";
+      if(!par){
+          $("body").removeClass("skin-black-light");
+          $("body").addClass("skin-black");
+          $("#uh").css("background-color", "#222");
+          $("#uf").css("background-color", "#222");
+          $("#au").removeAttr("style");
+      }else{
+        $("body").removeClass("skin-black");
+        $("body").addClass("skin-black-light");
+        $("#uh").css("background-color", "#31b7b0");
+        $("#uf").css("background-color", "#31b7b0");
+        $("#au").css("color", "white");
+      }
                 notifications();
 
         $.fn.datepicker.dates['es'] = {

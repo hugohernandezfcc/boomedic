@@ -13,7 +13,7 @@
  @if(count($allTickets) == 0)
            @include('empty.emptyData')
 		@else
-		@include('headerprofile')
+		  @include('headerprofile')
 	<div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Estado de Casos</h3>

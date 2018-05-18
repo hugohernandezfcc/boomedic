@@ -341,15 +341,19 @@
 			                </div>	  	
 	</div>
 
+			              	@if(count($transactions) < 1)
+			              	       @include('empty.emptyData')
+			              	       <script type="text/javascript">
+			              	       	  $('.buttonEmpty').css('display','none');
+			              	       	  $('.spanEmpty').css('display','none');
+			              	       </script>
+			              	@else
 	<div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Transacciones</h3>
 	  	</div>
 		<div class="box-body">
 
-			              	@if(count($transactions) < 1)
-			              	No hay Transacciones registradas para este método de pago.
-			              	@else
 			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
 				                    <tr>
