@@ -126,8 +126,7 @@
                      $("#titleC").text(title);
                            //Auto-scroll
                             var altura = (document.getElementById("message").scrollHeight + $("#message").height());
-                            console.log(altura);
-                        $("#message").animate({scrollTop:altura+"px"});
+                         $("#message").animate({scrollTop:altura+"px"});
                         count();
 
                       if ($('.modal-chat').is(':hidden')) {

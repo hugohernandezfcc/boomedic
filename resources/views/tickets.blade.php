@@ -9,6 +9,13 @@
 @section('content')
 
 @if($mode == 'listTickets')
+ @if(count($allTickets) == 0)
+<div class="box">
+	  	<div class="box-header with-border">
+		    <h3 class="box-title">Estoy vacío :c</h3>
+	  	</div>
+		<div class="box-body">
+@else
 @include('headerprofile')
 
 	<div class="box">
@@ -39,22 +46,14 @@
 	                            <td>{{ $ticket->subject }}</td>
 	                            <td>{{ $ticket->status }}</td>
 	                            <td>{{ $ticket->ticketDescription }}</td>
-	                            <!-- <td align="center">
-	                            <div class="input-group-btn">
-		          				<a href = 'delete/{{ $ticket->id }}' class="btn" onclick ="return confirm('¿Eliminar ticket?')">
-		          				<i class="fa fa-trash text-muted"></i>
-		          				</a>
-	        					</div> -->
-	                            <!-- <div class="input-group-btn">
-	                            	<!-- Summit button to process the payment, this points to the PaymentAuthorizations
-	                            	<button type="submit" class="btn"><i class="fa fa-credit-card text-muted" id="reg"></i></button> --
-		          		
-	        					</div> --></td>
 	                        </tr>
 	                    @endforeach 
 
 	                </tbody>
 	            </table>
+	      </div>	  	
+		</div>    
+	     @endif 
 	        @elseif($mode == 'createTicket')
 	   <div class="box">
 	  	<div class="box-header with-border">
@@ -101,10 +100,8 @@
 		            </div>
 		        </div>
 		        </form>
-
-            @endif
-
-        </div>	  	
+		 </div>	  	
 	</div>
+            @endif
 
 @stop

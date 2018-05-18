@@ -450,37 +450,37 @@ span.round-tab:hover {
                                 }
               });
             $('#newMess').text();
-         $.ajax(
-              {
-                type: "GET",    
-                url: "{{ url('HomeController/messages') }}", 
-                success: function(result){
-                        console.log("me ejecuté");
-                  for (var o =0; o < result.length; o++) {
-                            if(o == 0){
-                                 $('#countMes').html('Tiene '+ result.length + ' mensaje no leido');
-                                 $('#messN').html('1');
+             $.ajax(
+                  {
+                    type: "GET",    
+                    url: "{{ url('HomeController/messages') }}", 
+                    success: function(result){
+                            console.log("me ejecuté");
+                      for (var o =0; o < result.length; o++) {
+                                if(o == 0){
+                                     $('#countMes').html('Tiene '+ result.length + ' mensaje no leido');
+                                     $('#messN').html('1');
+                                }else{
+                                     $('#messN').html(result.length);
+                                     $('#countNot').html('Tiene '+ result.length + ' mensajes no leidos');
+                                }
+                        var type = "@php echo session()->get('utype'); @endphp"
+                        var mo = moment(result[o]['created_at']).fromNow();
+                            if(type == "doctor"){
+                                var url = "{{ url('') }}" + "/medicalconsultations";
                             }else{
-                                 $('#messN').html(result.length);
-                                 $('#countNot').html('Tiene '+ result.length + ' mensajes no leidos');
-                            }
-                    var type = "@php echo session()->get('utype'); @endphp"
-                    var mo = moment(result[o]['created_at']).fromNow();
-                        if(type == "doctor"){
-                            var url = "{{ url('') }}" + "/medicalconsultations";
-                        }else{
-                            var url = "{{ url('') }}" + "/clinicHistory/index"; 
-                        } 
+                                var url = "{{ url('') }}" + "/clinicHistory/index"; 
+                            } 
 
-                      $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
+                          $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
+                            }
+                             setTimeout(function(){ repeatNot(); },60000);
+                      },
+                        error: function (request, status, error) {
+                            //window.location.href = "{{ url('') }}";
                         }
-                         setTimeout(function(){ repeatNot(); },60000);
-                  },
-                    error: function (request, status, error) {
-                        //window.location.href = "{{ url('') }}";
-                    }
-              }); 
-     }
+                  }); 
+         }
         function repeatNot(){
             notifications();
         }
