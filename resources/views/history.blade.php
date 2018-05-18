@@ -27,24 +27,20 @@
 }
 </style>
 
-  	<div class="box-header direct-chat">
-	    <h3 class="box-title">Historial</h3>
-        @if($mode == 'more' && $arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
 
+
+        @if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
+    <div class="box-header">
+      <h3 class="box-title">Historial</h3>
                                @include('empty.emptyData')
                              <script type="text/javascript">
                                 $('.buttonEmpty').css('display','none');
                                 $('.spanEmpty').css('display','none');
                              </script>
-        @endif
-      @if($array->isEmpty())
-        @include('empty.emptyData')
-               <script type="text/javascript">
-                  $('.buttonEmpty').css('display','none');
-                  $('.spanEmpty').css('display','none');
-               </script>
-      @endif
-    @if(!$arraynow->isEmpty())
+                            </div>     
+        @else
+    <div class="box-header direct-chat">
+      <h3 class="box-title">Historial</h3>
        <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-filter text-muted"></span></button>
               <div class="direct-chat-contacts">
@@ -66,7 +62,7 @@
           <ul class="timeline">
 					
 			<!-- Now -->
-
+    @if(!$arraynow->isEmpty())
             <!-- 1 day -->
 			<li class="time-label">
                   <span class="bg-gray">
@@ -796,6 +792,7 @@
             <!-- END timeline item -->
             
 			<br/>
+      @endif
 			   @if($mode != 'more')
             <div align="right">
               <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> 7 días más </a>
