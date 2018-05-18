@@ -455,7 +455,7 @@ span.round-tab:hover {
                 type: "GET",    
                 url: "{{ url('HomeController/messages') }}", 
                 success: function(result){
-
+                        console.log("me ejecuté");
                   for (var o =0; o < result.length; o++) {
                             if(o == 0){
                                  $('#countMes').html('Tiene '+ result.length + ' mensaje no leido');
@@ -474,13 +474,15 @@ span.round-tab:hover {
 
                       $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
                         }
-                        
+                         setTimeout(function(){ repeatNot(); },60000);
                   }
               }); 
      }
-
+        function repeatNot(){
+            notifications();
+        }
     $(function () {
-                 setTimeout((function(){ notifications(); },30000);
+                notifications();
 
         $.fn.datepicker.dates['es'] = {
         days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
