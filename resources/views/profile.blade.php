@@ -799,7 +799,7 @@
 											      })
 											    .append('svg:image')
 											    .attr('xlink:href',function(d,i){
-											     	 return d.photo
+											     	 return d.photo + '?1'
 											    })
 											    .attr('height', function(d, i) {
 											        if (i > 0) {
@@ -912,7 +912,7 @@
 											$("#modalfamily").modal('toggle');		
 											}else{
 
-										$('#userp').attr('src', d.photo + '?1');
+										$('#userp').attr('src', d.photo + '?2');
 										if(!d.namecom){
 										  	$('#namep').html('Yo');
 										  }	else{
