@@ -457,20 +457,24 @@ span.round-tab:hover {
                 success: function(result){
                      console.log(result);
                   for (var o =0; o < result.length; o++) {
-                     console.log(result.length);
-                    if(o == 0){
-                    $('#countMes').html('Tiene '+ result.length + ' mensaje');
-                     $('#messN').html('1');
+                            if(o == 0){
+                                 $('#countMes').html('Tiene '+ result.length + ' mensaje no leido');
+                                 $('#messN').html('1');
+                            }else{
+                                 $('#messN').html(result.length);
+                                 $('#countNot').html('Tiene '+ result.length + ' mensajes no leidos');
+                            }
+                    var type = "@php echo session()->get('utype'); @endphp"
+                    if(type == "doctor"){
+                    var url = "{{ url('') }}" + "/medicalconsultations";
                     }else{
-                     $('#messN').html(result.length);
-                    $('#countNot').html('Tiene '+ result.length + ' mensajes');
-                    }
-                    //var u = result[i]['url'];
-                    var url = "{{ url('') }}";
-                            $('#newMess').append('<li><a href="#"><div class="pull-left"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">quipo de Soporte<small><i class="fa fa-clock-o"></i> 5 mins</small></h4><p>Why not buy a new awesome theme?</p></a></li>');
+                        var url = "{{ url('') }}" + "/clinicHistory/index"; 
+                    } 
+                    var mo = moment(result[o]['created_at']).fromNow();
+                      $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
                         
                         }
-                                }
+                  }
               }); 
 
         $.fn.datepicker.dates['es'] = {

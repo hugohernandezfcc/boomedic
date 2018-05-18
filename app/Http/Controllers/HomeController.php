@@ -297,7 +297,7 @@ class HomeController extends Controller
             ->get();
 
             foreach($search as $s){
-                foreach($messages as $mess){
+                foreach($messages->sortByDesc('created_at') as $mess){
                     if($s->conversation == $mess->conversation && $mess->viewed == false && $mess->by != $user->id){
                        array_push($array, $mess);
                     }
