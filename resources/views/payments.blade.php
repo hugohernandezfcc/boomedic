@@ -13,9 +13,6 @@
 
 @section('content')
 
-@if($mode == 'listPaymentMethods')    
-@include('headerprofile')
-@endif
 
 						<!-- Charge Alert whether payment was processed or not -->
 							@if(session()->has('message'))
@@ -45,14 +42,21 @@
 
 							@endif
 						<!-- Here ends the code for the alert -->
-
+			@if(count($cards) == 0)			
+			  @include('empty.emptyData')
+          	       <script type="text/javascript">
+          	       	  $('.buttonEmpty').css('display','none');
+          	       	  $('.spanEmpty').css('display','none');
+          	       </script>
+          @else
+            @if($mode == 'listPaymentMethods')
+            @include('headerprofile')
 	<div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Métodos de pago</h3>
 	  	</div>
 		<div class="box-body">
 
-            @if($mode == 'listPaymentMethods')
             	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
@@ -162,6 +166,7 @@
         </div> -->
 
 </div>
+
             @elseif($mode == 'createPaymentMethod')
             	<form action="store" method="post" class="form-horizontal">
             		{{ csrf_field() }}
@@ -302,6 +307,7 @@
 	                </script>
                 </form>
             @endif
+         @endif   
 
 			             @if($mode == 'historyTransaction')
 
@@ -404,15 +410,19 @@
 			                	</div>
 			              </div><br/>  </div>	  	
 	</div>
-
+		@if(count($transactions) < 1)
+			  @include('empty.emptyData')
+          	       <script type="text/javascript">
+          	       	  $('.buttonEmpty').css('display','none');
+          	       	  $('.spanEmpty').css('display','none');
+          	       </script>
+			   @else
 	<div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Transacciones</h3>
 	  	</div>
 		<div class="box-body">
-			              	@if(count($transactions) < 1)
-			              	No hay Transacciones registradas para este método de pago.
-			              	@else
+
 
 			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
