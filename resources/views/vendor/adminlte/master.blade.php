@@ -477,7 +477,7 @@ span.round-tab:hover {
                          setTimeout(function(){ repeatNot(); },60000);
                   },
                     error: function (request, status, error) {
-                        window.location.href = "{{ url('') }}";
+                        //window.location.href = "{{ url('') }}";
                     }
               }); 
      }

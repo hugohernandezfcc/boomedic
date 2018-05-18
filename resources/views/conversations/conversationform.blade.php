@@ -137,8 +137,8 @@
                              }
                     }
                 },
-                    error: function (request, status, error) {
-                        window.location.href = "{{ url('') }}";
+                    error: function(error, status) {
+                       // window.location.href = "{{ url('') }}";
                     }
               });
            }
