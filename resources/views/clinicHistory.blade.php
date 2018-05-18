@@ -333,6 +333,13 @@
       <h3 class="box-title">
                 Expediente médico
        </h3>
+        @if(count($test_result) == 0)
+          @include('empty.emptyData')
+                             <script type="text/javascript">
+                                $('.buttonEmpty').css('display','none');
+                                $('.spanEmpty').css('display','none');
+                             </script>        
+        @else 
         <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-search text-muted"></span></button>
       <div class="direct-chat-contacts plus">
@@ -408,6 +415,7 @@
           </div>
         </div>
       </div>  
+      @endif
          <br>
           <div class="box-header direct-chat">
                 <h3 class="box-title">
