@@ -421,8 +421,7 @@ span.round-tab:hover {
         $("#uf").css("background-color", "#31b7b0");
         $("#au").css("color", "white");
       }
-    $(function () {
-        //Ajax function call notify set timeout
+              //Ajax function call notify set timeout
             function notifications(){
               $.ajax(
               {
@@ -475,10 +474,13 @@ span.round-tab:hover {
 
                       $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
                         }
+                        
                   }
               }); 
      }
-                 setInterval((function(){ notifications(); },10000);
+
+    $(function () {
+                 setTimeout((function(){ notifications(); },30000);
 
         $.fn.datepicker.dates['es'] = {
         days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
