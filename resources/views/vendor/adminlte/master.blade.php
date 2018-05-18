@@ -462,7 +462,7 @@ span.round-tab:hover {
                                      $('#messN').html('1');
                                 }else{
                                      $('#messN').html(result.length);
-                                     $('#countNot').html('Tiene '+ result.length + ' mensajes no leidos');
+                                     $('#countMes').html('Tiene '+ result.length + ' mensajes no leidos');
                                 }
                         var type = "@php echo session()->get('utype'); @endphp"
                         var mo = moment(result[o]['created_at']).fromNow();
