@@ -42,14 +42,15 @@
 
 							@endif
 						<!-- Here ends the code for the alert -->
+	@if($mode == 'listPaymentMethods')
 			@if(count($cards) == 0)			
 			  @include('empty.emptyData')
           	       <script type="text/javascript">
-          	       	  $('.buttonEmpty').css('display','none');
-          	       	  $('.spanEmpty').css('display','none');
+          	       	  $('.buttonEmpty').css('display','inline');
+          	       	  $('.spanEmpty').css('display','inline');
           	       </script>
           @else
-            @if($mode == 'listPaymentMethods')
+
             @include('headerprofile')
 	<div class="box">
 	  	<div class="box-header with-border">
@@ -166,8 +167,13 @@
         </div> -->
 
 </div>
-
+				       @endif  
             @elseif($mode == 'createPaymentMethod')
+		 	<div class="box">
+			  	<div class="box-header with-border">
+				    <h3 class="box-title">Métodos de pago</h3>
+			  	</div>
+				<div class="box-body">
             	<form action="store" method="post" class="form-horizontal">
             		{{ csrf_field() }}
 	            	<div class="form-group has-feedback {{ $errors->has('typemethod') ? 'has-error' : '' }}">
@@ -307,7 +313,7 @@
 	                </script>
                 </form>
             @endif
-         @endif   
+   
 
 			             @if($mode == 'historyTransaction')
 
