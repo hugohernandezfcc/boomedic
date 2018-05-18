@@ -298,12 +298,12 @@ class HomeController extends Controller
 
             foreach($search as $s){
                 foreach($messages as $mess){
-                    if($s->conversation == $mess->conversation && $mess->viewed == 'false'){
+                    if($s->conversation == $mess->conversation && $mess->viewed == false && $mess->by != $user->id){
                        array_push($array, $mess);
                     }
                 }
             }
-        return response()->json(json_encode($array));
+        return response()->json($array);
     }
 
      /**
