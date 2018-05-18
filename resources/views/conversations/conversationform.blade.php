@@ -125,7 +125,7 @@
                      }
                      $("#titleC").text(title);
                      //Auto-scroll
-                        var altura = $("#message").height()+300;
+                        var altura = $("#message").scrollTop() + $("#message").height();
                         $("#message").animate({scrollTop:altura+"px"});
                         count();
 
@@ -219,7 +219,7 @@
                                 $("#mid").val(result2[y]['id_record']);
                                }
                               //Auto-scroll
-                              var altura = $("#message").height()+300;
+                            var altura = $("#message").scrollTop() + $("#message").height();
                               $("#message").animate({scrollTop:altura+"px"});
                               }
                          });
