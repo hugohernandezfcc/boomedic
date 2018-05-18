@@ -49,7 +49,7 @@
           	       	  $('.buttonEmpty').css('display','inline');
           	       	  $('.spanEmpty').css('display','inline');
           	       </script>
-          @else
+            @else
 
             @include('headerprofile')
 	<div class="box">
@@ -317,7 +317,11 @@
 
 			             @if($mode == 'historyTransaction')
 
-
+	<div class="box">
+	  	<div class="box-header with-border">
+		    <h3 class="box-title">Método de Pago</h3>
+	  	</div>
+		<div class="box-body">
 			            	 @if($type == 'card')
 
 
