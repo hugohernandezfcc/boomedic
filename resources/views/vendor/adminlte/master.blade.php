@@ -423,7 +423,8 @@ span.round-tab:hover {
       }
     $(function () {
         //Ajax function call notify set timeout
-         $.ajax(
+            function notifications(){
+              $.ajax(
               {
                 type: "GET",    
                 url: "{{ url('HomeController/notify') }}", 
@@ -449,12 +450,13 @@ span.round-tab:hover {
                         }
                                 }
               });
-
-                 $.ajax(
+            $('#newMess').text();
+         $.ajax(
               {
                 type: "GET",    
                 url: "{{ url('HomeController/messages') }}", 
                 success: function(result){
+
                   for (var o =0; o < result.length; o++) {
                             if(o == 0){
                                  $('#countMes').html('Tiene '+ result.length + ' mensaje no leido');
@@ -471,10 +473,12 @@ span.round-tab:hover {
                             var url = "{{ url('') }}" + "/clinicHistory/index"; 
                         } 
 
-                      $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left; font-weight: 600 !important;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
+                      $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
                         }
                   }
               }); 
+     }
+                 setInterval((function(){ notifications(); },10000);
 
         $.fn.datepicker.dates['es'] = {
         days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],

@@ -62,10 +62,10 @@
                           <li class="dropdown messages-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="mess">
                               <i class="fa fa-envelope-o"></i>
-                              <span class="label label-success" id="messN">1</span>
+                              <span class="label label-success" id="messN"></span>
                             </a>
                             <ul class="dropdown-menu">
-                              <li class="header" id="countMes">Tienes 1 mensaje</li>
+                              <li class="header" id="countMes"></li>
                               <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu" id="newMess">
@@ -87,7 +87,6 @@
                                 <ul class="menu" id="notify">
                                 </ul>
                               </li>
-                              <li class="footer"><a href="#">View all</a></li>
                             </ul>
                           </li>
           <!--Terminando barra de notificaciones-->
