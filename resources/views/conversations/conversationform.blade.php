@@ -136,7 +136,10 @@
                                  timer = setTimeout(function(){ repeat(data); },10000);
                              }
                     }
-                }
+                },
+                    error: function (request, status, error) {
+                        window.location.href = "{{ url('') }}";
+                    }
               });
            }
 
