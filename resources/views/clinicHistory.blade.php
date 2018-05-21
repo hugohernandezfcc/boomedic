@@ -342,7 +342,7 @@
     <!-- Main content -->
 
         @if(count($test_result) == 0)
-             <div class="box-header direct-chat">
+             <div class="box-header direct-chat header0">
               <h3 class="box-title">
                         Expediente médico
                </h3>
@@ -609,13 +609,18 @@
          window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
                 var sticky = header.offsetTop;
+            if($('.box-header').hasClass('header1')){      
                 var header1 = document.getElementById("header1");
                 var sticky1 = header1.offsetTop;
+             }   
                 function myFunction() {
                   if (window.pageYOffset >= sticky) {
+                  if($('.box-header').hasClass('header1')){  
                     header1.classList.remove("sticky");
                      $('#header1').css('width','');
+                   }
                     header.classList.add("sticky");
+                  
             if("@php echo $agent->isMobile(); @endphp"){
                         $('.sticky').css('width','96%');
                }else{ 
@@ -630,6 +635,8 @@
                     header.classList.remove("sticky");
                      $('#header2').css('width','');
                   }
+          if($('.box-header').hasClass('header1')){        
+
             if (window.pageYOffset >= sticky1) {
                     header1.classList.add("sticky");
             if("@php echo $agent->isMobile(); @endphp"){
@@ -647,7 +654,8 @@
                      $('#header1').css('width','');
                   }
                 } 
-                
+              }
+
          window.onload = function(){
           var clinic_history = @php echo $clinic_history; @endphp;
 
