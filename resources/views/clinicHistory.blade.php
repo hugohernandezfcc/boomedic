@@ -355,7 +355,7 @@
                              </script>    
             </div>                         
         @else 
-     <div class="box-header direct-chat">
+     <div class="box-header direct-chat" id="header1">
               <h3 class="box-title">
                         Expediente médico
                </h3>    
@@ -366,7 +366,7 @@
      </div>
    </div><br>
 
-        <div class="box-body">
+        <div class="box-body content">
       <!-- row -->
      <div class="row">
         <div class="col-md-12">
@@ -607,12 +607,16 @@
 
 				<script>
          window.onload = function(){
+
          window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
-
                 var sticky = header.offsetTop;
+                var header1 = document.getElementById("header1");
+                var sticky1 = header1.offsetTop;
                 function myFunction() {
                   if (window.pageYOffset >= sticky) {
+                    header1.classList.remove("sticky");
+                     $('#header1').css('width','');
                     header.classList.add("sticky");
             if("@php echo $agent->isMobile(); @endphp"){
                         $('.sticky').css('width','96%');
@@ -628,7 +632,25 @@
                     header.classList.remove("sticky");
                      $('#header2').css('width','');
                   }
+            if (window.pageYOffset >= sticky1) {
+                    header1.classList.add("sticky");
+            if("@php echo $agent->isMobile(); @endphp"){
+                        $('.sticky').css('width','96%');
+               }else{ 
+                  if ($('body').hasClass('sidebar-collapse')){
+                        $('.sticky').css('width','96%');
+                      }else{
+                         $('.sticky').css('width','82%');
+                      }
+                    }
+
+                  } else {
+                    header1.classList.remove("sticky");
+                     $('#header1').css('width','');
+                  }
                 } 
+
+
           var clinic_history = @php echo $clinic_history; @endphp;
 
               for(var k = 0; k < clinic_history.length; k++){
