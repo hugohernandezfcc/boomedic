@@ -342,7 +342,7 @@
     <!-- Main content -->
 
         @if(count($test_result) == 0)
-             <div class="box-header direct-chat header0">
+             <div class="box-header direct-chat">
               <h3 class="box-title">
                         Expediente médico
                </h3>
@@ -355,7 +355,7 @@
                              </script>    
             </div>                         
         @else 
-     <div class="box-header direct-chat" id="header1">
+     <div class="box-header direct-chat header1" id="header1">
               <h3 class="box-title">
                         Expediente médico
                </h3>    
