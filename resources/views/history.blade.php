@@ -828,18 +828,22 @@
 
  <script type="text/javascript">
 
-   window.onscroll = function() {myFunction()};
+         window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
 
                 var sticky = header.offsetTop;
                 function myFunction() {
                   if (window.pageYOffset >= sticky) {
                     header.classList.add("sticky");
-                  if ($('body').hasClass('sidebar-collapse') || $('body').hasClass('sidebar-open')){
+            if("@php echo $agent->isMobile(); @endphp"){
+                        $('.sticky').css('width','96%');
+               }else{ 
+                  if ($('body').hasClass('sidebar-collapse')){
                         $('.sticky').css('width','96%');
                       }else{
                          $('.sticky').css('width','82%');
                       }
+                    }
 
                   } else {
                     header.classList.remove("sticky");

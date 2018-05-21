@@ -607,19 +607,26 @@
 
 				<script>
          window.onload = function(){
-               window.onscroll = function() {myFunction()};
+         window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
 
                 var sticky = header.offsetTop;
                 function myFunction() {
                   if (window.pageYOffset >= sticky) {
                     header.classList.add("sticky");
+            if("@php echo $agent->isMobile(); @endphp"){
+                        $('.sticky').css('width','96%');
+               }else{ 
                   if ($('body').hasClass('sidebar-collapse')){
                         $('.sticky').css('width','96%');
+                      }else{
+                         $('.sticky').css('width','82%');
                       }
+                    }
 
                   } else {
                     header.classList.remove("sticky");
+                     $('#header2').css('width','');
                   }
                 } 
           var clinic_history = @php echo $clinic_history; @endphp;
