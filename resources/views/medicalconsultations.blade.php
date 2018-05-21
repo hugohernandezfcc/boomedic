@@ -304,15 +304,36 @@
                     <div class="box-body">
                          @foreach($appointments->sortBy('when') as $appo)
                               @if($loop->iteration < 3)
-                                <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" target="_blank">
                                             <div class="col-sm-12">
                                                   <div class="info-box sm bg-gray">
-                                                    <div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div>
+                                                    <a data-toggle="modal" data-target="#modalappo"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
                                                     <div class="info-box-content sm">
-                                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" class="text-muted"> 
+                                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" class="text-muted" target="_blank"> 
                                                       <b>Lugar:</b> {{ $appo->workplace}}.</a><br/>
-                                                     <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
+                                                     <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>     
+                                                     </div>       
                                                     </div>
+                                                   </div> 
+                                                         <div class="modal fade" role="dialog" id="modalappo">
+                                                            <div class="modal-dialog modal-sm">
+
+                                                              <div class="modal-content">
+
+                                                                <div class="modal-header" >
+                                                                  <!-- Tachecito para cerrar -->
+
+                                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                  </button>
+                                                                   <div align="left"><label>Modal Doctor</label></div>
+                                                                </div>
+                                                                    <div class="modal-body" >
+                                                                  
+                                                                    </div>
+                                                                </div>
+                                                              </div> 
+                                                            </div>
+
 
                                  @endif 
                                                          @if($loop->iteration > 2)
@@ -323,14 +344,12 @@
                                                          </div>
                                                          @break
                                                          @endif 
-                                                  </div>
-                                                </div>
-
+                                                  
                          @endforeach
+                          </div>
                     </div>
                   </div>
-                </div>
-            </div>    
+                </div> 
  @endif
           
               <!-- Charge Alert whether payment was processed or not -->
