@@ -133,16 +133,13 @@
     opacity: 1;
 }
 
-        /* The sticky class is added to the header with JS when it reaches its scroll position */
         .sticky {
           position: fixed;
           top: 0;
-          width: 100%;
+          width: 82%;
           z-index: 1000;
           background: white;
         }
-
-        /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
         .sticky + .content {
           padding-top: 102px;
         }
