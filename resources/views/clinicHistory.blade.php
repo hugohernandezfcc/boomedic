@@ -138,7 +138,7 @@
           top: 0;
           width: 82%;
           z-index: 1000;
-          background: white;
+          background: #ecf0f5;
         }
         .sticky + .content {
           padding-top: 102px;
