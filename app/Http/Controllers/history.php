@@ -156,8 +156,7 @@ class history extends Controller
        
             //dd($array);
            
-
-        return view('history', [
+       return view('history', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
@@ -172,12 +171,13 @@ class history extends Controller
                 'array5'     => $array5,
                 'array6'     => $array6,
                 'arraynow'     => $arraynow,
-                'mode'       => 'null',
+                'mode'       => $this->test(),
                 'title'     => 'históricos en esta fecha'
 
 
             ]
         );
+        
     }
 
     /**
@@ -337,6 +337,11 @@ class history extends Controller
 
             ]
         );
+    }
+
+
+    protected function test(){
+        return "null";
     }
         /**
      * Show the form for creating a new resource.

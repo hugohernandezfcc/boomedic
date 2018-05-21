@@ -809,18 +809,18 @@
           	</div>
           	@endif
           	@if($mode == 'more')
-           <div  align="right">
+            <div  align="right">
               <a href="{{ url('/history/index') }}" class="btn btn-default btn-flat btn-xs"> Volver </a>
               <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> 7 días más </a>
           	</div>   	
           	@endif
              @if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
              @else
-          	<li>
-              <i class="fa fa-clock-o bg-gray"></i>
-            </li>
-          </ul>
-          @endif
+              	<li>
+                  <i class="fa fa-clock-o bg-gray"></i>
+                </li>
+              </ul>
+             @endif
 
           </div>
       </div>
