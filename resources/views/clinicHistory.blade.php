@@ -133,11 +133,11 @@
     opacity: 1;
 }
         .header2 {
-        position: sticky;
-        position: -webkit-sticky;
-          top: 15px; /* required */
+        position: fixed;
+        width: 80%;
+        background: white;
+        z-index: 1000;
               }
-              body { height: 100%; }
 </style>
 
 
