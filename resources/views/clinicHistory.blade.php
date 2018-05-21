@@ -132,6 +132,12 @@
     transform: translate3d(0, -300px, 0);
     opacity: 1;
 }
+        .header2 {
+        position: sticky;
+        position: -webkit-sticky;
+          top: 15px; /* required */
+              }
+              body { height: 100%; }
 </style>
 
 
@@ -419,7 +425,7 @@
       </div>  
       @endif
          <br>
-          <div class="box-header direct-chat">
+          <div class="box-header direct-chat header2">
                 <h3 class="box-title">
                           Historia clínica<a href="{{ url('clinicHistory/edit/0')}}" class="btn"><i class="fa fa-pencil text-muted"></i></a>  
                  </h3>
