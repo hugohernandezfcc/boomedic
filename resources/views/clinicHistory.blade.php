@@ -606,8 +606,6 @@
 
 
 				<script>
-         window.onload = function(){
-
          window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
                 var sticky = header.offsetTop;
@@ -649,8 +647,8 @@
                      $('#header1').css('width','');
                   }
                 } 
-
-
+                
+         window.onload = function(){
           var clinic_history = @php echo $clinic_history; @endphp;
 
               for(var k = 0; k < clinic_history.length; k++){
