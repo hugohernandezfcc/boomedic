@@ -132,12 +132,21 @@
     transform: translate3d(0, -300px, 0);
     opacity: 1;
 }
-        .header2 {
-        position: fixed;
-        width: 80%;
-        background: white;
-        z-index: 1000;
-              }
+
+        .header2{
+          background: white;
+          z-index: 1000;
+           width: 100%
+        }
+        /* The sticky class is added to the header with JS when it reaches its scroll position */
+        .sticky {
+          position: fixed;
+          top: 0;
+          width: 100%
+        }
+
+        /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+
 </style>
 
 
@@ -425,7 +434,7 @@
       </div>  
       @endif
          <br>
-          <div class="box-header direct-chat header2">
+          <div class="box-header direct-chat header2" id="header2">
                 <h3 class="box-title">
                           Historia clínica<a href="{{ url('clinicHistory/edit/0')}}" class="btn"><i class="fa fa-pencil text-muted"></i></a>  
                  </h3>
@@ -443,7 +452,7 @@
      
 
            </div><br/>
-              <div class="box-body">
+              <div class="box-body content">
                 <div class="row">
                   <div class="col-md-12">
            <ul class="timeline">   
@@ -596,6 +605,17 @@
 
 				<script>
          window.onload = function(){
+         window.onscroll = function() {myFunction()};
+          var header = document.getElementById("header2");
+
+          var sticky = header.offsetTop;
+          function myFunction() {
+            if (window.pageYOffset >= sticky) {
+              header.classList.add("sticky");
+            } else {
+              header.classList.remove("sticky");
+            }
+          } 
           var clinic_history = @php echo $clinic_history; @endphp;
 
               for(var k = 0; k < clinic_history.length; k++){
