@@ -25,6 +25,16 @@
     padding: 5px 0 0 0;
     border-top: 1px solid #e0e0e0 !important;
 }
+        .sticky {
+          position: fixed;
+          top: 0;
+          width: 82%;
+          z-index: 1000;
+          background: #ecf0f5;
+        }
+        .sticky + .content {
+          padding-top: 102px;
+        }
 </style>
 
 
@@ -39,7 +49,7 @@
                              </script>
                             </div>     
         @else
-    <div class="box-header direct-chat">
+    <div class="box-header direct-chat" id="header2">
       <h3 class="box-title">Historial</h3>
        <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-filter text-muted"></span></button>
@@ -53,7 +63,7 @@
                       </div>
               </div>
   	</div>
-  	<div class="box-body">
+  	<div class="box-body content">
 	  <div class="row">
         <div class="col-md-12">
         <div align="center"><label id="response" style="margin-top: 20px; margin-botton: 0 !important"></label></div>
@@ -818,7 +828,24 @@
 
  <script type="text/javascript">
 
+   window.onscroll = function() {myFunction()};
+                var header = document.getElementById("header2");
 
+                var sticky = header.offsetTop;
+                function myFunction() {
+                  if (window.pageYOffset >= sticky) {
+                    header.classList.add("sticky");
+                  if ($('body').hasClass('sidebar-collapse') || $('body').hasClass('sidebar-open')){
+                        $('.sticky').css('width','96%');
+                      }else{
+                         $('.sticky').css('width','82%');
+                      }
+
+                  } else {
+                    header.classList.remove("sticky");
+                     $('#header2').css('width','');
+                  }
+                } 
 		$("#userli").click(function () {
 
 			var x = document.getElementsByClassName("support");
