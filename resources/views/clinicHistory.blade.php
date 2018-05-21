@@ -340,19 +340,25 @@
 @if($mode == 'finish')
 
     <!-- Main content -->
-     <div class="box-header direct-chat">
-      <h3 class="box-title">
-                Expediente médico
-       </h3>
+
         @if(count($test_result) == 0)
+             <div class="box-header direct-chat">
+              <h3 class="box-title">
+                        Expediente médico
+               </h3>
           <br><br>
           @include('empty.emptyData')
 
                              <script type="text/javascript">
                                 $('.buttonEmpty').css('display','none');
                                 $('.spanEmpty').css('display','none');
-                             </script>                             
+                             </script>    
+            </div>                         
         @else 
+     <div class="box-header direct-chat">
+              <h3 class="box-title">
+                        Expediente médico
+               </h3>    
         <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-search text-muted"></span></button>
       <div class="direct-chat-contacts plus">
@@ -601,17 +607,21 @@
 
 				<script>
          window.onload = function(){
-         window.onscroll = function() {myFunction()};
-          var header = document.getElementById("header2");
+               window.onscroll = function() {myFunction()};
+                var header = document.getElementById("header2");
 
-          var sticky = header.offsetTop;
-          function myFunction() {
-            if (window.pageYOffset >= sticky) {
-              header.classList.add("sticky");
-            } else {
-              header.classList.remove("sticky");
-            }
-          } 
+                var sticky = header.offsetTop;
+                function myFunction() {
+                  if (window.pageYOffset >= sticky) {
+                    header.classList.add("sticky");
+                  if ($('body').hasClass('sidebar-collapse')){
+                        $('.sticky').css('width','96%');
+                      }
+
+                  } else {
+                    header.classList.remove("sticky");
+                  }
+                } 
           var clinic_history = @php echo $clinic_history; @endphp;
 
               for(var k = 0; k < clinic_history.length; k++){
