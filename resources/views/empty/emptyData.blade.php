@@ -3,7 +3,6 @@
    	color: gray;
    }
 </style>
-
 		<div align="center" class="col-sm-12 enun">
 			        <img src="{{ asset('images/empty-box.png') }}" height="200" width="200">
 			        <h3>OMG!</h3>

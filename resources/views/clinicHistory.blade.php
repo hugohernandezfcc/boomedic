@@ -334,11 +334,13 @@
                 Expediente médico
        </h3>
         @if(count($test_result) == 0)
+          <br><br>
           @include('empty.emptyData')
+
                              <script type="text/javascript">
                                 $('.buttonEmpty').css('display','none');
                                 $('.spanEmpty').css('display','none');
-                             </script>        
+                             </script>                             
         @else 
         <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-search text-muted"></span></button>
