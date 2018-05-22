@@ -47,60 +47,7 @@ class history extends Controller
                 break;
             }
        }
-       if($new == "null"){
-         $user = User::find(Auth::id());
-           $array1 = collect();
-           $array2 = collect();
-           $array3 = collect();
-           $array4 = collect();
-           $array5 = collect();
-           $array6 = collect();
-           $arraynow = collect();
-          return  view('history',
-                         [
-                            'userId'     => $user->id,
-                            'username'   => $user->username,
-                            'name'       => $user->name,
-                            'photo'      => $user->profile_photo,
-                             'date'      => $user->created_at,
-                            'array2'     => $array2,
-                            'array1'     => $array1,
-                            'array3'     => $array3,
-                            'array4'     => $array4,
-                            'array5'     => $array5,
-                            'array6'     => $array6,
-                            'arraynow'   => $arraynow,
-                            'mode'       => 'null',
-                            'title'      => 'históricos (en los últimos 6 meses)'
-                         ]
-                         );
-       }else{
-        return $new;
-      }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    public function moredays(){
-      $count = session()->get('history') + 7;
-       $i = 0;
-       while($this->test($count) == "null")
-       {
-        $i++;
-          $count = session()->get('history') + 7;
-          Session(['history' => $count]);
-          $new = $this->test($count);
-            if($new != "null"){
-                break;
-            }
-            if($i == 25){
-                break;
-            }
-       }
+     if($i > 0){
        if($new == "null"){
          $user = User::find(Auth::id());
            $array1 = collect();
@@ -131,6 +78,67 @@ class history extends Controller
        }else{
         return $new;
       }
+    }else{
+      return $this->test($count);
+    }
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function moredays(){
+      $count = session()->get('history') + 7;
+       $i = 0;
+       while($this->test($count) == "null")
+       {
+        $i++;
+          $count = session()->get('history') + 7;
+          Session(['history' => $count]);
+          $new = $this->test($count);
+            if($new != "null"){
+                break;
+            }
+            if($i == 25){
+                break;
+            }
+       }
+     if($i > 0){
+       if($new == "null"){
+         $user = User::find(Auth::id());
+           $array1 = collect();
+           $array2 = collect();
+           $array3 = collect();
+           $array4 = collect();
+           $array5 = collect();
+           $array6 = collect();
+           $arraynow = collect();
+          return  view('history',
+                         [
+                            'userId'    => $user->id,
+                            'username'  => $user->username,
+                            'name'      => $user->name,
+                            'photo'     => $user->profile_photo,
+                             'date'      => $user->created_at,
+                            'array2'     => $array2,
+                            'array1'    => $array1,
+                            'array3'     => $array3,
+                            'array4'     => $array4,
+                            'array5'     => $array5,
+                            'array6'     => $array6,
+                            'arraynow'     => $arraynow,
+                            'mode'       => 'null',
+                            'title'     => 'históricos (en los últimos 6 meses)'
+                         ]
+                         );
+       }else{
+        return $new;
+      }
+    }else{
+      return $this->test($count);
+    }
     }
 
 
