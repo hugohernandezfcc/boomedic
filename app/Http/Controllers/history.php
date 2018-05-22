@@ -59,20 +59,20 @@ class history extends Controller
            $arraynow = collect();
           return  view('history',
                          [
-                            'userId'    => $user->id,
-                            'username'  => $user->username,
-                            'name'      => $user->name,
-                            'photo'     => $user->profile_photo,
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
                              'date'      => $user->created_at,
                             'array2'     => $array2,
-                            'array1'    => $array1,
+                            'array1'     => $array1,
                             'array3'     => $array3,
                             'array4'     => $array4,
                             'array5'     => $array5,
                             'array6'     => $array6,
-                            'arraynow'     => $arraynow,
+                            'arraynow'   => $arraynow,
                             'mode'       => 'null',
-                            'title'     => 'históricos (en los últimos 6 meses)'
+                            'title'      => 'históricos (en los últimos 6 meses)'
                          ]
                          );
        }else{
@@ -94,7 +94,7 @@ class history extends Controller
        $i = 0;
        while($this->test($count) == "null")
        {
-        $i++;
+          $i++;
           $count = session()->get('history') + 7;
           Session(['history' => $count]);
           $new = $this->test($count);
@@ -117,20 +117,20 @@ class history extends Controller
            $arraynow = collect();
           return  view('history',
                          [
-                            'userId'    => $user->id,
-                            'username'  => $user->username,
-                            'name'      => $user->name,
-                            'photo'     => $user->profile_photo,
-                             'date'      => $user->created_at,
-                            'array2'     => $array2,
-                            'array1'    => $array1,
-                            'array3'     => $array3,
-                            'array4'     => $array4,
-                            'array5'     => $array5,
-                            'array6'     => $array6,
-                            'arraynow'     => $arraynow,
-                            'mode'       => 'null',
-                            'title'     => 'históricos (en los últimos 6 meses)'
+                            'userId'      => $user->id,
+                            'username'    => $user->username,
+                            'name'        => $user->name,
+                            'photo'       => $user->profile_photo,
+                             'date'       => $user->created_at,
+                            'array2'      => $array2,
+                            'array1'      => $array1,
+                            'array3'      => $array3,
+                            'array4'      => $array4,
+                            'array5'      => $array5,
+                            'array6'      => $array6,
+                            'arraynow'    => $arraynow,
+                            'mode'        => 'null',
+                            'title'       => 'más históricos'
                          ]
                          );
        }else{
@@ -277,20 +277,20 @@ class history extends Controller
 
                        return  view('history',
                          [
-                            'userId'    => $user->id,
-                            'username'  => $user->username,
-                            'name'      => $user->name,
-                            'photo'     => $user->profile_photo,
-                             'date'      => $user->created_at,
-                            'array2'     => $array2,
-                            'array1'    => $array1,
-                            'array3'     => $array3,
-                            'array4'     => $array4,
-                            'array5'     => $array5,
-                            'array6'     => $array6,
+                            'userId'       => $user->id,
+                            'username'     => $user->username,
+                            'name'         => $user->name,
+                            'photo'        => $user->profile_photo,
+                            'date'         => $user->created_at,
+                            'array2'       => $array2,
+                            'array1'       => $array1,
+                            'array3'       => $array3,
+                            'array4'       => $array4,
+                            'array5'       => $array5,
+                            'array6'       => $array6,
                             'arraynow'     => $arraynow,
-                            'mode'       => 'null',
-                            'title'     => 'históricos (en los últimos 6 meses)'
+                            'mode'         => 'null',
+                            'title'        => 'más históricos'
                          ]
                          );
                     }   
