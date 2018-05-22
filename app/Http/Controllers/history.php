@@ -47,7 +47,7 @@ class history extends Controller
                 break;
             }
        }
-       if($this->test($count) == "null"){
+       if($new == "null"){
          $user = User::find(Auth::id());
            $array1 = collect();
            $array2 = collect();
@@ -75,7 +75,7 @@ class history extends Controller
                          ]
                          );
        }else{
-        return $this->test($count);
+        return $new;
       }
     }
 
@@ -86,9 +86,9 @@ class history extends Controller
      */
 
     public function moredays(){
-      $sumDays = session()->get('history') + 7;
+      $count = session()->get('history') + 7;
        $i = 0;
-       while($this->test($sumDays) == "null")
+       while($this->test($count) == "null")
        {
         $i++;
           $count = session()->get('history') + 7;
@@ -101,7 +101,7 @@ class history extends Controller
                 break;
             }
        }
-       if($this->test($count) == "null"){
+       if($new == "null"){
          $user = User::find(Auth::id());
            $array1 = collect();
            $array2 = collect();
@@ -129,7 +129,7 @@ class history extends Controller
                          ]
                          );
        }else{
-        return $this->test($count);
+        return $this->test($new);
       }
     }
 
