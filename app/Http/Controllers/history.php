@@ -58,20 +58,20 @@ class history extends Controller
            $arraynow = collect();
           return  view('history',
                          [
-                            'userId'    => $user->id,
-                            'username'  => $user->username,
-                            'name'      => $user->name,
-                            'photo'     => $user->profile_photo,
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
                              'date'      => $user->created_at,
                             'array2'     => $array2,
-                            'array1'    => $array1,
+                            'array1'     => $array1,
                             'array3'     => $array3,
                             'array4'     => $array4,
                             'array5'     => $array5,
                             'array6'     => $array6,
-                            'arraynow'     => $arraynow,
+                            'arraynow'   => $arraynow,
                             'mode'       => 'null',
-                            'title'     => 'históricos (en los últimos 6 meses)'
+                            'title'      => 'históricos (en los últimos 6 meses)'
                          ]
                          );
        }else{
@@ -129,7 +129,7 @@ class history extends Controller
                          ]
                          );
        }else{
-        return $this->test($new);
+        return $new;
       }
     }
 
