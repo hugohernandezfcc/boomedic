@@ -31,19 +31,19 @@ class history extends Controller
      */
     public function index(){
       if(session()->get('history') > 0){
-        $count = session()->get('history');
-      }else{
-      $count = Session(['history' => '7']);
+          $count = session()->get('history') + 7;
+      }
+      else{
+           $count = Session(['history' => '7']);
        }
        while($this->test($count) == "null")
        {
-
-         $count = session()->get('history') + 7;
+          $count = session()->get('history') + 7;
           Session(['history' => $count]);
           $new = $this->test($count);
-          if($new != "null"){
-            break;
-          }
+            if($new != "null"){
+                break;
+            }
        }
         return $this->test($count);
         
