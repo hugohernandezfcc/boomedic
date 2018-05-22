@@ -149,7 +149,6 @@ class history extends Controller
        Session(['history' => $sumDays]);
        Session(['history2' => Carbon::now()->subDays($sumDays)->format('d-m-Y')]);
        $varnewnow = Carbon::now()->subDays($sumDays);
-                  $user = User::find(Auth::id());
 
         $dateUser = DB::table('users')->where('id', Auth::id())
            ->where( 'updated_at', '>',  Carbon::now()->subDays($sumDays))

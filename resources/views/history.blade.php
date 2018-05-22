@@ -822,7 +822,7 @@
  	</div>
 
  <script type="text/javascript">
-
+ console.log("@php echo session()->get('history'); @endphp");
          window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
 
