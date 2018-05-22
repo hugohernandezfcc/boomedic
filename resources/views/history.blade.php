@@ -804,11 +804,12 @@
 			<br/>
       @endif
 
-            <div  align="right">
-              <a href="{{ url('/history/index') }}" class="btn btn-secondary btn-flat btn-xs"> Ver más </a>
-          	</div>   	
+ 	
              @if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
              @else
+             <div  align="right">
+               <a href="{{ url('/history/moredays') }}" class="btn btn-secondary btn-flat btn-xs"> Ver más </a>
+             </div>  
               	<li>
                   <i class="fa fa-clock-o bg-gray"></i>
                 </li>
