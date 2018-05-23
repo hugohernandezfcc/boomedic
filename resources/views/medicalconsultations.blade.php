@@ -327,13 +327,13 @@
                                                   </button>
                                                    <div align="left"><label>Detalle de cita</label></div>
                                                 </div>
-                                                    <div class="modal-body">
+                                                    <div class="modal-body" style="padding: 0px !important;">
                                                       <div align="center">
                                                       <table style="width: 80%; text-align: center;">
                                                          <tr>
-                                                            <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 70px;"></td>
-                                                            <td>&nbsp;</td>
-                                                            <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 65px;"></td>
+                                                            <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                            <td></td>
+                                                            <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
                                                          </tr>
                                                          <tr>
                                                             <td width="40%">{{ $appo->name }}</td><td>&nbsp;</td><td width="40%">{{ $name }}</td>
