@@ -327,8 +327,11 @@
                                                                   </button>
                                                                    <div align="left"><label>Modal Doctor</label></div>
                                                                 </div>
-                                                                    <div class="modal-body" >
-                                                                  
+                                                                    <div class="modal-body">
+                                                                      <div align="center">
+                                                                        <img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 90px;">
+                                                                        <img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 90px;">
+                                                                      </div>
                                                                     </div>
                                                                 </div>
                                                               </div> 
