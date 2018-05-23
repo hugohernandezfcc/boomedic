@@ -304,38 +304,45 @@
                     <div class="box-body">
                          @foreach($appointments->sortBy('when') as $appo)
                               @if($loop->iteration < 3)
-                                            <div class="col-sm-12">
-                                                  <div class="info-box sm bg-gray">
-                                                    <a data-toggle="modal" data-target="#modalappo"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
-                                                    <div class="info-box-content sm">
-                                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" class="text-muted" target="_blank"> 
-                                                      <b>Lugar:</b> {{ $appo->workplace}}.</a><br/>
-                                                     <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>     
-                                                     </div>       
+                            <div class="col-sm-12">
+                                  <div class="info-box sm bg-gray">
+                                    <a data-toggle="modal" data-target="#{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
+                                    <div class="info-box-content sm">
+                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" class="text-muted" target="_blank"> 
+                                      <b>Lugar:</b> {{ $appo->workplace}}.</a><br/>
+                                     <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>     
+                                     </div>       
+                                    </div>
+                                   </div> 
+                                         <div class="modal fade" role="dialog" id="{{ $appo->id }}">
+                                            <div class="modal-dialog modal-sm">
+
+                                              <div class="modal-content">
+
+                                                <div class="modal-header" >
+                                                  <!-- Tachecito para cerrar -->
+
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                   <div align="left"><label>Detalle de cita</label></div>
+                                                </div>
+                                                    <div class="modal-body">
+                                                      <div align="center">
+                                                        <img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 70px;">
+                                                        <img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 65px;">
+                                                      </div><br/><br/>
+                                                      <div align="left" style="text-align: left;">
+                                                        <button type="button" class="btn btn-default btn-flat btn-block" style="text-align: left;">Días restantes para la cita</button>
+                                                        <button class="btn btn-default btn-flat btn-block">Método de pago</button>
+                                                        <button class="btn btn-default btn-flat btn-block">Conectar con Médico</button>
+                                                      </div>
+                                                      
+                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=350x350&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> </div> 
                                                     </div>
-                                                   </div> 
-                                                         <div class="modal fade" role="dialog" id="modalappo">
-                                                            <div class="modal-dialog modal-sm">
-
-                                                              <div class="modal-content">
-
-                                                                <div class="modal-header" >
-                                                                  <!-- Tachecito para cerrar -->
-
-                                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                  </button>
-                                                                   <div align="left"><label>Modal Doctor</label></div>
-                                                                </div>
-                                                                    <div class="modal-body">
-                                                                      <div align="center">
-                                                                        <img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 90px;">
-                                                                        <img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 90px;">
-                                                                      </div>
-                                                                    </div>
-                                                                </div>
-                                                              </div> 
-                                                            </div>
+                                                </div>
+                                              </div> 
+                                            </div>
 
 
                                  @endif 
