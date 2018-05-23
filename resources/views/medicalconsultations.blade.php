@@ -329,16 +329,24 @@
                                                 </div>
                                                     <div class="modal-body">
                                                       <div align="center">
-                                                        <img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 70px;">
-                                                        <img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 65px;">
+                                                      <table style="width: 80%; text-align: center;">
+                                                         <tr>
+                                                            <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 70px;"></td>
+                                                            <td>&nbsp;</td>
+                                                            <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 65px;"></td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td width="40%">{{ $appo->name }}</td><td>&nbsp;</td><td width="40%">{{ $name }}</td>
+                                                         </tr>
+                                                      </table>
                                                       </div><br/><br/>
                                                       <div align="left" style="text-align: left;">
                                                         <button type="button" class="btn btn-default btn-flat btn-block" style="text-align: left;">Días restantes para la cita</button>
-                                                        <button class="btn btn-default btn-flat btn-block">Método de pago</button>
-                                                        <button class="btn btn-default btn-flat btn-block">Conectar con Médico</button>
+                                                        <button class="btn btn-default btn-flat btn-block" style="text-align: left;">Método de pago</button>
+                                                        <button class="btn btn-default btn-flat btn-block" style="text-align: left;">Conectar con Médico</button>
                                                       </div>
                                                       
-                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=350x350&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> </div> 
+                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=350x350&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> </div> 
                                                     </div>
                                                 </div>
                                               </div> 
