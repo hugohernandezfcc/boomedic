@@ -340,10 +340,12 @@
                                                          </tr>
                                                       </table>
                                                       </div><br/><br/>
-                                                      <div align="left" style="text-align: left;">
-                                                        <button type="button" class="btn btn-default btn-flat btn-block" style="text-align: left;">Días restantes para la cita</button>
-                                                        <button class="btn btn-default btn-flat btn-block" style="text-align: left;">Método de pago</button>
-                                                        <button class="btn btn-default btn-flat btn-block" style="text-align: left;">Conectar con Médico</button>
+                                                      <div align="left">
+                                                      <ul class="nav nav-pills nav-stacked">
+                                                        <li class="active"><a href="#">Días restantes para la cita</a></li>
+                                                        <li><a href="#">Método de pago</a></li>
+                                                        <li><a href="#">Conectar con Médico</a></li>
+                                                      </ul>
                                                       </div>
                                                       
                                                     <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=350x350&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> </div> 
