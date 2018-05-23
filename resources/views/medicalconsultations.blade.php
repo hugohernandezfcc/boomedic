@@ -332,7 +332,7 @@
                                                       <table style="width: 80%; text-align: center;">
                                                          <tr>
                                                             <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
-                                                            <td></td>
+                                                            <td>&nbsp;</td>
                                                             <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
                                                          </tr>
                                                          <tr>
