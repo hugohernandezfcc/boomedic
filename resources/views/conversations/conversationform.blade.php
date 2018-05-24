@@ -182,7 +182,7 @@
                                   "table"     : $(".in .mtable").val(),
                                   "id_record" : $(".in .midfield").val(),
                                   "name_mess" : $(".in .mname").val(),
-                                  "textbody"  : $(".in .textbody").val()
+                                  "textbody"  : $(".modal.in .textbody").val()
                                 };
                                 console.log(data);
                               }else {
@@ -212,7 +212,7 @@
                               $(".textbody").val("");
                               $(".textbody").focus();
                               console.log(result2);
-                              if($(".direct-chat-messages").hasClass("nullm")){
+                              if($(".nullm").length > 1){
                                 $(".direct-chat-messages").html("");
                               }
                               for(var y = 0; y < result2.length; y++){ 
