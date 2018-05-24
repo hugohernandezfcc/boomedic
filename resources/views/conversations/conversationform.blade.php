@@ -95,10 +95,10 @@
                     $("#userOrDr").val(result[1].length);
                   }
                   if(result[1].length > 0){
-                    console.log(result[1].length);
                     $(".contacts-list").html("");
                         if(result[2].length > 0){
                           for(var x = 0; x < result[2].length; x++){ 
+                            console.log( result[2][x]);
                             var mo = moment(result[2][x]['created_at']).fromNow();
                             $(".contacts-list").append('<li><a href="#" onclick="searchM('+ result[2][x]['id_record'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['name'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ result[2][x]['namec'] +'</span></div></a></li>');
                           }
