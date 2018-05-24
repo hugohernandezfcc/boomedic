@@ -350,7 +350,7 @@
                                                       <ul class="nav nav-pills nav-stacked">
                                                         <li class="active"><a href="#">Días restantes para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
                                                         <li><a href="#">Método de pago</a></li>
-                                                        <li><a data-toggle="modal" data-target="#chat-form-modal">Conectar con Médico</a></li>
+                                                        <li><a  data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
  
                                                       </ul>
                                                       </div>
@@ -360,7 +360,7 @@
                                                 </div>
                                               </div> 
                                             </div>
-                                                               <div class="modal-chat fade2 modal" id="chat-form-modal">
+                                                               <div class="modal-chat fade2 modal" id="chat-{{ $appo->id }}">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                          <div class="modal-header">
