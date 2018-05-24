@@ -236,14 +236,7 @@ class payments extends Controller
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
          if($statusCode[0] == '201'){
-             /* Insert_bank*/
-                        $Transaction = new transaction_bank();
-                        $Transaction->paymentmethod = $request->id;
-                        $Transaction->receiver = $request->receiver;
-                        $Transaction->amount = $request->amount;
-                        $Transaction->transaction = $statusCode[1];
-                        $Transaction->save();
-                    /* Insert Transaction_bank*/    
+
                     /* Insert Cita */
                     $medical = new medical_appointments();
                     $medical->user           = Auth::id();
@@ -251,8 +244,18 @@ class payments extends Controller
                     $medical->workplace      = $request->idlabor;
                     $medical->when           = $request->when;
                     $medical->status         = 'Registered';
+
             
            if ($medical->save()) {
+                         /* Insert_bank*/
+                        $Transaction = new transaction_bank();
+                        $Transaction->paymentmethod = $request->id;
+                        $Transaction->receiver = $request->receiver;
+                        $Transaction->amount = $request->amount;
+                        $Transaction->transaction = $statusCode[1];
+                        $Transaction->appointments =  $medical->id;
+                        $Transaction->save();
+                    /* Insert Transaction_bank*/    
             $doc = User::find($request->dr); 
             $work = DB::table('labor_information')->where('id', $request->idlabor)->first();    
             $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12);
@@ -480,12 +483,7 @@ class payments extends Controller
                               }
 
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
-                                            $Trans = new transaction_bank;
-                                            $Trans->paymentmethod = $paypalExist2->id;
-                                            $Trans->receiver = $receiver;
-                                            $Trans->amount = $payment->transactions[0]->amount->total;
-                                            $Trans->transaction = $payment_id;
-                                            $Trans->save();    
+
                                                    /* Insert Cita */
                                         $medical = new medical_appointments;
                                         $medical->user           = Auth::id();
@@ -494,7 +492,14 @@ class payments extends Controller
                                         $medical->when          = $when;
                                         $medical->status         = 'Registered';
                                 
-                            if ($medical->save()) {         
+                            if ($medical->save()) {     
+                                            $Trans = new transaction_bank;
+                                            $Trans->paymentmethod = $paypalExist2->id;
+                                            $Trans->receiver = $receiver;
+                                            $Trans->amount = $payment->transactions[0]->amount->total;
+                                            $Trans->transaction = $payment_id;
+                                            $Trans->appointments =  $medical->id;
+                                            $Trans->save();        
 
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
