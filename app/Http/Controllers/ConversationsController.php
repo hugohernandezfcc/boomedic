@@ -78,11 +78,9 @@ class ConversationsController extends Controller
         array_push($data, json_decode($profInfo));        
        
         }else{
-                if($id == '0'){
+               
                 $conversations =  DB::table('conversations')->where('doctor', Auth::id())->orderBy('created_at', 'DESC')->get();
-               }else{
-                 $conversations =  DB::table('conversations')->where('id_record', $id)->get();
-               }
+
                if(count($conversations) > 0){
                 $com = $conversations[0]->id;
                }else{

@@ -364,7 +364,7 @@
                                                                              <h4 class="modal-title"> <i class="fa fa-comments"></i> Ventana de Conversación</h4>
                                                                              </div>
                                                                           <div class="modal-body">
-                                                                                <input type="hidden" class="middr" value="{{ $appo->name }}">
+                                                                                <input type="hidden" class="middr" value="{{ $appo->did }}">
                                                                                 <input type="hidden" class="midfield" value="{{ $appo->id }}">
                                                                                 <input type="hidden" class="mname" value="Cita médica">
                                                                                 <input type="hidden" class="mtable" value="medical_appointments">

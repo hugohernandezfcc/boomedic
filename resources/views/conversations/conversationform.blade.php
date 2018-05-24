@@ -61,9 +61,10 @@
 
 
 <script type="text/javascript">
+ var dr = "{{ session()->get('utype') }}";
        $(function(){
                       //Valid to know who sends the data and if you are a patient or doctor
-                      var dr = "{{ session()->get('utype') }}";
+                     
                       if(window.location.href == "{{ url('clinicHistory/index') }}" || dr != "doctor"){
                         $('.modal-chat').on('show.bs.modal', function (e) {
                           $(".contacts").css("display", "none");
@@ -175,6 +176,7 @@
                         }
                     });
                     //Valido para saber de que página envía los datos y si es paciente o doctor
+                    console.log(dr);
                     if(window.location.href == "{{ url('clinicHistory/index') }}" || dr != "doctor"){
                     var data = { 
                                   "doc"       : $(".in .middr").val(),
