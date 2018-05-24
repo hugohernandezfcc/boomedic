@@ -340,10 +340,10 @@
                                                             <td width="40%">{{ $appo->name }}</td><td>&nbsp;</td><td width="40%">{{ $name }}</td>
                                                          </tr>
                                                       </table>
-                                                      </div><br/><br/>
                                                       <div align="left">
+                                                      </div><br/><br/>
                                                       <ul class="nav nav-pills nav-stacked">
-                                                        <li class="active"><a href="">Días restantes para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
+                                                        <li class="active"><a href="">Tiempo restante para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
                                                         <li><a href="">Método de pago 
                                                      @if($appo->provider != 'Paypal')
                                                              @php 
