@@ -333,7 +333,7 @@
                                                       <table style="width: 80%; text-align: center;">
                                                          <tr>
                                                             <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
-                                                            <td><img src="https://s3.amazonaws.com/abiliasf/Sin+título-1_-01.png"></td>
+                                                            <td><img src="https://s3.amazonaws.com/abiliasf/Sin+título-1_a-01.png"></td>
                                                             <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
                                                          </tr>
                                                          <tr>
