@@ -480,11 +480,11 @@ class payments extends Controller
                                 $pmethods->notified      = 'false';
                                 $pmethods->save();
                                 $idp = $pmethods->id;
-                              }
+                              }else{
 
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
-
-                                                   /* Insert Cita */
+                            $idp = $paypalExist2->id;
+                                   }                /* Insert Cita */
                                         $medical = new medical_appointments;
                                         $medical->user           = Auth::id();
                                         $medical->user_doctor    = $dr;
@@ -494,7 +494,7 @@ class payments extends Controller
                                 
                             if ($medical->save()) {     
                                             $Trans = new transaction_bank;
-                                            $Trans->paymentmethod = $paypalExist2->id;
+                                            $Trans->paymentmethod = $idp;
                                             $Trans->receiver = $receiver;
                                             $Trans->amount = $payment->transactions[0]->amount->total;
                                             $Trans->transaction = $payment_id;
