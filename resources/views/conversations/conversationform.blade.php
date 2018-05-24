@@ -68,7 +68,9 @@
                       if(window.location.href == "{{ url('clinicHistory/index') }}" || dr != "doctor"){
                         $('.modal-chat').on('show.bs.modal', function (e) {
                           $(".contacts").css("display", "none");
+
                           var data = $(this).find(".midfield").val();
+                          console.log(data);
                           get(data);
                         })
                       }
@@ -178,10 +180,10 @@
                     console.log(dr);
                     if(window.location.href == "{{ url('clinicHistory/index') }}" || dr != "doctor"){
                     var data = { 
-                                  "doc"       : $(".in .middr").val(),
-                                  "table"     : $(".in .mtable").val(),
-                                  "id_record" : $(".in .midfield").val(),
-                                  "name_mess" : $(".in .mname").val(),
+                                  "doc"       : $(".modal.in .middr").val(),
+                                  "table"     : $(".modal.in .mtable").val(),
+                                  "id_record" : $(".modal.in .midfield").val(),
+                                  "name_mess" : $(".modal.in .mname").val(),
                                   "textbody"  : $(".modal.in .textbody").val()
                                 };
                                 console.log(data);
