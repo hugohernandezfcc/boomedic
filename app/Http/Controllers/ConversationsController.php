@@ -83,7 +83,7 @@ class ConversationsController extends Controller
             ->join('items_conversations', 'conversations.id', '=', 'items_conversations.conversation')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.doctor', $user->id)
-            ->select('conversations.id', 'conversations.name as namec', 'conversations.id_record', 'users.profile_photo')
+            ->select('conversations.id', 'conversations.name as namec', 'conversations.id_record', 'users.profile_photo', 'users.name', 'conversations.created_at')
             ->orderBy('conversations.created_at')
             ->get();
 
@@ -103,7 +103,7 @@ class ConversationsController extends Controller
 
         array_push($data, json_decode($messages));
         array_push($data, json_decode($profInfo));
-        array_push($data, json_decode($conversations2)); 
+        array_push($data, $conversations2->values()->all()); 
 
         }
 
