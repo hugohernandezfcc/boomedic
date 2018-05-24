@@ -83,15 +83,20 @@ class ConversationsController extends Controller
             ->join('items_conversations', 'conversations.id', '=', 'items_conversations.conversation')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.doctor', $user->id)
-            ->select('conversations.id', 'conversations.name as namec', 'conversations.id_record', 'users.profile_photo', 'users.name', 'conversations.created_at')
+            ->select('conversations.*', 'users.profile_photo', 'users.name as nameu')
             ->orderBy('conversations.created_at')
             ->get();
 
+            if($id != 0){
+                $com = $id;
+             }   
+             else{
                if(count($conv) > 0){
                 $com = $conv[0]->id;
                }else{
                 $com = 0;
                 }  
+             }   
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
@@ -99,7 +104,7 @@ class ConversationsController extends Controller
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
-         $conversations2 = $conv->unique('conversations.id');   
+         $conversations2 = $conv->unique('id');   
 
         array_push($data, json_decode($messages));
         array_push($data, json_decode($profInfo));
