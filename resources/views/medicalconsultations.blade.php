@@ -333,7 +333,7 @@
                                                       <table style="width: 80%; text-align: center;">
                                                          <tr>
                                                             <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
-                                                            <td>&nbsp;</td>
+                                                            <td><img src="https://s3.amazonaws.com/abiliasf/hexágono-01.png"></td>
                                                             <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
                                                          </tr>
                                                          <tr>
@@ -344,7 +344,21 @@
                                                       <div align="left">
                                                       <ul class="nav nav-pills nav-stacked">
                                                         <li class="active"><a href="">Días restantes para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
-                                                        <li><a href="">Método de pago <span class="liright">{{ $appo->cardnumber }}</span></a></li>
+                                                        <li><a href="">Método de pago 
+                                                     @if($appo->provider != 'Paypal')
+                                                             @php 
+                                                            $cardfin = substr_replace($appo->cardnumber, '••••••••••••', 0, 12)
+                                                             @endphp 
+                                                          @if($appo->provider == "Visa")
+                                                          <span class="liright"><i class="fa fa-cc-visa" style="font-size: 15px;"></i> &nbsp;{{ $cardfin }}</span>
+                                                          @endif
+                                                          @if($appo->provider == "MasterCard")
+                                                          <span class="liright"><i class="fa fa-cc-mastercard" style="font-size: 15px;"></i> &nbsp;{{ $cardfin }}</span>
+                                                          @endif
+                                                     @else 
+                                                          <span class="liright"><i class="fa fa-cc-paypal" style="font-size: 15px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
+                                                     @endif 
+                                                        </a></li>
                                                         <li><a href="" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
  
                                                       </ul>
