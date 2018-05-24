@@ -164,6 +164,18 @@
 .lockscreen-item {
     margin: 0 0 13px auto !important;
 }
+      .modal.fade2 .modal-dialog{
+    top: 300px;
+    opacity: 0;
+    -webkit-transition: all 0.7s;
+    -moz-transition: all 0.7s;
+    transition: all 0.7s;
+      }
+   .modal.fade2.in .modal-dialog {
+    -webkit-transform: translate3d(0, -300px, 0);
+    transform: translate3d(0, -300px, 0);
+    opacity: 1;
+    }
     </style>
 
     <style>

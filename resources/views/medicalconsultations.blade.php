@@ -164,12 +164,7 @@
       }
      /****/
      /* Modal */
-     .modal-header, h4, .close {
-          color:black;
-          text-align: center;
-          font-size: 100%;
-          font-weight: bold;
-      }
+
       .btn-default {
           box-shadow: 1px 2px 5px #000000;   
       }
@@ -360,7 +355,7 @@
                                                 </div>
                                               </div> 
                                             </div>
-                                                               <div class="modal-chat fade2 modal" id="chat-{{ $appo->id }}">
+                                                              <div class="modal-chat fade2 modal" id="chat-{{ $appo->id }}">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                          <div class="modal-header">

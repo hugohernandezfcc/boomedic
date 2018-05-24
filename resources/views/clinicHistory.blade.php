@@ -120,18 +120,7 @@
             background: transparent !important; 
             top: 75% !important; 
       }
-      .modal.fade2 .modal-dialog{
-    top: 300px;
-    opacity: 0;
-    -webkit-transition: all 0.8s;
-    -moz-transition: all 0.8s;
-    transition: all 0.8s;
-      }
-   .modal.fade2.in .modal-dialog {
-    -webkit-transform: translate3d(0, -300px, 0);
-    transform: translate3d(0, -300px, 0);
-    opacity: 1;
-}
+
 
         .sticky {
           position: fixed;
