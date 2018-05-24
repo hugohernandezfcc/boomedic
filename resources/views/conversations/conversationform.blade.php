@@ -110,7 +110,7 @@
                         $(".count").html("0");
                         $(".count").attr("data-original-title", "0 mensajes");
                         $(".direct-chat-messages").text('');
-                        $(".direct-chat-messages").append('<div align="center">No se ha empezado ninguna conversación</div>');
+                        $(".direct-chat-messages").append('<div align="center" class="nullm">No se ha empezado ninguna conversación</div>');
                       }
                   else{
                    console.log(result[0].length);
@@ -212,6 +212,9 @@
                               $(".textbody").val("");
                               $(".textbody").focus();
                               console.log(result2);
+                              if($(".direct-chat-messages").hasClass("nullm")){
+                                $(".direct-chat-messages").html("");
+                              }
                               for(var y = 0; y < result2.length; y++){ 
                               var mo = moment(result2[y]['created_at']).fromNow();
                                   if(result2[y]['profile_photo'] == "@php echo $photo; @endphp"){
