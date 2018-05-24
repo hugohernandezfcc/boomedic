@@ -344,7 +344,7 @@
                                                       <div align="left">
                                                       <ul class="nav nav-pills nav-stacked">
                                                         <li class="active"><a href="">Días restantes para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
-                                                        <li><a href="">Método de pago</a></li>
+                                                        <li><a href="">Método de pago <span class="liright">{{ $appo->cardnumber }}</span></a></li>
                                                         <li><a href="" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
  
                                                       </ul>
