@@ -245,6 +245,12 @@
         margin-top: 50%;
         width: 100%;
     }
+    .liright { 
+    color: #999 !important;
+    float: right !important;
+    padding: 3px !important;
+    font-size: 11px !important;
+  }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
@@ -342,9 +348,10 @@
                                                       </div><br/><br/>
                                                       <div align="left">
                                                       <ul class="nav nav-pills nav-stacked">
-                                                        <li class="active"><a href="#">Días restantes para la cita</a></li>
+                                                        <li class="active"><a href="#">Días restantes para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
                                                         <li><a href="#">Método de pago</a></li>
-                                                        <li><a href="#">Conectar con Médico</a></li>
+                                                        <li><a data-toggle="modal" data-target="#chat-form-modal">Conectar con Médico</a></li>
+ 
                                                       </ul>
                                                       </div>
                                                       
@@ -353,7 +360,24 @@
                                                 </div>
                                               </div> 
                                             </div>
-
+                                                               <div class="modal-chat fade2 modal" id="chat-form-modal">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                         <div class="modal-header">
+                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span></button>
+                                                                             <h4 class="modal-title"> <i class="fa fa-comments"></i> Ventana de Conversación</h4>
+                                                                             </div>
+                                                                          <div class="modal-body">
+                                                                                <input type="hidden" class="middr" value="{{ $appo->name }}">
+                                                                                <input type="hidden" class="midfield" value="{{ $appo->id }}">
+                                                                                <input type="hidden" class="mname" value="Cita médica">
+                                                                                <input type="hidden" class="mtable" value="medical_appointments">
+                                                                             @include('conversations.conversationform')
+                                                                         </div>
+                                                                          </div>  
+                                                                       </div>
+                                                                    </div>  
 
                                  @endif 
                                                          @if($loop->iteration > 2)
