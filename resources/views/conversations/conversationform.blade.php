@@ -63,7 +63,9 @@
 <script type="text/javascript">
        $(function(){
                       //Valid to know who sends the data and if you are a patient or doctor
-                      if(window.location.href == "{{ url('clinicHistory/index') }}" || window.location.href == "{{ url('medicalconsultations') }}" ){
+                      var dr = "{{ session()->get('utype') }}";
+                      console.log(dr);
+                      if(window.location.href == "{{ url('clinicHistory/index') }}" || dr != "doctor"){
                         $('.modal-chat').on('show.bs.modal', function (e) {
                           $(".contacts").css("display", "none");
                           var data = $(this).find(".midfield").val();
