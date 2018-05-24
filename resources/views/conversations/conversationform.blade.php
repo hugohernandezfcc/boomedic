@@ -24,18 +24,18 @@
                   <h5 id="titleC"></h5>
 
                   <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-gray" data-original-title="" id="count"></span>
+                    <span data-toggle="tooltip" title="" class="badge bg-gray count" data-original-title="" id="count"></span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
-                    <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts" id="contacts">
+                    <button type="button" class="btn btn-box-tool contacts" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts" id="contacts">
                       <i class="fa fa-comments"></i></button>
                   </div>
                   <input type="hidden" id="userOrDr" value="1">
                   <input type="hidden" id="mid" value="">
                 </div>
-                <div class="box-body" id="message0">
+                <div class="box-body message0" id="message0">
                   <!-- Conversations are loaded here -->
-                  <div class="direct-chat-messages" id="message">
+                  <div class="direct-chat-messages message" id="message">
                   </div>
                   <!-- Contacts are loaded here -->
                   <div class="direct-chat-contacts">
@@ -63,8 +63,9 @@
 <script type="text/javascript">
        $(function(){
                       //Valid to know who sends the data and if you are a patient or doctor
-                      if(window.location.href == "{{ url('clinicHistory/index') }}" ){
+                      if(window.location.href == "{{ url('clinicHistory/index') }}" || window.location.href == "{{ url('medicalconsultations') }}" ){
                         $('.modal-chat').on('show.bs.modal', function (e) {
+                          $(".contacts").css("display", "none");
                           var data = $(this).find(".midfield").val();
                           get(data);
                         })
@@ -88,7 +89,7 @@
                  success: function(result){
 
                   if(result[1].length == 0){
-                    $("#contacts").css("display", "none");
+                    $(".contacts").css("display", "none");
                     $("#userOrDr").val(result[1].length);
                   }
                   if(result[1].length > 0){
@@ -105,8 +106,8 @@
                            }
                    }
                       if(result[0].length == 0){
-                        $("#count").html("0");
-                        $("#count").attr("data-original-title", "0 mensajes");
+                        $(".count").html("0");
+                        $(".count").attr("data-original-title", "0 mensajes");
                         $(".direct-chat-messages").text('');
                         $(".direct-chat-messages").append('<div align="center">No se ha empezado ninguna conversación</div>');
                       }
@@ -125,8 +126,8 @@
                      }
                      $("#titleC").text(title);
                            //Auto-scroll
-                            var altura = (document.getElementById("message").scrollHeight + $("#message").height());
-                         $("#message").animate({scrollTop:altura+"px"});
+                            var altura = (document.getElementById("message").scrollHeight + $(".message").height());
+                         $(".message").animate({scrollTop:altura+"px"});
                         count();
 
                       if ($('.modal-chat').is(':hidden')) {
@@ -144,13 +145,13 @@
            }
 
    function count(data){
-     var count = $("#message .direct-chat-msg.other").length;
-     $("#count").html(count);
+     var count = $(".message .direct-chat-msg.other").length;
+     $(".count").html(count);
          if(count == 1){
-             $("#count").attr("data-original-title", count + " nuevo mensaje");
+             $(".count").attr("data-original-title", count + " nuevo mensaje");
                } 
          else{
-              $("#count").attr("data-original-title", count + " nuevos mensajes");
+              $(".count").attr("data-original-title", count + " nuevos mensajes");
             }
           }
 
@@ -162,7 +163,7 @@
       clearTimeout(timer);
         get(data);
         console.log(data);
-        $('#contacts').click();
+        $('.contacts').click();
         $("#mid").val(data);
      }  
 
@@ -219,8 +220,8 @@
                                 $("#mid").val(result2[y]['id_record']);
                                }
                               //Auto-scroll
-                            var altura = (document.getElementById("message").scrollHeight + $("#message").height());
-                              $("#message").animate({scrollTop:altura+"px"});
+                            var altura = (document.getElementById("message").scrollHeight + $(".message").height());
+                              $(".message").animate({scrollTop:altura+"px"});
                               }
                          });
                          }

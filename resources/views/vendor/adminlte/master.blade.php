@@ -170,11 +170,13 @@
     -webkit-transition: all 0.7s;
     -moz-transition: all 0.7s;
     transition: all 0.7s;
+    padding-right: 0 !important; 
       }
    .modal.fade2.in .modal-dialog {
     -webkit-transform: translate3d(0, -300px, 0);
     transform: translate3d(0, -300px, 0);
     opacity: 1;
+
     }
     </style>
 
