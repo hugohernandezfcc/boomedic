@@ -1806,7 +1806,7 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
-
+                            if($( ".modal" ).hasClass( "in" )){
                                   $.ajax(
                                   {
                                     type: "GET",    
@@ -1815,9 +1815,10 @@ function prevTab(elem) {
                                         console.log(result);
                                     }
                                   });
+                                }
                   }
              
-          });
+                });
             }
           })(marker, i));
           setTimeout(dropMarker(i), i * 250);
