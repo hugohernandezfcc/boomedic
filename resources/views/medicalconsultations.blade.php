@@ -746,6 +746,7 @@
                                        @include('empty.emptyData')
                                        <script type="text/javascript">
                                           $('.buttonEmpty').css('display','none');
+                                          $('.spanEmpty1').html('{{ $title }}');
                                           $('.spanEmpty').css('display','none');
                                        </script>   
                                       </div>
