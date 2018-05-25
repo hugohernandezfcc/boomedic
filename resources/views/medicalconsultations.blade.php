@@ -830,8 +830,24 @@
 
 
           <script type="text/javascript">
+           document.getElementById('btncita').addEventListener('click', function() {
+        $('.modal-register-cite').on('show.bs.modal', function (e) {
+
+          $.ajax(
+          {
+            type: "GET",    
+            url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
+            success: function(result){
+                console.log(result);
+            }
+          });
+        })
+      })
 
 $(document).ready(function () {
+
+
+
 
  $('#mySelect').on('change', function() {
         if( $('#mySelect').val() !== firstValue){
@@ -1808,17 +1824,7 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
-                                $('.modal-register-cite .modal.in').on('show.bs.modal', function (e) {
 
-                                  $.ajax(
-                                  {
-                                    type: "GET",    
-                                    url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
-                                    success: function(result){
-                                        console.log(result);
-                                    }
-                                  });
-                                })
                               }
 
                 });
