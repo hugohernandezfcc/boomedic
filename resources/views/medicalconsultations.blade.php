@@ -1633,7 +1633,7 @@ function prevTab(elem) {
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                      resp = optionhour[y].split(":",2); 
                      resp2 = JSON.parse(optionhour[y].slice(4));
-                  if(resp2.length > 0){   
+
                       if(resp[0] == 'Dom'){
                         Dom = resp2;
                       var index = days.indexOf(0);
@@ -1683,10 +1683,9 @@ function prevTab(elem) {
                                days.splice(index, 1);
                             }
                         }
-                     }else{
-                      $("$calendar1").html("Este doctor no ha registrado horarios...");
+
                   }
-                  }
+                  if(resp2.length > 0){   
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es' }).on('changeDate',function(e){
                      $('#timesByDay').children().remove();
                          document.getElementById("onestep").disabled = false;
@@ -1788,7 +1787,9 @@ function prevTab(elem) {
                         }    
                         $('#dateSelectedForCite').val = e.date.toISOString();                  
                       });
-
+                     }else{
+                      $("$calendar1").html("Este doctor no ha registrado horarios...");
+                  }
              
           });
             }
