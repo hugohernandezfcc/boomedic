@@ -831,8 +831,7 @@
 
           <script type="text/javascript">
         document.getElementById('btncita').addEventListener('click', function() {
-        $('.modal-register-cite').on('show.bs.modal', function (e) {
-          if($('.calendarNull').is(":visible")){
+          if($('.modal.in .calendarNull').is(":visible")){
           $.ajax(
           {
             type: "GET",    
@@ -842,7 +841,6 @@
             }
           });
         }
-        })
       })
 
 $(document).ready(function () {
