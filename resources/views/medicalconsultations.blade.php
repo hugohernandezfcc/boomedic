@@ -830,18 +830,7 @@
 
 
           <script type="text/javascript">
-          $('.modal-register-cite').on('show.bs.modal', function (e) {
-                   if($('.calendarNull').is(":visible")){
-                                  $.ajax(
-                                  {
-                                    type: "GET",    
-                                    url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
-                                    success: function(result){
-                                        console.log(result);
-                                    }
-                                  });
-                                }
-             })
+
 $(document).ready(function () {
 
  $('#mySelect').on('change', function() {
@@ -1819,6 +1808,18 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
+                                $('.modal-register-cite').on('show.bs.modal', function (e) {
+                             if($('.calendarNull').is(":visible")){
+                                            $.ajax(
+                                            {
+                                              type: "GET",    
+                                              url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
+                                              success: function(result){
+                                                  console.log(result);
+                                              }
+                                            });
+                                          }
+                       })
                                
                   }
              
