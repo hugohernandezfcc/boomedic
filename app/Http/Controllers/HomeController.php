@@ -274,6 +274,13 @@ class HomeController extends Controller
         return response()->json($notifications);
     }
 
+        public function notificationdr($id)
+    {
+          $user = User::find(Auth::id());
+
+        return response()->json($id);
+    }
+
         public function notify2()
     {
         //if is for user or for all

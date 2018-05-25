@@ -1806,6 +1806,15 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
+
+                                  $.ajax(
+                                  {
+                                    type: "GET",    
+                                    url: "{{ url('medicalconsultations/notificationdr') }}/" + loc[i][8], 
+                                    success: function(result){
+                                        console.log(result);
+                                    }
+                                  });
                   }
              
           });
