@@ -745,6 +745,8 @@
                                       <div style="width: 100%; display: none;" align="center" class="calendarNull">
                                        @include('empty.emptyData')
                                        <script type="text/javascript">
+                                          $('.imgEmpty').css('width','150px');
+                                          $('.imgEmpty').css('height','150px');
                                           $('.buttonEmpty').css('display','none');
                                           $('.spanEmpty1').html('{{ $title }}');
                                           $('.spanEmpty').css('display','none');
