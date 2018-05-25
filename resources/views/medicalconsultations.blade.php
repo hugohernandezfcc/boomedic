@@ -726,15 +726,12 @@
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                        <span style="font-size: 18px;">Fecha</span><br/><br/>
-                                  <div class="box box-solid bg-black-gradient">
+                                  <div class="box box-solid bg-black-gradient calendar">
                                         <div class="box-header">
                                           <i class="fa fa-calendar"></i>
 
                                             <h3 class="box-title">Seleccionar día</h3>
                                           <!-- tools box -->
-                                              <div class="pull-right box-tools">
-                                                <button type="button" class="btn btn-secondary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                              </div>
                                           <!-- /. tools -->
                                         </div>
                                         <!-- /.box-header -->
@@ -743,6 +740,9 @@
                                             <div id="calendar1" style="width: 100%;" align="center"></div>
                                         </div>
                                         <!-- /.box-body -->
+                                        
+                                      </div>
+                                      <div style="width: 100%; display: none;" align="center" id="calendarNull">
                                         
                                       </div>
 
@@ -1790,7 +1790,9 @@ function prevTab(elem) {
                         $('#dateSelectedForCite').val = e.date.toISOString();                  
                       });
                      }else{
-                      $("$calendar1").html("Este doctor no ha registrado horarios...");
+                      $(".calendar").css("display","none");
+                      $("#calendarNull").css("display","block");
+                      $("#calendarNull").html("Este doctor no ha registrado horarios...");
                   }
              
           });
