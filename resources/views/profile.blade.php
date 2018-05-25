@@ -954,7 +954,13 @@
                   <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
                     <div class="box-body" align="center">
                     	@if($latitude == "" && $longitude == "")
-                    	   No ha registrado ninguna dirección.
+                    	    @include('empty.emptyData')
+                                       <script type="text/javascript">
+                                          $('#imgEmpty').attr("src","{{ asset(config('adminlte.empty-house')) }}");
+                                          $('.buttonEmpty').css('display','none');
+                                          $('.spanEmpty1').html('{{ $title }}');
+                                          $('.spanEmpty').css('display','none');
+                                       </script>   
                     	   <input type="hidden" id="nullmap" value="true">
                     	@else   
                           <div id="mapAddressUser"></div>
