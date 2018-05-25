@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mail;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -67,7 +68,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name'      => 'required|string|max:255|min:5',
-            'birthdate' => 'required|date_format:"m/d/Y"|before:"now"',
+            'birthdate' => 'required',
             'email'     => 'required|string|email|max:255|unique:users',
             'password'  => 'required|string|min:6|confirmed',
         ]);
@@ -85,8 +86,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $data['confirmation_code'] = str_random(25);
-
-        $age = date("Y") - substr($data['birthdate'], -4);
+        $age = date("Y") - Carbon::parse($data['birthdate'])->format('Y');
         $namesUser = array();
 
         //$pos = strpos(' ', $data['name']);
@@ -133,7 +133,7 @@ class RegisterController extends Controller
             $userCreated =  User::create([
                 'name'      => $data['name'],
                 'email'     => $data['email'],
-                'birthdate' => $data['birthdate'],
+                'birthdate' => Carbon::parse($data['birthdate'])->format('m-d-Y'),
                 'age'       => (int) $age,
                 'status'    => 'In Progress',
                 'firstname' => $namesUser['first'],
@@ -164,7 +164,7 @@ class RegisterController extends Controller
             $usermor        = User::create([
                 'name'      => $data['name'],
                 'email'     => $data['email'],
-                'birthdate' => $data['birthdate'],
+                'birthdate' => Carbon::parse($data['birthdate'])->format('m-d-Y'),
                 'age'       => (int) $age,
                 'status'    => 'In Progress',
                 'firstname' => $namesUser['first'],

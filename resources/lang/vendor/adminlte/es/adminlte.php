@@ -36,7 +36,14 @@ return [
     'register_a_new_membership_doctor'   => 'Registrarme como Médico',
     'professional_license'               => 'Cédula profesional de médico',
     'medical_society'                    => 'Sociedad de médicos',
-    'sibling'                            => 'Hermanos',
+    'siblings'                            => 'Hermano(a)',
+    'mother'                             => 'Madre',
+    'father'                             => 'Padre',
+    'wife'                               => 'Esposa',
+    'son'                                => 'Hijo(a)',
+    'husband'                            => 'Esposo',
+    'grandparents'                       => 'Abuelo(a)',
+    'uncles'                             => 'Tío(a)',
 
 
 

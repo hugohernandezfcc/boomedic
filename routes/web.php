@@ -39,10 +39,15 @@ Route::get('/returnverify', 'HomeController@returnverify')->name('/returnverify'
 
 
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
+Route::get('logoutback', 'HomeController@logoutback')->name('logoutback');
 
 
 Route::post('/medicalconsultations/recent', 'HomeController@recent')->name('medicalconsultations/recent');
 Route::get('/medicalconsultations/showrecent', 'HomeController@showrecent')->name('medicalconsultations/showrecent');
+Route::get('/medicalconsultations/notificationdr/{id}', 'HomeController@notificationdr')->name('medicalconsultations/notificationdr/{id}');
+Route::get('HomeController/notify', 'HomeController@notify')->name('HomeController/notify');
+Route::get('HomeController/notify2', 'HomeController@notify2')->name('HomeController/notify2');
+Route::get('HomeController/messages', 'HomeController@messages')->name('HomeController/messages');
 Route::get('/appointments', 'HomeController@appointments')->name('/appointments');
 
 Route::get('/homemedical', function () {
@@ -87,8 +92,13 @@ Route::group(['prefix' => 'user'], function(){
 			'as'	=>	'updateProfile'
 		]
 	);
+	Route::post('loginSon', [
+			'uses'	=>	'profile@loginSon',
+			'as'	=>	'loginSon'
+		]
+	);
 
-		Route::post('cropProfile/{id}', [
+	Route::post('cropProfile/{id}', [
 			'uses'	=>	'profile@cropProfile',
 			'as'	=>	'cropProfile'
 		]
@@ -327,6 +337,63 @@ Route::group(['prefix' => 'workboardDr'], function(){
 
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'workboardDr@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+});
+
+
+Route::group(['prefix' => 'Conversations'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'ConversationsController@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('messages/{id}', [
+			'uses'	=>	'ConversationsController@messages',
+			'as'	=>	'messages'
+		]
+	);	
+	Route::post('sendMessages', [
+			'uses'	=>	'ConversationsController@sendMessages',
+			'as'	=>	'sendMessages'
+		]
+	);	
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'ConversationsController@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+});
+
+
+Route::group(['prefix' => 'drAppointments'], function(){
+
+	Route::get('index/{id}', [
+			'uses'	=>	'drAppointments@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'drAppointments@redirecting',
+			'as'	=>	'redirecting'
+		]
+	);
+});
+
+Route::group(['prefix' => 'reports'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'reports@index',
+			'as'	=>	'index'
+		]
+	);
+
+	Route::get('redirecting/{page}', [
+			'uses'	=>	'reports@redirecting',
 			'as'	=>	'redirecting'
 		]
 	);

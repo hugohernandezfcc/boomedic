@@ -164,12 +164,7 @@
       }
      /****/
      /* Modal */
-     .modal-header, h4, .close {
-          color:black;
-          text-align: center;
-          font-size: 100%;
-          font-weight: bold;
-      }
+
       .btn-default {
           box-shadow: 1px 2px 5px #000000;   
       }
@@ -245,6 +240,15 @@
         margin-top: 50%;
         width: 100%;
     }
+    .liright { 
+    color: #999 !important;
+    float: right !important;
+    padding: 3px !important;
+    font-size: 11px !important;
+  }
+  .nav-stacked>li.active>a {
+    border-left-color: #080808 !important;
+}
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
@@ -261,9 +265,9 @@
     var select01 = "Seleccionar especialidad";
     var firstValue = '- Ninguna -';
     var fieldSearch = 'Buscar';//'Nombre del Médico';
-    var Rango01 = 'Rango de búsqueda (metros):';
-    var Rango02 = 'Rango de búsqueda predefinido (metros):';
-    var Rango03 = 'Rango de búsqueda actual (metros):';
+    var Rango01 = 'Rango de búsqueda (Kilómetros):';
+    var Rango02 = 'Rango de búsqueda predefinido (Kilómetros):';
+    var Rango03 = 'Rango de búsqueda actual (Kilómetros):';
     var Button02 = 'Mostrar filtros';
     var Button01 = 'Buscar';
     var error01 = 'Seleccione una especialidad';
@@ -286,7 +290,7 @@
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
-    console.log(datos);
+    /*console.log(datos);*/
   </script>
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
@@ -304,15 +308,88 @@
                     <div class="box-body">
                          @foreach($appointments->sortBy('when') as $appo)
                               @if($loop->iteration < 3)
-                                <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" target="_blank">
-                                            <div class="col-sm-12">
-                                                  <div class="info-box sm bg-gray">
-                                                    <div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div>
-                                                    <div class="info-box-content sm">
-                                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" class="text-muted"> 
-                                                      <b>Lugar:</b> {{ $appo->workplace}}.</a><br/>
-                                                     <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>            
+                            <div class="col-sm-12">
+                                  <div class="info-box sm bg-gray">
+                                    <a data-toggle="modal" data-target="#{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
+                                    <div class="info-box-content sm">
+                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" class="text-muted" target="_blank"> 
+                                      <b>Lugar:</b> {{ $appo->workplace}}.</a><br/>
+                                     <span class="text-black">Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}</span>     
+                                     </div>       
+                                    </div>
+                                   </div> 
+                                         <div class="modal fade" role="dialog" id="{{ $appo->id }}">
+                                            <div class="modal-dialog modal-sm">
+
+                                              <div class="modal-content">
+
+                                                <div class="modal-header" >
+                                                  <!-- Tachecito para cerrar -->
+
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                   <div align="left"><label>Detalle de cita</label></div>
+                                                </div>
+                                                    <div class="modal-body" style="padding: 0px !important;">
+                                                      <div align="center">
+                                                      <table style="width: 80%; text-align: center;">
+                                                         <tr>
+                                                            <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                            <td><img src="https://s3.amazonaws.com/abiliasf/Sin+título-1_a-01.png"></td>
+                                                            <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td width="40%">{{ $appo->name }}</td><td>&nbsp;</td><td width="40%">{{ $name }}</td>
+                                                         </tr>
+                                                      </table>
+                                                      </div><br/><br/>
+                                                      <div align="left">
+                                                      <ul class="nav nav-pills nav-stacked">
+                                                        <li class="active"><a href="">Tiempo restante para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
+                                                        <li><a href="{{ url('/payment/Transactions/') }}/{{ $appo->idtr }}">Método de pago 
+                                                     @if($appo->provider != 'Paypal')
+                                                             @php 
+                                                            $cardfin = substr_replace($appo->cardnumber, '••••••••••••', 0, 12)
+                                                             @endphp 
+                                                          @if($appo->provider == "Visa")
+                                                          <span class="liright"><i class="fa fa-cc-visa" style="font-size: 15px;"></i> &nbsp;{{ $cardfin }}</span>
+                                                          @endif
+                                                          @if($appo->provider == "MasterCard")
+                                                          <span class="liright"><i class="fa fa-cc-mastercard" style="font-size: 15px;"></i> &nbsp;{{ $cardfin }}</span>
+                                                          @endif
+                                                     @else 
+                                                          <span class="liright"><i class="fa fa-cc-paypal" style="font-size: 15px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
+                                                     @endif 
+                                                        </a></li>
+                                                        <li><a href="" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
+ 
+                                                      </ul>
+                                                      </div>
+                                                      
+                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=250x200&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> </div> 
                                                     </div>
+                                                </div>
+                                              </div> 
+                                            </div>
+                                                              <div class="modal-chat fade2 modal" id="chat-{{ $appo->id }}">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                         <div class="modal-header">
+                                                                             <button type="button" class="close" data-target="#{{ $appo->id }}" data-dismiss="modal" data-toggle="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span></button>
+                                                                             <h4 class="modal-title"> <i class="fa fa-comments"></i> Ventana de Conversación</h4>
+                                                                             </div>
+                                                                          <div class="modal-body">
+                                                                                <input type="hidden" class="middr" value="{{ $appo->did }}">
+                                                                                <input type="hidden" class="midfield" value="{{ $appo->id }}">
+                                                                                <input type="hidden" class="mname" value="Cita médica">
+                                                                                <input type="hidden" class="mtable" value="medical_appointments">
+                                                                             @include('conversations.conversationform')
+                                                                         </div>
+                                                                          </div>  
+                                                                       </div>
+                                                                    </div>  
 
                                  @endif 
                                                          @if($loop->iteration > 2)
@@ -323,14 +400,12 @@
                                                          </div>
                                                          @break
                                                          @endif 
-                                                  </div>
-                                                </div>
-
+                                                  
                          @endforeach
+                          </div>
                     </div>
                   </div>
-                </div>
-            </div>    
+                </div> 
  @endif
           
               <!-- Charge Alert whether payment was processed or not -->
@@ -406,7 +481,11 @@
                                   $code = session()->get('message');
                                  @endphp
                           <!-- Error codes are defined within the adminlte -->
+                          @if($code > 0)
                               {{ trans('adminlte::adminlte.'.$code) }}
+                          @else
+                              {{ $code }}
+                              @endif
                             </div>
                         </div>
                       </div> 
@@ -459,7 +538,7 @@
     <div id='rango'>
               <div class="btn-group">
               <a class="btn btn-default btn-sm" onclick="showMy();"><b><span id="labelextra"></span></b></a>
-              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span>m</b></a>             
+              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
               <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
               </div>
@@ -480,7 +559,7 @@
                     <div align="left"><label for="rango01" id="label04"></label> <span id="rango03"></span></div>       
                   </div>
                   <div class="modal-body">
-                          <input type="range" name="rango01" id="rango01" value="1000" min="1000" max="10000" step="50" autocomplete="off" onchange="start();" class="rangeStyle"/>
+                          <input type="range" name="rango01" id="rango01" value="1" min="1" max="10" step="0.1" autocomplete="off" onchange="start();" class="rangeStyle"/>
                   </div>
                 </div>
               </div>
@@ -507,7 +586,7 @@
                         <div class="input-group">
                           <input type="text" class="form-control" placeholder="Buscar firma, médico, hospital..."  name="keyWordSearch"  id="kWSearch" >
                           <span class="input-group-btn">
-                            <button type="button" class="btn btn-info btn-flat" onclick="start();">
+                            <button type="button" class="btn btn-secondary btn-flat" onclick="start();">
                               <span class="fa fa-search"></span>
                             </button>
                           </span>
@@ -592,7 +671,7 @@
 
 
     <!-- Modal de registro de cita -->
-    <div class="modal fade" id="modal-register-cite">
+    <div class="modal-register-cite modal fade" id="modal-register-cite">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
 
@@ -650,24 +729,32 @@
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                        <span style="font-size: 18px;">Fecha</span><br/><br/>
-                                  <div class="box box-solid bg-black-gradient">
+                                  <div class="box box-solid bg-black-gradient calendar">
                                         <div class="box-header">
                                           <i class="fa fa-calendar"></i>
 
                                             <h3 class="box-title">Seleccionar día</h3>
                                           <!-- tools box -->
-                                              <div class="pull-right box-tools">
-                                                <button type="button" class="btn btn-secondary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                              </div>
                                           <!-- /. tools -->
                                         </div>
                                         <!-- /.box-header -->
                                         <div class="box-body no-padding">
                                           <!--The calendar -->
-                                            <div id="calendar1" style="width: 80%"></div>
+                                            <div id="calendar1" style="width: 100%;" align="center"></div>
                                         </div>
                                         <!-- /.box-body -->
                                         
+                                      </div>
+                                      <div style="width: 100%; display: none;" align="center" class="calendarNull">
+                                       @include('empty.emptyData')
+                                       <script type="text/javascript">
+                                         $('#imgEmpty').attr("src","{{ asset(config('adminlte.empty-calendar')) }}");
+                                          $('#imgEmpty').css('width','150px');
+                                          $('#imgEmpty').css('height','150px');
+                                          $('.buttonEmpty').css('display','none');
+                                          $('.spanEmpty1').html('{{ $title }}');
+                                          $('.spanEmpty').css('display','none');
+                                       </script>   
                                       </div>
 
                                       <input type="hidden" id="dateSelectedForCite" value="">
@@ -743,7 +830,26 @@
 
 
           <script type="text/javascript">
+
 $(document).ready(function () {
+
+
+
+
+ $('#mySelect').on('change', function() {
+        if( $('#mySelect').val() !== firstValue){
+          $("#general" ).prop( "checked", false );
+          $('#general').attr('checked', false);
+          startProcess = false;
+          typeC = 'TypeSpeciality';
+        }
+       if( $('#mySelect').val() == firstValue){
+          $("#general" ).prop( "checked", true);
+          $('#general').attr('checked', true);
+          startProcess = false;
+          typeC = 'TypeGeneral';
+        }
+      })
     //Initialize tooltips
        $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
@@ -809,7 +915,7 @@ function prevTab(elem) {
                 type: "GET",    
                 url: "medicalappointments/showPaymentMethods", 
                 success: function(result){
-                  console.log(result);
+                  /*console.log(result);*/
                   var x = document.getElementById("paymentMethodsFields");
                    var option = document.createElement("option");
                     option.text = "Paypal";
@@ -834,14 +940,14 @@ function prevTab(elem) {
                 type: "GET",    
                 url: "medicalconsultations/showrecent", 
                 success: function(result){
-                 console.log(result.length);
-                  console.log(result);
+                 /*console.log(result.length);
+                  console.log(result);*/
                   if(result.length > '0'){
 
                    $('#recentS').show();
                    var result1 = JSON.parse(result).reverse();            
                               for(var z=0; z < result1.length; z++){
-                                 $('#resp').append('<a href="#" data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ result1[z] +'<br/></a>');
+                                 $('#resp').append('<a data-value="'+ result1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ result1[z] +'<br/></a>');
                                }
                   
                     }
@@ -884,8 +990,6 @@ function prevTab(elem) {
         if (!document.getElementById('general').checked){
           startProcess = false;
           typeC = 'TypeSpeciality';
-           $('#mySelect').prop('disabled', false);
-           $('#mySelect').val("- Ninguna -").trigger("change");
            start();
           
         }
@@ -898,7 +1002,6 @@ function prevTab(elem) {
           document.getElementById('infoSp').style.display = 'none';
           document.getElementById("label01").innerHTML = "Médico General";
           $('#mySelect').val("- Ninguna -").trigger("change");
-          $('#mySelect').prop('disabled', 'disabled');
           start();
           $("#myModal").modal("hide");
         }
@@ -911,12 +1014,6 @@ function prevTab(elem) {
         }
       }
     function showMy(){
-       if (document.getElementById('general').checked){
-          $('#mySelect').prop('disabled', 'disabled');
-        }else{
-           $('#mySelect').prop('disabled', false);
-        }
-          $('#mySelect').val("- Ninguna -").trigger("change");
           $("#myModal").modal();
         
       }
@@ -924,12 +1021,10 @@ function prevTab(elem) {
         if (document.getElementById('general').checked)
           $("#myModal").modal("hide");
       }
-      function showM2(){
-        $("#myModal").modal({backdrop: "static"});
-      }
       function hideM2(){
         $("#myModal").modal("hide");
       }
+
     </script>
 
     <!-- Current range -->
@@ -974,32 +1069,17 @@ function prevTab(elem) {
         var x = document.getElementById("mySelect");
         var s = x.selectedIndex;
         var selectedValue = x.options[s].text;
-        console.log('ESPECIALIDAD::'+selectedValue);
         //Value of word for search
         var keySearch = document.getElementById("kWSearch").value;
-        console.log('PALABRA BÚSQUEDA::'+keySearch);
         //Value of indicated Position
         markerLatLng = markerP.getPosition();
-        console.log('NUEVA POSICION::'+markerLatLng);
         //Value of Range to search
         var x = document.getElementById("rango01");
-        var currentVal = x.value;
-        console.log('RANGO INDICADO:: '+currentVal);
+        var currentVal = x.value * 1000;
         
         if(typeC == 'TypeSpeciality'){
-          if(selectedValue == firstValue){
-            console.log('NULO ESPECIALIDAD:: '+selectedValue);
-            clearMarkers();
-            /*document.getElementById("ShowDetails").innerHTML = error01;*/
-            document.getElementById("ShowDetails").innerHTML = ' ';
-            document.getElementById("info").innerHTML = ' ';
-            document.getElementById('infoSp').style.display = 'none';
-            document.getElementById("label01").innerHTML = "Médico General";
-            document.getElementById("labelextra").innerHTML = "Médico General";
-            startProcess = false;
-          }
+
           if(selectedValue !== firstValue){
-            console.log('VÁLIDO ESPECIALIDAD:: '+selectedValue);
             hideM2();
             document.getElementById('infoSp').style.display = 'block';
             document.getElementById("infoSpDetail").innerHTML = selectedValue;
@@ -1009,7 +1089,6 @@ function prevTab(elem) {
             }
           }
           if(typeC == 'TypeGeneral'){
-            console.log('CITA GENERAL');
             document.getElementById('infoSp').style.display = 'none';
             document.getElementById("label01").innerHTML = "Médico General";
             document.getElementById("labelextra").innerHTML = "Médico General";
@@ -1027,7 +1106,6 @@ function prevTab(elem) {
        * Function responsable of execute the main functions 
        */
       window.onload = function(){
-         console.log("@php echo session()->get('utype'); @endphp");
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
@@ -1060,7 +1138,6 @@ function prevTab(elem) {
         infoWindow = new google.maps.InfoWindow();
         //Current position
         if (navigator.geolocation) {
-          console.log('POSICION ACTUAL');
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
               lat: position.coords.latitude,
@@ -1390,13 +1467,12 @@ function prevTab(elem) {
                               dataType: 'json',                
                              success: function(data)             
                              {
-                      console.log(JSON.parse(data).reverse());
                        var data1 = JSON.parse(data).reverse(); 
                        $('#recentS').show();
                        $(".recent").remove();
 
                               for(var z=0; z < data1.length; z++){
-                                 $('#resp').append('<a href="#" data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ data1[z] +'<br/></a>');
+                                 $('#resp').append('<a data-value="'+ data1[z] +'" onclick="showvalue(this);" class="recent btn text-muted" style="text-align: left;white-space: normal;"><i class="fa fa-map-marker"></i> '+ data1[z] +'<br/></a>');
                                }
                                 document.getElementById('address').value = " ";     
                              }
@@ -1434,10 +1510,10 @@ function prevTab(elem) {
       function functionEsp(specialityValue, keyWordValue, positionValue, rangeValue) {
         var res = [];
         loc = [];
-        console.log('specialityValue:: '+specialityValue);
+       /* console.log('specialityValue:: '+specialityValue);
         console.log('keyWordValue:: '+keyWordValue);
         console.log('positionValue:: '+positionValue);
-        console.log('rangeValue:: '+rangeValue);
+        console.log('rangeValue:: '+rangeValue);*/
         if(keyWordValue == ''){
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue){
@@ -1454,19 +1530,19 @@ function prevTab(elem) {
         for(var i = 0; i < res.length; i++) {
           var posB = new google.maps.LatLng(res[i][0], res[i][1]);
           metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
-          console.log('metros:: '+metros);
-          console.log('Nombre:: '+res[i][3]);
+         /* console.log('metros:: '+metros);
+          console.log('Nombre:: '+res[i][3]);*/
           if(metros < rangeValue){
             //loc[latitud, longitud, especialidad, nombre, hospital, dirección, workid, iddr]
             loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
           }
         }
-        console.log(res);
-        console.log(loc);
+       /* console.log(res);
+        console.log(loc);*/
         
         if(loc.length <= 0){
-          console.log('NO ENCONTRO MÉDICO');
-          console.log('TAMAÑO:: '+loc.length);
+          /*console.log('NO ENCONTRO MÉDICO');
+          console.log('TAMAÑO:: '+loc.length);*/
           document.getElementById("ShowDetails").innerHTML = '<strong>'+error02+'.</strong>';
           document.getElementById("info").innerHTML = ' ';
         }else{
@@ -1477,12 +1553,10 @@ function prevTab(elem) {
       function functionGen(keyWordValue, positionValue, rangeValue) {
         var res = [];
         loc = [];
-        console.log('keyWordValue:: '+keyWordValue);
+        /*console.log('keyWordValue:: '+keyWordValue);
         console.log('positionValue:: '+positionValue);
-        console.log('rangeValue:: '+rangeValue);
-        
-        if(keyWordValue != ''){
-          console.log('KEYWORD SEARCH VÁLIDO:: '+keyWordValue);
+        console.log('rangeValue:: '+rangeValue);*/
+
           for(var i = 0; i < generalM.length; i++) {
             if(generalM[i][2] == keyWordValue){
                res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4],generalM[i][5],generalM[i][6],generalM[i][7],generalM[i][8],generalM[i][9]]);
@@ -1491,57 +1565,28 @@ function prevTab(elem) {
           for(var i = 0; i < res.length; i++) {
             var posB = new google.maps.LatLng(res[i][0], res[i][1]);
             metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
-            console.log('metros:: '+metros);
-            console.log('Nombre:: '+res[i][3]);
+            /*console.log('metros:: '+metros);
+            console.log('Nombre:: '+res[i][3]);*/
             if(metros < rangeValue){
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio, intervalos]
                loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
              }
           }
           if(loc.length <= 0){
-            console.log('NO ENCONTRO MÉDICO');
-            console.log('TAMAÑO:: '+loc.length);
+            /*console.log('NO ENCONTRO MÉDICO');
+            console.log('TAMAÑO:: '+loc.length);*/
             document.getElementById("ShowDetails").innerHTML = '<strong>'+error02+'.</strong>';
             document.getElementById("info").innerHTML = ' ';
           }else{
             document.getElementById("ShowDetails").innerHTML = '<strong>' + result01 + ' ' + keyWordValue +'.</strong>';
           }
-        }else{
-          console.log('KEYWORD SEARCH NULO:: '+keyWordValue);
-          for(var i = 0; i < generalM.length; i++) {
-            var posB = new google.maps.LatLng(generalM[i][0], generalM[i][1]);
-            metros = google.maps.geometry.spherical.computeDistanceBetween(positionValue, posB);
-            console.log('metros:: '+metros);
-            console.log('Nombre:: '+generalM[i][2]);
-            if(metros < rangeValue){
-              console.log('Nombre:: '+generalM[i][2]);
-              console.log(metros +'<'+ rangeValue);
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3],generalM[i][4], generalM[i][5], generalM[i][6], generalM[i][7], generalM[i][8], generalM[i][9]]);
-               //loc[latitud, longitud, especialidad, nombre, hospital, dirección]
-            }
-          }
-          for(var i = 0; i < res.length; i++) {
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
-          }
-          if(loc.length <= 0){
-            console.log('NO ENCONTRO MÉDICO');
-            console.log('TAMAÑO:: '+loc.length);
-            document.getElementById("ShowDetails").innerHTML = '<strong>'+error02+'.</strong>';
-            document.getElementById("info").innerHTML = ' ';
-          }else{
-            document.getElementById("ShowDetails").innerHTML = '<strong>'+ result01 + ' ' + rangeValue + ' ' + result02 +'.</strong>';
-          }
-        }      
-        console.log(res);
-        console.log(loc);
       }
       function drop() {
         clearMarkers();
         for (var i = 0; i < loc.length; i++) {
           var lat = loc[i][0];
           var lon = loc[i][1];
-          console.log(lat);
-          console.log(lon);
+
           if(loc[i][10] != "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png"){
           var doctor = {
               url:"https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png",
@@ -1589,6 +1634,10 @@ function prevTab(elem) {
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
+                if(optionhour.length > 0){  
+                      $(".calendar").css("display","block");
+                      $(".calendarNull").css("display","none");
+                
                   var days = [0,1,2,3,4,5,6];
                   var resp = Array();
                   var resp2 = Array();
@@ -1601,10 +1650,11 @@ function prevTab(elem) {
                   var Sab = Array();
                   $('#calendar1').datepicker('destroy');
                  $('#timesByDay').children().remove();
+                 console.log(optionhour.length);
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                      resp = optionhour[y].split(":",2); 
                      resp2 = JSON.parse(optionhour[y].slice(4));
-                  console.log(optionhour[y].slice(4));
+
                       if(resp[0] == 'Dom'){
                         Dom = resp2;
                       var index = days.indexOf(0);
@@ -1654,104 +1704,126 @@ function prevTab(elem) {
                                days.splice(index, 1);
                             }
                         }
+
                   }
+ 
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es' }).on('changeDate',function(e){
                      $('#timesByDay').children().remove();
                          document.getElementById("onestep").disabled = false;
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
                          var da2 = moment(e.date.toISOString()).format("YYYY-MM-DD");
+                         var da3 = moment(e.date.toISOString()).format("YYYY-MM-DD");
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
                          document.getElementById('when1').value = da2;
                          var fech = Array();
                      for(var f = 0; f < whencites.length; f++){
                         if(whencites[f].slice(0,-9) == da2){  
-                          console.log(whencites[f].slice(11));  
                           fech.push(whencites[f].slice(11));  
                           }   
                         }
-                       
+
                         if (e.date.getDay() == 0) {
                           var Dom1 = $(Dom).not(fech).get();                              
-                              console.log(Dom1); console.log(Dom); 
                           for(var d = 0; d < Dom1.length; d++){
+                            if(da3  + ' ' + Dom1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                              var option = document.createElement("option");
                               option.text = Dom1[d].slice(0,-3);
                               option.value = Dom1[d].slice(0,-3);
                               x.add(option);
                           }
+                        }
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                         if (e.date.getDay() == 1) {
                           var Lun1 = $(Lun).not(fech).get();
-                          console.log(Lun1); console.log(Lun);
                           for(var d = 0; d < Lun1.length; d++){
+                           if(da3  + ' ' + Lun1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                               var option = document.createElement("option");
                               option.text = Lun1[d].slice(0,-3);
                               option.value = Lun1[d].slice(0,-3);
                               x.add(option);
                           }
+                        }
                           $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 2) {
                           var Mar1 = $(Mar).not(fech).get();
-                          console.log(Mar1); console.log(Mar); 
                           for(var d = 0; d < Mar1.length; d++){
+                          if(da3  + ' ' + Mar1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                              var option = document.createElement("option");
                               option.text = Mar1[d].slice(0,-3);
                               option.value = Mar1[d].slice(0,-3);
                               x.add(option);
                           }
+                        }
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 3) {
                            var Mie1 = $(Mie).not(fech).get();
-                          console.log(Mie1); console.log(Mie); 
                           for(var d = 0; d < Mie1.length; d++){
+                            if(da3  + ' ' +   Mie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                              var option = document.createElement("option");
                               option.text = Mie1[d].slice(0,-3);
                               option.value = Mie1[d].slice(0,-3);
                               x.add(option);
                           }
+                        }
                            $("#timesByDay option[value='asueto ']").remove();
                         } 
                        if (e.date.getDay() == 4) {
                           var Jue1 = $(Jue).not(fech).get();
-                          console.log(Jue1); console.log(Jue); 
                           for(var d = 0; d < Jue1.length; d++){
+                          if(da3  + ' ' + Jue1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                              var option = document.createElement("option");
                               option.text = Jue1[d].slice(0,-3);
                               option.value = Jue1[d].slice(0,-3);
                               x.add(option);
+                            }
                           }
                            $("#timesByDay option[value='asueto ']").remove();
                         }                                               
                         if (e.date.getDay() == 5) {
                               var Vie1 = $(Vie).not(fech).get();
-                              console.log(Vie1); console.log(Vie); 
                           for(var d = 0; d < Vie1.length; d++){
+                            if(da3  + ' ' + Vie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                              var option = document.createElement("option");
                               option.text = Vie1[d].slice(0,-3);
                               option.value = Vie1[d].slice(0,-3);
                               x.add(option);
                           }
+                        }
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 6) {
                               var Sab1 = $(Sab).not(fech).get();
-                              console.log(Sab1); console.log(Sab); 
                           for(var d = 0; d < Sab1.length; d++){
+                          if(da3  + ' ' + Sab1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                              var option = document.createElement("option");
                               option.text = Sab1[d].slice(0,-3);
                               option.value = Sab1[d].slice(0,-3);
                               x.add(option);
                           }
+                        }
                            $("#timesByDay option[value='asueto ']").remove();
                         }    
                         $('#dateSelectedForCite').val = e.date.toISOString();                  
-                         console.log(e.date.toISOString());
                       });
-             
-          });
+                     }else{
+                      $(".calendar").css("display","none");
+                      $(".calendarNull").css("display","block");
+                               alert('TEST');
+                                    $.ajax(
+                                    {
+                                      type: "GET",    
+                                      url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
+                                      success: function(result){
+                                          console.log(result);
+                                      }
+                                    })
+                                  
+                              }
+
+                });
             }
           })(marker, i));
           setTimeout(dropMarker(i), i * 250);
@@ -1791,6 +1863,8 @@ function prevTab(elem) {
     <!-- Hides modal -->
     <script>
     $(document).ready(function(){
+
+
         $("#myModal").on('hidden.bs.modal', function () {
           //console.log(startProcess);
           //alert(startProcess);

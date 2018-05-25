@@ -13,9 +13,6 @@
 
 @section('content')
 
-@if($mode == 'listPaymentMethods')    
-@include('headerprofile')
-@endif
 
 						<!-- Charge Alert whether payment was processed or not -->
 							@if(session()->has('message'))
@@ -45,14 +42,22 @@
 
 							@endif
 						<!-- Here ends the code for the alert -->
+	@if($mode == 'listPaymentMethods')
+			@if(count($cards) == 0)			
+			  @include('empty.emptyData')
+          	       <script type="text/javascript">
+          	       	  $('.buttonEmpty').css('display','inline');
+          	       	  $('.spanEmpty').css('display','inline');
+          	       </script>
+            @else
 
+            @include('headerprofile')
 	<div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Métodos de pago</h3>
 	  	</div>
 		<div class="box-body">
 
-            @if($mode == 'listPaymentMethods')
             	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 	                <thead>
 	                    <tr>
@@ -162,7 +167,13 @@
         </div> -->
 
 </div>
+				       @endif  
             @elseif($mode == 'createPaymentMethod')
+		 	<div class="box">
+			  	<div class="box-header with-border">
+				    <h3 class="box-title">Métodos de pago</h3>
+			  	</div>
+				<div class="box-body">
             	<form action="store" method="post" class="form-horizontal">
             		{{ csrf_field() }}
 	            	<div class="form-group has-feedback {{ $errors->has('typemethod') ? 'has-error' : '' }}">
@@ -302,10 +313,15 @@
 	                </script>
                 </form>
             @endif
+   
 
 			             @if($mode == 'historyTransaction')
 
-
+	<div class="box">
+	  	<div class="box-header with-border">
+		    <h3 class="box-title">Método de Pago</h3>
+	  	</div>
+		<div class="box-body">
 			            	 @if($type == 'card')
 
 
@@ -341,15 +357,19 @@
 			                </div>	  	
 	</div>
 
+			              	@if(count($transactions) < 1)
+			              	       @include('empty.emptyData')
+			              	       <script type="text/javascript">
+			              	       	  $('.buttonEmpty').css('display','none');
+			              	       	  $('.spanEmpty').css('display','none');
+			              	       </script>
+			              	@else
 	<div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Transacciones</h3>
 	  	</div>
 		<div class="box-body">
 
-			              	@if(count($transactions) < 1)
-			              	No hay Transacciones registradas para este método de pago.
-			              	@else
 			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
 				                    <tr>
@@ -400,15 +420,19 @@
 			                	</div>
 			              </div><br/>  </div>	  	
 	</div>
-
+		@if(count($transactions) < 1)
+			  @include('empty.emptyData')
+          	       <script type="text/javascript">
+          	       	  $('.buttonEmpty').css('display','none');
+          	       	  $('.spanEmpty').css('display','none');
+          	       </script>
+			   @else
 	<div class="box">
 	  	<div class="box-header with-border">
 		    <h3 class="box-title">Transacciones</h3>
 	  	</div>
 		<div class="box-body">
-			              	@if(count($transactions) < 1)
-			              	No hay Transacciones registradas para este método de pago.
-			              	@else
+
 
 			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>

@@ -48,7 +48,8 @@ class User extends Authenticatable
         'profile_photo',
         'recent_search',
         'confirmed',
-        'confirmation_code'
+        'confirmation_code',
+        'entered'
     ];
 
     /**

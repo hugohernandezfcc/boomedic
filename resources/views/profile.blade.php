@@ -5,23 +5,43 @@
 @section('content_header')
     <!-- <h1>Perfil de usuario</h1> -->
     <style type="text/css">
-    	.panel-title > a:hover, 
-		.panel-title > a:active, 
-		.panel-title > a:focus  {
-		    text-decoration:none;
-		}
-		.panel-title > a.collapsed:before {
-		float: left !important;
-		content:"\f067";
-		}
-		.panel-title > a:before {
-		    float: left !important;
-		    font-family: FontAwesome;
-		    content:"\f068";
-		    padding-left: 5px;
-		    color: gray;
-		    margin-right: 1em; 
-		}
+.accordion-toggle {
+  position: relative;
+}
+.accordion-toggle::before,
+.accordion-toggle::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: -18px;
+  width: 12px;
+  height: 4px;
+  margin-top: -2px;
+  background-color: #585858;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+.accordion-toggle::before {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  opacity: 0;
+}
+.accordion-toggle.collapsed::before {
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  opacity: 1;
+}
+.accordion-toggle.collapsed::after {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
 			.dropzone {
 			     min-height: 10px !important; 
 			    border-style: dotted  !important;
@@ -199,14 +219,14 @@
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
-	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+	    			<div class="form-group has-feedback {{ $errors->has('firstname') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
 	                	<div class="col-sm-10">
 	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
 	                	</div>
 	              	</div>
 
-	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+	              	<div class="form-group has-feedback {{ $errors->has('lastname') ? 'has-error' : '' }}">
 	                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
 	                	<div class="col-sm-10">
 	                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}">
@@ -220,14 +240,14 @@
 	                	</div>
 	              	</div>
 
-	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+	              	<div class="form-group has-feedback {{ $errors->has('username') ? 'has-error' : '' }}">
 	                    <label for="username" class="col-sm-2 control-label">Nombre de usuario</label>
 	                	<div class="col-sm-10">
 	                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}">
 	                	</div>
 	              	</div>
 
-	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+	              	<div class="form-group has-feedback {{ $errors->has('age') ? 'has-error' : '' }}">
 	                    <label for="age" class="col-sm-2 control-label">Edad</label>
 	                	<div class="col-sm-10">
 	                  		<input type="text" name="age" class="form-control" id="age" value="{{ $age }}">
@@ -371,7 +391,7 @@
 							@if(session()->has('message'))
 
 								@if(session()->has('success'))
-							    <div class="alert alert-success alert-dismissable fade in" role="alert">
+							    <div class="alert alert-success alert-dismissable fade in" role="alert" id="alertf">
 							    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									    <span aria-hidden="true">&times;</span>
 									</button>
@@ -380,7 +400,7 @@
 							    </div>
 							   
 								@elseif(session()->has('error'))
-								 <div class="alert alert-danger alert-dismissable fade in" role="alert">
+								 <div class="alert alert-danger alert-dismissable fade in" role="alert" id="alertf">
 								 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									    <span aria-hidden="true">&times;</span>
 									</button>
@@ -397,20 +417,20 @@
           <div class="box box-solid">
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="box-group" id="accordion" aria-multiselectable="true">
+              <div class="box-group" id="accordion">
                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
              
                 <div class="panel box box-default" style="border-top-color: black;">
                 
                  <div class="box-header with-border"> 
                  	<h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="accordion-toggle text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Información personal
                   </a>
               </h4>
                   	</div>
                    
-                  <div id="collapseOne" class="panel-collapse collapse in" aria-labelledby="headingOne">
+                  <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
 
                     <div class="box-body">
                       <br/>
@@ -487,12 +507,12 @@
                 <div class="panel box box-default" style="border-top-color: black;">
                <div class="box-header with-border">
                	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="a text-black" id="two" style="display:block; height:100%; width:100%;font-size: 17px;">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" class="accordion-toggle collapsed text-black" id="two" style="display:block; height:100%; width:100%;font-size: 17px;">
                         Familia
                 </a>
             </h4>
                 </div>
-                  <div id="collapseTwo" class="panel-collapse collapse in" aria-labelledby="headingTwo">
+                  <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
                   	<div class="box-body">
                   			<div class="lockscreen-item pull-right">
 							      	<div class="input-group">
@@ -507,6 +527,31 @@
 
                     <div id="demo"></div>
                     </div>
+                  <!--Other modal -->
+                  <div class="modal fade" role="dialog" id="modalfamily2">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div align="left"><label>Información del Familiar</label></div>
+                        </div>
+                            <div class="modal-body">
+                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img><br><br><b><div id="namep"></div></b></div><br>
+                            <form id="init1" style="display: none;" action="{{ url('/user/loginSon') }}" method="post">
+                            	<input type="hidden" name="id" id="idpa">
+	                  				<button type="submit" id="init" class="btn btn-secondary btn-flat btn-block" style="display: none;">Iniciar Sesión</button>
+	                  		</form>
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+
+                    <!--Other modal -->
                    <div class="modal fade" role="dialog" id="modalfamily">
                     <div class="modal-dialog">
 
@@ -555,7 +600,7 @@
 					                </div>
 
 					                <div class="form-group has-feedback">
-					                    <input type="text" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" id="datepicker2">
+					                    <input type="date" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}">
 					                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
 					                </div>
 
@@ -754,7 +799,7 @@
 											      })
 											    .append('svg:image')
 											    .attr('xlink:href',function(d,i){
-											      return d.photo
+											     	 return d.photo + '?1'
 											    })
 											    .attr('height', function(d, i) {
 											        if (i > 0) {
@@ -785,6 +830,9 @@
 								        } else {
 								          return circleWidth
 								        }
+								      })
+								      .attr('id', function(d, i) {
+								          return d.id
 								      })
 								      .attr('stroke', function(d, i) {
 								        if (i > 0) {
@@ -857,43 +905,72 @@
 								          return d.target.y
 								        })
 								    })
+								    node.on("click", click);
+										function click(d) 
+										{
+										if(d.id == "n"){
+											$("#modalfamily").modal('toggle');		
+											}else{
 
-								    force.start();
+										$('#userp').attr('src', d.photo + '?2');
+										if(!d.namecom){
+										  	$('#namep').html('Yo');
+										  }	else{
+										  	$('#namep').html(d.namecom + ' - ' + d.relationship);
+										  	if(d.session == 1){
+										  		$('#idpa').val(d.id);
+										  		$('#init1').css({ 'display': "block" });
+										  		$('#init').css({ 'display': "block" });
+										  		$('#init').text('Iniciar sesión como ' + d.name);
+										  	}else{
+										  		$('#init1').css({ 'display': "none" });
+												$('#init').css({ 'display': "none" });
+										  	}
+										  }
+										  	$("#modalfamily2").modal('toggle');
+										  }
+										}
+									force.start();
 
 								  }('#demo');
 
 								}(window.d3);
 								  });
+
                     	</script>
                     </div>
                   </div>
-                </div>
                 <br/>
+                
+
                 <div class="panel box box-default" style="border-top-color: black;">
                 	 <div class="box-header with-border">
                 	 	<h4 class="panel-title">
-                @if($latitude != "" && $longitude != "")	 		
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="initMapAddressUser();" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
-                @else   
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="a text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
-                   @endif   	
-                        Dirección de usuario      
-   
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;" onclick="initMapAddressUser();">	
+                       Dirección de usuario  
                   </a> 
                   </h4> 
                   </div>
-                  <div id="collapseThree" class="panel-collapse collapse in" aria-labelledby="headingThree">
+                  <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
                     <div class="box-body" align="center">
                     	@if($latitude == "" && $longitude == "")
-                    	   No ha registrado ninguna dirección.
+                    	    @include('empty.emptyData')
+                                       <script type="text/javascript">
+                                          $('#imgEmpty').attr("src","{{ asset(config('adminlte.empty-house')) }}");
+                                          $('.buttonEmpty').css('display','none');
+                                          $('.spanEmpty1').html('{{ $title }}');
+                                          $('.spanEmpty').css('display','none');
+                                       </script>   
                     	   <input type="hidden" id="nullmap" value="true">
                     	@else   
                           <div id="mapAddressUser"></div>
                           <input type="hidden" id="nullmap" value="false">
                         @endif
                     </div>
-                  </div>
                 </div>
+              </div>
+
+
               </div>
             </div>
             <!-- /.box-body -->
@@ -911,7 +988,6 @@
     			function fun(a) {
 							    document.getElementById('sea').value = a.getAttribute("data-value");
 							    document.getElementById('idfam').value = a.getAttribute("data-id");
-							    console.log(a.getAttribute("data-id"))
 							    document.getElementById("resp").innerHTML = "";
 							    $("#sav").removeAttr("disabled");   
 							}
@@ -919,7 +995,9 @@
 
 
 				$(document).ready(function(){
-
+					    $("#alertf").fadeTo(3000, 500).fadeOut(500, function(){
+						    $("#alertf").fadeOut(500);
+						});
  						 	$("#sea").on("keyup", function(e) {
 
 						    		if(e.which == 32) {
@@ -986,10 +1064,10 @@
 				        document.getElementById('mapAddressUser').setAttribute("style","height:" + height + "px");
 				        @endif
 
-				$('#collapseTwo').collapse("toggle");
-				$('#collapseThree').collapse("toggle");
-	
+
+					@if(!empty($status))
     				initAutocomplete();
+    				@endif
     				@if(empty($status) && !empty($latitude))
     					initMapAddressUser();
 					@endif

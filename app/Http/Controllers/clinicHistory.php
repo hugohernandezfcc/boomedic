@@ -49,7 +49,7 @@ class clinicHistory extends Controller
         ->join('recipes_tests', 'diagnostic_test_result.recipes_test', '=', 'recipes_tests.id')
         ->join('users', 'recipes_tests.doctor', '=', 'users.id')
         ->where('diagnostic_test_result.patient', Auth::id())
-        ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.folio')
+        ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.doctor', 'recipes_tests.folio')
         ->get();  
             
         $question_parent = DB::table('answers_clinic_history')->get();
@@ -69,7 +69,8 @@ class clinicHistory extends Controller
                 'questions_parent'  => $question_parent,
                 'clinic_history'    => $clinic_history,
                 'test_result'       => $test_result,
-                'mode'              => $mode
+                'mode'              => $mode,
+                'title'             => "expedientes"
             ]
         );
     }
@@ -141,7 +142,7 @@ class clinicHistory extends Controller
         ->join('recipes_tests', 'diagnostic_test_result.recipes_test', '=', 'recipes_tests.id')
         ->join('users', 'recipes_tests.doctor', '=', 'users.id')
         ->where('diagnostic_test_result.patient', Auth::id())
-        ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.folio')
+        ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.doctor', 'recipes_tests.folio')
         ->get();    
         
         $question_parent = DB::table('answers_clinic_history')->get();

@@ -31,14 +31,17 @@ class HomeController extends Controller
     {
     
         $user = User::find(Auth::id());
+        Session(['entered' => $user->entered]);
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
         $StatementForUser = $user->privacy_statement;
         $appointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+           ->join('transaction_bank', 'medical_appointments.id', '=', 'transaction_bank.appointments')
+           ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
            ->where('medical_appointments.user', '=', Auth::id())
-            ->where('medical_appointments.when', '>', Carbon::now())
-           ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.profile_photo','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.longitude', 'labor_information.latitude')->get();
+           ->where('medical_appointments.when', '>', Carbon::now())
+           ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.profile_photo', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.longitude', 'labor_information.latitude','paymentsmethods.cardnumber', 'paymentsmethods.provider', 'paymentsmethods.paypal_email','paymentsmethods.id as idtr')->get();
 
         $join = DB::table('professional_information')
             ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
@@ -119,6 +122,31 @@ class HomeController extends Controller
                             ->where('user', Auth::id() )
                             ->get();
         $statusRecordUser = DB::table('users')->where('id', Auth::id() )->value('status');
+        if($profInfo->count() > 0 && $user->confirmed == false){
+               return view('confirme', [
+                    'userId'    => $user->id,
+                    'username'  => $user->username,
+                    'name'      => $user->name,
+                    'photo'     => $user->profile_photo,
+                    'date'      => $user->created_at,
+                   
+                ]
+            );
+        }  
+        elseif($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+            $mode = 'Null';
+            return view('privacyStatement', [
+                    'privacy'   => $privacyStatement[0],
+                    'userId'    => $user->id,
+                    'username'  => $user->username,
+                    'name'      => $user->name,
+                    'photo'     => $user->profile_photo,
+                    'date'      => $user->created_at,
+                    'mode'      => $mode
+                   
+                ]
+            );
+        }
         if ($profInfo->count() > 0 && $statusRecordUser == 'In Progress') {
             Session(['utype' => 'doctor']);
             return redirect('doctor/edit/In%20Progress');
@@ -154,7 +182,8 @@ class HomeController extends Controller
                         'date'      => $user->created_at,
                         'userId'    => $user->id,
                         'labor'     => $join,
-                        'appointments' => $appointments
+                        'appointments' => $appointments,
+                        'title'     => 'Este doctor no tiene horarios agregados'
 
                     ]
                 );
@@ -232,6 +261,61 @@ class HomeController extends Controller
     }
 
 
+    //Function notify ajax master blade
+        public function notify()
+    {
+          $user = User::find(Auth::id());
+          Session(['entered' => $user->entered]);
+        //if is for user or for all
+         $notifications = DB::table('notifications')->where(function($q) {
+          $q->where('user_id', Auth::id())
+            ->orWhere('type', 'Global');})->get();
+
+        return response()->json($notifications);
+    }
+
+        public function notificationdr($id)
+    {
+          $user = User::find(Auth::id());
+
+        return response()->json($id);
+    }
+
+        public function notify2()
+    {
+        //if is for user or for all
+         $user = User::find(Auth::id());
+         $user->entered  = true;
+          Session(['entered' => $user->entered]);
+        if($user->save())
+        return response()->json($user->entered);
+    }
+
+            //Function messages ajax master blade top-nav
+        public function messages()
+    {
+          $user = User::find(Auth::id());
+          $array = array();
+        //if is for messages
+         $messages1 = DB::table('items_conversations')->where('by', $user->id)->get();
+         $search = $messages1->unique('conversation');
+         $messages = DB::table('items_conversations')
+            ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+            ->join('users', 'items_conversations.by', '=', 'users.id')
+            ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
+            ->orderBy('items_conversations.created_at')
+            ->get();
+
+            foreach($search as $s){
+                foreach($messages->sortByDesc('created_at') as $mess){
+                    if($s->conversation == $mess->conversation && $mess->viewed == false && $mess->by != $user->id){
+                       array_push($array, $mess);
+                    }
+                }
+            }
+        return response()->json($array);
+    }
+
      /**
      * Method responsable of list of recent
      */
@@ -244,7 +328,7 @@ class HomeController extends Controller
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
            ->where('medical_appointments.user', '=', Auth::id())
             ->where('medical_appointments.when', '>', Carbon::now())
-           ->select('medical_appointments.id','medical_appointments.created_at','users.name','medical_appointments.when', 'medical_appointments.status', 'labor_information.*', 'professional_information.specialty','users.profile_photo')->get();
+           ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.*', 'professional_information.specialty','users.profile_photo')->get();
 
                  return view('appointments', [
                 'userId'    => $user->id,
@@ -255,6 +339,18 @@ class HomeController extends Controller
                 'app'       => $appointments
             ]
         );
+    }
+
+        public function logoutback(){
+
+        $parental = session()->get('parental');
+        $user = DB::table('users')->where('username', $parental)->first();
+        $user2 = User::find($user->id);
+
+        Auth::login($user2, true);
+        session()->flush();
+        // if successful, then redirect to their intended location
+        return redirect()->intended(route('medicalconsultations'));
     }
 
         public function returnverify()
@@ -275,6 +371,7 @@ class HomeController extends Controller
                         return redirect('/login');
                 }
             }
+
         public function verify($code)
            {
              $user = User::where('confirmation_code', $code)->first();

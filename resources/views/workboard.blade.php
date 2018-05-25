@@ -20,9 +20,29 @@
 	opacity: 1;				
 }
  #calendar {
-    max-width: 900px;
+    max-width: 98%;
+    min-width: 98%;
     margin: 0 auto;
   }
+   #calendar2 {
+    max-width: 98%;
+    min-width: 98%;
+    margin: 0 auto;
+  }
+ #calendar {
+    max-width: 98%;
+    min-width: 98%;
+    margin: 0 auto;
+  }
+  .fc-toolbar h2 {
+    font-size: 20px;
+    margin: 15px;
+}
+.fc-toolbar.fc-header-toolbar {
+  margin-bottom: 0;
+} 
+
+
 </style>
 @stop
 
@@ -35,132 +55,212 @@
 	    
   	</div>
   	<div class="box-body">
-  		@if($mode != 'calendar')
-@if(count($workboard) > 0)
-<div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> Tienes un horario registrado en este lugar. Si guardas un nuevo horario se perderá el registro anterior.</b>
-</div>
+@if($mode != 'calendar')	
+
+          <!-- Custom Tabs -->
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_2" data-toggle="tab" aria-expanded="false">Actual</a></li>
+              <li class=""><a href="#tab_1" data-toggle="tab" aria-expanded="true">Configurar Horario</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane" id="tab_1">
+				@if(count($workboard) > 0)
+					<div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> Tienes un horario registrado en este lugar. Si guardas un nuevo horario se perderá el registro anterior.</b>
+					</div>
+				@endif
+              		<div id="al" class="al form-group col-sm-12" style="display: none;">
+			  		</div>
+				<div class="form-group col-sm-12">		
+				<label class="col-sm-4 control-label">Tipo de Horario: </label>
+
+			  	<div class="col-sm-8">
+							<label>Fijo </label>
+						    <input name="fixed" type="radio" id="fixed" checked value="fixed"> &nbsp;&nbsp;
+						    <label>Variable </label>
+						     <input name="fixed" type="radio" id="var" value="var">
+				</div>
+				</div>
+			  	    <form action="{{ url('/workboardDr/create') }}/{{ $work }}" method="post" class="form-horizontal" id="formwork">
+				<div class="form-group col-sm-12" id="menu1">
+
+			  		
+
+			  	    	<div class="col-sm-4"><label>Seleccione los días de la semana que dará consulta con una jornada fija</label></div>
+			  	<div class="col-sm-8">	
+			  		<div data-toggle="buttons" class="btn-group">
+
+			  			<label for="Dom" class="btn btn-default">
+							<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off">
+							<span class="glyphicon glyphicon-ok"></span>
+							 <b>Domingo</b>
+						</label>		
+				  		<label for="Lun" class="btn btn-default">
+							<input type="checkbox" value="Lun" name="day[]" id="Lun" autocomplete="off">
+							<span class="glyphicon glyphicon-ok"></span>
+							<b>Lunes</b>
+						</label>
+						<label for="Mar" class="btn btn-default">
+							<input type="checkbox" value="Mar" name="day[]" id="Mar" autocomplete="off">
+							<span class="glyphicon glyphicon-ok"></span>
+							<b>Martes</b>
+						</label>
+						<label for="Mie"  class="btn btn-default">
+							<input type="checkbox" value="Mie" name="day[]" id="Mier" autocomplete="off">
+							<span class="glyphicon glyphicon-ok"></span>
+							<b>Miercoles</b>
+						</label>
+						<label for="Jue" class="btn btn-default">
+							<input type="checkbox" value="Jue" name="day[]" id="Jue" autocomplete="off">
+							<span class="glyphicon glyphicon-ok"></span>
+							<b>Jueves</b>
+						</label>
+						<label for="Vie" class="btn btn-default">
+							<input type="checkbox" value="Vie" name="day[]" id="Vie" autocomplete="off">
+							<span class="glyphicon glyphicon-ok"></span>
+							<b>Viernes</b>
+						</label>
+						<label for="Sab" class="btn btn-default">
+							<input type="checkbox" value="Sab" name="day[]" id="Sab" autocomplete="off">
+							<span class="glyphicon glyphicon-ok"></span>
+							<b>Sábado</b>
+						</label>				
+					</div>
+				</div>
+			</div>
+			<div class="form-group col-sm-12" id="menu1mob" style="display: none;" align="center">
+				<a data-target="#modalmobile" data-toggle="modal" class="btn btn-default btn-block">Seleccione los días que dará consulta</a>
+
+			<!-- Modal button mobile-->
+                 <div class="modal fade" role="dialog" id="modalmobile">
+                    <div class="modal-dialog" style="width: 50% !important">
+                      <div class="modal-content">
+                        <div class="modal-header" style="padding-bottom: 0 !important;">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                            <div class="modal-body">
+			                         <div data-toggle="buttons" class="btn-group-vertical" align="center" style="display: inline !important;">
+
+						  			<label for="Dom" class="btn btn-default btn-block">
+										<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										 <b>Domingo</b>
+									</label>		
+							  		<label for="Lun" class="btn btn-default btn-block">
+										<input type="checkbox" value="Lun" name="day[]" id="Lun" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Lunes</b>
+									</label>
+									<label for="Mar" class="btn btn-default btn-block">
+										<input type="checkbox" value="Mar" name="day[]" id="Mar" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Martes</b>
+									</label>
+									<label for="Mie"  class="btn btn-default btn-block">
+										<input type="checkbox" value="Mie" name="day[]" id="Mier" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Miercoles</b>
+									</label>
+									<label for="Jue" class="btn btn-default btn-block">
+										<input type="checkbox" value="Jue" name="day[]" id="Jue" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Jueves</b>
+									</label>
+									<label for="Vie" class="btn btn-default btn-block">
+										<input type="checkbox" value="Vie" name="day[]" id="Vie" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Viernes</b>
+									</label>
+									<label for="Sab" class="btn btn-default btn-block">
+										<input type="checkbox" value="Sab" name="day[]" id="Sab" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Sábado</b>
+									</label>				
+								</div>
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+				</div>
+
+				<div class="form-group col-sm-12" style="display: none;" id="menu2">
+					<div class="col-sm-12" >
+						<label> Agrupe los días que tengan un mismo horario</label>
+							<select id="sel" name="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple title="Seleccione uno o varios días">
+
+							  </select>
+							  <input type="hidden" name="vardays" id="vardays">
+							  <input type="hidden" name="type" id="type" value="false">
+					</div>
+				</div>
+
+				<div class="form-group col-sm-12">
+				<div class="col-sm-6">
+
+					<label>Hora de inicio:</label>
+					<div class="input-group bootstrap-timepicker timepicker">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+					  <input id="timepicker2" type="text" class="form-control" name="start">
+					</div>
+
+				</div>	
+					<div class="col-sm-6">
+
+					<label>Hora Final:</label>
+					<div class="input-group bootstrap-timepicker timepicker">
+						 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+					  <input id="timepicker1" type="text" class="form-control" name="end">
+					</div>
+				</div>
+			</div><br/>	
+				<div class="form-group col-sm-12">
+					
+					<label class="col-sm-2 control-label">Promedio de duración por cita:</label>
+					<div class="col-sm-10">
+						 <input id="prom" type="number" name="prom" class="form-control" placeholder="Unidad de tiempo en minutos" required>
+				 	</div>
+				</div>
+				<div id="btn1" class="col-sm-12" align="left" style="display: none;">
+			 		<button type="button" class="btn btn-secondary btn">Agregar grupo de horario</button>
+			 	</div>
+			 	<div class="col-sm-12" align="right">
+			 		<button type="submit" class="btn btn-secondary">Guardar</button>
+			 		<a href="{{ url()->previous() }}" class="btn btn-default">
+									                Cancelar
+			 </a>
+			 	</div>
+			</form>
+		</div>
+
+              <!-- /.tab-pane -->
+              <div class="tab-pane active" id="tab_2">
+              	@if(count($workboard) > 0)
+                   <div id='calendar2'></div>
+                   @else
+                   <div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> No tienes horario agregado</b>
+					</div>
+				@endif
 
 
-@endif
-  		<div id="al" class="al form-group col-sm-12" style="display: none;">
-  		</div>
-	<div class="form-group col-sm-12">		
-	<label class="col-sm-4 control-label">Tipo de Horario: </label>
+              </div>
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- nav-tabs-custom -->
 
-  	<div class="col-sm-8">
-				<label>Fijo </label>
-			    <input name="fixed" type="radio" id="fixed" checked value="fixed"> &nbsp;&nbsp;
-			    <label>Variable </label>
-			     <input name="fixed" type="radio" id="var" value="var">
-	</div>
-	</div>
-
-	<div class="form-group col-sm-12" id="menu1">
-
+				</div>
+              </div>
+			@endif
   		
-  	    <form action="{{ url('/workboardDr/create') }}/{{ $work }}" method="post" class="form-horizontal" id="formwork">
-  	    	<div class="col-sm-4"><label>Seleccione los días de la semana que dará consulta con una jornada fija</label></div>
-  	<div class="col-sm-8">	
-  		<div data-toggle="buttons" class="btn-group">
-
-  			<label for="Dom" class="btn btn-secondary">
-				<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off">
-				<span class="glyphicon glyphicon-ok"></span>
-				 <b>Dom</b>
-			</label>		
-	  		<label for="Lun" class="btn btn-default">
-				<input type="checkbox" value="Lun" name="day[]" id="Lun" autocomplete="off">
-				<span class="glyphicon glyphicon-ok"></span>
-				<b>Lun</b>
-			</label>
-			<label for="Mar" class="btn btn-default">
-				<input type="checkbox" value="Mar" name="day[]" id="Mar" autocomplete="off">
-				<span class="glyphicon glyphicon-ok"></span>
-				<b>Mar</b>
-			</label>
-			<label for="Mie"  class="btn btn-default">
-				<input type="checkbox" value="Mie" name="day[]" id="Mier" autocomplete="off">
-				<span class="glyphicon glyphicon-ok"></span>
-				<b>Mier</b>
-			</label>
-			<label for="Jue" class="btn btn-default">
-				<input type="checkbox" value="Jue" name="day[]" id="Jue" autocomplete="off">
-				<span class="glyphicon glyphicon-ok"></span>
-				<b>Jue</b>
-			</label>
-			<label for="Vie" class="btn btn-default">
-				<input type="checkbox" value="Vie" name="day[]" id="Vie" autocomplete="off">
-				<span class="glyphicon glyphicon-ok"></span>
-				<b>Vier</b>
-			</label>
-			<label for="Sab" class="btn btn-default">
-				<input type="checkbox" value="Sab" name="day[]" id="Sab" autocomplete="off">
-				<span class="glyphicon glyphicon-ok"></span>
-				<b>Sáb</b>
-			</label>				
-		</div>
-	</div>
-</div>
-
-
-
-	<div class="form-group col-sm-12" style="display: none;" id="menu2">
-		<div class="col-sm-12" >
-			<label> Agrupe los días que tengan un mismo horario</label>
-				<select id="sel" name="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple title="Seleccione uno o varios días">
-
-				  </select>
-				  <input type="hidden" name="vardays" id="vardays">
-				  <input type="hidden" name="type" id="type" value="false">
-		</div>
-	</div>
-
-	<div class="form-group col-sm-12">
-	<div class="col-sm-6">
-
-		<label>Hora de inicio:</label>
-		<div class="input-group bootstrap-timepicker timepicker">
-		<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-		  <input id="timepicker2" type="text" class="form-control" name="start">
-		</div>
-
-	</div>	
-		<div class="col-sm-6">
-
-		<label>Hora Final:</label>
-		<div class="input-group bootstrap-timepicker timepicker">
-			 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-		  <input id="timepicker1" type="text" class="form-control" name="end">
-		</div>
-	</div>
-</div><br/>	
-	<div class="form-group col-sm-12">
-		
-		<label class="col-sm-2 control-label">Promedio de duración por cita:</label>
-		<div class="col-sm-10">
-			 <input id="prom" type="number" name="prom" class="form-control" placeholder="Unidad de tiempo en minutos" required>
-	 	</div>
-	</div>
-	<div id="btn1" class="col-sm-12" align="left" style="display: none;">
- 		<button type="button" class="btn btn-secondary btn">Agregar grupo de horario</button>
- 	</div>
- 	<div class="col-sm-12" align="right">
- 		<button type="submit" class="btn btn-secondary">Guardar</button>
- 		<a href="{{ url()->previous() }}" class="btn btn-default">
-						                Cancelar
- </a>
- 	</div>
-
-</form>
-</div>
-@endif
 
 		@if($mode == 'calendar')
 				<div id='calendar'></div>
 
-				@endif
-</div>
-</div>
+		</div>
+		</div>
+		@endif
 <script type="text/javascript">
   $('#timepicker1').timepicker({
     showInputs: false,
@@ -174,16 +274,20 @@
      minuteStep: 5,
      defaultTime: '8:00'
   })
-    $("#var").click(
-				function(event) {
+    $("#var").click(function(event) {
 				   document.getElementById("menu2").style.display = "block";
 				    document.getElementById("btn1").style.display = "block";
 				   document.getElementById("menu1").style.display = "none";
+				   document.getElementById("menu1mob").style.display = "none";
 				   document.getElementById("type").value = 'true';
 				})
        $("#fixed").click(
 				function(event) {
-				   document.getElementById("menu1").style.display = "block";
+				if("@php echo $agent->isMobile(); @endphp"){
+				   document.getElementById("menu1mob").style.display = "block";
+					}else{
+					document.getElementById("menu1").style.display = "block";
+					}
 				   document.getElementById("menu2").style.display = "none";
 				    document.getElementById("btn1").style.display = "none";
 				    document.getElementById("type").value = 'false';
@@ -225,7 +329,6 @@
 				//json.push(document.getElementById("vardays").value);
 				var jsonend = json.concat(JSON.parse(document.getElementById("vardays").value));
 				document.getElementById("vardays").value = JSON.stringify(jsonend);
-				console.log(document.getElementById("vardays").value);
 				}
 					$("#sel").val('0').trigger('change.select2');
 					$(".filter-option").html("Seleccione uno o varios días");
@@ -245,7 +348,6 @@
 						   }
 						}
 						document.getElementById("vardays").value = JSON.stringify(jsonfind);
-							console.log(JSON.stringify(jsonfind))
 					 $("al").alert('close');
 				}
 					});
@@ -255,14 +357,13 @@
 </script>
 
 <script type="text/javascript">
-			 $(' input[type=checkbox]').each(function(event) {
+			 $('#menu1 input[type=checkbox]').each(function(event) {
 						$("#sel").append('<option value="'+ $(this).val() +'">'+ $(this).val() +'</option>').trigger('change.select2');
 		        });
 	
 $(function() {
 
-        var optionhour = @php echo $workboard;  @endphp;
-        console.log(optionhour);
+        var optionhour = @php echo $workboard2;  @endphp;
           var hor = Array();
           var resp = Array();
           var resp2 = Array();
@@ -274,7 +375,7 @@ $(function() {
 						var da = '[0]';	
 						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio disponible para cita',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 
@@ -295,7 +396,7 @@ $(function() {
 							var da = '[1]';		
 						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio disponible para cita',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
@@ -315,7 +416,7 @@ $(function() {
 						     	var da = '[2]';		
 						 if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio disponible para cita',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
@@ -335,7 +436,7 @@ $(function() {
 						     	var da = '[3]';		
 						 if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio disponible para cita',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
@@ -355,7 +456,7 @@ $(function() {
 						     	var da = '[4]';		
 						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio disponible para cita',
 						    start:  resp2[d].slice(0,-3),  
 						    dow: da // Repetir Lunes y Jueves
 						});
@@ -375,7 +476,7 @@ $(function() {
 						     	var da = '[5]';		
 						 if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio disponible para cita',
 						    start:  resp2[d].slice(0,-3), 
 						    dow: da // Repetir Lunes y Jueves
 						});
@@ -395,7 +496,7 @@ $(function() {
 						     	var da = '[6]';		
 						if(resp2[d].slice(0,-3) != 'asueto '){	
 						 hor.push({  
-						 	title: 'Cita',
+						 	title: 'Espacio disponible para cita',
 						    start:  resp2[d].slice(0,-3), 
 						    dow: da // Repetir Lunes y Jueves
 						});
@@ -411,83 +512,47 @@ $(function() {
                           }
                         }
 		}
-		console.log(hor);
+
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
 
-	var todayDate = moment().startOf('day');
-	var YM = todayDate.format('YYYY-MM');
-	var YESTERDAY = todayDate.clone().subtract(1, 'day').format('YYYY-MM-DD');
-	var TODAY = todayDate.format('YYYY-MM-DD');
-	var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
 
 	$('#calendar').fullCalendar({
 		
 		header: {
-			left: 'prev,next today',
+			left: 'prev,next',
 			center: 'title',
-			right: 'month,agendaWeek,agendaDay,listWeek'
+			right: 'month,basicWeek,listWeek'
 		},
-		editable: true,
+		contentHeight: 'auto',
+		defaultView: 'basicWeek',
+		editable: false,
 		lang: 'es',
-		events: hor /*[
-			{
-				title: 'All Day Event',
-				start: YM + '-01'
-			},
-			{
-				title: 'Long Event',
-				start: YM + '-07',
-				end: YM + '-10'
-			},
-			{
-				id: 999,
-				title: 'Repeating Event',
-				start: YM + '-09T16:00:00'
-			},
-			{
-				id: 999,
-				title: 'Repeating Event',
-				start: YM + '-16T16:00:00'
-			},
-			{
-				title: 'Conference',
-				start: YESTERDAY,
-				end: TOMORROW
-			},
-			{
-				title: 'Meeting',
-				start: TODAY + 'T10:30:00',
-				end: TODAY + 'T12:30:00'
-			},
-			{
-				title: 'Lunch',
-				start: TODAY + 'T12:00:00'
-			},
-			{
-				title: 'Meeting',
-				start: TODAY + 'T14:30:00'
-			},
-			{
-				title: 'Happy Hour',
-				start: TODAY + 'T17:30:00'
-			},
-			{
-				title: 'Dinner',
-				start: TODAY + 'T20:00:00'
-			},
-			{
-				title: 'Birthday Party',
-				start: TOMORROW + 'T07:00:00'
-			},
-			{
-				title: 'Click for Google',
-				url: 'http://google.com/',
-				start: YM + '-28'
-			}
-		]*/
+		events: hor	
 	});
-});	 				
+		$('#calendar2').fullCalendar({
+		
+		header: {
+			left: 'prev,next',
+			center: 'title',
+			right: 'month,basicWeek,listWeek'
+		},
+		contentHeight: 'auto',
+		defaultView: 'basicWeek',
+		editable: false,
+		lang: 'es',
+		events: hor	
+	});
+
+		 if("@php echo $agent->isMobile(); @endphp"){
+		  $("#menu1mob").css("display", "block");
+          $("#menu1").css("display", "none");
+		 }else{
+		  $("#menu1").css("display", "block");
+          $("#menu1mob").css("display", "none");
+		 }
+})
+
 </script>
 
 @stop

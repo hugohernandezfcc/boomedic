@@ -74,23 +74,31 @@ class profile extends Controller
         $family = DB::table('family')
             ->join('users', 'family.activeUser', '=', 'users.id')
             ->where('family.parent', Auth::id())
-            ->select('family.*', 'users.firstname', 'users.profile_photo')
+            ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name')
             ->get();
         $nodes = array();
     //Json que guarda datos de familiares para generar externalidad//
       if(count($family) < 1){
+        if($users[0]->profile_photo != null)
          array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
-          for($i = 1; $i < 2; $i++){
-                array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/Arrow_up_font_awesome.svg.png' , 'id' => 'n']);
+            else{
+                array_push( $nodes, ['name' => 'Yo', 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png?'. Carbon::now()->format('h:i'), 'id' => '0']);
             }
-      }   else {      
-      
+          for($i = 1; $i < 2; $i++){
+                array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
+            }
+      }   else {
+               
           array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
           for($i = 0; $i < count($family); $i++){
+            $session = "0";
+            if($family[$i]->relationship == "son" && $family[$i]->age < 18){
+                $session = "1";
+            } 
             if($family[$i]->profile_photo != null){
-                array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser]);
+                array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
                   }else {
-                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $family[$i]->activeUser]);
+                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
                   }
             }
           }
@@ -123,6 +131,7 @@ class profile extends Controller
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
                 'updated_at'    => $users[0]->updated_at,
+                'title'         => 'No se ha agregado dirección',
 
                 /** ADDRESS FISICAL USER  */
 
@@ -411,7 +420,7 @@ class profile extends Controller
           }
         } else{
 
-        $age = date("Y") - substr($request->birthdate, -4);
+        $age = date("Y") - Carbon::parse($request->birthdate)->format('Y');
         $namesUser = array();
 
         //$pos = strpos(' ', $data['name']);
@@ -528,7 +537,7 @@ class profile extends Controller
                       $unew = User::create([
                               'name'      => $request->name,
                               'email'     => $request->email,
-                              'birthdate' => $request->birthdate,
+                              'birthdate' => Carbon::parse($request->birthdate)->format('m-d-Y'),
                               'age'       => (int) $age,
                               'status'    => 'In Progress',
                               'firstname' => $namesUser['first'],
@@ -560,7 +569,7 @@ class profile extends Controller
                       $unew = User::create([
                               'name'      => $request->name,
                               'email'     => $request->email,
-                              'birthdate' => $request->birthdate,
+                              'birthdate' => Carbon::parse($request->birthdate)->format('m-d-Y'),
                               'age'       => (int) $age,
                               'status'    => 'In Progress',
                               'firstname' => $namesUser['first'],
@@ -593,7 +602,7 @@ class profile extends Controller
         $unew = User::create([
                 'name'      => $request->name,
                 'email'     => $request->email,
-                'birthdate' => $request->birthdate,
+                'birthdate' => Carbon::parse($request->birthdate)->format('m-d-Y'),
                 'age'       => (int) $age,
                 'status'    => 'In Progress',
                 'firstname' => $namesUser['first'],
@@ -701,6 +710,7 @@ class profile extends Controller
                 else{
 
           $user = User::where('id', $family->activeUser)->first();
+          $user2 = User::where('id', $family->parent)->first();
 
           if($family->relationship == "siblings"){
             $rela = "siblings";
@@ -711,10 +721,10 @@ class profile extends Controller
           if($family->relationship == "father"){
             $rela = "son";
           }
-          if($family->relationship == "son" && $user->gender == "female"){
+          if($family->relationship == "son" && $user2->gender == "female"){
             $rela = "mother";
           }
-          if($family->relationship == "son" && $user->gender == "male"){
+          if($family->relationship == "son" && $user2->gender == "male"){
             $rela = "father";
           }
           if($family->relationship == "wife"){
@@ -746,4 +756,23 @@ class profile extends Controller
               }
             }
         }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+        public function loginSon (Request $request)
+      {    
+        $parental = User::find(Auth::id());
+        $user = User::find($request->id);
+        Auth::login($user, true);
+        Session(['parental' => $parental->username]);
+
+        // if successful, then redirect to their intended location
+        return redirect()->intended(route('medicalconsultations'));
+
+    }
+  
 }

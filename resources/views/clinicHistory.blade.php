@@ -7,6 +7,11 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 	     <style type="text/css">
 
+        .contacts-list>li {
+         border-bottom: 1px solid rgba(0,0,0,0.2);
+         padding: 10px;
+         margin: 0;
+      }
       	 .progress-bar {
       	 	background-color: #3E3E3E;
       	 }
@@ -110,11 +115,23 @@
                     background-color: #ffffff !important;
                     border-left: 3px solid #cacaca !important;
                 }
-                      .direct-chat-contacts {
+      .direct-chat-contacts.plus {
             height: 55px !important;
             background: transparent !important; 
             top: 75% !important; 
       }
+
+
+        .sticky {
+          position: fixed;
+          top: 0;
+          width: 82%;
+          z-index: 1000;
+          background: #ecf0f5;
+        }
+        .sticky + .content {
+          padding-top: 102px;
+        }
 </style>
 
 
@@ -124,8 +141,7 @@
             	    <h3 class="box-title">Historia Clínica</h3>
               	</div>
              
-              	<div class="box-body">
-                <div class="container" id="myWizard">
+              	<div class="box-body"  id="myWizard">
 
                  <div class="progress">
                    	@php
@@ -143,7 +159,7 @@
              @if($loop->iteration == 1 && count($questions) == 1)
               <div class="tab-pane fade in active" id="step1">
                  
-                <div class="well"> 
+                <div class="well well-sm"> 
                   
                     <h3>{{ $questions1->question }}</h3>
                     <br>
@@ -169,17 +185,17 @@
                                     {{ $an }}
                                 </label>
                                 @endif
-                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
+                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
                      @endforeach          
                 </div>
-                <a class="btn btn-secondary btn-flat pull-right finish" href="#">Finalizar</a>
+                <a class="btn btn-secondary btn-flat pull-right finish">Finalizar</a>
                 </div>
                   @endif 
               @if($loop->iteration == 1 && count($questions) != 1)
               <div class="tab-pane fade in active" id="step1">
                  
-                <div class="well"> 
+                <div class="well well-sm"> 
                   
                     <h3>{{ $questions1->question }}</h3>
                     <br>
@@ -205,18 +221,18 @@
                                     {{ $an }}
                                 </label>
                                 @endif
-                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
+                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
                      @endforeach          
 
                 </div>
 
-           <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
+           <a class="btn btn-default btn-flat next pull-right">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
                 </div>
                   @endif
                    @if(($loop->iteration > 1) && !$loop->last)
                 <div class="tab-pane fade" id="step{{ $loop->iteration }}">
-                   <div class="well"> 
+                   <div class="well well-sm"> 
                       <h3>{{ $questions1->question }}</h3>
                       <br>
                       @php $an = json_decode($questions1->answer); @endphp
@@ -241,18 +257,18 @@
                                     {{ $an }}
                                 </label>
                                 @endif
-                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
+                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
                      @endforeach               
 
                    </div>
-                 <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
-                 <a class="btn btn-default btn-flat next pull-right" href="#">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
+                 <a class="btn btn-default btn-flat prev pull-left"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
+                 <a class="btn btn-default btn-flat next pull-right">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
               </div>
         @endif
        @if($loop->last && count($questions) != 1)
               <div class="tab-pane fade" id="step{{ $loop->iteration }}">
-                 <div class="well"> 
+                 <div class="well well-sm"> 
                     <h3>{{ $questions1->question }}</h3>
                     <br>
                         @php $an = json_decode($questions1->answer); @endphp
@@ -277,15 +293,15 @@
                                     {{ $an }}
                                 </label>
                                 @endif
-                                 <div class="well" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
+                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
                      @endforeach      
 
 
                  </div>
-                <a class="btn btn-default btn-flat prev pull-left" href="#"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
-                <a class="btn btn-default btn-flat first pull-left" href="#">Volver a iniciar &nbsp;<span class="fa fa-undo"></span></a>
-                <a class="btn btn-secondary btn-flat pull-right finish" href="#">Finalizar</a>
+                <a class="btn btn-default btn-flat prev pull-left"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
+                <a class="btn btn-default btn-flat first pull-left">Volver a iniciar &nbsp;<span class="fa fa-undo"></span></a>
+                <a class="btn btn-secondary btn-flat pull-right finish">Finalizar</a>
                 <a id="finish" href="cHistory" style="visibility: hidden;"></a>
               </div>
          @endif
@@ -307,25 +323,39 @@
                 </div>
              </div>
           </div>
-            </div>
         </div>
 @endif
 
 @if($mode == 'finish')
 
     <!-- Main content -->
-     <div class="box-header direct-chat">
-      <h3 class="box-title">
-                Expediente médico
-       </h3>
+
+        @if(count($test_result) == 0)
+             <div class="box-header direct-chat">
+              <h3 class="box-title">
+                        Expediente médico
+               </h3>
+          <br><br>
+          @include('empty.emptyData')
+
+                             <script type="text/javascript">
+                                $('.buttonEmpty').css('display','none');
+                                $('.spanEmpty').css('display','none');
+                             </script>    
+            </div>                         
+        @else 
+     <div class="box-header direct-chat header1" id="header1">
+              <h3 class="box-title">
+                        Expediente médico
+               </h3>    
         <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-search text-muted"></span></button>
-      <div class="direct-chat-contacts">
+      <div class="direct-chat-contacts plus">
        <div class="col-sm-3 pull-right"><input id="search" type="text" placeholder="Buscar expedientes" class="form-control"></div>     
      </div>
    </div><br>
 
-        <div class="box-body">
+        <div class="box-body content">
       <!-- row -->
      <div class="row">
         <div class="col-md-12">
@@ -338,7 +368,8 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->created_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a href="#">{{ $test->name }}</a></h3>
+                <h3 class="timeline-header"><a>{{ $test->name }}</a></h3>
+
                 <div class="timeline-body">
                   Prescribe. {{ $test->doc}}.<br>
                   Recipe. {{ $test->folio}}.<br>
@@ -347,7 +378,25 @@
 
 
                   <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $test->url }}" data-target="#myModal">Ver estudio</a>
-
+                  <a class="btn btn-secondary btn-sm btn-flat modal-chat" data-toggle="modal" data-target="#chat-form-modal">Comentarios</a>
+                  <div class="modal-chat fade2 modal" id="chat-form-modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                         <div class="modal-header">
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                             <h4 class="modal-title"> <i class="fa fa-comments"></i> Ventana de Conversación</h4>
+                             </div>
+                          <div class="modal-body">
+                                <input type="hidden" class="middr" value="{{ $test->doctor }}">
+                                <input type="hidden" class="midfield" value="{{ $test->id }}">
+                                <input type="hidden" class="mname" value="{{ $test->name }}">
+                                <input type="hidden" class="mtable" value="diagnostic_test_result">
+                             @include('conversations.conversationform')
+                         </div>
+                          </div>  
+                       </div>
+                    </div>    
 
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                               <div class="modal-dialog">
@@ -356,7 +405,7 @@
                                  <span style="font-size: 15px;"><b> {{ $test->name }} </b></span>
                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
-                                  <div class="modal-body">
+                                  <div class="modal-body results">
                                   </div>
                                   </div><!-- /.modal-content -->
                               </div><!-- /.modal-dialog -->
@@ -374,14 +423,15 @@
           </div>
         </div>
       </div>  
+      @endif
          <br>
-          <div class="box-header direct-chat">
+          <div class="box-header direct-chat header2" id="header2">
                 <h3 class="box-title">
                           Historia clínica<a href="{{ url('clinicHistory/edit/0')}}" class="btn"><i class="fa fa-pencil text-muted"></i></a>  
                  </h3>
                 <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-filter text-muted"></span></button>
-              <div class="direct-chat-contacts">
+              <div class="direct-chat-contacts plus">
                        <div class="btn-group pull-right">
                             <button id="familiares" type="button" class="btn bg-blue btn-flat" title="Antecedentes Familiares"><i class="fa fa-users"></i></button>   
                             <button id="morbidos" type="button"  class="btn bg-gray btn-flat" title="Antecedentes Mórbidos"><i class="fa fa-stethoscope"></i></button>
@@ -393,7 +443,7 @@
      
 
            </div><br/>
-              <div class="box-body">
+              <div class="box-body content">
                 <div class="row">
                   <div class="col-md-12">
            <ul class="timeline">   
@@ -425,7 +475,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -456,7 +506,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -487,7 +537,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -518,7 +568,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a href="#"  data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -545,6 +595,56 @@
 
 
 				<script>
+         window.onscroll = function() {myFunction()};
+                var header = document.getElementById("header2");
+                var sticky = header.offsetTop;
+            if($('.box-header').hasClass('header1')){      
+                var header1 = document.getElementById("header1");
+                var sticky1 = header1.offsetTop;
+             }   
+                function myFunction() {
+                  if (window.pageYOffset >= sticky) {
+                  if($('.box-header').hasClass('header1')){  
+                    header1.classList.remove("sticky");
+                     $('#header1').css('width','');
+                   }
+                    header.classList.add("sticky");
+                  
+            if("@php echo $agent->isMobile(); @endphp"){
+                        $('.sticky').css('width','96%');
+               }else{ 
+                  if ($('body').hasClass('sidebar-collapse')){
+                        $('.sticky').css('width','96%');
+                      }else{
+                         $('.sticky').css('width','82%');
+                      }
+                    }
+
+                  } else {
+                    header.classList.remove("sticky");
+                     $('#header2').css('width','');
+                  }
+          if($('.box-header').hasClass('header1')){        
+
+            if (window.pageYOffset >= sticky1) {
+                    header1.classList.add("sticky");
+            if("@php echo $agent->isMobile(); @endphp"){
+                        $('.sticky').css('width','96%');
+               }else{ 
+                  if ($('body').hasClass('sidebar-collapse')){
+                        $('.sticky').css('width','96%');
+                      }else{
+                         $('.sticky').css('width','82%');
+                      }
+                    }
+
+                  } else {
+                    header1.classList.remove("sticky");
+                     $('#header1').css('width','');
+                  }
+                } 
+              }
+
          window.onload = function(){
           var clinic_history = @php echo $clinic_history; @endphp;
 
@@ -822,15 +922,18 @@
 
                       });
 
-  $('a.external').on('click', function(e) {
+  $('.external').on('click', function(e) {
         e.preventDefault();
         var url = $(this).attr('href');
-        $(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'" ></iframe>');
+        $(".modal-body.results").html("");
+        //Solo si es PDF
+        //$(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
+        $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" ></iframe>');
  
     });
  
     $('#myModal').on('show.bs.modal', function () {
- 
+    
         $(this).find('.modal-dialog').css({
                   width:'40%x', //choose your width
                   height:'100%', 

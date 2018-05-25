@@ -18,10 +18,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-black-light.min.css') }}">
 
     <link rel="stylesheet" type="text/css" href="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/skins/_all-skins.min.css">
+
     <link rel="stylesheet" type="text/css" href="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" type="text/css" href="https://adminlte.io/themes/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" type="text/css" href="https://adminlte.io/themes/AdminLTE/bower_components/select2/dist/css/select2.min.css"/>
@@ -79,14 +79,14 @@
             margin-bottom: -2px;
             margin-right: 5px;
         }
+        .navbar-custom-menu>.navbar-nav>li>.dropdown-menu {
+            right: 0 !important; 
+        }
         #mapAddressUser {
             height: 100%;
             width: 95%;
         }
-        #calendar1 {
-        max-width: 900px;
-        margin: 0 auto;
-    }
+
         .btn-circle {
           width: 30px;
           height: 30px;
@@ -164,6 +164,20 @@
 .lockscreen-item {
     margin: 0 0 13px auto !important;
 }
+      .modal.fade2 .modal-dialog{
+    top: 300px;
+    opacity: 0;
+    -webkit-transition: all 0.7s;
+    -moz-transition: all 0.7s;
+    transition: all 0.7s;
+    padding-right: 0 !important; 
+      }
+   .modal.fade2.in .modal-dialog {
+    -webkit-transform: translate3d(0, -300px, 0);
+    transform: translate3d(0, -300px, 0);
+    opacity: 1;
+
+    }
     </style>
 
     <style>
@@ -398,14 +412,96 @@ span.round-tab:hover {
 <script src="{{ asset('js/GoogleLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInRegister.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
 
 
 
 <script type="text/javascript">
 
+
+
+
+              //Ajax function call notify set timeout
+            function notifications(){
+              $.ajax(
+              {
+                type: "GET",    
+                url: "{{ url('HomeController/notify') }}", 
+                success: function(result){
+                 var com = "@php echo session()->get('entered'); @endphp";
+                    if(com != 1){
+                      $('#notN').css("display", "block");  
+                    }else{
+                        $('#notN').css("display", "none"); 
+                    }
+                  for (var i =0; i < result.length; i++) {
+                    if(i == 0){
+                    $('#countNot').html('Tiene '+ result.length + ' notificación');
+                     $('#notN').html('1');
+                    }else{
+                     $('#notN').html(result.length);
+                    $('#countNot').html('Tiene '+ result.length + ' notificaciones');
+                    }
+                    var u = result[i]['url'];
+                    var url = "{{ url('') }}";
+                            $('#notify').append('<li><a href="'+ url +'/'+ u +'"><i class="fa fa-warning text-yellow"></i>'+ result[i]['description']+'</a></li>');
+                        
+                        }
+                                }
+              });
+            $('#newMess').text();
+             $.ajax(
+                  {
+                    type: "GET",    
+                    url: "{{ url('HomeController/messages') }}", 
+                    success: function(result){
+                            console.log("me ejecuté");
+                      for (var o =0; o < result.length; o++) {
+                                if(o == 0){
+                                     $('#countMes').html('Tiene '+ result.length + ' mensaje no leido');
+                                     $('#messN').html('1');
+                                }else{
+                                     $('#messN').html(result.length);
+                                     $('#countMes').html('Tiene '+ result.length + ' mensajes no leidos');
+                                }
+                        var type = "@php echo session()->get('utype'); @endphp"
+                        var mo = moment(result[o]['created_at']).fromNow();
+                            if(type == "doctor"){
+                                var url = "{{ url('') }}" + "/medicalconsultations";
+                            }else{
+                                var url = "{{ url('') }}" + "/clinicHistory/index"; 
+                            } 
+
+                          $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
+                            }
+                             setTimeout(function(){ repeatNot(); },60000);
+                      },
+                        error: function (request, status, error) {
+                            //window.location.href = "{{ url('') }}";
+                        }
+                  }); 
+         }
+        function repeatNot(){
+            notifications();
+        }
     $(function () {
+            var par = "@php echo session()->get('parental'); @endphp";
+      if(!par){
+          $("body").removeClass("skin-black-light");
+          $("body").addClass("skin-black");
+          $("#uh").css("background-color", "#222");
+          $("#uf").css("background-color", "#222");
+          $("#au").removeAttr("style");
+      }else{
+        $("body").removeClass("skin-black");
+        $("body").addClass("skin-black-light");
+        $("#uh").css("background-color", "#31b7b0");
+        $("#uf").css("background-color", "#31b7b0");
+        $("#au").css("color", "white");
+      }
+                notifications();
+
         $.fn.datepicker.dates['es'] = {
         days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
@@ -416,7 +512,7 @@ span.round-tab:hover {
         monthsTitle: "Meses",
         clear: "Borrar",
         weekStart: 1,
-        format: "dd/mm/yyyy"
+        format: "yyyy/mm/dd"
     };
 
         $('#datepicker1').datepicker({
@@ -425,7 +521,7 @@ span.round-tab:hover {
                 });
         $('#datepicker2').datepicker({
             autoclose: true,
-            format: "yyyy-mm-dd",
+            format: "yyyy/mm/dd",
             language: 'es',
             orientation: 'auto'
          });
@@ -438,7 +534,7 @@ span.round-tab:hover {
             days: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
             daysShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
             daysMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-            format: "mm/dd/yyyy",
+            format: "yyyy/mm/dd",
             titleFormat: "MM yyyy",
             weekStart: 0
           };
@@ -461,6 +557,23 @@ span.round-tab:hover {
                 return false;
             }
         });
+    /* Function notifications Page nav Bar */    
+    $('#mess').on('click', function(e) {
+            $('#messN').css("display", "none");
+     });
+    $('#not').on('click', function(e) {
+                 $.ajax(
+              {
+                type: "GET",    
+                url: "{{ url('HomeController/notify2') }}", 
+                success: function(result){
+                    if(result == true){
+                      $('#notN').css("display", "none");  
+                    }
+                    }
+              }); 
+     });
+   /* Function notifications */  
         
         if (document.getElementById('paymentmethodtable')) {
             $('#paymentmethodtable').DataTable({

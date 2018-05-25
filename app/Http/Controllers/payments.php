@@ -65,7 +65,8 @@ class payments extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'mode'      => 'listPaymentMethods'
+                'mode'      => 'listPaymentMethods',
+                'title'     => 'métodos de pago'
             ]
         );
     }
@@ -235,22 +236,26 @@ class payments extends Controller
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
          if($statusCode[0] == '201'){
-             /* Insert_bank*/
-                        $Transaction = new transaction_bank;
+
+                    /* Insert Cita */
+                    $medical = new medical_appointments();
+                    $medical->user           = Auth::id();
+                    $medical->user_doctor    = $request->dr;
+                    $medical->workplace      = $request->idlabor;
+                    $medical->when           = $request->when;
+                    $medical->status         = 'Registered';
+
+            
+           if ($medical->save()) {
+                         /* Insert_bank*/
+                        $Transaction = new transaction_bank();
                         $Transaction->paymentmethod = $request->id;
                         $Transaction->receiver = $request->receiver;
                         $Transaction->amount = $request->amount;
                         $Transaction->transaction = $statusCode[1];
+                        $Transaction->appointments =  $medical->id;
                         $Transaction->save();
                     /* Insert Transaction_bank*/    
-                    /* Insert Cita */
-                    $medical = new medical_appointments;
-                    $medical->user           = Auth::id();
-                    $medical->user_doctor    = $request->dr;
-                    $medical->workplace       = $request->idlabor;
-                    $medical->when          = $request->when;
-            
-           if ($medical->save()) {
             $doc = User::find($request->dr); 
             $work = DB::table('labor_information')->where('id', $request->idlabor)->first();    
             $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12);
@@ -320,6 +325,7 @@ class payments extends Controller
                 'username'          => $user->username,
                 'name'              => $user->name,
                 'mode'              => 'historyTransaction',
+                'title'             => 'histórico de transacciones',
                 'date'              => $user->created_at
             ]
         );
@@ -337,13 +343,13 @@ class payments extends Controller
                             $payer->setPaymentMethod('paypal');
                             $item_1 = new Item();
                             $item_1->setName('Consulta') /** item name **/
-                                ->setCurrency('USD')
+                                ->setCurrency('MXN')
                                 ->setQuantity(1)
                                 ->setPrice($request->get('amount')); /** unit price **/
                             $item_list = new ItemList();
                             $item_list->setItems(array($item_1));
                             $amount = new Amount();
-                            $amount->setCurrency('USD')
+                            $amount->setCurrency('MXN')
                                 ->setTotal($request->get('amount'));
                             $transaction = new Transaction();
                             $transaction->setAmount($amount)
@@ -363,14 +369,21 @@ class payments extends Controller
 
                             } catch (\PayPal\Exception\PPConnectionException $ex) {
                                 if (\Config::get('app.debug')) {
-                                    \Session::put('error','Connection timeout');
-                                    return redirect('payment/index');
-                                    /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
-                                    /** $err_data = json_decode($ex->getData(), true); **/
-                                    /** exit; **/
+                              $notification2 = array(
+                                        //If it has been rejected, the internal error code is sent.
+                                    'message' => 'Hubo un error en tiempo de conexión', 
+                                    'error' => 'error',
+                                );
+
+                            return redirect('medicalconsultations')->with($notification2);
                                 } else {
-                                    \Session::put('error','Some error occur, sorry for inconvenient');
-                                     return redirect('payment/index');
+                              $notification2 = array(
+                                        //If it has been rejected, the internal error code is sent.
+                                    'message' => 'Hubo un error interno en Paypal', 
+                                    'error' => 'error',
+                                );
+
+                            return redirect('medicalconsultations')->with($notification2);
                                     /** die('Some error occur, sorry for inconvenient'); **/
                                 }
                             }
@@ -400,9 +413,13 @@ class payments extends Controller
                                 return redirect($redirect_url);   
                             }
                                  
-                            
-                            session()->put('error','Unknown error occurred');
-                            return redirect('payment/index');
+                              $notification2 = array(
+                                        //If it has been rejected, the internal error code is sent.
+                                    'message' => 'Hubo un error en su pago Paypal', 
+                                    'error' => 'error',
+                                );
+
+                            return redirect('medicalconsultations')->with($notification2);
 
                         }
 
@@ -451,8 +468,8 @@ class payments extends Controller
                               // Payment is successful do your business logic here
                                 //Add payment method
                                 $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
-                                $idp = $paypalExist->id;
-                                if(empty($paypalExist)){
+
+                                if(!$paypalExist){
                                 $pmethods = new PaymentMethod;
                                 $pmethods->provider      = 'Paypal';
                                 $pmethods->typemethod    = 'Paypal';
@@ -463,23 +480,26 @@ class payments extends Controller
                                 $pmethods->notified      = 'false';
                                 $pmethods->save();
                                 $idp = $pmethods->id;
-                              }
-                               
+                              }else{
+
                                $paypalExist2 = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
-                                            $Trans = new transaction_bank;
-                                            $Trans->paymentmethod = $paypalExist2->id;
-                                            $Trans->receiver = $receiver;
-                                            $Trans->amount = $payment->transactions[0]->amount->total;
-                                            $Trans->transaction = $payment_id;
-                                            $Trans->save();    
-                                                   /* Insert Cita */
+                            $idp = $paypalExist2->id;
+                                   }                /* Insert Cita */
                                         $medical = new medical_appointments;
                                         $medical->user           = Auth::id();
                                         $medical->user_doctor    = $dr;
                                         $medical->workplace       = $idlabor;
                                         $medical->when          = $when;
+                                        $medical->status         = 'Registered';
                                 
-                            if ($medical->save()) {         
+                            if ($medical->save()) {     
+                                            $Trans = new transaction_bank;
+                                            $Trans->paymentmethod = $idp;
+                                            $Trans->receiver = $receiver;
+                                            $Trans->amount = $payment->transactions[0]->amount->total;
+                                            $Trans->transaction = $payment_id;
+                                            $Trans->appointments =  $medical->id;
+                                            $Trans->save();        
 
                               $notification = array(
                                         //If it has been rejected, the internal error code is sent.
@@ -510,14 +530,17 @@ class payments extends Controller
                                 $email = $user->email;
                                  Mail::send('emails.transaction', $data, function ($message) {
                                             $message->subject('Transacción de pago en Boomedic');
-                                            $message->to('rebbeca.goncalves@doitcloud.consulting');
+                                            $message->to('contacto@doitcloud.consulting');
                                         });
                              }
                               return redirect('medicalconsultations')->with($notification);
                             }
-                            
-                            session()->put('error','Unknown error occurred');
-                            return redirect('medicalconsultations');
+                              $notification2 = array(
+                                        //If it has been rejected, the internal error code is sent.
+                                    'message' => 'Hubo un error en su pago Paypal', 
+                                    'error' => 'error',
+                                );
+                            return redirect('medicalconsultations')->with($notification2);
                           }
 
                                          
