@@ -671,7 +671,7 @@
 
 
     <!-- Modal de registro de cita -->
-    <div class="modal fade" id="modal-register-cite">
+    <div class="modal-register-cite modal fade" id="modal-register-cite">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
 
@@ -1629,7 +1629,7 @@ function prevTab(elem) {
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
-                if(optionhour.length > 1){  
+                if(optionhour.length > 0){  
                       $(".calendar").css("display","block");
                       $(".calendarNull").css("display","none");
                 
@@ -1806,17 +1806,7 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
-                        if($( ".modal" ).hasClass( "in")){
-                                  $.ajax(
-                                  {
-                                    type: "GET",    
-                                    url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
-                                    success: function(result){
-                                        console.log(result);
-                                    }
-                                  });
-                                }
-
+                               
                   }
              
                 });
@@ -1859,6 +1849,19 @@ function prevTab(elem) {
     <!-- Hides modal -->
     <script>
     $(document).ready(function(){
+              $('.modal-register-cite ').on('show.bs.modal', function (e) {
+                   if($( ".modal" ).hasClass( "in" ) && $('.calendarNull').is(":visible")){
+                                  $.ajax(
+                                  {
+                                    type: "GET",    
+                                    url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
+                                    success: function(result){
+                                        console.log(result);
+                                    }
+                                  });
+                                }
+             })
+
         $("#myModal").on('hidden.bs.modal', function () {
           //console.log(startProcess);
           //alert(startProcess);
