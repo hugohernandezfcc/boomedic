@@ -1629,7 +1629,7 @@ function prevTab(elem) {
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
-                if(optionhour.length > 0){  
+                if(optionhour.length > 1){  
                       $(".calendar").css("display","block");
                       $(".calendarNull").css("display","none");
                 
@@ -1806,7 +1806,7 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
-                            if($( ".modal" ).hasClass( "in" )){
+                        if($( ".modal" ).hasClass( "in")){
                                   $.ajax(
                                   {
                                     type: "GET",    
@@ -1816,6 +1816,7 @@ function prevTab(elem) {
                                     }
                                   });
                                 }
+
                   }
              
                 });
