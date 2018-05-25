@@ -1683,6 +1683,9 @@ function prevTab(elem) {
                                days.splice(index, 1);
                             }
                         }
+                     }else{
+                      $("$calendar1").html("Este doctor no ha registrado horarios...");
+                  }
                   }
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es' }).on('changeDate',function(e){
                      $('#timesByDay').children().remove();
@@ -1785,9 +1788,7 @@ function prevTab(elem) {
                         }    
                         $('#dateSelectedForCite').val = e.date.toISOString();                  
                       });
-                  }else{
-                      $("$calendar1").html("Este doctor no ha registrado horarios...");
-                  }
+
              
           });
             }
