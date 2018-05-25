@@ -1810,7 +1810,7 @@ function prevTab(elem) {
                                   $.ajax(
                                   {
                                     type: "GET",    
-                                    url: "{{ url('medicalconsultations/notificationdr') }}/" + loc[i][8], 
+                                    url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
                                     success: function(result){
                                         console.log(result);
                                     }
