@@ -831,6 +831,18 @@
 
           <script type="text/javascript">
 $(document).ready(function () {
+                $('.modal-register-cite ').on('show.bs.modal', function (e) {
+                   if($('.calendarNull').is(":visible")){
+                                  $.ajax(
+                                  {
+                                    type: "GET",    
+                                    url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
+                                    success: function(result){
+                                        console.log(result);
+                                    }
+                                  });
+                                }
+             })
  $('#mySelect').on('change', function() {
         if( $('#mySelect').val() !== firstValue){
           $("#general" ).prop( "checked", false );
@@ -1849,18 +1861,7 @@ function prevTab(elem) {
     <!-- Hides modal -->
     <script>
     $(document).ready(function(){
-              $('.modal-register-cite ').on('show.bs.modal', function (e) {
-                   if($( ".modal" ).hasClass( "in" ) && $('.calendarNull').is(":visible")){
-                                  $.ajax(
-                                  {
-                                    type: "GET",    
-                                    url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
-                                    success: function(result){
-                                        console.log(result);
-                                    }
-                                  });
-                                }
-             })
+
 
         $("#myModal").on('hidden.bs.modal', function () {
           //console.log(startProcess);
