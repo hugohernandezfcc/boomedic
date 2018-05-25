@@ -25,8 +25,6 @@
 
                   <div class="box-tools pull-right">
                     <span data-toggle="tooltip" title="" class="badge bg-gray count" data-original-title="" id="count"></span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
                     <button type="button" class="btn btn-box-tool contacts" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts" id="contacts">
                       <i class="fa fa-comments"></i></button>
                   </div>

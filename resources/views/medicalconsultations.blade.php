@@ -246,6 +246,9 @@
     padding: 3px !important;
     font-size: 11px !important;
   }
+  .nav-stacked>li.active>a {
+    border-left-color: #080808 !important;
+}
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
