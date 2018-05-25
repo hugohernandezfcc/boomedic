@@ -364,7 +364,7 @@
                                                       </ul>
                                                       </div>
                                                       
-                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=250x250&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> </div> 
+                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=250x200&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> </div> 
                                                     </div>
                                                 </div>
                                               </div> 
