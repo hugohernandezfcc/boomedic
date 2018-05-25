@@ -1811,7 +1811,7 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
-                               
+                               alert('TEST');
                                     $.ajax(
                                     {
                                       type: "GET",    
