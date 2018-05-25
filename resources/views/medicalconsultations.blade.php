@@ -830,8 +830,7 @@
 
 
           <script type="text/javascript">
-$(document).ready(function () {
-                $('.modal-register-cite ').on('show.bs.modal', function (e) {
+          $('.modal-register-cite').on('show.bs.modal', function (e) {
                    if($('.calendarNull').is(":visible")){
                                   $.ajax(
                                   {
@@ -843,6 +842,8 @@ $(document).ready(function () {
                                   });
                                 }
              })
+$(document).ready(function () {
+
  $('#mySelect').on('change', function() {
         if( $('#mySelect').val() !== firstValue){
           $("#general" ).prop( "checked", false );
