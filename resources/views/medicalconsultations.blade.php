@@ -1808,8 +1808,8 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
-                                $('.modal-register-cite').on('show.bs.modal', function (e) {
-                             if($('.calendarNull').is(":visible")){
+                         $('.modal-register-cite').on('show.bs.modal', function (e) {
+                          
                                             $.ajax(
                                             {
                                               type: "GET",    
@@ -1818,7 +1818,6 @@ function prevTab(elem) {
                                                   console.log(result);
                                               }
                                             });
-                                          }
                        })
                                
                   }
