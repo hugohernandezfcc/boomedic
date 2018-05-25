@@ -347,7 +347,7 @@
                                                       <div align="left">
                                                       <ul class="nav nav-pills nav-stacked">
                                                         <li class="active"><a href="">Tiempo restante para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
-                                                        <li><a href="">Método de pago 
+                                                        <li><a href="{{ url('/payment/Transactions/') }}/{{ $appo->idtr }}">Método de pago 
                                                      @if($appo->provider != 'Paypal')
                                                              @php 
                                                             $cardfin = substr_replace($appo->cardnumber, '••••••••••••', 0, 12)
