@@ -180,4 +180,17 @@ return [
     'plugins' => [
         'datatables' => true,
     ],
+        /*
+    |--------------------------------------------------------------------------
+    | URLs ICONS
+    |--------------------------------------------------------------------------
+    |
+    | Urls, in public folder for src icons images.
+    |
+    */
+
+    'empty-box'            => 'images/empty-box.png',
+
+
+
 ];
