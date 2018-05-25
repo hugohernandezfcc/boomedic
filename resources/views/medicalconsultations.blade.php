@@ -745,7 +745,7 @@
                                       <div style="width: 100%; display: none;" align="center" class="calendarNull">
                                        @include('empty.emptyData')
                                        <script type="text/javascript">
-                                         $('#imgEmpty').attr("src","{{ url(config('adminlte.adminlte', 'empty-calendar')) }}");
+                                         $('#imgEmpty').attr("src","{{ asset(config('adminlte.empty-calendar')) }}");
                                           $('#imgEmpty').css('width','150px');
                                           $('#imgEmpty').css('height','150px');
                                           $('.buttonEmpty').css('display','none');
