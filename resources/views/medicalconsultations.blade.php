@@ -1811,7 +1811,7 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
-                                if($('.modal.in .calendarNull').is(":visible")){
+                                if($('calendarNull').is(":visible")){
                                     $.ajax(
                                     {
                                       type: "GET",    
@@ -1819,7 +1819,7 @@ function prevTab(elem) {
                                       success: function(result){
                                           console.log(result);
                                       }
-                                    });
+                                    })
                                   }
 
                               }
