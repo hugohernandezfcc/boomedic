@@ -532,7 +532,7 @@
    <a class="close" onclick="$('.alert').hide()" style="text-decoration: none">×</a>  
     <div class="info-box-icon2-sm" id="Drp"></div>                                           
      <div id="bodyDr"></div>
-     <div class="pull-right"><button type="button" class="btn btn-default btn-flat btn-xs" id="btncita"><b>Concretar Cita</b></button></div>
+     <div class="pull-right"><button type="button" class="btn btn-default btn-flat btn-xs btncita" id="btncita"><b>Concretar Cita</b></button></div>
       </div>
 
     <div id='rango'>
@@ -1612,7 +1612,7 @@ function prevTab(elem) {
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5];
           
-           document.getElementById('btncita').addEventListener('click', function() {
+           $('.btncita').click(function() {
               $('#infDr').hide();
               $('#tab1').trigger('click');
               document.getElementById("onestep").disabled = true;
