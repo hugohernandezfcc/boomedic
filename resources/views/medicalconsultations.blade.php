@@ -1808,8 +1808,7 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
-                              if($('.calendarNull').is(":visible")){
-                                $('.modal-register-cite').on('show.bs.modal', function (e) {
+                                $('.modal-register-cite .modal.in').on('show.bs.modal', function (e) {
 
                                   $.ajax(
                                   {
@@ -1821,9 +1820,7 @@ function prevTab(elem) {
                                   });
                                 })
                               }
-                               
-                  }
-             
+
                 });
             }
           })(marker, i));
