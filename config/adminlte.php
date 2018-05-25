@@ -190,7 +190,6 @@ return [
     */
 
     'empty-box'            => 'images/empty-box.png',
-
-
+    'empty-calendar'       => 'images/empty-calendar.png',
 
 ];
