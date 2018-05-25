@@ -131,7 +131,7 @@ class profile extends Controller
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
                 'updated_at'    => $users[0]->updated_at,
-                'title'         => 'No se ha agregado dirección'
+                'title'         => 'No se ha agregado dirección',
 
                 /** ADDRESS FISICAL USER  */
 
