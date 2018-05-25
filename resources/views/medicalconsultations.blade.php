@@ -1618,6 +1618,7 @@ function prevTab(elem) {
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
+                if(optionhour.length > 0){   
                   var days = [0,1,2,3,4,5,6];
                   var resp = Array();
                   var resp2 = Array();
@@ -1686,9 +1687,8 @@ function prevTab(elem) {
                         }
 
                   }
-                  if(resp2.length > 0){   
+ 
                      $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es' }).on('changeDate',function(e){
-                      console.log(resp2.length)
                      $('#timesByDay').children().remove();
                          document.getElementById("onestep").disabled = false;
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
