@@ -1612,7 +1612,7 @@ function prevTab(elem) {
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5];
           
-           $('.btncita').click(function() {
+           $('.btncita').bind('click', function()
               $('#infDr').hide();
               $('#tab1').trigger('click');
               document.getElementById("onestep").disabled = true;
