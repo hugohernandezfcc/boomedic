@@ -742,7 +742,7 @@
                                         <!-- /.box-body -->
                                         
                                       </div>
-                                      <div style="width: 100%; display: none;" align="center" id="calendarNull">
+                                      <div style="width: 100%; display: none;" align="center" class="calendarNull">
                                         
                                       </div>
 
@@ -1618,7 +1618,10 @@ function prevTab(elem) {
               $('#modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
-                if(optionhour.length > 0){   
+                if(optionhour.length > 0){  
+                      $(".calendar").css("display","block");
+                      $(".calendarNull").css("display","none");
+                
                   var days = [0,1,2,3,4,5,6];
                   var resp = Array();
                   var resp2 = Array();
@@ -1791,8 +1794,8 @@ function prevTab(elem) {
                       });
                      }else{
                       $(".calendar").css("display","none");
-                      $("#calendarNull").css("display","block");
-                      $("#calendarNull").html("Este doctor no ha registrado horarios...");
+                      $(".calendarNull").css("display","block");
+                      $(".calendarNull").html("Este doctor no ha registrado horarios...");
                   }
              
           });
