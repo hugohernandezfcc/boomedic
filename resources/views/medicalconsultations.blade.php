@@ -830,9 +830,9 @@
 
 
           <script type="text/javascript">
-           document.getElementById('btncita').addEventListener('click', function() {
+        document.getElementById('btncita').addEventListener('click', function() {
         $('.modal-register-cite').on('show.bs.modal', function (e) {
-
+          if($('.calendarNull').is(":visible")){
           $.ajax(
           {
             type: "GET",    
@@ -841,6 +841,7 @@
                 console.log(result);
             }
           });
+        }
         })
       })
 
