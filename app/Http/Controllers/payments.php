@@ -499,6 +499,7 @@ class payments extends Controller
                                             $Trans->amount = $payment->transactions[0]->amount->total;
                                             $Trans->transaction = $payment_id;
                                             $Trans->appointments =  $medical->id;
+                                            $Trans->status     =  'Ok';
                                             $Trans->save();        
 
                               $notification = array(

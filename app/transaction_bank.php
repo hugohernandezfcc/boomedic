@@ -14,7 +14,7 @@ class transaction_bank extends Model
 		'paymentmethod',
 		'transaction',
 		'status',
-		'appointment'
+		'appointments'
 
     ];
     
