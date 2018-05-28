@@ -834,7 +834,8 @@
 $(document).ready(function () {
 
                          $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
-                          if($(this).find( ".calendarNull:visible" )){
+                          var vis = $(this).find( ".calendarNull" );
+                             if(vis.is(":visible")){
                                          alert('TEST');
                                     $.ajax(
                                     {
@@ -844,7 +845,7 @@ $(document).ready(function () {
                                           console.log(result);
                                       }
                                     })
-                          }
+                                  }
                       })
 
  $('#mySelect').on('change', function() {
