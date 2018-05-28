@@ -260,6 +260,27 @@ class HomeController extends Controller
         return response()->json($user->recent_search);
     }
 
+    //Function for send email notification of empty horary (Ajax controller)
+        public function notificationdr($id)
+    {
+          $user = User::find(Auth::id());
+          $doctor = User::find($id);
+          $email = $doctor->email;
+          $data = [
+            'patient'   => $user->name,
+            'age'       => $user->age, 
+            'gender'    => trans('adminlte::adminlte.'.$user->gender),                 
+            'doctor'    => $doctor->name,
+            'id'        => $id             
+            ]; 
+
+             Mail::send('emails.notificationDr', $data, function ($message) {
+                        $message->subject('Alguien echó un vistaso a tu consultorio');
+                        $message->to('contacto@doitcloud.consulting');
+                    });
+
+        return response()->json($data);
+    }
 
     //Function notify ajax master blade
         public function notify()
@@ -274,12 +295,6 @@ class HomeController extends Controller
         return response()->json($notifications);
     }
 
-        public function notificationdr($id)
-    {
-          $user = User::find(Auth::id());
-
-        return response()->json($id);
-    }
 
         public function notify2()
     {

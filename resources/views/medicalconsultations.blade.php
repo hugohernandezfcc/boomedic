@@ -836,13 +836,11 @@ $(document).ready(function () {
                          $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
                           var vis = $(this).find( ".calendarNull" );
                              if(vis.is(":visible")){
-                                         alert('TEST');
                                     $.ajax(
                                     {
                                       type: "GET",    
                                       url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
                                       success: function(result){
-                                          console.log(result);
                                       }
                                     })
                                   }
