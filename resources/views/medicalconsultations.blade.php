@@ -1106,6 +1106,19 @@ function prevTab(elem) {
        * Function responsable of execute the main functions 
        */
       window.onload = function(){
+                              $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
+                          if($(this).find( ".calendarNull:visible" )){
+                                         alert('TEST');
+                                    $.ajax(
+                                    {
+                                      type: "GET",    
+                                      url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
+                                      success: function(result){
+                                          console.log(result);
+                                      }
+                                    })
+                          }
+                      })
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
@@ -1811,19 +1824,7 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
-                      $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
-                          if($(this).find( ".calendarNull:visible" )){
-                                         alert('TEST');
-                                    $.ajax(
-                                    {
-                                      type: "GET",    
-                                      url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
-                                      success: function(result){
-                                          console.log(result);
-                                      }
-                                    })
-                          }
-                      })
+
                                   
                               }
 
