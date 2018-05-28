@@ -1631,7 +1631,7 @@ function prevTab(elem) {
               document.getElementById('dr').value = loc[i][8];
               document.getElementById('spe').value = loc[i][2];
               var whencites = loc[i][9];
-              $('#modal-register-cite').modal('show');
+              $('.modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
                 if(optionhour.length > 0){  
