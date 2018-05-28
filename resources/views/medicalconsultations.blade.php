@@ -1812,7 +1812,7 @@ function prevTab(elem) {
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
                       $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
-                          if($(this).find( ".calendarNull" )){
+                          if($(this).find( ".calendarNull:visible" )){
                                          alert('TEST');
                                     $.ajax(
                                     {
