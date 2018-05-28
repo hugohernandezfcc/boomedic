@@ -1105,8 +1105,7 @@ function prevTab(elem) {
       /**
        * Function responsable of execute the main functions 
        */
-      window.onload = function(){
-                              $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
+                         $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
                           if($(this).find( ".calendarNull:visible" )){
                                          alert('TEST');
                                     $.ajax(
@@ -1119,6 +1118,8 @@ function prevTab(elem) {
                                     })
                           }
                       })
+      window.onload = function(){
+
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
