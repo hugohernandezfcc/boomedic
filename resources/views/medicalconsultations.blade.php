@@ -1811,7 +1811,9 @@ function prevTab(elem) {
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
-                               alert('TEST');
+                      $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
+                          if($(this).find( ".calendarNull" )){
+                                         alert('TEST');
                                     $.ajax(
                                     {
                                       type: "GET",    
@@ -1820,6 +1822,8 @@ function prevTab(elem) {
                                           console.log(result);
                                       }
                                     })
+                          }
+                      })
                                   
                               }
 
@@ -1832,6 +1836,7 @@ function prevTab(elem) {
       function dropMarker(i) {
         return function() {
           markers[i].setMap(map);
+
         };
       }
       function clearMarkers() {
