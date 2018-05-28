@@ -833,8 +833,19 @@
 
 $(document).ready(function () {
 
-
-
+                         $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
+                          if($(this).find( ".calendarNull:visible" )){
+                                         alert('TEST');
+                                    $.ajax(
+                                    {
+                                      type: "GET",    
+                                      url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
+                                      success: function(result){
+                                          console.log(result);
+                                      }
+                                    })
+                          }
+                      })
 
  $('#mySelect').on('change', function() {
         if( $('#mySelect').val() !== firstValue){
@@ -1105,19 +1116,7 @@ function prevTab(elem) {
       /**
        * Function responsable of execute the main functions 
        */
-                         $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
-                          if($(this).find( ".calendarNull:visible" )){
-                                         alert('TEST');
-                                    $.ajax(
-                                    {
-                                      type: "GET",    
-                                      url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
-                                      success: function(result){
-                                          console.log(result);
-                                      }
-                                    })
-                          }
-                      })
+
       window.onload = function(){
 
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
