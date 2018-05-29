@@ -246,33 +246,6 @@ class payments extends Controller
          }
      }
 
-     public function transactions(Request $request) {
-        $user = User::find(Auth::id());
-        $id = $request->id;
-        //Look in the table of methods of saved payments all the information of the selected method.
-        $transactions = DB::table('transaction_bank')->where('paymentmethod', $id)->get();
-        $card = DB::table('paymentsmethods')->where('id', $id)->first();
-         return view('payments', [
-                'type'              => $card->typemethod,
-                'paypal_email'      => $card->paypal_email,
-                'cardnumber'        => $card->cardnumber,
-                'bank'              => $card->bank,
-                'provider'          => $card->provider,
-                'credit_debit'      => $card->credit_debit,
-                'created'           => $card->created_at,
-                'transactions'      => $transactions,
-                'userId'            => $user->id,
-                'photo'             => $user->profile_photo,
-                'username'          => $user->username,
-                'name'              => $user->name,
-                'mode'              => 'historyTransaction',
-                'title'             => 'histórico de transacciones',
-                'date'              => $user->created_at
-            ]
-        );
-                   
-         
-     }
      
       protected function AcceptedPayment($transaction, $number, $user){
             /* Insert Transaction_bank*/   
@@ -315,14 +288,42 @@ class payments extends Controller
                         'provider'          =>  $transaction_fail->provider,
                         'amount'            =>  $transaction_fail->amount
                     ];
-               $email = $tra->email;     
+               $email = $user->email;     
 
                     Mail::send('emails.errorPayment', $data, function ($message) {
                         $message->subject('Tú pago no fue procesado');
-                        $message->to('rebbeca.goncalves@doitcloud.consulting');
+                        $message->to('contacto@doitcloud.consulting');
                     });
 
     }
+
+    public function transactions(Request $request) {
+        $user = User::find(Auth::id());
+        $id = $request->id;
+        //Look in the table of methods of saved payments all the information of the selected method.
+        $transactions = DB::table('transaction_bank')->where('paymentmethod', $id)->get();
+        $card = DB::table('paymentsmethods')->where('id', $id)->first();
+         return view('payments', [
+                'type'              => $card->typemethod,
+                'paypal_email'      => $card->paypal_email,
+                'cardnumber'        => $card->cardnumber,
+                'bank'              => $card->bank,
+                'provider'          => $card->provider,
+                'credit_debit'      => $card->credit_debit,
+                'created'           => $card->created_at,
+                'transactions'      => $transactions,
+                'userId'            => $user->id,
+                'photo'             => $user->profile_photo,
+                'username'          => $user->username,
+                'name'              => $user->name,
+                'mode'              => 'historyTransaction',
+                'title'             => 'histórico de transacciones',
+                'date'              => $user->created_at
+            ]
+        );
+                   
+         
+     }
 
             public function postPaymentWithpaypal(Request $request)
 
