@@ -8,6 +8,7 @@ use App\User;
 use App\medical_appointments;
 use App\menu;
 use App\cli_recipes_tests;
+use App\transaction_bank;
 
 class medicalappointments extends Controller
 {
@@ -63,19 +64,6 @@ class medicalappointments extends Controller
         $user = User::find(Auth::id());
         //Look in the table of methods of saved payments all the information of the selected method.
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
-
-                    $this->VisaAPIClient = new VisaAPIClient;
-                    //Build json with payment details
-                    $this->paymentAuthorizationRequest = json_encode ( [ 
-                    'amount' => $request->amount,
-                    'currency' => 'USD',
-                    'payment' => [
-                      'cardNumber'=> $card->cardnumber,
-                      'cardExpirationMonth' => $card->month,
-                      'cardExpirationYear' =>  $card->year,
-                      'cvn' => $card->cvv
-                    ]
-                    ] );
 
                     /* Insert Cita */
                     $medical = new medical_appointments();
