@@ -44,13 +44,14 @@ class paymentExecute extends Command
          ->where('transaction_bank.status', 'Pending')
          ->select('transaction_bank.*','paymentsmethods.id as pay')
          ->get();
-         
+
           if(count($pending) > 0){ 
             foreach($pending as $pen){
             $idpay = $pen->pay;
             $idtrans = $pen->id;
 
-            $this->PaymentAuthorizations($idpay, $idtrans);
+            $this->payments = new payments;
+            $this->payments->PaymentAuthorizations($idpay, $idtrans);
 
         }
      }

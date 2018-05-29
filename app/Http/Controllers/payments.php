@@ -211,12 +211,12 @@ class payments extends Controller
 
     public function PaymentAuthorizations($idpay, $idtrans) {
 
-        $id = $request->idpay;
+        $id = $idpay;
 
         //Look in the table of methods of saved payments all the information of the selected method.
-        $card = DB::table('paymentsmethods')->where('id', $id)->first();
+        $card = PaymentMethod::find($idpay);
         $user = User::find($card->owner);
-        $transaction = DB::table('transaction_bank')->where('id', $idtrans)->first();
+        $transaction = transaction_bank::find($idtrans);
 
                     $this->VisaAPIClient = new VisaAPIClient;
                     //Build json with payment details
@@ -252,7 +252,7 @@ class payments extends Controller
             'firstname' => $user->firstname,                
             'lastname'  => $user->lastname,    
             'number'    => $statusCode[1],
-            'amount'    => '$'.$transaccion->amount       
+            'amount'    => '$'.$transaction->amount       
             ]; 
                 $email = $user->email;
              Mail::send('emails.transaction', $data, function ($message) {
