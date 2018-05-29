@@ -299,8 +299,28 @@ class payments extends Controller
       }
 
     protected function RejectedPayment($transaction, $user){  
+             //Save transaction failed
              $transaction->status =  'Failed';
              $transaction->save();
+
+            $transaction_fail = DB::table('transaction_bank')
+            ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
+            ->where('transaction_bank.id', $transaction->id)
+            ->select('transaction_bank.*','paymentsmethods.cardnumber','paymentsmethods.provider')
+            ->first();
+             $data = [
+                        'title'             => 'Pago no procesado',
+                        'user'              =>  $user->name,         
+                        'card'              =>  $transaction_fail->cardnumber,
+                        'provider'          =>  $transaction_fail->provider,
+                        'amount'            =>  $transaction_fail->amount
+                    ];
+               $email = $tra->email;     
+
+                    Mail::send('emails.errorPayment', $data, function ($message) {
+                        $message->subject('Tú pago no fue procesado');
+                        $message->to('rebbeca.goncalves@doitcloud.consulting');
+                    });
 
     }
 
