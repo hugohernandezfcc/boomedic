@@ -5,7 +5,12 @@
 </head>
 <body>
 
-    <h2>test scheduler pago</h2>
+    <h2>Tú pago no fue procesado, por favor verifica que tengas dinero en tu método de pago seleccionado</h2>
+    <strong>Detalles del Pago</strong><br/>
+    <strong>Tarjeta:</strong> {!! $provider !!} {!! $card !!} <br/>
+    <strong>Monto:</strong> {!! $amount!!} <br/>
+    <strong>Doctor:</strong> {!! $doctor !!} <br/>
+    <strong>Cita:</strong> {!! $appointments !!} <br/>
 
     
 </body>

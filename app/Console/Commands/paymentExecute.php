@@ -57,6 +57,8 @@ class paymentExecute extends Command
                         'provider'          =>  $tra->provider,
                         'amount'            =>  $tra->amount
                     ];
+               $email = $tra->email;     
+               
                     Mail::send('emails.errorPayment', $data, function ($message) {
                         $message->subject('Tú pago no fue procesado');
                         $message->to('rebbeca.goncalves@doitcloud.consulting');
