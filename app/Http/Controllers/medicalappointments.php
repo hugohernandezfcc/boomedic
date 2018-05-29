@@ -58,14 +58,88 @@ class medicalappointments extends Controller
      */
     public function store(Request $request)
     {
-        $medical = new cli_recipes_tests;
-        $medical->recipe_test   = '21';
-        $medical->diagnostic    = '677';
 
- 
+        $id = $request->id;
+        $user = User::find(Auth::id());
+        //Look in the table of methods of saved payments all the information of the selected method.
+        $card = DB::table('paymentsmethods')->where('id', $id)->first();
+
+                    $this->VisaAPIClient = new VisaAPIClient;
+                    //Build json with payment details
+                    $this->paymentAuthorizationRequest = json_encode ( [ 
+                    'amount' => $request->amount,
+                    'currency' => 'USD',
+                    'payment' => [
+                      'cardNumber'=> $card->cardnumber,
+                      'cardExpirationMonth' => $card->month,
+                      'cardExpirationYear' =>  $card->year,
+                      'cvn' => $card->cvv
+                    ]
+                    ] );
+
+                    /* Insert Cita */
+                    $medical = new medical_appointments();
+                    $medical->user           = Auth::id();
+                    $medical->user_doctor    = $request->dr;
+                    $medical->workplace      = $request->idlabor;
+                    $medical->when           = $request->when;
+                    $medical->status         = 'Registered';
+
             
-        if ($medical->save()) 
-       return redirect('medicalconsultations');
+           if ($medical->save()) {
+                         /* Insert_bank*/
+                        $Transaction = new transaction_bank();
+                        $Transaction->paymentmethod = $request->id;
+                        $Transaction->receiver = $request->receiver;
+                        $Transaction->amount = $request->amount;
+                        $Transaction->appointments =  $medical->id;
+                        $Transaction->save();
+                    /* Insert Transaction_bank*/    
+            $doc = User::find($request->dr); 
+            $work = DB::table('labor_information')->where('id', $request->idlabor)->first();    
+            $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12);
+            $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'Transacción (pendiente por ejecutar) por un monto de: $'. $request->amount.', para más información consulte su cartera de pago... ', 
+            'success' => 'success',
+            'dr'      => $doc->name,
+            'drphoto'      => $doc->profile_photo,
+            'fecha'   => $request->when,
+            'monto'   => $request->amount,
+            'transaccion' => '(Pendiente por ejecutar)',
+            'card'        => $cardfin,
+            'idcard'      => $card->id,
+            'spe'         => $request->spe,
+            'work'        => $work->workplace
+            );
+
+
+            $data = [
+            'name'      => $user->name,
+            'email'     => $user->email, 
+            'username'  => $user->username,                 
+            'firstname' => $user->firstname,                
+            'lastname'  => $user->lastname,    
+            'number'    => '(Pendiente por ejecutar)',
+            'amount'    => '$'.$request->amount       
+            ]; 
+                $email = $user->email;
+             Mail::send('emails.transaction', $data, function ($message) {
+                        $message->subject('Transacción de pago en Boomedic');
+                        $message->to('contacto@doitcloud.consulting');
+                    });
+         
+            return redirect('medicalconsultations')->with($notification);
+         }
+         else {
+             $notification = array(
+                //If it has been rejected, the internal error code is sent.
+            'message' => $statusCode, 
+            'error' => 'error'
+        );
+            return redirect('medicalconsultations')->with($notification);
+         }
+         
     }
 
  /**
