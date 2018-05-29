@@ -14,6 +14,7 @@ use Mail;
 use email;
 use Mailgun\Mailgun;
 use App\PaymentMethod;
+use App\Http\Controllers\payments;
 
 class medicalappointments extends Controller
 {
@@ -87,7 +88,18 @@ class medicalappointments extends Controller
                         $Transaction->amount = $request->amount;
                         $Transaction->appointments =  $medical->id;
                         $Transaction->save();
-                    /* Insert Transaction_bank*/    
+                    /* Insert Transaction_bank*/
+
+                    //Validate payment or not
+                        if(Carbon::parse($request->when)->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
+                            $this->payments = new payments;
+                            $this->payments->PaymentAuthorizations($request->id, $Transaction->id);
+                            $tr = transaction_bank::find($Transaction->id);
+                            $trn = $tr->transaction;
+                        }else{
+                            $trn = '(Pendiente por ejecutar)';    
+                        }  
+
             $doc = User::find($request->dr); 
             $work = DB::table('labor_information')->where('id', $request->idlabor)->first();    
             $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12);
@@ -99,7 +111,7 @@ class medicalappointments extends Controller
             'drphoto'      => $doc->profile_photo,
             'fecha'   => $request->when,
             'monto'   => $request->amount,
-            'transaccion' => '(Pendiente por ejecutar)',
+            'transaccion' => $trn,
             'card'        => $cardfin,
             'idcard'      => $card->id,
             'spe'         => $request->spe,
