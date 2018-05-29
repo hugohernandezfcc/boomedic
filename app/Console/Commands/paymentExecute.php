@@ -20,7 +20,7 @@ class paymentExecute extends Command
      *
      * @var string
      */
-    protected $description = 'Send an email to the user when its card is next to expire';
+    protected $description = 'Send an email to payment no procesed';
     /**
      * Create a new command instance.
      *
@@ -43,7 +43,7 @@ class paymentExecute extends Command
                         'title'     => 'Esto es una prueba',
                     ];
                     Mail::send('emails.errorPayment', $data, function ($message) {
-                        $message->subject('Tarjeta próxima a vencer');
+                        $message->subject('Tú pago no fue procesado');
                         $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
 
