@@ -7,6 +7,8 @@ use App\User;
 use App\PaymentMethod;
 use App\email;
 use Mail;
+use App\Http\Controllers\payments;
+
 class paymentExecute extends Command
 {
     /**
@@ -37,7 +39,23 @@ class paymentExecute extends Command
      */
     public function handle()
     {
-            $transaction_fail = DB::table('transaction_bank')
+        $pending = DB::table('transaction_bank')
+         ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
+         ->where('transaction_bank.status', 'Pending')
+         ->select('transaction_bank.*','paymentsmethods.id as pay')
+         ->get();
+         
+          if(count($pending) > 0){ 
+            foreach($pending as $pen){
+            $idpay = $pen->pay;
+            $idtrans = $pen->id;
+
+            $this->PaymentAuthorizations($idpay, $idtrans);
+
+        }
+     }
+        //failed
+        /*    $transaction_fail = DB::table('transaction_bank')
             ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
             ->join('medical_appointments', 'transaction_bank.appointments', '=', 'medical_appointments.id')
             ->join('users', 'medical_appointments.user', '=', 'users.id')
@@ -62,7 +80,7 @@ class paymentExecute extends Command
                         $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
             }
-        }
+        }*/
 
     }
 }

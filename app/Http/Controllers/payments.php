@@ -209,17 +209,19 @@ class payments extends Controller
 
     //Controller to make payment, Contains type of ROUTE defined post
 
-    public function PaymentAuthorizations(Request $request) {
+    public function PaymentAuthorizations($idpay, $idtrans) {
 
-        $id = $request->id;
-        $user = User::find(Auth::id());
+        $id = $request->idpay;
+
         //Look in the table of methods of saved payments all the information of the selected method.
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
+        $user = User::find($card->owner);
+        $transaction = DB::table('transaction_bank')->where('id', $idtrans)->first();
 
                     $this->VisaAPIClient = new VisaAPIClient;
                     //Build json with payment details
                     $this->paymentAuthorizationRequest = json_encode ( [ 
-                    'amount' => $request->amount,
+                    'amount' => $transaction->amount,
                     'currency' => 'USD',
                     'payment' => [
                       'cardNumber'=> $card->cardnumber,
@@ -237,44 +239,10 @@ class payments extends Controller
         
          if($statusCode[0] == '201'){
 
-                    /* Insert Cita */
-                    $medical = new medical_appointments();
-                    $medical->user           = Auth::id();
-                    $medical->user_doctor    = $request->dr;
-                    $medical->workplace      = $request->idlabor;
-                    $medical->when           = $request->when;
-                    $medical->status         = 'Registered';
-
-            
-           if ($medical->save()) {
-                         /* Insert_bank*/
-                        $Transaction = new transaction_bank();
-                        $Transaction->paymentmethod = $request->id;
-                        $Transaction->receiver = $request->receiver;
-                        $Transaction->amount = $request->amount;
-                        $Transaction->transaction = $statusCode[1];
-                        $Transaction->appointments =  $medical->id;
-                        $Transaction->save();
+                        $transaction->transaction = $statusCode[1];
+                        $transaction->status =  'Ok';
+                        $transaction->save();
                     /* Insert Transaction_bank*/    
-            $doc = User::find($request->dr); 
-            $work = DB::table('labor_information')->where('id', $request->idlabor)->first();    
-            $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12);
-            $notification = array(
-                //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->amount.', para más información consulte su cartera de pago... ', 
-            'success' => 'success',
-            'dr'      => $doc->name,
-            'drphoto'      => $doc->profile_photo,
-            'fecha'   => $request->when,
-            'monto'   => $request->amount,
-            'transaccion' => $statusCode[1],
-            'card'        => $cardfin,
-            'idcard'      => $card->id,
-            'spe'         => $request->spe,
-            'work'        => $work->workplace
-
-
-            );
 
 
             $data = [
@@ -284,7 +252,7 @@ class payments extends Controller
             'firstname' => $user->firstname,                
             'lastname'  => $user->lastname,    
             'number'    => $statusCode[1],
-            'amount'    => '$'.$request->amount       
+            'amount'    => '$'.$transaccion->amount       
             ]; 
                 $email = $user->email;
              Mail::send('emails.transaction', $data, function ($message) {
@@ -292,17 +260,11 @@ class payments extends Controller
                         $message->to('contacto@doitcloud.consulting');
                     });
          }
-            return redirect('medicalconsultations')->with($notification);
-         }
+
          else {
-             $notification = array(
-                //If it has been rejected, the internal error code is sent.
-            'message' => $statusCode, 
-            'error' => 'error'
-        );
-            return redirect('medicalconsultations')->with($notification);
+             $transaction->status =  'Failed';
+             $transaction->save();
          }
-         
      }
 
      public function transactions(Request $request) {
