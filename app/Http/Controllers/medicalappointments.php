@@ -9,6 +9,11 @@ use App\medical_appointments;
 use App\menu;
 use App\cli_recipes_tests;
 use App\transaction_bank;
+use config;
+use Mail;
+use email;
+use Mailgun\Mailgun;
+use App\PaymentMethod;
 
 class medicalappointments extends Controller
 {
