@@ -238,27 +238,7 @@ class payments extends Controller
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
          if($statusCode[0] == '201'){
-
-                        $transaction->transaction = $statusCode[1];
-                        $transaction->status =  'Ok';
-                        $transaction->save();
-                    /* Insert Transaction_bank*/    
-
-
-            $data = [
-            'name'      => $user->name,
-            'email'     => $user->email, 
-            'username'  => $user->username,                 
-            'firstname' => $user->firstname,                
-            'lastname'  => $user->lastname,    
-            'number'    => $statusCode[1],
-            'amount'    => '$'.$transaction->amount       
-            ]; 
-                $email = $user->email;
-             Mail::send('emails.transaction', $data, function ($message) {
-                        $message->subject('Transacción de pago en Boomedic');
-                        $message->to('contacto@doitcloud.consulting');
-                    });
+            $this->AcceptedPayment($transaction, $statusCode[1], $user);
          }
 
          else {
@@ -295,6 +275,29 @@ class payments extends Controller
          
      }
      
+      protected function AcceptedPayment($transaction, $number, $user){
+            /* Insert Transaction_bank*/   
+            $transaction->transaction = $number;
+            $transaction->status =  'Ok';
+            $transaction->save();
+            /* Insert Transaction_bank*/    
+
+            $data = [
+            'name'      => $user->name,
+            'email'     => $user->email, 
+            'username'  => $user->username,                 
+            'firstname' => $user->firstname,                
+            'lastname'  => $user->lastname,    
+            'number'    => $number,
+            'amount'    => '$'.$transaction->amount       
+            ]; 
+             $email = $user->email;
+             Mail::send('emails.transaction', $data, function ($message) {
+                        $message->subject('Transacción de pago en Boomedic');
+                        $message->to('contacto@doitcloud.consulting');
+                    });
+
+      }
 
             public function postPaymentWithpaypal(Request $request)
 

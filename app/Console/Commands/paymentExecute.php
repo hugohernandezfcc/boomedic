@@ -26,6 +26,7 @@ class paymentExecute extends Command
     /**
      * Create a new command instance.
      *
+     
      * @return void
      */
     public function __construct()
@@ -53,8 +54,8 @@ class paymentExecute extends Command
             $this->payments = new payments;
             $this->payments->PaymentAuthorizations($idpay, $idtrans);
 
-        }
-     }
+                }
+             }
         //failed
         /*    $transaction_fail = DB::table('transaction_bank')
             ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
