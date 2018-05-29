@@ -37,15 +37,32 @@ class paymentExecute extends Command
      */
     public function handle()
     {
+            $transaction_fail = DB::table('transaction_bank')
+            ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
+            ->join('medical_appointments', 'transaction_bank.appointments', '=', 'medical_appointments.id')
+            ->join('users', 'medical_appointments.user', '=', 'users.id')
+            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
+            ->where('status', 'Failed')
+            ->select('transaction_bank.*','paymentsmethods.cardnumber','paymentsmethods.provider', 'users.name', 'users.name as doc', 'users.email','medical_appointments.when')
+            ->get();
 
-
-                    $data = [
-                        'title'     => 'Esto es una prueba',
+            if(count($transaction_fail) > 0){ 
+            foreach($transaction_fail as $tra){
+               $data = [
+                        'title'             => 'Pago no procesado',
+                        'user'              =>  $tra->name,         
+                        'doctor'            =>  $tra->doc,
+                        'appointments'      =>  $tra->when,
+                        'card'              =>  $tra->cardnumber,
+                        'provider'          =>  $tra->provider,
+                        'amount'            =>  $tra->amount
                     ];
                     Mail::send('emails.errorPayment', $data, function ($message) {
                         $message->subject('Tú pago no fue procesado');
                         $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
+            }
+        }
 
     }
 }
