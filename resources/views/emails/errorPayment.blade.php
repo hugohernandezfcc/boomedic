@@ -9,8 +9,6 @@
     <strong>Detalles del Pago</strong><br/>
     <strong>Tarjeta:</strong> {!! $provider !!} {!! $card !!} <br/>
     <strong>Monto:</strong> {!! $amount!!} <br/>
-    <strong>Cita:</strong> {!! $appointments !!} <br/>
-
     
 </body>
 </html>
