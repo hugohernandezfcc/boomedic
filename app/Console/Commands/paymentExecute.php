@@ -14,7 +14,7 @@ class paymentExecute extends Command
      *
      * @var string
      */
-    protected $signature = 'emails:send';
+    protected $signature = 'paymentExecute:send';
     /**
      * The console command description.
      *
@@ -39,7 +39,6 @@ class paymentExecute extends Command
     {
 
 
-                    $user = User::find($card->owner);
                     $data = [
                         'title'     => 'Esto es una prueba',
                     ];
