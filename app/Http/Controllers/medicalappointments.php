@@ -15,6 +15,7 @@ use email;
 use Mailgun\Mailgun;
 use App\PaymentMethod;
 use App\Http\Controllers\payments;
+use Carbon\Carbon;
 
 class medicalappointments extends Controller
 {
