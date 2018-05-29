@@ -254,7 +254,7 @@ Route::group(['prefix' => 'medicalappointments'], function(){
 		]
 	);
 
-	Route::get('store/{id}', [
+	Route::post('store', [
 			'uses'	=>	'medicalappointments@store',
 			'as'	=>	'store'
 		]
