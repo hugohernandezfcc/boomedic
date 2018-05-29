@@ -42,7 +42,11 @@ class paymentExecute extends Command
     {
         $pending = DB::table('transaction_bank')
          ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
-         ->where('transaction_bank.status', 'Pending')
+         ->where(function($query)
+            {
+                $query->where('transaction_bank.status', 'Pending')
+                      ->orWhere('transaction_bank.status', 'Failed');
+            })
          ->select('transaction_bank.*','paymentsmethods.id as pay')
          ->get();
 
