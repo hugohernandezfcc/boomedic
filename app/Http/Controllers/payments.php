@@ -242,8 +242,7 @@ class payments extends Controller
          }
 
          else {
-             $transaction->status =  'Failed';
-             $transaction->save();
+              $this->RejectedPayment($transaction, $user);  
          }
      }
 
@@ -298,6 +297,12 @@ class payments extends Controller
                     });
 
       }
+
+    protected function RejectedPayment($transaction, $user){  
+             $transaction->status =  'Failed';
+             $transaction->save();
+
+    }
 
             public function postPaymentWithpaypal(Request $request)
 
