@@ -107,27 +107,13 @@ class medicalappointments extends Controller
             );
 
 
-            $data = [
-            'name'      => $user->name,
-            'email'     => $user->email, 
-            'username'  => $user->username,                 
-            'firstname' => $user->firstname,                
-            'lastname'  => $user->lastname,    
-            'number'    => '(Pendiente por ejecutar)',
-            'amount'    => '$'.$request->amount       
-            ]; 
-                $email = $user->email;
-             Mail::send('emails.transaction', $data, function ($message) {
-                        $message->subject('Transacción de pago en Boomedic');
-                        $message->to('contacto@doitcloud.consulting');
-                    });
          
             return redirect('medicalconsultations')->with($notification);
          }
          else {
              $notification = array(
                 //If it has been rejected, the internal error code is sent.
-            'message' => $statusCode, 
+            'message' => 'No se pudo guardar la cita, vuelva a intentarlo', 
             'error' => 'error'
         );
             return redirect('medicalconsultations')->with($notification);
