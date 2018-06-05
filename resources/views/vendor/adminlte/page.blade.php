@@ -69,7 +69,12 @@
                               <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu" id="newMess">
-
+                                <li>@include('empty.emptyData')
+                                <script type="text/javascript">
+                                $('.buttonEmpty').css('display','none');
+                                $('.spanEmpty').css('display','none');
+                                </li>
+                                </script>
                                 </ul>
                               </li>
                             </ul>
