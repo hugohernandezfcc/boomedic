@@ -695,7 +695,7 @@
 							 charge = -300;
 				            }
 				       	 }else{
-				          h = window.screen.availHeight-315;
+				          h = window.screen.availHeight-375;
 				          w = window.screen.availWidth-100;
 				           circleWidth = 50;
 				        }
