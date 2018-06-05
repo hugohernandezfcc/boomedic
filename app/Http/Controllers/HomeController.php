@@ -312,7 +312,17 @@ class HomeController extends Controller
           $user = User::find(Auth::id());
           $array = array();
         //if is for messages
+   $profInfo = DB::table('professional_information')
+            ->where('user', Auth::id() )
+            ->get();
+       if(count($profInfo) == 0){      
          $messages1 = DB::table('items_conversations')->where('by', $user->id)->get();
+     }else{
+        $messages1 = DB::table('items_conversations')
+        ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+        ->where('conversations.doctor', $user->id)->get();
+        ->select('items_conversations.*');
+     }
          $search = $messages1->unique('conversation');
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
