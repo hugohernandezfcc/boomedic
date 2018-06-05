@@ -64,7 +64,7 @@
                               <i class="fa fa-envelope-o"></i>
                               <span class="label label-success" id="messN"></span>
                             </a>
-                            <ul class="dropdown-menu" style="width: auto !important;">
+                            <ul class="dropdown-menu">
                               <li class="header" id="countMes"></li>
                               <li>
                                 <!-- inner menu: contains the actual data -->
