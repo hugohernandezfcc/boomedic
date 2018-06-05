@@ -457,7 +457,8 @@ span.round-tab:hover {
                     url: "{{ url('HomeController/messages') }}", 
                     success: function(result){
                             console.log("me ejecuté");
-                      if(result.length == 0){
+                    if(result.length == 0){
+                    $('#newMess').html('');
                     $('#newMess').append('<li>@include("empty.emptyData")</li>');
                                 $('.buttonEmpty').css('display','none');
                                 $('.spanEmpty').css('display','none');
