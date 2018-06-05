@@ -435,6 +435,7 @@ span.round-tab:hover {
                     }else{
                         $('#notN').css("display", "none"); 
                     }
+                    $('#notify').html('');
                   for (var i =0; i < result.length; i++) {
                     if(i == 0){
                     $('#countNot').html('Tiene '+ result.length + ' notificación');
