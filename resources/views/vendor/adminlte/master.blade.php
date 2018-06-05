@@ -458,8 +458,11 @@ span.round-tab:hover {
                     success: function(result){
                             console.log("me ejecuté");
                       if(result.length == 0){
-                    $('#newMess').append('<li>nada</li>');
+                    $('#newMess').append('<li>@include("empty.emptyData")</li>');
+                                $('.buttonEmpty').css('display','none');
+                                $('.spanEmpty').css('display','none');
                       }else{
+                        $('#newMess').html('');
                       for (var o =0; o < result.length; o++) {
                                 if(o == 0){
                                      $('#countMes').html('Tiene '+ result.length + ' mensaje no leido');
