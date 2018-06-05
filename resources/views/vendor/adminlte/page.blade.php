@@ -64,13 +64,13 @@
                               <i class="fa fa-envelope-o"></i>
                               <span class="label label-success" id="messN"></span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" style="width: auto !important;">
                               <li class="header" id="countMes"></li>
                               <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu" id="newMess">
                                 <li>
-                                <div class="col-sm-6" align="right">
+                                <div class="col-sm-6" align="center">
                                     <img src="{{ asset(config('adminlte.empty-message')) }}" height="60" width="60">
                                 </div><div class="col-sm-6 text-muted" align="center">    
                                     <h5>No tienes mensajes nuevos</h5><br>
