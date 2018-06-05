@@ -457,6 +457,9 @@ span.round-tab:hover {
                     url: "{{ url('HomeController/messages') }}", 
                     success: function(result){
                             console.log("me ejecuté");
+                      if(result.length == 0){
+                    $('#newMess').append('<li>nada</li>');
+                      }else{
                       for (var o =0; o < result.length; o++) {
                                 if(o == 0){
                                      $('#countMes').html('Tiene '+ result.length + ' mensaje no leido');
@@ -475,7 +478,10 @@ span.round-tab:hover {
 
                           $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
                             }
+                          }
+                            {
                              setTimeout(function(){ repeatNot(); },60000);
+                            }
                       },
                         error: function (request, status, error) {
                             //window.location.href = "{{ url('') }}";
