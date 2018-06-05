@@ -294,7 +294,7 @@
   </script>
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
-                            <h4><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h4>               
+                            <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h5>               
             </div>
              @else
         <div class="box-group" id="accordion">
