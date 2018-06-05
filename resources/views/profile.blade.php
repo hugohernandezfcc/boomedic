@@ -743,7 +743,7 @@
 								      .append('svg')
 								      .attr('width', "100%")
 								      .attr('height', h)
-								      .style('margin', '0').style('display','block')
+								      .style('margin', '0').style('display','inline')
 
 								    var force = d3.layout.force()
 								      .nodes(nodes)
@@ -756,8 +756,8 @@
 
 								    var link = myChart.selectAll('line')
 								      .data(links).enter().append('line')
-								      .attr('stroke', palette.mediumgray)
-								      .attr('stroke-width', 2);
+								      .attr('stroke', palette.darkgray)
+								      .attr('stroke-width', 3);
 
 								    var node = myChart.selectAll('pattern')
 								      .data(nodes).enter()
@@ -841,7 +841,7 @@
 								          return palette.darkgray
 								        }
 								      })
-								      .attr('stroke-width', 2)
+								      .attr('stroke-width', 5)
 								      .style("fill", "#fff").style("fill", function(d,i){ return 'url(#' + d.id+')'})
 
 								    node.append('text')
