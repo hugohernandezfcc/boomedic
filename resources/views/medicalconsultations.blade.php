@@ -1662,7 +1662,6 @@ function prevTab(elem) {
                   var Sab = Array();
                   $('#calendar1').datepicker('destroy');
                  $('#timesByDay').children().remove();
-                 console.log(optionhour.length);
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                      resp = optionhour[y].split(":",2); 
                      resp2 = JSON.parse(optionhour[y].slice(4));

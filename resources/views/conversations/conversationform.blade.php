@@ -68,7 +68,6 @@
                           $(".contacts").css("display", "none");
 
                           var data = $(this).find(".midfield").val();
-                          console.log(data);
                           get(data);
                         })
                       }
@@ -113,7 +112,6 @@
                         $(".direct-chat-messages").append('<div align="center" class="nullm">No se ha empezado ninguna conversación</div>');
                       }
                   else{
-                   console.log(result[0].length);
                    $(".direct-chat-messages").html("");
                      for(var z = 0; z < result[0].length; z++){ 
                       var title = result[0][z]['namec'];
@@ -163,7 +161,6 @@
      function searchM(data){
       clearTimeout(timer);
         get(data);
-        console.log(data);
         $('.contacts').click();
         $("#mid").val(data);
      }  
@@ -175,7 +172,7 @@
                         }
                     });
                     //Valido para saber de que página envía los datos y si es paciente o doctor
-                    console.log(dr);
+
                     if(window.location.href == "{{ url('clinicHistory/index') }}" || dr != "doctor"){
                     var data = { 
                                   "doc"       : $(".modal.in .middr").val(),
@@ -184,7 +181,7 @@
                                   "name_mess" : $(".modal.in .mname").val(),
                                   "textbody"  : $(".modal.in .textbody").val()
                                 };
-                                console.log(data);
+
                               }else {
                                 if($("#mid").val().length > 0){
 
@@ -211,7 +208,6 @@
                              {
                               $(".textbody").val("");
                               $(".textbody").focus();
-                              console.log(result2);
                               if($(".nullm").length > 1){
                                 $(".direct-chat-messages").html("");
                               }
