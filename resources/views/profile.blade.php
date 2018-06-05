@@ -695,7 +695,7 @@
 							 charge = -300;
 				            }
 				       	 }else{
-				          h = window.screen.availHeight-215;
+				          h = window.screen.availHeight-315;
 				          w = window.screen.availWidth-100;
 				           circleWidth = 50;
 				        }
@@ -741,7 +741,7 @@
 
 								    var myChart = d3.select(el)
 								      .append('svg')
-								      .attr('width', w)
+								      .attr('width', "100%")
 								      .attr('height', h)
 								      .style('margin', '0').style('display','block')
 
