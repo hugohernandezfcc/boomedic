@@ -69,12 +69,14 @@
                               <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu" id="newMess">
-                                <li>@include('empty.emptyData')
-                                <script type="text/javascript">
-                                $('.buttonEmpty').css('display','none');
-                                $('.spanEmpty').css('display','none');
-                                </li>
-                                </script>
+                                <li>
+                                <div align="center" class="col-sm-12 enun">
+                                    <img src="{{ asset(config('adminlte.empty-box')) }}" height="100" width="100" id="imgEmpty">
+                                    <h3>OMG!</h3>
+                                    <h4> <span> No tienes mensajes agregados </span></h4><br>
+                                   <a class="btn text-muted">Más información</a>   
+                                </div>
+                                 </li>
                                 </ul>
                               </li>
                             </ul>
