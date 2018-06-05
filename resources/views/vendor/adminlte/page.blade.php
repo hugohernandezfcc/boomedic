@@ -70,10 +70,10 @@
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu" id="newMess">
                                 <li>
-                                <div class="col-sm-6" align="center">
-                                    <img src="{{ asset(config('adminlte.empty-message')) }}" height="50" width="50">
-                                </div><div class="col-sm-6" align="center">    
-                                    <h5>No tienes mensajes nuevos</h5>
+                                <div class="col-sm-6" align="right">
+                                    <img src="{{ asset(config('adminlte.empty-message')) }}" height="60" width="60">
+                                </div><div class="col-sm-6 text-muted" align="center">    
+                                    <h5>No tienes mensajes nuevos</h5><br>
                                 </div>
                                  </li>
                                 </ul>
