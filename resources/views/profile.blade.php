@@ -956,8 +956,9 @@
                     	@if($latitude == "" && $longitude == "")
                     	    @include('empty.emptyData')
                                        <script type="text/javascript">
+                                          $('#form_profile2').attr("action", "/user/edit/complete");
                                           $('#imgEmpty').attr("src","{{ asset(config('adminlte.empty-house')) }}");
-                                          $('.buttonEmpty').css('display','none');
+                                          $('.buttonEmpty').text('Agregar dirección');
                                           $('.spanEmpty1').html('{{ $title }}');
                                           $('.spanEmpty').css('display','none');
                                        </script>   
