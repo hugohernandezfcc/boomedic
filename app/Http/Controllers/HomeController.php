@@ -315,13 +315,14 @@ class HomeController extends Controller
    $profInfo = DB::table('professional_information')
             ->where('user', Auth::id() )
             ->get();
-       if(count($profInfo) == 0){      
-         $messages1 = DB::table('items_conversations')->where('by', $user->id)->get();
+     if(count($profInfo) == 0){      
+         $messages1 = DB::table('items_conversations')->where('by', $user->id)->orderBy('created_at')->get();
      }else{
         $messages1 = DB::table('items_conversations')
         ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
         ->where('conversations.doctor', $user->id)
         ->select('items_conversations.*')
+        ->orderBy('items_conversations.created_at')
         ->get();
      }
          $search = $messages1->unique('conversation');
