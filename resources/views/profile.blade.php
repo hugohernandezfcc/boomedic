@@ -743,7 +743,7 @@
 								      .append('svg')
 								      .attr('width', w)
 								      .attr('height', h)
-								      .style('margin-left', '0').style('display','block')
+								      .style('margin', '0').style('display','block')
 
 								    var force = d3.layout.force()
 								      .nodes(nodes)
@@ -757,7 +757,7 @@
 								    var link = myChart.selectAll('line')
 								      .data(links).enter().append('line')
 								      .attr('stroke', palette.mediumgray)
-								      .attr('stroke-width', 1);
+								      .attr('stroke-width', 2);
 
 								    var node = myChart.selectAll('pattern')
 								      .data(nodes).enter()
