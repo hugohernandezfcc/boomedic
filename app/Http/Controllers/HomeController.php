@@ -320,8 +320,9 @@ class HomeController extends Controller
      }else{
         $messages1 = DB::table('items_conversations')
         ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
-        ->where('conversations.doctor', $user->id)->get();
-        ->select('items_conversations.*');
+        ->where('conversations.doctor', $user->id)
+        ->select('items_conversations.*')
+        ->get();
      }
          $search = $messages1->unique('conversation');
          $messages = DB::table('items_conversations')
