@@ -690,7 +690,7 @@
 				            }else
 				            {
 				              h-=315;
-				              w-=100
+				              w-=100;
 				              circleWidth = 30;
 							 charge = -300;
 				            }
