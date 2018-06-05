@@ -99,6 +99,7 @@ class HomeController extends Controller
                     'name'      => $user->name,
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
+                    'title'      => 'mensajes'
                    
                 ]
             );
@@ -112,7 +113,8 @@ class HomeController extends Controller
                     'name'      => $user->name,
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
-                    'mode'      => $mode
+                    'mode'      => $mode,
+                    'title'      => 'mensajes'
                    
                 ]
             );
@@ -129,6 +131,7 @@ class HomeController extends Controller
                     'name'      => $user->name,
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
+                    'title'      => 'mensajes'
                    
                 ]
             );
@@ -142,7 +145,8 @@ class HomeController extends Controller
                     'name'      => $user->name,
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
-                    'mode'      => $mode
+                    'mode'      => $mode,
+                    'title'      => 'mensajes'
                    
                 ]
             );
@@ -165,6 +169,7 @@ class HomeController extends Controller
                     'photo'         => $user->profile_photo,
                     'workplaces'    => $this->getWorkPlaces(),
                     'medAppoints'   => $this->getMedicalAppointments(),
+                    'title'      => 'mensajes'
                 ]);   
         }
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
