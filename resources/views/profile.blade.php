@@ -514,7 +514,7 @@
                 </div>
                   <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
                   	<div class="box-body">
-                  			<div class="lockscreen-item pull-right">
+                  			<div class="lockscreen-item pull-right" style="width: 210px !important;">
 							      	<div class="input-group">
 							        	<div class="form-control" align="center"><label id="labeltext">Agregar Familiar</label></div>
 							        	<div class="input-group-btn">
