@@ -71,10 +71,9 @@
                                 <ul class="menu" id="newMess">
                                 <li>
                                 <div class="col-sm-6" align="center">
-                                    <img src="{{ asset(config('adminlte.empty-box')) }}" height="50" width="50">
+                                    <img src="{{ asset(config('adminlte.empty-message')) }}" height="50" width="50">
                                 </div><div class="col-sm-6" align="center">    
-                                    <h5> <span> No tienes mensajes nuevos</span></h5>
-                                   <a class="btn text-muted">Más información</a><br>
+                                    <h5>No tienes mensajes nuevos</h5>
                                 </div>
                                  </li>
                                 </ul>
