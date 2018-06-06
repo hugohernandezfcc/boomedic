@@ -142,12 +142,9 @@ class medicalappointments extends Controller
         if(session()->get('parental'))
         {
              $pay = DB::table('paymentsmethods')
-             ->where(
-                [
-                    ['owner', '=', Auth::id()],
-                    ['owner', '=', session()->get('parental')]
-                ]
-            )->get();
+             ->where('owner', Auth::id())
+             ->orWhere('owner', session()->get('parental'))
+            ->get();
         }else{
            $pay =  DB::table('paymentsmethods')->where('owner', Auth::id() )->get(); 
         }
