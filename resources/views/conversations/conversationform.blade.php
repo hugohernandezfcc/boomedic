@@ -136,6 +136,7 @@
                         }
                         else{ 
                                  timer1 = $('#time').val() + 10000;
+                                 $('#time').val(timer1);
                                  console.log(timer1);
                                  timer = setTimeout(function(){ repeat(data); }, timer1);
                              }
