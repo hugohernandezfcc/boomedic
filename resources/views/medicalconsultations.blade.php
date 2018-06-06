@@ -746,14 +746,17 @@
                                         
                                       </div>
                                       <div style="width: 100%; display: none;" align="center" class="calendarNull">
-                                       @include('empty.emptyData')
+                                        @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'not_buttom',
+                                              'title'  => 'Expedientes',
+                                              'icon'   => 'adminlte.empty-calendar'
+                                            ]
+                                          )
                                        <script type="text/javascript">
-                                         $('#imgEmpty').attr("src","{{ asset(config('adminlte.empty-calendar')) }}");
                                           $('#imgEmpty').css('width','150px');
                                           $('#imgEmpty').css('height','150px');
-                                          $('.buttonEmpty').css('display','none');
                                           $('.spanEmpty1').html('{{ $title }}');
-                                          $('.spanEmpty').css('display','none');
                                        </script>   
                                       </div>
 
