@@ -40,7 +40,7 @@ class HomeController extends Controller
            ->join('transaction_bank', 'medical_appointments.id', '=', 'transaction_bank.appointments')
            ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
            ->where('medical_appointments.user', '=', Auth::id())
-           ->where('medical_appointments.when', '>', Carbon::now())
+           ->where('medical_appointments.when', '>', Carbon::now('America/Mexico_City'))
            ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.profile_photo', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.longitude', 'labor_information.latitude','paymentsmethods.cardnumber', 'paymentsmethods.provider', 'paymentsmethods.paypal_email','paymentsmethods.id as idtr')->get();
 
         $join = DB::table('professional_information')
@@ -354,7 +354,7 @@ class HomeController extends Controller
            ->join('professional_information', 'medical_appointments.user_doctor', '=', 'professional_information.user')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
            ->where('medical_appointments.user', '=', Auth::id())
-           ->where('medical_appointments.when', '>', Carbon::now('UTC'))
+           ->where('medical_appointments.when', '>', Carbon::now('America/Mexico_City'))
            ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.*', 'professional_information.specialty','users.profile_photo')->get();
 
                  return view('appointments', [
@@ -364,6 +364,7 @@ class HomeController extends Controller
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
                 'app'       => $appointments
+
             ]
         );
     }
