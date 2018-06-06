@@ -88,6 +88,7 @@ class medicalappointments extends Controller
                         $Transaction->receiver = $request->receiver;
                         $Transaction->amount = $request->amount;
                         $Transaction->appointments =  $medical->id;
+                        $Transaction->transaction = '(Pendiente por Ejecutar)';
                         $Transaction->save();
                     /* Insert Transaction_bank*/
 
