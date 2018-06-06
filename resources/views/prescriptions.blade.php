@@ -56,9 +56,17 @@
 		                	</a>
 		                </li>
 		                <li >
-		                	<a href="{{ url('prescriptions/settings') }}">
-		                		<i class="fa fa-cog"></i> Configurar formato
-		                	</a>
+		                	@if(count($prescriptionsList) < 1)
+		                	
+		                		<a onclick="console.log('probando onclick');">
+			                		<i class="fa fa-cog"></i> Configurar formato
+			                	</a>
+
+		                	@else
+			                	<a href="{{ url('prescriptions/settings') }}">
+			                		<i class="fa fa-cog"></i> Configurar formato
+			                	</a>
+							@endif
 		                </li>
 		            </ul>
 		        </div>
