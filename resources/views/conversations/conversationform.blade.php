@@ -69,6 +69,7 @@
                           $(".contacts").css("display", "none");
 
                           var data = $(this).find(".midfield").val();
+                          $('#time').val('0');
                           get(data);
                         })
                       }
@@ -131,8 +132,9 @@
                         count();
 
                       if ($('.modal-chat').is(':hidden')) {
+                                  $('#time').val('0');
                                   clearTimeout(timer);
-                                   $('#time').val('0');
+                                  
                         }
                         else{ 
                                  timer1 = parseInt($('#time').val()) + 10000;
