@@ -3,7 +3,7 @@
     
 
 	@if($indicator == 'NOT_DATA_LIST')
-		<li>
+		<li style="background-color: #f6f6f6;">
     		<div class="row">
     			<div class="col-sm-5" align="center">
     				<i class="fa fa-fw fa-edit "></i>
