@@ -10,14 +10,15 @@
 			        <h3>OMG!</h3>
 				      <h4> <span class="spanEmpty1"> No tienes {{ $title }} agregados </span>
 				   @if($emptyc != "not_buttom")
-				    <span class="spanEmpty">, <br> podrías generar tu primer registro aquí</span><br>
+				    <span class="spanEmpty">, <br> podrías generar tu primer registro aquí</span></h4><br>
 				    <form action="create" method="get" id="form_profile2">
 					    <button type="submit" class="btn btn-default btn-flat buttonEmpty"> Generar {{ $title }} </button>
-				    
-				   @endif
-				   </form>
-				   </h4>
 					<a class="btn text-muted">Más información</a>
+				    </form>
+				   @else
+					</h4>
+					<a class="btn text-muted" style="display: inline-block;">Más información</a>
+					@endif
 		</div>
 
 @endisset
