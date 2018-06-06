@@ -44,11 +44,13 @@
 						<!-- Here ends the code for the alert -->
 	@if($mode == 'listPaymentMethods')
 			@if(count($cards) == 0)			
-			  @include('empty.emptyData')
-          	       <script type="text/javascript">
-          	       	  $('.buttonEmpty').css('display','inline');
-          	       	  $('.spanEmpty').css('display','inline');
-          	       </script>
+                                        @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'buttom',
+                                              'title'  => 'métodos de pago',
+                                              'icon'   => 'adminlte.empty-box'
+                                            ]
+                                          )
             @else
 
             @include('headerprofile')
@@ -358,11 +360,13 @@
 	</div>
 
 			              	@if(count($transactions) < 1)
-			              	       @include('empty.emptyData')
-			              	       <script type="text/javascript">
-			              	       	  $('.buttonEmpty').css('display','none');
-			              	       	  $('.spanEmpty').css('display','none');
-			              	       </script>
+                                        @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'not_buttom',
+                                              'title'  => 'histórico de transacciones',
+                                              'icon'   => 'adminlte.empty-calendar'
+                                            ]
+                                          )
 			              	@else
 	<div class="box">
 	  	<div class="box-header with-border">
@@ -421,11 +425,13 @@
 			              </div><br/>  </div>	  	
 	</div>
 		@if(count($transactions) < 1)
-			  @include('empty.emptyData')
-          	       <script type="text/javascript">
-          	       	  $('.buttonEmpty').css('display','none');
-          	       	  $('.spanEmpty').css('display','none');
-          	       </script>
+                                        @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'not_buttom',
+                                              'title'  => 'histórico de transacciones',
+                                              'icon'   => 'adminlte.empty-calendar'
+                                            ]
+                                          )
 			   @else
 	<div class="box">
 	  	<div class="box-header with-border">

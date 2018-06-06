@@ -66,7 +66,6 @@ class payments extends Controller
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
                 'mode'      => 'listPaymentMethods',
-                'title'     => 'métodos de pago'
             ]
         );
     }
@@ -317,7 +316,6 @@ class payments extends Controller
                 'username'          => $user->username,
                 'name'              => $user->name,
                 'mode'              => 'historyTransaction',
-                'title'             => 'histórico de transacciones',
                 'date'              => $user->created_at
             ]
         );
