@@ -40,25 +40,25 @@
 		        </div>
 		        <div class="box-body no-padding">
 		            <ul class="nav nav-pills nav-stacked">
-		                <li class="active">
+		                <li id="allOption" class="active">
 		                	<a href="#">
 		                		<i class="fa fa-edit"></i> Todas las recetas
 		                	</a>
 		                </li>
-		                <li >
-		                	<a href="#">
+		                <li id="commentOption" >
+		                	<a onclick="markerOption('commentOption');">
 		                		<i class="fa fa-comments"></i> Comentarios <span class="label label-primary pull-right">0</span>
 		                	</a>
 		                </li>
-		                <li>
+		                <li id="lastSevenOption">
 		                	<a href="#">
 		                		<i class="fa fa-calendar-minus-o"></i> Ultimos 7 días
 		                	</a>
 		                </li>
-		                <li >
+		                <li id="settingOption" >
 		                	@if(count($prescriptionsList) < 1)
 		                	
-		                		<a onclick="console.log('probando onclick');">
+		                		<a onclick="markerOption('settingOption');">
 			                		<i class="fa fa-cog"></i> Configurar formato
 			                	</a>
 
@@ -71,6 +71,27 @@
 		            </ul>
 		        </div>
 		    </div>
+
+		    <script type="text/javascript">
+		    	
+		    	/**
+		    	 * Function responsable of change class name to DOM element. It with the objective
+		    	 * @param  {[type]} currentOption [description]
+		    	 * @return {[type]}               [description]
+		    	 */
+		    	function markerOption(currentOption) {
+		    		var options = [ 'allOption', 'commentOption', 'lastSevenOption', 'settingOption'];
+					for (var i = options.length - 1; i >= 0; i--) 
+						if (options[i] == currentOption) 
+							byId(options[i]).className = "active";
+						else			
+							byId(options[i]).removeAttribute('class');
+		    	}
+
+		    </script>
+			
+			
+			
 
 		</div>
 		<div class="col-md-9">
