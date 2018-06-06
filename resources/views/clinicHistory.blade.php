@@ -340,7 +340,7 @@
                               [
                                 'emptyc' => 'not_buttom',
                                 'title'  => 'Expedientes',
-                                'icon'   => '{{ asset(config('adminlte.empty-box')) }}'
+                                'icon'   => 'adminlte.empty-box'
                               ]
                             )
             </div>                         

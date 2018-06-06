@@ -6,7 +6,7 @@
 @isset($emptyc)
 
 		<div align="center" class="col-sm-12 enun">
-			        <img src="{{ $icon }}" height="180" width="180" id="imgEmpty">
+			        <img src="{{ asset(config($icon)) }}" height="180" width="180" id="imgEmpty">
 			        <h3>OMG!</h3>
 				      <h4> <span class="spanEmpty1"> No tienes {{ $title }} agregados </span></h4>
 				   @if($emptyc != "not_buttom")
