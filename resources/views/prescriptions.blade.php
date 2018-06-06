@@ -77,7 +77,7 @@
 			  			@if(count($prescriptionsList) < 1)
 			  				@include('empty.notContent', 
 			  					[
-			  						'indicator' => 'NOT_DATA_LIST'
+			  						'indicator' => 'NOT_DATA_LIST',
 			  						'title'		=> 'Recetas'
 			  					]
 			  				)
