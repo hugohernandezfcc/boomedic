@@ -82,7 +82,7 @@
                      </section>
                      <h3>PDF </h3>
                      <section>
-                           <center><iframe id="framepdfprescription" width="90%" style="height: 300px;"></iframe></center>
+                           <center><iframe id="framepdfprescription" width="110%" style="height: 300px;"></iframe></center>
                      </section>
                      
                   </div>
