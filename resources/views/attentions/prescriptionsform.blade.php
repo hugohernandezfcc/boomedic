@@ -1,7 +1,7 @@
 <style type="text/css">
    @if(!$isMobile)
       .modal-dialog {
-         width: 90%;
+         width: 70%;
          margin: 30px auto;
       }
    @endif
@@ -66,15 +66,15 @@
             </div>
             <br />
             <div class="row">
-               <div class="col-md-12">
+               <div class="col-md-12" align="center">
                   
                   <div id="wizardPrescription">
-                     <h3>Receta </h3>
+                     <h3>Receta </h3> 
                      <section>
                            <!-- The validation is to change the cols number in textarea -->
                            <div class="form-group">
                               @if($isMobile)
-                                 <textarea class="form-control" id="receta" rows="8" cols="32" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
+                                 <textarea class="form-control" id="receta" rows="8" cols="38" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @else
                                  <textarea class="form-control" id="receta" rows="8" cols="34" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @endif
@@ -82,7 +82,13 @@
                      </section>
                      <h3>PDF </h3>
                      <section>
-                           <center><iframe id="framepdfprescription" width="100%" style="height: 300px;"></iframe></center>
+
+                        @if($isMobile)
+                          <center><iframe id="framepdfprescription" width="111%" style="height: 300px;"></iframe></center>
+                        @else
+                          <center><iframe id="framepdfprescription" width="100%" style="height: 300px;"></iframe></center>
+                        @endif
+                           
                      </section>
                      
                   </div>
