@@ -336,12 +336,12 @@
                         Expediente médico
                </h3>
           <br><br>
-          @include('empty.emptyData')
-
-                             <script type="text/javascript">
-                                $('.buttonEmpty').css('display','none');
-                                $('.spanEmpty').css('display','none');
-                             </script>    
+            @include('empty.emptyData', 
+                              [
+                                'emptyc' => 'not_buttom',
+                                'title'   => 'Expedientes'
+                              ]
+                            )
             </div>                         
         @else 
      <div class="box-header direct-chat header1" id="header1">
