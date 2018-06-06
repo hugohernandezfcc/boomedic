@@ -30,6 +30,7 @@
                   </div>
                   <input type="hidden" id="userOrDr" value="1">
                   <input type="hidden" id="mid" value="">
+                  <input type="hidden" id="time" value="">
                 </div>
                 <div class="box-body message0" id="message0">
                   <!-- Conversations are loaded here -->
@@ -131,9 +132,12 @@
 
                       if ($('.modal-chat').is(':hidden')) {
                                   clearTimeout(timer);
+                                   $('#time').val('');
                         }
                         else{ 
-                                 timer = setTimeout(function(){ repeat(data); },10000);
+                                 timer1 = $('#time').val() + 10000;
+                                 console.log(timer1);
+                                 timer = setTimeout(function(){ repeat(data); }, timer1);
                              }
                     }
                 },
@@ -163,6 +167,7 @@
         get(data);
         $('.contacts').click();
         $("#mid").val(data);
+        $('#time').val('');
      }  
 
      function send(){
