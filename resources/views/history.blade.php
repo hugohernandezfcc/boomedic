@@ -42,11 +42,13 @@
         @if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
     <div class="box-header">
       <h3 class="box-title">Historial</h3>
-                               @include('empty.emptyData')
-                             <script type="text/javascript">
-                                $('.buttonEmpty').css('display','none');
-                                $('.spanEmpty').css('display','none');
-                             </script>
+                          @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'not_buttom',
+                                              'title'  => 'más históricos',
+                                              'icon'   => 'adminlte.empty-box'
+                                            ]
+                                          )
                             </div>     
         @else
     <div class="box-header direct-chat" id="header2">

@@ -72,7 +72,6 @@ class history extends Controller
                             'array6'     => $array6,
                             'arraynow'   => $arraynow,
                             'mode'       => 'null',
-                            'title'      => 'históricos (en los últimos 6 meses)'
                          ]
                          );
        }else{
@@ -130,7 +129,6 @@ class history extends Controller
                             'array6'      => $array6,
                             'arraynow'    => $arraynow,
                             'mode'        => 'null',
-                            'title'       => 'más históricos'
                          ]
                          );
        }else{
@@ -289,7 +287,6 @@ class history extends Controller
                             'array6'       => $array6,
                             'arraynow'     => $arraynow,
                             'mode'         => 'null',
-                            'title'        => 'más históricos'
                          ]
                          );
                     }   
