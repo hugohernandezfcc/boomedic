@@ -6,7 +6,7 @@
 		<li>
     		<div class="row">
     			<div class="col-sm-6">
-    					<i class="fa fa-fw"></i>
+    				<i class="fa fa-fw fa-edit "></i>
     			</div>
     			<div class="col-sm-6">
     					@isset($title)
