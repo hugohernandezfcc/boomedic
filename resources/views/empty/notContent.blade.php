@@ -5,10 +5,10 @@
 	@if($indicator == 'NOT_DATA_LIST')
 		<li>
     		<div class="row">
-    			<div class="col-sm-6" align="right">
+    			<div class="col-sm-3" align="right">
     				<i class="fa fa-fw fa-edit "></i>
     			</div>
-    			<div class="col-sm-6">
+    			<div class="col-sm-9">
 					@isset($title)
 						No contienes <b>{{ $title }}</b> que mostrar.
 					@endisset
