@@ -84,7 +84,7 @@ class ConversationsController extends Controller
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.doctor', $user->id)
             ->select('conversations.*', 'users.profile_photo', 'users.name as nameu')
-            ->orderBy('conversations.created_at')
+            ->orderBy('conversations.created_at', 'desc')
             ->get();
 
             if($id != 0){
