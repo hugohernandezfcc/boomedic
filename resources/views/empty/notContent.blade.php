@@ -14,11 +14,11 @@
 	    			<div class="col-sm-6">
 	    					@isset($title)
 	    						No contienes {{ $title }} que mostrar.
-	    					@isset($indicator)
+	    					@endisset
 
 	    					@isset(!$title)
 	    						No contienes registros que mostrar.
-	    					@isset($indicator)
+	    					@endisset
 	    			</div>
 	    		</div>
 	    	</li>
