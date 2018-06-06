@@ -78,7 +78,7 @@
                      </section>
                      <h3>PDF </h3>
                      <section>
-                           <center><iframe src="{{ url('prescriptions/pdf')}}" width="105%"></iframe></center>
+                           <center><iframe id="framepdfprescription" width="105%"></iframe></center>
                      </section>
                      
                   </div>
@@ -154,6 +154,8 @@
 
                               byId('progressCompleteRecipe').setAttribute("style", "width: 90%;");
                               byId('progressCompleteRecipe').innerHTML = "90%";
+
+                              byId('framepdfprescription').src = "{{ url('prescriptions/pdf')}}";
 
                            }else{
                               byId('linkfinish').href = "return false;";
