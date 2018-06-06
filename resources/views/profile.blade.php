@@ -954,13 +954,17 @@
                   <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
                     <div class="box-body" align="center">
                     	@if($latitude == "" && $longitude == "")
-                    	    @include('empty.emptyData')
+                    	         @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'buttom',
+                                              'title'  => 'No se ha agregado dirección',
+                                              'icon'   => 'adminlte.empty-house'
+                                            ]
+                                          )
                                        <script type="text/javascript">
                                           $('#form_profile2').attr("action", "/user/edit/complete");
-                                          $('#imgEmpty').attr("src","{{ asset(config('adminlte.empty-house')) }}");
                                           $('.buttonEmpty').text('Agregar dirección');
-                                          $('.spanEmpty1').html('{{ $title }}');
-                                          $('.spanEmpty').css('display','none');
+                                          $('.spanEmpty1').html('No se ha agregado dirección');
                                        </script>   
                     	   <input type="hidden" id="nullmap" value="true">
                     	@else   

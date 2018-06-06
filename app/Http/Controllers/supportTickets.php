@@ -38,7 +38,6 @@ class supportTickets extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'title'     => "Casos",
                 'mode'      => 'listTickets'
             ]
         );

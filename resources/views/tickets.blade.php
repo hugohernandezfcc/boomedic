@@ -11,7 +11,13 @@
 @if($mode == 'listTickets')
 
  @if(count($allTickets) == 0)
-           @include('empty.emptyData')
+                                    @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'buttom',
+                                              'title'  => 'casos',
+                                              'icon'   => 'adminlte.empty-box'
+                                            ]
+                                          )
 		@else
 		  @include('headerprofile')
 	<div class="box">
