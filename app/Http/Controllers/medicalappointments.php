@@ -141,10 +141,11 @@ class medicalappointments extends Controller
     {
         if(session()->get('parental'))
         {
+           $user = DB::table('users')->where('username', session()->get('parental'))->first();
              $pay = DB::table('paymentsmethods')
              ->where('owner', Auth::id())
-             ->orWhere('owner', session()->get('parental'))
-            ->get();
+             ->orWhere('owner', $user->id)
+             ->get();
         }else{
            $pay =  DB::table('paymentsmethods')->where('owner', Auth::id() )->get(); 
         }
