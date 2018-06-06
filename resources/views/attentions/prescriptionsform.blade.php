@@ -66,15 +66,15 @@
             </div>
             <br />
             <div class="row">
-               <div class="col-md-12" align="center">
+               <div class="col-md-12">
                   
                   <div id="wizardPrescription">
-                     <h3>Receta </h3> 
+                     <h3>Receta </h3>
                      <section>
                            <!-- The validation is to change the cols number in textarea -->
                            <div class="form-group">
                               @if($isMobile)
-                                 <textarea class="form-control" id="receta" rows="8" cols="38" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
+                                 <textarea class="form-control" id="receta" rows="8" cols="32" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @else
                                  <textarea class="form-control" id="receta" rows="8" cols="34" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
                               @endif
@@ -185,6 +185,9 @@
 
                            byId('progressCompleteRecipe').setAttribute("style", "width: 100%;");
                            byId('progressCompleteRecipe').innerHTML = "100%";
+
+                           
+                           
                         }
 
                      });

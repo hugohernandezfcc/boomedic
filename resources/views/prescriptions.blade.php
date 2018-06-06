@@ -73,15 +73,13 @@
 			  	</div>
 			  	<div class="box-body">
 			  		<ul class="nav nav-stacked">
-						<li><a > Hugo hernández </a></li>
-						<li><a > Hugo hernández </a></li>
-						<li><a > Hugo hernández </a></li>
-						<li><a > Hugo hernández </a></li>
-						<li><a > Hugo hernández </a></li>
-						<li><a > Hugo hernández </a></li>
-						<li><a > Hugo hernández </a></li>
-						<li><a > Hugo hernández </a></li>
-						<li><a > Hugo hernández </a></li>
+
+			  			@if(count($prescriptionsList) < 1)
+			  				@include('empty.notContent', ['indicator' => 'NOT_DATA_LIST'])
+			  			@else
+			  				<li><a > Hugo hernández </a></li>
+			  			@endif
+						
 					</ul>
 				</div>
 			</div>

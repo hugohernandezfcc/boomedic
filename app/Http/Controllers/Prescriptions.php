@@ -42,6 +42,8 @@ class Prescriptions extends Controller
                             ])->select('medical_appointments.*', 'users.firstname', 'users.lastname', 'users.gender', 'users.age' )
                             ->get();
 
+        $prescriptionsList = array();
+
 
 
         return view('prescriptions', [
@@ -51,7 +53,9 @@ class Prescriptions extends Controller
                 'photo'             => $user->profile_photo,
                 'date'              => $user->created_at, 
                 'isMobile'          => $agent->isMobile(),
-                'medAppointments'   => $medAppointments
+                'medAppointments'   => $medAppointments,
+                'prescriptionsList' => $prescriptionsList
+
             ]
         );
     }
