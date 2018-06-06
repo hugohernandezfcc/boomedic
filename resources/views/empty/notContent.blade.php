@@ -10,7 +10,7 @@
     			</div>
     			<div class="col-sm-6">
     					@isset($title)
-    						No contienes {{ $title }} que mostrar.
+    						No contienes <b>{{ $title }}</b> que mostrar.
     					@endisset
     			</div>
     		</div>
@@ -21,5 +21,3 @@
 
 
 @endisset
-
-hosdifaos

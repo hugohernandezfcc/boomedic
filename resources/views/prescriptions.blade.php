@@ -75,7 +75,12 @@
 			  		<ul class="nav nav-stacked">
 
 			  			@if(count($prescriptionsList) < 1)
-			  				@include('empty.notContent', ['indicator' => 'NOT_DATA_LIST'])
+			  				@include('empty.notContent', 
+			  					[
+			  						'indicator' => 'NOT_DATA_LIST'
+			  						'title'		=> 'Recetas'
+			  					]
+			  				)
 			  			@else
 			  				<li><a> Hugo hernández </a></li>
 			  			@endif
