@@ -15,10 +15,6 @@
 	    					@isset($title)
 	    						No contienes {{ $title }} que mostrar.
 	    					@endisset
-
-	    					@isset(!$title)
-	    						No contienes registros que mostrar.
-	    					@endisset
 	    			</div>
 	    		</div>
 	    	</li>
