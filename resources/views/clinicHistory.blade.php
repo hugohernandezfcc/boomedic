@@ -339,7 +339,8 @@
             @include('empty.emptyData', 
                               [
                                 'emptyc' => 'not_buttom',
-                                'title'   => 'Expedientes'
+                                'title'  => 'Expedientes',
+                                'icon'   => '{{ asset(config('adminlte.empty-box')) }}'
                               ]
                             )
             </div>                         
