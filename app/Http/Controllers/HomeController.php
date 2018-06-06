@@ -322,7 +322,7 @@ class HomeController extends Controller
         ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
         ->where('conversations.doctor', $user->id)
         ->select('items_conversations.*')
-        ->orderBy('items_conversations.created_at')
+        ->orderBy('items_conversations.created_at', 'desc')
         ->get();
      }
          $search = $messages1->unique('conversation');
@@ -330,7 +330,7 @@ class HomeController extends Controller
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
-            ->orderBy('items_conversations.created_at')
+            ->orderBy('items_conversations.created_at', 'desc')
             ->get();
 
             foreach($search as $s){
@@ -354,7 +354,7 @@ class HomeController extends Controller
            ->join('professional_information', 'medical_appointments.user_doctor', '=', 'professional_information.user')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
            ->where('medical_appointments.user', '=', Auth::id())
-            ->where('medical_appointments.when', '>', Carbon::now())
+           ->where('medical_appointments.when', '>', Carbon::now())
            ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.*', 'professional_information.specialty','users.profile_photo')->get();
 
                  return view('appointments', [
