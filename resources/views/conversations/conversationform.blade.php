@@ -139,6 +139,10 @@
                         else{ 
                                  timer1 = parseInt($('#time').val()) + 10000;
                                  $('#time').val(timer1);
+                                 if(timer1 > 119000){
+                                  timer1 = 120000;
+                                  $('#time').val('120000');
+                                 }
                                  console.log(timer1);
                                  timer = setTimeout(function(){ repeat(data); }, timer1);
                              }
