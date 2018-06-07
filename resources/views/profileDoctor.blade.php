@@ -66,7 +66,11 @@
 		    width: 100%;
 
 		}
-
+		.cut{
+		  text-overflow:ellipsis;
+		  white-space:nowrap; 
+		  overflow:hidden; 
+		}
     </style>
 @stop
 
@@ -498,13 +502,13 @@
                         <div class="col-xs-12">
                           
                             <div class="col-sm-2" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-10" align="left">{{ $email }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $email }}</div>
                          
                         </div>
                         <div class="col-xs-12">
                           
                             <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-10" align="left">{{ $username }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $username }}</div>
                          
                         </div>
                         <div class="col-xs-12">
@@ -516,7 +520,7 @@
                         <div class="col-xs-12">
                          
                             <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-10" align="left">{{ $occupation }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $occupation }}</div>
                          
                         </div>
                         <div class="col-xs-12">
@@ -533,7 +537,7 @@
                         <div class="col-xs-12">
                          
                             <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-10" align="left">{{ $scholarship }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $scholarship }}</div>
                     
                         </div>
                         <div class="col-xs-12">
@@ -550,13 +554,13 @@
                         <div class="col-xs-12">
                         
                             <div class="col-sm-2" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-10" align="left">{{ $mobile }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $mobile }}</div>
                        
                         </div>
                         <div class="col-xs-12">
                         
                             <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-10" align="left">{{ $updated_at }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $updated_at }}</div>
                         
                         </div>
                     </div>
@@ -575,27 +579,27 @@
                     <div class="box-body">
                         <div class="col-xs-12">
                             <div class="col-sm-2" align="left"><b>Licencia Profesional:</b></div>
-                            <div class="col-sm-10" align="left">{{ $professional_license }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $professional_license }}</div>
                         </div>
                          <div class="col-xs-12">
                             <div class="col-sm-2" align="left"><b>Sociedad de Médicos:</b></div>
-                            <div class="col-sm-10" align="left">{{ $medical_society }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $medical_society }}</div>
                         </div>
                         <div class="col-xs-12">
                             <div class="col-sm-2" align="left"><b>Especialidad:</b></div>
-                            <div class="col-sm-10" align="left">{{ $specialty }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $specialty }}</div>
                         </div>
                        <div class="col-xs-12">
                             <div class="col-sm-2" align="left"><b>Escuela de Medicina:</b></div>
-                            <div class="col-sm-10" align="left">{{ $schoolOfMedicine }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $schoolOfMedicine }}</div>
                         </div>
                         <div class="col-xs-12">
                             <div class="col-sm-2" align="left"><b>Facultad de Especialización:</b></div>
-                            <div class="col-sm-10" align="left">{{ $facultyOfSpecialization }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $facultyOfSpecialization }}</div>
                         </div>
                         <div class="col-xs-12">
                             <div class="col-sm-2" align="left"><b>Práctica Profesional:</b></div>
-                            <div class="col-sm-10" align="left">{{ $practiseProfessional }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $practiseProfessional }}</div>
                         </div>
                     </div>
                   </div>
