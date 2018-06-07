@@ -12,7 +12,7 @@
     <strong>Edad:</strong> {!!$age!!} <br/>
     <strong>Género:</strong> {!!$gender!!} <br/>
  	</p>
-    <h4>No pierdas más el tiempo y agrega tus horarios, haz clic aquí:</h4>
+    <h4>Agrega tus horarios, haz clic aquí:</h4>
 
 <table>
     <tr>

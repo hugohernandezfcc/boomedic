@@ -275,7 +275,7 @@ class HomeController extends Controller
             ]; 
 
              Mail::send('emails.notificationDr', $data, function ($message) {
-                        $message->subject('Alguien echó un vistaso a tu consultorio');
+                        $message->subject('Alguien echó un vistazo a tu consultorio');
                         $message->to('contacto@doitcloud.consulting');
                     });
 
