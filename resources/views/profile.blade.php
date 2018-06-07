@@ -67,10 +67,13 @@
         z-index: 30;
       }
 
- .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-		    padding-left: 3px !important;
-		}
-
+.cut{
+  width:100%;
+  text-overflow:ellipsis;
+  white-space:nowrap; 
+  overflow:hidden; 
+  text-align: right;
+}
     </style>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
@@ -443,13 +446,13 @@
                         <div class="col-xs-12">
                           
                             <div class="col-sm-2" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-10" align="left">{{ $email }}</div>
+                            <div class="col-sm-10" align="left" class="cut">{{ $email }}</div>
                          
                         </div>
                         <div class="col-xs-12">
                           
                             <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-10" align="left">{{ $username }}</div>
+                            <div class="col-sm-10" align="left" class="cut">{{ $username }}</div>
                          
                         </div>
                         <div class="col-xs-12">
@@ -461,7 +464,7 @@
                         <div class="col-xs-12">
                          
                             <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-10" align="left">{{ $occupation }}</div>
+                            <div class="col-sm-10" align="left" class="cut">{{ $occupation }}</div>
                          
                         </div>
                         <div class="col-xs-12">
@@ -478,7 +481,7 @@
                         <div class="col-xs-12">
                          
                             <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-10" align="left">{{ $scholarship }}</div>
+                            <div class="col-sm-10" align="left" class="cut">{{ $scholarship }}</div>
                     
                         </div>
                         <div class="col-xs-12">
@@ -495,13 +498,13 @@
                         <div class="col-xs-12">
                         
                             <div class="col-sm-2" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-10" align="left">{{ $mobile }}</div>
+                            <div class="col-sm-10" align="left" class="cut">{{ $mobile }}</div>
                        
                         </div>
                         <div class="col-xs-12">
                         
                             <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-10" align="left">{{ $updated_at }}</div>
+                            <div class="col-sm-10" align="left" class="cut">{{ $updated_at }}</div>
                         
                         </div>
                     </div>
