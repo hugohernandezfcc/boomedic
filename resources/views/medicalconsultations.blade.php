@@ -244,10 +244,16 @@
     color: #999 !important;
     float: right !important;
     padding: 3px !important;
-    font-size: 11px !important;
+    font-size: 10px !important;
   }
   .nav-stacked>li.active>a {
     border-left-color: #080808 !important;
+}
+.cut{
+  width:60%;
+  text-overflow:ellipsis;
+  white-space:nowrap; 
+  overflow:hidden; 
 }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
@@ -346,20 +352,20 @@
                                                       </div><br/><br/>
                                                       <div align="left">
                                                       <ul class="nav nav-pills nav-stacked">
-                                                        <li class="active"><a href="">Tiempo restante para la cita <span class="liright" style="font-size: 1.5em;">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
+                                                        <li class="active"><a href="">Tiempo restante para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
                                                         <li><a href="{{ url('/payment/Transactions/') }}/{{ $appo->idtr }}">Método de pago 
                                                      @if($appo->provider != 'Paypal')
                                                              @php 
                                                             $cardfin = substr_replace($appo->cardnumber, '••••••••••••', 0, 12)
                                                              @endphp 
                                                           @if($appo->provider == "Visa")
-                                                          <span class="liright" style="font-size: 1.5em;"><i class="fa fa-cc-visa" style="font-size: 15px;"></i> &nbsp;{{ $cardfin }}</span>
+                                                          <span class="liright cut"><i class="fa fa-cc-visa" style="font-size: 14px;"></i> &nbsp;{{ $cardfin }}</span>
                                                           @endif
                                                           @if($appo->provider == "MasterCard")
-                                                          <span class="liright" style="font-size: 1.5em;"><i class="fa fa-cc-mastercard" style="font-size: 15px;"></i> &nbsp;{{ $cardfin }}</span>
+                                                          <span class="liright cut"><i class="fa fa-cc-mastercard" style="font-size: 14px;"></i> &nbsp;{{ $cardfin }}</span>
                                                           @endif
                                                      @else 
-                                                          <span class="liright" style="font-size: 1.5em;"><i class="fa fa-cc-paypal" style="font-size: 15px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
+                                                          <span class="liright cut"><i class="fa fa-cc-paypal" style="font-size: 14px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
                                                      @endif 
                                                         </a></li>
                                                         <li><a href="" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
