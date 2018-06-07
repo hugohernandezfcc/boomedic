@@ -446,13 +446,13 @@
                         <div class="col-xs-12">
                           
                             <div class="col-sm-2" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-10" align="left" class="cut">{{ $email }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $email }}</div>
                          
                         </div>
                         <div class="col-xs-12">
                           
                             <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-10" align="left" class="cut">{{ $username }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $username }}</div>
                          
                         </div>
                         <div class="col-xs-12">
@@ -464,7 +464,7 @@
                         <div class="col-xs-12">
                          
                             <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-10" align="left" class="cut">{{ $occupation }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $occupation }}</div>
                          
                         </div>
                         <div class="col-xs-12">
@@ -481,7 +481,7 @@
                         <div class="col-xs-12">
                          
                             <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-10" align="left" class="cut">{{ $scholarship }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $scholarship }}</div>
                     
                         </div>
                         <div class="col-xs-12">
@@ -498,13 +498,13 @@
                         <div class="col-xs-12">
                         
                             <div class="col-sm-2" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-10" align="left" class="cut">{{ $mobile }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $mobile }}</div>
                        
                         </div>
                         <div class="col-xs-12">
                         
                             <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-10" align="left" class="cut">{{ $updated_at }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $updated_at }}</div>
                         
                         </div>
                     </div>
