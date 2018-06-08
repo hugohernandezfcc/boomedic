@@ -128,7 +128,7 @@
                 <!-- Tools en doctor-->
                  @if(session()->get('utype') == "doctor")              
                     <li>
-                        <a data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        <a data-toggle="control-sidebar"><i class="fa fa-gears"></i><span class="label label-warning"><i class="fa fa-bug"></i></span></a>
                     </li>
                 @endif   
                  <!-- Tools en doctor--> 
