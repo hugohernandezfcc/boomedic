@@ -1,30 +1,30 @@
 <style type="text/css">
         .animated {
           
-          animation-name: parpadeo;
+          animation-name: animated;
           animation-duration: 1s;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
 
-          -webkit-animation-name:parpadeo;
+          -webkit-animation-name:animated;
           -webkit-animation-duration: 1s;
           -webkit-animation-timing-function: linear;
           -webkit-animation-iteration-count: infinite;
         }
 
-        @-moz-keyframes parpadeo{  
+        @-moz-keyframes animated{  
           0% { opacity: 1.0; }
           50% { opacity: 0.0; }
           100% { opacity: 1.0; }
         }
 
-        @-webkit-keyframes parpadeo {  
+        @-webkit-keyframes animated {  
           0% { opacity: 1.0; }
           50% { opacity: 0.0; }
            100% { opacity: 1.0; }
         }
 
-        @keyframes parpadeo {  
+        @keyframes animated {  
           0% { opacity: 1.0; }
            50% { opacity: 0.0; }
           100% { opacity: 1.0; }
