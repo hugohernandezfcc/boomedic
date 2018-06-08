@@ -1,6 +1,5 @@
 <style type="text/css">
         .animated {
-          
           animation-name: animated;
           animation-duration: 1s;
           animation-timing-function: linear;
