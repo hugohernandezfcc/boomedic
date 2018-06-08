@@ -433,7 +433,8 @@ span.round-tab:hover {
                                     success: function(result2){
                                   if(result2 == "listo"){
                                     console.log(result2);
-                                       $('#stateCite').html("@include('empty.emptyData', ['emptyc' => 'not_buttom','title'  => 'Expedientes','icon'   => 'adminlte.empty-calendar'])");
+                                       $('#stateCite').html('');
+                                       $('#stateCite').append('<li><a href="javascript:void(0)">No hay citas en ningún estatus hoy...</a></li>');
                                   }else{    
                                   console.log(result2);
                                   $('#stateCite').html('');
