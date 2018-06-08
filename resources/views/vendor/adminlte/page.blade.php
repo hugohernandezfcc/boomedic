@@ -111,11 +111,12 @@
         <footer class="main-footer" id="footerw">
             @yield('footer')
         </footer>
-    </div>
-    <!-- ./wrapper -->
     <!-- divs of tools doctor in menu-item-user -->
      @include('adminlte::partials.menu-item-tools')
     <!-- End divs of tools doctor in menu-item-user -->
+    </div>
+    <!-- ./wrapper -->
+
 @stop
 
 @section('adminlte_js')
