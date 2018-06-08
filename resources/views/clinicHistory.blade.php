@@ -596,6 +596,7 @@
 
 
 				<script>
+           if(window.location.href == "{{ url('clinicHistory/index') }}"){      
          window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
                 var sticky = header.offsetTop;
@@ -604,6 +605,7 @@
                 var sticky1 = header1.offsetTop;
              }   
                 function myFunction() {
+            
                   if (window.pageYOffset >= sticky) {
                   if($('.box-header').hasClass('header1')){  
                     header1.classList.remove("sticky");
@@ -645,6 +647,7 @@
                   }
                 } 
               }
+            }
 
          window.onload = function(){
           var clinic_history = @php echo $clinic_history; @endphp;

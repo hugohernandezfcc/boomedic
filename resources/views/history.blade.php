@@ -843,7 +843,6 @@
 
                 var sticky = header.offsetTop;
                 function myFunction() {
-               if(window.location.href == "{{ url('clinicHistory/index') }}"){     
                   if (window.pageYOffset >= sticky) {
                     header.classList.add("sticky");
             if("@php echo $agent->isMobile(); @endphp"){
@@ -860,7 +859,6 @@
                     header.classList.remove("sticky");
                      $('#header2').css('width','');
                   }
-                }
                 } 
 		$("#userli").click(function () {
 
