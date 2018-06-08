@@ -429,12 +429,12 @@ span.round-tab:hover {
               $.ajax(
                                   {
                                     type: "GET",    
-                                    url: "{{ url('medicalconsultations/listpatients') }}", 
+                                    url: "{{ url('HomeController/listpatients') }}", 
                                     success: function(result2){
                                   if(result2 == "listo"){
-                                    console.log('Nulo');
+                                    console.log(result2.length);
                                   }else{    
-                                  console.log(result2);
+                                  console.log(result2.length);
                                   for(var g =0; g < result2.length; g++){    
                                     $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-birthday-cake bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">Langdons Birthday</h4><p>Will be 23 on April 24th</p><p>Will be 23 on April 24th</p></div></a></li>');
                                   }

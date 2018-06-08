@@ -379,7 +379,7 @@ class HomeController extends Controller
            ->where('medical_appointments.user_doctor', Auth::id())
            ->whereDate('medical_appointments.when', Carbon::now()->format('Y-m-d'))
            ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo')->get();
-           if(!$citas){
+           if(count($citas) == 0){
                  return response()->json('listo');
                }else{
                  return response()->json($citas);
