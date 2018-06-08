@@ -431,9 +431,16 @@ span.round-tab:hover {
                                     type: "GET",    
                                     url: "{{ url('medicalconsultations/listpatients') }}", 
                                     success: function(result2){
-                                      console.log('listo');
-                                    }
-                                  })
+                                  if(!result2){
+                                    console.log('Nulo');
+                                  }else{    
+                                  console.log(result2);
+                                  for(var g =0; g < result2.length; g++){    
+                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-birthday-cake bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">Langdons Birthday</h4><p>Will be 23 on April 24th</p><p>Will be 23 on April 24th</p></div></a></li>');
+                                  }
+                                }
+                             }
+                       })
               }
               $.ajax(
               {
