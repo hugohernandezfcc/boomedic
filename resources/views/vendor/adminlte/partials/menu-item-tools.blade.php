@@ -189,6 +189,7 @@
                                 <!-- /.tab-pane -->
                               </div>
                             </aside>
+                            <div id="tool"></div>
 
 
  @endif
