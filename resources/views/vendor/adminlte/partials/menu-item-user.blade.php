@@ -161,6 +161,7 @@
                     <li>
                         <a data-toggle="control-sidebar"><i class="fa fa-child"></i><span class="label label-warning animated">¡HOLA!</span></a>
                     </li>
+
                 @endif   
                  <!-- Tools en doctor--> 
                            

@@ -424,6 +424,17 @@ span.round-tab:hover {
 
               //Ajax function call notify set timeout
             function notifications(){
+              var doc = "@php echo session()->get('utype'); @endphp";
+              if(doc == "doctor"){          
+              $.ajax(
+                                  {
+                                    type: "GET",    
+                                    url: "{{ url('medicalconsultations/listpatients') }}", 
+                                    success: function(result2){
+                                      console.log('listo');
+                                    }
+                                  })
+              }
               $.ajax(
               {
                 type: "GET",    

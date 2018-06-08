@@ -190,16 +190,5 @@
                               </div>
                             </aside>
 
-<script type="text/javascript">
-$(document).ready(function () {
-              $.ajax(
-            {
-              type: "GET",    
-              url: "{{ url('medicalconsultations/listpatients') }}", 
-              success: function(result){
-                console.log(result);
-              }
-            })
-          })    
-</script>
+
  @endif
