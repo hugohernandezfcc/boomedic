@@ -58,44 +58,6 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
-          <!--barra de notificaciones -->    
-                          <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="mess">
-                              <i class="fa fa-envelope-o"></i>
-                              <span class="label label-success" id="messN"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li class="header" id="countMes"></li>
-                              <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu" id="newMess">
-                                <li>
-                                <div class="col-sm-6" align="center">
-                                    <img src="{{ asset(config('adminlte.empty-message')) }}" height="60" width="60">
-                                </div><div class="col-sm-6 text-muted" align="center">    
-                                    <h5>No tienes mensajes nuevos</h5><br>
-                                </div>
-                                 </li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </li>
-                                  <!-- end message -->
-                          <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="not">
-                              <i class="fa fa-bell-o"></i>
-                              <span class="label label-warning" style="background-color: #000000 !important; display: none;" id="notN"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li class="header" id="countNot"></li>
-                              <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu" id="notify">
-                                </ul>
-                              </li>
-                            </ul>
-                          </li>
-          <!--Terminando barra de notificaciones-->
                           @include('adminlte::partials.menu-item-user')
                     </ul>
                 </div>
@@ -151,7 +113,9 @@
         </footer>
     </div>
     <!-- ./wrapper -->
-      
+    <!-- divs of tools doctor in menu-item-user -->
+     @include('adminlte::partials.menu-item-tools')
+    <!-- End divs of tools doctor in menu-item-user -->
 @stop
 
 @section('adminlte_js')

@@ -1,7 +1,5 @@
  @if(session()->get('utype') == "doctor")
-                            <li>
-                                <a data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                              </li>
+
                           <aside class="control-sidebar control-sidebar-dark">
                               <!-- Create the tabs -->
                               <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
@@ -192,3 +190,4 @@
                               </div>
                             </aside>
  @endif
+ 
