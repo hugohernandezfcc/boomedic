@@ -431,7 +431,7 @@ span.round-tab:hover {
                                     type: "GET",    
                                     url: "{{ url('medicalconsultations/listpatients') }}", 
                                     success: function(result2){
-                                  if(!result2){
+                                  if(result2 == "listo"){
                                     console.log('Nulo');
                                   }else{    
                                   console.log(result2);

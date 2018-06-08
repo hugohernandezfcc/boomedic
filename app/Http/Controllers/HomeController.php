@@ -354,7 +354,7 @@ class HomeController extends Controller
            ->join('professional_information', 'medical_appointments.user_doctor', '=', 'professional_information.user')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
            ->where('medical_appointments.user', '=', Auth::id())
-           ->where('medical_appointments.when', '>', Carbon::now())
+           ->where('medical_appointments.when', '>', Carbon::now()->format('d-m-Y'))
            ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.*', 'professional_information.specialty','users.profile_photo')->get();
 
                  return view('appointments', [
@@ -375,14 +375,15 @@ class HomeController extends Controller
     public function listpatients(){
 
          $citas = DB::table('medical_appointments')
-           ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
-           ->join('professional_information', 'medical_appointments.user_doctor', '=', 'professional_information.user')
-           ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
-           ->where('medical_appointments.user_doctor', '=', Auth::id())
-           ->whereDate('medical_appointments.when', '=', Carbon::now()->format('Y-m-d'))
-           ->select('medical_appointments.*', 'users.id as did', 'labor_information.*', 'professional_information.specialty','users.profile_photo')->get();
-
+           ->join('users', 'medical_appointments.user', '=', 'users.id')
+           ->where('medical_appointments.user_doctor', Auth::id())
+           ->whereDate('medical_appointments.when', Carbon::now()->format('Y-m-d'))
+           ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo')->get();
+           if(!$citas){
+                 return response()->json('listo');
+               }else{
                  return response()->json($citas);
+               }  
       }           
 
         public function logoutback(){
