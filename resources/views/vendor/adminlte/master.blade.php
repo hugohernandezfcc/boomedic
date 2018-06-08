@@ -445,13 +445,13 @@ span.round-tab:hover {
                                        if(gender == 'male')
                                         gender = 'Masculino';
                                   if(result2[g]['status'] == 'No completed'){  
-                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-calendar-check-o bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[g]['name'] +'</h4><p>'+ result2[g]['gender'] +'</p><p>Edad: '+ result2[g]['age'] +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-calendar-check-o bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[g]['name'] +'</h4><p>'+ gender +'</p><p>Edad: '+ result2[g]['age'] +'</p></div></a></li>');
                                   }
                                   if(result2[g]['status'] == 'Taked'){  
-                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[g]['name'] +'</h4><p>'+ result2[g]['gender'] +'</p><p>Edad: '+ result2[g]['age'] +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[g]['name'] +'</h4><p>'+ gender+'</p><p>Edad: '+ result2[g]['age'] +'</p></div></a></li>');
                                   }
                                   if(result2[g]['status'] == 'Registered'){  
-                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-calendar-check-o bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[g]['name'] +'</h4><p>'+ result2[g]['gender'] +'</p><p>Edad: '+ result2[g]['age'] +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-calendar-check-o bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[g]['name'] +'</h4><p>'+ gender +'</p><p>Edad: '+ result2[g]['age'] +'</p></div></a></li>');
                                   }
                                   }
                                 }
