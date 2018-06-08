@@ -439,14 +439,19 @@ span.round-tab:hover {
                                   console.log(result2);
                                   $('#stateCite').html('');
                                   for(var g =0; g < result2.length; g++){
+                                   var gender = result2[g]['gender'];
+                                       if(gender == 'female')
+                                        gender = 'Femenino';
+                                       if(gender == 'male')
+                                        gender = 'Masculino';
                                   if(result2[g]['status'] == 'No completed'){  
-                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-birthday-cake bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">Langdons Birthday</h4><p>Will be 23 on April 24th</p><p>Will be 23 on April 24th</p></div></a></li>');
+                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-calendar-check-o bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[g]['name'] +'</h4><p>'+ result2[g]['gender'] +'</p><p>Edad: '+ result2[g]['age'] +'</p></div></a></li>');
                                   }
                                   if(result2[g]['status'] == 'Taked'){  
-                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-birthday-cake bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">Langdons Birthday</h4><p>Will be 23 on April 24th</p><p>Will be 23 on April 24th</p></div></a></li>');
+                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[g]['name'] +'</h4><p>'+ result2[g]['gender'] +'</p><p>Edad: '+ result2[g]['age'] +'</p></div></a></li>');
                                   }
                                   if(result2[g]['status'] == 'Registered'){  
-                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-birthday-cake bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">Langdons Birthday</h4><p>Will be 23 on April 24th</p><p>Will be 23 on April 24th</p></div></a></li>');
+                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-calendar-check-o bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[g]['name'] +'</h4><p>'+ result2[g]['gender'] +'</p><p>Edad: '+ result2[g]['age'] +'</p></div></a></li>');
                                   }
                                   }
                                 }
