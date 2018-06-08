@@ -438,8 +438,16 @@ span.round-tab:hover {
                                   }else{    
                                   console.log(result2);
                                   $('#stateCite').html('');
-                                  for(var g =0; g < result2.length; g++){    
+                                  for(var g =0; g < result2.length; g++){
+                                  if(result2[g]['status'] == 'No completed'){  
                                     $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-birthday-cake bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">Langdons Birthday</h4><p>Will be 23 on April 24th</p><p>Will be 23 on April 24th</p></div></a></li>');
+                                  }
+                                  if(result2[g]['status'] == 'Taked'){  
+                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-birthday-cake bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">Langdons Birthday</h4><p>Will be 23 on April 24th</p><p>Will be 23 on April 24th</p></div></a></li>');
+                                  }
+                                  if(result2[g]['status'] == 'Registered'){  
+                                    $('#stateCite').append('<li><a href="javascript:void(0)"><i class="menu-icon fa fa-birthday-cake bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">Langdons Birthday</h4><p>Will be 23 on April 24th</p><p>Will be 23 on April 24th</p></div></a></li>');
+                                  }
                                   }
                                 }
                              }
