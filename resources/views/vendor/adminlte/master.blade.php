@@ -385,6 +385,9 @@ span.round-tab:hover {
                 background-color: #333;
                 border-color: #333;
             }
+            .none {
+              display: none;
+            }
 </style>
 
 
@@ -438,15 +441,18 @@ span.round-tab:hover {
                                   }else{    
                                   console.log(result2);
                                   $('#stateCite').html('');
-                                   $('#futureCites').html('');
+                                  $('#futureCites').html('<li class="time-label none" id="yesterday"><span class="bg-gray">Mañana</span></li><li class="time-label none" id="moreYesterday"><span class="bg-gray">Pasado mañana</span></li><li class="time-label none" id="more"><span class="bg-gray">El resto de la semana</span></li> <li><i class="fa fa-clock-o bg-gray"></i></li>');
                                    $('#tool').html('');
-                            for(var g =0; g < result2[0].length; g++){
+
+                      ///Function for cites of day         
+                     var now = moment().format("MM/DD/YYYY HH:mm");
+                      for(var g =0; g < result2[0].length; g++){
                                    var gender = result2[0][g]['gender'];
                                        if(gender == 'female')
                                           gender = 'Femenino';
                                        if(gender == 'male')
                                           gender = 'Masculino';
-                                var now = moment().format("MM/DD/YYYY HH:mm");
+
                                 var com = moment(result2[0][g]['when']).format("MM/DD/YYYY HH:mm");
                                if(now < com){
                                   var past = 0;
@@ -458,16 +464,15 @@ span.round-tab:hover {
 
                               $('#tool').append('<div class=modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal x</h4></div><div class="modal-body"></div></div></div></div>');
 
-                                  if(result2[0][g]['status'] == 'No completed'){  
+                         if(result2[0][g]['status'] == 'No completed'){  
                                     $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-times-o bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
                                   }
-                                  if(result2[0][g]['status'] == 'Taked'){  
+                         if(result2[0][g]['status'] == 'Taked'){  
                                     $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p></div></a></li>');
                                   }
-                                  if(result2[0][g]['status'] == 'Registered'){  
+                         if(result2[0][g]['status'] == 'Registered'){  
 
                                     var res = tim.split(":");
-                                    console.log(res[0]);
                                       if(res[0] == '00'){
                                         var ico = res[1]+ 'min';
                                       }else{
@@ -480,16 +485,32 @@ span.round-tab:hover {
                                     }
                                   }
                                 }
+                      //Function for future cites 
+                        var yesterday = moment().add(1, 'day').format("MM/DD/YYYY");
+                        var more = moment().add(2, 'day').format("MM/DD/YYYY");      
+                       for(var h =0; h < result2[1].length; h++){
+                                     var gender = result2[1][h]['gender'];
+                                           if(gender == 'female')
+                                              gender = 'Femenino';
+                                           if(gender == 'male')
+                                              gender = 'Masculino';
 
-                               for(var h =0; h < result2[1].length; h++){
-                                 var gender = result2[1][h]['gender'];
-                                       if(gender == 'female')
-                                          gender = 'Femenino';
-                                       if(gender == 'male')
-                                          gender = 'Masculino';
-                                $('#futureCites').append('<li><a data-toggle="modal" data-target="#'+ result2[1][h]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p><p>'+ result2[1][h]['when'] +'</p></div></a></li>');
+                                     var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
+                            if(yesterday == when){
+                              $('#yesterday').removeClass('none');
+                              $('#yesterday').after('<li><a data-toggle="modal" data-target="#'+ result2[1][h]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p><p>'+ when +'</p></div></a></li>');
 
-                               }   
+                            }
+                            if(more == when){
+                              $('#moreYesterday').removeClass('none');
+                              $('#moreYesterday').after('<li><a data-toggle="modal" data-target="#'+ result2[1][h]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p><p>'+ when +'</p></div></a></li>');
+                            }    
+                            if(when > more){
+                              $('#more').removeClass('none');
+                              $('#more').after('<li><a data-toggle="modal" data-target="#'+ result2[1][h]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p><p>'+ when +'</p></div></a></li>');
+                            }         
+
+                                   }   
                                 }
                              }
                        })

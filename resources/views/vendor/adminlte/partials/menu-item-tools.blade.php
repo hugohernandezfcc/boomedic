@@ -72,8 +72,10 @@
 
                                 </div><div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Citas Próximas</h4>
-                                  <ul class="control-sidebar-menu" id="futureCites">
-                                  </ul>
+                                  <ul class="control-sidebar-menu timeline" id="futureCites">
+                                     
+                                    </ul> 
+
                                 </div></div>
                                 <!-- /.tab-pane -->
                                 <!-- Stats tab content -->
