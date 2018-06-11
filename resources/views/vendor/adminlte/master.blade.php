@@ -446,11 +446,14 @@ span.round-tab:hover {
                                           gender = 'Femenino';
                                        if(gender == 'male')
                                           gender = 'Masculino';
-                               var now = moment().format("MM/DD/YYYY HH:mm:ss");
-                               if(now < moment(result2[0][g]['when'])){
-                               var tim ='en ' + moment.utc(moment(now).diff(moment(result2[0][g]['when']))).format("HH:mm:ss");
+                               var now = moment().format("MM/DD/YYYY HH:mm");
+                                var com = moment(result2[0][g]['when']).format("MM/DD/YYYY HH:mm");
+                               if(now < com){
+                                  var tim ='en ' + moment.utc(moment(com).diff(moment(now))).format("HH:mm");
                                 } else {
-                                 var tim = 'hace ' + moment.utc(moment(now).diff(moment(result2[0][g]['when']))).format("HH:mm:ss");
+                                  console.log(now);
+                                  console.log(com);
+                                 var tim = 'hace ' + moment.utc(moment(now).diff(moment(com))).format("HH:mm");
                                 }
 
                               $('#tool').append('<div class=modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal x</h4></div><div class="modal-body"></div></div></div></div>');
