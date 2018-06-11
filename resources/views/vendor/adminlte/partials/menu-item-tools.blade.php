@@ -11,7 +11,7 @@
                               <div class="tab-content">
                                 <!-- Home tab content -->
                                 <div class="tab-pane active" id="control-sidebar-home-tab">
-                                  <h3 class="control-sidebar-heading">Citas del día</h3>
+                                  <h3 class="control-sidebar-heading">Citas del día: #<span id="numberAppo"></span></h3>
                                   <ul class="control-sidebar-menu" id="stateCite">
                                       <!--Este ul se llena dinámicamente con java script -->
                                   </ul>

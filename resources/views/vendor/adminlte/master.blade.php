@@ -446,6 +446,7 @@ span.round-tab:hover {
 
                       ///Function for cites of day         
                      var now = moment().format("MM/DD/YYYY HH:mm");
+                     $('#numberAppo').html(result2[0].length);
                       for(var g =0; g < result2[0].length; g++){
                                    var gender = result2[0][g]['gender'];
                                        if(gender == 'female')
