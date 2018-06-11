@@ -28,6 +28,9 @@
            50% { opacity: 0.0; }
           100% { opacity: 1.0; }
         }
+    .alertRed {
+          background-color: #ff0000 !important;
+    }    
 </style>
           <!--bar notifictions -->    
                           <li class="dropdown messages-menu">
@@ -159,7 +162,7 @@
                 <!-- Tools en doctor-->
                  @if(session()->get('utype') == "doctor")              
                     <li>
-                        <a data-toggle="control-sidebar"><i class="fa fa-child"></i><span class="label label-warning animated">¡HOLA!</span></a>
+                        <a data-toggle="control-sidebar"><i class="fa fa-child"></i><span class="label label-warning animated" id="drAlert">¡HOLA!</span></a>
                     </li>
 
                 @endif   
