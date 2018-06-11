@@ -378,7 +378,7 @@ class HomeController extends Controller
            ->join('users', 'medical_appointments.user', '=', 'users.id')
            ->where('medical_appointments.user_doctor', Auth::id())
            ->whereDate('medical_appointments.when', Carbon::now()->format('Y-m-d'))
-           ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age')->get();
+           ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age')->orderBy('medical_appointments.when', 'desc')->get();
            if(count($citas) == 0){
                  return response()->json('listo');
                }else{
