@@ -13,50 +13,7 @@
                                 <div class="tab-pane active" id="control-sidebar-home-tab">
                                   <h3 class="control-sidebar-heading">Citas del día</h3>
                                   <ul class="control-sidebar-menu" id="stateCite">
-                                    <li>
-                                      <a href="javascript:void(0)">
-                                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-                                        <div class="menu-info">
-                                          <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-                                          <p>Will be 23 on April 24th</p>
-                                          <p>Will be 23 on April 24th</p>
-                                        </div>
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="javascript:void(0)">
-                                        <i class="menu-icon fa fa-user bg-yellow"></i>
-
-                                        <div class="menu-info">
-                                          <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                                          <p>New phone +1(800)555-1234</p>
-                                        </div>
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="javascript:void(0)">
-                                        <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-                                        <div class="menu-info">
-                                          <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                                          <p>nora@example.com</p>
-                                        </div>
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="javascript:void(0)">
-                                        <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-                                        <div class="menu-info">
-                                          <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                                          <p>Execution time 5 seconds</p>
-                                        </div>
-                                      </a>
-                                    </li>
+                                      <!--Este ul se llena dinámicamente con java script -->
                                   </ul>
                                   <!-- /.control-sidebar-menu -->
 
@@ -113,7 +70,11 @@
                                   </ul>
                                   <!-- /.control-sidebar-menu -->
 
-                                </div><div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div><h4 class="control-sidebar-heading">Layout Options</h4><div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-layout="fixed" class="pull-right"> Fixed layout</label><p>Activate the fixed layout. You can't use fixed and boxed layouts together</p></div><div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-layout="layout-boxed" class="pull-right"> Boxed Layout</label><p>Activate the boxed layout</p></div><div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-layout="sidebar-collapse" class="pull-right"> Toggle Sidebar</label><p>Toggle the left sidebar's state (open or collapse)</p></div><div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-enable="expandOnHover" class="pull-right"> Sidebar Expand on Hover</label><p>Let the sidebar mini expand on hover</p></div><div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-controlsidebar="control-sidebar-open" class="pull-right"> Toggle Right Sidebar Slide</label><p>Toggle between slide over content and push content effects</p></div></div></div>
+                                </div><div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
+                                  <h4 class="control-sidebar-heading">Citas Próximas</h4>
+                                  <ul class="control-sidebar-menu" id="futureCites">
+                                  </ul>
+                                </div></div>
                                 <!-- /.tab-pane -->
                                 <!-- Stats tab content -->
                                 <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
