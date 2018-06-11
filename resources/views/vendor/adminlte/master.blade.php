@@ -446,13 +446,11 @@ span.round-tab:hover {
                                           gender = 'Femenino';
                                        if(gender == 'male')
                                           gender = 'Masculino';
-                               var now = moment().format("MM/DD/YYYY HH:mm");
+                                var now = moment().format("MM/DD/YYYY HH:mm");
                                 var com = moment(result2[0][g]['when']).format("MM/DD/YYYY HH:mm");
                                if(now < com){
-                                  var tim ='en ' + moment.utc(moment(com).diff(moment(now))).format("HH:mm");
+                                  var tim = moment.utc(moment(com).diff(moment(now))).format("HH:mm");
                                 } else {
-                                  console.log(now);
-                                  console.log(com);
                                  var tim = 'hace ' + moment.utc(moment(now).diff(moment(com))).format("HH:mm");
                                 }
 
@@ -465,7 +463,14 @@ span.round-tab:hover {
                                     $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p>'+ tim +'</p></div></a></li>');
                                   }
                                   if(result2[0][g]['status'] == 'Registered'){  
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p><p>'+ tim +'</p></div></a></li>');
+                                    var res = tim.split(":");
+                                    console.log(res[0]);
+                                    if(res[0] == '00'){
+                                      var ico = res[1]+ 'min';
+                                    }else{
+                                     var ico = '+ 1H'; 
+                                    }
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-gray">' + ico + '</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p><p>en '+ tim +'</p></div></a></li>');
                                   }
                                   }
 
