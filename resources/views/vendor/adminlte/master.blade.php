@@ -449,9 +449,11 @@ span.round-tab:hover {
                                 var now = moment().format("MM/DD/YYYY HH:mm");
                                 var com = moment(result2[0][g]['when']).format("MM/DD/YYYY HH:mm");
                                if(now < com){
+                                  var past = 0;
                                   var tim = moment.utc(moment(com).diff(moment(now))).format("HH:mm");
                                 } else {
-                                 var tim = 'hace ' + moment.utc(moment(now).diff(moment(com))).format("HH:mm");
+                                  var past = 1;
+                                 var tim = moment.utc(moment(now).diff(moment(com))).format("HH:mm");
                                 }
 
                               $('#tool').append('<div class=modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal x</h4></div><div class="modal-body"></div></div></div></div>');
@@ -463,16 +465,21 @@ span.round-tab:hover {
                                     $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p></div></a></li>');
                                   }
                                   if(result2[0][g]['status'] == 'Registered'){  
+
                                     var res = tim.split(":");
                                     console.log(res[0]);
-                                    if(res[0] == '00'){
-                                      var ico = res[1]+ 'min';
+                                      if(res[0] == '00'){
+                                        var ico = res[1]+ 'min';
+                                      }else{
+                                       var ico = '+ 1H'; 
+                                      }
+                                if(past == 1){
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-yellow" style="font-size: 11px;">' + ico + '</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></p></div></a></li>');
                                     }else{
-                                     var ico = '+ 1H'; 
-                                    }
                                     $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-green" style="font-size: 11px;">' + ico + '</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></p></div></a></li>');
+                                    }
                                   }
-                                  }
+                                }
 
                                for(var h =0; h < result2[1].length; h++){
                                  var gender = result2[1][h]['gender'];
