@@ -457,10 +457,10 @@ span.round-tab:hover {
                               $('#tool').append('<div class=modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal x</h4></div><div class="modal-body"></div></div></div></div>');
 
                                   if(result2[0][g]['status'] == 'No completed'){  
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p><p>'+ tim +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-times-o bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
                                   }
                                   if(result2[0][g]['status'] == 'Taked'){  
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p>'+ tim +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p></div></a></li>');
                                   }
                                   if(result2[0][g]['status'] == 'Registered'){  
                                     var res = tim.split(":");
@@ -470,7 +470,7 @@ span.round-tab:hover {
                                     }else{
                                      var ico = '+ 1H'; 
                                     }
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-gray">' + ico + '</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p><p>en '+ tim +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-green" style="font-size: 11px;">' + ico + '</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></p></div></a></li>');
                                   }
                                   }
 
