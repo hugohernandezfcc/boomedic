@@ -383,7 +383,7 @@ class HomeController extends Controller
            ->join('users', 'medical_appointments.user', '=', 'users.id')
            ->where('medical_appointments.user_doctor', Auth::id())
             ->whereBetween('medical_appointments.when', [Carbon::now()->addDays(1), Carbon::now()->addDays(8)])
-           ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age')->orderBy('medical_appointments.when')->get();  
+           ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age','users.profile_photo')->orderBy('medical_appointments.when')->get();  
 
            if(count($appo) > 0){
                  array_push($array, $appo);  

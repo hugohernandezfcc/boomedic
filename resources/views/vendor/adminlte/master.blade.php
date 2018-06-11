@@ -498,16 +498,16 @@ span.round-tab:hover {
                                      var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
                             if(yesterday == when){
                               $('#yesterday').removeClass('none');
-                              $('#yesterday').after('<li><a data-toggle="modal" data-target="#'+ result2[1][h]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p><p>'+ when +'</p></div></a></li>');
+                              $('#yesterday').after('<li><a data-toggle="modal" data-target="#'+ result2[1][h]['id'] +'"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p><p>'+ when +'</p></div></a></li>');
 
                             }
                             if(more == when){
                               $('#moreYesterday').removeClass('none');
-                              $('#moreYesterday').after('<li><a data-toggle="modal" data-target="#'+ result2[1][h]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p><p>'+ when +'</p></div></a></li>');
+                              $('#moreYesterday').after('<li><a data-toggle="modal" data-target="#'+ result2[1][h]['id'] +'"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p><p>'+ when +'</p></div></a></li>');
                             }    
                             if(when > more){
                               $('#more').removeClass('none');
-                              $('#more').after('<li><a data-toggle="modal" data-target="#'+ result2[1][h]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-gray"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p><p>'+ when +'</p></div></a></li>');
+                              $('#more').after('<li><a data-toggle="modal" data-target="#'+ result2[1][h]['id'] +'"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p><p>'+ when +'</p></div></a></li>');
                             }         
 
                                    }   
