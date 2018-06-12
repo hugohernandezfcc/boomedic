@@ -430,7 +430,7 @@ span.round-tab:hover {
                                     url: "{{ url('HomeController/listpatients2') }}/"+ id, 
                                     success: function(result){
                                         console.log('hola mundo ' + result);
-                                        $('.modal').modal("hide");
+                                        $('.modal').modal('toggle');
                                         panelDr();
 
                       }
