@@ -438,6 +438,7 @@ span.round-tab:hover {
                                     console.log(result2);
                                        $('#stateCite').html('');
                                        $('#stateCite').append('<li><a href="javascript:void(0)">No hay citas en ningún estatus hoy...</a></li>');
+                                       $('#futureCites').html('<li><a href="javascript:void(0)">No hay citas en ningún estatus en los días Siguientes...</a></li>');
                                   }else{    
                                   console.log(result2);
                                   $('#stateCite').html('');
@@ -487,6 +488,9 @@ span.round-tab:hover {
                                     }
                                   }
                                 }
+                              }else{
+                               $('#numberAppo').html('0'); 
+                                $('#stateCite').append('<li><a href="javascript:void(0)">No hay citas en ningún estatus hoy...</a></li>');
                               }
 
                       //Function for future cites 
