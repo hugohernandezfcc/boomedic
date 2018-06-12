@@ -462,6 +462,7 @@ span.round-tab:hover {
                      console.log('holaaa' + intime);
                    if(result2[0] != null && result2[0].length > 0){
                      $('#numberAppo').html(result2[0].length);
+                     var array = new Array();
                       for(var g =0; g < result2[0].length; g++){
                                    var gender = result2[0][g]['gender'];
                                        if(gender == 'female')
@@ -473,6 +474,8 @@ span.round-tab:hover {
                                if(now < com){
                                   var past = 0;
                                   var tim = moment.utc(moment(com).diff(moment(now))).format("HH:mm");
+                                  var timp = tim.split(":");
+                                  array.push(timp[1]);
                                 } else {
                                   var past = 1;
                                  var tim = moment.utc(moment(now).diff(moment(com))).format("HH:mm");
@@ -543,7 +546,10 @@ span.round-tab:hover {
                                    }  
                                  }  
                                }
-                               {setTimeout(function(){ timePanel(); },120000);}
+                               
+                               var totalTime = parseInt(array[0]) * 60000;
+                               console.log('setTimeout: ' + totalTime);
+                               {setTimeout(function(){ timePanel(totalTime); }, totalTime);}
                       
                               } 
                        });
@@ -620,7 +626,8 @@ span.round-tab:hover {
         function repeatNot(){
             notifications();
         }
-        function timePanel(){
+        function timePanel(time){
+          console.log('ya paso el tiempo '+ time);
             panelDr();
         }
     $(function () {
