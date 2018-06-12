@@ -382,15 +382,21 @@ class HomeController extends Controller
          $appoFuture = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
            ->where('medical_appointments.user_doctor', Auth::id())
-            ->whereBetween('medical_appointments.when', [Carbon::now()->addDays(1), Carbon::now()->addDays(8)])
+            ->whereBetween('medical_appointments.when', [Carbon::now()->addDays(1)->format('Y-m-d'), Carbon::now()->addDays(8)->format('Y-m-d')])
            ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age','users.profile_photo')->orderBy('medical_appointments.when')->get();  
 
            if(count($appo) > 0){
-                 array_push($array, $appo);  
+                 $array[0] = $appo;  
                }
+           else{
+               array_push($array, null);  
+           }    
            if(count($appoFuture) > 0){
                  array_push($array, $appoFuture);  
                }
+           else{
+               array_push($array, null);  
+           }        
 
           if(count($appoFuture) == 0 && count($appo) == 0){
                   return response()->json('listo');

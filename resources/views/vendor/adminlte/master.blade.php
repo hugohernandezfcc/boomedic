@@ -446,6 +446,7 @@ span.round-tab:hover {
 
                       ///Function for cites of day         
                      var now = moment().format("MM/DD/YYYY HH:mm");
+                   if(result2[0] != null && result2[0].length > 0){
                      $('#numberAppo').html(result2[0].length);
                       for(var g =0; g < result2[0].length; g++){
                                    var gender = result2[0][g]['gender'];
@@ -486,7 +487,10 @@ span.round-tab:hover {
                                     }
                                   }
                                 }
+                              }
+
                       //Function for future cites 
+                      if(result2[1] != null && result2[1].length > 0){
                         var yesterday = moment().add(1, 'day').format("MM/DD/YYYY");
                         var more = moment().add(2, 'day').format("MM/DD/YYYY");      
                        for(var h =0; h < result2[1].length; h++){
@@ -511,7 +515,8 @@ span.round-tab:hover {
                               $('#more').after('<li><a><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
                             }         
 
-                                   }   
+                                   }  
+                                 }  
                                 }
                              }
                        })
