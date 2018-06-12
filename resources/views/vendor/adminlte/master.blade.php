@@ -423,14 +423,11 @@ span.round-tab:hover {
 <script type="text/javascript">
 
 
-
-
-              //Ajax function call notify set timeout
-            function notifications(){
-              var doc = "@php echo session()->get('utype'); @endphp";
+            //Ajax function call notify set timeout
+            function panelDr(){
+                var doc = "@php echo session()->get('utype'); @endphp";
               if(doc == "doctor"){          
-              $.ajax(
-                                  {
+              $.ajax({
                                     type: "GET",    
                                     url: "{{ url('HomeController/listpatients') }}", 
                                     success: function(result2){
@@ -465,11 +462,15 @@ span.round-tab:hover {
                                  var tim = moment.utc(moment(now).diff(moment(com))).format("HH:mm");
                                 }
 
-                              $('#tool').append('<div class=modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal x</h4></div><div class="modal-body"></div></div></div></div>');
 
                          if(result2[0][g]['status'] == 'No completed'){  
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-times-o bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a><i class="menu-icon fa fa-calendar-times-o bg-red"></i><button type="button" class="close" data-dismiss="li" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +'" onclick=" $(this).parent().parent().fadeOut(1000);">×</button><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+
+                                                                  $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal cancel</h4></div><div class="modal-body"></div></div></div></div>');
                                   }
+                       else{      
+
+                              $('#tool').append('<div class="modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal x</h4></div><div class="modal-body"></div></div></div></div>');     
                          if(result2[0][g]['status'] == 'Taked'){  
                                     $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p></div></a></li>');
                                   }
@@ -482,11 +483,14 @@ span.round-tab:hover {
                                        var ico = '+ 1H'; 
                                       }
                                 if(past == 1){
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-times-o bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></p></div></a></li>');
+                                    $('#stateCite').append('<li><a><i class="menu-icon fa fa-calendar-times-o bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p><button type="button" class="close" data-dismiss="li" aria-hidden="true" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +' onclick=" $(this).parent().parent().hide();">×</button></div></a></li>');
+                                          $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal cancel</h4></div><div class="modal-body"></div></div></div></div>');
+
                                     }else{
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-green" style="font-size: 11px;">' + ico + '</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></p></div></a></li>');
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-green" style="font-size: 11px;">' + ico + '</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
                                     }
                                   }
+                                }
                                 }
                               }else{
                                $('#numberAppo').html('0'); 
@@ -521,10 +525,17 @@ span.round-tab:hover {
 
                                    }  
                                  }  
-                                }
-                             }
-                       })
+                               }
+                               {setTimeout(function(){ timePanel(); },120000);}
+                      
+                              } 
+                       });
               }
+            }
+    
+              //Ajax function call notify set timeout
+            function notifications(){
+            
               $.ajax(
               {
                 type: "GET",    
@@ -592,6 +603,9 @@ span.round-tab:hover {
         function repeatNot(){
             notifications();
         }
+        function timePanel(){
+            panelDr();
+        }
     $(function () {
             var par = "@php echo session()->get('parental'); @endphp";
       if(!par){
@@ -608,6 +622,7 @@ span.round-tab:hover {
         $("#au").css("color", "white");
       }
                 notifications();
+                panelDr();
 
         $.fn.datepicker.dates['es'] = {
         days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
