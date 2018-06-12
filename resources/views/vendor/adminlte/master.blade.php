@@ -502,7 +502,7 @@ span.round-tab:hover {
                                        var min = 0;
                                       }
                                 if(past == 1){
-                                  $('#stateCite').append('<li><a><i class="menu-icon fa fa-calendar-times-o bg-red"></i><button type="button" class="close" data-dismiss="li" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +'" onclick=" $(this).parent().parent().fadeOut(1000);">×</button><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                  $('#stateCite').append('<li><a><i class="menu-icon bg-yellow" style="font-size: 11px;">-' + ico + '</i><button type="button" class="close" data-dismiss="li" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +'" onclick=" $(this).parent().parent().fadeOut(1000);">×</button><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
 
                                               $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Detalle de cita cancelada</h4></div><div class="modal-body"><div align="center"><img src="'+ result2[0][g]['profile_photo'] +'" class="img-circle" alt="User Image" style="height: 80px;"><br>xxxxxxxxxxxxxxxxxxxxxxx<br><button class="btn btn-secondary btn-flat" onclick="sendAware('+ result2[0][g]['id'] +')">Enterado</button></div></div></div></div></div>');
 
