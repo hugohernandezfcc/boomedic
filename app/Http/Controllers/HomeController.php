@@ -390,13 +390,13 @@ class HomeController extends Controller
            ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age','users.profile_photo')->orderBy('medical_appointments.when')->get();  
 
            if(count($appo) > 0){
-                 $array[0] = $appo;  
+                 $array[0] = $appo;
                }
            else{
                array_push($array, null);  
            }    
            if(count($appoFuture) > 0){
-                 array_push($array, $appoFuture);  
+                 $array[1] = $appoFuture;  
                }
            else{
                array_push($array, null);  

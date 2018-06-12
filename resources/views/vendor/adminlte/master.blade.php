@@ -429,7 +429,6 @@ span.round-tab:hover {
                                     type: "GET",    
                                     url: "{{ url('HomeController/listpatients2') }}/"+ id, 
                                     success: function(result){
-                                        console.log('hola mundo ' + result);
                                         $('.modal').modal('toggle');
                                         panelDr();
 
@@ -458,6 +457,9 @@ span.round-tab:hover {
 
                       ///Function for cites of day         
                      var now = moment().format("MM/DD/YYYY HH:mm");
+                     var nowappo = moment(result2[0][0]['when']).format("MM/DD/YYYY HH:mm");
+                     var intime = moment.utc(moment(now).diff(moment(nowappo))).format("HH:mm");
+                     console.log('holaaa' + intime);
                    if(result2[0] != null && result2[0].length > 0){
                      $('#numberAppo').html(result2[0].length);
                       for(var g =0; g < result2[0].length; g++){
