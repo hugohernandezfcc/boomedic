@@ -618,7 +618,7 @@ span.round-tab:hover {
                             }
                           }
                             {
-                             setTimeout(function(){ repeatNot(); },60000);
+                             setTimeout(function(){ repeatNot(); },120000);
                             }
                       },
                         error: function (request, status, error) {
