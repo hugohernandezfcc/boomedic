@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\professional_information;
+use App\medical_appointments;
 use Carbon\Carbon;
 use App\User;
 use Mail;
@@ -377,8 +378,11 @@ class HomeController extends Controller
          $appo = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
            ->where('medical_appointments.user_doctor', Auth::id())
+           ->whereNull('medical_appointments.aware')
            ->whereDate('medical_appointments.when', Carbon::now()->format('Y-m-d'))
-           ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age')->orderBy('medical_appointments.when')->get();
+           ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age','users.profile_photo')->orderBy('medical_appointments.when')->get();
+
+
          $appoFuture = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
            ->where('medical_appointments.user_doctor', Auth::id())
@@ -402,7 +406,16 @@ class HomeController extends Controller
                   return response()->json('listo');
                }
                return response()->json($array);  
-      }           
+      }     
+
+      public function listpatients2($id){
+        $appo = medical_appointments::find($id);
+        $appo->aware = true;
+        if($appo->save()){
+            return response()->json($appo->$id); 
+        }
+
+      }      
 
         public function logoutback(){
 

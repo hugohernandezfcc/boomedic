@@ -423,7 +423,21 @@ span.round-tab:hover {
 <script type="text/javascript">
 
 
-            //Ajax function call notify set timeout
+            //Ajax function call aware no complete
+            function sendAware(id){
+                            $.ajax({
+                                    type: "GET",    
+                                    url: "{{ url('HomeController/listpatients2') }}/"+ id, 
+                                    success: function(result){
+                                        console.log('hola mundo ' + result);
+                                        $('.modal').modal("hide");
+                                        panelDr();
+
+                      }
+                    });
+            }
+
+
             function panelDr(){
                 var doc = "@php echo session()->get('utype'); @endphp";
               if(doc == "doctor"){          
@@ -466,7 +480,7 @@ span.round-tab:hover {
                          if(result2[0][g]['status'] == 'No completed'){  
                                     $('#stateCite').append('<li><a><i class="menu-icon fa fa-calendar-times-o bg-red"></i><button type="button" class="close" data-dismiss="li" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +'" onclick=" $(this).parent().parent().fadeOut(1000);">×</button><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
 
-                                                                  $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal cancel</h4></div><div class="modal-body"></div></div></div></div>');
+                                                                   $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Detalle de cita cancelada</h4></div><div class="modal-body"><div align="center"><img src="'+ result2[0][g]['profile_photo'] +'" class="img-circle" alt="User Image" style="height: 80px;"><br>xxxxxxxxxxxxxxxxxxxxxxx<br><button class="btn btn-secondary btn-flat" onclick="sendAware('+ result2[0][g]['id'] +')">Enterado</button></div></div></div></div></div>');
                                   }
                        else{      
 
@@ -484,7 +498,8 @@ span.round-tab:hover {
                                       }
                                 if(past == 1){
                                     $('#stateCite').append('<li><a><i class="menu-icon fa fa-calendar-times-o bg-red"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p><button type="button" class="close" data-dismiss="li" aria-hidden="true" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +' onclick=" $(this).parent().parent().hide();">×</button></div></a></li>');
-                                          $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal cancel</h4></div><div class="modal-body"></div></div></div></div>');
+
+                                          $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Detalle de cita cancelada</h4></div><div class="modal-body"><div align="center"><img src="'+ result2[0][g]['profile_photo'] +'" class="img-circle" alt="User Image" style="height: 80px;"><br>xxxxxxxxxxxxxxxxxxxxxxx</div></div></div></div></div>');
 
                                     }else{
                                     $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-green" style="font-size: 11px;">' + ico + '</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
