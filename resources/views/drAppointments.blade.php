@@ -80,7 +80,8 @@ $(function() {
 						    color: '#bfbfbf',
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
-						    lug: optionhour[y].lug  						     
+						    lug: optionhour[y].lug,
+						     editable: false            						     
 						});
                  }
                 if( optionhour[y].color == "black"){
@@ -91,7 +92,7 @@ $(function() {
 						    color: '#5ad6f5',   
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
-						    lug: optionhour[y].lug       						     
+						    lug: optionhour[y].lug 						     
 						});
                  }
                 if( optionhour[y].color == "blue"){
@@ -102,7 +103,8 @@ $(function() {
 						    color: 'green',   
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
-						    lug: optionhour[y].lug       						     
+						    lug: optionhour[y].lug,
+						    editable: false       						     
 						});
                  }
                           
@@ -121,7 +123,7 @@ jQuery.noConflict(false);
 			right: 'month,basicWeek,agendaDay'
 		},
 		defaultView: 'agendaDay',
-		editable: false,
+		editable: true,
 		lang: 'es',
 		contentHeight: 'auto',
 		events: hor, 
@@ -135,6 +137,7 @@ jQuery.noConflict(false);
 	
 		  }
 	});
+
 });	 				
 </script>
 @stop
