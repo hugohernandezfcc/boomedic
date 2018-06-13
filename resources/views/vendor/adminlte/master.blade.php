@@ -423,11 +423,11 @@ span.round-tab:hover {
 <script type="text/javascript">
 
             function minutes(){
-            var x = document.getElementsByClassName("minutes");;
+            var x = document.getElementsByClassName("minutes");
               for (var i = 0; i < x.length; i++) {
                  if(x[i].innerHTML > 1){
                     var tot =parseInt(x[i].innerHTML) - 1;
-                    x[i].innerHTML(tot);
+                    x[i].innerHTML = tot;
                  }
               }
             }
@@ -565,7 +565,7 @@ span.round-tab:hover {
                                  }  
                                }
                                if($('.minutes').length > 0){
-                                  setInterval(minutes, 1000);
+                                  setInterval(minutes, 60000);
                                }
                                var totalTime = parseInt(array[0]) * 60000;
                                if(totalTime > 0)
