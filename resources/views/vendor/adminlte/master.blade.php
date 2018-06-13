@@ -422,6 +422,15 @@ span.round-tab:hover {
 
 <script type="text/javascript">
 
+            function minutes(){
+            var x = document.getElementsByClassName("minutes");;
+              for (var i = 0; i < x.length; i++) {
+                 if(x[i].innerHTML > 1){
+                    var tot =parseInt(x[i].innerHTML) - 1;
+                    x[i].innerHTML(tot);
+                 }
+              }
+            }
 
             //Ajax function call aware no complete
             function sendAware(id){
@@ -495,20 +504,26 @@ span.round-tab:hover {
 
                                     var res = tim.split(":");
                                       if(res[0] == '00'){
-                                        var ico = res[1] + 'min';
+                                        var ico = res[1];
+                                        var ico2 = 'min';
                                         var min = 1;
                                       }else{
-                                       var ico = '1H'; 
+                                       var ico = '1'; 
+                                       var ico2 = 'H';
                                        var min = 0;
                                       }
                                 if(past == 1){
-                                  $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-yellow" style="font-size: 11px;">-' + ico + '</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                   if(min == 1){
+                                  $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-yellow" style="font-size: 11px;">-<span class="minutes">'+ ico +'</span>'+ ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                }else{
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-yellow" style="font-size: 11px;">-' + ico + ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                }
 
                                     }else{
                                       if(min == 1){
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-green minutes" style="font-size: 11px;">' + ico + '</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-green" style="font-size: 11px;"><span class="minutes">'+ ico +'</span>'+ ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
                                       }else{
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-green" style="font-size: 11px;">+' + ico + '</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-green" style="font-size: 11px;">+' + ico + ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
 
                                       }
                                     }
@@ -549,11 +564,15 @@ span.round-tab:hover {
                                    }  
                                  }  
                                }
-                               
+                               if($('.minutes').length > 0){
+                                  setInterval(minutes, 1000);
+                               }
                                var totalTime = parseInt(array[0]) * 60000;
-                               console.log('setTimeout: ' + totalTime);
-                               {setTimeout(function(){ timePanel(totalTime); }, totalTime);}
-                      
+                               if(totalTime > 0)
+                               {setTimeout(function(){ timePanel(totalTime); }, totalTime); console.log('setTimeout: ' + totalTime);}
+                                else
+                               {setTimeout(function(){ timePanel(totalTime); }, 3600000); console.log('setTimeout: 1h');}
+
                               } 
                        });
               }
