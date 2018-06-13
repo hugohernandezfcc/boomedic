@@ -388,6 +388,9 @@ span.round-tab:hover {
             .none {
               display: none;
             }
+            .pointer{
+             cursor:pointer;
+            }
 </style>
 
 
@@ -422,6 +425,7 @@ span.round-tab:hover {
 
 <script type="text/javascript">
 
+          //Function for minutes appointments set interval dinamic
             function minutes(){
             var x = document.getElementsByClassName("minutes");
               for (var i = 0; i < x.length; i++) {
@@ -490,7 +494,7 @@ span.round-tab:hover {
 
 
                          if(result2[0][g]['status'] == 'No completed'){  
-                                    $('#stateCite').append('<li><a><i class="menu-icon fa fa-calendar-times-o bg-red"></i><button type="button" class="close" data-dismiss="li" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +'" onclick=" $(this).parent().parent().fadeOut(1000);">×</button><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a class="pointer"><i class="menu-icon fa fa-calendar-times-o bg-red"></i><button type="button" class="close" data-dismiss="li" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +'" onclick=" $(this).parent().parent().fadeOut(1000);">×</button><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
 
                                                                    $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Detalle de cita cancelada</h4></div><div class="modal-body"><div align="center"><img src="'+ result2[0][g]['profile_photo'] +'" class="img-circle" alt="User Image" style="height: 80px;"><br>xxxxxxxxxxxxxxxxxxxxxxx<br><button class="btn btn-secondary btn-flat" onclick="sendAware('+ result2[0][g]['id'] +')">Enterado</button></div></div></div></div></div>');
                                   }
@@ -498,7 +502,7 @@ span.round-tab:hover {
 
                               $('#tool').append('<div class="modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal x</h4></div><div class="modal-body"></div></div></div></div>');     
                          if(result2[0][g]['status'] == 'Taked'){  
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p></div></a></li>');
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p></div></a></li>');
                                   }
                          if(result2[0][g]['status'] == 'Registered'){  
 
@@ -514,16 +518,16 @@ span.round-tab:hover {
                                       }
                                 if(past == 1){
                                    if(min == 1){
-                                  $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-yellow" style="font-size: 11px;">-<span class="minutes">'+ ico +'</span>'+ ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                  $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon bg-yellow" style="font-size: 11px;">-<span class="minutes">'+ ico +'</span>'+ ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
                                 }else{
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-yellow" style="font-size: 11px;">-' + ico + ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon bg-yellow" style="font-size: 11px;">-' + ico + ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
                                 }
 
                                     }else{
                                       if(min == 1){
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-green" style="font-size: 11px;"><span class="minutes">'+ ico +'</span>'+ ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon bg-green" style="font-size: 11px;"><span class="minutes">'+ ico +'</span>'+ ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
                                       }else{
-                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'"><i class="menu-icon bg-green" style="font-size: 11px;">+' + ico + ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon bg-green" style="font-size: 11px;">+' + ico + ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
 
                                       }
                                     }
@@ -549,16 +553,16 @@ span.round-tab:hover {
                                      var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
                             if(yesterday == when){
                               $('#yesterday').removeClass('none');
-                              $('#yesterday').after('<li><a><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#yesterday').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
 
                             }
                             if(more == when){
                               $('#moreYesterday').removeClass('none');
-                              $('#moreYesterday').after('<li><a><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#moreYesterday').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
                             }    
                             if(when > more){
                               $('#more').removeClass('none');
-                              $('#more').after('<li><a><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#more').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
                             }         
 
                                    }  
