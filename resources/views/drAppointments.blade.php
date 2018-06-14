@@ -81,7 +81,7 @@ $(function() {
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
-						     editable: false            						     
+						    editable: false            						     
 						});
                  }
                 if( optionhour[y].color == "black"){
@@ -92,7 +92,8 @@ $(function() {
 						    color: '#5ad6f5',   
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
-						    lug: optionhour[y].lug 						     
+						    lug: optionhour[y].lug,
+						    editable: false   						     
 						});
                  }
                 if( optionhour[y].color == "blue"){
