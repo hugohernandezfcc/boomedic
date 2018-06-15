@@ -98,7 +98,7 @@
                       </div> 
             </div>
         <div class="col-md-3">
-          <div class="box">
+          <div class="box board">
             <div class="box-header with-border">
               <h4 class="box-title">Tablero de Eventos</h4>
               <div class="box-tools pull-right">
@@ -120,7 +120,7 @@
             <!-- /.box-body -->
           </div>
           <!-- /. box -->
-          <div class="box">
+          <div class="box board">
             <div class="box-header with-border">
               <h4 class="box-title">Crear Evento</h4>
                             <div class="box-tools pull-right">
@@ -166,6 +166,10 @@
 <script type="text/javascript">
 
   $(function () {
+  	 if("@php echo $agent->isMobile(); @endphp"){
+  	 	$('.board').addClass('collapsed-box');
+  	 }
+  	 
  var optionhour = @php echo $array;  @endphp;
           var hor = Array();
           var resp = Array();
