@@ -285,12 +285,17 @@
 
       eventRender: function(event, element) { 
              element.find(".fc-bg").css("pointer-events","none");
-             element.append("<div style='position:absolute;bottom:5px;left:5px' class='btn-group'><button type='button' id='btnDeleteEvent' class='btn btn-sm btn-default btn-flat'>Cancelar</button><button type='button' id='btnconfirm' class='btn btn-sm btn-secondary btn-flat'>Confirmar</button></div>" );
-             element.find("#btnDeleteEvent").click(function(){
-                  $('#calendar').fullCalendar('removeEvents',event.id);
+             element.append("<div style='position:absolute;bottom:5px;left:5px' class='btn-group'><button type='button' id='btnDelete"+ event._id +"' class='btn btn-sm btn-default'>Cancelar</button><button type='button' id='confirm"+ event._id +"' class='btn btn-sm btn-secondary'>Confirmar</button></div>" );
+             element.find("#btnDelete" + event._id).click(function(){
+             $('#calendar').fullCalendar('removeEvents', function(searchEvent) {
+                    return searchEvent._id === event._id;
+                  });
              })
-             element.find("#btnDeleteEvent").click(function(){
-                  $('#calendar').fullCalendar('removeEvents',event.id);
+             element.find("#confirm" + event._id).click(function(){
+                  console.log(event._id);
+                  $('#calendar').fullCalendar('removeEvents', function(searchEvent) {
+                    return searchEvent._id === event._id;
+                  });
              })
            },
 		  eventClick: function(calEvent, jsEvent, view) {
