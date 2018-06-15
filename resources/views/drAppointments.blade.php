@@ -49,6 +49,7 @@
 	                  				<li><a id="age"></a></li>
 	                  				<li><a id="lug"></a></li>
 	                  				<li><a id="start"></a></li>
+	                  				<li><button id="canceled" style="display: none;" class="btn btn-secondary btn-flat btn-block">Cancelar Cita</button></li>
 	                			</ul>
 	            				 <br/>
                             </div>
@@ -93,7 +94,8 @@ $(function() {
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
-						    editable: false   						     
+						    editable: false,
+						    typ: '1'        						     
 						});
                  }
                 if( optionhour[y].color == "blue"){
@@ -105,7 +107,8 @@ $(function() {
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
-						    editable: false       						     
+						    editable: false,
+						    typ: '1'       						     
 						});
                  }
                           
@@ -134,6 +137,12 @@ jQuery.noConflict(false);
 		  	$('#age').html('<label class="text-muted">Edad: </label> '+ calEvent.age);
 		  	$('#lug').html('<label class="text-muted">Consultorio: </label> '+ calEvent.lug);
 		  	$('#start').html('<label class="text-muted">Fecha: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
+		  	if(calEvent.typ == "1" ){
+		  		$('#canceled').css('display','block');
+		  		console.log('hola' + calEvent.color);
+		  	}else{
+		  		$('#canceled').css('display','none');	
+		  	}
 		  	jQuery("#modalsuccess").modal('toggle');
 	
 		  }
