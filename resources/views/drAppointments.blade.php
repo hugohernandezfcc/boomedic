@@ -6,8 +6,7 @@
 <style type="text/css">
 
  #calendar {
-    max-width: 98%;
-    min-width: 98%;
+
     margin: 0 auto;
   }
   .fc-toolbar h2 {
@@ -28,8 +27,11 @@
 @stop
 
 @section('content')
-
-	    <h3 class="box-title">Citas</h3>
+	<div class="box box-solid">
+		<div class="box-header with-border">
+		    <h3 class="box-title">Citas</h3>
+		</div>
+		<div class="box-body">
 
 
   		    <div class="modal fade" role="dialog" id="modalsuccess">
@@ -159,17 +161,21 @@
           </div>
         </div>
        <div class="col-md-9">
-       	<div class="box">
-		<div id='calendar'></div>
+       	<div class="box box-solid">
+       		 <div class="box-body">
+				<div id='calendar'></div>
+			</div>	
 	    </div>
 	   </div>
+</div>
+</div>	   
 <script type="text/javascript">
 
   $(function () {
   	 if("@php echo $agent->isMobile(); @endphp"){
   	 	$('.board').addClass('collapsed-box');
   	 }
-  	 
+
  var optionhour = @php echo $array;  @endphp;
           var hor = Array();
           var resp = Array();
@@ -235,7 +241,8 @@
         // it doesn't need to have a start or end
         var eventObject = {
           title: $.trim($(this).text()),
-          typ: '2' // use the element's text as the event title
+          typ: '2',
+          // use the element's text as the event title
         }
 
         // store the Event Object in the DOM element so we can get to it later
