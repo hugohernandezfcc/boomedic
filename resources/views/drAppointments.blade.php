@@ -55,6 +55,9 @@
 	                  				<li><a id="start"></a></li>
 	                  				<li><button id="canceled" style="display: none;" class="btn btn-default btn-flat btn-block" data-target="#reason" data-dismiss="modal" data-toggle="modal">Cancelar cita</button></li>
 	                			</ul>	
+	                			<ul class="nav nav-stacked" id="doc" style="display: none;">
+	                				<li><a id="start2"></a></li>
+	                			</ul>
 	            				 <br>
                             </div>
                         </div>
@@ -280,6 +283,8 @@
 		  eventClick: function(calEvent, jsEvent, view) {
 		   	if(calEvent.typ == "2" ){
 		   	$('#normal').css('display','none');
+		   	$('#doc').css('display','block');
+		    $('#start2').html('<label class="text-muted">Fecha: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
 		   	}else{	
 		   	$('#userp').css('display','block');	
 		  	$('#userp').attr('src', calEvent.photo + '?1');
@@ -290,10 +295,12 @@
 		  	if(calEvent.typ == "1" ){
 		  		$('#normal').css('display','block');
 		  		$('#canceled').css('display','block');
+		  		$('#doc').css('display','none');
 		  		$('#idcancel').val(calEvent.id);
 		  		console.log('hola' + calEvent.color);
 		  	}else{
 		  		$('#normal').css('display','block');
+				$('#doc').css('display','none');		  		
 		  		$('#canceled').css('display','none');	
 		  	}
 		  }
