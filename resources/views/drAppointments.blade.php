@@ -31,7 +31,7 @@
 		<div class="box-header with-border">
 		    <h3 class="box-title">Citas</h3>
 		</div>
-		<div class="box-body">
+		<div class="box-body" style="overflow: auto;">
 
 
   		    <div class="modal fade" role="dialog" id="modalsuccess">
@@ -57,6 +57,7 @@
 	                			</ul>	
 	                			<ul class="nav nav-stacked" id="doc" style="display: none;">
 	                				<li><a id="start2"></a></li>
+	                				<li><a id="end"></a></li>
 	                			</ul>
 	            				 <br>
                             </div>
@@ -255,7 +256,8 @@
         $(this).draggable({
           zIndex        : 1070,
           revert        : true, // will cause the event to go back to its
-          revertDuration: 0  //  original position after the drag
+          revertDuration: 0,  //  original position after the drag
+          containment: 'document'
         })
 
       })
@@ -284,7 +286,8 @@
 		   	if(calEvent.typ == "2" ){
 		   	$('#normal').css('display','none');
 		   	$('#doc').css('display','block');
-		    $('#start2').html('<label class="text-muted">Fecha: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
+		    $('#start2').html('<label class="text-muted">Fecha inicio: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
+		    $('#end').html('<label class="text-muted">Fecha final: </label> '+ moment(calEvent.end).format('DD MMM YYYY h:mm A'));
 		   	}else{	
 		   	$('#userp').css('display','block');	
 		  	$('#userp').attr('src', calEvent.photo + '?1');
