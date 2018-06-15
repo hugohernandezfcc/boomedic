@@ -77,6 +77,17 @@ class drAppointments extends Controller
      * @return \Illuminate\Http\Response
      */
  
+    public function cancelAppointment(Request $request)
+    {
+       return redirect('drAppointments/index/'. Auth::id());
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+ 
 
     public function redirecting($page)
     {

@@ -44,13 +44,15 @@
                         </div>
                             <div class="modal-body">
                             <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img></div><br/>
+                            <form enctype="multipart/form-data" action="{{ url('drAppointments/cancelAppointments') }}" method="post">
                             	<ul class="nav nav-stacked">
 	                  				<li><a id="namep"></a></li>
 	                  				<li><a id="age"></a></li>
 	                  				<li><a id="lug"></a></li>
 	                  				<li><a id="start"></a></li>
-	                  				<li><button id="canceled" style="display: none;" class="btn btn-secondary btn-flat btn-block">Cancelar Cita</button></li>
+	                  				<li><button type="submit" id="canceled" style="display: none;" class="btn btn-secondary btn-flat btn-block">Cancelar cita</button></li>
 	                			</ul>
+	                		</form>	
 	            				 <br/>
                             </div>
                         </div>

@@ -379,6 +379,11 @@ Route::group(['prefix' => 'drAppointments'], function(){
 		]
 	);
 
+	Route::post('cancelAppointment', [
+			'uses'	=>	'drAppointments@cancelAppointment',
+			'as'	=>	'cancelAppointment'
+		]
+	);	
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'drAppointments@redirecting',
 			'as'	=>	'redirecting'
