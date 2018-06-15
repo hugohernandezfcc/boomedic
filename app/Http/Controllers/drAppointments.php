@@ -80,7 +80,7 @@ class drAppointments extends Controller
  
     public function cancelAppointment(Request $request)
     {
-       $id = $request->cancelid;
+       $id = $request->idcancel;
        $appo = medical_appointments::find($id);
        $appo->status = 'No completed';
        $appo->sub_status = 'cancel by doctor';
