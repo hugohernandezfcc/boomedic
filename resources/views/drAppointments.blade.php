@@ -282,6 +282,17 @@
 		lang: 'es',
 		contentHeight: 'auto',
 		events: hor, 
+
+      eventRender: function(event, element) { 
+             element.find(".fc-bg").css("pointer-events","none");
+             element.append("<div style='position:absolute;bottom:5px;left:5px' class='btn-group'><button type='button' id='btnDeleteEvent' class='btn btn-sm btn-default btn-flat'>Cancelar</button><button type='button' id='btnconfirm' class='btn btn-sm btn-secondary btn-flat'>Confirmar</button></div>" );
+             element.find("#btnDeleteEvent").click(function(){
+                  $('#calendar').fullCalendar('removeEvents',event.id);
+             })
+             element.find("#btnDeleteEvent").click(function(){
+                  $('#calendar').fullCalendar('removeEvents',event.id);
+             })
+           },
 		  eventClick: function(calEvent, jsEvent, view) {
 		   	if(calEvent.typ == "2" ){
 		   	$('#normal').css('display','none');
