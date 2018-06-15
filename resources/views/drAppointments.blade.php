@@ -286,7 +286,7 @@
       eventRender: function(event, element) { 
         if(event.typ == "2" ){
              element.find(".fc-bg").css("pointer-events","none");
-             element.append("<div class='btn-group'><button type='button' id='btnDelete"+ event._id +"' class='btn btn-xs btn-default'>Cancelar</button><button type='button' id='confirm"+ event._id +"' class='btn btn-xs btn-secondary'>Confirmar</button></div>" );
+             element.append("<div class='btn-group'><button type='button' id='btnDelete"+ event._id +"' class='btn btn-xs btn-default' style='font-size: 9px;'>Cancel</button><button type='button' id='confirm"+ event._id +"' class='btn btn-xs btn-secondary' style='font-size: 9px;'>Confirmar</button></div>" );
              element.find("#btnDelete" + event._id).click(function(){
              $('#calendar').fullCalendar('removeEvents', function(searchEvent) {
                     return searchEvent._id === event._id;
