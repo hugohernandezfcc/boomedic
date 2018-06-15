@@ -141,14 +141,11 @@
                   <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
                   <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
                   <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a></li>
                   <li><a class="text-green" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a></li>
                   <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
                   <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
                   <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
                   <li><a class="text-gray" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-black" href="#"><i class="fa fa-square"></i></a></li>
                 </ul>
               </div>
               <!-- /btn-group -->
