@@ -43,8 +43,8 @@
                           <div align="left"><label>Información general de la cita</label></div>
                         </div>
                             <div class="modal-body">
-                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br>
-                            	<ul class="nav nav-stacked">
+                            	<ul class="nav nav-stacked" id="normal">
+                            		<div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br>
 	                  				<li><a id="namep"></a></li>
 	                  				<li><a id="age"></a></li>
 	                  				<li><a id="lug"></a></li>
@@ -221,7 +221,8 @@
         // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
         // it doesn't need to have a start or end
         var eventObject = {
-          title: $.trim($(this).text()) // use the element's text as the event title
+          title: $.trim($(this).text()),
+          typ: '2' // use the element's text as the event title
         }
 
         // store the Event Object in the DOM element so we can get to it later
@@ -257,19 +258,27 @@
 		contentHeight: 'auto',
 		events: hor, 
 		  eventClick: function(calEvent, jsEvent, view) {
+		   	if(calEvent.typ == "2" ){
+		   	$('#normal').css('display','none');
+		   	}else{	
+		   	$('#userp').css('display','block');	
 		  	$('#userp').attr('src', calEvent.photo + '?1');
 		  	$('#namep').html('<label class="text-muted">Nombre: </label> '+ calEvent.title);
 		  	$('#age').html('<label class="text-muted">Edad: </label> '+ calEvent.age);
 		  	$('#lug').html('<label class="text-muted">Consultorio: </label> '+ calEvent.lug);
 		  	$('#start').html('<label class="text-muted">Fecha: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
 		  	if(calEvent.typ == "1" ){
+		  		$('#normal').css('display','block');
 		  		$('#canceled').css('display','block');
 		  		$('#idcancel').val(calEvent.id);
 		  		console.log('hola' + calEvent.color);
 		  	}else{
+		  		$('#normal').css('display','block');
 		  		$('#canceled').css('display','none');	
 		  	}
+		  }
 		  	jQuery("#modalsuccess").modal('toggle');
+
 	
 		  },
 
