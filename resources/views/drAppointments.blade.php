@@ -43,21 +43,58 @@
                           <div align="left"><label>Información general de la cita</label></div>
                         </div>
                             <div class="modal-body">
-                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img></div><br/>
-                            <form enctype="multipart/form-data" action="{{ url('drAppointments/cancelAppointments') }}" method="post">
+                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br>
                             	<ul class="nav nav-stacked">
 	                  				<li><a id="namep"></a></li>
 	                  				<li><a id="age"></a></li>
 	                  				<li><a id="lug"></a></li>
 	                  				<li><a id="start"></a></li>
-	                  				<li><button type="submit" id="canceled" style="display: none;" class="btn btn-secondary btn-flat btn-block">Cancelar cita</button></li>
-	                			</ul>
-	                		</form>	
-	            				 <br/>
+	                  				<li><button id="canceled" style="display: none;" class="btn btn-default btn-flat btn-block" data-target="#reason" data-dismiss="modal" data-toggle="modal">Cancelar cita</button></li>
+	                			</ul>	
+	            				 <br>
                             </div>
                         </div>
                       </div> 
-                    </div>
+            </div>
+        <div class="modal fade" role="dialog" id="reason">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                         <button type="button" class="close" data-target="#modalsuccess" data-dismiss="modal" data-toggle="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div align="left"><label>Razones para cancelar la cita</label></div>
+                        </div>
+                            <div class="modal-body">
+
+                            <form enctype="multipart/form-data" action="{{ url('drAppointments/cancelAppointment') }}" method="post">
+                            	<input type="hidden" name="idcancel" id="idcancel">
+                            	<ul class="nav nav-stacked">
+                            		<li><div class="form-check">
+										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason" value="option1" checked>
+										  <label class="form-check-label" for="radioreason">
+										    Por compromiso profesional
+										  </label>
+										</div></li>
+                            		<li><div class="form-check">
+										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason2" value="option2">
+										  <label class="form-check-label" for="radioreason2">
+										    Por motivo personal
+										  </label>
+										</div></li><br>
+								    <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>		
+                            	</ul>		
+	                  			
+
+	                		</form>	
+	            				 <br>
+                            </div>
+                        </div>
+                      </div> 
+            </div>
 		<div id='calendar'></div>
 	</div>
 <script type="text/javascript">
@@ -84,7 +121,8 @@ $(function() {
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
-						    editable: false            						     
+						    editable: false ,
+						    id: optionhour[y].id            						     
 						});
                  }
                 if( optionhour[y].color == "black"){
@@ -97,7 +135,8 @@ $(function() {
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
 						    editable: false,
-						    typ: '1'        						     
+						    typ: '1',
+						    id: optionhour[y].id           						     
 						});
                  }
                 if( optionhour[y].color == "blue"){
@@ -110,7 +149,8 @@ $(function() {
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
 						    editable: false,
-						    typ: '1'       						     
+						    typ: '1',
+						    id: optionhour[y].id          						     
 						});
                  }
                           
@@ -141,6 +181,7 @@ jQuery.noConflict(false);
 		  	$('#start').html('<label class="text-muted">Fecha: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
 		  	if(calEvent.typ == "1" ){
 		  		$('#canceled').css('display','block');
+		  		$('#idcancel').val(calEvent.id);
 		  		console.log('hola' + calEvent.color);
 		  	}else{
 		  		$('#canceled').css('display','none');	

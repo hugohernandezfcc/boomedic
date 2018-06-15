@@ -36,6 +36,7 @@ class drAppointments extends Controller
             ->join('workboard', 'labor_information.id', '=', 'workboard.labInformation')
             ->join('users', 'medical_appointments.user', '=', 'users.id')
             ->where('medical_appointments.user_doctor', '=', Auth::id())
+            ->where('medical_appointments.status', '!=', 'No completed')
             ->select('medical_appointments.*', 'users.name', 'users.profile_photo','users.age', 'labor_information.workplace as place', 'workboard.patient_duration_attention')
             ->get();
             $appo2 = $appo->unique('id');
@@ -79,6 +80,11 @@ class drAppointments extends Controller
  
     public function cancelAppointment(Request $request)
     {
+       $id = $request->cancelid;
+       $appo = medical_appointments::find($id);
+       $appo->status = 'No completed';
+       $appo->sub_status = 'cancel by doctor';
+       $appo->save();
        return redirect('drAppointments/index/'. Auth::id());
     }
 
