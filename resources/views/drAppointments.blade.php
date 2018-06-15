@@ -284,9 +284,9 @@
 		events: hor, 
 
       eventRender: function(event, element) { 
-        if(calEvent.typ == "2" ){
+        if(event.typ == "2" ){
              element.find(".fc-bg").css("pointer-events","none");
-             element.append("<div style='position:absolute;bottom:5px;left:5px' class='btn-group'><button type='button' id='btnDelete"+ event._id +"' class='btn btn-sm btn-default'>Cancelar</button><button type='button' id='confirm"+ event._id +"' class='btn btn-sm btn-secondary'>Confirmar</button></div>" );
+             element.append("<div style='position:absolute;bottom:5px;left:5px' class='btn-group'><button type='button' id='btnDelete"+ event._id +"' class='btn btn-xs btn-default'>Cancelar</button><button type='button' id='confirm"+ event._id +"' class='btn btn-xs btn-secondary'>Confirmar</button></div>" );
              element.find("#btnDelete" + event._id).click(function(){
              $('#calendar').fullCalendar('removeEvents', function(searchEvent) {
                     return searchEvent._id === event._id;
