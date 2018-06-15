@@ -284,6 +284,7 @@
 		events: hor, 
 
       eventRender: function(event, element) { 
+        if(calEvent.typ == "2" ){
              element.find(".fc-bg").css("pointer-events","none");
              element.append("<div style='position:absolute;bottom:5px;left:5px' class='btn-group'><button type='button' id='btnDelete"+ event._id +"' class='btn btn-sm btn-default'>Cancelar</button><button type='button' id='confirm"+ event._id +"' class='btn btn-sm btn-secondary'>Confirmar</button></div>" );
              element.find("#btnDelete" + event._id).click(function(){
@@ -297,14 +298,10 @@
                     return searchEvent._id === event._id;
                   });
              })
+           }
            },
 		  eventClick: function(calEvent, jsEvent, view) {
-		   	if(calEvent.typ == "2" ){
-		   	$('#normal').css('display','none');
-		   	$('#doc').css('display','block');
-		    $('#start2').html('<label class="text-muted">Fecha inicio: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
-		    $('#end').html('<label class="text-muted">Fecha final: </label> '+ moment(calEvent.end).format('DD MMM YYYY h:mm A'));
-		   	}else{	
+		   	if(calEvent.typ != "2" ){
 		   	$('#userp').css('display','block');	
 		  	$('#userp').attr('src', calEvent.photo + '?1');
 		  	$('#namep').html('<label class="text-muted">Nombre: </label> '+ calEvent.title);
@@ -322,8 +319,9 @@
 				$('#doc').css('display','none');		  		
 		  		$('#canceled').css('display','none');	
 		  	}
-		  }
+		  
 		  	jQuery("#modalsuccess").modal('toggle');
+      }
 
 	
 		  },
