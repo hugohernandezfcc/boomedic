@@ -345,11 +345,11 @@
              })
              element.find("#confirm" + event._id).click(function(){
                   console.log(event._id);
-                  $('#startTime').val(moment(event.start).format('MM/DD/YYYY h:mm'));
+                  $('#startTime').val(moment(event.start).format('MM/DD/YYYY HH:mm'));
                    $('#title').val(event.title
                     );
                   if(event.end){
-                   $('#endTime').val(moment(event.end).format('MM/DD/YYYY h:mm'));  
+                   $('#endTime').val(moment(event.end).format('MM/DD/YYYY HH:mm'));  
                   }else{
                    $('#endTime').val(''); 
                   }
