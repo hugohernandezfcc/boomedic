@@ -103,6 +103,28 @@
                         </div>
                       </div> 
             </div>
+            <!--Event Doc information and edit :) -->
+            <div class="modal fade" role="dialog" id="eventDoc">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div align="left"><label>Evento Doctor</label></div>
+                        </div>
+                            <div class="modal-body">
+                              <ul class="nav nav-stacked">
+                              <li><button class="btn btn-default btn-flat btn-block">Eliminar</button></li>
+                            </ul>
+                            </div>
+                        </div>
+                      </div> 
+            </div>
+            <!--Event Doc information and edit -->
                   <div class="modal fade" role="dialog" id="confirm">
                     <div class="modal-dialog modal-sm">
 
@@ -408,6 +430,8 @@
 		  	}
 		  
 		  	jQuery("#modalsuccess").modal('toggle');
+      }else{
+        jQuery("#eventDoc").modal('toggle');
       }
 
 	
