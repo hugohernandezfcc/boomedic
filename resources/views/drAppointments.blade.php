@@ -227,10 +227,11 @@
                      resp2 = optionhour[y].user;
                      resp3 = optionhour[y].color;
 
-                     if( optionhour[y].color == "gray"){
+          if(optionhour[y].type == "1"){
+                if( optionhour[y].color == "gray"){
           
-                     hor.push({  
-						 	title: resp2,
+                hor.push({  
+						 	  title: resp2,
 						    start:  resp,
 						    end:    optionhour[y].end['date'], 
 						    color: '#bfbfbf',
@@ -238,12 +239,13 @@
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
 						    editable: false ,
+                 typ: '4',
 						    id: optionhour[y].id            						     
 						});
                  }
                 if( optionhour[y].color == "black"){
-                     hor.push({  
-						 	title: resp2,
+                hor.push({  
+						 	  title: resp2,
 						    start:  resp, 
 						    end:    optionhour[y].end['date'], 
 						    color: '#5ad6f5',   
@@ -256,8 +258,8 @@
 						});
                  }
                 if( optionhour[y].color == "blue"){
-                     hor.push({  
-						 	title: resp2,
+                hor.push({  
+						 	  title: resp2,
 						    start:  resp, 
 						    end:    optionhour[y].end['date'], 
 						    color: 'green',   
@@ -268,6 +270,18 @@
 						    typ: '1',
 						    id: optionhour[y].id          						     
 						});
+                   }
+                 }else{
+                hor.push({  
+                title:  optionhour[y].title,
+                start:  resp, 
+                end:    optionhour[y].end, 
+                color: 'red',   
+                editable: false,
+                typ: '3',
+                id: optionhour[y].id                           
+            });
+
                  }
                           
                        
@@ -331,11 +345,11 @@
              })
              element.find("#confirm" + event._id).click(function(){
                   console.log(event._id);
-                  $('#startTime').val(moment(event.start).format('DD/MM/YYYY h:mm'));
+                  $('#startTime').val(moment(event.start).format('MM/DD/YYYY h:mm'));
                    $('#title').val(event.title
                     );
                   if(event.end){
-                   $('#endTime').val(moment(event.end).format('DD/MM/YYYY h:mm'));  
+                   $('#endTime').val(moment(event.end).format('MM/DD/YYYY h:mm'));  
                   }else{
                    $('#endTime').val(''); 
                   }
@@ -344,7 +358,7 @@
            }
            },
 		  eventClick: function(calEvent, jsEvent, view) {
-		   	if(calEvent.typ != "2" ){
+		   	if(calEvent.typ != "3" ){
 		   	$('#userp').css('display','block');	
 		  	$('#userp').attr('src', calEvent.photo + '?1');
 		  	$('#namep').html('<label class="text-muted">Nombre: </label> '+ calEvent.title);
@@ -380,7 +394,7 @@
 
         // assign it the date that was reported
         copiedEventObject.start           = date
-        copiedEventObject.end          =  moment(date).add(1, 'hours')
+        copiedEventObject.end          =  moment(date).add(2, 'hours')
         copiedEventObject.allDay          = allDay
         copiedEventObject.backgroundColor = $(this).css('background-color')
         copiedEventObject.borderColor     = $(this).css('border-color')
