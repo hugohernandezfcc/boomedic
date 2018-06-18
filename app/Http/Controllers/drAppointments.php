@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
+use App\time_blockers;
 use App\medical_appointments;
 use Carbon\Carbon;
 
@@ -85,6 +86,24 @@ class drAppointments extends Controller
        $appo->status = 'No completed';
        $appo->sub_status = 'cancel by doctor';
        $appo->save();
+       return redirect('drAppointments/index/'. Auth::id());
+    }
+
+        /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+ 
+    public function confirmTimeBlocker(Request $request)
+    {
+       $id = $request->idconfirm;
+       $blocker = time_blockers::find($id);
+       $blocker->type = ;
+       $blocker->start = ;
+       $blocker->end = ;
+       $blocker->professional_inf = ;
+       $blocker->save();
        return redirect('drAppointments/index/'. Auth::id());
     }
 

@@ -384,6 +384,13 @@ Route::group(['prefix' => 'drAppointments'], function(){
 			'as'	=>	'cancelAppointment'
 		]
 	);	
+
+	Route::post('confirmTimeBlocker', [
+			'uses'	=>	'drAppointments@confirmTimeBlocker',
+			'as'	=>	'confirmTimeBlocker'
+		]
+	);
+		
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'drAppointments@redirecting',
 			'as'	=>	'redirecting'
