@@ -47,11 +47,21 @@ class HomeController extends Controller
         $join = DB::table('professional_information')
             ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
             ->join('users', 'professional_information.user', '=', 'users.id')
-            ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'users.id AS dr', 'users.profile_photo')
+            ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'professional_information.id as prof', 'users.id AS dr', 'users.profile_photo')
             ->get();
+         $time_blockers =  DB::table('time_blockers')->get();
+         $cites = DB::table('medical_appointments')->get();
+ 
+         /*$cites = DB::table('medical_appointments')
+         ->join('professional_information', 'medical_appointments.user_doctor','=', 'professional_information.user')
+         ->join('time_blockers', 'professional_information.user','=', 'time_blockers.professional_inf')
+         ->whereNotBetween('medical_appointments',['time_blockers.start', 'time_blockers.end'])
+         ->select('*.medical_appointments','time_blockers.start', 'time_blockers.end')
+         ->get();*/
+        
 
-                 $cites = DB::table('medical_appointments')->get();
-                 $workboard = DB::table('workboard')->get();
+         $workboard = DB::table('workboard')->get();
+
              foreach($join as $labor){
                  $workArray = array();
                  $cite = array();
@@ -62,7 +72,6 @@ class HomeController extends Controller
                              }
                           }
 
-                
                           foreach($workboard  as $work){
                             if($work->labInformation == $labor->id){
                                 array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
