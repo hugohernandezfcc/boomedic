@@ -117,7 +117,7 @@
                         </div>
                             <div class="modal-body" style="padding-top: 0px !important">
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post">
-                              <input type="hidden" name="id" id="id">
+                              <input type="hidden" name="title" id="title">
                               <ul class="nav nav-stacked">
                                 <li>Inicio: <input type="text" name="start" id="startTime" class="form-control"></li>
                                 <li>Final: <input type="text" name="end" id="endTime"  class="form-control"></li>
@@ -332,6 +332,7 @@
              element.find("#confirm" + event._id).click(function(){
                   console.log(event._id);
                   $('#startTime').val(moment(event.start).format('DD/MM/YYYY h:mm'));
+                   $('#title').val(event.title);
                   if(event.end){
                    $('#endTime').val(moment(event.end).format('DD/MM/YYYY h:mm'));  
                   }else{
@@ -378,6 +379,7 @@
 
         // assign it the date that was reported
         copiedEventObject.start           = date
+        copiedEventObject.end          =  moment(date).add(1, 'hours')
         copiedEventObject.allDay          = allDay
         copiedEventObject.backgroundColor = $(this).css('background-color')
         copiedEventObject.borderColor     = $(this).css('border-color')
