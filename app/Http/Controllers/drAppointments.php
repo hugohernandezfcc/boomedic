@@ -67,7 +67,7 @@ class drAppointments extends Controller
                                 }
                                   }
                         foreach($time2  as $ti){
-                            array_push($array, ["id" => $ti->id, "start" => $ti->start, "user" => $user->name, "color" => "green", "photo" => $user->profile_photo, "age" => $user->age, "title" => $ti->horary, "end" => $ti->end, "type" => "3"]);
+                            array_push($array, ["id" => $ti->id, "start" => $ti->start, "user" => $user->name, "color" => "green", "photo" => $user->profile_photo, "age" => $user->age, "title" => $ti->title, "color" => $ti->color, "end" => $ti->end, "type" => "3"]);
                         }           
 
             
@@ -109,20 +109,22 @@ class drAppointments extends Controller
        $prof = DB::table('professional_information')->where('user', Auth::id())->first(); 
         $blocker = new time_blockers;
        if($request->t == "1"){
-       $blocker->start = $request->start;
-       $blocker->end = $request->end;
-       $blocker->type = $request->radio;
-       $blocker->horary = $request->title;
+       $blocker->start            = $request->start;
+       $blocker->end              = $request->end;
+       $blocker->type             = $request->radio;
+       $blocker->title            = $request->title;
        $blocker->professional_inf = $prof->id;
+       $blocker->color            = $request->color;
        }
        else{
        $start =  Carbon::parse($request->date)->format('m-d-Y') . ' ' . $request->start;   
        $end = Carbon::parse($request->date)->format('m-d-Y') . ' ' . $request->end;   
-       $blocker->start = $start;
-       $blocker->end = $end;
-       $blocker->type = $request->radio;
-       $blocker->horary = $request->title;
+       $blocker->start            = $start;
+       $blocker->end              = $end;
+       $blocker->type             = $request->radio;
+       $blocker->title            = $request->title;
        $blocker->professional_inf = $prof->id;
+       $blocker->color            = $request->color;
          }
        if($blocker->save()){
        return redirect('drAppointments/index/'. Auth::id());

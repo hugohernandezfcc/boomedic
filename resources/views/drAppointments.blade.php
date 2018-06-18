@@ -118,6 +118,7 @@
                             <div class="modal-body" style="padding-top: 0px !important">
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event1">
                               <input type="hidden" name="title" id="title">
+                              <input type="hidden" name="color" id="color1">
                               <input type="hidden" name="t" id="t" value="1">
                               <ul class="nav nav-stacked">
                                 <li>Inicio: <input type="text" name="start" id="startTime" class="form-control"></li>
@@ -140,6 +141,7 @@
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event2" style="display: none;">
                               <input type="hidden" name="t" id="t" value="2">
                               <input type="hidden" name="title" id="title2">
+                              <input type="hidden" name="color" id="color2">
                               <ul class="nav nav-stacked">
                                 <li>Fecha: <input type="date" name="date" id="date" class="form-control"></li>
                                 <li>Hora inicio: <input type="time" name="start" id="startTime" class="form-control"></li>
@@ -303,7 +305,7 @@
                 title:  optionhour[y].title,
                 start:  resp, 
                 end:    optionhour[y].end, 
-                color: 'red',   
+                color:  optionhour[y].color,   
                 editable: false,
                 typ: '3',
                 id: optionhour[y].id                           
@@ -374,8 +376,8 @@
              element.find("#confirm" + event._id).click(function(){
                   console.log(event._id);
                   $('#startTime').val(moment(event.start).format('MM/DD/YYYY HH:mm'));
-                   $('#title').val(event.title
-                    );
+                   $('#title').val(event.title);
+                   $('#color').val(event.color);
                   if(event.end){
                    $('#endTime').val(moment(event.end).format('MM/DD/YYYY HH:mm'));  
                   }else{
@@ -457,6 +459,7 @@
           jQuery("#confirm").modal('toggle');
           var val = $('#new-event').val();
           $('#title2').val(val);
+          $('#color2').val(currColor);
          }else{
       //Get value and make sure it is not null
       var val = $('#new-event').val()
@@ -465,6 +468,7 @@
       }
 
       //Create events
+      $('#color1').val(currColor);
       var event = $('<div />')
       event.css({
         'background-color': currColor,
