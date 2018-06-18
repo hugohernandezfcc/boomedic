@@ -358,7 +358,7 @@
            }
            },
 		  eventClick: function(calEvent, jsEvent, view) {
-		   	if(calEvent.typ != "3" ){
+		   	if(calEvent.typ != "3"  && calEvent.typ != "2"){
 		   	$('#userp').css('display','block');	
 		  	$('#userp').attr('src', calEvent.photo + '?1');
 		  	$('#namep').html('<label class="text-muted">Nombre: </label> '+ calEvent.title);
