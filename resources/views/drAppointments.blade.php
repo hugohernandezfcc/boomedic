@@ -165,28 +165,6 @@
                       </div> 
                   </div>  
         <div class="col-md-3">
-          <div class="box board ev">
-            <div class="box-header with-border">
-              <h4 class="box-title">Tablero de Eventos</h4>
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>  
-            </div>
-            <div class="box-body">
-              <!-- the events -->
-              <div id="external-events">
-                <div class="checkbox">
-                  <label for="drop-remove">
-                    <input type="checkbox" id="drop-remove">
-                   Remover despues de mover
-                  </label>
-                </div>
-                <label class="text-red" style="font-size: 11px;">*Estos eventos apartaran tiempo en que no podrá dar citas</label>
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
           <!-- /. box -->
           <div class="box board">
             <div class="box-header with-border">
@@ -219,8 +197,32 @@
                 </div>
                 <!-- /btn-group -->
               </div>
+              <label class="text-red" style="font-size: 11px;">*Estos eventos apartaran tiempo en que no podrá dar citas</label>
               <!-- /input-group -->
             </div>
+            <!--box table -->
+            <div class="box board ev">
+            <div class="box-header with-border">
+              <h4 class="box-title">Tablero de Eventos</h4>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>  
+            </div>
+            <div class="box-body">
+              <!-- the events -->
+              <div id="external-events">
+                <div class="checkbox">
+                  <label for="drop-remove">
+                    <input type="checkbox" id="drop-remove">
+                   Remover despues de mover
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
           </div>
         </div>
        <div class="col-md-9">
