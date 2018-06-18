@@ -116,8 +116,9 @@
                           <div align="left"><label>Crear evento</label></div>
                         </div>
                             <div class="modal-body" style="padding-top: 0px !important">
-                            <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post">
+                            <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event1">
                               <input type="hidden" name="title" id="title">
+                              <input type="hidden" name="t" id="t" value="1">
                               <ul class="nav nav-stacked">
                                 <li>Inicio: <input type="text" name="start" id="startTime" class="form-control"></li>
                                 <li>Final: <input type="text" name="end" id="endTime"  class="form-control"></li>
@@ -135,16 +136,36 @@
                               </div></li><br>
                               <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>    
                               </ul>   
-                          
-
-                      </form> 
+                          </form> 
+                            <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event2" style="display: none;">
+                              <input type="hidden" name="t" id="t" value="2">
+                              <input type="hidden" name="title" id="title2">
+                              <ul class="nav nav-stacked">
+                                <li>Fecha: <input type="date" name="date" id="date" class="form-control"></li>
+                                <li>Hora inicio: <input type="time" name="start" id="startTime" class="form-control"></li>
+                                <li>Hora final: <input type="time" name="end" id="endTime"  class="form-control"></li>
+                                <li>Razones para apartar ese horario: <br><div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio" id="radio" value="professional commitment" checked>
+                                <label class="form-check-label" for="radio">
+                                 Compromiso profesional
+                                </label>
+                                </div></li>
+                                <li><div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio" id="radio2" value="Isnt possible attended">
+                                <label class="form-check-label" for="radio2">
+                                  Es imposible atender
+                                </label>
+                              </div></li><br>
+                              <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>    
+                              </ul>   
+                          </form> 
                        <br>
                             </div>
                         </div>
                       </div> 
-            </div>  
+                  </div>  
         <div class="col-md-3">
-          <div class="box board">
+          <div class="box board ev">
             <div class="box-header with-border">
               <h4 class="box-title">Tablero de Eventos</h4>
               <div class="box-tools pull-right">
@@ -216,6 +237,9 @@
   $(function () {
   	 if("@php echo $agent->isMobile(); @endphp"){
   	 	$('.board').addClass('collapsed-box');
+      $('.ev').css('display','none');
+      $('#event1').css('display','none');
+      $('#event2').css('display','block');
   	 }
 
  var optionhour = @php echo $array;  @endphp;
@@ -311,6 +335,7 @@
           revertDuration: 0,  //  original position after the drag
           containment: 'document'
         })
+
 
       })
     }
@@ -426,6 +451,11 @@
     })
     $('#add-new-event').click(function (e) {
       e.preventDefault()
+     if("@php echo $agent->isMobile(); @endphp"){
+          jQuery("#confirm").modal('toggle');
+          var val = $('#new-event').val();
+          $('#title2').val(val);
+         }else{
       //Get value and make sure it is not null
       var val = $('#new-event').val()
       if (val.length == 0) {
@@ -447,6 +477,7 @@
 
       //Remove event from text input
       $('#new-event').val('')
+    }
     })
   })			
 </script>

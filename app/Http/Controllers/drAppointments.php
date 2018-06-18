@@ -107,12 +107,23 @@ class drAppointments extends Controller
     public function confirmTimeBlocker(Request $request)
     {
        $prof = DB::table('professional_information')->where('user', Auth::id())->first(); 
-       $blocker = new time_blockers;
+        $blocker = new time_blockers;
+       if($request->t == "1"){
        $blocker->start = $request->start;
        $blocker->end = $request->end;
        $blocker->type = $request->radio;
        $blocker->horary = $request->title;
        $blocker->professional_inf = $prof->id;
+       }
+       else{
+       $start =  Carbon::parse($request->date)->format('m-d-Y') . ' ' . $request->start;   
+       $end = Carbon::parse($request->date)->format('m-d-Y') . ' ' . $request->end;   
+       $blocker->start = $start;
+       $blocker->end = $end;
+       $blocker->type = $request->radio;
+       $blocker->horary = $request->title;
+       $blocker->professional_inf = $prof->id;
+         }
        if($blocker->save()){
        return redirect('drAppointments/index/'. Auth::id());
      }
