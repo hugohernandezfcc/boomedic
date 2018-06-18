@@ -50,14 +50,16 @@ class HomeController extends Controller
             ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'users.id AS dr', 'users.profile_photo')
             ->get();
 
-                
+                 $cites = DB::table('medical_appointments')->get();
 
              foreach($join as $labor){
                  $workArray = array();
                  $cite = array();
-                  $cites = DB::table('medical_appointments') ->where('user_doctor', '=', $labor->dr)->get();
+                       
                           foreach($cites  as $cit){
+                            if($cit->user_doctor == $labor->dr){
                             array_push($cite, $cit->when);
+                             }
                           }
 
                 $workboard = DB::table('workboard') ->where('workboard.labInformation', '=', $labor->id)->get();
