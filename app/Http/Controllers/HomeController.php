@@ -49,22 +49,18 @@ class HomeController extends Controller
             ->join('users', 'professional_information.user', '=', 'users.id')
             ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'professional_information.id as prof', 'users.id AS dr', 'users.profile_photo')
             ->get();
-         $time_blockers =  DB::table('time_blockers')->get();
+         $time_blockers =  DB::table('time_blockers')
+         ->join('labor_information', 'time_blockers.professional_inf','=', 'labor_information.profInformation')
+         ->select('time_blockers.*', 'labor_information.id as lab')
+         ->get();
+
          $cites = DB::table('medical_appointments')->get();
- 
-         /*$cites = DB::table('medical_appointments')
-         ->join('professional_information', 'medical_appointments.user_doctor','=', 'professional_information.user')
-         ->join('time_blockers', 'professional_information.user','=', 'time_blockers.professional_inf')
-         ->whereNotBetween('medical_appointments',['time_blockers.start', 'time_blockers.end'])
-         ->select('*.medical_appointments','time_blockers.start', 'time_blockers.end')
-         ->get();*/
-        
-
          $workboard = DB::table('workboard')->get();
-
+             $workArray = array();
+             $cite = array();
+             $blocker = array();
              foreach($join as $labor){
-                 $workArray = array();
-                 $cite = array();
+
                        
                           foreach($cites  as $cit){
                             if($cit->user_doctor == $labor->dr){
@@ -73,10 +69,22 @@ class HomeController extends Controller
                           }
 
                           foreach($workboard  as $work){
+
                             if($work->labInformation == $labor->id){
+                                if(count($time_blockers) > 0){
+                                 foreach($time_blockers  as $block){
+                                    if($block->lab == $labor->id){
+                                    $d = Carbon::parse($block->start)->day; 
+                                    //if($work->workingDays == $d)   
+                                    Session(['day' => $d]);
+                                     
+                                  }else{
                                 array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
+                                    }
+                                 }
                              }
                           }
+                      }
 
 
 
