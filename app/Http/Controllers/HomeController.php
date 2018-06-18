@@ -51,7 +51,7 @@ class HomeController extends Controller
             ->get();
 
                  $cites = DB::table('medical_appointments')->get();
-
+                 $workboard = DB::table('workboard')->get();
              foreach($join as $labor){
                  $workArray = array();
                  $cite = array();
@@ -62,9 +62,11 @@ class HomeController extends Controller
                              }
                           }
 
-                $workboard = DB::table('workboard') ->where('workboard.labInformation', '=', $labor->id)->get();
+                
                           foreach($workboard  as $work){
-                            array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
+                            if($work->labInformation == $labor->id){
+                                array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
+                             }
                           }
 
 
