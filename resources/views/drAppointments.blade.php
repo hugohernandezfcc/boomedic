@@ -161,6 +161,7 @@
                    Remover despues de mover
                   </label>
                 </div>
+                <label class="text-red" style="font-size: 11px;">*Estos eventos apartaran tiempo en que no podrá dar citas</label>
               </div>
             </div>
             <!-- /.box-body -->
@@ -337,7 +338,7 @@
       eventRender: function(event, element) { 
         if(event.typ == "2" ){
              element.find(".fc-bg").css("pointer-events","none");
-             element.append("<div class='btn-group'><button type='button' id='btnDelete"+ event._id +"' class='btn btn-xs btn-default' style='font-size: 10px;'>Cancel</button><button type='button' id='confirm"+ event._id +"' class='btn btn-xs btn-secondary' style='font-size: 10px;'>Confirmar</button></div>" );
+             element.append("<div class='btn-group'><button type='button' id='btnDelete"+ event._id +"' class='btn btn-xs btn-default' style='font-size: 10px;'>Cancelar</button><button type='button' id='confirm"+ event._id +"' class='btn btn-xs btn-secondary' style='font-size: 10px;'>Confirmar</button></div>" );
              element.find("#btnDelete" + event._id).click(function(){
              $('#calendar').fullCalendar('removeEvents', function(searchEvent) {
                     return searchEvent._id === event._id;
