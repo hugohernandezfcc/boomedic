@@ -103,6 +103,46 @@
                         </div>
                       </div> 
             </div>
+                  <div class="modal fade" role="dialog" id="confirm">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                         <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div align="left"><label>Crear evento</label></div>
+                        </div>
+                            <div class="modal-body" style="padding-top: 0px !important">
+                            <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post">
+                              <input type="hidden" name="id" id="id">
+                              <ul class="nav nav-stacked">
+                                <li>Inicio: <input type="text" name="start" id="startTime" class="form-control"></li>
+                                <li>Final: <input type="text" name="end" id="endTime"  class="form-control"></li>
+                                <li>Razones para apartar ese horario: <br><div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio" id="radio" value="option1" checked>
+                                <label class="form-check-label" for="radio">
+                                 Compromiso profesional
+                                </label>
+                                </div></li>
+                                <li><div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio" id="radio2" value="option2">
+                                <label class="form-check-label" for="radio2">
+                                  Es imposible atender
+                                </label>
+                              </div></li><br>
+                              <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>    
+                              </ul>   
+                          
+
+                      </form> 
+                       <br>
+                            </div>
+                        </div>
+                      </div> 
+            </div>  
         <div class="col-md-3">
           <div class="box board">
             <div class="box-header with-border">
@@ -129,7 +169,7 @@
           <div class="box board">
             <div class="box-header with-border">
               <h4 class="box-title">Crear Evento</h4>
-                            <div class="box-tools pull-right">
+              <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>  
@@ -291,9 +331,13 @@
              })
              element.find("#confirm" + event._id).click(function(){
                   console.log(event._id);
-                  $('#calendar').fullCalendar('removeEvents', function(searchEvent) {
-                    return searchEvent._id === event._id;
-                  });
+                  $('#startTime').val(moment(event.start).format('DD/MM/YYYY h:mm'));
+                  if(event.end){
+                   $('#endTime').val(moment(event.end).format('DD/MM/YYYY h:mm'));  
+                  }else{
+                   $('#endTime').val(''); 
+                  }
+                  jQuery("#confirm").modal('toggle');
              })
            }
            },

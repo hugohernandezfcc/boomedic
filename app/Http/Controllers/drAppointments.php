@@ -99,11 +99,6 @@ class drAppointments extends Controller
     {
        $id = $request->idconfirm;
        $blocker = time_blockers::find($id);
-       $blocker->type = ;
-       $blocker->start = ;
-       $blocker->end = ;
-       $blocker->professional_inf = ;
-       $blocker->save();
        return redirect('drAppointments/index/'. Auth::id());
     }
 
