@@ -166,11 +166,11 @@
                   </div>  
         <div class="col-md-3">
           <!-- /. box -->
-          <div class="box board">
+          <div class="box">
             <div class="box-header with-border">
               <h4 class="box-title">Crear Evento</h4>
               <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-box-tool board" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>  
             </div>
@@ -201,11 +201,11 @@
               <!-- /input-group -->
             </div>
             <!--box table -->
-            <div class="box board ev">
+            <div class="box ev">
             <div class="box-header with-border">
               <h4 class="box-title">Tablero de Eventos</h4>
               <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-box-tool board" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>  
             </div>
@@ -238,8 +238,8 @@
 
   $(function () {
   	 if("@php echo $agent->isMobile(); @endphp"){
-  	 	$('.board').addClass('collapsed-box');
       $('.ev').css('display','none');
+  	 	$('.board').click();
       $('#event1').css('display','none');
       $('#event2').css('display','block');
   	 }
