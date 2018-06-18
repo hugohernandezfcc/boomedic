@@ -32,7 +32,7 @@ class drAppointments extends Controller
      */
     public function index(){
         $user = User::find(Auth::id());
-           $appo =DB::table('medical_appointments')
+           $appo = DB::table('medical_appointments')
             ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
             ->join('workboard', 'labor_information.id', '=', 'workboard.labInformation')
             ->join('users', 'medical_appointments.user', '=', 'users.id')
@@ -97,9 +97,16 @@ class drAppointments extends Controller
  
     public function confirmTimeBlocker(Request $request)
     {
-       $id = $request->idconfirm;
-       $blocker = time_blockers::find($id);
+       $prof = DB::table('professional_information')->where('user', Auth::id())->first(); 
+       $blocker = new time_blockers;
+       $blocker->start = $request->start;
+       $blocker->end = $request->end;
+       $blocker->type = $request->radio;
+       $blocker->horary = $request->title;
+       $blocker->professional_inf = $prof->id;
+       if($blocker->save()){
        return redirect('drAppointments/index/'. Auth::id());
+     }
     }
 
     /**

@@ -122,13 +122,13 @@
                                 <li>Inicio: <input type="text" name="start" id="startTime" class="form-control"></li>
                                 <li>Final: <input type="text" name="end" id="endTime"  class="form-control"></li>
                                 <li>Razones para apartar ese horario: <br><div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio" id="radio" value="option1" checked>
+                                <input class="form-check-input" type="radio" name="radio" id="radio" value="professional commitment" checked>
                                 <label class="form-check-label" for="radio">
                                  Compromiso profesional
                                 </label>
                                 </div></li>
                                 <li><div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio" id="radio2" value="option2">
+                                <input class="form-check-input" type="radio" name="radio" id="radio2" value="Isnt possible attended">
                                 <label class="form-check-label" for="radio2">
                                   Es imposible atender
                                 </label>
@@ -332,7 +332,8 @@
              element.find("#confirm" + event._id).click(function(){
                   console.log(event._id);
                   $('#startTime').val(moment(event.start).format('DD/MM/YYYY h:mm'));
-                   $('#title').val(event.title);
+                   $('#title').val(event.title
+                    );
                   if(event.end){
                    $('#endTime').val(moment(event.end).format('DD/MM/YYYY h:mm'));  
                   }else{
