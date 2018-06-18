@@ -74,7 +74,7 @@ class HomeController extends Controller
                                 if(count($time_blockers) > 0){
                                  foreach($time_blockers  as $block){
                                     if($block->lab == $labor->id){
-                                    $d = Carbon::parse($block->start)->day; 
+                                    $d = Carbon::parse($block->start)->format('l'); 
                                     //if($work->workingDays == $d)   
                                     Session(['day' => $d]);
                                      

@@ -13,7 +13,9 @@ class time_blockers extends Model
 		'horary',
 		'start', //datetime
 		'end',  //datetime
-		'professional_inf'
+		'professional_inf',
+		'title',
+		'color'
 
     ];
 
