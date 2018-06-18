@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class time_blokers extends Model
+class time_blockers extends Model
 {
-    protected $table = "time_blokers ";
+    protected $table = "time_blockers ";
     protected $fillable = [
     	'id',
 		'type',  //Type Enum: professional commitment / Isnt possible attended
