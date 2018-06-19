@@ -125,7 +125,8 @@
                                 <li>Fin <input type="text" class="form-control" name="endEdit" id="endEdit"></li>
                                 <br>
                                 <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Guardar edición</button></li>
-                                <li><button class="btn btn-default btn-flat btn-block">Eliminar</button></li>
+                                <li><a id="deleteT" class="btn btn-default btn-flat btn-block" onclick ="return confirm('¿Seguro desea eliminarlo?')">
+                                <i class="fa fa-trash text-muted"></i> Eliminar evento</a></li>
                             </ul>
                             </form>
                             </div>
@@ -441,6 +442,7 @@
       }if(calEvent.typ == "3"){
         $('#idEdit').val(calEvent.id);
         $('#titleEdit').val(calEvent.title);
+        $('#deleteT').attr("href","{{ url('drAppointments/deleteBlocker') }}/" + calEvent.id);
         $('#startEdit').val(moment(calEvent.start).format('MM/DD/YYYY HH:mm'));
         $('#endEdit').val(moment(calEvent.end).format('MM/DD/YYYY HH:mm'));
          jQuery("#eventDoc").modal('toggle');

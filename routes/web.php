@@ -396,6 +396,12 @@ Route::group(['prefix' => 'drAppointments'], function(){
 			'as'	=>	'editTimeBlocker'
 		]
 	);	
+	Route::get('deleteBlocker/{id}', [
+			'uses'	=>	'drAppointments@destroy',
+			'as'	=>	'destroy'
+		]
+	);	
+
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'drAppointments@redirecting',
 			'as'	=>	'redirecting'

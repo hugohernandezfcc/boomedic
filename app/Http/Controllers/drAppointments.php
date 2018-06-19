@@ -148,11 +148,17 @@ class drAppointments extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Remove the specified resource from storage.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
- 
+    public function destroy($id)
+    {
+         DB::delete('delete from time_blockers where id = ?',[$id]) ;    
+    
+          return redirect('drAppointments/index/'. Auth::id());
+    } 
 
     public function redirecting($page)
     {
