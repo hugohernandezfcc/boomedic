@@ -1755,53 +1755,72 @@ function prevTab(elem) {
                         }   
 
                         if (e.date.getDay() == 0) {
-                          console.log('start '+ start + '. end ' + end);
-                          var Dom1 = $(Dom).not(fech).get();                              
+                          var Dom1 = $(Dom).not(fech).get();
                           for(var d = 0; d < Dom1.length; d++){
-                           if(start.length > 0){
+                            if(start.length > 0){
                             for(var u=0; u < start.length; u++){
                                console.log(da3  + ' ' + Dom1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
                               if(da3  + ' ' + Dom1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Dom1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Dom1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Dom1[d].slice(0,-3);
+                                    option.value = Dom1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
                             if(da3  + ' ' + Dom1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Dom1[d].slice(0,-3);
-                              option.value = Dom1[d].slice(0,-3);
-                              x.add(option);
-                          }
+                                   var option = document.createElement("option");
+                                    option.text = Dom1[d].slice(0,-3);
+                                    option.value = Dom1[d].slice(0,-3);
+                                    x.add(option);
+
+                                }
+                         }
                         }
-                      }
-                    }else{
-                        if(da3  + ' ' + Dom1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Dom1[d].slice(0,-3);
-                              option.value = Dom1[d].slice(0,-3);
-                              x.add(option);
-                          }
-                        }
-                      }
                            $("#timesByDay option[value='asueto ']").remove();
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
                         
                       }
-                        if (e.date.getDay() == 1) {
-                          console.log('start '+ start + '. end ' + end);
 
-                          var Lun1 = $(Lun).not(fech).get();
+                        if (e.date.getDay() == 1) {
+                           var Lun1 = $(Lun).not(fech).get();
                           for(var d = 0; d < Lun1.length; d++){
-                           if(da3  + ' ' + Lun1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                              var option = document.createElement("option");
-                              option.text = Lun1[d].slice(0,-3);
-                              option.value = Lun1[d].slice(0,-3);
-                              x.add(option);
-                          }
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                               console.log(da3  + ' ' + Lun1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
+                              if(da3  + ' ' + Lun1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Lun1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Lun1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Lun1[d].slice(0,-3);
+                                    option.value = Lun1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
+                            if(da3  + ' ' + Lun1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Lun1[d].slice(0,-3);
+                                    option.value = Lun1[d].slice(0,-3);
+                                    x.add(option);
+
+                                }
+                         }
                         }
-                          $("#timesByDay option[value='asueto ']").remove();
+                           $("#timesByDay option[value='asueto ']").remove();
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
                         }
+
                        if (e.date.getDay() == 2) {
                        
                           var Mar1 = $(Mar).not(fech).get();
-                            console.log('gg'+ start.length)
                           for(var d = 0; d < Mar1.length; d++){
-
                             if(start.length > 0){
                             for(var u=0; u < start.length; u++){
                                console.log(da3  + ' ' + Mar1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
@@ -1825,60 +1844,132 @@ function prevTab(elem) {
                          }
                         }
                            $("#timesByDay option[value='asueto ']").remove();
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
                         }
+
                        if (e.date.getDay() == 3) {
-                       console.log('start '+ start + '. end ' + end);
-                           var Mie1 = $(Mie).not(fech).get();
+                          var Mie1 = $(Mie).not(fech).get();
                           for(var d = 0; d < Mie1.length; d++){
-                            if(da3  + ' ' +   Mie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Mie1[d].slice(0,-3);
-                              option.value = Mie1[d].slice(0,-3);
-                              x.add(option);
-                          }
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                               console.log(da3  + ' ' + Mie1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
+                              if(da3  + ' ' + Mie1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Mie1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Mie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Mie1[d].slice(0,-3);
+                                    option.value = Mie1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
+                            if(da3  + ' ' + Mie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Mie1[d].slice(0,-3);
+                                    option.value = Mie1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                         }
                         }
                            $("#timesByDay option[value='asueto ']").remove();
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
                         } 
+
                        if (e.date.getDay() == 4) {
-                       console.log('start '+ start + '. end ' + end);
                           var Jue1 = $(Jue).not(fech).get();
                           for(var d = 0; d < Jue1.length; d++){
-                          if(da3  + ' ' + Jue1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Jue1[d].slice(0,-3);
-                              option.value = Jue1[d].slice(0,-3);
-                              x.add(option);
-                            }
-                          }
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                               console.log(da3  + ' ' + Jue1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
+                              if(da3  + ' ' + Jue1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Jue1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Jue1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Jue1[d].slice(0,-3);
+                                    option.value = Jue1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
+                            if(da3  + ' ' + Jue1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Jue1[d].slice(0,-3);
+                                    option.value = Jue1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                         }
+                        }
                            $("#timesByDay option[value='asueto ']").remove();
-                        }                                               
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
+                        }        
+
                         if (e.date.getDay() == 5) {
-                         console.log('start '+ start + '. end ' + end);
-                              var Vie1 = $(Vie).not(fech).get();
+                          var Vie1 = $(Vie).not(fech).get();
                           for(var d = 0; d < Vie1.length; d++){
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                               console.log(da3  + ' ' + Vie1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
+                              if(da3  + ' ' + Vie1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Vie1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Vie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Vie1[d].slice(0,-3);
+                                    option.value = Vie1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
                             if(da3  + ' ' + Vie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Vie1[d].slice(0,-3);
-                              option.value = Vie1[d].slice(0,-3);
-                              x.add(option);
-                          }
+                                   var option = document.createElement("option");
+                                    option.text = Vie1[d].slice(0,-3);
+                                    option.value = Vie1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                         }
                         }
                            $("#timesByDay option[value='asueto ']").remove();
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
                         }
+
                        if (e.date.getDay() == 6) {
-                       console.log('start '+ start + '. end ' + end);
-                              var Sab1 = $(Sab).not(fech).get();
+                          var Sab1 = $(Sab).not(fech).get();
                           for(var d = 0; d < Sab1.length; d++){
-                          if(da3  + ' ' + Sab1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Sab1[d].slice(0,-3);
-                              option.value = Sab1[d].slice(0,-3);
-                              x.add(option);
-                          }
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                               console.log(da3  + ' ' + Sab1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
+                              if(da3  + ' ' + Sab1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Sab1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Sab1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Sab1[d].slice(0,-3);
+                                    option.value = Sab1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
+                            if(da3  + ' ' + Sab1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Sab1[d].slice(0,-3);
+                                    option.value = Sab1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                         }
                         }
                            $("#timesByDay option[value='asueto ']").remove();
-                        }    
-                        $('#dateSelectedForCite').val = e.date.toISOString();                  
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
+                        }
+
+                      $('#dateSelectedForCite').val = e.date.toISOString();                  
                       });
                      }else{
                       $(".calendar").css("display","none");
