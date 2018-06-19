@@ -114,12 +114,20 @@
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <div align="left"><label>Evento Doctor</label></div>
+                          <div align="left"><i class="fa fa-edit"></i><label> Editar evento</label></div>
                         </div>
                             <div class="modal-body">
+                             <form enctype="multipart/form-data" action="{{ url('drAppointments/editTimeBlocker') }}" method="post">
                               <ul class="nav nav-stacked">
-                              <li><button class="btn btn-default btn-flat btn-block">Eliminar</button></li>
+                                <input type="hidden" name="idEdit" id="idEdit">
+                                <li>Título <input type="text" class="form-control" name="titleEdit" id="titleEdit"></li>
+                                <li>Inicio <input type="text" class="form-control" name="startEdit" id="startEdit"></li>
+                                <li>Fin <input type="text" class="form-control" name="endEdit" id="endEdit"></li>
+                                <br>
+                                <li><button class="btn btn-secondary btn-flat btn-block">Guardar cambios</button></li>
+                                <li><button class="btn btn-default btn-flat btn-block">Eliminar</button></li>
                             </ul>
+                            </form>
                             </div>
                         </div>
                       </div> 
@@ -431,7 +439,10 @@
 		  
 		  	jQuery("#modalsuccess").modal('toggle');
       }if(calEvent.typ == "3"){
-        jQuery("#eventDoc").modal('toggle');
+        $('#titleEdit').val(calEvent.title);
+        $('#startEdit').val(moment(calEvent.start).format('MM/DD/YYYY HH:mm'));
+        $('#endEdit').val(moment(calEvent.end).format('MM/DD/YYYY HH:mm'));
+         jQuery("#eventDoc").modal('toggle');
       }
 
 	
