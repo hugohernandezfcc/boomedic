@@ -143,7 +143,7 @@
                          <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <div align="left"><label>Crear evento</label></div>
+                          <div align="left"><i class="fa fa-edit"></i><label> Crear evento</label></div>
                         </div>
                             <div class="modal-body" style="padding-top: 0px !important">
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event1">
