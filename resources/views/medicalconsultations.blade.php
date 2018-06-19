@@ -1759,7 +1759,6 @@ function prevTab(elem) {
                           for(var d = 0; d < Dom1.length; d++){
                             if(start.length > 0){
                             for(var u=0; u < start.length; u++){
-                               console.log(da3  + ' ' + Dom1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
                               if(da3  + ' ' + Dom1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Dom1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
                                 if(da3  + ' ' + Dom1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                                    var option = document.createElement("option");
@@ -1791,7 +1790,6 @@ function prevTab(elem) {
                           for(var d = 0; d < Lun1.length; d++){
                             if(start.length > 0){
                             for(var u=0; u < start.length; u++){
-                               console.log(da3  + ' ' + Lun1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
                               if(da3  + ' ' + Lun1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Lun1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
                                 if(da3  + ' ' + Lun1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                                    var option = document.createElement("option");
@@ -1823,7 +1821,6 @@ function prevTab(elem) {
                           for(var d = 0; d < Mar1.length; d++){
                             if(start.length > 0){
                             for(var u=0; u < start.length; u++){
-                               console.log(da3  + ' ' + Mar1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
                               if(da3  + ' ' + Mar1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Mar1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
                                 if(da3  + ' ' + Mar1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                                    var option = document.createElement("option");
@@ -1854,7 +1851,6 @@ function prevTab(elem) {
                           for(var d = 0; d < Mie1.length; d++){
                             if(start.length > 0){
                             for(var u=0; u < start.length; u++){
-                               console.log(da3  + ' ' + Mie1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
                               if(da3  + ' ' + Mie1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Mie1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
                                 if(da3  + ' ' + Mie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                                    var option = document.createElement("option");
@@ -1884,7 +1880,6 @@ function prevTab(elem) {
                           for(var d = 0; d < Jue1.length; d++){
                             if(start.length > 0){
                             for(var u=0; u < start.length; u++){
-                               console.log(da3  + ' ' + Jue1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
                               if(da3  + ' ' + Jue1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Jue1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
                                 if(da3  + ' ' + Jue1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                                    var option = document.createElement("option");
@@ -1914,7 +1909,6 @@ function prevTab(elem) {
                           for(var d = 0; d < Vie1.length; d++){
                             if(start.length > 0){
                             for(var u=0; u < start.length; u++){
-                               console.log(da3  + ' ' + Vie1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
                               if(da3  + ' ' + Vie1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Vie1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
                                 if(da3  + ' ' + Vie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                                    var option = document.createElement("option");
@@ -1944,7 +1938,6 @@ function prevTab(elem) {
                           for(var d = 0; d < Sab1.length; d++){
                             if(start.length > 0){
                             for(var u=0; u < start.length; u++){
-                               console.log(da3  + ' ' + Sab1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
                               if(da3  + ' ' + Sab1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Sab1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
                                 if(da3  + ' ' + Sab1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                                    var option = document.createElement("option");
