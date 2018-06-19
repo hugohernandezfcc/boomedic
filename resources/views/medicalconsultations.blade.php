@@ -1752,7 +1752,7 @@ function prevTab(elem) {
                           comp.push(blockers[o].slice(11));  
                           }   
                         }   
-                       com =  $.unique(comp);
+                       comp =  $.unique(comp);
                         if (e.date.getDay() == 0) {
                           console.log(comp);
                           var Dom1 = $(Dom).not(fech).get();                              
