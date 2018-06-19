@@ -1782,11 +1782,10 @@ function prevTab(elem) {
                         }
                        if (e.date.getDay() == 2) {
                        console.log('start '+ start + '. end ' + end);
-                          console.log('when ' + fech);
                           var Mar1 = $(Mar).not(fech).get();
                           for(var d = 0; d < Mar1.length; d++){
                             for(var u=0; u < start.lenght; u++){
-                              if(da3  + ' ' + Mar1[d].slice(0,-3) < start[u] || da3  + ' ' + Mar1[d].slice(0,-3) > end[u]){
+                              if(da3  + ' ' + Mar1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Mar1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
                                 if(da3  + ' ' + Mar1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
                                    var option = document.createElement("option");
                                     option.text = Mar1[d].slice(0,-3);
