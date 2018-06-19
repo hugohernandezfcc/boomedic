@@ -124,7 +124,7 @@
                                 <li>Inicio <input type="text" class="form-control" name="startEdit" id="startEdit"></li>
                                 <li>Fin <input type="text" class="form-control" name="endEdit" id="endEdit"></li>
                                 <br>
-                                <li><button class="btn btn-secondary btn-flat btn-block">Guardar cambios</button></li>
+                                <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Guardar edición</button></li>
                                 <li><button class="btn btn-default btn-flat btn-block">Eliminar</button></li>
                             </ul>
                             </form>

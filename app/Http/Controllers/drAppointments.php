@@ -103,6 +103,22 @@ class drAppointments extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function editTimeBlocker(Request $request)
+    {
+       $id = $request->idEdit;
+       $time = time_blockers::find($id);
+       $time->title = $request->titleEdit;
+       $time->start = $request->startEdit;
+       $time->end   = $request->endEdit;       
+       $time->save();
+       return redirect('drAppointments/index/'. Auth::id());
+    }
+
+        /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */        
  
     public function confirmTimeBlocker(Request $request)
     {

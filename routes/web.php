@@ -390,7 +390,12 @@ Route::group(['prefix' => 'drAppointments'], function(){
 			'as'	=>	'confirmTimeBlocker'
 		]
 	);
-		
+
+	Route::post('editTimeBlocker', [
+			'uses'	=>	'drAppointments@editTimeBlocker',
+			'as'	=>	'editTimeBlocker'
+		]
+	);	
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'drAppointments@redirecting',
 			'as'	=>	'redirecting'
