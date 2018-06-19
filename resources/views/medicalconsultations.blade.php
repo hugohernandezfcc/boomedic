@@ -1629,7 +1629,6 @@ function prevTab(elem) {
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-          console.log(loc[i][11]);
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               $('#infDr').show();

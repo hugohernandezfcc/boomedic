@@ -77,7 +77,7 @@ class HomeController extends Controller
 
                          foreach($time_blockers  as $block){
                             if($block->lab == $labor->id){
-                                array_push($blocker, $block->start);
+                                array_push($blocker, ["start" => $block->start, "end" => $block->end]);
                               }
                           }
 
