@@ -1654,6 +1654,7 @@ function prevTab(elem) {
               document.getElementById('dr').value = loc[i][8];
               document.getElementById('spe').value = loc[i][2];
               var whencites = loc[i][9];
+              var blockers = loc[i][11];
               $('.modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
@@ -1738,6 +1739,7 @@ function prevTab(elem) {
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
                          document.getElementById('when1').value = da2;
                          var fech = Array();
+                         console.log(blockers);
                      for(var f = 0; f < whencites.length; f++){
                         if(whencites[f].slice(0,-9) == da2){  
                           fech.push(whencites[f].slice(11));  
