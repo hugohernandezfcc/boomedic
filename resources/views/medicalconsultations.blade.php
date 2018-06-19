@@ -1752,8 +1752,9 @@ function prevTab(elem) {
                           comp.push(blockers[o].slice(11));  
                           }   
                         }   
+                       comp =  $.unique(comp);
                         if (e.date.getDay() == 0) {
-                          console.log($.unique(comp));
+                          console.log(comp);
                           var Dom1 = $(Dom).not(fech).get();                              
                           for(var d = 0; d < Dom1.length; d++){
                             if(da3  + ' ' + Dom1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
@@ -1766,7 +1767,7 @@ function prevTab(elem) {
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                         if (e.date.getDay() == 1) {
-                          console.log( $.unique(comp));
+                          console.log(comp);
                           var Lun1 = $(Lun).not(fech).get();
                           for(var d = 0; d < Lun1.length; d++){
                            if(da3  + ' ' + Lun1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
@@ -1779,7 +1780,8 @@ function prevTab(elem) {
                           $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 2) {
-                        console.log( $.unique(comp));
+                        console.log(comp);
+                          console.log('when ' + fech);
                           var Mar1 = $(Mar).not(fech).get();
                           for(var d = 0; d < Mar1.length; d++){
                           if(da3  + ' ' + Mar1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
