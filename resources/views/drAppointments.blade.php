@@ -124,9 +124,8 @@
                                 <li>Inicio <input type="text" class="form-control" name="startEdit" id="startEdit"></li>
                                 <li>Fin <input type="text" class="form-control" name="endEdit" id="endEdit"></li>
                                 <br>
-                                <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Guardar edición</button></li>
-                                <li><a id="deleteT" class="btn btn-default btn-flat btn-block" onclick ="return confirm('¿Seguro desea eliminarlo?')">
-                                <i class="fa fa-trash text-muted"></i> Eliminar evento</a></li>
+                                <li><div align="right"><button type="submit" class="btn btn-secondary btn-flat">Guardar edición</button><a id="deleteT" class="btn btn-default btn-flat" onclick ="return confirm('¿Seguro desea eliminarlo?')" style="display: inline !important">
+                                <i class="fa fa-trash text-muted"></i> Eliminar evento</a></div></li>
                             </ul>
                             </form>
                             </div>
