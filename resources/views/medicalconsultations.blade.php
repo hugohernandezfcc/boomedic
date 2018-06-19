@@ -1540,13 +1540,13 @@ function prevTab(elem) {
         if(keyWordValue == ''){
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9], datos[i][10]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9], datos[i][10], datos[i][11]]);
             }
           }
         }else{
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue && datos[i][3] == keyWordValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9], datos[i][10]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9], datos[i][10], datos[i][11]]);
             }
           }          
         }
@@ -1557,7 +1557,7 @@ function prevTab(elem) {
           console.log('Nombre:: '+res[i][3]);*/
           if(metros < rangeValue){
             //loc[latitud, longitud, especialidad, nombre, hospital, dirección, workid, iddr]
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10], res[i][11]]);
           }
         }
        /* console.log(res);
@@ -1582,7 +1582,7 @@ function prevTab(elem) {
 
           for(var i = 0; i < generalM.length; i++) {
             if(generalM[i][2] == keyWordValue){
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4],generalM[i][5],generalM[i][6],generalM[i][7],generalM[i][8],generalM[i][9]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4],generalM[i][5],generalM[i][6],generalM[i][7],generalM[i][8],generalM[i][9],generalM[i][10]]);
             }
           }
           for(var i = 0; i < res.length; i++) {
@@ -1592,7 +1592,7 @@ function prevTab(elem) {
             console.log('Nombre:: '+res[i][3]);*/
             if(metros < rangeValue){
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio, intervalos]
-               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
+               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10], res[i][11]]);
              }
           }
           if(loc.length <= 0){
