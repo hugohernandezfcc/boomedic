@@ -1781,9 +1781,10 @@ function prevTab(elem) {
                           $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 2) {
-                       console.log('start '+ start + '. end ' + end);
+                       
                           var Mar1 = $(Mar).not(fech).get();
                           for(var d = 0; d < Mar1.length; d++){
+                            console.log(da3  + ' ' + Mar1[d].slice(0,-3) +' < '+ moment(start[u]).format('YYYY-MM-DD HH:mm') );
                             if(start.lenght > 0){
                             for(var u=0; u < start.lenght; u++){
                               if(da3  + ' ' + Mar1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Mar1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
