@@ -54,6 +54,7 @@ class HomeController extends Controller
          ->select('time_blockers.*', 'labor_information.id as lab')
          ->get();
 
+
          $cites = DB::table('medical_appointments')->get();
          $workboard = DB::table('workboard')->get();
              $workArray = array();

@@ -1747,7 +1747,7 @@ function prevTab(elem) {
                           }   
                         }
                      for(var o = 0; o < blockers.length; o++){
-                        if(blockers[o].slice(0,-9) == da2){  
+                        if(blockers[o].slice(0,-9) == da2 && blockers[o] > moment(Date.now()).format('YYYY-MM-DD HH:mm')){  
                           comp.push(blockers[o].slice(11));  
                           }   
                         }   
