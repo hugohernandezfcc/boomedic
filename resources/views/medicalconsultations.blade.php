@@ -1801,8 +1801,7 @@ function prevTab(elem) {
                        if (e.date.getDay() == 2) {
                        
                           var Mar1 = $(Mar).not(fech).get();
-                            var start1 = $(start).not(start).get();
-                            console.log('gg'+ start1)
+                            console.log('gg'+ start)
                           for(var d = 0; d < Mar1.length; d++){
 
                             if(start.length > 0){
