@@ -210,14 +210,14 @@
               <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
                 <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
                 <ul class="fc-color-picker" id="color-chooser">
-                  <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-green" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-gray" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a style="color: #0073b7 !important"><i class="fa fa-square"></i></a></li>
+                  <li><a style="color: #778899 !important"><i class="fa fa-square"></i></a></li>
+                  <li><a style="color: #90EE90 !important"><i class="fa fa-square"></i></a></li>
+                  <li><a style="color: #9ACD32 !important"><i class="fa fa-square"></i></a></li>
+                  <li><a style="color: #B22222 !important"><i class="fa fa-square"></i></a></li>
+                  <li><a style="color: #9370DB !important"><i class="fa fa-square"></i></a></li>
+                  <li><a style="color: #E9967A !important"><i class="fa fa-square"></i></a></li>
+                  <li><a style="color: #2F4F4F !important"><i class="fa fa-square"></i></a></li>
                 </ul>
               </div>
               <!-- /btn-group -->
