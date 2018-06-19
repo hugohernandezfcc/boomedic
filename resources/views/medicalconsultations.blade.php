@@ -1739,14 +1739,21 @@ function prevTab(elem) {
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
                          document.getElementById('when1').value = da2;
                          var fech = Array();
-                         console.log(blockers);
+                         var comp = Array();
+                        
                      for(var f = 0; f < whencites.length; f++){
                         if(whencites[f].slice(0,-9) == da2){  
                           fech.push(whencites[f].slice(11));  
                           }   
                         }
+                     for(var o = 0; o < blockers.length; o++){
+                        if(blockers[o].slice(0,-9) == da2){  
+                          comp.push(blockers[o].slice(11));  
+                          }   
+                        }   
 
                         if (e.date.getDay() == 0) {
+                          console.log(comp);
                           var Dom1 = $(Dom).not(fech).get();                              
                           for(var d = 0; d < Dom1.length; d++){
                             if(da3  + ' ' + Dom1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
@@ -1759,6 +1766,7 @@ function prevTab(elem) {
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                         if (e.date.getDay() == 1) {
+                          console.log(comp);
                           var Lun1 = $(Lun).not(fech).get();
                           for(var d = 0; d < Lun1.length; d++){
                            if(da3  + ' ' + Lun1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
@@ -1771,6 +1779,7 @@ function prevTab(elem) {
                           $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 2) {
+                        console.log(comp);
                           var Mar1 = $(Mar).not(fech).get();
                           for(var d = 0; d < Mar1.length; d++){
                           if(da3  + ' ' + Mar1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
@@ -1783,6 +1792,7 @@ function prevTab(elem) {
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 3) {
+                        console.log(comp);
                            var Mie1 = $(Mie).not(fech).get();
                           for(var d = 0; d < Mie1.length; d++){
                             if(da3  + ' ' +   Mie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
@@ -1795,6 +1805,7 @@ function prevTab(elem) {
                            $("#timesByDay option[value='asueto ']").remove();
                         } 
                        if (e.date.getDay() == 4) {
+                        console.log(comp);
                           var Jue1 = $(Jue).not(fech).get();
                           for(var d = 0; d < Jue1.length; d++){
                           if(da3  + ' ' + Jue1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
@@ -1807,6 +1818,7 @@ function prevTab(elem) {
                            $("#timesByDay option[value='asueto ']").remove();
                         }                                               
                         if (e.date.getDay() == 5) {
+                          console.log(comp);
                               var Vie1 = $(Vie).not(fech).get();
                           for(var d = 0; d < Vie1.length; d++){
                             if(da3  + ' ' + Vie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
@@ -1819,6 +1831,7 @@ function prevTab(elem) {
                            $("#timesByDay option[value='asueto ']").remove();
                         }
                        if (e.date.getDay() == 6) {
+                        console.log(comp);
                               var Sab1 = $(Sab).not(fech).get();
                           for(var d = 0; d < Sab1.length; d++){
                           if(da3  + ' ' + Sab1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
