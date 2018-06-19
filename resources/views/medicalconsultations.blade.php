@@ -1747,12 +1747,14 @@ function prevTab(elem) {
                           fech.push(whencites[f].slice(11));  
                           }   
                         }
-                     for(var o = 0; o < blockers.length; o++){
-                        if(blockers[o]['start'].slice(0,-9) == da2 && blockers[o]['start'] > moment(Date.now()).format('YYYY-MM-DD HH:mm')){  
-                          start.push(blockers[o]['start']);
-                          end.push(blockers[o]['end']);  
-                          }   
-                        }   
+                       
+                          $.each(blockers, function(i, el){
+                             if(el['start'].slice(0,-9) == da2 && el['start'] > moment(Date.now()).format('YYYY-MM-DD HH:mm')){  
+                              if($.inArray(el, start) === -1) start.push(el);
+                              if($.inArray(el, end) === -1) end.push(el);
+                            }
+                          });
+
 
                         if (e.date.getDay() == 0) {
                           console.log('start '+ start + '. end ' + end);
