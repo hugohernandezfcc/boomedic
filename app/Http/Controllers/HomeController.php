@@ -69,22 +69,16 @@ class HomeController extends Controller
                           }
 
                           foreach($workboard  as $work){
-
                             if($work->labInformation == $labor->id){
-                                if(count($time_blockers) > 0){
-                                 foreach($time_blockers  as $block){
-                                    if($block->lab == $labor->id){
-                                    $d = Carbon::parse($block->start)->format('l'); 
-                                    //if($work->workingDays == $d)   
-                                    Session(['day' => $d]);
-                                     
-                                  }else{
                                 array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
-                                    }
-                                 }
-                             }
+                              }
                           }
-                      }
+
+                         foreach($time_blockers  as $block){
+                            if($block->lab == $labor->id){
+                                array_push($blocker, $block->start);
+                              }
+                          }
 
 
 

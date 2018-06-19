@@ -45,6 +45,9 @@ return [
     'grandparents'                       => 'Abuelo(a)',
     'uncles'                             => 'Tío(a)',
 
+    /* Days */
+    'Tuesday'   => 'Lun',
+
 
 
     /* System Error */
