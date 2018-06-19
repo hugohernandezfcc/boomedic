@@ -439,6 +439,7 @@
 		  
 		  	jQuery("#modalsuccess").modal('toggle');
       }if(calEvent.typ == "3"){
+        $('#idEdit').val(calEvent.id);
         $('#titleEdit').val(calEvent.title);
         $('#startEdit').val(moment(calEvent.start).format('MM/DD/YYYY HH:mm'));
         $('#endEdit').val(moment(calEvent.end).format('MM/DD/YYYY HH:mm'));
