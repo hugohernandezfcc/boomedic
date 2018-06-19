@@ -430,7 +430,7 @@
 		  	}
 		  
 		  	jQuery("#modalsuccess").modal('toggle');
-      }else{
+      }if(calEvent.typ == "3"){
         jQuery("#eventDoc").modal('toggle');
       }
 
