@@ -79,9 +79,9 @@ class HomeController extends Controller
                               }
                           }
 
-
-
+                        $blocker->unique('start');
                     if($labor->specialty == 'Médico General'){
+
                         if(!$labor->profile_photo){
                         $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).', "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",'.json_encode($blocker).']';
                         } else{
