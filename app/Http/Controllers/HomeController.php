@@ -85,6 +85,7 @@ class HomeController extends Controller
 
                     if($labor->specialty == 'Médico General'){
                         if(!$labor->profile_photo){
+
                         $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).', "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",'.json_encode($blocker).']';
                         } else{
                         $mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).', "'.$labor->profile_photo.'",'.json_encode($blocker).']';
@@ -92,10 +93,13 @@ class HomeController extends Controller
                     }
                     else{
                     if(!$labor->profile_photo){
-                          $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).', "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",'.json_encode($blocker).']';
+                        $it = array();
+                        array_push($it, [$labor->specialty, $labor->latitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png", $blocker]);
+                          $itx[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).', "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",'.json_encode($blocker).']';
 
                         } else{
-                    $it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).', "'.$labor->profile_photo.'",'.json_encode($blocker).']';
+                        array_push($it, [$labor->specialty, $labor->latitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, $labor->profile_photo, $blocker]);
+                    $itx[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).', "'.$labor->profile_photo.'",'.json_encode($blocker).']';
                             }
                     $sp[] = '["'.$labor->specialty.'"]';
                     $mg = '0';
@@ -105,7 +109,7 @@ class HomeController extends Controller
 
      
 
-             Session(['it' => $it]);
+             Session(['it' => json_encode($it)]);
              Session(['sp' => $sp]);
              Session(['mg' => $mg]);
 
