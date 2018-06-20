@@ -50,8 +50,6 @@ class HomeController extends Controller
             ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'professional_information.id as prof', 'users.id AS dr', 'users.profile_photo')
             ->get();
          $time_blockers =  DB::table('time_blockers')
-         ->join('labor_information', 'time_blockers.professional_inf','=', 'labor_information.profInformation')
-         ->select('time_blockers.*', 'labor_information.id as lab')
          ->get();
 
 
@@ -76,7 +74,7 @@ class HomeController extends Controller
                           }
 
                          foreach($time_blockers  as $block){
-                            if($block->lab == $labor->id){
+                            if($block->professional_inf == $labor->prof){
                                 array_push($blocker, ["start" => $block->start, "end" => $block->end]);
                               }
                           }
@@ -98,7 +96,7 @@ class HomeController extends Controller
                     $it[] = json_encode(array($labor->specialty, $labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, $labor->profile_photo, $blocker));
                     //$it[] = '["'.$labor->specialty.'",'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).', "'.$labor->profile_photo.'",'.json_encode($blocker).']';
                        }
-                       
+
                     $sp[] =  json_encode(array($labor->specialty));
                     $mg = '0';
                
