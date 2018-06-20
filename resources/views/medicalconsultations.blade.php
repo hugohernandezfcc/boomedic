@@ -299,7 +299,7 @@
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
     var datos = @php echo session()->get('it'); @endphp;
 
-    console.log(datos);
+    console.log(JSON.stringify(datos));
   </script>
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
