@@ -1633,7 +1633,7 @@ function prevTab(elem) {
             return function() {
               $('#infDr').show();
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
-              document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5];
+              document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br>"+loc[i][3]+"</b><br>"+loc[i][4]+"</b><br>Consulta: $"+loc[i][5];
           
            $('.btncita').on('click', function(){
               $('#infDr').hide();
@@ -1646,7 +1646,7 @@ function prevTab(elem) {
               document.getElementById('endtime').innerHTML = '';
               document.getElementById('endpayment').innerHTML = '';
               $('#formulatio_paypal').trigger("reset");
-              showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
+              //showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br>Costo consulta: $' + loc[i][5] +'<br>');
               document.getElementById('amount').value = loc[i][5];
               document.getElementById('endamount').innerHTML = 'Monto a pagar: $' + loc[i][5];
               document.getElementById('receiver').value = loc[i][3];
