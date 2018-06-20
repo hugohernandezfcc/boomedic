@@ -540,7 +540,7 @@
    <a class="close" onclick="$('.alert').hide()" style="text-decoration: none">×</a>  
     <div class="info-box-icon2-sm" id="Drp"></div>                                           
      <div id="bodyDr"></div>
-     <div class="pull-right"><button type="button" class="btn btn-default btn-flat btn-xs btncita" id="btncita"><b>Concretar Cita</b></button></div>
+     <div class="pull-right" id="btncita"></div>
       </div>
 
     <div id='rango'>
@@ -1630,13 +1630,13 @@ function prevTab(elem) {
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            console.log(marker);
             return function() {
               $('#infDr').show();
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br>"+loc[i][3]+"</b><br>"+loc[i][4]+"</b><br>Consulta: $"+loc[i][5];
-          
-           $('#btncita').on('click', function(){
+              document.getElementById('bodyDr').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs btncita" id="'+ loc[i][7] +'"><b>Concretar Cita</b></button>';
+            console.log(loc[i][7]);
+           $('#'+ loc[i][7]).on('click', function(){
               console.log(loc[i][2] + ', ' + loc[i][3] + '.<br>Costo consulta: $' + loc[i][5] +'<br>');
               $('#infDr').hide();
               $('#tab1').trigger('click');
