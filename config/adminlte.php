@@ -193,5 +193,6 @@ return [
     'empty-calendar'       => 'images/empty-calendar.png',
     'empty-house'          => 'images/house-no.png',
     'empty-message'        => 'images/empty-message.png',
+    'marker-doc'           => 'images/icono_doc_verde.png',
 
 ];
