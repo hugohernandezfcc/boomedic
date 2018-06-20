@@ -1610,14 +1610,14 @@ function prevTab(elem) {
           var lat = loc[i][0];
           var lon = loc[i][1];
 
-          if(loc[i][10] != "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png"){
+          if(loc[i][10] != "marker-doc"){
           var doctor = {
               url:"https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png",
               scaledSize: new google.maps.Size(45, 45)
             };
         }else{
            var doctor = {
-              url:"https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",
+              url:"{{ asset(config(marker-doc)) }}",
               scaledSize: new google.maps.Size(45, 45)
             };
          /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
