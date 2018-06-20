@@ -99,12 +99,6 @@ class HomeController extends Controller
                         }
                      }
 
-     
-
-             Session(['it' => $it]);
-             Session(['sp' => $sp]);
-             Session(['mg' => $mg]);
-
         if($user->confirmed == false){
                return view('confirme', [
                     'userId'    => $user->id,

@@ -298,7 +298,6 @@
     var specialities = [@php echo implode(',', array_unique($sp)).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach($mg as $mg){ echo $mg.','; } @endphp];
     var datos = [@php foreach($it as $it){ echo $it.','; } @endphp];
-    console.log(datos);
   </script>
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
