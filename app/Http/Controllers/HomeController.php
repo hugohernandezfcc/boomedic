@@ -196,7 +196,10 @@ class HomeController extends Controller
                         'userId'    => $user->id,
                         'labor'     => $join,
                         'appointments' => $appointments,
-                        'title'     => 'Este doctor no tiene horarios agregados'
+                        'title'     => 'Este doctor no tiene horarios agregados',
+                        'it'        => $it,
+                        'sp'        => $sp,
+                        'mg'        => $mg
 
                     ]
                 );
