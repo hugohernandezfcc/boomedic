@@ -1617,10 +1617,9 @@ function prevTab(elem) {
             };
         }else{
            var doctor = {
-              url: "{{ asset(config('marker-doc')) }}",
+              url: "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",
               scaledSize: new google.maps.Size(45, 45)
             };
-         /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
         }
         markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
@@ -1635,7 +1634,7 @@ function prevTab(elem) {
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br>"+loc[i][3]+"</b><br>"+loc[i][4]+"</b><br>Consulta: $"+loc[i][5];
               document.getElementById('btncita').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs btncita" id="'+ loc[i][7] +'"><b>Concretar Cita</b></button>';
-            console.log(loc[i][7]);
+              console.log(loc[i][7]);
              console.log(loc[i][11]);
            $('#'+ loc[i][7]).on('click', function(){
               $('#infDr').hide();
