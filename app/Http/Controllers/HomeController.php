@@ -49,10 +49,7 @@ class HomeController extends Controller
             ->join('users', 'professional_information.user', '=', 'users.id')
             ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'professional_information.id as prof', 'users.id AS dr', 'users.profile_photo')
             ->get();
-         $time_blockers =  DB::table('time_blockers')
-         ->get();
-
-
+         $time_blockers =  DB::table('time_blockers')->get();
          $cites = DB::table('medical_appointments')->get();
          $workboard = DB::table('workboard')->get();
 
@@ -82,16 +79,16 @@ class HomeController extends Controller
                     if($labor->specialty == 'Médico General'){
 
                         if(!$labor->profile_photo){
-                            $mg[] = json_encode(array($labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, "marker-doc", $blocker)); 
+                            $mg[] = json_encode(array($labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png", $blocker)); 
                         } else{
                             $mg[] = json_encode(array($labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, $labor->profile_photo, $blocker));
-                                    //$mg = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).', "'.$labor->profile_photo.'",'.json_encode($blocker).']';
+                                    //$mg[] = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).', "'.$labor->profile_photo.'",'.json_encode($blocker).']';
                             }
                         }
                     else{
                         if(!$labor->profile_photo){
-                            $it[] = json_encode(array($labor->specialty, $labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, "marker-doc", $blocker));
-                          } 
+                            $it[] = json_encode(array($labor->specialty, $labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png", $blocker));
+                            } 
                         else{
                             $it[] = json_encode(array($labor->specialty, $labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, $labor->profile_photo, $blocker));
                            }
