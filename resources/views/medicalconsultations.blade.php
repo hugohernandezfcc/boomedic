@@ -1634,10 +1634,9 @@ function prevTab(elem) {
               $('#infDr').show();
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br>"+loc[i][3]+"</b><br>"+loc[i][4]+"</b><br>Consulta: $"+loc[i][5];
-              document.getElementById('bodyDr').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs btncita" id="'+ loc[i][7] +'"><b>Concretar Cita</b></button>';
+              document.getElementById('btncita').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs btncita" id="'+ loc[i][7] +'"><b>Concretar Cita</b></button>';
             console.log(loc[i][7]);
            $('#'+ loc[i][7]).on('click', function(){
-              console.log(loc[i][2] + ', ' + loc[i][3] + '.<br>Costo consulta: $' + loc[i][5] +'<br>');
               $('#infDr').hide();
               $('#tab1').trigger('click');
               document.getElementById("onestep").disabled = true;
