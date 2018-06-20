@@ -297,7 +297,7 @@
   
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
-    var datos = @php echo session()->get('it'); @endphp;
+    var datos = JSON.stringify(@php echo session()->get('it'); @endphp);
 
     console.log(JSON.stringify(datos));
   </script>
