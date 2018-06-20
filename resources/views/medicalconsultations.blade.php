@@ -1636,6 +1636,7 @@ function prevTab(elem) {
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br>"+loc[i][3]+"</b><br>"+loc[i][4]+"</b><br>Consulta: $"+loc[i][5];
               document.getElementById('btncita').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs btncita" id="'+ loc[i][7] +'"><b>Concretar Cita</b></button>';
             console.log(loc[i][7]);
+             console.log(loc[i][11]);
            $('#'+ loc[i][7]).on('click', function(){
               $('#infDr').hide();
               $('#tab1').trigger('click');
