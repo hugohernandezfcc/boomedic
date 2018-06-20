@@ -1647,6 +1647,7 @@ function prevTab(elem) {
               document.getElementById('endtime').innerHTML = '';
               document.getElementById('endpayment').innerHTML = '';
               $('#formulatio_paypal').trigger("reset");
+              console.log(loc[i][2] + ', ' + loc[i][3] + '.<br>Costo consulta: $' + loc[i][5] +'<br>');
               showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br>Costo consulta: $' + loc[i][5] +'<br>');
               document.getElementById('amount').value = loc[i][5];
               document.getElementById('endamount').innerHTML = 'Monto a pagar: $' + loc[i][5];
