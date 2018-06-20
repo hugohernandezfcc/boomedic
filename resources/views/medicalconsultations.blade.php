@@ -1617,7 +1617,7 @@ function prevTab(elem) {
             };
         }else{
            var doctor = {
-              url:"{{ asset(config(marker-doc)) }}",
+              url: "{{ asset(config('marker-doc')) }}",
               scaledSize: new google.maps.Size(45, 45)
             };
          /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
