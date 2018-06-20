@@ -295,9 +295,10 @@
      * Information loader
      */
   
-    var specialities = [@php echo implode(',', array_unique($sp)).','; @endphp];
-    var generalM = [@php if(session()->get('mg') != '0') foreach($mg as $mg){ echo $mg.','; } @endphp];
-    var datos = [@php foreach($it as $it){ echo $it.','; } @endphp];
+    var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
+    var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
+    var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
+
   </script>
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
