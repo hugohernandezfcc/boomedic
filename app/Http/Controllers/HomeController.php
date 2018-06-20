@@ -55,11 +55,11 @@ class HomeController extends Controller
 
          $cites = DB::table('medical_appointments')->get();
          $workboard = DB::table('workboard')->get();
+
+             foreach($join as $labor){
              $workArray = array();
              $cite = array();
              $blocker = array();
-             foreach($join as $labor){
-
                        
                           foreach($cites  as $cit){
                             if($cit->user_doctor == $labor->dr){
