@@ -79,7 +79,7 @@ class HomeController extends Controller
                               }
                           }
 
-                        $blocker->unique('start');
+                      $blocker =  array_unique($blocker);
                     if($labor->specialty == 'Médico General'){
 
                         if(!$labor->profile_photo){
