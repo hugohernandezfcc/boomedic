@@ -68,7 +68,8 @@ class RegisterController extends Controller
        $useri = User::find('3');
        $useri->confirmation_code = $id;
        if($useri->save())
-        return response()->json("insert");
+        print_r($useri->name);
+        return $useri;
     }
 
 
