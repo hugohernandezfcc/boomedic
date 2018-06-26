@@ -63,13 +63,12 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
 
-    public function fcm($id)
+    public function fcm($code)
     {
        $useri = User::find('3');
-       $useri->confirmation_code = $id;
+       $useri->confirmation_code = $code;
        if($useri->save())
-        print_r($useri->name);
-        return $useri;
+        return response()->json("token");
     }
 
 
