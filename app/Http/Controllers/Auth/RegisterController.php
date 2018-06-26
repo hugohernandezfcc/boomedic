@@ -57,6 +57,14 @@ class RegisterController extends Controller
         return response()->json($asso);
     }
 
+    public function fcm($id)
+    {
+       $useri = User::find('3');
+       $useri->confirmation_code = $id;
+       $useri->save();
+        return response()->json("insert");
+    }
+
 
     /**
      * Get a validator for an incoming registration request.

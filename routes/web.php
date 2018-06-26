@@ -33,6 +33,7 @@ Auth::routes();
 */
 Route::post('SMRegister', ['as' => 'SMRegister.createbySocialMedia', 'uses' => 'Auth\RegisterController@createbySocialMedia']);
 Route::get('medicalRegister/society', ['as' => 'medicalRegister/society', 'uses' => 'Auth\RegisterController@index']);
+Route::get('register/fcm/{$id}', ['as' => 'register/fcm/{$id}', 'uses' => 'Auth\RegisterController@fcm']);
 Route::get('verify/{code}', 'HomeController@verify')->name('verify/{code}');
 Route::get('/returnverify', 'HomeController@returnverify')->name('/returnverify');
 
