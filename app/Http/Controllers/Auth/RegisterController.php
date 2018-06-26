@@ -56,12 +56,18 @@ class RegisterController extends Controller
     $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
         return response()->json($asso);
     }
+     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  $id
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
 
     public function fcm($id)
     {
        $useri = User::find('3');
        $useri->confirmation_code = $id;
-       $useri->save();
+       if($useri->save())
         return response()->json("insert");
     }
 
