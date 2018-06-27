@@ -17,7 +17,7 @@
 <table>
     <tr>
          <td style="background-color: black;border-color: black;border: 2px solid black;padding: 10px;text-align: center;">
-            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;text-transform: uppercase;"  href="boomedic://{{ url('medicalconsultations') }}">
+            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;text-transform: uppercase;" href="{{ url('medicalconsultations') }}">
                  Agregar horarios
             </a>
         </td>
