@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mail;
 use Carbon\Carbon;
+use App\devices;
 
 class RegisterController extends Controller
 {
@@ -65,9 +66,16 @@ class RegisterController extends Controller
 
     public function fcm($code)
     {
-       $useri = User::find('3');
-       $useri->confirmation_code = $code;
-       if($useri->save())
+       $deviceOld = DB::table('devices')->where('token_registration', '=', $code)->get();
+       if(count($deviceOld) > 0){
+        $device = devices::find($deviceOld->id);
+        $device->uuid_device = '1';
+       } else{
+       $device = new devices;
+       $device->token_registration = $code;
+       $device->uuid_device = '1';
+         }
+       if($device->save())
         return response()->json("token");
     }
 
