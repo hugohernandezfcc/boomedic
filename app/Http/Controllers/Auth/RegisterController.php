@@ -66,14 +66,15 @@ class RegisterController extends Controller
 
     public function fcm($code)
     {
-       $deviceOld = DB::table('devices')->where('token_registration', '=', $code)->get();
+       $array = explode("&", $code)
+       $deviceOld = DB::table('devices')->where('token_registration', '=', $array[0])->get();
        if(count($deviceOld) > 0){
-        $device = devices::find($deviceOld->id);
-        $device->uuid_device = '1';
+        $device = devices::::find($deviceOld->id);
+        $device->uuid_device = $array[1];
        } else{
        $device = new devices;
-       $device->token_registration = $code;
-       $device->uuid_device = '1';
+       $device->token_registration = $array[0];
+       $device->uuid_device = $array[1];
          }
        if($device->save())
         return response()->json("token");
