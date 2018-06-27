@@ -75,7 +75,7 @@ class RegisterController extends Controller
             $deviceOld3 = DB::table('devices')->where([
                                                     ['token_registration', '!=', $array[0]],
                                                     ['uuid_device', '=', $array[1]],
-                                                ])->get();
+                                                ])->first();
              if(count($deviceOld3) > 0){
                     $device = devices::find($deviceOld3->id);
                     $device->token_registration = $array[0];
