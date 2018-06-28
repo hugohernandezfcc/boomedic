@@ -70,14 +70,19 @@
 		        	      @include('conversations.conversationform')
 		        </div>
 		      </div>  
-      
-  
-            <input type="button" class="btn btn-default" onclick="location.href='https://sbx00.herokuapp.com/medicalconsultations';" value="Url normal" />
+     <script language="javascript">
+    function open_appstore() {
+        window.location='https://play.google.com/store';
+    }
 
-            <input type="button" class="btn btn-default" onclick="location.href='boomedic://medicalconsultations';" value="Boomedic custom link" />
+    function try_to_open_app() {
+        setTimeout('open_appstore()', 300);
+    }
+</script>
 
-            <input type="button" class="btn btn-default" onclick="location.href='whatsapp://send?text=Hello%20World!';" value="Whatsapp" />
+<a onClick="javascript:try_to_open_app();" href="yourappurl:">App name</a> 
 
+            <input type="button" class="btn btn-secondary" onClick="javascript:try_to_open_app();" href="boomedic://medicalconsultations" value="Boomedic app" />
 
 <!-- 
 	<style type="text/css">
