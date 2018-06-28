@@ -80,9 +80,8 @@
     }
 </script>
 
-<a onClick="javascript:try_to_open_app();" href="yourappurl:">App name</a> 
+<a class="btn btn-secondary" onClick="javascript:try_to_open_app();" href="boomedic://medicalconsultations">App Boomedic</a> 
 
-            <input type="button" class="btn btn-secondary" onClick="javascript:try_to_open_app();" href="boomedic://medicalconsultations" value="Boomedic app" />
 
 <!-- 
 	<style type="text/css">
