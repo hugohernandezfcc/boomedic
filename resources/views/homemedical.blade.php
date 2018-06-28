@@ -70,32 +70,17 @@
 		        	      @include('conversations.conversationform')
 		        </div>
 		      </div>  
-<iframe style="display:none" height="0" width="0" id="loader"></iframe>
-
-  <script>(function(){
-    // For desktop browser, remember to pass though any metadata on the link for deep linking
-    var fallbackLink = 'https://sbx00.herokuapp.com/medicalconsultations'+window.location.search+window.location.hash;
-    // Simple device detection
-    var isiOS = navigator.userAgent.match('iPad') || navigator.userAgent.match('iPhone') || navigator.userAgent.match('iPod'),
-        isAndroid = navigator.userAgent.match('Android');
-    // Mobile
-    if (isiOS || isAndroid) {
-      // Load our custom protocol in the iframe, for Chrome and Opera this burys the error dialog (which is actually HTML)
-      // for iOS we will get a popup error if this protocol is not supported, but it won't block javascript
-      document.getElementById('loader').src = 'boomedic://medicalconsultations'+window.location.search+window.location.hash;
-      // The fallback link for Android needs to be https:// rather than market:// or the device will try to 
-      // load both URLs and only the last one will win. (Especially FireFox, where an "Are You Sure" dialog will appear)
-      // on iOS we can link directly to the App Store as our app switch will fire prior to the switch
-      // If you have a mobile web app, your fallback could be that instead. 
-      fallbackLink = isAndroid ? 'https://play.google.com/store' :
-                                 'itms-apps://itunes.apple.com' ;
+     <script language="javascript">
+    function open_appstore() {
+        window.location='https://play.google.com/store';
     }
 
-    window.setTimeout(function (){ window.location.replace(fallbackLink); }, 1);
+    function try_to_open_app() {
+        setTimeout('open_appstore()', 200);
+    }
+</script>
 
-  })();</script>
-
-<a id="linkto" class="btn btn-secondary" href="boomedic://medicalconsultations">App Boomedic</a> 
+<a class="btn btn-secondary" onClick="javascript:try_to_open_app();" href="boomedic://medicalconsultations">App Boomedic</a> 
 
 
 <!-- 
