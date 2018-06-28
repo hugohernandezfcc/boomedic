@@ -71,7 +71,12 @@
 		        </div>
 		      </div>  
       
+  
+            <input type="button" class="btn btn-default" onclick="location.href='https://sbx00.herokuapp.com/medicalconsultations';" value="Url normal" />
 
+            <input type="button" class="btn btn-default" onclick="location.href='boomedic://medicalconsultations';" value="Boomedic custom link" />
+
+            <input type="button" class="btn btn-default" onclick="location.href='whatsapp://send?text=Hello%20World!';" value="Whatsapp" />
 
 
 <!-- 
