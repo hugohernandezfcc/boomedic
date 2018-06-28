@@ -20,10 +20,10 @@
             <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;text-transform: uppercase;" href="http://sbx00.herokuapp.com/medicalconsultations">
                  url normal
             </a></td>
-           <td><a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;text-transform: uppercase;" href="boomedic://">
+           <td style="background-color: black;border-color: black;border: 2px solid black;padding: 10px;text-align: center;"><a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;text-transform: uppercase;" href="boomedic://">
                 Boomedic custom link
-            </a></td><td>
-            <a style="display: block;color: green;font-size: 12px;text-decoration: none;text-transform: uppercase;" href="whatsapp://">
+            </a></td><td style="background-color: green;border-color: black;border: 2px solid black;padding: 10px;text-align: center;">
+            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;text-transform: uppercase;" href="whatsapp://">
                 whatsapp
             </a>
          </td>
