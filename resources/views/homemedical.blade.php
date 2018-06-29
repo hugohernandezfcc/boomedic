@@ -81,7 +81,7 @@
 	var market_i = "https://itunes.apple.com";
 	(function () {
     // tries to execute the uri:scheme
- if(IS_ANDROID || IS_IOS) { 	
+ 
     function goToUri(uri, href) {
         var start, end, elapsed;
         // start a timer
@@ -97,16 +97,19 @@
     }
 
     $('a.intent').on('click', function (event) {
+    	if(IS_ANDROID || IS_IOS) { 	
+        goToUri($(this).data('scheme'), "https://play.google.com/store/apps");
+        event.preventDefault();
+    }else{
         goToUri($(this).data('scheme'), $(this).attr('href'));
         event.preventDefault();
+    }
     });
-}else{
-	 $('a.intent').attr('href','https://sbx00.herokuapp.com/medicalconsultations');
-}
+
 })();
 </script>
 
-<a class="btn btn-secondary intent" data-scheme="boomedic://medicalconsultations" href="https://play.google.com/store/apps" onclick="checkAppInstall();">App Boomedic</a> 
+<a class="btn btn-secondary intent" data-scheme="boomedic://medicalconsultations" href="https://sbx00.herokuapp.com/medicalconsultations" onclick="checkAppInstall();">App Boomedic</a> 
 
 
 <!-- 
