@@ -81,8 +81,8 @@
 	var market_i = "https://itunes.apple.com";
 	(function () {
     // tries to execute the uri:scheme
+ if(IS_ANDROID || IS_IOS) { 	
     function goToUri(uri, href) {
-   if(IS_ANDROID || IS_IOS) { 	
         var start, end, elapsed;
         // start a timer
         start = new Date().getTime();
