@@ -101,7 +101,7 @@
         event.preventDefault();
     });
 }else{
-	 $('a.intent').href("https://sbx00.herokuapp.com/medicalconsultations");
+	 $('a.intent').attr('href','https://sbx00.herokuapp.com/medicalconsultations');
 }
 })();
 </script>
