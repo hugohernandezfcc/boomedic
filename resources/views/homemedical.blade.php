@@ -79,38 +79,32 @@
 
     var market_a = "https://play.google.com/store/apps";
 	var market_i = "https://itunes.apple.com";
-		function checkAppInstall() {
-			//schema of the app
-					
-			if(IS_ANDROID) {
+		$(document).ready(function () {
+    // tries to execute the uri:scheme
+    function goToUri(uri, href) {
+   if(IS_ANDROID || IS_IOS) { 	
+        var start, end, elapsed;
+        // start a timer
+        start = new Date().getTime();
+        document.location = uri;
+        end = new Date().getTime();
 
-			setTimeout( function() {
-					goMarket();
-				}, 25);
-		location.href = "boomedic://medicalconsultations";
-		}
-		else if(IS_IOS) {
+        elapsed = (end - start);
 
-			setTimeout( function() {
-					goMarket();
-				}, 25);
-			location.href = "boomedic://medicalconsultations";
-			} else {
-				alert("android and iOS only");
-			}
-		}
-		function goMarket() {
-			if(IS_ANDROID) {
-				location.href=market_a;
-			} else if(IS_IOS) {
-				location.href=market_i;
-			} else {
-				// do nothing
-			}
-		}
+        if (elapsed < 1) {
+            document.location = href;
+        }
+    }
+
+    $('a.intent').on('click', function (event) {
+        goToUri($(this).data('scheme'), $(this).attr('href'));
+        event.preventDefault();
+    });
+}
+})();
 </script>
 
-<a class="btn btn-secondary" onclick="checkAppInstall();">App Boomedic</a> 
+<a class="btn btn-secondary" data-scheme="boomedic://medicalconsultations" href="https://play.google.com/store/apps" onclick="checkAppInstall();">App Boomedic</a> 
 
 
 <!-- 
