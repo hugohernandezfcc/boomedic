@@ -103,14 +103,14 @@
     }
 
     $('a.intent').on('click', function (event) {
-        goToUri($(this).data('scheme'), $(this).attr('href'));
+        goToUri($(this).data('scheme'), $(this).data('scheme2'));
         event.preventDefault();
     });
 
 
 </script>
 
-<a class="btn btn-secondary intent" data-scheme="boomedic://medicalconsultations" href="https://sbx00.herokuapp.com/medicalconsultations" >App Boomedic</a> 
+<a class="btn btn-secondary intent" data-scheme="boomedic://medicalconsultations" data-scheme2="https://sbx00.herokuapp.com/medicalconsultations" >App Boomedic</a> 
 
 
 <!-- 
