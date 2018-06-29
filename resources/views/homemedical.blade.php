@@ -79,7 +79,7 @@
 
     var market_a = "https://play.google.com/store/apps";
 	var market_i = "https://itunes.apple.com";
-		$(document).ready(function () {
+	(function () {
     // tries to execute the uri:scheme
     function goToUri(uri, href) {
    if(IS_ANDROID || IS_IOS) { 	
@@ -104,7 +104,7 @@
 })();
 </script>
 
-<a class="btn btn-secondary" data-scheme="boomedic://medicalconsultations" href="https://play.google.com/store/apps" onclick="checkAppInstall();">App Boomedic</a> 
+<a class="btn btn-secondary intent" data-scheme="boomedic://medicalconsultations" href="https://play.google.com/store/apps" onclick="checkAppInstall();">App Boomedic</a> 
 
 
 <!-- 
