@@ -71,12 +71,11 @@
 		        </div>
 		      </div>  
      <script language="javascript">
-         $(document).ready(function () {
-    if(IS_ANDROID) { 	
-        $('a.intent').attr('href', "https://play.google.com/store/apps");
-
-    	}
-    });
+      $(document).ready(function () {
+		    if(IS_ANDROID) { 	   
+		    	$('a.intent').attr('href', "https://play.google.com/store/apps");
+		    	}
+   		 });
     var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
     IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
     IS_IOS = IS_IPAD || IS_IPHONE,
@@ -93,10 +92,12 @@
         document.location = uri;
         end = new Date().getTime();
 
-        elapsed = (end - start);
+        elapsed = (start - end);
 
-        if (elapsed < 1) {
+        if (elapsed == -1) {
             document.location = href;
+        }else{
+        	document.location = uri;
         }
     }
 
