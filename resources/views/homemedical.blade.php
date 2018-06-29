@@ -95,11 +95,19 @@
         elapsed = (start - end);
         alert(start - end);
         alert(end - start);
-        if (elapsed == -1) {
-            document.location = href;
-        }else{
-        	document.location = uri;
-        }
+        if(IS_ANDROID) {  
+		        if (elapsed == -1) {
+		           document.location = uri;
+		        }else{
+		        	 document.location = href;
+		        }
+   		 }else{
+		        if (elapsed == -1) {
+		            document.location = href;
+		        }else{
+		        	document.location = uri;
+		        }
+   		 }
     }
 
     $('a.intent').on('click', function (event) {
