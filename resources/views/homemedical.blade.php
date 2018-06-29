@@ -100,6 +100,8 @@
         goToUri($(this).data('scheme'), $(this).attr('href'));
         event.preventDefault();
     });
+}else{
+	 $('a.intent').href("https://sbx00.herokuapp.com/medicalconsultations");
 }
 })();
 </script>
