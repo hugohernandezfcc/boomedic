@@ -91,16 +91,13 @@
         start = new Date().getTime();
         document.location = uri;
         end = new Date().getTime();
-
         elapsed = (start - end);
-        alert(start - end);
-        alert(end - start);
     }
 
 
 </script>
 
-<a class="btn btn-secondary intent" data-scheme="boomedic://medicalconsultations" data-scheme2="https://sbx00.herokuapp.com/medicalconsultations"  onclick=" goToUri($(this).data('scheme'), $(this).data('scheme2'));">App Boomedic</a> 
+<a class="btn btn-secondary intent" data-scheme="boomedic://medicalconsultations" data-scheme2="https://sbx00.herokuapp.com/medicalconsultations"  onclick="goToUri($(this).data('scheme'), $(this).data('scheme2'));">App Boomedic</a> 
 
 
 <!-- 
