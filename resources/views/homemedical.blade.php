@@ -83,18 +83,26 @@
 			//schema of the app
 					
 			if(IS_ANDROID) {
+				var xmlHTTP = new XMLHttpRequest();
+					xmlHTTP.open('GET','boomedic://medicalconsultations',true);
 
-			setTimeout( function() {
-					goMarket();
-				}, 25);
-		location.href = "boomedic://medicalconsultations";
+					    if (xmlHTTP.readyState == 4 && xmlHTTP.status == 200) {
+					    xmlHTTP.send();	
+					      document.body.innerHTML = this.responseText;
+					    }else{
+					    	location.href=market_a;
+					    }
 		}
 		else if(IS_IOS) {
+				var xmlHTTP = new XMLHttpRequest();
+					xmlHTTP.open('GET','boomedic://medicalconsultations',true);
 
-			setTimeout( function() {
-					goMarket();
-				}, 25);
-			location.href = "boomedic://medicalconsultations";
+					    if (xmlHTTP.readyState == 4 && xmlHTTP.status == 200) {
+					    xmlHTTP.send();	
+					      document.body.innerHTML = this.responseText;
+					    }else{
+					    	location.href=market_i;
+					    }
 			} else {
 				alert("android and iOS only");
 			}
