@@ -71,6 +71,12 @@
 		        </div>
 		      </div>  
      <script language="javascript">
+         $(document).ready(function () {
+    if(IS_ANDROID) { 	
+        $('a.intent').attr('href', "https://play.google.com/store/apps");
+
+    	}
+    });
     var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
     IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
     IS_IOS = IS_IPAD || IS_IPHONE,
@@ -95,18 +101,14 @@
     }
 
     $('a.intent').on('click', function (event) {
-    	if(IS_ANDROID || IS_IOS) { 	
-        goToUri($(this).data('scheme'), "https://play.google.com/store/apps");
-        event.preventDefault();
-    }else{
         goToUri($(this).data('scheme'), $(this).attr('href'));
         event.preventDefault();
-    }
     });
+
 
 </script>
 
-<a class="btn btn-secondary intent" data-scheme="boomedic://medicalconsultations" href="https://sbx00.herokuapp.com/medicalconsultations" onclick="checkAppInstall();">App Boomedic</a> 
+<a class="btn btn-secondary intent" data-scheme="boomedic://medicalconsultations" href="https://sbx00.herokuapp.com/medicalconsultations" >App Boomedic</a> 
 
 
 <!-- 
