@@ -93,7 +93,8 @@
         end = new Date().getTime();
 
         elapsed = (start - end);
-
+        alert(start - end);
+        alert(end - start);
         if (elapsed == -1) {
             document.location = href;
         }else{
