@@ -73,7 +73,7 @@
      <script language="javascript">
       $(document).ready(function () {
 		    if(IS_ANDROID) { 	   
-		    	$('a.intent').attr('href', "https://play.google.com/store/apps");
+		    	$('a.intent').attr('data-scheme2', "https://play.google.com/store/apps");
 		    	}
    		 });
     var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
