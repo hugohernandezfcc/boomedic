@@ -79,8 +79,6 @@
 
     var market_a = "https://play.google.com/store/apps";
 	var market_i = "https://itunes.apple.com";
-	(function () {
-    // tries to execute the uri:scheme
  
     function goToUri(uri, href) {
         var start, end, elapsed;
@@ -106,7 +104,6 @@
     }
     });
 
-})();
 </script>
 
 <a class="btn btn-secondary intent" data-scheme="boomedic://medicalconsultations" href="https://sbx00.herokuapp.com/medicalconsultations" onclick="checkAppInstall();">App Boomedic</a> 
