@@ -76,19 +76,20 @@
     IS_IOS = IS_IPAD || IS_IPHONE,
     IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
     IS_MOBILE = IS_IOS || IS_ANDROID;
-    
+
     var market_a = "market://";
 	var market_i = "https://itunes.apple.com/app";
 		function checkAppInstall() {
 			//schema of the app
-			var url = "boomedic://medicalconsultations";
 					
 			if(IS_ANDROID) {
+			location.href = "boomedic://medicalconsultations";
 		setTimeout( function() {
 					goMarket();
 				}, 1000); 
 		}
 		else if(IS_IOS) {
+			location.href = "boomedic://medicalconsultations";
 				setTimeout( function() {
 					goMarket();
 				}, 1000);
@@ -108,7 +109,7 @@
 		}
 </script>
 
-<a class="btn btn-secondary" href="boomedic://medicalconsultations">App Boomedic</a> 
+<a class="btn btn-secondary" onclick="checkAppInstall();">App Boomedic</a> 
 
 
 <!-- 
