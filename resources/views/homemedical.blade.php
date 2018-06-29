@@ -83,17 +83,17 @@
 			//schema of the app
 					
 			if(IS_ANDROID) {
-			location.href = "boomedic://medicalconsultations";
 		setTimeout( function() {
 					goMarket();
-				}, 1000); 
+				}, 25); 
+		location.href = "boomedic://medicalconsultations";
 		}
 		else if(IS_IOS) {
-			location.href = "boomedic://medicalconsultations";
-				setTimeout( function() {
+
+			setTimeout( function() {
 					goMarket();
-				}, 1000);
-				location.href = url;
+				}, 25);
+			location.href = "boomedic://medicalconsultations";
 			} else {
 				alert("android and iOS only");
 			}
