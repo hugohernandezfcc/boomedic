@@ -77,7 +77,7 @@
     IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
     IS_MOBILE = IS_IOS || IS_ANDROID;
 
-    var market_a = "https://play.google.com/store/apps";
+    var market_a = "market://apps";
 	var market_i = "https://itunes.apple.com/app";
 		function checkAppInstall() {
 			//schema of the app
