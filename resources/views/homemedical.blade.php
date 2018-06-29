@@ -76,11 +76,12 @@
     }
 
     function try_to_open_app() {
-        setTimeout('open_appstore()', 200);
+        setTimeout('open_appstore()', 25);
     }
 </script>
 
-<a class="btn btn-secondary" onClick="javascript:try_to_open_app();" href="boomedic://medicalconsultations">App Boomedic</a> 
+<a class="btn btn-secondary" onClick="javascript:try_to_open_app();" href
+="boomedic://medicalconsultations">App Boomedic</a> 
 
 
 <!-- 
