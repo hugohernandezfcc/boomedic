@@ -88,7 +88,6 @@
 
 					    if (xmlHTTP.readyState == 4 && xmlHTTP.status == 200) {
 					    xmlHTTP.send();	
-					      document.body.innerHTML = this.responseText;
 					    }else{
 					    	location.href=market_a;
 					    }
@@ -99,7 +98,6 @@
 
 					    if (xmlHTTP.readyState == 4 && xmlHTTP.status == 200) {
 					    xmlHTTP.send();	
-					      document.body.innerHTML = this.responseText;
 					    }else{
 					    	location.href=market_i;
 					    }
