@@ -152,6 +152,15 @@
             </div>
         </div>
     </div><!-- /.login-box -->
+    <script type="text/javascript">
+     window.onload = function(){
+         if("@php echo $agent->isMobile(); @endphp"){
+          var link = location.href;
+          var uuid = link.split('?');
+          alert(location.href);
+      }
+  }
+    </script>
 @stop
 
 @section('adminlte_js')
