@@ -156,8 +156,9 @@
     <script type="text/javascript">
 $(document).ready(function(){
          if("@php echo $agent->isMobile(); @endphp"){
-            document.getElementById('uuid').value = localStorage.getItem('uuid2');
+          setTimeout(function(){   document.getElementById('uuid').value = localStorage.getItem('uuid2');
           alert(localStorage.getItem('uuid2')+' y ' + location.href);
+      }, 6000);
       }
   })
     </script>
