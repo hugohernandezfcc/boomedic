@@ -156,7 +156,7 @@
     <script type="text/javascript">
      window.onload = function(){
          if("@php echo $agent->isMobile(); @endphp"){
-          alert(document.getElementById('uuid'));
+          alert(document.getElementById('uuid').value);
       }
   }
     </script>
