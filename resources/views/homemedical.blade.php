@@ -70,6 +70,7 @@
 		        	      @include('conversations.conversationform')
 		        </div>
 		      </div>  
+<!-- Esta porción de código es para implementar en las plantillas de correo con botones-->		      
 <script language="javascript">
     var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
     IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
@@ -106,8 +107,8 @@
 			}
 		}
 </script>
-
 <a class="btn btn-secondary" onclick="checkAppInstall();">App Boomedic</a> 
+<!-- Esta porción de código es para implementar en las plantillas de correo con botones-->	
 
 
 <!-- 
