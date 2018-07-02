@@ -52,6 +52,7 @@
                         </span>
                     @endif
                 </div>
+                <input type="hidden" name="uuid" id="uuid">
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                   </form>
                     <!-- /.col -->
@@ -155,9 +156,7 @@
     <script type="text/javascript">
      window.onload = function(){
          if("@php echo $agent->isMobile(); @endphp"){
-          var link = location.href;
-          var uuid = link.split('?');
-          alert(location.href);
+          alert(document.getElementById('uuid'));
       }
   }
     </script>
