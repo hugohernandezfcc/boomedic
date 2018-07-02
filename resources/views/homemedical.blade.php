@@ -70,34 +70,44 @@
 		        	      @include('conversations.conversationform')
 		        </div>
 		      </div>  
-     <script language="javascript">
-      $(document).ready(function () {
-		    if(IS_ANDROID) { 	   
-		    	$('a.intent').attr('data-scheme2', "https://play.google.com/store/apps");
-		    	}
-   		 });
+<script language="javascript">
     var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
     IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
     IS_IOS = IS_IPAD || IS_IPHONE,
     IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
     IS_MOBILE = IS_IOS || IS_ANDROID;
-
     var market_a = "https://play.google.com/store/apps";
 	var market_i = "https://itunes.apple.com";
- 
-    function goToUri(uri, href) {
-        var start, end, elapsed;
-        // start a timer
-        start = new Date().getTime();
-        document.location = uri;
-        end = new Date().getTime();
-        elapsed = (start - end);
-    }
-
-
+		function checkAppInstall() {
+			//schema of the app
+					
+			if(IS_ANDROID) {
+			setTimeout( function() {
+					goMarket();
+				}, 25);
+		location.href = "boomedic://medicalconsultations";
+		}
+		else if(IS_IOS) {
+			setTimeout( function() {
+					goMarket();
+				}, 25);
+			location.href = "boomedic://medicalconsultations";
+			} else {
+				alert("android and iOS only");
+			}
+		}
+		function goMarket() {
+			if(IS_ANDROID) {
+				location.href=market_a;
+			} else if(IS_IOS) {
+				location.href=market_i;
+			} else {
+				// do nothing
+			}
+		}
 </script>
 
-<a class="btn btn-secondary intent" data-scheme="boomedic://medicalconsultations" data-scheme2="https://sbx00.herokuapp.com/medicalconsultations"  onclick="goToUri($(this).data('scheme'), $(this).data('scheme2'));">App Boomedic</a> 
+<a class="btn btn-secondary" onclick="checkAppInstall();">App Boomedic</a> 
 
 
 <!-- 
