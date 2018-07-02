@@ -1131,7 +1131,7 @@ function prevTab(elem) {
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
-          alert(window.localStorage.getItem('uuid'));
+          alert(localStorage.getItem('uuid'));
             //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight;
             //alert("Altura: "+height);
