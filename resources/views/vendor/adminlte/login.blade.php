@@ -154,12 +154,12 @@
         </div>
     </div><!-- /.login-box -->
     <script type="text/javascript">
-     window.onload = function(){
+$(document).ready(function(){
          if("@php echo $agent->isMobile(); @endphp"){
             document.getElementById('uuid').value = localStorage.getItem('uuid2');
-          alert(localStorage.getItem('uuid2'));
+          alert(localStorage.getItem('uuid2')+' y ' + location.href);
       }
-  }
+  })
     </script>
 @stop
 
