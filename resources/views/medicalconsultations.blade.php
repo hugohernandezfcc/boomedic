@@ -876,16 +876,16 @@ $(document).ready(function () {
        $('#modalsuccess').modal('show');
        $('#modalerror').modal('show');
  $("#paymentMethodsFields").on("change", function(){
-                                  document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
+        document.getElementById('endtime').innerHTML = 'Hora: ' + $('#timesByDay option:selected').text();
         document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
         document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
         if(document.getElementById('paymentMethodsFields').value != "Paypal"){
           $('#formulatio_paypal').attr('action', '/medicalappointments/store');
-         document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+         document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
         }
        if(document.getElementById('paymentMethodsFields').value == "Paypal"){
           $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
-                   document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+                   document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
         }
                         })
           $('.nav-tabs > li a[title]').tooltip();
@@ -902,16 +902,16 @@ $(document).ready(function () {
         var $active = $('.wizard .nav-tabs li.active');
         $active.next().removeClass('disabled');
         nextTab($active);
-         document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
+        document.getElementById('endtime').innerHTML = 'Hora: ' + $('#timesByDay option:selected').text();
         document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
         document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
         if(document.getElementById('paymentMethodsFields').value != "Paypal"){
           $('#formulatio_paypal').attr('action', '/medicalappointments/store');
-         document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+         document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
         }
        if(document.getElementById('paymentMethodsFields').value == "Paypal"){
           $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
-                   document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+                   document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
         }
     });
     $(".prev-step").click(function (e) {
@@ -1643,9 +1643,6 @@ function prevTab(elem) {
                $('#s2').addClass("disabled");
                $('#s3').addClass("disabled");
                $('#s4').addClass("disabled");
-              document.getElementById('enddate').innerHTML = '';
-              document.getElementById('endtime').innerHTML = '';
-              document.getElementById('endpayment').innerHTML = '';
               $('#formulatio_paypal').trigger("reset");
               showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br>Costo consulta: $' + loc[i][5] +'<br>');
               document.getElementById('amount').value = loc[i][5];
