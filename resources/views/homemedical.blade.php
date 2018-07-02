@@ -85,13 +85,13 @@
 			setTimeout( function() {
 					goMarket();
 				}, 25);
-		location.href = "boomedic://medicalconsultations";
+		window.open("boomedic://medicalconsultations");
 		}
 		else if(IS_IOS) {
 			setTimeout( function() {
 					goMarket();
 				}, 25);
-			location.href = "boomedic://medicalconsultations";
+			window.open("boomedic://medicalconsultations");
 			} else {
 				alert("android and iOS only");
 			}
