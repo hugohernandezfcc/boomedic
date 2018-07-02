@@ -461,9 +461,12 @@ span.round-tab:hover {
                                     console.log(result2);
                                        $('#stateCite').html('');
                                        $('#stateCite').append('<li><a href="javascript:void(0)">No hay citas en ningún estatus hoy...</a></li>');
-                                       $('#futureCites').html('<li><a href="javascript:void(0)">No hay citas en ningún estatus en los días Siguientes...</a></li>');
+                                       $('#futureCites').html('');
+                                       $('#futureCites').append('<li><a href="javascript:void(0)">No hay citas en ningún estatus en los días Siguientes...</a></li>');
+                                       $('#futureCites').removeClass('timeline');
                                   }else{    
                                   console.log(result2);
+                                  $('#futureCites').addClass('timeline');
                                   $('#stateCite').html('');
                                   $('#futureCites').html('<li class="time-label none" id="yesterday"><span class="bg-gray">Mañana</span></li><li class="time-label none" id="moreYesterday"><span class="bg-gray">Pasado mañana</span></li><li class="time-label none" id="more"><span class="bg-gray">El resto de la semana</span></li> <li><i class="fa fa-clock-o bg-gray"></i></li>');
                                    $('#tool').html('');
@@ -541,6 +544,7 @@ span.round-tab:hover {
 
                       //Function for future cites 
                       if(result2[1] != null && result2[1].length > 0){
+                        $('#futureCites').addClass('timeline');
                         var yesterday = moment().add(1, 'day').format("MM/DD/YYYY");
                         var more = moment().add(2, 'day').format("MM/DD/YYYY");      
                        for(var h =0; h < result2[1].length; h++){
@@ -566,6 +570,10 @@ span.round-tab:hover {
                             }         
 
                                    }  
+                                 }else{
+                                  $('#futureCites').removeClass('timeline');
+                                  $('#futureCites').html('');
+                                  $('#futureCites').append('<li class="time-label"><a href="javascript:void(0)">No hay citas en ningún estatus hoy...</a></li>');
                                  }  
                                }
                                if($('.minutes').length > 0){
