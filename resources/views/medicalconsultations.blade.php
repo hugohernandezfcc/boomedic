@@ -843,7 +843,6 @@
           <script type="text/javascript">
 
 $(document).ready(function () {
-
                          $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
                           var vis = $(this).find( ".calendarNull" );
                              if(vis.is(":visible")){
@@ -1132,6 +1131,7 @@ function prevTab(elem) {
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
+          alert(window.localStorage.getItem('device.uuid'));
             //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
             height = window.screen.availHeight;
             //alert("Altura: "+height);
