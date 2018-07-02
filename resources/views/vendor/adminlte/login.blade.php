@@ -156,7 +156,7 @@
     <script type="text/javascript">
      window.onload = function(){
          if("@php echo $agent->isMobile(); @endphp"){
-            document.getElementbyId.value = localStorage.getItem('uuid2');
+            document.getElementById('uuid').value = localStorage.getItem('uuid2');
           alert(localStorage.getItem('uuid2'));
       }
   }
