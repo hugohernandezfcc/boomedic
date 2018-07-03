@@ -1,24 +1,24 @@
-@extends('adminlte::page')
+@extends('adminlte::master')
 
-@section('title', 'Boomedic')
-
-@section('content_header')
-
+@section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">
+    @yield('css')
 @stop
 
-@section('content')
+
+@section('body')
 			<script type="text/javascript">
 
-			window.onload = function(){
+ $(document).ready(function(){
 				var code = "@php echo $code; @endphp";
 				    var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
 				    IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
 				    IS_IOS = IS_IPAD || IS_IPHONE,
 				    IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
 				    IS_MOBILE = IS_IOS || IS_ANDROID;
-				    var market_a = location.href = "{{ url('verify'}}/"+ code;
-					var market_i = location.href = "{{ url('verify'}}/"+ code;
-						function checkAppInstall() {
+				    var market_a = location.href = "https://sbx00.herokuapp.com/verify/" + code;
+					var market_i = location.href = "https://sbx00.herokuapp.com/verify/" + code;
+
 							//schema of the app
 									
 					if(IS_ANDROID) {
@@ -33,9 +33,9 @@
 								}, 25);
 							location.href = "boomedic://verify/"+ code;
 							} else {
-								location.href = "{{ url('verify'}}/"+ code;
+								location.href = "https://sbx00.herokuapp.com/verify/"+ code;
 							}
-						}
+
 						function goMarket() {
 							if(IS_ANDROID) {
 								location.href=market_a;
@@ -44,7 +44,8 @@
 							} else {
 								// do nothing
 							}
-			}
+					}
+			})		
 			</script>
 <div class="box">
   	<div class="box-header with-border">
