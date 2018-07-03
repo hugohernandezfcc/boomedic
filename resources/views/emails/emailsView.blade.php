@@ -10,7 +10,7 @@
 			<script type="text/javascript">
 
 			window.onload = function(){
-				var code = "@php echo $code; @endphp"
+				var code = "@php echo $code; @endphp";
 				    var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
 				    IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
 				    IS_IOS = IS_IPAD || IS_IPHONE,
@@ -21,7 +21,7 @@
 						function checkAppInstall() {
 							//schema of the app
 									
-							if(IS_ANDROID) {
+					if(IS_ANDROID) {
 							setTimeout( function() {
 									goMarket();
 								}, 25);
