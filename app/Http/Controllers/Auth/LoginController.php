@@ -22,7 +22,7 @@ class LoginController extends Controller
         /*DB::table('devices')->where('uuid_device', $request->uuid)->get();
         $ud = new users_devices;
         $ud->*/
-        Session(['uuid' => '"+ split[1] + "']);
+        Session(['uuid' => $request->uuid]);
    }
     use AuthenticatesUsers;
 
