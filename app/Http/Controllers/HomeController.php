@@ -38,7 +38,12 @@ class HomeController extends Controller
          $uuid = session()->get('uuid');
           if($agent->isMobile() && $uuid != "null"){
                 $device = DB::table('devices')->where('uuid_device', $uuid)->get();
-                $old =  DB::table('users_devices')->where('device', $device->id)->where('user_id', $user->id)->get();
+                $old =  DB::table('users_devices')->where(
+                [
+                    ['device', '=', $device[0]->id],
+                    ['user_id', '=',  $user->id]
+                ]
+            )->get();
                 if(count($old) == 0){
                     $ud = new users_devices;
                     $ud->user_id = $user->id;
