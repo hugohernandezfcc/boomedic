@@ -18,12 +18,12 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-   if($agent->isMobile()){
+
         /*DB::table('devices')->where('uuid_device', $request->uuid)->get();
         $ud = new users_devices;
         $ud->*/
-        Session(['uuid' => $request->uuid]);
-   }
+     
+   
     use AuthenticatesUsers;
 
     /**
