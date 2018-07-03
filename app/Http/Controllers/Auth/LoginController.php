@@ -19,9 +19,7 @@ class LoginController extends Controller
     |
     */
 
-        /*DB::table('devices')->where('uuid_device', $request->uuid)->get();
-        $ud = new users_devices;
-        $ud->*/
+        
      
    
     use AuthenticatesUsers;

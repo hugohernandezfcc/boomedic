@@ -52,7 +52,6 @@
                         </span>
                     @endif
                 </div>
-                <input type="hidden" name="uuid" id="uuid">
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                   </form>
                     <!-- /.col -->
@@ -163,13 +162,7 @@
         }
     }
     @endphp
-    <script type="text/javascript">
-$(document).ready(function(){
-     if("@php echo $agent->isMobile(); @endphp"){
-          alert("@php echo session()->get('uuid');  @endphp");
-      }
-  })
-    </script>
+
 @stop
 
 @section('adminlte_js')

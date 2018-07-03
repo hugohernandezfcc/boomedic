@@ -32,8 +32,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-    
-        $user = User::find(Auth::id());
+         $user = User::find(Auth::id());
+         $uuid = session()->get('uuid');
+          if($agent->isMobile() && $uuid != "null"){
+                $device = DB::table('devices')->where('uuid_device', $uuid)->get();
+                $old =  DB::table('users_devices')->where('device', $device->id)->where('user_id', $user->id)->get();
+                if(count($old) == 0){
+                    $ud = new users_devices;
+                    $ud->user_id = $user->id;
+                    $ud->device = $device->id;
+                    if($ud->save())
+                    Session(['uuid' => 'null']);    
+            }
+          }
+
         Session(['entered' => $user->entered]);
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
         $StatementForUser = $user->privacy_statement;
