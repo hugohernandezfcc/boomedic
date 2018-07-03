@@ -1,12 +1,12 @@
-@extends('adminlte::master')
+@extends('adminlte::page')
 
-@section('adminlte_css')
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">
-    @yield('css')
+@section('title', 'Boomedic')
+
+@section('content_header')
+
 @stop
 
-
-@section('body')
+@section('content')
 			<script type="text/javascript">
 
  $(document).ready(function(){
