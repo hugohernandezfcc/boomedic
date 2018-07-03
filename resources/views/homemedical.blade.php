@@ -86,7 +86,7 @@
 			setTimeout( function() {
 					goMarket();
 				}, 25);
-		location.href = "boomedic://medicalconsultations";
+		location.href = "boomedic://user/profile/144";
 		}
 		else if(IS_IOS) {
 			setTimeout( function() {
