@@ -499,6 +499,22 @@ Route::group(['prefix' => 'supportTicket'], function(){
 
 });
 
+Route::group(['prefix' => 'emails'], function(){
+
+	Route::get('verify/{code}', [
+			'uses'	=>	'emails@verify',
+			'as'	=>	'verify'
+		]
+	);
+
+	Route::get('create', [
+			'uses'	=>	'supportTickets@create',
+			'as'	=>	'create'
+		]
+	);
+
+});
+
 Route::group(['prefix' => 'history'], function(){
 
 	Route::get('index', [
