@@ -42,7 +42,7 @@ class HomeController extends Controller
                 if(count($old) == 0){
                     $ud = new users_devices;
                     $ud->user_id = $user->id;
-                    $ud->device = $device->id;
+                    $ud->device = $device[0]->id;
                     if($ud->save())
                     Session(['uuid' => 'null']);    
             }
