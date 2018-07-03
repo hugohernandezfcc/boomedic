@@ -153,14 +153,16 @@
             </div>
         </div>
     </div><!-- /.login-box -->
+    @php 
+    if($agent->isMobile()){
+    $link = explode("?", Request::fullUrl());
+    Session(['uuid' => $link[1]]);
+    }
+    @endphp
     <script type="text/javascript">
 $(document).ready(function(){
      if("@php echo $agent->isMobile(); @endphp"){
-            var link = location.href;
-            var split = link.split('?');
-          document.getElementById('uuid').value = split[1];
-          "@php Session(['uuid' => '"+ split[1] + "']); @endphp" 
-          alert("@php echo session()->get('uuid'); @endphp");
+          alert("@php echo session()->get('uuid');  @endphp");
       }
   })
     </script>
