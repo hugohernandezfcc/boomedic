@@ -12,9 +12,6 @@ use App\privacy_statement;
 class emails extends Controller
 {
 
-
-    protected $redirectTo = '/login';
-
     /**
      * Create a new controller instance.
      *
@@ -22,7 +19,8 @@ class emails extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
+       
     }
 
     /**
