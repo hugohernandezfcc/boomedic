@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
@@ -19,7 +18,7 @@ class emails extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
        
     }
 
@@ -29,14 +28,8 @@ class emails extends Controller
      * @return \Illuminate\Http\Response
      */
     public function verify($code){
-        $user = User::find(Auth::id());
         return view('emails/emailsView', [
-                'code'   => $code,
-                'userId'    => $user->id,
-                'username'  => $user->username,
-                'name'      => $user->name,
-                'photo'     => $user->profile_photo,
-                'date'      => $user->created_at,
+                'code'   => $code
             ]
         );
     }
