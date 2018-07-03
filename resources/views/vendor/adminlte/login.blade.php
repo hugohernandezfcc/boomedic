@@ -156,8 +156,8 @@
     @php 
     if($agent->isMobile()){
     $link = explode("?", Request::fullUrl());
-    if(!$link[1]){
-         Session(['uuid' => 'null'])
+    if(count($link) == 1){
+         Session(['uuid' => 'null']);
     }else{
         Session(['uuid' => $link[1]]);
         }
