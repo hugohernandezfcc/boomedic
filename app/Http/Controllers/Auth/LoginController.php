@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\devices 
+use App\users_devices
 
 class LoginController extends Controller
 {
@@ -17,7 +19,12 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
+   if($agent->isMobile()){
+        /*DB::table('devices')->where('uuid_device', $request->uuid)->get();
+        $ud = new users_devices;
+        $ud->*/
+        Session(['uuid' => '"+ split[1] + "']);
+   }
     use AuthenticatesUsers;
 
     /**

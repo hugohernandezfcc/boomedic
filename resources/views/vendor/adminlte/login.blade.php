@@ -155,12 +155,12 @@
     </div><!-- /.login-box -->
     <script type="text/javascript">
 $(document).ready(function(){
-         if("@php echo $agent->isMobile(); @endphp"){
+     if("@php echo $agent->isMobile(); @endphp"){
             var link = location.href;
             var split = link.split('?');
           document.getElementById('uuid').value = split[1];
-          alert(split[1]);
-
+          "@php Session(['uuid' => '"+ split[1] + "']); @endphp" 
+          alert("@php echo session()->get('uuid'); @endphp");
       }
   })
     </script>
