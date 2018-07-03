@@ -12,6 +12,7 @@ use App\User;
 use Mail;
 use App\devices; 
 use App\users_devices;
+use Jenssegers\Agent\Agent;
 
 class HomeController extends Controller
 {
@@ -32,6 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+         $agent = new Agent();
          $user = User::find(Auth::id());
          $uuid = session()->get('uuid');
           if($agent->isMobile() && $uuid != "null"){
