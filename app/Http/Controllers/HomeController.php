@@ -10,6 +10,8 @@ use App\medical_appointments;
 use Carbon\Carbon;
 use App\User;
 use Mail;
+use App\devices; 
+use App\users_devices;
 
 class HomeController extends Controller
 {
