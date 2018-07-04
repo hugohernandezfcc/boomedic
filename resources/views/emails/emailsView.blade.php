@@ -25,13 +25,13 @@
 							setTimeout( function() {
 									goMarket();
 								}, 25);
-						location.href = "boomedic://verify/"+ code;
+						location.href = "boomedic:verify/"+ code;
 						}
 						else if(IS_IOS) {
 							setTimeout( function() {
 									goMarket();
 								}, 25);
-							location.href = "boomedic://verify/"+ code;
+							location.href = "boomedic:verify/"+ code;
 							} else {
 								location.href = "https://sbx00.herokuapp.com/verify/"+ code;
 							}
