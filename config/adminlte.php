@@ -91,6 +91,7 @@ return [
     'login_url'            => 'login',
     'register_doctor_url'  => 'medicalRegister',
     'register_url'         => 'register',
+    'custom_url'           => 'boomedic:', 
 
     /*
     |--------------------------------------------------------------------------

@@ -86,13 +86,13 @@
 			setTimeout( function() {
 					goMarket();
 				}, 25);
-		location.href = "boomedic:user/profile/144";
+		location.href = "@php echo config('adminlte.custom_url'); @endphp user/profile/144";
 		}
 		else if(IS_IOS) {
 			setTimeout( function() {
 					goMarket();
 				}, 25);
-			location.href = "boomedic:user/profile/144";
+			location.href = "@php echo config('adminlte.custom_url'); @endphp user/profile/144";
 			} else {
 				alert("android and iOS only");
 			}
