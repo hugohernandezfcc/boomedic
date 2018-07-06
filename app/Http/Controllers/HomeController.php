@@ -36,7 +36,9 @@ class HomeController extends Controller
          $agent = new Agent();
          $user = User::find(Auth::id());
          $uuid = session()->get('uuid');
+
           if($agent->isMobile() && $uuid != "null"){
+            if($uuid){
                 $device = DB::table('devices')->where('uuid_device', $uuid)->get();
                 $old =  DB::table('users_devices')->where(
                 [
@@ -50,6 +52,7 @@ class HomeController extends Controller
                     $ud->device = $device[0]->id;
                     if($ud->save())
                     Session(['uuid' => 'null']);    
+            }
             }
           }
 
