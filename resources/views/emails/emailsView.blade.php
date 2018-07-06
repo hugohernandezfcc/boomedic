@@ -18,20 +18,20 @@
 				    IS_MOBILE = IS_IOS || IS_ANDROID;
 				    var market_a = location.href = "https://sbx00.herokuapp.com/verify/" + code;
 					var market_i = location.href = "https://sbx00.herokuapp.com/verify/" + code;
-
+					var ur = "{{ config('adminlte.custom_url') }}";
 							//schema of the app
 									
 					if(IS_ANDROID) {
 							setTimeout( function() {
 									goMarket();
 								}, 25);
-						location.href = "boomedic:verify/"+ code;
+						location.href = ur + "verify/"+ code;
 						}
 						else if(IS_IOS) {
 							setTimeout( function() {
 									goMarket();
 								}, 25);
-							location.href = "boomedic:verify/"+ code;
+							location.href = ur + "verify/"+ code;
 							} else {
 								location.href = "https://sbx00.herokuapp.com/verify/"+ code;
 							}
