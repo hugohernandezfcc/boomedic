@@ -79,6 +79,7 @@
     IS_MOBILE = IS_IOS || IS_ANDROID;
     var market_a = "https://play.google.com/store/apps";
 	var market_i = "https://itunes.apple.com";
+	var ur = "{{ config('adminlte.custom_url') }}";
 		function checkAppInstall() {
 			//schema of the app
 					
@@ -86,16 +87,15 @@
 			setTimeout( function() {
 					goMarket();
 				}, 25);
-		location.href = "boomedic:user/profile/144";
+		location.href = ur + "user/profile/144";
 		}
 		else if(IS_IOS) {
 			setTimeout( function() {
 					goMarket();
 				}, 25);
-			location.href = "boomedic:user/profile/144";
+			location.href = ur + "user/profile/144";
 			} else {
-				var ur = "{{ config('adminlte.custom_url') }}";
-				alert(ur + "user/profile/144");
+				alert(ur);
 			}
 		}
 		function goMarket() {
