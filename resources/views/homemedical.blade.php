@@ -94,7 +94,7 @@
 				}, 25);
 			location.href = "boomedic:user/profile/144";
 			} else {
-				alert("android and iOS only");
+				alert("{{ asset(config('adminlte.custom_url')) }}");
 			}
 		}
 		function goMarket() {

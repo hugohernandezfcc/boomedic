@@ -53,6 +53,10 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+
+
+    'custom_url' => env('APP_CUSTOM_URL', 'boomedic:'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

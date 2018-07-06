@@ -93,6 +93,7 @@ return [
     'register_url'         => 'register',
     'custom_url'           => 'boomedic:', 
 
+
     /*
     |--------------------------------------------------------------------------
     | Menu Items
