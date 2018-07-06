@@ -79,6 +79,7 @@
     IS_MOBILE = IS_IOS || IS_ANDROID;
     var market_a = "https://play.google.com/store/apps";
 	var market_i = "https://itunes.apple.com";
+	//Desde acá llamo la custom url (ejem: boomedic:) para concatenarle el path
 	var ur = "{{ config('adminlte.custom_url') }}";
 		function checkAppInstall() {
 			//schema of the app
@@ -95,7 +96,7 @@
 				}, 25);
 			location.href = ur + "user/profile/144";
 			} else {
-				alert(ur);
+				alert('Prueba solo en android e ios');
 			}
 		}
 		function goMarket() {
