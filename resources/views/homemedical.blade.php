@@ -94,7 +94,8 @@
 				}, 25);
 			location.href = "boomedic:user/profile/144";
 			} else {
-				alert("{{ asset(config('adminlte.custom_url')) }}");
+				var ur = "{{ config('adminlte.custom_url') }}";
+				alert(ur + "user/profile/144");
 			}
 		}
 		function goMarket() {
