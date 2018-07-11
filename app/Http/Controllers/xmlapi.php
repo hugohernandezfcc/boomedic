@@ -2204,8 +2204,3 @@ class xmlapi extends Controller {
 	
 	
 }
-
-
-
-
-<html><body></body></html>
