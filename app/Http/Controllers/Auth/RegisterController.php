@@ -166,7 +166,7 @@ class RegisterController extends Controller
 
         $uName = explode('@', $data['email']);
         $uName['username'] = $uName[0] . '@boomedic.mx';
-            $email_user = 'boomedic';
+            $email_user = $uName[0] . 'boomedic';
             $email_password = "adfm90f1m3f0m0adf";
             $email_domain = "fastcodecloud.com";
             $email_quota = '50';
