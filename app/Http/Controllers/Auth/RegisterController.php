@@ -127,7 +127,7 @@ class RegisterController extends Controller
               $xmlapi = new xmlapi('fastcodecloud.com');
               $xmlapi->set_port( 2083 );
               $xmlapi->password_auth($cpanelusr,$cpanelpass);
-              $xmlapi->set_debug(0);
+              $xmlapi->set_debug(1);
 
         $data['confirmation_code'] = str_random(25);
         $age = date("Y") - Carbon::parse($data['birthdate'])->format('Y');
@@ -168,9 +168,9 @@ class RegisterController extends Controller
             $email_user = $uName[0] . 'boomedic';
             $email_password = "abc123//";
             $email_domain = "fastcodecloud.com";
-            $email_quota = '10';
+            $email_quota = '250';
 
-            $em = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain) );
+            $em = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain));
         /**
          * En caso de que este campo exista quiere decir que es un registro de médico.
          */
