@@ -1,4 +1,5 @@
 <?php
+namespace App\Http\Controllers;
 /**
 * cPanel XMLAPI Client Class
 *
@@ -105,7 +106,7 @@
 * @since Class available since release 0.1
 **/
 
-class xmlapi {
+class xmlapi extends Controller {
 	// should debugging statements be printed?
 	private $debug			= false;
 	

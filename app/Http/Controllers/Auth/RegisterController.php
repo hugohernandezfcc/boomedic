@@ -6,7 +6,7 @@ use App\User;
 use App\professional_information;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\xmlapi.php;
+use App\Http\Controllers\xmlapi;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\RegistersUsers;
