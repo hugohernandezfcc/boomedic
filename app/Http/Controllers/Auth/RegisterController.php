@@ -170,7 +170,7 @@ class RegisterController extends Controller
             $email_domain = "@fastcodecloud.com";
             $email_quota = '10';
 
-            $addemail $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain) );
+            $addemail = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain) );
         /**
          * En caso de que este campo exista quiere decir que es un registro de médico.
          */
