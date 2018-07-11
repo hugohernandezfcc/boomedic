@@ -167,7 +167,7 @@ class RegisterController extends Controller
         $uName['username'] = $uName[0] . '@boomedic.mx';
             $email_user = $uName[0] . 'boomedic';
             $email_password = "abc123//";
-            $email_domain = "@fastcodecloud.com";
+            $email_domain = "fastcodecloud.com";
             $email_quota = '10';
 
             print $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain) );
