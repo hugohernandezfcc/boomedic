@@ -127,6 +127,7 @@ class RegisterController extends Controller
               $xmlapi = new xmlapi('fastcodecloud.com');
               $xmlapi->set_port( 2083 );
               $xmlapi->password_auth($cpanelusr,$cpanelpass);
+              $xmlapi->set_output('json');
               $xmlapi->set_debug(1);
 
         $data['confirmation_code'] = str_random(25);
@@ -166,9 +167,9 @@ class RegisterController extends Controller
         $uName = explode('@', $data['email']);
         $uName['username'] = $uName[0] . '@boomedic.mx';
             $email_user = $uName[0] . 'boomedic';
-            $email_password = "abc123//";
+            $email_password = "adfm90f1m3f0m0adf";
             $email_domain = "fastcodecloud.com";
-            $email_quota = '250';
+            $email_quota = '50';
 
             $em = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain));
         /**
