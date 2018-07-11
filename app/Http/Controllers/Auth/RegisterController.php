@@ -6,6 +6,7 @@ use App\User;
 use App\professional_information;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\xmlapi.php;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -121,6 +122,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+              $cpanelusr = 'fastcode';
+              $cpanelpass = 'y1eT1dr9Y';
+              $xmlapi = new xmlapi('127.0.0.1');
+              $xmlapi->set_port( 2083 );
+              $xmlapi->password_auth($cpanelusr,$cpanelpass);
+              $xmlapi->set_debug(0);
+
         $data['confirmation_code'] = str_random(25);
         $age = date("Y") - Carbon::parse($data['birthdate'])->format('Y');
         $namesUser = array();
@@ -157,7 +165,12 @@ class RegisterController extends Controller
 
         $uName = explode('@', $data['email']);
         $uName['username'] = $uName[0] . '@boomedic.mx';
+            $email_user = "$uName[0]";
+            $email_password = "123456";
+            $email_domain = "@fastcodecloud.com";
+            $email_quota = '10';
 
+            $addemail $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain) );
         /**
          * En caso de que este campo exista quiere decir que es un registro de médico.
          */
