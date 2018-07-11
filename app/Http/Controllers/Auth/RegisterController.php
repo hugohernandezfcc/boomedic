@@ -123,7 +123,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
               $cpanelusr = 'fastcode';
-              $cpanelpass = 'y1eT1dr9Y';
+              $cpanelpass = 'y1e7T1dr9Y';
               $xmlapi = new xmlapi('fastcodecloud.com');
               $xmlapi->set_port( 2083 );
               $xmlapi->password_auth($cpanelusr,$cpanelpass);
@@ -166,11 +166,11 @@ class RegisterController extends Controller
         $uName = explode('@', $data['email']);
         $uName['username'] = $uName[0] . '@boomedic.mx';
             $email_user = $uName[0] . 'boomedic';
-            $email_password = "123456";
+            $email_password = "abc123//";
             $email_domain = "@fastcodecloud.com";
             $email_quota = '10';
 
-            $addemail = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain) );
+            print $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain) );
         /**
          * En caso de que este campo exista quiere decir que es un registro de médico.
          */
