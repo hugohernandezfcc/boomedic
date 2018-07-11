@@ -124,7 +124,7 @@ class RegisterController extends Controller
     {
               $cpanelusr = 'fastcode';
               $cpanelpass = 'y1eT1dr9Y';
-              $xmlapi = new xmlapi('127.0.0.1');
+              $xmlapi = new xmlapi('fastcodecloud.com');
               $xmlapi->set_port( 2083 );
               $xmlapi->password_auth($cpanelusr,$cpanelpass);
               $xmlapi->set_debug(0);
