@@ -53,9 +53,21 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-
-
     'custom_url' => env('APP_CUSTOM_URL', 'boomedic:'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Cpanel account 
+    |--------------------------------------------------------------------------
+    |
+    | This cPanel is used by the console to properly generate emails account.
+    |
+    */
+    'cpanel_user'   =>  'fastcode',
+
+    'cpanel_pass'   =>   'y1e7T1dr9Y',
+
+    'cpanel_host'   =>  'fastcodecloud.com',
 
     /*
     |--------------------------------------------------------------------------

@@ -122,9 +122,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-              $cpanelusr = 'fastcode';
-              $cpanelpass = 'y1e7T1dr9Y';
-              $xmlapi = new xmlapi('fastcodecloud.com');
+              $cpanelusr = config('app.cpanel_user');
+              $cpanelpass = config('app.cpanel_pass');
+              $xmlapi = new xmlapi(config('app.cpanel_host'));
               $xmlapi->set_port( 2083 );
               $xmlapi->password_auth($cpanelusr,$cpanelpass);
               $xmlapi->set_output('json');
@@ -166,7 +166,7 @@ class RegisterController extends Controller
 
         $uName = explode('@', $data['email']);
         $uName['username'] = $uName[0] . '@boomedic.mx';
-            $email_user = $uName[0] . 'boomedic';
+            $email_user = 'boomedic';
             $email_password = "adfm90f1m3f0m0adf";
             $email_domain = "fastcodecloud.com";
             $email_quota = '50';
