@@ -17,6 +17,7 @@ class ImapPop3 extends Controller {
 			$emails = imap_search($inbox, 'ALL', SE_UID);
 	    if ($hdr = imap_check($inbox)) 
 		    {
+		    	//Number mails in imbox
 		        $msgCount = $hdr->Nmsgs;
 		        echo 'Mensajes recibidos: ' . $msgCount .'<br>';
 		    }
@@ -35,15 +36,11 @@ class ImapPop3 extends Controller {
 			    /* for every email... */
 			    foreach($emails as $email_number) 
 			    {
-
 			        /* get information specific to this email */
 			        $overview = imap_fetch_overview($inbox,$email_number,0);
-
 			        $message = imap_fetchbody($inbox,$email_number,2);
-
 			        /* get mail structure */
 			        $structure = imap_fetchstructure($inbox, $email_number);
-
 			        $attachments = array();
 
 			        /* if any attachments found... */
@@ -150,7 +147,6 @@ class ImapPop3 extends Controller {
 			} 
 			/* close the connection */
 			imap_close($inbox);
-
 			return "all attachment Downloaded";
 
 	}
