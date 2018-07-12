@@ -56,6 +56,8 @@ class HomeController extends Controller
             }
           }
 
+
+
         Session(['entered' => $user->entered]);
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
         $StatementForUser = $user->privacy_statement;
