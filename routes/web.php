@@ -310,6 +310,11 @@ Route::group(['prefix' => 'clinicHistory'], function(){
 			'as'	=>	'store'
 		]
 	);
+	Route::get('imbox', [
+			'uses'	=>	'clinicHistory@imbox',
+			'as'	=>	'imbox'
+		]
+	);
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'clinicHistory@redirecting',
 			'as'	=>	'redirecting'

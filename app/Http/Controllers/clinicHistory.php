@@ -161,6 +161,21 @@ class clinicHistory extends Controller
     
     }
 
+        public function imbox()
+    {
+        $user = User::find(Auth::id());
+        return view('imbox', [
+                'userId'            => $user->id,
+                'username'          => $user->username,
+                'name'              => $user->name,
+                'photo'             => $user->profile_photo,
+                'date'              => $user->created_at,
+            ]
+        );
+    
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
