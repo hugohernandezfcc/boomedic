@@ -15,7 +15,7 @@ class ImapPop3 extends Controller {
 	}
 
 	public function connect($host, $port, $email, $pass){
-		$imbox = imap_open ('{'. $host .':'.$port.'/pop3}INBOX', $email, $pass) or die('Cannot connect to Gmail: ' . imap_last_error());
+		$imbox = imap_open('{'. $host .':'.$port.'/pop3}INBOX', $email, $pass) or die('Cannot connect to Gmail: ' . imap_last_error());
 		return $imbox;
 	}
 
@@ -119,8 +119,8 @@ class ImapPop3 extends Controller {
 			                {
 			                     mkdir($folder);
 			                }
-			                $name = "Pop3-" . $email_number . "-" . $filename;
-			                Storage::disk('s3')->put( $name,  (string) $attachment['attachment'], 'public');
+			                $name = $email_number . "-" . $filename;
+			                Storage::disk('s3')->put('imbox/'.$name,  (string) $attachment['attachment'], 'public');
 					        $path = Storage::cloud()->url($name);
 			                /*$fp = fopen("./". $folder ."/". $email_number . "-" . $filename, "w+");
 			                fwrite($fp, $attachment['attachment']);
