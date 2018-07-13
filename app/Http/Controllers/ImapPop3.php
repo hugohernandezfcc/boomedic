@@ -124,11 +124,7 @@ class ImapPop3 extends Controller {
 			                if(empty($filename)) $filename = $attachment['filename'];
 
 			                if(empty($filename)) $filename = time() . ".dat";
-			                $folder = "attachment";
-			                if(!is_dir($folder))
-			                {
-			                     mkdir($folder);
-			                }
+
 			                $name = $email_number . "-" . $filename;
 			                Storage::disk('s3')->put('imbox/'.$name,  (string) $attachment['attachment'], 'public');
 					        $path = Storage::cloud()->url($name);
