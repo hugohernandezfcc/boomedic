@@ -1,5 +1,11 @@
 <?php 
 namespace App\Http\Controllers;
+use ZipArchive;
+use RarArchive;
+use Aws\S3\S3Client;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\Filesystem;
+use Illuminate\Support\Facades\Storage;
 
 //Class where extract attachment of email pop3 domain
 class ImapPop3 extends Controller {
@@ -9,17 +15,17 @@ class ImapPop3 extends Controller {
 	}
 
 	public function connect($host, $port, $email, $pass){
-		$imbox = imap_open ('"{"'. $host .'":"'.$port.'"/pop3}INBOX"', '"'.$email.'"', '"'.$pass.'"') or die('Cannot connect to Gmail: ' . imap_last_error());
+		$imbox = imap_open ('{'. $host .':'.$port.'/pop3}INBOX', $email, $pass) or die('Cannot connect to Gmail: ' . imap_last_error());
 		return $imbox;
 	}
 
 	public function attachment($imbox){
-			$emails = imap_search($inbox, 'ALL', SE_UID);
-	    if ($hdr = imap_check($inbox)) 
+			$emails = imap_search($imbox, 'ALL', SE_UID);
+	    if ($hdr = imap_check($imbox)) 
 		    {
 		    	//Number mails in imbox
 		        $msgCount = $hdr->Nmsgs;
-		        echo 'Mensajes recibidos: ' . $msgCount .'<br>';
+		        var_dump('Mensajes recibidos: ' . $msgCount);
 		    }
 	    else 
 		    {
@@ -37,10 +43,10 @@ class ImapPop3 extends Controller {
 			    foreach($emails as $email_number) 
 			    {
 			        /* get information specific to this email */
-			        $overview = imap_fetch_overview($inbox,$email_number,0);
-			        $message = imap_fetchbody($inbox,$email_number,2);
+			        $overview = imap_fetch_overview($imbox,$email_number,0);
+			        $message = imap_fetchbody($imbox,$email_number,2);
 			        /* get mail structure */
-			        $structure = imap_fetchstructure($inbox, $email_number);
+			        $structure = imap_fetchstructure($imbox, $email_number);
 			        $attachments = array();
 
 			        /* if any attachments found... */
@@ -81,7 +87,7 @@ class ImapPop3 extends Controller {
 
 			                if($attachments[$i]['is_attachment']) 
 			                {
-			                    $attachments[$i]['attachment'] = imap_fetchbody($inbox, $email_number, $i+1);
+			                    $attachments[$i]['attachment'] = imap_fetchbody($imbox, $email_number, $i+1);
 
 			                    /* 3 = BASE64 encoding */
 			                    if($structure->parts[$i]->encoding == 3) 
@@ -113,13 +119,16 @@ class ImapPop3 extends Controller {
 			                {
 			                     mkdir($folder);
 			                }
-			                $fp = fopen("./". $folder ."/". $email_number . "-" . $filename, "w+");
+			                $name = "Pop3-" . $email_number . "-" . $filename;
+			                Storage::disk('s3')->put( $name,  (string) $attachment['attachment'], 'public');
+					        $path = Storage::cloud()->url($name);
+			                /*$fp = fopen("./". $folder ."/". $email_number . "-" . $filename, "w+");
 			                fwrite($fp, $attachment['attachment']);
 			                echo '<br>' . $filename;
 			                fclose($fp);
 			                $file_parts = pathinfo($filename);
 			                $zip = new ZipArchive();
-			                $res = $zip->open('attachment/'. $email_number . "-" .$filename);
+			                $res = $zip->open(asset(config('attachment/'. $email_number . "-" .$filename)));
 								if ($res === TRUE) {
 									  $zip->extractTo('c:\xampp\htdocs\attachment');
 									  $zip->close();
@@ -140,13 +149,13 @@ class ImapPop3 extends Controller {
 									}else{		
 								   echo '<br>error descomprimiendo<br>';
 								}
-							}
+							}*/
 			            }
 			        }
 			    }
 			} 
 			/* close the connection */
-			imap_close($inbox);
+			imap_close($imbox);
 			return "all attachment Downloaded";
 
 	}

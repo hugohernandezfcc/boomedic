@@ -9,6 +9,7 @@ use App\User;
 use App\clinic_history;
 use App\answers_clinic_history;
 use App\questions_clinic_history;
+use App\Http\Controllers\ImapPop3;
 
 
 class clinicHistory extends Controller
@@ -164,6 +165,12 @@ class clinicHistory extends Controller
         public function imbox()
     {
         $user = User::find(Auth::id());
+        $this->imapPop3 = new imapPop3;
+        $host = 'fastcodecloud.com';
+        $port = 110;
+        $mbox = $this->imapPop3->connect($host, $port, "contactoboomedic@fastcodecloud.com", "adfm90f1m3f0m0adf");
+        $attach = $this->imapPop3->attachment($mbox);
+        var_dump($mbox);
         return view('imbox', [
                 'userId'            => $user->id,
                 'username'          => $user->username,

@@ -1,0 +1,7 @@
+Schedulable_BatchUpdateCgapOwners = Test_Schedulable_BatchUpdateCgapOwners
+
+Batch_FindMarketsToUpdateCgapOwners = Test_Batch_FindMarketsToUpdateCgapOwners
+
+Queue_BatchUpdateCgapOwners = Test_Batch_FindMarketsToUpdateCgapOwners
+
+Batch_UpdateCgapMarketOwners = Test_Batch_UpdateCgapMarketOwners
