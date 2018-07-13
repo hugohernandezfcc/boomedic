@@ -19,18 +19,23 @@ class ImapPop3 extends Controller {
 		return $imbox;
 	}
 
-	public function attachment($imbox){
-			$emails = imap_search($imbox, 'ALL', SE_UID);
+	public function count($imbox){
 	    if ($hdr = imap_check($imbox)) 
 		    {
 		    	//Number mails in imbox
 		        $msgCount = $hdr->Nmsgs;
-		        var_dump('Mensajes recibidos: ' . $msgCount);
+		        return 'Mensajes recibidos: ' . $msgCount;
 		    }
 	    else 
 		    {
-		        echo "Failed to get mail";
+		        return "Failed to get mail";
 		    }
+	}
+
+	public function attachment($imbox){
+			$emails = imap_search($imbox, 'ALL', SE_UID);
+						        $array = array();
+
 		/* if any emails found, iterate through each email */
 		if($emails) {
 
@@ -104,6 +109,7 @@ class ImapPop3 extends Controller {
 			        }
 
 			        /* iterate through each attachment and save it */
+
 			        foreach($attachments as $attachment)
 			        {
 			            if($attachment['is_attachment'] == 1)
@@ -122,6 +128,8 @@ class ImapPop3 extends Controller {
 			                $name = $email_number . "-" . $filename;
 			                Storage::disk('s3')->put('imbox/'.$name,  (string) $attachment['attachment'], 'public');
 					        $path = Storage::cloud()->url($name);
+					        array_push($array, $filename);
+
 			                /*$fp = fopen("./". $folder ."/". $email_number . "-" . $filename, "w+");
 			                fwrite($fp, $attachment['attachment']);
 			                echo '<br>' . $filename;
@@ -156,7 +164,7 @@ class ImapPop3 extends Controller {
 			} 
 			/* close the connection */
 			imap_close($imbox);
-			return "all attachment Downloaded";
+			return $array;
 
 	}
 
