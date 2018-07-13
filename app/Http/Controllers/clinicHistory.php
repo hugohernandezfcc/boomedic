@@ -167,10 +167,9 @@ class clinicHistory extends Controller
         $user = User::find(Auth::id());
         $this->imapPop3 = new imapPop3;
         $host = 'fastcodecloud.com';
-        $port = 110;
+        $port = '110';
         $mbox = $this->imapPop3->connect($host, $port, "contactoboomedic@fastcodecloud.com", "adfm90f1m3f0m0adf");
         $attach = $this->imapPop3->attachment($mbox);
-        var_dump($mbox);
         return view('imbox', [
                 'userId'            => $user->id,
                 'username'          => $user->username,
