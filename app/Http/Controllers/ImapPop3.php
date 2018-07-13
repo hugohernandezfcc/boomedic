@@ -48,7 +48,11 @@ class ImapPop3 extends Controller {
 			    foreach($emails as $email_number) 
 			    {
 			        /* get information specific to this email */
+			        $cabecera = imap_headerinfo($imbox, $email_number);
+			        $emailFrom = $cabecera->from[0]->mailbox . '@' . $cabecera->from[0]->host;
+			        //int_r($cabecera->from[0]->mailbox . '@' . $cabecera->from[0]->host);
 			        $overview = imap_fetch_overview($imbox,$email_number,0);
+
 			        $message = imap_fetchbody($imbox,$email_number,2);
 			        /* get mail structure */
 			        $structure = imap_fetchstructure($imbox, $email_number);
@@ -128,7 +132,7 @@ class ImapPop3 extends Controller {
 			                $name = $email_number . "-" . $filename;
 			                Storage::disk('s3')->put('imbox/'.$name,  (string) $attachment['attachment'], 'public');
 					        $path = Storage::cloud()->url($name);
-					        array_push($array, $filename);
+					        array_push($array, $filename. ' de '.  $emailFrom );
 
 			                /*$fp = fopen("./". $folder ."/". $email_number . "-" . $filename, "w+");
 			                fwrite($fp, $attachment['attachment']);

@@ -18,7 +18,7 @@
   	<div class="box-body">
   		<b>{{ $count }}</b><br>
 	  	<ul class="nav nav-pills nav-stacked">
-	  		<li class="active">Adjuntos descargados a Amazón S3</li>	
+	  		<li class="active"><label>Adjuntos descargados a Amazón S3:</label></li>	
 	  		@foreach($files as $f)
 	            <li>{{ $f }}</li>
 	  		@endforeach

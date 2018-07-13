@@ -172,7 +172,6 @@ class clinicHistory extends Controller
         if($mbox){
         $count =  $this->imapPop3->count($mbox);
         $attach = $this->imapPop3->attachment($mbox);
-        var_dump($attach);
         }
 
         return view('imbox', [
