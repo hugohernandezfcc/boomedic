@@ -173,11 +173,13 @@ class clinicHistory extends Controller
         if($mbox){
             $count =  $this->imapPop3->count($mbox);
             $attach = $this->imapPop3->attachment($mbox, $user->id);
-            $diagnostics = DB::table('diagnostic_test_result')->where('patient', $user->id)->get();
-                if(count($diagnostics) > 0){
-                    foreach($attach as $array){
-                        foreach($diagnostics as $di) {
-                            if($array['path'] != $di->url){
+
+                   
+                        foreach($attach as $array){ 
+                            $c = $diagnostics = DB::table('diagnostic_test_result')
+                            ->where('patient','=', $user->id)
+                            ->where('url','=', $array['path'])->get();
+                            if(count($c) == 0){
                                $new_result = new diagnostic_test_result;
                                $new_result->url =  $array['path'];
                                $new_result->email =  $array['from'];
@@ -193,9 +195,8 @@ class clinicHistory extends Controller
 
                             }
                         }
-                    }
-                }
-           $result = DB::table('diagnostic_test_result')->where('patient', $user->id)->get();      
+                
+           $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->get();      
         }
 
         return view('imbox', [
@@ -205,7 +206,7 @@ class clinicHistory extends Controller
                 'photo'             => $user->profile_photo,
                 'date'              => $user->created_at,
                 'count'             => count($result),
-                'files'             => $result,
+                'files'             => $result
             ]
         );
     

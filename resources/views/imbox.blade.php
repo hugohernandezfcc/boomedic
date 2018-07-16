@@ -25,16 +25,16 @@
 			 <div class="callout callout-gray">
                 <h4>Asunto: {{ $f->subject_email }}</h4>
                 <p>From: {{ $f->email }}
-                <br>Fecha: {{  $f->date_email }} 
-                <br> <a href="{{ $f->url }}" class="btn btn-secondary">{{ $f->details }}</a></p>
-                <!-- <p>{{ $f['message'] }}</p> -->
+                <br>Fecha: {{  $f->date_email }}<br><a href="{{ $f->url }}" class="btn btn-secondary btn-sm">{{ $f->details }}</a> 
+                
                 @php
 					         echo $f->text_email;
                 @endphp
+                </p>
       </div>
 	  		@endforeach
 
-	  
-  	</div>	
+	</div>  
+</div>	
   		
 @stop
