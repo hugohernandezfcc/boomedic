@@ -177,8 +177,7 @@ class clinicHistory extends Controller
                 if(count($diagnostics) > 0){
                     foreach($attach as $array){
                         foreach($diagnostics as $di) {
-                            if($array['path'] == $di->url){
-                            }else{
+                            if($array['path'] != $di->url){
                                $new_result = new diagnostic_test_result;
                                $new_result->url =  $array['path'];
                                $new_result->email =  $array['from'];

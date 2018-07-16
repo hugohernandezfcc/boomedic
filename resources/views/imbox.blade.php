@@ -31,7 +31,7 @@
                 @php
 					         echo $f->text_email;
                 @endphp
-              </div>
+      </div>
 	  		@endforeach
 
 	  
