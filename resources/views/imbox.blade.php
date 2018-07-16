@@ -29,7 +29,7 @@
                 <br> <a href="{{ $f['path'] }}" class="btn btn-secondary">{{ $f['filename'] }}</a></p>
                 <!-- <p>{{ $f['message'] }}</p> -->
                 @php
-					echo $f['message'];
+					         echo $f['message'];
                 @endphp
               </div>
 	  		@endforeach
