@@ -171,7 +171,7 @@ class clinicHistory extends Controller
         $mbox = $this->imapPop3->connect($host, $port, "contactoboomedic@fastcodecloud.com", "adfm90f1m3f0m0adf");
         if($mbox){
         $count =  $this->imapPop3->count($mbox);
-        $attach = $this->imapPop3->attachment($mbox);
+        $attach = $this->imapPop3->attachment($mbox, $user->id);
         }
 
         return view('imbox', [
@@ -180,8 +180,8 @@ class clinicHistory extends Controller
                 'name'              => $user->name,
                 'photo'             => $user->profile_photo,
                 'date'              => $user->created_at,
-                'count'             => $count,
-                'files'             => $attach
+                'count'             => count($attach),
+                'files'             => $attach,
             ]
         );
     

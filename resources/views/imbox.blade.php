@@ -4,8 +4,12 @@
 
 @section('content_header')
 	<style type="text/css">
-		 .nav-stacked>li.active>a {
-		    border-left-color: #080808 !important;
+		.callout-gray{
+			background-color: #fff !important;
+			border-color: #777;		
+		}
+		.callout a{
+			text-decoration: none !important;
 		}
 	</style>
 @stop
@@ -13,16 +17,23 @@
 @section('content')
 <div class="box">
   	<div class="box-header with-border">
-	    <h3 class="box-title">Inbox</h3>
+	    <h3 class="box-title">Imbox</h3>
   	</div>
   	<div class="box-body">
-  		<b>{{ $count }}</b><br>
-	  	<ul class="nav nav-pills nav-stacked">
-	  		<li class="active"><label>Adjuntos descargados a Amazón S3:</label></li>	
-	  		@foreach($files as $f)
-	            <li>{{ $f }}</li>
+  		<b>Adjuntos recibidos #{{ $count }}</b><br><br>
+  			@foreach($files as $f)
+			 <div class="callout callout-gray">
+                <h4>Asunto: {{ $f['subject'] }}</h4>
+                <p>From: {{ $f['from'] }}
+                <br>Fecha: {{  $f['date'] }} 
+                <br> <a href="{{ $f['path'] }}" class="btn btn-secondary">{{ $f['filename'] }}</a></p>
+                <!-- <p>{{ $f['message'] }}</p> -->
+                @php
+					echo $f['message'];
+                @endphp
+              </div>
 	  		@endforeach
-	  	</ul>
+
 	  
   	</div>	
   		

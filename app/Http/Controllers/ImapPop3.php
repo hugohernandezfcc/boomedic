@@ -32,7 +32,7 @@ class ImapPop3 extends Controller {
 		    }
 	}
 
-	public function attachment($imbox){
+	public function attachment($imbox, $user){
 			$emails = imap_search($imbox, 'ALL', SE_UID);
 						        $array = array();
 
@@ -48,11 +48,13 @@ class ImapPop3 extends Controller {
 			    foreach($emails as $email_number) 
 			    {
 			        /* get information specific to this email */
-			        $cabecera = imap_headerinfo($imbox, $email_number);
-			        $emailFrom = $cabecera->from[0]->mailbox . '@' . $cabecera->from[0]->host;
+			        $header = imap_headerinfo($imbox, $email_number);
+			        $emailFrom = $header->from[0]->mailbox . '@' . $header->from[0]->host;
+			        $subject = $header->subject;
+			        $date = $header->date;
 			        //int_r($cabecera->from[0]->mailbox . '@' . $cabecera->from[0]->host);
 			        $overview = imap_fetch_overview($imbox,$email_number,0);
-
+			        $message2 = imap_fetchbody($imbox,$email_number,1.2);
 			        $message = imap_fetchbody($imbox,$email_number,2);
 			        /* get mail structure */
 			        $structure = imap_fetchstructure($imbox, $email_number);
@@ -118,46 +120,16 @@ class ImapPop3 extends Controller {
 			        {
 			            if($attachment['is_attachment'] == 1)
 			            {
-			            	/*  Debo cambiar este por almacenaja en aws s3  */
 
 			                $filename = $attachment['name'];
 			                if(empty($filename)) $filename = $attachment['filename'];
 
 			                if(empty($filename)) $filename = time() . ".dat";
 
-			                $name = $email_number . "-" . $filename;
-			                Storage::disk('s3')->put('imbox/'.$name,  (string) $attachment['attachment'], 'public');
+			                $name = "imbox/". $user ."-". $date. "-". $emailFrom. "/" .$filename;
+			                Storage::disk('s3')->put($name,  (string) $attachment['attachment'], 'public');
 					        $path = Storage::cloud()->url($name);
-					        array_push($array, $filename. ' de '.  $emailFrom );
-
-			                /*$fp = fopen("./". $folder ."/". $email_number . "-" . $filename, "w+");
-			                fwrite($fp, $attachment['attachment']);
-			                echo '<br>' . $filename;
-			                fclose($fp);
-			                $file_parts = pathinfo($filename);
-			                $zip = new ZipArchive();
-			                $res = $zip->open(asset(config('attachment/'. $email_number . "-" .$filename)));
-								if ($res === TRUE) {
-									  $zip->extractTo('c:\xampp\htdocs\attachment');
-									  $zip->close();
-									  echo '<br>descomprimio ok <br>';
-									  // Archivo descomprimido correctamente
-									} else {
-
-								  if($file_parts['extension'] == "rar"){
-									$rar_file = RarArchive::open('attachment/'. $email_number . "-" .$filename);
-									if ($rar_file) {
-										$entries = $rar_file->getEntries();
-											foreach ($entries as $entry) {
-											    $entry->extract('c:\xampp\htdocs\attachment'); // extraer el directorio actual
-											}
-										rar_close($rar_file);
-										echo '<br>descomprimio rar ok <br>';
-									}
-									}else{		
-								   echo '<br>error descomprimiendo<br>';
-								}
-							}*/
+					        array_push($array, ['path' => $path, 'filename' => $filename, 'from' =>  $emailFrom, 'subject' => $subject, 'message' => $message2, 'date' => $date]);
 			            }
 			        }
 			    }
