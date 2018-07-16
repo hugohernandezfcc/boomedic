@@ -14,7 +14,14 @@ class diagnostic_test_result extends Model
 		'email',
 		'patient',
 		'diagnostic_test',
-		'recipes_test'
+		'recipes_test',
+		'header_email',
+		'body_email',
+		'structure_email',
+		'date_email',
+		'subject_email',
+		'text_email'
+
     ];
 
     public function patient(){
