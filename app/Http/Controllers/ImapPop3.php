@@ -15,8 +15,10 @@ class ImapPop3 extends Controller {
 	}
 
 	public function connect($host, $port, $email, $pass){
-		$imbox = imap_open("{". $host .":".$port."/pop3/novalidate-cert}INBOX", $email, $pass) or die('Cannot connect to Gmail: ' . imap_last_error());
+		$imbox = imap_open("{". $host .":".$port."/pop3/novalidate-cert}INBOX", $email, $pass);
+		if($imbox)
 		return $imbox;
+
 	}
 
 	public function count($imbox){

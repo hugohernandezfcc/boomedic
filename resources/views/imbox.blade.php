@@ -20,6 +20,7 @@
 	    <h3 class="box-title">Imbox</h3>
   	</div>
   	<div class="box-body">
+     @if($count > 0) 
   		<b>Adjuntos recibidos #{{ $count }}</b><br><br>
   			@foreach($files as $f)
 			 <div class="callout callout-gray">
@@ -33,6 +34,15 @@
                 </p>
       </div>
 	  		@endforeach
+      @else
+           @include('empty.emptyData', 
+                              [
+                                'emptyc' => 'not_buttom',
+                                'title'  => 'Bandeja de adjuntos',
+                                'icon'   => 'adminlte.empty-box'
+                              ]
+                            )
+      @endif  
 
 	</div>  
 </div>	
