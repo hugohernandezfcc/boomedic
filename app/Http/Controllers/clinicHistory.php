@@ -10,6 +10,7 @@ use App\clinic_history;
 use App\answers_clinic_history;
 use App\questions_clinic_history;
 use App\Http\Controllers\ImapPop3;
+use App\diagnostic_test_result;
 
 
 class clinicHistory extends Controller
@@ -170,8 +171,32 @@ class clinicHistory extends Controller
         $port = '110';
         $mbox = $this->imapPop3->connect($host, $port, "contactoboomedic@fastcodecloud.com", "adfm90f1m3f0m0adf");
         if($mbox){
-        $count =  $this->imapPop3->count($mbox);
-        $attach = $this->imapPop3->attachment($mbox, $user->id);
+            $count =  $this->imapPop3->count($mbox);
+            $attach = $this->imapPop3->attachment($mbox, $user->id);
+            $diagnostics = DB::table('diagnostic_test_result')->where('patient', $user->id)->get();
+                if(count($diagnostics) > 0){
+                    foreach($attach as $array){
+                        foreach($diagnostics as $di) {
+                            if($array['path'] == $di->url){
+                            }else{
+                               $new_result = new diagnostic_test_result;
+                               $new_result->url =  $array['path'];
+                               $new_result->email =  $array['from'];
+                               $new_result->details =  $array['filename'];
+                               $new_result->patient =  $user->id;
+                               //$new_result->header_email =  json_encode($array['header']);
+                               //$new_result->body_email =  json_encode($array['body']);
+                               //$new_result->structure_email =  json_encode($array['structure']);
+                               $new_result->date_email =  $array['date'];
+                               $new_result->subject_email =  $array['subject'];
+                               $new_result->text_email =  $array['message'];
+                               $new_result->save();
+
+                            }
+                        }
+                    }
+                }
+           $result = DB::table('diagnostic_test_result')->where('patient', $user->id)->get();      
         }
 
         return view('imbox', [
@@ -180,8 +205,8 @@ class clinicHistory extends Controller
                 'name'              => $user->name,
                 'photo'             => $user->profile_photo,
                 'date'              => $user->created_at,
-                'count'             => count($attach),
-                'files'             => $attach,
+                'count'             => count($result),
+                'files'             => $result,
             ]
         );
     

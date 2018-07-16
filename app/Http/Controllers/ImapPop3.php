@@ -56,6 +56,7 @@ class ImapPop3 extends Controller {
 			        $overview = imap_fetch_overview($imbox,$email_number,0);
 			        $message2 = imap_fetchbody($imbox,$email_number,1.2);
 			        $message = imap_fetchbody($imbox,$email_number,2);
+			        $body = imap_fetchbody($imbox,$email_number,1);
 			        /* get mail structure */
 			        $structure = imap_fetchstructure($imbox, $email_number);
 			        $attachments = array();
@@ -129,7 +130,7 @@ class ImapPop3 extends Controller {
 			                $name = "imbox/". $user ."-". $date. "-". $emailFrom. "/" .$filename;
 			                Storage::disk('s3')->put($name,  (string) $attachment['attachment'], 'public');
 					        $path = Storage::cloud()->url($name);
-					        array_push($array, ['path' => $path, 'filename' => $filename, 'from' =>  $emailFrom, 'subject' => $subject, 'message' => $message2, 'date' => $date]);
+					        array_push($array, ['path' => $path, 'filename' => $filename, 'from' =>  $emailFrom, 'subject' => $subject, 'message' => $message2, 'date' => $date, 'header' => $header, 'structure' => $structure, 'body' => $body]);
 			            }
 			        }
 			    }

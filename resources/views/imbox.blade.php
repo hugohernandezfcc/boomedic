@@ -23,13 +23,13 @@
   		<b>Adjuntos recibidos #{{ $count }}</b><br><br>
   			@foreach($files as $f)
 			 <div class="callout callout-gray">
-                <h4>Asunto: {{ $f['subject'] }}</h4>
-                <p>From: {{ $f['from'] }}
-                <br>Fecha: {{  $f['date'] }} 
-                <br> <a href="{{ $f['path'] }}" class="btn btn-secondary">{{ $f['filename'] }}</a></p>
+                <h4>Asunto: {{ $f->subject_email }}</h4>
+                <p>From: {{ $f->email }}
+                <br>Fecha: {{  $f->date_email }} 
+                <br> <a href="{{ $f->url }}" class="btn btn-secondary">{{ $f->details }}</a></p>
                 <!-- <p>{{ $f['message'] }}</p> -->
                 @php
-					         echo $f['message'];
+					         echo $f->text_email;
                 @endphp
               </div>
 	  		@endforeach
