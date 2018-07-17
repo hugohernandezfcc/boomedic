@@ -352,11 +352,11 @@ class clinicHistory extends Controller
      /**
      * Method responsable of sender email
      */
-   public function reSender($id)
-  { 
-     $user = User::find(Auth::id());
-         return response()->json($user->name);
-  }
+    public function reSender($id)
+      { 
+         $user = User::find(Auth::id());
+             return response()->json($id);
+      }
 
     
 }

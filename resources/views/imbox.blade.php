@@ -58,13 +58,13 @@
 	</div>  
 </div>	
 <script type="text/javascript">
-      function send(b){
+      function send(id){
                             $.ajax(
                                     {
                                       type: "GET",    
-                                      url: "{{ url('clinichistory/reSender') }}/" + b, 
-                                      success: function(result3){
-                                        console.log(result3);
+                                      url: "{{ url('clinicHistory/reSender') }}/" + id, 
+                                      success: function(result){
+                                               alert(result); 
                                       }
                                     })
       }
