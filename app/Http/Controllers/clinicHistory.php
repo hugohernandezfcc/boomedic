@@ -176,7 +176,7 @@ class clinicHistory extends Controller
 
                    
                         foreach($attach as $array){ 
-                            $c = $diagnostics = DB::table('diagnostic_test_result')
+                            $c = DB::table('diagnostic_test_result')
                             ->where('patient','=', $user->id)
                             ->where('url','=', $array['path'])->get();
                             if(count($c) == 0){
