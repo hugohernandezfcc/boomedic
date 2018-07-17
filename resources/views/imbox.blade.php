@@ -30,7 +30,7 @@
 			 <div class="callout callout-gray">
                 <h4>Asunto: {{ $f->subject_email }} 
                  <div class="btn-group closeb"> 
-                  <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i></button>
+                  <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></button>
                   <ul class="dropdown-menu" role="menu" style="float: left;">
                     <li><a style="margin-right: 500px !important;" onclick="send('{{ $f->id }}');">Reenviar a correo personal</a></li>
                   </ul>

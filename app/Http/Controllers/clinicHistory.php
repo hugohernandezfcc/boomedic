@@ -355,7 +355,7 @@ class clinicHistory extends Controller
     public function reSender($id)
       { 
          $user = User::find(Auth::id());
-         $diagnostic_test = DB::table('diagnostic_test_result')->where('id', $id)->first();
+         $diagnostic_test = diagnostic_test_result::find($id);
          $email = $user->email;
            $data = [
             'name'      => $user->name,
