@@ -19,7 +19,7 @@
         "nesbot/carbon": "~1.14",
         "paypal/rest-api-sdk-php": "*",
         "ext-imap": "*",
-        "ext-rar": "*"
+        "ext-zip": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
