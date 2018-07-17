@@ -145,7 +145,7 @@ class ImapPop3 extends Controller {
 											  File::delete($newDir . "/". $filename);
 											  	$files = File::files($newDir);
 											  	foreach($files as $file) {
-														$contents = $file;       
+														$contents = file_get_contents($file);       
 														$filenamezip = basename($file);
 														$name = "imbox/". $user ."-". $date2. "-". $emailFrom. "/" .$filenamezip;	
 										                Storage::disk('s3')->put($name, $contents, 'public');
