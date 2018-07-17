@@ -24,7 +24,9 @@
   		<b>Adjuntos recibidos #{{ $count }}</b><br><br>
   			@foreach($files as $f)
 			 <div class="callout callout-gray">
-                <h4>Asunto: {{ $f->subject_email }}</h4>
+        <form action="{{ url('clinichistory/reSender') }}" method="post">
+          <input type="hidden" name="id" value="{{ $f->id }}">
+                <h4>Asunto: {{ $f->subject_email }} <button type="submit" class="btn btn-default btn-xs">Reenviar a correo personal <i class="fa fa-envelope"></i></button></h4>
                 <p>From: {{ $f->email }}
                 <br>Fecha: {{  $f->date_email }}<br><a href="{{ $f->url }}" class="btn btn-secondary btn-sm">{{ $f->details }}</a> 
                 
@@ -32,6 +34,7 @@
 					         echo $f->text_email;
                 @endphp
                 </p>
+        </form>        
       </div>
 	  		@endforeach
       @else
