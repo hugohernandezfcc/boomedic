@@ -11,6 +11,9 @@ use App\answers_clinic_history;
 use App\questions_clinic_history;
 use App\Http\Controllers\ImapPop3;
 use App\diagnostic_test_result;
+use Mail;
+use email;
+use Mailgun\Mailgun;
 
 
 class clinicHistory extends Controller
