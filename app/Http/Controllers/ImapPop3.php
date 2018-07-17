@@ -156,7 +156,7 @@ class ImapPop3 extends Controller {
 											 File::deleteDirectory($newDir);
 								  }	
 
-				elseif($file_parts['extension'] == "rar"){
+				/*elseif($file_parts['extension'] == "rar"){
 									   $newDirR = public_path("rar");
 									   File::makeDirectory($newDirR, 0755, true);
 									   $fp = fopen($newDirR . "/". $filename, "w+");
@@ -181,7 +181,8 @@ class ImapPop3 extends Controller {
 								   			 }
 									}
 											 File::deleteDirectory($newDirR);
-								  }else{
+								  }*/
+								  else{
 			                $name = "imbox/". $user ."-". $date2. "-". $emailFrom. "/" .$filename;
 			                Storage::disk('s3')->put($name,  (string) $attachment['attachment'], 'public');
 					        $path = Storage::cloud()->url($name);
