@@ -364,14 +364,12 @@ class clinicHistory extends Controller
             'name'      => $user->name,
             'email'     => $user->email, 
             'username'  => $user->username,                 
-            'firstname' => $user->firstname,                
-            'lastname'  => $user->lastname,
             'url'       => $diagnostic_test->url,
             'filename'  => $diagnostic_test->details, 
             ]; 
              Mail::send('emails.sendResult', $data, function ($message) {
                         $message->subject('Reenvío: adjunto (Test 1)');
-                        $message->to('contacto@doitcloud.consulting');
+                        $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
              return response()->json($id);
       }
