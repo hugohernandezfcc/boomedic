@@ -6,6 +6,7 @@ use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
+use File;
 
 //Class where extract attachment of email pop3 domain
 class ImapPop3 extends Controller {
@@ -128,11 +129,39 @@ class ImapPop3 extends Controller {
 			                if(empty($filename)) $filename = $attachment['filename'];
 
 			                if(empty($filename)) $filename = time() . ".dat";
-
-			                $name = "imbox/". $user ."-". $date. "-". $emailFrom. "/" .$filename;
+			                $date2 =  str_replace(' ','-',$date);
+			                $file_parts = pathinfo($filename);
+					            if($file_parts['extension'] == "zip"){
+									   $newDir = public_path("zip");
+									   File::makeDirectory( $newDir, 0755, true);
+									   $fp = fopen($newDir . "/". $filename, "w+");
+							                fwrite($fp, $attachment['attachment']);
+							                fclose($fp);
+									   $zip = new ZipArchive();
+						               $res = $zip->open($newDir . "/". $filename);
+											if ($res === TRUE) {
+											  $zip->extractTo($newDir);
+											  $zip->close();
+											  File::delete($newDir . "/". $filename);
+											  	$files = File::files($newDir);
+											  	foreach($files as $file) {
+														$contents = $file;       
+														$filenamezip = basename($file);
+														$name = "imbox/". $user ."-". $date2. "-". $emailFrom. "/" .$filenamezip;	
+										                Storage::disk('s3')->put($name, $contents, 'public');
+												        $path = Storage::cloud()->url($name);
+												         array_push($array, ['path' => $path, 'filename' => $filenamezip, 'from' =>  $emailFrom, 'subject' => $subject, 'message' => $message2, 'date' => $date, 'header' => $header, 'structure' => $structure, 'body' => $body]);
+										   			 }
+											}
+											 File::deleteDirectory($newDir);
+								  }else{
+			                $name = "imbox/". $user ."-". $date2. "-". $emailFrom. "/" .$filename;
 			                Storage::disk('s3')->put($name,  (string) $attachment['attachment'], 'public');
 					        $path = Storage::cloud()->url($name);
+					    
+
 					        array_push($array, ['path' => $path, 'filename' => $filename, 'from' =>  $emailFrom, 'subject' => $subject, 'message' => $message2, 'date' => $date, 'header' => $header, 'structure' => $structure, 'body' => $body]);
+					    }
 			            }
 			        }
 			    }
