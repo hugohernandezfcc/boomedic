@@ -11,6 +11,10 @@
 		.callout a{
 			text-decoration: none !important;
 		}
+    .closeb {
+      float: right;
+      cursor: pointer;
+    }
 	</style>
 @stop
 
@@ -24,17 +28,21 @@
   		<b>Adjuntos recibidos #{{ $count }}</b><br><br>
   			@foreach($files as $f)
 			 <div class="callout callout-gray">
-        <form action="{{ url('clinichistory/reSender') }}" method="post">
-          <input type="hidden" name="id" value="{{ $f->id }}">
-                <h4>Asunto: {{ $f->subject_email }} <button type="submit" class="btn btn-default btn-xs">Reenviar a correo personal <i class="fa fa-envelope"></i></button></h4>
+                <h4>Asunto: {{ $f->subject_email }} 
+                 <div class="btn-group closeb"> 
+                  <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i></button>
+                  <ul class="dropdown-menu" role="menu" style="float: left;">
+                    <li><a style="margin-right: 500px !important;" onclick="send('{{ $f->id }}');">Reenviar a correo personal</a></li>
+                  </ul>
+                </div>
+                  </h4>
                 <p>From: {{ $f->email }}
                 <br>Fecha: {{  $f->date_email }}<br><a href="{{ $f->url }}" class="btn btn-secondary btn-sm">{{ $f->details }}</a> 
                 
                 @php
 					         echo $f->text_email;
                 @endphp
-                </p>
-        </form>        
+                </p>  
       </div>
 	  		@endforeach
       @else
@@ -49,5 +57,16 @@
 
 	</div>  
 </div>	
-  		
+<script type="text/javascript">
+      function send(b){
+                            $.ajax(
+                                    {
+                                      type: "GET",    
+                                      url: "{{ url('clinichistory/reSender') }}/" + b, 
+                                      success: function(result3){
+                                        console.log(result3);
+                                      }
+                                    })
+      }
+</script>  		
 @stop

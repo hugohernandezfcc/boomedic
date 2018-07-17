@@ -315,6 +315,11 @@ Route::group(['prefix' => 'clinicHistory'], function(){
 			'as'	=>	'imbox'
 		]
 	);
+	Route::get('reSender/{id}', [
+			'uses'	=>	'clinicHistory@reSender',
+			'as'	=>	'reSender'
+		]
+	);
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'clinicHistory@redirecting',
 			'as'	=>	'redirecting'

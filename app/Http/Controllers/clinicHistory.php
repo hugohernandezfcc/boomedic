@@ -349,6 +349,14 @@ class clinicHistory extends Controller
         return response()->json($clinic->id);
 
     }
+     /**
+     * Method responsable of sender email
+     */
+   public function reSender($id)
+  { 
+     $user = User::find(Auth::id());
+         return response()->json($user->name);
+  }
 
     
 }
