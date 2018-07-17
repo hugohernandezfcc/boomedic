@@ -355,6 +355,21 @@ class clinicHistory extends Controller
     public function reSender($id)
       { 
          $user = User::find(Auth::id());
+         $diagnostic_test = DB::table('diagnostic_test_result')->where('id', $id)->first();
+         $email = $user->email;
+           $data = [
+            'name'      => $user->name,
+            'email'     => $user->email, 
+            'username'  => $user->username,                 
+            'firstname' => $user->firstname,                
+            'lastname'  => $user->lastname,
+            'url'       => $diagnostic_test->url,
+            'filename'  => $diagnostic_test->details, 
+            ]; 
+             Mail::send('emails.sendResult', $data, function ($message) {
+                        $message->subject('Reenvío: adjunto (Test 1)');
+                        $message->to('contacto@doitcloud.consulting');
+                    });
              return response()->json($id);
       }
 
