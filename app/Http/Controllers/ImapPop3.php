@@ -1,7 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
 use ZipArchive;
-use RarArchive;
+use RarEntry;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
@@ -156,13 +156,13 @@ class ImapPop3 extends Controller {
 											 File::deleteDirectory($newDir);
 								  }	
 
-				/*elseif($file_parts['extension'] == "rar"){
+				elseif($file_parts['extension'] == "rar"){
 									   $newDirR = public_path("rar");
 									   File::makeDirectory($newDirR, 0755, true);
 									   $fp = fopen($newDirR . "/". $filename, "w+");
 							                fwrite($fp, $attachment['attachment']);
 							                fclose($fp);
-							$rar_file = RarArchive::open($newDirR . "/". $filename);
+							$rar_file = rar_open($newDirR . "/". $filename);
 						if ($rar_file) {
 							$entries = $rar_file->getEntries();
 							foreach ($entries as $entry) {
@@ -181,7 +181,7 @@ class ImapPop3 extends Controller {
 								   			 }
 									}
 											 File::deleteDirectory($newDirR);
-								  }*/
+								  }
 								  else{
 			                $name = "imbox/". $user ."-". $date2. "-". $emailFrom. "/" .$filename;
 			                Storage::disk('s3')->put($name,  (string) $attachment['attachment'], 'public');
