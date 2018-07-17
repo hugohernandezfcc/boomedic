@@ -6,10 +6,13 @@
 <body>
 
     <h2>Reenvío de examenes médicos</h2>
+    From: {{ $from }} <br>
+    Asunto: {{ $subject }}<br>
+    Fecha: {{ $date }}<br>
     <table>
     <tr>
-         <td style="background-color: black;border-color: black;border: 2px solid black;padding: 10px;text-align: center;">
-            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;text-transform: uppercase;"  href="{{ $url }}">
+         <td style="background-color: #ffffff;border-color: black;border: 1px solid black;padding: 5px;text-align: center;">
+            <a style="display: block;color: black;font-size: 10px;text-decoration: none;"  href="{{ $url }}">
                  Descargar {{ $filename }}
             </a>
         </td>

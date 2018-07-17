@@ -366,6 +366,9 @@ class clinicHistory extends Controller
             'username'  => $user->username,                 
             'url'       => $diagnostic_test->url,
             'filename'  => $diagnostic_test->details, 
+            'from'      => $diagnostic_test->email,
+            'subject'   => $diagnostic_test->subject_email,
+            'date'      => $diagnostic_test->date_email
             ]; 
              Mail::send('emails.sendResult', $data, function ($message) {
                         $message->subject('Reenvío: adjunto (Test 1)');
