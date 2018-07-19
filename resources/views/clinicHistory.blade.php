@@ -413,7 +413,7 @@
                             Fecha. {{ $f->date_email }}<br>
                             From. {{ $f->email }}.<br>
                             Recipe. (No especificado aún).<br>
-                              <a onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'}">Ver más...</a>
+                              <a id="a{{ $f->id }}" onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''; document.getElementById('a{{ $f->id }}').innerHTML ='Ver menos...';}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'; document.getElementById('a{{ $f->id }}').innerHTML ='Ver más...';}">Ver más...</a>
 
                             <div id="spoiler{{ $f->id }}" style="display: none;">
                               @php
