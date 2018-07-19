@@ -132,6 +132,12 @@
         .sticky + .content {
           padding-top: 102px;
         }
+       .isDisabled {
+        color: currentColor;
+        cursor: not-allowed;
+        opacity: 0.5;
+        text-decoration: none;
+      }   
 </style>
 
 
@@ -362,7 +368,57 @@
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline"  id="exp">
-                        @foreach($test_result->sortBy('created_at') as $test)
+            <!--  li to imbox  -->
+                     @foreach($files->sortBy('date_email') as $f)
+                      <li>
+                        <i class="fa fa-inbox bg-gray"></i>
+
+                        <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($f->date_email)->diffForHumans() }}</span>
+
+                          <h3 class="timeline-header"><a>Asunto: {{ $f->subject_email }}</a></h3>
+
+                          <div class="timeline-body">
+                            From. {{ $f->email }}.<br>
+                            Recipe. (No especificado aún).<br>
+                            Cuerpo del mensaje:<br>
+                            @php
+                            //echo $f->text_email;
+                            $part = pathinfo($f->url);
+                            if($part['extension'] == "rar"){
+                              $validate = 1;
+                            }else{
+                              $validate = 0;
+                            }
+                            @endphp <br><br>
+
+                            @if($validate == 0)
+                            <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $f->url }}" data-target="#myModal{{$f->id}}">Ver estudio</a>
+                            @else
+                            <a class="btn btn-default btn-flat btn-sm" href="{{ $f->url }}">Descargar estudio</a>
+                            @endif
+
+                                      <div class="modal fade" id="myModal{{$f->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                          <div class="modal-header">
+                                           <span style="font-size: 15px;"><b> {{ $f->details }} </b></span>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                          </div>
+                                            <div class="modal-body results">
+                                            </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                      </div><!-- /.modal -->
+                                                              <!-- /.modal -->
+
+                          </div>
+                        </div>
+                      </li>
+                      @endforeach
+
+            <!-- end li to imbox-->
+           @foreach($test_result->sortBy('created_at') as $test)
             <li>
               <i class="fa fa-file bg-aqua"></i>
 
@@ -378,7 +434,7 @@
                   {{ $test->details }}<br><br>
 
 
-                  <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $test->url }}" data-target="#myModal">Ver estudio</a>
+                  <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $test->url }}" data-target="#myModal{{$test->id}}">Ver estudio</a>
                   <a class="btn btn-secondary btn-sm btn-flat modal-chat" data-toggle="modal" data-target="#chat-form-modal">Comentarios</a>
                   <div class="modal-chat fade2 modal" id="chat-form-modal">
                 <div class="modal-dialog">
@@ -399,7 +455,7 @@
                        </div>
                     </div>    
 
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal fade" id="myModal{{$test->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                               <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">
