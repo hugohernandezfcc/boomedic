@@ -56,7 +56,7 @@ class ImapPop3 extends Controller {
 			        $date = $header->date;
 			        //int_r($cabecera->from[0]->mailbox . '@' . $cabecera->from[0]->host);
 			        $overview = imap_fetch_overview($imbox,$email_number,0);
-			        $message2 = imap_fetchbody($imbox,$email_number,1.1);
+			        $message2 = imap_fetchbody($imbox,$email_number,1.2);
 			        $message = imap_fetchbody($imbox,$email_number,2);
 			        $body = imap_fetchbody($imbox,$email_number,1);
 			        /* get mail structure */

@@ -416,7 +416,9 @@
                               <a onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'}">Ver más...</a>
 
                             <div id="spoiler{{ $f->id }}" style="display: none;">
-                                        {{ $f->text_email }}
+                              @php
+                                echo quoted_printable_decode($f->text_email);
+                              @endphp          
                             </div><br>
                             @php
                             $part = pathinfo($f->url);
