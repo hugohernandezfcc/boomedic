@@ -371,7 +371,7 @@
             <!--  li to imbox  -->
                      @foreach($files->sortBy('date_email') as $f)
                       <li>
-                        <i class="fa fa-inbox bg-gray"></i>
+                        <i class="fa fa-inbox bg-green disabled"></i>
 
                         <div class="timeline-item">
                         <span class="time">
@@ -398,7 +398,7 @@
                               }else{
                                 $validate = 0;
                               }
-                            @endphp <br><br>
+                            @endphp <br>
 
                             @if($validate == 0)
                             <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $f->url }}" data-target="#myModal{{$f->id}}">Ver estudio</a>
@@ -443,12 +443,11 @@
                 <h3 class="timeline-header"><a>{{ $test->name }}</a></h3>
 
                 <div class="timeline-body">
-                  <i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->created_at)->diffForHumans() }}<br>
+                  Fecha. {{ $test->date_email }}<br>
                   Prescribe. {{ $test->doc}}.<br>
                   Recipe. {{ $test->folio}}.<br>
                   Detalles:<br>
-                  {{ $test->details }}<br><br>
-
+                  {{ $test->details }}<br>
 
                   <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $test->url }}" data-target="#myModal{{$test->id}}">Ver estudio</a>
                   <a class="btn btn-secondary btn-sm btn-flat modal-chat" data-toggle="modal" data-target="#chat-form-modal">Comentarios</a>
