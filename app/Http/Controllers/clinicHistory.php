@@ -95,8 +95,12 @@ class clinicHistory extends Controller
             /* TEST PARSER PDF */
             $parser = new \Smalot\PdfParser\Parser(); 
              try {
-                             $pdf    = $parser->parseFile('https://s3.amazonaws.com/abiliasf/12+Dec+2017+19%3A35%3A33+-+SGCertifiedMarketingCloudSocialSpecialist.pdf');
-                              $text = $pdf->getText();
+                             $pdf    = $parser->parseFile('https://s3.amazonaws.com/abiliasf/LibroErase-una-vez-el-amor-pero-tuve-que-matarlo.pdf');
+                             $pages  = $pdf->getPages();
+ 
+                            // Loop over each page to extract text.
+                         
+                                $text = $pages[1]->getText();
                 } catch (\Exception $ex) {
                     $text = 'error';
                 }
@@ -119,7 +123,8 @@ class clinicHistory extends Controller
                 'test_result'       => $test_result,
                 'mode'              => $mode,
                 'files'             => $result,
-                'count'             => count($result)
+                'count'             => count($result),
+                'textPDF'           => $text 
             ]
         );
     }
