@@ -58,6 +58,41 @@ class clinicHistory extends Controller
         ->get();  
             
         $question_parent = DB::table('answers_clinic_history')->get();
+            /* ----------Files of inbox function store s3 pop3-------------- */
+                        $this->imapPop3 = new imapPop3;
+                        $host = 'fastcodecloud.com';
+                        $port = '110';
+                        $mbox = $this->imapPop3->connect($host, $port, "contactoboomedic@fastcodecloud.com", "adfm90f1m3f0m0adf");
+                        if($mbox){
+                            $count =  $this->imapPop3->count($mbox);
+                            $attach = $this->imapPop3->attachment($mbox, $user->id);
+
+                                   
+                                        foreach($attach as $array){ 
+                                            $c = DB::table('diagnostic_test_result')
+                                            ->where('patient','=', $user->id)
+                                            ->where('url','=', $array['path'])->get();
+                                            if(count($c) == 0){
+                                               $new_result = new diagnostic_test_result;
+                                               $new_result->url =  $array['path'];
+                                               $new_result->email =  $array['from'];
+                                               $new_result->details =  $array['filename'];
+                                               $new_result->patient =  $user->id;
+                                               //$new_result->header_email =  json_encode($array['header']);
+                                               //$new_result->body_email =  json_encode($array['body']);
+                                               //$new_result->structure_email =  json_encode($array['structure']);
+                                               $new_result->date_email =  $array['date'];
+                                               $new_result->subject_email =  $array['subject'];
+                                               $new_result->text_email =  $array['message'];
+                                               $new_result->save();
+
+                                            }
+                                        }
+                                
+                           $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->where('diagnostic_test','=',null)->get();      
+                        }
+           /* ----------Files of inbox function store s3 pop3-------------- */                
+
 
         if(count($clinic_history) == 0){
             $mode = "null";
@@ -75,6 +110,8 @@ class clinicHistory extends Controller
                 'clinic_history'    => $clinic_history,
                 'test_result'       => $test_result,
                 'mode'              => $mode,
+                'files'             => $result,
+                'count'             => count($result)
             ]
         );
     }
