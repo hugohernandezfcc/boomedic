@@ -435,8 +435,8 @@
                             @else
                             <a class="btn btn-default btn-flat btn-sm" href="{{ $f->url }}">Descargar estudio</a>
                             @endif
-                            <a class="btn btn-secondary btn-flat btn-sm" href="{{ $f->url }}">Completar información</a>
-
+                            <a class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#mc{{$f->id}}">Completar información</a>
+                            <!-- Modal for file view -->
                                       <div class="modal fade" id="myModal{{$f->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                         <div class="modal-dialog">
                                           <div class="modal-content">
@@ -449,7 +449,21 @@
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->
                                       </div><!-- /.modal -->
-                                                              <!-- /.modal -->
+                            <!-- End modal for file view -->
+
+                             <!-- Modal for complete information of diagnostic test result -->
+                             <div class="modal fade" id="mc{{$f->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                          <div class="modal-header">
+                                           <span style="font-size: 15px;"><b>Complete los siguientes campos:</b></span>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                          </div>
+                                            <div class="modal-body">
+                                            </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                      </div><!-- /.modal --> 
 
                           </div>
                         </div>
