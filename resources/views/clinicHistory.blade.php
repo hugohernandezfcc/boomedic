@@ -414,6 +414,7 @@
                             From. {{ $f->email }}.<br>
                             Recipe. (No especificado aún).<br>
                             <div id="spoiler{{ $f->id }}" style="display: none;">
+                              <br>
                               @php
                                 echo quoted_printable_decode($f->text_email);
                               @endphp          
