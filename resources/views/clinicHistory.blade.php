@@ -413,11 +413,11 @@
                             Fecha. {{ $f->date_email }}<br>
                             From. {{ $f->email }}.<br>
                             Recipe. (No especificado aún).<br>
-                              <a style="" onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'}">Ver más...</a>
+                              <a onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'}">Ver más...</a>
 
                             <div id="spoiler{{ $f->id }}" style="display: none;">
                                         {{ $f->text_email }}
-                            </div>
+                            </div><br>
                             @php
                             $part = pathinfo($f->url);
                               if($part['extension'] == "rar"){
