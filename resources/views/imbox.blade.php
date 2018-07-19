@@ -14,7 +14,11 @@
     .closeb {
       float: right;
       cursor: pointer;
+
     }
+     .dropdown-menu>li>a {
+       color: #333 !important;
+    }   
 	</style>
 @stop
 
@@ -31,8 +35,8 @@
                 <h4>Asunto: {{ $f->subject_email }} 
                  <div class="btn-group closeb"> 
                   <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
-                  <ul class="dropdown-menu" role="menu" style="float: left;">
-                    <li><a style="margin-right: 500px !important;" onclick="send('{{ $f->id }}');">Reenviar a correo personal</a></li>
+                  <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
+                    <li><a onclick="send('{{ $f->id }}');">Reenviar a correo personal</a></li>
                   </ul>
                 </div>
                   </h4>
