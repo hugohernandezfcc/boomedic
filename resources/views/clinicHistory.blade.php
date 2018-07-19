@@ -138,6 +138,30 @@
         opacity: 0.5;
         text-decoration: none;
       }   
+      input[id^="spoiler"]{
+         display: none;
+        }
+        input[id^="spoiler"] + label {
+          text-align: center;
+          font-size: 12px;
+          cursor: pointer;
+          transition: all .6s;
+        }
+        input[id^="spoiler"]:checked + label {
+          color: #333;
+          background: #ccc;
+        }
+        input[id^="spoiler"] ~ .spoiler {
+          overflow: hidden;
+          opacity: 0;
+          background: #eee;
+          border: 1px solid #ccc;
+          transition: all .6s;
+        }
+        input[id^="spoiler"]:checked + label + .spoiler{
+          height: auto;
+          opacity: 1;
+        }
 </style>
 
 
@@ -369,7 +393,7 @@
           <!-- The time line -->
           <ul class="timeline"  id="exp">
             <!--  li to imbox  -->
-                     @foreach($files->sortBy('date_email') as $f)
+                     @foreach($files->sortByDesc('date_email') as $f)
                       <li>
                         <i class="fa fa-inbox bg-green disabled"></i>
 
@@ -389,9 +413,12 @@
                             Fecha. {{ $f->date_email }}<br>
                             From. {{ $f->email }}.<br>
                             Recipe. (No especificado aún).<br>
-                            Cuerpo del mensaje:<br>
+                              <input type="checkbox" id="spoiler{{$f->id}}"> 
+                              <label for="spoiler{{$f->id}}">Ver más</label>
+                            <div class="spoiler">
+                                        asdasdasd
+                            </div>
                             @php
-                            //echo $f->text_email;
                             $part = pathinfo($f->url);
                               if($part['extension'] == "rar"){
                                 $validate = 1;
@@ -406,6 +433,7 @@
                             @else
                             <a class="btn btn-default btn-flat btn-sm" href="{{ $f->url }}">Descargar estudio</a>
                             @endif
+                            <a class="btn btn-secondary btn-flat btn-sm" href="{{ $f->url }}">Completar información</a>
 
                                       <div class="modal fade" id="myModal{{$f->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                         <div class="modal-dialog">
