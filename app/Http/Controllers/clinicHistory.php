@@ -363,7 +363,13 @@ class clinicHistory extends Controller
                         $message->subject('Reenvío: adjunto (Test 1)');
                         $message->to('contacto@doitcloud.consulting');
                     });
-             return response()->json($id);
+
+            $parser = new \Smalot\PdfParser\Parser();
+            $pdf    = $parser->parseFile('https://s3.amazonaws.com/abiliasf/12+Dec+2017+19%3A35%3A33+-+SGCertifiedMarketingCloudSocialSpecialist.pdf');
+             
+            $text = $pdf->getText();
+
+             return response()->json($text);
       }
 
     
