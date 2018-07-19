@@ -92,12 +92,16 @@ class clinicHistory extends Controller
                            $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->where('diagnostic_test','=',null)->get();      
                         }
            /* ----------Files of inbox function store s3 pop3-------------- */                
-
-            $parser = new \Smalot\PdfParser\Parser();
-            $pdf    = $parser->parseFile('https://s3.amazonaws.com/abiliasf/12+Dec+2017+19%3A35%3A33+-+SGCertifiedMarketingCloudSocialSpecialist.pdf');
+            /* TEST PARSER PDF */
+            $parser = new \Smalot\PdfParser\Parser(); 
+             try {
+                             $pdf    = $parser->parseFile('https://s3.amazonaws.com/abiliasf/12+Dec+2017+19%3A35%3A33+-+SGCertifiedMarketingCloudSocialSpecialist.pdf');
+                              $text = $pdf->getText();
+                } catch (\Exception $ex) {
+                    $text = 'error';
+                }
              
-            $text = $pdf->getText();
-
+           
         if(count($clinic_history) == 0){
             $mode = "null";
         } else{
