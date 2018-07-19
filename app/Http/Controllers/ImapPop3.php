@@ -155,7 +155,8 @@ class ImapPop3 extends Controller {
 											 File::deleteDirectory($newDir);
 								  }	
 
-				/*elseif($file_parts['extension'] == "rar"){
+						/* //Comentario: esto funciona localmente pero heroku no soporta ext rar.//
+						elseif($file_parts['extension'] == "rar"){
 									   $newDirR = public_path("rar");
 									   File::makeDirectory($newDirR, 0755, true);
 									   $fp = fopen($newDirR . "/". $filename, "w+");
