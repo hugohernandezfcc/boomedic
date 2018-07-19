@@ -374,26 +374,35 @@
                         <i class="fa fa-inbox bg-gray"></i>
 
                         <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($f->date_email)->diffForHumans() }}</span>
+                        <span class="time">
+                           <div class="btn-group"> 
+                              <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
+                              <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
+                                <li><a onclick="send('{{ $f->id }}');">Reenviar a correo personal</a></li>
+                              </ul>
+                            </div>
+                        </span>
 
                           <h3 class="timeline-header"><a>Asunto: {{ $f->subject_email }}</a></h3>
 
                           <div class="timeline-body">
+                            Fecha. {{ $f->date_email }}<br>
                             From. {{ $f->email }}.<br>
                             Recipe. (No especificado aún).<br>
                             Cuerpo del mensaje:<br>
                             @php
                             //echo $f->text_email;
                             $part = pathinfo($f->url);
-                            if($part['extension'] == "rar"){
-                              $validate = 1;
-                            }else{
-                              $validate = 0;
-                            }
+                              if($part['extension'] == "rar"){
+                                $validate = 1;
+                              }else{
+                                $validate = 0;
+                              }
                             @endphp <br><br>
 
                             @if($validate == 0)
                             <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $f->url }}" data-target="#myModal{{$f->id}}">Ver estudio</a>
+
                             @else
                             <a class="btn btn-default btn-flat btn-sm" href="{{ $f->url }}">Descargar estudio</a>
                             @endif
@@ -423,11 +432,18 @@
               <i class="fa fa-file bg-aqua"></i>
 
               <div class="timeline-item">
-              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->created_at)->diffForHumans() }}</span>
-
+                        <span class="time">
+                           <div class="btn-group"> 
+                              <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
+                              <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
+                                <li><a onclick="send('{{ $test->id }}');">Reenviar a correo personal</a></li>
+                              </ul>
+                            </div>
+                        </span>
                 <h3 class="timeline-header"><a>{{ $test->name }}</a></h3>
 
                 <div class="timeline-body">
+                  <i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->created_at)->diffForHumans() }}<br>
                   Prescribe. {{ $test->doc}}.<br>
                   Recipe. {{ $test->folio}}.<br>
                   Detalles:<br>
@@ -648,10 +664,25 @@
       </div>
      </div>   
     </div> 
+    <script type="text/javascript">
+            function send(id){
+                            $.ajax(
+                                    {
+                                      type: "GET",    
+                                      url: "{{ url('clinicHistory/reSender') }}/" + id, 
+                                      success: function(result){
+                                               alert(result); 
+                                      }
+                                    })
+      }   
+    </script>
 @endif
 
 
 				<script>
+
+
+
            if(window.location.href == "{{ url('clinicHistory/index') }}"){      
          window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
@@ -760,7 +791,7 @@
             }
 
 
-				$(document).ready(function () {
+				$(document).ready(function(){
 
             $("#search").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
