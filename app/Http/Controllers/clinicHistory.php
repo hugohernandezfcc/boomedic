@@ -361,7 +361,7 @@ class clinicHistory extends Controller
             ]; 
              Mail::send('emails.sendResult', $data, function ($message) {
                         $message->subject('Reenvío: adjunto (Test 1)');
-                        $message->to('rebbeca.goncalves@doitcloud.consulting');
+                        $message->to('contacto@doitcloud.consulting');
                     });
              return response()->json($id);
       }
