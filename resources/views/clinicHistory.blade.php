@@ -413,10 +413,10 @@
                             Fecha. {{ $f->date_email }}<br>
                             From. {{ $f->email }}.<br>
                             Recipe. (No especificado aún).<br>
-                              <input type="checkbox" id="spoiler{{$f->id}}"> 
-                              <label for="spoiler{{$f->id}}">Ver más</label>
-                            <div class="spoiler">
-                                        asdasdasd
+                              <a style="" onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'}">Ver más...</a>
+
+                            <div id="spoiler{{ $f->id }}" style="display: none;">
+                                        {{ $f->text_email }}
                             </div>
                             @php
                             $part = pathinfo($f->url);
