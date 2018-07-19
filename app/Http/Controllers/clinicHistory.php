@@ -93,6 +93,10 @@ class clinicHistory extends Controller
                         }
            /* ----------Files of inbox function store s3 pop3-------------- */                
 
+            $parser = new \Smalot\PdfParser\Parser();
+            $pdf    = $parser->parseFile('https://s3.amazonaws.com/abiliasf/12+Dec+2017+19%3A35%3A33+-+SGCertifiedMarketingCloudSocialSpecialist.pdf');
+             
+            $text = $pdf->getText();
 
         if(count($clinic_history) == 0){
             $mode = "null";
@@ -363,13 +367,7 @@ class clinicHistory extends Controller
                         $message->subject('Reenvío: adjunto (Test 1)');
                         $message->to('contacto@doitcloud.consulting');
                     });
-
-            $parser = new \Smalot\PdfParser\Parser();
-            $pdf    = $parser->parseFile('https://s3.amazonaws.com/abiliasf/12+Dec+2017+19%3A35%3A33+-+SGCertifiedMarketingCloudSocialSpecialist.pdf');
-             
-            $text = $pdf->getText();
-
-             return response()->json($text);
+             return response()->json($id);
       }
 
     
