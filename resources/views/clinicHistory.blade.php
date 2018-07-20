@@ -430,7 +430,7 @@
                             @endphp <br>
 
                             @if($validate == 0)
-                            <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $f->url }}" data-target="#myModal{{$f->id}}">Ver estudio</a>
+                            <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $f->url }}" data-id="myModal{{$f->id}}" data-target="#myModal{{$f->id}}">Ver estudio</a>
 
                             @else
                             <a class="btn btn-default btn-flat btn-sm" href="{{ $f->url }}">Descargar estudio</a>
@@ -493,7 +493,7 @@
                   Detalles:<br>
                   {{ $test->details }}<br>
 
-                  <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $test->url }}" data-target="#myModal{{$test->id}}">Ver estudio</a>
+                  <a class="btn btn-default btn-flat btn-sm external" data-id="myModal{{$test->id}}"  data-toggle="modal" href="{{ $test->url }}" data-target="#myModal{{$test->id}}">Ver estudio</a>
                   <a class="btn btn-secondary btn-sm btn-flat modal-chat" data-toggle="modal" data-target="#chat-form-modal">Comentarios</a>
                   <div class="modal-chat fade2 modal" id="chat-form-modal">
                 <div class="modal-dialog">
@@ -1060,11 +1060,15 @@
   $('.external').on('click', function(e) {
         e.preventDefault();
         var url = $(this).attr('href');
+        var modalid = $(this).attr('data-id');
         var ext = url.split('.').pop();
         $(".modal-body.results").html("");
         //If is image view
+        var h = window.screen.availHeight - 150;
+        $('.modal-body').height(h + "px");
         if(ext == 'png' || ext == 'jpg' || ext == 'svg' || ext == 'gif' || ext == 'JPEG'){
         $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+
         }
         //If is video format
         else if(ext == 'mp4' || ext == 'mov' || ext == 'flv' || ext == 'avi' || ext == '3gp'){
