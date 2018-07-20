@@ -1062,13 +1062,13 @@
         var url = $(this).attr('href');
         var ext = url.split('.').pop();
         $(".modal-body.results").html("");
-        //Solo si es PDF
-        //$(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
+        //If is image view
         if(ext == 'png' || ext == 'jpg' || ext == 'svg' || ext == 'gif' || ext == 'JPEG'){
         $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
         }
-        if(ext == 'mp4'){
-                    $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/mp4"></video></iframe>');
+        //If is video format mp4 and mov
+        if(ext == 'mp4' || ext == 'mov'){
+                    $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/'+ ext +'"></video></iframe>');
 
                         var $video  = $('video'),
                             $window = $(window); 
@@ -1087,6 +1087,8 @@
                             });
                         }).resize();            
         }
+                //Solo si es PDF
+        //$(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
         else{
         $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" ></iframe>');
       }
