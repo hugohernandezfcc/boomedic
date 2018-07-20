@@ -402,12 +402,12 @@
                            <div class="btn-group"> 
                               <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
                               <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
-                                <li><a onclick="send('{{ $f->id }}');">Reenviar a correo personal</a></li>
+                                <li><a onclick="send('{{ $f->id }}');" href="">Reenviar a correo personal</a></li>
                               </ul>
                             </div>
                         </span>
 
-                          <h3 class="timeline-header"><a>Asunto: {{ $f->subject_email }}</a></h3>
+                          <h3 class="timeline-header"><a href="">Asunto: {{ $f->subject_email }}</a></h3>
 
                           <div class="timeline-body">
                             Fecha. {{ $f->date_email }}<br>
@@ -419,7 +419,7 @@
                                 echo quoted_printable_decode($f->text_email);
                               @endphp          
                             </div>
-                                                          <a id="a{{ $f->id }}" onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''; document.getElementById('a{{ $f->id }}').innerHTML ='...Ver menos';}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'; document.getElementById('a{{ $f->id }}').innerHTML ='Ver más...';}">Ver más...</a><br>
+                                                          <a href="" id="a{{ $f->id }}" onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''; document.getElementById('a{{ $f->id }}').innerHTML ='...Ver menos';}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'; document.getElementById('a{{ $f->id }}').innerHTML ='Ver más...';}">Ver más...</a><br>
                             @php
                             $part = pathinfo($f->url);
                               if($part['extension'] == "rar"){
@@ -480,11 +480,11 @@
                            <div class="btn-group"> 
                               <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
                               <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
-                                <li><a onclick="send('{{ $test->id }}');">Reenviar a correo personal</a></li>
+                                <li><a onclick="send('{{ $test->id }}');" href="">Reenviar a correo personal</a></li>
                               </ul>
                             </div>
                         </span>
-                <h3 class="timeline-header"><a>{{ $test->name }}</a></h3>
+                <h3 class="timeline-header"><a href="">{{ $test->name }}</a></h3>
 
                 <div class="timeline-body">
                   Fecha. {{ $test->date_email }}<br>
