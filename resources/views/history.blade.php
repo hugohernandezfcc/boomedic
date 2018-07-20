@@ -157,7 +157,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -262,7 +262,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -368,7 +368,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -474,7 +474,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -580,7 +580,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -684,7 +684,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -791,7 +791,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 

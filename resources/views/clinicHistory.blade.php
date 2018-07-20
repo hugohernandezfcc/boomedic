@@ -591,7 +591,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -622,7 +622,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -653,7 +653,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -684,7 +684,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
