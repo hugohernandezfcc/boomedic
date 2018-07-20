@@ -93,7 +93,7 @@ class clinicHistory extends Controller
                         }
            /* ----------Files of inbox function store s3 pop3-------------- */                
             /* TEST PARSER PDF */
-            $parser = new \Smalot\PdfParser\Parser(); 
+           /* $parser = new \Smalot\PdfParser\Parser(); 
              try {
                              $pdf    = $parser->parseFile('https://s3.amazonaws.com/abiliasf/LibroErase-una-vez-el-amor-pero-tuve-que-matarlo.pdf');
                              $pages  = $pdf->getPages();
@@ -103,7 +103,7 @@ class clinicHistory extends Controller
                                 $text = $pages[1]->getText();
                 } catch (\Exception $ex) {
                     $text = 'error';
-                }
+                }*/
              
            
         if(count($clinic_history) == 0){
@@ -123,8 +123,7 @@ class clinicHistory extends Controller
                 'test_result'       => $test_result,
                 'mode'              => $mode,
                 'files'             => $result,
-                'count'             => count($result),
-                'textPDF'           => $text 
+                'count'             => count($result)
             ]
         );
     }
