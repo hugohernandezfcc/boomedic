@@ -437,7 +437,7 @@
                             @endif
                             <a class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#mc{{$f->id}}">Completar información</a>
                             <!-- Modal for file view -->
-                                      <div class="modal fade" id="myModal{{$f->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal fade" id="myModal{{$f->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
                                         <div class="modal-dialog">
                                           <div class="modal-content">
                                           <div class="modal-header">
@@ -1060,10 +1060,36 @@
   $('.external').on('click', function(e) {
         e.preventDefault();
         var url = $(this).attr('href');
+        var ext = url.split('.').pop();
         $(".modal-body.results").html("");
         //Solo si es PDF
         //$(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
+        if(ext == 'png' || ext == 'jpg' || ext == 'svg' || ext == 'gif' || ext == 'JPEG'){
+        $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+        }
+        if(ext == 'mp4'){
+                    $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/mp4"></video></iframe>');
+
+                        var $video  = $('video'),
+                            $window = $(window); 
+
+                        $(window).resize(function(){
+                            var height = $window.height();
+                            $video.css('height', height);
+
+                            var videoWidth = $video.width(),
+                                windowWidth = $window.width(),
+                            marginLeftAdjust =   (windowWidth - videoWidth) / 2;
+
+                            $video.css({
+                                'height': height, 
+                                'marginLeft' : marginLeftAdjust
+                            });
+                        }).resize();            
+        }
+        else{
         $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" ></iframe>');
+      }
  
     });
  
