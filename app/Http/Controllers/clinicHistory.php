@@ -91,20 +91,7 @@ class clinicHistory extends Controller
                                 
                            $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->where('diagnostic_test','=',null)->get();      
                         }
-           /* ----------Files of inbox function store s3 pop3-------------- */                
-            /* TEST PARSER PDF */
-           /* $parser = new \Smalot\PdfParser\Parser(); 
-             try {
-                             $pdf    = $parser->parseFile('https://s3.amazonaws.com/abiliasf/LibroErase-una-vez-el-amor-pero-tuve-que-matarlo.pdf');
-                             $pages  = $pdf->getPages();
- 
-                            // Loop over each page to extract text.
-                         
-                                $text = $pages[1]->getText();
-                } catch (\Exception $ex) {
-                    $text = 'error';
-                }*/
-             
+
            
         if(count($clinic_history) == 0){
             $mode = "null";

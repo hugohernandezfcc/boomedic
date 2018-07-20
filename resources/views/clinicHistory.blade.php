@@ -718,11 +718,7 @@
                                       }
                                     })
       }   
-      /* $(document).ready(function() {
-        var text = "@php echo $textPDF; @endphp";
-        var text2 = text.replace(' ', '_');
-            console.log(text2);
-        })*/
+
     </script>
 @endif
 
