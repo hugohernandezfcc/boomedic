@@ -1066,12 +1066,13 @@
         if(ext == 'png' || ext == 'jpg' || ext == 'svg' || ext == 'gif' || ext == 'JPEG'){
         $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
         }
-        //If is video format mp4 and mov
-        else if(ext == 'mp4' || ext == 'mov' || ext == 'flv'){
+        //If is video format
+        else if(ext == 'mp4' || ext == 'mov' || ext == 'flv' || ext == 'avi' || ext == '3gp'){
           //Flv especific
-            if(ext == 'flv'){
-                  $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/x-flv; codecs='"On2 VP6, Sorenson Spark, Screen video, Screen video 2, H.264"'></video></iframe>');
-            }else{
+           /* if(ext == 'flv'){
+                  $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/x-flv; codecs="'"On2 VP6, Sorenson Spark, Screen video, Screen video 2, H.264"'"></video></iframe>');
+            }*/
+            if(ext == 'mp4' || ext == 'mov'){
                     $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/'+ ext +'"></video></iframe>');
                         }  
 
@@ -1090,10 +1091,8 @@
                                 'height': height, 
                                 'marginLeft' : marginLeftAdjust
                             });
-                        }).resize();                
-        }
-        //Format avi or 3gp video embed
-        else if(ext == 'avi' || ext == '3gp'){
+                        }).resize();       
+            if(ext == 'avi' || ext == '3gp'){
                                 $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><embed src="'+ url +'" type="video/x-msvideo" class="video"></embed></iframe>');
 
                        var $video  = $('.video'),
@@ -1113,14 +1112,13 @@
                             });
                         }).resize();            
 
-        }
-
+                    } 
+              }
                 //Solo si es PDF
         //$(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
         else{
         $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" ></iframe>');
-      }
- 
+       }
     });
  
     $('#myModal').on('show.bs.modal', function () {
