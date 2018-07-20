@@ -1067,7 +1067,7 @@
         $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
         }
         //If is video format mp4 and mov
-        if(ext == 'mp4' || ext == 'mov'){
+        else if(ext == 'mp4' || ext == 'mov'){
                     $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/'+ ext +'"></video></iframe>');
 
                         var $video  = $('video'),
