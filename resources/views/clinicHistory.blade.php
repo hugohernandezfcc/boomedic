@@ -1087,6 +1087,27 @@
                             });
                         }).resize();            
         }
+        else if(ext == 'avi' || ext == '3gp'){
+                                $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><embed src="'+ url +'" type="video/x-msvideo" class="video"></embed></iframe>');
+
+                       var $video  = $('.video'),
+                            $window = $(window); 
+
+                        $(window).resize(function(){
+                            var height = $window.height();
+                            $video.css('height', height);
+
+                            var videoWidth = $video.width(),
+                                windowWidth = $window.width(),
+                            marginLeftAdjust =   (windowWidth - videoWidth) / 2;
+
+                            $video.css({
+                                'height': height, 
+                                'marginLeft' : marginLeftAdjust
+                            });
+                        }).resize();            
+
+        }
                 //Solo si es PDF
         //$(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
         else{
