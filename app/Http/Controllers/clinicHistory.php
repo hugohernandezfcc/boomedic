@@ -89,7 +89,11 @@ class clinicHistory extends Controller
                                             }
                                         }
                                 
-                           $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->where('diagnostic_test','=',null)->get();      
+                           $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->where('diagnostic_test','=',null)->get();   
+                           $result2 = $result->groupBy('date_email'); 
+                           //print_r($result2);
+
+
                         }
 
            
@@ -109,7 +113,7 @@ class clinicHistory extends Controller
                 'clinic_history'    => $clinic_history,
                 'test_result'       => $test_result,
                 'mode'              => $mode,
-                'files'             => $result,
+                'files'             => $result2,
                 'count'             => count($result)
             ]
         );

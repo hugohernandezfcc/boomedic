@@ -396,7 +396,7 @@
           <!-- The time line -->
           <ul class="timeline"  id="exp">
             <!--  li to imbox  -->
-                     @foreach($files->sortByDesc('date_email') as $f)
+                     @foreach($files as $date_email => $fi)
                       <li>
                         <i class="fa fa-inbox bg-green disabled"></i>
 
@@ -405,26 +405,27 @@
                            <div class="btn-group"> 
                               <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
                               <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
-                                <li><a onclick="send('{{ $f->id }}');" href="javascript:void(0)">Reenviar a correo personal</a></li>
+                                <li><a onclick="send('{{ $fi[0]->id }}');" href="javascript:void(0)">Reenviar a correo personal</a></li>
                               </ul>
                             </div>
                         </span>
 
-                          <h3 class="timeline-header"><a href="javascript:void(0)">Asunto: {{ $f->subject_email }}</a></h3>
+                          <h3 class="timeline-header"><a href="javascript:void(0)">Asunto: {{ $fi[0]->subject_email }}</a></h3>
 
                           <div class="timeline-body">
-                            Fecha. {{ $f->date_email }}<br>
-                            From. {{ $f->email }}.<br>
+                            Fecha. {{ $date_email }}<br>
+                            From. {{ $fi[0]->email }}.<br>
                             Recipe. (No especificado aún).<br>
-                            <div id="spoiler{{ $f->id }}" style="display: none;">
+                            <div id="spoiler{{ $fi[0]->id }}" style="display: none;">
                               <br>
                               @php
-                                echo quoted_printable_decode($f->text_email);
+                                echo quoted_printable_decode($fi[0]->text_email);
                               @endphp          
                             </div>
-                                                          <a href="javascript:void(0)" id="a{{ $f->id }}" onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''; document.getElementById('a{{ $f->id }}').innerHTML ='...Ver menos';}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'; document.getElementById('a{{ $f->id }}').innerHTML ='Ver más...';}">Ver más...</a><br>
+                                                          <a href="javascript:void(0)" id="a{{ $fi[0]->id }}" onclick="if(document.getElementById('spoiler{{ $fi[0]->id }}') .style.display=='none') {document.getElementById('spoiler{{ $fi[0]->id }}') .style.display=''; document.getElementById('a{{ $fi[0]->id }}').innerHTML ='...Ver menos';}else{document.getElementById('spoiler{{ $fi[0]->id }}') .style.display='none'; document.getElementById('a{{ $fi[0]->id }}').innerHTML ='Ver más...';}">Ver más...</a><br>
+                        @if(count($fi) == 1)                                
                             @php
-                            $part = pathinfo($f->url);
+                            $part = pathinfo($fi[0]->url);
                               if($part['extension'] == "rar" || $part['extension'] == "tar" || $part['extension'] == "tar.gz"){
                                 $validate = 1;
                               }else{
@@ -433,18 +434,19 @@
                             @endphp <br>
 
                             @if($validate == 0)
-                            <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $f->url }}" data-id="myModal{{$f->id}}" data-target="#myModal{{$f->id}}">Ver estudio</a>
+                            <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $fi[0]->url }}" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}">Ver estudio</a>
 
                             @else
-                            <a class="btn btn-default btn-flat btn-sm" href="{{ $f->url }}">Descargar estudio</a>
+                            <a class="btn btn-default btn-flat btn-sm" href="{{ $fi[0]->url }}">Descargar estudio</a>
                             @endif
-                            <a class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#mc{{$f->id}}">Completar datos</a>
+
+                            <a class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#mc{{$fi[0]->id}}">Completar datos</a>
                             <!-- Modal for file view -->
-                                      <div class="modal fade" id="myModal{{$f->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
+                                      <div class="modal fade" id="myModal{{$fi[0]->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
                                         <div class="modal-dialog">
                                           <div class="modal-content">
                                           <div class="modal-header">
-                                           <span style="font-size: 15px;"><b> {{ $f->details }} </b></span>
+                                           <span style="font-size: 15px;"><b> {{ $fi[0]->details }} </b></span>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                           </div>
                                             <div class="modal-body results">
@@ -454,8 +456,29 @@
                                       </div><!-- /.modal -->
                             <!-- End modal for file view -->
 
-                             <!-- Modal for complete information of diagnostic test result -->
-                             <div class="modal fade" id="mc{{$f->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                           @else
+                                                       <a class="btn btn-default btn-flat btn-sm" data-toggle="modal" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}">Ver estudio</a>
+                                                       <a class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#mc{{$fi[0]->id}}">Completar datos</a>
+                                
+                                <div class="modal fade" id="myModal{{$fi[0]->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                          <div class="modal-header">
+                                           <span style="font-size: 15px;"><b> Varios Adjuntos</b></span>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                          </div>
+                                            <div class="modal-body">
+                                               @foreach($fi as $f)  
+                                               <label>{{ $f->details }}</label><br>
+                                               @endforeach   
+                                            </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                      </div><!-- /.modal -->
+
+                  
+                           @endif
+                             <div class="modal fade" id="mc{{$fi[0]->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                         <div class="modal-dialog">
                                           <div class="modal-content">
                                           <div class="modal-header">
@@ -466,11 +489,11 @@
                                             </div>
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->
-                                      </div><!-- /.modal --> 
-
+                           </div><!-- /.modal --> 
                           </div>
                         </div>
                       </li>
+
                       @endforeach
 
             <!-- end li to imbox-->
