@@ -97,7 +97,10 @@
 
           iframe {
             max-width: 100%;
+            display:block;
+            margin:0 auto;
           }
+
                 .down {
                   position:absolute;
                   bottom:5px;
@@ -1065,9 +1068,9 @@
         $(".modal-body.results").html("");
         //If is image view
         var h = window.screen.availHeight - 150;
-        $('.modal-body').height(h + "px");
+        $('.modal-body').height("");
         if(ext == 'png' || ext == 'jpg' || ext == 'svg' || ext == 'gif' || ext == 'JPEG'){
-        $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+        $(".modal-body.results").append('<div align="center"><img src="'+url+'"></img></div>');
 
         }
         //If is video format
@@ -1077,7 +1080,7 @@
                   $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/x-flv; codecs="'"On2 VP6, Sorenson Spark, Screen video, Screen video 2, H.264"'"></video></iframe>');
             }*/
             if(ext == 'mp4' || ext == 'mov'){
-                    $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/'+ ext +'"></video></iframe>');
+                    $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/'+ ext +'"></video></iframe>');
                         }  
 
                         var $video  = $('video'),
@@ -1097,7 +1100,7 @@
                             });
                         }).resize();       
             if(ext == 'avi' || ext == '3gp'){
-                                $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><embed src="'+ url +'" type="video/x-msvideo" class="video"></embed></iframe>');
+                                $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><embed src="'+ url +'" type="video/x-msvideo" class="video"></embed></iframe>');
 
                        var $video  = $('.video'),
                             $window = $(window); 
@@ -1121,7 +1124,8 @@
                 //Solo si es PDF
         //$(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
         else{
-        $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" ></iframe>');
+        $('.modal-body').height(h + "px");
+        $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" ></iframe>');
        }
     });
  
