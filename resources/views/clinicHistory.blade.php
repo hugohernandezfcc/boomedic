@@ -405,12 +405,12 @@
                            <div class="btn-group"> 
                               <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
                               <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
-                                <li><a onclick="send('{{ $f->id }}');" href="">Reenviar a correo personal</a></li>
+                                <li><a onclick="send('{{ $f->id }}');" href="javascript:void(0)">Reenviar a correo personal</a></li>
                               </ul>
                             </div>
                         </span>
 
-                          <h3 class="timeline-header"><a href="">Asunto: {{ $f->subject_email }}</a></h3>
+                          <h3 class="timeline-header"><a href="javascript:void(0)">Asunto: {{ $f->subject_email }}</a></h3>
 
                           <div class="timeline-body">
                             Fecha. {{ $f->date_email }}<br>
@@ -422,7 +422,7 @@
                                 echo quoted_printable_decode($f->text_email);
                               @endphp          
                             </div>
-                                                          <a href="" id="a{{ $f->id }}" onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''; document.getElementById('a{{ $f->id }}').innerHTML ='...Ver menos';}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'; document.getElementById('a{{ $f->id }}').innerHTML ='Ver más...';}">Ver más...</a><br>
+                                                          <a href="javascript:void(0)" id="a{{ $f->id }}" onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''; document.getElementById('a{{ $f->id }}').innerHTML ='...Ver menos';}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'; document.getElementById('a{{ $f->id }}').innerHTML ='Ver más...';}">Ver más...</a><br>
                             @php
                             $part = pathinfo($f->url);
                               if($part['extension'] == "rar" || $part['extension'] == "tar" || $part['extension'] == "tar.gz"){
@@ -438,7 +438,7 @@
                             @else
                             <a class="btn btn-default btn-flat btn-sm" href="{{ $f->url }}">Descargar estudio</a>
                             @endif
-                            <a class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#mc{{$f->id}}">Completar información</a>
+                            <a class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#mc{{$f->id}}">Completar datos</a>
                             <!-- Modal for file view -->
                                       <div class="modal fade" id="myModal{{$f->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
                                         <div class="modal-dialog">
@@ -483,11 +483,11 @@
                            <div class="btn-group"> 
                               <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
                               <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
-                                <li><a onclick="send('{{ $test->id }}');" href="">Reenviar a correo personal</a></li>
+                                <li><a onclick="send('{{ $test->id }}');" href="javascript:void(0)">Reenviar a correo personal</a></li>
                               </ul>
                             </div>
                         </span>
-                <h3 class="timeline-header"><a href="">{{ $test->name }}</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">{{ $test->name }}</a></h3>
 
                 <div class="timeline-body">
                   Fecha. {{ $test->date_email }}<br>
@@ -594,7 +594,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -625,7 +625,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -656,7 +656,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -687,7 +687,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
