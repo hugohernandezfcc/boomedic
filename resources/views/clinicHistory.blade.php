@@ -425,7 +425,7 @@
                                                           <a href="" id="a{{ $f->id }}" onclick="if(document.getElementById('spoiler{{ $f->id }}') .style.display=='none') {document.getElementById('spoiler{{ $f->id }}') .style.display=''; document.getElementById('a{{ $f->id }}').innerHTML ='...Ver menos';}else{document.getElementById('spoiler{{ $f->id }}') .style.display='none'; document.getElementById('a{{ $f->id }}').innerHTML ='Ver más...';}">Ver más...</a><br>
                             @php
                             $part = pathinfo($f->url);
-                              if($part['extension'] == "rar"){
+                              if($part['extension'] == "rar" || $part['extension'] == "tar" || $part['extension'] == "tar.gz"){
                                 $validate = 1;
                               }else{
                                 $validate = 0;
