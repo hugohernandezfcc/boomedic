@@ -468,9 +468,39 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                           </div>
                                             <div class="modal-body">
-                                               @foreach($fi as $f)  
-                                               <label>{{ $f->details }}</label><br>
-                                               @endforeach   
+                                                <div class="nav-tabs-custom">
+                                                        <ul class="nav nav-tabs">
+                                                          <li class="dropdown">
+                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                                              Seleccione: <span class="caret"></span>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                          @foreach($fi as $f)    
+                                                           @if($loop->iteration == 1)
+                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="active external">{{ $f->details}}</a></li>
+                                                           @else
+                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="external">{{ $f->details}}</a></li>
+                                                           @endif
+                                                          
+                                                          @endforeach
+                                                            </ul>
+                                                          </li>
+                                                        </ul>
+                                                        <div class="tab-content">
+                                                         @foreach($fi as $f)    
+                                                         @if($loop->iteration == 1)
+                                                          <div class="tab-pane active" id="t{{ $f->id}}">
+                                                         @else
+                                                          <div class="tab-pane" id="t{{ $f->id}}">   
+                                                         @endif   
+                                                                       <div class="modal-body results">
+                                                                       </div>
+                                                          </div>
+                                                          @endforeach
+                                                        </div>
+                                                        <!-- /.tab-content -->
+                                                      </div>
+
                                             </div>
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->
