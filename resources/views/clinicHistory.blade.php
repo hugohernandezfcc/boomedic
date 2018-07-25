@@ -457,7 +457,7 @@
                             <!-- End modal for file view -->
 
                            @else
-                                                       <a class="btn btn-default btn-flat btn-sm" data-toggle="modal" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}">Ver estudio</a>
+                                                       <a class="btn btn-default btn-flat btn-sm" data-toggle="modal" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}" onclick="$('.x.active.external').click();">Ver estudio</a>
                                                        <a class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#mc{{$fi[0]->id}}">Completar datos</a>
                                 
                                 <div class="modal fade" id="myModal{{$fi[0]->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
@@ -471,15 +471,15 @@
                                                 <div class="nav-tabs-custom">
                                                         <ul class="nav nav-tabs">
                                                           <li class="dropdown">
-                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                                            <a class="dropdown-toggle men" data-toggle="dropdown" href="#" aria-expanded="false">
                                                               Seleccione: <span class="caret"></span>
                                                             </a>
                                                             <ul class="dropdown-menu">
                                                           @foreach($fi as $f)    
                                                            @if($loop->iteration == 1)
-                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="active external">{{ $f->details}}</a></li>
+                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="x active external" onclick="$('.dropdown-toggle.men').text($(this).text());">{{ $f->details}}</a></li>
                                                            @else
-                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="external">{{ $f->details}}</a></li>
+                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="external"  onclick="$('.dropdown-toggle.men').text($(this).text());">{{ $f->details}}</a></li>
                                                            @endif
                                                           
                                                           @endforeach
@@ -493,7 +493,7 @@
                                                          @else
                                                           <div class="tab-pane" id="t{{ $f->id}}">   
                                                          @endif   
-                                                                       <div class="modal-body dos results" style="height: 'javaScript: window.screen.availHeight - 250' !important;">
+                                                                       <div class="modal-body dos results">
                                                                        </div>
                                                           </div>
                                                           @endforeach
@@ -774,7 +774,6 @@
                                       }
                                     })
       }   
-
     </script>
 @endif
 
@@ -1119,6 +1118,7 @@
         var modalid = $(this).attr('data-id');
         var ext = url.split('.').pop();
         $(".modal-body.results").html("");
+        $(".modal-body.dos.results").html("");
         //If is image view
         var h = window.screen.availHeight - 150;
         var h2 = window.screen.availHeight - 250;
