@@ -472,14 +472,14 @@
                                                         <ul class="nav nav-tabs">
                                                           <li class="dropdown">
                                                             <a class="dropdown-toggle men" data-toggle="dropdown" href="#" aria-expanded="false">
-                                                              Seleccione: <span class="caret"></span>
+                                                              <span class="spt">Seleccione: </span> <span class="caret"></span>
                                                             </a>
                                                             <ul class="dropdown-menu">
                                                           @foreach($fi as $f)    
                                                            @if($loop->iteration == 1)
-                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="x active external" onclick="$('.dropdown-toggle.men').text($(this).text());">{{ $f->details}}</a></li>
+                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="x active external" onclick="$('.dropdown-toggle.men span.spt').text($(this).text());">{{ $f->details}}</a></li>
                                                            @else
-                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="external"  onclick="$('.dropdown-toggle.men').text($(this).text());">{{ $f->details}}</a></li>
+                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="external"  onclick="$('.dropdown-toggle.men span.spt').text($(this).text());">{{ $f->details}}</a></li>
                                                            @endif
                                                           
                                                           @endforeach
