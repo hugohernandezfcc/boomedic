@@ -472,7 +472,7 @@
                                                         <ul class="nav nav-tabs">
                                                           <li class="dropdown">
                                                             <a class="dropdown-toggle men" data-toggle="dropdown" href="#" aria-expanded="false">
-                                                              <span class="spt">Seleccione: </span> <span class="caret"></span>
+                                                              <label><span class="spt">Seleccione: </span>&nbsp;<i class="fa fa-angle-down" style="font-size: 18px;"></i></label>
                                                             </a>
                                                             <ul class="dropdown-menu">
                                                           @foreach($fi as $f)    
@@ -1124,7 +1124,7 @@
         var h2 = window.screen.availHeight - 250;
         $('.modal-body').height("");
         if(ext == 'png' || ext == 'jpg' || ext == 'svg' || ext == 'gif' || ext == 'JPEG'){
-        $(".modal-body.results").append('<div align="center"><img src="'+url+'"></img></div>');
+        $(".modal-body.results").append('<div align="center"><img src="'+url+'" class="img-responsive"></img></div>');
 
         }
         //If is video format
