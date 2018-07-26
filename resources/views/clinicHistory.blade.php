@@ -406,7 +406,7 @@
                         <div class="timeline-item">
                         <span class="time">
                            <div class="btn-group"> 
-                              <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
+                              <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><label class="text-muted"><i class="fa fa-ellipsis-v"></i></label></a>
                               <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
                                 <li><a onclick="send('{{ $fi[0]->id }}');" href="javascript:void(0)">Reenviar a correo personal</a></li>
                               </ul>
@@ -467,7 +467,10 @@
                                         <div class="modal-dialog">
                                           <div class="modal-content">
                                           <div class="modal-header">
-                                           <span style="font-size: 15px;"><b> Varios Adjuntos</b></span>
+                                            @php
+                                            $cont = count($fi);
+                                            @endphp
+                                           <span style="font-size: 15px;"><b>Se adjuntaron #{{ $cont }} cantidad de archivos</b></span>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                           </div>
                                             <div class="modal-body">
@@ -537,7 +540,7 @@
               <div class="timeline-item">
                         <span class="time">
                            <div class="btn-group"> 
-                              <button  class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>
+                              <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><label class="text-muted"><i class="fa fa-ellipsis-v"></i></label></a>
                               <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
                                 <li><a onclick="send('{{ $test->id }}');" href="javascript:void(0)">Reenviar a correo personal</a></li>
                               </ul>
