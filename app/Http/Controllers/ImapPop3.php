@@ -52,6 +52,7 @@ class ImapPop3 extends Controller {
 			        /* get information specific to this email */
 			        $header = imap_headerinfo($imbox, $email_number);
 			        $emailFrom = $header->from[0]->mailbox . '@' . $header->from[0]->host;
+			        $emailhost = $header->from[0]->host;
 			        $subject = $header->subject;
 			        $date = $header->date;
 			        //int_r($cabecera->from[0]->mailbox . '@' . $cabecera->from[0]->host);
@@ -149,46 +150,18 @@ class ImapPop3 extends Controller {
 														$name = "imbox/". $user ."-". $date2. "-". $emailFrom. "/" .$filenamezip;	
 										                Storage::disk('s3')->put($name, $contents, 'public');
 												        $path = Storage::cloud()->url($name);
-												         array_push($array, ['path' => $path, 'filename' => $filenamezip, 'from' =>  $emailFrom, 'subject' => $subject, 'message' => $message2, 'date' => $date, 'header' => $header, 'structure' => $structure, 'body' => $body]);
+												         array_push($array, ['path' => $path, 'filename' => $filenamezip, 'from' =>  $emailFrom, 'subject' => $subject, 'message' => $message2, 'date' => $date, 'header' => $header, 'structure' => $structure, 'body' => $body, 'emailhost' => $emailhost]);
 										   			 }
 											}
 											 File::deleteDirectory($newDir);
 								  }	
 
-													/* //Coment: this works locally but heroku does not support ext rar.//
-
-													elseif($file_parts['extension'] == "rar"){
-																   $newDirR = public_path("rar");
-																   File::makeDirectory($newDirR, 0755, true);
-																   $fp = fopen($newDirR . "/". $filename, "w+");
-														                fwrite($fp, $attachment['attachment']);
-														                fclose($fp);
-														$rar_file = RarArchive::open($newDirR . "/". $filename);
-													if ($rar_file) {
-														$entries = $rar_file->getEntries();
-														foreach ($entries as $entry) {
-														    $entry->extract($newDirR); // extraer el directorio actual
-														}
-														rar_close($rar_file);
-														File::delete($newDirR . "/". $filename);
-														$files = File::files($newDirR);
-																  	foreach($files as $file) {
-																			$contents = file_get_contents($file);       
-																			$filenamerar = basename($file);
-																			$name = "imbox/". $user ."-". $date2. "-". $emailFrom. "/" .$filenamerar;	
-															                Storage::disk('s3')->put($name, $contents, 'public');
-																	        $path = Storage::cloud()->url($name);
-																	         array_push($array, ['path' => $path, 'filename' => $filenamerar, 'from' =>  $emailFrom, 'subject' => $subject, 'message' => $message2, 'date' => $date, 'header' => $header, 'structure' => $structure, 'body' => $body]);
-															   			 }
-																}
-																		 File::deleteDirectory($newDirR);
-															  }*/
 								  else{
 			                $name = "imbox/". $user ."-". $date2. "-". $emailFrom. "/" .$filename;
 			                Storage::disk('s3')->put($name,  (string) $attachment['attachment'], 'public');
 					        $path = Storage::cloud()->url($name);
 					    
-					        array_push($array, ['path' => $path, 'filename' => $filename, 'from' =>  $emailFrom, 'subject' => $subject, 'message' => $message2, 'date' => $date, 'header' => $header, 'structure' => $structure, 'body' => $body]);
+					        array_push($array, ['path' => $path, 'filename' => $filename, 'from' =>  $emailFrom, 'subject' => $subject, 'message' => $message2, 'date' => $date, 'header' => $header, 'structure' => $structure, 'body' => $body, 'emailhost' => $emailhost]);
 					    	}
 			            }
 			        }

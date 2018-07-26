@@ -72,7 +72,7 @@ class clinicHistory extends Controller
                                             $c = DB::table('diagnostic_test_result')
                                             ->where('patient','=', $user->id)
                                             ->where('url','=', $array['path'])->get();
-                                            if(count($c) == 0){
+                                            if(count($c) == 0){                             
                                                $new_result = new diagnostic_test_result;
                                                $new_result->url =  $array['path'];
                                                $new_result->email =  $array['from'];
