@@ -470,7 +470,7 @@
                                             @php
                                             $cont = count($fi);
                                             @endphp
-                                           <span style="font-size: 15px;"><b>Se adjuntaron #{{ $cont }} cantidad de archivos</b></span>
+                                           <span style="font-size: 15px;"><b>Se adjuntaron #{{ $cont }} archivos</b></span>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                           </div>
                                             <div class="modal-body">
