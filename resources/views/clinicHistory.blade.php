@@ -406,7 +406,7 @@
                         <div class="timeline-item">
                         <span class="time">
                            <div class="btn-group"> 
-                              <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><label class="text-muted"><i class="fa fa-ellipsis-v"></i></label></a>
+                              <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="text-muted fa fa-ellipsis-v" style="font-weight: 900 !important"></i></a>
                               <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
                                 <li><a onclick="send('{{ $fi[0]->id }}');" href="javascript:void(0)">Reenviar a correo personal</a></li>
                               </ul>
@@ -540,7 +540,7 @@
               <div class="timeline-item">
                         <span class="time">
                            <div class="btn-group"> 
-                              <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><label class="text-muted"><i class="fa fa-ellipsis-v"></i></label></a>
+                              <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="text-muted fa fa-ellipsis-v" style="font-weight: 800 !important"></i></a>
                               <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
                                 <li><a onclick="send('{{ $test->id }}');" href="javascript:void(0)">Reenviar a correo personal</a></li>
                               </ul>
