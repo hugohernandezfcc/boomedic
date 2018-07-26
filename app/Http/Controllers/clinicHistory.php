@@ -79,7 +79,7 @@ class clinicHistory extends Controller
                                                $new_result->details =  $array['filename'];
                                                $new_result->patient =  $user->id;
                                                //$new_result->header_email =  json_encode($array['header']);
-                                               //$new_result->body_email =  json_encode($array['body']);
+                                               $new_result->body_email =  json_encode($array['body']);
                                                //$new_result->structure_email =  json_encode($array['structure']);
                                                $new_result->date_email =  $array['date'];
                                                $new_result->subject_email =  $array['subject'];
