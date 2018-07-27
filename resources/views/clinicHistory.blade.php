@@ -168,6 +168,13 @@
       .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
         background-color: #333 !important;  
        } 
+     .cut{
+      width:60%;
+      text-overflow:ellipsis;
+      white-space:nowrap; 
+      overflow:hidden; 
+      text-align: right;
+    }  
 </style>
 
 
