@@ -61,6 +61,8 @@ class ImapPop3 extends Controller {
 			        $messa = explode( 'quoted-printable', $message2);
 			        if(count($messa) > 1){
 			        	$message2 = substr($messa[1], 0, -100);
+			        }else{
+			            $message2 = imap_fetchbody($imbox,$email_number,1.2);
 			        }
 			        $message = imap_fetchbody($imbox,$email_number,2);
 			        $body = imap_fetchbody($imbox,$email_number,1);
