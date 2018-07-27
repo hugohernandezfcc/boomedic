@@ -53,7 +53,7 @@ class ImapPop3 extends Controller {
 			        $header = imap_headerinfo($imbox, $email_number);
 			        $emailFrom = $header->from[0]->mailbox . '@' . $header->from[0]->host;
 			        $emailhost = $header->from[0]->host;
-			        $subject = $header->subject;
+			        $subject = mb_decode_mimeheader($header->subject);
 			        $date = $header->date;
 			        //int_r($cabecera->from[0]->mailbox . '@' . $cabecera->from[0]->host);
 			        $overview = imap_fetch_overview($imbox,$email_number,0);
