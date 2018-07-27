@@ -57,7 +57,7 @@ class ImapPop3 extends Controller {
 			        $date = $header->date;
 			        //int_r($cabecera->from[0]->mailbox . '@' . $cabecera->from[0]->host);
 			        $overview = imap_fetch_overview($imbox,$email_number,0);
-			        $message2 = imap_fetchbody($imbox,$email_number,1.2);
+			        $message2 = imap_fetchbody($imbox,$email_number,1.1);
 			        $message = imap_fetchbody($imbox,$email_number,2);
 			        $body = imap_fetchbody($imbox,$email_number,1);
 			        /* get mail structure */
@@ -104,16 +104,18 @@ class ImapPop3 extends Controller {
 			                {
 			                    $attachments[$i]['attachment'] = imap_fetchbody($imbox, $email_number, $i+1);
 
-			                    /* 3 = BASE64 encoding */
-			                    if($structure->parts[$i]->encoding == 3) 
-			                    { 
-			                        $attachments[$i]['attachment'] = base64_decode($attachments[$i]['attachment']);
-			                    }
-			                    /* 4 = QUOTED-PRINTABLE encoding */
-			                    elseif($structure->parts[$i]->encoding == 4) 
-			                    { 
-			                        $attachments[$i]['attachment'] = quoted_printable_decode($attachments[$i]['attachment']);
-			                    }
+				                    /* 3 = BASE64 encoding */
+				                    if($structure->parts[$i]->encoding == 3) 
+				                    { 
+				                        $attachments[$i]['attachment'] = base64_decode($attachments[$i]['attachment']);
+				                         $message3 = imap_base64($message2);
+				                    }
+				                    /* 4 = QUOTED-PRINTABLE encoding */
+				                    elseif($structure->parts[$i]->encoding == 4) 
+				                    { 
+				                       	$attachments[$i]['attachment'] = quoted_printable_decode($attachments[$i]['attachment']);
+				                    	 $message3 = imap_qprint($message2);
+				                    }
 			                }
 			            }
 			        }
