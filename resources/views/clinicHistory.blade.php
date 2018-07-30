@@ -1141,7 +1141,7 @@
                   $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/x-flv; codecs="'"On2 VP6, Sorenson Spark, Screen video, Screen video 2, H.264"'"></video></iframe>');
             }*/
             if(ext == 'mp4' || ext == 'mov'){
-                    $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/'+ ext +'"></video></iframe>');
+                    $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" class="iframe"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/'+ ext +'"></video></iframe>');
                         }  
 
                         var $video  = $('video'),
@@ -1185,9 +1185,11 @@
                 //Solo si es PDF
         //$(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
         else{
+         // var onload = '$(this).style.display = "inline-block";document.getElementById("loa").style.display = "none";';
         $('.modal-body').height(h + "px");
         $('.modal-body.dos').height(h2 + "px");
-        $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" >Cargando...</iframe>');
+        /*$(".modal-body.results").append('<span id="loa">cargando...</span><iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" onload="'+ onload +'" style="display:none;"></iframe>');*/
+       $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true""></iframe>');
        }
     });
  
