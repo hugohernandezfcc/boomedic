@@ -169,11 +169,10 @@
         background-color: #333 !important;  
        } 
      .cut{
-      width:60%;
+      width: 90%;
       text-overflow:ellipsis;
       white-space:nowrap; 
       overflow:hidden; 
-      text-align: right;
     }  
 </style>
 
@@ -420,7 +419,7 @@
                             </div>
                         </span>
 
-                          <h3 class="timeline-header"><a href="javascript:void(0)">Asunto: {{ $fi[0]->subject_email }}</a></h3>
+                          <h3 class="timeline-header cut"><a href="javascript:void(0)">Asunto: {{ $fi[0]->subject_email }}</a></h3>
 
                           <div class="timeline-body">
                             Fecha. {{ $date_email }}<br>
@@ -553,7 +552,7 @@
                               </ul>
                             </div>
                         </span>
-                <h3 class="timeline-header"><a href="javascript:void(0)">{{ $test->name }}</a></h3>
+                <h3 class="timeline-header cut"><a href="javascript:void(0)">{{ $test->name }}</a></h3>
 
                 <div class="timeline-body">
                   Fecha. {{ $test->date_email }}<br>
