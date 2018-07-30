@@ -458,7 +458,6 @@
                             <a class="btn btn-default btn-flat btn-sm" href="{{ $fi[0]->url }}">Descargar estudio</a>
                             @endif
 
-                            <a class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#mc{{$fi[0]->id}}">Completar datos</a>
                             <!-- Modal for file view -->
                                       <div class="modal fade" id="myModal{{$fi[0]->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
                                         <div class="modal-dialog">
@@ -476,7 +475,6 @@
 
                            @else
                                                        <a class="btn btn-default btn-flat btn-sm" data-toggle="modal" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}" onclick="$('.x.active.external').click();">Ver estudio</a>
-                                                       <a class="btn btn-secondary btn-flat btn-sm" data-toggle="modal" data-target="#mc{{$fi[0]->id}}">Completar datos</a>
                                 
                                 <div class="modal fade" id="myModal{{$fi[0]->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
                                         <div class="modal-dialog">
@@ -529,18 +527,6 @@
 
                   
                            @endif
-                             <div class="modal fade" id="mc{{$fi[0]->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                        <div class="modal-dialog">
-                                          <div class="modal-content">
-                                          <div class="modal-header">
-                                           <span style="font-size: 15px;"><b>Complete los siguientes campos:</b></span>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                          </div>
-                                            <div class="modal-body">
-                                            </div>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                           </div><!-- /.modal --> 
                           </div>
                         </div>
                       </li>
@@ -1201,7 +1187,7 @@
         else{
         $('.modal-body').height(h + "px");
         $('.modal-body.dos').height(h2 + "px");
-        $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" ></iframe>');
+        $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" >Cargando...</iframe>');
        }
     });
  
