@@ -173,7 +173,14 @@
       text-overflow:ellipsis;
       white-space:nowrap; 
       overflow:hidden; 
-    }  
+    } 
+    .cut2{
+       word-break: break-all;
+       word-wrap: break-word;
+    }
+
+
+
 </style>
 
 
@@ -425,10 +432,11 @@
                             Fecha. {{ $date_email }}<br>
                             From. {{ $fi[0]->email }}.<br>
                             Recipe. (No especificado aún).<br>
-                            <div id="spoiler{{ $fi[0]->id }}" style="display: none;">
+                            <div id="spoiler{{ $fi[0]->id }}" style="display: none;" class="cut2">
                               <br>
                               @php
-                                echo quoted_printable_decode($fi[0]->text_email);
+                                $bod = quoted_printable_decode($fi[0]->text_email);
+                                echo $bod;
                               @endphp          
                             </div>
                                                           <a href="javascript:void(0)" id="a{{ $fi[0]->id }}" onclick="if(document.getElementById('spoiler{{ $fi[0]->id }}') .style.display=='none') {document.getElementById('spoiler{{ $fi[0]->id }}') .style.display=''; document.getElementById('a{{ $fi[0]->id }}').innerHTML ='...Ver menos';}else{document.getElementById('spoiler{{ $fi[0]->id }}') .style.display='none'; document.getElementById('a{{ $fi[0]->id }}').innerHTML ='Ver más...';}">Ver más...</a><br>
