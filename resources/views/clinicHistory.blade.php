@@ -434,6 +434,7 @@
                             Recipe. (No especificado aún).<br>
                             <div id="spoiler{{ $fi[0]->id }}" style="display: none;" class="cut2">
                               <br>
+                              <!--Imprimo correo ya sea texto plano o tipo html-->
                               @php
                                 $bod = quoted_printable_decode($fi[0]->text_email);
                                 echo $bod;
