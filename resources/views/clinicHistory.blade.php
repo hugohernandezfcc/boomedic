@@ -406,7 +406,8 @@
                  <span class="fa fa-search text-muted"></span></button>
       <div class="direct-chat-contacts plus">
        <div class="col-sm-3 pull-right"><input id="search" type="text" placeholder="Buscar expedientes" class="form-control"></div>     
-     </div>
+     </div><br>
+     <div id="headeralert"></div>
    </div>
 
         <div class="box-body content">
@@ -775,32 +776,31 @@
      </div>   
     </div> 
     <script type="text/javascript">
+
             function send(id){
                             $.ajax(
                                     {
                                       type: "GET",    
                                       url: "{{ url('clinicHistory/reSender') }}/" + id, 
                                       success: function(result){
-                                        $('.header1').append('<br><div class="alert alert-info alert-dismissible" id="alert"><i class="icon fa fa-info"></i><h5>Ok</h5><a class="close" onclick="hide($(this));" style="text-decoration: none">×</a></div>');
-                                        alert('ok');
-                                             function hide(is){
-                                                is.hide();
-                                              };
-                                                /*  is.fadeTo(3000, 500).fadeOut(500, function(){
-                                                      is.fadeOut(500);
-                                                  });
-
-                                               //alert(result); */
+                                        $('#headeralert').html('<div class="alert alert-success alert-dismissible" id="alert"><h4><i class="icon fa fa-info"></i>Se reenvió la información al correo: {{ $email }}<a class="close" onclick="hide();" style="text-decoration: none">×</a></h4></div>');
+                                            $('#alert').fadeTo(5000, 500).fadeOut(500, function(){
+                                              $('#alert').fadeOut(500);
+                                            });   
                                       }
-                                    })
-      }   
+                                    })             
+                                }   
+
     </script>
 @endif
 
 
 				<script>
 
-
+         function hide(){
+              $('.alert').fadeOut(500);
+            };
+        
 
            if(window.location.href == "{{ url('clinicHistory/index') }}"){      
          window.onscroll = function() {myFunction()};
