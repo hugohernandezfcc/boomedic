@@ -783,7 +783,7 @@
                                       type: "GET",    
                                       url: "{{ url('clinicHistory/reSender') }}/" + id, 
                                       success: function(result){
-                                        $('#headeralert').html('<div class="alert alert-success alert-dismissible" id="alert"><h4><i class="icon fa fa-info"></i>Se reenvió la información al correo: {{ $email }}<a class="close" onclick="hide();" style="text-decoration: none">×</a></h4></div>');
+                                        $('#headeralert').html('<div class="alert alert-success alert-dismissible" id="alert"><h5><i class="icon fa fa-info"></i>Se reenvió la información al correo: {{ $email }}<a class="close" onclick="hide();" style="text-decoration: none">×</a></h5></div>');
                                             $('#alert').fadeTo(5000, 500).fadeOut(500, function(){
                                               $('#alert').fadeOut(500);
                                             });   
