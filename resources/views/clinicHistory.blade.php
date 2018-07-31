@@ -169,7 +169,7 @@
         background-color: #333 !important;  
        } 
      .cut{
-      width: 90%;
+      width: 85%;
       text-overflow:ellipsis;
       white-space:nowrap; 
       overflow:hidden; 
@@ -180,8 +180,6 @@
     }
     .iframe-container{
       min-height: 100px;
-      font: normal normal normal 14px FontAwesome;
-      content: "ffff";
       background: #fff url("{{ asset('images/Loading.gif') }}") no-repeat 50% center !important;
     }
 
