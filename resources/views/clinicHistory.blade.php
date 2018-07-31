@@ -435,7 +435,7 @@
                           <div class="timeline-body">
                             Fecha. {{ $date_email }}<br>
                             From. {{ $fi[0]->email }}.<br>
-                            Recipe. (No especificado aún).<br>
+                            Receta. (No especificado aún).<br>
                             <div id="spoiler{{ $fi[0]->id }}" style="display: none;" class="cut2">
                               <br>
                               <!--Imprimo correo ya sea texto plano o tipo html-->
@@ -556,7 +556,7 @@
                 <div class="timeline-body">
                   Fecha. {{ $test->date_email }}<br>
                   Prescribe. {{ $test->doc}}.<br>
-                  Recipe. {{ $test->folio}}.<br>
+                  Receta. {{ $test->folio}}.<br>
                   Detalles:<br>
                   {{ $test->details }}<br>
 
@@ -781,6 +781,7 @@
                                       type: "GET",    
                                       url: "{{ url('clinicHistory/reSender') }}/" + id, 
                                       success: function(result){
+                                        $('.header1').append('<div class="alert alert-info alert-dismissible" id="alert"><h5><i class="icon fa fa-info"></i>Ok</h5></div>');
                                                alert(result); 
                                       }
                                     })
