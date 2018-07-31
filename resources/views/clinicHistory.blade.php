@@ -178,6 +178,12 @@
        word-break: break-all;
        word-wrap: break-word;
     }
+    .iframe-container{
+      min-height: 100px;
+      font: normal normal normal 14px FontAwesome;
+      content: "ffff";
+      background: #fff url("{{ asset('images/Loading.gif') }}") no-repeat 50% center !important;
+    }
 
 
 
@@ -512,7 +518,7 @@
                                                          @else
                                                           <div class="tab-pane" id="t{{ $f->id}}">   
                                                          @endif   
-                                                                       <div class="modal-body dos results">
+                                                                       <div class="modal-body dos iframe-container results">
                                                                        </div>
                                                           </div>
                                                           @endforeach
@@ -584,7 +590,7 @@
                                  <span style="font-size: 15px;"><b> {{ $test->name }} </b></span>
                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
-                                  <div class="modal-body results">
+                                  <div class="modal-body iframe-container results">
                                   </div>
                                   </div><!-- /.modal-content -->
                               </div><!-- /.modal-dialog -->
