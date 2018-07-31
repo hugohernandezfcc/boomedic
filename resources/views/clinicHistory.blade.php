@@ -783,10 +783,10 @@
                                       success: function(result){
                                         $('.header1').append('<br><div class="alert alert-info alert-dismissible" id="alert"><i class="icon fa fa-info"></i><h5>Ok</h5><a class="close" onclick="hide($(this));" style="text-decoration: none">×</a></div>');
                                         alert('ok');
-                                             /* hide function(is){
+                                             function hide(is){
                                                 is.hide();
                                               };
-                                                 is.fadeTo(3000, 500).fadeOut(500, function(){
+                                                /*  is.fadeTo(3000, 500).fadeOut(500, function(){
                                                       is.fadeOut(500);
                                                   });
 
