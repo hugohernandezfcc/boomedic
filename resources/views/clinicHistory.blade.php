@@ -401,7 +401,7 @@
      <div class="box-header direct-chat header1" id="header1">
               <h3 class="box-title">
                         Expediente médico
-               </h3>    
+               </h3><a href="javascript:void(0);" onclick="visib();" style="color: #777 !important;">&nbsp;<i class="fa fa-eye" id="eye"></i></a>    
         <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-search text-muted"></span></button>
       <div class="direct-chat-contacts plus">
@@ -410,7 +410,7 @@
      <div id="headeralert"></div>
    </div>
 
-        <div class="box-body content">
+        <div class="box-body content expbody">
       <!-- row -->
      <div class="row">
         <div class="col-md-12">
@@ -776,7 +776,19 @@
      </div>   
     </div> 
     <script type="text/javascript">
+            function visib(){
+              if($('#eye').hasClass('fa-eye-slash') == true){
+                        $('#eye').removeClass('fa-eye-slash');
+                        $('#eye').addClass('fa-eye');
+                        $('.expbody').css("display","");
 
+                  }else{
+                      $('#eye').removeClass('fa-eye');
+                      $('#eye').addClass('fa-eye-slash');
+                      $('.expbody').css("display","none");
+
+                  }
+            }
             function send(id){
                             $.ajax(
                                     {
