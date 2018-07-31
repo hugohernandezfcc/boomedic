@@ -35,6 +35,9 @@
         .sticky + .content {
           padding-top: 102px;
         }
+  .modal-body{
+    background: white;
+  }      
 </style>
 
 
