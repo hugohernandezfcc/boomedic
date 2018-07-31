@@ -363,10 +363,10 @@ class clinicHistory extends Controller
             'subject'   => $diagnostic_test->subject_email,
             'date'      => $diagnostic_test->date_email
             ]; 
-           /*  Mail::send('emails.sendResult', $data, function ($message) {
+           Mail::send('emails.sendResult', $data, function ($message) {
                         $message->subject('Reenvío: adjunto (Test 1)');
                         $message->to('contacto@doitcloud.consulting');
-                    });*/
+                    });
              return response()->json($id);
       }
 
