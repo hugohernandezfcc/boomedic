@@ -781,8 +781,15 @@
                                       type: "GET",    
                                       url: "{{ url('clinicHistory/reSender') }}/" + id, 
                                       success: function(result){
-                                        $('.header1').append('<div class="alert alert-info alert-dismissible" id="alert"><h5><i class="icon fa fa-info"></i>Ok</h5></div>');
-                                               alert(result); 
+                                        $('.header1').append('<div class="alert alert-info alert-dismissible" id="alert"><i class="icon fa fa-info"></i><a class="close" onclick="hide($(this));" style="text-decoration: none">×</a><h5>Ok</h5></div>');
+                                              hide function(is){
+                                                is.hide();
+                                              };
+                                                 is.fadeTo(3000, 500).fadeOut(500, function(){
+                                                      is.fadeOut(500);
+                                                  });
+
+                                               //alert(result); 
                                       }
                                     })
       }   

@@ -351,6 +351,7 @@ class clinicHistory extends Controller
       { 
          $user = User::find(Auth::id());
          $diagnostic_test = diagnostic_test_result::find($id);
+
          $email = $user->email;
            $data = [
             'name'      => $user->name,
@@ -362,10 +363,10 @@ class clinicHistory extends Controller
             'subject'   => $diagnostic_test->subject_email,
             'date'      => $diagnostic_test->date_email
             ]; 
-             Mail::send('emails.sendResult', $data, function ($message) {
+           /*  Mail::send('emails.sendResult', $data, function ($message) {
                         $message->subject('Reenvío: adjunto (Test 1)');
                         $message->to('contacto@doitcloud.consulting');
-                    });
+                    });*/
              return response()->json($id);
       }
 
