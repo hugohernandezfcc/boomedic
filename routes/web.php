@@ -485,12 +485,6 @@ Route::group(['prefix' => 'supportTicket'], function(){
 		]
 	);
 
-	Route::get('help', [
-			'uses'	=>	'supportTickets@help',
-			'as'	=>	'help'
-		]
-	);
-
 	Route::get('create', [
 			'uses'	=>	'supportTickets@create',
 			'as'	=>	'create'
@@ -506,6 +500,16 @@ Route::group(['prefix' => 'supportTicket'], function(){
 	Route::get('delete/{id}', [
 			'uses'	=>	'supportTickets@destroy',
 			'as'	=>	'destroy'
+		]
+	);
+
+});
+
+Route::group(['prefix' => 'help'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'help@index',
+			'as'	=>	'index'
 		]
 	);
 

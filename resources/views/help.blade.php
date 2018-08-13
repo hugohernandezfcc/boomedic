@@ -12,7 +12,7 @@
 	    <h3 class="box-title">¿Qué es esto?</h3>
   	</div>
   	<div class="box-body">		
-				{{ $userId }}	
+				<a href='https://site-boomedic.herokuapp.com?user={{ $userId }}' class="btn btn-default" target="_blank">Más información</a>	
  	</div>
 </div>	  	
 @stop
