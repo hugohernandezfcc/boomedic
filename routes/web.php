@@ -485,6 +485,12 @@ Route::group(['prefix' => 'supportTicket'], function(){
 		]
 	);
 
+	Route::get('help', [
+			'uses'	=>	'supportTickets@help',
+			'as'	=>	'help'
+		]
+	);
+
 	Route::get('create', [
 			'uses'	=>	'supportTickets@create',
 			'as'	=>	'create'

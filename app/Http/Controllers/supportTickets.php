@@ -43,6 +43,19 @@ class supportTickets extends Controller
         );
     }
 
+        public function help()
+    {
+        $user = User::find(Auth::id());
+        return view('help', [
+                'userId'    => $user->id,
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'photo'     => $user->profile_photo,
+                'date'      => $user->created_at,
+            ]
+        );
+    }
+
     /**
      * Show the form for creating a new resource.
      *
