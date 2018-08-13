@@ -846,7 +846,11 @@
                      $('#header2').css('width','');
                   }
           if($('.box-header').hasClass('header1')){        
-
+             if($('#eye').hasClass('fa-eye-slash') == true){
+                header1.classList.remove("sticky");
+                     $('#header1').css('width','');
+                        header.classList.add("sticky");
+             }else{
             if (window.pageYOffset >= sticky1) {
                     header1.classList.add("sticky");
             if("@php echo $agent->isMobile(); @endphp"){
@@ -863,6 +867,9 @@
                     header1.classList.remove("sticky");
                      $('#header1').css('width','');
                   }
+
+              }
+
                 } 
               }
             }
