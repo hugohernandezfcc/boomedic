@@ -460,7 +460,12 @@
                             <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $fi[0]->url }}" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}">Ver estudio</a>
 
                             @else
-                            <a class="btn btn-default btn-flat btn-sm" href="{{ $fi[0]->url }}">Descargar estudio</a>
+                              @if($agent->isMobile())
+                                <spam class="text-red"> *Este archivo solo tiene opción de reenvío</spam>
+                              @else
+                               <a class="btn btn-default btn-flat btn-sm" href="{{ $fi[0]->url }}">Descargar estudio</a>
+                              @endif 
+
                             @endif
 
                             <!-- Modal for file view -->
