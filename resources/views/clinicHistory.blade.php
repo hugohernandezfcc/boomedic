@@ -461,7 +461,7 @@
 
                             @else
                               @if($agent->isMobile())
-                                <spam class="text-red"> *Este archivo solo tiene opción de reenvío</spam>
+                                <label class="text-red" style="font-size: 11px;"> *Este archivo solo tiene opción de reenvío</label>
                               @else
                                <a class="btn btn-default btn-flat btn-sm" href="{{ $fi[0]->url }}">Descargar estudio</a>
                               @endif 
