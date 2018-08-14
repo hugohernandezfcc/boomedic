@@ -57,7 +57,7 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'AKIAJAWORSVLHK5X2EBQ',
+            'key' => 'AKIAJA7PEQ3YYPIIR7CA',
             'secret' => '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',
             'region' => 'us-east-1',
             'bucket' => 'abiliasf',
