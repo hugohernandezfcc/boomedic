@@ -209,7 +209,6 @@
                         if(bool == 1){
                             alert("No tienes habilitado poder iniciar conversaciones por ahora.");
                               $(".textbody").val("");
-                              $(".textbody").focus();
                         }else{
                            $.ajax({     
                              type: "POST",                 
@@ -219,7 +218,6 @@
                              success: function(result2)             
                              {
                               $(".textbody").val("");
-                              $(".textbody").focus();
                               if($(".nullm").length > 1){
                                 $(".direct-chat-messages").html("");
                               }
