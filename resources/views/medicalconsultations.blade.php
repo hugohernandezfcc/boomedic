@@ -1466,6 +1466,7 @@ function prevTab(elem) {
            var opt = { minZoom: 6, maxZoom: 20, zoomControl: true };
              map.setOptions(opt);
            }
+             map.setMyLocationEnabled(true);
             //Evento to open infowindow
             markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
