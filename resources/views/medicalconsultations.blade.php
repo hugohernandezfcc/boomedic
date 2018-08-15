@@ -18,7 +18,7 @@
       #rango{ 
         position: absolute;
         width: 90%;
-        bottom: 10%;
+        bottom: 5%;
         left: 5%;
         right: 5%;
         padding-top: 0.7%;
@@ -1150,16 +1150,16 @@ function prevTab(elem) {
             height = window.screen.availHeight;
             //alert("Altura: "+height);
             if(height >= 1000 && height <= 1300){
-                var h = height*0.45;
+                var h = height*0.30;
                 height = Math.floor(h);
             }else if(height >=1800){
-              height -= 1440;
+              height -= 1490;
             }else
             {
-              height -=115;
+              height -=215;
             }
         }else{
-          height = window.screen.availHeight-115;
+          height = window.screen.availHeight-215;
         }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
