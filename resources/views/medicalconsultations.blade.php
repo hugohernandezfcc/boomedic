@@ -1495,8 +1495,7 @@ function prevTab(elem) {
               map: map
             }); 
                       google.maps.event.addListener(map, 'dragend', function(e){
-                        console.log(this.center.lat["[[Scopes]]"]["0"].a);
-                        console.log(this.center.lat["[[Scopes]]"]["0"].b);
+                        console.log(this.center.lat);
                         alert("me movi");
                       });
 
