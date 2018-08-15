@@ -1150,16 +1150,16 @@ function prevTab(elem) {
             height = window.screen.availHeight;
             //alert("Altura: "+height);
             if(height >= 1000 && height <= 1300){
-                var h = height*0.30;
+                var h = height*0.39;
                 height = Math.floor(h);
             }else if(height >=1800){
-              height -= 1490;
+              height -= 1480;
             }else
             {
-              height -=215;
+              height -=170;
             }
         }else{
-          height = window.screen.availHeight-215;
+          height = window.screen.availHeight-170;
         }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
