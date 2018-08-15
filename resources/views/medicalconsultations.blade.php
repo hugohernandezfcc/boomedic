@@ -19,8 +19,7 @@
         position: absolute;
         width: 90%;
         bottom: 5%;
-        left: 5%;
-        right: 5%;
+        right: 10%;
         padding-top: 0.7%;
         padding-bottom: 0.7%;
         padding-right: 0.7%;
@@ -30,6 +29,18 @@
         text-align: center;
         font-size: 90%;
         line-height: 15%;
+      }
+      #rangothree{ 
+        position: absolute !important;
+        bottom: 4% !important;
+        right: 2% !important;
+        padding-top: 0.7%;
+        padding-bottom: 0.7%;
+        padding-right: 0.7%;
+        padding-left: 0.7%;
+        /*background-color: rgba(255,255,255,0.7);*/
+        z-index: 1000;
+        text-align: center;
       }
       #rangotwo{ 
         position: absolute;
@@ -42,7 +53,8 @@
         /*background-color: rgba(255,255,255,0.7);*/
         z-index: 100;
         text-align: center;
-      }      
+      }  
+
       #searchDiv{
         position: absolute;
         width: 24%;
@@ -257,17 +269,23 @@
     float: right !important;
     padding: 3px !important;
     font-size: 10px !important;
-  }
-  .nav-stacked>li.active>a {
-    border-left-color: #080808 !important;
-}
-.cut{
-  width:60%;
-  text-overflow:ellipsis;
-  white-space:nowrap; 
-  overflow:hidden; 
-  text-align: right;
-}
+    }
+    .nav-stacked>li.active>a {
+      border-left-color: #080808 !important;
+    }
+    .cut{
+      width:60%;
+      text-overflow:ellipsis;
+      white-space:nowrap; 
+      overflow:hidden; 
+      text-align: right;
+    }
+    .direct-chat-contacts {
+          height: 28px !important;
+          background: transparent !important; 
+          top: 90% !important; 
+          z-index: 900;
+    }
 
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
@@ -555,17 +573,24 @@
      <div id="bodyDr"></div>
      <div class="pull-right" id="btncita"></div>
       </div>
-     <div id="rangotwo">
-          <a class="btn btn-default btn-xs" onclick="initMap()"><b><span class="fa fa-crosshairs"></span></b></a>
-     </div> 
-    <div id='rango'>
+
+
+<div class="direct-chat">
+       <div  id="rangothree">
+         <div class="btn-group-vertical">
+        <a class="btn btn-default btn-sm" onclick="initMap()"><b><span class="fa fa-crosshairs"></span></b></a>
+        <a class="btn btn-default btn-sm" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }"><b><span class="fa fa-plus" id="fap"></span></b></a></div></div>
+      <div class="direct-chat-contacts">
+            <div id="rango">   
               <div class="btn-group">
               <a class="btn btn-default btn-xs" onclick="showMy();"><b><span id="labelextra"></span></b></a>
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
               </div>
-      </div>
+            </div>
+    </div>
+</div>
 
   </div> 
 
