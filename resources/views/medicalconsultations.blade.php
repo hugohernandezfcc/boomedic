@@ -1499,6 +1499,10 @@ function prevTab(elem) {
                         alert("me movi");
                       });
 
+                       map.addListener('center_changed', function(event) {
+                          console.log(event);
+                        });
+
             if("@php echo $agent->isMobile(); @endphp"){
             var opt = { minZoom: 6, maxZoom: 20, zoomControl: false};
              map.setOptions(opt);
