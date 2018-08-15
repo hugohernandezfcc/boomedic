@@ -1499,7 +1499,7 @@ function prevTab(elem) {
                         console.log(this.center.lng());
                         var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                         markerP.setPosition(latlng);
-                        
+                        start();
                       });
 
                      /*  map.addListener('center_changed', function(event) {
