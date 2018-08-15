@@ -1494,11 +1494,9 @@ function prevTab(elem) {
               icon: markerUser,
               map: map
             }); 
-             map.addListener('center_changed', function() {
-                window.setTimeout(function() {
-                  map.panTo(markerP.getPosition());
-                }, 1000);
-              });  
+                      google.maps.event.addListener(map, 'dragend', function(){
+                        markerP.setPosition(Latlng.lat(), latlng.lng());
+                      }
 
             if("@php echo $agent->isMobile(); @endphp"){
             var opt = { minZoom: 6, maxZoom: 20, zoomControl: false};
