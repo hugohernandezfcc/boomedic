@@ -640,9 +640,6 @@
                   <div class="modal-body">
                    <div id="recentS" align="left" style="display: none; font-weight:500;">Busquedas recientes:<br/></div>         
                    <div id="resp" align="left"></div>                
-                          <div id ="ubi" class="input-group input-group-sm" style="display:none;">
-                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
-                          </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
                     
                   </div>
@@ -1171,7 +1168,6 @@ function prevTab(elem) {
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
         $('#modal').modal('hide');
-         document.getElementById('ubi').style.display = 'none'; 
         infoWindow = new google.maps.InfoWindow();
         //Current position
         if (navigator.geolocation) {
@@ -1490,7 +1486,6 @@ function prevTab(elem) {
                 document.getElementById('submit').addEventListener('click', function() {
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
-                document.getElementById('ubi').style.display = 'inline'; 
                 $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
