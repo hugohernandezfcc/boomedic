@@ -1497,7 +1497,8 @@ function prevTab(elem) {
                       google.maps.event.addListener(map, 'dragend', function(e){
                         console.log(this.center.lat());
                         console.log(this.center.lng());
-                        markerP.setPosition(this.center.lat(),this.center.lng());
+                        var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
+                        markerP.setPosition(latlng);
                         
                       });
 
