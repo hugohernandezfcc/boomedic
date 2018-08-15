@@ -549,6 +549,7 @@
               <a class="btn btn-default btn-xs" onclick="showMy();"><b><span id="labelextra"></span></b></a>
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
+              <a class="btn btn-default btn-xs" onclick="initMap()"><b>U</b></a>
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
               </div>
       </div>
@@ -1466,16 +1467,6 @@ function prevTab(elem) {
            var opt = { minZoom: 6, maxZoom: 20, zoomControl: true };
              map.setOptions(opt);
            }
-             map.setMyLocationEnabled(true);
-             map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-                @Override
-                public boolean onMyLocationButtonClick() {
-                     if (mGoogleApiClient != null) {
-                         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-                     }
-                     return false;
-                }
-            });
             //Evento to open infowindow
             markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
