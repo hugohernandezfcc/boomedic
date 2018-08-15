@@ -1495,8 +1495,8 @@ function prevTab(elem) {
               map: map
             }); 
                       google.maps.event.addListener(map, 'dragend', function(e){
-                        markerP.setPosition(this.getPosition().lat(), this.getPosition().lng());
-                        alert(this.getPosition().lat());
+                        markerP.setPosition(myLatlng);
+                        alert(myLatlng);
                       });
 
             if("@php echo $agent->isMobile(); @endphp"){
