@@ -556,7 +556,7 @@
      <div class="pull-right" id="btncita"></div>
       </div>
      <div id="rangotwo">
-          <a class="btn btn-default btn-flat" onclick="initMap()"><b><span class="fa fa-crosshairs"></span></b></a>
+          <a class="btn btn-default btn-xs" onclick="initMap()"><b><span class="fa fa-crosshairs"></span></b></a>
      </div> 
     <div id='rango'>
               <div class="btn-group">
