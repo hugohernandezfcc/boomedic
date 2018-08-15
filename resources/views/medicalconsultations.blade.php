@@ -31,6 +31,20 @@
         font-size: 90%;
         line-height: 15%;
       }
+      #rangotwo{ 
+        position: absolute;
+        width: 10%;
+        top: 5%;
+        left: 5%;
+        padding-top: 0.7%;
+        padding-bottom: 0.7%;
+        padding-right: 0.7%;
+        padding-left: 0.7%;
+        /*background-color: rgba(255,255,255,0.7);*/
+        z-index: 100;
+        text-align: center;
+        font-size: 90%;
+      }      
       #searchDiv{
         position: absolute;
         width: 24%;
@@ -543,13 +557,14 @@
      <div id="bodyDr"></div>
      <div class="pull-right" id="btncita"></div>
       </div>
-
+     <div id="rangotwo">
+          <a class="btn btn-default btn-flat btn-xs" onclick="initMap()"><b>U</b></a>
+     </div> 
     <div id='rango'>
               <div class="btn-group">
               <a class="btn btn-default btn-xs" onclick="showMy();"><b><span id="labelextra"></span></b></a>
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
-              <a class="btn btn-default btn-xs" onclick="initMap()"><b>U</b></a>
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
               </div>
       </div>
