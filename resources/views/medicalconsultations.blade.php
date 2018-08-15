@@ -1494,9 +1494,7 @@ function prevTab(elem) {
               icon: markerUser,
               map: map
             }); 
-            google.maps.event.addListener(markerP,'dragend', function(evt) {
-                          markerP.setPosition(this.getPosition());
-          });  
+              
             if("@php echo $agent->isMobile(); @endphp"){
             var opt = { minZoom: 6, maxZoom: 20, zoomControl: false};
              map.setOptions(opt);
