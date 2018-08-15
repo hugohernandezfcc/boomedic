@@ -1494,13 +1494,14 @@ function prevTab(elem) {
               icon: markerUser,
               map: map
             }); 
+                      google.maps.event.addListener(map, 'dragend', function(e){
+                        console.log(this);
+                        alert("me movi");
+                      });
 
-
-                       map.addListener('center_changed', function(event) {
-                          alert("me movi");
+                     /*  map.addListener('center_changed', function(event) {
                           console.log(this);
-                          console.log(this.center);
-                        });
+                        });*/
 
             if("@php echo $agent->isMobile(); @endphp"){
             var opt = { minZoom: 6, maxZoom: 20, zoomControl: false};
