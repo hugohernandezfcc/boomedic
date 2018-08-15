@@ -1496,7 +1496,9 @@ function prevTab(elem) {
             }); 
                       google.maps.event.addListener(map, 'dragend', function(e){
                         console.log(this.center.lat());
-                        alert("me movi");
+                        console.log(this.center.lng());
+                        markerP.setPosition(this.center.lat(),this.center.lng());
+                        
                       });
 
                      /*  map.addListener('center_changed', function(event) {
