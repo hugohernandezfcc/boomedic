@@ -18,7 +18,7 @@
       #rango{ 
         position: absolute;
         width: 90%;
-        bottom: 7%;
+        bottom: 10%;
         left: 5%;
         right: 5%;
         padding-top: 0.7%;
@@ -33,9 +33,8 @@
       }
       #rangotwo{ 
         position: absolute;
-        width: 10%;
-        top: 5%;
-        left: 5%;
+        top: 2%;
+        right: 2%;
         padding-top: 0.7%;
         padding-bottom: 0.7%;
         padding-right: 0.7%;
@@ -43,7 +42,6 @@
         /*background-color: rgba(255,255,255,0.7);*/
         z-index: 100;
         text-align: center;
-        font-size: 90%;
       }      
       #searchDiv{
         position: absolute;
@@ -558,7 +556,7 @@
      <div class="pull-right" id="btncita"></div>
       </div>
      <div id="rangotwo">
-          <a class="btn btn-default btn-flat btn-xs" onclick="initMap()"><b>U</b></a>
+          <a class="btn btn-default btn-flat" onclick="initMap()"><b><span class="fa fa-crosshairs"></span></b></a>
      </div> 
     <div id='rango'>
               <div class="btn-group">
