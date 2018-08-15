@@ -1156,10 +1156,10 @@ function prevTab(elem) {
               height -= 1480;
             }else
             {
-              height -=170;
+              height -=160;
             }
         }else{
-          height = window.screen.availHeight-170;
+          height = window.screen.availHeight-156;
         }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
