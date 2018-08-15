@@ -578,7 +578,7 @@
 <div class="direct-chat">
        <div  id="rangothree">
          <div class="btn-group-vertical">
-        <a class="btn btn-default btn-flat" onclick="initMap();start();"><b><span class="fa fa-crosshairs"></span></b></a>
+        <a class="btn btn-default btn-flat" onclick="initMap();"><b><span class="fa fa-crosshairs"></span></b></a>
         <a class="btn btn-default btn-flat" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }"><b><span class="fa fa-plus" id="fap"></span></b></a></div></div>
       <div class="direct-chat-contacts">
             <div id="rango">   
@@ -1499,7 +1499,7 @@ function prevTab(elem) {
             var opt = { minZoom: 6, maxZoom: 20, zoomControl: false};
              map.setOptions(opt);
            }else{
-           var opt = { minZoom: 6, maxZoom: 20, zoomControl: true };
+           var opt = { minZoom: 6, maxZoom: 20, zoomControl: false };
              map.setOptions(opt);
            }
             //Evento to open infowindow
@@ -1508,7 +1508,7 @@ function prevTab(elem) {
               infoWindow.setContent(message01);
             });
                 var geocoder = new google.maps.Geocoder();
-               
+                start();
                 document.getElementById('submit').addEventListener('click', function() {
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
