@@ -1494,9 +1494,9 @@ function prevTab(elem) {
               icon: markerUser,
               map: map
             }); 
-                      google.maps.event.addListener(map, 'dragend', function(e){
-                        markerP.setPosition(e.Latlng.lat(), e.latlng.lng());
-                        alert(e.Latlng.lat() + Latlng.lat());
+                      google.maps.event.addListener(map, 'dragend', function(){
+                        markerP.setPosition(Latlng.lat(), latlng.lng());
+                        alert(Latlng.lat());
                       });
 
             if("@php echo $agent->isMobile(); @endphp"){
