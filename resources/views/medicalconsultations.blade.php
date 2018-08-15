@@ -1496,7 +1496,7 @@ function prevTab(elem) {
             }); 
              map.addListener('center_changed', function() {
                 window.setTimeout(function() {
-                  map.panTo(marker.getPosition());
+                  map.panTo(markerP.getPosition());
                 }, 1000);
               });  
 
