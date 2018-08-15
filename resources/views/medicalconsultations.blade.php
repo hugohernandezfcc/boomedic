@@ -1495,12 +1495,12 @@ function prevTab(elem) {
               map: map
             }); 
                       google.maps.event.addListener(map, 'dragend', function(e){
-                        console.log(e);
+                        console.log(this);
                         alert("me movi");
                       });
 
                        map.addListener('center_changed', function(event) {
-                          console.log(event);
+                          console.log(this);
                         });
 
             if("@php echo $agent->isMobile(); @endphp"){
