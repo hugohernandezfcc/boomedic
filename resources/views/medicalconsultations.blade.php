@@ -1467,6 +1467,15 @@ function prevTab(elem) {
              map.setOptions(opt);
            }
              map.setMyLocationEnabled(true);
+             map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+                @Override
+                public boolean onMyLocationButtonClick() {
+                     if (mGoogleApiClient != null) {
+                         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+                     }
+                     return false;
+                }
+            });
             //Evento to open infowindow
             markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
