@@ -578,8 +578,8 @@
 <div class="direct-chat">
        <div  id="rangothree">
          <div class="btn-group-vertical">
-        <a class="btn btn-default btn-sm" onclick="initMap()"><b><span class="fa fa-crosshairs"></span></b></a>
-        <a class="btn btn-default btn-sm" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }"><b><span class="fa fa-plus" id="fap"></span></b></a></div></div>
+        <a class="btn btn-default btn-flat btn-sm" onclick="initMap()"><b><span class="fa fa-crosshairs"></span></b></a>
+        <a class="btn btn-default btn-flat btn-sm" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }"><b><span class="fa fa-plus" id="fap"></span></b></a></div></div>
       <div class="direct-chat-contacts">
             <div id="rango">   
               <div class="btn-group">
