@@ -583,17 +583,10 @@
       <div class="direct-chat-contacts">
             <div id="rango">   
               <div class="btn-group">
-              @if($agent->isMobile())
               <a class="btn btn-default btn-xs" onclick="showMy();"><b><span id="labelextra"></span></b></a>
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
               <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
-              @else
-              <a class="btn btn-default btn-sm" onclick="showMy();"><b><span id="labelextra"></span></b></a>
-              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
-              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
-              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
-              @endif
               </div>
             </div>
     </div>
