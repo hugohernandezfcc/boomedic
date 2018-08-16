@@ -1204,6 +1204,7 @@ function prevTab(elem) {
             //Map
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 14,
+              gestureHandling: 'greedy',
               center: new google.maps.LatLng(pos),
               styles: [
               {
