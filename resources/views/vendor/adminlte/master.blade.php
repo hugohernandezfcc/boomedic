@@ -462,6 +462,7 @@ span.round-tab:hover {
                                        $('#stateCite').html('');
                                        $('#stateCite2').show();
                                        $('#drAlert').removeClass('animated');
+                                       $('#drAlert').addClass('label-default');
                                        $('#futureCites').html('');
                                        $('#futureCites2').show();
                                        $('#futureCites').removeClass('timeline');
@@ -478,6 +479,7 @@ span.round-tab:hover {
                    if(result2[0] != null && result2[0].length > 0){
                      $('#numberAppo').html(result2[0].length);
                      $('#stateCite2').hide();
+                     $('#drAlert').addClass('label-warning');
                      $('#drAlert').addClass('animated');
                      var array = new Array();
                       for(var g =0; g < result2[0].length; g++){
@@ -544,6 +546,7 @@ span.round-tab:hover {
                                $('#numberAppo').html('0'); 
                                 $('#stateCite2').show();
                                 $('#drAlert').removeClass('animated');
+                                $('#drAlert').addClass('label-default');
                               }
 
                       //Function for future cites 
