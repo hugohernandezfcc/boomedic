@@ -162,7 +162,7 @@
                 <!-- Tools en doctor-->
                  @if(session()->get('utype') == "doctor")              
                     <li>
-                        <a data-toggle="control-sidebar"><i class="fa fa-child"></i><span class="label label-warning animated" id="drAlert">¡HOLA!</span></a>
+                        <a data-toggle="control-sidebar"><i class="fa fa-child"></i><span class="label label-warning" id="drAlert">¡HOLA!</span></a>
                     </li>
 
                 @endif   

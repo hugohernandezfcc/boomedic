@@ -461,6 +461,7 @@ span.round-tab:hover {
                                     console.log(result2);
                                        $('#stateCite').html('');
                                        $('#stateCite2').show();
+                                       $('#drAlert').removeClass('animated');
                                        $('#futureCites').html('');
                                        $('#futureCites2').show();
                                        $('#futureCites').removeClass('timeline');
@@ -477,6 +478,7 @@ span.round-tab:hover {
                    if(result2[0] != null && result2[0].length > 0){
                      $('#numberAppo').html(result2[0].length);
                      $('#stateCite2').hide();
+                     $('#drAlert').addClass('animated');
                      var array = new Array();
                       for(var g =0; g < result2[0].length; g++){
                                    var gender = result2[0][g]['gender'];
@@ -541,6 +543,7 @@ span.round-tab:hover {
                               }else{
                                $('#numberAppo').html('0'); 
                                 $('#stateCite2').show();
+                                $('#drAlert').removeClass('animated');
                               }
 
                       //Function for future cites 
