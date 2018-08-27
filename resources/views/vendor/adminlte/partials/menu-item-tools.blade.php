@@ -12,6 +12,7 @@
                                 <!-- Home tab content -->
                                 <div class="tab-pane active" id="control-sidebar-home-tab">
                                   <h3 class="control-sidebar-heading">Citas del día: #<span id="numberAppo"></span></h3>
+                                    <h3 class="control-sidebar-heading" id="stateCite2" style="display: none;">Sin citas por ahora</h3>
                                   <ul class="control-sidebar-menu" id="stateCite">
                                       <!--Este ul se llena dinámicamente con java script -->
                                   </ul>
@@ -19,6 +20,7 @@
 
                                 </div><div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Citas Próximas</h4>
+                                  <h3 class="control-sidebar-heading" id="futureCites2" style="display: none;">Sin citas futuras por ahora</h3>
                                   <ul class="control-sidebar-menu timeline" id="futureCites">
                                      
                                     </ul> 

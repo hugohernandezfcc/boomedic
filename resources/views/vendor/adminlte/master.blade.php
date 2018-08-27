@@ -460,9 +460,9 @@ span.round-tab:hover {
                                   if(result2 == "listo"){
                                     console.log(result2);
                                        $('#stateCite').html('');
-                                       $('#stateCite').append('<li><a href="javascript:void(0)">No hay citas en ningún estatus hoy...</a></li>');
+                                       $('#stateCite2').show();
                                        $('#futureCites').html('');
-                                       $('#futureCites').append('<li><a href="javascript:void(0)">No hay citas en ningún estatus en los días Siguientes...</a></li>');
+                                       $('#futureCites2').show();
                                        $('#futureCites').removeClass('timeline');
                                   }else{    
                                   console.log(result2);
@@ -476,6 +476,7 @@ span.round-tab:hover {
              
                    if(result2[0] != null && result2[0].length > 0){
                      $('#numberAppo').html(result2[0].length);
+                     $('#stateCite2').hide();
                      var array = new Array();
                       for(var g =0; g < result2[0].length; g++){
                                    var gender = result2[0][g]['gender'];
@@ -539,11 +540,12 @@ span.round-tab:hover {
                                 }
                               }else{
                                $('#numberAppo').html('0'); 
-                                $('#stateCite').append('<li><a href="javascript:void(0)">No hay citas en ningún estatus hoy...</a></li>');
+                                $('#stateCite2').show();
                               }
 
                       //Function for future cites 
                       if(result2[1] != null && result2[1].length > 0){
+                        $('#futureCites2').hide();
                         $('#futureCites').addClass('timeline');
                         var yesterday = moment().add(1, 'day').format("MM/DD/YYYY");
                         var more = moment().add(2, 'day').format("MM/DD/YYYY");      
@@ -573,7 +575,7 @@ span.round-tab:hover {
                                  }else{
                                   $('#futureCites').removeClass('timeline');
                                   $('#futureCites').html('');
-                                  $('#futureCites').append('<li class="time-label"><a href="javascript:void(0)">No hay citas en ningún estatus hoy...</a></li>');
+                                  $('#futureCites2').show();
                                  }  
                                }
                                if($('.minutes').length > 0){
