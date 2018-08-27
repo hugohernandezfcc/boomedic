@@ -100,7 +100,7 @@
                         if(result[2].length > 0){
                           for(var x = 0; x < result[2].length; x++){ 
                             var mo = moment(result[2][x]['created_at']).fromNow();
-                            $(".contacts-list").append('<li><a href="#" onclick="searchM('+ result[2][x]['id'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['nameu'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ result[2][x]['name'] +'</span></div></a></li>');
+                            $(".contacts-list").append('<li><a href="#" onclick="searchM('+ result[2][x]['id'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['nameu'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">Chat de cita del ' + moment(result[2][x]['created_at']).format('DD/MM/YYYY') +'</span></div></a></li>');
                           }
                          }
                            else{
@@ -116,7 +116,11 @@
                   else{
                    $(".direct-chat-messages").html("");
                      for(var z = 0; z < result[0].length; z++){ 
-                      var title = result[0][z]['namec'];
+                      if(result[0][z]['namec'] == "Cita médica"){
+                      var title = "Chat de cita del " + moment(result[0][z]['datec']).format('DD/MM/YYYY');
+                        }else{
+                           var title = result[0][z]['namec'];
+                        }
                         var mo = moment(result[0][z]['created_at']).fromNow();
                             if(result[0][z]['profile_photo'] == "@php echo $photo; @endphp"){
                             $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-left">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');

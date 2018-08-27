@@ -71,7 +71,7 @@ class ConversationsController extends Controller
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.id_record', $id)
-            ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
+            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
         array_push($data, json_decode($messages));
@@ -101,7 +101,7 @@ class ConversationsController extends Controller
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.id', $com)
-            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record', 'users.profile_photo')
+            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
          $conversations2 = $conv->unique('id');   
@@ -138,7 +138,7 @@ class ConversationsController extends Controller
                     ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
                     ->join('users', 'items_conversations.by', '=', 'users.id')
                     ->where('items_conversations.id', $item->id)
-                    ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
+                    ->select('items_conversations.*', 'conversations.name as namec', 'conversations.created_at as datec', 'users.profile_photo')
                     ->get();
                     return response()->json($message);
                 }
@@ -155,7 +155,7 @@ class ConversationsController extends Controller
                     ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
                     ->join('users', 'items_conversations.by', '=', 'users.id')
                     ->where('items_conversations.id', $item2->id)
-                    ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
+                    ->select('items_conversations.*', 'conversations.name as namec', 'conversations.created_at as datec', 'users.profile_photo')
                     ->get();
                     return response()->json($message);
                 }else{

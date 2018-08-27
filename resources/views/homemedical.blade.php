@@ -109,7 +109,7 @@
 			}
 		}
 </script>
-<a class="btn btn-secondary" onclick="checkAppInstall();">App Boomedic</a> 
+<a class="btn btn-secondary" onclick="checkAppInstall();" style="display: none">App Boomedic</a> 
 <!-- Esta porción de código es para implementar en las plantillas de correo con botones-->	
 
 
