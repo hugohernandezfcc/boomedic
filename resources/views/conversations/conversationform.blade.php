@@ -118,6 +118,7 @@
                         $(".count").attr("data-original-title", "0 mensajes");
                         $(".direct-chat-messages").text('');
                         $(".direct-chat-messages").append('<div align="center" class="nullm">No se ha empezado ninguna conversación</div>');
+                        $("#titleC").text(title);
                       }
                   else{
                    $(".direct-chat-messages").html("");
