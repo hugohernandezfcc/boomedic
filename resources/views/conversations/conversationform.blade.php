@@ -83,6 +83,7 @@
                         get(data);
                       }
        })
+
           var timer = null;
           function get(data){   
 
@@ -104,7 +105,7 @@
                           }
                          }
                            else{
-                              $(".contacts-list").append('<li>No hay ninguna conversación iniciada por paciente</li>');
+                              $(".contacts-list").append('<li>No hay ninguna conversación iniciada</li>');
                            }
                    }
                       if(result[0].length == 0){
