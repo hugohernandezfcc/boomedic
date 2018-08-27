@@ -75,6 +75,7 @@ class ConversationsController extends Controller
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
+
         array_push($data, json_decode($messages));
         array_push($data, json_decode($profInfo));        
        
@@ -106,9 +107,17 @@ class ConversationsController extends Controller
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
+          $messagesAll = DB::table('items_conversations')
+            ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+            ->join('users', 'items_conversations.by', '=', 'users.id')
+            ->where('items_conversations.by', $messages[0]->by)
+            ->where('conversations.doctor',  Auth::id())
+            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
+            ->orderBy('items_conversations.created_at')
+            ->get();  
          $conversations2 = $conv->unique('id');   
 
-        array_push($data, json_decode($messages));
+        array_push($data, json_decode($messagesAll));
         array_push($data, json_decode($profInfo));
         array_push($data, $conversations2->values()->all()); 
 
