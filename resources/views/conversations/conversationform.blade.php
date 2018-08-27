@@ -101,7 +101,12 @@
                         if(result[2].length > 0){
                           for(var x = 0; x < result[2].length; x++){ 
                             var mo = moment(result[2][x]['created_at']).fromNow();
-                            $(".contacts-list").append('<li><a href="#" onclick="searchM('+ result[2][x]['id'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['nameu'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">Chat de cita del ' + moment(result[2][x]['created_at']).format('DD/MM/YYYY') +'</span></div></a></li>');
+                            if(result[2][x]['name'] == 'Cita médica'){
+                              var tit = 'Chat de cita del ' + moment(result[2][x]['created_at']).format('DD/MM/YYYY');
+                            }else{
+                               var tit = result[2][x]['conversations.name'];
+                            }
+                            $(".contacts-list").append('<li><a href="#" onclick="searchM('+ result[2][x]['id'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['nameu'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ tit+'</span></div></a></li>');
                           }
                          }
                            else{
