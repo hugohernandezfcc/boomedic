@@ -104,9 +104,11 @@ class ConversationsController extends Controller
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.id', $com)
+            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(8))
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
+            if(count($messages) > 0){
          $messagesAll = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
@@ -114,7 +116,9 @@ class ConversationsController extends Controller
             ->where('conversations.doctor',  Auth::id())
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
-            ->get();  
+            ->get(); 
+            $mesagges = $messagesAll;
+        }
          $conversations2 = $conv->unique('id');   
 
         array_push($data, json_decode($messages));
