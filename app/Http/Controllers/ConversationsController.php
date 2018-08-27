@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Conversations;
 use App\Items_Conversations;
+use Carbon\Carbon;
 
 
 class ConversationsController extends Controller
@@ -83,6 +84,7 @@ class ConversationsController extends Controller
             ->join('items_conversations', 'conversations.id', '=', 'items_conversations.conversation')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.doctor', $user->id)
+            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(15))
             ->select('conversations.*', 'users.profile_photo', 'users.name as nameu')
             ->orderBy('conversations.created_at', 'desc')
             ->get();
