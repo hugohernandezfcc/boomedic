@@ -86,8 +86,8 @@ class ConversationsController extends Controller
             ->join('items_conversations', 'conversations.id', '=', 'items_conversations.conversation')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.doctor', $user->id)
-            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(25))
-            ->select('conversations.*', 'users.profile_photo', 'users.name as nameu')
+            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(8))
+            ->select('conversations.*', 'users.profile_photo', 'users.name as nameu', 'users.id as uid')
             ->orderBy('conversations.created_at', 'desc')
             ->get();
 
@@ -105,7 +105,7 @@ class ConversationsController extends Controller
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.id', $com)
-            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(25))
+            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(8))
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
@@ -137,7 +137,7 @@ class ConversationsController extends Controller
         }else{
                         array_push($data, json_decode($messages));
         }
-         $conversations2 = $conv->unique('id');   
+         $conversations2 = $conv->unique('uid');   
         
 
 
