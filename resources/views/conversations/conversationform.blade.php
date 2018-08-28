@@ -100,9 +100,9 @@
                     $(".contacts-list").html("");
                         if(result[2].length > 0){
                           for(var x = 0; x < result[2].length; x++){ 
-                            var mo = moment(result[2][x]['created_at']).fromNow();
+                            var mo = moment(result[2][x]['cre']).fromNow();
                             if(result[2][x]['name'] == 'Cita médica'){
-                              var tit = 'Chat de cita del ' + moment(result[2][x]['created_at']).format('DD/MM/YYYY');
+                              var tit = 'Chat de cita del ' + moment(result[2][x]['cre']).format('DD/MM/YYYY');
                             }else{
                                var tit = result[2][x]['conversations.name'];
                             }
@@ -124,7 +124,7 @@
                    $(".direct-chat-messages").html("");
                      for(var z = 0; z < result[0].length; z++){ 
                       if(result[0][z]['namec'] == "Cita médica"){
-                      var title = "Chat de cita del " + moment(result[0][z]['datec']).format('DD/MM/YYYY');
+                      var title = "Chat de cita del " + moment(result[0][z]['created_at']).format('DD/MM/YYYY');
                         }else{
                            var title = result[0][z]['namec'];
                         }

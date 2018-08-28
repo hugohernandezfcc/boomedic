@@ -73,7 +73,7 @@ class ConversationsController extends Controller
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.id_record', $id)
-            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.created_at as datec', 'users.profile_photo')
+            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.created_at as datec', 'users.profile_photo','conversations.id_record')
             ->orderBy('items_conversations.created_at')
             ->get();
 
@@ -86,9 +86,9 @@ class ConversationsController extends Controller
             ->join('items_conversations', 'conversations.id', '=', 'items_conversations.conversation')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.doctor', $user->id)
-            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(8))
-            ->select('conversations.*', 'users.profile_photo', 'users.name as nameu', 'users.id as uid')
-            ->orderBy('conversations.created_at', 'desc')
+            ->where( 'items_conversations.created_at', '>', Carbon::now()->subDays(8))
+            ->select('conversations.*', 'users.profile_photo', 'users.name as nameu', 'users.id as uid', 'items_conversations.created_at as cre')
+            ->orderBy('items_conversations.created_at', 'desc')
             ->get();
 
             if($id != 0){
@@ -105,7 +105,7 @@ class ConversationsController extends Controller
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.id', $com)
-            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(8))
+            ->where( 'items_conversations.created_at', '>', Carbon::now()->subDays(8))
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
@@ -122,7 +122,7 @@ class ConversationsController extends Controller
                     $messagesAll2 = DB::table('items_conversations')
                     ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
                     ->join('users', 'items_conversations.by', '=', 'users.id')
-                    ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
+                    ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo','conversations.id_record')
                     ->orderBy('items_conversations.created_at')
                     ->get(); 
                 foreach($chats as $c){
