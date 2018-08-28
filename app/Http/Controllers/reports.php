@@ -56,11 +56,11 @@ class reports extends Controller
                            //array_push($arrayM2, $poli->name); 
                            $m1 = Carbon::parse($poli->created_at)->format('Y-m');      
                            }
-                         if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(1)->format('Y-m')){
+                         if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(3)->format('Y-m')){
                            array_push($arrayM2, $poli->name);      
                            $m2 = Carbon::parse($poli->created_at)->format('Y-m');   
                            }
-                        if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(2)->format('Y-m')){
+                        if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(4)->format('Y-m')){
                            array_push($arrayM3, $poli->name);  
                            $m3 = Carbon::parse($poli->created_at)->format('Y-m');       
                            }
