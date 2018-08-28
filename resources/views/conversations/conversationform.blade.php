@@ -134,7 +134,7 @@
                             var zx = z-1;
                             console.log(zx);
                             if(mo2 != moment(result[0][zx]['created_at']).format('DD/MM/YYYY')){
-                              $(".direct-chat-messages").append('<div class="direct-chat-msg right">Chat de cita del '+ mo2+'</div>');
+                              $(".direct-chat-messages").append('<div class="direct-chat-msg right" align="center" style="font-size: 11px !important;">Chat de cita del '+ mo2+'</div>');
                             }
                           }
                         if(result[0][z]['profile_photo'] == "@php echo $photo; @endphp"){
