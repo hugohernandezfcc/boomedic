@@ -125,8 +125,10 @@
                      for(var z = 0; z < result[0].length; z++){ 
                       if(result[0][z]['namec'] == "Cita médica"){
                       var title = "Chat de cita del " + moment(result[0][z]['created_at']).format('DD/MM/YYYY');
+                      $("#titleC").text(title);
                         }else{
                            var title = result[0][z]['namec'];
+                           $("#titleC").text(title);
                         }
                         var mo2 = moment(result[0][z]['created_at']).format('DD/MM/YYYY');
                         var mo = moment(result[0][z]['created_at']).fromNow();
