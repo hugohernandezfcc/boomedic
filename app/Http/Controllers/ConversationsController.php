@@ -63,6 +63,7 @@ class ConversationsController extends Controller
     public function messages($id)
     {
          $data = array();   
+         $data2 = array();   
          $user = User::find(Auth::id());
          $profInfo = DB::table('professional_information')
                             ->where('user', Auth::id() )
@@ -85,7 +86,7 @@ class ConversationsController extends Controller
             ->join('items_conversations', 'conversations.id', '=', 'items_conversations.conversation')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.doctor', $user->id)
-            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(8))
+            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(25))
             ->select('conversations.*', 'users.profile_photo', 'users.name as nameu')
             ->orderBy('conversations.created_at', 'desc')
             ->get();
@@ -104,7 +105,7 @@ class ConversationsController extends Controller
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.id', $com)
-            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(8))
+            ->where( 'conversations.created_at', '>', Carbon::now()->subDays(25))
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get();
@@ -114,14 +115,32 @@ class ConversationsController extends Controller
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('items_conversations.by', $messages[0]->by)
             ->where('conversations.doctor',  Auth::id())
-            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.created_at as datec', 'users.profile_photo')
+            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get(); 
-            $mesagges = $messagesAll;
+             $chats = $messagesAll->unique('conversation');   
+                    $messagesAll2 = DB::table('items_conversations')
+                    ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+                    ->join('users', 'items_conversations.by', '=', 'users.id')
+                    ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
+                    ->orderBy('items_conversations.created_at')
+                    ->get(); 
+                foreach($chats as $c){
+                    foreach($messagesAll2 as $all){
+                        if($c->conversation == $all->conversation){    
+                        array_push($data2, $all);
+                    }
+                    }
+                } 
+
+           array_push($data, $data2);
+        }else{
+                        array_push($data, json_decode($messages));
         }
          $conversations2 = $conv->unique('id');   
+        
 
-        array_push($data, json_decode($messages));
+
         array_push($data, json_decode($profInfo));
         array_push($data, $conversations2->values()->all()); 
 
