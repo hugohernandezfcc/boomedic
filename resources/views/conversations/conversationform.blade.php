@@ -136,6 +136,10 @@
                             if(mo2 != moment(result[0][zx]['created_at']).format('DD/MM/YYYY')){
                               $(".direct-chat-messages").append('<div class="direct-chat-msg right" align="center" style="font-size: 11px !important;">Chat del '+ mo2+'</div>');
                             }
+                          }else{
+                           if(tit != "Chat de cita del " + mo2) 
+                            $(".direct-chat-messages").append('<div class="direct-chat-msg right" align="center" style="font-size: 11px !important;">Chat del '+ mo2+'</div>');
+                                
                           }
                         if(result[0][z]['profile_photo'] == "@php echo $photo; @endphp"){
                             $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-left">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
