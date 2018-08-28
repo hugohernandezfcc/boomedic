@@ -137,9 +137,9 @@
                               $(".direct-chat-messages").append('<div class="direct-chat-msg right" align="center" style="font-size: 11px !important;">Chat del '+ mo2+'</div>');
                             }
                           }else{
-                            console.log($('#titleC').text());
-                           if($('#titleC').text() != "Chat de cita del " + mo2) 
+                           if(title != "Chat de cita del " + mo2){ 
                             $(".direct-chat-messages").append('<div class="direct-chat-msg right" align="center" style="font-size: 11px !important;">Chat del '+ mo2+'</div>');
+                          }
                                 
                           }
                         if(result[0][z]['profile_photo'] == "@php echo $photo; @endphp"){
