@@ -86,6 +86,7 @@ class ConversationsController extends Controller
             ->join('items_conversations', 'conversations.id', '=', 'items_conversations.conversation')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.doctor', $user->id)
+            ->where('items_conversations.by','!=', $user->id)
             ->where( 'items_conversations.created_at', '>', Carbon::now()->subDays(8))
             ->select('conversations.*', 'users.profile_photo', 'users.name as nameu', 'users.id as uid', 'items_conversations.created_at as cre')
             ->orderBy('items_conversations.created_at', 'desc')
