@@ -177,7 +177,6 @@ class ConversationsController extends Controller
             array_push($data, json_decode($profInfo));
             array_push($data, $conversations2->values()->all()); 
         }
-
            return response()->json($data); 
     }
 
