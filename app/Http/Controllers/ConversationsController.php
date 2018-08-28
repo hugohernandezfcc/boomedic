@@ -86,6 +86,17 @@ class ConversationsController extends Controller
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get(); 
+                    }else{
+          $doc = DB::table('medical_appointments')->where('id', $id)->first();               
+         $messagesAll = DB::table('items_conversations')
+            ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+            ->join('users', 'items_conversations.by', '=', 'users.id')
+            ->where('items_conversations.by',  Auth::id())
+            ->where('conversations.doctor',   $doc->user_doctor)
+            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
+            ->orderBy('items_conversations.created_at')
+            ->get(); 
+        }
              $chats = $messagesAll->unique('conversation');   
                     $messagesAll2 = DB::table('items_conversations')
                     ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
@@ -102,9 +113,7 @@ class ConversationsController extends Controller
                 } 
 
            array_push($data, $data2);
-        }else{
-        array_push($data, json_decode($messages));
-        }
+
         array_push($data, json_decode($profInfo));        
        
         }else{
