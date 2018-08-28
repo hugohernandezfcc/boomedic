@@ -21,7 +21,7 @@
               <!-- DIRECT CHAT -->
               <div class="box box-warning direct-chat direct-chat-warning">
                 <div class="box-header with-border">
-                  <h5 id="titleC"></h5>
+                  <h5 class="titleC"></h5>
 
                   <div class="box-tools pull-right">
                     <span data-toggle="tooltip" title="" class="badge bg-gray count" data-original-title="" id="count"></span>
@@ -118,17 +118,15 @@
                         $(".count").attr("data-original-title", "0 mensajes");
                         $(".direct-chat-messages").text('');
                         $(".direct-chat-messages").append('<div align="center" class="nullm">No se ha empezado ninguna conversación</div>');
-                        $("#titleC").text(title);
+                        $(".titleC").text(title);
                       }
                   else{
                    $(".direct-chat-messages").html("");
                      for(var z = 0; z < result[0].length; z++){ 
                       if(result[0][z]['namec'] == "Cita médica"){
                       var title = "Chat de cita del " + moment(result[0][z]['created_at']).format('DD/MM/YYYY');
-                      $("#titleC").text(title);
                         }else{
                            var title = result[0][z]['namec'];
-                           $("#titleC").text(title);
                         }
                         var mo2 = moment(result[0][z]['created_at']).format('DD/MM/YYYY');
                         var mo = moment(result[0][z]['created_at']).fromNow();
@@ -139,9 +137,8 @@
                               $(".direct-chat-messages").append('<div class="direct-chat-msg right" align="center" style="font-size: 11px !important;">Chat del '+ mo2+'</div>');
                             }
                           }else{
-                           if(title != "Chat de cita del " + mo2){ 
+                           if(tit != "Chat de cita del " + mo2) 
                             $(".direct-chat-messages").append('<div class="direct-chat-msg right" align="center" style="font-size: 11px !important;">Chat del '+ mo2+'</div>');
-                          }
                                 
                           }
                         if(result[0][z]['profile_photo'] == "@php echo $photo; @endphp"){
@@ -151,7 +148,7 @@
                         }
                           $("#mid").val(result[0][z]['id_record']);
                      }
-                     $("#titleC").text(title);
+                     $(".titleC").text(title);
                            //Auto-scroll
                             var altura = (document.getElementById("message").scrollHeight + $(".message").height());
                          $(".message").animate({scrollTop:altura+"px"});
