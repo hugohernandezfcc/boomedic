@@ -77,7 +77,7 @@ class ConversationsController extends Controller
             ->orderBy('items_conversations.created_at')
             ->get();
 
-            if(count($messages) > 0){
+        if(count($messages) > 0){
          $messagesAll = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
@@ -86,8 +86,9 @@ class ConversationsController extends Controller
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get(); 
-                    }else{
-          $doc = DB::table('medical_appointments')->where('id', $id)->first();               
+            
+        }else{
+         $doc = DB::table('medical_appointments')->where('id', $id)->first();               
          $messagesAll = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
@@ -130,15 +131,14 @@ class ConversationsController extends Controller
 
             if($id != 0){
                 $com = $id;
+             }else{
+                    if(count($conv) > 0){
+                        $com = $conv[0]->id;
+                    }else{
+                        $com = 0;
+                    }  
              }   
-             else{
-               if(count($conv) > 0){
-                $com = $conv[0]->id;
-               }else{
-                $com = 0;
-                }  
-             }   
-         $messages = DB::table('items_conversations')
+            $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.id', $com)
@@ -147,7 +147,7 @@ class ConversationsController extends Controller
             ->orderBy('items_conversations.created_at')
             ->get();
             if(count($messages) > 0){
-         $messagesAll = DB::table('items_conversations')
+            $messagesAll = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('items_conversations.by', $messages[0]->by)
@@ -165,26 +165,20 @@ class ConversationsController extends Controller
                 foreach($chats as $c){
                     foreach($messagesAll2 as $all){
                         if($c->conversation == $all->conversation){    
-                        array_push($data2, $all);
-                    }
+                            array_push($data2, $all);
+                        }
                     }
                 } 
-
-           array_push($data, $data2);
-        }else{
-                        array_push($data, json_decode($messages));
-        }
-         $conversations2 = $conv->unique('uid');   
-        
-
-
-        array_push($data, json_decode($profInfo));
-        array_push($data, $conversations2->values()->all()); 
-
+            array_push($data, $data2);
+                }else{
+                    array_push($data, json_decode($messages));
+                }
+            $conversations2 = $conv->unique('uid');   
+            array_push($data, json_decode($profInfo));
+            array_push($data, $conversations2->values()->all()); 
         }
 
-           return response()->json($data);
-       
+           return response()->json($data); 
     }
 
         public function sendMessages(Request $request)
