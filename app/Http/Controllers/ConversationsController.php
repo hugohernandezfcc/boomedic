@@ -73,11 +73,38 @@ class ConversationsController extends Controller
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('conversations.id_record', $id)
-            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.created_at as datec', 'users.profile_photo','conversations.id_record')
+            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.created_at as datec', 'users.profile_photo','conversations.doctor')
             ->orderBy('items_conversations.created_at')
             ->get();
 
+            if(count($messages) > 0){
+         $messagesAll = DB::table('items_conversations')
+            ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+            ->join('users', 'items_conversations.by', '=', 'users.id')
+            ->where('items_conversations.by', $messages[0]->by)
+            ->where('conversations.doctor',   $messages[0]->doctor)
+            ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
+            ->orderBy('items_conversations.created_at')
+            ->get(); 
+             $chats = $messagesAll->unique('conversation');   
+                    $messagesAll2 = DB::table('items_conversations')
+                    ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+                    ->join('users', 'items_conversations.by', '=', 'users.id')
+                    ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo','conversations.id_record')
+                    ->orderBy('items_conversations.created_at')
+                    ->get(); 
+                foreach($chats as $c){
+                    foreach($messagesAll2 as $all){
+                        if($c->conversation == $all->conversation){    
+                        array_push($data2, $all);
+                    }
+                    }
+                } 
+
+           array_push($data, $data2);
+        }else{
         array_push($data, json_decode($messages));
+        }
         array_push($data, json_decode($profInfo));        
        
         }else{
