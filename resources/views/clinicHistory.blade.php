@@ -181,6 +181,9 @@
      .cut2>div{
       font-size: 12px !important;
     }
+    .cut2>div>span{
+      font-size: 12px !important;
+    }
      blockquote{
       font-size: 12px !important;
       padding: 0 !important;
