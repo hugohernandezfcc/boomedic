@@ -186,7 +186,7 @@
     }
      blockquote{
       font-size: 12px !important;
-      padding: 0 !important;
+      padding: 10px 10px !important;
     }
     .iframe-container{
       min-height: 100px;
