@@ -165,7 +165,7 @@
           height: auto;
           opacity: 1;
         }
-         input[id^="spoiler"]>div{
+          input[id^="spoiler"] ~ .spoiler>div{
          font-size: 10px !important;
         }
       .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
