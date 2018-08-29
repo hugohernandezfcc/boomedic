@@ -179,10 +179,11 @@
        word-wrap: break-word;
     }
      .cut2>div{
-      font-size: 11px !important;
+      font-size: 12px !important;
     }
      blockquote{
-      font-size: 11px !important;
+      font-size: 12px !important;
+      padding: 0 !important;
     }
     .iframe-container{
       min-height: 100px;
