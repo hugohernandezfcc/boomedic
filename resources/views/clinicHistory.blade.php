@@ -165,6 +165,9 @@
           height: auto;
           opacity: 1;
         }
+         input[id^="spoiler"]>div{
+         font-size: 10px !important;
+        }
       .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
         background-color: #333 !important;  
        } 
