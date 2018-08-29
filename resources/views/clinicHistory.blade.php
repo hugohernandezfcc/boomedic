@@ -179,7 +179,13 @@
        word-wrap: break-word;
     }
      .cut2>div{
-      font-size: 10px !important;
+      font-size: 11px !important;
+    }
+      .cut2>div>blockquote{
+      font-size: 11px !important;
+    }
+     .cut2>blockquote{
+      font-size: 11px !important;
     }
     .iframe-container{
       min-height: 100px;
