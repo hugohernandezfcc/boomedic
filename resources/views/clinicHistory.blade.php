@@ -181,10 +181,7 @@
      .cut2>div{
       font-size: 11px !important;
     }
-      .cut2>div>blockquote{
-      font-size: 11px !important;
-    }
-     .cut2>blockquote{
+     blockquote{
       font-size: 11px !important;
     }
     .iframe-container{
