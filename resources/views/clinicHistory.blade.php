@@ -165,9 +165,6 @@
           height: auto;
           opacity: 1;
         }
-          input[id^="spoiler"] ~ .spoiler>div{
-         font-size: 10px !important;
-        }
       .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
         background-color: #333 !important;  
        } 
@@ -180,6 +177,9 @@
     .cut2{
        word-break: break-all;
        word-wrap: break-word;
+    }
+     .cut2>div{
+      font-size: 10px !important;
     }
     .iframe-container{
       min-height: 100px;
