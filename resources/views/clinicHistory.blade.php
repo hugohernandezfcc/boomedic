@@ -447,7 +447,7 @@
                             Fecha. {{ $date_email }}<br>
                             From. {{ $fi[0]->email }}.<br>
                             Receta. (No especificado aún).<br>
-                            <div id="spoiler{{ $fi[0]->id }}" style="display: none;" class="cut2">
+                            <div id="spoiler{{ $fi[0]->id }}" style="display: none;" class="cut2 box box-primary box-header">
                               <br>
                               <!--Imprimo correo ya sea texto plano o tipo html-->
                               @php
