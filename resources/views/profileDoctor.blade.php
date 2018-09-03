@@ -1056,7 +1056,7 @@
 										if(!d.namecom){
 										  	$('#namep').html('Yo');
 										  }	else{
-										  	$('#namep').html(d.namecom + ' - ' + Asistente);
+										  	$('#namep').html(d.namecom + ' - Asistente');
 										  }
 										  	$("#modalassist2").modal('toggle');
 										  }
