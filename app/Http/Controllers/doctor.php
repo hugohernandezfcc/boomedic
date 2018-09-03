@@ -13,6 +13,7 @@ use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 use Image;
+use Carbon\Carbon;
 use App\professional_information;
 
 
@@ -70,6 +71,33 @@ class doctor extends Controller
     public function show($id)
     {
         $users = DB::table('users')->where('id', Auth::id() )->get();
+        $assist = DB::table('assistant')
+            ->join('users', 'assistant.user_assist', '=', 'users.id')
+            ->where('assistant.user_doctor', Auth::id())
+            ->select('assistant.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name')
+            ->get();
+        $nodes = array();
+    //Json que guarda datos de familiares para generar externalidad//
+      if(count($assist) < 1){
+        if($users[0]->profile_photo != null)
+         array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
+            else{
+                array_push( $nodes, ['name' => 'Yo', 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png?'. Carbon::now()->format('h:i'), 'id' => '0']);
+            }
+          for($i = 1; $i < 2; $i++){
+                array_push($nodes, ['name' => 'Agregar asistente', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
+            }
+      }   else {
+               
+          array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
+          for($i = 0; $i < count($assist); $i++){
+            if($assist[$i]->profile_photo != null){
+                array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $assist[$i]->user_assist, 'namecom' => $assist[$i]->name]);
+                  }else {
+                        array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $assist[$i]->user_assist, 'namecom' => $assist[$i]->name]);
+                  }
+            }
+          }
         $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
@@ -124,7 +152,9 @@ class doctor extends Controller
                 'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
                 'mode'          => 'doctor',
                 'labor'         => $labor,
-                 'asso'          => $asso
+                'asso'          => $asso,
+                /*NODES ASSISTANT*/
+                'nodes'         => json_encode($nodes)
             ]
         );
     }

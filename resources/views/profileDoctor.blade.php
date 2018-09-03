@@ -77,6 +77,7 @@
 @section('content')
  <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 
 	<script type="text/javascript">
 
@@ -645,6 +646,33 @@
                   </div>
                 </div>
               </div>
+                              <br/>
+                <div class="panel box box-default" style="border-top-color: black;">
+                	 <div class="box-header with-border">
+                	 	<h4 class="panel-title">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;" id="four">	
+                        Asistentes
+                  </a> 
+                  </h4> 
+                  </div>
+                  <div id="collapse4" class="panel-collapse collapse" aria-expanded="false">
+                    <div class="box-body">
+                    	     <div class="lockscreen-item pull-right" style="width: 210px !important;">
+							      	<div class="input-group">
+							        	<div class="form-control" align="center"><label id="labeltext">Agregar Asistente</label></div>
+							        	<div class="input-group-btn">
+								          	<a class="btn btn-default" data-toggle="modal" data-target="#modalassist">
+								          		<i class="fa fa-plus text-muted"></i>
+								          	</a>
+							        	</div>
+							      	</div>
+							</div>
+						<div id="demo"></div>
+                    </div>
+                                      <!--Other modal -->
+
+
+                </div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -653,6 +681,373 @@
         <!-- /.col -->
         <!-- /.col -->
       </div>
+                        <div class="modal fade" role="dialog" id="modalassist2">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div align="left"><label>Información del Asistente</label></div>
+                        </div>
+                            <div class="modal-body">
+                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img><br><br><b><div id="namep"></div></b></div><br>
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+                       <div class="modal fade" role="dialog" id="modalassist">
+                    <div class="modal-dialog">
+
+                      <div class="modal-content">
+
+
+                        <div class="modal-header" style="padding-bottom: 1px !important;">
+                            
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div align="left"><label>Información de asistente</label></div>
+                        </div>
+                             <div class="register-box-body">
+                             <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post">
+
+                             	<input type="hidden" name="val" id="val" value="false">
+                                <div class="form-group has-feedback">	
+ 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>
+ 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
+ 							   </div>
+ 							    <input type="hidden" name="idassist" id="idassist" required>
+ 								<div id="resp" class="form-group text-muted"></div>
+ 								 <div class="form-group has-feedback">	
+ 								</div>
+ 								<div align="right">
+ 								<button  type="submit" class="btn btn-default btn-flat" id="sav"><i class="fa fa-plus text-muted"></i>&nbsp; Agregar asistente</button>
+ 								</div>
+ 							</form>
+ 						</div>
+                      </div> 
+                    </div>
+                </div>
+      <script type="text/javascript">
+          			function fun(a) {
+							    document.getElementById('sea').value = a.getAttribute("data-value");
+							    document.getElementById('idassist').value = a.getAttribute("data-id");
+							    document.getElementById("resp").innerHTML = "";
+							    $("#sav").removeAttr("disabled");   
+							}
+					$("#sea").on("keyup", function(e) {
+
+						    		if(e.which == 32) {
+					                   $.ajaxSetup({
+				                        headers: {
+				                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				                        }
+				                    });
+				                		 var sea = document.getElementById('sea').value;
+				                           $.ajax({     
+				                             type: "POST",                 
+				                             url: "{{ url('user/userSearch') }}",  
+				                              data: { "search" : sea }, 
+				                              dataType: 'json',                
+				                             success: function(data)             
+				                             {
+				                             if(data.length == 0){
+				                             	document.getElementById("resp").innerHTML = "No existe usuario registrado...";
+				                             	
+    											}else {
+
+    													document.getElementById("resp").innerHTML = "Coincidencias: ";
+    												for(var i= 0; i < data.length; i++){
+				                     				if(data[i]['profile_photo'] == null){
+				                     				$('#resp').append('<div style="margin-left:5%;"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+				                     				}else{
+				                     				 $('#resp').append('<div style="margin-left:5%;"><img src="'+ data[i]['profile_photo'] +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+				                     				}
+				                     				}
+				                             	} 
+    											}
+				                            
+				                         });
+					            } else{
+					        	 var value = $(this).val().toLowerCase();
+						   		 $("#resp div").filter(function() {
+						    	  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+						    });
+					            }
+						  });
+      	$('#four').on('click', function(e) {
+       				 e.preventDefault();
+       				 document.getElementById('demo').innerHTML='';
+					+ function(d3) {
+
+						var swatches = function(el) {
+						var circleWidth = 45;	
+						var charge = -800;
+						var h = 0;
+						var w= 0;
+				        if("@php echo $agent->isMobile(); @endphp"){
+				            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
+				              h= window.screen.availHeight;
+							  w= window.screen.availWidth;
+				          
+				            if(h >= 1000 && h <= 1300){
+				            	circleWidth = 30;
+								charge = -300;
+				                h = h*0.20;
+				                h = Math.floor(h);
+				                w = w*0.40;
+				                w = Math.floor(w);
+				                  //alert("Altura: "+h + "anchura " + w);
+				            }else if(h>=1800){
+				              h-= 1840;
+				              w-= 1200;
+				             circleWidth = 30;
+							 charge = -300;
+				            }else
+				            {
+				              h-=315;
+				              w-=100;
+				              circleWidth = 30;
+							 charge = -300;
+				            }
+				       	 }else{
+				          h = window.screen.availHeight-375;
+				          w = window.screen.availWidth-100;
+				           circleWidth = 50;
+				        }
+
+						    w = w;
+							h = h;
+
+								    
+
+								    var palette = {
+								      "lightgray": "#819090",
+								      "gray": "#708284",
+								      "mediumgray": "#808486",
+								      "darkgray": "#272B2C",
+								      "darkblue": "#0A2933",
+								      "darkerblue": "#042029",
+								      "paleryellow": "#FCF4DC",
+								      "paleyellow": "#EAE3CB",
+								      "yellow": "#A57706",
+								      "orange": "#BD3613",
+								      "red": "#D11C24",
+								      "pink": "#C61C6F",
+								      "purple": "#595AB7",
+								      "blue": "#2176C7",
+								      "green": "#259286",
+								      "white": "#fefefe",
+								      "yellowgreen": "#738A05"
+								    }
+
+								    var nodes = @php echo $nodes; @endphp;
+								    var links = [];
+
+								    for (var i = 0; i < nodes.length; i++) {
+								      if (nodes[i].target !== undefined) {
+								        for (var x = 0; x < nodes[i].target.length; x++) {
+								          links.push({
+								            source: nodes[i],
+								            target: nodes[nodes[i].target[x]]
+								          })
+								        }
+								      }
+								    }
+
+								    var myChart = d3.select(el)
+								      .append('svg')
+								      .attr('width', "100%")
+								      .attr('height', h)
+								      .style('margin', '0').style('display','inline')
+
+								    var force = d3.layout.force()
+								      .nodes(nodes)
+								      .links([])
+								      .gravity(0.1)
+								      .charge(charge)
+								      .size([w, h])
+
+
+
+								    var link = myChart.selectAll('line')
+								      .data(links).enter().append('line')
+								      .attr('stroke', palette.darkgray)
+								      .attr('stroke-width', 3);
+
+								    var node = myChart.selectAll('pattern')
+								      .data(nodes).enter()
+								      .append('g')
+								      .call(force.drag);
+
+								       node.append('svg:defs')
+											    .append('svg:pattern')
+											    .attr('id', function(d,i){
+											      return d.id
+											    })
+											     .attr('patternUnits',"userSpaceOnUse")
+											    .attr('height', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('width', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('x', function(d, i) {
+											        if (i > 0) {
+											          return circleWidth-10
+											        } else {
+											          return circleWidth
+											        }
+											      }).attr('y', function(d, i) {
+											        if (i > 0) {
+											          return circleWidth-10
+											        } else {
+											          return circleWidth
+											        }
+											      })
+											    .append('svg:image')
+											    .attr('xlink:href',function(d,i){
+											     	 return d.photo + '?1'
+											    })
+											    .attr('height', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('width', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											      .attr('x', 0)
+											      .attr('y', 0);
+
+								    node.append('circle')
+								      .attr('cx', function(d) {
+								        return d.x;
+								      }).attr('cy', function(d) {
+								        return d.y;
+								      })
+								      .attr('r', function(d, i) {
+								        if (i > 0) {
+								          return circleWidth - 10
+								        } else {
+								          return circleWidth
+								        }
+								      })
+								      .attr('id', function(d, i) {
+								          return d.id
+								      })
+								      .attr('stroke', function(d, i) {
+								        if (i > 0) {
+								          return palette.darkgray
+								        } else {
+								          return palette.darkgray
+								        }
+								      })
+								      .attr('stroke-width', 5)
+								      .style("fill", "#fff").style("fill", function(d,i){ return 'url(#' + d.id+')'})
+
+								    node.append('text')
+								      .text(function(d) {
+								        return d.name
+								      })
+								      .attr('font-family', 'sans-serif')
+								      .attr('fill', function(d, i) {
+								        if (i > 0) {
+
+								          return palette.darkgray
+								        } else {
+								          return "transparent"						   
+								         }
+								      })
+								      .attr('x', function(d, i) {
+								        if (i > 0) {
+								          return -20
+								        } else {
+								          return circleWidth - 15
+								        }
+								      })
+								      .attr('y', function(d, i) {
+								        if (i > 0) {
+								          return circleWidth + 5
+								        } else {
+								          return 8
+								        }
+								      })
+								      .attr('text-anchor', function(d, i) {
+								        if (i > 0) {
+								          return 'beginning'
+								        } else {
+								          return 'end'
+								        }
+								      })
+								      .attr('font-size', function(d, i) {
+								        if (i > 0) {
+								          return '1em'
+								        } else {
+								          return '1em'
+								        }
+								      })
+
+								    force.on('tick', function(e) {
+								      node.attr('transform', function(d, i) {
+								        return 'translate(' + d.x + ', ' + d.y + ')';
+								      })
+
+								      link
+								        .attr('x1', function(d) {
+								          return d.source.x
+								        })
+								        .attr('y1', function(d) {
+								          return d.source.y
+								        })
+								        .attr('x2', function(d) {
+								          return d.target.x
+								        })
+								        .attr('y2', function(d) {
+								          return d.target.y
+								        })
+								    })
+								    node.on("click", click);
+										function click(d) 
+										{
+										if(d.id == "n"){
+											$("#modalassist").modal('toggle');		
+											}else{
+
+										$('#userp').attr('src', d.photo + '?2');
+										if(!d.namecom){
+										  	$('#namep').html('Yo');
+										  }	else{
+										  	$('#namep').html(d.namecom + ' - ' + d.relationship);
+										  }
+										  	$("#modalassist2").modal('toggle');
+										  }
+										}
+									force.start();
+
+								  }('#demo');
+
+								}(window.d3);
+								  });
+      </script>
     		@endif
 
 
