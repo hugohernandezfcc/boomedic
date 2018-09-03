@@ -16,6 +16,7 @@ use Image;
 use Carbon\Carbon;
 use App\professional_information;
 use App\assistant;
+use Mail;
 
 
 class doctor extends Controller
