@@ -229,7 +229,7 @@ class doctor extends Controller
                 else{
 
           $assist = User::where('id', $assistant->user_assist)->first();
-          $doctor = User::where('id', $assistant->use_doctor)->first();
+          $doctor = User::where('id', $assistant->user_doctor)->first();
 
 
                 $assistant->confirmation = true;
