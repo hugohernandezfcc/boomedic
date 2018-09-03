@@ -477,6 +477,27 @@
 	    		</form>
 
 	    	@else
+	    					@if(session()->has('message'))
+
+								@if(session()->has('success'))
+							    <div class="alert alert-success alert-dismissable fade in" role="alert" id="alertf">
+							    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									    <span aria-hidden="true">&times;</span>
+									</button>
+									<strong>¡Asistente agregado!</strong><br/><br/>		
+							        {{ session()->get('message') }}
+							    </div>
+							   
+								@elseif(session()->has('error'))
+								 <div class="alert alert-danger alert-dismissable fade in" role="alert" id="alertf">
+								 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									    <span aria-hidden="true">&times;</span>
+									</button>
+									<strong>¡Hubo un error al agregar el asistente!</strong><br/><br/>		
+							 		<!-- Error codes are defined within the adminlte -->
+							          {{ session()->get('message') }}
+							    </div>
+							   @endif
     			<!-- Custom Tabs -->
      <div class="row">
         <div class="col-md-12">
@@ -731,12 +752,16 @@
                     </div>
                 </div>
       <script type="text/javascript">
+      					    $("#alertf").fadeTo(3000, 500).fadeOut(500, function(){
+						    $("#alertf").fadeOut(500);
+						});
           			function fun(a) {
 							    document.getElementById('sea').value = a.getAttribute("data-value");
 							    document.getElementById('idassist').value = a.getAttribute("data-id");
 							    document.getElementById("resp").innerHTML = "";
 							    $("#sav").removeAttr("disabled");   
 							}
+
 					$("#sea").on("keyup", function(e) {
 
 						    		if(e.which == 32) {
