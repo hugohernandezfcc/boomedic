@@ -228,14 +228,14 @@ class doctor extends Controller
                 }
                 else{
 
-          $assist = User::where('id', $assistant->user_assit)->first();
+          $assist = User::where('id', $assistant->user_assist)->first();
           $doctor = User::where('id', $assistant->use_doctor)->first();
 
 
                 $assistant->confirmation = true;
                 if($assistant->save()){
                     $notification = array(
-                        'message' => 'Se confrimó exitosamente se agregó por defecto a tu perfil', 
+                        'message' => 'Se confirmó exitosamente se agregó por defecto a tu perfil', 
                         'success' => 'success'
                         );
                       $data = [
