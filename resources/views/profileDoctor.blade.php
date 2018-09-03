@@ -739,7 +739,7 @@
                              <div class="register-box-body">
                              <form action="{{ url('/doctor/saveAssistant') }}" id="formulatio" method="post">
                                 <div class="form-group has-feedback">	
- 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required autocomplete="false">
+ 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required autocomplete="off">
  								<span class="glyphicon glyphicon-user form-control-feedback"></span>
  							   </div>
  							    <input type="hidden" name="idassist" id="idassist" required>
