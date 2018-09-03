@@ -493,11 +493,12 @@
 								 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									    <span aria-hidden="true">&times;</span>
 									</button>
-									<strong>¡Hubo un error al agregar el asistente!</strong><br/><br/>		
+									<strong>¡Hubo un error al agregar el!</strong><br/><br/>		
 							 		<!-- Error codes are defined within the adminlte -->
 							          {{ session()->get('message') }}
 							    </div>
 							   @endif
+							 @endif  
     			<!-- Custom Tabs -->
      <div class="row">
         <div class="col-md-12">
@@ -752,16 +753,12 @@
                     </div>
                 </div>
       <script type="text/javascript">
-      					    $("#alertf").fadeTo(3000, 500).fadeOut(500, function(){
-						    $("#alertf").fadeOut(500);
-						});
           			function fun(a) {
 							    document.getElementById('sea').value = a.getAttribute("data-value");
 							    document.getElementById('idassist').value = a.getAttribute("data-id");
 							    document.getElementById("resp").innerHTML = "";
 							    $("#sav").removeAttr("disabled");   
 							}
-
 					$("#sea").on("keyup", function(e) {
 
 						    		if(e.which == 32) {
