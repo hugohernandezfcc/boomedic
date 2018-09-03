@@ -205,6 +205,16 @@ Route::group(['prefix' => 'doctor'], function(){
 			'as'	=>	'doctor'
 		]
 	);
+	Route::get('verify/{id}', [
+			'uses'	=>	'doctor@verify',
+			'as'	=>	'verify'
+		]
+	);
+	Route::post('saveAssistant', [
+			'uses'	=>	'doctor@saveAssistant',
+			'as'	=>	'saveAssistant'
+		]
+	);	
 
 	Route::post('laborInformationNext/{id}', [
 			'uses'	=>	'doctor@laborInformationNext',

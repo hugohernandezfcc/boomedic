@@ -15,6 +15,7 @@ use League\Flysystem\Filesystem;
 use Image;
 use Carbon\Carbon;
 use App\professional_information;
+use App\assistant;
 
 
 class doctor extends Controller
@@ -159,6 +160,95 @@ class doctor extends Controller
         );
     }
 
+        public function saveAssistant (Request $request)
+      {     
+        $user = User::find(Auth::id());
+           
+        if($request->idassist != null){
+
+         
+          $assist = new assistant;
+          $assist->user_doctor = $user->id;
+          $assist->user_assist = $request->idassist;
+          if($assist->save()){
+             $userass=  DB::table('users')->where('id', $assist->user_assist )->first();
+           $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'Usuario agregado como asistente de manera exitosa.', 
+            'success' => 'success'
+            );
+
+          $data = [
+                                'username'      => $user->username,
+                                'name'      => $user->name,
+                                'email'     => $user->email,                
+                                'firstname' => $user->firstname,                
+                                'lastname'  => $user->lastname,    
+                                'user_assist'        => $assist->user_assist,
+                                'id'                => $assist->id
+                                ];
+                                $email = $userass->email;
+                                 Mail::send('emails.assistant', $data, function ($message) {
+                                            $message->subject('Un doctor te ha asignado como su asistente');
+                                            $message->to('contacto@doitcloud.consulting');
+                                        });
+         }else{
+           $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'No se pudo agregar el usuario, vuelva a intentarlo más tarde.', 
+            'error' => 'error'
+            );
+
+         }
+          
+        } else{
+         $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'No se pudo agregar el usuario, vuelva a intentarlo más tarde.', 
+            'error' => 'error'
+            );
+        } 
+             return redirect('doctor/doctor/' . Auth::id() )->with($notification);
+              
+        } 
+
+         public function verify($id)
+           {
+             $assistant = assistant::where('id', $id)->first();
+                if (!$assistant){
+             $notification = array(
+                            //In case the payment is approved it shows a message reminding you the amount you paid.
+                        'message' => 'Ha ocurrido un error con la confirmación, al parecer fue eliminado', 
+                        'error' => 'error'
+                        );
+                      
+                    return  redirect('user/profile/' . Auth::id() )->with($notification);
+                }
+                else{
+
+          $assist = User::where('id', $assistant->user_assit)->first();
+          $doctor = User::where('id', $assistant->use_doctor)->first();
+
+
+                $assistant->confirmation = true;
+                if($assistant->save()){
+                    $notification = array(
+                        'message' => 'Se confrimó exitosamente se agregó por defecto a tu perfil', 
+                        'success' => 'success'
+                        );
+                      $data = [
+                                'username'      => $assist->username,
+                                'name'      => $assist->name,
+                                ];
+                               $email = $doctor->email;
+                                 Mail::send('emails.assistantconfirm', $data, function ($message) {
+                                            $message->subject('El asistente que agregaste ha confirmado exitosamente');
+                                            $message->to('contacto@doitcloud.consulting');
+                                        });
+                return redirect('user/profile/' . Auth::id())->with($notification);
+              }
+            }
+        }
 
     public function redirecting($page)
     {
