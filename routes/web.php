@@ -205,6 +205,13 @@ Route::group(['prefix' => 'doctor'], function(){
 			'as'	=>	'doctor'
 		]
 	);
+
+	Route::get('deleteAssistant/{id}', [
+			'uses'	=>	'doctor@deleteAssistant',
+			'as'	=>	'deleteAssistant'
+		]
+	);
+
 	Route::get('verify/{id}', [
 			'uses'	=>	'doctor@verify',
 			'as'	=>	'verify'

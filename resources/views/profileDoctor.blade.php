@@ -716,7 +716,9 @@
                           <div align="left"><label>Información del Asistente</label></div>
                         </div>
                             <div class="modal-body">
-                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img><br><br><b><div id="namep"></div></b></div><br>
+                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"><br><br><b><div id="namep"></div></b>
+                        	<br><a id="deleteass" class="btn btn-default btn-flat btn-block" onclick ="return confirm('¿Seguro desea eliminar a este asistente?')">
+		          				<i class="fa fa-trash text-muted"></i> Eliminar</a></div><br>
                             </div>
                         </div>
                       </div> 
@@ -1057,6 +1059,7 @@
 										  	$('#namep').html('Yo');
 										  }	else{
 										  	$('#namep').html(d.namecom + ' - Asistente');
+										  	$('#deleteass').attr('href','{{ url("doctor/deleteAssistant") }}/'+ d.id);
 										  }
 										  	$("#modalassist2").modal('toggle');
 										  }

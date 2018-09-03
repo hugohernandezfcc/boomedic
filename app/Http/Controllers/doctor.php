@@ -95,9 +95,9 @@ class doctor extends Controller
           array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
           for($i = 0; $i < count($assist); $i++){
             if($assist[$i]->profile_photo != null){
-                array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => $assist[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $assist[$i]->user_assist, 'namecom' => $assist[$i]->name]);
+                array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => $assist[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
                   }else {
-                        array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $assist[$i]->user_assist, 'namecom' => $assist[$i]->name]);
+                        array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
                   }
             }
           }
@@ -251,6 +251,11 @@ class doctor extends Controller
               }
             }
         }
+
+    public function deleteAssistant($id){
+            DB::delete('delete from assistant where id = ?',[$id]) ;    
+            return redirect('doctor/doctor/' . Auth::id() );
+    }       
 
     public function redirecting($page)
     {
