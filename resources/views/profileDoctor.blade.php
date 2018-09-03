@@ -713,9 +713,7 @@
                           <div align="left"><label>Información de asistente</label></div>
                         </div>
                              <div class="register-box-body">
-                             <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post">
-
-                             	<input type="hidden" name="val" id="val" value="false">
+                             <form action="{{ url('/doctor/saveAssistant') }}" id="formulatio" method="post">
                                 <div class="form-group has-feedback">	
  								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>
  								<span class="glyphicon glyphicon-user form-control-feedback"></span>
