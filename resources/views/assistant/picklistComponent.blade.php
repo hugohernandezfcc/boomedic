@@ -55,6 +55,9 @@
 				                             		console.log(result);
 				                             		 var data = 0;
 				                             		 get(data);
+				                             		       clearTimeout(timer);
+													        $("#mid").val(data);
+													        $('#time').val('0');
 				                             }
 				                         });                            	 			
  									}	
