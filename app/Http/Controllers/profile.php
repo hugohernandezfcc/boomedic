@@ -165,7 +165,7 @@ class profile extends Controller
 
     public function select($id){
       Session(['asdr' => $id]);
-      return response()->json($id); 
+      return response()->json(session()->get('asdr')); 
 
     }
     /**

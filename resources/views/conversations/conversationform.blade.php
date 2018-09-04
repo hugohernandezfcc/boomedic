@@ -64,7 +64,7 @@
        $(function(){
                       //Valid to know who sends the data and if you are a patient or doctor
                      
-                      if(window.location.href == "{{ url('clinicHistory/index') }}" || dr != "doctor"){
+                      if(window.location.href == "{{ url('clinicHistory/index') }}" || dr != "doctor" && dr != "assistant"){
                         $('.modal-chat').on('show.bs.modal', function (e) {
                           $(".contacts").css("display", "none");
 

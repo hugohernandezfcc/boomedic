@@ -63,10 +63,14 @@ class ConversationsController extends Controller
     public function messages($id)
     {
          $data = array();   
-         $data2 = array();   
+         $data2 = array(); 
+         if(session()->get('utype') == "assistant"){
+           $user = User::find(session()->get('asdr'));
+         }else{  
          $user = User::find(Auth::id());
+         }
          $profInfo = DB::table('professional_information')
-                            ->where('user', Auth::id() )
+                            ->where('user', $user->id)
                             ->get();
        if(count($profInfo) == 0){                     
          $messages = DB::table('items_conversations')
@@ -92,7 +96,7 @@ class ConversationsController extends Controller
          $messagesAll = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
-            ->where('items_conversations.by',  $user->id)
+            ->where('items_conversations.by', $user->id)
             ->where('conversations.doctor',   $doc->user_doctor)
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
@@ -182,7 +186,11 @@ class ConversationsController extends Controller
 
         public function sendMessages(Request $request)
     {
-        $user = User::find(Auth::id());
+          if(session()->get('utype') == "assistant"){
+           $user = User::find(session()->get('asdr'));
+         }else{  
+         $user = User::find(Auth::id());
+         }
           $exist = DB::table('conversations')->where('id_record', $request->id_record)->get();
           if(count($exist) == 0){
             $Conversation              = new Conversations;

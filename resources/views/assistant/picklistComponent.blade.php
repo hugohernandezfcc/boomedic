@@ -39,16 +39,7 @@
  			for(var z=0; z < dr.length; z++){
  				if(dr[z]['iddr'] ==  $('#mySelectd option:selected').val()){
  					$('#imgDrA').attr('src', dr[z]['profile_photo']);
- 				$.ajax({     
-				                             type: "GET",                 
-				                             url: "{{ url('user/select') }}/" + dr[z]['iddr'] ,           
-				                             success: function(data)             
-				                             {
-				                             	 				console.log(data);
-				                             	 				console.log("@php echo session('asdr'); @endphp");
-				                             }
-				                         });
-				                             	 				console.log("@php echo session()->get('asdr'); @endphp");
+
  				}	
  			}
  		$('#mySelectd').on('change', function() {
@@ -56,6 +47,17 @@
  				if(dr[x]['iddr'] ==  $('#mySelectd option:selected').val()){
  					console.log(dr[x]['iddr']);
  					$('#imgDrA').attr('src', dr[x]['profile_photo']);
+ 					 				$.ajax({     
+				                             type: "GET",                 
+				                             url: "{{ url('user/select') }}/" + dr[x]['iddr'] ,           
+				                             success: function(data)             
+				                             {
+				                             		console.log(data);
+				                             		 var data = 0;
+				                             		 get(data);
+				                             }
+				                         });
+				                             	 			
  				}	
  			 }
 
