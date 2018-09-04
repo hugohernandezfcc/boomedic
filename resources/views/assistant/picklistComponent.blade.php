@@ -2,8 +2,8 @@
 <style type="text/css">
 		.lockscreen-wrapper {
 	      max-width: 100% !important;
-	  	  margin-top: 2% !important;
-	  	  margin-left: 2% !important;
+	  	  margin-top: 3% !important;
+	  	  margin-left: 1% !important;
 		}
 </style>
 
@@ -11,6 +11,7 @@
 	<div class="lockscreen-item" style="width: 100% !important;">
     <!-- lockscreen image -->
     <div class="lockscreen-image">
+
       <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image" id="imgDrA">
     </div>
     <!-- /.lockscreen-image -->
