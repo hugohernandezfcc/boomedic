@@ -54,10 +54,12 @@
 				                             {
 				                             		console.log(result);
 				                             		 var data = 0;
+				                             		 clearTimeout(timer);
+													 $("#mid").val(data);
+													 $('#time').val('0');
+													  $('.textbody').prop('disabled', true);
 				                             		 get(data);
-				                             		       clearTimeout(timer);
-													        $("#mid").val(data);
-													        $('#time').val('0');
+
 				                             }
 				                         });                            	 			
  									}	
