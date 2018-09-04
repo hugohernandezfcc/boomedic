@@ -37,16 +37,25 @@
  	 var dr = JSON.stringify(@php echo $as; @endphp);
   		dr =JSON.parse(dr);
  			for(var z=0; z < dr.length; z++){
- 				console.log(dr[z]['iddr']);
  				if(dr[z]['iddr'] ==  $('#mySelectd option:selected').val()){
  					$('#imgDrA').attr('src', dr[z]['profile_photo']);
+ 				$.ajax({     
+				                             type: "GET",                 
+				                             url: "{{ url('user/select') }}/" + dr[z]['iddr'] ,           
+				                             success: function(data)             
+				                             {
+				                             	 				console.log(data);
+				                             	 				console.log("@php echo session('asdr'); @endphp");
+				                             }
+				                         });
+				                             	 				console.log("@php echo session()->get('asdr'); @endphp");
  				}	
  			}
  		$('#mySelectd').on('change', function() {
- 			for(var z=0; z < dr.length; z++){
- 				console.log(dr[z]['iddr']);
- 				if(dr[z]['iddr'] ==  $('#mySelectd option:selected').val()){
- 					$('#imgDrA').attr('src', dr[z]['profile_photo']);
+ 			for(var x=0; x < dr.length; x++){
+ 				if(dr[x]['iddr'] ==  $('#mySelectd option:selected').val()){
+ 					console.log(dr[x]['iddr']);
+ 					$('#imgDrA').attr('src', dr[x]['profile_photo']);
  				}	
  			 }
 

@@ -39,6 +39,7 @@ Route::get('/returnverify', 'HomeController@returnverify')->name('/returnverify'
 
 
 
+
 Route::get('/medicalconsultations', 'HomeController@index')->name('medicalconsultations');
 Route::get('logoutback', 'HomeController@logoutback')->name('logoutback');
 
@@ -110,6 +111,11 @@ Route::group(['prefix' => 'user'], function(){
 	Route::get('profile/{id}', [
 			'uses'	=>	'profile@show',
 			'as'	=>	'profile'
+		]
+	);
+	Route::get('select/{id}', [
+			'uses'	=>	'profile@select',
+			'as'	=>	'select'
 		]
 	);
 

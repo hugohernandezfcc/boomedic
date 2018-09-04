@@ -163,6 +163,11 @@ class profile extends Controller
         }   
     }
 
+    public function select($id){
+      Session(['asdr' => $id]);
+      return response()->json($id); 
+
+    }
     /**
      * Show the form for editing the specified resource.
      *
