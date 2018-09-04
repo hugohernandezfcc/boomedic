@@ -160,7 +160,7 @@
                                   
                         }
                         else{ 
-                                 timer1 = parseInt($('#time').val()) + 10000;
+                                 timer1 = parseInt($('#time').val()) + 30000;
                                  $('#time').val(timer1);
                                    if(timer1 > 119000){
                                       timer1 = 120000;
