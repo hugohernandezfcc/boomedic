@@ -50,19 +50,18 @@
  					 				$.ajax({     
 				                             type: "GET",                 
 				                             url: "{{ url('user/select') }}/" + dr[x]['iddr'] ,           
-				                             success: function(data)             
+				                             success: function(result)             
 				                             {
-				                             		console.log(data);
+				                             		console.log(result);
 				                             		 var data = 0;
 				                             		 get(data);
 				                             }
-				                         });
-				                             	 			
- 				}	
- 			 }
+				                         });                            	 			
+ 									}	
+ 								 }
 
- 			})
- 		})
+ 							})
+ 					})
 
  	</script>
  @endif

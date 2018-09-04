@@ -208,7 +208,7 @@
                     });
                     //Valido para saber de que página envía los datos y si es paciente o doctor
 
-                    if(window.location.href == "{{ url('clinicHistory/index') }}" || dr != "doctor"){
+                    if(window.location.href == "{{ url('clinicHistory/index') }}" || dr != "doctor" && dr != "assistant"){
                     var data = { 
                                   "doc"       : $(".modal.in .middr").val(),
                                   "table"     : $(".modal.in .mtable").val(),
