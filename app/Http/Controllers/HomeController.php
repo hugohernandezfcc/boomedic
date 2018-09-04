@@ -239,7 +239,7 @@ class HomeController extends Controller
                             /*Aquimandare la vista del home asistente */
                             else{
                                Session(['utype' => 'assistant']); 
-                                return view('medicalconsultations', [
+                                return view('assistant.homeassistant', [
                                         'username'  => $user->username,
                                         'name'      => $user->name,
                                         'firstname' => $user->firstname,

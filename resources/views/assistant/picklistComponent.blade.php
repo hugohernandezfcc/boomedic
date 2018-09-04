@@ -48,7 +48,7 @@
  				if(dr[z]['iddr'] ==  $('#mySelectd option:selected').val()){
  					$('#imgDrA').attr('src', dr[z]['profile_photo']);
  				}	
- 			}
+ 			 }
 
  			})
  		})
