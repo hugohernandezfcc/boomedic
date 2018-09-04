@@ -2,7 +2,8 @@
 <style type="text/css">
 		.lockscreen-wrapper {
 	      max-width: 100% !important;
-	  	  margin-top: 5% !important;
+	  	  margin-top: 2% !important;
+	  	  margin-left: 2% !important;
 		}
 </style>
 
