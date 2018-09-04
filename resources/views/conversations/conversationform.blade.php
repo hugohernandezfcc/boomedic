@@ -46,7 +46,7 @@
                 <div class="box-footer">
                   <form action="#" method="post">
                     <div class="input-group">
-                      <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody" autocomplete="off">
+                      <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody" autocomplete="off" disabled="true">
                       <span class="input-group-btn">
                             <button type="button" class="btn btn-secondary btn-flat" onclick="send();">Enviar</button>
                           </span>
@@ -86,7 +86,7 @@
 
           var timer = null;
           function get(data){   
-
+                                   $('.textbody').prop('disabled', true);
               $.ajax({
                  type: "GET",                 
                  url: "{{ url('Conversations/messages') }}/" + data,  
@@ -123,6 +123,7 @@
                   else{
                    $(".direct-chat-messages").html("");
                      for(var z = 0; z < result[0].length; z++){ 
+
                       if(result[0][z]['namec'] == "Cita médica"){
                       var title = "Chat de cita del " + moment(result[0][z]['created_at']).format('DD/MM/YYYY');
                         }else{
@@ -149,6 +150,7 @@
                           $("#mid").val(result[0][z]['id_record']);
                      }
                      $(".titleC").text(title);
+                     $('.textbody').prop('disabled', false);
                            //Auto-scroll
                             var altura = (document.getElementById("message").scrollHeight + $(".message").height());
                          $(".message").animate({scrollTop:altura+"px"});
@@ -193,6 +195,7 @@
        }
 
      function searchM(data){
+         $('.textbody').prop('disabled', true);
       clearTimeout(timer);
         get(data);
         $('.contacts').click();
