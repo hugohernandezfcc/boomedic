@@ -186,17 +186,17 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-       /* $menu = menu::find('29');
-        $menu->url = 'help/index';
-        */
-       $menu = new menu();
-        $menu->text = 'Perfil';
-        $menu->to = 'Assistant';
+        $menu = menu::find('10');
+        $menu->to = 'Both';
+
+       /*$menu = new menu();
+        $menu->text = '¿Qué es esto?';
+        $menu->to = 'Doctor';
         $menu->typeitem = 'item';
-        $menu->order = '6';
-        $menu->parent = '30';
-       $menu->icon = 'user';
-        $menu->url = 'user/redirecting/show';
+        $menu->order = '16';
+        $menu->parent = '25';
+        $menu->icon = 'question-circle';
+        $menu->url = 'supportTicket/help';*/
         if($menu->save()) 
        return redirect('medicalconsultations');
     }

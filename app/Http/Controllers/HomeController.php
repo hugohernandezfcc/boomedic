@@ -211,24 +211,54 @@ class HomeController extends Controller
             return redirect('user/edit/In%20Progress');
         }
         else {
-             Session(['utype' => 'mortal']); 
-                return view('medicalconsultations', [
-                        'username'  => $user->username,
-                        'name'      => $user->name,
-                        'firstname' => $user->firstname,
-                        'lastname'  => $user->lastname,
-                        'photo'     => $user->profile_photo,
-                        'date'      => $user->created_at,
-                        'userId'    => $user->id,
-                        'labor'     => $join,
-                        'appointments' => $appointments,
-                        'title'     => 'Este doctor no tiene horarios agregados',
-                        'it'        => $it,
-                        'sp'        => $sp,
-                        'mg'        => $mg
+             $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+                        if(count($assistant) == 0){
+                             Session(['utype' => 'mortal']); 
+                                return view('medicalconsultations', [
+                                        'username'  => $user->username,
+                                        'name'      => $user->name,
+                                        'firstname' => $user->firstname,
+                                        'lastname'  => $user->lastname,
+                                        'photo'     => $user->profile_photo,
+                                        'date'      => $user->created_at,
+                                        'userId'    => $user->id,
+                                        'labor'     => $join,
+                                        'appointments' => $appointments,
+                                        'title'     => 'Este doctor no tiene horarios agregados',
+                                        'it'        => $it,
+                                        'sp'        => $sp,
+                                        'mg'        => $mg
 
-                    ]
-                );
+                                    ]
+                                );
+                            }
+                            /*Aquimandare la vista del home asistente */
+                            else{
+                               Session(['utype' => 'assistant']); 
+                                return view('medicalconsultations', [
+                                        'username'  => $user->username,
+                                        'name'      => $user->name,
+                                        'firstname' => $user->firstname,
+                                        'lastname'  => $user->lastname,
+                                        'photo'     => $user->profile_photo,
+                                        'date'      => $user->created_at,
+                                        'userId'    => $user->id,
+                                        'labor'     => $join,
+                                        'appointments' => $appointments,
+                                        'title'     => 'Este doctor no tiene horarios agregados',
+                                        'it'        => $it,
+                                        'sp'        => $sp,
+                                        'mg'        => $mg,
+                                        'as'        => $assistant
+
+                                    ]
+                                );
+                            }
+
         }
     }
     /**
