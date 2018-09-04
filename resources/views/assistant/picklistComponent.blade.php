@@ -1,8 +1,8 @@
 @if(!empty($as))
 <style type="text/css">
 		.lockscreen-wrapper {
-	      max-width: 100% !important;
-	  	  margin-top: 3% !important;
+	      max-width: 280px !important;
+	  	  margin-top: 2% !important;
 	  	  margin-left: 1% !important;
 		}
 </style>
