@@ -93,14 +93,13 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 @yield('content_header')
-                 @if(session()->get('utype') == "assistant")
-                        @include('assistant.picklistComponent')
-                   @endif
             </section>
 
             <!-- Main content -->
             <section class="content">
-
+                 @if(session()->get('utype') == "assistant")
+                        @include('assistant.picklistComponent')
+                   @endif
                 @yield('content')
 
             </section>

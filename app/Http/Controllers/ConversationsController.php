@@ -92,7 +92,7 @@ class ConversationsController extends Controller
          $messagesAll = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
-            ->where('items_conversations.by',  Auth::id())
+            ->where('items_conversations.by',  $user->id)
             ->where('conversations.doctor',   $doc->user_doctor)
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
@@ -151,7 +151,7 @@ class ConversationsController extends Controller
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
             ->where('items_conversations.by', $messages[0]->by)
-            ->where('conversations.doctor',  Auth::id())
+            ->where('conversations.doctor',  $user->id)
             ->select('items_conversations.*', 'conversations.name as namec', 'conversations.id_record','conversations.created_at as datec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at')
             ->get(); 
