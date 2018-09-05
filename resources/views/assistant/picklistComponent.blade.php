@@ -36,7 +36,7 @@
  	$(document).ready(function () {
  		 $("#mySelectd").val("{{ session()->get('asdr') }}");
  	 var dr = JSON.stringify(@php echo $as; @endphp);
-  		dr =JSON.parse(dr);
+  	 dr =JSON.parse(dr);
  			for(var z=0; z < dr.length; z++){
  				if(dr[z]['iddr'] ==  $('#mySelectd option:selected').val()){
  					$('#imgDrA').attr('src', dr[z]['profile_photo']);
