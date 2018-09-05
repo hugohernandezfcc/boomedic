@@ -44,6 +44,8 @@
  				}	
  			}
  		$('#mySelectd').on('change', function() {
+
+           
  			for(var x=0; x < dr.length; x++){
  				if(dr[x]['iddr'] ==  $('#mySelectd option:selected').val()){
  					console.log(dr[x]['iddr']);
@@ -53,6 +55,7 @@
 				                             url: "{{ url('user/select') }}/" + dr[x]['iddr'] ,           
 				                             success: function(result)             
 				                             {
+				                             	if(window.location.href == "{{ url('medicalconsultations') }}"){
 				                             		console.log(result);
 				                             		 var data = 0;
 				                             		 clearTimeout(timer);
@@ -61,6 +64,9 @@
 													 $('.textbody').prop('disabled', true);
 													 $('.chatbut').prop('disabled', true);
 				                             		 get(data);
+				                          }else{
+ 									window.location.href = "{{ url('drAppointments/redirecting/index') }}";
+ 								}
 
 				                             }
 				                         });                            	 			
