@@ -1,9 +1,9 @@
 @if(!empty($as))
 
 <style type="text/css">
-	.lockscreen-item {
+.lockscreen-item {
     width: 200px !important;
-    margin: 12px 0 7px auto !important
+    margin: 12px 0 0px auto !important
 }
 .lockscreen-image {
     left: -10px !important;
@@ -13,6 +13,7 @@
     z-index: 1000;
     width: 35px !important;
     height: 35px !important;
+    background: #27a000 !important;
 }
 .lockscreen-credentials {
     margin-left: 24px;
@@ -22,16 +23,13 @@
 
 <ul class="sidebar-menu">
 	<li class="header">DOCTOR</li>
-</ul>
+
 <div class="user-panel">
 	<div class="lockscreen-item">
     <!-- lockscreen image -->
     <div class="lockscreen-image">
       <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" id="imgDrA"  class="img-circle">
     </div>
-    <!-- /.lockscreen-image -->
-
-    <!-- lockscreen credentials (contains the form) -->
     <form class="lockscreen-credentials">
       <div class="input-group" style="display: block !important;">
 	            <select class="form-control" name="doctor" id="mySelectd"> 
@@ -42,8 +40,8 @@
       </div>
     </form>
   </div>
-</div>
- <br>
+</div><br>
+ </ul>
  	<script type="text/javascript">
 
  	$(document).ready(function () {
