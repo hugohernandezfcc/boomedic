@@ -73,7 +73,9 @@
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-
+                 @if(session()->get('utype') == "assistant")
+                        @include('assistant.picklistComponent')
+                   @endif
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
                     @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
@@ -97,9 +99,7 @@
 
             <!-- Main content -->
             <section class="content">
-                 @if(session()->get('utype') == "assistant")
-                        @include('assistant.picklistComponent')
-                   @endif
+
                 @yield('content')
 
             </section>

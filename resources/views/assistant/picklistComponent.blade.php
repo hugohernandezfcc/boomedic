@@ -1,35 +1,28 @@
 @if(!empty($as))
 <style type="text/css">
-		.lockscreen-wrapper {
-	      max-width: 275px !important;
-	  	  margin-top: 1% !important;
-	  	  margin-left: 1% !important;
+	.select{ 
+		font-size: 11px; 
 		}
+
 </style>
-
-<div class="lockscreen-wrapper">
-	<div class="lockscreen-item" style="width: 100% !important;">
-    <!-- lockscreen image -->
-    <div class="lockscreen-image">
-
-      <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image" id="imgDrA">
-    </div>
-    <!-- /.lockscreen-image -->
-
-    <!-- lockscreen credentials (contains the form) -->
-    <form class="lockscreen-credentials">
-      <div class="input-group" style="display: block;">
-	            <select class="select2" name="doctor" id="mySelectd"> 
+<ul class="sidebar-menu">
+	<li class="header">DOCTOR</li>
+</ul>
+<div class="user-panel">
+        <div class="pull-left image">
+			 <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" id="imgDrA"  class="img-circle">
+        </div>
+        <div class="pull-left info">
+           <div class="input-group">
+	            <select class="form-control select" name="doctor" id="mySelectd"> 
 	            @foreach($as as $assi)	
                   <option value="{{ $assi->iddr }}">{{ $assi->name }}</option>
                 @endforeach  
                 </select>
-      </div>
-    </form>
-    <!-- /.lockscreen credentials -->
-
-  </div>
- </div>
+     		 </div>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+</div>
  <br>
  	<script type="text/javascript">
 
