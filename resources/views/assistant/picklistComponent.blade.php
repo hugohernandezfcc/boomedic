@@ -34,6 +34,7 @@
  	<script type="text/javascript">
 
  	$(document).ready(function () {
+ 		 $("#mySelectd").val("{{ session()->get('asdr') }}");
  	 var dr = JSON.stringify(@php echo $as; @endphp);
   		dr =JSON.parse(dr);
  			for(var z=0; z < dr.length; z++){

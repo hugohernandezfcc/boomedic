@@ -48,7 +48,7 @@
                     <div class="input-group">
                       <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody" autocomplete="off" disabled="true">
                       <span class="input-group-btn">
-                            <button type="button" class="btn btn-secondary btn-flat" onclick="send();">Enviar</button>
+                            <button type="button" class="btn btn-secondary btn-flat chatbut" onclick="send();">Enviar</button>
                           </span>
                     </div>
                   </form>
@@ -87,6 +87,7 @@
           var timer = null;
           function get(data){   
                                    $('.textbody').prop('disabled', true);
+                                   $('.chatbut').prop('disabled',true);
               $.ajax({
                  type: "GET",                 
                  url: "{{ url('Conversations/messages') }}/" + data,  
@@ -151,6 +152,7 @@
                      }
                      $(".titleC").text(title);
                      $('.textbody').prop('disabled', false);
+                      $('.chatbut').prop('disabled', false);
                            //Auto-scroll
                             var altura = (document.getElementById("message").scrollHeight + $(".message").height());
                          $(".message").animate({scrollTop:altura+"px"});
@@ -196,6 +198,7 @@
 
      function searchM(data){
          $('.textbody').prop('disabled', true);
+          $('.chatbut').prop('disabled', true);
       clearTimeout(timer);
         get(data);
         $('.contacts').click();
