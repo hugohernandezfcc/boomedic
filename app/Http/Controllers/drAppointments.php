@@ -31,6 +31,7 @@ class drAppointments extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+        $user2 = User::find(Auth::id());
          if(session()->get('utype') == "assistant"){
            $user = User::find(session()->get('asdr'));
              $assistant = DB::table('assistant')
@@ -83,12 +84,13 @@ class drAppointments extends Controller
             
         return view('drAppointments', [
                 'userId'    => $user->id,
-                'username'  => $user->username,
-                'name'      => $user->name,
-                'photo'     => $user->profile_photo,
-                'date'      => $user->created_at,
+                'username'  => $user2->username,
+                'name'      => $user2->name,
+                'photo'     => $user2->profile_photo,
+                'date'      => $user2->created_at,
                 'array'     => json_encode($array),
                 'as'        => $assistant
+
             ]
         );
     }
