@@ -143,7 +143,7 @@
                             $(".direct-chat-messages").append('<div class="direct-chat-msg right" align="center" style="font-size: 11px !important;">Chat del '+ mo2+'</div>');
                             }                        
                           }
-                        if(result[0][z]['profile_photo'] == "@php echo $photo; @endphp"){
+                        if(result[0][z]['profile_photo'] == "@php echo $photo; @endphp" || result[0][z]['by'] == "{{ session()->get('asdr') }}"){
                             $(".direct-chat-messages").append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-left">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
                         }else{
                           $(".direct-chat-messages").append('<div class="direct-chat-msg other"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-left">'+ result[0][z]['name'] +'</span><span class="direct-chat-timestamp pull-right">'+ mo +'</span></div><img class="direct-chat-img" src="'+ result[0][z]['profile_photo'] +'" alt="Imagen de usuario"><div class="direct-chat-text">'+ result[0][z]['text_body'] +'</div></div>');
