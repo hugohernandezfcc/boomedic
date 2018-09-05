@@ -8,12 +8,12 @@
 .lockscreen-image {
     left: -10px !important;
     top: -7px !important;
+    background: #27a000 !important;
 }
 .lockscreen-image>img {
     z-index: 1000;
     width: 35px !important;
     height: 35px !important;
-    background: #27a000 !important;
 }
 .lockscreen-credentials {
     margin-left: 24px;
