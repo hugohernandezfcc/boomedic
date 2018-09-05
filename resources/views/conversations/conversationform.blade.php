@@ -48,7 +48,7 @@
                     <div class="input-group">
                       <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody" autocomplete="off" disabled="true">
                       <span class="input-group-btn">
-                            <button type="button" class="btn btn-secondary btn-flat chatbut" onclick="send();">Enviar</button>
+                            <button type="button" class="btn btn-secondary btn-flat chatbut" onclick="if($('.textbody').val() != ''){send();}else{alert('Debe escribir algún mensaje')}">Enviar</button>
                           </span>
                     </div>
                   </form>
