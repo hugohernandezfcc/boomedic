@@ -1,27 +1,62 @@
 @if(!empty($as))
+
 <style type="text/css">
-	.select{ 
-		font-size: 11px; 
-		}
+	.lockscreen-item {
+    width: 200px !important;
+    margin: 12px 0 7px auto !important
+}
+.lockscreen-image {
+    left: -10px !important;
+    top: -7px !important;
+}
+.lockscreen-image>img {
+    z-index: 1000;
+    width: 35px !important;
+    height: 35px !important;
+}
+.lockscreen-credentials {
+    margin-left: 24px;
+}
 
 </style>
+
 <ul class="sidebar-menu">
 	<li class="header">DOCTOR</li>
 </ul>
 <div class="user-panel">
-        <div class="pull-left image">
-			 <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" id="imgDrA"  class="img-circle">
-        </div>
-        <div class="pull-left info">
-           <div class="input-group">
-	            <select class="form-control select" name="doctor" id="mySelectd"> 
+	<div class="lockscreen-item">
+    <!-- lockscreen image -->
+    <div class="lockscreen-image">
+      <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" id="imgDrA"  class="img-circle">
+    </div>
+    <!-- /.lockscreen-image -->
+
+    <!-- lockscreen credentials (contains the form) -->
+    <form class="lockscreen-credentials">
+      <div class="input-group" style="display: block !important;">
+	            <select class="form-control" name="doctor" id="mySelectd"> 
 	            @foreach($as as $assi)	
                   <option value="{{ $assi->iddr }}">{{ $assi->name }}</option>
                 @endforeach  
                 </select>
-     		 </div>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+      </div>
+    </form>
+    <!-- /.lockscreen credentials -->
+
+  </div>
+        <!--<div class="pull-left image">
+			 <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" id="imgDrA"  class="img-circle">
         </div>
+        <div class="pull-left info">
+        	<form role="form">
+	            <select class="form-control" name="doctor" id="mySelectd"> 
+	            @foreach($as as $assi)	
+                  <option value="{{ $assi->iddr }}">{{ $assi->name }}</option>
+                @endforeach  
+                </select>
+            </form>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>-->
 </div>
  <br>
  	<script type="text/javascript">
