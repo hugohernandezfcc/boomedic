@@ -57,7 +57,8 @@
 				                             		 clearTimeout(timer);
 													 $("#mid").val(data);
 													 $('#time').val('0');
-													  $('.textbody').prop('disabled', true);
+													 $('.textbody').prop('disabled', true);
+													 $('.chatbut').prop('disabled', true);
 				                             		 get(data);
 
 				                             }
