@@ -146,7 +146,7 @@ class AppServiceProvider extends ServiceProvider
                                 }else{
 
                                         $menusInfo = DB::table('menus')
-                                                        ->where('to', 'Assistant' )
+                                                        ->where('to', 'assistant' )
                                                         ->orWhere('to', 'Both')->orderBy('order')
                                                         ->get();
 

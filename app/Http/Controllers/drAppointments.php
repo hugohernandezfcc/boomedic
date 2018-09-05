@@ -31,7 +31,17 @@ class drAppointments extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $user = User::find(Auth::id());
+         if(session()->get('utype') == "assistant"){
+           $user = User::find(session()->get('asdr'));
+             $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         }else{  
+           $user = User::find(Auth::id());
+           $assistant = null;
+         }
            $appo = DB::table('medical_appointments')
             ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
             ->join('workboard', 'labor_information.id', '=', 'workboard.labInformation')
@@ -77,7 +87,8 @@ class drAppointments extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'array'     => json_encode($array)
+                'array'     => json_encode($array),
+                'as'        => $assistant
             ]
         );
     }
@@ -90,12 +101,17 @@ class drAppointments extends Controller
  
     public function cancelAppointment(Request $request)
     {
+         if(session()->get('utype') == "assistant"){
+           $user = User::find(session()->get('asdr'));
+         }else{  
+           $user = User::find(Auth::id());
+         }
        $id = $request->idcancel;
        $appo = medical_appointments::find($id);
        $appo->status = 'No completed';
        $appo->sub_status = 'cancel by doctor';
        $appo->save();
-       return redirect('drAppointments/index/'. Auth::id());
+       return redirect('drAppointments/index/'. $user->id);
     }
 
         /**
@@ -105,13 +121,18 @@ class drAppointments extends Controller
      */
     public function editTimeBlocker(Request $request)
     {
+        if(session()->get('utype') == "assistant"){
+           $user = User::find(session()->get('asdr'));
+         }else{  
+           $user = User::find(Auth::id());
+         }
        $id = $request->idEdit;
        $time = time_blockers::find($id);
        $time->title = $request->titleEdit;
        $time->start = $request->startEdit;
        $time->end   = $request->endEdit;       
        $time->save();
-       return redirect('drAppointments/index/'. Auth::id());
+       return redirect('drAppointments/index/'. $user->id);
     }
 
         /**
@@ -122,7 +143,12 @@ class drAppointments extends Controller
  
     public function confirmTimeBlocker(Request $request)
     {
-       $prof = DB::table('professional_information')->where('user', Auth::id())->first(); 
+        if(session()->get('utype') == "assistant"){
+           $user = User::find(session()->get('asdr'));
+         }else{  
+           $user = User::find(Auth::id());
+         }
+        $prof = DB::table('professional_information')->where('user', $user->id)->first(); 
         $blocker = new time_blockers;
        if($request->t == "1"){
        $blocker->start            = $request->start;
@@ -143,7 +169,7 @@ class drAppointments extends Controller
        $blocker->color            = $request->color;
          }
        if($blocker->save()){
-       return redirect('drAppointments/index/'. Auth::id());
+       return redirect('drAppointments/index/'. $user->id);
      }
     }
 
@@ -155,16 +181,26 @@ class drAppointments extends Controller
      */
     public function destroy($id)
     {
+         if(session()->get('utype') == "assistant"){
+           $user = User::find(session()->get('asdr'));
+         }else{  
+           $user = User::find(Auth::id());
+         }
          DB::delete('delete from time_blockers where id = ?',[$id]) ;    
     
-          return redirect('drAppointments/index/'. Auth::id());
+          return redirect('drAppointments/index/'. $user->id);
     } 
 
     public function redirecting($page)
     {
+          if(session()->get('utype') == "assistant"){
+           $user = User::find(session()->get('asdr'));
+         }else{  
+           $user = User::find(Auth::id());
+         }
         switch ($page) {
             case 'index':
-                return redirect('drAppointments/index/'. Auth::id()); //show
+                return redirect('drAppointments/index/'. $user->id); //show
                 break;
             
             default:
