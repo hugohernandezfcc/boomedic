@@ -107,7 +107,7 @@
                             }else{
                                var tit = result[2][x]['conversations.name'];
                             }
-                            $(".contacts-list").append('<li><a href="#" onclick="searchM('+ result[2][x]['id'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['nameu'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ tit+'</span></div></a></li>');
+                            $(".contacts-list").append('<li><a href="javascript:void(0)" onclick="searchM('+ result[2][x]['id'] +');"><img class="contacts-list-img" src="'+ result[2][x]['profile_photo'] +'" alt="User Image"><div class="contacts-list-info"><span class="contacts-list-name">'+ result[2][x]['nameu'] +'<small class="contacts-list-date pull-right">'+ mo +'</small></span><span class="contacts-list-msg">'+ tit+'</span></div></a></li>');
                           }
                          }
                            else{
@@ -119,7 +119,7 @@
                         $(".count").attr("data-original-title", "0 mensajes");
                         $(".direct-chat-messages").text('');
                         $(".direct-chat-messages").append('<div align="center" class="nullm">No se ha empezado ninguna conversación</div>');
-                        $(".titleC").text(title);
+                        $(".titleC").text("");
                       }
                   else{
                    $(".direct-chat-messages").html("");

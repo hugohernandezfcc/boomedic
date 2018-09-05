@@ -41,22 +41,7 @@
                 </select>
       </div>
     </form>
-    <!-- /.lockscreen credentials -->
-
   </div>
-        <!--<div class="pull-left image">
-			 <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" id="imgDrA"  class="img-circle">
-        </div>
-        <div class="pull-left info">
-        	<form role="form">
-	            <select class="form-control" name="doctor" id="mySelectd"> 
-	            @foreach($as as $assi)	
-                  <option value="{{ $assi->iddr }}">{{ $assi->name }}</option>
-                @endforeach  
-                </select>
-            </form>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>-->
 </div>
  <br>
  	<script type="text/javascript">
