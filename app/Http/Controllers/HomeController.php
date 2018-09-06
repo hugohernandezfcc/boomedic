@@ -269,7 +269,7 @@ class HomeController extends Controller
                                         'sp'        => $sp,
                                         'mg'        => $mg,
                                         'as'        => $assistant,
-                                        'donli'         => $donli
+                                        'donli'     => $donli
                                     ]
                                 );
                             }

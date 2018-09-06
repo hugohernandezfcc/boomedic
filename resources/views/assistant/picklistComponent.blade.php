@@ -25,7 +25,9 @@
 			background: #a00000 !important;
 		}
 		.select{
-			background: #b8c7ce;
+			color: #b8c7ce;
+			background: #333;
+			background-color: #333;
 		}
 	</style>
 

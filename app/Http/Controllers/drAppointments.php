@@ -39,6 +39,17 @@ class drAppointments extends Controller
              ->where('user_assist', Auth::id())
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
              ->get();
+                             /*Validate doctor online*/
+                               $donli = array();
+                               foreach($assistant as $as){
+                                 $doconline = User::find($as->iddr);
+                                         if($doconline->isOnline() > 0){
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '1']);
+                                       }else{
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '0']);
+                                       }
+                                 }
+                               /*Validate doctor online*/  
          }else{  
            $user = User::find(Auth::id());
            $assistant = null;
