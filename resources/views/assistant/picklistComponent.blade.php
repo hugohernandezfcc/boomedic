@@ -78,8 +78,10 @@
  				if(dr[x]['iddr'] ==  $('#mySelectd option:selected').val()){
  					 if($('#mySelectd option:selected').attr('col') == '1'){
  					 	$('.lockscreen-image').addClass('online');
+ 					 	$('.lockscreen-image').removeClass('offline');
  					 }else{
  					 	$('.lockscreen-image').addClass('offline');
+ 					 	$('.lockscreen-image').removeClass('online');
  					 }
  					console.log(dr[x]['iddr']);
  					$('#imgDrA').attr('src', dr[x]['profile_photo']);

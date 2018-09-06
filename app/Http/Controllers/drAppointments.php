@@ -100,7 +100,8 @@ class drAppointments extends Controller
                 'photo'     => $user2->profile_photo,
                 'date'      => $user2->created_at,
                 'array'     => json_encode($array),
-                'as'        => $assistant
+                'as'        => $assistant,
+                'donli'     => $donli
 
             ]
         );
