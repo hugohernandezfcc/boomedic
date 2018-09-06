@@ -145,7 +145,7 @@ class AppServiceProvider extends ServiceProvider
                         }
                                 }else{
 
-                                         Session(['utype' => 'assistant']); 
+                                        Session(['utype' => 'assistant']); 
                                         $menusInfo = DB::table('menus')
                                                         ->where('to', 'Assistant' )
                                                         ->orWhere('to', 'Both')->orderBy('order')

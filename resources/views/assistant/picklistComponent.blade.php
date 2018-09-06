@@ -33,7 +33,7 @@
 			border:1px solid #b8c7ce;
 		}
 		.select option:hover{
-			background: #000000 !important;
+			background: black !important;
 			border:1px solid #b8c7ce;
 		}
 	</style>
