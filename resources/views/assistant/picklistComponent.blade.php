@@ -27,6 +27,14 @@
 		.select{
 			color: #b8c7ce;
 			background: #333;
+			border:1px solid #333;
+		}
+		.select:hover{
+			border:1px solid #b8c7ce;
+		}
+		.select option:hover{
+			background: #000000 !important;
+			border:1px solid #b8c7ce;
 		}
 	</style>
 
