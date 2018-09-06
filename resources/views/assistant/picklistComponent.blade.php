@@ -13,21 +13,20 @@
 		    z-index: 1000;
 		    width: 35px !important;
 		    height: 35px !important;
-		    background: #27a000 !important;
+		    background:  #333 !important;
 		}
 		.lockscreen-credentials {
 		    margin-left: 24px;
 		}
 		.online{
-			background: #1f8000 !important;
+			background: #35ce3aeb !important;
 		}
 		.offline{	
-			background: #a00000 !important;
+			background: #b7b7b7eb !important;
 		}
 		.select{
 			color: #b8c7ce;
 			background: #333;
-			background-color: #333;
 		}
 	</style>
 
@@ -75,8 +74,8 @@
  				}	
  			}
  		$('#mySelectd').on('change', function() {
-
-           
+ 			$('.lockscreen-image').removeClass('offline');
+            $('.lockscreen-image').removeClass('online');
  			for(var x=0; x < dr.length; x++){
  				if(dr[x]['iddr'] ==  $('#mySelectd option:selected').val()){
  					console.log(dr[x]['iddr']);
