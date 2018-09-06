@@ -1,25 +1,33 @@
 @if(!empty($as))
 
-<style type="text/css">
-.lockscreen-item {
-    width: 200px !important;
-    margin: 12px 0 0px auto !important
-}
-.lockscreen-image {
-    left: -10px !important;
-    top: -7px !important;
-    background: #27a000 !important;
-}
-.lockscreen-image>img {
-    z-index: 1000;
-    width: 35px !important;
-    height: 35px !important;
-}
-.lockscreen-credentials {
-    margin-left: 24px;
-}
-
-</style>
+	<style type="text/css">
+		.lockscreen-item {
+		    width: 200px !important;
+		    margin: 12px 0 0px auto !important
+		}
+		.lockscreen-image {
+		    left: -10px !important;
+		    top: -7px !important;
+		}
+		.lockscreen-image>img {
+		    z-index: 1000;
+		    width: 35px !important;
+		    height: 35px !important;
+		    background: #27a000 !important;
+		}
+		.lockscreen-credentials {
+		    margin-left: 24px;
+		}
+		.online{
+			background: #1f8000 !important;
+		}
+		.offline{	
+			background: #a00000 !important;
+		}
+		.select{
+			background: #b8c7ce;
+		}
+	</style>
 
 <ul class="sidebar-menu">
 	<li class="header">DOCTOR</li>
@@ -32,9 +40,13 @@
     </div>
     <form class="lockscreen-credentials">
       <div class="input-group" style="display: block !important;">
-	            <select class="form-control" name="doctor" id="mySelectd"> 
+	            <select class="form-control select" name="doctor" id="mySelectd"> 
 	            @foreach($as as $assi)	
-                  <option value="{{ $assi->iddr }}">{{ $assi->name }}</option>
+	            	 @foreach($donli as $de)
+	            	    @if($assi->iddr == $de['id'])
+                  		 <option value="{{ $assi->iddr }}" col="{{ $de['online'] }}">{{ $assi->name }}</option>
+                  		@endif 
+                  	 @endforeach	 
                 @endforeach  
                 </select>
       </div>
@@ -47,10 +59,16 @@
  	$(document).ready(function () {
  		 $("#mySelectd").val("{{ session()->get('asdr') }}");
  	 var dr = JSON.stringify(@php echo $as; @endphp);
+
   	 dr =JSON.parse(dr);
  			for(var z=0; z < dr.length; z++){
  				if(dr[z]['iddr'] ==  $('#mySelectd option:selected').val()){
  					$('#imgDrA').attr('src', dr[z]['profile_photo']);
+ 					 if($('#mySelectd option:selected').attr('col') == '1'){
+ 					 	$('.lockscreen-image').addClass('online');
+ 					 }else{
+ 					 	$('.lockscreen-image').addClass('offline');
+ 					 }
 
  				}	
  			}

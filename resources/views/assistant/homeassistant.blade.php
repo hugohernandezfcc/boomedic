@@ -17,7 +17,7 @@
 	            <div class="icon">
 	              	<i class="fa fa-calendar"></i>
 	            </div>
-	            <a class="small-box-footer" href="javascript:void(0)">{{ $d }}<i class="fa fa-arrow-circle-right"></i></a>
+	            <a class="small-box-footer" href="javascript:void(0)">Detalles <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
         </div>
         <!-- ./col -->

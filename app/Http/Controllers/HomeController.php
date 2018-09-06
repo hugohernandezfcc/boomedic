@@ -239,7 +239,18 @@ class HomeController extends Controller
                             /*Aquimandare la vista del home asistente */
                             else{
                                Session(['utype' => 'assistant']); 
-                               $doconline = User::find($assistant[0]->iddr);
+                               /*Validate doctor online*/
+                               $donli = array();
+                               foreach($assistant as $as){
+                                 $doconline = User::find($as->iddr);
+                                         if($doconline->isOnline() > 0){
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '1']);
+                                       }else{
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '0']);
+                                       }
+                                 }
+                               /*Validate doctor online*/  
+
                                if(session()->get('asdr') == null){
                                 Session(['asdr' => $assistant[0]->iddr]);
                             }
@@ -258,8 +269,7 @@ class HomeController extends Controller
                                         'sp'        => $sp,
                                         'mg'        => $mg,
                                         'as'        => $assistant,
-                                        'd'         => $doconline->isOnline()
-
+                                        'donli'         => $donli
                                     ]
                                 );
                             }
