@@ -33,6 +33,9 @@ class drAppointments extends Controller
     public function index(){
         $user2 = User::find(Auth::id());
          if(session()->get('utype') == "assistant"){
+                            if(session()->get('asdr') == null){
+                                Session(['asdr' => $assistant[0]->iddr]);
+                            }
            $user = User::find(session()->get('asdr'));
              $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
