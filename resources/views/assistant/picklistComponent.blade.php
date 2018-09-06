@@ -13,13 +13,13 @@
 		    z-index: 1000;
 		    width: 35px !important;
 		    height: 35px !important;
-		    background:  #333 !important;
+		    background:  #b7b7b7eb !important;
 		}
 		.lockscreen-credentials {
 		    margin-left: 24px;
 		}
 		.online{
-			background: #35ce3aeb !important;
+			background: #00a65a !important;
 		}
 		.offline{	
 			background: #b7b7b7eb !important;
@@ -74,10 +74,13 @@
  				}	
  			}
  		$('#mySelectd').on('change', function() {
- 			$('.lockscreen-image').removeClass('offline');
-            $('.lockscreen-image').removeClass('online');
  			for(var x=0; x < dr.length; x++){
  				if(dr[x]['iddr'] ==  $('#mySelectd option:selected').val()){
+ 					 if($('#mySelectd option:selected').attr('col') == '1'){
+ 					 	$('.lockscreen-image').addClass('online');
+ 					 }else{
+ 					 	$('.lockscreen-image').addClass('offline');
+ 					 }
  					console.log(dr[x]['iddr']);
  					$('#imgDrA').attr('src', dr[x]['profile_photo']);
  					 				$.ajax({     
