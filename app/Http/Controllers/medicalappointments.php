@@ -186,16 +186,16 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-       /* $menu = menu::find('10');
-        $menu->to = 'Both';*/
-        $menu = new menu();
+        $menu = menu::find('32');
+        $menu->to = 'Assistant';
+     /*   $menu = new menu();
         $menu->text = 'Agenda';
         $menu->to = 'assistant';
         $menu->typeitem = 'item';
         $menu->order = '2';
         $menu->parent = '1';
         $menu->icon = 'calendar-check-o';
-        $menu->url = 'drAppointments/redirecting/index';
+        $menu->url = 'drAppointments/redirecting/index';*/
         if($menu->save()) 
        return redirect('medicalconsultations');
     }

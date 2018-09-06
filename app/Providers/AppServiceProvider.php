@@ -147,7 +147,7 @@ class AppServiceProvider extends ServiceProvider
 
                                          Session(['utype' => 'assistant']); 
                                         $menusInfo = DB::table('menus')
-                                                        ->where('to', 'assistant' )
+                                                        ->where('to', 'Assistant' )
                                                         ->orWhere('to', 'Both')->orderBy('order')
                                                         ->get();
 
