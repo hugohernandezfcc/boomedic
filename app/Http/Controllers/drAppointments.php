@@ -32,16 +32,18 @@ class drAppointments extends Controller
      */
     public function index(){
         $user2 = User::find(Auth::id());
-         if(session()->get('utype') == "assistant"){
-                            if(session()->get('asdr') == null){
-                                Session(['asdr' => $assistant[0]->iddr]);
-                            }
-             $user = User::find(session()->get('asdr'));
-             $assistant = DB::table('assistant')
+        $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
              ->get();
+         if(count($assistant) > 0){
+            Session(['utype' => 'assistant']); 
+              if(session()->get('asdr') == null){
+                  Session(['asdr' => $assistant[0]->iddr]);
+                 }
+             $user = User::find(session()->get('asdr'));
+
                              /*Validate doctor online*/
                                $donli = array();
                                foreach($assistant as $as){

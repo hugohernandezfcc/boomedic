@@ -10,7 +10,6 @@ use Jenssegers\Agent\Agent;
 use View;
 use Auth;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;
