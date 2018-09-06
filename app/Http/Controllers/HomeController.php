@@ -239,6 +239,7 @@ class HomeController extends Controller
                             /*Aquimandare la vista del home asistente */
                             else{
                                Session(['utype' => 'assistant']); 
+                               $doconline = User::find($assistant[0]->iddr);
                                if(session()->get('asdr') == null){
                                 Session(['asdr' => $assistant[0]->iddr]);
                             }
@@ -256,7 +257,8 @@ class HomeController extends Controller
                                         'it'        => $it,
                                         'sp'        => $sp,
                                         'mg'        => $mg,
-                                        'as'        => $assistant
+                                        'as'        => $assistant,
+                                        'd'         => $doconline->isOnline()
 
                                     ]
                                 );
