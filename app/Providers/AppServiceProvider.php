@@ -144,6 +144,11 @@ class AppServiceProvider extends ServiceProvider
                             }
                         }
                                 }else{
+                                                    $assistant = DB::table('assistant')
+                                                     ->join('users', 'assistant.user_doctor', '=', 'users.id')
+                                                     ->where('user_assist', Auth::id())
+                                                     ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+                                                     ->get();
                                          Session(['asdr' => $assistant[0]->iddr]);
                                          Session(['utype' => 'assistant']); 
                                         $menusInfo = DB::table('menus')
