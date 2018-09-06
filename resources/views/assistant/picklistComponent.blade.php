@@ -97,7 +97,6 @@
 													 $('.textbody').prop('disabled', true);
 													 $('.chatbut').prop('disabled', true);
 				                             		 get(data);
-				                             		 window.location.href = "{{ url('medicalconsultations') }}";
 				                          }else{
  									window.location.href = "{{ url('drAppointments/redirecting/index') }}";
  								}
