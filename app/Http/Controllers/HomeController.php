@@ -251,9 +251,6 @@ class HomeController extends Controller
                                  }
                                /*Validate doctor online*/  
 
-                               if(session()->get('asdr') == null){
-                                Session(['asdr' => $assistant[0]->iddr]);
-                            }
                                 return view('assistant.homeassistant', [
                                         'username'  => $user->username,
                                         'name'      => $user->name,
