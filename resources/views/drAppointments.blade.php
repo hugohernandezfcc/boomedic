@@ -32,7 +32,6 @@
 		    <h3 class="box-title">Citas</h3>
 		</div>
 		<div class="box-body" style="overflow: auto;">
-      {{ session()->get('utype') }}
 
   		    <div class="modal fade" role="dialog" id="modalsuccess">
                     <div class="modal-dialog modal-sm">
