@@ -478,7 +478,16 @@ class doctor extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+          $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+             $user = User::find(session()->get('asdr'));
+          }else{
+              $user = User::find(Auth::id());
+          }
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
