@@ -36,7 +36,7 @@
 			background: black !important;
 			border:1px solid #b8c7ce;
 		}
-		.select[readonly]{
+		.select[readonly], .select[disabled]{
 		    background-color: #777 !important;
 		    opacity: 0.5 !important;
 		}
