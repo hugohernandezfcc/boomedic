@@ -478,16 +478,34 @@ class doctor extends Controller
      */
     public function update(Request $request, $id)
     {   
-       $user2 = User::find(Auth::id());
-          $assistant = DB::table('assistant')
+        $user2 = User::find(Auth::id());
+        $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
              ->get();
          if(count($assistant) > 0){
+            Session(['utype' => 'assistant']); 
+              if(session()->get('asdr') == null){
+                  Session(['asdr' => $assistant[0]->iddr]);
+                 }
              $user = User::find(session()->get('asdr'));
-          }else{
-              $user = User::find(Auth::id());
+
+                             /*Validate doctor online*/
+                               $donli = array();
+                               foreach($assistant as $as){
+                                 $doconline = User::find($as->iddr);
+                                         if($doconline->isOnline() > 0){
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '1']);
+                                       }else{
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '0']);
+                                       }
+                                 }
+                               /*Validate doctor online*/  
+         }else{  
+                $user = User::find(Auth::id());
+                $assistant = null;
+                $donli = null;
           }
 
         $professionali = DB::table('professional_information')->where('user', $user->id)->get();
@@ -549,16 +567,34 @@ class doctor extends Controller
 
         public function laborInformationNext(Request $request, $id)
     {
-           $user2 = User::find(Auth::id());
-          $assistant = DB::table('assistant')
+        $user2 = User::find(Auth::id());
+        $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
              ->get();
          if(count($assistant) > 0){
+            Session(['utype' => 'assistant']); 
+              if(session()->get('asdr') == null){
+                  Session(['asdr' => $assistant[0]->iddr]);
+                 }
              $user = User::find(session()->get('asdr'));
-          }else{
-              $user = User::find(Auth::id());
+
+                             /*Validate doctor online*/
+                               $donli = array();
+                               foreach($assistant as $as){
+                                 $doconline = User::find($as->iddr);
+                                         if($doconline->isOnline() > 0){
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '1']);
+                                       }else{
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '0']);
+                                       }
+                                 }
+                               /*Validate doctor online*/  
+         }else{  
+                $user = User::find(Auth::id());
+                $assistant = null;
+                $donli = null;
           }
         $professionali = DB::table('professional_information')->where('user', $user->id)->get();
         $bus = $professionali[0]->id;
@@ -622,16 +658,34 @@ class doctor extends Controller
 
     public function laborInformationView($id)
     {    
-         $user2 = User::find(Auth::id());
-         $assistant = DB::table('assistant')
+        $user2 = User::find(Auth::id());
+        $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
              ->get();
          if(count($assistant) > 0){
+            Session(['utype' => 'assistant']); 
+              if(session()->get('asdr') == null){
+                  Session(['asdr' => $assistant[0]->iddr]);
+                 }
              $user = User::find(session()->get('asdr'));
-          }else{
-              $user = User::find(Auth::id());
+
+                             /*Validate doctor online*/
+                               $donli = array();
+                               foreach($assistant as $as){
+                                 $doconline = User::find($as->iddr);
+                                         if($doconline->isOnline() > 0){
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '1']);
+                                       }else{
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '0']);
+                                       }
+                                 }
+                               /*Validate doctor online*/  
+         }else{  
+                $user = User::find(Auth::id());
+                $assistant = null;
+                $donli = null;
           }
         $professionali = DB::table('professional_information')->where('user', $user->id)->get();
         $bus = $professionali[0]->id;
