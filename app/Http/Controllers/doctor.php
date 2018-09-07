@@ -488,6 +488,7 @@ class doctor extends Controller
           }else{
               $user = User::find(Auth::id());
           }
+          
         $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
