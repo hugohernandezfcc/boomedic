@@ -97,7 +97,10 @@ class doctor extends Controller
                                  }
                                /*Validate doctor online*/  
          }else{  
-        $user = User::find(Auth::id());
+                $user = User::find(Auth::id());
+                $assistant = null;
+                $donli = null;
+          }
         $assist = DB::table('assistant')
             ->join('users', 'assistant.user_assist', '=', 'users.id')
             ->where('assistant.user_doctor', $user->id)
@@ -132,17 +135,16 @@ class doctor extends Controller
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
         $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
         return view('profileDoctor', [
-                'username' => DB::table('users')->where('id', $user->id)->value('name'),
 
                  /** SYSTEM INFORMATION */
 
-                'userId'        => $user2->id,
+                'userId'        => $user->id,
 
                 /** INFORMATION USER */
 
                 'firstname'     => $user2->firstname,
                 'lastname'      => $user2->lastname,
-                'email'         => $user2->email,
+                'email'         => $user->email,
                 'username'      => $user2->username,
                 'name'          => $user2->name,
                 'age'           => $user2->age,
@@ -150,13 +152,16 @@ class doctor extends Controller
                 'date'          => $user2->created_at,
 
                 /** PERSONAL INFORMATION */
+                'username2' => $user->username,
+                'email2'         => $user->email,
+                'name2'          => $user->name,
 
-                'gender'        => $user2->gender,
-                'occupation'    => $user2->occupation,
-                'scholarship'   => $user2->scholarship,
-                'maritalstatus' => $user2->maritalstatus,
-                'mobile'        => $user2->mobile,
-                'updated_at'    => $user2->updated_at,
+                'gender'        => $user->gender,
+                'occupation'    => $user->occupation,
+                'scholarship'   => $user->scholarship,
+                'maritalstatus' => $user->maritalstatus,
+                'mobile'        => $user->mobile,
+                'updated_at'    => $user->updated_at,
 
                 /** PROFESSIONAL INFORMATION  */
                 'professional_license'  =>  $professionali[0]->professional_license,
@@ -168,23 +173,26 @@ class doctor extends Controller
 
                 /** ADDRESS FISICAL USER  */
 
-                'country'       => (   empty($user->country)        ) ? '' : $user2->country, 
-                'state'         => (   empty($user->state)          ) ? '' : $user2->state, 
-                'delegation'    => (   empty($user->delegation)     ) ? '' : $user2->delegation, 
-                'colony'        => (   empty($user->colony)         ) ? '' : $user2->colony, 
-                'street'        => (   empty($user->street)         ) ? '' : $user2->street, 
-                'streetnumber'  => (   empty($user->streetnumber)   ) ? '' : $user2->streetnumber, 
-                'interiornumber'=> (   empty($user->interiornumber) ) ? '' : $user2->interiornumber, 
-                'postalcode'    => (   empty($user->postalcode)     ) ? '' : $user2->postalcode,
-                'longitude'     => (   empty($user->longitude)      ) ? '' : $user2->longitude,
-                'latitude'      => (   empty($user->latitude)       ) ? '' : $user2->latitude,
+                'country'       => (   empty($user->country)        ) ? '' : $user->country, 
+                'state'         => (   empty($user->state)          ) ? '' : $user->state, 
+                'delegation'    => (   empty($user->delegation)     ) ? '' : $user->delegation, 
+                'colony'        => (   empty($user->colony)         ) ? '' : $user->colony, 
+                'street'        => (   empty($user->street)         ) ? '' : $user->street, 
+                'streetnumber'  => (   empty($user->streetnumber)   ) ? '' : $user->streetnumber, 
+                'interiornumber'=> (   empty($user->interiornumber) ) ? '' : $user->interiornumber, 
+                'postalcode'    => (   empty($user->postalcode)     ) ? '' : $user->postalcode,
+                'longitude'     => (   empty($user->longitude)      ) ? '' : $user->longitude,
+                'latitude'      => (   empty($user->latitude)       ) ? '' : $user->latitude,
                 'mode'          => 'doctor',
                 'labor'         => $labor,
                 'asso'          => $asso,
                 /*NODES ASSISTANT*/
-                'nodes'         => json_encode($nodes)
+                'nodes'         => json_encode($nodes),
+                'donli'         => $donli,
+                'as'            => $assistant 
             ]
         );
+
     }
 
         public function saveAssistant (Request $request)

@@ -525,13 +525,13 @@
                         <div class="col-xs-12">
                           
                             <div class="col-sm-2" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $email }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $email2 }}</div>
                          
                         </div>
                         <div class="col-xs-12">
                           
                             <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $username }}</div>
+                            <div class="col-sm-10 cut" align="left">{{ $username2 }}</div>
                          
                         </div>
                         <div class="col-xs-12">
