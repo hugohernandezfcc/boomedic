@@ -186,8 +186,8 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        $menu = menu::find('32');
-        $menu->to = 'Assistant';
+        $menu = menu::find('33');
+        $menu->icon = 'user';
      /*   $menu = new menu();
         $menu->text = 'Agenda';
         $menu->to = 'assistant';

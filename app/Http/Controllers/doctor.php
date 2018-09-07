@@ -72,6 +72,31 @@ class doctor extends Controller
      */
     public function show($id)
     {
+        $user2 = User::find(Auth::id());
+        $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+            Session(['utype' => 'assistant']); 
+              if(session()->get('asdr') == null){
+                  Session(['asdr' => $assistant[0]->iddr]);
+                 }
+             $user = User::find(session()->get('asdr'));
+
+                             /*Validate doctor online*/
+                               $donli = array();
+                               foreach($assistant as $as){
+                                 $doconline = User::find($as->iddr);
+                                         if($doconline->isOnline() > 0){
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '1']);
+                                       }else{
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '0']);
+                                       }
+                                 }
+                               /*Validate doctor online*/  
+         }else{  
         $user = User::find(Auth::id());
         $assist = DB::table('assistant')
             ->join('users', 'assistant.user_assist', '=', 'users.id')
@@ -111,27 +136,27 @@ class doctor extends Controller
 
                  /** SYSTEM INFORMATION */
 
-                'userId'        => $user->id,
+                'userId'        => $user2->id,
 
                 /** INFORMATION USER */
 
-                'firstname'     => $user->firstname,
-                'lastname'      => $user->lastname,
-                'email'         => $user->email,
-                'username'      => $user->username,
-                'name'          => $user->name,
-                'age'           => $user->age,
-                'photo'         => $user->profile_photo,
-                'date'          => $user->created_at,
+                'firstname'     => $user2->firstname,
+                'lastname'      => $user2->lastname,
+                'email'         => $user2->email,
+                'username'      => $user2->username,
+                'name'          => $user2->name,
+                'age'           => $user2->age,
+                'photo'         => $user2->profile_photo,
+                'date'          => $user2->created_at,
 
                 /** PERSONAL INFORMATION */
 
-                'gender'        => $user->gender,
-                'occupation'    => $user->occupation,
-                'scholarship'   => $user->scholarship,
-                'maritalstatus' => $user->maritalstatus,
-                'mobile'        => $user->mobile,
-                'updated_at'    => $user->updated_at,
+                'gender'        => $user2->gender,
+                'occupation'    => $user2->occupation,
+                'scholarship'   => $user2->scholarship,
+                'maritalstatus' => $user2->maritalstatus,
+                'mobile'        => $user2->mobile,
+                'updated_at'    => $user2->updated_at,
 
                 /** PROFESSIONAL INFORMATION  */
                 'professional_license'  =>  $professionali[0]->professional_license,
@@ -143,16 +168,16 @@ class doctor extends Controller
 
                 /** ADDRESS FISICAL USER  */
 
-                'country'       => (   empty($user->country)        ) ? '' : $user->country, 
-                'state'         => (   empty($user->state)          ) ? '' : $user->state, 
-                'delegation'    => (   empty($user->delegation)     ) ? '' : $user->delegation, 
-                'colony'        => (   empty($user->colony)         ) ? '' : $user->colony, 
-                'street'        => (   empty($user->street)         ) ? '' : $user->street, 
-                'streetnumber'  => (   empty($user->streetnumber)   ) ? '' : $user->streetnumber, 
-                'interiornumber'=> (   empty($user->interiornumber) ) ? '' : $user->interiornumber, 
-                'postalcode'    => (   empty($user->postalcode)     ) ? '' : $user->postalcode,
-                'longitude'     => (   empty($user->longitude)      ) ? '' : $user->longitude,
-                'latitude'      => (   empty($user->latitude)       ) ? '' : $user->latitude,
+                'country'       => (   empty($user->country)        ) ? '' : $user2->country, 
+                'state'         => (   empty($user->state)          ) ? '' : $user2->state, 
+                'delegation'    => (   empty($user->delegation)     ) ? '' : $user2->delegation, 
+                'colony'        => (   empty($user->colony)         ) ? '' : $user2->colony, 
+                'street'        => (   empty($user->street)         ) ? '' : $user2->street, 
+                'streetnumber'  => (   empty($user->streetnumber)   ) ? '' : $user2->streetnumber, 
+                'interiornumber'=> (   empty($user->interiornumber) ) ? '' : $user2->interiornumber, 
+                'postalcode'    => (   empty($user->postalcode)     ) ? '' : $user2->postalcode,
+                'longitude'     => (   empty($user->longitude)      ) ? '' : $user2->longitude,
+                'latitude'      => (   empty($user->latitude)       ) ? '' : $user2->latitude,
                 'mode'          => 'doctor',
                 'labor'         => $labor,
                 'asso'          => $asso,
