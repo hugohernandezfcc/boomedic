@@ -477,7 +477,8 @@ class doctor extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
+       $user2 = User::find(Auth::id());
           $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
@@ -530,11 +531,23 @@ class doctor extends Controller
         $prof->save();
         $user->save();
         }
-        return redirect('doctor/doctor/' . $user->id);
+         return view('profileDoctor', [
+                /** SYSTEM INFORMATION */
+                'userId'        => $user2,
+                'name'          => $user2->name,
+                'photo'         => $user2->profile_photo,
+                'date'          => $user2->created_at,
+                'mode'          => 'labor',
+                'asso'          => $asso,
+                /* DIRECTION LABOR PROFESSIONAL  */
+                'labor'         => $labor,
+            ]
+        );
     }
 
         public function laborInformationNext(Request $request, $id)
     {
+           $user2 = User::find(Auth::id());
           $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
@@ -590,11 +603,23 @@ class doctor extends Controller
         $laborInformation->save();
 
           $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
-          return redirect('doctor/doctor/' . $user->id);
+          return view('profileDoctor', [
+                /** SYSTEM INFORMATION */
+                'userId'        => $user2->id,
+                'name'          => $user2->name,
+                'photo'         => $user2->profile_photo,
+                'date'          => $user2->created_at,
+                'mode'          => 'labor',
+                /* DIRECTION LABOR PROFESSIONAL  */
+                'labor'         => $labor
+            ]
+        );
     }
 
     public function laborInformationView($id)
-    {    $assistant = DB::table('assistant')
+    {    
+         $user2 = User::find(Auth::id());
+         $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
@@ -610,7 +635,17 @@ class doctor extends Controller
 
 
           $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
-          return redirect('doctor/doctor/' . $user->id);
+          return view('profileDoctor', [
+                /** SYSTEM INFORMATION */
+                'userId'        => $user2->id,
+                'name'          => $user2->name,
+                'photo'         => $user2->profile_photo,
+                'date'          => $user2->created_at,
+                'mode'          => 'viewlabor',
+                /* DIRECTION LABOR PROFESSIONAL  */
+                'labor'         => $labor
+            ]
+        );
     }
 
     public function updateDoctor(Request $request, $id)
@@ -736,6 +771,16 @@ class doctor extends Controller
      */
     public function destroy($id)
     {
+        $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+             $user = User::find(session()->get('asdr'));
+          }else{
+              $user = User::find(Auth::id());
+          }
         $workboard = DB::table('workboard')->where('labInformation', $id)->get();
         $appointments = DB::table('medical_appointments')->where('workplace', $id)->get();
        if(count($workboard) > 0){
@@ -745,6 +790,6 @@ class doctor extends Controller
           DB::table('medical_appointments')->where('workplace', $id)->delete();   
        }
           DB::delete('delete from labor_information where id = ?',[$id]) ;    
-          return redirect('doctor/laborInformationView/'.Auth::id() );
+          return redirect('doctor/laborInformationView/'.$user->id);
     }
 }
