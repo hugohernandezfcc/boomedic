@@ -67,7 +67,7 @@
 
  	$(document).ready(function () {
  		 var url =  window.location.href;
- 		 if(url.search('/doctor/laborInformationView') != '-1'){
+ 		 if(url.search('/doctor/laborInformation') != '-1' || url.search('/workboardDr') != '-1'){
  		 		$("#mySelectd").prop('disabled', true);
  		 }else{
  		 	$("#mySelectd").prop('disabled', false);
