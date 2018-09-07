@@ -36,6 +36,10 @@
 			background: black !important;
 			border:1px solid #b8c7ce;
 		}
+		.select[readonly]{
+		    background-color: #777 !important;
+		    opacity: 0.5 !important;
+		}
 	</style>
 
 <ul class="sidebar-menu">
