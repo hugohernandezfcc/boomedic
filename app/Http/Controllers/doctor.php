@@ -533,7 +533,7 @@ class doctor extends Controller
         }
          return view('profileDoctor', [
                 /** SYSTEM INFORMATION */
-                'userId'        => $user2,
+                'userId'        => $user->id,
                 'name'          => $user2->name,
                 'photo'         => $user2->profile_photo,
                 'date'          => $user2->created_at,
@@ -605,7 +605,7 @@ class doctor extends Controller
           $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
           return view('profileDoctor', [
                 /** SYSTEM INFORMATION */
-                'userId'        => $user2->id,
+                'userId'        => $user->id,
                 'name'          => $user2->name,
                 'photo'         => $user2->profile_photo,
                 'date'          => $user2->created_at,
@@ -637,7 +637,7 @@ class doctor extends Controller
           $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
           return view('profileDoctor', [
                 /** SYSTEM INFORMATION */
-                'userId'        => $user2->id,
+                'userId'        => $user->id,
                 'name'          => $user2->name,
                 'photo'         => $user2->profile_photo,
                 'date'          => $user2->created_at,
