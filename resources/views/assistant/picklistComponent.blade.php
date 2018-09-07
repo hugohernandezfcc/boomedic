@@ -108,8 +108,8 @@
 													 $('.chatbut').prop('disabled', true);
 				                             		 get(data);
 				                          }else{
- 									window.location.href = "{{ url('drAppointments/redirecting/index') }}";
- 								}
+				 									location.reload();
+				 								}
 
 				                             }
 				                         });                            	 			
