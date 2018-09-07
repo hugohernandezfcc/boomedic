@@ -155,6 +155,7 @@ class doctor extends Controller
                 'username2' => $user->username,
                 'email2'         => $user->email,
                 'name2'          => $user->name,
+                'photo2'         => $user->profile_photo,
 
                 'gender'        => $user->gender,
                 'occupation'    => $user->occupation,
@@ -197,11 +198,36 @@ class doctor extends Controller
 
         public function saveAssistant (Request $request)
       {     
-        $user = User::find(Auth::id());
-           
-        if($request->idassist != null){
+        $user2 = User::find(Auth::id());
+        $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+            Session(['utype' => 'assistant']); 
+              if(session()->get('asdr') == null){
+                  Session(['asdr' => $assistant[0]->iddr]);
+                 }
+             $user = User::find(session()->get('asdr'));
 
-         
+                             /*Validate doctor online*/
+                               $donli = array();
+                               foreach($assistant as $as){
+                                 $doconline = User::find($as->iddr);
+                                         if($doconline->isOnline() > 0){
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '1']);
+                                       }else{
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '0']);
+                                       }
+                                 }
+                               /*Validate doctor online*/  
+         }else{  
+                $user = User::find(Auth::id());
+                $assistant = null;
+                $donli = null;
+          }
+        if($request->idassist != null){        
           $assist = new assistant;
           $assist->user_doctor = $user->id;
           $assist->user_assist = $request->idassist;
@@ -243,12 +269,22 @@ class doctor extends Controller
             'error' => 'error'
             );
         } 
-             return redirect('doctor/doctor/' . Auth::id() )->with($notification);
+             return redirect('doctor/doctor/' . $user->id)->with($notification);
               
         } 
 
          public function verify($id)
            {
+             $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+             $user = User::find(session()->get('asdr'));
+          }else{
+              $user = User::find(Auth::id());
+          }
              $assistant = assistant::where('id', $id)->first();
                 if (!$assistant){
              $notification = array(
@@ -257,7 +293,7 @@ class doctor extends Controller
                         'error' => 'error'
                         );
                       
-                    return  redirect('user/profile/' . Auth::id() )->with($notification);
+                    return  redirect('user/profile/' . $user->id)->with($notification);
                 }
                 else{
 
@@ -280,21 +316,40 @@ class doctor extends Controller
                                             $message->subject('El asistente que agregaste ha confirmado exitosamente');
                                             $message->to('contacto@doitcloud.consulting');
                                         });
-                return redirect('user/profile/' . Auth::id())->with($notification);
+                return redirect('user/profile/' . $user->id)->with($notification);
               }
             }
         }
 
     public function deleteAssistant($id){
+         $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+             $user = User::find(session()->get('asdr'));
+          }else{
+              $user = User::find(Auth::id());
+          }
             DB::delete('delete from assistant where id = ?',[$id]) ;    
-            return redirect('doctor/doctor/' . Auth::id() );
+            return redirect('doctor/doctor/' . $user->id);
     }       
 
     public function redirecting($page)
-    {
+    {      $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+             $user = User::find(session()->get('asdr'));
+          }else{
+              $user = User::find(Auth::id());
+          }
         switch ($page) {
             case 'show':
-                return redirect('doctor/doctor/' . Auth::id() ); //show
+                return redirect('doctor/doctor/' . $user->id); //show
                 break;
             
             default:
@@ -306,24 +361,51 @@ class doctor extends Controller
     /**
      * Show the form for editing the specified resource.
      *questions_clinic_history
-id
-code_translation
-question
-text_help
+        id
+        code_translation
+        question
+        text_help
 
-answers_clinic_history
-id
-code_translation
-answer
-text_help
-question
+        answers_clinic_history
+        id
+        code_translation
+        answer
+        text_help
+        question
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($status){
+        $user2 = User::find(Auth::id());
+        $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+            Session(['utype' => 'assistant']); 
+              if(session()->get('asdr') == null){
+                  Session(['asdr' => $assistant[0]->iddr]);
+                 }
+             $user = User::find(session()->get('asdr'));
 
-        $users = DB::table('users')->where('id', Auth::id() )->get();
-        $professionali = DB::table('professional_information')->where('user', Auth::id() )->get();
+                             /*Validate doctor online*/
+                               $donli = array();
+                               foreach($assistant as $as){
+                                 $doconline = User::find($as->iddr);
+                                         if($doconline->isOnline() > 0){
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '1']);
+                                       }else{
+                                            array_push($donli, ['id' => $as->iddr, 'online' => '0']);
+                                       }
+                                 }
+                               /*Validate doctor online*/  
+         }else{  
+                $user = User::find(Auth::id());
+                $assistant = null;
+                $donli = null;
+          }
+        $professionali = DB::table('professional_information')->where('user', $user->id )->get();
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
@@ -332,26 +414,32 @@ question
 
                 /** SYSTEM INFORMATION */
 
-                'userId'        => Auth::id(),
+                'userId'        => $user->id,
                 'status'        => $status,
 
                 /** INFORMATION USER */
 
-                'firstname'     => $users[0]->firstname,
-                'lastname'      => $users[0]->lastname,
-                'email'         => $users[0]->email,
-                'username'      => $users[0]->username,
-                'name'      => $users[0]->name,
-                'age'           => $users[0]->age,
-                'photo'         => $users[0]->profile_photo,
-                'date'         => $users[0]->created_at,
+                'firstname'     => $user2->firstname,
+                'lastname'      => $user2->lastname,
+                'email'         => $user2->email,
+                'username'      => $user2->username,
+                'name'          => $user2->name,
+                'age'           => $user->age,
+                'photo'         => $user2->profile_photo,
+                'date'          => $user->created_at,
                 /** PERSONAL INFORMATION */
+                'firstname2'     => $user->firstname,
+                'lastname2'      => $user->lastname,
+                'email2'         => $user->email,
+                'username2'      => $user->username,
+                'name2'          => $user->name,
+                'photo2'         => $user->profile_photo,
 
-                'gender'        => $users[0]->gender,
-                'occupation'    => $users[0]->occupation,
-                'scholarship'   => $users[0]->scholarship,
-                'maritalstatus' => $users[0]->maritalstatus,
-                'mobile'        => $users[0]->mobile,
+                'gender'        => $user->gender,
+                'occupation'    => $user->occupation,
+                'scholarship'   => $user->scholarship,
+                'maritalstatus' => $user->maritalstatus,
+                'mobile'        => $user->mobile,
 
                 /** PROFESSIONAL INFORMATION  */
                 'professional_license'  =>  $professionali[0]->professional_license,
@@ -363,17 +451,19 @@ question
 
                 /** ADDRESS FISICAL USER  */
 
-                'country'       => (   empty($users[0]->country)        ) ? '' : $users[0]->country, 
-                'state'         => (   empty($users[0]->state)          ) ? '' : $users[0]->state, 
-                'delegation'    => (   empty($users[0]->delegation)     ) ? '' : $users[0]->delegation, 
-                'colony'        => (   empty($users[0]->colony)         ) ? '' : $users[0]->colony, 
-                'street'        => (   empty($users[0]->street)         ) ? '' : $users[0]->street, 
-                'streetnumber'  => (   empty($users[0]->streetnumber)   ) ? '' : $users[0]->streetnumber, 
-                'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
-                'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
+                'country'       => (   empty($user->country)        ) ? '' : $user->country, 
+                'state'         => (   empty($users->state)         ) ? '' : $user->state, 
+                'delegation'    => (   empty($user->delegation)     ) ? '' : $user->delegation, 
+                'colony'        => (   empty($user->colony)         ) ? '' : $user->colony, 
+                'street'        => (   empty($user->street)         ) ? '' : $user->street, 
+                'streetnumber'  => (   empty($user->streetnumber)   ) ? '' : $user->streetnumber, 
+                'interiornumber'=> (   empty($user->interiornumber) ) ? '' : $user->interiornumber, 
+                'postalcode'    => (   empty($user->postalcode)     ) ? '' : $user->postalcode,
                 'mode'          => 'doctor',
                 'labor'         => $labor,
-                'asso'          => $asso
+                'asso'          => $asso,
+                'as'            => $assistant,
+                'donli'         => $donli
 
             ]
         );
@@ -430,28 +520,22 @@ question
         $prof->save();
         $user->save();
         }
-            return view('profileDoctor', [
-
-                /** SYSTEM INFORMATION */
-
-                'userId'        => Auth::id(),
-                'name'      => $user->name,
-                'photo'         => $user->profile_photo,
-                'date'         => $user->created_at,
-                'mode'          => 'labor',
-                'asso'          => $asso,
-
-                /* DIRECTION LABOR PROFESSIONAL  */
-                'labor'         => $labor,
-
-            ]
-        );
+        return redirect('doctor/doctor/' . $user->id);
     }
 
         public function laborInformationNext(Request $request, $id)
     {
-        $user = user::find(Auth::id());
-        $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
+          $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+             $user = User::find(session()->get('asdr'));
+          }else{
+              $user = User::find(Auth::id());
+          }
+        $professionali = DB::table('professional_information')->where('user', $user->id)->get();
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
         $services = array();
@@ -496,51 +580,40 @@ question
         $laborInformation->save();
 
           $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
-            return view('profileDoctor', [
-
-                /** SYSTEM INFORMATION */
-
-                'userId'        => $user->id,
-                'name'          => $user->name,
-                'photo'         => $user->profile_photo,
-                'date'          => $user->created_at,
-                'mode'          => 'labor',
-
-                /* DIRECTION LABOR PROFESSIONAL  */
-                'labor'         => $labor
-            ]
-        );
+          return redirect('doctor/doctor/' . $user->id);
     }
 
     public function laborInformationView($id)
-    {
-        $user = user::find(Auth::id());
-        $professionali = DB::table('professional_information')->where('user', Auth::id())->get();
+    {    $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+             $user = User::find(session()->get('asdr'));
+          }else{
+              $user = User::find(Auth::id());
+          }
+        $professionali = DB::table('professional_information')->where('user', $user->id)->get();
         $bus = $professionali[0]->id;
         $prof = professional_information::find($bus);
 
 
           $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
-            return view('profileDoctor', [
-
-                /** SYSTEM INFORMATION */
-
-                'userId'        => $user->id,
-                'name'          => $user->name,
-                'photo'         => $user->profile_photo,
-                'date'          => $user->created_at,
-                'mode'          => 'viewlabor',
-
-                /* DIRECTION LABOR PROFESSIONAL  */
-                'labor'         => $labor
-            ]
-        );
+          return redirect('doctor/doctor/' . $user->id);
     }
 
     public function updateDoctor(Request $request, $id)
-    {
-
-        $user = User::find($id);
+    {    $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+             $user = User::find(session()->get('asdr'));
+          }else{
+              $user = User::find(Auth::id());
+          }
         $file = $request->file('file');
          $imagen = getimagesize($file);    //Sacamos la información
           $width = $imagen[0];              //Ancho
@@ -579,10 +652,16 @@ question
     }
 
     public function cropDoctor(Request $request, $id)
-    {
-       // $path = $request->photo->store('images', 's3');
-       // $path = $request->photo->store('images', 's3');
-        $user = User::find($id);
+    {     $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+             $user = User::find(session()->get('asdr'));
+          }else{
+              $user = User::find(Auth::id());
+          }
         $targ_w = $targ_h = 300;
         $jpeg_quality = 90;
 
@@ -628,23 +707,12 @@ question
         imagecopymerge($image, $mask, 0, 0, 0, 0, $newwidth,$newheight, 100);
         imagecolortransparent($image,$red);
         imagefill($image, 0, 0, $red);
-      /*  imagecopyresampled(
-            $image,
-            $image_z,
-            0, 0, 0, 0,
-            imagesx($image_z),
-            imagesy($image_z),
-            imagesx($image_z),
-            imagesy($image_z)
-            );*/
         ob_start();
         imagepng($image);
         $png_file = ob_get_contents();
         ob_end_clean();
         Storage::disk('s3')->put( $id.'-circle.png',  $png_file, 'public');
         //Imagen copia circular//
-
-
             return redirect('doctor/edit/complete' . $id );
         }
     }
@@ -658,19 +726,15 @@ question
      */
     public function destroy($id)
     {
-  $workboard = DB::table('workboard')->where('labInformation', $id)->get();
-  $appointments = DB::table('medical_appointments')->where('workplace', $id)->get();
- if(count($workboard) > 0){
-    DB::table('workboard')->where('labInformation', $id)->delete();   
- }
-  if(count($appointments) > 0){
-    DB::table('medical_appointments')->where('workplace', $id)->delete();   
- }
-    DB::delete('delete from labor_information where id = ?',[$id]) ;    
-
-    
-    // redirect
-    
-   return redirect('doctor/laborInformationView/'.Auth::id() );
+        $workboard = DB::table('workboard')->where('labInformation', $id)->get();
+        $appointments = DB::table('medical_appointments')->where('workplace', $id)->get();
+       if(count($workboard) > 0){
+          DB::table('workboard')->where('labInformation', $id)->delete();   
+       }
+        if(count($appointments) > 0){
+          DB::table('medical_appointments')->where('workplace', $id)->delete();   
+       }
+          DB::delete('delete from labor_information where id = ?',[$id]) ;    
+          return redirect('doctor/laborInformationView/'.Auth::id() );
     }
 }

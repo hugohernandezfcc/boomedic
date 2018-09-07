@@ -156,7 +156,7 @@
 	          	<div class="modal-header"><label for="recorte">Recorte de imagen:</label></div>
 	          	<div class="modal-body" >
 	                <div align="center">
-	                   	<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">
+	                   	<img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">
 	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
 		                   	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
@@ -184,11 +184,11 @@
 	    		<div class="row" align="center">
 
 		    		<div class="col-sm-4" align="center">
-						@if($photo == '')
+						@if($photo2 == '')
 		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
 					@php 
-					  $imagen = getimagesize($photo);    //Sacamos la información
+					  $imagen = getimagesize($photo2);    //Sacamos la información
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 
@@ -212,7 +212,7 @@
 			        }
 
 					@endphp
-						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+						<img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 		    			
 		    		</div>
@@ -238,7 +238,7 @@
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
+	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname2 }}">
 	                	</div>
 	              	</div>
 
@@ -246,21 +246,21 @@
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}">
+	                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname2 }}">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="email" class="col-sm-2 control-label">Correo electrónico</label>
 	                	<div class="col-sm-10">
-	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
+	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email2 }}">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="username" class="col-sm-2 control-label">Nombre de usuario</label>
 	                	<div class="col-sm-10">
-	                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}">
+	                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username2 }}">
 	                	</div>
 	              	</div>
 
@@ -1077,7 +1077,7 @@
 
     		$(document).ready(function(){
 				  $("#formDr").submit(function() {
-				    var x = "{{ $photo }}"; 
+				    var x = "{{ $photo2 }}"; 
 				      if (x == '') {
 				        $('#modalAlert').modal()	
 				        return false;
