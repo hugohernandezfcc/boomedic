@@ -144,10 +144,10 @@ class doctor extends Controller
 
                 'firstname'     => $user2->firstname,
                 'lastname'      => $user2->lastname,
-                'email'         => $user->email,
+                'email'         => $user2->email,
                 'username'      => $user2->username,
                 'name'          => $user2->name,
-                'age'           => $user2->age,
+                'age'           => $user->age,
                 'photo'         => $user2->profile_photo,
                 'date'          => $user2->created_at,
 
