@@ -1236,9 +1236,6 @@ $('#target').Jcrop({
 
     </script>
     @endif
-
-
-
 				    @if($mode == 'labor')
 				<div class="box" id="boxlabor">
 							  	<div class="box-header with-border">
@@ -1256,7 +1253,7 @@ $('#target').Jcrop({
 					   </div>
 					   </div>
 
-					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
+					<form action="/doctor/laborInformationNext/{{ $userId }}" method="post" class="form-horizontal" id="form1" style="display:none">
 		<div class="modal fade" id="modal-default1" style="display: none;">
           <div class="modal-dialog">
             <div class="modal-content">

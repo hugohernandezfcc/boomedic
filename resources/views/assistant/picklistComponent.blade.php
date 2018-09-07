@@ -66,6 +66,12 @@
  	<script type="text/javascript">
 
  	$(document).ready(function () {
+ 		 var url =  window.location.href;
+ 		 if(url.search(/doctor/laborInformationView/i)){
+ 		 		$("#mySelectd").prop('disabled', true);
+ 		 }else{
+ 		 	$("#mySelectd")..prop('disabled', false);
+ 		 }
  		 $("#mySelectd").val("{{ session()->get('asdr') }}");
  	 var dr = JSON.stringify(@php echo $as; @endphp);
 
