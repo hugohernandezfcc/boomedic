@@ -67,10 +67,10 @@
 
  	$(document).ready(function () {
  		 var url =  window.location.href;
- 		 if(url.search(/doctor/laborInformationView/i)){
+ 		 if(url.search('/doctor/laborInformationView')){
  		 		$("#mySelectd").prop('disabled', true);
  		 }else{
- 		 	$("#mySelectd")..prop('disabled', false);
+ 		 	$("#mySelectd").prop('disabled', false);
  		 }
  		 $("#mySelectd").val("{{ session()->get('asdr') }}");
  	 var dr = JSON.stringify(@php echo $as; @endphp);
