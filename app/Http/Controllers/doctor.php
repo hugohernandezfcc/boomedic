@@ -541,6 +541,8 @@ class doctor extends Controller
                 'asso'          => $asso,
                 /* DIRECTION LABOR PROFESSIONAL  */
                 'labor'         => $labor,
+                'as'            => $assistant,
+                'donli'         => $donli
             ]
         );
     }
@@ -611,7 +613,9 @@ class doctor extends Controller
                 'date'          => $user2->created_at,
                 'mode'          => 'labor',
                 /* DIRECTION LABOR PROFESSIONAL  */
-                'labor'         => $labor
+                'labor'         => $labor,
+                'as'            => $assistant,
+                'donli'         => $donli
             ]
         );
     }
@@ -643,7 +647,9 @@ class doctor extends Controller
                 'date'          => $user2->created_at,
                 'mode'          => 'viewlabor',
                 /* DIRECTION LABOR PROFESSIONAL  */
-                'labor'         => $labor
+                'labor'         => $labor,
+                'as'            => $assistant,
+                'donli'         => $donli
             ]
         );
     }
