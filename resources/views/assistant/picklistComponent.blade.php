@@ -117,6 +117,7 @@
 													 $('.textbody').prop('disabled', true);
 													 $('.chatbut').prop('disabled', true);
 				                             		 get(data);
+				                             		 repeatNot();
 				                          }else{
 				 									location.reload();
 				 								}
