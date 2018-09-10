@@ -396,7 +396,20 @@ class HomeController extends Controller
             //Function messages ajax master blade top-nav
         public function messages()
     {
-          $user = User::find(Auth::id());
+        $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+            Session(['utype' => 'assistant']); 
+              if(session()->get('asdr') == null){
+                  Session(['asdr' => $assistant[0]->iddr]);
+                 }
+             $user = User::find(session()->get('asdr'));
+         }else{  
+                $user = User::find(Auth::id());
+          }
           $array = array();
         //if is for messages
    $profInfo = DB::table('professional_information')
@@ -419,7 +432,7 @@ class HomeController extends Controller
             ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at', 'desc')
             ->get();
-
+        $messages = $messages->unique('by');
             foreach($search as $s){
                 foreach($messages as $mess){
                     if($s->conversation == $mess->conversation && $mess->viewed == false && $mess->by != $user->id){
