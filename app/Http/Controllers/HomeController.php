@@ -429,6 +429,7 @@ class HomeController extends Controller
          $messages = DB::table('items_conversations')
             ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
             ->join('users', 'items_conversations.by', '=', 'users.id')
+            ->where( 'items_conversations.created_at', '>', Carbon::now()->subDays(7))
             ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
             ->orderBy('items_conversations.created_at', 'desc')
             ->get();
