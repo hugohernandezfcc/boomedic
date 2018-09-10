@@ -1,5 +1,47 @@
  @if(session()->get('utype') == "doctor")
-
+      <style type="text/css">
+            .accordion-toggle {
+            position: relative;
+          }
+          .accordion-toggle::before,
+          .accordion-toggle::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: -18px;
+            width: 12px;
+            height: 4px;
+            margin-top: -2px;
+            background-color: #585858;
+            -webkit-transform-origin: 50% 50%;
+            -ms-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+            -webkit-transition: all 0.25s;
+            transition: all 0.25s;
+          }
+          .accordion-toggle::before {
+            -webkit-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+            opacity: 0;
+          }
+          .accordion-toggle.collapsed::before {
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+            opacity: 1;
+          }
+          .accordion-toggle.collapsed::after {
+            -webkit-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+          }
+          .accordion-font{
+            font-size: 12px !important;
+            color: black !important;
+          }
+      </style>
                           <aside class="control-sidebar control-sidebar-dark" style="overflow: hidden;">
                               <!-- Create the tabs -->
                               <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
@@ -32,76 +74,81 @@
                                 <!-- /.tab-pane -->
                                 <!-- Settings tab content -->
                                 <div class="tab-pane" id="control-sidebar-settings-tab">
-                                  <form method="post">
-                                    <h3 class="control-sidebar-heading">General Settings</h3>
+                                    <h3 class="control-sidebar-heading">Configuración de permisos</h3>
+                                 <div class="box box-solid">   
+                                  <div class="box-body">
+                                                <div class="box-group" id="accordion2">
+                                                  <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                                  <div class="panel box box-default" style="border-top-color: black;">
+                                                    <div class="box-header with-border">
+                                                      <h4 class="box-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseSOne" aria-expanded="true" class="accordion-font">
+                                                          Collapsible Group Item
+                                                        </a>
+                                                      </h4>
+                                                    </div>
+                                                    <div id="collapseSOne" class="panel-collapse collapse in" aria-expanded="true" style="">
+                                                      <div class="box-body">
 
-                                    <div class="form-group">
-                                      <label class="control-sidebar-subheading">
-                                        Report panel usage
-                                        <input type="checkbox" class="pull-right" checked="">
-                                      </label>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="panel box box-default" style="border-top-color: black;">
+                                                    <div class="box-header with-border">
+                                                      <h4 class="box-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseSTwo" class="collapsed accordion-font" aria-expanded="false">
+                                                          Collapsible Group Danger
+                                                        </a>
+                                                      </h4>
+                                                    </div>
+                                                    <div id="collapseSTwo" class="panel-collapse collapse" aria-expanded="false">
+                                                      <div class="box-body">
 
-                                      <p>
-                                        Some information about this general settings option
-                                      </p>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="panel box box-default" style="border-top-color: black;">
+                                                    <div class="box-header with-border">
+                                                      <h4 class="box-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseSThree" class="collapsed accordion-font" aria-expanded="false">
+                                                          Collapsible Group Success
+                                                        </a>
+                                                      </h4>
+                                                    </div>
+                                                    <div id="collapseSThree" class="panel-collapse collapse" aria-expanded="false">
+                                                      <div class="box-body">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
                                     </div>
-                                    <!-- /.form-group -->
-
-                                    <div class="form-group">
-                                      <label class="control-sidebar-subheading">
-                                        Allow mail redirect
-                                        <input type="checkbox" class="pull-right" checked="">
-                                      </label>
-
-                                      <p>
-                                        Other sets of options are available
-                                      </p>
-                                    </div>
-                                    <!-- /.form-group -->
-
-                                    <div class="form-group">
-                                      <label class="control-sidebar-subheading">
-                                        Expose author name in posts
-                                        <input type="checkbox" class="pull-right" checked="">
-                                      </label>
-
-                                      <p>
-                                        Allow the user to show his name in blog posts
-                                      </p>
-                                    </div>
-                                    <!-- /.form-group -->
-
-                                    <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-                                    <div class="form-group">
-                                      <label class="control-sidebar-subheading">
-                                        Show me as online
-                                        <input type="checkbox" class="pull-right" checked="">
-                                      </label>
-                                    </div>
-                                    <!-- /.form-group -->
-
-                                    <div class="form-group">
-                                      <label class="control-sidebar-subheading">
-                                        Turn off notifications
-                                        <input type="checkbox" class="pull-right">
-                                      </label>
-                                    </div>
-                                    <!-- /.form-group -->
-
-                                    <div class="form-group">
-                                      <label class="control-sidebar-subheading">
-                                        Delete chat history
-                                        <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                                      </label>
-                                    </div>
-                                    <!-- /.form-group -->
-                                  </form>
+                                  </div>         
                                 </div>
                                 <!-- /.tab-pane -->
                               </div>
                             </aside>
                             <div id="tool"></div>
-
-
+      <script type="text/javascript">
+      $(document).ready(function(){
+              $.ajax({
+                 type: "GET",                 
+                 url: "{{ url('doctor/settingAss') }}",  
+                 success: function(result){ 
+                  console.log(result);
+                      if(result.length > 0){
+                          $('#accordion2').html('');
+                          for(var z= 0; z < result.length; z++){
+                            if(z == 0){
+                          $('#accordion2').append('<div class="panel box box-default" style="border-top-color: black;"><div class="box-header with-border"><h4 class="box-title"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'" aria-expanded="true" class="accordion-font">'+ result[z]['name'] +'</a></h4></div><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="box-body"></div></div></div>');
+                          }else{
+                          $('#accordion2').append('<div class="panel box box-default" style="border-top-color: black;"><div class="box-header with-border"><h4 class="box-title"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'" aria-expanded="true" class="collapsed accordion-font">'+ result[z]['name'] +'</a></h4></div><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse" aria-expanded="true" style=""><div class="box-body"></div></div></div>');
+                          }
+                        }
+                      }else{
+                        $('#accordion2').html('');
+                      }
+                  }
+                });
+       })
+      </script>
  @endif

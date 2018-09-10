@@ -852,4 +852,16 @@ class doctor extends Controller
           DB::delete('delete from labor_information where id = ?',[$id]) ;    
           return redirect('doctor/laborInformationView/'.$user->id);
     }
+
+    public function settingAss()
+    {
+      $user = User::find(Auth::id());
+       $assistants = DB::table('assistant')
+             ->join('users', 'assistant.user_assist', '=', 'users.id')
+             ->where('user_doctor', $user->id)
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as idass')
+             ->get();
+
+        return response()->json($assistants);
+    }
 }
