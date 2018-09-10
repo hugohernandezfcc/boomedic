@@ -41,6 +41,9 @@
             font-size: 12px !important;
             color: black !important;
           }
+          .control-sidebar-dark {
+            color: #333;
+          }
       </style>
                           <aside class="control-sidebar control-sidebar-dark" style="overflow: hidden;">
                               <!-- Create the tabs -->
@@ -75,53 +78,11 @@
                                 <!-- Settings tab content -->
                                 <div class="tab-pane" id="control-sidebar-settings-tab">
                                     <h3 class="control-sidebar-heading">Configuración de permisos</h3>
-                                 <div class="box box-solid">   
-                                  <div class="box-body">
+                                 <div class="box box-solid"> 
                                                 <div class="box-group" id="accordion2">
-                                                  <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                                  <div class="panel box box-default" style="border-top-color: black;">
-                                                    <div class="box-header with-border">
-                                                      <h4 class="box-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseSOne" aria-expanded="true" class="accordion-font">
-                                                          Collapsible Group Item
-                                                        </a>
-                                                      </h4>
-                                                    </div>
-                                                    <div id="collapseSOne" class="panel-collapse collapse in" aria-expanded="true" style="">
-                                                      <div class="box-body">
 
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                  <div class="panel box box-default" style="border-top-color: black;">
-                                                    <div class="box-header with-border">
-                                                      <h4 class="box-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseSTwo" class="collapsed accordion-font" aria-expanded="false">
-                                                          Collapsible Group Danger
-                                                        </a>
-                                                      </h4>
-                                                    </div>
-                                                    <div id="collapseSTwo" class="panel-collapse collapse" aria-expanded="false">
-                                                      <div class="box-body">
-
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                  <div class="panel box box-default" style="border-top-color: black;">
-                                                    <div class="box-header with-border">
-                                                      <h4 class="box-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseSThree" class="collapsed accordion-font" aria-expanded="false">
-                                                          Collapsible Group Success
-                                                        </a>
-                                                      </h4>
-                                                    </div>
-                                                    <div id="collapseSThree" class="panel-collapse collapse" aria-expanded="false">
-                                                      <div class="box-body">
-                                                      </div>
-                                                    </div>
-                                                  </div>
                                                 </div>
-                                    </div>
+                                   
                                   </div>         
                                 </div>
                                 <!-- /.tab-pane -->
@@ -139,7 +100,7 @@
                           $('#accordion2').html('');
                           for(var z= 0; z < result.length; z++){
                             if(z == 0){
-                          $('#accordion2').append('<div class="panel box box-default" style="border-top-color: black;"><div class="box-header with-border"><h4 class="box-title"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'" aria-expanded="true" class="accordion-font">'+ result[z]['name'] +'</a></h4></div><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="box-body"></div></div></div>');
+                          $('#accordion2').append('<div class="panel box" style="border-top-color: black;"><div class="box-header with-border"><h4 class="box-title"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'" aria-expanded="true" class="accordion-font">'+ result[z]['name'] +'</a></h4></div><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permiso</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody><tr><td>Perfil</td><td><input type="checkbox" value=""></td><td><input type="checkbox" value=""></td></tr><tr><td>Agenda</td><td><input type="checkbox" value=""></td><td><input type="checkbox" value=""></td></tr><tr><td>Horarios</td><td><input type="checkbox" value=""></td><td><input type="checkbox" value=""></td></tr></tbody></table></div></div></div></div>');
                           }else{
                           $('#accordion2').append('<div class="panel box box-default" style="border-top-color: black;"><div class="box-header with-border"><h4 class="box-title"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'" aria-expanded="true" class="collapsed accordion-font">'+ result[z]['name'] +'</a></h4></div><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse" aria-expanded="true" style=""><div class="box-body"></div></div></div>');
                           }
