@@ -37,12 +37,12 @@
             -ms-transform: rotate(-90deg);
             transform: rotate(-90deg);
           }
-          .accordion-font{
-            font-size: 12px !important;
-            color: black !important;
-          }
           .control-sidebar-dark {
             color: #333;
+          }
+          .tit{
+            border-top-color: black;
+            font-size: 13px !important;
           }
       </style>
                           <aside class="control-sidebar control-sidebar-dark" style="overflow: hidden;">
@@ -100,7 +100,7 @@
                           $('#accordion2').html('');
                           for(var z= 0; z < result.length; z++){
                             if(z == 0){
-                          $('#accordion2').append('<div class="panel box" style="border-top-color: black;"><div class="box-header with-border"><h4 class="box-title"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'" aria-expanded="true" class="accordion-font">'+ result[z]['name'] +'</a></h4></div><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permiso</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody><tr><td>Perfil</td><td><input type="checkbox" value=""></td><td><input type="checkbox" value=""></td></tr><tr><td>Agenda</td><td><input type="checkbox" value=""></td><td><input type="checkbox" value=""></td></tr><tr><td>Horarios</td><td><input type="checkbox" value=""></td><td><input type="checkbox" value=""></td></tr></tbody></table></div></div></div></div>');
+                          $('#accordion2').append('<div class="panel box tit"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'" aria-expanded="true"><div class="box-header with-border"><h5 class="box-title tit">'+ result[z]['name'] +'</h5></div></a><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse in" aria-expanded="true" style=""><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permiso</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody><tr><td>Perfil</td><td><input type="checkbox" value=""></td><td><input type="checkbox" value=""></td></tr><tr><td>Agenda</td><td><input type="checkbox" value=""></td><td><input type="checkbox" value=""></td></tr><tr><td>Horarios</td><td><input type="checkbox" value=""></td><td><input type="checkbox" value=""></td></tr></tbody></table></div></div></div></div>');
                           }else{
                           $('#accordion2').append('<div class="panel box box-default" style="border-top-color: black;"><div class="box-header with-border"><h4 class="box-title"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'" aria-expanded="true" class="collapsed accordion-font">'+ result[z]['name'] +'</a></h4></div><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse" aria-expanded="true" style=""><div class="box-body"></div></div></div>');
                           }
