@@ -655,10 +655,12 @@ span.round-tab:hover {
 
                           $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
                             }
+                          }else{
+                               $('#newMess').html('<li><div class="col-sm-6" align="center"><img src="{{ asset(config("adminlte.empty-message")) }}" height="60" width="60"></div><div class="col-sm-6 text-muted" align="center"><h5>No tienes mensajes nuevos</h5><br></div></li>');
                           }
-                            {
+                            
                              setTimeout(function(){ repeatNot(); },120000);
-                            }
+                            
                       },
                         error: function (request, status, error) {
                             //window.location.href = "{{ url('') }}";
