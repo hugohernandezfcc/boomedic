@@ -1319,12 +1319,22 @@ function prevTab(elem) {
 
             var input = document.getElementById('address');
               new google.maps.places.Autocomplete(input);
-            var markerUser = "{{ asset('markerUser2.png') }}";
+            //var markerUser = "{{ asset('markerUser2.png') }}";
+            var image = {
+                url: "{{ asset('markerUser.png') }}",
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(30, 42),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(0, 32)
+              };
+
             //Marker
               markerP = new google.maps.Marker({
               draggable: true,
               position: new google.maps.LatLng(pos),
-              icon: markerUser,
+              icon: image,
               map: map
             }); 
                       google.maps.event.addListener(map, 'dragend', function(e){
