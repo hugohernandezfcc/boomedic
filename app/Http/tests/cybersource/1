@@ -1,5 +1,0 @@
-<html>
-<form >  
-<button   Onclick="ExcelRptCnsUsr('Rpts/RptUsuarios.php')">Excel</button>
-</form>
-</html>
