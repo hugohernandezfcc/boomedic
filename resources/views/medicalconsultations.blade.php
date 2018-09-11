@@ -1319,7 +1319,7 @@ function prevTab(elem) {
 
             var input = document.getElementById('address');
               new google.maps.places.Autocomplete(input);
-            var markerUser = "{{ asset('markerUse2.png') }}";
+            var markerUser = "{{ asset('markerUser2.png') }}";
             //Marker
               markerP = new google.maps.Marker({
               draggable: true,
