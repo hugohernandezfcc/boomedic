@@ -1321,7 +1321,7 @@ function prevTab(elem) {
               new google.maps.places.Autocomplete(input);
             //var markerUser = "{{ asset('markerUser2.png') }}";
             var image = {
-                url: "{{ asset('markerUser2.png') }}",
+                url: "{{ asset('test17.png') }}",
                 // This marker is 20 pixels wide by 32 pixels high.
                 size: new google.maps.Size(30, 42),
                 // The origin for this image is (0, 0).
