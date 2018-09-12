@@ -1361,11 +1361,14 @@ function prevTab(elem) {
                         console.log(this.center.lng());
                         var complat = markerP.getPosition().lat() + 0.03;
                         var complng = markerP.getPosition().lng() + 0.03;
+                        var complat2 = markerP.getPosition().lat() - 0.03;
+                        var complng2 = markerP.getPosition().lng() - 0.03;
                         console.log('marker'+ markerP.getPosition().lat() +' : ' + complat);
+                        if(this.center.lat() > complat || this.center.lng() > comlng){
                         $('#dragmap').fadeIn();
                         var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                         $('#dragbutton').prop('data-lng',latlng);
-
+                      }
                       });
 
                         $('#dragbutton').click(function() {
