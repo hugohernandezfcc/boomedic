@@ -1358,7 +1358,7 @@ function prevTab(elem) {
                       google.maps.event.addListener(map, 'dragend', function(e){
                         console.log(this.center.lat());
                         console.log(this.center.lng());
-                        $('#dragmap'.show();
+                        $('#dragmap').show();
                         var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                         $('#dragbutton').prop('data-lng',latlng);
 
