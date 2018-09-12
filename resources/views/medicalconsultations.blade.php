@@ -1357,25 +1357,25 @@ function prevTab(elem) {
             }); 
                     //Here function dragend map in marker//
                       google.maps.event.addListener(map, 'dragend', function(e){
-                        console.log(this.center.lat());
-                        console.log(this.center.lng());
+                        //console.log(this.center.lat());
+                        //console.log(this.center.lng());
                         if("@php echo $agent->isMobile(); @endphp"){
-                        var complat = markerP.getPosition().lat() + 0.015;
-                        var complng = markerP.getPosition().lng() + 0.015;
-                        var complat2 = markerP.getPosition().lat() - 0.015;
-                        var complng2 = markerP.getPosition().lng() - 0.015;
+                            var complat = markerP.getPosition().lat() + 0.015;
+                            var complng = markerP.getPosition().lng() + 0.015;
+                            var complat2 = markerP.getPosition().lat() - 0.015;
+                            var complng2 = markerP.getPosition().lng() - 0.015;
                         }else{
-                        var complat = markerP.getPosition().lat() + 0.03;
-                        var complng = markerP.getPosition().lng() + 0.04;
-                        var complat2 = markerP.getPosition().lat() - 0.03;
-                        var complng2 = markerP.getPosition().lng() - 0.04;  
+                            var complat = markerP.getPosition().lat() + 0.03;
+                            var complng = markerP.getPosition().lng() + 0.04;
+                            var complat2 = markerP.getPosition().lat() - 0.03;
+                            var complng2 = markerP.getPosition().lng() - 0.04;  
                         }
-                        console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
+                        //console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
                       if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
-                        $('#dragmap').fadeIn();
-                        var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
-                        $('#dragbutton').prop('data-lng',latlng);
-                      }
+                          $('#dragmap').fadeIn();
+                          var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
+                          $('#dragbutton').prop('data-lng',latlng);
+                        }
                       });
 
                         $('#dragbutton').click(function() {
