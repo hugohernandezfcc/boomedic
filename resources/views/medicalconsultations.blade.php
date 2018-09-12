@@ -1393,10 +1393,10 @@ function prevTab(elem) {
                         });*/
 
             if("@php echo $agent->isMobile(); @endphp"){
-            var opt = { minZoom: 2, maxZoom: 20, zoomControl: false};
+            var opt = { minZoom: 6, maxZoom: 20, zoomControl: false};
              map.setOptions(opt);
            }else{
-           var opt = { minZoom: 2, maxZoom: 20, zoomControl: false };
+           var opt = { minZoom: 6, maxZoom: 20, zoomControl: false };
              map.setOptions(opt);
            }
             //Evento to open infowindow
