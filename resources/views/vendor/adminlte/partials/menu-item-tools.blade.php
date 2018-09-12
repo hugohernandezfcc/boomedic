@@ -99,11 +99,8 @@
                       if(result.length > 0){
                           $('#accordion2').html('');
                           for(var z= 0; z < result.length; z++){
-                            if(z == 0){
-                          $('#accordion2').append('<div class="panel box tit"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'" aria-expanded="true"><div class="box-header with-border"><h5 class="box-title tit">'+ result[z]['name'] +'</h5></div></a><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse in" aria-expanded="true"><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permisos</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody><tr><td>Perfil</td><td><input type="checkbox" value="" checked></td><td><input type="checkbox" value=""></td></tr><tr><td>Agenda</td><td><input type="checkbox" value="" checked></td><td><input type="checkbox" value=""></td></tr><tr><td>Horarios</td><td><input type="checkbox" value="" checked></td><td><input type="checkbox" value=""></td></tr></tbody></table></div></div></div></div>');
-                          }else{
                           $('#accordion2').append('<div class="panel box tit"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'"><div class="box-header with-border"><h5 class="box-title tit">'+ result[z]['name'] +'</h5></div></a><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse"><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permisos</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody><tr><td>Perfil</td><td><input type="checkbox" value="" checked></td><td><input type="checkbox" value=""></td></tr><tr><td>Agenda</td><td><input type="checkbox" value="" checked></td><td><input type="checkbox" value=""></td></tr><tr><td>Horarios</td><td><input type="checkbox" value="" checked></td><td><input type="checkbox" value=""></td></tr></tbody></table></div></div></div></div>');
-                          }
+                        
                         }
                       }else{
                         $('#accordion2').html('');
