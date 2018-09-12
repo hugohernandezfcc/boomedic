@@ -1450,7 +1450,9 @@ function prevTab(elem) {
       //Filter geocode Address
         function geocodeAddress(geocoder, resultsMap, markerP) {
         var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
+        geocoder.geocode({'address': address, componentRestrictions: {
+            country: 'MX'
+          }},function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
             markerP.setPosition(results[0].geometry.location);
