@@ -1332,7 +1332,8 @@ function prevTab(elem) {
               scaleControl: false,
               streetViewControl: false,
               rotateControl: false,
-              fullscreenControl: false
+              fullscreenControl: false,
+              componentRestrictions: {country: 'mx'}
             });
 
             var input = document.getElementById('address');
