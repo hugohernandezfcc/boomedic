@@ -1360,10 +1360,10 @@ function prevTab(elem) {
                         console.log(this.center.lat());
                         console.log(this.center.lng());
                         if("@php echo $agent->isMobile(); @endphp"){
-                        var complat = markerP.getPosition().lat() + 0.02;
-                        var complng = markerP.getPosition().lng() + 0.02;
-                        var complat2 = markerP.getPosition().lat() - 0.02;
-                        var complng2 = markerP.getPosition().lng() - 0.02;
+                        var complat = markerP.getPosition().lat() + 0.015;
+                        var complng = markerP.getPosition().lng() + 0.015;
+                        var complat2 = markerP.getPosition().lat() - 0.015;
+                        var complng2 = markerP.getPosition().lng() - 0.015;
                         }else{
                         var complat = markerP.getPosition().lat() + 0.03;
                         var complng = markerP.getPosition().lng() + 0.04;
