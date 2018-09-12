@@ -30,6 +30,21 @@
         font-size: 90%;
         line-height: 15%;
       }
+      .rango{ 
+        position: absolute;
+        width: 90%;
+        bottom: 90%;
+        right: 10%;
+        padding-top: 0.7%;
+        padding-bottom: 0.7%;
+        padding-right: 0.7%;
+        padding-left: 0.7%;
+        /*background-color: rgba(255,255,255,0.7);*/
+        z-index: 100;
+        text-align: center;
+        font-size: 90%;
+        line-height: 15%;
+      }
       #rangothree{ 
         position: absolute !important;
         bottom: 4% !important;
@@ -591,7 +606,9 @@
             </div>
     </div>
 </div>
-
+    <div class="rango" id="dragmap" style="display: none;">
+        <a class="btn btn-secondary" data-lat="" data-lng="" id="dragbutton">Buscar en esta zona</a>
+    </div> 
   </div> 
 
 
@@ -1337,13 +1354,21 @@ function prevTab(elem) {
               icon: pinIcon,
               map: map
             }); 
+                    //Here function dragend map in marker//
                       google.maps.event.addListener(map, 'dragend', function(e){
                         console.log(this.center.lat());
                         console.log(this.center.lng());
+                        $('#dragmap'.show();
                         var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
-                        markerP.setPosition(latlng);
-                        start();
+                        $('#dragbutton').prop('data-lng',latlng);
+
                       });
+
+                        $('#dragbutton').click(function() {
+                        var look = $('#dragbutton').prop('data-lng');  
+                        markerP.setPosition(look);
+                        start();
+                        });
 
                      /*  map.addListener('center_changed', function(event) {
                           console.log(this);
