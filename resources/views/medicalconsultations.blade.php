@@ -1209,7 +1209,7 @@ function prevTab(elem) {
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
-        $('#dragmap').hide();
+        $('#dragmap').fadeOut(); 
         $('#modal').modal('hide');
         infoWindow = new google.maps.InfoWindow();
         //Current position
@@ -1367,7 +1367,7 @@ function prevTab(elem) {
 
                         $('#dragbutton').click(function() {
                         var look = $('#dragbutton').prop('data-lng'); 
-                         $('#dragmap').hide(); 
+                         $('#dragmap').fadeOut(); 
                         markerP.setPosition(look);
                         start();
                         });
