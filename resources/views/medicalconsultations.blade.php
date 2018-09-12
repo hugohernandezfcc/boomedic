@@ -1358,32 +1358,8 @@ function prevTab(elem) {
               icon: pinIcon,
               map: map
             }); 
-                   // Bounds México
-                   var strictBounds = new google.maps.LatLngBounds(
-                   new google.maps.LatLng(33.1613, -118.4766), new google.maps.LatLng(14.3770, -84.8145) 
-                   );
-
-
                     //Here function dragend map in marker//
                       google.maps.event.addListener(map, 'dragend', function(e){
-                              if (strictBounds.contains(map.getCenter())) return;
-                                
-                                  // We're out of bounds - Move the map back within the bounds
-                                
-                                  var c = map.getCenter(),
-                                   x = c.lng(),
-                                   y = c.lat(),
-                                   maxX = strictBounds.getNorthEast().lng(),
-                                   maxY = strictBounds.getNorthEast().lat(),
-                                   minX = strictBounds.getSouthWest().lng(),
-                                   minY = strictBounds.getSouthWest().lat();
-                                
-                                  if (x < minX) x = minX;
-                                  if (x > maxX) x = maxX;
-                                  if (y < minY) y = minY;
-                                  if (y > maxY) y = maxY;
-                                
-                                  map.setCenter(new google.maps.LatLng(y, x));
                         //console.log(this.center.lat());
                         //console.log(this.center.lng());
                         if("@php echo $agent->isMobile(); @endphp"){
@@ -1417,10 +1393,10 @@ function prevTab(elem) {
                         });*/
 
             if("@php echo $agent->isMobile(); @endphp"){
-            var opt = { minZoom: 6, maxZoom: 20, zoomControl: false};
+            var opt = { minZoom: 2, maxZoom: 20, zoomControl: false};
              map.setOptions(opt);
            }else{
-           var opt = { minZoom: 6, maxZoom: 20, zoomControl: false };
+           var opt = { minZoom: 2, maxZoom: 20, zoomControl: false };
              map.setOptions(opt);
            }
             //Evento to open infowindow
