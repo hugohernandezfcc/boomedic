@@ -1359,7 +1359,9 @@ function prevTab(elem) {
                       google.maps.event.addListener(map, 'dragend', function(e){
                         console.log(this.center.lat());
                         console.log(this.center.lng());
-                        console.log('marker'+ markerP.getPosition());
+                        var complat = markerP.getPosition().lat() + 0.03;
+                        var complng = markerP.getPosition().lng() + 0.03;
+                        console.log('marker'+ markerP.getPosition().lat() +' : ' + complat);
                         $('#dragmap').fadeIn();
                         var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                         $('#dragbutton').prop('data-lng',latlng);
