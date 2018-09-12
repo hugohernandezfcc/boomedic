@@ -26,3 +26,4 @@ class PaymentMethod extends Model
 	  return $this->belongsTo('App\User');
 	}
 }
+licencias
