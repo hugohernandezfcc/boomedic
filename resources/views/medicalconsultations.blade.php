@@ -1321,12 +1321,20 @@ function prevTab(elem) {
               new google.maps.places.Autocomplete(input);
             var markerUser = "{{ asset('finish.png') }}";
            
+            var pinIcon = new google.maps.MarkerImage(
+                  "{{ asset('finish.png') }}",
+                  null, /* size is determined at runtime */
+                  null, /* origin is 0,0 */
+                  null, /* anchor is bottom center of the scaled image */
+                  new google.maps.Size(42, 68)
+              ); 
+           
 
             //Marker
               markerP = new google.maps.Marker({
               draggable: true,
               position: new google.maps.LatLng(pos),
-              icon: markerUser,
+              icon: pinIcon,
               map: map
             }); 
                       google.maps.event.addListener(map, 'dragend', function(e){
