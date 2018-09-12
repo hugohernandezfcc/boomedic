@@ -1457,7 +1457,7 @@ function prevTab(elem) {
             resultsMap.setCenter(results[0].geometry.location);
             markerP.setPosition(results[0].geometry.location);
           } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+            alert('Busqueda no es posible, por siguiente error: ' + status);
           }
         });
       }
