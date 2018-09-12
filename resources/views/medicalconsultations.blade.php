@@ -1332,8 +1332,7 @@ function prevTab(elem) {
               scaleControl: false,
               streetViewControl: false,
               rotateControl: false,
-              fullscreenControl: false,
-              componentRestrictions: {country: 'mx'}
+              fullscreenControl: false             
             });
 
             var input = document.getElementById('address');
@@ -1393,10 +1392,10 @@ function prevTab(elem) {
                         });*/
 
             if("@php echo $agent->isMobile(); @endphp"){
-            var opt = { minZoom: 7, maxZoom: 20, zoomControl: false};
+            var opt = { minZoom: 8, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
              map.setOptions(opt);
            }else{
-           var opt = { minZoom: 7, maxZoom: 20, zoomControl: false };
+           var opt = { minZoom: 8, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
              map.setOptions(opt);
            }
             //Evento to open infowindow
