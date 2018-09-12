@@ -1359,11 +1359,11 @@ function prevTab(elem) {
                       google.maps.event.addListener(map, 'dragend', function(e){
                         console.log(this.center.lat());
                         console.log(this.center.lng());
-                        var complat = markerP.getPosition().lat() + 0.03;
-                        var complng = markerP.getPosition().lng() + 0.03;
-                        var complat2 = markerP.getPosition().lat() - 0.03;
-                        var complng2 = markerP.getPosition().lng() - 0.03;
-                        console.log('marker'+ markerP.getPosition().lat() +' : ' + complat);
+                        var complat = markerP.getPosition().lat() + 0.02;
+                        var complng = markerP.getPosition().lng() + 0.02;
+                        var complat2 = markerP.getPosition().lat() - 0.02;
+                        var complng2 = markerP.getPosition().lng() - 0.02;
+                        console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
                       if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
                         $('#dragmap').fadeIn();
                         var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
