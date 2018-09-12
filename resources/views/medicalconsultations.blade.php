@@ -607,7 +607,7 @@
     </div>
 </div>
     <div class="rango" id="dragmap" style="display: none;">
-        <a class="btn btn-secondary" data-lat="" data-lng="" id="dragbutton">Buscar en esta zona</a>
+        <a class="btn btn-secondary" data-lng="" id="dragbutton">Buscar en esta zona</a>
     </div> 
   </div> 
 
@@ -1209,6 +1209,7 @@ function prevTab(elem) {
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
+        $('#dragmap').hide();
         $('#modal').modal('hide');
         infoWindow = new google.maps.InfoWindow();
         //Current position
@@ -1365,7 +1366,8 @@ function prevTab(elem) {
                       });
 
                         $('#dragbutton').click(function() {
-                        var look = $('#dragbutton').prop('data-lng');  
+                        var look = $('#dragbutton').prop('data-lng'); 
+                         $('#dragmap').hide(); 
                         markerP.setPosition(look);
                         start();
                         });
