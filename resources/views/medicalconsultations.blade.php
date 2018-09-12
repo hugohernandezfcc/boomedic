@@ -1337,7 +1337,9 @@ function prevTab(elem) {
             });
 
             var input = document.getElementById('address');
-              new google.maps.places.Autocomplete(input);
+             var autocomplete = new google.maps.places.Autocomplete(input);
+               autocomplete.setComponentRestrictions(
+            {'country': ['mx']});
             var markerUser = "{{ asset('finish.png') }}";
            
             var pinIcon = new google.maps.MarkerImage(
