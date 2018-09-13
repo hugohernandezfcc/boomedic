@@ -1393,6 +1393,7 @@ function prevTab(elem) {
                                   if (x > maxX) x = maxX;
                                   if (y < minY) y = minY;
                                   if (y > maxY) y = maxY;
+                                  map.setCenter(new google.maps.LatLng(y, x)); 
                                               }
                                             }
 
