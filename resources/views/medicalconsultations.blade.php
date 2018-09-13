@@ -1389,7 +1389,7 @@ function prevTab(elem) {
                         }else{
                               map.setCenter(new google.maps.LatLng(pos));
                         }
-                                            }
+                                    
 
                       });
 
