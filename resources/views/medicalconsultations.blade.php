@@ -1358,12 +1358,10 @@ function prevTab(elem) {
               map: map
             }); 
               //Bound México
-
             var strictBounds = new google.maps.LatLngBounds(new google.maps.LatLng(14.3895,-118.6523),new google.maps.LatLng(32.718653,-86.5887));
                     //Here function dragend map in marker//
                       google.maps.event.addListener(map, 'dragend', function(){
-                        //console.log(this.center.lat());
-                        //console.log(this.center.lng());
+
                         if("@php echo $agent->isMobile(); @endphp"){
                             var complat = markerP.getPosition().lat() + 0.015;
                             var complng = markerP.getPosition().lng() + 0.015;
@@ -1378,10 +1376,8 @@ function prevTab(elem) {
                         //console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
 
                       if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
-                        console.log(strictBounds.contains(map.getCenter()));
-                        console.log(strictBounds.contains(new google.maps.LatLng(this.center.lat(),this.center.lng())));  
                        if (!strictBounds.contains(map.getCenter())){
-                              map.setCenter(new google.maps.LatLng(pos));
+                              map.setCenter(markerP.getPosition());
                           }else{
                           $('#dragmap').fadeIn();
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
@@ -1402,10 +1398,10 @@ function prevTab(elem) {
                         });*/
 
             if("@php echo $agent->isMobile(); @endphp"){
-            var opt = { minZoom: 8, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
+            var opt = { minZoom: 1, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
              map.setOptions(opt);
            }else{
-           var opt = { minZoom: 8, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
+           var opt = { minZoom: 1, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
              map.setOptions(opt);
            }
             //Evento to open infowindow
