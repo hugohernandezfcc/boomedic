@@ -1383,7 +1383,23 @@ function prevTab(elem) {
                           $('#dragbutton').prop('data-lng',latlng);
                         }
                       });
+                          function checkBounds() {
+                              var c = map.getCenter(),
+                                  x = c.lng(),
+                                  y = c.lat(),
+                                  maxX = strictBounds.getNorthEast().lng(),
+                                  maxY = strictBounds.getNorthEast().lat(),
+                                  minX = strictBounds.getSouthWest().lng(),
+                                  minY = strictBounds.getSouthWest().lat();
 
+                              if(x < minX || x > maxX || y < minY || y > maxY) {
+                                  if (x < minX) x = minX;
+                                  if (x > maxX) x = maxX;
+                                  if (y < minY) y = minY;
+                                  if (y > maxY) y = maxY;
+                                  map.setCenter(new google.maps.LatLng(y, x));
+                              }
+                          }
                         $('#dragbutton').click(function() {
                         var look = $('#dragbutton').prop('data-lng'); 
                          $('#dragmap').fadeOut(); 
