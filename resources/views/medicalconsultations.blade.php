@@ -1360,12 +1360,8 @@ function prevTab(elem) {
               var southWest = new google.maps.LatLng(32.718653,-86.5887);
             var northEast = new google.maps.LatLng(14.3895,-118.6523);
              var strictBounds = new google.maps.LatLngBounds(southWest,northEast);
-
-              google.maps.event.addListener(map, 'dragstart', function(){
-                                      var dragStartCenter = map.getCenter();
-                                         });
                     //Here function dragend map in marker//
-                      google.maps.event.addListener(map, 'dragend', function(e){
+                      google.maps.event.addListener(map, 'dragend', function(){
                         //console.log(this.center.lat());
                         //console.log(this.center.lng());
                         if("@php echo $agent->isMobile(); @endphp"){
@@ -1387,7 +1383,7 @@ function prevTab(elem) {
                         }
                         if (strictBounds.contains(map.getCenter())) {return;}
                         else{
-                              map.setCenter(this.dragStart);
+                              map.setCenter( markerP.getPosition());
                             }
                       });
 
