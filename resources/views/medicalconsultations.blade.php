@@ -1337,7 +1337,7 @@ function prevTab(elem) {
             var southWest = new google.maps.LatLng(32.718653,-86.5887);
             var northEast = new google.maps.LatLng(14.3895,-118.6523);
              var strictBounds = new google.maps.LatLngBounds(southWest,northEast);
-             
+
 
             var input = document.getElementById('address');
              var autocomplete = new google.maps.places.Autocomplete(input);
@@ -1381,7 +1381,9 @@ function prevTab(elem) {
                           $('#dragmap').fadeIn();
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                           $('#dragbutton').prop('data-lng',latlng);
+                           checkBounds();
                         }
+
                       });
                           function checkBounds() {
                               var c = map.getCenter(),
