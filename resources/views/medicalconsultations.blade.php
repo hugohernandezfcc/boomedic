@@ -1357,6 +1357,13 @@ function prevTab(elem) {
               icon: pinIcon,
               map: map
             }); 
+              var southWest = new google.maps.LatLng(32.718653,-86.5887);
+            var northEast = new google.maps.LatLng(14.3895,-118.6523);
+             var strictBounds = new google.maps.LatLngBounds(southWest,northEast);
+
+              google.maps.event.addListener(map, 'dragstart', function(){
+                                      var dragStartCenter = map.getCenter();
+                                         });
                     //Here function dragend map in marker//
                       google.maps.event.addListener(map, 'dragend', function(e){
                         //console.log(this.center.lat());
@@ -1378,6 +1385,10 @@ function prevTab(elem) {
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                           $('#dragbutton').prop('data-lng',latlng);
                         }
+                        if (strictBounds.contains(map.getCenter())) {return;}
+                        else{
+                              map.setCenter(this.dragStart);
+                            }
                       });
 
                         $('#dragbutton').click(function() {
