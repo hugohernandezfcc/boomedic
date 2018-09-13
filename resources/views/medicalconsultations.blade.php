@@ -1380,11 +1380,21 @@ function prevTab(elem) {
                           $('#dragmap').fadeIn();
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                           $('#dragbutton').prop('data-lng',latlng);
-                       if (strictBounds.contains(map.getCenter())) {return;}
-                        else{
-                              map.setCenter( markerP.getPosition());
-                            }
-                        }
+                              var c = map.getCenter(),
+                                  x = c.lng(),
+                                  y = c.lat(),
+                                  maxX = strictBounds.getNorthEast().lng(),
+                                  maxY = strictBounds.getNorthEast().lat(),
+                                  minX = strictBounds.getSouthWest().lng(),
+                                  minY = strictBounds.getSouthWest().lat();
+
+                              if(x < minX || x > maxX || y < minY || y > maxY) {
+                                  if (x < minX) x = minX;
+                                  if (x > maxX) x = maxX;
+                                  if (y < minY) y = minY;
+                                  if (y > maxY) y = maxY;
+                                              }
+                                            }
 
                       });
 
