@@ -1358,9 +1358,12 @@ function prevTab(elem) {
               map: map
             }); 
               //Bound México
-            var strictBounds = new google.maps.LatLngBounds(new google.maps.LatLng(14.3895,-118.6523),new google.maps.LatLng(32.718653,-86.5887));
-                    //Here function dragend map in marker//
-                      google.maps.event.addListener(map, 'dragend', function(){
+            var strictBounds = new google.maps.LatLngBounds(
+                                    new google.maps.LatLng(14.3895,-118.6523),
+                                    new google.maps.LatLng(32.718653,-86.5887)
+                                    );
+                  //Here function dragend map in marker//
+                  google.maps.event.addListener(map, 'dragend', function(){
 
                         if("@php echo $agent->isMobile(); @endphp"){
                             var complat = markerP.getPosition().lat() + 0.015;
@@ -1374,23 +1377,23 @@ function prevTab(elem) {
                             var complng2 = markerP.getPosition().lng() - 0.04;  
                         }
                         //console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
-
                       if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
-                       if (!strictBounds.contains(map.getCenter())){
+                          if(!strictBounds.contains(map.getCenter())){
                               map.setCenter(markerP.getPosition());
-                          }else{
-                          $('#dragmap').fadeIn();
-                          var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
-                          $('#dragbutton').prop('data-lng',latlng);
+                               }
+                          else{
+                                $('#dragmap').fadeIn();
+                                var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
+                                $('#dragbutton').prop('data-lng',latlng);
                               }
                         }                                    
                       });
 
                         $('#dragbutton').click(function() {
-                        var look = $('#dragbutton').prop('data-lng'); 
-                         $('#dragmap').fadeOut(); 
-                        markerP.setPosition(look);
-                        start();
+                            var look = $('#dragbutton').prop('data-lng'); 
+                             $('#dragmap').fadeOut(); 
+                            markerP.setPosition(look);
+                            start();
                         });
 
                      /*  map.addListener('center_changed', function(event) {
