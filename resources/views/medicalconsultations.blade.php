@@ -1336,7 +1336,7 @@ function prevTab(elem) {
             });
 
             var input = document.getElementById('address');
-             var autocomplete = new google.maps.places.Autocomplete(input);
+            var autocomplete = new google.maps.places.Autocomplete(input);
                autocomplete.setComponentRestrictions(
             {'country': ['mx']});
             var markerUser = "{{ asset('finish.png') }}";
@@ -1357,9 +1357,9 @@ function prevTab(elem) {
               icon: pinIcon,
               map: map
             }); 
-              var southWest = new google.maps.LatLng(32.718653,-86.5887);
+            var southWest = new google.maps.LatLng(32.718653,-86.5887);
             var northEast = new google.maps.LatLng(14.3895,-118.6523);
-             var strictBounds = new google.maps.LatLngBounds(southWest,northEast);
+            var strictBounds = new google.maps.LatLngBounds(southWest,northEast);
                     //Here function dragend map in marker//
                       google.maps.event.addListener(map, 'dragend', function(){
                         //console.log(this.center.lat());
@@ -1380,11 +1380,12 @@ function prevTab(elem) {
                           $('#dragmap').fadeIn();
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                           $('#dragbutton').prop('data-lng',latlng);
-                        }
-                        if (strictBounds.contains(map.getCenter())) {return;}
+                       if (strictBounds.contains(map.getCenter())) {return;}
                         else{
                               map.setCenter( markerP.getPosition());
                             }
+                        }
+
                       });
 
                         $('#dragbutton').click(function() {
