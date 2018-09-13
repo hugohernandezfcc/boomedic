@@ -1384,7 +1384,7 @@ function prevTab(elem) {
                           $('#dragbutton').prop('data-lng',latlng);
                           return;
                         }else{
-                              GoogleMap.setCenter(new google.maps.LatLng(35.920242, 14.428825));
+                              map.setCenter(new google.maps.LatLng(pos));
                         }
                                             }
 
