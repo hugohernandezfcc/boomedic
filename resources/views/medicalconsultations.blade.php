@@ -1398,10 +1398,10 @@ function prevTab(elem) {
                         });*/
 
             if("@php echo $agent->isMobile(); @endphp"){
-            var opt = { minZoom: 1, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
+            var opt = { minZoom: 6, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
              map.setOptions(opt);
            }else{
-           var opt = { minZoom: 1, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
+           var opt = { minZoom: 6, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
              map.setOptions(opt);
            }
             //Evento to open infowindow
