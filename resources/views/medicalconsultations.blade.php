@@ -1362,6 +1362,24 @@ function prevTab(elem) {
             }); 
                     //Here function dragend map in marker//
                       google.maps.event.addListener(map, 'dragend', function(e){
+                         if (strictBounds.contains(map.getCenter())) return;
+
+                               // We're out of bounds - Move the map back within the bounds
+
+                               var c = map.getCenter(),
+                                   x = c.lng(),
+                                   y = c.lat(),
+                                   maxX = strictBounds.getNorthEast().lng(),
+                                   maxY = strictBounds.getNorthEast().lat(),
+                                   minX = strictBounds.getSouthWest().lng(),
+                                   minY = strictBounds.getSouthWest().lat();
+
+                               if (x < minX) x = minX;
+                               if (x > maxX) x = maxX;
+                               if (y < minY) y = minY;
+                               if (y > maxY) y = maxY;
+
+                               map.setCenter(new google.maps.LatLng(y, x));
                         //console.log(this.center.lat());
                         //console.log(this.center.lng());
                         if("@php echo $agent->isMobile(); @endphp"){
@@ -1381,28 +1399,10 @@ function prevTab(elem) {
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                           $('#dragbutton').prop('data-lng',latlng);
                         }
-
-
-                       if (strictBounds.contains(map.getCenter())) return;
-    
-                              // We're out of bounds - Move the map back within the bounds
-                            
-                              var c = map.getCenter(),
-                               x = c.lng(),
-                               y = c.lat(),
-                               maxX = strictBounds.getNorthEast().lng(),
-                               maxY = strictBounds.getNorthEast().lat(),
-                               minX = strictBounds.getSouthWest().lng(),
-                               minY = strictBounds.getSouthWest().lat();
-                            
-                              if (x < minX) x = minX;
-                              if (x > maxX) x = maxX;
-                              if (y < minY) y = minY;
-                              if (y > maxY) y = maxY;
-                            
-                              map.setCenter(new google.maps.LatLng(y, x)); 
                       });
-
+                         google.maps.event.addListener(map, 'zoom_changed', function () {
+                             if (map.getZoom() < minZoomLevel) map.setZoom(minZoomLevel);
+                         });
                         $('#dragbutton').click(function() {
                         var look = $('#dragbutton').prop('data-lng'); 
                          $('#dragmap').fadeOut(); 
