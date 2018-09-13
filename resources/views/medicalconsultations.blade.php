@@ -1379,7 +1379,9 @@ function prevTab(elem) {
                         //console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
 
                       if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
-                       if (!strictBounds.contains(map.getCenter())){
+                        console.log(strictBounds.contains(map.getCenter());
+                        console.log(strictBounds.contains(new google.maps.LatLng(this.center.lat(),this.center.lng()));  
+                       if (strictBounds.contains(map.getCenter())){
                               map.setCenter(new google.maps.LatLng(pos));
                           }else{
                           $('#dragmap').fadeIn();
