@@ -1334,6 +1334,9 @@ function prevTab(elem) {
               rotateControl: false,
               fullscreenControl: false             
             });
+            var southWest = new google.maps.LatLng(32.718653,-86.5887);
+            var northEast = new google.maps.LatLng(14.3895,-118.6523);
+             var strictBounds = new google.maps.LatLngBounds(southWest,northEast);
 
             var input = document.getElementById('address');
              var autocomplete = new google.maps.places.Autocomplete(input);
@@ -1358,7 +1361,7 @@ function prevTab(elem) {
               map: map
             }); 
                     //Here function dragend map in marker//
-                      google.maps.event.addListener(map, 'dragend', function(e){
+                      google.maps.event.addListener(map, 'dragend', function(){
                         //console.log(this.center.lat());
                         //console.log(this.center.lng());
                         if("@php echo $agent->isMobile(); @endphp"){
@@ -1378,6 +1381,24 @@ function prevTab(elem) {
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                           $('#dragbutton').prop('data-lng',latlng);
                         }
+                             if (strictBounds.contains(map.getCenter())) return;
+
+                               // We're out of bounds - Move the map back within the bounds
+
+                               var c = map.getCenter(),
+                                   x = c.lng(),
+                                   y = c.lat(),
+                                   maxX = strictBounds.getNorthEast().lng(),
+                                   maxY = strictBounds.getNorthEast().lat(),
+                                   minX = strictBounds.getSouthWest().lng(),
+                                   minY = strictBounds.getSouthWest().lat();
+
+                               if (x < minX) x = minX;
+                               if (x > maxX) x = maxX;
+                               if (y < minY) y = minY;
+                               if (y > maxY) y = maxY;
+
+                               map.setCenter(new google.maps.LatLng(y, x));
                       });
 
                         $('#dragbutton').click(function() {
@@ -1438,8 +1459,7 @@ function prevTab(elem) {
             if(failure.message.indexOf(message02) == 0) {
             // Secure Origin issue.
             }
-
-          })
+          });
         }else {
             // Browser doesn't support Geolocation
             infoWindow.setMap(map);
@@ -1448,31 +1468,6 @@ function prevTab(elem) {
             infoWindow.setContent(message03);
         }
       }
-              var southWest = new google.maps.LatLng(32.718653,-86.5887);
-            var northEast = new google.maps.LatLng(14.3895,-118.6523);
-             var strictBounds = new google.maps.LatLngBounds(southWest,northEast);    
- google.maps.event.addListener(map, 'dragend', function () {
-     if (strictBounds.contains(map.getCenter())) return;
-
-     // We're out of bounds - Move the map back within the bounds
-
-     var c = map.getCenter(),
-         x = c.lng(),
-         y = c.lat(),
-         maxX = strictBounds.getNorthEast().lng(),
-         maxY = strictBounds.getNorthEast().lat(),
-         minX = strictBounds.getSouthWest().lng(),
-         minY = strictBounds.getSouthWest().lat();
-
-     if (x < minX) x = minX;
-     if (x > maxX) x = maxX;
-     if (y < minY) y = minY;
-     if (y > maxY) y = maxY;
-
-     map.setCenter(new google.maps.LatLng(y, x));
- });
-
-
       //Filter geocode Address
         function geocodeAddress(geocoder, resultsMap, markerP) {
         var address = document.getElementById('address').value;
