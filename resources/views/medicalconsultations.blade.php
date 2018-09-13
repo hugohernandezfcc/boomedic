@@ -1334,9 +1334,6 @@ function prevTab(elem) {
               rotateControl: false,
               fullscreenControl: false             
             });
-            var southWest = new google.maps.LatLng(32.718653,-86.5887);
-            var northEast = new google.maps.LatLng(14.3895,-118.6523);
-             var strictBounds = new google.maps.LatLngBounds(southWest,northEast);
 
             var input = document.getElementById('address');
              var autocomplete = new google.maps.places.Autocomplete(input);
@@ -1361,7 +1358,10 @@ function prevTab(elem) {
               map: map
             }); 
                     //Here function dragend map in marker//
-                      google.maps.event.addListener(map, 'dragend', function(e){
+                      google.maps.event.addListener(map, 'dragend', function(){
+                                    var southWest = new google.maps.LatLng(32.718653,-86.5887);
+            var northEast = new google.maps.LatLng(14.3895,-118.6523);
+             var strictBounds = new google.maps.LatLngBounds(southWest,northEast);
                          if (strictBounds.contains(map.getCenter())) return;
 
                                // We're out of bounds - Move the map back within the bounds
@@ -1401,7 +1401,7 @@ function prevTab(elem) {
                         }
                       });
                          google.maps.event.addListener(map, 'zoom_changed', function () {
-                             if (map.getZoom() < minZoomLevel) map.setZoom(minZoomLevel);
+                             if (map.getZoom() < 5) map.setZoom(5);
                          });
                         $('#dragbutton').click(function() {
                         var look = $('#dragbutton').prop('data-lng'); 
