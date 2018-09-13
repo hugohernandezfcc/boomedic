@@ -1383,13 +1383,10 @@ function prevTab(elem) {
                           $('#dragmap').fadeIn();
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                           $('#dragbutton').prop('data-lng',latlng);
-                        }
-
-                    if (!strictBounds.contains(map.getCenter())){
+                       if (!strictBounds.contains(latlng)){
                               map.setCenter(new google.maps.LatLng(pos));
                         }
-                                    
-
+                        }
                       });
 
                         $('#dragbutton').click(function() {
