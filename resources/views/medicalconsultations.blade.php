@@ -1376,25 +1376,11 @@ function prevTab(elem) {
                             var complng2 = markerP.getPosition().lng() - 0.04;  
                         }
                         //console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
+                      if (strictBounds.contains(map.getCenter())) {return;}  
                       if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
                           $('#dragmap').fadeIn();
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                           $('#dragbutton').prop('data-lng',latlng);
-                              var c = map.getCenter(),
-                                  x = c.lng(),
-                                  y = c.lat(),
-                                  maxX = strictBounds.getNorthEast().lng(),
-                                  maxY = strictBounds.getNorthEast().lat(),
-                                  minX = strictBounds.getSouthWest().lng(),
-                                  minY = strictBounds.getSouthWest().lat();
-
-                              if(x < minX || x > maxX || y < minY || y > maxY) {
-                                  if (x < minX) x = minX;
-                                  if (x > maxX) x = maxX;
-                                  if (y < minY) y = minY;
-                                  if (y > maxY) y = maxY;
-                                  map.setCenter(new google.maps.LatLng(y, x)); 
-                                              }
                                             }
 
                       });
