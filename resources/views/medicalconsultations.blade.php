@@ -1376,7 +1376,7 @@ function prevTab(elem) {
                             var complng2 = markerP.getPosition().lng() - 0.04;  
                         }
                         //console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
-                       if (MapBounds.contains(GoogleMap.getCenter()))
+                       if (strictBounds.contains(map.getCenter()))
                         {
                             if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
 
@@ -1387,7 +1387,7 @@ function prevTab(elem) {
                                  }
                                                      return;
                         }else{
-                          GoogleMap.setCenter(markerP.getPosition());
+                          map.setCenter(markerP.getPosition());
                         }
 
                       });
