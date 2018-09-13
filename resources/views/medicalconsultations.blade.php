@@ -1357,6 +1357,7 @@ function prevTab(elem) {
               icon: pinIcon,
               map: map
             }); 
+              //Bound México
             var southWest = new google.maps.LatLng(32.718653,-86.5887);
             var northEast = new google.maps.LatLng(14.3895,-118.6523);
             var strictBounds = new google.maps.LatLngBounds(southWest,northEast);
@@ -1376,12 +1377,14 @@ function prevTab(elem) {
                             var complng2 = markerP.getPosition().lng() - 0.04;  
                         }
                         //console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
+                    if (strictBounds.contains(map.getCenter()))
+                        {  
                       if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
-                      if (strictBounds.contains(map.getCenter()))
-                        {
+
                           $('#dragmap').fadeIn();
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                           $('#dragbutton').prop('data-lng',latlng);
+                        }
                           return;
                         }else{
                               map.setCenter(new google.maps.LatLng(pos));
