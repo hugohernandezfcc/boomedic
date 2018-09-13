@@ -1358,9 +1358,8 @@ function prevTab(elem) {
               map: map
             }); 
               //Bound México
-            var southWest = new google.maps.LatLng(32.718653,-86.5887);
-            var northEast = new google.maps.LatLng(14.3895,-118.6523);
-            var strictBounds = new google.maps.LatLngBounds(southWest,northEast);
+
+            var strictBounds = new google.maps.LatLngBounds(new google.maps.LatLng(14.3895,-118.6523),new google.maps.LatLng(32.718653,-86.5887));
                     //Here function dragend map in marker//
                       google.maps.event.addListener(map, 'dragend', function(){
                         //console.log(this.center.lat());
