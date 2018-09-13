@@ -1382,7 +1382,7 @@ function prevTab(elem) {
                                map.setCenter(new google.maps.LatLng(y, x));
                         //console.log(this.center.lat());
                         //console.log(this.center.lng());
-                        if("@php echo $agent->isMobile(); @endphp"){
+                     /*   if("@php echo $agent->isMobile(); @endphp"){
                             var complat = markerP.getPosition().lat() + 0.015;
                             var complng = markerP.getPosition().lng() + 0.015;
                             var complat2 = markerP.getPosition().lat() - 0.015;
@@ -1398,7 +1398,7 @@ function prevTab(elem) {
                           $('#dragmap').fadeIn();
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                           $('#dragbutton').prop('data-lng',latlng);
-                        }
+                        }*/
                       });
                          google.maps.event.addListener(map, 'zoom_changed', function () {
                              if (map.getZoom() < 5) map.setZoom(5);
