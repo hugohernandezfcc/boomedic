@@ -1358,31 +1358,10 @@ function prevTab(elem) {
               map: map
             }); 
                     //Here function dragend map in marker//
-                      google.maps.event.addListener(map, 'dragend', function(){
-                                    var southWest = new google.maps.LatLng(32.718653,-86.5887);
-            var northEast = new google.maps.LatLng(14.3895,-118.6523);
-             var strictBounds = new google.maps.LatLngBounds(southWest,northEast);
-                         if (strictBounds.contains(map.getCenter())) return;
-
-                               // We're out of bounds - Move the map back within the bounds
-
-                               var c = map.getCenter(),
-                                   x = c.lng(),
-                                   y = c.lat(),
-                                   maxX = strictBounds.getNorthEast().lng(),
-                                   maxY = strictBounds.getNorthEast().lat(),
-                                   minX = strictBounds.getSouthWest().lng(),
-                                   minY = strictBounds.getSouthWest().lat();
-
-                               if (x < minX) x = minX;
-                               if (x > maxX) x = maxX;
-                               if (y < minY) y = minY;
-                               if (y > maxY) y = maxY;
-
-                               map.setCenter(new google.maps.LatLng(y, x));
+                      google.maps.event.addListener(map, 'dragend', function(e){
                         //console.log(this.center.lat());
                         //console.log(this.center.lng());
-                     /*   if("@php echo $agent->isMobile(); @endphp"){
+                        if("@php echo $agent->isMobile(); @endphp"){
                             var complat = markerP.getPosition().lat() + 0.015;
                             var complng = markerP.getPosition().lng() + 0.015;
                             var complat2 = markerP.getPosition().lat() - 0.015;
@@ -1398,11 +1377,9 @@ function prevTab(elem) {
                           $('#dragmap').fadeIn();
                           var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
                           $('#dragbutton').prop('data-lng',latlng);
-                        }*/
+                        }
                       });
-                         google.maps.event.addListener(map, 'zoom_changed', function () {
-                             if (map.getZoom() < 5) map.setZoom(5);
-                         });
+
                         $('#dragbutton').click(function() {
                         var look = $('#dragbutton').prop('data-lng'); 
                          $('#dragmap').fadeOut(); 
@@ -1461,7 +1438,8 @@ function prevTab(elem) {
             if(failure.message.indexOf(message02) == 0) {
             // Secure Origin issue.
             }
-          });
+
+          })
         }else {
             // Browser doesn't support Geolocation
             infoWindow.setMap(map);
@@ -1470,6 +1448,31 @@ function prevTab(elem) {
             infoWindow.setContent(message03);
         }
       }
+              var southWest = new google.maps.LatLng(32.718653,-86.5887);
+            var northEast = new google.maps.LatLng(14.3895,-118.6523);
+             var strictBounds = new google.maps.LatLngBounds(southWest,northEast);    
+ google.maps.event.addListener(map, 'dragend', function () {
+     if (strictBounds.contains(map.getCenter())) return;
+
+     // We're out of bounds - Move the map back within the bounds
+
+     var c = map.getCenter(),
+         x = c.lng(),
+         y = c.lat(),
+         maxX = strictBounds.getNorthEast().lng(),
+         maxY = strictBounds.getNorthEast().lat(),
+         minX = strictBounds.getSouthWest().lng(),
+         minY = strictBounds.getSouthWest().lat();
+
+     if (x < minX) x = minX;
+     if (x > maxX) x = maxX;
+     if (y < minY) y = minY;
+     if (y > maxY) y = maxY;
+
+     map.setCenter(new google.maps.LatLng(y, x));
+ });
+
+
       //Filter geocode Address
         function geocodeAddress(geocoder, resultsMap, markerP) {
         var address = document.getElementById('address').value;
