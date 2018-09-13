@@ -1376,12 +1376,19 @@ function prevTab(elem) {
                             var complng2 = markerP.getPosition().lng() - 0.04;  
                         }
                         //console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
-                      if (strictBounds.contains(map.getCenter())) {return;}  
-                      if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
-                          $('#dragmap').fadeIn();
-                          var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
-                          $('#dragbutton').prop('data-lng',latlng);
-                                            }
+                       if (MapBounds.contains(GoogleMap.getCenter()))
+                        {
+                            if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
+
+                                $('#dragmap').fadeIn();
+                                var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
+                                $('#dragbutton').prop('data-lng',latlng);
+
+                                 }
+                                                     return;
+                        }else{
+                          GoogleMap.setCenter(markerP.getPosition());
+                        }
 
                       });
 
