@@ -418,10 +418,9 @@ question
         }
     }
 
-    public function cropDoctor(Request $request, $id)
-    {
-       // $path = $request->photo->store('images', 's3');
-       // $path = $request->photo->store('images', 's3');
+    public function cropDoctor(Request $request, $id){
+       
+       
         $user = User::find($id);
         $targ_w = $targ_h = 300;
         $jpeg_quality = 90;
@@ -430,8 +429,7 @@ question
         $img_r = imagecreatefromjpeg($src);
         $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
 
-        imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
-            $targ_w,$targ_h,$request->w,$request->h);
+        imagecopyresampled($dst_r, $img_r, 0, 0, $request->x, $request->y, $targ_w, $targ_h, $request->w, $request->h);
         $filename = $id.'.jpg';
         $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
         
@@ -481,6 +479,7 @@ question
         imagepng($image);
         $png_file = ob_get_contents();
         ob_end_clean();
+
         Storage::disk('s3')->put( $id.'-circle.png',  $png_file, 'public');
         //Imagen copia circular//
 
