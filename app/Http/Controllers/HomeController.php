@@ -33,9 +33,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-         $agent = new Agent();
-         $user = User::find(Auth::id());
-         $uuid = session()->get('uuid');
+
+        $agent = new Agent();
+        $user = User::find(Auth::id());
+        $uuid = session()->get('uuid');
 
           if($agent->isMobile() && $uuid != "null"){
             if($uuid){
@@ -60,6 +61,7 @@ class HomeController extends Controller
 
         Session(['entered' => $user->entered]);
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
+
         $StatementForUser = $user->privacy_statement;
         $appointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
@@ -75,6 +77,8 @@ class HomeController extends Controller
             ->join('users', 'professional_information.user', '=', 'users.id')
             ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'professional_information.id as prof', 'users.id AS dr', 'users.profile_photo')
             ->get();
+
+
          $time_blockers =  DB::table('time_blockers')->get();
          $cites = DB::table('medical_appointments')->get();
          $workboard = DB::table('workboard')->get();
@@ -137,12 +141,10 @@ class HomeController extends Controller
                     'username'  => $user->username,
                     'name'      => $user->name,
                     'photo'     => $user->profile_photo,
-                    'date'      => $user->created_at,
-                   
+                    'date'      => $user->created_at, 
                 ]
             );
-        }     
-        elseif(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+        }else if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
                     'privacy'   => $privacyStatement[0],
@@ -152,14 +154,15 @@ class HomeController extends Controller
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
                     'mode'      => $mode,
-                   
                 ]
             );
-        }
+        }     
+        
 
         $profInfo = DB::table('professional_information')
                             ->where('user', Auth::id() )
                             ->get();
+
         $statusRecordUser = DB::table('users')->where('id', Auth::id() )->value('status');
         if($profInfo->count() > 0 && $user->confirmed == false){
                return view('confirme', [
@@ -171,8 +174,7 @@ class HomeController extends Controller
                    
                 ]
             );
-        }  
-        elseif($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+        }else if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
                     'privacy'   => $privacyStatement[0],
@@ -185,11 +187,14 @@ class HomeController extends Controller
                    
                 ]
             );
-        }
+        }  
+        
         if ($profInfo->count() > 0 && $statusRecordUser == 'In Progress') {
             Session(['utype' => 'doctor']);
             return redirect('doctor/edit/In%20Progress');
         }
+
+
         if ($profInfo->count() > 0 && $statusRecordUser != 'In Progress') {
              Session(['utype' => 'doctor']);
             return view('homemedical', [
@@ -216,63 +221,63 @@ class HomeController extends Controller
              ->where('user_assist', Auth::id())
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
              ->get();
-                        if(count($assistant) == 0){
-                             Session(['utype' => 'mortal']); 
-                                return view('medicalconsultations', [
-                                        'username'  => $user->username,
-                                        'name'      => $user->name,
-                                        'firstname' => $user->firstname,
-                                        'lastname'  => $user->lastname,
-                                        'photo'     => $user->profile_photo,
-                                        'date'      => $user->created_at,
-                                        'userId'    => $user->id,
-                                        'labor'     => $join,
-                                        'appointments' => $appointments,
-                                        'title'     => 'Este doctor no tiene horarios agregados',
-                                        'it'        => $it,
-                                        'sp'        => $sp,
-                                        'mg'        => $mg
+            if(count($assistant) == 0){
+                 Session(['utype' => 'mortal']); 
+                    return view('medicalconsultations', [
+                            'username'  => $user->username,
+                            'name'      => $user->name,
+                            'firstname' => $user->firstname,
+                            'lastname'  => $user->lastname,
+                            'photo'     => $user->profile_photo,
+                            'date'      => $user->created_at,
+                            'userId'    => $user->id,
+                            'labor'     => $join,
+                            'appointments' => $appointments,
+                            'title'     => 'Este doctor no tiene horarios agregados',
+                            'it'        => $it,
+                            'sp'        => $sp,
+                            'mg'        => $mg
 
-                                    ]
-                                );
-                            }
-                            /*Aquimandare la vista del home asistente */
-                            else{
-                               Session(['utype' => 'assistant']); 
-                               /*Validate doctor online*/
-                               $donli = array();
-                               foreach($assistant as $as){
-                                 $doconline = User::find($as->iddr);
-                                         if($doconline->isOnline() > 0){
-                                            array_push($donli, ['id' => $as->iddr, 'online' => '1']);
-                                       }else{
-                                            array_push($donli, ['id' => $as->iddr, 'online' => '0']);
-                                       }
-                                 }
-                               /*Validate doctor online*/  
+                        ]
+                    );
+                }
+                /*Aquimandare la vista del home asistente */
+                else{
+                   Session(['utype' => 'assistant']); 
+                   /*Validate doctor online*/
+                   $donli = array();
+                   foreach($assistant as $as){
+                     $doconline = User::find($as->iddr);
+                             if($doconline->isOnline() > 0){
+                                array_push($donli, ['id' => $as->iddr, 'online' => '1']);
+                           }else{
+                                array_push($donli, ['id' => $as->iddr, 'online' => '0']);
+                           }
+                     }
+                   /*Validate doctor online*/  
 
-                               if(session()->get('asdr') == null){
-                                Session(['asdr' => $assistant[0]->iddr]);
-                            }
-                                return view('assistant.homeassistant', [
-                                        'username'  => $user->username,
-                                        'name'      => $user->name,
-                                        'firstname' => $user->firstname,
-                                        'lastname'  => $user->lastname,
-                                        'photo'     => $user->profile_photo,
-                                        'date'      => $user->created_at,
-                                        'userId'    => $user->id,
-                                        'labor'     => $join,
-                                        'appointments' => $appointments,
-                                        'title'     => 'Este doctor no tiene horarios agregados',
-                                        'it'        => $it,
-                                        'sp'        => $sp,
-                                        'mg'        => $mg,
-                                        'as'        => $assistant,
-                                        'donli'     => $donli
-                                    ]
-                                );
-                            }
+                   if(session()->get('asdr') == null){
+                    Session(['asdr' => $assistant[0]->iddr]);
+                }
+                    return view('assistant.homeassistant', [
+                            'username'  => $user->username,
+                            'name'      => $user->name,
+                            'firstname' => $user->firstname,
+                            'lastname'  => $user->lastname,
+                            'photo'     => $user->profile_photo,
+                            'date'      => $user->created_at,
+                            'userId'    => $user->id,
+                            'labor'     => $join,
+                            'appointments' => $appointments,
+                            'title'     => 'Este doctor no tiene horarios agregados',
+                            'it'        => $it,
+                            'sp'        => $sp,
+                            'mg'        => $mg,
+                            'as'        => $assistant,
+                            'donli'     => $donli
+                        ]
+                    );
+            }
 
         }
     }
@@ -449,8 +454,8 @@ class HomeController extends Controller
      */
     public function appointments(){
 
-         $user = User::find(Auth::id());
-         $appointments = DB::table('medical_appointments')
+        $user = User::find(Auth::id());
+        $appointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
            ->join('professional_information', 'medical_appointments.user_doctor', '=', 'professional_information.user')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
@@ -458,7 +463,7 @@ class HomeController extends Controller
            ->where('medical_appointments.when', '>', Carbon::now())
            ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.*', 'professional_information.specialty','users.profile_photo')->get();
 
-                 return view('appointments', [
+            return view('appointments', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
