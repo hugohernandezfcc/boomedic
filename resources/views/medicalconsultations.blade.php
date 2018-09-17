@@ -1357,7 +1357,7 @@ function prevTab(elem) {
               icon: pinIcon,
               map: map
             }); 
-                 //Bound México (NorthEast & SouthWest)
+                 //Bound México (North East and South West)
                  var strictBounds = new google.maps.LatLngBounds(
                                     new google.maps.LatLng(14.3895,-118.6523),
                                     new google.maps.LatLng(32.718653,-86.5887)
