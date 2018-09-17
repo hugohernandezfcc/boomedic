@@ -45,7 +45,7 @@
     // console.log('>>>>>>>');
     // console.log(@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp);
 
-    <?php echo session()->get('sp'); ?>
+    <?php echo "<pre>"; print_r(session()->get('sp')); echo "</pre>";?>
 
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
