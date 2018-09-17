@@ -45,13 +45,15 @@
     // console.log('>>>>>>>');
     // console.log(@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp);
 
-    <?php echo "<pre>"; print_r(session()->get('sp')); echo "</pre>";?>
 
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
 
   </script>
+      <?php echo "<pre>"; print_r(session()->get('sp')); echo "</pre>";?>
+
+  
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
                             <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h5>               
