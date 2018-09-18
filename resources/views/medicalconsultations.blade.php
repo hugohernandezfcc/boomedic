@@ -277,7 +277,6 @@
         background-clip: padding-box;
         color: white;
         margin-top: 50%;
-        width: 100%;
     }
     .liright { 
     color: #999 !important;
