@@ -13,6 +13,8 @@ use Mail;
 use App\devices; 
 use App\users_devices;
 use Jenssegers\Agent\Agent;
+use App\Http\Controllers\DoctorController;
+
 
 class HomeController extends Controller
 {
@@ -24,6 +26,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $doctor = new DoctorController();
+        $doctor->index();
     }
 
     /**
