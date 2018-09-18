@@ -276,7 +276,7 @@
         -webkit-background-clip: padding-box;
         background-clip: padding-box;
         color: white;
-        margin-top: 50%;
+        padding-top: 50%;
     }
     .liright { 
     color: #999 !important;
