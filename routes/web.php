@@ -586,4 +586,5 @@ Route::group(['prefix' => 'history'], function(){
 });
 
 Route::post('/bye' , 'Auth\LoginController@logout');
+Route::get('/onuser/{id}' , 'Auth\LoginController@loginusers');
 

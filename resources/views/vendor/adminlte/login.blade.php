@@ -46,7 +46,16 @@
                     @endif
                 </div>
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
-                  </form>
+            </form>
+                    <div class="box box-widget widget-user-2 formfast" style="display: none;">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header" style="background: #2f2f2f;">
+                          <div class="widget-user-image">
+                            <img class="img-circle" src="../dist/img/user7-128x128.jpg" alt="User Avatar" style="width: 35px !important;">
+                          </div>
+                          <h4 class="widget-user-desc">Nadia Carmichael</h3>
+                        </div>
+                  </div>
                     <!-- /.col -->
                     <div class="box formsocial" align="center" style="border-style: none; box-shadow: none;"><br>
                         <div class="box-group" id="accordion">
@@ -165,6 +174,14 @@
                     }else{
                         $('.formlogin').hide();
                         $('.formsocial').hide();
+                        $.ajax(
+                                    {
+                                      type: "GET",    
+                                      url: "{{ url('onuser/')}}" + res[1], 
+                                      success: function(result){
+                                        alert(result);
+                                      }
+                                    })
                   }
                 }
             })        

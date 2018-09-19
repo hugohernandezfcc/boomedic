@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\devices; 
+use App\users_devices;
 
 
 class LoginController extends Controller
@@ -39,6 +41,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+        public function loginusers($id)
+    {
+             $device = devices::find($id);
+             $usersd =  DB::table('users_devices')->where('device', $device->id)->get();
+
+        return response()->json($usersd);
     }
 
 
