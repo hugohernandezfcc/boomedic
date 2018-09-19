@@ -163,7 +163,7 @@
                     if(res.length == 1){
                         alert('null');
                     }else{
-                      alert(res);
+                      alert(res[1]);
                   }
                 }
             })        
