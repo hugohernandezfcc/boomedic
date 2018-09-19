@@ -157,6 +157,7 @@
     if($agent->isMobile()){
     $link = explode("?", Request::fullUrl());
     if(count($link) == 1){
+        if(!session()->has('uuid'))
          Session(['uuid' => 'null']);
     }else{
         Session(['uuid' => $link[1]]);
@@ -185,9 +186,6 @@
                                       url: "https://sbx00.herokuapp.com/loginusers/" + rest, 
                                       success: function(result){
                                         alert(result);
-                                      },
-                                      error: function (jqXHR, exception) {
-                                        alert(exception);
                                       }
                                     })
                   }
