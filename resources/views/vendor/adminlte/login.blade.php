@@ -164,6 +164,7 @@
             $(document).ready(function(){
                 if("{{ $agent->isMobile() }}")
                  {
+                    alert("{{ session()->exists('uuid') }}");
                     var fullUrl = window.location.href;
                     var res = fullUrl.split("?");
                     if(res.length == 1 || "{{ session()->get('uuid') }}" == "null"){
