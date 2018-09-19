@@ -148,13 +148,14 @@
             </div>
         </div>
     @php 
-    if($agent->isMobile()){
-    $link = explode("?", Request::fullUrl());
-    if(count($link) == 1){
-        if(session()->exists('uuid') == null)
-           Session(['uuid' => 'null']);
-    }else{
-        Session(['uuid' => $link[1]]);
+    if(session()->exists('uuid') == null){
+        if($agent->isMobile()){
+        $link = explode("?", Request::fullUrl());
+        if(count($link) == 1){
+               Session(['uuid' => 'null']);
+        }else{
+            Session(['uuid' => $link[1]]);
+            }
         }
     }
     @endphp
@@ -162,15 +163,17 @@
             $(document).ready(function(){
                 if("{{ $agent->isMobile() }}")
                  {
+                    if("{{ session()->exists('uuid') }}"  == null){
                     var fullUrl = window.location.href;
                     var res = fullUrl.split("?");
                     if(res.length == 1 || "{{ session()->get('uuid') }}" == "null"){
                         console.log('null');
                     }else{
-                     if("{{ session()->exists('uuid') }}")
-                        var rest = "{{ session()->get('uuid') }}";
-                     else 
-                        var rest = res[1];
+                      var rest = res[1];
+                    }
+                    }else {
+                       var rest = "{{ session()->get('uuid') }}";
+                     }
 
                         $('.formlogin').hide();
                         $('.formsocial').hide();
@@ -188,7 +191,6 @@
                                             var urll = "{{ url('loginId') }}";
                                             $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'"><div class="widget-user-header" style="background: #2f2f2f;"><div class="widget-user-image"><img class="img-circle" src="'+ photo +'" alt="User Avatar" style="width: 35px !important;"></div><h4 class="widget-user-desc">'+ result[z]['name'] +'</h3></div></a>');
                                         }
-                                        alert(result);
                                       }
                                     })
                   }
