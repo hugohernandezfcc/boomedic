@@ -148,8 +148,9 @@
             </div>
         </div>
     @php 
-    if(session()->exists('uuid') == null){
-        if($agent->isMobile()){
+    if($agent->isMobile()){
+        if(session()->exists('uuid') == null){
+
         $link = explode("?", Request::fullUrl());
         if(count($link) == 1){
                Session(['uuid' => 'null']);
@@ -163,6 +164,7 @@
             $(document).ready(function(){
                 if("{{ $agent->isMobile() }}")
                  {
+                    alert("{{ session()->exists('uuid') }}");
                     if("{{ session()->exists('uuid') }}"  == null){
                     var fullUrl = window.location.href;
                     var res = fullUrl.split("?");
