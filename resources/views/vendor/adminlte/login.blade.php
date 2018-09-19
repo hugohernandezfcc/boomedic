@@ -181,7 +181,7 @@
                                       success: function(result){
                                         for(var z =0; z < result.length; z++){
                                              $('.formfast').show();
-                                             if(result[z]['profile_photo'] == " ")
+                                             if(!result[z]['profile_photo'])
                                                 var photo = "https://s3.amazonaws.com/abiliasf/profile-42914_640.png";
                                              else
                                                 var photo = result[z]['profile_photo'];
