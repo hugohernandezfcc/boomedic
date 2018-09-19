@@ -156,9 +156,16 @@
     @endphp
     <script type="text/javascript">
             $(document).ready(function(){
-                    var fullUrl = "{{ Request::fullUrl() }}";
-                    var res = str.split("?");
-                    console.log(res);
+                if("{{ $agent->isMobile() }}")
+                 {
+                    var fullUrl = window.location.href;
+                    var res = fullUrl.split("?");
+                    if(res.length == 1){
+                        alert('null');
+                    }else{
+                      alert(res);
+                  }
+                }
             })        
     </script>
 @stop
