@@ -33,8 +33,8 @@ Auth::routes();
 */
 Route::post('SMRegister', ['as' => 'SMRegister.createbySocialMedia', 'uses' => 'Auth\RegisterController@createbySocialMedia']);
 Route::get('medicalRegister/society', ['as' => 'medicalRegister/society', 'uses' => 'Auth\RegisterController@index']);
-Route::get('onuser/{id}', ['as' => 'onuser', 'uses' => 'Auth\RegisterController@loginusers']);
 Route::get('fcm/{code}', 'Auth\RegisterController@fcm')->name('fcm/{code}');
+Route::get('loginusers/{id}', 'Auth\RegisterController@loginusers')->name('loginusers/{id}');
 Route::get('verify/{code}', 'HomeController@verify')->name('verify/{code}');
 Route::get('/returnverify', 'HomeController@returnverify')->name('/returnverify');
 
