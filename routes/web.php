@@ -23,7 +23,7 @@ Route::get('/medicalRegister', function () {
 
 Route::get('/loginId/{id}', function ($id){
 	Auth::loginUsingId($id);
-    return view('/medicalconsultations');
+     return redirect()->intended(route('medicalconsultations'));
 });
 
 /**
