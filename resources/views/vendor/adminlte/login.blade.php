@@ -149,7 +149,7 @@
         </div>
     @php 
     if($agent->isMobile()){
-        if(session()->exists('uuid') == 1){
+        if(session()->exists('uuid') != 1){
 
         $link = explode("?", Request::fullUrl());
         if(count($link) == 1){
@@ -170,7 +170,7 @@
                     if(res.length == 1 || "{{ session()->get('uuid') }}" == "null"){
                         console.log('null');
                     }else{
-                      if( "{{ session()->exists('uuid') }}" != 1)  
+                      if( "{{ session()->exists('uuid') }}" == 1)  
                       var rest = "{{ session()->get('uuid') }}" 
                      else
                       var rest = res[1];
