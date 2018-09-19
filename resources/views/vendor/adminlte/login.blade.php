@@ -49,12 +49,6 @@
             </form>
                     <div class="box box-widget widget-user-2 formfast" style="display: none;">
                         <!-- Add the bg color to the header using any of the bg-* classes -->
-                        <div class="widget-user-header" style="background: #2f2f2f;">
-                          <div class="widget-user-image">
-                            <img class="img-circle" src="../dist/img/user7-128x128.jpg" alt="User Avatar" style="width: 35px !important;">
-                          </div>
-                          <h4 class="widget-user-desc">Nadia Carmichael</h3>
-                        </div>
                   </div>
                     <!-- /.col -->
                     <div class="box formsocial" align="center" style="border-style: none; box-shadow: none;"><br>
@@ -173,7 +167,7 @@
                     if(res.length == 1 || "{{ session()->get('uuid') }}" == "null"){
                         console.log('null');
                     }else{
-                     if("{{ session()->has('uuid') }}")
+                     if("{{ session()->exists('uuid') }}")
                         var rest = "{{ session()->get('uuid') }}";
                      else 
                         var rest = res[1];
@@ -185,6 +179,11 @@
                                       type: "GET",    
                                       url: "https://sbx00.herokuapp.com/loginusers/" + rest, 
                                       success: function(result){
+                                        for(var z =0; z < result.length; z++){
+                                             $('.formfast').show();
+                                            $('.formfast').append('<div class="widget-user-header" style="background: #2f2f2f;"><div class="widget-user-image"><img class="img-circle" src="'+ result[z]['profile_photo'] +'" alt="User Avatar" style="width: 35px !important;"></div><h4 class="widget-user-desc">'+ result[z]['name'] +'</h3></div>');
+
+                                        }
                                         alert(result);
                                       }
                                     })
