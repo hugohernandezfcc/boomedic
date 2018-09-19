@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\devices; 
-use App\users_devices;
 
 
 class LoginController extends Controller
@@ -21,9 +19,6 @@ class LoginController extends Controller
     |
     */
 
-        
-     
-   
     use AuthenticatesUsers;
 
     /**
@@ -43,18 +38,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-        public function loginusers($id)
-    {
-             $device = devices::find($id);
-             $usersd =  DB::table('users_devices')->where('device', $device->id)->get();
-
-        return response()->json('bien');
-    }
 
 
 }

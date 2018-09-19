@@ -14,7 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mail;
 use Carbon\Carbon;
-use App\devices;
+use App\devices; 
+use App\users_devices;
 
 class RegisterController extends Controller
 {
@@ -258,6 +259,13 @@ class RegisterController extends Controller
 
     }
 
+    public function loginusers($id)
+    {
+             $device = devices::find($id);
+             $usersd =  DB::table('users_devices')->where('device', $device->id)->get();
+
+        return response()->json('bien');
+    }
 
 
 }

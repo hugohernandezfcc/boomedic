@@ -177,11 +177,9 @@
                         $.ajax(
                                     {
                                       type: "GET",    
-                                      url: "{{ url('onuser/') }}" + res[1], 
+                                      url: "{{ url('onuser/')}}" + res[1], 
                                       success: function(result){
                                         alert(result);
-                                      }, error: function (jqXHR, exception) {
-                                        alert('error');
                                       }
                                     })
                   }
