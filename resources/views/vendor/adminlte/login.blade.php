@@ -169,15 +169,20 @@
                  {
                     var fullUrl = window.location.href;
                     var res = fullUrl.split("?");
-                    if(res.length == 1){
+                    if(res.length == 1 || "{{ session()->has('uuid') }}"){
                         console.log('null');
                     }else{
+                     if("{{ session()->has('uuid') }}")
+                        var rest = res[1];
+                     else 
+                        var rest = "{{ session()->get('uuid') }}";
+
                         $('.formlogin').hide();
                         $('.formsocial').hide();
                         $.ajax(
                                     {
                                       type: "GET",    
-                                      url: "{{ url('loginusers/') }}" + res[1], 
+                                      url: "https://sbx00.herokuapp.com/loginusers/" + rest, 
                                       success: function(result){
                                         alert(result);
                                       },
