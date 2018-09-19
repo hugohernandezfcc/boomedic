@@ -161,8 +161,10 @@
                     var fullUrl = window.location.href;
                     var res = fullUrl.split("?");
                     if(res.length == 1){
-                        alert('null');
+                        console.log('null');
                     }else{
+                        $('.formlogin').hide();
+                        $('.formsocial').hide();
                       alert(res[1]);
                   }
                 }
