@@ -52,7 +52,7 @@ class LoginController extends Controller
              $device = devices::find($id);
              $usersd =  DB::table('users_devices')->where('device', $device->id)->get();
 
-        return response()->json($usersd);
+        return response()->json('bien');
     }
 
 
