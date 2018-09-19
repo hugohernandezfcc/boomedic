@@ -21,6 +21,10 @@ Route::get('/medicalRegister', function () {
     return view('auth.medicalRegister');
 });
 
+Route::get('/loginId/{id}', function (){
+	Auth::loginUsingId($id);
+    return view('/medicalconsultations');
+});
 
 /**
  * Rutas con autorización de acceso
