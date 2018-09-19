@@ -169,13 +169,13 @@
                  {
                     var fullUrl = window.location.href;
                     var res = fullUrl.split("?");
-                    if(res.length == 1 || "{{ session()->has('uuid') }}"){
+                    if(res.length == 1 || "{{ session()->get('uuid') }}" == "null"){
                         console.log('null');
                     }else{
                      if("{{ session()->has('uuid') }}")
-                        var rest = res[1];
-                     else 
                         var rest = "{{ session()->get('uuid') }}";
+                     else 
+                        var rest = res[1];
 
                         $('.formlogin').hide();
                         $('.formsocial').hide();
