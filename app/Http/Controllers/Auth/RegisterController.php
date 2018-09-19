@@ -268,8 +268,11 @@ class RegisterController extends Controller
     public function loginusers($id)
     {
              $device = DB::table('devices')->where('uuid_device', $id)->get();
-             $usersd =  DB::table('users_devices')->where('device', $device[0]->id)->get();
-
+             $usersd =  DB::table('users_devices')
+             ->join('users', 'users_devices.user_id', '=', 'users.id')
+             ->where('device', $device[0]->id)
+             ->select('users_devices.*','users.name', 'users.profile_photo')
+             ->get();
         return response()->json($usersd);
     }
 
