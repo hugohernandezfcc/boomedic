@@ -48,7 +48,7 @@
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                   </form>
                     <!-- /.col -->
-                    <div class="box" align="center" style="border-style: none; box-shadow: none;" class="formsocial"><br>
+                    <div class="box formsocial" align="center" style="border-style: none; box-shadow: none;"><br>
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" style="font-size: 14px;">
@@ -165,7 +165,6 @@
                     }else{
                         $('.formlogin').hide();
                         $('.formsocial').hide();
-                      alert(res[1]);
                   }
                 }
             })        
