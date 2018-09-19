@@ -51,7 +51,7 @@ class HomeController extends Controller
                     $ud->user_id = $user->id;
                     $ud->device = $device[0]->id;
                     if($ud->save())
-                    Session(['uuid' => 'null']);    
+                    Session(['uuid' => $uuid]);    
             }
             }
           }

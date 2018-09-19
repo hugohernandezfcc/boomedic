@@ -271,7 +271,7 @@ class RegisterController extends Controller
              $usersd =  DB::table('users_devices')
              ->join('users', 'users_devices.user_id', '=', 'users.id')
              ->where('device', $device[0]->id)
-             ->select('users_devices.*','users.name', 'users.profile_photo')
+             ->select('users_devices.*','users.name', 'users.profile_photo', 'users.id as idu')
              ->get();
         return response()->json($usersd);
     }
