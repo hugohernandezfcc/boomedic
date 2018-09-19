@@ -258,11 +258,16 @@ class RegisterController extends Controller
         }
 
     }
+     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  $id
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
 
     public function loginusers($id)
     {
-             $device = devices::find($id);
-             $usersd =  DB::table('users_devices')->where('device', $device->id)->get();
+            
 
         return response()->json('bien');
     }

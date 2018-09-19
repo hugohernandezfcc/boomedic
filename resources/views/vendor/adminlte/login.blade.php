@@ -182,7 +182,7 @@
                                         alert(result);
                                       },
                                       error: function (jqXHR, exception) {
-                                        alert('error');
+                                        alert(exception);
                                       }
                                     })
                   }
