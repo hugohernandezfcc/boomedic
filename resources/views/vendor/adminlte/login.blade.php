@@ -149,7 +149,7 @@
         </div>
     @php 
     if($agent->isMobile()){
-        if(session()->exists('uuid') == null){
+        if(session()->exists('uuid') == 1){
 
         $link = explode("?", Request::fullUrl());
         if(count($link) == 1){
@@ -164,18 +164,16 @@
             $(document).ready(function(){
                 if("{{ $agent->isMobile() }}")
                  {
-                    alert("{{ session()->exists('uuid') }}");
-                    if("{{ session()->exists('uuid') }}"  == null){
                     var fullUrl = window.location.href;
                     var res = fullUrl.split("?");
                     if(res.length == 1 || "{{ session()->get('uuid') }}" == "null"){
                         console.log('null');
                     }else{
+                      if( "{{ session()->exists('uuid') }}" != 1)  
+                      var rest = "{{ session()->get('uuid') }}" 
+                     else
                       var rest = res[1];
-                    }
-                    }else {
-                       var rest = "{{ session()->get('uuid') }}";
-                     }
+                    
 
                         $('.formlogin').hide();
                         $('.formsocial').hide();
@@ -214,4 +212,4 @@
     </script>
     @yield('js')
 @stop
- 3
+ 
