@@ -11,14 +11,7 @@
     @yield('css')
 @stop
 
-
-
-
-
 @section('body_class', 'login-page')
-
-
-
 
 
 @section('body')
@@ -29,7 +22,7 @@
         <!-- /.login-logo -->
         <div class="login-box-body box">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
-            <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
+            <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post" class="formlogin">
                 {!! csrf_field() !!}
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -55,7 +48,7 @@
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                   </form>
                     <!-- /.col -->
-                    <div class="box" align="center" style="border-style: none; box-shadow: none;"><br>
+                    <div class="box" align="center" style="border-style: none; box-shadow: none;" class="formsocial"><br>
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" style="font-size: 14px;">
@@ -151,7 +144,6 @@
                 </div>
             </div>
         </div>
-    </div><!-- /.login-box -->
     @php 
     if($agent->isMobile()){
     $link = explode("?", Request::fullUrl());
@@ -162,7 +154,13 @@
         }
     }
     @endphp
-
+    <script type="text/javascript">
+            $(document).ready(function(){
+                    var fullUrl = "{{ Request::fullUrl() }}";
+                    var res = str.split("?");
+                    console.log(res);
+            })        
+    </script>
 @stop
 
 @section('adminlte_js')
