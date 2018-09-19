@@ -171,7 +171,7 @@
                         console.log('null');
                     }else{
                       if( "{{ session()->exists('uuid') }}" == 1)  
-                      var rest = "{{ session()->get('uuid') }}" 
+                      var rest = "{{ session()->get('uuid') }}";
                      else
                       var rest = res[1];
                     
