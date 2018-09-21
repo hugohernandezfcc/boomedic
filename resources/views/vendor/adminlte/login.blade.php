@@ -190,7 +190,7 @@
                                             var urll = "{{ url('loginId') }}";
                                          /*   $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'"><div class="widget-user-header" style="background: #2f2f2f;"><div class="widget-user-image"><img class="img-circle" src="'+ photo +'" alt="User Avatar" style="width: 35px !important;"></div><h4 class="widget-user-desc">'+ result[z]['name'] +'</h3></div></a>');*/
 
-                                            $('.formfast').append('<div align="center" style="display: block;"><div class="lockscreen-item" style="position:static !important;"><div class="lockscreen-image"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials"><div class="input-group"><a href="'+ urll +'/'+ result[z]['idu'] +'" class="text-muted" style="display:block;"><label>'+ result[z]['name'] +'</label>&nbsp;<i class="fa fa-arrow-right align-right"></i></a></div></form></div></div><br>');
+                                            $('.formfast').append('<div class="lockscreen-item" style="position:relative !important; margin: 10px auto 50px auto !important;"><div class="lockscreen-image"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials"><div class="input-group"><a href="'+ urll +'/'+ result[z]['idu'] +'" class="text-muted" style="display:block;"><label>'+ result[z]['name'] +'</label>&nbsp;<i class="fa fa-arrow-right align-right"></i></a></div></form></div><br>');
                                          }
                                         }
                                       }
