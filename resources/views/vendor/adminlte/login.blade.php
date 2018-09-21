@@ -190,7 +190,7 @@
                                             var urll = "{{ url('loginId') }}";
                                          /*   $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'"><div class="widget-user-header" style="background: #2f2f2f;"><div class="widget-user-image"><img class="img-circle" src="'+ photo +'" alt="User Avatar" style="width: 35px !important;"></div><h4 class="widget-user-desc">'+ result[z]['name'] +'</h3></div></a>');*/
 
-                                            $('.formfast').append('<div class="lockscreen-item" style="position:relative !important; margin: 10px auto 40px auto !important; background: #737373 !important;"><div class="lockscreen-image" style="background:#737373 !important;"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials"><div class="input-group"><a href="'+ urll +'/'+ result[z]['idu'] +'" class="text-muted" style="display:block;"><label>'+ result[z]['name'] +'</label>&nbsp;<i class="fa fa-arrow-right pull-right"></i></a></div></form></div><br>');
+                                            $('.formfast').append('<div class="lockscreen-item" style="position:relative !important; margin: 10px 30px 40px 30px !important; background: #777 !important;"><div class="lockscreen-image" style="background:#777 !important;"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials"><div class="input-group"><a href="'+ urll +'/'+ result[z]['idu'] +'" class="text-white" style="display:block;"><label>'+ result[z]['name'] +'</label>&nbsp;<i class="fa fa-arrow-right pull-right"></i></a></div></form></div><br>');
                                          }
                                         }
                                       }
