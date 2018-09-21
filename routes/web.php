@@ -14,7 +14,7 @@
 
 
 Route::get('/', function () {
-    return redirect('/login?'.session()->get('uuid'));
+    return view('auth.login');
 });
 
 Route::get('/medicalRegister', function () {

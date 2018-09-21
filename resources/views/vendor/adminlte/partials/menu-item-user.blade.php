@@ -136,15 +136,14 @@
                               
                             @else
                               @if(!session()->get('parental'))
-                                <a
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                 class="btn btn-default btn-block btn-flat" style="background:white; color: black;">
-                                    <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                </a>
+                                    <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                     class="btn btn-default btn-block btn-flat" style="background:white; color: black;">
+                                        <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                    </a>
                                   @else
-                               <a href="{{ url('logoutback') }}" class="btn btn-default btn-block btn-flat" style="background:white; color:black;">
-                                    <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                </a>
+                                    <a href="{{ url('logoutback') }}" class="btn btn-default btn-block btn-flat" style="background:white; color:black;">
+                                        <i class="fa fa-sign-out"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                    </a>
                                 @endif
                                 <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
                                     @if(config('adminlte.logout_method'))
