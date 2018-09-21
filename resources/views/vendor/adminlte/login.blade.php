@@ -149,22 +149,18 @@
         </div>
     @php 
     if($agent->isMobile()){
-        if(session()->exists('uuid') != 1){
-
         $link = explode("?", Request::fullUrl());
         if(count($link) == 1){
                Session(['uuid' => 'null']);
         }else{
             Session(['uuid' => $link[1]]);
             }
-        }
     }
     @endphp
     <script type="text/javascript">
             $(document).ready(function(){
                 if("{{ $agent->isMobile() }}")
                  {
-                    alert("{{ session()->exists('uuid') }}");
                     var fullUrl = window.location.href;
                     var res = fullUrl.split("?");
                     if(res.length == 1 || "{{ session()->get('uuid') }}" == "null"){
