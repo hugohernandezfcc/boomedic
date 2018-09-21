@@ -20,11 +20,12 @@
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
         </div>
         <!-- /.login-logo -->
-                  <div class="box box-widget widget-user-2 formfast" style="display: none;">
-                        <!-- Add the bg color to the header using any of the bg-* classes -->
-                  </div>
+
         <div class="login-box-body box">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
+                 <form class="formfast" style="display: none;">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                  </form>
             <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post" class="formlogin">
                 {!! csrf_field() !!}
 
