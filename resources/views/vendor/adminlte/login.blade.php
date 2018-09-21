@@ -20,6 +20,9 @@
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
         </div>
         <!-- /.login-logo -->
+                  <div class="box box-widget widget-user-2 formfast" style="display: none;">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                  </div>
         <div class="login-box-body box">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
             <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post" class="formlogin">
@@ -47,9 +50,7 @@
                 </div>
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
             </form>
-                    <div class="box box-widget widget-user-2 formfast" style="display: none;">
-                        <!-- Add the bg color to the header using any of the bg-* classes -->
-                  </div>
+
                     <!-- /.col -->
                     <div class="box formsocial" align="center" style="border-style: none; box-shadow: none;"><br>
                         <div class="box-group" id="accordion">
@@ -188,7 +189,7 @@
                                             var urll = "{{ url('loginId') }}";
                                          /*   $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'"><div class="widget-user-header" style="background: #2f2f2f;"><div class="widget-user-image"><img class="img-circle" src="'+ photo +'" alt="User Avatar" style="width: 35px !important;"></div><h4 class="widget-user-desc">'+ result[z]['name'] +'</h3></div></a>');*/
 
-                                            $('.formfast').append('<div align="center" style="display: block;""><div class="lockscreen-item"><div class="lockscreen-image"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials"><div class="input-group"><a href="'+ urll +'/'+ result[z]['idu'] +'" class="text-muted" style="display:block;"><label>'+ result[z]['name'] +'</label><i class="fa fa-arrow-right"></i></a></div></form></div></div><br>');
+                                            $('.formfast').append('<div align="center" style="display: block;"><div class="lockscreen-item"><div class="lockscreen-image"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials"><div class="input-group"><a href="'+ urll +'/'+ result[z]['idu'] +'" class="text-muted" style="display:block;"><label>'+ result[z]['name'] +'</label>&nbsp;<i class="fa fa-arrow-right"></i></a></div></form></div></div><br>');
                                          }
                                         }
                                       }
