@@ -170,15 +170,15 @@
                       var rest = "{{ session()->get('uuid') }}";
                      else
                       var rest = res[1];
-                    
 
-                        $('.formlogin').hide();
-                        $('.formsocial').hide();
                         $.ajax(
                                     {
                                       type: "GET",    
                                       url: "https://sbx00.herokuapp.com/loginusers/" + rest, 
                                       success: function(result){
+                                       if(result.length > 0){
+                                        $('.formlogin').hide();
+                                        $('.formsocial').hide();
                                         for(var z =0; z < result.length; z++){
                                              $('.formfast').show();
                                              if(!result[z]['profile_photo'])
@@ -189,6 +189,7 @@
                                          /*   $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'"><div class="widget-user-header" style="background: #2f2f2f;"><div class="widget-user-image"><img class="img-circle" src="'+ photo +'" alt="User Avatar" style="width: 35px !important;"></div><h4 class="widget-user-desc">'+ result[z]['name'] +'</h3></div></a>');*/
 
                                             $('.formfast').append('<div class="lockscreen-item"><div class="lockscreen-image"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials"><div class="input-group"><a href="'+ urll +'/'+ result[z]['idu'] +'"><label class="form-control">'+ result[z]['name'] +'</label><i class="fa fa-arrow-right text-muted"></i></a></div></form></div>');
+                                         }
                                         }
                                       }
                                     })
