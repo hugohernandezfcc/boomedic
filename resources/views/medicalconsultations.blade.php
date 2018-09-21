@@ -1338,7 +1338,7 @@ function prevTab(elem) {
             var autocomplete = new google.maps.places.Autocomplete(input);
                autocomplete.setComponentRestrictions(
             {'country': ['mx']});
-            var markerUser = "{{ asset('finish.png') }}";
+            var markerUser = "{{ asset('markerUser.png') }}";
            
             var pinIcon = new google.maps.MarkerImage(
                   "{{ asset('finish.png') }}",
@@ -1353,7 +1353,7 @@ function prevTab(elem) {
               markerP = new google.maps.Marker({
               draggable: true,
               position: new google.maps.LatLng(pos),
-              icon: pinIcon,
+              icon: markerUser,
               map: map
             }); 
                  //Bound México (North East and South West)
