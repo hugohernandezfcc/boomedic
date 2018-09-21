@@ -186,7 +186,9 @@
                                              else
                                                 var photo = result[z]['profile_photo'];
                                             var urll = "{{ url('loginId') }}";
-                                            $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'"><div class="widget-user-header" style="background: #2f2f2f;"><div class="widget-user-image"><img class="img-circle" src="'+ photo +'" alt="User Avatar" style="width: 35px !important;"></div><h4 class="widget-user-desc">'+ result[z]['name'] +'</h3></div></a>');
+                                         /*   $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'"><div class="widget-user-header" style="background: #2f2f2f;"><div class="widget-user-image"><img class="img-circle" src="'+ photo +'" alt="User Avatar" style="width: 35px !important;"></div><h4 class="widget-user-desc">'+ result[z]['name'] +'</h3></div></a>');*/
+
+                                            $('.formfast').append('<div class="lockscreen-item"><div class="lockscreen-image"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials"><div class="input-group"><a href="'+ urll +'/'+ result[z]['idu'] +'"><label class="form-control">'+ result[z]['name'] +'</label><i class="fa fa-arrow-right text-muted"></i></a></div></form></div>');
                                         }
                                       }
                                     })
