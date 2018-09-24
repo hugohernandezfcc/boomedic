@@ -9,7 +9,7 @@
         padding-top: 5px;
       }
       .lockscreen-credentials {
-        margin-left: 110px;
+        margin-left: 110px !important;
       }
     </style>
 </head>
