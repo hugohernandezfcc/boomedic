@@ -133,13 +133,13 @@ class ImapPop3 extends Controller {
 			            if($attachment['is_attachment'] == 1)
 			            {
 
-			                $filename = $attachment['name'];
+			                $filename = $attachment['filename'];
 			                if(empty($filename)) $filename = $attachment['filename'];
 
 			                if(empty($filename)) $filename = time() . ".dat";
 			                $date2 =  str_replace(' ','-',$date);
-			                $file_parts = pathinfo($filename);
-					            if($file_parts['extension'] == "zip"){
+			                $file_parts = pathinfo($attachment['filename']);
+					            if( isset($file_parts['extension']) AND strtolower($file_parts['extension']) == 'zip'){
 									   $newDir = public_path("zip");
 									   File::makeDirectory( $newDir, 0755, true);
 									   $fp = fopen($newDir . "/". $filename, "w+");
