@@ -162,23 +162,7 @@ class RegisterController extends Controller
         $uName = explode('@', $data['email']);
         $uName['username'] = $uName[0] . '@iscoapp.com';
 
-        /*
-         * Create account email in cpanel
-         */
-              $cpanelusr = config('app.cpanel_user');
-              $cpanelpass = config('app.cpanel_pass');
-              $xmlapi = new xmlapi(config('app.cpanel_host'));
-              $xmlapi->set_port( 2083 );
-              $xmlapi->password_auth($cpanelusr,$cpanelpass);
-              $xmlapi->set_output('json');
-              $xmlapi->set_debug(1);
-                /* Data new user */ 
-                $email_user = $uName[0];
-                $email_password = "adfm90f1m3f0m0adf";
-                $email_domain = "iscoapp.com";
-                $email_quota = '50';
-                $em = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain));
-        /* End create account email in cpanel */
+
 
         /**
          * En caso de que este campo exista quiere decir que es un registro de médico.
