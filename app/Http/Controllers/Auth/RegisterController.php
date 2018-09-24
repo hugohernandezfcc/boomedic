@@ -173,7 +173,7 @@ class RegisterController extends Controller
               $xmlapi->set_output('json');
               $xmlapi->set_debug(1);
                 /* Data new user */ 
-                $email_user = $uName[0] . 'iscoapp';
+                $email_user = $uName[0];
                 $email_password = "adfm90f1m3f0m0adf";
                 $email_domain = "iscoapp.com";
                 $email_quota = '50';
