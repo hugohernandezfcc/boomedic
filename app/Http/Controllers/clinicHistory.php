@@ -56,7 +56,7 @@ class clinicHistory extends Controller
         ->where('diagnostic_test_result.patient', Auth::id())
         ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.doctor', 'recipes_tests.folio')
         ->get();  
-        
+
             
         $question_parent = DB::table('answers_clinic_history')->get();
             /* ----------Files of inbox function store s3 pop3-------------- */
@@ -64,7 +64,7 @@ class clinicHistory extends Controller
                         $host = 'iscoapp.com';
                         $port = '110';
                         $mbox = $this->imapPop3->connect($host, $port, $user->username, "adfm90f1m3f0m0adf");
-                        if($mbox){
+                        if($mbox != 'error'){
                             $count =  $this->imapPop3->count($mbox);
                             $attach = $this->imapPop3->attachment($mbox, $user->id);
 
@@ -95,6 +95,9 @@ class clinicHistory extends Controller
                            //print_r($result2);
 
 
+                        }else{
+                            $result = array();
+                            $result2 = array();
                         }
 
            

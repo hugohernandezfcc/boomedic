@@ -18,6 +18,8 @@ class ImapPop3 extends Controller {
 		$imbox = imap_open("{". $host .":".$port."/pop3/novalidate-cert}INBOX", $email, $pass);
 		if($imbox)
 		return $imbox;
+		else
+		return 'error';	
 
 	}
 
