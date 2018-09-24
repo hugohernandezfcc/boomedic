@@ -199,7 +199,7 @@
                                             var urll = "{{ url('loginId') }}";
                                          /*   $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'"><div class="widget-user-header" style="background: #2f2f2f;"><div class="widget-user-image"><img class="img-circle" src="'+ photo +'" alt="User Avatar" style="width: 35px !important;"></div><h4 class="widget-user-desc">'+ result[z]['name'] +'</h3></div></a>');*/
 
-                                            $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'" class="text-muted" style="color: white !important;"><div class="lockscreen-item" style="position:relative !important; background: #333 !important;"><div class="lockscreen-image" style="background:#333 !important;"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials"><div class="input-group cre"><label>'+ result[z]['name'] +'</label>&nbsp;<i class="fa fa-arrow-right"></i></div></form></div></a><br>');
+                                            $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'" class="text-muted" style="color: white !important;"><div class="lockscreen-item" style="position:relative !important; background: #333 !important;"><div class="lockscreen-image" style="background:#333 !important;"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials"><div class="input-group cre"><label>'+ result[z]['name'] +'</label></div></form></div></a><br>');
                                          }
                                         }
                                       }
