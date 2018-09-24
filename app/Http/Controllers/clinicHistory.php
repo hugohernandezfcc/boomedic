@@ -56,6 +56,7 @@ class clinicHistory extends Controller
         ->where('diagnostic_test_result.patient', Auth::id())
         ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.doctor', 'recipes_tests.folio')
         ->get();  
+        
             
         $question_parent = DB::table('answers_clinic_history')->get();
             /* ----------Files of inbox function store s3 pop3-------------- */
