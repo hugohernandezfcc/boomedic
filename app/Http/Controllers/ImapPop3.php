@@ -165,7 +165,7 @@ class ImapPop3 extends Controller {
 								  }	
 
 								  else{
-			                $name = "imbox/". $user ."-". $date2. "-". $emailFrom. "/" .$filename;
+			                $name = "imbox/". $user ."-". $date2. "-". $emailFrom. "/" .$file_parts['basename'].'.'.$file_parts['extension'];
 			                Storage::disk('s3')->put($name,  (string) $attachment['attachment'], 'public');
 					        $path = Storage::cloud()->url($name);
 					    
