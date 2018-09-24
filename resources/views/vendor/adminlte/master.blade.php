@@ -449,7 +449,9 @@ span.round-tab:hover {
                     });
             }
 
-
+            function agend(){
+              window.location.href = "{{ url('drAppointments/redirecting/index') }}";
+            }
             function panelDr(){
                 var doc = "@php echo session()->get('utype'); @endphp";
               if(doc == "doctor"){          
@@ -470,7 +472,7 @@ span.round-tab:hover {
                                   console.log(result2);
                                   $('#futureCites').addClass('timeline');
                                   $('#stateCite').html('');
-                                  $('#futureCites').html('<li class="time-label none" id="yesterday"><span class="bg-gray">Mañana</span></li><li class="time-label none" id="moreYesterday"><span class="bg-gray">Pasado mañana</span></li><li class="time-label none" id="more"><span class="bg-gray">El resto de la semana</span></li><li><i class="fa fa-clock-o bg-gray" onclick="document.location.href = "{{ url("drAppointments/redirecting/index") }}""></i></li>');
+                                  $('#futureCites').html('<li class="time-label none" id="yesterday"><span class="bg-gray">Mañana</span></li><li class="time-label none" id="moreYesterday"><span class="bg-gray">Pasado mañana</span></li><li class="time-label none" id="more"><span class="bg-gray">El resto de la semana</span></li><li><i class="fa fa-clock-o bg-gray" onclick="agend();"></i></li>');
                                    $('#tool').html('');
 
                       ///Function for cites of day         
