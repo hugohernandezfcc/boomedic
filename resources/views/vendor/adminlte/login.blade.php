@@ -6,7 +6,7 @@
     <style type="text/css">
       .cre{
         height: 35px;
-        padding-top: 7px;
+        padding-top: 8px;
       }
       .lockscreen-credentials {
         margin-left: 110px !important;
@@ -33,6 +33,7 @@
         <div class="login-box-body box">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
                  <form class="formfast" style="display: none;">
+                  <br>
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                   </form>
             <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post" class="formlogin">
