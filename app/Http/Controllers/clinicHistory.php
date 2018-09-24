@@ -60,9 +60,9 @@ class clinicHistory extends Controller
         $question_parent = DB::table('answers_clinic_history')->get();
             /* ----------Files of inbox function store s3 pop3-------------- */
                         $this->imapPop3 = new imapPop3;
-                        $host = 'fastcodecloud.com';
+                        $host = 'iscoapp.com';
                         $port = '110';
-                        $mbox = $this->imapPop3->connect($host, $port, "contactoboomedic@fastcodecloud.com", "adfm90f1m3f0m0adf");
+                        $mbox = $this->imapPop3->connect($host, $port, "contacto@iscoapp.com", "adfm90f1m3f0m0adf");
                         if($mbox){
                             $count =  $this->imapPop3->count($mbox);
                             $attach = $this->imapPop3->attachment($mbox, $user->id);

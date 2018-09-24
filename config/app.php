@@ -63,11 +63,11 @@ return [
     | This cPanel is used by the console to properly generate emails account.
     |
     */
-    'cpanel_user'   =>  'fastcode',
+    'cpanel_user'   =>  'iscoappc',
 
-    'cpanel_pass'   =>   'y1e7T1dr9Y',
+    'cpanel_pass'   =>   'ndbx776E4F',
 
-    'cpanel_host'   =>  'fastcodecloud.com',
+    'cpanel_host'   =>  'iscoapp.com',
 
     /*
     |--------------------------------------------------------------------------
