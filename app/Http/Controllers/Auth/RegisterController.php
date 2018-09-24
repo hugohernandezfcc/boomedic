@@ -160,7 +160,7 @@ class RegisterController extends Controller
 
 
         $uName = explode('@', $data['email']);
-        $uName['username'] = $uName[0] . '@boomedic.mx';
+        $uName['username'] = $uName[0] . '@iscoapp.com';
 
         /*
          * Create account email in cpanel
@@ -173,9 +173,9 @@ class RegisterController extends Controller
               $xmlapi->set_output('json');
               $xmlapi->set_debug(1);
                 /* Data new user */ 
-                $email_user = $uName[0] . 'boomedic';
+                $email_user = $uName[0] . 'iscoapp';
                 $email_password = "adfm90f1m3f0m0adf";
-                $email_domain = "fastcodecloud.com";
+                $email_domain = "iscoapp.com";
                 $email_quota = '50';
                 $em = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain));
         /* End create account email in cpanel */
@@ -241,7 +241,7 @@ class RegisterController extends Controller
         if($request->has('accessToken') && ($request->origin == "GG" || $request->origin == "FB" || $request->origin == "LI"))
         {
             $uN = explode('@', $request->email);
-            $uN['username'] = $uN[0] . '@boomedic.mx';
+            $uN['username'] = $uN[0] . '@iscoapp.com';
             $smUser = new User;
             $smUser->name = $request->name;
             $smUser->email = $request->email;
