@@ -402,6 +402,7 @@ class HomeController extends Controller
      */
         public function messages()
     {
+        $array = array();
         $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
@@ -457,7 +458,7 @@ class HomeController extends Controller
                            } 
                 
   
-          $array = array();
+
                 //if is for messages
                 $profInfo = DB::table('professional_information')
                             ->where('user', Auth::id() )
