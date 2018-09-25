@@ -16,8 +16,7 @@ class ImapPop3 extends Controller {
 
 	public function connect($host, $port, $email, $pass){
 		$imbox = imap_open("{". $host .":".$port."/pop3/novalidate-cert}INBOX", $email, $pass)or die(imap_last_error())or die("can't connect: ".imap_last_error());
-		print_r($imbox);
-		if($imbox)
+		if($imbox != false)
 		return $imbox;
 	}
 
