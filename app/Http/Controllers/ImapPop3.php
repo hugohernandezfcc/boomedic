@@ -19,7 +19,7 @@ class ImapPop3 extends Controller {
 		if($imbox)
 		return $imbox;
 	    else
-	    return 'error';	
+	    return null;	
 	}
 
 	public function count($imbox){
