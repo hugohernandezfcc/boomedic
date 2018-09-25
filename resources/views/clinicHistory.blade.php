@@ -829,7 +829,7 @@
             };
         
 
-           if(window.location.href == "{{ url('clinicHistory/index') }}"){      
+           if(window.location.href == "{{ url('clinicHistory/index') }}" && "{{ $mode }}" == "finish"){      
                 window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
                 var sticky = header.offsetTop;
