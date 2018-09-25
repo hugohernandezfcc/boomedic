@@ -453,10 +453,7 @@ class HomeController extends Controller
                            $result2 = $result->unique('date_email');
                            if(count($result2) > 0){
                             foreach($result2 as $mail){
-                                $details = $mail->subject;
-                                if($mail->subject == null)
-                                    $details = $mail->details;
-                                array_push($array, ['type' => 'correo', 'title' => $details, 'name' => $mail->email, 'profile_photo' => 'https://icon-icons.com/icons2/936/PNG/512/inbox_icon-icons.com_73527.png', 'created_at' => $mail->created_at]);
+                                array_push($array, ['type' => 'correo', 'title' => $mail->details, 'name' => $mail->email, 'profile_photo' => 'https://icon-icons.com/icons2/936/PNG/512/inbox_icon-icons.com_73527.png', 'created_at' => $mail->created_at]);
                               }
                            } 
                 
