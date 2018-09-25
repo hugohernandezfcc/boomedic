@@ -393,7 +393,7 @@
 
     <!-- Main content -->
 
-        @if(count($test_result) == 0 && count($files) == 0)
+        @if(count($test_result) == 0 && count($files->date_email) == 0)
              <div class="box-header direct-chat">
               <h3 class="box-title">
                         Expediente médico

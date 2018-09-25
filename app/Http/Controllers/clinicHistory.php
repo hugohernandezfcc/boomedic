@@ -90,12 +90,13 @@ class clinicHistory extends Controller
                                             }
                                         }
                                 
-                           $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->where('diagnostic_test','=',null)->get();   
-                           $result2 = $result->groupBy('date_email'); 
+
                            //print_r($result2);
 
 
                         }
+                          $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->where('diagnostic_test','=',null)->get();   
+                           $result2 = $result->groupBy('date_email'); 
 
            
         if(count($clinic_history) == 0){
