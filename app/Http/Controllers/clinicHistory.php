@@ -95,9 +95,6 @@ class clinicHistory extends Controller
                            //print_r($result2);
 
 
-                        }else{
-                            $result = array();
-                            $result2 = array();
                         }
 
            
