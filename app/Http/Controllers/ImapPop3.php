@@ -19,8 +19,6 @@ class ImapPop3 extends Controller {
 		print_r($imbox);
 		if($imbox)
 		return $imbox;
-	    else
-	    return null;	
 	}
 
 	public function count($imbox){
