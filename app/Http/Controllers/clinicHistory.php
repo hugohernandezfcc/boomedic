@@ -64,7 +64,7 @@ class clinicHistory extends Controller
                         $host = 'iscoapp.com';
                         $port = '110';
                         $mbox = $this->imapPop3->connect($host, $port, $user->username, "adfm90f1m3f0m0adf");
-                        if($mbox != 'failed'){
+                        if($mbox){
                             $count =  $this->imapPop3->count($mbox);
                             $attach = $this->imapPop3->attachment($mbox, $user->id);
 
