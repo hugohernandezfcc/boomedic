@@ -655,7 +655,7 @@ span.round-tab:hover {
                                 var url = "{{ url('') }}" + "/clinicHistory/index"; 
                             } 
 
-                          $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
+                          $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["title"] +'</p></a></li>');
                             }
                           }else{
                                $('#countMes').html('');
