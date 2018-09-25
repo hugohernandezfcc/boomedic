@@ -636,7 +636,7 @@ span.round-tab:hover {
                     type: "GET",    
                     url: "{{ url('HomeController/messages') }}", 
                     success: function(result){
-                            console.log("me ejecuté");
+                            console.log(result);
                     if(result.length > 0){
                         $('#newMess').html('');
                       for (var o =0; o < result.length; o++) {
