@@ -13,6 +13,8 @@ use Mail;
 use App\devices; 
 use App\users_devices;
 use Jenssegers\Agent\Agent;
+use App\Http\Controllers\ImapPop3;
+use App\diagnostic_test_result;
 
 class HomeController extends Controller
 {
@@ -393,7 +395,11 @@ class HomeController extends Controller
         return response()->json($user->entered);
     }
 
-            //Function messages ajax master blade top-nav
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
         public function messages()
     {
         $assistant = DB::table('assistant')
@@ -401,46 +407,82 @@ class HomeController extends Controller
              ->where('user_assist', Auth::id())
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
              ->get();
-         if(count($assistant) > 0){
-            Session(['utype' => 'assistant']); 
-              if(session()->get('asdr') == null){
-                  Session(['asdr' => $assistant[0]->iddr]);
-                 }
-             $user = User::find(session()->get('asdr'));
-         }else{  
-                $user = User::find(Auth::id());
-          }
+                     if(count($assistant) > 0){
+                        Session(['utype' => 'assistant']); 
+                          if(session()->get('asdr') == null){
+                              Session(['asdr' => $assistant[0]->iddr]);
+                             }
+                         $user = User::find(session()->get('asdr'));
+                     }else{  
+                            $user = User::find(Auth::id());
+                      }
+                          /* ----------Files of inbox function store s3 pop3-------------- */
+                $this->imapPop3 = new imapPop3;
+                $host = 'iscoapp.com';
+                $port = '110';
+                $mbox = $this->imapPop3->connect($host, $port, $user->username, "adfm90f1m3f0m0adf");
+                                /* ----------Files of inbox function store s3 pop3-------------- */
+                $this->imapPop3 = new imapPop3;
+                $host = 'iscoapp.com';
+                $port = '110';
+                $mbox = $this->imapPop3->connect($host, $port, $user->username, "adfm90f1m3f0m0adf");
+                    $count =  $this->imapPop3->count($mbox);
+                    $attach = $this->imapPop3->attachment($mbox, $user->id);
+                                foreach($attach as $arraym){ 
+                                    $c = DB::table('diagnostic_test_result')
+                                    ->where('patient','=', $user->id)
+                                    ->where('url','=', $arraym['path'])->get();
+                                    if(count($c) == 0){                             
+                                       $new_result = new diagnostic_test_result;
+                                       $new_result->url =  $arraym['path'];
+                                       $new_result->email =  $arraym['from'];
+                                       $new_result->details =  $arraym['filename'];
+                                       $new_result->patient =  $user->id;
+                                       //$new_result->header_email =  json_encode($array['header']);
+                                       $new_result->body_email =  json_encode($arraym['body']);
+                                       //$new_result->structure_email =  json_encode($array['structure']);
+                                       $new_result->date_email =  $arraym['date'];
+                                       $new_result->subject_email =  $arraym['subject'];
+                                       $new_result->text_email =  $arraym['message'];
+                                       $new_result->save();
+
+                                    }
+                                }
+                    
+                
+  
           $array = array();
-        //if is for messages
-   $profInfo = DB::table('professional_information')
-            ->where('user', Auth::id() )
-            ->get();
-     if(count($profInfo) == 0){      
-         $messages1 = DB::table('items_conversations')->where('by', $user->id)->orderBy('created_at')->get();
-     }else{
-        $messages1 = DB::table('items_conversations')
-        ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
-        ->where('conversations.doctor', $user->id)
-        ->select('items_conversations.*')
-        ->orderBy('items_conversations.created_at', 'desc')
-        ->get();
-     }
-         $search = $messages1->unique('conversation');
-         $messages = DB::table('items_conversations')
-            ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
-            ->join('users', 'items_conversations.by', '=', 'users.id')
-            ->where( 'items_conversations.created_at', '>', Carbon::now()->subDays(7))
-            ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
-            ->orderBy('items_conversations.created_at', 'desc')
-            ->get();
-        $messages = $messages->unique('by');
-            foreach($search as $s){
-                foreach($messages as $mess){
-                    if($s->conversation == $mess->conversation && $mess->viewed == false && $mess->by != $user->id){
-                       array_push($array, ['type' => 'chat', 'title' => $mess->namec, 'name' => $mess->name, 'profile_photo' => $mess->profile_photo, 'created_at' => $mess->created_at]);
+                //if is for messages
+                $profInfo = DB::table('professional_information')
+                            ->where('user', Auth::id() )
+                            ->get();
+                 if(count($profInfo) == 0){      
+                     $messages1 = DB::table('items_conversations')->where('by', $user->id)->orderBy('created_at')->get();
+                 }else{
+                    $messages1 = DB::table('items_conversations')
+                    ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+                    ->where('conversations.doctor', $user->id)
+                    ->select('items_conversations.*')
+                    ->orderBy('items_conversations.created_at', 'desc')
+                    ->get();
+                 }
+            $search = $messages1->unique('conversation');
+            $messages = DB::table('items_conversations')
+                ->join('conversations', 'items_conversations.conversation', '=', 'conversations.id')
+                ->join('users', 'items_conversations.by', '=', 'users.id')
+                ->where( 'items_conversations.created_at', '>', Carbon::now()->subDays(7))
+                ->select('items_conversations.*', 'conversations.name as namec', 'users.profile_photo')
+                ->orderBy('items_conversations.created_at', 'desc')
+                ->get();
+            $messages = $messages->unique('by');
+                foreach($search as $s){
+                    foreach($messages as $mess){
+                        if($s->conversation == $mess->conversation && $mess->viewed == false && $mess->by != $user->id){
+                           array_push($array, ['type' => 'chat', 'title' => $mess->namec, 'name' => $mess->name, 'profile_photo' => $mess->profile_photo, 'created_at' => $mess->created_at]);
+                        }
                     }
                 }
-            }
+
 
         return response()->json($array);
     }

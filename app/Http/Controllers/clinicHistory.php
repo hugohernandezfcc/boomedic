@@ -37,11 +37,11 @@ class clinicHistory extends Controller
      */
     public function index(){
         $user = User::find(Auth::id());
-                $clinic_history = DB::table('clinic_history')
-                ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
-                ->where('userid', Auth::id())
-                ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
-                ->get();
+        $clinic_history = DB::table('clinic_history')
+        ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+        ->where('userid', Auth::id())
+        ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+        ->get();
 
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
