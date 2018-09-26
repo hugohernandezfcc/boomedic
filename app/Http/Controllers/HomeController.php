@@ -489,9 +489,11 @@ class HomeController extends Controller
                         }
                     }
                 }
+            $array = array_values(array_sort($array, function ($value) {
+              return $value['created_at'];
+            }));
 
-
-        return response()->json($array->sortBy('created_at'));
+        return response()->json($array);
     }
 
      /**
