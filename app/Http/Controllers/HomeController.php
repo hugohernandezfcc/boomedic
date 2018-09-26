@@ -491,7 +491,7 @@ class HomeController extends Controller
                 }
 
 
-        return response()->json($array);
+        return response()->json($array->sortBy('created_at'));
     }
 
      /**
