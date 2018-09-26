@@ -489,7 +489,7 @@ class HomeController extends Controller
                         }
                     }
                 }
-            $array = array_values(array_sort($array, function ($value) {
+            $array = array_reverse(array_sort($array, function ($value) {
               return $value['created_at'];
             }));
 
