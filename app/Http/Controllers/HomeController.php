@@ -15,6 +15,8 @@ use App\users_devices;
 use Jenssegers\Agent\Agent;
 use App\Http\Controllers\ImapPop3;
 use App\diagnostic_test_result;
+use Event;
+use App\Events\EventName;
 
 class HomeController extends Controller
 {
@@ -35,6 +37,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+         event(new Event('John Doe'));
          $agent = new Agent();
          $user = User::find(Auth::id());
          $uuid = session()->get('uuid');
