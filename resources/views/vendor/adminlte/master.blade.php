@@ -429,7 +429,7 @@ span.round-tab:hover {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js"></script>
   <p id="power"></p>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js"></script>
+ <script src="http://localhost:6379/socket.io/socket.io.js"></script>
 <script type="text/javascript">
 
           //Function for minutes appointments set interval dinamic

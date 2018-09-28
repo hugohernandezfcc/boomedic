@@ -15,8 +15,8 @@ use App\users_devices;
 use Jenssegers\Agent\Agent;
 use App\Http\Controllers\ImapPop3;
 use App\diagnostic_test_result;
-use Event;
-use App\Events\EventName;
+use App\Events\Event;
+use Redis;
 
 class HomeController extends Controller
 {
@@ -37,7 +37,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-         event(new Event('John Doe'));
+         Redis::Connection();
+         //event(new Event('rebbeca.goncalves@doitcloud.consulting'));
          $agent = new Agent();
          $user = User::find(Auth::id());
          $uuid = session()->get('uuid');
@@ -222,7 +223,9 @@ class HomeController extends Controller
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
              ->get();
                         if(count($assistant) == 0){
+
                              Session(['utype' => 'mortal']); 
+
                                 return view('medicalconsultations', [
                                         'username'  => $user->username,
                                         'name'      => $user->name,

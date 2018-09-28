@@ -26,6 +26,7 @@ class EventListener implements ShouldQueue
      */
     public function handle(Event $event)
     {
-        //
+        $username = $event->username;
+        print_r($event);
     }
 }

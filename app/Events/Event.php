@@ -12,8 +12,8 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class Event implements ShouldBroadcast
 {
-    use InteractsWithSockets, SerializesModels;
-   public $username;    // this will be broadcasted
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+    public $username;    // this will be broadcasted
     /**
      * Create a new event instance.
      *
