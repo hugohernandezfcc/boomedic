@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'Boomedic',
+    'title' => 'Isco',
 
     'title_prefix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Boome</b>dic',
+    'logo' => '<b>Is</b>co',
 
-    'logo_mini' => '<b>Bo</b>c',
+    'logo_mini' => '<b>Is</b>co',
 
     /*
     |--------------------------------------------------------------------------
