@@ -15,6 +15,8 @@ use Image;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Mail;
+//use Events;
+//use App\Events\EventName;
 
 
 class profile extends Controller
@@ -70,6 +72,7 @@ class profile extends Controller
      */
     public function show($id)
     {
+      //event(new EventName('rebbeca.goncalves@doitcloud.consulting'));
         $users = DB::table('users')->where('id', Auth::id() )->get();
         $family = DB::table('family')
             ->join('users', 'family.activeUser', '=', 'users.id')

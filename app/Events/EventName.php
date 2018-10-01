@@ -13,21 +13,24 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class EventName implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $data;
+    public $username;    // this will be broadcasted
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($username)
     {
-        $this->data = array(
-            'power'=> '10'
-        );
+       $this->username = $username;
     }
 
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return Channel|array
+     */
     public function broadcastOn()
     {
-        return Channel('test');
+        return new Channel('testone');
     }
 }

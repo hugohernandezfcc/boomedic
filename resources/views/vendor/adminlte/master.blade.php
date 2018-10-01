@@ -427,7 +427,6 @@ span.round-tab:hover {
 <script src="{{ asset('js/LinkedInRegister.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.33&key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js"></script>
   <p id="power"></p>
  <script src="http://localhost:6379/socket.io/socket.io.js"></script>
 <script type="text/javascript">
@@ -684,13 +683,14 @@ span.round-tab:hover {
           console.log('ya paso el tiempo '+ time);
             panelDr();
         }
+
+    $(function () {
         var socket = io('http://localhost:6379');
-        socket.on('test:App\\Events\\Event', function(data){
+        socket.on('testone:App\\Events\\Event', function(data){
                 //you append that data to DOM, so user can see it
                 $('#power').text(data.username)
                 console.log('socket');
             });
-    $(function () {
 
             var par = "@php echo session()->get('parental'); @endphp";
       if(!par){

@@ -249,17 +249,7 @@ class doctor extends Controller
         } 
          public function verify($id)
            {
-             $assistant = DB::table('assistant')
-             ->join('users', 'assistant.user_doctor', '=', 'users.id')
-             ->where('user_assist', Auth::id())
-             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
-             ->get();
-         if(count($assistant) > 0){
-             $user = User::find(session()->get('asdr'));
-          }else{
-              $user = User::find(Auth::id());
-          }
-             $assistant = assistant::where('id', $id)->first();
+                 $assistant = assistant::where('id', $id)->first();
                 if (!$assistant){
              $notification = array(
                             //In case the payment is approved it shows a message reminding you the amount you paid.
@@ -267,7 +257,7 @@ class doctor extends Controller
                         'error' => 'error'
                         );
                       
-                    return  redirect('user/profile/' . $user->id)->with($notification);
+                    return  redirect('user/profile/' . Auth::id() )->with($notification);
                 }
                 else{
           $assist = User::where('id', $assistant->user_assist)->first();
@@ -287,7 +277,7 @@ class doctor extends Controller
                                             $message->subject('El asistente que agregaste ha confirmado exitosamente');
                                             $message->to('contacto@doitcloud.consulting');
                                         });
-                return redirect('user/profile/' . $user->id)->with($notification);
+                return redirect('user/profile/' . Auth::id())->with($notification);
               }
             }
         }

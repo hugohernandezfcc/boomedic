@@ -1,16 +1,28 @@
-
-var server = require('http').Server();
-var io = require('socket.io')(server);
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 var Redis = require('ioredis');
-var redis = new Redis();
+var redis = new Redis({
+  connectTimeout: 10000
+})
 
-//redis.subscribe('test-channel');
-redis.psubscribe('*'); //multiple channels
-
-//redis.on('message', function(channel, message) {
-redis.on('pmessage', function(subscribed, channel, message) { //multiple channels
-    message = JSON.parse(message);
-    io.emit(channel + ':' + message.event, message.data);
+redis.subscribe('testone', function () {
+    console.log('Redis: test subscribed');
 });
 
-server.listen(6379);
+redis.on('message', function(channel, message) {
+    console.log('Redis: Message on ' + channel + ' received!');
+    console.log(message);
+});
+
+io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
+});
+
+
+http.listen(6379, function(){
+    console.log('listening on *:6379');
+});

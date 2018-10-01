@@ -6,8 +6,7 @@
 	"databaseConfig": {
 		"redis": {
 			"port": "6379",
-            "host": "localhost",
-            "read_write_timeout": 0
+            "host": "localhost"
 		}
 	},
 	"devMode": true,
@@ -22,11 +21,5 @@
 	"subscribers": {
 		"http": true,
 		"redis": true
-	},
-		  "apiOriginAllow":{
-		    "allowCors" : true,
-		    "allowOrigin" : "http://127.0.0.1",
-		    "allowMethods" : "GET, POST",
-		    "allowHeaders" : "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
-		  }
+	}
 }
