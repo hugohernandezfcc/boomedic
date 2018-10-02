@@ -208,6 +208,6 @@ return [
     |
     */
    
-    'buketAmazon'           => 'https://s3.amazonaws.com/abiliasf/'
+    'bucketAmazon'           => 'https://s3.amazonaws.com/abiliasf/'
 
 ];

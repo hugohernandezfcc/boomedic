@@ -13,6 +13,7 @@ use Mail;
 use App\devices; 
 use App\users_devices;
 use Jenssegers\Agent\Agent;
+
 use App\Http\Controllers\DoctorController;
 
 
@@ -23,11 +24,8 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth');
-        $doctor = new DoctorController();
-        $doctor->index();
     }
 
     /**
@@ -38,28 +36,30 @@ class HomeController extends Controller
     public function index()
     {
 
+        $DoctorController = new DoctorController();
+        $DoctorController->index();
+
         $agent = new Agent();
         $user = User::find(Auth::id());
         $uuid = session()->get('uuid');
 
-          if($agent->isMobile() && $uuid != "null"){
+        if($agent->isMobile() && $uuid != "null"){
             if($uuid){
                 $device = DB::table('devices')->where('uuid_device', $uuid)->get();
-                $old =  DB::table('users_devices')->where(
-                [
+                $old =  DB::table('users_devices')->where([
                     ['device', '=', $device[0]->id],
                     ['user_id', '=',  $user->id]
-                ]
-            )->get();
+                ])->get();
+
                 if(count($old) == 0){
                     $ud = new users_devices;
                     $ud->user_id = $user->id;
                     $ud->device = $device[0]->id;
                     if($ud->save())
-                    Session(['uuid' => 'null']);    
+                        Session(['uuid' => 'null']);    
+                }
             }
-            }
-          }
+        }
 
 
 
