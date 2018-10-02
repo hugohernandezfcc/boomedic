@@ -685,12 +685,12 @@ span.round-tab:hover {
         }
 
     $(function () {
-        var socket = io('http://localhost:6379');
+      /*  var socket = io('http://localhost:6379');
         socket.on('testone:App\\Events\\Event', function(data){
                 //you append that data to DOM, so user can see it
                 $('#power').text(data.username)
                 console.log('socket');
-            });
+            });*/
 
             var par = "@php echo session()->get('parental'); @endphp";
       if(!par){
