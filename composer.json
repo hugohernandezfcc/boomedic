@@ -21,13 +21,15 @@
         "league/flysystem-aws-s3-v3": "^1.0",
         "nesbot/carbon": "~1.14",
         "paypal/rest-api-sdk-php": "*",
-        "predis/predis": "^1.1@dev",
+        "predis/predis": "^1.1",
         "smalot/pdfparser": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7"
+        "phpunit/phpunit": "~5.7",
+        "socket.io": "^2.0.3",
+        "socket.io-client": "^2.0.3"
     },
     "autoload": {
         "classmap": [

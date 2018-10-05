@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\Event;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Redis;
 
 class EventListener implements ShouldQueue
 {
@@ -26,7 +27,6 @@ class EventListener implements ShouldQueue
      */
     public function handle(Event $event)
     {
-        $username = $event->username;
-        print_r($event);
+
     }
 }

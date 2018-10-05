@@ -51,12 +51,11 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
-import Echo from "laravel-echo"
+/*import Echo from "laravel-echo"
+
 window.io = require('socket.io-client');
 
-if (typeof io !== 'undefined') {
-  window.Echo = new Echo({
+window.Echo = new Echo({
     broadcaster: 'socket.io',
-    host: 'http://localhost:6379',
-  });
-}
+    host: 'http://127.0.0.1:6379'
+});*/

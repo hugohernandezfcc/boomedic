@@ -15,7 +15,8 @@ use App\users_devices;
 use Jenssegers\Agent\Agent;
 use App\Http\Controllers\ImapPop3;
 use App\diagnostic_test_result;
-use App\Events\Event;
+use Event;
+use App\Events\EventName;
 use Redis;
 
 class HomeController extends Controller
@@ -37,8 +38,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-         Redis::Connection();
-         //event(new Event('rebbeca.goncalves@doitcloud.consulting'));
+         /*$redis = Redis::connection();
+         $data = ['message' => 'hola'];
+         $redis->publish('message', json_encode($data));
+         Event::fire(new EventName('JohnDoe'));*/
          $agent = new Agent();
          $user = User::find(Auth::id());
          $uuid = session()->get('uuid');
@@ -76,7 +79,7 @@ class HomeController extends Controller
            ->where('medical_appointments.when', '>', Carbon::now()->subDays(1))
            ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.profile_photo', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.longitude', 'labor_information.latitude','paymentsmethods.cardnumber', 'paymentsmethods.provider', 'paymentsmethods.paypal_email','paymentsmethods.id as idtr')->get();
 
-        $join = DB::table('professional_information')
+         $join = DB::table('professional_information')
             ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
             ->join('users', 'professional_information.user', '=', 'users.id')
             ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'professional_information.id as prof', 'users.id AS dr', 'users.profile_photo')

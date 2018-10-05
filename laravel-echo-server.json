@@ -1,16 +1,17 @@
 {
-	"authHost": "http://localhost",
+	"authHost": "http://127.0.0.1",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",
 	"databaseConfig": {
 		"redis": {
 			"port": "6379",
-            "host": "localhost"
-		}
+			"host": "127.0.0.1"
+		},
+		"publishPresence": true
 	},
-	"devMode": true,
-	"host": "localhost",
+	"devMode": false,
+	"host": "127.0.0.1",
 	"port": "6379",
 	"protocol": "http",
 	"socketio": {},
@@ -21,5 +22,11 @@
 	"subscribers": {
 		"http": true,
 		"redis": true
+	},
+	"apiOriginAllow": {
+		"allowCors": false,
+		"allowOrigin": "",
+		"allowMethods": "",
+		"allowHeaders": ""
 	}
 }

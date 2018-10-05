@@ -27,10 +27,10 @@ class EventName implements ShouldBroadcast
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return Channel|array
+     * @return array
      */
     public function broadcastOn()
     {
-        return new Channel('testone');
+        return ['test-channel'];
     }
 }

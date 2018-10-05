@@ -428,7 +428,7 @@ span.round-tab:hover {
 <script src="https://maps.googleapis.com/maps/api/js?v=3.33&key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
   <p id="power"></p>
- <!--<script src="http://localhost:6379/socket.io/socket.io.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>-->
 <script type="text/javascript">
 
           //Function for minutes appointments set interval dinamic
@@ -685,10 +685,10 @@ span.round-tab:hover {
         }
 
     $(function () {
-      /*  var socket = io('http://localhost:6379');
+       /* var socket =  io.connect('http://localhost:6379');
         socket.on('testone:App\\Events\\Event', function(data){
                 //you append that data to DOM, so user can see it
-                $('#power').text(data.username)
+                //$('#power').text(data.username)
                 console.log('socket');
             });*/
 

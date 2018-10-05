@@ -1,28 +1,22 @@
 var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var Redis = require('ioredis');
-var redis = new Redis({
-  connectTimeout: 10000
-})
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+var Redis = require('ioredis'); 
+var redis = new Redis(6379, '127.0.0.1');
+server.listen(6379);
+io.on('connection', function (socket) {
+ 
+  console.log("client connected");
 
-redis.subscribe('testone', function () {
-    console.log('Redis: test subscribed');
-});
-
-redis.on('message', function(channel, message) {
-    console.log('Redis: Message on ' + channel + ' received!');
-    console.log(message);
-});
-
-io.on('connection', function(socket){
-    console.log('a user connected');
-    socket.on('disconnect', function(){
-        console.log('user disconnected');
-    });
-});
-
-
-http.listen(6379, function(){
-    console.log('listening on *:6379');
+  redis.subscribe('test-channel');
+ 
+  redis.on("test-channel", function(channel, data) {
+    console.log("mew message add in queue "+ data['message'] + " channel");
+    socket.emit(channel, data);
+  });
+ 
+  socket.on('disconnect', function() {
+    redis.quit();
+  });
+ 
 });
