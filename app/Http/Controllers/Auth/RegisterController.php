@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\professional_information;
-
+use Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\xmlapi;
 use Illuminate\Support\Facades\Validator;
@@ -262,7 +262,7 @@ class RegisterController extends Controller
     public function verify($code)
            { 
              $user = User::where('confirmation_code', $code)->first();
-             loginUsingId($user->id);
+             Auth::loginUsingId($user->id);
                 if (!$user){
                     return redirect('/login');
                 }else{
