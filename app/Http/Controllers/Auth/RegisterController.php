@@ -262,9 +262,8 @@ class RegisterController extends Controller
     public function verify($code)
            { 
              $user = User::where('confirmation_code', $code)->first();
-             Auth::loginUsingId($user->id);
+             loginUsingId($user->id);
                 if (!$user){
-                 \Auth::logout();
                     return redirect('/login');
                 }else{
    
