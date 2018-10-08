@@ -613,7 +613,7 @@ class HomeController extends Controller
         public function verify($code)
            { 
              $user = User::where('confirmation_code', $code)->first();
-
+             Auth::loginUsingId($user->id);
                 if (!$user){
                  \Auth::logout();
                     return redirect('/login');
@@ -639,11 +639,9 @@ class HomeController extends Controller
          
                 $user->confirmed = true;
                 $user->confirmation_code = null;
-                if($user->save()){
-                $user2 = User::find($user->id);
-                Auth::login($user2, true); 
+                if($user->save())
                 return redirect()->intended(route('medicalconsultations'));
-               }
+               
             }
             }
 
