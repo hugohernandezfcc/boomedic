@@ -617,8 +617,7 @@ class HomeController extends Controller
                  \Auth::logout();
                     return redirect('/login');
                 }else{
-             $user2 = User::find($user->id);
-             Auth::login($user2, true);    
+   
                         /*
          * Create account email in cpanel
          */
@@ -639,8 +638,11 @@ class HomeController extends Controller
          
                 $user->confirmed = true;
                 $user->confirmation_code = null;
-                if($user->save())
+                if($user->save()){
+                $user2 = User::find($user->id);
+                Auth::login($user2, true); 
                 return redirect()->intended(route('medicalconsultations'))->with('notification', 'Has confirmado correctamente tu correo!');
+               }
             }
             }
 
