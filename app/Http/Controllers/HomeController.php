@@ -640,7 +640,7 @@ class HomeController extends Controller
                 $user->confirmed = true;
                 $user->confirmation_code = null;
                 if($user->save())
-                return redirect('/medicalconsultations')->with('notification', 'Has confirmado correctamente tu correo!');
+                return redirect()->intended(route('medicalconsultations'))->with('notification', 'Has confirmado correctamente tu correo!');
             }
             }
 
