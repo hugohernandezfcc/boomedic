@@ -14,6 +14,7 @@ class ChangeEnumGender extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+         DB::statement("ALTER TABLE users MODIFY COLUMN gender ENUM('male', 'female', 'other') default 'other'");
         });
     }
 
