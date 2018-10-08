@@ -642,7 +642,7 @@ class HomeController extends Controller
                 if($user->save()){
                 $user2 = User::find($user->id);
                 Auth::login($user2, true); 
-                return redirect()->intended(route('medicalconsultations'))->with('notification', 'Has confirmado correctamente tu correo!');
+                return redirect()->intended(route('medicalconsultations'));
                }
             }
             }
