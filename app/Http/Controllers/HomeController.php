@@ -603,7 +603,7 @@ class HomeController extends Controller
                     $message->to('contacto@doitcloud.consulting')->subject('Por favor confirma tu correo');
                 });
                      \Auth::logout();
-                        return redirect('/login');
+                      return redirect('/login');
                 } else{
                           \Auth::logout();
                         return redirect('/login');
