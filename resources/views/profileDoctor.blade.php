@@ -288,6 +288,7 @@
 		                  <select class="form-control" name="gender">
 		                    <option value="female" {{ ($gender == 'female') ? 'selected' : '' }}>Femenino</option>
 		                    <option value="male"   {{ ($gender == 'male')   ? 'selected' : '' }}>Masculino</option>
+		                    <option value="other"   {{ ($gender == 'other')   ? 'selected' : '' }}>Otro</option>
 		                  </select>
 	                  </div>
 	                </div>
@@ -554,6 +555,9 @@
                             @endif
                             @if($gender == "male")
                             <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+                            @endif
+                            @if($gender == "other")
+                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.other') }}</div>
                             @endif
                       
                         </div>

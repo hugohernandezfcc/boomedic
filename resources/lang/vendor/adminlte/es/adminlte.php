@@ -9,6 +9,7 @@ return [
     'birthdate'                   => 'Fecha de nacimiento',
     'female'                      => 'Femenino',
     'male'                        => 'Masculino', 
+    'other'                       => 'Otro',  
     'single'                      => 'soltero(a)',
     'married'                     => 'Casado(a)',     
     
