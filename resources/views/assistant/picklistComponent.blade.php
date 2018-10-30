@@ -53,11 +53,11 @@
     </div>
     <form class="lockscreen-credentials">
       <div class="input-group" style="display: block !important;">
-	            <select class="form-control select" name="doctor" id="mySelectd"> 
+	            <select class="form-control select" name="doctor" id="mySelectd" style="font-family: 'FontAwesome',Arial; font-size: 12px;"> 
 	            @foreach($as as $assi)	
 	            	 @foreach($donli as $de)
 	            	    @if($assi->iddr == $de['id'])
-                  		 <option value="{{ $assi->iddr }}" col="{{ $de['online'] }}">{{ $assi->name }}</option>
+                  		 <option value="{{ $assi->iddr }}" col="{{ $de['online'] }}">{{ $assi->name }} &#xf0f3;</option>
                   		@endif 
                   	 @endforeach	 
                 @endforeach  
