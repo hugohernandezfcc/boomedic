@@ -57,10 +57,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'AKIAIKS7F54ZQ3CBO6CA',
-            'secret' => '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',
+            'key' => 'AKIAIUALBKFBYOH7SVXA',
+            'secret' => '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',
             'region' => 'us-east-1',
-            'bucket' => 'ws-sf',
+            'bucket' => 'abiliasf',
             'ACL'    => 'public-read'
         ],
 
