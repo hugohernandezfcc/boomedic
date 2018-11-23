@@ -1345,7 +1345,7 @@ function prevTab(elem) {
                   null, /* size is determined at runtime */
                   null, /* origin is 0,0 */
                   null, /* anchor is bottom center of the scaled image */
-                  new google.maps.Size(48, 63)
+                  new google.maps.Size(40, 40)
               ); 
 
 
