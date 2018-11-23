@@ -1338,10 +1338,10 @@ function prevTab(elem) {
             var autocomplete = new google.maps.places.Autocomplete(input);
                autocomplete.setComponentRestrictions(
             {'country': ['mx']});
-            var markerUser = "{{ asset('finish.png') }}";
+            var markerUser = "{{ asset('markerloc.png') }}";
            
             var pinIcon = new google.maps.MarkerImage(
-                  "{{ asset('finish.png') }}",
+                  "{{ asset('markerloc.png') }}",
                   null, /* size is determined at runtime */
                   null, /* origin is 0,0 */
                   null, /* anchor is bottom center of the scaled image */
