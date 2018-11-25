@@ -33,7 +33,7 @@ class ImapPop3 extends Controller {
 	}
 
 	public function attachment($imbox, $user){
-			$emails = imap_search($imbox, 'ALL', SE_UID);
+			$emails = imap_search($imbox, 'UNSEEN');
 						        $array = array();
 
 		/* if any emails found, iterate through each email */
