@@ -16,6 +16,7 @@ use Mailgun\Mailgun;
 use App\PaymentMethod;
 use App\Http\Controllers\payments;
 use Carbon\Carbon;
+use App\notifications;
 
 class medicalappointments extends Controller
 {
@@ -186,8 +187,8 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        $menu = menu::find('33');
-        $menu->icon = 'user-md';
+        $menu = notifications::find('1');
+        $menu->description = 'Actualización de aviso de privacidad';
      /*   $menu = new menu();
         $menu->text = 'Agenda';
         $menu->to = 'assistant';
