@@ -1114,19 +1114,7 @@
 								        // When the user selects an address from the dropdown, populate the address
 		        // fields in the form.
 		        autocomplete.addListener('place_changed', fillInAddress);
-		        		google.maps.event.addDomListener(window, 'load', initialize);
 
-						   var geocoder = new google.maps.Geocoder();
-						    var address = autocomplete;
-
-						geocoder.geocode( { 'address': address}, function(results, status) {
-
-						  if (status == google.maps.GeocoderStatus.OK) {
-						    var latitude = results[0].geometry.location.lat();
-						    var longitude = results[0].geometry.location.lng();
-						    alert(latitude);
-						  } 
-						}); 
 		      }
 
 		      function fillInAddress() {
@@ -1137,7 +1125,9 @@
 		          document.getElementById(component).value = '';
 		          document.getElementById(component).disabled = false;
 		        }
-
+		            document.getElementById('latitudeFend').value = place.geometry.location.lat();
+		            document.getElementById('longitudeFend').value = place.geometry.location.lng();
+		            alert(place.geometry.location.lat());
 		        // Get each component of the address from the place details
 		        // and fill the corresponding field on the form.
 		        for (var i = 0; i < place.address_components.length; i++) {
