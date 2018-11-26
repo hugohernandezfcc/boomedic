@@ -1110,7 +1110,11 @@
 		        autocomplete = new google.maps.places.Autocomplete(
 		         (document.getElementById('autocomplete')),
 		            {types: ['geocode']});
-						   google.maps.event.addDomListener(window, 'load', initialize);
+
+								        // When the user selects an address from the dropdown, populate the address
+		        // fields in the form.
+		        autocomplete.addListener('place_changed', fillInAddress);
+		        		google.maps.event.addDomListener(window, 'load', initialize);
 
 						   var geocoder = new google.maps.Geocoder();
 						    var address = autocomplete;
@@ -1123,10 +1127,6 @@
 						    alert(latitude);
 						  } 
 						}); 
-								        // When the user selects an address from the dropdown, populate the address
-		        // fields in the form.
-		        autocomplete.addListener('place_changed', fillInAddress);
-		        
 		      }
 
 		      function fillInAddress() {
