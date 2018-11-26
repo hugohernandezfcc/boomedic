@@ -347,8 +347,8 @@
 			            </div>
 		            </div>
 
-		            <input type="text" style="display: none;" name="latitude" id="latitudeFend" />
-		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" />
+		            <input type="text" style="visibility: hidden;" name="latitude" id="latitudeFend" />
+		            <input type="text" style="visibility: hidden;" name="longitude" id="longitudeFend" />
 		            <br/>
 		            <!-- /.box-body -->
 				  	<div class="box-footer">
