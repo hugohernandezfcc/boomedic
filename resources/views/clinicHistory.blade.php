@@ -1381,7 +1381,7 @@
                                         console.log(data);
                                        }
                                    });
-                         window.open('{{ url("clinicHistory/cHistory") }}', '_self');
+                         window.open('{{ url("clinicHistory/index") }}', '_self');
 
           });
 
