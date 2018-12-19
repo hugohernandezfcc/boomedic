@@ -246,7 +246,7 @@ class profile extends Controller
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
                 'current_prescription'    => $answer,
-
+                'created_at'    => $users[0]->created_at,
                 /** ADDRESS FISICAL USER  */
 
                 'country'       => (   empty($users[0]->country)        ) ? '' : $users[0]->country, 
