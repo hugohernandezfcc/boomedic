@@ -214,69 +214,69 @@
 		         	    	
 		         	    	<div class="row">
                           
-	                            <div class="col-sm-2" align="left"><b>Correo:</b></div>
-	                            <div class="col-sm-10 cut" align="left">{{ $email }}</div>
+	                            <div class="col-sm-3" align="left"><b>Correo:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $email }}</div>
 	                         
 	                        </div>
 	                        <div class="row">
 	                          
-	                            <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
-	                            <div class="col-sm-10 cut" align="left">{{ $username }}</div>
+	                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $username }}</div>
 	                         
 	                        </div>
 	                        <div class="row">
 	                          
-	                            <div class="col-sm-2" align="left"><b>Edad:</b></div>
-	                            <div class="col-sm-10" align="left">{{ $age }}</div>
+	                            <div class="col-sm-3" align="left"><b>Edad:</b></div>
+	                            <div class="col-sm-9" align="left">{{ $age }}</div>
 	                         
 	                        </div>
 	                        <div class="row">
 	                         
-	                            <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
-	                            <div class="col-sm-10 cut" align="left">{{ $occupation }}</div>
+	                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
 	                         
 	                        </div>
 	                        <div class="row">
 	                        
-	                            <div class="col-sm-2" align="left"><b>Genero:</b></div>
+	                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
 	                            @if($gender == "female")
-	                            	<div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.female') }}</div>
 	                            @endif
 	                            @if($gender == "male")
-	                            	<div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.male') }}</div>
 	                            @endif
 	                            @if($gender == "other")
-	                            	<div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.other') }}</div>
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
 	                            @endif
 	                      
 	                        </div>
 	                        <div class="row">
 	                         
-	                            <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
-	                            <div class="col-sm-10 cut" align="left">{{ $scholarship }}</div>
+	                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
 	                    
 	                        </div>
 	                        <div class="row">
 	                         
-	                            <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
+	                            <div class="col-sm-3" align="left"><b>Estado civil:</b></div>
 	                              @if($maritalstatus == "single")
-	                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.single') }}</div>
 	                             @endif
 	                            @if($maritalstatus == "married")
-	                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.married') }}</div>
 	                             @endif	
 	                      
 	                        </div>
 	                        <div class="row">
 	                        
-	                            <div class="col-sm-2" align="left"><b># Móvil:</b></div>
-	                            <div class="col-sm-10 cut" align="left">{{ $mobile }}</div>
+	                            <div class="col-sm-3" align="left"><b># Móvil:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $mobile }}</div>
 	                       
 	                        </div>
 	                        <div class="row">
 	                        
-	                            <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
-	                            <div class="col-sm-10 cut" align="left">{{ $updated_at }}</div>
+	                            <div class="col-sm-3" align="left"><b>Ultima modificación:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $updated_at }}</div>
 	                        </div>
 		         	    </div>
 		         	    <div class="tab-pane" id="family">
@@ -292,10 +292,304 @@
 						        	</div>
 						      	</div>
 							</div>
-							<!--button modal to add more family members-->
+							<!-- button modal to add more family members -->
 
-	                    	<div id="demo"></div>
+
+
+
+	                    	<div id="diagramFamily"></div>
+
+
+
+
+	                    	<!-- modals add family member & session as child -->
+	                    	
 	                    	@include('modals.addFamilyMember')
+	                    	@include('modals.sessionAsParentChild')
+	                    	
+	                    	<!-- modals add family member & session as child -->
+
+	                    	<script type="text/javascript">
+	                    		
+	                    		$('#family').on('click', function(e) {
+       				 				e.preventDefault();
+       				 				document.getElementById('diagramFamily').innerHTML='';
+									+ function(d3) {
+
+									var swatches = function(el) {
+										var circleWidth = 45;	
+										var charge = -800;
+										var h = 0;
+										var w= 0;
+								        if("@php echo $agent->isMobile(); @endphp"){
+								            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
+								              h= window.screen.availHeight;
+											  w= window.screen.availWidth;
+								          
+								            if(h >= 1000 && h <= 1300){
+								            	circleWidth = 30;
+												charge = -300;
+								                h = h*0.20;
+								                h = Math.floor(h);
+								                w = w*0.40;
+								                w = Math.floor(w);
+								                  //alert("Altura: "+h + "anchura " + w);
+								            }else if(h>=1800){
+								              h-= 1840;
+								              w-= 1200;
+								             circleWidth = 30;
+											 charge = -300;
+								            }else
+								            {
+								              h-=315;
+								              w-=100;
+								              circleWidth = 30;
+											 charge = -300;
+								            }
+								       	 }else{
+								          h = window.screen.availHeight-375;
+								          w = window.screen.availWidth-100;
+								           circleWidth = 50;
+								        }
+
+										    w = w;
+											h = h;
+
+												    
+
+								    var palette = {
+								      "lightgray": "#819090",
+								      "gray": "#708284",
+								      "mediumgray": "#808486",
+								      "darkgray": "#272B2C",
+								      "darkblue": "#0A2933",
+								      "darkerblue": "#042029",
+								      "paleryellow": "#FCF4DC",
+								      "paleyellow": "#EAE3CB",
+								      "yellow": "#A57706",
+								      "orange": "#BD3613",
+								      "red": "#D11C24",
+								      "pink": "#C61C6F",
+								      "purple": "#595AB7",
+								      "blue": "#2176C7",
+								      "green": "#259286",
+								      "white": "#fefefe",
+								      "yellowgreen": "#738A05"
+								    }
+
+								    var nodes = @php echo $nodes; @endphp;
+								    var links = [];
+
+								    for (var i = 0; i < nodes.length; i++) {
+								      if (nodes[i].target !== undefined) {
+								        for (var x = 0; x < nodes[i].target.length; x++) {
+								          links.push({
+								            source: nodes[i],
+								            target: nodes[nodes[i].target[x]]
+								          })
+								        }
+								      }
+								    }
+
+								    var myChart = d3.select(el)
+								      .append('svg')
+								      .attr('width', "100%")
+								      .attr('height', h)
+								      .style('margin', '0').style('display','inline')
+
+								    var force = d3.layout.force()
+								      .nodes(nodes)
+								      .links([])
+								      .gravity(0.1)
+								      .charge(charge)
+								      .size([w, h])
+
+
+
+								    var link = myChart.selectAll('line')
+								      .data(links).enter().append('line')
+								      .attr('stroke', palette.darkgray)
+								      .attr('stroke-width', 3);
+
+								    var node = myChart.selectAll('pattern')
+								      .data(nodes).enter()
+								      .append('g')
+								      .call(force.drag);
+
+								       node.append('svg:defs')
+											    .append('svg:pattern')
+											    .attr('id', function(d,i){
+											      return d.id
+											    })
+											     .attr('patternUnits',"userSpaceOnUse")
+											    .attr('height', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('width', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('x', function(d, i) {
+											        if (i > 0) {
+											          return circleWidth-10
+											        } else {
+											          return circleWidth
+											        }
+											      }).attr('y', function(d, i) {
+											        if (i > 0) {
+											          return circleWidth-10
+											        } else {
+											          return circleWidth
+											        }
+											      })
+											    .append('svg:image')
+											    .attr('xlink:href',function(d,i){
+											     	 return d.photo + '?1'
+											    })
+											    .attr('height', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('width', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											      .attr('x', 0)
+											      .attr('y', 0);
+
+								    node.append('circle')
+								      .attr('cx', function(d) {
+								        return d.x;
+								      }).attr('cy', function(d) {
+								        return d.y;
+								      })
+								      .attr('r', function(d, i) {
+								        if (i > 0) {
+								          return circleWidth - 10
+								        } else {
+								          return circleWidth
+								        }
+								      })
+								      .attr('id', function(d, i) {
+								          return d.id
+								      })
+								      .attr('stroke', function(d, i) {
+								        if (i > 0) {
+								          return palette.darkgray
+								        } else {
+								          return palette.darkgray
+								        }
+								      })
+								      .attr('stroke-width', 5)
+								      .style("fill", "#fff").style("fill", function(d,i){ return 'url(#' + d.id+')'})
+
+								    node.append('text')
+								      .text(function(d) {
+								        return d.name
+								      })
+								      .attr('font-family', 'sans-serif')
+								      .attr('fill', function(d, i) {
+								        if (i > 0) {
+
+								          return palette.darkgray
+								        } else {
+								          return "transparent"						   
+								         }
+								      })
+								      .attr('x', function(d, i) {
+								        if (i > 0) {
+								          return -20
+								        } else {
+								          return circleWidth - 15
+								        }
+								      })
+								      .attr('y', function(d, i) {
+								        if (i > 0) {
+								          return circleWidth + 5
+								        } else {
+								          return 8
+								        }
+								      })
+								      .attr('text-anchor', function(d, i) {
+								        if (i > 0) {
+								          return 'beginning'
+								        } else {
+								          return 'end'
+								        }
+								      })
+								      .attr('font-size', function(d, i) {
+								        if (i > 0) {
+								          return '1em'
+								        } else {
+								          return '1em'
+								        }
+								      })
+
+								    force.on('tick', function(e) {
+								      node.attr('transform', function(d, i) {
+								        return 'translate(' + d.x + ', ' + d.y + ')';
+								      })
+
+								      link
+								        .attr('x1', function(d) {
+								          return d.source.x
+								        })
+								        .attr('y1', function(d) {
+								          return d.source.y
+								        })
+								        .attr('x2', function(d) {
+								          return d.target.x
+								        })
+								        .attr('y2', function(d) {
+								          return d.target.y
+								        })
+								    })
+								    node.on("click", click);
+										function click(d) 
+										{
+										if(d.id == "n"){
+											$("#modalfamily").modal('toggle');		
+											}else{
+
+										$('#userp').attr('src', d.photo + '?2');
+										if(!d.namecom){
+										  	$('#namep').html('Yo');
+										  }	else{
+										  	$('#namep').html(d.namecom + ' - ' + d.relationship);
+										  	if(d.session == 1){
+										  		$('#idpa').val(d.id);
+										  		$('#init1').css({ 'display': "block" });
+										  		$('#init').css({ 'display': "block" });
+										  		$('#init').text('Iniciar sesión como ' + d.name);
+										  	}else{
+										  		$('#init1').css({ 'display': "none" });
+												$('#init').css({ 'display': "none" });
+										  	}
+										  }
+										  	$("#modalfamily2").modal('toggle');
+										  }
+										}
+									force.start();
+
+								  }('#diagramFamily');
+
+								}(window.d3);
+								  });
+
+	                    	</script>
 
 		         	    </div>
 		         	    <div class="tab-pane" id="address">Settings123</div>
