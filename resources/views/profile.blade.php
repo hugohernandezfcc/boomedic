@@ -339,8 +339,7 @@
 								              w-= 1200;
 								             circleWidth = 30;
 											 charge = -300;
-								            }else
-								            {
+								            }else{
 								              h-=315;
 								              w-=100;
 								              circleWidth = 30;
@@ -348,7 +347,7 @@
 								            }
 								       	 }else{
 								          h = window.screen.availHeight-375;
-								          w = window.screen.availWidth-100;
+								          w = window.screen.availWidth-200;
 								           circleWidth = 50;
 								        }
 
