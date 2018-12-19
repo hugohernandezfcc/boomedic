@@ -203,6 +203,17 @@ class profile extends Controller
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
 
+
+        $answer;
+
+        for ($i=0; $i < count($question); $i++) { 
+            if ($question[$i]->question == "¿Está actualmente tomando algún fármaco con prescripción?") {
+                $answer = $question[$i]->parent_answer;
+                break;
+            }
+        }
+
+
         return view('profile', [
 
                 /** SYSTEM INFORMATION */
@@ -229,6 +240,7 @@ class profile extends Controller
                 'scholarship'   => $users[0]->scholarship,
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
+                'current_prescription'    => $answer,
 
                 /** ADDRESS FISICAL USER  */
 
