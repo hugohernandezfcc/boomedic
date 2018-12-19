@@ -218,7 +218,8 @@
 		              	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
 		            </ul>
 		            <div class="tab-content">
-
+		            	<div class="active tab-pane" id="activity">
+		         	    	@include('headerprofile')
 
 		            	@if( !empty($status) )
 
@@ -428,12 +429,11 @@
 								  	</div>
 								  	<!-- box-footer -->
 							</form>
-				    		
+
 			    		@endif
 
 
-		         	    <div class="active tab-pane" id="activity">
-		         	    	
+		         	    
 		         	    	<div class="row">
                           
 	                            <div class="col-sm-3" align="left"><b>Correo:</b></div>
