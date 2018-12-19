@@ -3,81 +3,43 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-    <!-- <h1>Perfil de usuario</h1> -->
-    <style type="text/css">
-.accordion-toggle {
-  position: relative;
-}
-.accordion-toggle::before,
-.accordion-toggle::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: -18px;
-  width: 12px;
-  height: 4px;
-  margin-top: -2px;
-  background-color: #585858;
-  -webkit-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-  -webkit-transition: all 0.25s;
-  transition: all 0.25s;
-}
-.accordion-toggle::before {
-  -webkit-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-  opacity: 0;
-}
-.accordion-toggle.collapsed::before {
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
-  opacity: 1;
-}
-.accordion-toggle.collapsed::after {
-  -webkit-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-}
-			.dropzone {
-			     min-height: 10px !important; 
-			    border-style: dotted  !important;
-			    /* background: white; */
-			     padding: 0 !important;
-			}
-			.dropzone .dz-message {
-			    margin: 1em 0 !important;
-			}
-			.modal-content-2 {
-			    position: relative;
-			    background-color: transparent;
-			    -webkit-background-clip: padding-box;
-			    background-clip: padding-box;
-			    color: white;
-			    margin-top: 50%;
-			    width: 100%;
 
-			}
-      #mapAddressUser{
-        position: relative;
-        width: 95%;
-        z-index: 30;
-      }
+	<style type="text/css">
+		.dropzone {
+		     min-height: 10px !important; 
+		    border-style: dotted  !important;
+		    /* background: white; */
+		     padding: 0 !important;
+		}
+		.dropzone .dz-message {
+		    margin: 1em 0 !important;
+		}
+		.modal-content-2 {
+		    position: relative;
+		    background-color: transparent;
+		    -webkit-background-clip: padding-box;
+		    background-clip: padding-box;
+		    color: white;
+		    margin-top: 50%;
+		    width: 100%;
 
-.cut{
-  text-overflow:ellipsis;
-  white-space:nowrap; 
-  overflow:hidden; 
-}
-    </style>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-@stop
+		}
+	    #mapAddressUser{
+	        position: relative;
+	        width: 95%;
+	        z-index: 30;
+	    }
 
-@section('content')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+		.cut{
+		  text-overflow:ellipsis;
+		  white-space:nowrap; 
+		  overflow:hidden; 
+		}
+	</style>
+
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 	<script type="text/javascript">
@@ -113,612 +75,514 @@
 				    
 	</script>
 
-	@if( empty($status) )
-
-    @include('headerprofile')
-    <script type="text/javascript">
-      //O si no lleva botón hacer el div "div_profile" invisible
-      document.getElementById('labeltext').innerHTML = 'Editar';
-      var elemento = document.getElementById("i_button");
-      elemento.className = "fa fa-pencil text-muted";
-      document.forms.form_profile.action = "/user/edit/complete";
-    </script>
-
-	@endif
+	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
+	    <div class="modal-dialog">
+	        <div class="modal-content-2">
+	        	<div align="center">
+					<h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
+	          	</div>
+	        </div>
+	    </div>
+ 	</div>
 
 
- 
 
-    <div class="box">
-	  	<div class="box-header with-border">
-		    <h3 class="box-title">Información de usuario</h3>
-	    	<!-- /.box-tools -->
-	  	</div>
-	  	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
-		    <div class="modal-dialog">
-		        <div class="modal-content-2">
-		        	<div align="center">
-						<h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
-		          	</div>
-		        </div>
-		    </div>
-	 	</div>
+    <section class="content">
 
-	  	<!-- /.box-header -->
-	  	<div class="box-body">
-	  		@if( !empty($status) )
+      	<div class="row">
+        <div class="col-md-3">
 
+          <!-- Profile Image -->
+          <div class="box box-default">
+            <div class="box-body box-profile">
 
-					<div id="modal" class="modal fade" role="dialog">
-			              <div class="modal-dialog">
-			                <!-- Modal content-->
-			                <div class="modal-content" >
-			                  <div class="modal-header">   
-			                    <label for="recorte">Recorte de imagen:</label>
-			                  </div>
-			                  <div class="modal-body" >
+            	@if($photo == '')
+		    	 		<img class="profile-user-img img-responsive img-circle" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
+					@else
+						@php 
+						  $imagen = getimagesize($photo);    //Sacamos la información
+				          $width = $imagen[0];              //Ancho
+				          $height = $imagen[1];  
 
-			                        <div align="center">
-									<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">	
-			                    
-			                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
-			                           	<input type="hidden" id="x" name="x">
-										<input type="hidden" id="y" name="y">
-										<input type="hidden" id="w" name="w">
-										<input type="hidden" id="h" name="h"><br/>
-				                        <span class="input-group-btn">
-				                        <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
-			                          </form>
-			                       </div>
-			                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
-			                  </div>
-			                </div>
-			              </div>
-					 </div>
-
-		  		@if ($status == "In Progress")
-		  			<div class="callout callout-success">
-		                <h4>Ya casi estamos listos {{ $firstname }} !!!</h4>
-
-		                <p>Confirma y completa la información que esta debajo</p>
-		            </div>
-	    		@endif
-          		<label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
-	    		<div class="row" align="center">
-	    		
-		    		<div class="col-sm-3" align="center">
-		    			@if($photo == '')
-			    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
-						@else
-							@php 
-							  $imagen = getimagesize($photo);    //Sacamos la información
-					          $width = $imagen[0];              //Ancho
-					          $height = $imagen[1];  
-
-					          if($height > '500' || $width > '500'){
-					            $height = $height / 2.8;
-					            $width = $width / 2.8;
-					        }
-					        if($height > '800' || $width > '800'){
-					            $height = $height / 4;
-					            $width = $width / 4;
-					        }
-					      if($height > '800' || $width > '1200'){
-					            $height = $height / 6;
-					            $width = $width / 6;
-					        }
-
-
-					          if($height < '400' || $width < '400'){
-					            $height = $height / 1.6;
-					            $width = $width / 1.6;
-					        }
-
-							@endphp
-							<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
-				    	@endif 
-		    			
-		    		</div>
-		    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
-	    		</div>
-	    		<br/>
-	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
-	    			{{ csrf_field() }}
-
-	    			<div class="form-group has-feedback {{ $errors->has('firstname') ? 'has-error' : '' }}">
-	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
-	                	<div class="col-sm-10">
-	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
-	                	</div>
-	              	</div>
-
-	              	<div class="form-group has-feedback {{ $errors->has('lastname') ? 'has-error' : '' }}">
-	                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
-	                	<div class="col-sm-10">
-	                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}">
-	                	</div>
-	              	</div>
-
-	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-	                    <label for="email" class="col-sm-2 control-label">Correo electrónico</label>
-	                	<div class="col-sm-10">
-	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
-	                	</div>
-	              	</div>
-
-	              	<div class="form-group has-feedback {{ $errors->has('username') ? 'has-error' : '' }}">
-	                    <label for="username" class="col-sm-2 control-label">Nombre de usuario</label>
-	                	<div class="col-sm-10">
-	                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}">
-	                	</div>
-	              	</div>
-
-	              	<div class="form-group has-feedback {{ $errors->has('age') ? 'has-error' : '' }}">
-	                    <label for="age" class="col-sm-2 control-label">Edad</label>
-	                	<div class="col-sm-10">
-	                  		<input type="text" name="age" class="form-control" id="age" value="{{ $age }}">
-	                	</div>
-	              	</div>
-
-	              	<div class="callout callout-default" align="right">
-		                <b>Información personal</b>
-		            </div>
-
-		            <div class="form-group has-feedback {{ $errors->has('occupation') ? 'has-error' : '' }}">
-	                    <label for="occupation" class="col-sm-2 control-label">Ocupación</label>
-	                	<div class="col-sm-10">
-	                  		<input type="text" name="occupation" class="form-control" id="occupation" value="{{ $occupation }}">
-	                	</div>
-	              	</div>
-	              	
-	              	<div class="form-group has-feedback {{ $errors->has('gender') ? 'has-error' : '' }}">
-	                  <label for="gender" class="col-sm-2 control-label">Genero</label>
-	                  <div class="col-sm-10">
-		                  <select class="form-control" name="gender">
-		                    <option value="female" {{ ($gender == 'female') ? 'selected' : '' }}>Femenino</option>
-		                    <option value="male"   {{ ($gender == 'male')   ? 'selected' : '' }}>Masculino</option>
-		                    <option value="other"   {{ ($gender == 'other')   ? 'selected' : '' }}>Otro</option>
-		                  </select>
-	                  </div>
-	                </div>
-
-	                <div class="form-group has-feedback {{ $errors->has('scholarship') ? 'has-error' : '' }}">
-	                    <label for="scholarship" class="col-sm-2 control-label">Escolaridad</label>
-	                	<div class="col-sm-10">
-	                  		<input type="text" name="scholarship" class="form-control" id="scholarship" value="{{ $scholarship }}">
-	                	</div>
-	              	</div>
-
-	              	<div class="form-group has-feedback {{ $errors->has('maritalstatus') ? 'has-error' : '' }}">
-	                  <label for="maritalstatus" class="col-sm-2 control-label">Estado civil</label>
-	                  <div class="col-sm-10">
-		                  <select class="form-control" name="maritalstatus">
-		                    <option value="single"  {{ ($maritalstatus == 'single') ? 'selected' : '' }}>Soltero</option>
-		                    <option value="married" {{ ($maritalstatus == 'married') ? 'selected' : '' }}>Casado</option>
-		                  </select>
-	                  </div>
-	                </div>
-
-	                <div class="form-group">
-	                	<label for="mobile" class="col-sm-2 control-label"># Móvil</label>
-	                	<div class="col-sm-10">
-		                  	<input type="text" name="mobile" id="mobile" value="{{ $mobile }}" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-	                	</div>
-	                	<!-- /.input group -->
-	              	</div>
-
-	              	<div class="callout callout-default" align="right">
-		                <b>Dirección</b>
-		            </div>
-		            <div class="form-group">
-		            	<div class="col-sm-2" align="right">
-		            		&nbsp;
-		            	</div>
-		            	<div id="locationField" class="col-sm-10" align="right">
-					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"/>
-					    </div>
-		            </div>
-
-		            <div align="right">
-		            	<div class="row" style="width: 90%;" >
-			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}/>
-			            	</div>
-			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}/>
-			            	</div>
-			            </div>
-						<br />              	
-		              	<div class="row" style="width: 90%;" >
-			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"/>
-			            	</div>
-			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}/>
-			            	</div>
-			            </div>
-						<br />
-			            <div class="row" style="width: 90%;" >
-			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"/>
-			            	</div>
-			            	<div class="col-sm-6">
-			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}/>
-			            	</div>
-			            </div>
-		            </div>
-
-		            <input type="text" style="visibility: hidden;" name="latitude" id="latitudeFend" />
-		            <input type="text" style="visibility: hidden;" name="longitude" id="longitudeFend" />
-		            <br/>
-		            <!-- /.box-body -->
-				  	<div class="box-footer">
-				    	<div class="row">
-
-				    		@if ($status == "In Progress")
-					    		<div class="col-sm-4">
-					            	&nbsp;
-					            </div>
-					    		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
-						                Guardar
-						            </button>
-					            </div>
-					            <div class="col-sm-4">
-					            	&nbsp;
-					            </div>
-					       	@else 
-					       		<div class="col-sm-4">
-					            	&nbsp;
-					            </div>
-					       		<div class="col-sm-4">
-						    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
-						                Guardar
-						            </button>
-					            </div>
-					    		<div class="col-sm-4">
-					    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
-						                Cancelar
-						            </a>
-					            </div>
-					            <div class="col-sm-4">
-					            	&nbsp;
-					            </div>
-							@endif
-							
-				    	</div>
-				  	</div>
-				  	<!-- box-footer -->
-			</form>
-	    		
-
-	    	@else
-
-						<!-- Charge Alert whether payment was processed or not -->
-							@if(session()->has('message'))
-
-								@if(session()->has('success'))
-							    <div class="alert alert-success alert-dismissable fade in" role="alert" id="alertf">
-							    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									    <span aria-hidden="true">&times;</span>
-									</button>
-									<strong>¡Familiar Agregado!</strong><br/><br/>		
-							        {{ session()->get('message') }}
-							    </div>
-							   
-								@elseif(session()->has('error'))
-								 <div class="alert alert-danger alert-dismissable fade in" role="alert" id="alertf">
-								 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									    <span aria-hidden="true">&times;</span>
-									</button>
-									<strong>¡Hubo un error al agregar tu familiar!</strong><br/><br/>		
-							 		<!-- Error codes are defined within the adminlte -->
-							          {{ session()->get('message') }}
-							    </div>
-							   @endif
-
-							@endif
-						<!-- Here ends the code for the alert -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="box box-solid">
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="box-group" id="accordion">
-                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-             
-                <div class="panel box box-default" style="border-top-color: black;">
-                
-                 <div class="box-header with-border"> 
-                 	<h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="accordion-toggle text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
-                        Información personal
-                  </a>
-              </h4>
-                  	</div>
-                   
-                  <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
-
-                    <div class="box-body">
-                      <br/>
-
-                      
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $email }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $username }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Edad:</b></div>
-                            <div class="col-sm-10" align="left">{{ $age }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $occupation }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b>Genero:</b></div>
-                            @if($gender == "female")
-                            	<div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.female') }}</div>
-                            @endif
-                            @if($gender == "male")
-                            	<div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.male') }}</div>
-                            @endif
-                            @if($gender == "other")
-                            	<div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.other') }}</div>
-                            @endif
-                      
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $scholarship }}</div>
-                    
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
-                              @if($maritalstatus == "single")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.single') }}</div>
-                             @endif
-                            @if($maritalstatus == "married")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.married') }}</div>
-                             @endif	
-                      
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $mobile }}</div>
-                       
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $updated_at }}</div>
-                        
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                <br/>
-                <div class="panel box box-default" style="border-top-color: black;">
-               <div class="box-header with-border">
-               	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" class="accordion-toggle collapsed text-black" id="two" style="display:block; height:100%; width:100%;font-size: 17px;">
-                        Familia
-                </a>
-            </h4>
-                </div>
-                  <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
-                  	<div class="box-body">
-              			<div class="lockscreen-item pull-right" style="width: 210px !important;">
-					      	<div class="input-group">
-					        	<div class="form-control" align="center"><label id="labeltext">Agregar Familiar</label></div>
-					        	<div class="input-group-btn">
-						          	<a class="btn btn-default" data-toggle="modal" data-target="#modalfamily">
-						          		<i class="fa fa-plus text-muted"></i>
-						          	</a>
-					        	</div>
-					      	</div>
-						</div>
-
-                    	<div id="demo"></div>
-                    </div>
-                  <!--Other modal -->
-                  <div class="modal fade" role="dialog" id="modalfamily2">
-                    <div class="modal-dialog modal-sm">
-
-                      <div class="modal-content">
-
-                        <div class="modal-header" >
-                          <!-- Tachecito para cerrar -->
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <div align="left"><label>Información del Familiar</label></div>
-                        </div>
-                            <div class="modal-body">
-                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img><br><br><b><div id="namep"></div></b></div><br>
-                            <form id="init1" style="display: none;" action="{{ url('/user/loginSon') }}" method="post">
-                            	<input type="hidden" name="id" id="idpa">
-	                  				<button type="submit" id="init" class="btn btn-secondary btn-flat btn-block" style="display: none;">Iniciar Sesión</button>
-	                  		</form>
-                            </div>
-                        </div>
-                      </div> 
-                    </div>
-
-                    <!--Other modal -->
-                   <div class="modal fade" role="dialog" id="modalfamily">
-                    <div class="modal-dialog">
-
-                      <div class="modal-content">
-
-
-                        <div class="modal-header" style="padding-bottom: 1px !important;">
-                            
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <div align="left"><label>Información de Familiar</label></div>
-                        </div>
-                             <div class="register-box-body">
-					                 <div align="form-group" style="margin-bottom: 6px;">
- 										<a class="btn btn-default btn-flat btn-block" id="inac">No es un usuario de la App</a>
- 									</div><div align="form-group">
- 										<a class="btn btn-default btn-flat btn-block" id="inac2">Si es un usuario activo de la App</a>
- 									</div>
-                             <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post" style="display: none;">
-
-                             	<input type="hidden" name="val" id="val" value="false">
-                                <div class="form-group has-feedback">	
- 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>
- 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
- 							   </div>
- 							    <input type="hidden" name="idfam" id="idfam" required>
- 								<div id="resp" class="form-group text-muted"></div>
- 								 <div class="form-group has-feedback">	
- 								<select class="form-control select2" id="relationship" name="relationship" size="1">
- 									<option value="0" default>--Seleccione parentesco--</option>
- 									<option value="father">Padre</option>
- 									<option value="mother">Madre</option>
- 									<option value="son">Hijo(a)</option>
- 									<option value="siblings">Hermano(a)</option>
- 									<option value="grandparents">Abuelo(a)</option>
- 									<option value="uncles">Tío(a)</option>
- 									<option value="wife">Esposa</option>
- 									<option value="husband">Esposo</option>
- 								</select>
- 								</div> 
- 								<div id="reg" style="display: none;">
-					                <div class="form-group has-feedback">
-					                    <input type="email" name="email" class="form-control" placeholder="{{ trans('adminlte::adminlte.email') }}">
-					                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-					                </div>
-
-					                <div class="form-group has-feedback">
-					                    <input type="date" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}">
-					                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-					                </div>
-
-					                <div class="form-group has-feedback">
-					                  <select class="form-control select2" name="gender" size="1">
-					                  	<option value="female">Femenino</option>
-					                  	<option value="male">Masculino</option>
-					                  	<option value="other">Otro</option>
-					                  </select>
-					                </div>
- 								</div>	
- 								<div align="right">
- 								<button  type="button" class="btn btn-default btn-flat" id="back"><i class="fa fa-arrow-left text-muted"></i>&nbsp; Regresar</button>
- 								<button  type="submit" class="btn btn-default btn-flat" id="sav"><i class="fa fa-plus text-muted"></i>&nbsp; Agregar Familiar</button>
- 								</div>
- 							</form>
- 						</div>
-                      </div> 
-                    </div>
-                </div>
-				<script type="text/javascript">
-
-				///addded
-					$('#modalfamily [data-dismiss=modal]').on('click', function (e) {
-							document.getElementById('formulatio').style.display = "none";
-							document.getElementById('inac2').style.display = "block";
-							document.getElementById('inac').style.display = "block";
-
-					})
-					$('#back').on('click', function(e) {
-							document.getElementById('formulatio').style.display = "none";
-							document.getElementById('inac2').style.display = "block";
-							document.getElementById('inac').style.display = "block";
-
-					})
-					$('#inac').on('click', function(e) {
-	       				 e.preventDefault();
-	       				    document.getElementById('formulatio').style.display = "block";
-	       				 	document.getElementById('reg').style.display = "block";
-	       				 	document.getElementById('inac2').style.display = "none";
-	       				 	document.getElementById('inac').style.display = "none";
-	       				 	document.getElementById("formulatio").reset();
-	       				 	$("#sav").removeAttr("disabled");
-	       				 	document.getElementById("val").value ="true";
-	       				 	document.getElementById('resp').style.display = "none";
-
-	       			});
-					$('#inac2').on('click', function(e) {
-	       				 e.preventDefault();
-	       				 document.getElementById('formulatio').style.display = "block";
-	       				 	document.getElementById('reg').style.display = "none";
-	       				 	document.getElementById('inac').style.display = "none";
-	       				 	document.getElementById('inac2').style.display = "none";
-	       				 	document.getElementById("formulatio").reset();
-	       				 	$("#sav").attr("disabled", "disabled");
-	       				 	document.getElementById("val").value ="false";
-	       				 	document.getElementById('resp').style.display = "inline";
-	       				 	document.getElementById("resp").innerHTML = "";
-
-	       			})
-				///<!addded
-
-
-				$('#two').on('click', function(e) {
-       				 e.preventDefault();
-       				 document.getElementById('demo').innerHTML='';
-					+ function(d3) {
-
-						var swatches = function(el) {
-						var circleWidth = 45;	
-						var charge = -800;
-						var h = 0;
-						var w= 0;
-				        if("@php echo $agent->isMobile(); @endphp"){
-				            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
-				              h= window.screen.availHeight;
-							  w= window.screen.availWidth;
-				          
-				            if(h >= 1000 && h <= 1300){
-				            	circleWidth = 30;
-								charge = -300;
-				                h = h*0.20;
-				                h = Math.floor(h);
-				                w = w*0.40;
-				                w = Math.floor(w);
-				                  //alert("Altura: "+h + "anchura " + w);
-				            }else if(h>=1800){
-				              h-= 1840;
-				              w-= 1200;
-				             circleWidth = 30;
-							 charge = -300;
-				            }else
-				            {
-				              h-=315;
-				              w-=100;
-				              circleWidth = 30;
-							 charge = -300;
-				            }
-				       	 }else{
-				          h = window.screen.availHeight-375;
-				          w = window.screen.availWidth-100;
-				           circleWidth = 50;
+				          if($height > '500' || $width > '500'){
+				            $height = $height / 2.8;
+				            $width = $width / 2.8;
+				        }
+				        if($height > '800' || $width > '800'){
+				            $height = $height / 4;
+				            $width = $width / 4;
+				        }
+				      if($height > '800' || $width > '1200'){
+				            $height = $height / 6;
+				            $width = $width / 6;
 				        }
 
-						    w = w;
-							h = h;
 
-								    
+				          if($height < '400' || $width < '400'){
+				            $height = $height / 1.6;
+				            $width = $width / 1.6;
+				        }
+
+						@endphp
+						<img class="profile-user-img img-responsive img-circle" src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+			    	@endif 
+
+              	
+
+              	<h3 class="profile-username text-center">{{ $firstname }}</h3>
+
+              	@if($gender == "female")
+              		<p class="text-muted text-center">{{ trans('adminlte::adminlte.female') }}</p>
+	            @endif
+	            @if($gender == "male")
+	            	<p class="text-muted text-center">{{ trans('adminlte::adminlte.male') }}</p>
+	            @endif
+	            @if($gender == "other")
+	            	<p class="text-muted text-center">{{ trans('adminlte::adminlte.other') }}</p>
+	            @endif
+
+              
+
+	            <ul class="list-group list-group-unbordered">
+	                <li class="list-group-item">
+	                 	<b>Familiares</b> <a class="pull-right">2</a>
+	                </li>
+	                <li class="list-group-item">
+	                  	<b>No. de citas</b> <a class="pull-right">1</a>
+	                </li>
+	                <li class="list-group-item">
+	                  	<b>No. métodos de pago</b> <a class="pull-right">5</a>
+	                </li>
+	            </ul>
+
+			    <form class="lockscreen-credentials" action="/user/edit/complete" method="post" id="form_profile">
+			    	{{ csrf_field() }}
+					<input type="hidden" name="id" value="{{ $userId }}">
+              		<button type="submit" class="btn btn-secondary btn-block btn-flat">Editar perfil</button>
+				</form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+          <div class="box box-default">
+            <div class="box-header with-border">
+              <h3 class="box-title">Información adicional</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> Educación</strong>
+
+              <p class="text-muted">
+              	@if(empty($scholarship) && empty($occupation))
+                	<a href="#">Agregar información</a>
+                @elseif(empty($scholarship) && !empty($occupation))
+                	<a href="#">Agregar Escolaridad</a> / {{ $occupation }}
+                @elseif(!empty($scholarship) && empty($occupation))
+                	{{ $scholarship }} / <a href="#">Agregar ocupación</a>
+                @endif
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Dirección</strong>
+ 
+              	<p class="text-muted">
+	              	@if(empty($colony) && empty($state))
+	                	<a href="#">Agregar dirección</a>
+	                @elseif(empty($colony) && !empty($state))
+	                	<a href="#">Agregar colonia</a>, {{$state}} {{$country}}
+	                @elseif(!empty($colony) && empty($state))
+	                	{{ $colony }}, <a href="#">Agregar estado</a> {{$country}}
+	                @endif
+				</p>
+
+              <hr>
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> Prescripción médica actual</strong>
+
+              <p>
+                <span class="label label-info">{{$current_prescription}}</span>
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Mimebro desde</strong>
+              <p>{{$created_at}}</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        	<div class="col-md-9">
+        		<div class="nav-tabs-custom">
+		            <ul class="nav nav-tabs">
+		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
+		              	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
+		              	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
+		            </ul>
+		            <div class="tab-content">
+		            	<div class="active tab-pane" id="activity">
+
+
+		            	@if( !empty($status) )
+
+
+								<div id="modal" class="modal fade" role="dialog">
+						              <div class="modal-dialog">
+						                <!-- Modal content-->
+						                <div class="modal-content" >
+						                  <div class="modal-header">   
+						                    <label for="recorte">Recorte de imagen:</label>
+						                  </div>
+						                  <div class="modal-body" >
+
+						                        <div align="center">
+												<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">	
+						                    
+						                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
+						                           	<input type="hidden" id="x" name="x">
+													<input type="hidden" id="y" name="y">
+													<input type="hidden" id="w" name="w">
+													<input type="hidden" id="h" name="h"><br/>
+							                        <span class="input-group-btn">
+							                        <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
+						                          </form>
+						                       </div>
+						                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+						                  </div>
+						                </div>
+						              </div>
+								 </div>
+
+					  		@if ($status == "In Progress")
+					  			<div class="callout callout-success">
+					                <h4>Ya casi estamos listos {{ $firstname }} !!!</h4>
+
+					                <p>Confirma y completa la información que esta debajo</p>
+					            </div>
+				    		@endif
+
+				    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+
+				    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
+					    			{{ csrf_field() }}
+
+					    			<div class="form-group has-feedback {{ $errors->has('firstname') ? 'has-error' : '' }}">
+					                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
+					                	<div class="col-sm-10">
+					                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="form-group has-feedback {{ $errors->has('lastname') ? 'has-error' : '' }}">
+					                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
+					                	<div class="col-sm-10">
+					                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+					                    <label for="email" class="col-sm-2 control-label">Correo electrónico</label>
+					                	<div class="col-sm-10">
+					                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="form-group has-feedback {{ $errors->has('username') ? 'has-error' : '' }}">
+					                    <label for="username" class="col-sm-2 control-label">Nombre de usuario</label>
+					                	<div class="col-sm-10">
+					                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="form-group has-feedback {{ $errors->has('age') ? 'has-error' : '' }}">
+					                    <label for="age" class="col-sm-2 control-label">Edad</label>
+					                	<div class="col-sm-10">
+					                  		<input type="text" name="age" class="form-control" id="age" value="{{ $age }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="callout callout-default" align="right">
+						                <b>Información personal</b>
+						            </div>
+
+						            <div class="form-group has-feedback {{ $errors->has('occupation') ? 'has-error' : '' }}">
+					                    <label for="occupation" class="col-sm-2 control-label">Ocupación</label>
+					                	<div class="col-sm-10">
+					                  		<input type="text" name="occupation" class="form-control" id="occupation" value="{{ $occupation }}">
+					                	</div>
+					              	</div>
+					              	
+					              	<div class="form-group has-feedback {{ $errors->has('gender') ? 'has-error' : '' }}">
+					                  <label for="gender" class="col-sm-2 control-label">Genero</label>
+					                  <div class="col-sm-10">
+						                  <select class="form-control" name="gender">
+						                    <option value="female" {{ ($gender == 'female') ? 'selected' : '' }}>Femenino</option>
+						                    <option value="male"   {{ ($gender == 'male')   ? 'selected' : '' }}>Masculino</option>
+						                    <option value="other"   {{ ($gender == 'other')   ? 'selected' : '' }}>Otro</option>
+						                  </select>
+					                  </div>
+					                </div>
+
+					                <div class="form-group has-feedback {{ $errors->has('scholarship') ? 'has-error' : '' }}">
+					                    <label for="scholarship" class="col-sm-2 control-label">Escolaridad</label>
+					                	<div class="col-sm-10">
+					                  		<input type="text" name="scholarship" class="form-control" id="scholarship" value="{{ $scholarship }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="form-group has-feedback {{ $errors->has('maritalstatus') ? 'has-error' : '' }}">
+					                  <label for="maritalstatus" class="col-sm-2 control-label">Estado civil</label>
+					                  <div class="col-sm-10">
+						                  <select class="form-control" name="maritalstatus">
+						                    <option value="single"  {{ ($maritalstatus == 'single') ? 'selected' : '' }}>Soltero</option>
+						                    <option value="married" {{ ($maritalstatus == 'married') ? 'selected' : '' }}>Casado</option>
+						                  </select>
+					                  </div>
+					                </div>
+
+					                <div class="form-group">
+					                	<label for="mobile" class="col-sm-2 control-label"># Móvil</label>
+					                	<div class="col-sm-10">
+						                  	<input type="text" name="mobile" id="mobile" value="{{ $mobile }}" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+					                	</div>
+					                	<!-- /.input group -->
+					              	</div>
+
+					              	<div class="callout callout-default" align="right">
+						                <b>Dirección</b>
+						            </div>
+						            <div class="form-group">
+						            	<div class="col-sm-2" align="right">
+						            		&nbsp;
+						            	</div>
+						            	<div id="locationField" class="col-sm-10" align="right">
+									      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"/>
+									    </div>
+						            </div>
+
+						            <div align="right">
+						            	<div class="row" style="width: 90%;" >
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}/>
+							            	</div>
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}/>
+							            	</div>
+							            </div>
+										<br />              	
+						              	<div class="row" style="width: 90%;" >
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"/>
+							            	</div>
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}/>
+							            	</div>
+							            </div>
+										<br />
+							            <div class="row" style="width: 90%;" >
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"/>
+							            	</div>
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}/>
+							            	</div>
+							            </div>
+						            </div>
+
+						            <input type="text" style="visibility: hidden;" name="latitude" id="latitudeFend" />
+						            <input type="text" style="visibility: hidden;" name="longitude" id="longitudeFend" />
+						            <br/>
+						            <!-- /.box-body -->
+								  	<div class="box-footer">
+								    	<div class="row">
+
+								    		@if ($status == "In Progress")
+									    		<div class="col-sm-4">
+									            	&nbsp;
+									            </div>
+									    		<div class="col-sm-4">
+										    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+										                Guardar
+										            </button>
+									            </div>
+									            <div class="col-sm-4">
+									            	&nbsp;
+									            </div>
+									       	@else 
+									       		<div class="col-sm-4">
+									            	&nbsp;
+									            </div>
+									       		<div class="col-sm-4">
+										    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+										                Guardar
+										            </button>
+									            </div>
+									    		<div class="col-sm-4">
+									    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+										                Cancelar
+										            </a>
+									            </div>
+									            <div class="col-sm-4">
+									            	&nbsp;
+									            </div>
+											@endif
+											
+								    	</div>
+								  	</div>
+								  	<!-- box-footer -->
+							</form>
+
+			    		@endif
+
+
+		         	    
+		         	    	<div class="row">
+                          
+	                            <div class="col-sm-3" align="left"><b>Correo:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $email }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                          
+	                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $username }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                          
+	                            <div class="col-sm-3" align="left"><b>Edad:</b></div>
+	                            <div class="col-sm-9" align="left">{{ $age }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                         
+	                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
+	                            @if($gender == "female")
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+	                            @endif
+	                            @if($gender == "male")
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+	                            @endif
+	                            @if($gender == "other")
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
+	                            @endif
+	                      
+	                        </div>
+	                        <div class="row">
+	                         
+	                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
+	                    
+	                        </div>
+	                        <div class="row">
+	                         
+	                            <div class="col-sm-3" align="left"><b>Estado civil:</b></div>
+	                              @if($maritalstatus == "single")
+	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+	                             @endif
+	                            @if($maritalstatus == "married")
+	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+	                             @endif	
+	                      
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-3" align="left"><b># Móvil:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $mobile }}</div>
+	                       
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-3" align="left"><b>Ultima modificación:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $updated_at }}</div>
+	                        </div>
+		         	    </div>
+		         	    <div class="tab-pane" id="family">
+		         	    	
+		         	    	<!--button modal to add more family members-->
+		         	    	<div class="lockscreen-item pull-right" style="width: 210px !important;">
+						      	<div class="input-group">
+						        	<div class="form-control" align="center"><label id="labeltext">Agregar Familiar</label></div>
+						        	<div class="input-group-btn">
+							          	<a class="btn btn-default" data-toggle="modal" data-target="#modalfamily">
+							          		<i class="fa fa-plus text-muted"></i>
+							          	</a>
+						        	</div>
+						      	</div>
+							</div>
+							<!-- button modal to add more family members -->
+
+
+
+
+	                    	<div id="diagramFamily"></div>
+
+
+
+
+	                    	<!-- modals add family member & session as child -->
+	                    	
+	                    	@include('modals.addFamilyMember')
+	                    	@include('modals.sessionAsParentChild')
+	                    	
+	                    	<!-- modals add family member & session as child -->
+
+	                    	<script type="text/javascript">
+	                    		
+	                    		$('#familyOption').on('click', function(e) {
+       				 				e.preventDefault();
+       				 				document.getElementById('diagramFamily').innerHTML='';
+									+ function(d3) {
+
+									var swatches = function(el) {
+										var circleWidth = 45;	
+										var charge = -500;//800
+										var h = 0;
+										var w= 0;
+								        if("@php echo $agent->isMobile(); @endphp"){
+								            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
+								              h= window.screen.availHeight;
+											  w= window.screen.availWidth;
+								          
+								            if(h >= 1000 && h <= 1300){
+								            	circleWidth = 30;
+												charge = -300;
+								                h = h*0.20;
+								                h = Math.floor(h);
+								                w = w*0.40;
+								                w = Math.floor(w);
+								                  //alert("Altura: "+h + "anchura " + w);
+								            }else if(h>=1800){
+								              h-= 1840;
+								              w-= 1200;
+								             circleWidth = 30;
+											 charge = -300;
+								            }else{
+								              h-=315;
+								              w-=100;
+								              circleWidth = 30;
+											 charge = -300;
+								            }
+								       	 }else{
+								          h = window.screen.availHeight-375;
+								          w = window.screen.availWidth-200;//100
+								           circleWidth = 53;
+								        }
+
+										    w = w;
+											h = h;
+
+												    
 
 								    var palette = {
 								      "lightgray": "#819090",
@@ -947,70 +811,53 @@
 										}
 									force.start();
 
-								  }('#demo');
+								  }('#diagramFamily');
 
 								}(window.d3);
 								  });
 
-                    	</script>
-                    </div>
-                  </div>
-                <br/>
-                
+	                    	</script>
 
-                <div class="panel box box-default" style="border-top-color: black;">
-                	 <div class="box-header with-border">
-                	 	<h4 class="panel-title">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;" onclick="initMapAddressUser();">	
-                       Dirección de usuario  
-                  </a> 
-                  </h4> 
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
-                    <div class="box-body" align="center">
-                    	@if($latitude == "" && $longitude == "")
-                    	         @include('empty.emptyData', 
-                                    [
-                                      'emptyc' => 'buttom',
-                                      'title'  => 'No se ha agregado dirección',
-                                      'icon'   => 'adminlte.empty-house'
-                                    ]
-                                  )
-                                       <script type="text/javascript">
-                                          $('#form_profile2').attr("action", "/user/edit/complete");
-                                          $('.buttonEmpty').text('Agregar dirección');
-                                          $('.spanEmpty1').html('No se ha agregado dirección');
-                                       </script>   
-                    	   <input type="hidden" id="nullmap" value="true">
-                    	@else   
-                          <div id="mapAddressUser"></div>
-                          <input type="hidden" id="nullmap" value="false">
-                        @endif
-                    </div>
-                </div>
-              </div>
+		         	    </div>
+		         	    <div class="tab-pane" id="address">
 
+		         	    	<div align="center">
+		         	    		
+		         	    		@if($latitude == "" && $longitude == "")
+		                    	         @include('empty.emptyData', 
+		                                    [
+		                                      'emptyc' => 'buttom',
+		                                      'title'  => 'No se ha agregado dirección',
+		                                      'icon'   => 'adminlte.empty-house'
+		                                    ]
+		                                  )
+		                                       <script type="text/javascript">
+		                                          $('#form_profile2').attr("action", "/user/edit/complete");
+		                                          $('.buttonEmpty').text('Agregar dirección');
+		                                          $('.spanEmpty1').html('No se ha agregado dirección');
+		                                       </script>   
+		                    	   <input type="hidden" id="nullmap" value="true">
+		                    	@else   
+		                          <div id="mapAddressUser"></div>
+		                          <input type="hidden" id="nullmap" value="false">
+		                        @endif
 
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <!-- /.col -->
-      </div>
-    		@endif
+		         	    	</div>
 
+		         	    </div>
+		         	</div>
+		        </div>
+        	</div>
+    	</div>
+    </section>
 
-
-    		<script type="text/javascript">
-    			function fun(a) {
-							    document.getElementById('sea').value = a.getAttribute("data-value");
-							    document.getElementById('idfam').value = a.getAttribute("data-id");
-							    document.getElementById("resp").innerHTML = "";
-							    $("#sav").removeAttr("disabled");   
-							}
+    <script type="text/javascript">
+		function fun(a) {
+		    document.getElementById('sea').value = a.getAttribute("data-value");
+		    document.getElementById('idfam').value = a.getAttribute("data-id");
+		    document.getElementById("resp").innerHTML = "";
+		    $("#sav").removeAttr("disabled");   
+		}
 
 
 
@@ -1166,37 +1013,37 @@
 
 		    </script>
 
-		    @if( empty($status) )
+	    @if( empty($status) )
 
-		    	<script type="text/javascript">
-		    	
+	    	<script type="text/javascript">
+	    	
 
-		    		var counter = -1;
-			      	function initMapAddressUser() {	
-				      	if(!counter > 0){
-				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
-					          zoom: 14,
-					          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
-					        });
+	    		var counter = -1;
+		      	function initMapAddressUser() {	
+			      	if(!counter > 0){
+			      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
+				          zoom: 14,
+				          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
+				        });
 
 
-					        var image = "https://s3.amazonaws.com/abiliasf/markerCasa.png";
-					        
-					        var beachMarker = new google.maps.Marker({
-					          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
-					          map: map,
-					          icon: image
-					        });
-					    }
-				        counter++;
-			      	
-			      }
-		    	</script>
-			@endif
+				        var image = "https://s3.amazonaws.com/abiliasf/markerCasa.png";
+				        
+				        var beachMarker = new google.maps.Marker({
+				          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
+				          map: map,
+				          icon: image
+				        });
+				    }
+			        counter++;
+		      	
+		      }
+	    	</script>
+		@endif
 
-<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
-<script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+		<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+		<script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 		<script type="text/javascript">
 
 
@@ -1231,3 +1078,4 @@
 
 
 @stop
+
