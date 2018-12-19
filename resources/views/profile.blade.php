@@ -136,7 +136,75 @@
 		              	<li><a href="#address" data-toggle="tab">Dirección</a></li>
 		            </ul>
 		            <div class="tab-content">
-		         	    <div class="active tab-pane" id="activity">Activity123</div>
+		         	    <div class="active tab-pane" id="activity">
+		         	    	
+		         	    	<div class="row">
+                          
+	                            <div class="col-sm-2" align="left"><b>Correo:</b></div>
+	                            <div class="col-sm-10 cut" align="left">{{ $email }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                          
+	                            <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
+	                            <div class="col-sm-10 cut" align="left">{{ $username }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                          
+	                            <div class="col-sm-2" align="left"><b>Edad:</b></div>
+	                            <div class="col-sm-10" align="left">{{ $age }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                         
+	                            <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
+	                            <div class="col-sm-10 cut" align="left">{{ $occupation }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-2" align="left"><b>Genero:</b></div>
+	                            @if($gender == "female")
+	                            	<div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+	                            @endif
+	                            @if($gender == "male")
+	                            	<div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+	                            @endif
+	                            @if($gender == "other")
+	                            	<div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.other') }}</div>
+	                            @endif
+	                      
+	                        </div>
+	                        <div class="row">
+	                         
+	                            <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
+	                            <div class="col-sm-10 cut" align="left">{{ $scholarship }}</div>
+	                    
+	                        </div>
+	                        <div class="row">
+	                         
+	                            <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
+	                              @if($maritalstatus == "single")
+	                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+	                             @endif
+	                            @if($maritalstatus == "married")
+	                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+	                             @endif	
+	                      
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-2" align="left"><b># Móvil:</b></div>
+	                            <div class="col-sm-10 cut" align="left">{{ $mobile }}</div>
+	                       
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
+	                            <div class="col-sm-10 cut" align="left">{{ $updated_at }}</div>
+	                        </div>
+		         	    </div>
 		         	    <div class="tab-pane" id="family">Timeline123</div>
 		         	    <div class="tab-pane" id="address">Settings123</div>
 		         	</div>
