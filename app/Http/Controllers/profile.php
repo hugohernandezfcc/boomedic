@@ -203,6 +203,11 @@ class profile extends Controller
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
 
+        $question = DB::table('questions_clinic_history')
+            ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+            ->where('answers_clinic_history.question','!=', null)
+            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
+            ->get();
 
         $answer;
 
