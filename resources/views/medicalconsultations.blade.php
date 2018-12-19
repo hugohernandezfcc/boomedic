@@ -30,6 +30,11 @@
         font-size: 90%;
         line-height: 15%;
       }
+
+      #rango03{
+        font-size:17px;
+      }
+
       .rango{ 
         position: absolute;
         width: 90%;
