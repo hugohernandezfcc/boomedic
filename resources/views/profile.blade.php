@@ -115,7 +115,7 @@
               <strong><i class="fa fa-pencil margin-r-5"></i> Prescripción médica actual</strong>
 
               <p>
-                <span class="label label-info">TBD</span>
+                <span class="label label-info">{{$current_prescription}}</span>
               </p>
 
               <hr>

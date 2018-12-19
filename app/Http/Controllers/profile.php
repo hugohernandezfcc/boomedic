@@ -115,7 +115,16 @@ class profile extends Controller
             ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
             ->get();
 
-        dd($question); 
+        //dd($question); 
+
+        $answer;
+
+        for ($i=0; $i < count($question); $i++) { 
+            if ($question[$i]->question == "¿Está actualmente tomando algún fármaco con prescripción?") {
+                $answer = $question[$i]->parent_answer;
+                break;
+            }
+        }
 
 
         return view('profile', [
@@ -123,6 +132,7 @@ class profile extends Controller
                  /** SYSTEM INFORMATION */
 
                 'userId'        => Auth::id(),
+
 
                 /** INFORMATION USER */
 
@@ -135,7 +145,7 @@ class profile extends Controller
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
-                'date'         => $users[0]->created_at,
+                'date'          => $users[0]->created_at,
 
                 /** PERSONAL INFORMATION */
 
@@ -145,7 +155,7 @@ class profile extends Controller
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
                 'updated_at'    => $users[0]->updated_at,
-
+                'current_prescription'    => $answer,
                 /** ADDRESS FISICAL USER  */
 
                 'country'       => (   empty($users[0]->country)        ) ? '' : $users[0]->country, 
