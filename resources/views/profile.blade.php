@@ -318,7 +318,7 @@
 
 									var swatches = function(el) {
 										var circleWidth = 45;	
-										var charge = -800;
+										var charge = -500;//800
 										var h = 0;
 										var w= 0;
 								        if("@php echo $agent->isMobile(); @endphp"){
@@ -347,7 +347,7 @@
 								            }
 								       	 }else{
 								          h = window.screen.availHeight-375;
-								          w = window.screen.availWidth-200;
+								          w = window.screen.availWidth-200;//100
 								           circleWidth = 50;
 								        }
 
@@ -851,5 +851,5 @@
 
 @stop
 
-    
+
 @stop
