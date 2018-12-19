@@ -100,7 +100,15 @@
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Dirección</strong>
  
-              <p class="text-muted"> {{$colony}}, {{$state}} {{$country}}</p>
+              	<p class="text-muted">
+	              	@if(empty($colony) && empty($state))
+	                	<a href="#">Agregar dirección</a>
+	                @elseif(empty($colony) && !empty($state))
+	                	<a href="#">Agregar colonia</a>, {{$state}} {{$country}}
+	                @elseif(!empty($colony) && empty($state))
+	                	{{ $colony }}, <a href="#">Agregar estado</a> {{$country}}
+	                @endif
+				</p>
 
               <hr>
 
