@@ -206,7 +206,7 @@
         		<div class="nav-tabs-custom">
 		            <ul class="nav nav-tabs">
 		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
-		              	<li><a href="#family" data-toggle="tab">Familia</a></li>
+		              	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
 		              	<li><a href="#address" data-toggle="tab">Dirección</a></li>
 		            </ul>
 		            <div class="tab-content">
@@ -311,7 +311,7 @@
 
 	                    	<script type="text/javascript">
 	                    		
-	                    		$('#family').on('click', function(e) {
+	                    		$('#familyOption').on('click', function(e) {
        				 				e.preventDefault();
        				 				document.getElementById('diagramFamily').innerHTML='';
 									+ function(d3) {
