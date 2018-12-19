@@ -237,7 +237,7 @@ class profile extends Controller
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
                 'date'         => $users[0]->created_at,
-
+                'updated_at'    => $users[0]->updated_at,
                 /** PERSONAL INFORMATION */
 
                 'gender'        => $users[0]->gender,
