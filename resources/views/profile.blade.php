@@ -3,6 +3,80 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
+
+	<style type="text/css">
+		.dropzone {
+		     min-height: 10px !important; 
+		    border-style: dotted  !important;
+		    /* background: white; */
+		     padding: 0 !important;
+		}
+		.dropzone .dz-message {
+		    margin: 1em 0 !important;
+		}
+		.modal-content-2 {
+		    position: relative;
+		    background-color: transparent;
+		    -webkit-background-clip: padding-box;
+		    background-clip: padding-box;
+		    color: white;
+		    margin-top: 50%;
+		    width: 100%;
+
+		}
+	    #mapAddressUser{
+	        position: relative;
+	        width: 95%;
+	        z-index: 30;
+	    }
+
+		.cut{
+		  text-overflow:ellipsis;
+		  white-space:nowrap; 
+		  overflow:hidden; 
+		}
+	</style>
+
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+	<script type="text/javascript">
+
+			Dropzone.options.myAwesomeDropzone = { 
+			 
+			 // set following configuration
+			 	paramName: "file",
+			    maxFiles: 1,
+			    acceptedFiles: "image/*",
+			    addRemoveLinks: true,
+			    dictRemoveFile: "Eliminar",
+			    dictCancelUpload: "Cancel",
+			    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+			     success: function(file, response){
+				        //alert(response);
+				 $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
+				  setTimeout(function(){ 
+				  	$('#loadingmodal').modal('toggle');
+				  	window.location.reload(true);
+				  },21000);
+				     	}
+			    //autoProcessQueue : false 
+			 };
+			 var val = "@php echo session()->get('val'); @endphp";
+			 		if(val == "true"){
+
+			 		setTimeout(function() {
+			 			$('#modal').modal({backdrop: 'static', keyboard: false})
+					}, 1000);	
+				}
+
+				    
+	</script>
+
+
+
     <section class="content">
 
       	<div class="row">
@@ -205,7 +279,25 @@
 	                            <div class="col-sm-10 cut" align="left">{{ $updated_at }}</div>
 	                        </div>
 		         	    </div>
-		         	    <div class="tab-pane" id="family">Timeline123</div>
+		         	    <div class="tab-pane" id="family">
+		         	    	
+		         	    	<!--button modal to add more family members-->
+		         	    	<div class="lockscreen-item pull-right" style="width: 210px !important;">
+						      	<div class="input-group">
+						        	<div class="form-control" align="center"><label id="labeltext">Agregar Familiar</label></div>
+						        	<div class="input-group-btn">
+							          	<a class="btn btn-default" data-toggle="modal" data-target="#modalfamily">
+							          		<i class="fa fa-plus text-muted"></i>
+							          	</a>
+						        	</div>
+						      	</div>
+							</div>
+							<!--button modal to add more family members-->
+
+	                    	<div id="demo"></div>
+	                    	@include('modals.addFamilyMember')
+
+		         	    </div>
 		         	    <div class="tab-pane" id="address">Settings123</div>
 		         	</div>
 		        </div>
