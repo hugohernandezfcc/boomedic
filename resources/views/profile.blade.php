@@ -11,7 +11,39 @@
           <!-- Profile Image -->
           <div class="box box-default">
             <div class="box-body box-profile">
-              	<img class="profile-user-img img-responsive img-circle" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User profile picture">
+
+            	@if($photo == '')
+		    	 		<img class="profile-user-img img-responsive img-circle" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
+					@else
+						@php 
+						  $imagen = getimagesize($photo);    //Sacamos la información
+				          $width = $imagen[0];              //Ancho
+				          $height = $imagen[1];  
+
+				          if($height > '500' || $width > '500'){
+				            $height = $height / 2.8;
+				            $width = $width / 2.8;
+				        }
+				        if($height > '800' || $width > '800'){
+				            $height = $height / 4;
+				            $width = $width / 4;
+				        }
+				      if($height > '800' || $width > '1200'){
+				            $height = $height / 6;
+				            $width = $width / 6;
+				        }
+
+
+				          if($height < '400' || $width < '400'){
+				            $height = $height / 1.6;
+				            $width = $width / 1.6;
+				        }
+
+						@endphp
+						<img class="profile-user-img img-responsive img-circle" src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+			    	@endif 
+
+              	>
 
               	<h3 class="profile-username text-center">{{ $firstname }}</h3>
 
@@ -48,21 +80,21 @@
           <!-- About Me Box -->
           <div class="box box-default">
             <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
+              <h3 class="box-title">Información adicional</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+              <strong><i class="fa fa-book margin-r-5"></i> Educación</strong>
 
               <p class="text-muted">
-                B.S. in Computer Science from the University of Tennessee at Knoxville
+                {{ $scholarship }} / {{ $occupation }}
               </p>
 
               <hr>
 
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-              <p class="text-muted">Malibu, California</p>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Dirección</strong>
+ 
+              <p class="text-muted"> {{$colony}}, {{$state}} {{$country}}</p>
 
               <hr>
 
