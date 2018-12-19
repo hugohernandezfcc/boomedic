@@ -207,7 +207,7 @@
 		            <ul class="nav nav-tabs">
 		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
 		              	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
-		              	<li><a href="#address" data-toggle="tab">Dirección</a></li>
+		              	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
 		            </ul>
 		            <div class="tab-content">
 		         	    <div class="active tab-pane" id="activity">
