@@ -601,7 +601,7 @@
  									<option value="wife">Esposa</option>
  									<option value="husband">Esposo</option>
  								</select>
- 								</div>
+ 								</div> 
  								<div id="reg" style="display: none;">
 					                <div class="form-group has-feedback">
 					                    <input type="email" name="email" class="form-control" placeholder="{{ trans('adminlte::adminlte.email') }}">
