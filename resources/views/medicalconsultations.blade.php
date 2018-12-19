@@ -623,7 +623,7 @@
                     <div align="left"><label for="rango01" id="label04"></label></div>       
                   </div>
                   <div class="modal-body">
-                    <div align="center"><span id="rango03"></span></div> 
+                    <div align="center"><label id="rango03"></label></div> 
                           <input type="range" name="rango01" id="rango01" value="1" min="1" max="10" step="0.1" autocomplete="off" onchange="start();" class="rangeStyle"/>
                   </div>
                 </div>
