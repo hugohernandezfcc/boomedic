@@ -155,7 +155,7 @@
 	                </li>
 	            </ul>
 
-			    <form class="lockscreen-credentials" action="/user/edit/complete" method="post" id="form_profile">
+			    <form class="lockscreen-credentials" action="/user/edit/complete" method="get" id="form_profile">
 			    	{{ csrf_field() }}
 					<input type="hidden" name="id" value="{{ $userId }}">
               		<button type="submit" class="btn btn-secondary btn-block btn-flat">Editar perfil</button>
