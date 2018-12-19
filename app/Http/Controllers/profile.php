@@ -155,6 +155,7 @@ class profile extends Controller
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
                 'updated_at'    => $users[0]->updated_at,
+                'created_at'    => $users[0]->created_at,
                 'current_prescription'    => $answer,
                 /** ADDRESS FISICAL USER  */
 

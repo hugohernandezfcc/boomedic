@@ -120,9 +120,8 @@
 
               <hr>
 
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Mimebro desde</strong>
+              <p>{{$created_at}}</p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -132,14 +131,14 @@
         	<div class="col-md-9">
         		<div class="nav-tabs-custom">
 		            <ul class="nav nav-tabs">
-		              	<li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-		              	<li><a href="#timeline" data-toggle="tab">Timeline</a></li>
-		              	<li><a href="#settings" data-toggle="tab">Settings</a></li>
+		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
+		              	<li><a href="#family" data-toggle="tab">Familia</a></li>
+		              	<li><a href="#address" data-toggle="tab">Dirección</a></li>
 		            </ul>
 		            <div class="tab-content">
 		         	    <div class="active tab-pane" id="activity">Activity123</div>
-		         	    <div class="active tab-pane" id="timeline">Timeline123</div>
-		         	    <div class="active tab-pane" id="settings">Settings123</div>
+		         	    <div class="tab-pane" id="family">Timeline123</div>
+		         	    <div class="tab-pane" id="address">Settings123</div>
 		         	</div>
 		        </div>
         	</div>
