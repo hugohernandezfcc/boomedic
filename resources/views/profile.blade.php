@@ -9,7 +9,7 @@
         <div class="col-md-3">
 
           <!-- Profile Image -->
-          <div class="box box-primary">
+          <div class="box box-default">
             <div class="box-body box-profile">
               	<img class="profile-user-img img-responsive img-circle" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User profile picture">
 
@@ -46,7 +46,7 @@
           <!-- /.box -->
 
           <!-- About Me Box -->
-          <div class="box box-primary">
+          <div class="box box-default">
             <div class="box-header with-border">
               <h3 class="box-title">About Me</h3>
             </div>
@@ -73,7 +73,7 @@
                 <span class="label label-success">Coding</span>
                 <span class="label label-info">Javascript</span>
                 <span class="label label-warning">PHP</span>
-                <span class="label label-primary">Node.js</span>
+                <span class="label label-default">Node.js</span>
               </p>
 
               <hr>
