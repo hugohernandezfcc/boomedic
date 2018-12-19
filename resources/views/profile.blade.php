@@ -348,7 +348,7 @@
 								       	 }else{
 								          h = window.screen.availHeight-375;
 								          w = window.screen.availWidth-200;//100
-								           circleWidth = 70;
+								           circleWidth = 60;
 								        }
 
 										    w = w;
