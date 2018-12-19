@@ -75,7 +75,15 @@
 				    
 	</script>
 
-
+	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
+	    <div class="modal-dialog">
+	        <div class="modal-content-2">
+	        	<div align="center">
+					<h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
+	          	</div>
+	        </div>
+	    </div>
+ 	</div>
 
     <section class="content">
 
@@ -210,6 +218,220 @@
 		              	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
 		            </ul>
 		            <div class="tab-content">
+
+
+		            	@if( !empty($status) )
+
+
+								<div id="modal" class="modal fade" role="dialog">
+						              <div class="modal-dialog">
+						                <!-- Modal content-->
+						                <div class="modal-content" >
+						                  <div class="modal-header">   
+						                    <label for="recorte">Recorte de imagen:</label>
+						                  </div>
+						                  <div class="modal-body" >
+
+						                        <div align="center">
+												<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">	
+						                    
+						                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
+						                           	<input type="hidden" id="x" name="x">
+													<input type="hidden" id="y" name="y">
+													<input type="hidden" id="w" name="w">
+													<input type="hidden" id="h" name="h"><br/>
+							                        <span class="input-group-btn">
+							                        <input type="submit" class="btn btn-secondary btn-block btn-flat" value="Guardar"></span>
+						                          </form>
+						                       </div>
+						                     <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
+						                  </div>
+						                </div>
+						              </div>
+								 </div>
+
+					  		@if ($status == "In Progress")
+					  			<div class="callout callout-success">
+					                <h4>Ya casi estamos listos {{ $firstname }} !!!</h4>
+
+					                <p>Confirma y completa la información que esta debajo</p>
+					            </div>
+				    		@endif
+
+				    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+
+				    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
+					    			{{ csrf_field() }}
+
+					    			<div class="form-group has-feedback {{ $errors->has('firstname') ? 'has-error' : '' }}">
+					                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
+					                	<div class="col-sm-10">
+					                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="form-group has-feedback {{ $errors->has('lastname') ? 'has-error' : '' }}">
+					                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
+					                	<div class="col-sm-10">
+					                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+					                    <label for="email" class="col-sm-2 control-label">Correo electrónico</label>
+					                	<div class="col-sm-10">
+					                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="form-group has-feedback {{ $errors->has('username') ? 'has-error' : '' }}">
+					                    <label for="username" class="col-sm-2 control-label">Nombre de usuario</label>
+					                	<div class="col-sm-10">
+					                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="form-group has-feedback {{ $errors->has('age') ? 'has-error' : '' }}">
+					                    <label for="age" class="col-sm-2 control-label">Edad</label>
+					                	<div class="col-sm-10">
+					                  		<input type="text" name="age" class="form-control" id="age" value="{{ $age }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="callout callout-default" align="right">
+						                <b>Información personal</b>
+						            </div>
+
+						            <div class="form-group has-feedback {{ $errors->has('occupation') ? 'has-error' : '' }}">
+					                    <label for="occupation" class="col-sm-2 control-label">Ocupación</label>
+					                	<div class="col-sm-10">
+					                  		<input type="text" name="occupation" class="form-control" id="occupation" value="{{ $occupation }}">
+					                	</div>
+					              	</div>
+					              	
+					              	<div class="form-group has-feedback {{ $errors->has('gender') ? 'has-error' : '' }}">
+					                  <label for="gender" class="col-sm-2 control-label">Genero</label>
+					                  <div class="col-sm-10">
+						                  <select class="form-control" name="gender">
+						                    <option value="female" {{ ($gender == 'female') ? 'selected' : '' }}>Femenino</option>
+						                    <option value="male"   {{ ($gender == 'male')   ? 'selected' : '' }}>Masculino</option>
+						                    <option value="other"   {{ ($gender == 'other')   ? 'selected' : '' }}>Otro</option>
+						                  </select>
+					                  </div>
+					                </div>
+
+					                <div class="form-group has-feedback {{ $errors->has('scholarship') ? 'has-error' : '' }}">
+					                    <label for="scholarship" class="col-sm-2 control-label">Escolaridad</label>
+					                	<div class="col-sm-10">
+					                  		<input type="text" name="scholarship" class="form-control" id="scholarship" value="{{ $scholarship }}">
+					                	</div>
+					              	</div>
+
+					              	<div class="form-group has-feedback {{ $errors->has('maritalstatus') ? 'has-error' : '' }}">
+					                  <label for="maritalstatus" class="col-sm-2 control-label">Estado civil</label>
+					                  <div class="col-sm-10">
+						                  <select class="form-control" name="maritalstatus">
+						                    <option value="single"  {{ ($maritalstatus == 'single') ? 'selected' : '' }}>Soltero</option>
+						                    <option value="married" {{ ($maritalstatus == 'married') ? 'selected' : '' }}>Casado</option>
+						                  </select>
+					                  </div>
+					                </div>
+
+					                <div class="form-group">
+					                	<label for="mobile" class="col-sm-2 control-label"># Móvil</label>
+					                	<div class="col-sm-10">
+						                  	<input type="text" name="mobile" id="mobile" value="{{ $mobile }}" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+					                	</div>
+					                	<!-- /.input group -->
+					              	</div>
+
+					              	<div class="callout callout-default" align="right">
+						                <b>Dirección</b>
+						            </div>
+						            <div class="form-group">
+						            	<div class="col-sm-2" align="right">
+						            		&nbsp;
+						            	</div>
+						            	<div id="locationField" class="col-sm-10" align="right">
+									      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"/>
+									    </div>
+						            </div>
+
+						            <div align="right">
+						            	<div class="row" style="width: 90%;" >
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}/>
+							            	</div>
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}/>
+							            	</div>
+							            </div>
+										<br />              	
+						              	<div class="row" style="width: 90%;" >
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"/>
+							            	</div>
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}/>
+							            	</div>
+							            </div>
+										<br />
+							            <div class="row" style="width: 90%;" >
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"/>
+							            	</div>
+							            	<div class="col-sm-6">
+							            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}/>
+							            	</div>
+							            </div>
+						            </div>
+
+						            <input type="text" style="visibility: hidden;" name="latitude" id="latitudeFend" />
+						            <input type="text" style="visibility: hidden;" name="longitude" id="longitudeFend" />
+						            <br/>
+						            <!-- /.box-body -->
+								  	<div class="box-footer">
+								    	<div class="row">
+
+								    		@if ($status == "In Progress")
+									    		<div class="col-sm-4">
+									            	&nbsp;
+									            </div>
+									    		<div class="col-sm-4">
+										    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+										                Guardar
+										            </button>
+									            </div>
+									            <div class="col-sm-4">
+									            	&nbsp;
+									            </div>
+									       	@else 
+									       		<div class="col-sm-4">
+									            	&nbsp;
+									            </div>
+									       		<div class="col-sm-4">
+										    		<button type="submit" class="btn btn-secondary btn-block btn-flat">
+										                Guardar
+										            </button>
+									            </div>
+									    		<div class="col-sm-4">
+									    			<a href="{{ url()->previous() }}" class="btn btn-default btn-block btn-flat">
+										                Cancelar
+										            </a>
+									            </div>
+									            <div class="col-sm-4">
+									            	&nbsp;
+									            </div>
+											@endif
+											
+								    	</div>
+								  	</div>
+								  	<!-- box-footer -->
+							</form>
+				    		
+			    		@endif
+
+
 		         	    <div class="active tab-pane" id="activity">
 		         	    	
 		         	    	<div class="row">
@@ -348,7 +570,7 @@
 								       	 }else{
 								          h = window.screen.availHeight-375;
 								          w = window.screen.availWidth-200;//100
-								           circleWidth = 60;
+								           circleWidth = 53;
 								        }
 
 										    w = w;
