@@ -43,7 +43,7 @@
 						<img class="profile-user-img img-responsive img-circle" src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 
-              	>
+              	
 
               	<h3 class="profile-username text-center">{{ $firstname }}</h3>
 
@@ -87,7 +87,13 @@
               <strong><i class="fa fa-book margin-r-5"></i> Educación</strong>
 
               <p class="text-muted">
-                {{ $scholarship }} / {{ $occupation }}
+              	@if(empty($scholarship) && empty($occupation))
+                	<a href="#">Agregar información</a>
+                @elseif(empty($scholarship) && !empty($occupation))
+                	<a href="#">Agregar Escolaridad</a> / {{ $occupation }}
+                @elseif(!empty($scholarship) && empty($occupation))
+                	{{ $scholarship }} / <a href="#">Agregar ocupación</a>
+                @endif
               </p>
 
               <hr>
@@ -98,14 +104,10 @@
 
               <hr>
 
-              <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+              <strong><i class="fa fa-pencil margin-r-5"></i> Prescripción actual</strong>
 
               <p>
-                <span class="label label-danger">UI Design</span>
-                <span class="label label-success">Coding</span>
                 <span class="label label-info">Javascript</span>
-                <span class="label label-warning">PHP</span>
-                <span class="label label-default">Node.js</span>
               </p>
 
               <hr>
