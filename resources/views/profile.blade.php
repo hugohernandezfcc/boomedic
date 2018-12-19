@@ -112,10 +112,10 @@
 
               <hr>
 
-              <strong><i class="fa fa-pencil margin-r-5"></i> Prescripción actual</strong>
+              <strong><i class="fa fa-pencil margin-r-5"></i> Prescripción médica actual</strong>
 
               <p>
-                <span class="label label-info">Javascript</span>
+                <span class="label label-info">TBD</span>
               </p>
 
               <hr>
