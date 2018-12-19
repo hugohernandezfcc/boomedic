@@ -85,7 +85,7 @@ class profile extends Controller
         if($users[0]->profile_photo != null)
          array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
             else{
-                array_push( $nodes, ['name' => 'Yo', 'photo' => 'https://s3.amazonaws.com/'. env('S3_BUCKET') .'/profile-42914_640.png?'. Carbon::now()->format('h:i'), 'id' => '0']);
+                array_push( $nodes, ['name' => 'Yo', 'photo' => asset('profile-42914_640.png').'?'. Carbon::now()->format('h:i'), 'id' => '0']);
             }
           for($i = 1; $i < 2; $i++){
                 array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
@@ -101,7 +101,7 @@ class profile extends Controller
             if($family[$i]->profile_photo != null){
                 array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
                   }else {
-                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/'. env('S3_BUCKET') .'/profile-42914_640.png', 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
+                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => asset('profile-42914_640.png') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
                   }
             }
           }

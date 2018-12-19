@@ -102,7 +102,7 @@ class doctor extends Controller
         if($user->profile_photo != null)
          array_push( $nodes, ['name' => 'Yo', 'photo' => $user->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
             else{
-                array_push( $nodes, ['name' => 'Yo', 'photo' => 'https://s3.amazonaws.com/'. env('S3_BUCKET') .'/profile-42914_640.png?'. Carbon::now()->format('h:i'), 'id' => '0']);
+                array_push( $nodes, ['name' => 'Yo', 'photo' => asset('profile-42914_640.png') .'?'.  Carbon::now()->format('h:i'), 'id' => '0']);
             }
           for($i = 1; $i < 2; $i++){
                 array_push($nodes, ['name' => 'Agregar asistente', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
@@ -114,7 +114,7 @@ class doctor extends Controller
             if($assist[$i]->profile_photo != null){
                 array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => $assist[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
                   }else {
-                        array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/'. env('S3_BUCKET') .'/profile-42914_640.png', 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
+                        array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => asset('profile-42914_640.png'), 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
                   }
             }
           }

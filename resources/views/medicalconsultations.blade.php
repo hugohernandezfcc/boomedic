@@ -679,7 +679,7 @@
                         
                   </div>
                   <div class="modal-body">
-                   <div id="recentS" align="left" style="display: none; font-weight:500;">Busquedas recientes:<br/></div>         
+                   <div id="recentS" align="left" style="display: none; font-weight:500;">Busquedas anteriores:<br/></div>         
                    <div id="resp" align="left"></div>                
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
                     
