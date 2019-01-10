@@ -839,7 +839,7 @@ class doctor extends Controller
         }
 
 
-        return view('profile', [
+        return view('viewPatient', [
                 
                  /** SYSTEM INFORMATION */
 
