@@ -561,11 +561,15 @@
 	                </li>
 	            </ul>
 
-			    <form class="lockscreen-credentials" action="/doctor/edit/complete" method="get" id="form_profile">
+			    <form action="/doctor/edit/complete" method="get" id="form_profile">
 			    	{{ csrf_field() }}
 					<input type="hidden" name="id" value="{{ $userId }}">
               		<button type="submit" class="btn btn-secondary btn-block btn-flat">Editar perfil</button>
 				</form>
+			 <hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Miembro desde</strong>
+              <p>{{$created_at}}</p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -574,42 +578,26 @@
           <!-- About Me Box -->
           <div class="box box-default">
             <div class="box-header with-border">
-              <h3 class="box-title">Información adicional</h3>
+              <h3 class="box-title">Información Profesional</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Educación</strong>
+              <strong>Licencia</strong>
+              <p class="text-muted">{{ $professional_license }}</p>
 
-              <p class="text-muted">
-              	@if(empty($scholarship) && empty($occupation))
-                	<a href="#">Agregar información</a>
-                @elseif(empty($scholarship) && !empty($occupation))
-                	<a href="#">Agregar Escolaridad</a> / {{ $occupation }}
-                @elseif(!empty($scholarship) && empty($occupation))
-                	{{ $scholarship }} / <a href="#">Agregar ocupación</a>
-                @endif
-              </p>
+              <strong>Sociedad de Médicos</strong>
+              <p>{{ $medical_society }}</p>
 
-              <hr>
+              <strong>Especialidad</strong>
+              <p>{{ $specialty }}</p>
 
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Dirección</strong>
- 
-              	<p class="text-muted">
+              <strong>Escuela de Medicina</strong>
+              	<p class="text-muted">{{ $schoolOfMedicine }}</p>
+              <strong>Facultad de Especialización</strong>
+              	<p class="text-muted">{{ $facultyOfSpecialization }}</p>
+              <strong>Práctica Profesional</strong>
+              	<p class="text-muted">{{ $practiseProfessional }}</p>
 
-				</p>
-
-              <hr>
-
-              <strong><i class="fa fa-pencil margin-r-5"></i> Prescripción médica actual</strong>
-
-              <p>
-                <span class="label label-info"></span>
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Miembro desde</strong>
-              <p>{{$created_at}}</p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -626,72 +614,73 @@
 		            <div class="tab-content">
 		            	<div class="active tab-pane" id="activity">
 		         	    
-		         	    	<div class="row">
-                          
-	                            <div class="col-sm-3" align="left"><b>Correo:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $email }}</div>
-	                         
-	                        </div>
-	                        <div class="row">
-	                          
-	                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $username }}</div>
-	                         
-	                        </div>
-	                        <div class="row">
-	                          
-	                            <div class="col-sm-3" align="left"><b>Edad:</b></div>
-	                            <div class="col-sm-9" align="left">{{ $age }}</div>
-	                         
-	                        </div>
-	                        <div class="row">
-	                         
-	                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
-	                         
-	                        </div>
-	                        <div class="row">
-	                        
-	                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
-	                            @if($gender == "female")
-	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.female') }}</div>
-	                            @endif
-	                            @if($gender == "male")
-	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.male') }}</div>
-	                            @endif
-	                            @if($gender == "other")
-	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
-	                            @endif
-	                      
-	                        </div>
-	                        <div class="row">
-	                         
-	                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
-	                    
-	                        </div>
-	                        <div class="row">
-	                         
-	                            <div class="col-sm-3" align="left"><b>Estado civil:</b></div>
-	                              @if($maritalstatus == "single")
-	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.single') }}</div>
-	                             @endif
-	                            @if($maritalstatus == "married")
-	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.married') }}</div>
-	                             @endif	
-	                      
-	                        </div>
-	                        <div class="row">
-	                        
-	                            <div class="col-sm-3" align="left"><b># Móvil:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $mobile }}</div>
-	                       
-	                        </div>
-	                        <div class="row">
-	                        
-	                            <div class="col-sm-3" align="left"><b>Ultima modificación:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $updated_at }}</div>
-	                        </div>
+			 						<div class="row">
+			                          
+			                            <div class="col-sm-3" align="left"><b>Correo:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $email2 }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                          
+			                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $username2 }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                          
+			                            <div class="col-sm-3" align="left"><b>Edad:</b></div>
+			                            <div class="col-sm-9" align="left">{{ $age }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                         
+			                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                        
+			                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
+			                            @if($gender == "female")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+			                            @endif
+			                            @if($gender == "male")
+			                            <div class="col-sm-3" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+			                            @endif
+			                            @if($gender == "other")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
+			                            @endif
+			                      
+			                        </div>
+			                        <div class="row">
+			                         
+			                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
+			                    
+			                        </div>
+			                        <div class="row">
+			                         
+			                            <div class="col-sm-3" align="left"><b>Estado civil:</b></div>
+			                              @if($maritalstatus == "single")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+			                             @endif
+			                            @if($maritalstatus == "married")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+			                             @endif	
+			                      
+			                        </div>
+			                        <div class="row">
+			                        
+			                            <div class="col-sm-3" align="left"><b># Móvil:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $mobile }}</div>
+			                       
+			                        </div>
+			                        <div class="row">
+			                        
+			                            <div class="col-sm-3" align="left"><b>Ultima modificación:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $updated_at }}</div>
+			                        
+			                        </div>
 		         	    </div>
 		         	    <div class="tab-pane" id="family">
 		         	    	
