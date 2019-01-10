@@ -571,20 +571,22 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong>Licencia</strong>
+              <strong><i class="fa fa-address-card margin-r-5"></i> Licencia</strong>
               <p class="text-muted">{{ $professional_license }}</p>
 
-              <strong>Sociedad de Médicos</strong>
+              <strong><i class="fa fa-user-md margin-r-5"></i> Sociedad de Médicos</strong>
               <p>{{ $medical_society }}</p>
 
-              <strong>Especialidad</strong>
-              <p>{{ $specialty }}</p>
-
-              <strong>Escuela de Medicina</strong>
+              <strong><i class="fa fa-book margin-r-5"></i> Escuela de Medicina</strong>
               	<p class="text-muted">{{ $schoolOfMedicine }}</p>
-              <strong>Facultad de Especialización</strong>
+
+              <strong><i class="fas fa-book margin-r-5"></i> Facultad de Especialización</strong>
               	<p class="text-muted">{{ $facultyOfSpecialization }}</p>
-              <strong>Práctica Profesional</strong>
+
+               <strong><i class="fa fa-award margin-r-5"></i> Especialidad</strong>
+              <p>{{ $specialty }}</p>	
+
+              <strong><i class="fab fa-black-tie margin-r-5"></i> Práctica Profesional</strong>
               	<p class="text-muted">{{ $practiseProfessional }}</p>
 
             </div>
