@@ -692,7 +692,7 @@
 
 		         	    </div>
 		         	    <div class="tab-pane" id="laborInformation">
-
+		         	    <div class="box"> 	
                           @if($labor->isEmpty())
 						 <span class="text-black">No hay ningún centro asociado a su cuenta.</span>			
 							@else
@@ -721,7 +721,7 @@
 									   	<button type="submit" class="btn btn-secondary btn-xs"><i class="fa fa-plus"></i> Agregar consultorio</button>
 									   </form>
 									</div>
-
+						   </div>			
 		         	    </div>
 		         	</div>
 		        </div>
