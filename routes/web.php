@@ -264,16 +264,21 @@ Route::group(['prefix' => 'doctor'], function(){
 		]
 	);
 
-		Route::post('cropDoctor/{id}', [
+	Route::post('cropDoctor/{id}', [
 			'uses'	=>	'doctor@cropDoctor',
 			'as'	=>	'cropDoctor'
 		]
 	);
-		Route::get('delete/{id}', [
+	Route::get('delete/{id}', [
 			'uses'	=>	'doctor@destroy',
 			'as'	=>	'destroy'
 		]
 	);
+	Route::get('viewPatient/{id}', [
+			'uses'	=>	'doctor@viewPatient',
+			'as'	=>	'doctor'
+		]
+	);		
 });
 
 

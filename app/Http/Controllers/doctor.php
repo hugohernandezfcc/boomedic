@@ -773,4 +773,116 @@ class doctor extends Controller
              ->get();
         return response()->json($assistants);
     }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+        public function viewPatient($id)
+    {
+      //event(new EventName('rebbeca.goncalves@doitcloud.consulting'));
+
+        $users = DB::table('users')->where('id', $id)->get();
+        $family = DB::table('family')
+            ->join('users', 'family.activeUser', '=', 'users.id')
+            ->where('family.parent', $id)
+            ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name')
+            ->get();
+        $nodes = array();
+    //Json que guarda datos de familiares para generar externalidad//
+      if(count($family) < 1){
+        if($users[0]->profile_photo != null)
+         array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
+            else{
+                array_push( $nodes, ['name' => 'Yo', 'photo' => asset('profile-42914_640.png').'?'. Carbon::now()->format('h:i'), 'id' => '0']);
+            }
+          for($i = 1; $i < 2; $i++){
+                array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
+            }
+      }   else {
+               
+          array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
+          for($i = 0; $i < count($family); $i++){
+            $session = "0";
+            if($family[$i]->relationship == "son" && $family[$i]->age < 18){
+                $session = "1";
+            } 
+            if($family[$i]->profile_photo != null){
+                array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
+                  }else {
+                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => asset('profile-42914_640.png') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
+                  }
+            }
+          }
+    //Json que guarda datos de familiares para generar externalidad//   
+
+
+        #Code HDHM
+        $question = DB::table('questions_clinic_history')
+            ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+            ->where('answers_clinic_history.question','!=', null)
+            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
+            ->get();
+
+        //dd($question); 
+
+        $answer;
+
+        for ($i=0; $i < count($question); $i++) { 
+            if ($question[$i]->question == "¿Está actualmente tomando algún fármaco con prescripción?") {
+                $answer = $question[$i]->parent_answer;
+                break;
+            }
+        }
+
+
+        return view('profile', [
+                
+                 /** SYSTEM INFORMATION */
+
+                'userId'        => $id,
+
+
+                /** INFORMATION USER */
+
+                'firstname'     => $users[0]->firstname,
+                'lastname'      => $users[0]->lastname,
+                'email'         => $users[0]->email,
+
+                'name'          => $users[0]->name,
+
+                'username'      => $users[0]->username,
+                'age'           => $users[0]->age,
+                'photo'         => $users[0]->profile_photo,
+                'date'          => $users[0]->created_at,
+
+                /** PERSONAL INFORMATION */
+
+                'gender'        => $users[0]->gender,
+                'occupation'    => $users[0]->occupation,
+                'scholarship'   => $users[0]->scholarship,
+                'maritalstatus' => $users[0]->maritalstatus,
+                'mobile'        => $users[0]->mobile,
+                'updated_at'    => $users[0]->updated_at,
+                'created_at'    => $users[0]->created_at,
+                'current_prescription'    => $answer,
+                /** ADDRESS FISICAL USER  */
+
+                'country'       => (   empty($users[0]->country)        ) ? '' : $users[0]->country, 
+                'state'         => (   empty($users[0]->state)          ) ? '' : $users[0]->state, 
+                'delegation'    => (   empty($users[0]->delegation)     ) ? '' : $users[0]->delegation, 
+                'colony'        => (   empty($users[0]->colony)         ) ? '' : $users[0]->colony, 
+                'street'        => (   empty($users[0]->street)         ) ? '' : $users[0]->street, 
+                'streetnumber'  => (   empty($users[0]->streetnumber)   ) ? '' : $users[0]->streetnumber, 
+                'interiornumber'=> (   empty($users[0]->interiornumber) ) ? '' : $users[0]->interiornumber, 
+                'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
+                'longitude'     => (   empty($users[0]->longitude)      ) ? '' : $users[0]->longitude,
+                'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
+                'nodes'         => json_encode($nodes)
+            ]
+        );
+    }
 }
