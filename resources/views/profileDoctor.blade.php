@@ -580,13 +580,13 @@
               <strong><i class="fa fa-book margin-r-5"></i> Escuela de Medicina</strong>
               	<p class="text-muted">{{ $schoolOfMedicine }}</p>
 
-              <strong><i class="fas fa-book margin-r-5"></i> Facultad de Especialización</strong>
+              <strong><i class="fa fa-book margin-r-5"></i> Facultad de Especialización</strong>
               	<p class="text-muted">{{ $facultyOfSpecialization }}</p>
 
-               <strong><i class="fa fa-award margin-r-5"></i> Especialidad</strong>
+               <strong><i class="fa fa-star margin-r-5"></i> Especialidad</strong>
               <p>{{ $specialty }}</p>	
 
-              <strong><i class="fab fa-black-tie margin-r-5"></i> Práctica Profesional</strong>
+              <strong><i class="fa fa-black-tie margin-r-5"></i> Práctica Profesional</strong>
               	<p class="text-muted">{{ $practiseProfessional }}</p>
 
             </div>
