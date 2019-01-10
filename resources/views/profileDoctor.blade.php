@@ -111,18 +111,6 @@
 				    
 	</script>
 	@if($mode == 'doctor')
-	@if( empty($status) )
-
-    @include('headerprofile')
-    <script type="text/javascript">
-      //O si no lleva botón hacer el div "div_profile" invisible
-      document.getElementById('labeltext').innerHTML = 'Editar';
-      var elemento = document.getElementById("i_button");
-      elemento.className = "fa fa-pencil text-muted";
-      document.forms.form_profile.action = "/doctor/edit/complete";
-
-    </script>
-	@endif
 
 	  			<!-- Modal photo settings-->
 	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
@@ -139,7 +127,7 @@
 
 
 	  	<!-- /.box-header -->
-	  	<div class="box-body">
+
 	  		@if( !empty($status) )
 	  			<!-- Modal photo settings-->
 	<div id="modal" class="modal fade" role="dialog" style="width: 100%">
@@ -163,7 +151,7 @@
 	    </div>
  	</div>
  	<!-- Modal photo settings-->
-
+ 	<div class="box box-body">
 		  		@if ($status == "In Progress")
 		  			<div class="callout callout-success">
 		                <h4>Ya casi estamos listos {{ $firstname }} !!!</h4>
@@ -467,6 +455,7 @@
 				  	<!-- box-footer -->
 
 	    		</form>
+	    		    		</div>
 
 	    	@else
 	    					@if(session()->has('message'))
