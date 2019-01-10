@@ -598,7 +598,7 @@
 		            <ul class="nav nav-tabs">
 		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
 		              	<li><a href="#Asistant" id="four" data-toggle="tab">Asistentes</a></li>
-		              	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
+		              	<li><a href="#laborInformation" data-toggle="tab">Consultorios</a></li>
 		            </ul>
 
 		            <div class="tab-content">
@@ -689,12 +689,36 @@
 			                    </div>
 
 		         	    </div>
-		         	    <div class="tab-pane" id="address">
+		         	    <div class="tab-pane" id="laborInformation">
 
-		         	    	<div align="center">
-		         	    	
-
-		         	    	</div>
+                          @if($labor->isEmpty())
+						 <span class="text-black">No hay ningún centro asociado a su cuenta.</span>			
+							@else
+							
+							@foreach($labor->sortByDesc('created_at') as $labor)
+							<div class="form-group">	
+							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
+									          <div class="info-box sm bg-gray">
+									          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar"></i></span></a> 
+									            <div class="info-box-content sm">
+									              <b>{{ $labor->workplace}}</b> 
+									              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
+									            </div>
+									            <!-- /.info-box-content -->
+									          </div>
+									          <!-- /.info-box -->
+							</div>
+							<div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height:45px;">	
+							</div>
+							</div>		
+							@endforeach
+							@endif
+									<div class="pull-right">
+									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
+									   	<button type="submit" class="btn btn-secondary btn-xs"><i class="fa fa-plus"></i> Agregar consultorio</button>
+									   </form>
+									</div>
 
 		         	    </div>
 		         	</div>
