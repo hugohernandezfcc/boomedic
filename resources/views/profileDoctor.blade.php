@@ -597,9 +597,10 @@
         		<div class="nav-tabs-custom">
 		            <ul class="nav nav-tabs">
 		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
-		              	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
+		              	<li><a href="#Asistant" id="four" data-toggle="tab">Asistentes</a></li>
 		              	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
 		            </ul>
+
 		            <div class="tab-content">
 		            	<div class="active tab-pane" id="activity">
 		         	    
@@ -671,9 +672,21 @@
 			                        
 			                        </div>
 		         	    </div>
-		         	    <div class="tab-pane" id="family">
+		         	    <div class="tab-pane" id="Asistant">
 		         	    	
-
+			                    <div class="box-body">
+			                    	     <div class="lockscreen-item pull-right" style="width: 210px !important;">
+										      	<div class="input-group">
+										        	<div class="form-control" align="center"><label id="labeltext">Agregar Asistente</label></div>
+										        	<div class="input-group-btn">
+											          	<a class="btn btn-default" data-toggle="modal" data-target="#modalassist">
+											          		<i class="fa fa-plus text-muted"></i>
+											          	</a>
+										        	</div>
+										      	</div>
+										</div>
+									<div id="demo"></div>
+			                    </div>
 
 		         	    </div>
 		         	    <div class="tab-pane" id="address">
@@ -797,7 +810,7 @@
 
 						var swatches = function(el) {
 						var circleWidth = 45;	
-						var charge = -800;
+						var charge = -700;
 						var h = 0;
 						var w= 0;
 				        if("@php echo $agent->isMobile(); @endphp"){
@@ -826,9 +839,9 @@
 							 charge = -300;
 				            }
 				       	 }else{
-				          h = window.screen.availHeight-375;
-				          w = window.screen.availWidth-100;
-				           circleWidth = 50;
+						  h = window.screen.availHeight-375;
+						  w = window.screen.availWidth-550;//100
+				          circleWidth = 53;
 				        }
 
 						    w = w;
