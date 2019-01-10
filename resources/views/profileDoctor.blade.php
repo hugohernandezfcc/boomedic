@@ -124,14 +124,6 @@
     </script>
 	@endif
 
-	
-
-
-    <div class="box">
-	  	<div class="box-header with-border">
-		    <h3 class="box-title">Información de Médico</h3>
-	    	<!-- /.box-tools -->
-	  	</div>
 	  			<!-- Modal photo settings-->
 	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
 	    <div class="modal-dialog">
@@ -222,17 +214,17 @@
 	    		<br/>
 
 	    		<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="formDr">
-	    <div id="modalAlert" class="modal fade" role="dialog">
-	    <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">La foto de perfil es obligatoria, recuerde que es la imagen que verá el ppaciente.</h4>
-              </div>
-            </div>
-          </div>
-      </div>
+				<div id="modalAlert" class="modal fade" role="dialog">
+				    <div class="modal-dialog">
+			            <div class="modal-content">
+			              <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                  <span aria-hidden="true">×</span></button>
+			                <h4 class="modal-title">La foto de perfil es obligatoria, recuerde que es la imagen que verá el ppaciente.</h4>
+			              </div>
+			            </div>
+			          </div>
+			      </div>
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -397,38 +389,37 @@
 		            		&nbsp;
 		            	</div>
 		            	<div id="locationField" class="col-sm-10">
-					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"></input>
-					    </div>
+					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text">
 		            </div>
 
 		            <div class="form-group">
 		            	<label  class="col-sm-2 control-label">
 		            	</label>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}>
 			            	</div>  
 			        </div>
 			        <div class="form-group">
 			        	<label  class="col-sm-2 control-label">
 		            	</label>    	            	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
+			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad">
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}>
 			            	</div>
 			        </div>
 			        <div class="form-group">  
 			        	<label  class="col-sm-2 control-label">
 		            	</label>  	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
+			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal">
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}>
 			            	</div>
 			            
 		            </div>
@@ -501,212 +492,228 @@
 							   @endif
 							 @endif  
     			<!-- Custom Tabs -->
-     <div class="row">
-        <div class="col-md-12">
-          <div class="box box-solid">
+
+              <section class="content">
+
+      	<div class="row">
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-default">
+            <div class="box-body box-profile">
+
+            	@if($photo == '')
+		    	 		<img class="profile-user-img img-responsive img-circle" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
+					@else
+						@php 
+						  $imagen = getimagesize($photo);    //Sacamos la información
+				          $width = $imagen[0];              //Ancho
+				          $height = $imagen[1];  
+
+				          if($height > '500' || $width > '500'){
+				            $height = $height / 2.8;
+				            $width = $width / 2.8;
+				        }
+				        if($height > '800' || $width > '800'){
+				            $height = $height / 4;
+				            $width = $width / 4;
+				        }
+				      if($height > '800' || $width > '1200'){
+				            $height = $height / 6;
+				            $width = $width / 6;
+				        }
+
+
+				          if($height < '400' || $width < '400'){
+				            $height = $height / 1.6;
+				            $width = $width / 1.6;
+				        }
+
+						@endphp
+						<img class="profile-user-img img-responsive img-circle" src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+			    	@endif 
+
+              	
+
+              	<h3 class="profile-username text-center">{{ $firstname }}</h3>
+
+              	@if($gender == "female")
+              		<p class="text-muted text-center">{{ trans('adminlte::adminlte.female') }}</p>
+	            @endif
+	            @if($gender == "male")
+	            	<p class="text-muted text-center">{{ trans('adminlte::adminlte.male') }}</p>
+	            @endif
+	            @if($gender == "other")
+	            	<p class="text-muted text-center">{{ trans('adminlte::adminlte.other') }}</p>
+	            @endif
+
+              
+
+	            <ul class="list-group list-group-unbordered">
+	                <li class="list-group-item">
+	                 	<b>Familiares</b> <a class="pull-right">2</a>
+	                </li>
+	                <li class="list-group-item">
+	                  	<b>No. de citas</b> <a class="pull-right">1</a>
+	                </li>
+	                <li class="list-group-item">
+	                  	<b>No. métodos de pago</b> <a class="pull-right">5</a>
+	                </li>
+	            </ul>
+
+			    <form class="lockscreen-credentials" action="/doctor/edit/complete" method="get" id="form_profile">
+			    	{{ csrf_field() }}
+					<input type="hidden" name="id" value="{{ $userId }}">
+              		<button type="submit" class="btn btn-secondary btn-block btn-flat">Editar perfil</button>
+				</form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+          <div class="box box-default">
+            <div class="box-header with-border">
+              <h3 class="box-title">Información adicional</h3>
+            </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="box-group" id="accordion">
-                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-             
-                <div class="panel box box-default" style="border-top-color: black;">
-                
-                 <div class="box-header with-border"> 
-                 	<h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="accordion-toggle text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
-                        Información personal
-                  </a>
-              </h4>
-                  	</div>
-                   
-                  <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
+              <strong><i class="fa fa-book margin-r-5"></i> Educación</strong>
 
-                    <div class="box-body">
-                      <br/>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $email2 }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $username2 }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Edad:</b></div>
-                            <div class="col-sm-10" align="left">{{ $age }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $occupation }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b>Genero:</b></div>
-                            @if($gender == "female")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.female') }}</div>
-                            @endif
-                            @if($gender == "male")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.male') }}</div>
-                            @endif
-                            @if($gender == "other")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.other') }}</div>
-                            @endif
-                      
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $scholarship }}</div>
-                    
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
-                              @if($maritalstatus == "single")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.single') }}</div>
-                             @endif
-                            @if($maritalstatus == "married")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.married') }}</div>
-                             @endif	
-                      
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $mobile }}</div>
-                       
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $updated_at }}</div>
-                        
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                <br/>
-                <div class="panel box box-default" style="border-top-color: black;">
-               <div class="box-header with-border">
-               	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"  class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
-                        Información Profesional
-                </a>
-            </h4>
-                </div>
-                  <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
-                    <div class="box-body">
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Licencia Profesional:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $professional_license }}</div>
-                        </div>
-                         <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Sociedad de Médicos:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $medical_society }}</div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Especialidad:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $specialty }}</div>
-                        </div>
-                       <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Escuela de Medicina:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $schoolOfMedicine }}</div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Facultad de Especialización:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $facultyOfSpecialization }}</div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Práctica Profesional:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $practiseProfessional }}</div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                <br/>
-                <div class="panel box box-default" style="border-top-color: black;">
-                	 <div class="box-header with-border">
-                	 	<h4 class="panel-title">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
-                        Consultorios    
-                  </a> 
-                  </h4> 
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
-                    <div class="box-body">
-                          @if($labor->isEmpty())
-						 <span class="text-black">No hay ningún centro asociado a su cuenta.</span>			
-							@else
-							
-							@foreach($labor->sortByDesc('created_at') as $labor)
-							<div class="form-group">	
-							<div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
-									          <div class="info-box sm bg-gray">
-									          	<a href="{{ url('workboardDr/index') }}/{{$labor->id}}"><span class="info-box-icon sm bg-black"><i class="fa fa-calendar"></i></span></a> 
-									            <div class="info-box-content sm">
-									              <b>{{ $labor->workplace}}</b> 
-									              <span class="text-black">{{ $labor->country }}, {{ $labor->state }}, {{ $labor->colony }}, {{ $labor->delegation }}, {{ $labor->street }} {{ $labor->streetNumber }}. Código Postal: {{ $labor->postalcode }}</span>
-									            </div>
-									            <!-- /.info-box-content -->
-									          </div>
-									          <!-- /.info-box -->
-							</div>
-							<div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height:45px;">	
-							</div>
-							</div>		
-							@endforeach
-							@endif
-									<div class="pull-right">
-									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
-									   	<button type="submit" class="btn btn-secondary btn-xs"><i class="fa fa-plus"></i> Agregar consultorio</button>
-									   </form></div>
-                  </div>
-                </div>
-              </div>
-                              <br/>
-                <div class="panel box box-default" style="border-top-color: black;">
-                	 <div class="box-header with-border">
-                	 	<h4 class="panel-title">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;" id="four">	
-                        Asistentes
-                  </a> 
-                  </h4> 
-                  </div>
-                  <div id="collapse4" class="panel-collapse collapse" aria-expanded="false">
-                    <div class="box-body">
-                    	     <div class="lockscreen-item pull-right" style="width: 210px !important;">
-							      	<div class="input-group">
-							        	<div class="form-control" align="center"><label id="labeltext">Agregar Asistente</label></div>
-							        	<div class="input-group-btn">
-								          	<a class="btn btn-default" data-toggle="modal" data-target="#modalassist">
-								          		<i class="fa fa-plus text-muted"></i>
-								          	</a>
-							        	</div>
-							      	</div>
-							</div>
-						<div id="demo"></div>
-                    </div>
-                                      <!--Other modal -->
+              <p class="text-muted">
+              	@if(empty($scholarship) && empty($occupation))
+                	<a href="#">Agregar información</a>
+                @elseif(empty($scholarship) && !empty($occupation))
+                	<a href="#">Agregar Escolaridad</a> / {{ $occupation }}
+                @elseif(!empty($scholarship) && empty($occupation))
+                	{{ $scholarship }} / <a href="#">Agregar ocupación</a>
+                @endif
+              </p>
 
+              <hr>
 
-                </div>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Dirección</strong>
+ 
+              	<p class="text-muted">
+
+				</p>
+
+              <hr>
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> Prescripción médica actual</strong>
+
+              <p>
+                <span class="label label-info"></span>
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Miembro desde</strong>
+              <p>{{$created_at}}</p>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
         <!-- /.col -->
-        <!-- /.col -->
-      </div>
+        	<div class="col-md-9">
+        		<div class="nav-tabs-custom">
+		            <ul class="nav nav-tabs">
+		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
+		              	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
+		              	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
+		            </ul>
+		            <div class="tab-content">
+		            	<div class="active tab-pane" id="activity">
+		         	    
+		         	    	<div class="row">
+                          
+	                            <div class="col-sm-3" align="left"><b>Correo:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $email }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                          
+	                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $username }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                          
+	                            <div class="col-sm-3" align="left"><b>Edad:</b></div>
+	                            <div class="col-sm-9" align="left">{{ $age }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                         
+	                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
+	                            @if($gender == "female")
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+	                            @endif
+	                            @if($gender == "male")
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+	                            @endif
+	                            @if($gender == "other")
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
+	                            @endif
+	                      
+	                        </div>
+	                        <div class="row">
+	                         
+	                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
+	                    
+	                        </div>
+	                        <div class="row">
+	                         
+	                            <div class="col-sm-3" align="left"><b>Estado civil:</b></div>
+	                              @if($maritalstatus == "single")
+	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+	                             @endif
+	                            @if($maritalstatus == "married")
+	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+	                             @endif	
+	                      
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-3" align="left"><b># Móvil:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $mobile }}</div>
+	                       
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-3" align="left"><b>Ultima modificación:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $updated_at }}</div>
+	                        </div>
+		         	    </div>
+		         	    <div class="tab-pane" id="family">
+		         	    	
+
+
+		         	    </div>
+		         	    <div class="tab-pane" id="address">
+
+		         	    	<div align="center">
+		         	    	
+
+		         	    	</div>
+
+		         	    </div>
+		         	</div>
+		        </div>
+        	</div>
+    	</div>
+    </section>
+
+        <!-- /.col AQUI -->
+
                         <div class="modal fade" role="dialog" id="modalassist2">
                     <div class="modal-dialog modal-sm">
 
@@ -1201,9 +1208,7 @@
 		    	</script>
 
 			@endif
-
-	  	</div>	  	
-	</div>
+  <!-- aqui x2-->
 <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
 <script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>

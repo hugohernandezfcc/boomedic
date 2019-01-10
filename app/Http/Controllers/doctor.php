@@ -135,6 +135,7 @@ class doctor extends Controller
                 'age'           => $user->age,
                 'photo'         => $user2->profile_photo,
                 'date'          => $user2->created_at,
+                'created_at'          => $user2->created_at,
                 /** PERSONAL INFORMATION */
                 'username2' => $user->username,
                 'email2'         => $user->email,
