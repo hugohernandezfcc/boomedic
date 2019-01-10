@@ -543,10 +543,10 @@
        				 				e.preventDefault();
        				 				document.getElementById('diagramFamily').innerHTML='';
 									+ function(d3) {
-
+							/* Para centrar globos charge junta globos secundarios o los exparce más, y variable w, restarle o sumarl dependiendo el panel en donde se ve */			
 									var swatches = function(el) {
 										var circleWidth = 45;	
-										var charge = -800;//800
+										var charge = -750;//800
 										var h = 0;
 										var w= 0;
 								        if("@php echo $agent->isMobile(); @endphp"){
@@ -575,7 +575,7 @@
 								            }
 								       	 }else{
 								          h = window.screen.availHeight-375;
-								          w = window.screen.availWidth-300;//100
+								          w = window.screen.availWidth-550;//100
 								           circleWidth = 53;
 								        }
 
