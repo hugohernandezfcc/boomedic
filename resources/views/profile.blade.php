@@ -208,7 +208,7 @@
 
               <hr>
 
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Mimebro desde</strong>
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Miembro desde</strong>
               <p>{{$created_at}}</p>
             </div>
             <!-- /.box-body -->
@@ -546,7 +546,7 @@
 							/* Para centrar globos charge junta globos secundarios o los exparce más, y variable w, restarle o sumarl dependiendo el panel en donde se ve */			
 									var swatches = function(el) {
 										var circleWidth = 45;	
-										var charge = -750;//800
+										var charge = -700;//800
 										var h = 0;
 										var w= 0;
 								        if("@php echo $agent->isMobile(); @endphp"){
