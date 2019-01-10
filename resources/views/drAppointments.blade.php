@@ -422,13 +422,16 @@
 		  	$('#start').html('<label class="text-muted">Fecha: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
 		  	if(calEvent.typ == "1" ){
 		  		$('#normal').css('display','block');
-		  		$('#canceled').css('display','block');
+          if(moment(calEvent.start) > moment())
+		  		  $('#canceled').css('display','block');
+          else
+            $('#canceled').css('display','none');
 		  		$('#doc').css('display','none');
 		  		$('#idcancel').val(calEvent.id);
 		  		console.log('hola' + calEvent.color);
 		  	}else{
 		  		$('#normal').css('display','block');
-				$('#doc').css('display','none');		  		
+				  $('#doc').css('display','none');		  		
 		  		$('#canceled').css('display','none');	
 		  	}
 		  
