@@ -17,6 +17,8 @@
     border-bottom: 1px solid #e0e0e0 !important;
 }
 .timeline-footer {
+
+
     padding: 5px 0 0 0;
     border-top: 1px solid #e0e0e0 !important;
 }
@@ -46,24 +48,22 @@
                                           )
                             </div>     
         @else
-    <div class="box-header direct-chat" id="header2">
+     <div class="box-header direct-chat" id="header2">
        <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-filter text-muted"></span></button>
               <div class="direct-chat-contacts">
                       <div class="btn-group pull-right">
                       <button id="appointment" type="button" class="btn bg-blue" title="Mostrar solo citas"><i class="fa fa-calendar-check-o"></i></button>   
-                      <button id="support" type="button"  class="btn bg-black" title="Mostrar solo soporte"><i class="fa fa-wrench "></i></button>
-                      <button id="payment" type="button" class="btn bg-yellow" title="Métodos de pagos registrados"> <i class="fa fa-credit-card-alt"></i></button> 
                       <button id="userli" type="button" class="btn bg-green" title="Mostrar solo actualización de usuario"><i class="fa fa-user "></i></button>
                       <button id="all" type="button" class="btn btn-default" title="Ver todo"><b>Ver todo</b></button>        
                       </div>
               </div>
-  	</div>
+    </div>
   	<div class="box-body content">
+
 	  <div class="row">
         <div class="col-md-12">
         <div align="center"><label id="response" style="margin-top: 20px; margin-botton: 0 !important"></label></div>
-			<br/>
           <!-- The time line -->
           <ul class="timeline">
 					
@@ -85,7 +85,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -117,27 +117,13 @@
         </div>
             @endif
 
-            @if($items['Type'] == 'Support Ticket')
-            <li class="support">
-              <i class="fa fa-wrench bg-black"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
-                <div class="timeline-body">
-                	<b>Asunto:</b> {{ $items['des']}} 
-                </div>
-              </div>
-            </li>
-            @endif
-
            @if($items['Type'] == 'User')
             <li class="userli">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -164,10 +150,6 @@
 
 	                @endif
                 </div>
-                <div class="timeline-footer">
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
-                </div>
               </div>
             </li>
             @endif
@@ -191,7 +173,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -221,28 +203,14 @@
             <!-- /.modal-content -->
           </div>
             @endif
-            
-            @if($items['Type'] == 'Support Ticket')
-            <li class="support">
-              <i class="fa fa-wrench bg-black"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
-                <div class="timeline-body">
-                	<b>Asunto:</b> {{ $items['des']}} 
-                </div>
-              </div>
-            </li>
-            @endif
-
+          
            @if($items['Type'] == 'User')
             <li class="userli">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -269,10 +237,6 @@
 
 	                @endif
                 </div>
-                <div class="timeline-footer">
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
-                </div>
               </div>
             </li>
             @endif
@@ -297,7 +261,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -328,27 +292,13 @@
         </div>
             @endif
 
-            @if($items['Type'] == 'Support Ticket')
-            <li class="support">
-              <i class="fa fa-wrench bg-black"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
-                <div class="timeline-body">
-                	<b>Asunto:</b> {{ $items['des']}} 
-                </div>
-              </div>
-            </li>
-            @endif
-
            @if($items['Type'] == 'User')
             <li class="userli">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -375,10 +325,6 @@
 
 	                @endif
                 </div>
-                <div class="timeline-footer">
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
-                </div>
               </div>
             </li>
             @endif
@@ -403,7 +349,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -434,19 +380,6 @@
         </div>
             @endif
 
-            @if($items['Type'] == 'Support Ticket')
-            <li class="support">
-              <i class="fa fa-wrench bg-black"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
-                <div class="timeline-body">
-                	<b>Asunto:</b> {{ $items['des']}} 
-                </div>
-              </div>
-            </li>
-            @endif
 
            @if($items['Type'] == 'User')
             <li class="userli">
@@ -454,7 +387,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -480,10 +413,6 @@
 	                @endphp
 
 	                @endif
-                </div>
-                <div class="timeline-footer">
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
                 </div>
               </div>
             </li>
@@ -509,7 +438,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -540,19 +469,6 @@
         </div>
             @endif
 
-            @if($items['Type'] == 'Support Ticket')
-            <li class="support">
-              <i class="fa fa-wrench bg-black"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
-                <div class="timeline-body">
-                	<b>Asunto:</b> {{ $items['des']}} 
-                </div>
-              </div>
-            </li>
-            @endif
 
            @if($items['Type'] == 'User')
             <li class="userli">
@@ -560,7 +476,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -586,10 +502,6 @@
 	                @endphp
 
 	                @endif
-                </div>
-                <div class="timeline-footer">
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
                 </div>
               </div>
             </li>
@@ -613,7 +525,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -644,27 +556,13 @@
         </div>
             @endif
 
-            @if($items['Type'] == 'Support Ticket')
-            <li class="support">
-              <i class="fa fa-wrench bg-black"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
-                <div class="timeline-body">
-                	<b>Asunto:</b> {{ $items['des']}} 
-                </div>
-              </div>
-            </li>
-            @endif
-
            @if($items['Type'] == 'User')
             <li class="userli">
               <i class="fa fa-user bg-green"></i>
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -690,10 +588,6 @@
 	                @endphp
 
 	                @endif
-                </div>
-                <div class="timeline-footer">
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
                 </div>
               </div>
             </li>
@@ -719,7 +613,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Cita registrada</a></h3>
                 <div class="timeline-body">
                   <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
                   <b>Estado:</b> {{ $items['status']}} <br/>
@@ -749,21 +643,6 @@
           </div>
         </div>
             @endif
-            
-            @if($items['Type'] == 'Support Ticket')
-            <li class="support">
-              <i class="fa fa-wrench bg-black"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('supportTicket/index') }}">Ticket de Soporte creado:</a></h3>
-                <div class="timeline-body">
-                	<b>Asunto:</b> {{ $items['des']}} 
-                </div>
-              </div>
-            </li>
-            @endif
-
 
            @if($items['Type'] == 'User')
             <li class="userli">
@@ -771,7 +650,7 @@
 
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/user/edit/complete') }}">Se realizaron cambios en el perfíl</a> 
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se realizaron cambios en el perfíl</a> 
                 </h3>
               </div>
             </li>
@@ -797,10 +676,6 @@
 	                @endphp
 
 	                @endif
-                </div>
-                <div class="timeline-footer">
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/index') }}">Ver más</a>
-                  <a class="btn btn-warning btn-flat btn-xs" href="{{ url('/payment/Transactions') }}/{{ $items['id'] }}">Ver Transacciones realizadas con este método</a>
                 </div>
               </div>
             </li>
