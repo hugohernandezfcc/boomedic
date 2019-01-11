@@ -143,6 +143,64 @@ class history extends Controller
         }
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function iframe($id){
+
+       $count = Session(['history' => '7']);
+       $i= 0;
+
+       while($this->historyHelper($count, $id) == "null")
+       {
+        $i++;
+          $count = session()->get('history') + 7;
+          Session(['history' => $count]);
+          $new = $this->historyHelper($count, $id);
+            if($new != "null"){
+                break;
+            }
+            if($i == 25){
+                break;
+            }
+       }
+     if($i > 0){
+       if($new == "null"){
+         $user = User::find($id);
+           $array1 = collect();
+           $array2 = collect();
+           $array3 = collect();
+           $array4 = collect();
+           $array5 = collect();
+           $array6 = collect();
+           $arraynow = collect();
+          return [
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
+                             'date'      => $user->created_at,
+                            'array2'     => $array2,
+                            'array1'     => $array1,
+                            'array3'     => $array3,
+                            'array4'     => $array4,
+                            'array5'     => $array5,
+                            'array6'     => $array6,
+                            'arraynow'   => $arraynow,
+                            'mode'       => 'null',
+                         ];
+       }else{
+          return $new;
+      }
+    }else{
+      $data = $this->historyHelper($count, Auth::id());
+          return $data;
+      }
+    }
+
+
     public function historyHelper($count, $userid){
       $user = User::find($userid);
 

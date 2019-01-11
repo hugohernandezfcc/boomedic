@@ -825,7 +825,8 @@ class doctor extends Controller
                 break;
             }
         }
-
+        $this->history = new history;
+        $allhistory = $this->iframe($id);
 
         return view('viewPatient', [
                 
