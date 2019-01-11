@@ -178,7 +178,7 @@ class history extends Controller
      */
     public function iframe($id){
 
-       $count = Session(['history' => '7']);
+       $count = 90;
        $i= 0;
 
        while($this->historyHelper($count, $id) == "null")

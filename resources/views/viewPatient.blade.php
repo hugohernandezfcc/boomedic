@@ -590,7 +590,7 @@
 
 		         	    </div> 	
 		         	    <div class="tab-pane" id="history">
-
+		         	    	 	       @include('historyView')
 		         	    </div> 	
 		         	</div>
 		        </div>
