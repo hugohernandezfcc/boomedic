@@ -36,6 +36,7 @@
   		    <div class="modal fade" role="dialog" id="modalsuccess">
                     <div class="modal-dialog modal-sm">
 
+
                       <div class="modal-content">
 
                         <div class="modal-header" >
@@ -53,7 +54,7 @@
 	                  				<li><a id="lug"></a></li>
 	                  				<li><a id="start"></a></li>
                             <input type="hidden" id="idpatient">
-                            <li><button id="viewPatient" style="display: none;" class="btn btn-secondary btn-flat btn-block" onclick="view($('#idpatient').val());">Detalle de paciente</button></li>
+                            <li id="buttondetail"></li>
 	                  				<li><button id="canceled" style="display: none;" class="btn btn-default btn-flat btn-block" data-target="#reason" data-dismiss="modal" data-toggle="modal">Cancelar cita</button></li>
 	                			</ul>	
 	                			<ul class="nav nav-stacked" id="doc" style="display: none;">
@@ -264,9 +265,7 @@
 </div>
 </div>	   
 <script type="text/javascript">
-    function view(){
-      alert('hola');
-    }
+
   $(function () {
   	 if("@php echo $agent->isMobile(); @endphp"){
       $('.ev').css('display','none');
@@ -296,6 +295,7 @@
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
+                uid: optionhour[y].uid,
 						    editable: false ,
                  typ: '4',
 						    id: optionhour[y].id            						     
@@ -310,6 +310,7 @@
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
+                uid: optionhour[y].uid,
 						    editable: false,
 						    typ: '1',
 						    id: optionhour[y].id           						     
@@ -324,6 +325,7 @@
 						    photo: optionhour[y].photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
+                uid: optionhour[y].uid,
 						    editable: false,
 						    typ: '1',
 						    id: optionhour[y].id          						     
@@ -336,6 +338,7 @@
                 end:    optionhour[y].end, 
                 color:  optionhour[y].color,   
                 editable: false,
+                uid: optionhour[y].uid,
                 typ: '3',
                 id: optionhour[y].id                           
             });
@@ -418,7 +421,6 @@
            },
 		  eventClick: function(calEvent, jsEvent, view) {
 		   	if(calEvent.typ != "3"  && calEvent.typ != "2"){
-        $('#idpatient').val(calEvent.uid);  
 		   	$('#userp').css('display','block');	
 		  	$('#userp').attr('src', calEvent.photo + '?1');
 		  	$('#namep').html('<label class="text-muted">Nombre: </label> '+ calEvent.title);
@@ -429,7 +431,7 @@
 		  		$('#normal').css('display','block');
           if(moment(calEvent.start) > moment()){
 		  		  $('#canceled').css('display','block');
-            $('#viewPatient').css('display','block');
+            $('#buttondetail').append('<a id="viewPatient" class="btn btn-secondary btn-flat btn-block" href="https://sbx00.herokuapp.com/doctor/viewPatient/'+ calEvent.uid +'">Detalle de paciente</a>');
           }
           else
             $('#canceled').css('display','none');
