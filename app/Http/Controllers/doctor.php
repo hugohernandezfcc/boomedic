@@ -784,7 +784,7 @@ class doctor extends Controller
         public function viewPatient($id)
     {
       //event(new EventName('rebbeca.goncalves@doitcloud.consulting'));
-
+        $userOne = User::find(Auth::id());
         $users = DB::table('users')->where('id', $id)->get();
         $family = DB::table('family')
             ->join('users', 'family.activeUser', '=', 'users.id')
@@ -792,19 +792,8 @@ class doctor extends Controller
             ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name')
             ->get();
         $nodes = array();
-    //Json que guarda datos de familiares para generar externalidad//
-      if(count($family) < 1){
-        if($users[0]->profile_photo != null)
-         array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
-            else{
-                array_push( $nodes, ['name' => 'Yo', 'photo' => asset('profile-42914_640.png').'?'. Carbon::now()->format('h:i'), 'id' => '0']);
-            }
-          for($i = 1; $i < 2; $i++){
-                array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
-            }
-      }   else {
-               
-          array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
+    //Json que guarda datos de familiares para generar externalidad//           
+          array_push( $nodes, ['name' => $users[0]->firstname, 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
           for($i = 0; $i < count($family); $i++){
             $session = "0";
             if($family[$i]->relationship == "son" && $family[$i]->age < 18){
@@ -816,7 +805,6 @@ class doctor extends Controller
                         array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => asset('profile-42914_640.png') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
                   }
             }
-          }
     //Json que guarda datos de familiares para generar externalidad//   
 
 
@@ -843,21 +831,28 @@ class doctor extends Controller
                 
                  /** SYSTEM INFORMATION */
 
-                'userId'        => $id,
+                'firstname'     => $userOne->firstname,
+                'lastname'      => $userOne->lastname,
+                'email'         => $userOne->email,
 
+                'name'          => $userOne->name,
 
+                'username'      => $userOne->username,
+                'age'           => $userOne->age,
+                'photo'         => $userOne->profile_photo,
+                'date'          => $userOne->created_at,
                 /** INFORMATION USER */
 
-                'firstname'     => $users[0]->firstname,
-                'lastname'      => $users[0]->lastname,
-                'email'         => $users[0]->email,
+                'pfirstname'     => $users[0]->firstname,
+                'plastname'      => $users[0]->lastname,
+                'pemail'         => $users[0]->email,
 
-                'name'          => $users[0]->name,
+                'pname'          => $users[0]->name,
 
-                'username'      => $users[0]->username,
-                'age'           => $users[0]->age,
-                'photo'         => $users[0]->profile_photo,
-                'date'          => $users[0]->created_at,
+                'pusername'      => $users[0]->username,
+                'agep'           => $users[0]->age,
+                'pphoto'         => $users[0]->profile_photo,
+                'pdate'          => $users[0]->created_at,
 
                 /** PERSONAL INFORMATION */
 

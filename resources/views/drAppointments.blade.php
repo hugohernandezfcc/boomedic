@@ -52,6 +52,7 @@
 	                  				<li><a id="age"></a></li>
 	                  				<li><a id="lug"></a></li>
 	                  				<li><a id="start"></a></li>
+                            <li><button id="viewPatient" style="display: none;" class="btn btn-secondary btn-flat btn-block">Detalle de paciente</button></li>
 	                  				<li><button id="canceled" style="display: none;" class="btn btn-default btn-flat btn-block" data-target="#reason" data-dismiss="modal" data-toggle="modal">Cancelar cita</button></li>
 	                			</ul>	
 	                			<ul class="nav nav-stacked" id="doc" style="display: none;">
@@ -422,8 +423,10 @@
 		  	$('#start').html('<label class="text-muted">Fecha: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
 		  	if(calEvent.typ == "1" ){
 		  		$('#normal').css('display','block');
-          if(moment(calEvent.start) > moment())
+          if(moment(calEvent.start) > moment()){
 		  		  $('#canceled').css('display','block');
+            $('#viewPatient').css('display','block'); 
+          }
           else
             $('#canceled').css('display','none');
 		  		$('#doc').css('display','none');
@@ -520,6 +523,10 @@
       $('#new-event').val('')
     }
     })
-  })			
+  })
+
+  $('#viewPatient').onclick(){
+    alert('hola');
+  }			
 </script>
 @stop

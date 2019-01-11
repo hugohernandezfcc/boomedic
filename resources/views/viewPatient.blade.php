@@ -92,11 +92,11 @@
           <div class="box box-default">
             <div class="box-body box-profile">
 
-            	@if($photo == '')
+            	@if($pphoto == '')
 		    	 		<img class="profile-user-img img-responsive img-circle" src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
 					@else
 						@php 
-						  $imagen = getimagesize($photo);    //Sacamos la información
+						  $imagen = getimagesize($pphoto);    //Sacamos la información
 				          $width = $imagen[0];              //Ancho
 				          $height = $imagen[1];  
 
@@ -120,12 +120,12 @@
 				        }
 
 						@endphp
-						<img class="profile-user-img img-responsive img-circle" src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+						<img class="profile-user-img img-responsive img-circle" src="{{ $pphoto }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 
               	
 
-              	<h3 class="profile-username text-center">{{ $firstname }}</h3>
+              	<h3 class="profile-username text-center">{{ $pfirstname }}</h3>
 
               	@if($gender == "female")
               		<p class="text-muted text-center">{{ trans('adminlte::adminlte.female') }}</p>
@@ -217,13 +217,13 @@
 	                        <div class="row">
 	                          
 	                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $username }}</div>
+	                            <div class="col-sm-9 cut" align="left">{{ $pusername }}</div>
 	                         
 	                        </div>
 	                        <div class="row">
 	                          
 	                            <div class="col-sm-3" align="left"><b>Edad:</b></div>
-	                            <div class="col-sm-9" align="left">{{ $age }}</div>
+	                            <div class="col-sm-9" align="left">{{ $agep }}</div>
 	                         
 	                        </div>
 	                        <div class="row">
@@ -533,7 +533,7 @@
 
 										$('#userp').attr('src', d.photo + '?2');
 										if(!d.namecom){
-										  	$('#namep').html('Yo');
+										  	$('#namep').html(d.name);
 										  }	else{
 										  	$('#namep').html(d.namecom + ' - ' + d.relationship);
 										  	if(d.session == 1){
