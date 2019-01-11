@@ -30,7 +30,7 @@ class history extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-
+       $user = User::find(Auth::id());
        $count = Session(['history' => '7']);
        $i= 0;
 
@@ -49,7 +49,6 @@ class history extends Controller
        }
      if($i > 0){
        if($new == "null"){
-         $user = User::find(Auth::id());
            $array1 = collect();
            $array2 = collect();
            $array3 = collect();
@@ -76,11 +75,25 @@ class history extends Controller
                          );
        }else{
           $data = $new;
-          return view('history',$data);
+          return view('history', [
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
+                            'date'      => $user->created_at
+                           ]
+                           )->with($data);
       }
     }else{
       $data = $this->historyHelper($count, Auth::id());
-          return view('history',$data);
+          return view('history',[
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
+                            'date'      => $user->created_at
+                           ]
+                           )->with($data);
       }
     }
 
@@ -91,6 +104,7 @@ class history extends Controller
      */
 
     public function moredays(){
+     $user = User::find(Auth::id());
       $count = session()->get('history') + 7;
        $i = 0;
        while($this->historyHelper($count, Auth::id()) == "null")
@@ -108,7 +122,7 @@ class history extends Controller
        }
      if($i > 0){
        if($new == "null"){
-         $user = User::find(Auth::id());
+
            $array1 = collect();
            $array2 = collect();
            $array3 = collect();
@@ -135,11 +149,25 @@ class history extends Controller
                          );
        }else{
         $data = $new;
-          return view('history',$data);
+          return view('history',[
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
+                            'date'      => $user->created_at
+                           ]
+                           )->with($data);
       }
     }else{
       $data = $this->historyHelper($count, Auth::id());
-          return view('history',$data);
+          return view('history',[
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
+                            'date'      => $user->created_at
+                           ]
+                           )->with($data);
         }
     }
 
@@ -177,11 +205,6 @@ class history extends Controller
            $array6 = collect();
            $arraynow = collect();
           return [
-                            'userId'     => $user->id,
-                            'username'   => $user->username,
-                            'name'       => $user->name,
-                            'photo'      => $user->profile_photo,
-                             'date'      => $user->created_at,
                             'array2'     => $array2,
                             'array1'     => $array1,
                             'array3'     => $array3,
@@ -332,11 +355,7 @@ class history extends Controller
                        return "null";
                 }
                 else{
-                    $data = ['userId'       => $user->id,
-                                'username'     => $user->username,
-                                'name'         => $user->name,
-                                'photo'        => $user->profile_photo,
-                                'date'         => $user->created_at,
+                    $data = [
                                 'array2'       => $array2,
                                 'array1'       => $array1,
                                 'array3'       => $array3,

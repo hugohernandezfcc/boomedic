@@ -826,7 +826,7 @@ class doctor extends Controller
             }
         }
         $this->history = new history;
-        $allhistory = $this->iframe($id);
+        $allhistory = $this->history->iframe($id);
 
         return view('viewPatient', [
                 
@@ -879,6 +879,6 @@ class doctor extends Controller
                 'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
                 'nodes'         => json_encode($nodes)
             ]
-        );
+        )->with($allhistory);
     }
 }
