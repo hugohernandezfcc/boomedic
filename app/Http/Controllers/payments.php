@@ -323,9 +323,7 @@ class payments extends Controller
          
      }
 
-            public function postPaymentWithpaypal(Request $request)
-
-                {
+            public function postPaymentWithpaypal(Request $request){
                     $url = url('/');
 
                     $payer = new Payer();
@@ -409,7 +407,6 @@ class payments extends Controller
                                 );
 
                             return redirect('medicalconsultations')->with($notification2);
-
                         }
 
                 public function getPaymentStatus(Request $request)

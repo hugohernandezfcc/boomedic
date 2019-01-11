@@ -429,10 +429,11 @@
 		  	$('#start').html('<label class="text-muted">Fecha: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
 		  	if(calEvent.typ == "1" ){
 		  		$('#normal').css('display','block');
-          if(moment(calEvent.start) > moment()){
-		  		  $('#canceled').css('display','block');
-            $('#buttondetail').append('<a id="viewPatient" class="btn btn-secondary btn-flat btn-block" href="https://sbx00.herokuapp.com/doctor/viewPatient/'+ calEvent.uid +'">Detalle de paciente</a>');
-          }
+          if(moment(calEvent.start).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD'))
+            $('#buttondetail').append('<a id="viewPatient" class="btn btn-secondary btn-flat btn-block" href="{{ url("doctor/viewPatient/") }}/' + calEvent.uid +'">Detalle de paciente</a>');
+          
+          if(moment(calEvent.start) > moment())
+            $('#canceled').css('display','block');
           else
             $('#canceled').css('display','none');
 		  		$('#doc').css('display','none');

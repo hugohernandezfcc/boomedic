@@ -210,6 +210,8 @@
 		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
 		              	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
 		              	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
+		              	<li><a href="#clinichistory" data-toggle="tab">Historia Clínica</a></li>
+		              	<li><a href="#history" data-toggle="tab">Registro de Actividad</a></li>
 		            </ul>
 		            <div class="tab-content">
 		            	<div class="active tab-pane" id="activity">
@@ -583,8 +585,13 @@
 		                        @endif
 
 		         	    	</div>
-
 		         	    </div>
+		         	    <div class="tab-pane" id="clinichistory">
+
+		         	    </div> 	
+		         	    <div class="tab-pane" id="history">
+
+		         	    </div> 	
 		         	</div>
 		        </div>
         	</div>
