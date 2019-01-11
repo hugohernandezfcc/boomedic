@@ -34,12 +34,12 @@ class history extends Controller
        $count = Session(['history' => '7']);
        $i= 0;
 
-       while($this->test($count) == "null")
+       while($this->historyHelper($count, Auth::id()) == "null")
        {
         $i++;
           $count = session()->get('history') + 7;
           Session(['history' => $count]);
-          $new = $this->test($count);
+          $new = $this->historyHelper($count, Auth::id());
             if($new != "null"){
                 break;
             }
@@ -75,11 +75,13 @@ class history extends Controller
                          ]
                          );
        }else{
-        return $new;
+          $data = $new;
+          return view('history',$data);
       }
     }else{
-      return $this->test($count);
-    }
+      $data = $this->historyHelper($count, Auth::id());
+          return view('history',$data);
+      }
     }
 
     /**
@@ -91,12 +93,12 @@ class history extends Controller
     public function moredays(){
       $count = session()->get('history') + 7;
        $i = 0;
-       while($this->test($count) == "null")
+       while($this->historyHelper($count, Auth::id()) == "null")
        {
           $i++;
           $count = session()->get('history') + 7;
           Session(['history' => $count]);
-          $new = $this->test($count);
+          $new = $this->historyHelper($count, Auth::id());
             if($new != "null"){
                 break;
             }
@@ -132,31 +134,32 @@ class history extends Controller
                          ]
                          );
        }else{
-        return $new;
+        $data = $new;
+          return view('history',$data);
       }
     }else{
-      return $this->test($count);
-    }
+      $data = $this->historyHelper($count, Auth::id());
+          return view('history',$data);
+        }
     }
 
-
-    protected function test($count){
-      $user = User::find(Auth::id());
+    public function historyHelper($count, $userid){
+      $user = User::find($userid);
 
        $sumDays = $count;
        Session(['history' => $sumDays]);
        Session(['history2' => Carbon::now()->subDays($sumDays)->format('d-m-Y')]);
        $varnewnow = Carbon::now()->subDays($sumDays);
 
-        $dateUser = DB::table('users')->where('id', Auth::id())
+        $dateUser = DB::table('users')->where('id', $user->id)
            ->where( 'updated_at', '>',  Carbon::now()->subDays($sumDays))
             ->select('id','created_at','updated_at')->get();
 
-        $dateSupport = DB::table('support_tickets')->where('userId', Auth::id())
+        $dateSupport = DB::table('support_tickets')->where('userId', $user->id)
            ->where( 'created_at', '>',  Carbon::now()->subDays($sumDays))
            ->select('id','created_at','updated_at','ticketDescription')->get();
 
-        $datePayment = DB::table('paymentsmethods')->where('owner', Auth::id())
+        $datePayment = DB::table('paymentsmethods')->where('owner', $user->id)
            ->where( 'created_at', '>', Carbon::now()->subDays($sumDays))
            ->select('id','created_at','updated_at','provider','cardnumber')->get();
 
@@ -164,7 +167,7 @@ class history extends Controller
          $dateAppointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
-           ->where('medical_appointments.user', Auth::id())
+           ->where('medical_appointments.user', $user->id)
            ->where( 'medical_appointments.created_at', '>', Carbon::now()->subDays($sumDays))
            ->select('medical_appointments.id','medical_appointments.created_at','medical_appointments.updated_at','medical_appointments.user_doctor','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.latitude', 'labor_information.longitude')->get();
 
@@ -271,24 +274,21 @@ class history extends Controller
                        return "null";
                 }
                 else{
-
-                       return  view('history',
-                         [
-                            'userId'       => $user->id,
-                            'username'     => $user->username,
-                            'name'         => $user->name,
-                            'photo'        => $user->profile_photo,
-                            'date'         => $user->created_at,
-                            'array2'       => $array2,
-                            'array1'       => $array1,
-                            'array3'       => $array3,
-                            'array4'       => $array4,
-                            'array5'       => $array5,
-                            'array6'       => $array6,
-                            'arraynow'     => $arraynow,
-                            'mode'         => 'null',
-                         ]
-                         );
+                    $data = ['userId'       => $user->id,
+                                'username'     => $user->username,
+                                'name'         => $user->name,
+                                'photo'        => $user->profile_photo,
+                                'date'         => $user->created_at,
+                                'array2'       => $array2,
+                                'array1'       => $array1,
+                                'array3'       => $array3,
+                                'array4'       => $array4,
+                                'array5'       => $array5,
+                                'array6'       => $array6,
+                                'arraynow'     => $arraynow,
+                                'mode'         => 'null'
+                             ];
+                       return $data; 
                     }   
     }
 
