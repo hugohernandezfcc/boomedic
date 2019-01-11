@@ -66,7 +66,7 @@ class drAppointments extends Controller
             ->join('users', 'medical_appointments.user', '=', 'users.id')
             ->where('medical_appointments.user_doctor', '=', $user->id)
             ->where('medical_appointments.status', '!=', 'No completed')
-            ->select('medical_appointments.*', 'users.name', 'users.profile_photo','users.age', 'labor_information.workplace as place', 'workboard.patient_duration_attention')
+            ->select('medical_appointments.*', 'users.name', 'users.profile_photo','users.age', 'users.id as userid', 'labor_information.workplace as place', 'workboard.patient_duration_attention')
             ->get();
             $appo2 = $appo->unique('id');
             $time_blockers = DB::table('time_blockers')
@@ -85,13 +85,13 @@ class drAppointments extends Controller
                             $end = Carbon::parse($ap->when)->addMinutes($end3);
 
                             if(Carbon::parse($ap->when)->format('m-d-Y') < Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "gray", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place, "end" => $end, "type" => "1"]);
+                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "gray", "photo" => $ap->profile_photo, "uid" => $ap->userid, "age" => $ap->age, "lug" => $ap->place, "end" => $end, "type" => "1"]);
                                 }
                             if(Carbon::parse($ap->when)->format('m-d-Y') > Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "black", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place, "end" => $end, "type" => "1"]);
+                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "black", "photo" => $ap->profile_photo, "age" => $ap->age, "uid" => $ap->userid, "lug" => $ap->place, "end" => $end, "type" => "1"]);
                                 }
                             if(Carbon::parse($ap->when)->format('m-d-Y') === Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "blue", "photo" => $ap->profile_photo, "age" => $ap->age, "lug" => $ap->place, "end" => $end, "type" => "1"]);
+                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "blue", "photo" => $ap->profile_photo, "age" => $ap->age, "uid" => $ap->userid, "lug" => $ap->place, "end" => $end, "type" => "1"]);
                                 }
                                   }
                         foreach($time2  as $ti){

@@ -52,7 +52,8 @@
 	                  				<li><a id="age"></a></li>
 	                  				<li><a id="lug"></a></li>
 	                  				<li><a id="start"></a></li>
-                            <li><button id="viewPatient" style="display: none;" class="btn btn-secondary btn-flat btn-block">Detalle de paciente</button></li>
+                            <input type="hidden" id="idpatient">
+                            <li><button id="viewPatient" style="display: none;" class="btn btn-secondary btn-flat btn-block" onclick="view($('#idpatient').val());">Detalle de paciente</button></li>
 	                  				<li><button id="canceled" style="display: none;" class="btn btn-default btn-flat btn-block" data-target="#reason" data-dismiss="modal" data-toggle="modal">Cancelar cita</button></li>
 	                			</ul>	
 	                			<ul class="nav nav-stacked" id="doc" style="display: none;">
@@ -263,7 +264,9 @@
 </div>
 </div>	   
 <script type="text/javascript">
-
+    function view(){
+      alert('hola');
+    }
   $(function () {
   	 if("@php echo $agent->isMobile(); @endphp"){
       $('.ev').css('display','none');
@@ -415,6 +418,7 @@
            },
 		  eventClick: function(calEvent, jsEvent, view) {
 		   	if(calEvent.typ != "3"  && calEvent.typ != "2"){
+        $('#idpatient').val(calEvent.uid);  
 		   	$('#userp').css('display','block');	
 		  	$('#userp').attr('src', calEvent.photo + '?1');
 		  	$('#namep').html('<label class="text-muted">Nombre: </label> '+ calEvent.title);
@@ -425,7 +429,7 @@
 		  		$('#normal').css('display','block');
           if(moment(calEvent.start) > moment()){
 		  		  $('#canceled').css('display','block');
-            $('#viewPatient').css('display','block'); 
+            $('#viewPatient').css('display','block');
           }
           else
             $('#canceled').css('display','none');
@@ -523,10 +527,6 @@
       $('#new-event').val('')
     }
     })
-  })
-
-  $('#viewPatient').onclick(){
-    alert('hola');
-  }			
+  })			
 </script>
 @stop
