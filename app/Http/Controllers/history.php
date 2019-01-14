@@ -178,7 +178,7 @@ class history extends Controller
      */
     public function iframe($id){
 
-       $count = 7;
+       $count = Session(['history' => '7']);
        $i= 0;
 
        while($this->historyHelper($count, $id) == "null")
@@ -347,7 +347,7 @@ class history extends Controller
             if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 6)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 6)->format('d-m-Y')){
                 $array6[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==  Carbon::now()->subDays($tot)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==  Carbon::now()->format('d-m-Y')){
                 $arraynow[] = $items;
             }
            }
@@ -363,7 +363,7 @@ class history extends Controller
                                 'array5'       => $array5,
                                 'array6'       => $array6,
                                 'arraynow'     => $arraynow,
-                                'mode'         => 'null'
+                                'mode'         => 'finish'
                              ];
                        return $data; 
                     }   
