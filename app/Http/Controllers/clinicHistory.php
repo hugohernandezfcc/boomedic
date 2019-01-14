@@ -334,7 +334,7 @@ class clinicHistory extends Controller
                       }
                    } 
 
-        if(count($history) > 0){
+        if($history){
                 $clinic = clinic_history::find($history->id);
                 $clinic->answer_id = $request->ansId;
                 if(count($newArray) == 0){
