@@ -430,7 +430,7 @@
 		  	if(calEvent.typ == "1" ){
 		  		$('#normal').css('display','block');
           if(moment(calEvent.start).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD'))
-            $('#buttondetail').html('<a id="viewPatient" class="btn btn-secondary btn-flat btn-block" href="{{ url("doctor/viewPatient/") }}/' + calEvent.uid +'">Detalle de paciente</a>');
+            $('#buttondetail').html('<form action="{{ url("doctor/viewPatient/") }}" method="get" id="form_profile">{{ csrf_field() }}<input type="hidden" name="id" value="' + calEvent.uid +'"><button type="submit" class="btn btn-secondary btn-block btn-flat">Detalle de paciente</button></form>');
           
           if(moment(calEvent.start) > moment())
             $('#canceled').css('display','block');
