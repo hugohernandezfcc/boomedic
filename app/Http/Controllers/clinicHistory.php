@@ -318,7 +318,7 @@ class clinicHistory extends Controller
         $q = DB::table('questions_clinic_history')->where('id', $request->question)->first();
 
         $history = DB::table('clinic_history')
-        ->where('userid', Auth::id())->where('question_id', $request->question)->first();
+        ->where('userid', $user->id)->where('question_id', $request->question)->first();
         $newArray = array();
         $answers = json_decode($request->answers);
             if (in_array("Fallecido", $answers) && in_array("Vivo", $answers)) {
@@ -347,7 +347,7 @@ class clinicHistory extends Controller
                
          } else {
             $clinic = new clinic_history;
-            $clinic->userid = Auth::id();
+            $clinic->userid = $user->id;
             $clinic->question_id =  $request->question;
             $clinic->question = $q->question;
             if(count($newArray) == 0){
