@@ -587,7 +587,7 @@
 		         	    	</div>
 		         	    </div>
 		         	    <div class="tab-pane" id="clinichistory">
-
+		         	    			  @include('viewclinichistory')
 		         	    </div> 	
 		         	    <div class="tab-pane" id="history">
 		         	    	 	       @include('historyView')

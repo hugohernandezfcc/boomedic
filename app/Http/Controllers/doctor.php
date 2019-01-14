@@ -829,6 +829,8 @@ class doctor extends Controller
         }
         $this->history = new history;
         $allhistory = $this->history->iframe($id);
+        $this->clinicHistory = new clinicHistory;
+        $data = $this->clinicHistory->helperIndex($users[0]);
 
         return view('viewPatient', [
                 
@@ -881,19 +883,6 @@ class doctor extends Controller
                 'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
                 'nodes'         => json_encode($nodes)
             ]
-        )->with($allhistory);
-    }
-    /**
-     * Display the specified resource.
-     * function helper into clinic History class
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function patient($id){
-
-            $user = User::find($id);
-
-        return $this->clinicHistory->helperIndex($user);
-
+        )->with($allhistory)->with($data);
     }
 }

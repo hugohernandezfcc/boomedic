@@ -38,8 +38,15 @@ class clinicHistory extends Controller
     public function index(){
 
             $user = User::find(Auth::id());
-
-        return $this->helperIndex($user);
+            $data = $this->helperIndex($user);
+        return view('clinicHistory',[
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
+                            'date'      => $user->created_at
+                           ]
+                           )->with($data);
 
     }
 
@@ -117,12 +124,7 @@ class clinicHistory extends Controller
         } else{
             $mode = "finish";
         }
-        return view('clinicHistory', [
-                'userId'            => $user->id,
-                'username'          => $user->username,
-                'name'              => $user->name,
-                'photo'             => $user->profile_photo,
-                'date'              => $user->created_at,
+        return  [
                 'questions'         => $question,
                 'email'             => $user->email,
                 'questions_parent'  => $question_parent,
@@ -131,8 +133,7 @@ class clinicHistory extends Controller
                 'mode'              => $mode,
                 'files'             => $result2,
                 'count'             => count($result)
-            ]
-        );
+            ];
     }
     /**
      * Show the form for creating a new resource.
