@@ -334,10 +334,10 @@ class clinicHistory extends Controller
                       }
                    } 
 
-        if($history){
+        if(count($history) == 0){
                 $clinic = clinic_history::find($history->id);
                 $clinic->answer_id = $request->ansId;
-                if(!count($newArray)){
+                if(count($newArray) == 0){
                 $clinic->answer = $request->answers;
             }else {
                 $clinic->answer = json_encode($newArray);
@@ -349,7 +349,7 @@ class clinicHistory extends Controller
             $clinic->userid = Auth::id();
             $clinic->question_id =  $request->question;
             $clinic->question = $q->question;
-            if(!count($newArray)){
+            if(count($newArray) == 0){
             $clinic->answer = $request->answers;
               }else {
                 $clinic->answer = json_encode($newArray);
@@ -358,7 +358,7 @@ class clinicHistory extends Controller
 
                 }
          
-        if( $clinic->save())        
+        if($clinic->save())        
         return response()->json($clinic->id);
 
     }

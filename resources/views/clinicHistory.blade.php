@@ -775,7 +775,7 @@
                         <h5>{{ $answer }}</h5>
                       </div>
                   @endforeach
-                 <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> 
+                 <a href="edit/{{ $clinic->question_id }}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> 
                 </div>
               </div>
             </li>
