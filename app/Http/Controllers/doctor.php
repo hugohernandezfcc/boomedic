@@ -765,6 +765,12 @@ class doctor extends Controller
           DB::delete('delete from labor_information where id = ?',[$id]) ;    
           return redirect('doctor/laborInformationView/'.$user->id);
     }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function settingAss()
     {
       $user = User::find(Auth::id());
