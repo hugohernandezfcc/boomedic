@@ -282,6 +282,7 @@ class doctor extends Controller
               }
             }
         }
+
     public function deleteAssistant($id){
          $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
@@ -295,7 +296,8 @@ class doctor extends Controller
           }
             DB::delete('delete from assistant where id = ?',[$id]) ;    
             return redirect('doctor/doctor/' . $user->id);
-    }       
+    }   
+
     public function redirecting($page)
     {      $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
@@ -781,7 +783,7 @@ class doctor extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-        public function viewPatient($id)
+    public function viewPatient($id)
     {
       //event(new EventName('rebbeca.goncalves@doitcloud.consulting'));
         $userOne = User::find(Auth::id());
@@ -880,5 +882,18 @@ class doctor extends Controller
                 'nodes'         => json_encode($nodes)
             ]
         )->with($allhistory);
+    }
+    /**
+     * Display the specified resource.
+     * function helper into clinic History class
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function patient($id){
+
+            $user = User::find($id);
+
+        return $this->clinicHistory->helperIndex($user);
+
     }
 }

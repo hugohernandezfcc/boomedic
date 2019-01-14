@@ -36,10 +36,23 @@ class clinicHistory extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $user = User::find(Auth::id());
+
+            $user = User::find(Auth::id());
+
+        return $this->helperIndex($user);
+
+    }
+
+     /**
+     * Display a listing of the resource helper to index.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function helperIndex($user){
+
         $clinic_history = DB::table('clinic_history')
         ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
-        ->where('userid', Auth::id())
+        ->where('userid', $user->id)
         ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
         ->get();
 
@@ -53,7 +66,7 @@ class clinicHistory extends Controller
         ->join('diagnostic_tests', 'diagnostic_test_result.diagnostic_test', '=', 'diagnostic_tests.id')
         ->join('recipes_tests', 'diagnostic_test_result.recipes_test', '=', 'recipes_tests.id')
         ->join('users', 'recipes_tests.doctor', '=', 'users.id')
-        ->where('diagnostic_test_result.patient', Auth::id())
+        ->where('diagnostic_test_result.patient', $user->id)
         ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.doctor', 'recipes_tests.folio')
         ->get();  
 
@@ -121,7 +134,6 @@ class clinicHistory extends Controller
             ]
         );
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -144,7 +156,7 @@ class clinicHistory extends Controller
         $user = User::find(Auth::id());
 
 
-        $history = DB::table('clinic_history')->where('userid', Auth::id())->orWhere('question_id', '1')->first();
+        $history = DB::table('clinic_history')->where('userid', $user->id)->orWhere('question_id', '1')->first();
 
 
         if($history){
@@ -154,7 +166,7 @@ class clinicHistory extends Controller
                 $history2->save();
          } else {
             $clinic = new clinic_history;
-            $clinic->userid = Auth::id();
+            $clinic->userid = $user->id;
             $clinic->question_id =  '1';
             $clinic->question = 'question1';
             $clinic->answer = '["papa"]';
@@ -177,7 +189,7 @@ class clinicHistory extends Controller
         $user = User::find(Auth::id());
         $clinic_history = DB::table('clinic_history')
                 ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
-                ->where('userid', Auth::id())
+                ->where('userid', $user->id)
                 ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
                 ->get();
         $question = DB::table('questions_clinic_history')
@@ -188,7 +200,7 @@ class clinicHistory extends Controller
         ->join('diagnostic_tests', 'diagnostic_test_result.diagnostic_test', '=', 'diagnostic_tests.id')
         ->join('recipes_tests', 'diagnostic_test_result.recipes_test', '=', 'recipes_tests.id')
         ->join('users', 'recipes_tests.doctor', '=', 'users.id')
-        ->where('diagnostic_test_result.patient', Auth::id())
+        ->where('diagnostic_test_result.patient', $user->id)
         ->select('diagnostic_test_result.*', 'diagnostic_tests.name', 'users.name as doc', 'recipes_tests.doctor', 'recipes_tests.folio')
         ->get();    
         

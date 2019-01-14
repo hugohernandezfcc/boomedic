@@ -114,7 +114,9 @@
             @yield('footer')
         </footer>
     <!-- divs of tools doctor in menu-item-user -->
-     @include('adminlte::partials.menu-item-tools')
+
+
+
     <!-- End divs of tools doctor in menu-item-user -->
     </div>
     <!-- ./wrapper -->

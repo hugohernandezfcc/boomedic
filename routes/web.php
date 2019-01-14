@@ -276,7 +276,12 @@ Route::group(['prefix' => 'doctor'], function(){
 	);
 	Route::get('viewPatient/{id}', [
 			'uses'	=>	'doctor@viewPatient',
-			'as'	=>	'doctor'
+			'as'	=>	'viewPatient'
+		]
+	);
+	Route::get('patient/{id}', [
+			'uses'	=>	'doctor@patient',
+			'as'	=>	'patient'
 		]
 	);		
 });
