@@ -237,7 +237,7 @@ class clinicHistory extends Controller
         if($id == '0'){
         $clinic_history = DB::table('clinic_history')
         ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
-        ->where('userid', Auth::id())
+        ->where('userid', $user->id))
         ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
         ->get();
 
@@ -251,6 +251,7 @@ class clinicHistory extends Controller
         $clinic_history = DB::table('clinic_history')
                 ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
                 ->where('question_id', $id)
+                ->where('userid', $user->id)
                 ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
                 ->get();
 
