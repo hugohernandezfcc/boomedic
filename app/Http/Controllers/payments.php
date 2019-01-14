@@ -208,7 +208,8 @@ class payments extends Controller
 
     //Controller to make payment, Contains type of ROUTE defined post
 
-    public function PaymentAuthorizations($idpay, $idtrans) {
+    public function PaymentAuthorizations($idpay, $idtrans)
+    {
 
         $id = $idpay;
 
@@ -296,7 +297,8 @@ class payments extends Controller
 
     }
 
-    public function transactions(Request $request) {
+    public function transactions(Request $request)
+    {
         $user = User::find(Auth::id());
         $id = $request->id;
         //Look in the table of methods of saved payments all the information of the selected method.
@@ -323,29 +325,30 @@ class payments extends Controller
          
      }
 
-            public function postPaymentWithpaypal(Request $request){
+            public function postPaymentWithpaypal(Request $request)
+            {
                     $url = url('/');
 
-                    $payer = new Payer();
+                    $payer = new Payer;
                             $payer->setPaymentMethod('paypal');
                             $item_1 = new Item();
                             $item_1->setName('Consulta') /** item name **/
                                 ->setCurrency('MXN')
                                 ->setQuantity(1)
                                 ->setPrice($request->get('amount')); /** unit price **/
-                            $item_list = new ItemList();
+                            $item_list = new ItemList;
                             $item_list->setItems(array($item_1));
-                            $amount = new Amount();
+                            $amount = new Amount;
                             $amount->setCurrency('MXN')
                                 ->setTotal($request->get('amount'));
-                            $transaction = new Transaction();
+                            $transaction = new Transaction;
                             $transaction->setAmount($amount)
                                 ->setItemList($item_list)
                                 ->setDescription('Your transaction description');
-                            $redirect_urls = new RedirectUrls();
+                            $redirect_urls = new RedirectUrls;
                             $redirect_urls->setReturnUrl($url.'/payment/getPaymentStatus') /** Specify return URL **/
                                 ->setCancelUrl($url.'/medicalconsultations');
-                            $payment = new Payment();
+                            $payment = new Payment;
                             $payment->setIntent('Sale')
                                 ->setPayer($payer)
                                 ->setRedirectUrls($redirect_urls)
@@ -399,9 +402,8 @@ class payments extends Controller
                                 /** redirect to paypal **/
                                 return redirect($redirect_url);   
                             }
-                                 
+                              //If it has been rejected, the internal error code is sent.   
                               $notification2 = array(
-                                        //If it has been rejected, the internal error code is sent.
                                     'message' => 'Hubo un error en su pago Paypal', 
                                     'error' => 'error',
                                 );
@@ -444,13 +446,13 @@ class payments extends Controller
                             // to execute a PayPal account payment.
                             // The payer_id is added to the request query parameters
                             // when the user is redirected from paypal back to your site
-                            $execution = new PaymentExecution();
+                            $execution = new PaymentExecution;
                             $execution->setPayerId($request->input('PayerID'));
                             
                             //Execute the payment
                             $result = $payment->execute($execution, $this->_api_context);
                             
-                            if ($result->getState() == 'approved') { // payment made
+                            if ($result->getState() == 'approved'){ // payment made
                               // Payment is successful do your business logic here
                                 //Add payment method
                                 $paypalExist = DB::table('paymentsmethods')->where('cardnumber', $request->input('PayerID'))->where('owner', Auth::id())->first();
@@ -528,7 +530,5 @@ class payments extends Controller
                                     'error' => 'error',
                                 );
                             return redirect('medicalconsultations')->with($notification2);
-                          }
-
-                                         
+                          }                             
 }
