@@ -195,188 +195,13 @@
 
  @if($mode == 'null')  
         <div class="box">
-              	<div class="box-body"  id="myWizard">
-
-                 <div class="progress">
-                   	@php
-                   	$percent = (1 /count($questions)) * 100;
-                    $per = intval($percent);
-                   	@endphp
-                 <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: {{ $percent }}%;">
-                   {{ $per }}%
-                 </div>
-           </div>
-  
-
-           <div class="tab-content">
-           	@foreach($questions as $questions1)
-             @if($loop->iteration == 1 && count($questions) == 1)
-              <div class="tab-pane fade in active" id="step1">
-                 
-                <div class="well well-sm"> 
-                  
-                    <h3>{{ $questions1->question }}</h3>
-                    <br>
-                  @php $an = json_decode($questions1->answer); @endphp
-                    <label>Respuestas:</label><br>
-                    <input type="hidden" class="quesId" value="{{ $questions1->id }}">
-                    <input type="hidden" class="ansId" value="{{ $questions1->a }}">
-
-                    @foreach($an as $an)
-                            <div class="checkbox checkbox-primary">
-                              @php  $a2 = str_replace(" ", "_", $an); @endphp
-                                <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
-                                <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
-                                <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
-                                @if($a2 == "Si" OR $a2 == "No")
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
-                                    {{ $an }}
-                                </label>
-                                @else
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                    {{ $an }}
-                                </label>
-                                @endif
-                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
-                            </div>
-                     @endforeach          
-                </div>
-                <a class="btn btn-secondary btn-flat pull-right finish">Finalizar</a>
-                </div>
-                  @endif 
-              @if($loop->iteration == 1 && count($questions) != 1)
-              <div class="tab-pane fade in active" id="step1">
-                 
-                <div class="well well-sm"> 
-                  
-                    <h3>{{ $questions1->question }}</h3>
-                    <br>
-                  @php $an = json_decode($questions1->answer); @endphp
-                    <label>Respuestas:</label><br>
-                    <input type="hidden" class="quesId" value="{{ $questions1->id }}">
-                    <input type="hidden" class="ansId" value="{{ $questions1->a }}">
-
-                    @foreach($an as $an)
-                            <div class="checkbox checkbox-primary">
-                              @php  $a2 = str_replace(" ", "_", $an); @endphp
-                                <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
-                                <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
-                                <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
-                                @if($a2 == "Si" OR $a2 == "No")
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
-                                    {{ $an }}
-                                </label>
-                                @else
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                    {{ $an }}
-                                </label>
-                                @endif
-                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
-                            </div>
-                     @endforeach          
-
-                </div>
-
-           <a class="btn btn-default btn-flat next pull-right">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
-                </div>
-                  @endif
-                   @if(($loop->iteration > 1) && !$loop->last)
-                <div class="tab-pane fade" id="step{{ $loop->iteration }}">
-                   <div class="well well-sm"> 
-                      <h3>{{ $questions1->question }}</h3>
-                      <br>
-                      @php $an = json_decode($questions1->answer); @endphp
-                      <label>Respuestas:</label><br>
-                      <input type="hidden" class="quesId" value="{{ $questions1->id }}">
-                      <input type="hidden" class="ansId" value="{{ $questions1->a }}">
-
-                    @foreach($an as $an)
-                            <div class="checkbox checkbox-primary">
-                              @php  $a2 = str_replace(" ", "_", $an); @endphp
-                                <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
-                                <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
-                                <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
-                                @if($a2 == "Si" OR $a2 == "No")
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
-                                    {{ $an }}
-                                </label>
-                                @else
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                    {{ $an }}
-                                </label>
-                                @endif
-                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
-                            </div>
-                     @endforeach               
-
-                   </div>
-                 <a class="btn btn-default btn-flat prev pull-left"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
-                 <a class="btn btn-default btn-flat next pull-right">Continuar &nbsp;<span class="fa fa-chevron-right"></span></a>
-              </div>
-        @endif
-       @if($loop->last && count($questions) != 1)
-              <div class="tab-pane fade" id="step{{ $loop->iteration }}">
-                 <div class="well well-sm"> 
-                    <h3>{{ $questions1->question }}</h3>
-                    <br>
-                        @php $an = json_decode($questions1->answer); @endphp
-                    <label>Respuestas:</label><br>
-                      <input type="hidden" class="quesId" value="{{ $questions1->id }}">
-                      <input type="hidden" class="ansId" value="{{ $questions1->a }}">
-
-                    @foreach($an as $an)
-                            <div class="checkbox checkbox-primary">
-                              @php  $a2 = str_replace(" ", "_", $an); @endphp
-                                <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
-                                <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
-                                <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
-                                @if($a2 == "Si" OR $a2 == "No")
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
-                                    {{ $an }}
-                                </label>
-                                @else
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                    {{ $an }}
-                                </label>
-                                @endif
-                                 <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
-                            </div>
-                     @endforeach      
-
-
-                 </div>
-                <a class="btn btn-default btn-flat prev pull-left"><span class="fa fa-chevron-left"></span> &nbsp;Atrás</a>
-                <a class="btn btn-default btn-flat first pull-left">Volver a iniciar &nbsp;<span class="fa fa-undo"></span></a>
-                <a class="btn btn-secondary btn-flat pull-right finish">Finalizar</a>
-                <a id="finish" href="cHistory" style="visibility: hidden;"></a>
-              </div>
-         @endif
-              @endforeach
-
-           </div>
-                     <div class="navbar" style="visibility: hidden" id="wiz">
-                <div class="navbar-inner">
-                      <ul class="nav nav-pills pull-center">
-                    @foreach($questions as $question) 
-                        @if($loop->iteration == 1)
-                         <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
-                        @endif
-                         @if($loop->iteration > 1)
-                         <li><a href="#step{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
-                         @endif
-                      @endforeach
-                      </ul>
-                </div>
-             </div>
-          </div>
+                          @include('empty.emptyData', 
+                              [
+                                'emptyc' => 'not_buttom',
+                                'title'  => 'Expedientes',
+                                'icon'   => 'adminlte.empty-box'
+                              ]
+                            )
         </div>
 @endif
 
@@ -617,7 +442,7 @@
          <br>
           <div class="box-header direct-chat header2" id="header2">
                 <h3 class="box-title">
-                          Historia clínica<a href="{{ url('clinicHistory/edit/0')}}" class="btn"><i class="fa fa-pencil text-muted"></i></a>  
+                          Historia clínica <!--   <a href="{{ url('clinicHistory/edit/0')}}" class="btn"><i class="fa fa-pencil text-muted"></i></a>  -->
                  </h3>
                 <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-filter text-muted"></span></button>
@@ -673,7 +498,7 @@
                         <h5>{{ $answer }}</h5>
                       </div>
                   @endforeach
-                 <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
+                 <!-- <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> -->
                 </div>
               </div>
             </li>
@@ -704,7 +529,7 @@
                         <h5>{{ $answer }}</h5>
                       </div>
                   @endforeach
-                  <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
+                 <!-- <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> -->
                 </div>
               </div>
             </li>
@@ -736,7 +561,7 @@
                       </div>
                   @endforeach
                 </div>
-                <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
+               <!-- <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> -->
               </div>
             </li>
             @endif
@@ -766,7 +591,7 @@
                         <h5>{{ $answer }}</h5>
                       </div>
                   @endforeach
-                 <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> 
+              <!--   <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> -->
                 </div>
               </div>
             </li>
