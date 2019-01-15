@@ -80,7 +80,7 @@ class clinicHistory extends Controller
             
         $question_parent = DB::table('answers_clinic_history')->get();
             /* ----------Files of inbox function store s3 pop3-------------- */
-                     /*   $this->imapPop3 = new imapPop3;
+                       $this->imapPop3 = new imapPop3;
                         $host = 'iscoapp.com';
                         $port = '110';
                         $mbox = $this->imapPop3->connect($host, $port, $user->username, "adfm90f1m3f0m0adf");
@@ -114,7 +114,7 @@ class clinicHistory extends Controller
                            //print_r($result2);
 
 
-                        }*/
+                        }
                           $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->where('diagnostic_test','=',null)->get();   
                            $result2 = $result->groupBy('date_email'); 
 
