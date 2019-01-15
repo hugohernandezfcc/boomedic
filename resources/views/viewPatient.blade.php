@@ -216,50 +216,50 @@
 
 	                        <div class="row">
 	                          
-	                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $pusername }}</div>
+	                            <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
+	                            <div class="col-sm-8 cut" align="left">{{ $pusername }}</div>
 	                         
 	                        </div>
 	                        <div class="row">
 	                          
-	                            <div class="col-sm-3" align="left"><b>Edad:</b></div>
-	                            <div class="col-sm-9" align="left">{{ $agep }}</div>
+	                            <div class="col-sm-2" align="left"><b>Edad:</b></div>
+	                            <div class="col-sm-8" align="left">{{ $agep }}</div>
 	                         
 	                        </div>
 	                        <div class="row">
 	                         
-	                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
+	                            <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
+	                            <div class="col-sm-8 cut" align="left">{{ $occupation }}</div>
 	                         
 	                        </div>
 	                        <div class="row">
 	                        
-	                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
+	                            <div class="col-sm-2" align="left"><b>Genero:</b></div>
 	                            @if($gender == "female")
-	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+	                            	<div class="col-sm-8" align="left">{{ trans('adminlte::adminlte.female') }}</div>
 	                            @endif
 	                            @if($gender == "male")
-	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+	                            	<div class="col-sm-8" align="left">{{ trans('adminlte::adminlte.male') }}</div>
 	                            @endif
 	                            @if($gender == "other")
-	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
+	                            	<div class="col-sm-8" align="left">{{ trans('adminlte::adminlte.other') }}</div>
 	                            @endif
 	                      
 	                        </div>
 	                        <div class="row">
 	                         
-	                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
+	                            <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
+	                            <div class="col-sm-8 cut" align="left">{{ $scholarship }}</div>
 	                    
 	                        </div>
 	                        <div class="row">
 	                         
-	                            <div class="col-sm-3" align="left"><b>Estado civil:</b></div>
+	                            <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
 	                              @if($maritalstatus == "single")
-	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+	                            <div class="col-sm-8" align="left">{{ trans('adminlte::adminlte.single') }}</div>
 	                             @endif
 	                            @if($maritalstatus == "married")
-	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+	                            <div class="col-sm-8" align="left">{{ trans('adminlte::adminlte.married') }}</div>
 	                             @endif	
 	                      
 	                        </div>
