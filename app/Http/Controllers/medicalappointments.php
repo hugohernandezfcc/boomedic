@@ -187,8 +187,8 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        $menu = notifications::find('1');
-        $menu->description = 'Actualización de aviso de privacidad';
+        $menu = menu::find('15');
+        $menu->url = 'PaymentsDr/show';
      /*   $menu = new menu();
         $menu->text = 'Agenda';
         $menu->to = 'assistant';
