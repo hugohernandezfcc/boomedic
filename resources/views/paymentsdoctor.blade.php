@@ -19,7 +19,7 @@
             <div class="inner">
               <h3>{{ $owed }}<sup style="font-size: 20px">$</sup></h3>
 
-              <p>Deuda</p>
+              <p>Pendiente</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -61,11 +61,12 @@
 				                        <th class="desktop">Lugar</th>
 				                        <th class="desktop">Paciente</th>
 				                        <th class="desktop">Monto</th>
+				                        <th class="desktop">Estado</th>
 				                    </tr>
 				                </thead>
 
 				                <tbody>
-					     	@foreach ($transaction as $tr)
+					     	@foreach ($transaction->sortByDesc('when') as $tr)
 					     		@if($tr->type_doctor == 'Owed')
 								     <tr>
 								     	<td></td>
@@ -74,6 +75,7 @@
 						             	<td style="color: red;">{{ $tr->place }}</td>
 						             	<td style="color: red;">{{ $tr->name }}</td>
 						             	<td style="color: red;">{{ $tr->amount }}</td>
+						             	<td>Pendiente</td>
 						             </tr>
 						        @endif  
 						        @if($tr->type_doctor == 'Paid')
@@ -84,6 +86,7 @@
 						             	<td style="color: green;">{{ $tr->place }}</td>
 						             	<td style="color: green;">{{ $tr->name }}</td>
 						             	<td style="color: green;">{{ $tr->amount }}</td>
+						             	<td>Pagado</td>
 						             </tr>
 						        @endif        
 			             	@endforeach
