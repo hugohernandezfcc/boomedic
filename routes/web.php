@@ -190,9 +190,28 @@ Route::group(['prefix' => 'payment'], function(){
 		    'uses' => 'payments@getPaymentStatus'
 		]);
 
+});
 
 
+Route::group(['prefix' => 'PaymentsDr'], function(){
 
+	Route::get('show', [
+			'uses'	=>	'PaymentsDoctor@show',
+			'as'	=>	'show'
+		]
+	);
+
+	Route::get('create', [
+			'uses'	=>	'PaymentsDoctor@create',
+			'as'	=>	'create'
+		]
+	);
+
+	Route::post('store', [
+			'uses'	=>	'PaymentsDoctor@store',
+			'as'	=>	'store'
+		]
+	);
 });
 
 
