@@ -17,7 +17,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{ $owed }}<sup style="font-size: 20px">$</sup></h3>
+              <h3><sup style="font-size: 20px">$</sup>{{ $owed }}</h3>
 
               <p>Pendiente</p>
             </div>
@@ -33,7 +33,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>{{ $paid }}<sup style="font-size: 20px">$</sup></h3>
+              <h3><sup style="font-size: 20px">$</sup>{{ $paid }}</h3>
 
               <p>Pagado</p>
             </div>
