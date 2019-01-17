@@ -148,7 +148,7 @@
 					                </div>
 					              </div>
 					 </div>
-
+ 
 		  		@if ($status == "In Progress")
 		  			<div class="callout callout-success">
 		                <h4>Ya casi estamos listos {{ $firstname }} !!!</h4>
@@ -492,6 +492,12 @@
               	<p class="text-muted">
 	              	@if(empty($colony) && empty($state))
 	                	<a href="#">Agregar dirección</a>
+	                	<form action="/user/edit/complete" method="get" id="form_profile">
+					    	{{ csrf_field() }}
+							<input type="hidden" name="id" value="{{ $userId }}">
+		              		<button type="submit" class="btn btn-link btn-block btn-flat">Agregar dirección</button>
+						</form>
+	                	
 	                @elseif(empty($colony) && !empty($state))
 	                	<a href="#">Agregar colonia</a>, {{$state}} {{$country}}
 	                @elseif(!empty($colony) && empty($state))
