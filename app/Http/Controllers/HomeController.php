@@ -201,6 +201,22 @@ class HomeController extends Controller
         }
         if ($profInfo->count() > 0 && $statusRecordUser != 'In Progress') {
              Session(['utype' => 'doctor']);
+                    $countpaid = 0;
+
+                    $transactions = DB::table('transaction_bank')
+                                    ->join('medical_appointments', 'transaction_bank.appointments', '=', 'medical_appointments.id')
+                                    ->join('users', 'medical_appointments.user', '=', 'users.id')
+                                    ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+                                    ->where('medical_appointments.user_doctor', '=', $user->id)
+                                    ->whereMonth('transaction_bank.created_at','=', Carbon::now()->month)
+                                    ->select('transaction_bank.*', 'users.name', 'medical_appointments.when', 'labor_information.workplace as place')
+                                    ->get();
+
+                        foreach ($transactions as $tr) {
+                            if($tr->type_doctor == 'Paid')
+                                $countpaid = $countpaid + $tr->amount;
+                        }
+        
             return view('homemedical', [
                     'username'      => $user->username,
                     'name'          => $user->name,
@@ -213,6 +229,7 @@ class HomeController extends Controller
                     'photo'         => $user->profile_photo,
                     'workplaces'    => $this->getWorkPlaces(),
                     'medAppoints'   => $this->getMedicalAppointments(),
+                    'paid'          => number_format($countpaid,2)
                 ]);   
         }
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){

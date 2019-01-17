@@ -25,7 +25,7 @@
               <i class="ion ion-stats-bars"></i>
             </div>
             <a href="#" class="small-box-footer">
-              More info <i class="fa fa-arrow-circle-right"></i>
+              Mes Actual
             </a>
           </div>
         </div>
@@ -41,7 +41,7 @@
               <i class="ion ion-stats-bars"></i>
             </div>
             <a href="#" class="small-box-footer">
-              More info <i class="fa fa-arrow-circle-right"></i>
+              Mes Actual
             </a>
           </div>
         </div>
