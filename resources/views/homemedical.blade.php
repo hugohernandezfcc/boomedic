@@ -21,20 +21,20 @@
 	            <div class="icon">
 	              	<i class="fa fa-calendar"></i>
 	            </div>
-	            <a class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
+	            <a class="small-box-footer" href="javascript:void(0)">Detalles <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           	<div class="small-box bg-green">
             	<div class="inner">
-              		<h3>53<sup style="font-size: 20px">%</sup></h3>
+              		<h3><sup style="font-size: 20px">$</sup>{{ $paid }}</h3>
               		<p>Saldos</p>
             	</div>
             	<div class="icon">
               		<i class="ion ion-stats-bars"></i>
             	</div>
-            	<a class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
+            	<a class="small-box-footer" href="javascript:void(0)">Detalles <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
         </div>
         <!-- ./col -->
@@ -47,7 +47,7 @@
             	<div class="icon">
               		<i class="ion ion-person-add"></i>
             	</div>
-            	<a class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
+            	<a class="small-box-footer" href="javascript:void(0)">Detalles <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
         </div>
         <!-- ./col -->
@@ -60,7 +60,7 @@
             	<div class="icon">
               		<i class="fa fa-comments"></i>
             	</div>
-            	<a class="small-box-footer">Detalles <i class="fa fa-arrow-circle-right"></i></a>
+            	<a class="small-box-footer" href="javascript:void(0)">Detalles <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
         </div>
         <!-- ./col -->
@@ -70,8 +70,47 @@
 		        	      @include('conversations.conversationform')
 		        </div>
 		      </div>  
-      
-
+<!-- Esta porción de código es para implementar en las plantillas de correo con botones-->		      
+<script language="javascript">
+    var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
+    IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
+    IS_IOS = IS_IPAD || IS_IPHONE,
+    IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
+    IS_MOBILE = IS_IOS || IS_ANDROID;
+    var market_a = "https://play.google.com/store/apps";
+	var market_i = "https://itunes.apple.com";
+	//Desde acá llamo la custom url (ejem: boomedic:) para concatenarle el path
+	var ur = "{{ config('adminlte.custom_url') }}";
+		function checkAppInstall() {
+			//schema of the app
+					
+			if(IS_ANDROID) {
+			setTimeout( function() {
+					goMarket();
+				}, 25);
+		location.href = ur + "user/profile/144";
+		}
+		else if(IS_IOS) {
+			setTimeout( function() {
+					goMarket();
+				}, 25);
+			location.href = ur + "user/profile/144";
+			} else {
+				alert('Prueba solo en android e ios');
+			}
+		}
+		function goMarket() {
+			if(IS_ANDROID) {
+				location.href=market_a;
+			} else if(IS_IOS) {
+				location.href=market_i;
+			} else {
+				// do nothing
+			}
+		}
+</script>
+<a class="btn btn-secondary" onclick="checkAppInstall();" style="display: none">App Boomedic</a> 
+<!-- Esta porción de código es para implementar en las plantillas de correo con botones-->	
 
 
 <!-- 

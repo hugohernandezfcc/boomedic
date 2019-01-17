@@ -66,7 +66,6 @@ class payments extends Controller
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
                 'mode'      => 'listPaymentMethods',
-                'title'     => 'métodos de pago'
             ]
         );
     }
@@ -209,17 +208,19 @@ class payments extends Controller
 
     //Controller to make payment, Contains type of ROUTE defined post
 
-    public function PaymentAuthorizations(Request $request) {
+    public function PaymentAuthorizations($idpay, $idtrans) {
 
-        $id = $request->id;
-        $user = User::find(Auth::id());
+        $id = $idpay;
+
         //Look in the table of methods of saved payments all the information of the selected method.
-        $card = DB::table('paymentsmethods')->where('id', $id)->first();
+        $card = PaymentMethod::find($idpay);
+        $user = User::find($card->owner);
+        $transaction = transaction_bank::find($idtrans);
 
                     $this->VisaAPIClient = new VisaAPIClient;
                     //Build json with payment details
                     $this->paymentAuthorizationRequest = json_encode ( [ 
-                    'amount' => $request->amount,
+                    'amount' => $transaction->amount,
                     'currency' => 'USD',
                     'payment' => [
                       'cardNumber'=> $card->cardnumber,
@@ -236,46 +237,21 @@ class payments extends Controller
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
          if($statusCode[0] == '201'){
+            $this->AcceptedPayment($transaction, $statusCode[1], $user);
+         }
 
-                    /* Insert Cita */
-                    $medical = new medical_appointments();
-                    $medical->user           = Auth::id();
-                    $medical->user_doctor    = $request->dr;
-                    $medical->workplace      = $request->idlabor;
-                    $medical->when           = $request->when;
-                    $medical->status         = 'Registered';
+         else {
+              $this->RejectedPayment($transaction, $user);  
+         }
+     }
 
-            
-           if ($medical->save()) {
-                         /* Insert_bank*/
-                        $Transaction = new transaction_bank();
-                        $Transaction->paymentmethod = $request->id;
-                        $Transaction->receiver = $request->receiver;
-                        $Transaction->amount = $request->amount;
-                        $Transaction->transaction = $statusCode[1];
-                        $Transaction->appointments =  $medical->id;
-                        $Transaction->save();
-                    /* Insert Transaction_bank*/    
-            $doc = User::find($request->dr); 
-            $work = DB::table('labor_information')->where('id', $request->idlabor)->first();    
-            $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12);
-            $notification = array(
-                //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Transacción Nro. '.$statusCode[1].'. Pago procesado correctamente por un monto de: $'. $request->amount.', para más información consulte su cartera de pago... ', 
-            'success' => 'success',
-            'dr'      => $doc->name,
-            'drphoto'      => $doc->profile_photo,
-            'fecha'   => $request->when,
-            'monto'   => $request->amount,
-            'transaccion' => $statusCode[1],
-            'card'        => $cardfin,
-            'idcard'      => $card->id,
-            'spe'         => $request->spe,
-            'work'        => $work->workplace
-
-
-            );
-
+     
+      protected function AcceptedPayment($transaction, $number, $user){
+            /* Insert Transaction_bank*/   
+            $transaction->transaction = $number;
+            $transaction->status =  'Ok';
+            $transaction->save();
+            /* Insert Transaction_bank*/    
 
             $data = [
             'name'      => $user->name,
@@ -283,29 +259,44 @@ class payments extends Controller
             'username'  => $user->username,                 
             'firstname' => $user->firstname,                
             'lastname'  => $user->lastname,    
-            'number'    => $statusCode[1],
-            'amount'    => '$'.$request->amount       
+            'number'    => $number,
+            'amount'    => '$'.$transaction->amount       
             ]; 
-                $email = $user->email;
+             $email = $user->email;
              Mail::send('emails.transaction', $data, function ($message) {
                         $message->subject('Transacción de pago en Boomedic');
-                        $message->to('rebbeca.goncalves@doitcloud.consulting');
+                        $message->to('contacto@doitcloud.consulting');
                     });
-         }
-            return redirect('medicalconsultations')->with($notification);
-         }
-         else {
-             $notification = array(
-                //If it has been rejected, the internal error code is sent.
-            'message' => $statusCode, 
-            'error' => 'error'
-        );
-            return redirect('medicalconsultations')->with($notification);
-         }
-         
-     }
 
-     public function transactions(Request $request) {
+      }
+
+    protected function RejectedPayment($transaction, $user){  
+             //Save transaction failed
+             $transaction->status =  'Failed';
+             $transaction->save();
+
+            $transaction_fail = DB::table('transaction_bank')
+            ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
+            ->where('transaction_bank.id', $transaction->id)
+            ->select('transaction_bank.*','paymentsmethods.cardnumber','paymentsmethods.provider')
+            ->first();
+             $data = [
+                        'title'             => 'Pago no procesado',
+                        'user'              =>  $user->name,         
+                        'card'              =>  $transaction_fail->cardnumber,
+                        'provider'          =>  $transaction_fail->provider,
+                        'amount'            =>  $transaction_fail->amount
+                    ];
+               $email = $user->email;     
+
+                    Mail::send('emails.errorPayment', $data, function ($message) {
+                        $message->subject('Tú pago no fue procesado');
+                        $message->to('contacto@doitcloud.consulting');
+                    });
+
+    }
+
+    public function transactions(Request $request) {
         $user = User::find(Auth::id());
         $id = $request->id;
         //Look in the table of methods of saved payments all the information of the selected method.
@@ -325,18 +316,14 @@ class payments extends Controller
                 'username'          => $user->username,
                 'name'              => $user->name,
                 'mode'              => 'historyTransaction',
-                'title'             => 'histórico de transacciones',
                 'date'              => $user->created_at
             ]
         );
                    
          
      }
-     
 
-            public function postPaymentWithpaypal(Request $request)
-
-                {
+            public function postPaymentWithpaypal(Request $request){
                     $url = url('/');
 
                     $payer = new Payer();
@@ -420,7 +407,6 @@ class payments extends Controller
                                 );
 
                             return redirect('medicalconsultations')->with($notification2);
-
                         }
 
                 public function getPaymentStatus(Request $request)
@@ -499,6 +485,7 @@ class payments extends Controller
                                             $Trans->amount = $payment->transactions[0]->amount->total;
                                             $Trans->transaction = $payment_id;
                                             $Trans->appointments =  $medical->id;
+                                            $Trans->status     =  'Ok';
                                             $Trans->save();        
 
                               $notification = array(

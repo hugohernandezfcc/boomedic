@@ -9,6 +9,7 @@ return [
     'birthdate'                   => 'Fecha de nacimiento',
     'female'                      => 'Femenino',
     'male'                        => 'Masculino', 
+    'other'                       => 'Otro',  
     'single'                      => 'soltero(a)',
     'married'                     => 'Casado(a)',     
     
@@ -44,6 +45,9 @@ return [
     'husband'                            => 'Esposo',
     'grandparents'                       => 'Abuelo(a)',
     'uncles'                             => 'Tío(a)',
+
+    /* Days */
+    'Tuesday'   => 'Lun',
 
 
 

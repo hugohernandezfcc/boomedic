@@ -66,13 +66,18 @@
 		    width: 100%;
 
 		}
-
+		.cut{
+		  text-overflow:ellipsis;
+		  white-space:nowrap; 
+		  overflow:hidden; 
+		}
     </style>
 @stop
 
 @section('content')
  <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 
 	<script type="text/javascript">
 
@@ -106,27 +111,7 @@
 				    
 	</script>
 	@if($mode == 'doctor')
-	@if( empty($status) )
 
-    @include('headerprofile')
-    <script type="text/javascript">
-      //O si no lleva botón hacer el div "div_profile" invisible
-      document.getElementById('labeltext').innerHTML = 'Editar';
-      var elemento = document.getElementById("i_button");
-      elemento.className = "fa fa-pencil text-muted";
-      document.forms.form_profile.action = "/doctor/edit/complete";
-
-    </script>
-	@endif
-
-	
-
-
-    <div class="box">
-	  	<div class="box-header with-border">
-		    <h3 class="box-title">Información de Médico</h3>
-	    	<!-- /.box-tools -->
-	  	</div>
 	  			<!-- Modal photo settings-->
 	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
 	    <div class="modal-dialog">
@@ -142,7 +127,7 @@
 
 
 	  	<!-- /.box-header -->
-	  	<div class="box-body">
+
 	  		@if( !empty($status) )
 	  			<!-- Modal photo settings-->
 	<div id="modal" class="modal fade" role="dialog" style="width: 100%">
@@ -151,7 +136,7 @@
 	          	<div class="modal-header"><label for="recorte">Recorte de imagen:</label></div>
 	          	<div class="modal-body" >
 	                <div align="center">
-	                   	<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">
+	                   	<img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">
 	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
 		                   	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
@@ -166,7 +151,7 @@
 	    </div>
  	</div>
  	<!-- Modal photo settings-->
-
+ 	<div class="box box-body">
 		  		@if ($status == "In Progress")
 		  			<div class="callout callout-success">
 		                <h4>Ya casi estamos listos {{ $firstname }} !!!</h4>
@@ -179,11 +164,11 @@
 	    		<div class="row" align="center">
 
 		    		<div class="col-sm-4" align="center">
-						@if($photo == '')
-		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
+						@if($photo2 == '')
+		    	 		<img src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
 					@else
 					@php 
-					  $imagen = getimagesize($photo);    //Sacamos la información
+					  $imagen = getimagesize($photo2);    //Sacamos la información
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 
@@ -207,7 +192,7 @@
 			        }
 
 					@endphp
-						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+						<img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 		    			
 		    		</div>
@@ -217,23 +202,23 @@
 	    		<br/>
 
 	    		<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="formDr">
-	    <div id="modalAlert" class="modal fade" role="dialog">
-	    <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">La foto de perfil es obligatoria, recuerde que es la imagen que verá el ppaciente.</h4>
-              </div>
-            </div>
-          </div>
-      </div>
+				<div id="modalAlert" class="modal fade" role="dialog">
+				    <div class="modal-dialog">
+			            <div class="modal-content">
+			              <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                  <span aria-hidden="true">×</span></button>
+			                <h4 class="modal-title">La foto de perfil es obligatoria, recuerde que es la imagen que verá el ppaciente.</h4>
+			              </div>
+			            </div>
+			          </div>
+			      </div>
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="firstname" class="col-sm-2 control-label">Nombre</label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname }}">
+	                  		<input type="text" name="firstname" class="form-control" id="firstname" value="{{ $firstname2 }}">
 	                	</div>
 	              	</div>
 
@@ -241,21 +226,21 @@
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="lastname" class="col-sm-2 control-label">Apellidos</label>
 	                	<div class="col-sm-10">
-	                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname }}">
+	                  		<input type="text" name="lastname" class="form-control" id="lastname" value="{{ $lastname2 }}">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="email" class="col-sm-2 control-label">Correo electrónico</label>
 	                	<div class="col-sm-10">
-	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email }}">
+	                  		<input type="email" name="email" class="form-control" id="email" value="{{ $email2 }}">
 	                	</div>
 	              	</div>
 
 	              	<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
 	                    <label for="username" class="col-sm-2 control-label">Nombre de usuario</label>
 	                	<div class="col-sm-10">
-	                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username }}">
+	                  		<input type="email" name="username" class="form-control" id="username" value="{{ $username2 }}">
 	                	</div>
 	              	</div>
 
@@ -283,6 +268,7 @@
 		                  <select class="form-control" name="gender">
 		                    <option value="female" {{ ($gender == 'female') ? 'selected' : '' }}>Femenino</option>
 		                    <option value="male"   {{ ($gender == 'male')   ? 'selected' : '' }}>Masculino</option>
+		                    <option value="other"   {{ ($gender == 'other')   ? 'selected' : '' }}>Otro</option>
 		                  </select>
 	                  </div>
 	                </div>
@@ -391,38 +377,37 @@
 		            		&nbsp;
 		            	</div>
 		            	<div id="locationField" class="col-sm-10">
-					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"></input>
-					    </div>
+					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text">
 		            </div>
 
 		            <div class="form-group">
 		            	<label  class="col-sm-2 control-label">
 		            	</label>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}>
 			            	</div>  
 			        </div>
 			        <div class="form-group">
 			        	<label  class="col-sm-2 control-label">
 		            	</label>    	            	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
+			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad">
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}>
 			            	</div>
 			        </div>
 			        <div class="form-group">  
 			        	<label  class="col-sm-2 control-label">
 		            	</label>  	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
+			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal">
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}>
 			            	</div>
 			            
 		            </div>
@@ -470,147 +455,244 @@
 				  	<!-- box-footer -->
 
 	    		</form>
+	    		    		</div>
 
 	    	@else
+	    					@if(session()->has('message'))
+
+								@if(session()->has('success'))
+							    <div class="alert alert-success alert-dismissable fade in" role="alert" id="alertf">
+							    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									    <span aria-hidden="true">&times;</span>
+									</button>
+									<strong>¡Asistente agregado!</strong><br/><br/>		
+							        {{ session()->get('message') }}
+							    </div>
+							   
+								@elseif(session()->has('error'))
+								 <div class="alert alert-danger alert-dismissable fade in" role="alert" id="alertf">
+								 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									    <span aria-hidden="true">&times;</span>
+									</button>
+									<strong>¡Hubo un error al agregar el!</strong><br/><br/>		
+							 		<!-- Error codes are defined within the adminlte -->
+							          {{ session()->get('message') }}
+							    </div>
+							   @endif
+							 @endif  
     			<!-- Custom Tabs -->
-     <div class="row">
-        <div class="col-md-12">
-          <div class="box box-solid">
+
+              <section class="content">
+
+      	<div class="row">
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-default">
+            <div class="box-body box-profile">
+
+            	@if($photo == '')
+		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+					@else
+						@php 
+						  $imagen = getimagesize($photo);    //Sacamos la información
+				          $width = $imagen[0];              //Ancho
+				          $height = $imagen[1];  
+
+				          if($height > '500' || $width > '500'){
+				            $height = $height / 2.8;
+				            $width = $width / 2.8;
+				        }
+				        if($height > '800' || $width > '800'){
+				            $height = $height / 4;
+				            $width = $width / 4;
+				        }
+				      if($height > '800' || $width > '1200'){
+				            $height = $height / 6;
+				            $width = $width / 6;
+				        }
+
+
+				          if($height < '400' || $width < '400'){
+				            $height = $height / 1.6;
+				            $width = $width / 1.6;
+				        }
+
+						@endphp
+						<img class="profile-user-img img-responsive img-circle" src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+			    	@endif 
+
+              	
+
+              	<h3 class="profile-username text-center">{{ $firstname }}</h3>
+
+              	@if($gender == "female")
+              		<p class="text-muted text-center">{{ trans('adminlte::adminlte.female') }}</p>
+	            @endif
+	            @if($gender == "male")
+	            	<p class="text-muted text-center">{{ trans('adminlte::adminlte.male') }}</p>
+	            @endif
+	            @if($gender == "other")
+	            	<p class="text-muted text-center">{{ trans('adminlte::adminlte.other') }}</p>
+	            @endif
+
+              
+
+	            <ul class="list-group list-group-unbordered">
+	                <li class="list-group-item">
+	                 	<b>Familiares</b> <a class="pull-right">2</a>
+	                </li>
+	                <li class="list-group-item">
+	                  	<b>No. de citas</b> <a class="pull-right">1</a>
+	                </li>
+	                <li class="list-group-item">
+	                  	<b>No. métodos de pago</b> <a class="pull-right">5</a>
+	                </li>
+	            </ul>
+
+			    <form action="/doctor/edit/complete" method="get" id="form_profile">
+			    	{{ csrf_field() }}
+					<input type="hidden" name="id" value="{{ $userId }}">
+              		<button type="submit" class="btn btn-secondary btn-block btn-flat">Editar perfil</button>
+				</form>
+			 <hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Miembro desde</strong>
+              <p>{{$created_at}}</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+          <div class="box box-default">
+            <div class="box-header with-border">
+              <h3 class="box-title">Información Profesional</h3>
+            </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="box-group" id="accordion">
-                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-             
-                <div class="panel box box-default" style="border-top-color: black;">
-                
-                 <div class="box-header with-border"> 
-                 	<h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="accordion-toggle text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
-                        Información personal
-                  </a>
-              </h4>
-                  	</div>
-                   
-                  <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
+              <strong><i class="fa fa-address-card margin-r-5"></i> Licencia</strong>
+              <p class="text-muted">{{ $professional_license }}</p>
 
-                    <div class="box-body">
-                      <br/>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-10" align="left">{{ $email }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-10" align="left">{{ $username }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Edad:</b></div>
-                            <div class="col-sm-10" align="left">{{ $age }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-10" align="left">{{ $occupation }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b>Genero:</b></div>
-                            @if($gender == "female")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.female') }}</div>
-                            @endif
-                            @if($gender == "male")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.male') }}</div>
-                            @endif
-                      
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-10" align="left">{{ $scholarship }}</div>
-                    
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
-                              @if($maritalstatus == "single")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.single') }}</div>
-                             @endif
-                            @if($maritalstatus == "married")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.married') }}</div>
-                             @endif	
-                      
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-10" align="left">{{ $mobile }}</div>
-                       
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-10" align="left">{{ $updated_at }}</div>
-                        
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                <br/>
-                <div class="panel box box-default" style="border-top-color: black;">
-               <div class="box-header with-border">
-               	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"  class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
-                        Información Profesional
-                </a>
-            </h4>
-                </div>
-                  <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
-                    <div class="box-body">
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Licencia Profesional:</b></div>
-                            <div class="col-sm-10" align="left">{{ $professional_license }}</div>
-                        </div>
-                         <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Sociedad de Médicos:</b></div>
-                            <div class="col-sm-10" align="left">{{ $medical_society }}</div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Especialidad:</b></div>
-                            <div class="col-sm-10" align="left">{{ $specialty }}</div>
-                        </div>
-                       <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Escuela de Medicina:</b></div>
-                            <div class="col-sm-10" align="left">{{ $schoolOfMedicine }}</div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Facultad de Especialización:</b></div>
-                            <div class="col-sm-10" align="left">{{ $facultyOfSpecialization }}</div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Práctica Profesional:</b></div>
-                            <div class="col-sm-10" align="left">{{ $practiseProfessional }}</div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                <br/>
-                <div class="panel box box-default" style="border-top-color: black;">
-                	 <div class="box-header with-border">
-                	 	<h4 class="panel-title">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
-                        Consultorios    
-                  </a> 
-                  </h4> 
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
-                    <div class="box-body">
+              <strong><i class="fa fa-user-md margin-r-5"></i> Sociedad de Médicos</strong>
+              <p>{{ $medical_society }}</p>
+
+              <strong><i class="fa fa-book margin-r-5"></i> Escuela de Medicina</strong>
+              	<p class="text-muted">{{ $schoolOfMedicine }}</p>
+
+              <strong><i class="fa fa-book margin-r-5"></i> Facultad de Especialización</strong>
+              	<p class="text-muted">{{ $facultyOfSpecialization }}</p>
+
+               <strong><i class="fa fa-star margin-r-5"></i> Especialidad</strong>
+              <p>{{ $specialty }}</p>	
+
+              <strong><i class="fa fa-black-tie margin-r-5"></i> Práctica Profesional</strong>
+              	<p class="text-muted">{{ $practiseProfessional }}</p>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        	<div class="col-md-9">
+        		<div class="nav-tabs-custom">
+		            <ul class="nav nav-tabs">
+		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
+		              	<li><a href="#Asistant" id="four" data-toggle="tab">Asistentes</a></li>
+		              	<li><a href="#laborInformation" data-toggle="tab">Consultorios</a></li>
+		            </ul>
+
+		            <div class="tab-content">
+		            	<div class="active tab-pane" id="activity">
+		         	    
+			 						<div class="row">
+			                          
+			                            <div class="col-sm-3" align="left"><b>Correo:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $email2 }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                          
+			                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $username2 }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                          
+			                            <div class="col-sm-3" align="left"><b>Edad:</b></div>
+			                            <div class="col-sm-9" align="left">{{ $age }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                         
+			                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                        
+			                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
+			                            @if($gender == "female")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+			                            @endif
+			                            @if($gender == "male")
+			                            <div class="col-sm-3" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+			                            @endif
+			                            @if($gender == "other")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
+			                            @endif
+			                      
+			                        </div>
+			                        <div class="row">
+			                         
+			                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
+			                    
+			                        </div>
+			                        <div class="row">
+			                         
+			                            <div class="col-sm-3" align="left"><b>Estado civil:</b></div>
+			                              @if($maritalstatus == "single")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+			                             @endif
+			                            @if($maritalstatus == "married")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+			                             @endif	
+			                      
+			                        </div>
+			                        <div class="row">
+			                        
+			                            <div class="col-sm-3" align="left"><b># Móvil:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $mobile }}</div>
+			                       
+			                        </div>
+			                        <div class="row">
+			                        
+			                            <div class="col-sm-3" align="left"><b>Ultima modificación:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $updated_at }}</div>
+			                        
+			                        </div>
+		         	    </div>
+		         	    <div class="tab-pane" id="Asistant">
+		         	    	
+			                    <div class="box-body">
+			                    	     <div class="lockscreen-item pull-right" style="width: 210px !important;">
+										      	<div class="input-group">
+										        	<div class="form-control" align="center"><label id="labeltext">Agregar Asistente</label></div>
+										        	<div class="input-group-btn">
+											          	<a class="btn btn-default" data-toggle="modal" data-target="#modalassist">
+											          		<i class="fa fa-plus text-muted"></i>
+											          	</a>
+										        	</div>
+										      	</div>
+										</div>
+									<div id="demo"></div>
+			                    </div>
+
+		         	    </div>
+		         	    <div class="tab-pane" id="laborInformation">
+		         	    <div class="box"> 	
                           @if($labor->isEmpty())
 						 <span class="text-black">No hay ningún centro asociado a su cuenta.</span>			
 							@else
@@ -637,30 +719,393 @@
 									<div class="pull-right">
 									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
 									   	<button type="submit" class="btn btn-secondary btn-xs"><i class="fa fa-plus"></i> Agregar consultorio</button>
-									   </form></div>
-                  </div>
+									   </form>
+									</div>
+						   </div>			
+		         	    </div>
+		         	</div>
+		        </div>
+        	</div>
+    	</div>
+    </section>
+
+        <!-- /.col AQUI -->
+
+                        <div class="modal fade" role="dialog" id="modalassist2">
+                    <div class="modal-dialog modal-sm">
+
+                      <div class="modal-content">
+
+                        <div class="modal-header" >
+                          <!-- Tachecito para cerrar -->
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div align="left"><label>Información del Asistente</label></div>
+                        </div>
+                            <div class="modal-body">
+                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"><br><br><b><div id="namep"></div></b>
+                        	<br><a id="deleteass" class="btn btn-default btn-flat btn-block" onclick ="return confirm('¿Seguro desea eliminar a este asistente?')">
+		          				<i class="fa fa-trash text-muted"></i> Eliminar</a></div><br>
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+                       <div class="modal fade" role="dialog" id="modalassist">
+                    <div class="modal-dialog">
+
+                      <div class="modal-content">
+
+
+                        <div class="modal-header" style="padding-bottom: 1px !important;">
+                            
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <div align="left"><label>Información de asistente</label></div>
+                        </div>
+                             <div class="register-box-body">
+                             <form action="{{ url('/doctor/saveAssistant') }}" id="formulatio" method="post">
+                                <div class="form-group has-feedback">	
+ 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required autocomplete="off">
+ 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
+ 							   </div>
+ 							    <input type="hidden" name="idassist" id="idassist" required>
+ 								<div id="resp" class="form-group text-muted"></div>
+ 								 <div class="form-group has-feedback">	
+ 								</div>
+ 								<div align="right">
+ 								<button  type="submit" class="btn btn-default btn-flat" id="sav"><i class="fa fa-plus text-muted"></i>&nbsp; Agregar asistente</button>
+ 								</div>
+ 							</form>
+ 						</div>
+                      </div> 
+                    </div>
                 </div>
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <!-- /.col -->
-      </div>
+      <script type="text/javascript">
+          			function fun(a) {
+							    document.getElementById('sea').value = a.getAttribute("data-value");
+							    document.getElementById('idassist').value = a.getAttribute("data-id");
+							    document.getElementById("resp").innerHTML = "";
+							    $("#sav").removeAttr("disabled");   
+							}
+					$("#sea").on("keyup", function(e) {
+
+						    		if(e.which == 32) {
+					                   $.ajaxSetup({
+				                        headers: {
+				                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				                        }
+				                    });
+				                		 var sea = document.getElementById('sea').value;
+				                           $.ajax({     
+				                             type: "POST",                 
+				                             url: "{{ url('user/userSearch') }}",  
+				                              data: { "search" : sea }, 
+				                              dataType: 'json',                
+				                             success: function(data)             
+				                             {
+				                             if(data.length == 0){
+				                             	document.getElementById("resp").innerHTML = "No existe usuario registrado...";
+				                             	
+    											}else {
+
+    													document.getElementById("resp").innerHTML = "Coincidencias: ";
+    												for(var i= 0; i < data.length; i++){
+				                     				if(data[i]['profile_photo'] == null){
+				                     				$('#resp').append('<div style="margin-left:5%;"><img src="{{ asset("profile-42914_640.png") }}" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+				                     				}else{
+				                     				 $('#resp').append('<div style="margin-left:5%;"><img src="'+ data[i]['profile_photo'] +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+				                     				}
+				                     				}
+				                             	} 
+    											}
+				                            
+				                         });
+					            } else{
+					        	 var value = $(this).val().toLowerCase();
+						   		 $("#resp div").filter(function() {
+						    	  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+						    });
+					            }
+						  });
+      	$('#four').on('click', function(e) {
+       				 e.preventDefault();
+       				 document.getElementById('demo').innerHTML='';
+					+ function(d3) {
+
+						var swatches = function(el) {
+						var circleWidth = 45;	
+						var charge = -700;
+						var h = 0;
+						var w= 0;
+				        if("@php echo $agent->isMobile(); @endphp"){
+				            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
+				              h= window.screen.availHeight;
+							  w= window.screen.availWidth;
+				          
+				            if(h >= 1000 && h <= 1300){
+				            	circleWidth = 30;
+								charge = -300;
+				                h = h*0.20;
+				                h = Math.floor(h);
+				                w = w*0.40;
+				                w = Math.floor(w);
+				                  //alert("Altura: "+h + "anchura " + w);
+				            }else if(h>=1800){
+				              h-= 1840;
+				              w-= 1200;
+				             circleWidth = 30;
+							 charge = -300;
+				            }else
+				            {
+				              h-=315;
+				              w-=100;
+				              circleWidth = 30;
+							 charge = -300;
+				            }
+				       	 }else{
+						  h = window.screen.availHeight-375;
+						  w = window.screen.availWidth-550;//100
+				          circleWidth = 53;
+				        }
+
+						    w = w;
+							h = h;
+
+								    
+
+								    var palette = {
+								      "lightgray": "#819090",
+								      "gray": "#708284",
+								      "mediumgray": "#808486",
+								      "darkgray": "#272B2C",
+								      "darkblue": "#0A2933",
+								      "darkerblue": "#042029",
+								      "paleryellow": "#FCF4DC",
+								      "paleyellow": "#EAE3CB",
+								      "yellow": "#A57706",
+								      "orange": "#BD3613",
+								      "red": "#D11C24",
+								      "pink": "#C61C6F",
+								      "purple": "#595AB7",
+								      "blue": "#2176C7",
+								      "green": "#259286",
+								      "white": "#fefefe",
+								      "yellowgreen": "#738A05"
+								    }
+
+								    var nodes = @php echo $nodes; @endphp;
+								    var links = [];
+
+								    for (var i = 0; i < nodes.length; i++) {
+								      if (nodes[i].target !== undefined) {
+								        for (var x = 0; x < nodes[i].target.length; x++) {
+								          links.push({
+								            source: nodes[i],
+								            target: nodes[nodes[i].target[x]]
+								          })
+								        }
+								      }
+								    }
+
+								    var myChart = d3.select(el)
+								      .append('svg')
+								      .attr('width', "100%")
+								      .attr('height', h)
+								      .style('margin', '0').style('display','inline')
+
+								    var force = d3.layout.force()
+								      .nodes(nodes)
+								      .links([])
+								      .gravity(0.1)
+								      .charge(charge)
+								      .size([w, h])
+
+
+
+								    var link = myChart.selectAll('line')
+								      .data(links).enter().append('line')
+								      .attr('stroke', palette.darkgray)
+								      .attr('stroke-width', 3);
+
+								    var node = myChart.selectAll('pattern')
+								      .data(nodes).enter()
+								      .append('g')
+								      .call(force.drag);
+
+								       node.append('svg:defs')
+											    .append('svg:pattern')
+											    .attr('id', function(d,i){
+											      return d.id
+											    })
+											     .attr('patternUnits',"userSpaceOnUse")
+											    .attr('height', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('width', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('x', function(d, i) {
+											        if (i > 0) {
+											          return circleWidth-10
+											        } else {
+											          return circleWidth
+											        }
+											      }).attr('y', function(d, i) {
+											        if (i > 0) {
+											          return circleWidth-10
+											        } else {
+											          return circleWidth
+											        }
+											      })
+											    .append('svg:image')
+											    .attr('xlink:href',function(d,i){
+											     	 return d.photo + '?1'
+											    })
+											    .attr('height', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											    .attr('width', function(d, i) {
+											        if (i > 0) {
+											          return (circleWidth-10) *2
+											        } else {
+											          return circleWidth * 2 
+											        }
+											      })
+											      .attr('x', 0)
+											      .attr('y', 0);
+
+								    node.append('circle')
+								      .attr('cx', function(d) {
+								        return d.x;
+								      }).attr('cy', function(d) {
+								        return d.y;
+								      })
+								      .attr('r', function(d, i) {
+								        if (i > 0) {
+								          return circleWidth - 10
+								        } else {
+								          return circleWidth
+								        }
+								      })
+								      .attr('id', function(d, i) {
+								          return d.id
+								      })
+								      .attr('stroke', function(d, i) {
+								        if (i > 0) {
+								          return palette.darkgray
+								        } else {
+								          return palette.darkgray
+								        }
+								      })
+								      .attr('stroke-width', 5)
+								      .style("fill", "#fff").style("fill", function(d,i){ return 'url(#' + d.id+')'})
+
+								    node.append('text')
+								      .text(function(d) {
+								        return d.name
+								      })
+								      .attr('font-family', 'sans-serif')
+								      .attr('fill', function(d, i) {
+								        if (i > 0) {
+
+								          return palette.darkgray
+								        } else {
+								          return "transparent"						   
+								         }
+								      })
+								      .attr('x', function(d, i) {
+								        if (i > 0) {
+								          return -20
+								        } else {
+								          return circleWidth - 15
+								        }
+								      })
+								      .attr('y', function(d, i) {
+								        if (i > 0) {
+								          return circleWidth + 5
+								        } else {
+								          return 8
+								        }
+								      })
+								      .attr('text-anchor', function(d, i) {
+								        if (i > 0) {
+								          return 'beginning'
+								        } else {
+								          return 'end'
+								        }
+								      })
+								      .attr('font-size', function(d, i) {
+								        if (i > 0) {
+								          return '1em'
+								        } else {
+								          return '1em'
+								        }
+								      })
+
+								    force.on('tick', function(e) {
+								      node.attr('transform', function(d, i) {
+								        return 'translate(' + d.x + ', ' + d.y + ')';
+								      })
+
+								      link
+								        .attr('x1', function(d) {
+								          return d.source.x
+								        })
+								        .attr('y1', function(d) {
+								          return d.source.y
+								        })
+								        .attr('x2', function(d) {
+								          return d.target.x
+								        })
+								        .attr('y2', function(d) {
+								          return d.target.y
+								        })
+								    })
+								    node.on("click", click);
+										function click(d) 
+										{
+										if(d.id == "n"){
+											$("#modalassist").modal('toggle');		
+											}else{
+
+										$('#userp').attr('src', d.photo + '?2');
+										if(!d.namecom){
+										  	$('#namep').html('Yo');
+										  }	else{
+										  	$('#namep').html(d.namecom + ' - Asistente');
+										  	$('#deleteass').attr('href','{{ url("doctor/deleteAssistant") }}/'+ d.id);
+										  }
+										  	$("#modalassist2").modal('toggle');
+										  }
+										}
+									force.start();
+
+								  }('#demo');
+
+								}(window.d3);
+								  });
+      </script>
     		@endif
-
-
-
-
-
 
     		<script type="text/javascript">
 
     		$(document).ready(function(){
 				  $("#formDr").submit(function() {
-				    var x = "{{ $photo }}"; 
+				    var x = "{{ $photo2 }}"; 
 				      if (x == '') {
 				        $('#modalAlert').modal()	
 				        return false;
@@ -780,9 +1225,7 @@
 		    	</script>
 
 			@endif
-
-	  	</div>	  	
-	</div>
+  <!-- aqui x2-->
 <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
 <script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
@@ -819,9 +1262,6 @@ $('#target').Jcrop({
 
     </script>
     @endif
-
-
-
 				    @if($mode == 'labor')
 				<div class="box" id="boxlabor">
 							  	<div class="box-header with-border">
@@ -839,7 +1279,7 @@ $('#target').Jcrop({
 					   </div>
 					   </div>
 
-					<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form1" style="display:none">
+					<form action="/doctor/laborInformationNext/{{ $userId }}" method="post" class="form-horizontal" id="form1" style="display:none">
 		<div class="modal fade" id="modal-default1" style="display: none;">
           <div class="modal-dialog">
             <div class="modal-content">

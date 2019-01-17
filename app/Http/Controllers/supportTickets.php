@@ -38,11 +38,12 @@ class supportTickets extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
-                'title'     => "Casos",
                 'mode'      => 'listTickets'
             ]
         );
     }
+
+
 
     /**
      * Show the form for creating a new resource.

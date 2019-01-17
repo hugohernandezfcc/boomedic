@@ -24,7 +24,32 @@ class workboardDr extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($id){
-    $user = User::find(Auth::id());   
+    $user = User::find(Auth::id());
+    $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+            Session(['utype' => 'assistant']); 
+              if(session()->get('asdr') == null){
+                  Session(['asdr' => $assistant[0]->iddr]);
+                 }
+             /*Validate doctor online*/
+               $donli = array();
+               foreach($assistant as $as){
+                 $doconline = User::find($as->iddr);
+                         if($doconline->isOnline() > 0){
+                            array_push($donli, ['id' => $as->iddr, 'online' => '1']);
+                       }else{
+                            array_push($donli, ['id' => $as->iddr, 'online' => '0']);
+                       }
+                 }
+                               /*Validate doctor online*/  
+         }else{  
+                $assistant = null;
+                $donli = null;
+          } 
     $work = $id;
 
     $workboard = DB::table('workboard')->where('labInformation', $work)->get();
@@ -43,7 +68,9 @@ class workboardDr extends Controller
                 'work'      => $work,
                 'workboard' => $workboard,
                 'workboard2' => json_encode($workArray),
-                'mode'      => 'null'
+                'mode'      => 'null',
+                'as'        => $assistant,
+                'donli'     => $donli
             ]
         );
     }
@@ -54,13 +81,38 @@ class workboardDr extends Controller
      */
     public function create(Request $request, $id )
     {
-        $user = User::find(Auth::id());   
-  $workboard = DB::table('workboard')->where('labInformation', $id)->get();
- if(count($workboard) > 0){
-    DB::table('workboard')->where('labInformation', $id)->delete();   
- }
-if ($request->type == 'false') {
-        $user = User::find(Auth::id()); 
+            $user = User::find(Auth::id());
+            $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+            Session(['utype' => 'assistant']); 
+              if(session()->get('asdr') == null){
+                  Session(['asdr' => $assistant[0]->iddr]);
+                 }
+             /*Validate doctor online*/
+               $donli = array();
+               foreach($assistant as $as){
+                 $doconline = User::find($as->iddr);
+                         if($doconline->isOnline() > 0){
+                            array_push($donli, ['id' => $as->iddr, 'online' => '1']);
+                       }else{
+                            array_push($donli, ['id' => $as->iddr, 'online' => '0']);
+                       }
+                 }
+                               /*Validate doctor online*/  
+         }else{  
+                $assistant = null;
+                $donli = null;
+          } 
+          $workboard = DB::table('workboard')->where('labInformation', $id)->get();
+         if(count($workboard) > 0){
+            DB::table('workboard')->where('labInformation', $id)->delete();   
+         }
+        if ($request->type == 'false') {
+                $user = User::find(Auth::id()); 
         
         $startTime = Carbon::parse($request->start);
         $finishTime = Carbon::parse($request->end);
@@ -168,7 +220,9 @@ foreach($request->day as $day){
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
                 'workboard2' => json_encode($workArray),
-                'mode'      => 'calendar' 
+                'mode'      => 'calendar' ,
+                'as'        => $assistant,
+                'donli'     => $donli
             ]
         );
     }

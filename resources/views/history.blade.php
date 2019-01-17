@@ -35,6 +35,9 @@
         .sticky + .content {
           padding-top: 102px;
         }
+  .modal-body{
+    background: white;
+  }      
 </style>
 
 
@@ -42,11 +45,13 @@
         @if($arraynow->isEmpty() && $array1->isEmpty() && $array2->isEmpty() && $array3->isEmpty() && $array4->isEmpty() && $array5->isEmpty() && $array6->isEmpty())
     <div class="box-header">
       <h3 class="box-title">Historial</h3>
-                               @include('empty.emptyData')
-                             <script type="text/javascript">
-                                $('.buttonEmpty').css('display','none');
-                                $('.spanEmpty').css('display','none');
-                             </script>
+                          @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'not_buttom',
+                                              'title'  => 'más históricos',
+                                              'icon'   => 'adminlte.empty-box'
+                                            ]
+                                          )
                             </div>     
         @else
     <div class="box-header direct-chat" id="header2">
@@ -111,7 +116,9 @@
                         </div>
 
             <div class="modal-body">
+              <div align="center">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+              </div>            
               </div>
             </div>
             <!-- /.modal-content -->
@@ -153,7 +160,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -215,8 +222,9 @@
                         </div>
                         </div>
             <div class="modal-body">
-
+              <div align="center">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+              </div>            
               </div>
             </div>
             <!-- /.modal-content -->
@@ -257,7 +265,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -319,7 +327,9 @@
                             <div align="left"><label>Mapa de ubicación</label></div>
                         </div>
             <div class="modal-body">
+                  <div align="center">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+                  </div>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -361,7 +371,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -423,7 +433,9 @@
                             <div align="left"><label>Mapa de ubicación</label></div>
                         </div>
             <div class="modal-body">
+                 <div align="center">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+                 </div>          
               </div>
             </div>
             <!-- /.modal-content -->
@@ -465,7 +477,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -527,7 +539,9 @@
                             <div align="left"><label>Mapa de ubicación</label></div>
                         </div>
             <div class="modal-body">
+                 <div align="center">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+                 </div>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -569,7 +583,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -629,7 +643,9 @@
                             <div align="left"><label>Mapa de ubicación</label></div>
                         </div>
             <div class="modal-body">
+                 <div align="center">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+                 </div>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -671,7 +687,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 
@@ -733,7 +749,9 @@
                             <div align="left"><label>Mapa de ubicación</label></div>
                         </div>
             <div class="modal-body">
+                   <div align="center">
                           <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación" style="width:100%;">
+                  </div>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -776,7 +794,7 @@
               <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
 
-                <h3 class="timeline-header"><a>Se agregó un método de Pago</a></h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
 
                 <div class="timeline-body">
                 	<b>Tipo:</b> {{ $items['typemethod'] }} 

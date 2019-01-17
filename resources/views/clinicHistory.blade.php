@@ -97,7 +97,10 @@
 
           iframe {
             max-width: 100%;
+            display:block;
+            margin:0 auto;
           }
+
                 .down {
                   position:absolute;
                   bottom:5px;
@@ -132,6 +135,66 @@
         .sticky + .content {
           padding-top: 102px;
         }
+       .isDisabled {
+        color: currentColor;
+        cursor: not-allowed;
+        opacity: 0.5;
+        text-decoration: none;
+      }   
+      input[id^="spoiler"]{
+         display: none;
+        }
+        input[id^="spoiler"] + label {
+          text-align: center;
+          font-size: 12px;
+          cursor: pointer;
+          transition: all .6s;
+        }
+        input[id^="spoiler"]:checked + label {
+          color: #333;
+          background: #ccc;
+        }
+        input[id^="spoiler"] ~ .spoiler {
+          overflow: hidden;
+          opacity: 0;
+          background: #eee;
+          border: 1px solid #ccc;
+          transition: all .6s;
+        }
+        input[id^="spoiler"]:checked + label + .spoiler{
+          height: auto;
+          opacity: 1;
+        }
+      .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+        background-color: #333 !important;  
+       } 
+     .cut{
+      width: 85%;
+      text-overflow:ellipsis;
+      white-space:nowrap; 
+      overflow:hidden; 
+    } 
+    .cut2{
+       word-break: break-all;
+       word-wrap: break-word;
+    }
+     .cut2>div{
+      font-size: 12px !important;
+    }
+    .cut2>span{
+      font-size: 12px !important;
+    }
+     blockquote{
+      font-size: 12px !important;
+      padding: 10px 10px !important;
+    }
+    .iframe-container{
+      min-height: 100px;
+      background: #fff url("{{ asset('images/Loading.gif') }}") no-repeat 50% center !important;
+    }
+
+
+
 </style>
 
 
@@ -330,54 +393,190 @@
 
     <!-- Main content -->
 
-        @if(count($test_result) == 0)
+        @if(count($test_result) == 0 && $count == 0)
              <div class="box-header direct-chat">
               <h3 class="box-title">
                         Expediente médico
                </h3>
           <br><br>
-          @include('empty.emptyData')
-
-                             <script type="text/javascript">
-                                $('.buttonEmpty').css('display','none');
-                                $('.spanEmpty').css('display','none');
-                             </script>    
+            @include('empty.emptyData', 
+                              [
+                                'emptyc' => 'not_buttom',
+                                'title'  => 'Expedientes',
+                                'icon'   => 'adminlte.empty-box'
+                              ]
+                            )
             </div>                         
         @else 
      <div class="box-header direct-chat header1" id="header1">
               <h3 class="box-title">
-                        Expediente médico
-               </h3>    
+                        Expediente médico<a href="javascript:void(0);" onclick="visib();" style="color: #777 !important;" class="btn"><i class="fa fa-eye" id="eye"></i></a>   
+               </h3> 
         <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-search text-muted"></span></button>
       <div class="direct-chat-contacts plus">
        <div class="col-sm-3 pull-right"><input id="search" type="text" placeholder="Buscar expedientes" class="form-control"></div>     
-     </div>
-   </div><br>
+     </div><br>
+     <div id="headeralert"></div>
+   </div>
 
-        <div class="box-body content">
+        <div class="box-body content expbody">
       <!-- row -->
      <div class="row">
         <div class="col-md-12">
           <!-- The time line -->
           <ul class="timeline"  id="exp">
-                        @foreach($test_result->sortBy('created_at') as $test)
+            <!--  li to imbox  -->
+                     @foreach($files as $date_email => $fi)
+                      <li>
+                        <i class="fa fa-inbox bg-green disabled"></i>
+
+                        <div class="timeline-item">
+                        <span class="time">
+                           <div class="btn-group"> 
+                              <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><div class="btn-block"><i class="text-muted fa fa-ellipsis-v" style="font-weight: 800 !important"></i></div></a>
+                              <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
+                                <li><a onclick="send('{{ $fi[0]->id }}');" href="javascript:void(0)">Reenviar a correo personal</a></li>
+                              </ul>
+                            </div>
+                        </span>
+
+                          <h3 class="timeline-header cut"><a href="javascript:void(0)">Asunto: {{ $fi[0]->subject_email }}</a></h3>
+
+                          <div class="timeline-body">
+                            Fecha. {{ $date_email }}<br>
+                            From. {{ $fi[0]->email }}.<br>
+                            Receta. (No especificado aún).<br>
+                            <div id="spoiler{{ $fi[0]->id }}" style="display: none;" class="cut2">
+                              <br>
+                              <!--Imprimo correo ya sea texto plano o tipo html-->
+                              @php
+                                $bod = quoted_printable_decode($fi[0]->text_email);
+                                echo $bod;
+                              @endphp          
+                            </div>
+                                                          <a href="javascript:void(0)" id="a{{ $fi[0]->id }}" onclick="if(document.getElementById('spoiler{{ $fi[0]->id }}') .style.display=='none') {document.getElementById('spoiler{{ $fi[0]->id }}') .style.display=''; document.getElementById('a{{ $fi[0]->id }}').innerHTML ='...Ver menos';}else{document.getElementById('spoiler{{ $fi[0]->id }}') .style.display='none'; document.getElementById('a{{ $fi[0]->id }}').innerHTML ='Ver más...';}">Ver más...</a><br>
+                        @if(count($fi) == 1)                                
+                            @php
+                            $part = pathinfo($fi[0]->url);
+                              if($part['extension'] == "rar" || $part['extension'] == "tar" || $part['extension'] == "tar.gz"){
+                                $validate = 1;
+                              }else{
+                                $validate = 0;
+                              }
+                            @endphp <br>
+
+                            @if($validate == 0)
+                            <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $fi[0]->url }}" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}">Ver estudio</a>
+
+                            @else
+                              @if($agent->isMobile())
+                                <label class="text-red" style="font-size: 11px;"> *Este archivo solo tiene opción de reenvío</label>
+                              @else
+                               <a class="btn btn-default btn-flat btn-sm" href="{{ $fi[0]->url }}">Descargar estudio</a>
+                              @endif 
+
+                            @endif
+
+                            <!-- Modal for file view -->
+                                      <div class="modal fade" id="myModal{{$fi[0]->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                          <div class="modal-header">
+                                           <span style="font-size: 15px;"><b> {{ $fi[0]->details }} </b></span>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                          </div>
+                                            <div class="modal-body results">
+                                            </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                      </div><!-- /.modal -->
+                            <!-- End modal for file view -->
+
+                           @else
+                                                       <a class="btn btn-default btn-flat btn-sm" data-toggle="modal" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}" onclick="$('.x.active.external').click();">Ver estudio</a>
+                                
+                                <div class="modal fade" id="myModal{{$fi[0]->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                          <div class="modal-header">
+                                            @php
+                                            $cont = count($fi);
+                                            @endphp
+                                           <span style="font-size: 15px;"><b>Se adjuntaron #{{ $cont }} archivos</b></span>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                          </div>
+                                            <div class="modal-body">
+                                                <div class="nav-tabs-custom">
+                                                        <ul class="nav nav-tabs">
+                                                          <li class="dropdown">
+                                                            <a class="dropdown-toggle men" data-toggle="dropdown" href="#" aria-expanded="false">
+                                                              <label><span class="spt">Seleccione: </span>&nbsp;<i class="fa fa-angle-down" style="font-size: 18px;"></i></label>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                          @foreach($fi as $f)    
+                                                           @if($loop->iteration == 1)
+                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="x active external" onclick="$('.dropdown-toggle.men span.spt').text($(this).text());">{{ $f->details}}</a></li>
+                                                           @else
+                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="external"  onclick="$('.dropdown-toggle.men span.spt').text($(this).text());">{{ $f->details}}</a></li>
+                                                           @endif
+                                                          
+                                                          @endforeach
+                                                            </ul>
+                                                          </li>
+                                                        </ul>
+                                                        <div class="tab-content">
+                                                         @foreach($fi as $f)    
+                                                         @if($loop->iteration == 1)
+                                                          <div class="tab-pane active" id="t{{ $f->id}}">
+                                                         @else
+                                                          <div class="tab-pane" id="t{{ $f->id}}">   
+                                                         @endif   
+                                                                       <div class="modal-body dos iframe-container results">
+                                                                       </div>
+                                                          </div>
+                                                          @endforeach
+                                                        </div>
+                                                        <!-- /.tab-content -->
+                                                      </div>
+
+                                            </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                      </div><!-- /.modal -->
+
+                  
+                           @endif
+                          </div>
+                        </div>
+                      </li>
+
+                      @endforeach
+
+            <!-- end li to imbox-->
+           @foreach($test_result->sortBy('created_at') as $test)
             <li>
               <i class="fa fa-file bg-aqua"></i>
 
               <div class="timeline-item">
-              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($test->created_at)->diffForHumans() }}</span>
-
-                <h3 class="timeline-header"><a>{{ $test->name }}</a></h3>
+                        <span class="time">
+                           <div class="btn-group"> 
+                              <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><div class="btn-block"><i class="text-muted fa fa-ellipsis-v" style="font-weight: 800 !important"></i></div></a>
+                              <ul class="dropdown-menu dropdown-menu-right" role="menu" style="float: left !important;">
+                                <li><a onclick="send('{{ $test->id }}');" href="javascript:void(0)">Reenviar a correo personal</a></li>
+                              </ul>
+                            </div>
+                        </span>
+                <h3 class="timeline-header cut"><a href="javascript:void(0)">{{ $test->name }}</a></h3>
 
                 <div class="timeline-body">
+                  Fecha. {{ $test->date_email }}<br>
                   Prescribe. {{ $test->doc}}.<br>
-                  Recipe. {{ $test->folio}}.<br>
+                  Receta. {{ $test->folio}}.<br>
                   Detalles:<br>
-                  {{ $test->details }}<br><br>
+                  {{ $test->details }}<br>
 
-
-                  <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $test->url }}" data-target="#myModal">Ver estudio</a>
+                  <a class="btn btn-default btn-flat btn-sm external" data-id="myModal{{$test->id}}"  data-toggle="modal" href="{{ $test->url }}" data-target="#myModal{{$test->id}}">Ver estudio</a>
                   <a class="btn btn-secondary btn-sm btn-flat modal-chat" data-toggle="modal" data-target="#chat-form-modal">Comentarios</a>
                   <div class="modal-chat fade2 modal" id="chat-form-modal">
                 <div class="modal-dialog">
@@ -398,14 +597,14 @@
                        </div>
                     </div>    
 
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal fade" id="myModal{{$test->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                               <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">
                                  <span style="font-size: 15px;"><b> {{ $test->name }} </b></span>
                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
-                                  <div class="modal-body results">
+                                  <div class="modal-body iframe-container results">
                                   </div>
                                   </div><!-- /.modal-content -->
                               </div><!-- /.modal-dialog -->
@@ -475,7 +674,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -506,7 +705,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -537,7 +736,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -568,7 +767,7 @@
               <div class="timeline-item">
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}">{{ $clinic->question }}</a></h3>
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
                   @foreach($a as $answer)
@@ -576,7 +775,7 @@
                         <h5>{{ $answer }}</h5>
                       </div>
                   @endforeach
-                 <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> 
+                 <a href="edit/{{ $clinic->question_id }}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> 
                 </div>
               </div>
             </li>
@@ -591,19 +790,56 @@
       </div>
      </div>   
     </div> 
+    <script type="text/javascript">
+            function visib(){
+              if($('#eye').hasClass('fa-eye-slash') == true){
+                        $('#eye').removeClass('fa-eye-slash');
+                        $('#eye').addClass('fa-eye');
+                        $('.expbody').css("display","");
+
+                  }else{
+                      $('#eye').removeClass('fa-eye');
+                      $('#eye').addClass('fa-eye-slash');
+                      $('.expbody').css("display","none");
+
+                  }
+            }
+            function send(id){
+                            $.ajax(
+                                    {
+                                      type: "GET",    
+                                      url: "{{ url('clinicHistory/reSender') }}/" + id, 
+                                      success: function(result){
+                                        $('#headeralert').html('<div class="alert alert-success alert-dismissible" id="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="color:white !important;">×</button><h5><i class="icon fa fa-info"></i>Mensaje enviado a:</h5>{{ $email }}</div>');
+                                            $('#alert').fadeTo(5000, 500).fadeOut(500, function(){
+                                              $('#alert').fadeOut(500);
+                                            });   
+                                      }
+                                    })             
+                                }   
+
+    </script>
 @endif
 
 
 				<script>
-         window.onscroll = function() {myFunction()};
+
+        function hide(){
+              $('.alert').fadeOut(500);
+            };
+        
+
+           if(window.location.href == "{{ url('clinicHistory/index') }}" && "{{ $mode }}" == "finish"){      
+                window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
                 var sticky = header.offsetTop;
             if($('.box-header').hasClass('header1')){      
                 var header1 = document.getElementById("header1");
                 var sticky1 = header1.offsetTop;
              }   
-                function myFunction() {
-                  if (window.pageYOffset >= sticky) {
+        function myFunction() {
+            
+            if (window.pageYOffset >= sticky) {
                   if($('.box-header').hasClass('header1')){  
                     header1.classList.remove("sticky");
                      $('#header1').css('width','');
@@ -611,7 +847,7 @@
                     header.classList.add("sticky");
                   
             if("@php echo $agent->isMobile(); @endphp"){
-                        $('.sticky').css('width','96%');
+                      $('.sticky').css('width','96%');
                }else{ 
                   if ($('body').hasClass('sidebar-collapse')){
                         $('.sticky').css('width','96%');
@@ -619,31 +855,35 @@
                          $('.sticky').css('width','82%');
                       }
                     }
-
                   } else {
-                    header.classList.remove("sticky");
+                     header.classList.remove("sticky");
                      $('#header2').css('width','');
                   }
           if($('.box-header').hasClass('header1')){        
-
+             if($('#eye').hasClass('fa-eye-slash') == true){
+                header1.classList.remove("sticky");
+                     $('#header1').css('width','');
+                        header.classList.add("sticky");
+             }else{
             if (window.pageYOffset >= sticky1) {
                     header1.classList.add("sticky");
-            if("@php echo $agent->isMobile(); @endphp"){
-                        $('.sticky').css('width','96%');
-               }else{ 
+              if("@php echo $agent->isMobile(); @endphp"){
+                          $('.sticky').css('width','96%');
+                 }else{ 
                   if ($('body').hasClass('sidebar-collapse')){
                         $('.sticky').css('width','96%');
                       }else{
                          $('.sticky').css('width','82%');
                       }
                     }
-
                   } else {
                     header1.classList.remove("sticky");
                      $('#header1').css('width','');
                   }
+                 }
                 } 
               }
+            }
 
          window.onload = function(){
           var clinic_history = @php echo $clinic_history; @endphp;
@@ -700,7 +940,7 @@
             }
 
 
-				$(document).ready(function () {
+				$(document).ready(function(){
 
             $("#search").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
@@ -925,11 +1165,75 @@
   $('.external').on('click', function(e) {
         e.preventDefault();
         var url = $(this).attr('href');
+        var modalid = $(this).attr('data-id');
+        var ext = url.split('.').pop();
         $(".modal-body.results").html("");
-        //Solo si es PDF
+        $(".modal-body.dos.results").html("");
+        //If is image view
+        var h = window.screen.availHeight - 150;
+        var h2 = window.screen.availHeight - 250;
+        $('.modal-body').height("");
+        if(ext == 'png' || ext == 'jpg' || ext == 'svg' || ext == 'gif' || ext == 'JPEG'){
+        $(".modal-body.results").append('<div align="center"><img src="'+url+'" class="img-responsive"></img></div>');
+
+        }
+        //If is video format
+        else if(ext == 'mp4' || ext == 'mov' || ext == 'flv' || ext == 'avi' || ext == '3gp'){
+          //Flv especific
+           /* if(ext == 'flv'){
+                  $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/x-flv; codecs="'"On2 VP6, Sorenson Spark, Screen video, Screen video 2, H.264"'"></video></iframe>');
+            }*/
+            if(ext == 'mp4' || ext == 'mov'){
+                    $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" class="iframe"><video width="540" height="340" controls autoplay><source src="'+ url +'" type="video/'+ ext +'"></video></iframe>');
+                        }  
+
+                        var $video  = $('video'),
+                            $window = $(window); 
+
+                        $(window).resize(function(){
+                            var height = $window.height();
+                            $video.css('height', height);
+
+                            var videoWidth = $video.width(),
+                                windowWidth = $window.width(),
+                            marginLeftAdjust =   (windowWidth - videoWidth) / 2;
+
+                            $video.css({
+                                'height': height, 
+                                'marginLeft' : marginLeftAdjust
+                            });
+                        }).resize();       
+            if(ext == 'avi' || ext == '3gp'){
+                                $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true"><embed src="'+ url +'" type="video/x-msvideo" class="video"></embed></iframe>');
+
+                       var $video  = $('.video'),
+                            $window = $(window); 
+
+                        $(window).resize(function(){
+                            var height = $window.height();
+                            $video.css('height', height);
+
+                            var videoWidth = $video.width(),
+                                windowWidth = $window.width(),
+                            marginLeftAdjust =   (windowWidth - videoWidth) / 2;
+
+                            $video.css({
+                                'height': height, 
+                                'marginLeft' : marginLeftAdjust
+                            });
+                        }).resize();            
+
+                    } 
+              }
+                //Solo si es PDF
         //$(".modal-body.results").append('<object data="'+url+'" type="application/pdf" width="100%" height="100%"><embed src="'+url+'" type="application/pdf" /></object>');
-        $(".modal-body.results").append('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" ></iframe>');
- 
+        else{
+         // var onload = '$(this).style.display = "inline-block";document.getElementById("loa").style.display = "none";';
+        $('.modal-body').height(h + "px");
+        $('.modal-body.dos').height(h2 + "px");
+        /*$(".modal-body.results").append('<span id="loa">cargando...</span><iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true"" onload="'+ onload +'" style="display:none;"></iframe>');*/
+       $(".modal-body.results").append('<iframe align="middle" width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="https://docs.google.com/gview?url='+url+'&embedded=true""></iframe>');
+       }
     });
  
     $('#myModal').on('show.bs.modal', function () {
@@ -1077,9 +1381,9 @@
                                         console.log(data);
                                        }
                                    });
-                         window.open('{{ url("clinicHistory/cHistory") }}', '_self');
+                         window.open('{{ url("clinicHistory/index") }}', '_self');
 
-          })
+          });
 
 				})
 				</script>

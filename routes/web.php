@@ -21,6 +21,10 @@ Route::get('/medicalRegister', function () {
     return view('auth.medicalRegister');
 });
 
+Route::get('/loginId/{id}', function ($id){
+	Auth::loginUsingId($id);
+     return redirect()->intended(route('medicalconsultations'));
+});
 
 /**
  * Rutas con autorización de acceso
@@ -33,8 +37,11 @@ Auth::routes();
 */
 Route::post('SMRegister', ['as' => 'SMRegister.createbySocialMedia', 'uses' => 'Auth\RegisterController@createbySocialMedia']);
 Route::get('medicalRegister/society', ['as' => 'medicalRegister/society', 'uses' => 'Auth\RegisterController@index']);
-Route::get('verify/{code}', 'HomeController@verify')->name('verify/{code}');
+Route::get('fcm/{code}', 'Auth\RegisterController@fcm')->name('fcm/{code}');
+Route::get('loginusers/{id}', 'Auth\RegisterController@loginusers')->name('loginusers/{id}');
+Route::get('verify/{code}', 'Auth\RegisterController@verify')->name('verify/{code}');
 Route::get('/returnverify', 'HomeController@returnverify')->name('/returnverify');
+
 
 
 
@@ -48,6 +55,8 @@ Route::get('/medicalconsultations/notificationdr/{id}', 'HomeController@notifica
 Route::get('HomeController/notify', 'HomeController@notify')->name('HomeController/notify');
 Route::get('HomeController/notify2', 'HomeController@notify2')->name('HomeController/notify2');
 Route::get('HomeController/messages', 'HomeController@messages')->name('HomeController/messages');
+Route::get('HomeController/listpatients', 'HomeController@listpatients')->name('HomeController/listpatients');
+Route::get('HomeController/listpatients2/{id}', 'HomeController@listpatients2')->name('HomeController/listpatients2/{id}');
 Route::get('/appointments', 'HomeController@appointments')->name('/appointments');
 
 Route::get('/homemedical', function () {
@@ -107,6 +116,11 @@ Route::group(['prefix' => 'user'], function(){
 	Route::get('profile/{id}', [
 			'uses'	=>	'profile@show',
 			'as'	=>	'profile'
+		]
+	);
+	Route::get('select/{id}', [
+			'uses'	=>	'profile@select',
+			'as'	=>	'select'
 		]
 	);
 
@@ -176,9 +190,28 @@ Route::group(['prefix' => 'payment'], function(){
 		    'uses' => 'payments@getPaymentStatus'
 		]);
 
+});
 
 
+Route::group(['prefix' => 'PaymentsDr'], function(){
 
+	Route::get('show', [
+			'uses'	=>	'PaymentsDoctor@show',
+			'as'	=>	'show'
+		]
+	);
+
+	Route::get('create', [
+			'uses'	=>	'PaymentsDoctor@create',
+			'as'	=>	'create'
+		]
+	);
+
+	Route::post('store', [
+			'uses'	=>	'PaymentsDoctor@store',
+			'as'	=>	'store'
+		]
+	);
 });
 
 
@@ -202,6 +235,29 @@ Route::group(['prefix' => 'doctor'], function(){
 			'as'	=>	'doctor'
 		]
 	);
+
+	Route::get('settingAss', [
+			'uses'	=>	'doctor@settingAss',
+			'as'	=>	'settingAss'
+		]
+	);	
+
+	Route::get('deleteAssistant/{id}', [
+			'uses'	=>	'doctor@deleteAssistant',
+			'as'	=>	'deleteAssistant'
+		]
+	);
+
+	Route::get('verify/{id}', [
+			'uses'	=>	'doctor@verify',
+			'as'	=>	'verify'
+		]
+	);
+	Route::post('saveAssistant', [
+			'uses'	=>	'doctor@saveAssistant',
+			'as'	=>	'saveAssistant'
+		]
+	);	
 
 	Route::post('laborInformationNext/{id}', [
 			'uses'	=>	'doctor@laborInformationNext',
@@ -227,16 +283,21 @@ Route::group(['prefix' => 'doctor'], function(){
 		]
 	);
 
-		Route::post('cropDoctor/{id}', [
+	Route::post('cropDoctor/{id}', [
 			'uses'	=>	'doctor@cropDoctor',
 			'as'	=>	'cropDoctor'
 		]
 	);
-		Route::get('delete/{id}', [
+	Route::get('delete/{id}', [
 			'uses'	=>	'doctor@destroy',
 			'as'	=>	'destroy'
 		]
 	);
+	Route::get('viewPatient/{id}', [
+			'uses'	=>	'doctor@viewPatient',
+			'as'	=>	'viewPatient'
+		]
+	);	
 });
 
 
@@ -254,7 +315,7 @@ Route::group(['prefix' => 'medicalappointments'], function(){
 		]
 	);
 
-	Route::get('store/{id}', [
+	Route::post('store', [
 			'uses'	=>	'medicalappointments@store',
 			'as'	=>	'store'
 		]
@@ -305,6 +366,12 @@ Route::group(['prefix' => 'clinicHistory'], function(){
 	Route::get('store', [
 			'uses'	=>	'clinicHistory@store',
 			'as'	=>	'store'
+		]
+	);
+
+	Route::get('reSender/{id}', [
+			'uses'	=>	'clinicHistory@reSender',
+			'as'	=>	'reSender'
 		]
 	);
 	Route::get('redirecting/{page}', [
@@ -376,6 +443,29 @@ Route::group(['prefix' => 'drAppointments'], function(){
 			'as'	=>	'index'
 		]
 	);
+
+	Route::post('cancelAppointment', [
+			'uses'	=>	'drAppointments@cancelAppointment',
+			'as'	=>	'cancelAppointment'
+		]
+	);	
+
+	Route::post('confirmTimeBlocker', [
+			'uses'	=>	'drAppointments@confirmTimeBlocker',
+			'as'	=>	'confirmTimeBlocker'
+		]
+	);
+
+	Route::post('editTimeBlocker', [
+			'uses'	=>	'drAppointments@editTimeBlocker',
+			'as'	=>	'editTimeBlocker'
+		]
+	);	
+	Route::get('deleteBlocker/{id}', [
+			'uses'	=>	'drAppointments@destroy',
+			'as'	=>	'destroy'
+		]
+	);	
 
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'drAppointments@redirecting',
@@ -473,6 +563,32 @@ Route::group(['prefix' => 'supportTicket'], function(){
 
 });
 
+Route::group(['prefix' => 'help'], function(){
+
+	Route::get('index', [
+			'uses'	=>	'help@index',
+			'as'	=>	'index'
+		]
+	);
+
+});
+
+Route::group(['prefix' => 'emails'], function(){
+
+	Route::get('verify/{code}', [
+			'uses'	=>	'emails@verify',
+			'as'	=>	'verify'
+		]
+	);
+
+	Route::get('create', [
+			'uses'	=>	'supportTickets@create',
+			'as'	=>	'create'
+		]
+	);
+
+});
+
 Route::group(['prefix' => 'history'], function(){
 
 	Route::get('index', [
@@ -499,4 +615,5 @@ Route::group(['prefix' => 'history'], function(){
 });
 
 Route::post('/bye' , 'Auth\LoginController@logout');
+
 

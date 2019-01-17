@@ -8,6 +8,15 @@ use App\User;
 use App\medical_appointments;
 use App\menu;
 use App\cli_recipes_tests;
+use App\transaction_bank;
+use config;
+use Mail;
+use email;
+use Mailgun\Mailgun;
+use App\PaymentMethod;
+use App\Http\Controllers\payments;
+use Carbon\Carbon;
+use App\notifications;
 
 class medicalappointments extends Controller
 {
@@ -58,14 +67,73 @@ class medicalappointments extends Controller
      */
     public function store(Request $request)
     {
-        $medical = new cli_recipes_tests;
-        $medical->recipe_test   = '21';
-        $medical->diagnostic    = '677';
 
- 
+        $id = $request->id;
+        $user = User::find(Auth::id());
+        //Look in the table of methods of saved payments all the information of the selected method.
+        $card = DB::table('paymentsmethods')->where('id', $id)->first();
+
+                    /* Insert Cita */
+                    $medical = new medical_appointments();
+                    $medical->user           = Auth::id();
+                    $medical->user_doctor    = $request->dr;
+                    $medical->workplace      = $request->idlabor;
+                    $medical->when           = $request->when;
+                    $medical->status         = 'Registered';
+
             
-        if ($medical->save()) 
-       return redirect('medicalconsultations');
+           if ($medical->save()) {
+                         /* Insert_bank*/
+                        $Transaction = new transaction_bank();
+                        $Transaction->paymentmethod = $request->id;
+                        $Transaction->receiver = $request->receiver;
+                        $Transaction->amount = $request->amount;
+                        $Transaction->appointments =  $medical->id;
+                        $Transaction->transaction = '(Pendiente por Ejecutar)';
+                        $Transaction->save();
+                    /* Insert Transaction_bank*/
+
+                    //Validate payment or not
+                        if(Carbon::parse($request->when)->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
+                            $this->payments = new payments;
+                            $this->payments->PaymentAuthorizations($request->id, $Transaction->id);
+                            $tr = transaction_bank::find($Transaction->id);
+                            $trn = $tr->transaction;
+                        }else{
+                            $trn = '(Pendiente por ejecutar)';    
+                        }  
+
+            $doc = User::find($request->dr); 
+            $work = DB::table('labor_information')->where('id', $request->idlabor)->first();    
+            $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12);
+            $notification = array(
+                //In case the payment is approved it shows a message reminding you the amount you paid.
+            'message' => 'Transacción (pendiente por ejecutar) por un monto de: $'. $request->amount.', para más información consulte su cartera de pago... ', 
+            'success' => 'success',
+            'dr'      => $doc->name,
+            'drphoto'      => $doc->profile_photo,
+            'fecha'   => $request->when,
+            'monto'   => $request->amount,
+            'transaccion' => $trn,
+            'card'        => $cardfin,
+            'idcard'      => $card->id,
+            'spe'         => $request->spe,
+            'work'        => $work->workplace
+            );
+
+
+         
+            return redirect('medicalconsultations')->with($notification);
+         }
+         else {
+             $notification = array(
+                //If it has been rejected, the internal error code is sent.
+            'message' => 'No se pudo guardar la cita, vuelva a intentarlo', 
+            'error' => 'error'
+        );
+            return redirect('medicalconsultations')->with($notification);
+         }
+         
     }
 
  /**
@@ -73,9 +141,17 @@ class medicalappointments extends Controller
      */
     public function showPaymentMethods()
     {
-        return response()->json(
-            DB::table('paymentsmethods')->where('owner', Auth::id() )->get()
-        );
+        if(session()->get('parental'))
+        {
+           $user = DB::table('users')->where('username', session()->get('parental'))->first();
+             $pay = DB::table('paymentsmethods')
+             ->where('owner', Auth::id())
+             ->orWhere('owner', $user->id)
+             ->get();
+        }else{
+           $pay =  DB::table('paymentsmethods')->where('owner', Auth::id() )->get(); 
+        }
+        return response()->json($pay);
     }
   /**
      * Display the specified resource.
@@ -111,11 +187,17 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        $medical = menu::find('21');
-
-        $medical->url = 'reports/redirecting/index';
-
-        if ($medical->save()) 
+        $menu = menu::find('15');
+        $menu->url = 'PaymentsDr/show';
+     /*   $menu = new menu();
+        $menu->text = 'Agenda';
+        $menu->to = 'assistant';
+        $menu->typeitem = 'item';
+        $menu->order = '2';
+        $menu->parent = '1';
+        $menu->icon = 'calendar-check-o';
+        $menu->url = 'drAppointments/redirecting/index';*/
+        if($menu->save()) 
        return redirect('medicalconsultations');
     }
 

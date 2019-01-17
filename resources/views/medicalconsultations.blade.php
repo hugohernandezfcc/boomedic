@@ -18,9 +18,8 @@
       #rango{ 
         position: absolute;
         width: 90%;
-        bottom: 7%;
-        left: 5%;
-        right: 5%;
+        bottom: 5%;
+        right: 10%;
         padding-top: 0.7%;
         padding-bottom: 0.7%;
         padding-right: 0.7%;
@@ -31,6 +30,51 @@
         font-size: 90%;
         line-height: 15%;
       }
+
+      #rango03{
+        font-size:25px;
+      }
+
+      .rango{ 
+        position: absolute;
+        width: 90%;
+        bottom: 90%;
+        right: 10%;
+        padding-top: 0.7%;
+        padding-bottom: 0.7%;
+        padding-right: 0.7%;
+        padding-left: 0.7%;
+        /*background-color: rgba(255,255,255,0.7);*/
+        z-index: 100;
+        text-align: center;
+        font-size: 90%;
+        line-height: 15%;
+      }
+      #rangothree{ 
+        position: absolute !important;
+        bottom: 4% !important;
+        right: 2% !important;
+        padding-top: 0.7%;
+        padding-bottom: 0.7%;
+        padding-right: 0.7%;
+        padding-left: 0.7%;
+        /*background-color: rgba(255,255,255,0.7);*/
+        z-index: 1000;
+        text-align: center;
+      }
+      #rangotwo{ 
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        padding-top: 0.7%;
+        padding-bottom: 0.7%;
+        padding-right: 0.7%;
+        padding-left: 0.7%;
+        /*background-color: rgba(255,255,255,0.7);*/
+        z-index: 100;
+        text-align: center;
+      }  
+
       #searchDiv{
         position: absolute;
         width: 24%;
@@ -237,18 +281,31 @@
         -webkit-background-clip: padding-box;
         background-clip: padding-box;
         color: white;
-        margin-top: 50%;
-        width: 100%;
+        padding-top: 50%;
     }
     .liright { 
     color: #999 !important;
     float: right !important;
     padding: 3px !important;
-    font-size: 11px !important;
-  }
-  .nav-stacked>li.active>a {
-    border-left-color: #080808 !important;
-}
+    font-size: 10px !important;
+    }
+    .nav-stacked>li.active>a {
+      border-left-color: #080808 !important;
+    }
+    .cut{
+      width:60%;
+      text-overflow:ellipsis;
+      white-space:nowrap; 
+      overflow:hidden; 
+      text-align: right;
+    }
+    .direct-chat-contacts {
+          height: 28px !important;
+          background: transparent !important; 
+          top: 90% !important; 
+          z-index: 900;
+    }
+
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
@@ -287,14 +344,15 @@
     /**
      * Information loader
      */
+  
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
-    /*console.log(datos);*/
+
   </script>
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
-                            <h4><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h4>               
+                            <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h5>               
             </div>
              @else
         <div class="box-group" id="accordion">
@@ -346,23 +404,23 @@
                                                       </div><br/><br/>
                                                       <div align="left">
                                                       <ul class="nav nav-pills nav-stacked">
-                                                        <li class="active"><a href="">Tiempo restante para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
+                                                        <li class="active"><a href="javascript:void(0)">Tiempo restante para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
                                                         <li><a href="{{ url('/payment/Transactions/') }}/{{ $appo->idtr }}">Método de pago 
                                                      @if($appo->provider != 'Paypal')
                                                              @php 
                                                             $cardfin = substr_replace($appo->cardnumber, '••••••••••••', 0, 12)
                                                              @endphp 
                                                           @if($appo->provider == "Visa")
-                                                          <span class="liright"><i class="fa fa-cc-visa" style="font-size: 15px;"></i> &nbsp;{{ $cardfin }}</span>
+                                                          <span class="liright cut"><i class="fa fa-cc-visa" style="font-size: 14px;"></i> &nbsp;{{ $cardfin }}</span>
                                                           @endif
                                                           @if($appo->provider == "MasterCard")
-                                                          <span class="liright"><i class="fa fa-cc-mastercard" style="font-size: 15px;"></i> &nbsp;{{ $cardfin }}</span>
+                                                          <span class="liright cut"><i class="fa fa-cc-mastercard" style="font-size: 14px;"></i> &nbsp;{{ $cardfin }}</span>
                                                           @endif
                                                      @else 
-                                                          <span class="liright"><i class="fa fa-cc-paypal" style="font-size: 15px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
+                                                          <span class="liright cut"><i class="fa fa-cc-paypal" style="font-size: 14px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
                                                      @endif 
                                                         </a></li>
-                                                        <li><a href="" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
+                                                        <li><a href="javascript:void(0)" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
  
                                                       </ul>
                                                       </div>
@@ -513,11 +571,11 @@
 
 
 
-        <div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
+<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
       <div class="modal-dialog">
           <div class="modal-content-2">
             <div align="center">
-          <h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/>(Esto podría tardar unos segundos)
+          <h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1>
               </div>
           </div>
       </div>
@@ -532,18 +590,29 @@
    <a class="close" onclick="$('.alert').hide()" style="text-decoration: none">×</a>  
     <div class="info-box-icon2-sm" id="Drp"></div>                                           
      <div id="bodyDr"></div>
-     <div class="pull-right"><button type="button" class="btn btn-default btn-flat btn-xs" id="btncita"><b>Concretar Cita</b></button></div>
+     <div class="pull-right" id="btncita"></div>
       </div>
 
-    <div id='rango'>
+
+<div class="direct-chat">
+       <div  id="rangothree">
+         <div class="btn-group-vertical">
+        <a class="btn btn-default btn-flat" onclick="initMap();"><b><span class="fa fa-crosshairs"></span></b></a>
+        <a class="btn btn-default btn-flat" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }"><b><span class="fa fa-plus" id="fap"></span></b></a></div></div>
+      <div class="direct-chat-contacts">
+            <div id="rango">   
               <div class="btn-group">
-              <a class="btn btn-default btn-sm" onclick="showMy();"><b><span id="labelextra"></span></b></a>
-              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
-              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
-              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
+              <a class="btn btn-default btn-xs" onclick="showMy();"><b><span id="labelextra"></span></b></a>
+              <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
+              <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
+              <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
               </div>
-      </div>
-
+            </div>
+    </div>
+</div>
+    <div class="rango" id="dragmap" style="display: none;">
+        <a class="btn btn-secondary" data-lng="" id="dragbutton">Buscar en esta zona</a>
+    </div> 
   </div> 
 
 
@@ -556,9 +625,10 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true" style="font-size: 21px;">&times;</span>
                     </button>
-                    <div align="left"><label for="rango01" id="label04"></label> <span id="rango03"></span></div>       
+                    <div align="left"><label for="rango01" id="label04"></label></div>       
                   </div>
                   <div class="modal-body">
+                    <div align="center"><label id="rango03"></label></div> 
                           <input type="range" name="rango01" id="rango01" value="1" min="1" max="10" step="0.1" autocomplete="off" onchange="start();" class="rangeStyle"/>
                   </div>
                 </div>
@@ -615,11 +685,8 @@
                         
                   </div>
                   <div class="modal-body">
-                   <div id="recentS" align="left" style="display: none; font-weight:500;">Busquedas recientes:<br/></div>         
+                   <div id="recentS" align="left" style="display: none; font-weight:500;">Busquedas anteriores:<br/></div>         
                    <div id="resp" align="left"></div>                
-                          <div id ="ubi" class="input-group input-group-sm" style="display:none;">
-                          <input id="ubication" type="button" class="btn btn-secondary btn-block btn-flat" value="Volver a ubicación real" onclick="initMap()">
-                          </div>
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
                     
                   </div>
@@ -746,14 +813,17 @@
                                         
                                       </div>
                                       <div style="width: 100%; display: none;" align="center" class="calendarNull">
-                                       @include('empty.emptyData')
+                                        @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'not_buttom',
+                                              'title'  => 'Expedientes',
+                                              'icon'   => 'adminlte.empty-calendar'
+                                            ]
+                                          )
                                        <script type="text/javascript">
-                                         $('#imgEmpty').attr("src","{{ asset(config('adminlte.empty-calendar')) }}");
                                           $('#imgEmpty').css('width','150px');
                                           $('#imgEmpty').css('height','150px');
-                                          $('.buttonEmpty').css('display','none');
                                           $('.spanEmpty1').html('{{ $title }}');
-                                          $('.spanEmpty').css('display','none');
                                        </script>   
                                       </div>
 
@@ -832,9 +902,18 @@
           <script type="text/javascript">
 
 $(document).ready(function () {
-
-
-
+                         $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
+                          var vis = $(this).find( ".calendarNull" );
+                             if(vis.is(":visible")){
+                                    $.ajax(
+                                    {
+                                      type: "GET",    
+                                      url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
+                                      success: function(result){
+                                      }
+                                    })
+                                  }
+                      })
 
  $('#mySelect').on('change', function() {
         if( $('#mySelect').val() !== firstValue){
@@ -855,16 +934,16 @@ $(document).ready(function () {
        $('#modalsuccess').modal('show');
        $('#modalerror').modal('show');
  $("#paymentMethodsFields").on("change", function(){
-                                  document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
+        document.getElementById('endtime').innerHTML = 'Hora: ' + $('#timesByDay option:selected').text();
         document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
         document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
         if(document.getElementById('paymentMethodsFields').value != "Paypal"){
-          $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
-         document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+          $('#formulatio_paypal').attr('action', '/medicalappointments/store');
+         document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
         }
        if(document.getElementById('paymentMethodsFields').value == "Paypal"){
           $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
-                   document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+                   document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
         }
                         })
           $('.nav-tabs > li a[title]').tooltip();
@@ -881,16 +960,16 @@ $(document).ready(function () {
         var $active = $('.wizard .nav-tabs li.active');
         $active.next().removeClass('disabled');
         nextTab($active);
-         document.getElementById('endtime').innerHTML = 'Hora: ' + document.getElementById('timesByDay').value;
+        document.getElementById('endtime').innerHTML = 'Hora: ' + $('#timesByDay option:selected').text();
         document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
         document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
         if(document.getElementById('paymentMethodsFields').value != "Paypal"){
-          $('#formulatio_paypal').attr('action', '/payment/PaymentAuthorizations');
-         document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+          $('#formulatio_paypal').attr('action', '/medicalappointments/store');
+         document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
         }
        if(document.getElementById('paymentMethodsFields').value == "Paypal"){
           $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
-                   document.getElementById('when').value = document.getElementById('when1').value +' '+ document.getElementById('timesByDay').value +':00';
+                   document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
         }
     });
     $(".prev-step").click(function (e) {
@@ -1105,7 +1184,9 @@ function prevTab(elem) {
       /**
        * Function responsable of execute the main functions 
        */
+
       window.onload = function(){
+
          $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
         var height;
         if("@php echo $agent->isMobile(); @endphp"){
@@ -1113,16 +1194,16 @@ function prevTab(elem) {
             height = window.screen.availHeight;
             //alert("Altura: "+height);
             if(height >= 1000 && height <= 1300){
-                var h = height*0.45;
+                var h = height*0.39;
                 height = Math.floor(h);
             }else if(height >=1800){
-              height -= 1440;
+              height -= 1480;
             }else
             {
-              height -=115;
+              height -=160;
             }
         }else{
-          height = window.screen.availHeight-115;
+          height = window.screen.availHeight-156;
         }
         document.getElementById('map').setAttribute("style","height:" + height + "px");
         initMap();
@@ -1133,8 +1214,8 @@ function prevTab(elem) {
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
+        $('#dragmap').fadeOut(); 
         $('#modal').modal('hide');
-         document.getElementById('ubi').style.display = 'none'; 
         infoWindow = new google.maps.InfoWindow();
         //Current position
         if (navigator.geolocation) {
@@ -1146,301 +1227,189 @@ function prevTab(elem) {
             //Map
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 14,
+              gestureHandling: 'greedy',
               center: new google.maps.LatLng(pos),
               styles: [
-              {
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#f5f5f5"
-                  }
-                ]
-              },
-              {
-                "elementType": "labels.icon",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#616161"
-                  }
-                ]
-              },
-              {
-                "elementType": "labels.text.stroke",
-                "stylers": [
-                  {
-                    "color": "#f5f5f5"
-                  }
-                ]
-              },
-              {
-                "featureType": "administrative.land_parcel",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "administrative.land_parcel",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#bdbdbd"
-                  }
-                ]
-              },
-              {
-                "featureType": "administrative.neighborhood",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#eeeeee"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi",
-                "elementType": "labels.text",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#757575"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.business",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.medical",
-                "stylers": [
-                  {
-                    "color": "#686b6e"
-                  },
-                  {
-                    "visibility": "on"
-                  },
-                  {
-                    "weight": 3
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.medical",
-                "elementType": "labels.icon",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.park",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.park",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#e5e5e5"
-                  }
-                ]
-              },
-              {
-                "featureType": "poi.park",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#9e9e9e"
-                  },
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#ffffff"
-                  }
-                ]
-              },
-              {
-                "featureType": "road",
-                "elementType": "labels",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "road",
-                "elementType": "labels.icon",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.arterial",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#757575"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.highway",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#dadada"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.highway",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#616161"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.highway.controlled_access",
-                "stylers": [
-                  {
-                    "visibility": "on"
-                  }
-                ]
-              },
-              {
-                "featureType": "road.local",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#9e9e9e"
-                  }
-                ]
-              },
-              {
-                "featureType": "transit",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "transit.line",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#e5e5e5"
-                  }
-                ]
-              },
-              {
-                "featureType": "transit.station",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#eeeeee"
-                  }
-                ]
-              },
-              {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [
-                  {
-                    "color": "#c9c9c9"
-                  }
-                ]
-              },
-              {
-                "featureType": "water",
-                "elementType": "labels.text",
-                "stylers": [
-                  {
-                    "visibility": "off"
-                  }
-                ]
-              },
-              {
-                "featureType": "water",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                  {
-                    "color": "#9e9e9e"
-                  }
-                ]
-              }
-            ], 
+                        {
+                          "elementType": "labels",
+                          "stylers": [
+                            {
+                              "visibility": "off"
+                            }
+                          ]
+                        },
+                        {
+                          "featureType": "administrative.land_parcel",
+                          "stylers": [
+                            {
+                              "visibility": "off"
+                            }
+                          ]
+                        },
+                        {
+                          "featureType": "administrative.neighborhood",
+                          "stylers": [
+                            {
+                              "visibility": "off"
+                            }
+                          ]
+                        },
+                        {
+                          "featureType": "landscape.man_made",
+                          "elementType": "labels.icon",
+                          "stylers": [
+                            {
+                              "visibility": "on"
+                            }
+                          ]
+                        },
+                        {
+                          "featureType": "poi.attraction",
+                          "stylers": [
+                            {
+                              "visibility": "off"
+                            }
+                          ]
+                        },
+                        {
+                          "featureType": "poi.business",
+                          "stylers": [
+                            {
+                              "saturation": -100
+                            },
+                            {
+                              "visibility": "simplified"
+                            }
+                          ]
+                        },
+                        {
+                          "featureType": "poi.medical",
+                          "stylers": [
+                            {
+                              "visibility": "off"
+                            }
+                          ]
+                        },
+                        {
+                          "featureType": "poi.park",
+                          "stylers": [
+                            {
+                              "visibility": "on"
+                            }
+                          ]
+                        },
+                        {
+                          "featureType": "poi.place_of_worship",
+                          "stylers": [
+                            {
+                              "visibility": "simplified"
+                            }
+                          ]
+                        },
+                        {
+                          "featureType": "poi.school",
+                          "stylers": [
+                            {
+                              "visibility": "off"
+                            }
+                          ]
+                        },
+                        {
+                          "featureType": "poi.sports_complex",
+                          "stylers": [
+                            {
+                              "visibility": "off"
+                            }
+                          ]
+                        },
+                        {
+                          "featureType": "water",
+                          "stylers": [
+                            {
+                              "visibility": "off"
+                            }
+                          ]
+                        }
+                      ],
               // disableDefaultUI: true,
               zoomControl: true,
               mapTypeControl: false,
               scaleControl: false,
               streetViewControl: false,
               rotateControl: false,
-              fullscreenControl: false
+              fullscreenControl: false             
             });
 
             var input = document.getElementById('address');
-              new google.maps.places.Autocomplete(input);
-            var markerUser = "{{ asset('markerUser.png') }}";
+            var autocomplete = new google.maps.places.Autocomplete(input);
+               autocomplete.setComponentRestrictions(
+            {'country': ['mx']});
+            var markerUser = "{{ asset('markerloc.png') }}";
+           
+            var pinIcon = new google.maps.MarkerImage(
+                  "{{ asset('markerloc.png') }}",
+                  null, /* size is determined at runtime */
+                  null, /* origin is 0,0 */
+                  null, /* anchor is bottom center of the scaled image */
+                  new google.maps.Size(40, 40)
+              ); 
+
+
             //Marker
               markerP = new google.maps.Marker({
               draggable: true,
               position: new google.maps.LatLng(pos),
-              icon: markerUser,
+              icon: pinIcon,
               map: map
-            });   
+            }); 
+                 //Bound México (North East and South West)
+                 var strictBounds = new google.maps.LatLngBounds(
+                                    new google.maps.LatLng(14.3895,-118.6523),
+                                    new google.maps.LatLng(32.718653,-86.5887)
+                                    );
+                  //Here function dragend map in marker//
+                  google.maps.event.addListener(map, 'dragend', function(){
+
+                        if("@php echo $agent->isMobile(); @endphp"){
+                            var complat = markerP.getPosition().lat() + 0.015;
+                            var complng = markerP.getPosition().lng() + 0.015;
+                            var complat2 = markerP.getPosition().lat() - 0.015;
+                            var complng2 = markerP.getPosition().lng() - 0.015;
+                        }else{
+                            var complat = markerP.getPosition().lat() + 0.03;
+                            var complng = markerP.getPosition().lng() + 0.04;
+                            var complat2 = markerP.getPosition().lat() - 0.03;
+                            var complng2 = markerP.getPosition().lng() - 0.04;  
+                        }
+                        //console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
+                      if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
+                          if(!strictBounds.contains(map.getCenter())){
+                              map.setCenter(markerP.getPosition());
+                               }
+                          else{
+                                $('#dragmap').fadeIn();
+                                var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
+                                $('#dragbutton').prop('data-lng',latlng);
+                              }
+                        }                                    
+                      });
+
+                        $('#dragbutton').click(function() {
+                            var look = $('#dragbutton').prop('data-lng'); 
+                             $('#dragmap').fadeOut(); 
+                            markerP.setPosition(look);
+                            start();
+                        });
+
+                     /*  map.addListener('center_changed', function(event) {
+                          console.log(this);
+                        });*/
+
             if("@php echo $agent->isMobile(); @endphp"){
-            var opt = { minZoom: 6, maxZoom: 20, zoomControl: false};
+            var opt = { minZoom: 6, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
              map.setOptions(opt);
            }else{
-           var opt = { minZoom: 6, maxZoom: 20, zoomControl: true };
+           var opt = { minZoom: 6, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
              map.setOptions(opt);
            }
             //Evento to open infowindow
@@ -1449,11 +1418,10 @@ function prevTab(elem) {
               infoWindow.setContent(message01);
             });
                 var geocoder = new google.maps.Geocoder();
-               
+                start();
                 document.getElementById('submit').addEventListener('click', function() {
                 geocodeAddress(geocoder, map, markerP);
                 $('#modal').modal('hide');
-                document.getElementById('ubi').style.display = 'inline'; 
                 $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1496,12 +1464,14 @@ function prevTab(elem) {
       //Filter geocode Address
         function geocodeAddress(geocoder, resultsMap, markerP) {
         var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
+        geocoder.geocode({'address': address, componentRestrictions: {
+            country: 'MX'
+          }},function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
             markerP.setPosition(results[0].geometry.location);
           } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+            alert('Busqueda no es posible, por siguiente error: ' + status);
           }
         });
       }
@@ -1517,13 +1487,13 @@ function prevTab(elem) {
         if(keyWordValue == ''){
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9], datos[i][10]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9], datos[i][10], datos[i][11]]);
             }
           }
         }else{
           for(var i = 0; i < datos.length; i++) {
             if(datos[i][0] == specialityValue && datos[i][3] == keyWordValue){
-              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9], datos[i][10]]);
+              res.push([datos[i][1], datos[i][2], datos[i][0], datos[i][3], datos[i][4], datos[i][5], datos[i][6], datos[i][7], datos[i][8], datos[i][9], datos[i][10], datos[i][11]]);
             }
           }          
         }
@@ -1534,7 +1504,7 @@ function prevTab(elem) {
           console.log('Nombre:: '+res[i][3]);*/
           if(metros < rangeValue){
             //loc[latitud, longitud, especialidad, nombre, hospital, dirección, workid, iddr]
-            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
+            loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10], res[i][11]]);
           }
         }
        /* console.log(res);
@@ -1559,7 +1529,7 @@ function prevTab(elem) {
 
           for(var i = 0; i < generalM.length; i++) {
             if(generalM[i][2] == keyWordValue){
-               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4],generalM[i][5],generalM[i][6],generalM[i][7],generalM[i][8],generalM[i][9]]);
+               res.push([generalM[i][0], generalM[i][1], "Médico General", generalM[i][2], generalM[i][3], generalM[i][4],generalM[i][5],generalM[i][6],generalM[i][7],generalM[i][8],generalM[i][9],generalM[i][10]]);
             }
           }
           for(var i = 0; i < res.length; i++) {
@@ -1569,7 +1539,7 @@ function prevTab(elem) {
             console.log('Nombre:: '+res[i][3]);*/
             if(metros < rangeValue){
                //loc[latitud, longitud, especialidad, nombre, hospital, dirección, precio, intervalos]
-               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10]]);
+               loc.push([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6], res[i][7], res[i][8], res[i][9], res[i][10], res[i][11]]);
              }
           }
           if(loc.length <= 0){
@@ -1594,10 +1564,9 @@ function prevTab(elem) {
             };
         }else{
            var doctor = {
-              url:"https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",
+              url: "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",
               scaledSize: new google.maps.Size(45, 45)
             };
-         /*markers[i] = new USGSOverlay(new google.maps.LatLng(lat , lon), "https://s3.amazonaws.com/abiliasf/16.jpg", map);*/
         }
         markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat,lon),
@@ -1610,20 +1579,19 @@ function prevTab(elem) {
             return function() {
               $('#infDr').show();
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
-              document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br/>"+loc[i][3]+"</b><br/>"+loc[i][4]+"</b><br/>Consulta: $"+loc[i][5];
-          
-           document.getElementById('btncita').addEventListener('click', function() {
+              document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br>"+loc[i][3]+"</b><br>"+loc[i][4]+"</b><br>Consulta: $"+loc[i][5];
+              document.getElementById('btncita').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs btncita" id="'+ loc[i][7] +'"><b>Concretar Cita</b></button>';
+              console.log(loc[i][7]);
+             console.log(loc[i][11]);
+           $('#'+ loc[i][7]).on('click', function(){
               $('#infDr').hide();
               $('#tab1').trigger('click');
               document.getElementById("onestep").disabled = true;
                $('#s2').addClass("disabled");
                $('#s3').addClass("disabled");
                $('#s4').addClass("disabled");
-              document.getElementById('enddate').innerHTML = '';
-              document.getElementById('endtime').innerHTML = '';
-              document.getElementById('endpayment').innerHTML = '';
               $('#formulatio_paypal').trigger("reset");
-              showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br/>Costo consulta: $' + loc[i][5] +'<br/>');
+              showInfo(loc[i][2] + ', ' + loc[i][3] + '.<br>Costo consulta: $' + loc[i][5] +'<br>');
               document.getElementById('amount').value = loc[i][5];
               document.getElementById('endamount').innerHTML = 'Monto a pagar: $' + loc[i][5];
               document.getElementById('receiver').value = loc[i][3];
@@ -1631,7 +1599,8 @@ function prevTab(elem) {
               document.getElementById('dr').value = loc[i][8];
               document.getElementById('spe').value = loc[i][2];
               var whencites = loc[i][9];
-              $('#modal-register-cite').modal('show');
+              var blockers = loc[i][11];
+              $('.modal-register-cite').modal('show');
                   var x = document.getElementById("timesByDay");
                   var optionhour = loc[i][6].reverse();
                 if(optionhour.length > 0){  
@@ -1650,7 +1619,6 @@ function prevTab(elem) {
                   var Sab = Array();
                   $('#calendar1').datepicker('destroy');
                  $('#timesByDay').children().remove();
-                 console.log(optionhour.length);
                   for (var y = optionhour.length - 1; y >= 0; y--) { 
                      resp = optionhour[y].split(":",2); 
                      resp2 = JSON.parse(optionhour[y].slice(4));
@@ -1716,110 +1684,235 @@ function prevTab(elem) {
                          document.getElementById("enddate").innerHTML = "Fecha: " + da;
                          document.getElementById('when1').value = da2;
                          var fech = Array();
+                         var start = Array();
+                         var end = Array();
+                        
                      for(var f = 0; f < whencites.length; f++){
                         if(whencites[f].slice(0,-9) == da2){  
                           fech.push(whencites[f].slice(11));  
                           }   
                         }
+                     for(var o = 0; o < blockers.length; o++){
+                        if(blockers[o]['start'].slice(0,-9) == da2 && blockers[o]['start'] > moment(Date.now()).format('YYYY-MM-DD HH:mm')){  
+                          start.push(blockers[o]['start']);
+                          end.push(blockers[o]['end']);  
+                          }   
+                        }   
 
                         if (e.date.getDay() == 0) {
-                          var Dom1 = $(Dom).not(fech).get();                              
+                          var Dom1 = $(Dom).not(fech).get();
                           for(var d = 0; d < Dom1.length; d++){
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                              if(da3  + ' ' + Dom1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Dom1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Dom1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Dom1[d].slice(0,-3);
+                                    option.value = Dom1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
                             if(da3  + ' ' + Dom1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Dom1[d].slice(0,-3);
-                              option.value = Dom1[d].slice(0,-3);
-                              x.add(option);
-                          }
+                                   var option = document.createElement("option");
+                                    option.text = Dom1[d].slice(0,-3);
+                                    option.value = Dom1[d].slice(0,-3);
+                                    x.add(option);
+
+                                }
+                         }
                         }
                            $("#timesByDay option[value='asueto ']").remove();
-                        }
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
+                        
+                      }
+
                         if (e.date.getDay() == 1) {
-                          var Lun1 = $(Lun).not(fech).get();
+                           var Lun1 = $(Lun).not(fech).get();
                           for(var d = 0; d < Lun1.length; d++){
-                           if(da3  + ' ' + Lun1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                              var option = document.createElement("option");
-                              option.text = Lun1[d].slice(0,-3);
-                              option.value = Lun1[d].slice(0,-3);
-                              x.add(option);
-                          }
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                              if(da3  + ' ' + Lun1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Lun1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Lun1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Lun1[d].slice(0,-3);
+                                    option.value = Lun1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
+                            if(da3  + ' ' + Lun1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Lun1[d].slice(0,-3);
+                                    option.value = Lun1[d].slice(0,-3);
+                                    x.add(option);
+
+                                }
+                         }
                         }
-                          $("#timesByDay option[value='asueto ']").remove();
+                           $("#timesByDay option[value='asueto ']").remove();
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
                         }
+
                        if (e.date.getDay() == 2) {
+                       
                           var Mar1 = $(Mar).not(fech).get();
                           for(var d = 0; d < Mar1.length; d++){
-                          if(da3  + ' ' + Mar1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Mar1[d].slice(0,-3);
-                              option.value = Mar1[d].slice(0,-3);
-                              x.add(option);
-                          }
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                              if(da3  + ' ' + Mar1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Mar1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Mar1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Mar1[d].slice(0,-3);
+                                    option.value = Mar1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
+                            if(da3  + ' ' + Mar1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Mar1[d].slice(0,-3);
+                                    option.value = Mar1[d].slice(0,-3);
+                                    x.add(option);
+
+                                }
+                         }
                         }
                            $("#timesByDay option[value='asueto ']").remove();
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
                         }
+
                        if (e.date.getDay() == 3) {
-                           var Mie1 = $(Mie).not(fech).get();
+                          var Mie1 = $(Mie).not(fech).get();
                           for(var d = 0; d < Mie1.length; d++){
-                            if(da3  + ' ' +   Mie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Mie1[d].slice(0,-3);
-                              option.value = Mie1[d].slice(0,-3);
-                              x.add(option);
-                          }
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                              if(da3  + ' ' + Mie1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Mie1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Mie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Mie1[d].slice(0,-3);
+                                    option.value = Mie1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
+                            if(da3  + ' ' + Mie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Mie1[d].slice(0,-3);
+                                    option.value = Mie1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                         }
                         }
                            $("#timesByDay option[value='asueto ']").remove();
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
                         } 
+
                        if (e.date.getDay() == 4) {
                           var Jue1 = $(Jue).not(fech).get();
                           for(var d = 0; d < Jue1.length; d++){
-                          if(da3  + ' ' + Jue1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Jue1[d].slice(0,-3);
-                              option.value = Jue1[d].slice(0,-3);
-                              x.add(option);
-                            }
-                          }
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                              if(da3  + ' ' + Jue1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Jue1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Jue1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Jue1[d].slice(0,-3);
+                                    option.value = Jue1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
+                            if(da3  + ' ' + Jue1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Jue1[d].slice(0,-3);
+                                    option.value = Jue1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                         }
+                        }
                            $("#timesByDay option[value='asueto ']").remove();
-                        }                                               
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
+                        }        
+
                         if (e.date.getDay() == 5) {
-                              var Vie1 = $(Vie).not(fech).get();
+                          var Vie1 = $(Vie).not(fech).get();
                           for(var d = 0; d < Vie1.length; d++){
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                              if(da3  + ' ' + Vie1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Vie1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Vie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Vie1[d].slice(0,-3);
+                                    option.value = Vie1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
                             if(da3  + ' ' + Vie1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Vie1[d].slice(0,-3);
-                              option.value = Vie1[d].slice(0,-3);
-                              x.add(option);
-                          }
+                                   var option = document.createElement("option");
+                                    option.text = Vie1[d].slice(0,-3);
+                                    option.value = Vie1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                         }
                         }
                            $("#timesByDay option[value='asueto ']").remove();
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
                         }
+
                        if (e.date.getDay() == 6) {
-                              var Sab1 = $(Sab).not(fech).get();
+                          var Sab1 = $(Sab).not(fech).get();
                           for(var d = 0; d < Sab1.length; d++){
-                          if(da3  + ' ' + Sab1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
-                             var option = document.createElement("option");
-                              option.text = Sab1[d].slice(0,-3);
-                              option.value = Sab1[d].slice(0,-3);
-                              x.add(option);
-                          }
+                            if(start.length > 0){
+                            for(var u=0; u < start.length; u++){
+                              if(da3  + ' ' + Sab1[d].slice(0,-3) < moment(start[u]).format('YYYY-MM-DD HH:mm') || da3  + ' ' + Sab1[d].slice(0,-3) > moment(end[u]).format('YYYY-MM-DD HH:mm') ){
+                                if(da3  + ' ' + Sab1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Sab1[d].slice(0,-3);
+                                    option.value = Sab1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                              }
+                             }
+                          }else{
+                            if(da3  + ' ' + Sab1[d].slice(0,-3) > moment(Date.now()).format('YYYY-MM-DD HH:mm')){
+                                   var option = document.createElement("option");
+                                    option.text = Sab1[d].slice(0,-3);
+                                    option.value = Sab1[d].slice(0,-3);
+                                    x.add(option);
+                                }
+                         }
                         }
                            $("#timesByDay option[value='asueto ']").remove();
-                        }    
-                        $('#dateSelectedForCite').val = e.date.toISOString();                  
+                           $("#timesByDay option").val(function(idx, val) {
+                              $(this).siblings('[value="'+ val +'"]').remove();
+                            });
+                        }
+
+                      $('#dateSelectedForCite').val = e.date.toISOString();                  
                       });
                      }else{
                       $(".calendar").css("display","none");
                       $(".calendarNull").css("display","block");
-                               alert('TEST');
-                                    $.ajax(
-                                    {
-                                      type: "GET",    
-                                      url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
-                                      success: function(result){
-                                          console.log(result);
-                                      }
-                                    })
+
                                   
                               }
 
@@ -1832,6 +1925,7 @@ function prevTab(elem) {
       function dropMarker(i) {
         return function() {
           markers[i].setMap(map);
+
         };
       }
       function clearMarkers() {

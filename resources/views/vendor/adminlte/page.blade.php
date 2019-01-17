@@ -58,38 +58,6 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
-          <!--barra de notificaciones -->    
-                          <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="mess">
-                              <i class="fa fa-envelope-o"></i>
-                              <span class="label label-success" id="messN"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li class="header" id="countMes"></li>
-                              <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu" id="newMess">
-
-                                </ul>
-                              </li>
-                            </ul>
-                          </li>
-                                  <!-- end message -->
-                          <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="not">
-                              <i class="fa fa-bell-o"></i>
-                              <span class="label label-warning" style="background-color: #000000 !important; display: none;" id="notN"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li class="header" id="countNot"></li>
-                              <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu" id="notify">
-                                </ul>
-                              </li>
-                            </ul>
-                          </li>
-          <!--Terminando barra de notificaciones-->
                           @include('adminlte::partials.menu-item-user')
                     </ul>
                 </div>
@@ -105,7 +73,9 @@
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-
+                 @if(session()->get('utype') == "assistant")
+                        @include('assistant.picklistComponent')
+                   @endif
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
                     @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
@@ -143,9 +113,14 @@
         <footer class="main-footer" id="footerw">
             @yield('footer')
         </footer>
+    <!-- divs of tools doctor in menu-item-user -->
+
+                 @include('adminlte::partials.menu-item-tools');
+
+    <!-- End divs of tools doctor in menu-item-user -->
     </div>
     <!-- ./wrapper -->
-      
+
 @stop
 
 @section('adminlte_js')

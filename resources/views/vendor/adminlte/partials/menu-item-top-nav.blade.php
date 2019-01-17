@@ -1,3 +1,4 @@
+
 @if (is_array($item))
     <li class="{{ $item['top_nav_class'] }}">
         <a href="{{ $item['href'] }}"

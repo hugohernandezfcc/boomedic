@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'Boomedic',
+    'title' => 'Isco',
 
     'title_prefix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Boome</b>dic',
+    'logo' => '<b>Isco</b>',
 
-    'logo_mini' => '<b>Bo</b>c',
+    'logo_mini' => '<b>Isco</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -91,6 +91,8 @@ return [
     'login_url'            => 'login',
     'register_doctor_url'  => 'medicalRegister',
     'register_url'         => 'register',
+    'custom_url'           => 'boomedic:', 
+
 
     /*
     |--------------------------------------------------------------------------
@@ -192,5 +194,7 @@ return [
     'empty-box'            => 'images/empty-box.png',
     'empty-calendar'       => 'images/empty-calendar.png',
     'empty-house'          => 'images/house-no.png',
+    'empty-message'        => 'images/empty-message.png',
+    'marker-doc'           => 'images/icono_doc_verde.png',
 
 ];

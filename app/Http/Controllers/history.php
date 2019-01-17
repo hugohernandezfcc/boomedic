@@ -30,16 +30,16 @@ class history extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-
+       $user = User::find(Auth::id());
        $count = Session(['history' => '7']);
        $i= 0;
 
-       while($this->test($count) == "null")
+       while($this->historyHelper($count, Auth::id()) == "null")
        {
         $i++;
           $count = session()->get('history') + 7;
           Session(['history' => $count]);
-          $new = $this->test($count);
+          $new = $this->historyHelper($count, Auth::id());
             if($new != "null"){
                 break;
             }
@@ -49,7 +49,6 @@ class history extends Controller
        }
      if($i > 0){
        if($new == "null"){
-         $user = User::find(Auth::id());
            $array1 = collect();
            $array2 = collect();
            $array3 = collect();
@@ -72,15 +71,30 @@ class history extends Controller
                             'array6'     => $array6,
                             'arraynow'   => $arraynow,
                             'mode'       => 'null',
-                            'title'      => 'históricos (en los últimos 6 meses)'
                          ]
                          );
        }else{
-        return $new;
+          $data = $new;
+          return view('history', [
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
+                            'date'      => $user->created_at
+                           ]
+                           )->with($data);
       }
     }else{
-      return $this->test($count);
-    }
+      $data = $this->historyHelper($count, Auth::id());
+          return view('history',[
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
+                            'date'      => $user->created_at
+                           ]
+                           )->with($data);
+      }
     }
 
     /**
@@ -90,14 +104,15 @@ class history extends Controller
      */
 
     public function moredays(){
+     $user = User::find(Auth::id());
       $count = session()->get('history') + 7;
        $i = 0;
-       while($this->test($count) == "null")
+       while($this->historyHelper($count, Auth::id()) == "null")
        {
           $i++;
           $count = session()->get('history') + 7;
           Session(['history' => $count]);
-          $new = $this->test($count);
+          $new = $this->historyHelper($count, Auth::id());
             if($new != "null"){
                 break;
             }
@@ -107,7 +122,7 @@ class history extends Controller
        }
      if($i > 0){
        if($new == "null"){
-         $user = User::find(Auth::id());
+
            $array1 = collect();
            $array2 = collect();
            $array3 = collect();
@@ -130,35 +145,102 @@ class history extends Controller
                             'array6'      => $array6,
                             'arraynow'    => $arraynow,
                             'mode'        => 'null',
-                            'title'       => 'más históricos'
                          ]
                          );
        }else{
-        return $new;
+        $data = $new;
+          return view('history',[
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
+                            'date'      => $user->created_at
+                           ]
+                           )->with($data);
       }
     }else{
-      return $this->test($count);
+      $data = $this->historyHelper($count, Auth::id());
+          return view('history',[
+                            'userId'     => $user->id,
+                            'username'   => $user->username,
+                            'name'       => $user->name,
+                            'photo'      => $user->profile_photo,
+                            'date'      => $user->created_at
+                           ]
+                           )->with($data);
+        }
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function iframe($id){
+
+       $count = Session(['history' => '7']);
+       $i= 0;
+
+       while($this->historyHelper($count, $id) == "null")
+       {
+        $i++;
+          $count = session()->get('history') + 7;
+          Session(['history' => $count]);
+          $new = $this->historyHelper($count, $id);
+            if($new != "null"){
+                break;
+            }
+            if($i == 25){
+                break;
+            }
+       }
+     if($i > 0){
+       if($new == "null"){
+         $user = User::find($id);
+           $array1 = collect();
+           $array2 = collect();
+           $array3 = collect();
+           $array4 = collect();
+           $array5 = collect();
+           $array6 = collect();
+           $arraynow = collect();
+          return [
+                            'array2'     => $array2,
+                            'array1'     => $array1,
+                            'array3'     => $array3,
+                            'array4'     => $array4,
+                            'array5'     => $array5,
+                            'array6'     => $array6,
+                            'arraynow'   => $arraynow,
+                            'mode'       => 'null',
+                         ];
+       }else{
+          return $new;
+      }
+    }else{
+      $data = $this->historyHelper($count, Auth::id());
+          return $data;
+      }
     }
 
 
-    protected function test($count){
-      $user = User::find(Auth::id());
+    public function historyHelper($count, $userid){
+      $user = User::find($userid);
 
        $sumDays = $count;
        Session(['history' => $sumDays]);
        Session(['history2' => Carbon::now()->subDays($sumDays)->format('d-m-Y')]);
        $varnewnow = Carbon::now()->subDays($sumDays);
 
-        $dateUser = DB::table('users')->where('id', Auth::id())
+        $dateUser = DB::table('users')->where('id', $user->id)
            ->where( 'updated_at', '>',  Carbon::now()->subDays($sumDays))
             ->select('id','created_at','updated_at')->get();
 
-        $dateSupport = DB::table('support_tickets')->where('userId', Auth::id())
+        $dateSupport = DB::table('support_tickets')->where('userId', $user->id)
            ->where( 'created_at', '>',  Carbon::now()->subDays($sumDays))
            ->select('id','created_at','updated_at','ticketDescription')->get();
 
-        $datePayment = DB::table('paymentsmethods')->where('owner', Auth::id())
+        $datePayment = DB::table('paymentsmethods')->where('owner', $user->id)
            ->where( 'created_at', '>', Carbon::now()->subDays($sumDays))
            ->select('id','created_at','updated_at','provider','cardnumber')->get();
 
@@ -166,7 +248,7 @@ class history extends Controller
          $dateAppointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
-           ->where('medical_appointments.user', Auth::id())
+           ->where('medical_appointments.user', $user->id)
            ->where( 'medical_appointments.created_at', '>', Carbon::now()->subDays($sumDays))
            ->select('medical_appointments.id','medical_appointments.created_at','medical_appointments.updated_at','medical_appointments.user_doctor','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.latitude', 'labor_information.longitude')->get();
 
@@ -265,7 +347,7 @@ class history extends Controller
             if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 6)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 6)->format('d-m-Y')){
                 $array6[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==  Carbon::now()->subDays($tot)->format('d-m-Y')){
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==  Carbon::now()->format('d-m-Y')){
                 $arraynow[] = $items;
             }
            }
@@ -273,25 +355,17 @@ class history extends Controller
                        return "null";
                 }
                 else{
-
-                       return  view('history',
-                         [
-                            'userId'       => $user->id,
-                            'username'     => $user->username,
-                            'name'         => $user->name,
-                            'photo'        => $user->profile_photo,
-                            'date'         => $user->created_at,
-                            'array2'       => $array2,
-                            'array1'       => $array1,
-                            'array3'       => $array3,
-                            'array4'       => $array4,
-                            'array5'       => $array5,
-                            'array6'       => $array6,
-                            'arraynow'     => $arraynow,
-                            'mode'         => 'null',
-                            'title'        => 'más históricos'
-                         ]
-                         );
+                    $data = [
+                                'array2'       => $array2,
+                                'array1'       => $array1,
+                                'array3'       => $array3,
+                                'array4'       => $array4,
+                                'array5'       => $array5,
+                                'array6'       => $array6,
+                                'arraynow'     => $arraynow,
+                                'mode'         => 'finish'
+                             ];
+                       return $data; 
                     }   
     }
 

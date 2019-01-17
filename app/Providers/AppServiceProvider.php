@@ -10,7 +10,6 @@ use Jenssegers\Agent\Agent;
 use View;
 use Auth;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -116,6 +115,8 @@ class AppServiceProvider extends ServiceProvider
                                         'icon' => ''
                                     ]);
                     }else{
+                        $assistant = DB::table('assistant')->where('user_assist', Auth::id())->get();
+                        if(count($assistant) == 0){
 
                         $menusInfo = DB::table('menus')
                                         ->where('to', 'Patient' )
@@ -141,6 +142,34 @@ class AppServiceProvider extends ServiceProvider
                                 }
                             }
                         }
+                                }else{
+
+                                        Session(['utype' => 'assistant']); 
+                                        $menusInfo = DB::table('menus')
+                                                        ->where('to', 'Assistant' )
+                                                        ->orWhere('to', 'Both')->orderBy('order')
+                                                        ->get();
+
+                                        for ($i=0; $i < $menusInfo->count(); $i++) { 
+                                            if($menusInfo[$i]->typeitem == 'section' ){
+                                                # Se agrega la sección
+                                                $event->menu->add( $menusInfo[$i]->text );
+                                                
+                                                for ($o=0; $o < $menusInfo->count(); $o++) { 
+                                                    if($menusInfo[$o]->parent == $menusInfo[$i]->id ){
+
+                                                        # Se agregan los items de la sección.
+                                                        $event->menu->add([
+                                                            'text'   => $menusInfo[$o]->text,
+                                                            'url'    => $menusInfo[$o]->url,
+                                                            'icon'   => $menusInfo[$o]->icon,
+                                                            'active' => [$menusInfo[$o]->url, explode('/', $menusInfo[$o]->url)[0] . '/*']
+                                                        ]);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                }
                     }
                     }
                 } 

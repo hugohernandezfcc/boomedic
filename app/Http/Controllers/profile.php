@@ -15,12 +15,14 @@ use Image;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Mail;
+//use Events;
+//use App\Events\EventName;
 
 
 class profile extends Controller
 {
 
-     use SendsPasswordResetEmails;
+    use SendsPasswordResetEmails;
     /**
      * Create a new controller instance.
      *
@@ -70,6 +72,7 @@ class profile extends Controller
      */
     public function show($id)
     {
+      //event(new EventName('rebbeca.goncalves@doitcloud.consulting'));
         $users = DB::table('users')->where('id', Auth::id() )->get();
         $family = DB::table('family')
             ->join('users', 'family.activeUser', '=', 'users.id')
@@ -82,7 +85,7 @@ class profile extends Controller
         if($users[0]->profile_photo != null)
          array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
             else{
-                array_push( $nodes, ['name' => 'Yo', 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png?'. Carbon::now()->format('h:i'), 'id' => '0']);
+                array_push( $nodes, ['name' => 'Yo', 'photo' => asset('profile-42914_640.png').'?'. Carbon::now()->format('h:i'), 'id' => '0']);
             }
           for($i = 1; $i < 2; $i++){
                 array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
@@ -98,17 +101,38 @@ class profile extends Controller
             if($family[$i]->profile_photo != null){
                 array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
                   }else {
-                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => 'https://s3.amazonaws.com/abiliasf/profile-42914_640.png', 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
+                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => asset('profile-42914_640.png') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
                   }
             }
           }
     //Json que guarda datos de familiares para generar externalidad//   
+
+
+        #Code HDHM
+        $question = DB::table('questions_clinic_history')
+            ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+            ->where('answers_clinic_history.question','!=', null)
+            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
+            ->get();
+
+        //dd($question); 
+
+        $answer;
+
+        for ($i=0; $i < count($question); $i++) { 
+            if ($question[$i]->question == "¿Está actualmente tomando algún fármaco con prescripción?") {
+                $answer = $question[$i]->parent_answer;
+                break;
+            }
+        }
+
 
         return view('profile', [
                 
                  /** SYSTEM INFORMATION */
 
                 'userId'        => Auth::id(),
+
 
                 /** INFORMATION USER */
 
@@ -121,7 +145,7 @@ class profile extends Controller
                 'username'      => $users[0]->username,
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
-                'date'         => $users[0]->created_at,
+                'date'          => $users[0]->created_at,
 
                 /** PERSONAL INFORMATION */
 
@@ -131,8 +155,8 @@ class profile extends Controller
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
                 'updated_at'    => $users[0]->updated_at,
-                'title'         => 'No se ha agregado dirección',
-
+                'created_at'    => $users[0]->created_at,
+                'current_prescription'    => $answer,
                 /** ADDRESS FISICAL USER  */
 
                 'country'       => (   empty($users[0]->country)        ) ? '' : $users[0]->country, 
@@ -164,6 +188,11 @@ class profile extends Controller
         }   
     }
 
+    public function select($id){
+      Session(['asdr' => $id]);
+      return response()->json(session()->get('asdr')); 
+
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -173,6 +202,22 @@ class profile extends Controller
     public function edit($status){
 
         $users = DB::table('users')->where('id', Auth::id() )->get();
+
+        $question = DB::table('questions_clinic_history')
+            ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+            ->where('answers_clinic_history.question','!=', null)
+            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
+            ->get();
+
+        $answer;
+
+        for ($i=0; $i < count($question); $i++) { 
+            if ($question[$i]->question == "¿Está actualmente tomando algún fármaco con prescripción?") {
+                $answer = $question[$i]->parent_answer;
+                break;
+            }
+        }
+
 
         return view('profile', [
 
@@ -192,7 +237,7 @@ class profile extends Controller
                 'age'           => $users[0]->age,
                 'photo'         => $users[0]->profile_photo,
                 'date'         => $users[0]->created_at,
-
+                'updated_at'    => $users[0]->updated_at,
                 /** PERSONAL INFORMATION */
 
                 'gender'        => $users[0]->gender,
@@ -200,7 +245,8 @@ class profile extends Controller
                 'scholarship'   => $users[0]->scholarship,
                 'maritalstatus' => $users[0]->maritalstatus,
                 'mobile'        => $users[0]->mobile,
-
+                'current_prescription'    => $answer,
+                'created_at'    => $users[0]->created_at,
                 /** ADDRESS FISICAL USER  */
 
                 'country'       => (   empty($users[0]->country)        ) ? '' : $users[0]->country, 
@@ -284,7 +330,7 @@ class profile extends Controller
         Storage::disk('s3')->put( $id.'temporal.jpg',  (string) $img, 'public');
         $filename = $id.'temporal.jpg';
         $path = Storage::cloud()->url($filename);
-        $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
+        $path2= 'https://s3.amazonaws.com/'. env('S3_BUCKET') .'/'. $filename;
 
        
         $user->profile_photo = $path2;   
@@ -309,7 +355,7 @@ class profile extends Controller
         imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
             $targ_w,$targ_h,$request->w,$request->h);
         $filename = $id.'.jpg';
-        $path2= 'https://s3.amazonaws.com/abiliasf/'. $filename;
+        $path2= 'https://s3.amazonaws.com/'. env('S3_BUCKET') .'/'. $filename;
         
         ob_start();
         imagejpeg($dst_r);
@@ -322,7 +368,7 @@ class profile extends Controller
          Session(['val' => 'false']);
        
         $user->profile_photo = $path2;   
-        Storage::disk('s3')->delete('https://s3.amazonaws.com/abiliasf/'.$user->id.'temporal.jpg');
+        Storage::disk('s3')->delete('https://s3.amazonaws.com/'. env('S3_BUCKET') .'/'.$user->id.'temporal.jpg');
         if($user->save())
             return redirect('/user/edit/complete');
     }

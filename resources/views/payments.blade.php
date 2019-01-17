@@ -44,11 +44,13 @@
 						<!-- Here ends the code for the alert -->
 	@if($mode == 'listPaymentMethods')
 			@if(count($cards) == 0)			
-			  @include('empty.emptyData')
-          	       <script type="text/javascript">
-          	       	  $('.buttonEmpty').css('display','inline');
-          	       	  $('.spanEmpty').css('display','inline');
-          	       </script>
+                                        @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'buttom',
+                                              'title'  => 'métodos de pago',
+                                              'icon'   => 'adminlte.empty-box'
+                                            ]
+                                          )
             @else
 
             @include('headerprofile')
@@ -358,11 +360,13 @@
 	</div>
 
 			              	@if(count($transactions) < 1)
-			              	       @include('empty.emptyData')
-			              	       <script type="text/javascript">
-			              	       	  $('.buttonEmpty').css('display','none');
-			              	       	  $('.spanEmpty').css('display','none');
-			              	       </script>
+                                        @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'not_buttom',
+                                              'title'  => 'histórico de transacciones',
+                                              'icon'   => 'adminlte.empty-calendar'
+                                            ]
+                                          )
 			              	@else
 	<div class="box">
 	  	<div class="box-header with-border">
@@ -401,31 +405,29 @@
 				             <div class="row">
 				             	<div class="col-sm-1"></div>
 			                	<div class="col-sm-4">
-			                			<div class="col-sm-6" align="right"><b>Id Paypal:</b></div>
+			                			<div class="col-sm-6" align="left"><b>Id Paypal:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $cardnumber }}</div>
-			                		</div>
+			                	</div>
 			                	<div class="col-sm-4">
-			                			<div class="col-sm-3" align="right"><b>Email:</b></div>
+			                			<div class="col-sm-3" align="left"><b>Email:</b></div>
 			                			<div class="col-sm-9" align="left">{{ $paypal_email }}</div>
 			                	</div>
-			                </div>		
-			                <br/>
-			                <div class="row">
-			                <div class="col-sm-1"></div> 
-			                <div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="right"><b>Proveedor:</b></div>
-			                            <div class="col-sm-6" align="left"><i class="fa fa-cc-paypal" style="font-size: 25px;"></i></div>
-			                		</div>
+			                	<div class="col-sm-4">
+			                			<div class="col-sm-3" align="left"><b>Proveedor:</b></div>
+			                			<div class="col-sm-9" align="left"><i class="fa fa-cc-paypal" style="font-size: 25px;"></i></div>
 			                	</div>
-			              </div><br/>  </div>	  	
+			                </div>		
+			                <br/> 
+			            </div>	  	
 	</div>
 		@if(count($transactions) < 1)
-			  @include('empty.emptyData')
-          	       <script type="text/javascript">
-          	       	  $('.buttonEmpty').css('display','none');
-          	       	  $('.spanEmpty').css('display','none');
-          	       </script>
+                                        @include('empty.emptyData', 
+                                            [
+                                              'emptyc' => 'not_buttom',
+                                              'title'  => 'histórico de transacciones',
+                                              'icon'   => 'adminlte.empty-calendar'
+                                            ]
+                                          )
 			   @else
 	<div class="box">
 	  	<div class="box-header with-border">

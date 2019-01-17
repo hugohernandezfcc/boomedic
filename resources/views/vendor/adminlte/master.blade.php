@@ -13,7 +13,7 @@
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/bootstrap/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
@@ -380,11 +380,24 @@ span.round-tab:hover {
             padding-left: 0px !important;
         }
 
-            .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
 
-                background-color: #333;
-                border-color: #333;
-            }
+            background-color: #333;
+            border-color: #333;
+        }
+        .none {
+          display: none;
+        }
+        .pointer{
+         cursor:pointer;
+        }
+        .cutMess{
+        width:60%;
+        text-overflow:ellipsis;
+        white-space:nowrap; 
+        overflow:hidden; 
+        }
+
 </style>
 
 
@@ -412,18 +425,191 @@ span.round-tab:hover {
 <script src="{{ asset('js/GoogleLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInRegister.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.33&key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
-
-
-
+  <p id="power"></p>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>-->
 <script type="text/javascript">
 
+          //Function for minutes appointments set interval dinamic
+            function minutes(){
+            var x = document.getElementsByClassName("minutes");
+              for (var i = 0; i < x.length; i++) {
+                 if(x[i].innerHTML > 1){
+                    var tot =parseInt(x[i].innerHTML) - 1;
+                    x[i].innerHTML = tot;
+                 }
+              }
+            }
+
+            //Ajax function call aware no complete
+            function sendAware(id){
+                            $.ajax({
+                                    type: "GET",    
+                                    url: "{{ url('HomeController/listpatients2') }}/"+ id, 
+                                    success: function(result){
+                                        $('.modal').modal('toggle');
+                                        panelDr();
+
+                      }
+                    });
+            }
+
+            function agend(){
+              window.location.href = "{{ url('drAppointments/redirecting/index') }}";
+            }
+            function panelDr(){
+                var doc = "@php echo session()->get('utype'); @endphp";
+              if(doc == "doctor"){          
+              $.ajax({
+                                    type: "GET",    
+                                    url: "{{ url('HomeController/listpatients') }}", 
+                                    success: function(result2){
+                                  if(result2 == "listo"){
+                                    console.log(result2);
+                                       $('#stateCite').html('');
+                                       $('#stateCite2').show();
+                                       $('#drAlert').removeClass('animated');
+                                       $('#drAlert').addClass('label-default');
+                                       $('#futureCites').html('');
+                                       $('#futureCites2').show();
+                                       $('#futureCites').removeClass('timeline');
+                                  }else{    
+                                  console.log(result2);
+                                  $('#futureCites').addClass('timeline');
+                                  $('#stateCite').html('');
+                                  $('#futureCites').html('<li class="time-label none" id="yesterday"><span class="bg-gray">Mañana</span></li><li class="time-label none" id="moreYesterday"><span class="bg-gray">Pasado mañana</span></li><li class="time-label none" id="more"><span class="bg-gray">El resto de la semana</span></li><li><i class="fa fa-clock-o bg-gray" onclick="agend();"></i></li>');
+                                   $('#tool').html('');
+
+                      ///Function for cites of day         
+                     var now = moment().format("MM/DD/YYYY HH:mm");
+             
+                   if(result2[0] != null && result2[0].length > 0){
+                     $('#numberAppo').html(result2[0].length);
+                     $('#stateCite2').hide();
+                     $('#drAlert').addClass('label-warning');
+                     $('#drAlert').addClass('animated');
+                     var array = new Array();
+                      for(var g =0; g < result2[0].length; g++){
+                                   var gender = result2[0][g]['gender'];
+                                       if(gender == 'female')
+                                          gender = 'Femenino';
+                                       if(gender == 'male')
+                                          gender = 'Masculino';
+
+                                var com = moment(result2[0][g]['when']).format("MM/DD/YYYY HH:mm");
+                               if(now < com){
+                                  var past = 0;
+                                  var tim = moment.utc(moment(com).diff(moment(now))).format("HH:mm");
+                                  var timp = tim.split(":");
+                                  array.push(timp[1]);
+                                } else {
+                                  var past = 1;
+                                 var tim = moment.utc(moment(now).diff(moment(com))).format("HH:mm");
+                                }
 
 
+                         if(result2[0][g]['status'] == 'No completed'){  
+                                    $('#stateCite').append('<li><a class="pointer"><i class="menu-icon fa fa-calendar-times-o bg-red"></i><button type="button" class="close" data-dismiss="li" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +'" onclick=" $(this).parent().parent().fadeOut(1000);">×</button><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
 
+                                                                   $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Detalle de cita cancelada</h4></div><div class="modal-body"><div align="center"><img src="'+ result2[0][g]['profile_photo'] +'" class="img-circle" alt="User Image" style="height: 80px;"><br>xxxxxxxxxxxxxxxxxxxxxxx<br><button class="btn btn-secondary btn-flat" onclick="sendAware('+ result2[0][g]['id'] +')">Enterado</button></div></div></div></div></div>');
+                                  }
+                       else{      
+
+                              $('#tool').append('<div class="modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog modal-sm modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Información general de la cita</h4></div><div class="modal-body"><ul class="nav nav-stacked" id="normal"><div align="center"><img src="'+ result2[0][g]['profile_photo'] +'" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br><li><a ><label class="text-muted">Nombre: </label> '+ result2[0][g]['name'] +'</a></li><li><a><label class="text-muted">Edad: </label> '+ result2[0][g]['age'] +'</a></li><li><a><label class="text-muted">Fecha: </label> '+ result2[0][g]['when'] +'</a></li><li id="buttondetail"><form action="{{ url("doctor/viewPatient/") }}/'+ result2[0][g]['did'] +'" method="get" id="form_profile">{{ csrf_field() }}<button type="submit" class="btn btn-secondary btn-block btn-flat">Detalle de paciente</button></form></li></ul><br></div></div></div>');    
+
+                         if(result2[0][g]['status'] == 'Taked'){  
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p></div></a></li>');
+                                  }
+                         if(result2[0][g]['status'] == 'Registered'){  
+
+                                    var res = tim.split(":");
+                                      if(res[0] == '00'){
+                                        var ico = res[1];
+                                        var ico2 = 'min';
+                                        var min = 1;
+                                      }else{
+                                       var ico = '1'; 
+                                       var ico2 = 'H';
+                                       var min = 0;
+                                      }
+                                if(past == 1){
+                                   if(min == 1){
+                                  $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon bg-yellow" style="font-size: 11px;">-<span class="minutes">'+ ico +'</span>'+ ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                }else{
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon bg-yellow" style="font-size: 11px;">-' + ico + ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                }
+
+                                    }else{
+                                      if(min == 1){
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon bg-green" style="font-size: 11px;"><span class="minutes">'+ ico +'</span>'+ ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+                                      }else{
+                                    $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon bg-green" style="font-size: 11px;">+' + ico + ico2 +'</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
+
+                                      }
+                                    }
+                                  }
+                                }
+                                }
+                              }else{
+                               $('#numberAppo').html('0'); 
+                                $('#stateCite2').show();
+                                $('#drAlert').removeClass('animated');
+                                $('#drAlert').addClass('label-default');
+                              }
+
+                      //Function for future cites 
+                      if(result2[1] != null && result2[1].length > 0){
+                        $('#futureCites2').hide();
+                        $('#futureCites').addClass('timeline');
+                        var yesterday = moment().add(1, 'day').format("MM/DD/YYYY");
+                        var more = moment().add(2, 'day').format("MM/DD/YYYY");      
+                       for(var h =0; h < result2[1].length; h++){
+                                     var gender = result2[1][h]['gender'];
+                                           if(gender == 'female')
+                                              gender = 'Femenino';
+                                           if(gender == 'male')
+                                              gender = 'Masculino';
+
+                                     var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
+                            if(yesterday == when){
+                              $('#yesterday').removeClass('none');
+                              $('#yesterday').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+
+                            }
+                            if(more == when){
+                              $('#moreYesterday').removeClass('none');
+                              $('#moreYesterday').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                            }    
+                            if(when > more){
+                              $('#more').removeClass('none');
+                              $('#more').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                            }         
+
+                                   }  
+                                 }else{
+                                  $('#futureCites').removeClass('timeline');
+                                  $('#futureCites').html('');
+                                  $('#futureCites2').show();
+                                 }  
+                               }
+                               if($('.minutes').length > 0){
+                                  setInterval(minutes, 60000);
+                               }
+                               var totalTime = parseInt(array[0]) * 60000;
+                               if(totalTime > 0)
+                               {setTimeout(function(){ timePanel(totalTime); }, totalTime); console.log('setTimeout: ' + totalTime);}
+                                else
+                               {setTimeout(function(){ timePanel(totalTime); }, 3600000); console.log('setTimeout: 1h');}
+
+                              } 
+                       });
+              }
+            }
+    
               //Ajax function call notify set timeout
             function notifications(){
+            
               $.ajax(
               {
                 type: "GET",    
@@ -435,6 +621,7 @@ span.round-tab:hover {
                     }else{
                         $('#notN').css("display", "none"); 
                     }
+                    $('#notify').html('');
                   for (var i =0; i < result.length; i++) {
                     if(i == 0){
                     $('#countNot').html('Tiene '+ result.length + ' notificación');
@@ -456,7 +643,9 @@ span.round-tab:hover {
                     type: "GET",    
                     url: "{{ url('HomeController/messages') }}", 
                     success: function(result){
-                            console.log("me ejecuté");
+                            console.log(result);
+                    if(result.length > 0){
+                        $('#newMess').html('');
                       for (var o =0; o < result.length; o++) {
                                 if(o == 0){
                                      $('#countMes').html('Tiene '+ result.length + ' mensaje no leido');
@@ -473,9 +662,15 @@ span.round-tab:hover {
                                 var url = "{{ url('') }}" + "/clinicHistory/index"; 
                             } 
 
-                          $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
+                          $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle"></div><h4 style="text-align: left; font-size: 9px;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["title"] +'</p></a></li>');
                             }
-                             setTimeout(function(){ repeatNot(); },60000);
+                          }else{
+                               $('#countMes').html('');
+                               $('#newMess').html('<li><div class="col-sm-6" align="center"><img src="{{ asset(config("adminlte.empty-message")) }}" height="60" width="60"></div><div class="col-sm-6 text-muted" align="center"><h5>No tienes mensajes nuevos</h5><br></div></li>');
+                          }
+                            
+                             setTimeout(function(){ repeatNot(); },120000);
+                            
                       },
                         error: function (request, status, error) {
                             //window.location.href = "{{ url('') }}";
@@ -485,7 +680,19 @@ span.round-tab:hover {
         function repeatNot(){
             notifications();
         }
+        function timePanel(time){
+          console.log('ya paso el tiempo '+ time);
+            panelDr();
+        }
+
     $(function () {
+       /* var socket =  io.connect('http://localhost:6379');
+        socket.on('testone:App\\Events\\Event', function(data){
+                //you append that data to DOM, so user can see it
+                //$('#power').text(data.username)
+                console.log('socket');
+            });*/
+
             var par = "@php echo session()->get('parental'); @endphp";
       if(!par){
           $("body").removeClass("skin-black-light");
@@ -501,6 +708,7 @@ span.round-tab:hover {
         $("#au").css("color", "white");
       }
                 notifications();
+                panelDr();
 
         $.fn.datepicker.dates['es'] = {
         days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
