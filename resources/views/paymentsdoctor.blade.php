@@ -56,10 +56,10 @@
 				                <thead>
 				                    <tr>
 				                    	 <th></th>
-				                        <th class="all">Nro. Transacción</th>
+				                        <th class="desktop">Nro. Transacción</th>
 				                        <th class="desktop">Fecha</th>
 				                        <th class="desktop">Lugar</th>
-				                        <th class="desktop">Paciente</th>
+				                        <th class="all">Paciente</th>
 				                        <th class="desktop">Monto</th>
 				                        <th class="desktop">Estado</th>
 				                    </tr>
