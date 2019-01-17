@@ -128,7 +128,7 @@
 		  			<div class="callout callout-success">
 		                <h4>Ya casi estamos listos {{ $firstname }} !!!</h4>
 
-		                <p>Confirma y completa la información que esta debajo</p>
+		                <p>Confirma y completa la información que esta debajo </p>
 		            </div>
 	    		@endif
 	    		<div class="row">
