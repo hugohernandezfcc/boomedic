@@ -492,9 +492,9 @@ span.round-tab:hover {
                      var array = new Array();
                       for(var g =0; g < result2[0].length; g++){
                                       if(result2[0][g]['profile_photo'] == null)
-                                        photo = "{{ asset('profile-42914_640.png') }}";
+                                      var  photo = "{{ asset('profile-42914_640.png') }}";
                                       else
-                                        photo = result2[0][g]['profile_photo'];
+                                      var photo = result2[0][g]['profile_photo'];
                                            
                                    var gender = result2[0][g]['gender'];
                                        if(gender == 'female')
@@ -572,9 +572,9 @@ span.round-tab:hover {
                        for(var h =0; h < result2[1].length; h++){
 
                                       if(result2[1][h]['profile_photo'] == null)
-                                        photo = "{{ asset('profile-42914_640.png') }}";
+                                       var photo = "{{ asset('profile-42914_640.png') }}";
                                       else
-                                        photo = result2[1][h]['profile_photo'];
+                                       var photo = result2[1][h]['profile_photo'];
 
                                      var gender = result2[1][h]['gender'];
                                            if(gender == 'female')

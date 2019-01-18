@@ -283,6 +283,10 @@
                      resp = optionhour[y].start;
                      resp2 = optionhour[y].user;
                      resp3 = optionhour[y].color;
+           if(optionhour[y].photo == null)
+             var photo = "{{ asset('profile-42914_640.png') }}";
+           else  
+              var photo = optionhour[y].photo;       
 
           if(optionhour[y].type == "1"){
                 if( optionhour[y].color == "gray"){
@@ -292,7 +296,7 @@
 						    start:  resp,
 						    end:    optionhour[y].end['date'], 
 						    color: '#bfbfbf',
-						    photo: optionhour[y].photo,
+						    photo: photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
                 uid: optionhour[y].uid,
@@ -307,7 +311,7 @@
 						    start:  resp, 
 						    end:    optionhour[y].end['date'], 
 						    color: '#5ad6f5',   
-						    photo: optionhour[y].photo,
+						    photo: photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
                 uid: optionhour[y].uid,
@@ -322,7 +326,7 @@
 						    start:  resp, 
 						    end:    optionhour[y].end['date'], 
 						    color: 'green',   
-						    photo: optionhour[y].photo,
+						    photo: photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
                 uid: optionhour[y].uid,
