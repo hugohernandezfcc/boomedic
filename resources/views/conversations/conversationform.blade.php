@@ -45,6 +45,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                   <form action="#" method="post">
+                    {{ csrf_field() }}
                     <div class="input-group">
                       <input type="text" name="message" placeholder="Escriba su mensaje..." class="form-control textbody" autocomplete="off" disabled="true">
                       <span class="input-group-btn">

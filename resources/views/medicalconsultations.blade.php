@@ -420,7 +420,7 @@
                                                           <span class="liright cut"><i class="fa fa-cc-paypal" style="font-size: 14px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
                                                      @endif 
                                                         </a></li>
-                                                        <li><a href="javascript:void(0)" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
+                                                        <li><a data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
  
                                                       </ul>
                                                       </div>
@@ -430,6 +430,7 @@
                                                 </div>
                                               </div> 
                                             </div>
+
                                                               <div class="modal-chat fade2 modal" id="chat-{{ $appo->id }}">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
@@ -444,10 +445,12 @@
                                                                                 <input type="hidden" class="mname" value="Cita médica">
                                                                                 <input type="hidden" class="mtable" value="medical_appointments">
                                                                              @include('conversations.conversationform')
+
                                                                          </div>
                                                                           </div>  
                                                                        </div>
                                                                     </div>  
+
 
                                  @endif 
                                                          @if($loop->iteration > 2)
