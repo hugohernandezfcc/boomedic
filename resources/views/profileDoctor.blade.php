@@ -138,6 +138,7 @@
 	                <div align="center">
 	                   	<img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">
 	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
+	                   		{{ csrf_field() }}
 		                   	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
 							<input type="hidden" id="w" name="w" />
@@ -196,12 +197,13 @@
 			    	@endif 
 		    			
 		    		</div>
-						<div class="col-sm-6" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+						<div class="col-sm-6" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">{{ csrf_field() }}</form></div>
 	    		</div>
 	    		<!-- Photo Zone. -->
 	    		<br/>
 
 	    		<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="formDr">
+	    			{{ csrf_field() }}
 				<div id="modalAlert" class="modal fade" role="dialog">
 				    <div class="modal-dialog">
 			            <div class="modal-content">
@@ -718,6 +720,7 @@
 							@endif
 									<div class="pull-right">
 									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
+									   		{{ csrf_field() }}
 									   	<button type="submit" class="btn btn-secondary btn-xs"><i class="fa fa-plus"></i> Agregar consultorio</button>
 									   </form>
 									</div>
@@ -766,6 +769,7 @@
                         </div>
                              <div class="register-box-body">
                              <form action="{{ url('/doctor/saveAssistant') }}" id="formulatio" method="post">
+                             	{{ csrf_field() }}
                                 <div class="form-group has-feedback">	
  								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required autocomplete="off">
  								<span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -1280,6 +1284,7 @@ $('#target').Jcrop({
 					   </div>
 
 					<form action="/doctor/laborInformationNext/{{ $userId }}" method="post" class="form-horizontal" id="form1" style="display:none">
+						{{ csrf_field() }}
 		<div class="modal fade" id="modal-default1" style="display: none;">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -1408,6 +1413,7 @@ $('#target').Jcrop({
 
 				<!-- form for map -->
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
+			{{ csrf_field() }}
 			<div class="modal fade" id="modal-default" style="display: none;">
           <div class="modal-dialog">
             <div class="modal-content">

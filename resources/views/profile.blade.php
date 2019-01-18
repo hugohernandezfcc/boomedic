@@ -135,6 +135,7 @@
 											<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">	
 					                    
 					                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
+					                           	{{ csrf_field() }}
 					                           	<input type="hidden" id="x" name="x">
 												<input type="hidden" id="y" name="y">
 												<input type="hidden" id="w" name="w">
@@ -188,7 +189,7 @@
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">{{ csrf_field() }}</form></div>
 	    	</div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}

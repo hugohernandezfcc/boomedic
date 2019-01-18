@@ -14,6 +14,7 @@
 @section('content')
 <div align="right">
 <form name='classic' method='POST' action=''>
+	{{ csrf_field() }}
 <select id="filter" name="filter">
 	<option value="{{ \Carbon\Carbon::now()->format('M/Y') }}" selected>{{ \Carbon\Carbon::now()->format('M/Y') }}</option>
 	<option value="all">Todos</option>

@@ -82,6 +82,7 @@
 				</div>
 				</div>
 			  	    <form action="{{ url('/workboardDr/create') }}/{{ $work }}" method="post" class="form-horizontal" id="formwork">
+			  	    	{{ csrf_field() }}
 				<div class="form-group col-sm-12" id="menu1">
 
 			  		

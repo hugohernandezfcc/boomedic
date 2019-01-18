@@ -27,11 +27,13 @@
 		  	<div class="row">
 		  		<div class="col-md-6">
 		  			<form action="{{asset('/privacyStatement/Aceptar')}}" method="post" id="aceptar">
+		  				{{ csrf_field() }}
 						<button type="submit" class="btn btn-secondary btn-block btn-flat" >Aceptar</button>
 					</form>
 		  		</div>
 		  		<div class="col-md-6">
 		  			<form action="{{asset('/privacyStatement/Rechazar')}}" method="post" id="Rechazar">
+		  				{{ csrf_field() }}
 						<button type="submit" class="btn btn-default btn-block btn-flat">Rechazar</button>
 					</form>
 		  		</div>

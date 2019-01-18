@@ -81,6 +81,7 @@
                             <div class="modal-body">
 
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/cancelAppointment') }}" method="post">
+                              {{ csrf_field() }}
                             	<input type="hidden" name="idcancel" id="idcancel">
                             	<ul class="nav nav-stacked">
                             		<li><div class="form-check">
@@ -120,6 +121,7 @@
                         </div>
                             <div class="modal-body">
                              <form enctype="multipart/form-data" action="{{ url('drAppointments/editTimeBlocker') }}" method="post">
+                              {{ csrf_field() }}
                               <ul class="nav nav-stacked">
                                 <input type="hidden" name="idEdit" id="idEdit">
                                 <li>Título <input type="text" class="form-control" name="titleEdit" id="titleEdit"></li>
@@ -149,6 +151,7 @@
                         </div>
                             <div class="modal-body" style="padding-top: 0px !important">
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event1">
+                              {{ csrf_field() }}
                               <input type="hidden" name="title" id="title">
                               <input type="hidden" name="color" id="color1">
                               <input type="hidden" name="t" id="t" value="1">
@@ -171,6 +174,7 @@
                               </ul>   
                           </form> 
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event2" style="display: none;">
+                              {{ csrf_field() }}
                               <input type="hidden" name="t" id="t" value="2">
                               <input type="hidden" name="title" id="title2">
                               <input type="hidden" name="color" id="color2">

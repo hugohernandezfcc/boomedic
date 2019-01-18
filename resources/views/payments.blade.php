@@ -84,6 +84,7 @@
 	                <tbody>
 	                    @foreach ($cards as $card)
 	                           <tr><form action="PaymentAuthorizations" method="post" id="regForm">
+	                           	{{ csrf_field() }}
 	                        	@if($card->provider != 'Paypal')
 	                        	<td></td>
 	                        	<td>
