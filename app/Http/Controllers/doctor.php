@@ -800,8 +800,13 @@ class doctor extends Controller
             ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name')
             ->get();
         $nodes = array();
-    //Json que guarda datos de familiares para generar externalidad//           
+    //Json que guarda datos de familiares para generar externalidad//       
+       if($users[0]->profile_photo != null)    
           array_push( $nodes, ['name' => $users[0]->firstname, 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
+       else
+         array_push( $nodes, ['name' => $users[0]->firstname, 'photo' => asset('profile-42914_640.png'). '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
+
+
           for($i = 0; $i < count($family); $i++){
             $session = "0";
             if($family[$i]->relationship == "son" && $family[$i]->age < 18){
