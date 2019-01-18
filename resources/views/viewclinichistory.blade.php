@@ -194,15 +194,15 @@
 
 
  @if($mode == 'null')  
-        <div class="box">
+
                           @include('empty.emptyData', 
                               [
                                 'emptyc' => 'not_buttom',
-                                'title'  => 'Expedientes',
+                                'title'  => 'expedientes',
                                 'icon'   => 'adminlte.empty-box'
                               ]
                             )
-        </div>
+
 @endif
 
 @if($mode == 'finish')
@@ -210,19 +210,14 @@
     <!-- Main content -->
 
         @if(count($test_result) == 0 && $count == 0)
-             <div class="box-header direct-chat">
-              <h3 class="box-title">
-                        Expediente médico
-               </h3>
-          <br><br>
             @include('empty.emptyData', 
                               [
                                 'emptyc' => 'not_buttom',
-                                'title'  => 'Expedientes',
+                                'title'  => 'expedientes',
                                 'icon'   => 'adminlte.empty-box'
                               ]
-                            )
-            </div>                         
+                            )     
+
         @else 
      <div class="box-header direct-chat header1" id="header1">
               <h3 class="box-title">

@@ -130,32 +130,8 @@
             @endif
             <!-- END timeline item -->
             <!-- timeline item -->
-            @if($items['Type'] == 'Payment Method')
-            <li class="payment">
-              <i class="fa fa-credit-card-alt bg-yellow"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-
-                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
-
-                <div class="timeline-body">
-                	<b>Tipo:</b> {{ $items['typemethod'] }} 
-                	@if( $items['typemethod'] != 'Paypal')
-	                @php
-	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
-	                            echo $cardfin;
-
-	                @endphp
-
-	                @endif
-                </div>
-              </div>
-            </li>
-            @endif
-
             @endforeach
-         @endif   
+         @endif 
  		@if(!$array1->isEmpty())
             <!-- 1 day -->
 			<li class="time-label">
@@ -215,31 +191,7 @@
               </div>
             </li>
             @endif
-            <!-- END timeline item -->
-            <!-- timeline item -->
-            @if($items['Type'] == 'Payment Method')
-            <li class="payment">
-              <i class="fa fa-credit-card-alt bg-yellow"></i>
 
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-
-                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
-
-                <div class="timeline-body">
-                	<b>Tipo:</b> {{ $items['typemethod'] }} 
-                	@if( $items['typemethod'] != 'Paypal')
-	                @php
-	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
-	                            echo $cardfin;
-
-	                @endphp
-
-	                @endif
-                </div>
-              </div>
-            </li>
-            @endif
 
             @endforeach
          @endif 
@@ -303,31 +255,7 @@
               </div>
             </li>
             @endif
-            <!-- END timeline item -->
-            <!-- timeline item -->
-            @if($items['Type'] == 'Payment Method')
-            <li class="payment">
-              <i class="fa fa-credit-card-alt bg-yellow"></i>
 
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-
-                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
-
-                <div class="timeline-body">
-                	<b>Tipo:</b> {{ $items['typemethod'] }} 
-                	@if( $items['typemethod'] != 'Paypal')
-	                @php
-	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
-	                            echo $cardfin;
-
-	                @endphp
-
-	                @endif
-                </div>
-              </div>
-            </li>
-            @endif
 
             @endforeach
          @endif   
@@ -394,29 +322,6 @@
             @endif
             <!-- END timeline item -->
             <!-- timeline item -->
-            @if($items['Type'] == 'Payment Method')
-            <li class="payment">
-              <i class="fa fa-credit-card-alt bg-yellow"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-
-                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
-
-                <div class="timeline-body">
-                	<b>Tipo:</b> {{ $items['typemethod'] }} 
-                	@if( $items['typemethod'] != 'Paypal')
-	                @php
-	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
-	                            echo $cardfin;
-
-	                @endphp
-
-	                @endif
-                </div>
-              </div>
-            </li>
-            @endif
 
             @endforeach
          @endif  
@@ -483,29 +388,6 @@
             @endif
             <!-- END timeline item -->
             <!-- timeline item -->
-            @if($items['Type'] == 'Payment Method')
-            <li class="payment">
-              <i class="fa fa-credit-card-alt bg-yellow"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-
-                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
-
-                <div class="timeline-body">
-                	<b>Tipo:</b> {{ $items['typemethod'] }} 
-                	@if( $items['typemethod'] != 'Paypal')
-	                @php
-	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
-	                            echo $cardfin;
-
-	                @endphp
-
-	                @endif
-                </div>
-              </div>
-            </li>
-            @endif
 
             @endforeach
          @endif  
@@ -569,30 +451,6 @@
             @endif
             <!-- END timeline item -->
             <!-- timeline item -->
-            @if($items['Type'] == 'Payment Method')
-            <li class="payment">
-              <i class="fa fa-credit-card-alt bg-yellow"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-
-                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
-
-                <div class="timeline-body">
-                	<b>Tipo:</b> {{ $items['typemethod'] }} 
-                	@if( $items['typemethod'] != 'Paypal')
-	                @php
-	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
-	                            echo $cardfin;
-
-	                @endphp
-
-	                @endif
-                </div>
-              </div>
-            </li>
-            @endif
-
             @endforeach
          @endif  
 
@@ -657,29 +515,6 @@
             @endif
             <!-- END timeline item -->
             <!-- timeline item -->
-            @if($items['Type'] == 'Payment Method')
-            <li class="payment">
-              <i class="fa fa-credit-card-alt bg-yellow"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-
-                <h3 class="timeline-header"><a href="javascript:void(0)">Se agregó un método de Pago</a></h3>
-
-                <div class="timeline-body">
-                	<b>Tipo:</b> {{ $items['typemethod'] }} 
-                	@if( $items['typemethod'] != 'Paypal')
-	                @php
-	                            $cardfin = substr_replace($items['cardnumber'], '••••••••••••', 0, 12);
-	                            echo $cardfin;
-
-	                @endphp
-
-	                @endif
-                </div>
-              </div>
-            </li>
-            @endif
 
             @endforeach
          @endif  
@@ -700,16 +535,6 @@
 
 		$("#userli").click(function () {
 
-			var x = document.getElementsByClassName("support");
-			var i;
-			for (i = 0; i < x.length; i++) {
-			    x[i].style.display = 'none';
-			}
-			var y = document.getElementsByClassName("payment");
-			var i;
-			for (i = 0; i < y.length; i++) {
-			    y[i].style.display = 'none';
-			}
 
 			var z = document.getElementsByClassName("appointment");
 			var i;
@@ -730,51 +555,9 @@
 			    }
 			});
 
-		$("#support").click(function () {
-	
-
-			var x = document.getElementsByClassName("userli");
-			var i;
-			for (i = 0; i < x.length; i++) {
-			    x[i].style.display = 'none';
-			}
-			var y = document.getElementsByClassName("payment");
-			var i;
-			for (i = 0; i < y.length; i++) {
-			    y[i].style.display = 'none';
-			}
-
-			var z = document.getElementsByClassName("appointment");
-			var i;
-			for (i = 0; i < z.length; i++) {
-			    z[i].style.display = 'none';
-			}
-
-			var u = document.getElementsByClassName("support");
-			var i;
-			for (i = 0; i < u.length; i++) {
-			    u[i].style.display = 'block';
-			}
-				if(!u[0]){
-			    	document.getElementById("response").innerHTML = "No hay tickets de soporte registrados...";
-			    }
-			   else {
-			    	document.getElementById("response").innerHTML = " ";
-			    }
-			});  
 
 		$("#appointment").click(function () {
 	
-			var x = document.getElementsByClassName("support");
-			var i;
-			for (i = 0; i < x.length; i++) {
-			    x[i].style.display = 'none';
-			}
-			var y = document.getElementsByClassName("payment");
-			var i;
-			for (i = 0; i < y.length; i++) {
-			    y[i].style.display = 'none';
-			}
 
 			var z = document.getElementsByClassName("userli");
 			var i;
@@ -796,46 +579,11 @@
 
 			});  
 
-		$("#payment").click(function () {
-	
-			var x = document.getElementsByClassName("support");
-			var i;
-			for (i = 0; i < x.length; i++) {
-			    x[i].style.display = 'none';
-			}
-			var y = document.getElementsByClassName("userli");
-			var i;
-			for (i = 0; i < y.length; i++) {
-			    y[i].style.display = 'none';
-			}
 
-			var z = document.getElementsByClassName("appointment");
-			var i;
-			for (i = 0; i < z.length; i++) {
-			    z[i].style.display = 'none';
-			}
-			var u = document.getElementsByClassName("payment");
-			var i;
-
-			for (i = 0; i < u.length; i++) {
-			    u[i].style.display = 'block';
-
-			}
-				if(!u[0]){
-			    	document.getElementById("response").innerHTML = "No hay métodos de pagos en el historial";
-			    }	else{
-			    	document.getElementById("response").innerHTML = " ";
-			    }
-
-			});  
 
 			$("#all").click(function () {
 	
-			var x = document.getElementsByClassName("support");
-			var i;
-			for (i = 0; i < x.length; i++) {
-			    x[i].style.display = 'block';
-			}
+
 			var y = document.getElementsByClassName("userli");
 			var i;
 			for (i = 0; i < y.length; i++) {
@@ -846,11 +594,6 @@
 			var i;
 			for (i = 0; i < z.length; i++) {
 			    z[i].style.display = 'block';
-			}
-			var u = document.getElementsByClassName("payment");
-			var i;
-			for (i = 0; i < u.length; i++) {
-			    u[i].style.display = 'block';
 			}
 				
 			    	document.getElementById("response").innerHTML = " ";

@@ -585,10 +585,14 @@
 		         	    	</div>
 		         	    </div>
 		         	    <div class="tab-pane" id="clinichistory">
+		         	    	<div class="box-body" >
 		         	    			  @include('viewclinichistory')
+		         	    	</div>		  
 		         	    </div> 	
 		         	    <div class="tab-pane" id="history">
+		         	    	<div class="box-body" >
 		         	    	 	       @include('historyView')
+		         	    	</div> 	       
 		         	    </div> 	
 		         	</div>
 		        </div>
