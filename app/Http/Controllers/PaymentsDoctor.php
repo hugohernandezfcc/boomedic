@@ -41,7 +41,6 @@ class PaymentsDoctor extends Controller
                         ->join('users', 'medical_appointments.user', '=', 'users.id')
                         ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
                         ->where('medical_appointments.user_doctor', '=', $user->id)
-                        ->whereMonth('transaction_bank.created_at','=', Carbon::now()->month)
                         ->select('transaction_bank.*', 'users.name', 'medical_appointments.when', 'labor_information.workplace as place')
                         ->get();
 

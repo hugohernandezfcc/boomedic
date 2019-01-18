@@ -187,17 +187,13 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        $menu = menu::find('15');
-        $menu->url = 'PaymentsDr/show';
-     /*   $menu = new menu();
-        $menu->text = 'Agenda';
-        $menu->to = 'assistant';
-        $menu->typeitem = 'item';
-        $menu->order = '2';
-        $menu->parent = '1';
-        $menu->icon = 'calendar-check-o';
-        $menu->url = 'drAppointments/redirecting/index';*/
-        if($menu->save()) 
+        $users = DB::table('users')->where('profile_photo','=', "profile-42914_640.png")->get();
+        foreach($users as $u){
+            $user = User::find($u->id);
+            $user->profile_photo = null;
+            $user->save();
+    }
+
        return redirect('medicalconsultations');
     }
 

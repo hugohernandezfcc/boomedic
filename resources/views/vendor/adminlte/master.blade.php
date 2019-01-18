@@ -483,7 +483,7 @@ span.round-tab:hover {
 
                       ///Function for cites of day         
                      var now = moment().format("MM/DD/YYYY HH:mm");
-             
+                      
                    if(result2[0] != null && result2[0].length > 0){
                      $('#numberAppo').html(result2[0].length);
                      $('#stateCite2').hide();
@@ -491,6 +491,11 @@ span.round-tab:hover {
                      $('#drAlert').addClass('animated');
                      var array = new Array();
                       for(var g =0; g < result2[0].length; g++){
+                                      if(result2[0][g]['profile_photo'] == null)
+                                        photo = "{{ asset('profile-42914_640.png') }}";
+                                      else
+                                        photo = result2[0][g]['profile_photo'];
+                                           
                                    var gender = result2[0][g]['gender'];
                                        if(gender == 'female')
                                           gender = 'Femenino';
@@ -512,11 +517,11 @@ span.round-tab:hover {
                          if(result2[0][g]['status'] == 'No completed'){  
                                     $('#stateCite').append('<li><a class="pointer"><i class="menu-icon fa fa-calendar-times-o bg-red"></i><button type="button" class="close" data-dismiss="li" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +'" onclick=" $(this).parent().parent().fadeOut(1000);">×</button><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
 
-                                                                   $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Detalle de cita cancelada</h4></div><div class="modal-body"><div align="center"><img src="'+ result2[0][g]['profile_photo'] +'" class="img-circle" alt="User Image" style="height: 80px;"><br>xxxxxxxxxxxxxxxxxxxxxxx<br><button class="btn btn-secondary btn-flat" onclick="sendAware('+ result2[0][g]['id'] +')">Enterado</button></div></div></div></div></div>');
+                                                                   $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Detalle de cita cancelada</h4></div><div class="modal-body"><div align="center"><img src="'+ photo +'" class="img-circle" alt="User Image" style="height: 80px;"><br>xxxxxxxxxxxxxxxxxxxxxxx<br><button class="btn btn-secondary btn-flat" onclick="sendAware('+ result2[0][g]['id'] +')">Enterado</button></div></div></div></div></div>');
                                   }
                        else{      
 
-                              $('#tool').append('<div class="modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog modal-sm modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Información general de la cita</h4></div><div class="modal-body"><ul class="nav nav-stacked" id="normal"><div align="center"><img src="'+ result2[0][g]['profile_photo'] +'" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br><li><a ><label class="text-muted">Nombre: </label> '+ result2[0][g]['name'] +'</a></li><li><a><label class="text-muted">Edad: </label> '+ result2[0][g]['age'] +'</a></li><li><a><label class="text-muted">Fecha: </label> '+ result2[0][g]['when'] +'</a></li><li id="buttondetail"><form action="{{ url("doctor/viewPatient/") }}/'+ result2[0][g]['did'] +'" method="get" id="form_profile">{{ csrf_field() }}<button type="submit" class="btn btn-secondary btn-block btn-flat">Detalle de paciente</button></form></li></ul><br></div></div></div>');    
+                              $('#tool').append('<div class="modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog modal-sm modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Información general de la cita</h4></div><div class="modal-body"><ul class="nav nav-stacked" id="normal"><div align="center"><img src="'+ photo +'" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br><li><a ><label class="text-muted">Nombre: </label> '+ result2[0][g]['name'] +'</a></li><li><a><label class="text-muted">Edad: </label> '+ result2[0][g]['age'] +'</a></li><li><a><label class="text-muted">Fecha: </label> '+ result2[0][g]['when'] +'</a></li><li id="buttondetail"><form action="{{ url("doctor/viewPatient/") }}/'+ result2[0][g]['did'] +'" method="get" id="form_profile">{{ csrf_field() }}<button type="submit" class="btn btn-secondary btn-block btn-flat">Detalle de paciente</button></form></li></ul><br></div></div></div>');    
 
                          if(result2[0][g]['status'] == 'Taked'){  
                                     $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p></div></a></li>');
@@ -565,6 +570,12 @@ span.round-tab:hover {
                         var yesterday = moment().add(1, 'day').format("MM/DD/YYYY");
                         var more = moment().add(2, 'day').format("MM/DD/YYYY");      
                        for(var h =0; h < result2[1].length; h++){
+
+                                      if(result2[1][h]['profile_photo'] == null)
+                                        photo = "{{ asset('profile-42914_640.png') }}";
+                                      else
+                                        photo = result2[1][h]['profile_photo'];
+
                                      var gender = result2[1][h]['gender'];
                                            if(gender == 'female')
                                               gender = 'Femenino';
@@ -574,16 +585,16 @@ span.round-tab:hover {
                                      var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
                             if(yesterday == when){
                               $('#yesterday').removeClass('none');
-                              $('#yesterday').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#yesterday').after('<li><a class="pointer"><img src="'+ photo +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
 
                             }
                             if(more == when){
                               $('#moreYesterday').removeClass('none');
-                              $('#moreYesterday').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#moreYesterday').after('<li><a class="pointer"><img src="'+ photo +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
                             }    
                             if(when > more){
                               $('#more').removeClass('none');
-                              $('#more').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#more').after('<li><a class="pointer"><img src="'+ photo +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
                             }         
 
                                    }  
