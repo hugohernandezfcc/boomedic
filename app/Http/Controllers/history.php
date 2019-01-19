@@ -104,12 +104,14 @@ class history extends Controller
      */
 
     public function moredays(){
-     $user = User::find(Auth::id());
-      $count = session()->get('history') + 7;
-       $i = 0;
+       $user = User::find(Auth::id());
+       $count = session()->get('history') + 7;
+       Session(['history' => $count]);
+       $i= 0;
+
        while($this->historyHelper($count, Auth::id()) == "null")
        {
-          $i++;
+        $i++;
           $count = session()->get('history') + 7;
           Session(['history' => $count]);
           $new = $this->historyHelper($count, Auth::id());
@@ -347,7 +349,12 @@ class history extends Controller
             if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 6)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 6)->format('d-m-Y')){
                 $array6[] = $items;
             }
-            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==  Carbon::now()->format('d-m-Y')){
+            if($tot == 0)
+             if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==  Carbon::now()->format('d-m-Y')){
+                $arraynow[] = $items;
+            }
+            else
+            if(Carbon::parse($items['created_at'])->format('d-m-Y') ==   Carbon::now()->subDays($tot + 7)->format('d-m-Y') || Carbon::parse($items['updated_at'])->format('d-m-Y') ==  Carbon::now()->subDays($tot + 7)->format('d-m-Y')){
                 $arraynow[] = $items;
             }
            }
