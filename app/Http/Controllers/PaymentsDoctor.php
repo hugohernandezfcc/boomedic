@@ -31,7 +31,7 @@ class PaymentsDoctor extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(){
+    public function show(Request $request){
         $user = User::find(Auth::id());
         $countowed = 0;
         $countpaid = 0;

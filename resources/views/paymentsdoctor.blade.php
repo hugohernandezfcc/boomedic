@@ -16,9 +16,13 @@
 	<div align="right" class="col-md-3 col-sm-6 col-xs-6 pull-right">
 		<form name='classic' method='POST' action=''>
 			{{ csrf_field() }}
-			<select id="filter" name="filter" class="form-control">
+			<select id="filter" name="filter" class="form-control" onchange=''>
 				@foreach($dates as $dat)
-				<option value="{{ $dat['when'] }}" {{ $dat['when'] == $dat['when'] ? 'selected' : '' }}>{{ $dat['when'] }}</option>
+				@if($loop->first)
+				<option value="{{ $dat['when'] }}" selected>{{ $dat['when'] }}</option>
+				@else
+				<option value="{{ $dat['when'] }}">{{ $dat['when'] }}</option>
+				@endif
 				@endforeach
 				<option value="all">Todos</option>
 
@@ -78,47 +82,13 @@
 				                        <th class="desktop">Estado</th>
 				                    </tr>
 				                </thead>
-
-				                <tbody>
-					     	@foreach ($transaction->sortByDesc('when') as $tr)
-
-					     	@if(\Carbon\Carbon::parse($tr->when)->format('M/Y') == "Jan/2019")
-
-					     		@if($tr->type_doctor == 'Owed')
-					     		<script>
-					     			var mount = '{{ $tr->amount }}';
-					     			var count = parseFloat(document.getElementById('owed').innerHTML) + parseFloat(mount);
-					     			document.getElementById('owed').innerHTML = count.toFixed(2);	
-					     		</script>
-								     <tr>
-								     	<td></td>
-						             	<td style="color: red;">{{ $tr->transaction }} <br/></td>
-						             	<td style="color: red;">{{ $tr->when }}</td>
-						             	<td style="color: red;">{{ $tr->place }}</td>
-						             	<td style="color: red;">{{ $tr->name }}</td>
-						             	<td style="color: red;">{{ $tr->amount }}</td>
-						             	<td>Pendiente</td>
-						             </tr>
-						        @endif  
-						        @if($tr->type_doctor == 'Paid')
-						        <script>
-					     			var mount = '{{ $tr->amount }}';
-					     			var countpaid = parseFloat(document.getElementById('paid').innerHTML) + parseFloat(mount);
-					     			document.getElementById('paid').innerHTML = countpaid.toFixed(2);	
-					     		</script>
-								     <tr>
-								     	<td></td>
-						             	<td style="color: green;">{{ $tr->transaction }} <br/></td>
-						             	<td style="color: green;">{{ $tr->when }}</td>
-						             	<td style="color: green;">{{ $tr->place }}</td>
-						             	<td style="color: green;">{{ $tr->name }}</td>
-						             	<td style="color: green;">{{ $tr->amount }}</td>
-						             	<td>Pagado</td>
-						             </tr>
-						        @endif      
-						      @endif    
-			             	@endforeach
-								<tbody>
+				                @php $r =  "<script> innerHTML: document.getElementById('filter'); </script>"; @endphp
+				                	    @include('table-paymentsdr', 
+                                            [
+                                              'filter' => $r,
+                                              'transaction'  => $transaction
+                                            ]
+                                          )
 				    	 </table>
 	  </div>
 </div>	 
