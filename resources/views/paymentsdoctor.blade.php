@@ -82,13 +82,30 @@
 				                        <th class="desktop">Estado</th>
 				                    </tr>
 				                </thead>
-				                @php $r =  "<script> innerHTML: document.getElementById('filter'); </script>"; @endphp
-				                	    @include('table-paymentsdr', 
+<script language='JavaScript'>
+var myVal = document.getElementById('filter').value; 
+function getvariable(val) {
+var variable = eval(val);
+document.write(variable);
+}
+</script>
+@php
+function obtenervarjavascript($js_var_name) {
+$x = "<script language='JavaScript'> getvariable('" . $js_var_name . "'); </script>";
+return $x;
+}
+
+$filter = obtenervarjavascript("myVal");
+@endphp
+<center>{!! $filter !!}</center><br>
+										@include('table-paymentsdr', 
                                             [
-                                              'filter' => $r,
+                                              'filter' => '01/2019',
                                               'transaction'  => $transaction
                                             ]
                                           )
+
+
 				    	 </table>
 	  </div>
 </div>	 
