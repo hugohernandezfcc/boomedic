@@ -35,21 +35,26 @@ class PaymentsDoctor extends Controller
         $user = User::find(Auth::id());
         $countowed = 0;
         $countpaid = 0;
+        $dates = collect();
 
         $transactions = DB::table('transaction_bank')
                         ->join('medical_appointments', 'transaction_bank.appointments', '=', 'medical_appointments.id')
                         ->join('users', 'medical_appointments.user', '=', 'users.id')
                         ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
                         ->where('medical_appointments.user_doctor', '=', $user->id)
+                        ->orderBy('medical_appointments.when', 'desc')
                         ->select('transaction_bank.*', 'users.name', 'medical_appointments.when', 'labor_information.workplace as place')
                         ->get();
 
                         foreach ($transactions as $tr) {
+                            $dates->push(['when' => Carbon::parse($tr->when)->format('m/Y')]);
                             if($tr->type_doctor == 'Owed')
                                 $countowed = $countowed + $tr->amount;
                             if($tr->type_doctor == 'Paid')
                                 $countpaid = $countpaid + $tr->amount;
                         }
+                        $dates = $dates->unique('when');
+
         
         return view('paymentsdoctor', [
                 'userId'        => $user->id,
@@ -59,7 +64,8 @@ class PaymentsDoctor extends Controller
                 'date'          => $user->created_at,
                 'transaction'   => $transactions,
                 'paid'          => number_format($countpaid,2),
-                'owed'          => number_format($countowed,2)
+                'owed'          => number_format($countowed,2),
+                'dates'         => $dates
             ]
         );
     }

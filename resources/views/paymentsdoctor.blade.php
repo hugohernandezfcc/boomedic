@@ -12,15 +12,20 @@
 @stop
 
 @section('content')
-<div align="right">
-<form name='classic' method='POST' action=''>
-	{{ csrf_field() }}
-<select id="filter" name="filter">
-	<option value="{{ \Carbon\Carbon::now()->format('M/Y') }}" selected>{{ \Carbon\Carbon::now()->format('M/Y') }}</option>
-	<option value="all">Todos</option>
-</select>	
-</form>
-</div>
+<div class="row">
+	<div align="right" class="col-md-3 col-sm-6 col-xs-6 pull-right">
+		<form name='classic' method='POST' action=''>
+			{{ csrf_field() }}
+			<select id="filter" name="filter" class="form-control">
+				@foreach($dates as $dat)
+				<option value="{{ $dat['when'] }}" {{ $dat['when'] == $dat['when'] ? 'selected' : '' }}>{{ $dat['when'] }}</option>
+				@endforeach
+				<option value="all">Todos</option>
+
+			</select>	
+		</form>
+	</div>
+</div><br>
 <div class="row">
 	  	<div class="col-md-6 col-sm-12 col-xs-12">
           <!-- small box -->
@@ -116,5 +121,12 @@
 								<tbody>
 				    	 </table>
 	  </div>
-</div>	  	
+</div>	 
+<script type="text/javascript">
+$(function () {
+            $('select').select2({
+                width: "100%",
+            });
+          });
+</script> 	
 @stop
