@@ -809,28 +809,50 @@ class doctor extends Controller
         $users = DB::table('users')->where('id', $id)->get();
         $family = DB::table('family')
             ->join('users', 'family.activeUser', '=', 'users.id')
-            ->where('family.parent', $id)
-            ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name')
+            ->where('family.parent', $users[0]->id)
+            ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name', 'users.gender')
             ->get();
         $nodes = array();
-    //Json que guarda datos de familiares para generar externalidad//       
-       if($users[0]->profile_photo != null)    
-          array_push( $nodes, ['name' => $users[0]->firstname, 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
-       else
-         array_push( $nodes, ['name' => $users[0]->firstname, 'photo' => asset('profile-42914_640.png'). '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
+            //Json que guarda datos de familiares para generar externalidad//
+           if($users[0]->profile_photo != '')
+              $photou = $users[0]->profile_photo;
+            else{
+                 if($users[0]->gender == "male")
+                    $photou = asset('profile-42914_640.png');
+                 if($users[0]->gender == "female")
+                    $photou = asset('profile-female.png');
+                 if($users[0]->gender == "other" || $users[0]->gender == '')
+                    $photou = asset('profile-other.png');
+              }
 
+              if(count($family) < 1){
+                        array_push( $nodes, ['name' => 'Yo', 'photo' => $photou.'?'. Carbon::now()->format('h:i'), 'id' => '0']);
 
-          for($i = 0; $i < count($family); $i++){
-            $session = "0";
-            if($family[$i]->relationship == "son" && $family[$i]->age < 18){
-                $session = "1";
-            } 
-            if($family[$i]->profile_photo != null){
-                array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
-                  }else {
-                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => asset('profile-42914_640.png') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
+                  for($i = 1; $i < 2; $i++){
+                        array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
+                    }
+              }   else {
+                       
+                  array_push( $nodes, ['name' => 'Yo', 'photo' => $photou. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
+                  for($i = 0; $i < count($family); $i++){
+                    $session = "0";
+                    if($family[$i]->relationship == "son" && $family[$i]->age < 18){
+                        $session = "1";
+                    } 
+                    if($family[$i]->profile_photo != null){
+                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
+                          }else {
+                            if($family[$i]->gender == "male")
+                              $photof = asset('profile-42914_640.png');
+                            if($family[$i]->gender == "female")
+                              $photof = asset('profile-female.png');
+                            if($family[$i]->gender == "other" || $family[$i]->gender == '')
+                              $photof = asset('profile-other.png');
+
+                                array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $photof , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
+                          }
+                    }
                   }
-            }
     //Json que guarda datos de familiares para generar externalidad//   
 
 
