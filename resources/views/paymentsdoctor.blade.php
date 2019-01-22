@@ -16,7 +16,7 @@
 	<div align="right" class="col-md-3 col-sm-6 col-xs-6 pull-right">
 		<form name='classic' method='POST' action=''>
 			{{ csrf_field() }}
-			<select id="filter" name="filter" class="form-control" onchange='change();'>
+			<select id="filter" name="filter" class="form-control" onchange="change()">
 				@foreach($dates as $dat)
 				@if($loop->first)
 				<option value="{{ $dat['when'] }}" selected>{{ $dat['when'] }}</option>
@@ -85,21 +85,13 @@
 
               <script type="text/javascript">
               function change(){
-
+                $('#paymentmethodtable').dataTable().fnClearTable();
                   var myVal = document.getElementById('filter').value; 
                   function getvariable(val) {
                   var variable = eval(val);
                   document.write(variable);
                   }
-                  @php
-                  function obtenervarjavascript($js_var_name) {
-                  $x = "<script language='JavaScript'> getvariable('" . $js_var_name . "'); </script>";
-                  return $x;
-                  }
-
-                  $filter = obtenervarjavascript("myVal");
-
-                  @endphp
+                  '@php function obtenervarjavascript($js_var_name) { $x = "' + getvariable('" . $js_var_name . "'); '"; return $x; }$filter = obtenervarjavascript("myVal");@endphp'
 										@include('table-paymentsdr', 
                                             [
                                               'filter' => print($filter),
