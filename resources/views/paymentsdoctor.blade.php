@@ -84,45 +84,48 @@
 				                </thead>
 
                            <tbody id="tableon">
-                              @foreach ($transaction->sortByDesc('when') as $tr)
                                 <script>
+                                var transaction = @php echo $transaction->sortByDesc('when'); @endphp;
+                                console.log(transaction);
 
-                                  if("{{ \Carbon\Carbon::parse($tr->when)->format('m/Y') }}" == document.getElementById('filter').value){
+                                for(var z=0; z < transaction.length; z++){
+                                  
+                                    if(transaction[z]['type_doctor'] == 'Owed'){
                                    
-                                    if("{{ $tr->type_doctor }}" == 'Owed'){
-                                   
-                                      var mount = '{{ $tr->amount }}';
+                                      var mount = transaction[z]['amount'];
                                       var count = parseFloat(document.getElementById('owed').innerHTML) + parseFloat(mount);
                                       document.getElementById('owed').innerHTML = count.toFixed(2); 
                                    
                                        $('#tableon').append('<tr><td></td>'
-                                          +'<td style="color: red;">{{ $tr->transaction }} <br/></td>'
-                                          +'<td style="color: red;">{{ $tr->when }}</td>'
-                                          +'<td style="color: red;">{{ $tr->place }}</td>'
-                                          +'<td style="color: red;">{{ $tr->name }}</td>'
-                                          +'<td style="color: red;">{{ $tr->amount }}</td>'
+                                          +'<td style="color: red;">'+ transaction[z]['transaction'] +'<br/></td>'
+                                          +'<td style="color: red;">'+ transaction[z]['when'] +'</td>'
+                                          +'<td style="color: red;">'+ transaction[z]['place'] +'</td>'
+                                          +'<td style="color: red;">'+ transaction[z]['name'] +'</td>'
+                                          +'<td style="color: red;">'+ transaction[z]['amount'] +'</td>'
                                           +'<td>Pendiente</td></tr>');
                                     }
                                     
-                                    if("{{ $tr->type_doctor }}" == 'Paid'){
+                                    if(transaction[z]['type_doctor'] == 'Paid'){
                                    
-                                      var mount = '{{ $tr->amount }}';
+                                      var mount = transaction[z]['amount'];
                                       var countpaid = parseFloat(document.getElementById('paid').innerHTML) + parseFloat(mount);
                                       document.getElementById('paid').innerHTML = countpaid.toFixed(2); 
                               
+                                   
                                        $('#tableon').append('<tr><td></td>'
-                                          +'<td style="color: green;">{{ $tr->transaction }} <br/></td>'
-                                          +'<td style="color: green;">{{ $tr->when }}</td>'
-                                          +'<td style="color: green;">{{ $tr->place }}</td>'
-                                          +'<td style="color: green;">{{ $tr->name }}</td>'
-                                          +'<td style="color: green;">{{ $tr->amount }}</td>'
-                                          +'<td>Pagado</td></tr>');
+                                          +'<td style="color: green;">'+ transaction[z]['transaction'] +'<br/></td>'
+                                          +'<td style="color: green;">'+ transaction[z]['when'] +'</td>'
+                                          +'<td style="color: green;">'+ transaction[z]['place'] +'</td>'
+                                          +'<td style="color: green;">'+ transaction[z]['name'] +'</td>'
+                                          +'<td style="color: green;">'+ transaction[z]['amount'] +'</td>'
+                                          +'<td>Pendiente</td></tr>');
                                     
 
                                        }
-                                     }
+                                      }
+                                     
                                     </script> 
-                                  @endforeach
+                                
                                 <tbody>    
 
 				    	 </table>
