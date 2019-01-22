@@ -399,7 +399,16 @@
             <div class="box-body box-profile">
 
             	@if($photo == '')
+            	    @if($gender == 'male') 
 		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
+		    	 	@if($gender == 'female') 
+		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
+		    	 	 @if($gender == 'other' || $gender == '') 
+		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
+		    	 		
 					@else
 						@php 
 						  $imagen = getimagesize($photo);    //Sacamos la información
