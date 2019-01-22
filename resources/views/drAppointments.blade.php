@@ -287,8 +287,14 @@
                      resp = optionhour[y].start;
                      resp2 = optionhour[y].user;
                      resp3 = optionhour[y].color;
-           if(optionhour[y].photo == null)
-             var photo = "{{ asset('profile-42914_640.png') }}";
+           if(optionhour[y].photo == null){
+              if(optionhour[y].gender == 'male')
+                var photo = "{{ asset('profile-42914_640.png') }}";
+              if(optionhour[y].gender == 'female')
+                var photo = "{{ asset('profile-female.png') }}";
+              if(optionhour[y].gender == 'other')
+                var photo = "{{ asset('profile-other.png') }}";
+           }
            else  
               var photo = optionhour[y].photo;       
 
