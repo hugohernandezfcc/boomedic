@@ -491,19 +491,23 @@ span.round-tab:hover {
                      $('#drAlert').addClass('animated');
                      var array = new Array();
                       for(var g =0; g < result2[0].length; g++){
-                                      if(result2[0][g]['profile_photo'] == null)
-                                      var  photo = "{{ asset('profile-42914_640.png') }}";
-                                      else
+                                      var gender = result2[0][g]['gender'];
+                                      if(result2[0][g]['profile_photo'] == null){
+                                        if(gender == 'female'){
+                                           var  photo = "{{ asset('profile-female.png') }}";
+                                           gender = 'Femenino';
+                                         }
+                                        if(gender == 'male'){
+                                           var  photo = "{{ asset('profile-42914_640.png') }}";
+                                           gender = 'Masculino';
+                                         }
+                                        if(gender == 'other'){
+                                           var  photo = "{{ asset('profile-other.png') }}";
+                                           gender = 'Otro';
+                                         } 
+                                      }else
                                       var photo = result2[0][g]['profile_photo'];
                                            
-                                   var gender = result2[0][g]['gender'];
-                                       if(gender == 'female')
-                                          gender = 'Femenino';
-                                       if(gender == 'male')
-                                          gender = 'Masculino';
-                                       if(gender == 'other')
-                                          gender = 'Otro';
-
 
                                 var com = moment(result2[0][g]['when']).format("MM/DD/YYYY HH:mm");
                                if(now < com){
@@ -574,18 +578,22 @@ span.round-tab:hover {
                         var more = moment().add(2, 'day').format("MM/DD/YYYY");      
                        for(var h =0; h < result2[1].length; h++){
 
-                                      if(result2[1][h]['profile_photo'] == null)
-                                       var photo = "{{ asset('profile-42914_640.png') }}";
-                                      else
-                                       var photo = result2[1][h]['profile_photo'];
-
-                                     var gender = result2[1][h]['gender'];
-                                           if(gender == 'female')
-                                              gender = 'Femenino';
-                                           if(gender == 'male')
-                                              gender = 'Masculino';
-                                           if(gender == 'other')
-                                              gender = 'Otro';
+                                      var gender = result2[0][h]['gender'];
+                                      if(result2[0][h]['profile_photo'] == null){
+                                        if(gender == 'female'){
+                                           var  photo = "{{ asset('profile-female.png') }}";
+                                           gender = 'Femenino';
+                                         }
+                                        if(gender == 'male'){
+                                           var  photo = "{{ asset('profile-42914_640.png') }}";
+                                           gender = 'Masculino';
+                                         }
+                                        if(gender == 'other'){
+                                           var  photo = "{{ asset('profile-other.png') }}";
+                                           gender = 'Otro';
+                                         } 
+                                      }else
+                                      var photo = result2[0][h]['profile_photo'];
 
                                      var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
                             if(yesterday == when){
