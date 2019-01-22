@@ -501,11 +501,19 @@
           <div class="box box-default">
             <div class="box-body box-profile">
 
-            	@if($photo == '')
-		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+					@if($photo2 == '')
+	            	    @if($gender == 'male') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	@if($gender == 'female') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	 @if($gender == 'other' || $gender == '') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
 					@else
 						@php 
-						  $imagen = getimagesize($photo);    //Sacamos la información
+						  $imagen = getimagesize($photo2);    //Sacamos la información
 				          $width = $imagen[0];              //Ancho
 				          $height = $imagen[1];  
 
@@ -529,12 +537,12 @@
 				        }
 
 						@endphp
-						<img class="profile-user-img img-responsive img-circle" src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+						<img class="profile-user-img img-responsive img-circle" src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 
               	
 
-              	<h3 class="profile-username text-center">{{ $firstname }}</h3>
+              	<h3 class="profile-username text-center">{{ $firstname2 }}</h3>
 
               	@if($gender == "female")
               		<p class="text-muted text-center">{{ trans('adminlte::adminlte.female') }}</p>

@@ -66,7 +66,7 @@ class doctor extends Controller
         $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
-             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr', 'users.gender')
              ->get();
          if(count($assistant) > 0){
             Session(['utype' => 'assistant']); 
@@ -94,15 +94,21 @@ class doctor extends Controller
             ->join('users', 'assistant.user_assist', '=', 'users.id')
             ->where('assistant.user_doctor', $user->id)
             ->where('assistant.confirmation', true)
-            ->select('assistant.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name')
+            ->select('assistant.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name', 'users.gender')
             ->get();
         $nodes = array();
     //Json que guarda datos de familiares para generar externalidad//
       if(count($assist) < 1){
-        if($user->profile_photo != null)
+        if($user->profile_photo != '')
          array_push( $nodes, ['name' => 'Yo', 'photo' => $user->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
             else{
-                array_push( $nodes, ['name' => 'Yo', 'photo' => asset('profile-42914_640.png') .'?'.  Carbon::now()->format('h:i'), 'id' => '0']);
+                if($user->gender == 'male')
+                    $phot = asset('profile-42914_640.png') ;
+                if($user->gender == 'female')
+                    $phot = asset('profile-female.png') ;
+                if($user->gender == 'other' || $user->gender == '')
+                    $phot = asset('profile-other.png') ;
+                array_push( $nodes, ['name' => 'Yo', 'photo' => $phot .'?'.  Carbon::now()->format('h:i'), 'id' => '0']);
             }
           for($i = 1; $i < 2; $i++){
                 array_push($nodes, ['name' => 'Agregar asistente', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
@@ -114,7 +120,13 @@ class doctor extends Controller
             if($assist[$i]->profile_photo != null){
                 array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => $assist[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
                   }else {
-                        array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => asset('profile-42914_640.png'), 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
+                            if($assist[$i]->gender == 'male')
+                                $photas = asset('profile-42914_640.png') ;
+                            if($assist[$i]->gender == 'female')
+                                $photas = asset('profile-female.png') ;
+                            if($assist[$i]->gender == 'other' || $assist[$i]->gender == '')
+                                $photas = asset('profile-other.png') ;
+                        array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => $photas, 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
                   }
             }
           }
@@ -140,6 +152,7 @@ class doctor extends Controller
                 'username2' => $user->username,
                 'email2'         => $user->email,
                 'name2'          => $user->name,
+                'firstname2'          => $user->name,
                 'photo2'         => $user->profile_photo,
                 'gender'        => $user->gender,
                 'occupation'    => $user->occupation,
