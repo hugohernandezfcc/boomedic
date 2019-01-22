@@ -83,19 +83,59 @@
 				                    </tr>
 				                </thead>
 
+                           <tbody id="tableon">
+                              @foreach ($transaction->sortByDesc('when') as $tr)
+                                <script>
 
-										@include('table-paymentsdr', ['filter' => print("<script>document.getElementById('filter').value</script>"), 'transaction'  => $transaction])
-      
+                                  if("{{ \Carbon\Carbon::parse($tr->when)->format('m/Y') }}" == document.getElementById('filter').value){
+                                   
+                                    if("{{ $tr->type_doctor }}" == 'Owed'){
+                                   
+                                      var mount = '{{ $tr->amount }}';
+                                      var count = parseFloat(document.getElementById('owed').innerHTML) + parseFloat(mount);
+                                      document.getElementById('owed').innerHTML = count.toFixed(2); 
+                                   
+                                       $('#tableon').append('<tr><td></td>'
+                                          +'<td style="color: red;">{{ $tr->transaction }} <br/></td>'
+                                          +'<td style="color: red;">{{ $tr->when }}</td>'
+                                          +'<td style="color: red;">{{ $tr->place }}</td>'
+                                          +'<td style="color: red;">{{ $tr->name }}</td>'
+                                          +'<td style="color: red;">{{ $tr->amount }}</td>'
+                                          +'<td>Pendiente</td></tr>');
+                                    }
+                                    
+                                    if("{{ $tr->type_doctor }}" == 'Paid'){
+                                   
+                                      var mount = '{{ $tr->amount }}';
+                                      var countpaid = parseFloat(document.getElementById('paid').innerHTML) + parseFloat(mount);
+                                      document.getElementById('paid').innerHTML = countpaid.toFixed(2); 
+                              
+                                       $('#tableon').append('<tr><td></td>'
+                                          +'<td style="color: green;">{{ $tr->transaction }} <br/></td>'
+                                          +'<td style="color: green;">{{ $tr->when }}</td>'
+                                          +'<td style="color: green;">{{ $tr->place }}</td>'
+                                          +'<td style="color: green;">{{ $tr->name }}</td>'
+                                          +'<td style="color: green;">{{ $tr->amount }}</td>'
+                                          +'<td>Pagado</td></tr>');
+                                    
+
+                                       }
+                                     }
+                                    </script> 
+                                  @endforeach
+                                <tbody>    
 
 				    	 </table>
 	  </div>
 </div>	 
 <script type="text/javascript">
-$(function () {
-  change();
-            $('select').select2({
-                width: "100%",
-            });
-          });
+    function changeselect(){
+
+    }
+    $(function () {
+                $('select').select2({
+                    width: "100%",
+                });
+              });
 </script> 	
 @stop
