@@ -81,17 +81,18 @@ class profile extends Controller
             ->get();
         $nodes = array();
     //Json que guarda datos de familiares para generar externalidad//
-    //               if($users[0]->gender == "male")
-      $photou = asset('profile-42914_640.png');
-     if($users[0]->gender == "female")
-      $photou = asset('profile-female.png');
-     if($users[0]->gender == "other")
-      $photou = asset('profile-other.png');
+   if($users[0]->profile_photo != '')
+      $photou = $users[0]->profile_photo;
+    else{
+         if($users[0]->gender == "male")
+            $photou = asset('profile-42914_640.png');
+         if($users[0]->gender == "female")
+            $photou = asset('profile-female.png');
+         if($users[0]->gender == "other" || $users[0]->gender == '')
+            $photou = asset('profile-other.png');
+      }
 
       if(count($family) < 1){
-        if($users[0]->profile_photo != null)
-         array_push( $nodes, ['name' => 'Yo', 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
-            else
                 array_push( $nodes, ['name' => 'Yo', 'photo' => $photou.'?'. Carbon::now()->format('h:i'), 'id' => '0']);
 
           for($i = 1; $i < 2; $i++){
@@ -112,8 +113,9 @@ class profile extends Controller
                       $photof = asset('profile-42914_640.png');
                     if($family[$i]->gender == "female")
                       $photof = asset('profile-female.png');
-                    if($family[$i]->gender == "other")
+                    if($family[$i]->gender == "other" || $family[$i]->gender == '')
                       $photof = asset('profile-other.png');
+
                         array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $photof , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
                   }
             }
