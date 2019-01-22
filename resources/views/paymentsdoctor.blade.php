@@ -83,23 +83,9 @@
 				                    </tr>
 				                </thead>
 
-              <script type="text/javascript">
-              function change(){
-                $('#paymentmethodtable').dataTable().fnClearTable();
-                  var myVal = document.getElementById('filter').value; 
-                  function getvariable(val) {
-                  var variable = eval(val);
-                  document.write(variable);
-                  }
-                  '@php function obtenervarjavascript($js_var_name) { $x = "' + getvariable('" . $js_var_name . "'); '"; return $x; }$filter = obtenervarjavascript("myVal");@endphp'
-										@include('table-paymentsdr', 
-                                            [
-                                              'filter' => print($filter),
-                                              'transaction'  => $transaction
-                                            ]
-                                          )
-                  };
-              </script>       
+
+										@include('table-paymentsdr', ['filter' => print("<script>document.getElementById('filter').value</script>"), 'transaction'  => $transaction])
+      
 
 				    	 </table>
 	  </div>
