@@ -16,7 +16,7 @@
 	<div align="right" class="col-md-3 col-sm-6 col-xs-6 pull-right">
 		<form name='classic' method='POST' action=''>
 			{{ csrf_field() }}
-			<select id="filter" name="filter" class="form-control" onchange=''>
+			<select id="filter" name="filter" class="form-control" onchange='change();'>
 				@foreach($dates as $dat)
 				@if($loop->first)
 				<option value="{{ $dat['when'] }}" selected>{{ $dat['when'] }}</option>
@@ -82,35 +82,39 @@
 				                        <th class="desktop">Estado</th>
 				                    </tr>
 				                </thead>
-<script language='JavaScript'>
-var myVal = document.getElementById('filter').value; 
-function getvariable(val) {
-var variable = eval(val);
-document.write(variable);
-}
-</script>
-@php
-function obtenervarjavascript($js_var_name) {
-$x = "<script language='JavaScript'> getvariable('" . $js_var_name . "'); </script>";
-return $x;
-}
 
-$filter = obtenervarjavascript("myVal");
-@endphp
-<center>{!! $filter !!}</center><br>
+              <script type="text/javascript">
+              function change(){
+
+                  var myVal = document.getElementById('filter').value; 
+                  function getvariable(val) {
+                  var variable = eval(val);
+                  document.write(variable);
+                  }
+                  @php
+                  function obtenervarjavascript($js_var_name) {
+                  $x = "<script language='JavaScript'> getvariable('" . $js_var_name . "'); </script>";
+                  return $x;
+                  }
+
+                  $filter = obtenervarjavascript("myVal");
+
+                  @endphp
 										@include('table-paymentsdr', 
                                             [
-                                              'filter' => '01/2019',
+                                              'filter' => print($filter),
                                               'transaction'  => $transaction
                                             ]
                                           )
-
+                  };
+              </script>       
 
 				    	 </table>
 	  </div>
 </div>	 
 <script type="text/javascript">
 $(function () {
+  change();
             $('select').select2({
                 width: "100%",
             });
