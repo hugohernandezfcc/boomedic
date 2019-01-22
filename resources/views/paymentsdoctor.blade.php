@@ -16,7 +16,7 @@
 	<div align="right" class="col-md-3 col-sm-6 col-xs-6 pull-right">
 		<form name='classic' method='POST' action=''>
 			{{ csrf_field() }}
-			<select id="filter" name="filter" class="form-control" onchange="change()">
+			<select id="filter" name="filter" class="form-control" onchange="changeSelect()">
 				@foreach($dates as $dat)
 				@if($loop->first)
 				<option value="{{ $dat['when'] }}" selected>{{ $dat['when'] }}</option>
@@ -85,11 +85,52 @@
 
                            <tbody id="tableon">
                                 <script>
+                                function changeSelect(){
+
+                                  $('#tableon tr').remove(); 
+                                  $('#owed').html('0');
+                                  $('#paid').html('0');
+
                                 var transaction = @php echo $transaction->sortByDesc('when'); @endphp;
-                                console.log(transaction);
 
                                 for(var z=0; z < transaction.length; z++){
+                                  if(document.getElementById('filter').value == 'all'){ 
+                                                if(transaction[z]['type_doctor'] == 'Owed'){
+                                               
+                                                  var mount = transaction[z]['amount'];
+                                                  var count = parseFloat(document.getElementById('owed').innerHTML) + parseFloat(mount);
+                                                  document.getElementById('owed').innerHTML = count.toFixed(2); 
+                                               
+                                                $('#tableon').append('<tr><td></td>'
+                                                      +'<td style="color: red;">'+ transaction[z]['transaction'] +'<br/></td>'
+                                                      +'<td style="color: red;">'+ transaction[z]['when'] +'</td>'
+                                                      +'<td style="color: red;">'+ transaction[z]['place'] +'</td>'
+                                                      +'<td style="color: red;">'+ transaction[z]['name'] +'</td>'
+                                                      +'<td style="color: red;">'+ transaction[z]['amount'] +'</td>'
+                                                      +'<td>Pendiente</td></tr>');
+                                                }
+                                                
+                                                if(transaction[z]['type_doctor'] == 'Paid'){
+                                               
+                                                  var mountpaid = transaction[z]['amount'];
+                                                  var countpaid = parseFloat(document.getElementById('paid').innerHTML) + parseFloat(mountpaid);
+                                                  document.getElementById('paid').innerHTML = countpaid.toFixed(2); 
+                                          
+                                               
+                                                   $('#tableon').append('<tr><td></td>'
+                                                      +'<td style="color: green;">'+ transaction[z]['transaction'] +'<br/></td>'
+                                                      +'<td style="color: green;">'+ transaction[z]['when'] +'</td>'
+                                                      +'<td style="color: green;">'+ transaction[z]['place'] +'</td>'
+                                                      +'<td style="color: green;">'+ transaction[z]['name'] +'</td>'
+                                                      +'<td style="color: green;">'+ transaction[z]['amount'] +'</td>'
+                                                      +'<td>Pendiente</td></tr>');
+                                                
+
+                                                   }
+                                      }else{
                                   
+                                  if(moment(transaction[z]['when']).format("MM/YYYY") == document.getElementById('filter').value){ 
+
                                     if(transaction[z]['type_doctor'] == 'Owed'){
                                    
                                       var mount = transaction[z]['amount'];
@@ -107,8 +148,8 @@
                                     
                                     if(transaction[z]['type_doctor'] == 'Paid'){
                                    
-                                      var mount = transaction[z]['amount'];
-                                      var countpaid = parseFloat(document.getElementById('paid').innerHTML) + parseFloat(mount);
+                                      var mountpaid = transaction[z]['amount'];
+                                      var countpaid = parseFloat(document.getElementById('paid').innerHTML) + parseFloat(mountpaid);
                                       document.getElementById('paid').innerHTML = countpaid.toFixed(2); 
                               
                                    
@@ -123,7 +164,10 @@
 
                                        }
                                       }
-                                     
+
+                                    }
+                                  }
+                                     }
                                     </script> 
                                 
                                 <tbody>    
@@ -132,9 +176,7 @@
 	  </div>
 </div>	 
 <script type="text/javascript">
-    function changeselect(){
-
-    }
+          changeSelect();
     $(function () {
                 $('select').select2({
                     width: "100%",
