@@ -70,7 +70,7 @@
 	  </div> 
 	  <div class="box-body content">
 
-	  					<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
+	  					<table id="paytable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
 				                    <tr>
 				                    	 <th></th>
@@ -82,12 +82,16 @@
 				                        <th class="desktop">Estado</th>
 				                    </tr>
 				                </thead>
+                                       
 
-                           <tbody id="tableon">
-                                <script>
-                                function changeSelect(){
-
-                                  $('#tableon tr').remove(); 
+				    	 </table>
+	  </div>
+</div>	 
+<script type="text/javascript">
+                function changeSelect(){
+                              
+                                  $('#paytable .tbody').remove();
+                                  $('#paytable').append('<tbody class="tbody"></tbody>');
                                   $('#owed').html('0');
                                   $('#paid').html('0');
 
@@ -101,7 +105,7 @@
                                                   var count = parseFloat(document.getElementById('owed').innerHTML) + parseFloat(mount);
                                                   document.getElementById('owed').innerHTML = count.toFixed(2); 
                                                
-                                                $('#tableon').append('<tr><td></td>'
+                                                $('#paytable .tbody').append('<tr><td></td>'
                                                       +'<td style="color: red;">'+ transaction[z]['transaction'] +'<br/></td>'
                                                       +'<td style="color: red;">'+ transaction[z]['when'] +'</td>'
                                                       +'<td style="color: red;">'+ transaction[z]['place'] +'</td>'
@@ -117,7 +121,7 @@
                                                   document.getElementById('paid').innerHTML = countpaid.toFixed(2); 
                                           
                                                
-                                                   $('#tableon').append('<tr><td></td>'
+                                                   $('#paytable .tbody').append('<tr><td></td>'
                                                       +'<td style="color: green;">'+ transaction[z]['transaction'] +'<br/></td>'
                                                       +'<td style="color: green;">'+ transaction[z]['when'] +'</td>'
                                                       +'<td style="color: green;">'+ transaction[z]['place'] +'</td>'
@@ -137,7 +141,7 @@
                                       var count = parseFloat(document.getElementById('owed').innerHTML) + parseFloat(mount);
                                       document.getElementById('owed').innerHTML = count.toFixed(2); 
                                    
-                                       $('#tableon').append('<tr><td></td>'
+                                       $('#paytable .tbody').append('<tr><td></td>'
                                           +'<td style="color: red;">'+ transaction[z]['transaction'] +'<br/></td>'
                                           +'<td style="color: red;">'+ transaction[z]['when'] +'</td>'
                                           +'<td style="color: red;">'+ transaction[z]['place'] +'</td>'
@@ -153,7 +157,7 @@
                                       document.getElementById('paid').innerHTML = countpaid.toFixed(2); 
                               
                                    
-                                       $('#tableon').append('<tr><td></td>'
+                                       $('#paytable .tbody').append('<tr><td></td>'
                                           +'<td style="color: green;">'+ transaction[z]['transaction'] +'<br/></td>'
                                           +'<td style="color: green;">'+ transaction[z]['when'] +'</td>'
                                           +'<td style="color: green;">'+ transaction[z]['place'] +'</td>'
@@ -167,20 +171,51 @@
 
                                     }
                                   }
-                                     }
-                                    </script> 
-                                
-                                <tbody>    
-
-				    	 </table>
-	  </div>
-</div>	 
-<script type="text/javascript">
-          changeSelect();
+                                     }   
     $(function () {
-                $('select').select2({
-                    width: "100%",
-                });
+
+        changeSelect();
+       $('#paytable').DataTable({
+      
+                language: {
+                        'processing':     'Procesando...',
+                        'lengthMenu':     'Mostrar _MENU_ registros',
+                        'zeroRecords':    'No se encontraron resultados',
+                        'emptyTable':     'Ningún dato disponible en esta tabla',
+                        'info':           'Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros',
+                        'infoEmpty':      'Mostrando registros del 0 al 0 de un total de 0 registros',
+                        'infoFiltered':   '(filtrado de un total de _MAX_ registros)',
+                        'infoPostFix':    '',
+                        'search':         'Buscar:',
+                        'url':            '',
+                        'infoThousandsi':  ',',
+                        'loadingRecords': 'Cargando...',
+                        'paginate': {
+                            'first':    'Primero',
+                            'last':     'Último',
+                            'next':     'Siguiente',
+                            'previous': 'Anterior'
+                        },
+                        "aria": {
+                            'sortAscending':  ': Activar para ordenar la columna de manera ascendente',
+                            'sortDescending': ': Activar para ordenar la columna de manera descendente'
+                        }
+                    },
+                'lengthChange': false,
+        responsive: {
+            details: {
+                type: 'column',
+                target: 0
+            }
+        },
+        columnDefs: [ {
+            className: 'control',
+            orderable: false,
+            targets:   0
+        } ]
+            });
+                $('select').select2();
+
               });
 </script> 	
 @stop

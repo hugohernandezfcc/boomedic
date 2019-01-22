@@ -501,6 +501,9 @@ span.round-tab:hover {
                                           gender = 'Femenino';
                                        if(gender == 'male')
                                           gender = 'Masculino';
+                                       if(gender == 'other')
+                                          gender = 'Otro';
+
 
                                 var com = moment(result2[0][g]['when']).format("MM/DD/YYYY HH:mm");
                                if(now < com){
@@ -581,6 +584,8 @@ span.round-tab:hover {
                                               gender = 'Femenino';
                                            if(gender == 'male')
                                               gender = 'Masculino';
+                                           if(gender == 'other')
+                                              gender = 'Otro';
 
                                      var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
                             if(yesterday == when){
