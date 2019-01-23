@@ -88,8 +88,9 @@
 	  </div>
 </div>	 
 <script type="text/javascript">
+
                 function changeSelect(){
-                              
+
                                   $('#paytable .tbody').remove();
                                   $('#paytable').append('<tbody class="tbody"></tbody>');
                                   $('#owed').html('0');
@@ -172,10 +173,9 @@
                                     }
                                   }
                                      }   
-    $(function () {
-
-        changeSelect();
-       $('#paytable').DataTable({
+$(document).ready(function(){
+     changeSelect();
+     var dataTable =  $('#paytable').DataTable({
       
                 language: {
                         'processing':     'Procesando...',
@@ -214,6 +214,7 @@
             targets:   0
         } ]
             });
+
                 $('select').select2();
 
               });
