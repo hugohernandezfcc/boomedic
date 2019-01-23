@@ -18,6 +18,9 @@ use App\diagnostic_test_result;
 use Event;
 use App\Events\EventName;
 use Redis;
+use App\Medications;
+use App\recipes_tests;
+use App\cli_recipes_tests;
 
 class HomeController extends Controller
 {
@@ -245,6 +248,15 @@ class HomeController extends Controller
                         if(count($assistant) == 0){
 
                              Session(['utype' => 'mortal']); 
+                             $medication = DB::table('medications')
+                                    ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+                                    ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                                    ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                                    ->where('recipes_tests.patient', '=', $user->id)
+                                    ->where('medications.active', '=', 'Not Confirmed')
+                                    ->whereMonth('medications.created_at','=', Carbon::now()->month)
+                                    ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date')
+                                    ->get();
 
                                 return view('medicalconsultations', [
                                         'username'  => $user->username,
@@ -259,7 +271,8 @@ class HomeController extends Controller
                                         'title'     => 'Este doctor no tiene horarios agregados',
                                         'it'        => $it,
                                         'sp'        => $sp,
-                                        'mg'        => $mg
+                                        'mg'        => $mg,
+                                        'medication' => $medication
 
                                     ]
                                 );

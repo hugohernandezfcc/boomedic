@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\User;
 use App\medical_appointments;
 use App\menu;
-use App\cli_recipes_tests;
 use App\transaction_bank;
 use config;
 use Mail;
@@ -17,6 +16,9 @@ use App\PaymentMethod;
 use App\Http\Controllers\payments;
 use Carbon\Carbon;
 use App\notifications;
+use App\Medications;
+use App\recipes_tests;
+use App\cli_recipes_tests;
 
 class medicalappointments extends Controller
 {
@@ -187,13 +189,11 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        $users = DB::table('users')->where('profile_photo','=', "profile-42914_640.png")->get();
-        foreach($users as $u){
-            $user = User::find($u->id);
-            $user->profile_photo = null;
-            $user->save();
-    }
-
+        $recipe = new Medications;
+        $recipe->recipe_medicines = '10';
+        $recipe->posology = 'Por 1x3 días';
+        $recipe->start_date = '2019-01-22 10:30:00';
+        $recipe->save();
        return redirect('medicalconsultations');
     }
 
