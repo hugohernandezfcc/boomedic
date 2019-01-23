@@ -348,8 +348,39 @@
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
-
+  
   </script>
+
+  @if(count($medication) > 0)
+                                         <div class="modal fade in" role="dialog">
+                                            <div class="modal-dialog modal-sm">
+
+                                              <div class="modal-content">
+
+                                                <div class="modal-header" >
+                                                  <!-- Tachecito para cerrar -->
+
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                   <div align="left"><label>Tienes un tratamiento sin confirmar</label></div>
+                                                </div>
+                                                    <div class="modal-body" style="padding: 0px !important;">
+                                                      <div align="center">
+                                                        <ul class="nav nav-pills nav-stacked">
+                                                              @foreach($medication as $med)
+                                                                  <li class="active"><a href="javascript:void(0)">Medicamento <span class="liright">{{ $med->name_medicine }}</span></a></li>
+                                                       
+                                                              @endforeach
+                                                        </ul>      
+                                                      </div>
+                                                </div>
+                                              </div> 
+                                            </div>
+                                        </div>    
+ 
+
+  @endif
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
                             <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h5>               
