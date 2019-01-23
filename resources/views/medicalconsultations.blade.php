@@ -348,11 +348,12 @@
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
-  
+
   </script>
 
   @if(count($medication) > 0)
-                                         <div class="modal fade in" role="dialog">
+
+                                         <div class="modal fade" role="dialog" id="medications">
                                             <div class="modal-dialog modal-sm">
 
                                               <div class="modal-content">
@@ -366,19 +367,22 @@
                                                    <div align="left"><label>Tienes un tratamiento sin confirmar</label></div>
                                                 </div>
                                                     <div class="modal-body" style="padding: 0px !important;">
-                                                      <div align="center">
+                                                      
                                                         <ul class="nav nav-pills nav-stacked">
                                                               @foreach($medication as $med)
                                                                   <li class="active"><a href="javascript:void(0)">Medicamento <span class="liright">{{ $med->name_medicine }}</span></a></li>
                                                        
                                                               @endforeach
                                                         </ul>      
-                                                      </div>
+                                                     
                                                 </div>
                                               </div> 
                                             </div>
                                         </div>    
- 
+
+    <script>
+        $('#medications').modal();
+    </script>
 
   @endif
              @if($appointments->isEmpty())
