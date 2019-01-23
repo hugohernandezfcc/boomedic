@@ -351,40 +351,7 @@
 
   </script>
 
-  @if(count($medication) > 0)
 
-                                         <div class="modal fade" role="dialog" id="medications">
-                                            <div class="modal-dialog modal-sm">
-
-                                              <div class="modal-content">
-
-                                                <div class="modal-header" >
-                                                  <!-- Tachecito para cerrar -->
-
-                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                                   <div align="left"><label>Tienes un tratamiento sin confirmar</label></div>
-                                                </div>
-                                                    <div class="modal-body" style="padding: 0px !important;">
-                                                      
-                                                        <ul class="nav nav-pills nav-stacked">
-                                                              @foreach($medication as $med)
-                                                                  <li class="active"><a href="javascript:void(0)">Medicamento <span class="liright">{{ $med->name_medicine }}</span></a></li>
-                                                       
-                                                              @endforeach
-                                                        </ul>      
-                                                     
-                                                </div>
-                                              </div> 
-                                            </div>
-                                        </div>    
-
-    <script>
-        $('#medications').modal();
-    </script>
-
-  @endif
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
                             <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h5>               
@@ -619,6 +586,38 @@
       </div>
   </div>
 
+  @if(count($medication) > 0)
+
+                                         <div class="modal fade" role="dialog" id="medications">
+                                            <div class="modal-dialog modal-sm">
+
+                                              <div class="modal-content">
+
+                                                <div class="modal-header" >
+                                                  <!-- Tachecito para cerrar -->
+
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                   <div align="left"><label>Tienes un tratamiento sin confirmar</label></div>
+                                                </div>
+                                                    <div class="modal-body">
+                                                      
+                                                        <ul class="nav nav-pills nav-stacked">
+                                                              @foreach($medication as $med)
+                                                                  <li class="active"><a href="javascript:void(0)">Medicamento <span class="liright">{{ $med->name_medicine }}</span></a></li>
+                                                       
+                                                              @endforeach
+                                                        </ul>      
+                                                     
+                                                </div>
+                                              </div> 
+                                            </div>
+                                        </div>    
+
+
+
+  @endif
 
 
 
@@ -940,6 +939,7 @@
           <script type="text/javascript">
 
 $(document).ready(function () {
+       $( "#medications" ).modal();
                          $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
                           var vis = $(this).find( ".calendarNull" );
                              if(vis.is(":visible")){
