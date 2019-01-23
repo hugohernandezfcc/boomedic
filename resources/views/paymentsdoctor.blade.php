@@ -16,7 +16,7 @@
 	<div align="right" class="col-md-3 col-sm-6 col-xs-6 pull-right">
 		<form name='classic' method='POST' action=''>
 			{{ csrf_field() }}
-			<select id="filter" name="filter" class="form-control" onchange="changeSelect()">
+			<select id="filter" name="filter" class="form-control" onchange="changeup()">
 				@foreach($dates as $dat)
 				@if($loop->first)
 				<option value="{{ $dat['when'] }}" selected>{{ $dat['when'] }}</option>
@@ -172,50 +172,55 @@
 
                                     }
                                   }
+                                     var table = $('#paytable').DataTable({
+      
+                                          language: {
+                                                  'processing':     'Procesando...',
+                                                  'lengthMenu':     'Mostrar _MENU_ registros',
+                                                  'zeroRecords':    'No se encontraron resultados',
+                                                  'emptyTable':     'Ningún dato disponible en esta tabla',
+                                                  'info':           'Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros',
+                                                  'infoEmpty':      'Mostrando registros del 0 al 0 de un total de 0 registros',
+                                                  'infoFiltered':   '(filtrado de un total de _MAX_ registros)',
+                                                  'infoPostFix':    '',
+                                                  'search':         'Buscar:',
+                                                  'url':            '',
+                                                  'infoThousandsi':  ',',
+                                                  'loadingRecords': 'Cargando...',
+                                                  'paginate': {
+                                                      'first':    'Primero',
+                                                      'last':     'Último',
+                                                      'next':     'Siguiente',
+                                                      'previous': 'Anterior'
+                                                  },
+                                                  "aria": {
+                                                      'sortAscending':  ': Activar para ordenar la columna de manera ascendente',
+                                                      'sortDescending': ': Activar para ordenar la columna de manera descendente'
+                                                  }
+                                              },
+                                          'lengthChange': false,
+                                  responsive: {
+                                      details: {
+                                          type: 'column',
+                                          target: 0
+                                      }
+                                  },
+                                  columnDefs: [ {
+                                      className: 'control',
+                                      orderable: false,
+                                      targets:   0
+                                  } ]
+                                      });
+                                     
                                      }   
+
+                                     function changeup(){
+                                      $('#paytable').DataTable().destroy();
+                                      changeSelect();
+                                     }
 $(document).ready(function(){
      changeSelect();
-     var dataTable =  $('#paytable').DataTable({
-      
-                language: {
-                        'processing':     'Procesando...',
-                        'lengthMenu':     'Mostrar _MENU_ registros',
-                        'zeroRecords':    'No se encontraron resultados',
-                        'emptyTable':     'Ningún dato disponible en esta tabla',
-                        'info':           'Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros',
-                        'infoEmpty':      'Mostrando registros del 0 al 0 de un total de 0 registros',
-                        'infoFiltered':   '(filtrado de un total de _MAX_ registros)',
-                        'infoPostFix':    '',
-                        'search':         'Buscar:',
-                        'url':            '',
-                        'infoThousandsi':  ',',
-                        'loadingRecords': 'Cargando...',
-                        'paginate': {
-                            'first':    'Primero',
-                            'last':     'Último',
-                            'next':     'Siguiente',
-                            'previous': 'Anterior'
-                        },
-                        "aria": {
-                            'sortAscending':  ': Activar para ordenar la columna de manera ascendente',
-                            'sortDescending': ': Activar para ordenar la columna de manera descendente'
-                        }
-                    },
-                'lengthChange': false,
-        responsive: {
-            details: {
-                type: 'column',
-                target: 0
-            }
-        },
-        columnDefs: [ {
-            className: 'control',
-            orderable: false,
-            targets:   0
-        } ]
-            });
-
-                $('select').select2();
+               $('select').select2();
 
               });
 </script> 	
