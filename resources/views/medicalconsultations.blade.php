@@ -646,8 +646,8 @@
 
                                                                         <div class="tab-pane" role="tabpanel" id="complete">
                                                                               <span style="font-size: 16px;">Confirmar fecha de inicio del tratamiento</span><br/><br/>
-                                                                              <label>Fecha Receta:</label> <br> {{ $daterecipe[0]->date }}<br>
-                                                                              <input type="date" name="datemedications" class="form-control">
+                                                                              <label>Fecha Receta:</label> {{ $daterecipe[0]->date }}<br>
+                                                                              <div><label>Fecha Inicio:</label><input type="date" name="datemedications" class="form-control"></div>
                                                                               <br>
                                                                               <div align="right"><a onclick="document.getElementById('conf').click();" title="Confirmar" class="btn btn-secondary btn-flat">Confirmar</a></div>
                                                                         </div>
