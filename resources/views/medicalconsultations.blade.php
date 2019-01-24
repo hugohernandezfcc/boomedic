@@ -601,7 +601,7 @@
                                                   </button>
                                                    <div align="left"><label>Tienes un tratamiento sin confirmar</label></div>
                                                 </div>
-                                                    <div class="modal-body">
+                                                    <div class="modal-body" style="padding-top: 0 !important">
                                                        <div class="wizard">
                                                                 <div class="wizard-inner">
                                                                    
@@ -626,8 +626,9 @@
                                                                 </div>
 
                                                                     <div class="tab-content">
+                                                                      
                                                                         <div class="tab-pane active" role="tabpanel" id="step1">
-                                                                          <br>
+                                                                          <span style="font-size: 16px;">En lista por confirmar</span><br/><br/>
                                                                             <ul class="nav nav-pills nav-stacked">
                                                                                     @foreach($medication as $med)
                                                                                         <li class="active" style="border-bottom-color: white!important;"><a href="javascript:void(0)"><span style="font-size: 12px;">{{ $med->name_medicine }}
@@ -639,11 +640,15 @@
                                                                                         </li>
                                                                                     @endforeach
                                                                               </ul>  <br>    
-                                                                              <div><a onclick="document.getElementById('conf').click();" title="Confirmar" class="btn btn-secondary btn-flat btn-block">Confirmar</a></div>
+                                                                              <div align="right"><a onclick="document.getElementById('conf').click();" title="Confirmar" class="btn btn-secondary btn-flat">Siguiente</a></div>
                                                                                                          
                                                                          </div> 
 
                                                                         <div class="tab-pane" role="tabpanel" id="complete">
+                                                                              <span style="font-size: 16px;">Confirmar fecha de inicio del tratamiento</span><br/><br/>
+                                                                              <input type="date" name="datemedications" class="form-control">
+                                                                              <br>
+                                                                              <div align="right"><a onclick="document.getElementById('conf').click();" title="Confirmar" class="btn btn-secondary btn-flat">Confirmar</a></div>
                                                                         </div>
                                                                   </div>  
                                                      </div> 
