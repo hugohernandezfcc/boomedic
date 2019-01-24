@@ -400,25 +400,21 @@ class clinicHistory extends Controller
         $user = User::find(Auth::id());
 
 
-        $history = DB::table('clinic_history')->where('userid', $user->id)->orWhere('question_id', '1')->first();
+        $medication = DB::table('medications')->get();
 
-
-        if($history){
-                $history2 = clinic_history::find($history->id);
-                $history2->answer = '["papa"]';
-                $history2->answer_id = '3';
-                $history2->save();
-         } else {
-            $clinic = new clinic_history;
-            $clinic->userid = $user->id;
-            $clinic->question_id =  '1';
-            $clinic->question = 'question1';
-            $clinic->answer = '["papa"]';
-            $clinic->answer_id = '2';
-            $clinic->save();
+        $recipe_id = $request->id;
+            foreach($recipe_id as $rec){
+                foreach($medication as $med){
+                     if($rec == $med->id){
+                         $change = Medication::find($rec);
+                         $change->active = 'Confirmed';
+                         $change->start_date = $request->date;
+                         $change->save();
+                     }
                 }
+            }
 
-        return response()->json($id);
+        return response()->json('Success');
     
     }
 
