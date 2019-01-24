@@ -427,7 +427,7 @@
                                                       </ul>
                                                       </div>
                                                       
-                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=250x200&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> </div> 
+                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=250x200&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación"  style="width:100%;"> </div> 
                                                     </div>
                                                 </div>
                                               </div> 
@@ -599,7 +599,7 @@
                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                   </button>
-                                                   <div align="left"><label>Tienes un tratamiento sin confirmar</label></div>
+                                                   <div align="left"><label>Tienes un tratamiento sin confirmar {{ env('GOOGLE_KEY') }}</label></div>
                                                 </div>
                                                     <div class="modal-body" style="padding-top: 0 !important">
                                                        <div class="wizard">
