@@ -605,8 +605,7 @@
                                                       
                                                         <ul class="nav nav-pills nav-stacked">
                                                               @foreach($medication as $med)
-                                                                  <li class="active"><a href="javascript:void(0)">Medicamento <span class="liright">{{ $med->name_medicine }}</span></a></li>
-                                                       
+                                                                  <li class="active"><a href="javascript:void(0)"><span style="font-size: 12px;">{{ $med->name_medicine }}</span></a></li>
                                                               @endforeach
                                                         </ul>      
                                                      
