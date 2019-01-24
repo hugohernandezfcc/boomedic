@@ -255,8 +255,10 @@ class HomeController extends Controller
                                     ->where('recipes_tests.patient', '=', $user->id)
                                     ->where('medications.active', '=', 'Not Confirmed')
                                     ->whereMonth('medications.created_at','=', Carbon::now()->month)
-                                    ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology' )
+                                    ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid' )
                                     ->get();
+
+                                    $daterecipes = $medication->unique('rid');
 
                                 return view('medicalconsultations', [
                                         'username'  => $user->username,
@@ -272,7 +274,8 @@ class HomeController extends Controller
                                         'it'        => $it,
                                         'sp'        => $sp,
                                         'mg'        => $mg,
-                                        'medication' => $medication
+                                        'medication' => $medication,
+                                        'daterecipe' => $daterecipes
 
                                     ]
                                 );
