@@ -255,7 +255,7 @@ class HomeController extends Controller
                                     ->where('recipes_tests.patient', '=', $user->id)
                                     ->where('medications.active', '=', 'Not Confirmed')
                                     ->whereMonth('medications.created_at','=', Carbon::now()->month)
-                                    ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date')
+                                    ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology' )
                                     ->get();
 
                                 return view('medicalconsultations', [

@@ -602,17 +602,58 @@
                                                    <div align="left"><label>Tienes un tratamiento sin confirmar</label></div>
                                                 </div>
                                                     <div class="modal-body">
-                                                      
-                                                        <ul class="nav nav-pills nav-stacked">
-                                                              @foreach($medication as $med)
-                                                                  <li class="active"><a href="javascript:void(0)"><span style="font-size: 12px;">{{ $med->name_medicine }}</span></a></li>
-                                                              @endforeach
-                                                        </ul>      
-                                                     
+                                                       <div class="wizard">
+                                                                <div class="wizard-inner">
+                                                                   
+                                                                    <ul class="nav nav-tabs" role="tablist">
+
+                                                                        <li role="presentation" class="active">
+                                                                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Tratamientos" id="tab2">
+                                                                                <span class="round-tab">
+                                                                                    <i class="fa fa-list-alt"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li role="presentation" id="">
+                                                                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Confirmar" id="conf">
+                                                                                <span class="round-tab">
+                                                                                    <i class="glyphicon glyphicon-ok"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active" role="tabpanel" id="step1">
+                                                                          <br>
+                                                                            <ul class="nav nav-pills nav-stacked">
+                                                                                    @foreach($medication as $med)
+                                                                                        <li class="active" style="border-bottom-color: white!important;"><a href="javascript:void(0)"><span style="font-size: 12px;">{{ $med->name_medicine }}
+                                                                                              <ul>
+                                                                                                  <li>Duración: {{ $med->frequency_days }} día(s)</li>
+                                                                                                  <li>Posología: {{ $med->posology }}</li> 
+                                                                                              </ul>
+                                                                                              </span></a>
+                                                                                        </li>
+                                                                                    @endforeach
+                                                                              </ul>  <br>    
+                                                                              <div><a onclick="document.getElementById('conf').click();" title="Confirmar" class="btn btn-secondary btn-flat btn-block">Confirmar</a></div>
+                                                                                                         
+                                                                         </div> 
+
+                                                                        <div class="tab-pane" role="tabpanel" id="complete">
+                                                                        </div>
+                                                                  </div>  
+                                                     </div> 
+
                                                 </div>
                                               </div> 
                                             </div>
-                                        </div>    
+                                        </div>  
+
+
 
 
 
@@ -898,14 +939,14 @@
                          <br/>     
                           <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                                   {{ csrf_field() }}
-                            <input id="amount" type="hidden" class="form-control" name="amount">
-                            <input type="hidden" name="id" id="idcard">
-                             <input type="hidden" name="receiver" id="receiver">
-                             <input type="hidden" name="when" id="when">
-                             <input type="hidden" name="when1" id="when1">
-                             <input type="hidden" name="dr" id="dr">
-                             <input type="hidden" name="idlabor" id="idlabor">
-                             <input type="hidden" name="spe" id="spe">
+                            <input id="amount" type="hidden" class="form-control" name="amount"/>
+                            <input type="hidden" name="id" id="idcard"/>
+                             <input type="hidden" name="receiver" id="receiver"/>
+                             <input type="hidden" name="when" id="when"/>
+                             <input type="hidden" name="when1" id="when1"/>
+                             <input type="hidden" name="dr" id="dr"/>
+                             <input type="hidden" name="idlabor" id="idlabor"/>
+                             <input type="hidden" name="spe" id="spe"/>
                         
 
                           <div class="btn-group pull-right">

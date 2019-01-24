@@ -325,11 +325,9 @@ span.round-tab:hover {
     content: " ";
     position: absolute;
     left: 35%;
-    opacity: 1;
     margin: 0 auto;
     bottom: 0px;
-    border: 10px solid transparent;
-    border-bottom-color: #151515;
+
 }
 .wizard .nav-tabs > li a {
     width: 30px;
