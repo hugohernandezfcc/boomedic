@@ -414,7 +414,7 @@ class clinicHistory extends Controller
                 }
             }
 
-        return response()->json('Success');
+        return response()->json($recipe_id);
     
     }
 
