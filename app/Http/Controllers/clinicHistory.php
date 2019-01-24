@@ -406,7 +406,7 @@ class clinicHistory extends Controller
             foreach($recipe_id as $rec){
                 foreach($medication as $med){
                      if($rec == $med->id){
-                         $change = Medication::find($rec);
+                         $change = Medications::find($rec);
                          $change->active = 'Confirmed';
                          $change->start_date = $request->date;
                          $change->save();
