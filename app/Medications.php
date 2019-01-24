@@ -11,8 +11,7 @@ class Medications extends Model
     	'id',
 		'active',  //enum [confirmed, not confirmed, finished]
 		'recipe_medicines',
-		'start_date',
-		'posology'
+		'start_date'
     ];
     
 
