@@ -652,7 +652,7 @@
                                                                               <label>Fecha Receta:</label> {{ $daterecipe[0]->date }}<br>
                                                                               <div><label>Fecha Inicio:</label><input type="date" id="datemed" class="form-control"></div>
                                                                               <br>
-                                                                              <div align="right"><a onclick="document.getElementById('conf').click();" title="Confirmar" class="btn btn-secondary btn-flat">Confirmar</a></div>
+                                                                              <div align="right"><a onclick="confirmRecipe();" title="Confirmar" class="btn btn-secondary btn-flat">Confirmar</a></div>
                                                                         </div>
                                                                   </div>  
                                                      </div> 
