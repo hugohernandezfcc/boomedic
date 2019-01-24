@@ -599,7 +599,7 @@
                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                   </button>
-                                                   <div align="left"><label>Tienes un tratamiento sin confirmar {{ env('GOOGLE_KEY') }}</label></div>
+                                                   <div align="left"><label>Tienes un tratamiento sin confirmar</label></div>
                                                 </div>
                                                     <div class="modal-body" style="padding-top: 0 !important">
                                                        <div class="wizard">
