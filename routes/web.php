@@ -351,7 +351,11 @@ Route::group(['prefix' => 'clinicHistory'], function(){
 			'as'	=>	'edit'
 		]
 	);
-
+	Route::post('confirmMedication', [
+			'uses'	=>	'clinicHistory@confirmMedication',
+			'as'	=>	'confirmMedication'
+		]
+	);
 	Route::get('update/{id}', [
 			'uses'	=>	'clinicHistory@update',
 			'as'	=>	'update'

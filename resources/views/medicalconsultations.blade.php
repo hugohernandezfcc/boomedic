@@ -629,9 +629,11 @@
                                                                       
                                                                         <div class="tab-pane active" role="tabpanel" id="step1">
                                                                           <span style="font-size: 16px;">En lista por confirmar</span><br/><br/>
-                                                                            <ul class="nav nav-pills nav-stacked">
+                                                                           <Form id="formrecipe">
+                                                                             <ul class="nav nav-pills nav-stacked">
                                                                                     @foreach($medication as $med)
                                                                                         <li class="active" style="border-bottom-color: white!important;"><a href="javascript:void(0)"><span style="font-size: 12px;">{{ $med->name_medicine }}
+                                                                                          <input type="hidden" name="rec[]" id="{{ $med->id }}">
                                                                                               <ul>
                                                                                                   <li>Duración: {{ $med->frequency_days }} día(s)</li>
                                                                                                   <li>Posología: {{ $med->posology }}</li> 
@@ -639,7 +641,8 @@
                                                                                               </span></a>
                                                                                         </li>
                                                                                     @endforeach
-                                                                              </ul>  <br>    
+                                                                              </ul>  <br> 
+                                                                              </Form>   
                                                                               <div align="right"><a onclick="document.getElementById('conf').click();" title="Confirmar" class="btn btn-secondary btn-flat">Siguiente</a></div>
                                                                                                          
                                                                          </div> 
@@ -647,7 +650,7 @@
                                                                         <div class="tab-pane" role="tabpanel" id="complete">
                                                                               <span style="font-size: 16px;">Confirmar fecha de inicio del tratamiento</span><br/><br/>
                                                                               <label>Fecha Receta:</label> {{ $daterecipe[0]->date }}<br>
-                                                                              <div><label>Fecha Inicio:</label><input type="date" name="datemedications" class="form-control"></div>
+                                                                              <div><label>Fecha Inicio:</label><input type="date" id="datemed" class="form-control"></div>
                                                                               <br>
                                                                               <div align="right"><a onclick="document.getElementById('conf').click();" title="Confirmar" class="btn btn-secondary btn-flat">Confirmar</a></div>
                                                                         </div>
@@ -983,6 +986,31 @@
 
 
           <script type="text/javascript">
+          function confirmRecipe(){
+                $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                     $('#formrecipe').each(function() {
+                            var recipeId[$(this).attr('id')] = $(this).val();
+                            //var recipeDate[$(this).attr('id')] = $('#daterecipe').val();
+                        });
+
+                           $.ajax({     
+                             type: "POST",                 
+                             url: "clinicHistory/confirmMedication",  
+                              data: { "id" : recipeId,
+                                      "date" : $('#daterecipe').val() }, 
+                              dataType: 'json',                
+                             success: function(data)             
+                             {
+                                 alert('listo');       
+                             }
+                         });
+
+                    }
 
 $(document).ready(function () {
        $( "#medications" ).modal();

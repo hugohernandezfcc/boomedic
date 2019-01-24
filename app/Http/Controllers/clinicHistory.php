@@ -14,6 +14,7 @@ use App\diagnostic_test_result;
 use Mail;
 use email;
 use Mailgun\Mailgun;
+use App\Medications;
 
 
 class clinicHistory extends Controller
@@ -387,6 +388,39 @@ class clinicHistory extends Controller
                     });
              return response()->json($id);
       }
+
+          /**
+     * ConfirmMedication a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function confirmMedication(Request $request)
+    {
+        $user = User::find(Auth::id());
+
+
+        $history = DB::table('clinic_history')->where('userid', $user->id)->orWhere('question_id', '1')->first();
+
+
+        if($history){
+                $history2 = clinic_history::find($history->id);
+                $history2->answer = '["papa"]';
+                $history2->answer_id = '3';
+                $history2->save();
+         } else {
+            $clinic = new clinic_history;
+            $clinic->userid = $user->id;
+            $clinic->question_id =  '1';
+            $clinic->question = 'question1';
+            $clinic->answer = '["papa"]';
+            $clinic->answer_id = '2';
+            $clinic->save();
+                }
+
+        return response()->json($id);
+    
+    }
 
     
 }
