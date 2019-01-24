@@ -993,9 +993,10 @@
                         }
                     });
 
+                    var recipeId = {};
                      $('#formrecipe').each(function() {
-                            var recipeId[$(this).attr('id')] = $(this).val();
-                            //var recipeDate[$(this).attr('id')] = $('#daterecipe').val();
+                            recipeId[$(this).attr('id')] = $(this).val();
+
                         });
 
                            $.ajax({     
@@ -1009,8 +1010,9 @@
                                  alert('listo');       
                              }
                          });
-
                     }
+
+ 
 
 $(document).ready(function () {
        $( "#medications" ).modal();
