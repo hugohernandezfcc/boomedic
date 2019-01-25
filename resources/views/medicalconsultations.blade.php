@@ -629,11 +629,11 @@
                                                                       
                                                                         <div class="tab-pane active" role="tabpanel" id="step1">
                                                                           <span style="font-size: 16px;">En lista por confirmar</span><br/><br/>
-                                                                           <Form id="formrecipe">
+                                              
                                                                              <ul class="nav nav-pills nav-stacked">
                                                                                     @foreach($medication as $med)
                                                                                         <li class="active" style="border-bottom-color: white!important;"><a href="javascript:void(0)"><span style="font-size: 12px;">{{ $med->name_medicine }}
-                                                                                          <input type="hidden" name="rec[]" id="{{ $med->id }}">
+                                                                                          <input type="hidden" name="rec[]" id="formrecipe">
                                                                                               <ul>
                                                                                                   <li>Duración: {{ $med->frequency_days }} día(s)</li>
                                                                                                   <li>Posología: {{ $med->posology }}</li> 
@@ -642,7 +642,7 @@
                                                                                         </li>
                                                                                     @endforeach
                                                                               </ul>  <br> 
-                                                                              </Form>   
+                                                                   
                                                                               <div align="right"><a onclick="document.getElementById('conf').click();" title="Confirmar" class="btn btn-secondary btn-flat">Siguiente</a></div>
                                                                                                          
                                                                          </div> 
@@ -994,8 +994,10 @@
                     });
 
                     var recipeId = {};
-                     $('#formrecipe').each(function() {
-                            recipeId[$(this).attr('id')] = $(this).val();
+                    var count = 0;
+                     $('.formrecipe').each(function() {
+                      count++;
+                            recipeId[count] = $(this).val();
 
                         });
 
@@ -1007,7 +1009,8 @@
                               dataType: 'json',                
                              success: function(data)             
                              {
-                                 alert('listo');       
+                                 console.log(recipeId)
+                                 console.log(data);       
                              }
                          });
                     }

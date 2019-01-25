@@ -410,11 +410,12 @@ class clinicHistory extends Controller
                          $change->active = 'Confirmed';
                          $change->start_date = $request->date;
                          $change->save();
+
                      }
                 }
             }
 
-        return response()->json($recipe_id);
+        return response()->json($rec);
     
     }
 
