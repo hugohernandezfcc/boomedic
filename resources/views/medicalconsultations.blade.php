@@ -993,20 +993,22 @@
                         }
                     });
 
-                    var recipeId = {};
+                    var recipeId = [];
                     var count = 0;
                      $('.formrecipe').each(function() {
-                      count++;
+                      
                             recipeId[count] = $(this).val();
+                            count++;
 
                         });
                      console.log(recipeId);
 
                            $.ajax({     
                              type: "POST",                 
-                             url: "clinicHistory/confirmMedication",  
+                             url: "{{ url('clinicHistory/confirmMedication') }}",  
                               data: { "id" : recipeId,
-                                      "date" : $('#daterecipe').val() }, 
+                                      "date" : $('#datemed').val() 
+                                    }, 
                               dataType: 'json',                
                              success: function(data)             
                              {

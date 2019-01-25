@@ -402,21 +402,33 @@ class clinicHistory extends Controller
 
         $medication = DB::table('medications')->get();
 
-        $recipe_id = json_decode($request->id);
-
-            foreach($recipe_id as $rec){
+      $recipe_id = $request->id;
+           
+        foreach($recipe_id as $rec){
                 foreach($medication as $med){
                      if($rec == $med->id){
                          $change = Medications::find($rec);
                          $change->active = 'Confirmed';
-                         $change->start_date = json_decode($request->date). ' 00:00:00';
+                         $change->start_date = $request->date. ' 00:00:00';
                          $change->save();
 
                      }
                 }
             }
 
-        return response()->json(json_decode($request->id));
+                    /* $medi = DB::table('medications')
+                        ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+                        ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                        ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                        ->join('users', 'recipes_tests.doctor', '=', 'users.id')
+                        ->where('recipes_tests.patient', '=', $user->id)
+                        ->where('medications.active', '=', 'Not Confirmed')
+                        ->whereMonth('medications.created_at','=', Carbon::now()->month)
+                        ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as namedoc')
+                        ->get();
+*/
+
+        return response()->json($request->date);
     
     }
 
