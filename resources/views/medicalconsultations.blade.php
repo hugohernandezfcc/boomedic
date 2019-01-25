@@ -616,7 +616,7 @@
                                                                         </li>
 
                                                                         <li role="presentation" id="">
-                                                                            <a href="#complete2" data-toggle="tab" aria-controls="complete" role="tab" title="Confirmar" id="conf">
+                                                                            <a href="#complete2" data-toggle="tab" aria-controls="complete2" role="tab" title="Registrar" id="conf">
                                                                                 <span class="round-tab">
                                                                                     <i class="glyphicon glyphicon-ok"></i>
                                                                                 </span>
