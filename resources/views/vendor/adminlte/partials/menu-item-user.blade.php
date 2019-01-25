@@ -163,6 +163,10 @@
                     <li>
                         <a data-toggle="control-sidebar"><i class="fa fa-child"></i><span class="label" id="drAlert">¡HOLA!</span></a>
                     </li>
+                 @else
+                    <li>
+                        <a data-toggle="control-sidebar"><i class="fa fa-medkit"></i></a>
+                    </li>   
 
                 @endif   
                  <!-- Tools en doctor--> 

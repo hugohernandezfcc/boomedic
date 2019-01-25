@@ -257,25 +257,33 @@ class HomeController extends Controller
                                     ->whereMonth('medications.created_at','=', Carbon::now()->month)
                                     ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid' )
                                     ->get();
+                            $medicationAll = DB::table('medications')
+                                    ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+                                    ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                                    ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                                    ->where('recipes_tests.patient', '=', $user->id)
+                                    ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid' )
+                                    ->get();        
 
                                     $daterecipes = $medication->unique('rid');
 
                                 return view('medicalconsultations', [
-                                        'username'  => $user->username,
-                                        'name'      => $user->name,
-                                        'firstname' => $user->firstname,
-                                        'lastname'  => $user->lastname,
-                                        'photo'     => $user->profile_photo,
-                                        'date'      => $user->created_at,
-                                        'userId'    => $user->id,
-                                        'labor'     => $join,
-                                        'appointments' => $appointments,
-                                        'title'     => 'Este doctor no tiene horarios agregados',
-                                        'it'        => $it,
-                                        'sp'        => $sp,
-                                        'mg'        => $mg,
-                                        'medication' => $medication,
-                                        'daterecipe' => $daterecipes
+                                        'username'       => $user->username,
+                                        'name'           => $user->name,
+                                        'firstname'      => $user->firstname,
+                                        'lastname'       => $user->lastname,
+                                        'photo'          => $user->profile_photo,
+                                        'date'           => $user->created_at,
+                                        'userId'         => $user->id,
+                                        'labor'          => $join,
+                                        'appointments'   => $appointments,
+                                        'title'          => 'Este doctor no tiene horarios agregados',
+                                        'it'             => $it,
+                                        'sp'             => $sp,
+                                        'mg'             => $mg,
+                                        'medication'     => $medication,
+                                        'daterecipe'     => $daterecipes,
+                                        'medicationAll'  => $medicationAll
 
                                     ]
                                 );
