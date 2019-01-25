@@ -61,7 +61,18 @@
 
                                 </div><div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Todos los tratamientos</h4>
-
+                                       <ul class="nav nav-pills nav-stacked box">
+                                              @foreach($medicationAll as $med)
+                                                  <li class="active" style="border-bottom-color: white!important;"><a href="javascript:void(0)"><span style="font-size: 12px;">{{ $med->name_medicine }}
+                                                    <input type="hidden" name="rec[]" class="formrecipe" value="{{ $med->id }}">
+                                                        <ul>
+                                                            <li>Duración: {{ $med->frequency_days }} día(s)</li>
+                                                            <li>Posología: {{ $med->posology }}</li> 
+                                                        </ul>
+                                                        </span></a>
+                                                  </li>
+                                              @endforeach
+                                        </ul> 
                                 </div></div>
                                 <!-- /.tab-pane -->
                                 <!-- Stats tab content -->

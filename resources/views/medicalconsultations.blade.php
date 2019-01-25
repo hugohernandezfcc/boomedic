@@ -616,7 +616,7 @@
                                                                         </li>
 
                                                                         <li role="presentation" id="">
-                                                                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Confirmar" id="conf">
+                                                                            <a href="#complete2" data-toggle="tab" aria-controls="complete" role="tab" title="Confirmar" id="conf">
                                                                                 <span class="round-tab">
                                                                                     <i class="glyphicon glyphicon-ok"></i>
                                                                                 </span>
@@ -647,7 +647,7 @@
                                                                                                          
                                                                          </div> 
 
-                                                                        <div class="tab-pane" role="tabpanel" id="complete">
+                                                                        <div class="tab-pane" role="tabpanel" id="complete2">
                                                                               <span style="font-size: 16px;">Indica la fecha que inicias tu tratamiento</span><br/><br/>
                                                                               <label>Fecha Receta:</label> {{ $daterecipe[0]->date }}<br>
                                                                               <div><label>Fecha Inicio:</label><input type="date" id="datemed" class="form-control"></div>
