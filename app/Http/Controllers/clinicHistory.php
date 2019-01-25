@@ -403,19 +403,20 @@ class clinicHistory extends Controller
         $medication = DB::table('medications')->get();
 
         $recipe_id = json_decode($request->id);
+
             foreach($recipe_id as $rec){
                 foreach($medication as $med){
                      if($rec == $med->id){
                          $change = Medications::find($rec);
                          $change->active = 'Confirmed';
-                         $change->start_date = $request->date;
+                         $change->start_date = json_decode($request->date). ' 00:00:00';
                          $change->save();
 
                      }
                 }
             }
 
-        return response()->json($request);
+        return response()->json(json_decode($request->id));
     
     }
 

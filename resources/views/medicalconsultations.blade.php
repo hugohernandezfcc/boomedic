@@ -1000,6 +1000,7 @@
                             recipeId[count] = $(this).val();
 
                         });
+                     console.log(recipeId);
 
                            $.ajax({     
                              type: "POST",                 
@@ -1009,7 +1010,7 @@
                               dataType: 'json',                
                              success: function(data)             
                              {
-                                 console.log(recipeId)
+                                 
                                  console.log(data);       
                              }
                          });
