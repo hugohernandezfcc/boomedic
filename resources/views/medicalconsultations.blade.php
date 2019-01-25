@@ -599,7 +599,7 @@
                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                   </button>
-                                                   <div align="left"><label>Tienes un tratamiento sin confirmar</label></div>
+                                                   <div align="left"><label>Tienes un tratamiento que debes iniciar</label></div>
                                                 </div>
                                                     <div class="modal-body" style="padding-top: 0 !important">
                                                        <div class="wizard">
@@ -628,12 +628,12 @@
                                                                     <div class="tab-content">
                                                                       
                                                                         <div class="tab-pane active" role="tabpanel" id="step1">
-                                                                          <span style="font-size: 16px;">En lista por confirmar</span><br/><br/>
+                                                                          <span style="font-size: 16px;">Lista de medicamentos</span><br/><br/>
                                               
                                                                              <ul class="nav nav-pills nav-stacked">
                                                                                     @foreach($medication as $med)
                                                                                         <li class="active" style="border-bottom-color: white!important;"><a href="javascript:void(0)"><span style="font-size: 12px;">{{ $med->name_medicine }}
-                                                                                          <input type="hidden" name="rec[]" id="formrecipe">
+                                                                                          <input type="hidden" name="rec[]" class="formrecipe" value="{{ $med->id }}">
                                                                                               <ul>
                                                                                                   <li>Duración: {{ $med->frequency_days }} día(s)</li>
                                                                                                   <li>Posología: {{ $med->posology }}</li> 
@@ -648,11 +648,11 @@
                                                                          </div> 
 
                                                                         <div class="tab-pane" role="tabpanel" id="complete">
-                                                                              <span style="font-size: 16px;">Confirmar fecha de inicio del tratamiento</span><br/><br/>
+                                                                              <span style="font-size: 16px;">Indica la fecha que inicias tu tratamiento</span><br/><br/>
                                                                               <label>Fecha Receta:</label> {{ $daterecipe[0]->date }}<br>
                                                                               <div><label>Fecha Inicio:</label><input type="date" id="datemed" class="form-control"></div>
                                                                               <br>
-                                                                              <div align="right"><a onclick="confirmRecipe();" title="Confirmar" class="btn btn-secondary btn-flat">Confirmar</a></div>
+                                                                              <div align="right"><a onclick="confirmRecipe();"class="btn btn-secondary btn-flat">Registrar Inicio</a></div>
                                                                         </div>
                                                                   </div>  
                                                      </div> 

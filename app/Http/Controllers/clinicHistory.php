@@ -402,7 +402,7 @@ class clinicHistory extends Controller
 
         $medication = DB::table('medications')->get();
 
-        $recipe_id = $request->id;
+        $recipe_id = json_decode($request->id);
             foreach($recipe_id as $rec){
                 foreach($medication as $med){
                      if($rec == $med->id){
@@ -415,7 +415,7 @@ class clinicHistory extends Controller
                 }
             }
 
-        return response()->json($rec);
+        return response()->json($request);
     
     }
 
