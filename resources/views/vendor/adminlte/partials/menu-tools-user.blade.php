@@ -57,9 +57,21 @@
                                 <!-- Home tab content -->
                                 <div class="tab-pane active" id="control-sidebar-home-tab">
                                   <h4 class="control-sidebar-heading">Tratamiento Activo</h4>
-                                  <!-- /.control-sidebar-menu -->
+                                    <ul class="control-sidebar-menu">
+                                      @foreach($medicationAll as $mediac)
+                                             @if($mediac->active == 'Confirmed')
+                                                  <li>
+                                                    <a class="pointer"><i class="menu-icon bg-green" style="font-size: 11px;">Ini</i>
+                                                    <div class="menu-info"><h4 class="control-sidebar-subheading">{{ $mediac->name_medicine }}</h4>
+                                                      <p>{{ $mediac->frequency_days }} día(s), {{ $mediac->posology }}</p></div>
+                                                    </a>
+                                                  </li>
+                                              @endIf
+                                       @endforeach
+                                        </ul>         
 
-                                </div><div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
+                                </div>
+                                <div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Todos los tratamientos</h4>
                                        <ul class="control-sidebar-menu">
                                               @foreach($medicationAll as $medi)
@@ -71,14 +83,7 @@
                                                 </a>
                                               </li>
                                               @endIf
-                                              @if($medi->active == 'Confirmed')
-                                                  <li>
-                                                    <a class="pointer"><i class="menu-icon bg-green" style="font-size: 11px;">Ini</i>
-                                                    <div class="menu-info"><h4 class="control-sidebar-subheading">{{ $medi->name_medicine }}</h4>
-                                                      <p>{{ $medi->frequency_days }} día(s), {{ $medi->posology }}</p></div>
-                                                    </a>
-                                                  </li>
-                                              @endIf
+
                                               @if($medi->active == 'Finished')
                                               <li>
                                                 <a class="pointer"><i class="menu-icon bg-yellow" style="font-size: 11px;">Fin</i>
