@@ -635,8 +635,7 @@
                                                                                         <li class="active" style="border-bottom-color: white!important;"><a href="javascript:void(0)"><span style="font-size: 12px;">{{ $med->name_medicine }}
                                                                                           <input type="hidden" name="rec[]" class="formrecipe" value="{{ $med->id }}">
                                                                                               <ul>
-                                                                                                  <li>Duración: {{ $med->frequency_days }} día(s)</li>
-                                                                                                  <li>Posología: {{ $med->posology }}</li> 
+                                                                                                  <li>{{ $med->frequency_days }} día(s), {{ $med->posology }}</li>
                                                                                               </ul>
                                                                                               </span></a>
                                                                                         </li>
