@@ -77,10 +77,10 @@
                                 <div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Todos los tratamientos</h4>
                                        <ul class="control-sidebar-menu">
-                                        
-                                              @foreach($medicationAll as $created_at => $medic)
+                                          
+                                        @foreach($medicationAll as $created_at => $medic)
                                               <li style="color: white;">{{ $created_at }}</li>
-                                              @foreach($medic as $medi)
+                                           @foreach($medic as $medi)
                                               @if($medi->active == 'Not Confirmed')
                                               <li>
                                                 <a class="pointer"><i class="menu-icon bg-red" style="font-size: 11px;">No</i>
@@ -98,8 +98,8 @@
                                                 </a>
                                               </li>
                                               @endif
-                                              @endforeach
-                                             @endforeach 
+                                           @endforeach
+                                         @endforeach 
                                         </ul> 
                                 </div></div>
                                 <!-- /.tab-pane -->

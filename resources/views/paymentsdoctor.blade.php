@@ -128,7 +128,7 @@
                                                       +'<td style="color: green;">'+ transaction[z]['place'] +'</td>'
                                                       +'<td style="color: green;">'+ transaction[z]['name'] +'</td>'
                                                       +'<td style="color: green;">'+ transaction[z]['amount'] +'</td>'
-                                                      +'<td>Pendiente</td></tr>');
+                                                      +'<td>Pagado</td></tr>');
                                                 
 
                                                    }
