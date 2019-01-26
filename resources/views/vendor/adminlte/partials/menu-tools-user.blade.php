@@ -58,7 +58,9 @@
                                 <div class="tab-pane active" id="control-sidebar-home-tab">
                                   <h4 class="control-sidebar-heading">Tratamiento Activo</h4>
                                     <ul class="control-sidebar-menu">
-                                      @foreach($medicationAll as $mediac)
+                                 @foreach($medicationAll as $created_at => $medic)
+                                              <li>{{ $created_at }}</li>
+                                              @foreach($medic as $mediac)
                                              @if($mediac->active == 'Confirmed')
                                                   <li>
                                                     <a class="pointer"><i class="menu-icon bg-green" style="font-size: 11px;">Ini</i>
@@ -68,13 +70,17 @@
                                                   </li>
                                               @endIf
                                        @endforeach
+                                  @endforeach     
                                         </ul>         
 
                                 </div>
                                 <div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Todos los tratamientos</h4>
                                        <ul class="control-sidebar-menu">
-                                              @foreach($medicationAll as $medi)
+                                        
+                                              @foreach($medicationAll as $created_at => $medic)
+                                              <li style="color: white;">{{ $created_at }}</li>
+                                              @foreach($medic as $medi)
                                               @if($medi->active == 'Not Confirmed')
                                               <li>
                                                 <a class="pointer"><i class="menu-icon bg-red" style="font-size: 11px;">No</i>
@@ -82,7 +88,7 @@
                                                   <p>{{ $medi->frequency_days }} día(s), {{ $medi->posology }}</p></div>
                                                 </a>
                                               </li>
-                                              @endIf
+                                              @endif
 
                                               @if($medi->active == 'Finished')
                                               <li>
@@ -91,8 +97,9 @@
                                                   <p>{{ $medi->frequency_days }} día(s), {{ $medi->posology }}</p></div>
                                                 </a>
                                               </li>
-                                              @endIf
+                                              @endif
                                               @endforeach
+                                             @endforeach 
                                         </ul> 
                                 </div></div>
                                 <!-- /.tab-pane -->
