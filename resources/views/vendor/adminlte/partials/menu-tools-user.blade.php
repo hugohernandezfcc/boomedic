@@ -58,7 +58,7 @@
                                 <div class="tab-pane active" id="control-sidebar-home-tab">
                                   <h4 class="control-sidebar-heading">Tratamiento Activo</h4>
                                     <ul class="control-sidebar-menu">
-                                 @foreach($medicationAll as $created_at => $medic)
+                          <!--       @foreach($medicationAll as $created_at => $medic)
                                               <li>{{ $created_at }}</li>
                                               @foreach($medic as $mediac)
                                              @if($mediac->active == 'Confirmed')
@@ -70,15 +70,15 @@
                                                   </li>
                                               @endIf
                                        @endforeach
-                                  @endforeach     
+                                  @endforeach    --> 
                                         </ul>         
 
                                 </div>
                                 <div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Todos los tratamientos</h4>
                                        <ul class="control-sidebar-menu">
-                                          
-                                        @foreach($medicationAll as $created_at => $medic)
+
+                                <!--        @foreach($medicationAll as $created_at => $medic)
                                               <li style="color: white;">{{ $created_at }}</li>
                                            @foreach($medic as $medi)
                                               @if($medi->active == 'Not Confirmed')
@@ -99,7 +99,7 @@
                                               </li>
                                               @endif
                                            @endforeach
-                                         @endforeach 
+                                         @endforeach -->
                                         </ul> 
                                 </div></div>
                                 <!-- /.tab-pane -->
