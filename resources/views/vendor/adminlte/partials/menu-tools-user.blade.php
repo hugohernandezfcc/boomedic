@@ -128,7 +128,7 @@
                                 </div>
                                 <div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Todos los tratamientos</h4>
-                                   <div class="displayall" style="display: none; color:white;">No hay tratamientos guardados</div>
+                                   <div class="displayall" style="display: none; color:white;">No hay tratamientos anteriores o sin iniciar</div>
                                        <ul class="control-sidebar-menu timeline" id="allmed">
                                         </ul> 
                                 </div></div>
