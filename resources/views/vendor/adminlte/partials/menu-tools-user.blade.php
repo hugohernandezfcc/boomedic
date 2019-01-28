@@ -60,6 +60,9 @@
                                                         }else{
                                                           var countact = 0;
                                                           var countfin = 0;
+                                                          var prescription_gray = "{{ asset('prescription_gray.png') }}";
+                                                          var prescription_red = "{{ asset('prescription_red.png') }}";
+                                                          var prescription_green = "{{ asset('prescription_green.png') }}";
 
                                                             for (var date in result){
                                                                 if (result.hasOwnProperty(date)) {
@@ -68,7 +71,7 @@
                                                                       if(z == 0 )
                                                                           $('#allmed').append('<li class="time-label"><span class="bg-gray">'+ moment(date).format("DD-MM-YYYY") +'</span></li>');
 
-                                                                      $('#allmed').append('<li><a class="pointer"><i class="fa fa-medkit bg-red menu-icon"></i><div class="menu-info"></i><h4 class="control-sidebar-subheading" style="font-size:12px !important;">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
+                                                                      $('#allmed').append('<li><a class="pointer"><img src="'+ prescription_red +'" class="bg-gray menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading" style="font-size:12px !important;">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
                                                                       countfin++;
                                                                      }
 
@@ -76,7 +79,7 @@
                                                                       if(z == 0 )
                                                                           $('#allmed').append('<li class="time-label"><span class="bg-gray">'+ moment(date).format("DD-MM-YYYY") +'</span></li>');
 
-                                                                      $('#allmed').append('<li><a class="pointer"><i class="fa fa-medkit bg-yellow menu-icon"></i><div class="menu-info"></i><h4 class="control-sidebar-subheading" style="font-size:12px !important;">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
+                                                                      $('#allmed').append('<li><a class="pointer"><img src="'+ prescription_gray +'" class="bg-gray menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading" style="font-size:12px !important;">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
 
                                                                       
                                                                       countfin++;
@@ -86,7 +89,7 @@
                                                                       if(z == 0 )
                                                                           $('#activemed').append('<li class="time-label"><span class="bg-gray">Inicio '+ moment(result[date][z]['start_date']).format("DD-MM-YYYY") +'</span></li>');
 
-                                                                      $('#activemed').append('<li><a class="pointer"><i class="fa fa-medkit bg-green menu-icon"></i><div class="menu-info"></i><h4 class="control-sidebar-subheading" style="font-size:12px !important;">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
+                                                                      $('#activemed').append('<li><a class="pointer"><img src="'+ prescription_green +'" class="bg-gray menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading" style="font-size:12px !important;">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
                                                                       countact++;
                                                                      }
                                                                    }
