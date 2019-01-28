@@ -93,12 +93,12 @@
                                                                 }
                                                             }
                                                             if(countact == 0){
-                                                                $('#activemed').html('<li style="color:white;">No hay tratamientos Activos</li>');
+                                                                $('.displayactive').show();
                                                             }else{
                                                                 $('#activemed').append('<li><i class="fa fa-clock-o bg-gray"></i></li>');
                                                             }
                                                             if(countfin == 0){
-                                                                $('#allmed').html('<li style="color:white;">No hay tratamientos guardados</li>');
+                                                                $('.displayall').show();
                                                             }else{
                                                                  $('#allmed').append('<li><i class="fa fa-clock-o bg-gray"></i></li>');
 
@@ -120,6 +120,7 @@
                                 <!-- Home tab content -->
                                 <div class="tab-pane active" id="control-sidebar-home-tab">
                                   <h4 class="control-sidebar-heading">Tratamiento Activo</h4>
+                                  <div class="displayactive" style="display: none; color:white;">No hay tratamientos Activos</div>
                                     <ul class="control-sidebar-menu timeline" id="activemed">
 
                                     </ul>         
@@ -127,9 +128,8 @@
                                 </div>
                                 <div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Todos los tratamientos</h4>
+                                   <div class="displayall" style="display: none; color:white;">No hay tratamientos guardados</div>
                                        <ul class="control-sidebar-menu timeline" id="allmed">
-
-
                                         </ul> 
                                 </div></div>
                                 <!-- /.tab-pane -->
