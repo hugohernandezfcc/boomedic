@@ -66,25 +66,27 @@
                                                                    for(var z = 0; z < result[date].length; z++){
                                                                      if(result[date][z]['active'] == 'Not Confirmed'){
                                                                       if(z == 0 )
-                                                                          $('#allmed').append('<li style="color:white;">'+ date +'</li>');
+                                                                          $('#allmed').append('<li class="time-label"><span class="bg-gray">'+ moment(date).format("MM/DD/YYYY") +'</span></li>');
 
-                                                                      $('#allmed').append(' <li><a class="pointer"><i class="menu-icon bg-red" style="font-size: 11px;">Pend</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] + '</p></div></a></li>');
+                                                                      $('#allmed').append('<li><a class="pointer"><i class="fa fa-medkit bg-red menu-icon"></i><div class="menu-info"></i><h4 class="control-sidebar-subheading">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
                                                                       countfin++;
                                                                      }
 
                                                                     if(result[date][z]['active'] == 'Finished'){
                                                                       if(z == 0 )
-                                                                          $('#allmed').append('<li style="color:white;">'+ date +'</li>');
+                                                                          $('#allmed').append('<li class="time-label"><span class="bg-gray">'+ moment(date).format("MM/DD/YYYY") +'</span></li>');
 
-                                                                      $('#allmed').append(' <li><a class="pointer"><i class="menu-icon bg-yellow" style="font-size: 11px;">Fin</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] + '</p></div></a></li>');
+                                                                      $('#allmed').append('<li><a class="pointer"><i class="fa fa-medkit bg-yellow menu-icon"></i><div class="menu-info"></i><h4 class="control-sidebar-subheading">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
+
+                                                                      
                                                                       countfin++;
                                                                      }
 
                                                                     if(result[date][z]['active'] == 'Confirmed'){
                                                                       if(z == 0 )
-                                                                          $('#allmed').append('<li style="color:white;">'+ date +'</li>');
+                                                                          $('#allmed').append('<li class="time-label"><span class="bg-gray">'+ moment(date).format("MM/DD/YYYY") +'</span></li>');
 
-                                                                      $('#activemed').append(' <li><a class="pointer"><i class="menu-icon bg-green" style="font-size: 11px;">Ini</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] + '</p></div></a></li>');
+                                                                      $('#activemed').append('<li><a class="pointer"><i class="fa fa-medkit-medical bg-green menu-icon"></i><div class="menu-info"></i><h4 class="control-sidebar-subheading">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
                                                                       countact++;
                                                                      }
                                                                    }
@@ -92,9 +94,14 @@
                                                             }
                                                             if(countact == 0){
                                                                 $('#activemed').html('<li style="color:white;">No hay tratamientos Activos</li>');
+                                                            }else{
+                                                                $('#activemed').append('<li><i class="fa fa-clock-o bg-gray"></i></li>');
                                                             }
                                                             if(countfin == 0){
                                                                 $('#allmed').html('<li style="color:white;">No hay tratamientos guardados</li>');
+                                                            }else{
+                                                                 $('#allmed').append('<li><i class="fa fa-clock-o bg-gray"></i></li>');
+
                                                             }
 
 
@@ -113,14 +120,14 @@
                                 <!-- Home tab content -->
                                 <div class="tab-pane active" id="control-sidebar-home-tab">
                                   <h4 class="control-sidebar-heading">Tratamiento Activo</h4>
-                                    <ul class="control-sidebar-menu" id="activemed">
+                                    <ul class="control-sidebar-menu timeline" id="activemed">
 
-                                        </ul>         
+                                    </ul>         
 
                                 </div>
                                 <div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Todos los tratamientos</h4>
-                                       <ul class="control-sidebar-menu" id="allmed">
+                                       <ul class="control-sidebar-menu timeline" id="allmed">
 
 
                                         </ul> 
