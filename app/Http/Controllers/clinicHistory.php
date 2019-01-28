@@ -388,8 +388,8 @@ class clinicHistory extends Controller
                     });
              return response()->json($id);
       }
-
-          /**
+    
+     /**
      * ConfirmMedication a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -421,6 +421,27 @@ class clinicHistory extends Controller
         return response()->json($request->date);
     
     }
+
+     /*
+     * ConfirmMedication a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function medicationAll(Request $request)
+    {
+        $user = User::find(Auth::id());
+        $medicationAll = DB::table('medications')
+                ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+                ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                ->where('recipes_tests.patient', '=', $user->id)
+                ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid')
+                ->get()->groupBy('date');      
+
+        return response()->json($medicationAll);
+    
+    }    
 
     
 }

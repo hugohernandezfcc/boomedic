@@ -47,6 +47,62 @@
       </style>
 
                           <aside class="control-sidebar control-sidebar-dark" style="overflow: hidden;">
+                            <script type="text/javascript">
+                                            $.ajax(
+                                                    {
+                                                      type: "GET",    
+                                                      url: "{{ url('clinicHistory/medicationAll') }}", 
+                                                      success: function(result){
+                                                        var med = result;
+                                                        if(result.length == 0){
+                                                          $('#activemed').html('<li style="color:white;">No hay tratamientos Activos</li>');
+                                                          $('#allmed').html('<li style="color:white;">No hay tratamientos guardados</li>');
+                                                        }else{
+                                                          var countact = 0;
+                                                          var countfin = 0;
+
+                                                            for (var date in result){
+                                                                if (result.hasOwnProperty(date)) {
+                                                                   for(var z = 0; z < result[date].length; z++){
+                                                                     if(result[date][z]['active'] == 'Not Confirmed'){
+                                                                      if(z == 0 )
+                                                                          $('#allmed').append('<li style="color:white;">'+ date +'</li>');
+
+                                                                      $('#allmed').append(' <li><a class="pointer"><i class="menu-icon bg-red" style="font-size: 11px;">Pend</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] + '</p></div></a></li>');
+                                                                      countfin++;
+                                                                     }
+
+                                                                    if(result[date][z]['active'] == 'Finished'){
+                                                                      if(z == 0 )
+                                                                          $('#allmed').append('<li style="color:white;">'+ date +'</li>');
+
+                                                                      $('#allmed').append(' <li><a class="pointer"><i class="menu-icon bg-yellow" style="font-size: 11px;">Fin</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] + '</p></div></a></li>');
+                                                                      countfin++;
+                                                                     }
+
+                                                                    if(result[date][z]['active'] == 'Confirmed'){
+                                                                      if(z == 0 )
+                                                                          $('#allmed').append('<li style="color:white;">'+ date +'</li>');
+
+                                                                      $('#activemed').append(' <li><a class="pointer"><i class="menu-icon bg-green" style="font-size: 11px;">Ini</i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] + '</p></div></a></li>');
+                                                                      countact++;
+                                                                     }
+                                                                   }
+                                                                }
+                                                            }
+                                                            if(countact == 0){
+                                                                $('#activemed').html('<li style="color:white;">No hay tratamientos Activos</li>');
+                                                            }
+                                                            if(countfin == 0){
+                                                                $('#allmed').html('<li style="color:white;">No hay tratamientos guardados</li>');
+                                                            }
+
+
+                                                        }
+                                                       }
+                                                    });
+                            </script>
+
                               <!-- Create the tabs -->
                               <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                                 <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-check-circle"></i></a></li>
@@ -57,49 +113,16 @@
                                 <!-- Home tab content -->
                                 <div class="tab-pane active" id="control-sidebar-home-tab">
                                   <h4 class="control-sidebar-heading">Tratamiento Activo</h4>
-                                    <ul class="control-sidebar-menu">
-                          <!--       @foreach($medicationAll as $created_at => $medic)
-                                              <li>{{ $created_at }}</li>
-                                              @foreach($medic as $mediac)
-                                             @if($mediac->active == 'Confirmed')
-                                                  <li>
-                                                    <a class="pointer"><i class="menu-icon bg-green" style="font-size: 11px;">Ini</i>
-                                                    <div class="menu-info"><h4 class="control-sidebar-subheading">{{ $mediac->name_medicine }}</h4>
-                                                      <p>{{ $mediac->frequency_days }} día(s), {{ $mediac->posology }}</p></div>
-                                                    </a>
-                                                  </li>
-                                              @endIf
-                                       @endforeach
-                                  @endforeach    --> 
+                                    <ul class="control-sidebar-menu" id="activemed">
+
                                         </ul>         
 
                                 </div>
                                 <div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Todos los tratamientos</h4>
-                                       <ul class="control-sidebar-menu">
+                                       <ul class="control-sidebar-menu" id="allmed">
 
-                                <!--        @foreach($medicationAll as $created_at => $medic)
-                                              <li style="color: white;">{{ $created_at }}</li>
-                                           @foreach($medic as $medi)
-                                              @if($medi->active == 'Not Confirmed')
-                                              <li>
-                                                <a class="pointer"><i class="menu-icon bg-red" style="font-size: 11px;">No</i>
-                                                <div class="menu-info"><h4 class="control-sidebar-subheading" style="font-size: 11px;">{{ $medi->name_medicine }}</h4>
-                                                  <p>{{ $medi->frequency_days }} día(s), {{ $medi->posology }}</p></div>
-                                                </a>
-                                              </li>
-                                              @endif
 
-                                              @if($medi->active == 'Finished')
-                                              <li>
-                                                <a class="pointer"><i class="menu-icon bg-yellow" style="font-size: 11px;">Fin</i>
-                                                <div class="menu-info"><h4 class="control-sidebar-subheading">{{ $medi->name_medicine }}</h4>
-                                                  <p>{{ $medi->frequency_days }} día(s), {{ $medi->posology }}</p></div>
-                                                </a>
-                                              </li>
-                                              @endif
-                                           @endforeach
-                                         @endforeach -->
                                         </ul> 
                                 </div></div>
                                 <!-- /.tab-pane -->
