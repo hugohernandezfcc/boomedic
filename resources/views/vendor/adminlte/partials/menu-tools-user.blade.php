@@ -86,7 +86,7 @@
                                                                       if(z == 0 )
                                                                           $('#activemed').append('<li class="time-label"><span class="bg-gray">'+ moment(date).format("MM/DD/YYYY") +'</span></li>');
 
-                                                                      $('#activemed').append('<li><a class="pointer"><i class="fa fa-medkit-medical bg-green menu-icon"></i><div class="menu-info"></i><h4 class="control-sidebar-subheading">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
+                                                                      $('#activemed').append('<li><a class="pointer"><i class="fa fa-medkit bg-green menu-icon"></i><div class="menu-info"></i><h4 class="control-sidebar-subheading">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
                                                                       countact++;
                                                                      }
                                                                    }
