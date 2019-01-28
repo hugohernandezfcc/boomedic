@@ -628,10 +628,13 @@
                                                                     <div class="tab-content">
                                                                       
                                                                         <div class="tab-pane active" role="tabpanel" id="step1">
-                                                                          <span style="font-size: 16px;">Lista de medicamentos</span><br/><br/>
-                                              
+                                                                        
                                                                              <ul class="nav nav-pills nav-stacked">
-                                                                                    @foreach($medication as $med)
+                                                                              @foreach($medication as $date => $medications)
+                                                                                    @foreach($medications as $med)
+                                                                                     @if($loop->first)
+                                                                                        <span style="font-size: 15px;">Cita: {{ $med->ndoctor }} - {{ \Carbon\Carbon::parse($date)->format('d-m-Y') }}</span><br/><br/>
+                                                                                     @endif
                                                                                         <li class="active" style="border-bottom-color: white!important;"><a href="javascript:void(0)"><span style="font-size: 12px;">{{ $med->name_medicine }}
                                                                                           <input type="hidden" name="rec[]" class="formrecipe" value="{{ $med->id }}">
                                                                                               <ul>
@@ -640,16 +643,21 @@
                                                                                               </span></a>
                                                                                         </li>
                                                                                     @endforeach
+                                                                               @endforeach     
                                                                               </ul>  <br> 
-                                                                   
+                                                                          
                                                                               <div align="right"><a onclick="document.getElementById('conf').click();" title="Confirmar" class="btn btn-secondary btn-flat">Siguiente</a></div>
-                                                                                                         
+                                                                                                     
                                                                          </div> 
 
                                                                         <div class="tab-pane" role="tabpanel" id="complete2">
                                                                               <span style="font-size: 16px;">Indica la fecha que inicias tu tratamiento</span><br/><br/>
-                                                                              <label>Fecha Receta:</label> {{ $daterecipe[0]->date }}<br>
+                                                                              @foreach($medication as $created_at => $medications)
+                                                                              @if($loop->first)
+                                                                              <label>Fecha Receta:</label> {{ $created_at }}<br>
                                                                               <div><label>Fecha Inicio:</label><input type="date" id="datemed" class="form-control"></div>
+                                                                              @endif
+                                                                              @endforeach
                                                                               <br>
                                                                               <div align="right"><a onclick="confirmRecipe();"class="btn btn-secondary btn-flat">Registrar Inicio</a></div>
                                                                         </div>

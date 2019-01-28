@@ -252,14 +252,15 @@ class HomeController extends Controller
                                     ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
                                     ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
                                     ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                                    ->join('users', 'recipes_tests.doctor', '=', 'users.id')
                                     ->where('recipes_tests.patient', '=', $user->id)
                                     ->where('medications.active', '=', 'Not Confirmed')
                                     ->whereMonth('medications.created_at','=', Carbon::now()->month)
-                                    ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid' )
-                                    ->get();
+                                    ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')
+                                    ->get()->groupBy('date');
 
 
-                                    $daterecipes = $medication->unique('rid');
+
 
                                 return view('medicalconsultations', [
                                         'username'       => $user->username,
@@ -275,8 +276,7 @@ class HomeController extends Controller
                                         'it'             => $it,
                                         'sp'             => $sp,
                                         'mg'             => $mg,
-                                        'medication'     => $medication,
-                                        'daterecipe'     => $daterecipes
+                                        'medication'     => $medication
 
                                     ]
                                 );
