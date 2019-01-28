@@ -1019,7 +1019,7 @@
                               dataType: 'json',                
                              success: function(data)             
                              {
-                                 
+                                 location.reload(true);
                                  console.log(data);       
                              }
                          });
