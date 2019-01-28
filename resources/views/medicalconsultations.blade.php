@@ -630,12 +630,26 @@
                                                                         <div class="tab-pane active" role="tabpanel" id="step1">
                                                                         
                                                                              <ul class="nav nav-pills nav-stacked">
+                                                                                        @php
+                                                                                             $color = 0;
+                                                                                        @endphp
+                                                                                        
                                                                               @foreach($medication as $date => $medications)
                                                                                     @foreach($medications as $med)
                                                                                      @if($loop->first)
-                                                                                        <span style="font-size: 15px;">Cita: {{ $med->ndoctor }} - {{ \Carbon\Carbon::parse($date)->format('d-m-Y') }}</span><br/><br/>
+                                                                                       <br/><span style="font-size: 15px;">Cita: {{ $med->ndoctor }} - {{ \Carbon\Carbon::parse($date)->format('d-m-Y') }}</span><br/>
                                                                                      @endif
-                                                                                        <li class="active" style="border-bottom-color: white!important;"><a href="javascript:void(0)"><span style="font-size: 12px;">{{ $med->name_medicine }}
+
+                                                                                     @php
+                                                                                       if($color != 999){
+                                                                                           if(count($medication) < 4)
+                                                                                              $color = $color + 333;
+                                                                                           else
+                                                                                              $color = $color + 111;   
+                                                                                        }  
+                                                                                     @endphp
+
+                                                                                        <li class="active"><a href="javascript:void(0)" style="border-left-color: #{!! $color !!} !important;"><span style="font-size: 12px;">{{ $med->name_medicine }}
                                                                                           <input type="hidden" name="rec[]" class="formrecipe" value="{{ $med->id }}">
                                                                                               <ul>
                                                                                                   <li>{{ $med->frequency_days }} día(s), {{ $med->posology }}</li>
