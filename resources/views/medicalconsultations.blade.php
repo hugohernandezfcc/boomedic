@@ -679,7 +679,7 @@
                                                                             </a>
                                                                         </li>
 
-                                                                        <li role="presentation" class="disabled" id="conf">
+                                                                        <li role="presentation" class="disabled" id="conf" onclick="actionNext();" >
                                                                             <a href="#complete2" data-toggle="tab" aria-controls="complete2" role="tab" title="Resumen" >
                                                                                 <span class="round-tab">
                                                                                     <i class="glyphicon glyphicon-ok"></i>
@@ -725,7 +725,7 @@
                                                                                                   <li>{{ $med->frequency_days }} día(s), {{ $med->posology }}</li>
                                                                                               </ul>
                                                                                                <div id="{{ $med->id }}" style="display: none;">
-                                                                                                  <input type="datetime-local" class="form-control" data-id="{{ $med->id }}" name="date[]" value="{{ \Carbon\Carbon::now()->timezone('America/Mexico_City')->format('Y-m-d\TH:i:s') }}">
+                                                                                                  <input type="datetime-local" class="form-control formrecipe" data-name="{{ $med->name_medicine }}" data-id="{{ $med->id }}" name="date[]" value="{{ \Carbon\Carbon::now()->timezone('America/Mexico_City')->format('Y-m-d\TH:i:s') }}">
                                                                                                </div>
                                                                                               </span></a>
                                                                                         </li>
@@ -733,13 +733,25 @@
                                                                                @endforeach     
                                                                               </ul>  <br> 
                                                                           
-                                                                              <div align="right"><button id="nextconfirm" title="Confirmar" class="btn btn-secondary btn-flat next-step" disabled="disabled">Siguiente</button></div>
+                                                                              <div align="right"><button onclick="actionNext();" id="nextconfirm" title="Confirmar" class="btn btn-secondary btn-flat next-step" disabled="disabled">Siguiente</button></div>
                                                                                                      
                                                                          </div> 
 
                                                                         <div class="tab-pane" role="tabpanel" id="complete2">
                                                                               <span style="font-size: 16px;">Resumen del tratamiento que inicias</span><br/><br/>
                                                                                <div id="resumen_check">
+                                                                                <script type="text/javascript">
+                                                                                  function actionNext(){
+                                                                                    $('#resumen_check').html('');
+                                                                                       $('.formrecipe').each(function() {
+                                                                                          if($('#check' + $(this).attr('data-id')).is(':checked')){ 
+                                                                                            $('#resumen_check').append('<label>'+ $(this).attr('data-name') +': </label><br>' + $(this).val()+ '<br>');
+                                                                              
+                                                                                              }
+
+                                                                                       });
+                                                                                     }
+                                                                                </script>
                                                                                </div>   
                                                                               <br>
                                                                               <div align="right"><a onclick="confirmRecipe();"class="btn btn-secondary btn-flat">Registrar Inicio</a></div>
@@ -1086,14 +1098,16 @@
                     var recipeId = [];
                     var count = 0;
                      $('.formrecipe').each(function() {
-                      
-                            recipeId[count] = $(this).val();
+                      if($('#check' + $(this).attr('data-id')).is(':checked')){ 
+                            recipeId.push({ id: $(this).attr('data-id'), date: $(this).val(), medication: $(this).attr('data-name')});
                             count++;
+                          }
 
                         });
+
                      console.log(recipeId);
 
-                           $.ajax({     
+                          /* $.ajax({     
                              type: "POST",                 
                              url: "{{ url('clinicHistory/confirmMedication') }}",  
                               data: { "id" : recipeId,
@@ -1105,7 +1119,7 @@
                                  location.reload(true);
                                  console.log(data);       
                              }
-                         });
+                         });*/
                     }
           function switchOn(id){
 
