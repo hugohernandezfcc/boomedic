@@ -306,6 +306,70 @@
           z-index: 900;
     }
 
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #777;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+ input:checked + .slider {
+  background-color: #2196F3;
+}
+
+ input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+ input:checked + .slider:before {
+  -webkit-transform: translateX(15px);
+  -ms-transform: translateX(15px);
+  transform: translateX(15px);
+}
+
+/* Rounded sliders */
+ .slider.round {
+  border-radius: 23px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
@@ -651,9 +715,16 @@
 
                                                                                         <li class="active"><a href="javascript:void(0)" style="border-left-color: #{!! $color !!} !important;"><span style="font-size: 12px;">{{ $med->name_medicine }}
                                                                                           <input type="hidden" name="rec[]" class="formrecipe" value="{{ $med->id }}">
+
                                                                                               <ul>
                                                                                                   <li>{{ $med->frequency_days }} día(s), {{ $med->posology }}</li>
                                                                                               </ul>
+                                                                                                  <div align="right">
+                                                                                                      <label class="switch" style="margin-right: 0;">
+                                                                                                          <input id="lock" type="checkbox" onclick=""/>
+                                                                                                          <span class="slider round"></span>
+                                                                                                      </label>
+                                                                                                  </div>
                                                                                               </span></a>
                                                                                         </li>
                                                                                     @endforeach
