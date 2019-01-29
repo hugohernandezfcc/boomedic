@@ -725,8 +725,7 @@
                                                                                                   <li>{{ $med->frequency_days }} día(s), {{ $med->posology }}</li>
                                                                                               </ul>
                                                                                                <div id="{{ $med->id }}" style="display: none;">
-                                                                                                  <input type="date" name="date[]">
-                                                                                                  <input type="time" name="time[]">
+                                                                                                  <input type="datetime-local" class="form-control" name="date[]" value="{{ \Carbon\Carbon::now()->format('Y-m-d\Th:i') }}">
                                                                                                </div>
                                                                                               </span></a>
                                                                                         </li>
