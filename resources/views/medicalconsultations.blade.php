@@ -715,16 +715,19 @@
                                                                                      @endphp
 
                                                                                         <li class="active"><a href="javascript:void(0)" style="border-left-color: #{!! $color !!} !important;"><span style="font-size: 12px;">{{ $med->name_medicine }}
-                                                                                          <input type="hidden" name="rec[]" class="formrecipe" value="{{ $med->id }}">
+                                                                                              <input type="hidden" name="rec[]" class="formrecipe" value="{{ $med->id }}">
 
                                                                                                        <div class="pull-right"> <label class="switch" style="margin-right: 0;">
-                                                                                                            <input class="switchtrue" type="checkbox" onclick="switchOn('{{ $med->id }}');"/>
+                                                                                                          <input id="check{{ $med->id }}" class="switchtrue" type="checkbox" onclick="switchOn('{{ $med->id }}');"/>
                                                                                                             <span class="slider round"></span>
                                                                                                         </label></div>
                                                                                               <ul>
                                                                                                   <li>{{ $med->frequency_days }} día(s), {{ $med->posology }}</li>
                                                                                               </ul>
-                                                                                               <div id="{{ $med->id }}" style="display: none;"><input type="date" name=""><input type="time" name=""></div>
+                                                                                               <div id="{{ $med->id }}" style="display: none;">
+                                                                                                  <input type="date" name="date[]">
+                                                                                                  <input type="time" name="time[]">
+                                                                                               </div>
                                                                                               </span></a>
                                                                                         </li>
                                                                                     @endforeach
@@ -1110,7 +1113,12 @@
                          });
                     }
           function switchOn(id){
+           if($('#check' + id).is(':checked')) {  
               $('#' + id).show();
+            } 
+             else {
+                $('#' + id).hide();
+             }
           }          
 
  
