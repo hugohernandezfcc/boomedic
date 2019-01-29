@@ -680,7 +680,7 @@
                                                                         </li>
 
                                                                         <li role="presentation" id="">
-                                                                            <a href="#complete2" data-toggle="tab" aria-controls="complete2" role="tab" title="Registrar" id="conf" disabled>
+                                                                            <a href="#complete2" data-toggle="tab" aria-controls="complete2" role="tab" title="Resumen" id="conf" disabled="disabled">
                                                                                 <span class="round-tab">
                                                                                     <i class="glyphicon glyphicon-ok"></i>
                                                                                 </span>
@@ -725,7 +725,7 @@
                                                                                                   <li>{{ $med->frequency_days }} día(s), {{ $med->posology }}</li>
                                                                                               </ul>
                                                                                                <div id="{{ $med->id }}" style="display: none;">
-                                                                                                  <input type="datetime-local" class="form-control" name="date[]" value="{{ \Carbon\Carbon::now()->timezone('America/Mexico_City')->format('Y-m-d\TH:i:s') }}">
+                                                                                                  <input type="datetime-local" class="form-control" data-id="{{ $med->id }}" name="date[]" value="{{ \Carbon\Carbon::now()->timezone('America/Mexico_City')->format('Y-m-d\TH:i:s') }}">
                                                                                                </div>
                                                                                               </span></a>
                                                                                         </li>
@@ -738,7 +738,7 @@
                                                                          </div> 
 
                                                                         <div class="tab-pane" role="tabpanel" id="complete2">
-                                                                              <span style="font-size: 16px;">Indica la fecha que inicias tu tratamiento</span><br/><br/>
+                                                                              <span style="font-size: 16px;">Resumen del tratamiento que inicias</span><br/><br/>
                                                                               @foreach($medication as $created_at => $medications)
                                                                               @if($loop->first)
                                                                               <label>Fecha Receta:</label> {{ $created_at }}<br>
