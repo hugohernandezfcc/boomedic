@@ -1102,7 +1102,7 @@
                            $.ajax({     
                              type: "POST",                 
                              url: "{{ url('clinicHistory/confirmMedication') }}",  
-                              data: { "data" : recipeId }, 
+                              data: { 'dat' : JSON.stringify(recipeId) }, 
                               dataType: 'json',                
                              success: function(data)             
                              {

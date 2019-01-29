@@ -402,9 +402,9 @@ class clinicHistory extends Controller
 
         $medication = DB::table('medications')->get();
 
-      $recipe_id = $request->data;
+      $recipe_id = json_decode($request->dat);
 
-      /* foreach($recipe_id as $rec){
+      foreach($recipe_id as $rec){
                 foreach($medication as $med){
                      if($rec->id == $med->id){
                          $change = Medications::find($rec->id);
@@ -413,7 +413,7 @@ class clinicHistory extends Controller
                          $change->save();
                      }
                 }
-            }*/
+            }
 
 
 
