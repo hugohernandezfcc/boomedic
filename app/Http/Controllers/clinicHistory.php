@@ -402,14 +402,14 @@ class clinicHistory extends Controller
 
         $medication = DB::table('medications')->get();
 
-      $recipe_id = $request->id;
+      $recipe_id = $request->data;
            
-        foreach($recipe_id as $rec){
+       foreach($recipe_id as $rec){
                 foreach($medication as $med){
                      if($rec == $med->id){
-                         $change = Medications::find($rec);
+                         $change = Medications::find($rec->id);
                          $change->active = 'Confirmed';
-                         $change->start_date = $request->date. ' 00:00:00';
+                         $change->start_date = str_replace(" ", "T", $rec->date);
                          $change->save();
 
                      }
@@ -418,7 +418,7 @@ class clinicHistory extends Controller
 
 
 
-        return response()->json($request->date);
+        return response()->json($request->data);
     
     }
 

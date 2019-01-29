@@ -746,7 +746,6 @@
                                                                                        $('.formrecipe').each(function() {
                                                                                           if($('#check' + $(this).attr('data-id')).is(':checked')){ 
                                                                                             $('#resumen_check').append('<label>'+ $(this).attr('data-name') +': </label><br>' + $(this).val()+ '<br>');
-                                                                              
                                                                                               }
 
                                                                                        });
@@ -763,14 +762,7 @@
                                               </div> 
                                             </div>
                                         </div>  
-
-
-
-
-
   @endif
-
-
 
     <div id="map"></div>
 
@@ -1099,7 +1091,7 @@
                     var count = 0;
                      $('.formrecipe').each(function() {
                       if($('#check' + $(this).attr('data-id')).is(':checked')){ 
-                            recipeId.push({ id: $(this).attr('data-id'), date: $(this).val(), medication: $(this).attr('data-name')});
+                            recipeId.push({ id: $(this).attr('data-id'), date: $(this).val()});
                             count++;
                           }
 
@@ -1107,19 +1099,17 @@
 
                      console.log(recipeId);
 
-                          /* $.ajax({     
+                           $.ajax({     
                              type: "POST",                 
                              url: "{{ url('clinicHistory/confirmMedication') }}",  
-                              data: { "id" : recipeId,
-                                      "date" : $('#datemed').val() 
-                                    }, 
+                              data: { "data" : recipeId }, 
                               dataType: 'json',                
                              success: function(data)             
                              {
                                  location.reload(true);
                                  console.log(data);       
                              }
-                         });*/
+                         });
                     }
           function switchOn(id){
 
