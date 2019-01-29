@@ -680,7 +680,7 @@
                                                                         </li>
 
                                                                         <li role="presentation" class="disabled" id="conf">
-                                                                            <a href="complete2" data-toggle="tab" aria-controls="complete2" role="tab" title="Resumen" >
+                                                                            <a href="#complete2" data-toggle="tab" aria-controls="complete2" role="tab" title="Resumen" >
                                                                                 <span class="round-tab">
                                                                                     <i class="glyphicon glyphicon-ok"></i>
                                                                                 </span>
