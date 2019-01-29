@@ -672,7 +672,7 @@
                                                                     <ul class="nav nav-tabs" role="tablist">
 
                                                                         <li role="presentation" class="active">
-                                                                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Tratamientos" id="tab2">
+                                                                            <a href="#step_1" data-toggle="tab" aria-controls="step1" role="tab" title="Tratamientos" id="tab2">
                                                                                 <span class="round-tab">
                                                                                     <i class="fa fa-list-alt"></i>
                                                                                 </span>
@@ -680,7 +680,7 @@
                                                                         </li>
 
                                                                         <li role="presentation" id="">
-                                                                            <a href="#complete2" data-toggle="tab" aria-controls="complete2" role="tab" title="Registrar" id="conf">
+                                                                            <a href="#complete2" data-toggle="tab" aria-controls="complete2" role="tab" title="Registrar" id="conf" disabled>
                                                                                 <span class="round-tab">
                                                                                     <i class="glyphicon glyphicon-ok"></i>
                                                                                 </span>
@@ -691,7 +691,7 @@
 
                                                                     <div class="tab-content">
                                                                       
-                                                                        <div class="tab-pane active" role="tabpanel" id="step1">
+                                                                        <div class="tab-pane active" role="tabpanel" id="step_1">
                                                                         
                                                                              <ul class="nav nav-pills nav-stacked">
                                                                                         @php
@@ -733,7 +733,7 @@
                                                                                @endforeach     
                                                                               </ul>  <br> 
                                                                           
-                                                                              <div align="right"><a onclick="document.getElementById('conf').click();" title="Confirmar" class="btn btn-secondary btn-flat">Siguiente</a></div>
+                                                                              <div align="right"><button id="nextconfirm" title="Confirmar" class="btn btn-secondary btn-flat next-step" disabled="disabled">Siguiente</button></div>
                                                                                                      
                                                                          </div> 
 
@@ -1112,12 +1112,19 @@
                          });
                     }
           function switchOn(id){
-           if($('#check' + id).is(':checked')) {  
+
+             if($('.switchtrue:checked').length > 0){
+                $('#conf').removeAttr('disabled');
+                $('#nextconfirm').removeAttr('disabled');
+              }else{
+                $('#conf').attr('disabled', 'disabled');
+                $('#nextconfirm').attr('disabled', 'disabled');
+              }
+
+           if($('#check' + id).is(':checked')) 
               $('#' + id).show();
-            } 
-             else {
+             else 
                 $('#' + id).hide();
-             }
           }          
 
  
