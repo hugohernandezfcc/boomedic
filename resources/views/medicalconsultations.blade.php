@@ -311,8 +311,8 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 38px;
-  height: 20px;
+  width: 25px;
+  height: 15px;
 }
 
 /* Hide default HTML checkbox */
@@ -338,8 +338,8 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 15px;
-  width: 15px;
+  height: 10px;
+  width: 10px;
   left: 2px;
   bottom: 2px;
   background-color: white;
@@ -348,22 +348,22 @@
 }
 
  input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #333;
 }
 
  input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #333;
 }
 
  input:checked + .slider:before {
-  -webkit-transform: translateX(15px);
-  -ms-transform: translateX(15px);
-  transform: translateX(15px);
+  -webkit-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
 }
 
 /* Rounded sliders */
  .slider.round {
-  border-radius: 23px;
+  border-radius: 13px;
 }
 
 .slider.round:before {
@@ -701,7 +701,12 @@
                                                                               @foreach($medication as $date => $medications)
                                                                                     @foreach($medications as $med)
                                                                                      @if($loop->first)
-                                                                                       <br/><span style="font-size: 15px;">Cita: {{ $med->ndoctor }} - {{ \Carbon\Carbon::parse($date)->format('d-m-Y') }}</span><br/>
+                                                                                       <br/><span style="font-size: 15px;">Cita: {{ $med->ndoctor }} - {{ \Carbon\Carbon::parse($date)->format('d-m-Y') }}
+                                                                                              <label class="switch" style="margin-right: 0;">
+                                                                                                  <input id="lockmaster" type="checkbox" onclick="switchOn();"/>
+                                                                                                  <span class="slider round"></span>
+                                                                                              </label>
+                                                                                              </span><br/>
                                                                                      @endif
 
                                                                                      @php
@@ -717,14 +722,16 @@
                                                                                           <input type="hidden" name="rec[]" class="formrecipe" value="{{ $med->id }}">
 
                                                                                               <ul>
-                                                                                                  <li>{{ $med->frequency_days }} día(s), {{ $med->posology }}</li>
+                                                                                                  <li>{{ $med->frequency_days }} día(s), {{ $med->posology }}
+                                                                                                    <div align="right">
+                                                                                                        <label class="switch" style="margin-right: 0;">
+                                                                                                            <input id="{{ $med->id }}" class="switchtrue" type="checkbox" onclick=""/>
+                                                                                                            <span class="slider round"></span>
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                  </li>
                                                                                               </ul>
-                                                                                                  <div align="right">
-                                                                                                      <label class="switch" style="margin-right: 0;">
-                                                                                                          <input id="lock" type="checkbox" onclick=""/>
-                                                                                                          <span class="slider round"></span>
-                                                                                                      </label>
-                                                                                                  </div>
+                                                                                                  
                                                                                               </span></a>
                                                                                         </li>
                                                                                     @endforeach
@@ -1109,6 +1116,10 @@
                              }
                          });
                     }
+          function switchOn(){
+              $('.switchtrue').click();
+
+          }          
 
  
 
