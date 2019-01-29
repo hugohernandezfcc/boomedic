@@ -679,8 +679,8 @@
                                                                             </a>
                                                                         </li>
 
-                                                                        <li role="presentation" id="">
-                                                                            <a href="#complete2" data-toggle="tab" aria-controls="complete2" role="tab" title="Resumen" id="conf" disabled="disabled">
+                                                                        <li role="presentation" class="disabled" id="conf">
+                                                                            <a href="complete2" data-toggle="tab" aria-controls="complete2" role="tab" title="Resumen" >
                                                                                 <span class="round-tab">
                                                                                     <i class="glyphicon glyphicon-ok"></i>
                                                                                 </span>
@@ -739,12 +739,8 @@
 
                                                                         <div class="tab-pane" role="tabpanel" id="complete2">
                                                                               <span style="font-size: 16px;">Resumen del tratamiento que inicias</span><br/><br/>
-                                                                              @foreach($medication as $created_at => $medications)
-                                                                              @if($loop->first)
-                                                                              <label>Fecha Receta:</label> {{ $created_at }}<br>
-                                                                              <div><label>Fecha Inicio:</label><input type="date" id="datemed" class="form-control"></div>
-                                                                              @endif
-                                                                              @endforeach
+                                                                               <div id="resumen_check">
+                                                                               </div>   
                                                                               <br>
                                                                               <div align="right"><a onclick="confirmRecipe();"class="btn btn-secondary btn-flat">Registrar Inicio</a></div>
                                                                         </div>
@@ -1114,17 +1110,18 @@
           function switchOn(id){
 
              if($('.switchtrue:checked').length > 0){
-                $('#conf').removeAttr('disabled');
+                $('#conf').removeClass('disabled');
                 $('#nextconfirm').removeAttr('disabled');
               }else{
-                $('#conf').attr('disabled', 'disabled');
+                $('#conf').addClass('disabled');
                 $('#nextconfirm').attr('disabled', 'disabled');
               }
 
-           if($('#check' + id).is(':checked')) 
+           if($('#check' + id).is(':checked')){ 
               $('#' + id).show();
-             else 
+             }else{ 
                 $('#' + id).hide();
+              }
           }          
 
  
