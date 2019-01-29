@@ -1091,7 +1091,7 @@
                     var count = 0;
                      $('.formrecipe').each(function() {
                       if($('#check' + $(this).attr('data-id')).is(':checked')){ 
-                            recipeId.push({ id: $(this).attr('data-id'), date: $(this).val()});
+                            recipeId.push({"id": $(this).attr('data-id'), "date": $(this).val()});
                             count++;
                           }
 
