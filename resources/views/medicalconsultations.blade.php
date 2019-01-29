@@ -702,10 +702,6 @@
                                                                                     @foreach($medications as $med)
                                                                                      @if($loop->first)
                                                                                        <br/><span style="font-size: 15px;">Cita: {{ $med->ndoctor }} - {{ \Carbon\Carbon::parse($date)->format('d-m-Y') }}
-                                                                                              <label class="switch" style="margin-right: 0;">
-                                                                                                  <input id="lockmaster" type="checkbox" onclick="switchOn();"/>
-                                                                                                  <span class="slider round"></span>
-                                                                                              </label>
                                                                                               </span><br/>
                                                                                      @endif
 
@@ -721,17 +717,14 @@
                                                                                         <li class="active"><a href="javascript:void(0)" style="border-left-color: #{!! $color !!} !important;"><span style="font-size: 12px;">{{ $med->name_medicine }}
                                                                                           <input type="hidden" name="rec[]" class="formrecipe" value="{{ $med->id }}">
 
-                                                                                              <ul>
-                                                                                                  <li>{{ $med->frequency_days }} día(s), {{ $med->posology }}
-                                                                                                    <div align="right">
-                                                                                                        <label class="switch" style="margin-right: 0;">
-                                                                                                            <input id="{{ $med->id }}" class="switchtrue" type="checkbox" onclick=""/>
+                                                                                                       <div class="pull-right"> <label class="switch" style="margin-right: 0;">
+                                                                                                            <input class="switchtrue" type="checkbox" onclick="switchOn('{{ $med->id }}');"/>
                                                                                                             <span class="slider round"></span>
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                  </li>
+                                                                                                        </label></div>
+                                                                                              <ul>
+                                                                                                  <li>{{ $med->frequency_days }} día(s), {{ $med->posology }}</li>
                                                                                               </ul>
-                                                                                                  
+                                                                                               <div id="{{ $med->id }}" style="display: none;"><input type="date" name=""><input type="time" name=""></div>
                                                                                               </span></a>
                                                                                         </li>
                                                                                     @endforeach
@@ -1116,9 +1109,8 @@
                              }
                          });
                     }
-          function switchOn(){
-              $('.switchtrue').click();
-
+          function switchOn(id){
+              $('#' + id).show();
           }          
 
  
