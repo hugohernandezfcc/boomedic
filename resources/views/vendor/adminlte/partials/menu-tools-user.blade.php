@@ -66,19 +66,15 @@
 
                                                             for (var date in result){
                                                                 if (result.hasOwnProperty(date)) {
+                                                                $('#allmed').append('<li class="time-label"><span class="bg-gray">'+ moment(date).format("DD-MM-YYYY") +'</span></li>');
                                                                    for(var z = 0; z < result[date].length; z++){
                                                                      if(result[date][z]['active'] == 'Not Confirmed'){
-                                                                      if(z == 0 )
-                                                                          $('#allmed').append('<li class="time-label"><span class="bg-gray">'+ moment(date).format("DD-MM-YYYY") +'</span></li>');
 
                                                                       $('#allmed').append('<li><a class="pointer"><img src="'+ prescription_red +'" class="bg-gray menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading" style="font-size:12px !important;">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
                                                                       countfin++;
                                                                      }
 
                                                                     if(result[date][z]['active'] == 'Finished'){
-                                                                      if(z == 0 )
-                                                                          $('#allmed').append('<li class="time-label"><span class="bg-gray">'+ moment(date).format("DD-MM-YYYY") +'</span></li>');
-
                                                                       $('#allmed').append('<li><a class="pointer"><img src="'+ prescription_gray +'" class="bg-gray menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading" style="font-size:12px !important;">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
 
                                                                       
@@ -86,7 +82,7 @@
                                                                      }
 
                                                                     if(result[date][z]['active'] == 'Confirmed'){
-                                                                      if(z == 0 )
+                                                                      
                                                                           $('#activemed').append('<li class="time-label"><span class="bg-gray">Inicio '+ moment(result[date][z]['start_date']).format("DD-MM-YYYY") +'</span></li>');
 
                                                                       $('#activemed').append('<li><a class="pointer"><img src="'+ prescription_green +'" class="bg-gray menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading" style="font-size:12px !important;">'+ result[date][z]['name_medicine'] +'</h4><p>'+ result[date][z]['frequency_days'] +'día(s), ' + result[date][z]['posology'] +'</p></div></a></li>');
