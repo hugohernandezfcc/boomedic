@@ -644,17 +644,17 @@ span.round-tab:hover {
                         $('#notN').css("display", "none"); 
                     }
                     $('#notify').html('');
-                  for (var i =0; i < result.length; i++) {
+                  for (var i =0; i < result[0].length; i++) {
                     if(i == 0){
-                    $('#countNot').html('Tiene '+ result.length + ' notificación');
+                    $('#countNot').html('Tiene '+ result[0].length + ' notificación');
                      $('#notN').html('1');
                     }else{
-                     $('#notN').html(result.length);
-                    $('#countNot').html('Tiene '+ result.length + ' notificaciones');
+                     $('#notN').html(result[0].length);
+                    $('#countNot').html('Tiene '+ result[0].length + ' notificaciones');
                     }
-                    var u = result[i]['url'];
+                    var u = result[0][i]['url'];
                     var url = "{{ url('') }}";
-                            $('#notify').append('<li><a href="'+ url +'/'+ u +'"><i class="fa fa-warning text-yellow"></i>'+ result[i]['description']+'</a></li>');
+                            $('#notify').append('<li><a href="'+ url +'/'+ u +'"><i class="fa fa-warning text-yellow"></i>'+ result[0][i]['description']+'</a></li>');
                         
                         }
                                 }

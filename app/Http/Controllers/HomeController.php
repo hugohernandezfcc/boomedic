@@ -267,7 +267,7 @@ class HomeController extends Controller
                                             ->join('users', 'recipes_tests.doctor', '=', 'users.id')
                                             ->where('recipes_tests.patient', '=', $user->id)
                                             ->where('medications.active', '=', 'Not Confirmed')
-                                            ->where( 'medications.created_at', '>',  Carbon::now()->subDays(9))
+                                            ->where( 'medications.created_at', '>',  Carbon::now()->subDays(8))
                                             ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')
                                             ->get()->groupBy('date');
 
@@ -434,11 +434,29 @@ class HomeController extends Controller
           $user = User::find(Auth::id());
           Session(['entered' => $user->entered]);
         //if is for user or for all
+         $notificationsArray = Array();
+
          $notifications = DB::table('notifications')->where(function($q) {
-          $q->where('user_id', Auth::id())
+           $q->where('user_id', Auth::id())
             ->orWhere('type', 'Global');})->get();
 
-        return response()->json($notifications);
+         array_push($notificationsArray, $notifications);
+
+            $medication = DB::table('medications')
+                    ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+                    ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                    ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                    ->join('users', 'recipes_tests.doctor', '=', 'users.id')
+                    ->where('recipes_tests.patient', '=', $user->id)
+                    ->where('medications.active', '=', 'Not Confirmed')
+                    ->where( 'medications.created_at', '>',  Carbon::now()->subDays(9))
+                    ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')
+                    ->get()->groupBy('date');
+
+            array_push($notificationsArray, $medication);         
+
+
+        return response()->json($notificationsArray);
     }
 
 
