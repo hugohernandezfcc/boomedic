@@ -609,7 +609,9 @@
  
 
 $(document).ready(function () {
+    if("{{ $medication }}" > 0)
        $( "#medications" ).modal();
+
                          $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
                           var vis = $(this).find( ".calendarNull" );
                              if(vis.is(":visible")){
