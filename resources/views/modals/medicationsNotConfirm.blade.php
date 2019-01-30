@@ -79,7 +79,7 @@
                                                                                @endforeach     
                                                                               </ul>  <br> 
                                                                           
-                                                                              <div align="right"><button onclick="actionNext();" id="nextconfirm" title="Confirmar" class="btn btn-secondary btn-flat next-step" disabled="disabled">Siguiente</button></div>
+                                                                              <div align="right"><button onclick="actionNext();" id="nextconfirm" title="Confirmar" class="btn btn-secondary btn-flat next-step2" disabled="disabled">Siguiente</button></div>
                                                                                                      
                                                                          </div> 
 
@@ -156,5 +156,28 @@
              }else{ 
                 $('#' + id).hide();
               }
-          }          
+          }     
+      $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+    $(".next-step2").click(function (e) {
+        var $active = $('.wizard .nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+    });
+    $(".prev-step2").click(function (e) {
+        var $active = $('.wizard .nav-tabs li.active');
+        prevTab($active);
+    });
+
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+}             
    </script>                                     
