@@ -711,7 +711,7 @@ span.round-tab:hover {
                       if(result[1].length > 0){  
 
                           var length = result[0].length + 1;
-                          $('#notify').append('<li><a class="pointer" data-toggle="modal" href="#modalmedications"><i class="fa fa-warning text-yellow"></i>Tienes un tratamiento por iniciar</a></li>');
+                          $('#notify').append('<li><a class="pointer" data-toggle="modal" href="#modalmedications"><img src="{{ asset("prescription.png") }}" height="20" width="20">Tienes un tratamiento por iniciar</a></li>');
 
                       }else 
                           var length = result[0].length;   
