@@ -11,7 +11,10 @@ class Medications extends Model
     	'id',
 		'active',  //enum [confirmed, not confirmed, finished]
 		'recipe_medicines',
-		'start_date'
+		'start_date',
+		'scheduller_active',
+		'scheduller_inactive',
+		'interval_hour'
     ];
     
 
