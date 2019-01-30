@@ -637,7 +637,7 @@ span.round-tab:hover {
                 type: "GET",    
                 url: "{{ url('HomeController/notify') }}", 
                 success: function(result){
-                 var com = "@php echo session()->get('entered'); @endphp";
+                 var com = "{{ session()->get('entered') }}";
                     if(com != 1){
                       $('#notN').css("display", "block");  
                     }else{
@@ -646,7 +646,8 @@ span.round-tab:hover {
                     $('#notify').html('');
                       if(result[1].length > 0){  
                           var length = result[0].length + 1;
-                          $('#notify').append('<li><a><i class="fa fa-warning text-yellow"></i>Tienes un tratamiento por iniciar</a></li>');
+                         if(window.location.href != "{{ url('medicalconsultations') }}")   
+                          $('#notify').append('@include("modals.medicationsNotConfirm", ["medication" => '+ result[1] +'])<li><a onclick="$("#medications").modal();"><i class="fa fa-warning text-yellow"></i>Tienes un tratamiento por iniciar</a></li>');
                       }else 
                           var length = result[0].length;   
 
