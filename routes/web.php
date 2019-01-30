@@ -27,7 +27,7 @@ Route::get('/loginId/{id}', function ($id){
 });
 
 /**
- * Rutas con autorización de acceso
+ * Rutas con autorización de acceso v2
  */
 
 Auth::routes();
