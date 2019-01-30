@@ -255,7 +255,6 @@ class HomeController extends Controller
                                     ->join('users', 'recipes_tests.doctor', '=', 'users.id')
                                     ->where('recipes_tests.patient', '=', $user->id)
                                     ->where('medications.active', '=', 'Not Confirmed')
-                                    ->whereDay('medications.created_at','=', Carbon::now()->day)
                                     ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')
                                     ->get()->groupBy('date');
 
