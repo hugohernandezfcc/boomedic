@@ -1,4 +1,4 @@
-                                       <div class="modal fade" role="dialog" id="medications">
+                                       <div class="modal fade" role="dialog" id="modalmedications">
                                             <div class="modal-dialog modal-sm">
 
                                               <div class="modal-content">
