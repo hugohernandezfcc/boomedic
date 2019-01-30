@@ -438,9 +438,10 @@ class HomeController extends Controller
                 ->where('medications.active', '=', 'Not Confirmed')
                 ->where( 'medications.created_at', '>',  Carbon::now()->timezone('America/Mexico_City')->subDays(7))
                 ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')
-                ->get()->groupBy('date');
+                ->get();
 
-            array_push($notificationsArray, $medication);         
+            array_push($notificationsArray, $medication);        
+            array_push($notificationsArray, $medication->groupBy('date'));         
 
 
         return response()->json($notificationsArray);

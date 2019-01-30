@@ -644,13 +644,20 @@ span.round-tab:hover {
                         $('#notN').css("display", "none"); 
                     }
                     $('#notify').html('');
-                  for (var i =0; i < result[0].length; i++) {
-                    if(i == 0){
-                    $('#countNot').html('Tiene '+ result[0].length + ' notificación');
+                      if(result[1].length > 0){  
+                          var length = result[0].length + 1;
+                          $('#notify').append('<li><a><i class="fa fa-warning text-yellow"></i>Tienes un tratamiento por iniciar</a></li>');
+                      }else 
+                          var length = result[0].length;   
+
+
+                  for (var i =0; i < length; i++) {
+                    if(length == 1){
+                    $('#countNot').html('Tiene '+ length + ' notificación');
                      $('#notN').html('1');
                     }else{
-                     $('#notN').html(result[0].length);
-                    $('#countNot').html('Tiene '+ result[0].length + ' notificaciones');
+                     $('#notN').html(length);
+                    $('#countNot').html('Tiene '+ length + ' notificaciones');
                     }
                     var u = result[0][i]['url'];
                     var url = "{{ url('') }}";
