@@ -255,9 +255,23 @@ class HomeController extends Controller
                                     ->join('users', 'recipes_tests.doctor', '=', 'users.id')
                                     ->where('recipes_tests.patient', '=', $user->id)
                                     ->where('medications.active', '=', 'Not Confirmed')
-                                    ->whereMonth('medications.created_at','=', Carbon::now()->month)
+                                    ->whereDay('medications.created_at','=', Carbon::now()->day)
                                     ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')
                                     ->get()->groupBy('date');
+
+                                    if(count($medication) == 0){
+                                     $medication = DB::table('medications')
+                                            ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+                                            ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                                            ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                                            ->join('users', 'recipes_tests.doctor', '=', 'users.id')
+                                            ->where('recipes_tests.patient', '=', $user->id)
+                                            ->where('medications.active', '=', 'Not Confirmed')
+                                            ->where( 'medications.created_at', '>',  Carbon::now()->subDays(9))
+                                            ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')
+                                            ->get()->groupBy('date');
+
+                                    }
 
 
 
