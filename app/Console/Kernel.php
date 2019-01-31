@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Console\Command;
+use Illuminate\Console\Commands;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
          '\App\Console\Commands\paymentExecute',
+         '\App\Console\Commands\MedicationExecute',
     ];
 
     /**
