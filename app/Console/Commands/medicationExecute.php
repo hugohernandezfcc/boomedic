@@ -55,15 +55,14 @@ class medicationExecute extends Command
      */
     protected function runScheduler()
     {
-       $user = User::find('3');
 
         $fn = $this->option('queue') ? 'queue' : 'call';
         $this->info('Running scheduler');
 
         $data = [
-            'name'      => $user->name,
+            'name'      => 'test test',
             ]; 
-             $email = $user->email;
+
              Mail::send('emails.medicalTreatment', $data, function ($message) {
                         $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
                         $message->to('contacto@doitcloud.consulting');
