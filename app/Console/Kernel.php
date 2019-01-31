@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
          '\App\Console\Commands\paymentExecute',
-         '\App\Console\Commands\MedicationExecute',
+         '\App\Console\Commands\medicationExecute',
     ];
 
     /**
@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-           $schedule->Command('MedicationExecute:send')->everyFiveMinutes();
+           $schedule->Command('medicationExecute:send')->everyFiveMinutes();
     }
 
     /**

@@ -17,7 +17,7 @@ class medicationExecute extends Command
      *
      * @var string
      */
-    protected $signature = 'MedicationExecute:send';
+    protected $signature = 'medicationExecute:send';
     /**
      * The console command description.
      *
