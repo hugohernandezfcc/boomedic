@@ -59,14 +59,14 @@ class medicationExecute extends Command
         $fn = $this->option('queue') ? 'queue' : 'call';
         $this->info('Running scheduler');
 
-        $data = [
+       /* $data = [
             'name'      => 'test test',
             ]; 
 
              Mail::send('emails.medicalTreatment', $data, function ($message) {
                         $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
                         $message->to('contacto@doitcloud.consulting');
-                    });
+                    });*/
         Artisan::$fn('schedule:run');
         $this->info('completed, sleeping..');
         sleep($this->nextMinute());
