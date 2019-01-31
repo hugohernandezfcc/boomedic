@@ -8,6 +8,8 @@ use App\User;
 use App\Medications;
 use App\email;
 use Mail;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\payments;
 
 class medicationExecute extends Command
@@ -59,14 +61,14 @@ class medicationExecute extends Command
         $fn = $this->option('queue') ? 'queue' : 'call';
         $this->info('Running scheduler');
 
-       /* $data = [
+        $data = [
             'name'      => 'test test',
             ]; 
 
              Mail::send('emails.medicalTreatment', $data, function ($message) {
                         $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
-                        $message->to('contacto@doitcloud.consulting');
-                    });*/
+                        $message->to('rebbeca.goncalves@doitcloud.consulting');
+                    });
         Artisan::$fn('schedule:run');
         $this->info('completed, sleeping..');
         sleep($this->nextMinute());
@@ -79,7 +81,7 @@ class medicationExecute extends Command
      */
     protected function nextMinute()
     {
-        $current = Carbon::now();
+        $current = Carbon::now()->timezone('America/Mexico_City');
         return 60 -$current->second;
     }
 }
