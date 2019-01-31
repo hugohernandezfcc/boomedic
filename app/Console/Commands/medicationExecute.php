@@ -40,7 +40,15 @@ class medicationExecute extends Command
      */
     public function handle()
     {
-
+        $user = User::find('3');
+        $data = [
+            'name'      => $user->name,
+            ]; 
+             $email = $user->email;
+             Mail::send('emails.medicalTreatment', $data, function ($message) {
+                        $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
+                        $message->to('contacto@doitcloud.consulting');
+                    });
         
     }
 }
