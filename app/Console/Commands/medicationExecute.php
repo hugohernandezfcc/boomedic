@@ -57,30 +57,30 @@ class medicationExecute extends Command
      */
     protected function runScheduler()
     {
+     if(Carbon::now()->timezone('America/Mexico_City') == Carbon::parse('2019-01-31 18:05:00')){
 
-        $fn = $this->option('queue') ? 'queue' : 'call';
-        $this->info('Running scheduler');
-         $medication = DB::table('medications')
+        $medication = DB::table('medications')
             ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
             ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
             ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
-            ->join('users', 'recipes_tests.doctor', '=', 'users.id')
-            ->where('medications.active', '=', 'Not Confirmed')
-            ->where( 'medications.created_at', '>',  Carbon::now()->timezone('America/Mexico_City'))
-            ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')->get(); 
+            ->where('medications.active', '=', 'Confirmed')
+            ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid')->get(); 
+
+
 
         $data = [
-            'name'      => 'Rebbeca Goncalves',
-            ]; 
-
+                  'name'      => 'Rebbeca Goncalves',
+                ]; 
+               
            Mail::send('emails.medicalTreatment', $data, function ($message) {
                         $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
                         $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
-        Artisan::$fn('schedule:run');
-        $this->info('completed, sleeping..');
-        sleep($this->nextMinute());
-        $this->runScheduler();
+        return true;
+
+         } else{
+            return false;
+         }
     }
     /**
      * Works out seconds until the next minute starts;
