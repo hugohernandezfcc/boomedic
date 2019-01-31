@@ -60,15 +60,23 @@ class medicationExecute extends Command
 
         $fn = $this->option('queue') ? 'queue' : 'call';
         $this->info('Running scheduler');
+         $medication = DB::table('medications')
+            ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+            ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+            ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+            ->join('users', 'recipes_tests.doctor', '=', 'users.id')
+            ->where('medications.active', '=', 'Not Confirmed')
+            ->where( 'medications.created_at', '>',  Carbon::now()->timezone('America/Mexico_City'))
+            ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')->get(); 
 
         $data = [
-            'name'      => 'test test',
+            'name'      => 'Rebbeca Goncalves',
             ]; 
 
-      /*       Mail::send('emails.medicalTreatment', $data, function ($message) {
+           Mail::send('emails.medicalTreatment', $data, function ($message) {
                         $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
                         $message->to('rebbeca.goncalves@doitcloud.consulting');
-                    });*/
+                    });
         Artisan::$fn('schedule:run');
         $this->info('completed, sleeping..');
         sleep($this->nextMinute());
@@ -81,7 +89,7 @@ class medicationExecute extends Command
      */
     protected function nextMinute()
     {
-        $current = Carbon::now()->timezone('America/Mexico_City');
-        return 60 -$current->second;
+        $current = Carbon::parse('2019-01-31 15:30:00')->timezone('America/Mexico_City');
+        return 60 - $current->second;
     }
 }
