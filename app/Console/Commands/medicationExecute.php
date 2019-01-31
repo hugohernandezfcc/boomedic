@@ -65,10 +65,10 @@ class medicationExecute extends Command
             'name'      => 'test test',
             ]; 
 
-             Mail::send('emails.medicalTreatment', $data, function ($message) {
+      /*       Mail::send('emails.medicalTreatment', $data, function ($message) {
                         $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
                         $message->to('rebbeca.goncalves@doitcloud.consulting');
-                    });
+                    });*/
         Artisan::$fn('schedule:run');
         $this->info('completed, sleeping..');
         sleep($this->nextMinute());
