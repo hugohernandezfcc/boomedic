@@ -62,7 +62,7 @@ return [
 
     'from' => [
         'address' => 'contacto@doitcloud.consulting',
-        'name' => 'Boomedic',
+        'name' => 'Isco',
     ],
 
     /*
