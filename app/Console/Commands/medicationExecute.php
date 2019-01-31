@@ -17,7 +17,7 @@ class medicationExecute extends Command
      *
      * @var string
      */
-    protected $signature = 'medicationExecute:send';
+    protected $signature = 'schedule:cron {--queue}';
     /**
      * The console command description.
      *
@@ -41,7 +41,30 @@ class medicationExecute extends Command
      */
     public function handle()
     {
-        $user = User::find('3');
+
+        
+    }
+    public function handle()
+    {
+        $this->info('Waiting '. $this->nextMinute(). ' for next run of scheduler');
+        sleep($this->nextMinute());
+        $this->runScheduler();
+    }
+    /**
+     * Main recurring loop function.
+     * Runs the scheduler every minute.
+     * If the --queue flag is provided it will run the scheduler as a queue job.
+     * Prevents overruns of cron jobs but does mean you need to have capacity to run the scheduler
+     * in your queue within 60 seconds.
+     *
+     */
+    protected function runScheduler()
+    {
+       $user = User::find('3');
+       
+        $fn = $this->option('queue') ? 'queue' : 'call';
+        $this->info('Running scheduler');
+
         $data = [
             'name'      => $user->name,
             ]; 
@@ -50,7 +73,19 @@ class medicationExecute extends Command
                         $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
                         $message->to('contacto@doitcloud.consulting');
                     });
-        
+        Artisan::$fn('schedule:run');
+        $this->info('completed, sleeping..');
+        sleep($this->nextMinute());
+        $this->runScheduler();
     }
-
+    /**
+     * Works out seconds until the next minute starts;
+     *
+     * @return int
+     */
+    protected function nextMinute()
+    {
+        $current = Carbon::now();
+        return 60 -$current->second;
+    }
 }
