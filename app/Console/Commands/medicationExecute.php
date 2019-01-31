@@ -41,11 +41,6 @@ class medicationExecute extends Command
      */
     public function handle()
     {
-
-        
-    }
-    public function handle()
-    {
         $this->info('Waiting '. $this->nextMinute(). ' for next run of scheduler');
         sleep($this->nextMinute());
         $this->runScheduler();
@@ -61,7 +56,7 @@ class medicationExecute extends Command
     protected function runScheduler()
     {
        $user = User::find('3');
-       
+
         $fn = $this->option('queue') ? 'queue' : 'call';
         $this->info('Running scheduler');
 
