@@ -57,7 +57,7 @@ class medicationExecute extends Command
      */
     protected function runScheduler()
     {
-     if(Carbon::now()->timezone('America/Mexico_City') == Carbon::parse('2019-01-31 18:05:00')){
+     if(Carbon::now()->timezone('America/Mexico_City') > Carbon::parse('2019-01-31 18:05:00') || Carbon::now()->timezone('America/Mexico_City') > Carbon::parse('2019-01-31 18:15:00')){
 
         $medication = DB::table('medications')
             ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
