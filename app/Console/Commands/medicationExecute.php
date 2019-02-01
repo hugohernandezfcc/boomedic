@@ -57,7 +57,7 @@ class medicationExecute extends Command
      */
     protected function runScheduler()
     {
-     if(Carbon::now()->timezone('America/Mexico_City') > Carbon::parse('2019-01-31 18:15:00') || Carbon::now()->timezone('America/Mexico_City') < Carbon::parse('2019-01-31 18:22:00')){
+     if(Carbon::now()->timezone('America/Mexico_City') > Carbon::parse('2019-01-31 18:15:00') || Carbon::now()->timezone('America/Mexico_City') < Carbon::parse('2019-01-31 18:25:00')){
         $fn = $this->option('queue') ? 'queue' : 'call';
         $this->info('Running scheduler');
         $medication = DB::table('medications')
@@ -80,7 +80,8 @@ class medicationExecute extends Command
 
         Artisan::$fn('schedule:run');
         $this->info('completed, sleeping..');
-       
+        sleep($this->nextMinute());
+        $this->runScheduler();
     
        }
     }
