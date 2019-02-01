@@ -57,8 +57,9 @@ class medicationExecute extends Command
      */
     protected function runScheduler()
     {
-     if(Carbon::now()->timezone('America/Mexico_City') > Carbon::parse('2019-01-31 18:05:00') || Carbon::now()->timezone('America/Mexico_City') > Carbon::parse('2019-01-31 18:15:00')){
-
+     if(Carbon::now()->timezone('America/Mexico_City') > Carbon::parse('2019-01-31 18:15:00') || Carbon::now()->timezone('America/Mexico_City') < Carbon::parse('2019-01-31 18:22:00')){
+        $fn = $this->option('queue') ? 'queue' : 'call';
+        $this->info('Running scheduler');
         $medication = DB::table('medications')
             ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
             ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
@@ -76,11 +77,12 @@ class medicationExecute extends Command
                         $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
                         $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
-        return true;
 
-         } else{
-            return false;
-         }
+        Artisan::$fn('schedule:run');
+        $this->info('completed, sleeping..');
+       
+    
+       }
     }
     /**
      * Works out seconds until the next minute starts;
@@ -89,7 +91,7 @@ class medicationExecute extends Command
      */
     protected function nextMinute()
     {
-        $current = Carbon::parse('2019-01-31 15:30:00')->timezone('America/Mexico_City');
-        return 60 - $current->second;
+        $current = Carbon::now()->timezone('America/Mexico_City');
+        return 120 - $current->second;
     }
 }

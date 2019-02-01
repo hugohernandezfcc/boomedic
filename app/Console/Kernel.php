@@ -4,7 +4,6 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Commands\medicationExecute;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,9 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-           $schedule->command('command:test')->everyFiveMinutes()->when(function () {
-            return medicationExecute::runScheduler(); //returns true every 10 minutes
-        });
+           //$schedule->command('command:daily-reset')->everyFiveMinutes();
     }
 
     /**
