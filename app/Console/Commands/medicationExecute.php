@@ -86,7 +86,6 @@ class medicationExecute extends Command
                            $countinac = $countinac + 1;
                            if($countinac == 1){
                                  $current = Carbon::now()->timezone('America/Mexico_City')->diffInSeconds($hour);
-                                    $this->runSchedulersleep($current);
                             } 
                            }
                 }
