@@ -53,7 +53,7 @@ class medicationExecute extends Command
      * in your queue within 60 seconds.
      *
      */
-    protected function runScheduler()
+    public function runScheduler()
     {
         $medication = DB::table('medications')
             ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
@@ -103,7 +103,7 @@ class medicationExecute extends Command
        
     }
 
-        protected function runSchedulersleep($current, $id)
+        public function runSchedulersleep($current, $id)
     {
                                     sleep($current);
                                         $Change = Medications::find($med->id);
