@@ -87,23 +87,7 @@ class medicationExecute extends Command
                            $countinac = $countinac + 1;
                            if($countinac == 1){
                                  $current = Carbon::now()->timezone('America/Mexico_City')->diffInSeconds($hour);
-                                 sleep($current);
-
-                                    $data = [
-                                              'name' => 'Rebbeca Goncalves',
-                                            ]; 
-                                           
-                                       Mail::send('emails.medicalTreatment', $data, function ($message) {
-                                                    $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
-                                                    $message->to('rebbeca.goncalves@doitcloud.consulting');
-                                                });
-
-                                    Artisan::$fn('schedule:run');
-                                    $this->info('completed, sleeping..');
-                                    sleep($current);
-                                    $this->runScheduler();
-    
-
+                                    $this->runSchedulersleep($current);
                             } 
                            }
                 }
@@ -120,5 +104,23 @@ class medicationExecute extends Command
                 sleep(3600);
                 $this->runScheduler();
        
+    }
+
+        protected function runSchedulersleep($current)
+    {
+
+                                    $data = [
+                                              'name' => 'Rebbeca Goncalves',
+                                            ]; 
+                                           
+                                       Mail::send('emails.medicalTreatment', $data, function ($message) {
+                                                    $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
+                                                    $message->to('rebbeca.goncalves@doitcloud.consulting');
+                                                });
+
+                                    Artisan::$fn('schedule:run');
+                                    $this->info('completed, sleeping..');
+                                    sleep($current);
+                                    $this->runScheduler();
     }
 }
