@@ -117,7 +117,5 @@ class medicationExecute extends Command
                                                     $message->to('rebbeca.goncalves@doitcloud.consulting');
                                                 });
 
-
-                                    $this->runScheduler();
     }
 }
