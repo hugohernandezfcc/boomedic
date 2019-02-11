@@ -19,7 +19,7 @@ class medicationExecute extends Command
      *
      * @var string
      */
-    protected $signature = 'medicationExecute:send';
+    protected $signature = 'schedule:cron {--queue}';
     /**
      * The console command description.
      *
@@ -43,6 +43,9 @@ class medicationExecute extends Command
      */
     public function handle()
     {
+        $fn = $this->option('queue') ? 'queue' : 'call';
+        $this->info('Running scheduler');
+        
         $medication = DB::table('medications')
             ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
             ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
@@ -84,6 +87,7 @@ class medicationExecute extends Command
                 $Change->save();
                              if( $current != null){
                                     Artisan::$fn('schedule:run');
+                                    $this->info('completed, sleeping..');
                                     sleep($current);
                                     $this->runSchedulersleep($current, $med->id);
                             } 
@@ -100,7 +104,7 @@ class medicationExecute extends Command
      */
 
         public function runSchedulersleep($current, $id)
-    {
+    {                                 
                                         $Change = Medications::find($med->id);
                                         $change->interval_hour = null;
                                         $Change->save();
