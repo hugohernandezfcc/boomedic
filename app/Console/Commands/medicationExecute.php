@@ -71,7 +71,7 @@ class medicationExecute extends Command
             $datehour = Carbon::parse($med->start_date)->timezone('America/Mexico_City');
             $countact = 0;
             $countinac = 0;
-            $current;
+            $current = null;
 
             $formula =  ($med->frequency_days * 24) / 8;
 
@@ -84,9 +84,9 @@ class medicationExecute extends Command
                             $countact = $countact + 1;
                     else {  
                            $countinac = $countinac + 1;
-                           if($countinac == 1){
+                           if($countinac == 1)
                                  $current = Carbon::now()->timezone('America/Mexico_City')->diffInSeconds($hour);
-                            } 
+                            
                            }
                 }
 
@@ -94,7 +94,7 @@ class medicationExecute extends Command
                 $Change->scheduller_active = $countact;
                 $Change->scheduller_inactive = $countinac;
                 $Change->save();
-                             if($countinac > 1){
+                             if($countinac > 0 && $current != null){
                                     $this->runSchedulersleep($current);
                             } 
 
