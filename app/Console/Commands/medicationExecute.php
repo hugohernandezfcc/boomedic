@@ -43,18 +43,6 @@ class medicationExecute extends Command
      */
     public function handle()
     {
-        $this->runScheduler();
-    }
-    /**
-     * Main recurring loop function.
-     * Runs the scheduler every minute.
-     * If the --queue flag is provided it will run the scheduler as a queue job.
-     * Prevents overruns of cron jobs but does mean you need to have capacity to run the scheduler
-     * in your queue within 60 seconds.
-     *
-     */
-    public function runScheduler()
-    {
         $medication = DB::table('medications')
             ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
             ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
@@ -94,23 +82,31 @@ class medicationExecute extends Command
                 $Change->scheduller_inactive = $countinac;
                 $change->interval_hour = $interval;
                 $Change->save();
-                             if($countinac > 0 && $current != null){
+                             if( $current != null){
+                                    Artisan::$fn('schedule:run');
                                     sleep($current);
                                     $this->runSchedulersleep($current, $med->id);
                             } 
 
         }
-       
     }
+    /**
+     * Main recurring loop function.
+     * Runs the scheduler every minute.
+     * If the --queue flag is provided it will run the scheduler as a queue job.
+     * Prevents overruns of cron jobs but does mean you need to have capacity to run the scheduler
+     * in your queue within 60 seconds.
+     *
+     */
 
         public function runSchedulersleep($current, $id)
     {
                                         $Change = Medications::find($med->id);
                                         $change->interval_hour = null;
                                         $Change->save();
-                                    $data = [
-                                              'name' => 'Rebbeca Goncalves',
-                                            ]; 
+                                        $data = [
+                                                  'name' => 'Rebbeca Goncalves',
+                                                ]; 
                                            
                                        Mail::send('emails.medicalTreatment', $data, function ($message) {
                                                     $message->subject('Recordatorio: tienes un tratamiento que tomar...');
