@@ -107,21 +107,18 @@ class medicationExecute extends Command
                             } 
                            }
                 }
-                
+
                 $Change = Medications::find($med->id);
                 $Change->scheduller_active = $countact;
                 $Change->scheduller_inactive = $countinac;
-                if($countinac == 0){
+                if($countinac == 0)
                 $Change->active  = 'Finished';   
-                                    Artisan::$fn('schedule:run');
-                                    $this->info('completed, sleeping..');
-                                    sleep(3600);
-                                    $this->runScheduler();
-                }
                 $Change->save();
 
 
         }
+                sleep(3600);
+                $this->runScheduler();
        
     }
 }
