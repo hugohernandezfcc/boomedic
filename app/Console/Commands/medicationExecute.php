@@ -44,7 +44,7 @@ class medicationExecute extends Command
     public function handle()
     {
         $this->info('Waiting '. $this->nextMinute(). ' for next run of scheduler');
-        sleep($this->nextMinute());
+        sleep(60);
         $this->runScheduler();
     }
     /**
@@ -57,7 +57,7 @@ class medicationExecute extends Command
      */
     protected function runScheduler()
     {
-     if(Carbon::now()->timezone('America/Mexico_City') > Carbon::parse('2019-01-31 18:15:00') || Carbon::now()->timezone('America/Mexico_City') < Carbon::parse('2019-01-31 18:25:00')){
+
         $fn = $this->option('queue') ? 'queue' : 'call';
         $this->info('Running scheduler');
         $medication = DB::table('medications')
@@ -68,31 +68,52 @@ class medicationExecute extends Command
             ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid')->get(); 
 
 
+        foreach($medication as $med){    
+            $arrayhour = array();
+            $datehour = Carbon::parse($med->start_date)->timezone('America/Mexico_City');
+            $countact = 0;
+            $countinac = 0;
 
-        $data = [
-                  'name'      => 'Rebbeca Goncalves',
-                ]; 
-               
-           Mail::send('emails.medicalTreatment', $data, function ($message) {
-                        $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
-                        $message->to('rebbeca.goncalves@doitcloud.consulting');
-                    });
+            $formula =  ($med->frequency_days * 24) / 8;
 
-        Artisan::$fn('schedule:run');
-        $this->info('completed, sleeping..');
-        sleep($this->nextMinute());
-        $this->runScheduler();
+                for($i = 1; $i < $formula; $i++){
+                    $datehour = $datehour->addHour(8);
+                    array_push($arrayhour, $datehour);
+                }
+                foreach ($arrayhour as $hour) {
+                    if($hour < Carbon::now()->timezone('America/Mexico_City'))
+                            $countact = $countact + 1;
+                    else {  
+                           $countinac = $countinac + 1;
+                           if($countinac == 1){
+                                 $current = Carbon::now()->timezone('America/Mexico_City')->diffInSeconds($hour);
+                                 sleep($current);
+
+                                    $data = [
+                                              'name'      => 'Rebbeca Goncalves',
+                                            ]; 
+                                           
+                                       Mail::send('emails.medicalTreatment', $data, function ($message) {
+                                                    $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
+                                                    $message->to('rebbeca.goncalves@doitcloud.consulting');
+                                                });
+
+                                    Artisan::$fn('schedule:run');
+                                    $this->info('completed, sleeping..');
+                                    sleep($current);
+                                    $this->runScheduler();
     
-       }
-    }
-    /**
-     * Works out seconds until the next minute starts;
-     *
-     * @return int
-     */
-    protected function nextMinute()
-    {
-        $current = Carbon::now()->timezone('America/Mexico_City');
-        return 120 - $current->second;
+
+                            } 
+                           }
+                }
+                $Change = Medications::find($med->id);
+                $Change->scheduller_active = $countact;
+                $Change->scheduller_inactive = $countinac;
+                $Change->save();
+
+
+        }
+       
     }
 }
