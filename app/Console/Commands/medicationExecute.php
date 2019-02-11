@@ -84,7 +84,7 @@ class medicationExecute extends Command
                 $Change = Medications::find($med->id);
                 $Change->scheduller_active = $countact;
                 $Change->scheduller_inactive = $countinac;
-                $change->interval_hour = $interval;
+                $Change->interval_hour = $interval;
                 $Change->save();
                              if($current != null){
                                     Artisan::$fn('schedule:run');
@@ -108,7 +108,7 @@ class medicationExecute extends Command
     {                                   $fn = $this->option('queue') ? 'queue' : 'call';
                                         $this->info('Running scheduler 2');
                                         $Change = Medications::find($med->id);
-                                        $change->interval_hour = null;
+                                        $Change->interval_hour = null;
                                         $Change->save();
                                         $data = [
                                                   'name' => 'Rebbeca Goncalves',
