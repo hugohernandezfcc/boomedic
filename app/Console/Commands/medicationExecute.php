@@ -106,7 +106,7 @@ class medicationExecute extends Command
     {
                                     sleep($current);
                                         $Change = Medications::find($med->id);
-                                        $change->interval_hour = 1;
+                                        $change->interval_hour = null;
                                         $Change->save();
                                     $data = [
                                               'name' => 'Rebbeca Goncalves',
