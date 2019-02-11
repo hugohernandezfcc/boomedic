@@ -45,7 +45,6 @@ class medicationExecute extends Command
     {
         $fn = $this->option('queue') ? 'queue' : 'call';
         $this->info('Running scheduler');
-
         $medication = DB::table('medications')
             ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
             ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
