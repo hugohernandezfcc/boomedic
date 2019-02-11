@@ -19,7 +19,7 @@ class medicationExecute extends Command
      *
      * @var string
      */
-    protected $signature = 'schedule:cron {--queue}';
+    protected $signature = 'medicationExecute:send';
     /**
      * The console command description.
      *
@@ -43,8 +43,6 @@ class medicationExecute extends Command
      */
     public function handle()
     {
-        $this->info('Waiting 60 for next run of scheduler');
-        sleep(60);
         $this->runScheduler();
     }
     /**
@@ -73,6 +71,7 @@ class medicationExecute extends Command
             $datehour = Carbon::parse($med->start_date)->timezone('America/Mexico_City');
             $countact = 0;
             $countinac = 0;
+            $current;
 
             $formula =  ($med->frequency_days * 24) / 8;
 
@@ -96,11 +95,11 @@ class medicationExecute extends Command
                 $Change->scheduller_active = $countact;
                 $Change->scheduller_inactive = $countinac;
                 $Change->save();
-
+                             if($countinac > 1){
+                                    $this->runSchedulersleep($current);
+                            } 
 
         }
-                sleep(3600);
-                $this->runScheduler();
        
     }
 
