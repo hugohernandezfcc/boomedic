@@ -59,7 +59,6 @@ class medicationExecute extends Command
             ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
             ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
             ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
-            ->where('medications.active', '=', 'Confirmed')
             ->where('medications.interval_hour', '!=', 1)
             ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid')->get(); 
 
