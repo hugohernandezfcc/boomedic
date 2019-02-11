@@ -96,7 +96,7 @@ class medicationExecute extends Command
                 $Change = Medications::find($med->id);
                 $Change->scheduller_active = $countact;
                 $Change->scheduller_inactive = $countinac;
-                $change->interval = $interval;
+                $change->interval_hour = $interval;
                 $Change->save();
                              if($countinac > 0 && $current != null){
                                     $this->runSchedulersleep($current, $med->id);
@@ -108,11 +108,9 @@ class medicationExecute extends Command
 
         protected function runSchedulersleep($current, $id)
     {
-                                    Artisan::$fn('schedule:run');
-                                    $this->info('completed, sleeping..');
                                     sleep($current);
                                         $Change = Medications::find($med->id);
-                                        $change->interval = 1;
+                                        $change->interval_hour = 1;
                                         $Change->save();
                                     $data = [
                                               'name' => 'Rebbeca Goncalves',
