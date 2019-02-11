@@ -112,10 +112,10 @@ class medicationExecute extends Command
 
         }
      }
-        public function runSchedulersleep($current, $id)
+        protected function runSchedulersleep($current, $id)
     {                                   $fn = $this->option('queue') ? 'queue' : 'call';
                                         $this->info('Running scheduler 2');
-                                        $Change = Medications::find($med->id);
+                                        $Change = Medications::find($id);
                                         $Change->interval_hour = null;
                                         $Change->save();
                                         $data = [
