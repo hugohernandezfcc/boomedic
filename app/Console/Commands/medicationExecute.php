@@ -73,7 +73,7 @@ class medicationExecute extends Command
             $countact = 0;
             $countinac = 0;
             $current = null;
-            $interval = 1;
+            $interval = null;
 
             $formula =  ($med->frequency_days * 24) / 8;
 
