@@ -43,6 +43,19 @@ class medicationExecute extends Command
      */
     public function handle()
     {
+        $this->info('Waiting 60 for next run of scheduler');
+        sleep(60);
+        $this->runScheduler();
+    }
+    /**
+     * Main recurring loop function.
+     * Runs the scheduler every minute.
+     * If the --queue flag is provided it will run the scheduler as a queue job.
+     * Prevents overruns of cron jobs but does mean you need to have capacity to run the scheduler
+     * in your queue within 60 seconds.
+     *
+     */
+     protected function runScheduler(){
         $fn = $this->option('queue') ? 'queue' : 'call';
         $this->info('Running scheduler');
         $medication = DB::table('medications')
@@ -71,10 +84,13 @@ class medicationExecute extends Command
                 foreach ($arrayhour as $hour) {
                     if($hour < Carbon::now()->timezone('America/Mexico_City'))
                             $countact = $countact + 1;
-                    else 
+                    else {  
                            $countinac = $countinac + 1;
-
-
+                          if($countinac == 1){
+                                 $current = Carbon::now()->timezone('America/Mexico_City')->diffInSeconds($hour);
+                                 $interval = 1;
+                             } 
+                           }
                 }
 
                 $change = Medications::find($med->id);
@@ -82,18 +98,20 @@ class medicationExecute extends Command
                 $change->scheduller_inactive = $countinac;
                 $change->interval_hour = $interval;
                 $change->save();
+                            if($current != null){
+                                    Artisan::$fn('schedule:run');
+                                    $this->info('completed, sleeping..');
+                                    sleep($current);
+                                    $this->runSchedulersleep($current, $med->id);
+                            }else{
+                                Artisan::$fn('schedule:run');
+                                $this->info('completed, sleeping..');
+                                sleep(60);
+                                $this->runScheduler();
+                            } 
 
         }
-    }
-    /**
-     * Main recurring loop function.
-     * Runs the scheduler every minute.
-     * If the --queue flag is provided it will run the scheduler as a queue job.
-     * Prevents overruns of cron jobs but does mean you need to have capacity to run the scheduler
-     * in your queue within 60 seconds.
-     *
-     */
-
+     }
         public function runSchedulersleep($current, $id)
     {                                   $fn = $this->option('queue') ? 'queue' : 'call';
                                         $this->info('Running scheduler 2');
@@ -108,6 +126,7 @@ class medicationExecute extends Command
                                                     $message->subject('Recordatorio: tienes un tratamiento que tomar...');
                                                     $message->to('rebbeca.goncalves@doitcloud.consulting');
                                                 });
+                                       $this->runScheduler();
 
     }
 }
