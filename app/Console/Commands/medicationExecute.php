@@ -95,8 +95,6 @@ class medicationExecute extends Command
                 $Change = Medications::find($med->id);
                 $Change->scheduller_active = $countact;
                 $Change->scheduller_inactive = $countinac;
-                if($countinac == 0)
-                $Change->active  = 'Finished';   
                 $Change->save();
 
 
@@ -108,6 +106,9 @@ class medicationExecute extends Command
 
         protected function runSchedulersleep($current)
     {
+                                    Artisan::$fn('schedule:run');
+                                    $this->info('completed, sleeping..');
+                                    sleep($current);
 
                                     $data = [
                                               'name' => 'Rebbeca Goncalves',
@@ -118,9 +119,7 @@ class medicationExecute extends Command
                                                     $message->to('rebbeca.goncalves@doitcloud.consulting');
                                                 });
 
-                                    Artisan::$fn('schedule:run');
-                                    $this->info('completed, sleeping..');
-                                    sleep($current);
+
                                     $this->runScheduler();
     }
 }
