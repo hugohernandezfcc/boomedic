@@ -95,6 +95,7 @@ class medicationExecute extends Command
                 $change->interval_hour = $interval;
                 $Change->save();
                              if($countinac > 0 && $current != null){
+                                    sleep($current);
                                     $this->runSchedulersleep($current, $med->id);
                             } 
 
@@ -104,7 +105,6 @@ class medicationExecute extends Command
 
         public function runSchedulersleep($current, $id)
     {
-                                    sleep($current);
                                         $Change = Medications::find($med->id);
                                         $change->interval_hour = null;
                                         $Change->save();
