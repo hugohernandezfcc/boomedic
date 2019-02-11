@@ -25,7 +25,7 @@ class medicationExecute extends Command
      *
      * @var string
      */
-    protected $description = 'Send an email to payment no procesed';
+    protected $description = 'Send an email medication hour';
     /**
      * Create a new command instance.
      *

@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
          '\App\Console\Commands\paymentExecute',
-          Commands\medicationExecute::class,
+         '\App\Console\Commands\medicationExecute',
     ];
 
     /**
