@@ -63,6 +63,7 @@ class medicationExecute extends Command
             ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
             ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
             ->where('medications.active', '=', 'Confirmed')
+            ->where('medications.interval_hour', '!=', 1)
             ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid')->get(); 
 
 
@@ -72,6 +73,7 @@ class medicationExecute extends Command
             $countact = 0;
             $countinac = 0;
             $current = null;
+            $interval = 1;
 
             $formula =  ($med->frequency_days * 24) / 8;
 
@@ -84,36 +86,40 @@ class medicationExecute extends Command
                             $countact = $countact + 1;
                     else {  
                            $countinac = $countinac + 1;
-                           if($countinac == 1)
+                           if($countinac == 1){
                                  $current = Carbon::now()->timezone('America/Mexico_City')->diffInSeconds($hour);
-                            
+                                 $interval = 1;
+                             }
                            }
                 }
 
                 $Change = Medications::find($med->id);
                 $Change->scheduller_active = $countact;
                 $Change->scheduller_inactive = $countinac;
+                $change->interval = $interval;
                 $Change->save();
                              if($countinac > 0 && $current != null){
-                                    $this->runSchedulersleep($current);
+                                    $this->runSchedulersleep($current, $med->id);
                             } 
 
         }
        
     }
 
-        protected function runSchedulersleep($current)
+        protected function runSchedulersleep($current, $id)
     {
                                     Artisan::$fn('schedule:run');
                                     $this->info('completed, sleeping..');
                                     sleep($current);
-
+                                        $Change = Medications::find($med->id);
+                                        $change->interval = 1;
+                                        $Change->save();
                                     $data = [
                                               'name' => 'Rebbeca Goncalves',
                                             ]; 
                                            
                                        Mail::send('emails.medicalTreatment', $data, function ($message) {
-                                                    $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
+                                                    $message->subject('Recordatorio: tienes un tratamiento que tomar...');
                                                     $message->to('rebbeca.goncalves@doitcloud.consulting');
                                                 });
 
