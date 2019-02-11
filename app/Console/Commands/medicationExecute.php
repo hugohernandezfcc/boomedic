@@ -73,24 +73,24 @@ class medicationExecute extends Command
                             $countact = $countact + 1;
                     else {  
                            $countinac = $countinac + 1;
-                          /* if($countinac == 1){
+                          if($countinac == 1){
                                  $current = Carbon::now()->timezone('America/Mexico_City')->diffInSeconds($hour);
                                  $interval = 1;
-                             } */
+                             } 
                            }
                 }
 
-                $Change = Medications::find($med->id);
-                $Change->scheduller_active = $countact;
-                $Change->scheduller_inactive = $countinac;
-                $Change->interval_hour = $interval;
-                $Change->save();
-                           /*  if($current != null){
+                $change = Medications::find($med->id);
+                $change->scheduller_active = $countact;
+                $change->scheduller_inactive = $countinac;
+                $change->interval_hour = $interval;
+                $change->save();
+                            if($current != null){
                                     Artisan::$fn('schedule:run');
                                     $this->info('completed, sleeping..');
                                     sleep($current);
                                     $this->runSchedulersleep($current, $med->id);
-                            } */
+                            } 
 
         }
     }
