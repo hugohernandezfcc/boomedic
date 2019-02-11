@@ -43,7 +43,7 @@ class medicationExecute extends Command
      */
     public function handle()
     {
-        $this->info('Waiting '. $this->nextMinute(). ' for next run of scheduler');
+        $this->info('Waiting 60 for next run of scheduler');
         sleep(60);
         $this->runScheduler();
     }
