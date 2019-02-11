@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-           $schedule->command(Commands\medicationExecute::class)->everyFiveMinutes();
+           //$schedule->command('command:daily-reset')->everyFiveMinutes();
     }
 
     /**
