@@ -107,6 +107,7 @@ class medicationExecute extends Command
                             } 
                            }
                 }
+                
                 $Change = Medications::find($med->id);
                 $Change->scheduller_active = $countact;
                 $Change->scheduller_inactive = $countinac;
