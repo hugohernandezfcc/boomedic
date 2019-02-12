@@ -77,7 +77,7 @@ class medicationExecute extends Command
                             $countact = $countact + 1;
                     else {  
                            $countinac = $countinac + 1;
-                           if($countinac == 1){
+                          /* if($countinac == 1){
                                  $current = Carbon::now()->timezone('America/Mexico_City')->diffInSeconds($hour);
                                  sleep($current);
                                     $data = [
@@ -93,7 +93,7 @@ class medicationExecute extends Command
                                     sleep($current);
                                     $this->runScheduler();
     
-                            } 
+                            } */
                            }
                 }
                 $Change = Medications::find($med->id);
