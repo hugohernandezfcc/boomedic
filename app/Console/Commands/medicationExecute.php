@@ -63,11 +63,12 @@ class medicationExecute extends Command
             $datehour[0] = Carbon::parse($med->start_date);
             $countact = 0;
             $countinac = 0;
-            $formula =  ($med->frequency_days * 24) / 8;
+            $frequency_time = 24;
+            $formula =  ($med->frequency_days * 24) / $frequency_time;
                 for($i = 0; $i < $formula; $i++){
                     if($i > 0){
                         $ineg = $i-1;
-                        $datehour[$i] = $datehour[$ineg]->addHour(8);
+                        $datehour[$i] = $datehour[$ineg]->addHour($frequency_time);
                     }    
                     $this->info($datehour[$i]);
                     if(Carbon::now()->timezone('America/Mexico_City') > $datehour[$i])
@@ -75,6 +76,7 @@ class medicationExecute extends Command
                     else{ 
                            $countinac = $countinac + 1;
                            if(Carbon::now()->timezone('America/Mexico_City')->subMinutes(5) > $datehour[$i] && Carbon::now()->timezone('America/Mexico_City')->addMinutes(5) < $datehour[$i]){
+                             $this->info('yeah');
                                        $data = [
                                               'name' => 'Rebbeca Goncalves',
                                             ]; 
