@@ -71,9 +71,20 @@ class medicationExecute extends Command
                     }    
                     $this->info($datehour[$i]);
                     if(Carbon::now()->timezone('America/Mexico_City') > $datehour[$i])
-                            $countact = $countact + 1;
-                    else 
+                           $countact = $countact + 1;
+                    else{ 
                            $countinac = $countinac + 1;
+                           if(Carbon::now()->timezone('America/Mexico_City')->subMinutes(5) > $datehour && Carbon::now()->timezone('America/Mexico_City')->addMinutes(5) < $datehour){
+                                       $data = [
+                                              'name' => 'Rebbeca Goncalves',
+                                            ]; 
+                                           
+                                       Mail::send('emails.medicalTreatment', $data, function ($message) {
+                                                    $message->subject('Recordatorio: tienes un tratamiento que tomar...');
+                                                    $message->to('contacto@doitcloud.consulting');
+                                                });
+                           }
+                       }    
                 }
 
                 $Change = Medications::find($med->id);
