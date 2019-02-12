@@ -64,7 +64,7 @@ class medicationExecute extends Command
             ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid')->get(); 
         foreach($medication as $med){    
             $arrayhour = array();
-            $datehour = Carbon::parse($med->start_date)->timezone('America/Mexico_City');
+            $datehour = Carbon::parse($med->start_date);
             $countact = 0;
             $countinac = 0;
             $formula =  ($med->frequency_days * 24) / 8;
