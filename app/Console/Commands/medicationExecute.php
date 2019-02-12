@@ -126,6 +126,9 @@ class medicationExecute extends Command
                                                     $message->subject('Recordatorio: tienes un tratamiento que tomar...');
                                                     $message->to('rebbeca.goncalves@doitcloud.consulting');
                                                 });
+                                        Artisan::$fn('schedule:run');
+                                        $this->info('completed, sleeping..');
+                                        sleep(60);
                                        $this->runScheduler();
 
     }
