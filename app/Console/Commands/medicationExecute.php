@@ -57,7 +57,10 @@ class medicationExecute extends Command
             ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
             ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
             ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
-            ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid')->get(); 
+            ->join('users', 'recipes_tests.patient', '=', 'users.id')
+            ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.nam as nameu', 'users.email')
+            ->get(); 
+
         foreach($medication as $med){    
             $arrayhour = array();
             $datehour[0] = Carbon::parse($med->start_date);
@@ -78,11 +81,18 @@ class medicationExecute extends Command
                            if(Carbon::now()->timezone('America/Mexico_City') > $datehour[$i]->subMinutes(5) && Carbon::now()->timezone('America/Mexico_City') < $datehour[$i]->addMinutes(5)){
                              $this->info('yeah');
                                        $data = [
-                                              'name' => 'Rebbeca Goncalves',
+                                              'name' => $med->nameu,
+                                              'medicine' => $med->name_medicine,
+                                              'days'     => $med->frequency_days,
+                                              'time'     => $frequency_time,
+                                              'prescr'   => $datehour,
+                                              'start'    => Carbon::parse($med->start_date) 
                                             ]; 
+
+                                       $email = $med->email;     
                                            
                                        Mail::send('emails.medicalTreatment', $data, function ($message) {
-                                                    $message->subject('Recordatorio: tienes un tratamiento que tomar...');
+                                                    $message->subject('Recordatorio: tienes programado '.$med->name_medicine.' a esta hora');
                                                     $message->to('contacto@doitcloud.consulting');
                                                 });
                            }

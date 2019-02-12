@@ -5,17 +5,12 @@
 </head>
 <body>
 
-    <h2>¡Hola! {!! $name !!}</h2>
-
-    <table>
-    <tr>
-         <td style="background-color: black;border-color: black;border: 2px solid black;padding: 10px;text-align: center;">
-            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;text-transform: uppercase;"  href="{{ url('/payment/index') }}">
-                 Tratamiento Iniciado test
-            </a>
-        </td>
-    </tr>
-    </table>
+    <h2>¡Hola {!! $name !!}! Te escribimos para recordarte que tienes un tratamiento programado...</h2>
+    <hr>
+       Tratamiento: {!! $medicine !!} <br>
+       Posología: Cada {!! $time !!} por  {!! $days !!} día(s). <br>    
+       Lo iniciaste el {!! $start !!}<br>
+       Debes tomarlo hoy {!! $prescr !!} 
     
 </body>
 </html>
