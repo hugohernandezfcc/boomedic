@@ -92,7 +92,7 @@ class medicationExecute extends Command
                                        $email = $med->email;     
                                            
                                        Mail::send('emails.medicalTreatment', $data, function ($message) {
-                                                    $message->subject('Recordatorio: tienes programado a esta hora');
+                                                    $message->subject('Recordatorio: tienes programado un tratamiento a esta hora');
                                                     $message->to('contacto@doitcloud.consulting');
                                                 });
                            }
