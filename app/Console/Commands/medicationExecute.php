@@ -17,7 +17,7 @@ class medicationExecute extends Command
      *
      * @var string
      */
-    protected $signature = 'schedule:cron {--queue}';
+    protected $signature = 'schedule:cron';
     /**
      * The console command description.
      *
@@ -40,7 +40,6 @@ class medicationExecute extends Command
      */
     public function handle()
     {
-        $this->info('Waiting 60 for next run of scheduler');
         $this->runScheduler();
     }
     /**
@@ -53,13 +52,11 @@ class medicationExecute extends Command
      */
     protected function runScheduler()
     {
-        $fn = $this->option('queue') ? 'queue' : 'call';
-        $this->info('Running scheduler');
+
         $medication = DB::table('medications')
             ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
             ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
             ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
-            ->where('medications.active', '=', 'Confirmed')
             ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid')->get(); 
         foreach($medication as $med){    
             $arrayhour = array();
@@ -69,36 +66,21 @@ class medicationExecute extends Command
             $formula =  ($med->frequency_days * 24) / 8;
                 for($i = 1; $i < $formula; $i++){
                     $datehour = $datehour->addHour(8);
-                    array_push($arrayhour, $datehour);
+                    array_push($arrayhour, ['date' => $datehour]);
                 }
                 foreach ($arrayhour as $hour) {
-                    if(Carbon::now()->timezone('America/Mexico_City') > $hour)
+                    if(Carbon::now()->timezone('America/Mexico_City') > $hour->date)
                             $countact = $countact + 1;
-                    else {  
+                    else 
                            $countinac = $countinac + 1;
-                           //Code sleep not found into scheduler
-                          /* if($countinac == 1){
-                                 $current = Carbon::now()->timezone('America/Mexico_City')->diffInSeconds($hour);
-                                 sleep($current);
-                                    $data = [
-                                              'name'      => 'Rebbeca Goncalves',
-                                            ]; 
-                                           
-                                       Mail::send('emails.medicalTreatment', $data, function ($message) {
-                                                    $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
-                                                    $message->to('rebbeca.goncalves@doitcloud.consulting');
-                                                });
-                                    Artisan::$fn('schedule:run');
-                                    $this->info('completed, sleeping..');
-                                    sleep($current);
-                                    $this->runScheduler();
-    
-                            } */
-                           }
+                           
                 }
+
                 $Change = Medications::find($med->id);
                 $Change->scheduller_active = $countact;
                 $Change->scheduller_inactive = $countinac;
+                if($countinac == 0)
+                   $Change->active = 'Finished';
                 $Change->save();
         }
        
