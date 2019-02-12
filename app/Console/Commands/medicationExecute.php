@@ -85,7 +85,7 @@ class medicationExecute extends Command
                                               'medicine' => $med->name_medicine,
                                               'days'     => $med->frequency_days,
                                               'time'     => $frequency_time,
-                                              'prescr'   => $datehour,
+                                              'prescr'   => $datehour[$i],
                                               'start'    => Carbon::parse($med->start_date) 
                                             ]; 
 
