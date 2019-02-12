@@ -66,9 +66,11 @@ class medicationExecute extends Command
             $formula =  ($med->frequency_days * 24) / 8;
                 for($i = 1; $i < $formula; $i++){
                     $datehour = $datehour->addHour(8);
+                    $this->info($datehour);
                     array_push($arrayhour, ['date' => $datehour]);
                 }
                 foreach ($arrayhour as $hour) {
+                    $this->info($hour->date);
                     if(Carbon::now()->timezone('America/Mexico_City') > $hour->date)
                             $countact = $countact + 1;
                     else 
