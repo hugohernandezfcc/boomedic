@@ -1,6 +1,5 @@
 <?php
 namespace App\Console\Commands;
-
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -11,7 +10,6 @@ use Mail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\payments;
-
 class medicationExecute extends Command
 {
     /**
@@ -25,11 +23,10 @@ class medicationExecute extends Command
      *
      * @var string
      */
-    protected $description = 'Send an email medication hour';
+    protected $description = 'Send an email to payment no procesed';
     /**
      * Create a new command instance.
      *
-
      * @return void
      */
     public function __construct()
@@ -55,29 +52,23 @@ class medicationExecute extends Command
      * in your queue within 60 seconds.
      *
      */
-     protected function runScheduler(){
+    protected function runScheduler()
+    {
         $fn = $this->option('queue') ? 'queue' : 'call';
         $this->info('Running scheduler');
         $medication = DB::table('medications')
             ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
             ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
             ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
-            ->where('medications.interval_hour', '!=', 1)
             ->where('medications.active', '=', 'Confirmed')
             ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid')->get(); 
-
-
         foreach($medication as $med){    
             $arrayhour = array();
             $datehour = Carbon::parse($med->start_date)->timezone('America/Mexico_City');
             $countact = 0;
             $countinac = 0;
-            $current = null;
-            $interval = null;
-
             $formula =  ($med->frequency_days * 24) / 8;
-
-                for($i = 0; $i < $formula; $i++){
+                for($i = 1; $i < $formula; $i++){
                     $datehour = $datehour->addHour(8);
                     array_push($arrayhour, $datehour);
                 }
@@ -86,50 +77,30 @@ class medicationExecute extends Command
                             $countact = $countact + 1;
                     else {  
                            $countinac = $countinac + 1;
-                          if($countinac == 1){
+                           if($countinac == 1){
                                  $current = Carbon::now()->timezone('America/Mexico_City')->diffInSeconds($hour);
-                                 $interval = 1;
-                             } 
-                           }
-                }
-
-                $change = Medications::find($med->id);
-                $change->scheduller_active = $countact;
-                $change->scheduller_inactive = $countinac;
-                $change->interval_hour = $interval;
-                $change->save();
-                            if($current != null){
+                                 sleep($current);
+                                    $data = [
+                                              'name'      => 'Rebbeca Goncalves',
+                                            ]; 
+                                           
+                                       Mail::send('emails.medicalTreatment', $data, function ($message) {
+                                                    $message->subject('Recordatorio: tienes un tratamiento que tomar hoy');
+                                                    $message->to('rebbeca.goncalves@doitcloud.consulting');
+                                                });
                                     Artisan::$fn('schedule:run');
                                     $this->info('completed, sleeping..');
                                     sleep($current);
-                                    $this->runSchedulersleep($current, $med->id);
-                            }else{
-                                Artisan::$fn('schedule:run');
-                                $this->info('completed, sleeping..');
-                                sleep(60);
-                                $this->runScheduler();
+                                    $this->runScheduler();
+    
                             } 
-
+                           }
+                }
+                $Change = Medications::find($med->id);
+                $Change->scheduller_active = $countact;
+                $Change->scheduller_inactive = $countinac;
+                $Change->save();
         }
-     }
-        protected function runSchedulersleep($current, $id)
-    {                                   $fn = $this->option('queue') ? 'queue' : 'call';
-                                        $this->info('Running scheduler 2');
-                                        $Change = Medications::find($id);
-                                        $Change->interval_hour = null;
-                                        $Change->save();
-                                        $data = [
-                                                  'name' => 'Rebbeca Goncalves',
-                                                ]; 
-                                           
-                                       Mail::send('emails.medicalTreatment', $data, function ($message) {
-                                                    $message->subject('Recordatorio: tienes un tratamiento que tomar...');
-                                                    $message->to('rebbeca.goncalves@doitcloud.consulting');
-                                                });
-                                        Artisan::$fn('schedule:run');
-                                        $this->info('completed, sleeping..');
-                                        sleep(60);
-                                       $this->runScheduler();
-
+       
     }
 }
