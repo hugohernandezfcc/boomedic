@@ -41,7 +41,6 @@ class medicationExecute extends Command
     public function handle()
     {
         $this->info('Waiting 60 for next run of scheduler');
-        sleep(60);
         $this->runScheduler();
     }
     /**
@@ -73,10 +72,11 @@ class medicationExecute extends Command
                     array_push($arrayhour, $datehour);
                 }
                 foreach ($arrayhour as $hour) {
-                    if($hour < Carbon::now()->timezone('America/Mexico_City'))
+                    if(Carbon::now()->timezone('America/Mexico_City') > $hour)
                             $countact = $countact + 1;
                     else {  
                            $countinac = $countinac + 1;
+                           //Code sleep not found into scheduler
                           /* if($countinac == 1){
                                  $current = Carbon::now()->timezone('America/Mexico_City')->diffInSeconds($hour);
                                  sleep($current);
