@@ -62,6 +62,7 @@ class PaymentsDoctor extends Controller
                 'name'          => $user->name,
                 'photo'         => $user->profile_photo,
                 'date'          => $user->created_at,
+                'gender'    => $user->gender,
                 'transaction'   => $transactions,
                 'paid'          => number_format($countpaid,2),
                 'owed'          => number_format($countowed,2),

@@ -63,6 +63,7 @@ class history extends Controller
                             'name'       => $user->name,
                             'photo'      => $user->profile_photo,
                              'date'      => $user->created_at,
+                             'gender'    => $user->gender,
                             'array2'     => $array2,
                             'array1'     => $array1,
                             'array3'     => $array3,
@@ -80,7 +81,8 @@ class history extends Controller
                             'username'   => $user->username,
                             'name'       => $user->name,
                             'photo'      => $user->profile_photo,
-                            'date'      => $user->created_at
+                            'date'      => $user->created_at,
+                            'gender'    => $user->gender
                            ]
                            )->with($data);
       }
@@ -91,7 +93,8 @@ class history extends Controller
                             'username'   => $user->username,
                             'name'       => $user->name,
                             'photo'      => $user->profile_photo,
-                            'date'      => $user->created_at
+                            'date'      => $user->created_at,
+                            'gender'    => $user->gender
                            ]
                            )->with($data);
       }
@@ -139,6 +142,7 @@ class history extends Controller
                             'name'        => $user->name,
                             'photo'       => $user->profile_photo,
                              'date'       => $user->created_at,
+                             'gender'    => $user->gender,
                             'array2'      => $array2,
                             'array1'      => $array1,
                             'array3'      => $array3,
@@ -156,7 +160,8 @@ class history extends Controller
                             'username'   => $user->username,
                             'name'       => $user->name,
                             'photo'      => $user->profile_photo,
-                            'date'      => $user->created_at
+                            'date'      => $user->created_at,
+                            'gender'    => $user->gender
                            ]
                            )->with($data);
       }
@@ -167,7 +172,8 @@ class history extends Controller
                             'username'   => $user->username,
                             'name'       => $user->name,
                             'photo'      => $user->profile_photo,
-                            'date'      => $user->created_at
+                            'date'      => $user->created_at,
+                            'gender'    => $user->gender
                            ]
                            )->with($data);
         }
