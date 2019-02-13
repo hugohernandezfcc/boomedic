@@ -131,6 +131,9 @@ class drAppointments extends Controller
        $appo = medical_appointments::find($id);
        $appo->status = 'No completed';
        $appo->sub_status = 'cancel by doctor';
+       $appo->reasontocancel = $request->radioreason;
+       if($request->definitive == 'true')
+          $appo->definitive = True;
        $appo->save();
        return redirect('drAppointments/index/'. $user->id);
     }
