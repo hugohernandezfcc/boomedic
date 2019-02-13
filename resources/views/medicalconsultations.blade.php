@@ -1565,14 +1565,14 @@ function prevTab(elem) {
           var lat = loc[i][0];
           var lon = loc[i][1];
 
-          if(loc[i][10] != "{{ asset(dr.png) }}"){
+          if(loc[i][10] != "null"){
           var doctor = {
               url:"https://s3.amazonaws.com/boomedic/" + loc[i][8] + "-circle.png",
               scaledSize: new google.maps.Size(45, 45)
             };
         }else{
            var doctor = {
-              url: "{{ asset(dr.png) }}",
+              url: "{{ asset('dr.png') }}",
               scaledSize: new google.maps.Size(45, 45)
             };
         }
