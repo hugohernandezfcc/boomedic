@@ -97,9 +97,9 @@ class medicationExecute extends Command
                                                 });
                            }
                            else{
-                                    if($countinac == 1){
+                                    if($countinac == 1)
                                             $nexttime = $datehour[$i];
-                                    }
+                                    
                            }
                        }    
                 }
