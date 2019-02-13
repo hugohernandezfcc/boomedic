@@ -150,6 +150,7 @@ class HomeController extends Controller
                     'name'      => $user->name,
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
+                    'gender'    => $user->gender
                    
                 ]
             );
@@ -163,6 +164,7 @@ class HomeController extends Controller
                     'name'      => $user->name,
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
+                    'gender'    => $user->gender,
                     'mode'      => $mode,
                    
                 ]
@@ -180,6 +182,7 @@ class HomeController extends Controller
                     'name'      => $user->name,
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
+                    'gender'    => $user->gender
                    
                 ]
             );
@@ -194,6 +197,7 @@ class HomeController extends Controller
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
                     'mode'      => $mode,
+                    'gender'    => $user->gender
                    
                 ]
             );
@@ -232,7 +236,8 @@ class HomeController extends Controller
                     'photo'         => $user->profile_photo,
                     'workplaces'    => $this->getWorkPlaces(),
                     'medAppoints'   => $this->getMedicalAppointments(),
-                    'paid'          => number_format($countpaid,2)
+                    'paid'          => number_format($countpaid,2),
+                    'gender'        => $user->gender
                 ]);   
         }
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
@@ -299,6 +304,7 @@ class HomeController extends Controller
                                         'firstname'      => $user->firstname,
                                         'lastname'       => $user->lastname,
                                         'photo'          => $user->profile_photo,
+                                        'gender'         => $user->gender,
                                         'date'           => $user->created_at,
                                         'userId'         => $user->id,
                                         'labor'          => $join,
@@ -337,6 +343,7 @@ class HomeController extends Controller
                                         'lastname'  => $user->lastname,
                                         'photo'     => $user->profile_photo,
                                         'date'      => $user->created_at,
+                                        'gender'    => $user->gender,
                                         'userId'    => $user->id,
                                         'labor'     => $join,
                                         'appointments' => $appointments,
@@ -603,6 +610,7 @@ class HomeController extends Controller
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
+                'gender'    => $user->gender,
                 'date'      => $user->created_at,
                 'app'       => $appointments
             ]

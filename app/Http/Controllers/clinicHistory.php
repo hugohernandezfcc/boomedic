@@ -45,7 +45,8 @@ class clinicHistory extends Controller
                             'username'   => $user->username,
                             'name'       => $user->name,
                             'photo'      => $user->profile_photo,
-                            'date'      => $user->created_at
+                            'date'      => $user->created_at,
+                            'gender'    => $user->gender
                            ]
                            )->with($data);
 
@@ -218,7 +219,8 @@ class clinicHistory extends Controller
                 'clinic_history'    => $clinic_history,
                 'test_result'       => $test_result,
                 'questions_parent'  => $question_parent,
-                'mode'              => 'finish'
+                'mode'              => 'finish',
+                'gender'            => $user->gender
             ]
         );
     
@@ -276,7 +278,8 @@ class clinicHistory extends Controller
                 'questions'         => $question,
                 'questions_parent'  => $question_parent,
                 'clinic_history'    => $clinic_history,
-                'mode'              => "null"
+                'mode'              => "null",
+                'gender'            => $user->gender
             ]
         );
     }
@@ -375,6 +378,7 @@ class clinicHistory extends Controller
            $data = [
             'name'      => $user->name,
             'email'     => $user->email, 
+            'gender'    => $user->gender,
             'username'  => $user->username,                 
             'url'       => $diagnostic_test->url,
             'filename'  => $diagnostic_test->details, 
