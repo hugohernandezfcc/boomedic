@@ -63,7 +63,7 @@ class medicationExecute extends Command
             ->get(); 
 
         foreach($medication as $med){    
-            $arrayhour = array();
+            $nexttime= array();
             $datehour[0] = Carbon::parse($med->start_date);
             $countact = 0;
             $countinac = 0;
@@ -78,7 +78,7 @@ class medicationExecute extends Command
                     if(Carbon::now()->timezone('America/Mexico_City') > $datehour[$i])
                            $countact = $countact + 1;
                     else{ 
-                        $this->info($datehour[$i]);
+                       
                            $countinac = $countinac + 1;
                            if(Carbon::now()->timezone('America/Mexico_City') > $datehour[$i]->subMinutes(5) && Carbon::now()->timezone('America/Mexico_City') < $datehour[$i]->addMinutes(5)){
                                        $data = [
@@ -96,12 +96,10 @@ class medicationExecute extends Command
                                                     $message->subject('Recordatorio: tienes programado un tratamiento a esta hora');
                                                     $message->to('contacto@doitcloud.consulting');
                                                 });
-                           }
-                           else{
-                                    if($countinac == 1)
-                                            $nexttime = $datehour[$i];
+                           }else{ $this->info($datehour[$i]);
+                                            $nexttime[$countinac] = $datehour[$i];
+                                        }
                                     
-                           }
                        }    
                 }
 
@@ -110,8 +108,8 @@ class medicationExecute extends Command
                 $Change->scheduller_inactive = $countinac;
                 if($countinac == 0)
                     $Change->active = 'Finished';
-                if($countinac == 1)
-                    $Change->next_time = $nexttime;    
+                else
+                    $Change->next_time = $nexttime[0];   
                 $Change->save();
         }
        
