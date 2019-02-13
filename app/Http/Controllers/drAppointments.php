@@ -133,7 +133,7 @@ class drAppointments extends Controller
        $appo->sub_status = 'cancel by doctor';
        $appo->reasontocancel = $request->radioreason;
        if($request->definitive == 'true')
-          $appo->definitive = True;
+          $appo->definitive = true;
        $appo->save();
        return redirect('drAppointments/index/'. $user->id);
     }
