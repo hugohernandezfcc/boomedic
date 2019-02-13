@@ -63,7 +63,7 @@ class medicationExecute extends Command
             ->get(); 
 
         foreach($medication as $med){    
-            $nexttime= array();
+            $nexttime = null;
             $datehour[0] = Carbon::parse($med->start_date);
             $countact = 0;
             $countinac = 0;
@@ -102,7 +102,8 @@ class medicationExecute extends Command
                            }else{ 
                                             $this->info($countinac);
                                             $this->info($datehour[$i]);
-                                            $nexttime[$countinac] = $datehour[$i];
+                                            if($countinac == 1)
+                                            $nexttime = $datehour[$i];
                                         }
                                     
                        }    
@@ -114,7 +115,7 @@ class medicationExecute extends Command
                 if($countinac == 0)
                     $Change->active = 'Finished';
                 else
-                    $Change->next_time = $nexttime[1];   
+                    $Change->next_time = $nexttime;   
                 $Change->save();
         }
        
