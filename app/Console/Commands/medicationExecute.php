@@ -100,6 +100,7 @@ class medicationExecute extends Command
                                                     $message->to('contacto@doitcloud.consulting');
                                                 });
                            }else{ 
+                                            $this->info($countinac);
                                             $this->info($datehour[$i]);
                                             $nexttime[$countinac] = $datehour[$i];
                                         }
