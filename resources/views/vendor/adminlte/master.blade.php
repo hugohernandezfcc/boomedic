@@ -459,6 +459,9 @@ span.round-tab:hover {
 .slider.round:before {
   border-radius: 50%;
 }
+.box.box-primary {
+  border-top-color: #242627;
+}
 
 </style>
 

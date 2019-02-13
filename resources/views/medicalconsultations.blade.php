@@ -221,9 +221,7 @@
         .pac-container {
          z-index: 100000; 
        }
-      .box.box-primary {
-        border-top-color: #242627;
-        }
+
     #infDr {
     bottom: 0;
     right: 0;
