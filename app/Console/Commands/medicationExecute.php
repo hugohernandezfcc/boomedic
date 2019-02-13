@@ -63,7 +63,7 @@ class medicationExecute extends Command
             ->get(); 
 
         foreach($medication as $med){    
-            $nexttime = array()
+            $nexttime = array();
             $datehour[0] = Carbon::parse($med->start_date);
             $countact = 0;
             $countinac = 0;
