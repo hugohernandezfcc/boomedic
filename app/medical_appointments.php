@@ -17,6 +17,8 @@ class medical_appointments extends Model
 		'appointment',
 		'sub_status', //Enum (by doctor, by patient)->sub_status de "Registered", (in time, out of time by doctor, out of time by patient)->sub_status de "Taked", (cancel by doctor, cancel by patient)->sub_status de "No completed"
 		'aware' //boolean for close no completed
+		'definitive',
+		'reasontocancel'
     ];
 
     public function user(){
