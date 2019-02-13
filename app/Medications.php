@@ -14,7 +14,7 @@ class Medications extends Model
 		'start_date',
 		'scheduller_active',
 		'scheduller_inactive',
-		'interval_hour'
+		'next_time'
     ];
     
 

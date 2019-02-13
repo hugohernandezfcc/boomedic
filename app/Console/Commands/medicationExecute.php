@@ -80,7 +80,6 @@ class medicationExecute extends Command
                     else{ 
                            $countinac = $countinac + 1;
                            if(Carbon::now()->timezone('America/Mexico_City') > $datehour[$i]->subMinutes(5) && Carbon::now()->timezone('America/Mexico_City') < $datehour[$i]->addMinutes(5)){
-                             $this->info('yeah');
                                        $data = [
                                               'name' => $med->nameu,
                                               'medicine' => $med->name_medicine,
@@ -97,6 +96,11 @@ class medicationExecute extends Command
                                                     $message->to('contacto@doitcloud.consulting');
                                                 });
                            }
+                           else{
+                                    if($countinac == 1){
+                                            $nexttime = $datehour[$i];
+                                    }
+                           }
                        }    
                 }
 
@@ -104,7 +108,9 @@ class medicationExecute extends Command
                 $Change->scheduller_active = $countact;
                 $Change->scheduller_inactive = $countinac;
                 if($countinac == 0)
-                   $Change->active = 'Finished';
+                    $Change->active = 'Finished';
+                if($countinac == 1)
+                    $Change->next_time = $nexttime;    
                 $Change->save();
         }
        
