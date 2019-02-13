@@ -78,9 +78,12 @@ class medicationExecute extends Command
                     if(Carbon::now()->timezone('America/Mexico_City') > $datehour[$i])
                            $countact = $countact + 1;
                     else{ 
-                       
+
                            $countinac = $countinac + 1;
-                           if(Carbon::now()->timezone('America/Mexico_City') > $datehour[$i]->subMinutes(5) && Carbon::now()->timezone('America/Mexico_City') < $datehour[$i]->addMinutes(5)){
+                           $minus =  $datehour[$i]->subMinutes(5);
+                           $more = $datehour[$i]->addMinutes(5);
+
+                           if(Carbon::now()->timezone('America/Mexico_City') > $minus && Carbon::now()->timezone('America/Mexico_City') < $more){
                                        $data = [
                                               'name' => $med->nameu,
                                               'medicine' => $med->name_medicine,
@@ -96,7 +99,8 @@ class medicationExecute extends Command
                                                     $message->subject('Recordatorio: tienes programado un tratamiento a esta hora');
                                                     $message->to('contacto@doitcloud.consulting');
                                                 });
-                           }else{ $this->info($datehour[$i]);
+                           }else{ 
+                                            $this->info($datehour[$i]);
                                             $nexttime[$countinac] = $datehour[$i];
                                         }
                                     
