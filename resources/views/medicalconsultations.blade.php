@@ -394,7 +394,7 @@
                                                       <table style="width: 80%; text-align: center;">
                                                          <tr>
                                                             <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
-                                                            <td><img src="https://s3.amazonaws.com/abiliasf/Sin+título-1_a-01.png"></td>
+                                                            <td><img src=""></td>
                                                             <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
                                                          </tr>
                                                          <tr>
@@ -1572,7 +1572,7 @@ function prevTab(elem) {
             };
         }else{
            var doctor = {
-              url: "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",
+              url: "{{ asset(dr.png) }}",
               scaledSize: new google.maps.Size(45, 45)
             };
         }
