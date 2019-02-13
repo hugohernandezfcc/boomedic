@@ -1565,9 +1565,9 @@ function prevTab(elem) {
           var lat = loc[i][0];
           var lon = loc[i][1];
 
-          if(loc[i][10] != "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png"){
+          if(loc[i][10] != "{{ asset(dr.png) }}"){
           var doctor = {
-              url:"https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png",
+              url:"https://s3.amazonaws.com/boomedic/" + loc[i][8] + "-circle.png",
               scaledSize: new google.maps.Size(45, 45)
             };
         }else{
