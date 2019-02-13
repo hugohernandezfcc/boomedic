@@ -74,10 +74,11 @@ class medicationExecute extends Command
                         $ineg = $i-1;
                         $datehour[$i] = $datehour[$ineg]->addHour($frequency_time);
                     }    
-                    $this->info($datehour[$i]);
+                    
                     if(Carbon::now()->timezone('America/Mexico_City') > $datehour[$i])
                            $countact = $countact + 1;
                     else{ 
+                        $this->info($datehour[$i]);
                            $countinac = $countinac + 1;
                            if(Carbon::now()->timezone('America/Mexico_City') > $datehour[$i]->subMinutes(5) && Carbon::now()->timezone('America/Mexico_City') < $datehour[$i]->addMinutes(5)){
                                        $data = [
