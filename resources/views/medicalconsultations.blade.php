@@ -394,7 +394,7 @@
                                                       <table style="width: 80%; text-align: center;">
                                                          <tr>
                                                             <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
-                                                            <td><img src=""></td>
+                                                            <td><img src="{{ asset('raya.png') }}"></td>
                                                             <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
                                                          </tr>
                                                          <tr>
@@ -1565,7 +1565,7 @@ function prevTab(elem) {
           var lat = loc[i][0];
           var lon = loc[i][1];
 
-          if(loc[i][10] != "null"){
+          if(loc[i][10] != "{{ asset('dr.png') }}"){
           var doctor = {
               url:"https://s3.amazonaws.com/boomedic/" + loc[i][8] + "-circle.png",
               scaledSize: new google.maps.Size(45, 45)
