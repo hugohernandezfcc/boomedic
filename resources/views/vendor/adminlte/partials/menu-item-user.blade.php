@@ -77,6 +77,8 @@
                                   @if($photo == '')
                                           @if($gender == 'male') 
                                             <img class="user-image"src="{{ asset('profile-42914_640.png') }}" alt="User Image">
+
+                                            
                                           @endif
                                           @if($gender == 'female') 
                                             <img class="user-image" src="{{ asset('profile-female.png') }}" alt="User Image">
