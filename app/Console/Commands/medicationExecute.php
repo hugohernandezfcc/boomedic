@@ -109,7 +109,7 @@ class medicationExecute extends Command
                 if($countinac == 0)
                     $Change->active = 'Finished';
                 else
-                    $Change->next_time = $nexttime[0];   
+                    $Change->next_time = $nexttime[1];   
                 $Change->save();
         }
        
