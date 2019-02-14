@@ -80,8 +80,8 @@ class medicationExecute extends Command
                     else{ 
 
                            $countinac = $countinac + 1;
-                           $minus =  $datehour[$i]->subMinutes(5);
-                           $more = $datehour[$i]->addMinutes(5);
+                           $minus =  $datehour[$i]->subMinutes(10);
+                           $more = $datehour[$i]->addMinutes(10);
 
                            if(Carbon::now()->timezone('America/Mexico_City') > $minus && Carbon::now()->timezone('America/Mexico_City') < $more){
                                        $data = [
