@@ -161,7 +161,7 @@ class drAppointments extends Controller
                                         $ex = 0;
                                         $notex = 0;
                                         $time = $daydate->format('HH:mm:ss');
-                                        $date = $daydate->format('m-d-Y');
+                                        $date = $daydate->format('Y-m-d');
                                           if($h[$z] == $time){
                                             foreach ($cites as $cite) {
 
