@@ -139,7 +139,7 @@ class drAppointments extends Controller
        $appo->save();*/
 
        $option1 = array();
-       $daydatef = Carbon::parse($appo->when);
+       $daydatef = Carbon::parse($appo->when)->format('Y-m-d');
 
                  $join = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
@@ -162,7 +162,7 @@ class drAppointments extends Controller
                                         $notex = 0;
                                         $time = $daydate->format('HH:mm:ss');
                                         $date = $daydate->format('Y-m-d');
-                                          if($h[$z] == $time){
+                                          if($h[$z] >= $time){
                                             foreach ($cites as $cite) {
 
                                                 if($date.' '.$h[$z] == $cite->when)
