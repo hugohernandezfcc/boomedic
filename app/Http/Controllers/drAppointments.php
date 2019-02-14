@@ -143,13 +143,13 @@ class drAppointments extends Controller
 
                  $join = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
-                              ->where('labor_information.id','=', $id)
+                              ->where('labor_information.id','=', $appo->workplace)
                               ->select('professional_information.*')
                               ->first();
 
                            $time_blockers =  DB::table('time_blockers')->where('professional_inf', '=', $join->id)->get();
-                           $cites = DB::table('medical_appointments')->where('workplace', '=', $id)->get();
-                           $workboard = DB::table('workboard')->where('labInformation', '=', $id)->get();
+                           $cites = DB::table('medical_appointments')->where('workplace', '=', $appo->workplace)->get();
+                           $workboard = DB::table('workboard')->where('labInformation', '=', $appo->workplace)->get();
 
                             foreach($workboard as $work){
                                 for($s = 1; $s < 10; $s++){
