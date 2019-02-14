@@ -139,9 +139,10 @@ class drAppointments extends Controller
           $appo->definitive = true;
        $appo->save();
 
-       $daydate = Carbon::parse($appo->when);
+       $option1 = array();
+       $daydatef = Carbon::parse($appo->when);
 
-                    /*   $join = DB::table('professional_information')
+                 $join = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
                               ->join('users', 'professional_information.user', '=', 'users.id')
                               ->where('labor_information.id','=', $id)
@@ -154,17 +155,21 @@ class drAppointments extends Controller
 
                             foreach($workboard as $work){
                                 for($s = 1; $s < 10; $s++){
-                                   $daydate = $daydate->addDays($s);
+                                   $daydate = $daydatef->addDays($s);
                                    $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
-                                   $days = $work->workingDays; 
-                                   $hours = $work->workingHours;  
-                                   
-                                    foreach ($cites as $cite) {
+                                   if($work->workingDays == $day)
+                                      $hours = $work->workingHours;  
+                                       foreach($hours as $h){
+                                          if($h == $daydate->format('HH:mm:ss'))
+                                                      foreach ($cites as $cite) {
 
-                                    }
+                                                      }
+                                       }
+                                   
+
 
                                 }
-                            }   */ 
+                            } 
                                      $data = [
                                               'dr'     => $user->name,
                                               'reason' => $appo->reasontocancel,
