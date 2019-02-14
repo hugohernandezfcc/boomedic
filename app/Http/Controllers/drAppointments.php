@@ -134,8 +134,22 @@ class drAppointments extends Controller
        $appo->reasontocancel = $request->radioreason;
        if($request->definitive == 'true')
           $appo->definitive = true;
-       $appo->save();
+       if($appo->save()){
+
+                                     $data = [
+                                              'dr'     => $user->name,
+                                              'reason' => $appo->reasontocancel,
+                                              'definitive'     => $appo->definitive
+                                            ];  
+                                           
+                                       Mail::send('emails.cancelAppointment', $data, function ($message) {
+                                                    $message->subject('Te acaban de cancelar una cita...');
+                                                    $message->to('contacto@doitcloud.consulting');
+                                                });
+        }
+
        return redirect('drAppointments/index/'. $user->id);
+       
     }
 
         /**
