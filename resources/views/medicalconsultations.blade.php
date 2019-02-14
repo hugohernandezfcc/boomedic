@@ -395,6 +395,9 @@
                                                          <tr>
                                                             <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
                                                             <td><img src="{{ asset('raya.png') }}"></td>
+                                                            @if($photo == '')
+                                                              <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                            @else  
                                                               @if($gender == 'male') 
                                                                 <td width="40%"><img src="{{ asset('profile-42914_640.png') }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
                                                               @endif
@@ -404,6 +407,7 @@
                                                               @if($gender == 'other' || $gender == '') 
                                                                 <td width="40%"><img src="{{ asset('profile-other.png') }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
                                                               @endif
+                                                           @endif   
                                                          </tr>
                                                          <tr>
                                                             <td width="40%">{{ $appo->name }}</td><td>&nbsp;</td><td width="40%">{{ $name }}</td>
