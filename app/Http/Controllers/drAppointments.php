@@ -162,7 +162,7 @@ class drAppointments extends Controller
                                         $notex = 0;
                                         $time = $daydate->format('HH:mm:ss');
                                         $date = $daydate->format('m-d-Y');
-                                          if($h[$z] >= $time){
+                                          if($h[$z] == $time){
                                             foreach ($cites as $cite) {
 
                                                 if($date.' '.$h[$z] == $cite->when)
