@@ -150,9 +150,10 @@ class drAppointments extends Controller
                            $time_blockers =  DB::table('time_blockers')->where('professional_inf', '=', $join->id)->get();
                            $cites = DB::table('medical_appointments')->where('workplace', '=', $appo->workplace)->get();
                            $workboard = DB::table('workboard')->where('labInformation', '=', $appo->workplace)->get();
-
+                         
+                         for($s = 1; $s < 10; $s++){
                             foreach($workboard as $work){
-                                for($s = 1; $s < 10; $s++){
+
                                    $daydate = $daydatef->addDays($s);
                                    $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
                                    if($work->workingDays == $day){
