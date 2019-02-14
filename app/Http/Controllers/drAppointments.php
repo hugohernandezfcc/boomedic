@@ -124,7 +124,6 @@ class drAppointments extends Controller
  
     public function cancelAppointment(Request $request)
     {
-      Carbon::setLocale('es');
          if(session()->get('utype') == "assistant"){
            $user = User::find(session()->get('asdr'));
          }else{  
@@ -173,7 +172,7 @@ class drAppointments extends Controller
                                                     $notex++;
                                             }
                                               if($ex == 0){
-                                                 array_push($option1, [$date.' '.$h]);
+                                                 array_push($option1, $date.' '.$h);
                                               }
 
                                           }
@@ -185,7 +184,7 @@ class drAppointments extends Controller
                                               'dr'     => $user->name,
                                               'reason' => $appo->reasontocancel,
                                               'definitive'     => $appo->definitive,
-                                              'day'            => trans('adminlte::adminlte.'.$daydate->format('D'))
+                                              'array'            => $option1
                                             ];  
                                            
                                        Mail::send('emails.cancelAppointment', $data, function ($message) {
