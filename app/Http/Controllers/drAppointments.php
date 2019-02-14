@@ -165,9 +165,6 @@ class drAppointments extends Controller
 
                                 }
                             }   */ 
-
-
-
                                      $data = [
                                               'dr'     => $user->name,
                                               'reason' => $appo->reasontocancel,
