@@ -169,7 +169,7 @@ class drAppointments extends Controller
                                               'dr'     => $user->name,
                                               'reason' => $appo->reasontocancel,
                                               'definitive'     => $appo->definitive,
-                                              'day'            => trans('adminlte::adminlte.'.$daydate->format('D'));
+                                              'day'            => trans('adminlte::adminlte.'.$daydate->format('D'))
                                             ];  
                                            
                                        Mail::send('emails.cancelAppointment', $data, function ($message) {
