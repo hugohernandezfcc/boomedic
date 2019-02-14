@@ -160,15 +160,24 @@ class drAppointments extends Controller
                                    if($work->workingDays == $day)
                                       $hours = $work->workingHours;  
                                        foreach($hours as $h){
-                                          if($h == $daydate->format('HH:mm:ss'))
-                                                      
+                                        $ex = 0;
+                                        $notex = 0;
+                                        $time = $daydate->format('HH:mm:ss');
+                                        $date = $daydate->format('m-d-Y');
+                                          if($h >= $time){
+                                            foreach ($cites as $cite) {
 
-                                                      foreach ($cites as $cite) {
+                                                if($date.' '.$h == $cite->when)
+                                                    $ex++;
+                                                else
+                                                    $notex++;
+                                            }
+                                              if($ex == 0){
+                                                 array_push($option1, [$date.' '.$h]);
+                                              }
 
-                                                      }
+                                          }
                                        }
-                                   
-
 
                                 }
                             } 
