@@ -139,7 +139,7 @@ class drAppointments extends Controller
        $appo->save();*/
 
        $option1 = array();
-       $daydatef = Carbon::parse($appo->when)->format('Y-m-d HH:mm:ss');
+       $daydatef = Carbon::parse($appo->when);
 
                  $join = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
