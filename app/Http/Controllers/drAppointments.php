@@ -156,21 +156,22 @@ class drAppointments extends Controller
                                    $daydate = $daydatef->addDays($s);
                                    $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
                                    if($work->workingDays == $day)
-                                       foreach($work->patient_duration_attention as $h){
+                                    $h = $work->patient_duration_attention
+                                       for($z =0; $z < $h; $z++){
                                         $ex = 0;
                                         $notex = 0;
                                         $time = $daydate->format('HH:mm:ss');
                                         $date = $daydate->format('m-d-Y');
-                                          if($h >= $time){
+                                          if($h[$z] >= $time){
                                             foreach ($cites as $cite) {
 
-                                                if($date.' '.$h == $cite->when)
+                                                if($date.' '.$h[$z] == $cite->when)
                                                     $ex++;
                                                 else
                                                     $notex++;
                                             }
                                               if($ex == 0){
-                                                 array_push($option1, $date.' '.$h);
+                                                 array_push($option1, $date.' '.$h[$z]);
                                               }
 
                                           }
