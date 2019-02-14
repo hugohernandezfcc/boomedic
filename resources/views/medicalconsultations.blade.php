@@ -395,7 +395,7 @@
                                                          <tr>
                                                             <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
                                                             <td><img src="{{ asset('raya.png') }}"></td>
-                                                            @if($photo == '')
+                                                            @if($photo != '' || $photo != null)
                                                               <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
                                                             @else  
                                                               @if($gender == 'male') 
