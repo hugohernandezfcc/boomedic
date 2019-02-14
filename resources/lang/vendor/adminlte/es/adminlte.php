@@ -47,8 +47,13 @@ return [
     'uncles'                             => 'Tío(a)',
 
     /* Days */
-    'Tuesday'   => 'Lun',
-
+    'Mon'   => 'Lun',
+    'Tue'   => 'Mar',
+    'Wed'   => 'Mie',
+    'Thu'   => 'Jue',
+    'Fri'   => 'Vie',
+    'Sat'   => 'Sab',                    
+    'Sun'   => 'Dom',
 
 
     /* System Error */

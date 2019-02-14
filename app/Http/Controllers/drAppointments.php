@@ -124,6 +124,7 @@ class drAppointments extends Controller
  
     public function cancelAppointment(Request $request)
     {
+      Carbon::setLocale('es');
          if(session()->get('utype') == "assistant"){
            $user = User::find(session()->get('asdr'));
          }else{  
@@ -136,19 +137,49 @@ class drAppointments extends Controller
        $appo->reasontocancel = $request->radioreason;
        if($request->definitive == 'true')
           $appo->definitive = true;
-       if($appo->save()){
+       $appo->save();
+
+       $daydate = Carbon::parse($appo->when);
+
+                    /*   $join = DB::table('professional_information')
+                              ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
+                              ->join('users', 'professional_information.user', '=', 'users.id')
+                              ->where('labor_information.id','=', $id)
+                              ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'professional_information.id as prof', 'users.id AS dr', 'users.profile_photo')
+                              ->get();
+
+                           $time_blockers =  DB::table('time_blockers')->where('professional_inf',$join[0]->prof)->get();
+                           $cites = DB::table('medical_appointments')->where('workplace',$id)->get();
+                           $workboard = DB::table('workboard')->where('labInformation',$id)->get();
+
+                            foreach($workboard as $work){
+                                for($s = 1; $s < 10; $s++){
+                                   $daydate = $daydate->addDays($s);
+                                   $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
+                                   $days = $work->workingDays; 
+                                   $hours = $work->workingHours;  
+                                   
+                                    foreach ($cites as $cite) {
+
+                                    }
+
+                                }
+                            }   */ 
+
+
 
                                      $data = [
                                               'dr'     => $user->name,
                                               'reason' => $appo->reasontocancel,
-                                              'definitive'     => $appo->definitive
+                                              'definitive'     => $appo->definitive,
+                                              'day'            => trans('adminlte::adminlte.'.$daydate->format('D'));
                                             ];  
                                            
                                        Mail::send('emails.cancelAppointment', $data, function ($message) {
                                                     $message->subject('Te acaban de cancelar una cita...');
                                                     $message->to('contacto@doitcloud.consulting');
                                                 });
-        }
+        
 
        return redirect('drAppointments/index/'. $user->id);
        
