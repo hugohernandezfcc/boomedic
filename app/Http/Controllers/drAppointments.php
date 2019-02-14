@@ -145,7 +145,7 @@ class drAppointments extends Controller
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
                               ->join('users', 'professional_information.user', '=', 'users.id')
                               ->where('labor_information.id','=', $id)
-                              ->select('users.name', 'professional_information.specialty', 'professional_information.*', 'users.id AS dr', 'users.profile_photo')
+                              ->select('users.name', 'professional_information.*', 'users.id AS dr', 'users.profile_photo')
                               ->first();
 
                            $time_blockers =  DB::table('time_blockers')->where('professional_inf', $join->id)->get();
