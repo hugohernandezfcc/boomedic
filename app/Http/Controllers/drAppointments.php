@@ -155,8 +155,7 @@ class drAppointments extends Controller
                                 for($s = 1; $s < 10; $s++){
                                    $daydate = $daydatef->addDays($s);
                                    $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
-                                   if($work->workingDays == $day)
-                                    $h = $work->patient_duration_attention;
+                                   if($work->workingDays == $day){
                                        for($z =0; $z < count($work->patient_duration_attention); $z++){
                                         $ex = 0;
                                         $notex = 0;
@@ -179,6 +178,7 @@ class drAppointments extends Controller
 
                                 }
                             } 
+                          }
                                      $data = [
                                               'dr'     => $user->name,
                                               'reason' => $appo->reasontocancel,
