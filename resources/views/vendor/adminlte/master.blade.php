@@ -557,7 +557,7 @@ span.round-tab:hover {
                      var array = new Array();
                       for(var g =0; g < result2[0].length; g++){
                                       var gender = result2[0][g]['gender'];
-                                      if(result2[0][g]['profile_photo'] == null || result2[0][h]['profile_photo'] == ''){
+                                      if(result2[0][g]['profile_photo'] == null || result2[0][g]['profile_photo'] == ''){
                                         if(gender == 'female'){
                                            var  photo = "{{ asset('profile-female.png') }}";
                                            gender = 'Femenino';
