@@ -156,8 +156,7 @@ class drAppointments extends Controller
                                    $daydate = $daydatef->addDays($s);
                                    $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
                                    if($work->workingDays == $day)
-                                      $hours = $work->workingHours;  
-                                       foreach($hours as $h){
+                                       foreach($work->workingHours as $h){
                                         $ex = 0;
                                         $notex = 0;
                                         $time = $daydate->format('HH:mm:ss');
