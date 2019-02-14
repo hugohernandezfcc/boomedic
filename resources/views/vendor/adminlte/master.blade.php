@@ -657,8 +657,9 @@ span.round-tab:hover {
                                            var  photo = "{{ asset('profile-other.png') }}";
                                            gender = 'Otro';
                                          } 
-                                      }else
-                                      var photo = result2[0][h]['profile_photo'];
+                                      }else{
+                                        var photo = result2[0][h]['profile_photo'];
+                                      }
 
                                      var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
                             if(yesterday == when){
