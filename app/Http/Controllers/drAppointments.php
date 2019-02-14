@@ -161,6 +161,8 @@ class drAppointments extends Controller
                                       $hours = $work->workingHours;  
                                        foreach($hours as $h){
                                           if($h == $daydate->format('HH:mm:ss'))
+                                                      
+
                                                       foreach ($cites as $cite) {
 
                                                       }

@@ -557,7 +557,7 @@ span.round-tab:hover {
                      var array = new Array();
                       for(var g =0; g < result2[0].length; g++){
                                       var gender = result2[0][g]['gender'];
-                                      if(result2[0][g]['profile_photo'] == null){
+                                      if(result2[0][g]['profile_photo'] == null || result2[0][h]['profile_photo'] == ''){
                                         if(gender == 'female'){
                                            var  photo = "{{ asset('profile-female.png') }}";
                                            gender = 'Femenino';
@@ -644,7 +644,7 @@ span.round-tab:hover {
                        for(var h =0; h < result2[1].length; h++){
 
                                       var gender = result2[0][h]['gender'];
-                                      if(result2[0][h]['profile_photo'] == null){
+                                      if(result2[0][h]['profile_photo'] == null || result2[0][h]['profile_photo'] == ''){
                                         if(gender == 'female'){
                                            var  photo = "{{ asset('profile-female.png') }}";
                                            gender = 'Femenino';
