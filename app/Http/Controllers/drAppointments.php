@@ -131,26 +131,25 @@ class drAppointments extends Controller
          }
        $id = $request->idcancel;
        $appo = medical_appointments::find($id);
-       $appo->status = 'No completed';
+      /* $appo->status = 'No completed';
        $appo->sub_status = 'cancel by doctor';
        $appo->reasontocancel = $request->radioreason;
        if($request->definitive == 'true')
           $appo->definitive = true;
-       $appo->save();
+       $appo->save();*/
 
        $option1 = array();
        $daydatef = Carbon::parse($appo->when);
 
                  $join = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
-                              ->join('users', 'professional_information.user', '=', 'users.id')
                               ->where('labor_information.id','=', $id)
-                              ->select('users.name', 'professional_information.*', 'users.id AS dr', 'users.profile_photo')
+                              ->select('professional_information.*')
                               ->first();
 
-                           $time_blockers =  DB::table('time_blockers')->where('professional_inf', $join->id)->get();
-                           $cites = DB::table('medical_appointments')->where('workplace',$id)->get();
-                           $workboard = DB::table('workboard')->where('labInformation',$id)->get();
+                           $time_blockers =  DB::table('time_blockers')->where('professional_inf', '=', $join->id)->get();
+                           $cites = DB::table('medical_appointments')->where('workplace', '=', $id)->get();
+                           $workboard = DB::table('workboard')->where('labInformation', '=', $id)->get();
 
                             foreach($workboard as $work){
                                 for($s = 1; $s < 10; $s++){
