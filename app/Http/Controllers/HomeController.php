@@ -80,7 +80,7 @@ class HomeController extends Controller
            ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
            ->where('medical_appointments.user', '=', Auth::id())
            ->where('medical_appointments.when', '>', Carbon::now()->subDays(1))
-           ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.profile_photo', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.longitude', 'labor_information.latitude','paymentsmethods.cardnumber', 'paymentsmethods.provider', 'paymentsmethods.paypal_email','paymentsmethods.id as idtr')->get();
+           ->select('medical_appointments.*', 'users.name', 'users.profile_photo', 'users.id as did', 'labor_information.workplace', 'labor_information.longitude', 'labor_information.latitude','paymentsmethods.cardnumber', 'paymentsmethods.provider', 'paymentsmethods.paypal_email','paymentsmethods.id as idtr')->get();
 
          $join = DB::table('professional_information')
             ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')

@@ -365,8 +365,20 @@
                   <div id="collapseOne" class="panel-collapse collapse" >
                     <div class="box-body">
                          @foreach($appointments->sortBy('when') as $appo)
-                              @if($loop->iteration < 3)
-                            <div class="col-sm-12">
+                           @if($loop->iteration < 3)
+                             @if($appo->status == 'No completed')
+                                  <div class="col-sm-12">
+                                    <div class="info-box sm bg-red">
+                                      <a data-toggle="modal" data-target="#{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
+                                      <div class="info-box-content sm">
+                                       <span class="text-white">
+                                        <b>Lugar:</b> {{ $appo->workplace}}.<br/>
+                                       Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}  <b>*Cancelada</b></span>     
+                                       </div>       
+                                      </div>
+                                   </div> 
+                             @else 
+                               <div class="col-sm-12">
                                   <div class="info-box sm bg-gray">
                                     <a data-toggle="modal" data-target="#{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
                                     <div class="info-box-content sm">
@@ -463,7 +475,7 @@
                                                                        </div>
                                                                     </div>  
 
-
+                                    @endif                                   
                                  @endif 
                                                          @if($loop->iteration > 2)
                                                          <div class="col-sm-12" style="text-align: right;">
