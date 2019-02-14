@@ -9,6 +9,8 @@ use App\User;
 use App\time_blockers;
 use App\medical_appointments;
 use Carbon\Carbon;
+use App\email;
+use Mail;
 
 
 class drAppointments extends Controller
