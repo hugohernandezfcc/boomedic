@@ -145,13 +145,13 @@ class drAppointments extends Controller
                            }else{
 
                                      $data = [
-                                              'dr'     => $user->name,
                                               'reason' => $appo->reasontocancel,
                                               'definitive'     => $appo->definitive,
                                               'idcite'         => $request->idcancel
                                             ];  
-                           }                
-                                       Mail::send('emails.cancelAppointment', ($data)->with('dr' => $user->name), function ($message) {
+                           }
+                           array_push($data, ['dr' => $user->name]);               
+                                       Mail::send('emails.cancelAppointment', $data, function ($message) {
                                                     $message->subject('Tu cita ha sido cancelada');
                                                     $message->to('contacto@doitcloud.consulting');
                                                 });
