@@ -39,24 +39,32 @@
 	    <h2>{!! $dr !!} ha cancelado tu cita, {!! $reason !!}  pero no te preocupes, te mostramos algunas alternativas para reagendar</h2>
 	    <hr>
 	      {!! $definitive !!}  <br>   
+	    @if($definitive == false)  
+
 
 	    <select class="custom-select">
+	    	@if($array3)
 	    <optgroup label="El resto del día de la cita">  
 			       @foreach($array3 as $a3)
 			       		<option value="{!! $a3 !!}">{!! $a3 !!} </option>
 			       @endforeach
-		</optgroup>	    	
+		</optgroup>
+		   @endif	    	
 	    <optgroup label="Próximos días después de la cita">  	
+	    	@if($array)
 			       @foreach($array as $a)
 			       	   <option value="{!! $a !!}"> {!! $a !!} </option>
 			       @endforeach
+			@endif       
 	     </optgroup>
 
 
 	    <optgroup label="Semana siguiente mismo horario">  
+	    	@if($array2)
 			       @foreach($array2 as $a2) 
 			       	   <option value="{!! $a2 !!}"> {!! $a2 !!} </option>
 			       @endforeach
+			@endif       
 		</optgroup>	       
    
 		</select>
@@ -75,6 +83,9 @@
         </td>
     </tr>
 </table>
+		@else
+				Se ha cancelado definitivamente
+		@endif
 	
 </div>
 	</body>

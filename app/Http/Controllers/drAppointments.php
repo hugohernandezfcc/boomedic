@@ -131,13 +131,14 @@ class drAppointments extends Controller
          }
        $id = $request->idcancel;
        $appo = medical_appointments::find($id);
-      /* $appo->status = 'No completed';
+       $appo->status = 'No completed';
        $appo->sub_status = 'cancel by doctor';
        $appo->reasontocancel = $request->radioreason;
        if($request->definitive == 'true')
           $appo->definitive = true;
-       $appo->save();*/
+       $appo->save();
 
+       if($appo->definitive == false){
        //Alternative options
        $option1 = array();
        $option2 = array();
@@ -207,17 +208,25 @@ class drAppointments extends Controller
                             } 
                           }
                           //Validación 1 alternativo
-                          //
-                          //
+                          
                                      $data = [
                                               'dr'     => $user->name,
                                               'reason' => $appo->reasontocancel,
                                               'definitive'     => $appo->definitive,
                                               'array'          => $option1,
                                               'array2'         => $option2,
-                                              'array3'         => $option3 
+                                              'array3'         => $option3,
+                                              'idcite'         => $request->idcancel 
                                             ];  
-                                           
+                           }else{
+
+                                     $data = [
+                                              'dr'     => $user->name,
+                                              'reason' => $appo->reasontocancel,
+                                              'definitive'     => $appo->definitive,
+                                              'idcite'         => $request->idcancel
+                                            ];  
+                           }                
                                        Mail::send('emails.cancelAppointment', $data, function ($message) {
                                                     $message->subject('Tu cita ha sido cancelada');
                                                     $message->to('contacto@doitcloud.consulting');
