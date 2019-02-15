@@ -138,7 +138,9 @@ class drAppointments extends Controller
           $appo->definitive = true;
        $appo->save();*/
 
+       //Alternative options
        $option1 = array();
+       $option2 = array();
        $daydatef = Carbon::parse($appo->when);
 
                  $join = DB::table('professional_information')
@@ -172,6 +174,9 @@ class drAppointments extends Controller
                                                     $notex++;
                                             }
                                               if($ex == 0){
+                                                if($daydate == $daydatef->addDays(7))
+                                                  array_push($option2, $date . ' ' .$h[$z]);
+                                                else
                                                  array_push($option1, $date . ' ' .$h[$z]);
                                               }
 
@@ -185,12 +190,13 @@ class drAppointments extends Controller
                                               'dr'     => $user->name,
                                               'reason' => $appo->reasontocancel,
                                               'definitive'     => $appo->definitive,
-                                              'array'            => $option1
+                                              'array'          => $option1,
+                                              'array2'         => $option2
                                             ];  
                                            
                                        Mail::send('emails.cancelAppointment', $data, function ($message) {
                                                     $message->subject('Te acaban de cancelar una cita...');
-                                                    $message->to('contacto@doitcloud.consulting');
+                                                    $message->to('rebbeca@doitcloud.consulting');
                                                 });
         
 
