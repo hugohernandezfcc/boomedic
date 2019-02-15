@@ -269,7 +269,7 @@ class drAppointments extends Controller
        $id = $request->idc;
        $appo = medical_appointments::find($id);
        $appo->status = 'Registered';
-       $appo->when = $request->datenew;
+       $appo->when = Carbon::parse($request->datenew)->format('Y-m-d h:i:s');
        $appo->definitive = false;
        $appo->save();
        return redirect('medicalconsultations');
