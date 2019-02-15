@@ -139,85 +139,9 @@ class drAppointments extends Controller
        $appo->save();
 
        if($appo->definitive == false){
-       //Alternative options
-       $option1 = array();
-       $option2 = array();
-       $option3 = array();
-       $daydatef = Carbon::parse($appo->when);
 
-                 $join = DB::table('professional_information')
-                              ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
-                              ->where('labor_information.id','=', $appo->workplace)
-                              ->select('professional_information.*')
-                              ->first();
+                             $data = $this->alternative($appo);
 
-                           $time_blockers =  DB::table('time_blockers')->where('professional_inf', '=', $join->id)->get();
-                           $cites = DB::table('medical_appointments')->where('workplace', '=', $appo->workplace)->get();
-                           $workboard = DB::table('workboard')->where('labInformation', '=', $appo->workplace)->get();
-                         
-                      //Validación 1 alternativo
-                          for($s = 0; $s < 10; $s++){
-
-                                if($s == 0)
-                                   $daydate = Carbon::parse($appo->when);
-                                else 
-                                   $daydate = Carbon::parse($appo->when)->addDays($s);
-
-                                   $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
-
-                             foreach($workboard as $work){   
-
-                                   if($work->workingDays == $day){
-                                    $h = json_decode($work->patient_duration_attention);
-
-                                       for($z =0; $z < count($h); $z++){
-                                          $ex = 0;
-                                          $notex = 0;
-                                          $time = $daydate->format('HH:mm:ss');
-                                          $date = $daydate->format('Y-m-d');
-
-                                          if($h[$z] >= $time){
-                                              foreach ($cites as $cite) {
-                                                  if($date.' '.$h[$z] == $cite->when)
-                                                      $ex++;
-                                                  else
-                                                      $notex++;
-                                              }
-                                              if($ex == 0){
-                                                $asueto = explode(" :", $h[$z]);
-                                                if($asueto[0] != 'asueto'){
-                                                   if ($daydate == Carbon::parse($appo->when)) {
-
-                                                      if($date.' '.$h[$z] > Carbon::parse($appo->when))
-                                                          array_push($option3, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
-
-                                                  }
-                                                  else{
-                                                              if($date.' '.$h[$z]  == Carbon::parse($appo->when)->addDays(7))
-                                                                   array_push($option2,  Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
-
-                                                              if($daydate != Carbon::parse($appo->when)->addDays(7))
-                                                                    array_push($option1, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
-                                                         }
-                                                  }       
-                                              }
-
-                                          }
-                                       }
-                                }
-                            } 
-                          }
-                          //Validación 1 alternativo
-                          
-                                     $data = [
-                                              'dr'     => $user->name,
-                                              'reason' => $appo->reasontocancel,
-                                              'definitive'     => $appo->definitive,
-                                              'array'          => $option1,
-                                              'array2'         => $option2,
-                                              'array3'         => $option3,
-                                              'idcite'         => $request->idcancel 
-                                            ];  
                            }else{
 
                                      $data = [
@@ -227,7 +151,7 @@ class drAppointments extends Controller
                                               'idcite'         => $request->idcancel
                                             ];  
                            }                
-                                       Mail::send('emails.cancelAppointment', $data, function ($message) {
+                                       Mail::send('emails.cancelAppointment', ($data)->with('dr' => $user->name), function ($message) {
                                                     $message->subject('Tu cita ha sido cancelada');
                                                     $message->to('contacto@doitcloud.consulting');
                                                 });
@@ -236,6 +160,37 @@ class drAppointments extends Controller
        return redirect('drAppointments/index/'. $user->id);
        
     }
+
+    /**
+     * View to cancel 
+     *
+     * @return \Illuminate\Http\Response
+     */
+ 
+    public function viewcancelAppointment(Request $request)
+    {
+        $id = $request->idcancel;
+        $appo = medical_appointments::find($id);
+        $user = User::find($appo->user_doctor);
+
+       if($appo->definitive == false){
+
+                             $data = $this->alternative($appo);
+
+                           }else{
+
+                                     $data = [
+                                              'dr'             => $user->name,
+                                              'reason'         => $appo->reasontocancel,
+                                              'definitive'     => $appo->definitive,
+                                              'idcite'         => $request->idcancel
+                                            ];  
+                           }                
+
+
+       return view('updateAppointment', $data)->with('dr' => $user->name);
+       
+    }    
 
     /**
      * Show the form for creating a new resource.
@@ -269,6 +224,7 @@ class drAppointments extends Controller
 
        $id = $request->idc;
        $appo = medical_appointments::find($id);
+       if($appo->status == 'No completed'){
        $appo->status = 'Registered';
        $appo->when = Carbon::parse($request->datenew)->format('Y-m-d H:i:s');
        $appo->definitive = false;
@@ -279,6 +235,13 @@ class drAppointments extends Controller
             'date'    => $appo->when,
             'ok' => 'ok'
         );
+     }else{
+             $notification = array(
+                //If it has been rejected, the internal error code is sent.
+            'message' => 'Esta cita ya fue reagendada con anterioridad', 
+            'Error' => 'Error'
+        );
+     }
        return redirect('medicalconsultations')->with($notification);
     }
         /**
@@ -353,6 +316,90 @@ class drAppointments extends Controller
                 return redirect('/medicalconsultations'); //medicalconsultations
                 break;
         }   
+    }
+
+
+    public function alternative($appo)
+    {
+       //Alternative options
+       $option1 = array();
+       $option2 = array();
+       $option3 = array();
+       $daydatef = Carbon::parse($appo->when);
+
+                 $join = DB::table('professional_information')
+                              ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
+                              ->where('labor_information.id','=', $appo->workplace)
+                              ->select('professional_information.*')
+                              ->first();
+
+                           $time_blockers =  DB::table('time_blockers')->where('professional_inf', '=', $join->id)->get();
+                           $cites = DB::table('medical_appointments')->where('workplace', '=', $appo->workplace)->get();
+                           $workboard = DB::table('workboard')->where('labInformation', '=', $appo->workplace)->get();
+                         
+                      //Validación 1 alternativo
+                          for($s = 0; $s < 10; $s++){
+
+                                if($s == 0)
+                                   $daydate = Carbon::parse($appo->when);
+                                else 
+                                   $daydate = Carbon::parse($appo->when)->addDays($s);
+
+                                   $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
+
+                             foreach($workboard as $work){   
+
+                                   if($work->workingDays == $day){
+                                    $h = json_decode($work->patient_duration_attention);
+
+                                       for($z =0; $z < count($h); $z++){
+                                          $ex = 0;
+                                          $notex = 0;
+                                          $time = $daydate->format('HH:mm:ss');
+                                          $date = $daydate->format('Y-m-d');
+
+                                          if($h[$z] >= $time){
+                                              foreach ($cites as $cite) {
+                                                  if($date.' '.$h[$z] == $cite->when)
+                                                      $ex++;
+                                                  else
+                                                      $notex++;
+                                              }
+                                              if($ex == 0){
+                                                $asueto = explode(" :", $h[$z]);
+                                                if($asueto[0] != 'asueto'){
+                                                   if ($daydate == Carbon::parse($appo->when)) {
+
+                                                      if($date.' '.$h[$z] > Carbon::parse($appo->when))
+                                                          array_push($option3, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
+
+                                                  }
+                                                  else{
+                                                              if($date.' '.$h[$z]  == Carbon::parse($appo->when)->addDays(7))
+                                                                   array_push($option2,  Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
+
+                                                              if($daydate != Carbon::parse($appo->when)->addDays(7))
+                                                                    array_push($option1, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
+                                                         }
+                                                  }       
+                                              }
+
+                                          }
+                                       }
+                                }
+                            } 
+                          }
+                          //Validación 1 alternativo
+                          $data = [
+                                    'reason' => $appo->reasontocancel,
+                                    'definitive'     => $appo->definitive,
+                                    'array'          => $option1,
+                                    'array2'         => $option2,
+                                    'array3'         => $option3,
+                                    'idcite'         => $request->idcancel 
+                                  ];  
+    
+                                    return $data;
     }
 
 
