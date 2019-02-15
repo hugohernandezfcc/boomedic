@@ -63,13 +63,13 @@
 		<hr>
 	<table>
     <tr>
-         <td style="background-color: black;border-color: black;border: 2px solid black;padding: 10px;text-align: center;">
+         <td style="background-color: black;border-color: black;border: 2px solid black;padding: 10px;text-align: center; border-radius: 5px;">
             <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;"  href="{{ url('') }}">
                  Reagendar ahora
             </a>
         </td>
-        <td style="background-color: gray;border-color: gray;border: 2px solid gray;padding: 10px;text-align: center;">
-            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;"  href="{{ url('') }}">
+        <td style="background-color: #777;border-color: #777;border: 2px solid #777;padding: 10px;text-align: center; border-radius: 5px;">
+            <a style="display: block;color: #ffffff;font-size: 14px;text-decoration: none;"  href="{{ url('') }}">
                  No quiero reagendar
             </a>
         </td>
