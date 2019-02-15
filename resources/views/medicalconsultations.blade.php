@@ -495,32 +495,6 @@
           
               <!-- Charge Alert whether payment was processed or not -->
               @if(session()->has('message'))
-                  @if(session()->has('ok'))
-                      <!--Modal cita reagendada-->
-                         <div class="modal fade" role="dialog" id="modalok">
-                            <div class="modal-dialog modal-sm">
-
-                              <div class="modal-content">
-
-                                <div class="modal-header" >
-                                  <!-- Tachecito para cerrar -->
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                  <div align="left"><label>¡Cita reagendada!</label></div>
-                                </div>
-                                    <div class="modal-body" >
-                                      <div class="box box-primary">
-                                        <div class="box-body">
-                                           Nueva Fecha: <span class="text-muted">{{ \Carbon\Carbon::parse(session()->get('date'))->format('d-m-Y h:i A') }}</span>
-
-                                     </div>
-                                      </div>
-                                    </div>
-                                </div>
-                              </div> 
-                            </div>
-                  @endif
 
                 @if(session()->has('success'))
 
@@ -568,6 +542,32 @@
                         </div>
                       </div> 
                     </div>
+
+                  @elseif(session()->has('ok'))
+                      <!--Modal cita reagendada-->
+                         <div class="modal fade" role="dialog" id="modalok">
+                            <div class="modal-dialog modal-sm">
+
+                              <div class="modal-content">
+
+                                <div class="modal-header" >
+                                  <!-- Tachecito para cerrar -->
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  <div align="left"><label>¡Cita reagendada!</label></div>
+                                </div>
+                                    <div class="modal-body" >
+                                      <div class="box box-primary">
+                                        <div class="box-body">
+                                           Nueva Fecha: <span class="text-muted">{{ \Carbon\Carbon::parse(session()->get('date'))->format('d-m-Y h:i A') }}</span>
+
+                                     </div>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div> 
+                            </div>
 
                  <!--Fin modal success-->
 
