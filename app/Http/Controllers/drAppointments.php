@@ -151,11 +151,12 @@ class drAppointments extends Controller
                            $cites = DB::table('medical_appointments')->where('workplace', '=', $appo->workplace)->get();
                            $workboard = DB::table('workboard')->where('labInformation', '=', $appo->workplace)->get();
                          
-                         for($s = 1; $s < 10; $s++){
-                            foreach($workboard as $work){
-
-                                   $daydate = $daydatef->addDays($s);
+                        
+                          for($s = 1; $s < 10; $s++){
+                                   $daydate = $daydatef->addDays(1);
+                                   print_r($daydate);
                                    $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
+                             foreach($workboard as $work){   
                                    if($work->workingDays == $day){
                                     $h = json_decode($work->patient_duration_attention);
                                        for($z =0; $z < count($h); $z++){
