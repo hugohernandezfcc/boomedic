@@ -40,9 +40,9 @@
 	    <hr>
 	      {!! $definitive !!}  <br>   
 	    @if($definitive == false)  
-
-
-	    <select class="custom-select">
+	    <form method="post" action="{{ url('editappointment') }}">
+	    <input type="hidden" name="idc" value="{!! $idcite !!}">
+	    <select class="custom-select" name="datenew">
 	    	@if($array3)
 	    <optgroup label="El resto del día de la cita">  
 			       @foreach($array3 as $a3)
@@ -72,9 +72,9 @@
 	<table>
     <tr>
          <td style="background-color: black;border-color: black;border: 2px solid black;padding: 5px;text-align: center; border-radius: 5px;">
-            <a style="display: block;color: #ffffff;font-size: 14px;text-decoration: none;"  href="{{ url('') }}">
+            <button type="submit" style="display: block;color: #ffffff;font-size: 14px;">
                  Reagendar ahora
-            </a>
+            </button>     
         </td>
         <td style="background-color: #333;border-color: #333;border: 2px solid #333;padding: 5px;text-align: center; border-radius: 5px;">
             <a style="display: block;color: #ffffff;font-size: 14px;text-decoration: none;"  href="{{ url('') }}">
@@ -83,6 +83,7 @@
         </td>
     </tr>
 </table>
+		</form>
 		@else
 				Se ha cancelado definitivamente
 		@endif

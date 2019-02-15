@@ -237,7 +237,7 @@ class drAppointments extends Controller
        
     }
 
-        /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -258,6 +258,22 @@ class drAppointments extends Controller
        return redirect('drAppointments/index/'. $user->id);
     }
 
+        /**
+     * edit appointments.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editappointment(Request $request)
+    {
+
+       $id = $request->idc;
+       $appo = medical_appointments::find($id);
+       $appo->status = 'Registered';
+       $appo->when = $request->datenew;
+       $appo->definitive = false;
+       $appo->save();
+       return redirect('medicalconsultations');
+    }
         /**
      * Show the form for creating a new resource.
      *
