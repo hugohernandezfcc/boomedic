@@ -188,7 +188,7 @@ class drAppointments extends Controller
                            }                
 
 
-       return view('updateAppointment', $data)->with('dr' => $user->name);
+       return view('updateAppointment', $data)->with(['dr' => $user->name]);
        
     }    
 
