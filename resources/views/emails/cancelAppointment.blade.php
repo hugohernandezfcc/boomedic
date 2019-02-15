@@ -36,7 +36,7 @@
 	</head>
 	<body>
 	<div align="center">
-	    <h2>{!! $dr !!} te ha cancelado la cita, {!! $reason !!}  sin embargo, te mostramos algunas alternativas para reagendar</h2>
+	    <h2>{!! $dr !!} ha cancelado tu cita, {!! $reason !!}  pero no te preocupes, te mostramos algunas alternativas para reagendar</h2>
 	    <hr>
 	      {!! $definitive !!}  <br>   
 
@@ -64,8 +64,13 @@
 	<table>
     <tr>
          <td style="background-color: black;border-color: black;border: 2px solid black;padding: 10px;text-align: center;">
-            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;text-transform: uppercase;"  href="{{ url('') }}">
-                 Reagendar cita
+            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;"  href="{{ url('') }}">
+                 Reagendar ahora
+            </a>
+        </td>
+        <td style="background-color: gray;border-color: gray;border: 2px solid gray;padding: 10px;text-align: center;">
+            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;"  href="{{ url('') }}">
+                 No quiero reagendar
             </a>
         </td>
     </tr>
