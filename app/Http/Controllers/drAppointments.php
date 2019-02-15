@@ -219,8 +219,8 @@ class drAppointments extends Controller
                                             ];  
                                            
                                        Mail::send('emails.cancelAppointment', $data, function ($message) {
-                                                    $message->subject('Te acaban de cancelar una cita...');
-                                                    $message->to('rebbeca.goncalves@doitcloud.consulting');
+                                                    $message->subject('Tu cita ha sido cancelada');
+                                                    $message->to('contacto@doitcloud.consulting');
                                                 });
         
 
