@@ -188,15 +188,15 @@ class drAppointments extends Controller
                                                    if ($daydate == Carbon::parse($appo->when)) {
 
                                                       if($date.' '.$h[$z] > Carbon::parse($appo->when))
-                                                          array_push($option3, $date . ' ' .$h[$z]);
+                                                          array_push($option3, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y HH:mm'));
 
                                                   }
                                                   else{
                                                               if($date.' '.$h[$z]  == Carbon::parse($appo->when)->addDays(7))
-                                                                   array_push($option2, $date . ' ' .$h[$z]);
+                                                                   array_push($option2,  Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y HH:mm'));
 
                                                               if($daydate != Carbon::parse($appo->when)->addDays(7))
-                                                                    array_push($option1, $date . ' ' .$h[$z]);
+                                                                    array_push($option1, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y HH:mm'));
                                                          }
                                                   }       
                                               }

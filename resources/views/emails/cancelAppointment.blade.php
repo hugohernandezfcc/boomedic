@@ -9,17 +9,19 @@
 					    -moz-appearance: none;
 					    appearance: none;
 					    height: 45px;
-					    width: 300px;
+					    width: 500px;
 					    padding: 10px 38px 10px 16px;
 					    transition: border-color .1s ease-in-out,box-shadow .1s ease-in-out;
 					    border: 1px solid #ddd;
-					    border-radius: 25px;
+					    border-radius: 15px;
 					}
 					.custom-select:hover {
 					    border: 1px solid #999;
+					    border-radius: 15px;
 					}
 					.custom-select:focus {
 					    border: 1px solid #999;
+					    border-radius: 15px;
 					    box-shadow: 0 3px 5px 0 rgba(0,0,0,.2);
 					    outline: none;
 					}
@@ -28,21 +30,22 @@
 					    display:none;
 					}
 					.custom-select {
-					    font-family: 'Source Sans Pro', sans-serif;
 					    font-size: 16px;
 					}
 		    </style>
 	</head>
 	<body>
-
-	    <h2>El dr. {!! $dr !!} te ha cancelado la cita...</h2>
-	    <hr>
-	       Motivo: {!! $reason !!} <br>
-	       Definitivo: {!! $definitive !!}  <br>   
-
-
 	<div align="center">
+	    <h2>{!! $dr !!} te ha cancelado la cita, {!! $reason !!}  sin embargo, te mostramos algunas alternativas para reagendar</h2>
+	    <hr>
+	      {!! $definitive !!}  <br>   
+
 	    <select class="custom-select">
+	    <optgroup label="El resto del día de la cita">  
+			       @foreach($array3 as $a3)
+			       		<option value="{!! $a3 !!}">{!! $a3 !!} </option>
+			       @endforeach
+		</optgroup>	    	
 	    <optgroup label="Próximos días después de la cita">  	
 			       @foreach($array as $a)
 			       	   <option value="{!! $a !!}"> {!! $a !!} </option>
@@ -55,12 +58,19 @@
 			       	   <option value="{!! $a2 !!}"> {!! $a2 !!} </option>
 			       @endforeach
 		</optgroup>	       
-	    <optgroup label="El resto del día de la cita">  
-			       @foreach($array3 as $a3)
-			       		<option value="{!! $a3 !!}">{!! $a3 !!} </option>
-			       @endforeach
-		</optgroup>	       
+   
 		</select>
-	</div>	       
+		<hr>
+	<table>
+    <tr>
+         <td style="background-color: black;border-color: black;border: 2px solid black;padding: 10px;text-align: center;">
+            <a style="display: block;color: #ffffff;font-size: 12px;text-decoration: none;text-transform: uppercase;"  href="{{ url('') }}">
+                 Reagendar cita
+            </a>
+        </td>
+    </tr>
+</table>
+	
+</div>
 	</body>
 </html>
