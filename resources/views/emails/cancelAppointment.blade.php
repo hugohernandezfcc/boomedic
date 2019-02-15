@@ -10,8 +10,7 @@
        Motivo: {!! $reason !!} <br>
        Definitivo: {!! $definitive !!}  <br>    
        @foreach($array as $a)
-       		{!! $a->fecha !!} <br>
-       		{!! $a->hora !!}<br>
+       		{!! $a->a !!} <br>
        @endforeach
     
 </body>

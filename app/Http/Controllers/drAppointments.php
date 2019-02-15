@@ -154,7 +154,6 @@ class drAppointments extends Controller
                       //Validación 1  
                           for($s = 1; $s < 10; $s++){
                                    $daydate = $daydatef->addDays(1);
-                                   print_r($daydate);
                                    $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
                              foreach($workboard as $work){   
                                    if($work->workingDays == $day){
@@ -173,7 +172,7 @@ class drAppointments extends Controller
                                                     $notex++;
                                             }
                                               if($ex == 0){
-                                                 array_push($option1, ['fecha' => $date, 'hora' => $h[$z]]);
+                                                 array_push($option1, $date . ' ' .$h[$z]);
                                               }
 
                                           }
