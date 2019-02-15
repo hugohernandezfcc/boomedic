@@ -141,6 +141,7 @@ class drAppointments extends Controller
        //Alternative options
        $option1 = array();
        $option2 = array();
+       $option3 = array();
        $daydatef = Carbon::parse($appo->when);
 
                  $join = DB::table('professional_information')
@@ -153,11 +154,18 @@ class drAppointments extends Controller
                            $cites = DB::table('medical_appointments')->where('workplace', '=', $appo->workplace)->get();
                            $workboard = DB::table('workboard')->where('labInformation', '=', $appo->workplace)->get();
                          
-                      //Validación 1  
-                          for($s = 1; $s < 10; $s++){
+                      //Validación 1 alternativo
+                          for($s = 0; $s < 10; $s++){
+
+                                if($s == 0)
+                                   $daydate = Carbon::parse($appo->when);
+                                else 
                                    $daydate = Carbon::parse($appo->when)->addDays($s);
+
                                    $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
+
                              foreach($workboard as $work){   
+
                                    if($work->workingDays == $day){
                                     $h = json_decode($work->patient_duration_attention);
                                        for($z =0; $z < count($h); $z++){
@@ -174,24 +182,31 @@ class drAppointments extends Controller
                                                     $notex++;
                                             }
                                               if($ex == 0){
-                                                if($daydate == Carbon::parse($appo->when)->addDays(7))
-                                                  array_push($option2, $date . ' ' .$h[$z]);
-                                                else
-                                                 array_push($option1, $date . ' ' .$h[$z]);
+                                                  if($date.' '.$h[$z] == Carbon::parse($appo->when)){
+                                                      array_push($option3, $date . ' ' .$h[$z]);
+                                                  }else{
+                                                    if($date.' '.$h[$z]  == Carbon::parse($appo->when)->addDays(7))
+                                                      array_push($option2, $date . ' ' .$h[$z]);
+                                                    else
+                                                     array_push($option1, $date . ' ' .$h[$z]);
+                                                 }
                                               }
 
                                           }
                                        }
-
                                 }
                             } 
                           }
+                          //Validación 1 alternativo
+                          //
+                          //
                                      $data = [
                                               'dr'     => $user->name,
                                               'reason' => $appo->reasontocancel,
                                               'definitive'     => $appo->definitive,
                                               'array'          => $option1,
-                                              'array2'         => $option2
+                                              'array2'         => $option2,
+                                              'array3'         => $option3 
                                             ];  
                                            
                                        Mail::send('emails.cancelAppointment', $data, function ($message) {
