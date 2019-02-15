@@ -255,6 +255,7 @@ class drAppointments extends Controller
        $time->start = $request->startEdit;
        $time->end   = $request->endEdit;       
        $time->save();
+
        return redirect('drAppointments/index/'. $user->id);
     }
 
@@ -272,7 +273,13 @@ class drAppointments extends Controller
        $appo->when = Carbon::parse($request->datenew)->format('Y-m-d H:i:s');
        $appo->definitive = false;
        $appo->save();
-       return redirect('medicalconsultations');
+       $notification = array(
+                //If it has been rejected, the internal error code is sent.
+            'message' => 'Se ha reagendado su cita correctamente', 
+            'date'    => $appo->when,
+            'Ok' => 'Ok'
+        );
+       return redirect('medicalconsultations')->with($notification);
     }
         /**
      * Show the form for creating a new resource.
