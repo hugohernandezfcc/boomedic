@@ -155,7 +155,7 @@ class drAppointments extends Controller
                          
                       //Validación 1  
                           for($s = 1; $s < 10; $s++){
-                                   $daydate = $daydatef->addDays(1);
+                                   $daydate = Carbon::parse($appo->when)->addDays($s);
                                    $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
                              foreach($workboard as $work){   
                                    if($work->workingDays == $day){
@@ -174,7 +174,7 @@ class drAppointments extends Controller
                                                     $notex++;
                                             }
                                               if($ex == 0){
-                                                if($daydate == $daydatef->addDays(7))
+                                                if($daydate == Carbon::parse($appo->when)->addDays(7))
                                                   array_push($option2, $date . ' ' .$h[$z]);
                                                 else
                                                  array_push($option1, $date . ' ' .$h[$z]);
