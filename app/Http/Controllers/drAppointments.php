@@ -183,6 +183,8 @@ class drAppointments extends Controller
                                                       $notex++;
                                               }
                                               if($ex == 0){
+                                                $asueto = explode(" :", $h[$z]);
+                                                if($asueto != 'asueto'){
                                                    if ($daydate == Carbon::parse($appo->when)) {
 
                                                       if($date.' '.$h[$z] > Carbon::parse($appo->when))
@@ -196,6 +198,7 @@ class drAppointments extends Controller
                                                               if($daydate != Carbon::parse($appo->when)->addDays(7))
                                                                     array_push($option1, $date . ' ' .$h[$z]);
                                                          }
+                                                  }       
                                               }
 
                                           }
