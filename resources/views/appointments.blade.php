@@ -34,7 +34,7 @@
               
                 <div class="form-group">
                   <div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
-                    @if($app->status == registered)
+                    @if($app->status == 'Registered')
                         <div class="info-box bg-gray">
                         <div class="info-box-icon-2"><img src="{{ $app->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"><br/>Dr. {{ $app->name }}</div>
                           <div class="info-box-content">
