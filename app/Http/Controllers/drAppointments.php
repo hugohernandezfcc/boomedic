@@ -189,15 +189,15 @@ class drAppointments extends Controller
                                                    if ($daydate == Carbon::parse($appo->when)) {
 
                                                       if($date.' '.$h[$z] > Carbon::parse($appo->when))
-                                                          array_push($option3, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y g:i A'));
+                                                          array_push($option3, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
 
                                                   }
                                                   else{
                                                               if($date.' '.$h[$z]  == Carbon::parse($appo->when)->addDays(7))
-                                                                   array_push($option2,  Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y g:i A'));
+                                                                   array_push($option2,  Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
 
                                                               if($daydate != Carbon::parse($appo->when)->addDays(7))
-                                                                    array_push($option1, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y g:i A'));
+                                                                    array_push($option1, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
                                                          }
                                                   }       
                                               }
@@ -269,7 +269,7 @@ class drAppointments extends Controller
        $id = $request->idc;
        $appo = medical_appointments::find($id);
        $appo->status = 'Registered';
-       $appo->when = Carbon::parse($request->datenew)->format('Y-m-d h:i:s');
+       $appo->when = Carbon::parse($request->datenew)->format('Y-m-d H:i:s');
        $appo->definitive = false;
        $appo->save();
        return redirect('medicalconsultations');
