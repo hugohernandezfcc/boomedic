@@ -396,7 +396,7 @@ class drAppointments extends Controller
                                     'array'          => $option1,
                                     'array2'         => $option2,
                                     'array3'         => $option3,
-                                    'idcite'         => $request->idcancel 
+                                    'idcite'         => $appo->id
                                   ];  
     
                                     return $data;
