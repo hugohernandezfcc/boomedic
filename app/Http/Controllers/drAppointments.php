@@ -182,14 +182,19 @@ class drAppointments extends Controller
                                                     $notex++;
                                             }
                                               if($ex == 0){
-                                                  if($date.' '.$h[$z] == Carbon::parse($appo->when)){
-                                                      array_push($option3, $date . ' ' .$h[$z]);
-                                                  }else{
-                                                    if($date.' '.$h[$z]  == Carbon::parse($appo->when)->addDays(7))
-                                                      array_push($option2, $date . ' ' .$h[$z]);
-                                                    else
-                                                     array_push($option1, $date . ' ' .$h[$z]);
-                                                 }
+                                                   if ($daydate == Carbon::parse($appo->when)) {
+
+                                                      if($date.' '.$h[$z] > Carbon::parse($appo->when))
+                                                          array_push($option3, $date . ' ' .$h[$z]);
+
+                                                  }
+                                                  else{
+                                                              if($date.' '.$h[$z]  == Carbon::parse($appo->when)->addDays(7))
+                                                                   array_push($option2, $date . ' ' .$h[$z]);
+
+                                                              if($daydate != Carbon::parse($appo->when)->addDays(7))
+                                                                    array_push($option1, $date . ' ' .$h[$z]);
+                                                         }
                                               }
 
                                           }

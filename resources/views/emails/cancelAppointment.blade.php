@@ -18,5 +18,10 @@
        @foreach($array2 as $a2)
        	<br>	{!! $a2 !!} 
        @endforeach
+       <br>
+       Opciones 3:
+       @foreach($array3 as $a3)
+       	<br>	{!! $a3 !!} 
+       @endforeach
 </body>
 </html>
