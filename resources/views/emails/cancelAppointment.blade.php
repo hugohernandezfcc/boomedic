@@ -19,8 +19,8 @@
   display: inline-block;
   position: relative;
   overflow: hidden;
-  height: 28px;
-  width: 300px;
+  height: 40px;
+  width: 400px;
   background: #f2f2f2;
   border: 1px solid;
   border-color: white #f7f7f7 whitesmoke;
@@ -59,13 +59,12 @@
 
 .dropdown-select {
   position: relative;
-  width: 130%;
   margin: 0;
   padding: 6px 8px 6px 10px;
-  height: 28px;
+  height: 40px;
   line-height: 14px;
-  font-size: 12px;
-  color: #62717a;
+  font-size: 15px;
+  color: #fff;
   text-shadow: 0 1px white;
   background: #f2f2f2; /* Fallback for IE 8 */
   background: rgba(0, 0, 0, 0) !important; /* "transparent" doesn't work with Opera */
@@ -77,7 +76,7 @@
 .dropdown-select:focus {
   z-index: 3;
   width: 100%;
-  color: #394349;
+  color: #fff;
   outline: 2px solid #49aff2;
   outline: 2px solid -webkit-focus-ring-color;
   outline-offset: -2px;
@@ -159,39 +158,24 @@
        Opciones 1: 
 <div class="dropdown dropdown-dark">
     <select name="two" class="dropdown-select">
+    <optgroup label="Próximos días">  	
 		       @foreach($array as $a)
-		       	@if($loop->iteration == 1)
-		       	   <option value="null">-Ninguno-</option>
-		       	@endif   
 		       	   <option value="{!! $a !!}"> {!! $a !!} </option>
 		       @endforeach
-	       </select>
-</div>	       
-       <br>
+     </optgroup>
 
-       Opciones 2:
-<div class="dropdown dropdown-dark">
-    <select name="two" class="dropdown-select">       
-		       @foreach($array2 as $a2)
-		       	@if($loop->iteration == 1)
-		       	   <option value="null">-Ninguno-</option>
-		       	@endif   
+
+    <optgroup label="Semana siguiente mismo horario">  
+		       @foreach($array2 as $a2) 
 		       	   <option value="{!! $a2 !!}"> {!! $a2 !!} </option>
 		       @endforeach
-	       </select>
-</div>	       
-       <br>
-
-       Opciones 3:
-<div class="dropdown dropdown-dark">
-    <select name="two" class="dropdown-select">    
+	</optgroup>	       
+    <optgroup label="El resto del día de la cita">  
 		       @foreach($array3 as $a3)
-		       	@if($loop->iteration == 1)
-		       	   <option value="null">-Ninguno-</option>
-		       	@endif   
 		       		<option value="{!! $a3 !!}">{!! $a3 !!} </option>
 		       @endforeach
-	       </select>
+	</optgroup>	       
+	</select>
 </div>	       
 </body>
 </html>

@@ -184,7 +184,7 @@ class drAppointments extends Controller
                                               }
                                               if($ex == 0){
                                                 $asueto = explode(" :", $h[$z]);
-                                                if($asueto != 'asueto'){
+                                                if($asueto[0] != 'asueto'){
                                                    if ($daydate == Carbon::parse($appo->when)) {
 
                                                       if($date.' '.$h[$z] > Carbon::parse($appo->when))
