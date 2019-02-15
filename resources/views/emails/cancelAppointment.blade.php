@@ -19,8 +19,8 @@
   display: inline-block;
   position: relative;
   overflow: hidden;
-  height: 40px;
-  width: 400px;
+  height: 45px;
+  width: 300px;
   background: #f2f2f2;
   border: 1px solid;
   border-color: white #f7f7f7 whitesmoke;
@@ -59,12 +59,13 @@
 
 .dropdown-select {
   position: relative;
+  width: 130%;
   margin: 0;
   padding: 6px 8px 6px 10px;
-  height: 40px;
+  height: 45px;
   line-height: 14px;
-  font-size: 15px;
-  color: #fff;
+  font-size: 18px;
+  color: white !important;
   text-shadow: 0 1px white;
   background: #f2f2f2; /* Fallback for IE 8 */
   background: rgba(0, 0, 0, 0) !important; /* "transparent" doesn't work with Opera */
@@ -76,7 +77,7 @@
 .dropdown-select:focus {
   z-index: 3;
   width: 100%;
-  color: #fff;
+  color: #394349;
   outline: 2px solid #49aff2;
   outline: 2px solid -webkit-focus-ring-color;
   outline-offset: -2px;
@@ -155,10 +156,10 @@
        Motivo: {!! $reason !!} <br>
        Definitivo: {!! $definitive !!}  <br>   
 
-       Opciones 1: 
-<div class="dropdown dropdown-dark">
+
+<div class="dropdown dropdown-dark" align="center">
     <select name="two" class="dropdown-select">
-    <optgroup label="Próximos días">  	
+    <optgroup label="Próximos días después de la cita">  	
 		       @foreach($array as $a)
 		       	   <option value="{!! $a !!}"> {!! $a !!} </option>
 		       @endforeach
