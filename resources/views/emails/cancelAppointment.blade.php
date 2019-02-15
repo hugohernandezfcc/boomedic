@@ -3,10 +3,6 @@
 <head>
     <meta charset="utf-8">
     <style type="text/css">
-    	sans-serif;
-  color: #404040;
-  background: #93cedf;
-}
 
 .container {
   margin: 80px auto;
