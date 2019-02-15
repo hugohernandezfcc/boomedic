@@ -40,7 +40,7 @@
 	    <hr>
 	      {!! $definitive !!}  <br>   
 	    @if($definitive == false)  
-	    <form method="post" action="{{ url('editappointment') }}">
+	    <form enctype="multipart/form-data" action="{{ url('drAppointments/editappointment') }}">
 	    <input type="hidden" name="idc" value="{!! $idcite !!}">
 	    <select class="custom-select" name="datenew">
 	    	@if($array3)
@@ -71,8 +71,8 @@
 		<hr>
 	<table>
     <tr>
-         <td style="background-color: black;border-color: black;border: 2px solid black;padding: 5px;text-align: center; border-radius: 5px;">
-            <button type="submit" style="display: block;color: #ffffff;font-size: 14px;">
+         <td>
+            <button type="submit" style="background-color: black;border-color: black;border: 2px solid black;padding: 5px;text-align: center; border-radius: 5px;display: block;color: #ffffff;font-size: 14px;">
                  Reagendar ahora
             </button>     
         </td>
