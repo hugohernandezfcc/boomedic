@@ -495,7 +495,7 @@
           
               <!-- Charge Alert whether payment was processed or not -->
               @if(session()->has('message'))
-                  @if(session()->has('Ok'))
+                  @if(session()->has('ok'))
                       <!--Modal cita reagendada-->
                          <div class="modal fade" role="dialog" id="modalok">
                             <div class="modal-dialog modal-sm">
