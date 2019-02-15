@@ -168,19 +168,20 @@ class drAppointments extends Controller
 
                                    if($work->workingDays == $day){
                                     $h = json_decode($work->patient_duration_attention);
-                                       for($z =0; $z < count($h); $z++){
-                                        $ex = 0;
-                                        $notex = 0;
-                                        $time = $daydate->format('HH:mm:ss');
-                                        $date = $daydate->format('Y-m-d');
-                                          if($h[$z] >= $time){
-                                            foreach ($cites as $cite) {
 
-                                                if($date.' '.$h[$z] == $cite->when)
-                                                    $ex++;
-                                                else
-                                                    $notex++;
-                                            }
+                                       for($z =0; $z < count($h); $z++){
+                                          $ex = 0;
+                                          $notex = 0;
+                                          $time = $daydate->format('HH:mm:ss');
+                                          $date = $daydate->format('Y-m-d');
+
+                                          if($h[$z] >= $time){
+                                              foreach ($cites as $cite) {
+                                                  if($date.' '.$h[$z] == $cite->when)
+                                                      $ex++;
+                                                  else
+                                                      $notex++;
+                                              }
                                               if($ex == 0){
                                                    if ($daydate == Carbon::parse($appo->when)) {
 

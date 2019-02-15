@@ -9,19 +9,28 @@
     <hr>
        Motivo: {!! $reason !!} <br>
        Definitivo: {!! $definitive !!}  <br>   
+       
        Opciones 1: 
-       @foreach($array as $a)
-       	<br>	{!! $a !!} 
-       @endforeach
+	       <select>
+		       @foreach($array as $a)
+		       	<option value="{!! $a !!}"> {!! $a !!} </option>
+		       @endforeach
+	       </select>
        <br>
+
        Opciones 2:
-       @foreach($array2 as $a2)
-       	<br>	{!! $a2 !!} 
-       @endforeach
+	       <select>
+		       @foreach($array2 as $a2)
+		       <option value="{!! $a2 !!}"> {!! $a2 !!} </option>
+		       @endforeach
+	       </select>
        <br>
+
        Opciones 3:
-       @foreach($array3 as $a3)
-       	<br>	{!! $a3 !!} 
-       @endforeach
+	       <select>
+		       @foreach($array3 as $a3)
+		       	<option value="{!! $a3 !!}">{!! $a3 !!} </option>
+		       @endforeach
+	       </select>
 </body>
 </html>
