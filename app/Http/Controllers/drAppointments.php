@@ -164,7 +164,7 @@ class drAppointments extends Controller
                                         $notex = 0;
                                         $time = $daydate->format('HH:mm:ss');
                                         $date = $daydate->format('Y-m-d');
-                                          if($h[$z] == $time){
+                                          if($h[$z] >= $time){
                                             foreach ($cites as $cite) {
 
                                                 if($date.' '.$h[$z] == $cite->when)
@@ -173,7 +173,7 @@ class drAppointments extends Controller
                                                     $notex++;
                                             }
                                               if($ex == 0){
-                                                 array_push($option1, $date.' '.$h[$z]);
+                                                 array_push($option1, ['fecha' => $date, 'hora' => $h[$z]]);
                                               }
 
                                           }
