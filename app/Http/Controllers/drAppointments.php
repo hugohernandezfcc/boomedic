@@ -140,7 +140,7 @@ class drAppointments extends Controller
 
        if($appo->definitive == false){
 
-                             $data = $this->alternative($appo);
+                             $data = $this->alternative($appo, $user->name);
 
                            }else{
 
@@ -150,7 +150,6 @@ class drAppointments extends Controller
                                               'idcite'         => $request->idcancel
                                             ];  
                            }
-                           array_push($data, ['dr' => $user->name]);               
                                        Mail::send('emails.cancelAppointment', $data, function ($message) {
                                                     $message->subject('Tu cita ha sido cancelada');
                                                     $message->to('contacto@doitcloud.consulting');
@@ -175,7 +174,7 @@ class drAppointments extends Controller
 
        if($appo->definitive == false){
 
-                             $data = $this->alternative($appo);
+                             $data = $this->alternative($appo, $user->name);
 
                            }else{
 
@@ -188,7 +187,7 @@ class drAppointments extends Controller
                            }                
 
 
-       return view('updateAppointment', $data)->with(['dr' => $user->name]);
+       return view('updateAppointment', $data);
        
     }    
 
@@ -319,7 +318,7 @@ class drAppointments extends Controller
     }
 
 
-    public function alternative($appo)
+    public function alternative($appo,$dr)
     {
        //Alternative options
        $option1 = array();
@@ -396,7 +395,8 @@ class drAppointments extends Controller
                                     'array'          => $option1,
                                     'array2'         => $option2,
                                     'array3'         => $option3,
-                                    'idcite'         => $appo->id
+                                    'idcite'         => $appo->id,
+                                    'dr'             => $dr
                                   ];  
     
                                     return $data;
