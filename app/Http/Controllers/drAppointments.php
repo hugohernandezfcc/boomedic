@@ -151,7 +151,7 @@ class drAppointments extends Controller
                            $cites = DB::table('medical_appointments')->where('workplace', '=', $appo->workplace)->get();
                            $workboard = DB::table('workboard')->where('labInformation', '=', $appo->workplace)->get();
                          
-                        
+                      //Validación 1  
                           for($s = 1; $s < 10; $s++){
                                    $daydate = $daydatef->addDays(1);
                                    print_r($daydate);
@@ -164,7 +164,7 @@ class drAppointments extends Controller
                                         $notex = 0;
                                         $time = $daydate->format('HH:mm:ss');
                                         $date = $daydate->format('Y-m-d');
-                                          if($h[$z] >= $time){
+                                          if($h[$z] == $time){
                                             foreach ($cites as $cite) {
 
                                                 if($date.' '.$h[$z] == $cite->when)
