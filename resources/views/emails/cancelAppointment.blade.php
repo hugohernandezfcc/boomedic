@@ -160,7 +160,7 @@
 <div class="dropdown dropdown-dark">
     <select name="two" class="dropdown-select">
 		       @foreach($array as $a)
-		       	@if($loop == 1)
+		       	@if($loop->iteration == 1)
 		       	   <option value="null">-Ninguno-</option>
 		       	@endif   
 		       	   <option value="{!! $a !!}"> {!! $a !!} </option>
@@ -173,7 +173,7 @@
 <div class="dropdown dropdown-dark">
     <select name="two" class="dropdown-select">       
 		       @foreach($array2 as $a2)
-		       	@if($loop == 1)
+		       	@if($loop->iteration == 1)
 		       	   <option value="null">-Ninguno-</option>
 		       	@endif   
 		       	   <option value="{!! $a2 !!}"> {!! $a2 !!} </option>
@@ -186,7 +186,7 @@
 <div class="dropdown dropdown-dark">
     <select name="two" class="dropdown-select">    
 		       @foreach($array3 as $a3)
-		       	@if($loop == 1)
+		       	@if($loop->iteration == 1)
 		       	   <option value="null">-Ninguno-</option>
 		       	@endif   
 		       		<option value="{!! $a3 !!}">{!! $a3 !!} </option>
