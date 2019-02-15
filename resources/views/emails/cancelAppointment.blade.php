@@ -40,7 +40,7 @@
 	    <hr>
 	      {!! $definitive !!}  <br>   
 	    @if($definitive == false)  
-	    <form enctype="multipart/form-data" action="{{ url('drAppointments/editappointment') }}">
+	    <form method="post" action="{{ url('drAppointments/editappointment') }}">
 	    <input type="hidden" name="idc" value="{!! $idcite !!}">
 	    <select class="custom-select" name="datenew">
 	    	@if($array3)
