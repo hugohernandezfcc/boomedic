@@ -44,7 +44,7 @@
 			  	</div>
 				<div class="box-body">
 							<div align="center">
-			    <h2>{!! $dr !!} ha cancelado tu cita, {!! $reason !!}  pero no te preocupes, te mostramos algunas alternativas para reagendar</h2>
+			    <h4>{!! $dr !!} ha cancelado tu cita, {!! $reason !!}  pero no te preocupes, te mostramos algunas alternativas para reagendar</h4>
 			    <hr>
 			    <br>   
 			    @if($definitive == false)  
