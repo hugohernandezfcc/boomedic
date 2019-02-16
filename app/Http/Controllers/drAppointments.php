@@ -145,6 +145,7 @@ class drAppointments extends Controller
                            }else{
 
                                      $data = [
+                                              'dr'             => $user->name,
                                               'reason' => $appo->reasontocancel,
                                               'definitive'     => $appo->definitive,
                                               'idcite'         => $request->idcancel
@@ -187,7 +188,7 @@ class drAppointments extends Controller
                            }                
 
 
-       return view('updateAppointment', $data);
+       return view('updateappointment', $data);
        
     }    
 
