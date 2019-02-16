@@ -46,7 +46,7 @@
 							<div align="center">
 			    <h2>{!! $dr !!} ha cancelado tu cita, {!! $reason !!}  pero no te preocupes, te mostramos algunas alternativas para reagendar</h2>
 			    <hr>
-			      {!! $definitive !!}  <br>   
+			    <br>   
 			    @if($definitive == false)  
 			    <form method="post" action="{{ url('drAppointments/editappointment') }}">
 			    <input type="hidden" name="idc" value="{!! $idcite !!}">

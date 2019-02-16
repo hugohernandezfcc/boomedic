@@ -148,7 +148,7 @@ class drAppointments extends Controller
                                               'dr'             => $user->name,
                                               'reason' => $appo->reasontocancel,
                                               'definitive'     => $appo->definitive,
-                                              'idcite'         => $request->idcancel
+                                              'idcite'         => $appo->id
                                             ];  
                            }
                                        Mail::send('emails.cancelAppointment', $data, function ($message) {
@@ -167,28 +167,35 @@ class drAppointments extends Controller
      * @return \Illuminate\Http\Response
      */
  
-    public function viewcancelAppointment(Request $request)
+    public function viewcancelAppointment($id)
     {
-        $id = $request->idcancel;
+        $id = $id;
         $appo = medical_appointments::find($id);
-        $user = User::find($appo->user_doctor);
+        $userd = User::find($appo->user_doctor);
+        $user = User::find(Auth::id());
 
        if($appo->definitive == false){
 
-                             $data = $this->alternative($appo, $user->name);
+                             $data = $this->alternative($appo, $userd->name);
 
                            }else{
 
                                      $data = [
-                                              'dr'             => $user->name,
+                                              'dr'             => $userd->name,
                                               'reason'         => $appo->reasontocancel,
                                               'definitive'     => $appo->definitive,
-                                              'idcite'         => $request->idcancel
+                                              'idcite'         => $appo->id
                                             ];  
                            }                
 
-
-       return view('updateappointment', $data);
+       return view('updateappointment',[        
+                                        'userId'    => $user->id,
+                                        'username'  => $user->username,
+                                        'name'      => $user->name,
+                                        'photo'     => $user->profile_photo,
+                                        'date'      => $user->created_at,
+                                        'gender'    => $user->gender 
+                                         ])->with($data); 
        
     }    
 

@@ -463,7 +463,11 @@ Route::group(['prefix' => 'drAppointments'], function(){
 			'as'	=>	'confirmTimeBlocker'
 		]
 	);
-
+	Route::get('viewcancelAppointment/{id}', [
+			'uses'	=>	'drAppointments@viewcancelAppointment',
+			'as'	=>	'viewcancelAppointment'
+		]
+	);	
 	Route::post('editTimeBlocker', [
 			'uses'	=>	'drAppointments@editTimeBlocker',
 			'as'	=>	'editTimeBlocker'

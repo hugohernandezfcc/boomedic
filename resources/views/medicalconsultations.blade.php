@@ -369,7 +369,7 @@
                              @if($appo->status == 'No completed')
                                   <div class="col-sm-12">
                                     <div class="info-box sm bg-red">
-                                      <a data-toggle="modal" data-target="#{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
+                                      <a href="{{ url('drAppointments/viewcancelAppointment/') }}/{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
                                       <div class="info-box-content sm">
                                        <span class="text-white">
                                         <b>Lugar:</b> {{ $appo->workplace}}.<br/>
