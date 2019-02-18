@@ -497,7 +497,7 @@
               @if(session()->has('message'))
 
                 @if(session()->has('success'))
-                  @if(session()->get('ok'))
+                  @if(session()->get('ok') == 'ok')
                       <!--Modal cita reagendada-->
                          <div class="modal fade" role="dialog" id="modalok">
                             <div class="modal-dialog modal-sm">
@@ -572,7 +572,7 @@
                  <!--Fin modal success-->
 
                 @elseif(session()->has('error'))
-                   @if(session()->get('error2'))
+                   @if(session()->get('error2') == 'error2')
                       <!--Modal cita reagendada-->
                          <div class="modal fade" role="dialog" id="modalok">
                             <div class="modal-dialog modal-sm">
