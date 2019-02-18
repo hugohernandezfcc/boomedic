@@ -257,7 +257,7 @@ class drAppointments extends Controller
                 //If it has been rejected, the internal error code is sent.
             'message' => 'Esta cita ya fue reagendada con anterioridad', 
             'error'   => 'error',
-            'error2'  => 'error2'
+            'errort'  => 'errort'
             );
         }   
      }
@@ -281,7 +281,7 @@ class drAppointments extends Controller
                         //If it has been rejected, the internal error code is sent.
                     'message' => 'Esta cita ya fue reagendada con anterioridad', 
                     'error'   => 'error',
-                    'error2'  => 'error2'
+                    'errort'  => 'errort'
                     );
              }
                return redirect('medicalconsultations')->with($notification);

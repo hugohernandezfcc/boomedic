@@ -576,27 +576,18 @@
                       <!--Modal cita reagendada-->
                          <div class="modal fade" role="dialog" id="modalok">
                             <div class="modal-dialog modal-sm">
-
                               <div class="modal-content">
-
                                 <div class="modal-header" >
                                   <!-- Tachecito para cerrar -->
                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
-                                  <div align="left"><label>¡Esta cita ya fue reagendada con anterioridad!</label></div>
+                                  <div align="left"><label>{{ session()->get('message') }}</label></div>
                                 </div>
-                                    <div class="modal-body" >
-                                      <div class="box box-primary">
-                                        <div class="box-body">
-                                            session()->get('message');</span>
-
-                                     </div>
-                                      </div>
                                     </div>
                                 </div>
                               </div> 
-                            </div>
+
                    @else         
                 <!--Modal cita y pago error-->
                  <div class="modal fade" role="dialog" id="modalerror">
