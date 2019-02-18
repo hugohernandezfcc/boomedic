@@ -45,7 +45,7 @@
 				<div class="box-body">
 							<div align="center">
 				@if($reschedule == false)
-									    <h4>Haz indicado que no quieres volver areagendar esta cita</h4>
+									    <h4>Haz indicado que no quieres volver a agendar esta cita</h4>
 				@else					    
 			    <h4>{!! $dr !!} ha cancelado tu cita, {!! $reason !!}  pero no te preocupes, te mostramos algunas alternativas para reagendar</h4>
 			    <hr>
