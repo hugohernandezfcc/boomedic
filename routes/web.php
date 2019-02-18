@@ -458,6 +458,12 @@ Route::group(['prefix' => 'drAppointments'], function(){
 		]
 	);	
 
+	Route::post('calcelReschedule', [
+			'uses'	=>	'drAppointments@calcelReschedule',
+			'as'	=>	'calcelReschedule'
+		]
+	);	
+
 	Route::post('confirmTimeBlocker', [
 			'uses'	=>	'drAppointments@confirmTimeBlocker',
 			'as'	=>	'confirmTimeBlocker'

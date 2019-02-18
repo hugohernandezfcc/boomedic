@@ -228,10 +228,10 @@ class drAppointments extends Controller
      */
     public function editappointment(Request $request)
     {
-
+      if($request->action == 'update'){
        $id = $request->idc;
        $appo = medical_appointments::find($id);
-       if($appo->status == 'No completed'){
+       if($appo->status == 'No completed' && $appo->reschedule == true){
        $appo->status = 'Registered';
        $appo->when = Carbon::parse($request->datenew)->format('Y-m-d H:i:s');
        $appo->definitive = false;
@@ -244,16 +244,50 @@ class drAppointments extends Controller
             'ok'      => 'ok'
         );
      }else{
+       if($appo->reschedule == false)
              $notification = array(
+                //If it has been rejected, the internal error code is sent.
+            'message' => 'Indicaste en esta cita que ya no quieres volver a agendar', 
+            'error'   => 'error',
+            'error2'  => 'error2'
+        );
+        else{
+            $notification = array(
                 //If it has been rejected, the internal error code is sent.
             'message' => 'Esta cita ya fue reagendada con anterioridad', 
             'error'   => 'error',
             'error2'  => 'error2'
-        );
+            );
+        }   
      }
        return redirect('medicalconsultations')->with($notification);
+     }
+      if($request->action == 'notreschedule'){
+               $id = $request->idc;
+               $appo = medical_appointments::find($id);
+               if($appo->status == 'No completed'){
+               $appo->reschedule = false;
+               $appo->save();
+               $notification = array(
+                        //If it has been rejected, the internal error code is sent.
+                    'message' => 'Listo, no se te volverá a preguntar sobre esta cita', 
+                    'date'    => $appo->when,
+                    'success' => 'success',
+                    'ok'      => 'ok'
+                );
+             }else{
+                    $notification = array(
+                        //If it has been rejected, the internal error code is sent.
+                    'message' => 'Esta cita ya fue reagendada con anterioridad', 
+                    'error'   => 'error',
+                    'error2'  => 'error2'
+                    );
+             }
+               return redirect('medicalconsultations')->with($notification);
+      }
     }
-        /**
+
+     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

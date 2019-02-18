@@ -80,14 +80,14 @@
 			<table>
 		    <tr>
 		         <td>
-		            <button type="submit" style="background-color: black;border-color: black;border: 2px solid black;padding: 5px;text-align: center; border-radius: 5px;display: block;color: #ffffff;font-size: 14px;">
+		            <button type="submit" name="action" value="update" style="background-color: black;border-color: black;border: 2px solid black;padding: 5px;text-align: center; border-radius: 5px;display: block;color: #ffffff;font-size: 14px;">
 		                 Reagendar ahora
 		            </button>     
 		        </td>
-		        <td style="background-color: #333;border-color: #333;border: 2px solid #333;padding: 5px;text-align: center; border-radius: 5px;">
-		            <a style="display: block;color: #ffffff;font-size: 14px;text-decoration: none;"  href="{{ url('') }}">
+		        <td>
+		        	<button type="submit" name="action" value="notreschedule" style="background-color: #333;border-color: #333;border: 2px solid #333;padding: 5px;text-align: center; border-radius: 5px;display: block;color: #ffffff;font-size: 14px;">
 		                 No quiero reagendar
-		            </a>
+		            </button>     
 		        </td>
 		    </tr>
 		</table>
