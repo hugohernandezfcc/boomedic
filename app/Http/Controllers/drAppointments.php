@@ -250,7 +250,7 @@ class drAppointments extends Controller
                 //If it has been rejected, the internal error code is sent.
             'message' => 'Indicaste en esta cita que ya no quieres volver a agendar', 
             'error'   => 'error',
-            'error2'  => 'error2'
+            'errort'  => 'errort'
         );
         else{
             $notification = array(
