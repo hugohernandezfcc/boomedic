@@ -34,7 +34,7 @@
               
                 <div class="form-group">
                   <div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
-                    @if($app->status == 'Registered')
+                    @if($app->status != 'No completed')
                         <div class="info-box bg-gray">
                         <div class="info-box-icon-2"><img src="{{ $app->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"><br/>Dr. {{ $app->name }}</div>
                           <div class="info-box-content">
@@ -45,7 +45,7 @@
                           </div>
                         </div>
                     @else
-                       <a href="{{ url('drAppointments/viewcancelAppointment/') }}/{{ $app->id }}"><div class="info-box bg-red">
+                       <a href="{{ url('drAppointments/viewcancelAppointment/') }}/{{ $app->mid }}"><div class="info-box bg-red">
                         <div class="info-box-icon-2"><img src="{{ $app->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"><br/>Dr. {{ $app->name }}</div>
                          <div class="info-box-content">
                             <b>Asistir {{ \Carbon\Carbon::parse($app->when)->format('d-m-Y h:i A') }}</b><br/>

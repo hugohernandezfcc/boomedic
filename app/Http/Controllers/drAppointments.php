@@ -240,13 +240,13 @@ class drAppointments extends Controller
                 //If it has been rejected, the internal error code is sent.
             'message' => 'Se ha reagendado su cita correctamente', 
             'date'    => $appo->when,
-            'ok' => 'ok'
+            'ok'      => 'ok'
         );
      }else{
              $notification = array(
                 //If it has been rejected, the internal error code is sent.
             'message' => 'Esta cita ya fue reagendada con anterioridad', 
-            'Error' => 'Error'
+            'error2'   => 'error2'
         );
      }
        return redirect('medicalconsultations')->with($notification);
