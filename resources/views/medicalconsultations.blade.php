@@ -497,8 +497,32 @@
               @if(session()->has('message'))
 
                 @if(session()->has('success'))
+                  @if(session()->get('success') == 'success2')
+                      <!--Modal cita reagendada-->
+                         <div class="modal fade" role="dialog" id="modalok">
+                            <div class="modal-dialog modal-sm">
 
+                              <div class="modal-content">
 
+                                <div class="modal-header" >
+                                  <!-- Tachecito para cerrar -->
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  <div align="left"><label>¡Cita reagendada!</label></div>
+                                </div>
+                                    <div class="modal-body" >
+                                      <div class="box box-primary">
+                                        <div class="box-body">
+                                           Nueva Fecha: <span class="text-muted">{{ \Carbon\Carbon::parse(session()->get('date'))->format('d-m-Y h:i A') }}</span>
+
+                                     </div>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div> 
+                            </div>
+                      @else      
                  <!--Modal cita y pago success-->
                  <div class="modal fade" role="dialog" id="modalsuccess">
                     <div class="modal-dialog modal-sm">
@@ -543,34 +567,12 @@
                       </div> 
                     </div>
 
-                  @elseif(session()->has('ok'))
-                      <!--Modal cita reagendada-->
-                         <div class="modal fade" role="dialog" id="modalok">
-                            <div class="modal-dialog modal-sm">
-
-                              <div class="modal-content">
-
-                                <div class="modal-header" >
-                                  <!-- Tachecito para cerrar -->
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                  <div align="left"><label>¡Cita reagendada!</label></div>
-                                </div>
-                                    <div class="modal-body" >
-                                      <div class="box box-primary">
-                                        <div class="box-body">
-                                           Nueva Fecha: <span class="text-muted">{{ \Carbon\Carbon::parse(session()->get('date'))->format('d-m-Y h:i A') }}</span>
-
-                                     </div>
-                                      </div>
-                                    </div>
-                                </div>
-                              </div> 
-                            </div>
+                    @endif
 
                  <!--Fin modal success-->
-                 @elseif(session()->has('error2'))
+
+                @elseif(session()->has('error'))
+                   @if(session()->get('error') == 'error2')
                       <!--Modal cita reagendada-->
                          <div class="modal fade" role="dialog" id="modalok">
                             <div class="modal-dialog modal-sm">
@@ -595,11 +597,7 @@
                                 </div>
                               </div> 
                             </div>
-
-                 <!--Fin modal success-->
-
-                @elseif(session()->has('error'))
-  
+                   @else         
                 <!--Modal cita y pago error-->
                  <div class="modal fade" role="dialog" id="modalerror">
                     <div class="modal-dialog modal-sm">
@@ -628,6 +626,7 @@
                         </div>
                       </div> 
                     </div>
+                    @endif
 
                  <!--Fin modal error-->
                  @endif
