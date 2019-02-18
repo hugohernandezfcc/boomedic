@@ -184,7 +184,8 @@ class drAppointments extends Controller
                                               'dr'             => $userd->name,
                                               'reason'         => $appo->reasontocancel,
                                               'definitive'     => $appo->definitive,
-                                              'idcite'         => $appo->id
+                                              'idcite'         => $appo->id,
+                                              'reschedule'     => $appo ->reschedule
                                             ];  
                            }                
 
@@ -440,7 +441,8 @@ class drAppointments extends Controller
                                     'array2'         => $option2,
                                     'array3'         => $option3,
                                     'idcite'         => $appo->id,
-                                    'dr'             => $dr
+                                    'dr'             => $dr,
+                                    'reschedule'     => $appo ->reschedule
                                   ];  
     
                                     return $data;
