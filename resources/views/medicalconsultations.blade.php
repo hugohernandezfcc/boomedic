@@ -496,12 +496,12 @@
               <!-- Charge Alert whether payment was processed or not -->
               @if(session()->has('message'))
 
-                @if(session()->has('success'))
+                @if(session()->has('success'))   
+                 <!--Modal cita y pago success-->
+                 <div class="modal fade" role="dialog" id="modalsuccess">
+                    <div class="modal-dialog modal-sm">
                   @if(session()->has('ok'))
                       <!--Modal cita reagendada-->
-                         <div class="modal fade" role="dialog" id="modalok">
-                            <div class="modal-dialog modal-sm">
-
                               <div class="modal-content">
 
                                 <div class="modal-header" >
@@ -520,13 +520,7 @@
                                       </div>
                                     </div>
                                 </div>
-                              </div> 
-                            </div>
-                      @else      
-                 <!--Modal cita y pago success-->
-                 <div class="modal fade" role="dialog" id="modalsuccess">
-                    <div class="modal-dialog modal-sm">
-
+                      @else          
                       <div class="modal-content">
 
                         <div class="modal-header" >
@@ -564,10 +558,11 @@
                               </div>
                             </div>
                         </div>
+                       @endif
                       </div> 
                     </div>
 
-                    @endif
+                    
 
                  <!--Fin modal success-->
 
