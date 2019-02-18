@@ -572,10 +572,12 @@
                  <!--Fin modal success-->
 
                 @elseif(session()->has('error'))
+     
+                <!--Modal cita y pago error-->
+                 <div class="modal fade" role="dialog" id="modalerror">
+                    <div class="modal-dialog modal-sm">
                    @if(session()->has('errort'))
                       <!--Modal cita reagendada-->
-                         <div class="modal fade" role="dialog" id="modalok">
-                            <div class="modal-dialog modal-sm">
                               <div class="modal-content">
                                 <div class="modal-header" >
                                   <!-- Tachecito para cerrar -->
@@ -584,15 +586,8 @@
                                   </button>
                                   <div align="left"><label>{{ session()->get('message') }}</label></div>
                                 </div>
-                                    </div>
-                                </div>
-                              </div> 
-
-                   @else         
-                <!--Modal cita y pago error-->
-                 <div class="modal fade" role="dialog" id="modalerror">
-                    <div class="modal-dialog modal-sm">
-
+                              </div>
+                   @else    
                       <div class="modal-content">
 
                         <div class="modal-header" >
@@ -612,12 +607,12 @@
                               {{ trans('adminlte::adminlte.'.$code) }}
                           @else
                               {{ $code }}
-                              @endif
+                          @endif
                             </div>
                         </div>
+                  @endif
                       </div> 
                     </div>
-                    @endif
 
                  <!--Fin modal error-->
                  @endif
