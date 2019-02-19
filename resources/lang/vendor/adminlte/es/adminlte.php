@@ -55,6 +55,11 @@ return [
     'Sat'   => 'Sab',                    
     'Sun'   => 'Dom',
 
+    /* Months */
+    'January'       => 'Enero',
+    'February'      => 'Febrero',
+    'March'         => 'Marzo',    
+
 
     /* System Error */
     '150'        => 'Error: falla general del sistema.',
