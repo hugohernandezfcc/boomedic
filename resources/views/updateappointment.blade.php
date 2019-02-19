@@ -57,7 +57,7 @@
 			    	@if($array3)
 			    <optgroup label="El resto del día de la cita">  
 					       @foreach($array3 as $a3)
-					       		<option value="{!! $a3 !!}">{!! $a3 !!} </option>
+					       		<option value="{!! $a3 !!}">{!! \Carbon\Carbon::parse($a3)->format('d') !!} de {!! \Carbon\Carbon::parse($a3)->format('month') !!} {!! \Carbon\Carbon::parse($a3)->format('g:i A') !!}</option>
 					       @endforeach
 				</optgroup>
 				   @endif	    	
