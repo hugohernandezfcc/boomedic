@@ -88,7 +88,7 @@
 				@else
 						Se ha cancelado definitivamente <br>
 						@foreach($alldr as $all)
-							{!! $all->specility !!} {!! $all->namedr !!} <br>
+							{!! $all->specialty !!} {!! $all->namedr !!} <br>
 						@endforeach
 				@endif
 	

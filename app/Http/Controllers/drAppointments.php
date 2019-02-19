@@ -445,17 +445,20 @@ class drAppointments extends Controller
                  $specialityDr = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
                               ->where('labor_information.id','=', $appo->workplace)
-                              ->select('professional_information.*', 'labor_information.latitude', 'labor_information.longitude', 'labor_information.state', 'delegation')
+                              ->join('users', 'professional_information.user', '=', 'users.id')
+                              ->select('professional_information.*', 'labor_information.latitude', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation','users.id as iddr')
                               ->first();
                  $allSpeciality = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
                               ->join('users', 'professional_information.user', '=', 'users.id')
                               ->where('labor_information.state','=', $specialityDr->state)
-                              ->where('professional_information.speciality','=', $specialityDr->specialty)
-                              ->select('professional_information.*', 'labor_information.latitude', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation', 'users.name as namedr')
+                              ->where('labor_information.delegation','=', $specialityDr->delegation)
+                              ->where('professional_information.specialty','=', $specialityDr->specialty)
+                              ->where('users.id','!=', $specialityDr->iddr)
+                              ->select('professional_information.*', 'labor_information.latitude', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation', 'users.name as namedr','users.id as iddr')
                               ->get();             
 
-
+                              
                          
 
                           //Validación definitive
