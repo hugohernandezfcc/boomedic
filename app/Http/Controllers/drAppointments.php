@@ -144,12 +144,7 @@ class drAppointments extends Controller
 
                            }else{
 
-                                     $data = [
-                                              'dr'             => $user->name,
-                                              'reason' => $appo->reasontocancel,
-                                              'definitive'     => $appo->definitive,
-                                              'idcite'         => $appo->id
-                                            ];  
+                             $data = $this->definitive($appo, $userd->name);
                            }
                                        Mail::send('emails.cancelAppointment', $data, function ($message) {
                                                     $message->subject('Tu cita ha sido cancelada');
