@@ -447,7 +447,36 @@ class drAppointments extends Controller
     
                                     return $data;
     }
+    public function LatLong($Lat, $Long, $compLat, $compLong)
+    {
+        $earth = 6371; //km 
+        //$earth = 3960; //miles
 
+        //Point 1 cords
+        $lat1 = deg2rad($Lat);
+        $long1= deg2rad($Long);
+
+        //Point 2 cords
+        // deg2rad Convierte el número en grados a su equivalente en radianes
+        $lat2 = deg2rad($compLat);
+        $long2= deg2rad($compLong);
+
+        //Formula
+        $dlong= $long2-$long1;
+        $dlat= $lat2-$lat1;
+        //sin() devuelve el seno del parámetro 
+        $sinlat= sin($dlat/2);
+        $sinlong= sin($dlong/2);
+
+        //cos() devuelve el coseno del parámetro 
+        $a= ($sinlat*$sinlat)+cos($lat1)*cos($lat2)*($sinlong*$sinlong);
+        //Devuelve el arco seno de arg en radianes,  min() devuelve el valor más bajo de ese array, sqrt es raíz cuadrada
+        $c= 2*asin(min(1,sqrt($a)));
+        //round Redondea un float
+        $d= round($earth*$c);
+
+        return $d;
+    }
 
     
 }
