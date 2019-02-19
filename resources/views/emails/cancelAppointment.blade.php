@@ -44,28 +44,28 @@
 	    <input type="hidden" name="idc" value="{!! $idcite !!}">
 	    <select class="custom-select" name="datenew">
 	    	@if($array3)
-	    <optgroup label="El resto del día de la cita">  
-			       @foreach($array3 as $a3)
-			       		<option value="{!! $a3 !!}">{!! $a3 !!} </option>
-			       @endforeach
-		</optgroup>
-		   @endif	    	
-	    <optgroup label="Próximos días después de la cita">  	
-	    	@if($array)
-			       @foreach($array as $a)
-			       	   <option value="{!! $a !!}"> {!! $a !!} </option>
-			       @endforeach
-			@endif       
-	     </optgroup>
+			    <optgroup label="El resto del día de la cita">  
+					       @foreach($array3 as $a3)
+					       		<option value="{!! $a3 !!}">{!! \Carbon\Carbon::parse($a3)->format('d') !!} de {!! \Carbon\Carbon::parse($a3)->format('F') !!} {!! \Carbon\Carbon::parse($a3)->format('h:i A') !!}</option>
+					       @endforeach
+				</optgroup>
+				   @endif	    	
+			    <optgroup label="Próximos días después de la cita">  	
+			    	@if($array)
+					       @foreach($array as $a)
+					       	   <option value="{!! $a !!}">{!! \Carbon\Carbon::parse($a)->format('d') !!} de {!! \Carbon\Carbon::parse($a)->format('F') !!} {!! \Carbon\Carbon::parse($a)->format('h:i A') !!}</option>
+					       @endforeach
+					@endif       
+			     </optgroup>
 
 
-	    <optgroup label="Semana siguiente mismo horario">  
-	    	@if($array2)
-			       @foreach($array2 as $a2) 
-			       	   <option value="{!! $a2 !!}"> {!! $a2 !!} </option>
-			       @endforeach
-			@endif       
-		</optgroup>	       
+			    <optgroup label="Semana siguiente mismo horario">  
+			    	@if($array2)
+					       @foreach($array2 as $a2) 
+					       	   <option value="{!! $a2 !!}">{!! \Carbon\Carbon::parse($a2)->format('d') !!} de {!! \Carbon\Carbon::parse($a2)->format('F') !!} {!! \Carbon\Carbon::parse($a2)->format('h:i A') !!}</option>
+					       @endforeach
+					@endif       
+				</optgroup>	      
    
 		</select>
 		<hr>
