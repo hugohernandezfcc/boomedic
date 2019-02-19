@@ -456,7 +456,7 @@ class drAppointments extends Controller
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
                               ->join('users', 'professional_information.user', '=', 'users.id')
                               ->where('labor_information.state','=', $specialityDr->state)
-                              ->where('professional_information.speciality','=', $specialityDr->speciality)
+                              ->where('professional_information.speciality','=', $specialityDr->specialty)
                               ->select('professional_information.*', 'labor_information.latitude', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation', 'users.name as namedr')
                               ->get();             
 
