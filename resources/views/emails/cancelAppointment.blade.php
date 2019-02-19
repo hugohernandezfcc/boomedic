@@ -85,9 +85,12 @@
     </tr>
 </table>
 		</form>
-		@else
-				Se ha cancelado definitivamente
-		@endif
+				@else
+						Se ha cancelado definitivamente <br>
+						@foreach($alldr as $all)
+							{!! $all->specility !!} {!! $all->namedr !!} <br>
+						@endforeach
+				@endif
 	
 </div>
 	</body>

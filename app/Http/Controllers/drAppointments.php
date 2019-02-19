@@ -180,13 +180,7 @@ class drAppointments extends Controller
 
                            }else{
 
-                                     $data = [
-                                              'dr'             => $userd->name,
-                                              'reason'         => $appo->reasontocancel,
-                                              'definitive'     => $appo->definitive,
-                                              'idcite'         => $appo->id,
-                                              'reschedule'     => $appo ->reschedule
-                                            ];  
+                             $data = $this->definitive($appo, $userd->name);
                            }                
 
        return view('updateappointment',[        
@@ -424,7 +418,7 @@ class drAppointments extends Controller
 
                                                               if($daydate != Carbon::parse($appo->when)->addDays(7))
                                                                     array_push($option1, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
-                                                         }
+                                                        }
                                                   }       
                                               }
 
@@ -442,11 +436,48 @@ class drAppointments extends Controller
                                     'array3'         => $option3,
                                     'idcite'         => $appo->id,
                                     'dr'             => $dr,
-                                    'reschedule'     => $appo ->reschedule
+                                    'reschedule'     => $appo->reschedule
                                   ];  
     
                                     return $data;
     }
+    public function Definitive($appo,$dr)
+    {
+       //Alternative options
+       $optionDrs = array();
+       $daydatef = Carbon::parse($appo->when);
+
+                 $specialityDr = DB::table('professional_information')
+                              ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
+                              ->where('labor_information.id','=', $appo->workplace)
+                              ->select('professional_information.*', 'labor_information.latitude', 'labor_information.longitude', 'labor_information.state', 'delegation')
+                              ->first();
+                 $allSpeciality = DB::table('professional_information')
+                              ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
+                              ->join('users', 'professional_information.user', '=', 'users.id')
+                              ->where('labor_information.state','=', $specialityDr->state)
+                              ->where('professional_information.speciality','=', $specialityDr->speciality)
+                              ->select('professional_information.*', 'labor_information.latitude', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation', 'users.name as namedr')
+                              ->get();             
+
+
+                         
+
+                          //Validación definitive
+                          $data = [
+                                    'reason'         => $appo->reasontocancel,
+                                    'definitive'     => $appo->definitive,
+                                    'alldr'          => $allSpeciality,
+                                    'idcite'         => $appo->id,
+                                    'dr'             => $dr,
+                                    'reschedule'     => $appo->reschedule
+                                  ];  
+    
+                                    return $data;
+    }
+
+
+
     public function LatLong($Lat, $Long, $compLat, $compLong)
     {
         $earth = 6371; //km 

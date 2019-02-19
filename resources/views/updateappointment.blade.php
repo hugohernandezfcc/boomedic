@@ -96,7 +96,10 @@
 		</table>
 				</form>
 				@else
-						Se ha cancelado definitivamente
+						Se ha cancelado definitivamente <br>
+						@foreach($alldr as $all)
+							{{ $all->specility }} {{ all->namedr }} <br>
+						@endforeach
 				@endif
 			
 		</div>
