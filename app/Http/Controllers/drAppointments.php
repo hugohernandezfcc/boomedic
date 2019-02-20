@@ -439,7 +439,7 @@ class drAppointments extends Controller
     public function Definitive($appo,$dr)
     {
        //Alternative options
-       $optionDrs = array();
+       $optionDrs = [];
        $daydatef = Carbon::parse($appo->when);
 
                  $specialityDr = DB::table('professional_information')
@@ -458,14 +458,17 @@ class drAppointments extends Controller
                               ->select('professional_information.*', 'labor_information.latitude', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation', 'users.name as namedr','users.id as iddr')
                               ->get();             
 
-                              
+                              foreach($allSpeciality as $sp){
+                                   $distance = $this->LatLong($specialityDr->latitude, $specialityDr->longitude, $sp->latitude, $sp->longitude);
+                                   array_push($optionDrs, ['name' => $sp->namedr, 'distance' => $distance]);
+                              }
                          
 
                           //Validación definitive
                           $data = [
                                     'reason'         => $appo->reasontocancel,
                                     'definitive'     => $appo->definitive,
-                                    'alldr'          => $allSpeciality,
+                                    'alldr'          => collect($optionDrs)->sortBy('distance'),
                                     'idcite'         => $appo->id,
                                     'dr'             => $dr,
                                     'reschedule'     => $appo->reschedule

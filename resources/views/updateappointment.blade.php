@@ -98,7 +98,7 @@
 				@else
 						Se ha cancelado definitivamente <br>
 						@foreach($alldr as $all)
-							{{ $all->specialty }} {{ $all->namedr }} <br>
+							{{ $all['name'] }} a {{ $all['distance'] }} km(s)<br>
 						@endforeach
 				@endif
 			
