@@ -96,7 +96,7 @@
 		</table>
 				</form>
 				@else
-						Se ha cancelado definitivamente <br>
+						Tienes otros doctores de la misma especialidad cercanos a tu cita para elegir<br>
 						@foreach($alldr as $all)
 							{{ $all['name'] }} a {{ $all['distance'] }} km(s)<br>
 						@endforeach
