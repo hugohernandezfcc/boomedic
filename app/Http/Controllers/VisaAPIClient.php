@@ -57,7 +57,7 @@ class VisaAPIClient extends Controller {
 		$privateKey = '';
 		$userId = env('VISA_USERID');
 		$password = env('VISA_PASSWORD');
-		$absUrl = env('VISA_URL').$path;
+		$absUrl = 'https://sandbox.api.visa.com/'.$path;
 		$authHeader = $this->getBasicAuthHeader($userId, $password);
 		
 		$headers = (array("Accept: application/json", $authHeader, "ex-correlation-id: ".$this->getCorrelationId()));
@@ -116,7 +116,7 @@ class VisaAPIClient extends Controller {
 		$preHashString = $time.$resource_path.$query_string.$requestBodyString; 
 		$xPayToken = "xv2:".$time.":".hash_hmac('sha256', $preHashString, $sharedSecret);
 		$headers = (array("Accept: application/json", "X-PAY-TOKEN: ".$xPayToken, "ex-correlation-id: ".$this->getCorrelationId()));
-		$absUrl = env('VISA_URL').$baseUrl.$resource_path.'?'.$query_string;
+		$absUrl = 'https://sandbox.api.visa.com/'.$baseUrl.$resource_path.'?'.$query_string;
 		if (count($inputHeaders) > 0) {
 			foreach ($inputHeaders as &$header) {
 				array_push($headers, $header);
@@ -160,6 +160,7 @@ class VisaAPIClient extends Controller {
 			//If payment is not approved, the internal status code must be searched within the answer json.
 			if (empty($body) == false && $body != '') {
 				$json = json_decode($body);
+				print_r($body);
 				$json = json_encode($json->responseStatus->details[0]->message, JSON_PRETTY_PRINT);
 				//The quotation marks are removed so that the code is clean and can be found in the trans.
 				$resp = str_replace('"','', $json);
