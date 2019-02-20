@@ -86,13 +86,10 @@
 </table>
 		</form>
 				@else
-				@else
 						Tienes otros doctores de la misma especialidad cercanos a tu cita para elegir<br>
 						@foreach($alldr as $all)
 							{{ $all['name'] }} a {{ $all['distance'] }} km(s)<br>
 						@endforeach
-				@endif
-			
 				@endif
 	
 </div>
