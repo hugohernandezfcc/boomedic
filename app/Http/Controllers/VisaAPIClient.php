@@ -57,9 +57,9 @@ class VisaAPIClient extends Controller {
 		$method = strtolower ( $method );
 		$certificatePath = '';
 		$privateKey = '';
-		$userId = 'CFPWEIBP2SHI1U8HZS5D21jZDLEIpVLzzkJeocNdzEb8q9dSI';
-		$password = 'fkze3zvTKFKg3AC18wug287IOqE9QcBXSh';
-		$absUrl = 'https://sandbox.api.visa.com/'.$path;
+		$userId = env('VISA_USERID');
+		$password = env('VISA_PASSWORD');
+		$absUrl = env('VISA_URL').$path;
 		$authHeader = $this->getBasicAuthHeader($userId, $password);
 		
 		$headers = (array("Accept: application/json", $authHeader, "ex-correlation-id: ".$this->getCorrelationId()));
@@ -111,8 +111,8 @@ class VisaAPIClient extends Controller {
 		$curl = curl_init ();
 		$method = strtolower ( $method );
 		//These data are provided by visa.
-		$sharedSecret = 'ooOGbyz5iGqkRE3bz5YbQrN7Us6Dtt#{2#$1nXk2';
-		$apiKey = 'RY6NDJNX3Q2NDWVYUBQW21N37pbnY719X0SqzEs_CDSZbhFro';
+		$sharedSecret = env('VISA_SHARETSECRET');
+		$apiKey = env('VISA_APIKEY');
 		//To determine what time the service started.
 		$time = time(); 
 		$preHashString = $time.$resource_path.$query_string.$requestBodyString; 
