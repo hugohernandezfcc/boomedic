@@ -94,6 +94,7 @@ class VisaAPIClient extends Controller {
 		return $statusCode;
 	}
 	
+	//This data is passed from the PaymentsAutorization controller
 		public function doXPayTokenCall($method, $baseUrl, $resource_path, $query_string, $testInfo, $requestBodyString, $inputHeaders = array()) {
 		$curl = curl_init ();
 		$method = strtolower ( $method );
@@ -138,16 +139,22 @@ class VisaAPIClient extends Controller {
 		$body = substr($response, $header_size);
 		if($statusCode == '201'){
 				$json = json_decode($body);
+				print_r($json);
 				$json = json_encode($json->referenceId, JSON_PRETTY_PRINT);
 				$resp = str_replace('"','', $json);
 				$matriz = array($statusCode, $resp);
 			return $matriz;
 		} else {
 			//If payment is not approved, the internal status code must be searched within the answer json.
+			if (empty($body) == false && $body != '') {
 				$json = json_decode($body);
-				$json = json_encode($json->referenceId, JSON_PRETTY_PRINT);
+				print_r($json);
+				print_r($json->responseStatus);
+				$json = json_encode($json->responseStatus->details[0]->message, JSON_PRETTY_PRINT);
+				//The quotation marks are removed so that the code is clean and can be found in the trans.
 				$resp = str_replace('"','', $json);
-				$matriz = array($statusCode, $resp);
+				return $resp;
+			}
 		
 		}
 	}
