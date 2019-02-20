@@ -118,7 +118,7 @@ class VisaAPIClient extends Controller {
 		$preHashString = $time.$resource_path.$query_string.$requestBodyString; 
 		$xPayToken = "xv2:".$time.":".hash_hmac('sha256', $preHashString, $sharedSecret);
 		$headers = (array("Accept: application/json", "X-PAY-TOKEN: ".$xPayToken, "ex-correlation-id: ".$this->getCorrelationId()));
-		$absUrl = 'https://sandbox.api.visa.com/'.$baseUrl.$resource_path.'?'.$query_string;
+		$absUrl = env('VISA_URL').$baseUrl.$resource_path.'?'.$query_string;
 		if (count($inputHeaders) > 0) {
 			foreach ($inputHeaders as &$header) {
 				array_push($headers, $header);
