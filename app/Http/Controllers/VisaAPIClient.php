@@ -52,7 +52,7 @@ class VisaAPIClient extends Controller {
 		return "Authorization:Basic ".$authloginString;
 	}
 	
-		public function doMutualAuthCall($method, $path, $testInfo, $requestBodyString, $inputHeaders = array()) {
+	public function doMutualAuthCall($method, $path, $testInfo, $requestBodyString, $inputHeaders = array()) {
 		$curl = curl_init ();
 		$method = strtolower ( $method );
 		$certificatePath = '';
@@ -90,16 +90,30 @@ class VisaAPIClient extends Controller {
 		$response = curl_exec ( $curl );
 		$this->loggingHelper( $response, $curl, $testInfo, $requestBodyString );
 		$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
 		curl_close ( $curl );
-		return $statusCode;
+		$body = substr($response, $header_size);
+		if($statusCode == '201'){
+			return $statusCode;
+		} else {	
+			if (empty($body) == false && $body != '') {
+				$json = json_decode($body);
+				$json = json_encode($json->responseStatus->details[0]->message, JSON_PRETTY_PRINT);
+				$resp = str_replace('"',' ', $json);
+				return $resp;
+			}
+		
+		}
 	}
 	
 	//This data is passed from the PaymentsAutorization controller
-		public function doXPayTokenCall($method, $baseUrl, $resource_path, $query_string, $testInfo, $requestBodyString, $inputHeaders = array()) {
+	public function doXPayTokenCall($method, $baseUrl, $resource_path, $query_string, $testInfo, $requestBodyString, $inputHeaders = array()) {
 		$curl = curl_init ();
 		$method = strtolower ( $method );
+		//These data are provided by visa.
 		$sharedSecret = env('VISA_SHARETSECRET');
 		$apiKey = env('VISA_APIKEY');
+		//To determine what time the service started.
 		$time = time(); 
 		$preHashString = $time.$resource_path.$query_string.$requestBodyString; 
 		$xPayToken = "xv2:".$time.":".hash_hmac('sha256', $preHashString, $sharedSecret);
@@ -137,9 +151,9 @@ class VisaAPIClient extends Controller {
 		$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
 		curl_close ( $curl );
 		$body = substr($response, $header_size);
+		//Status code esmel HTTP_Code, so it will only be 201 or 400 in this case.
 		if($statusCode == '201'){
 				$json = json_decode($body);
-				print_r($json);
 				$json = json_encode($json->referenceId, JSON_PRETTY_PRINT);
 				$resp = str_replace('"','', $json);
 				$matriz = array($statusCode, $resp);
@@ -148,8 +162,6 @@ class VisaAPIClient extends Controller {
 			//If payment is not approved, the internal status code must be searched within the answer json.
 			if (empty($body) == false && $body != '') {
 				$json = json_decode($body);
-				print_r($json);
-				print_r($json->responseStatus);
 				$json = json_encode($json->responseStatus->details[0]->message, JSON_PRETTY_PRINT);
 				//The quotation marks are removed so that the code is clean and can be found in the trans.
 				$resp = str_replace('"','', $json);
@@ -158,5 +170,4 @@ class VisaAPIClient extends Controller {
 		
 		}
 	}
-
 }
