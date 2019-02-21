@@ -222,24 +222,18 @@ class payments extends Controller
                     $this->VisaAPIClient = new VisaAPIClient;
                     //Build json with payment details
                     $this->paymentAuthorizationRequest = json_encode ( [ 
-                   'orderInformation' => [     
-                        'amountDetails' => [    
-                            'totalAmount' => $transaction->amount,
-                            'currency' => 'USD'
-                            ]
-                        ],
-                    'paymentInformation' => [
-                    'card' => [
-                      'number'=> $card->cardnumber,
-                      'expirationMonth' => '0'.$card->month,
-                      'expirationYear' =>  '20'.$card->year,
-                      'securityCode' => $card->cvv
+                    'amount' => $transaction->amount,
+                    'currency' => 'USD',
+                    'payment' => [
+                      'cardNumber'=> $card->cardnumber,
+                      'cardExpirationMonth' => $card->month,
+                      'cardExpirationYear' =>  $card->year,
+                      'cvn' => $card->cvv
                     ]
-                    ] 
-                       ]);
+                    ] );
 
                     $baseUrl = 'cybersource/';
-                    $resourceP = 'v2/payments';
+                    $resourceP = 'payments/v1/authorizations';
                     //apykey lo proporcionaVISA
                     $queryString = 'apikey='.env('VISA_APIKEY');
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
