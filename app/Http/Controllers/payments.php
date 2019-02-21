@@ -226,7 +226,7 @@ class payments extends Controller
                     'currency' => 'USD',
                     'payment' => [
                       'cardNumber'=> $card->cardnumber,
-                      'cardExpirationMonth' => $card->month,
+                      'cardExpirationMonth' => '0'.$card->month,
                       'cardExpirationYear' =>  $card->year,
                       'cvn' => $card->cvv
                     ]
@@ -316,7 +316,7 @@ class payments extends Controller
                 'userId'            => $user->id,
                 'photo'             => $user->profile_photo,
                 'username'          => $user->username,
-                'gender'    => $user->gender,
+                'gender'            => $user->gender,
                 'name'              => $user->name,
                 'mode'              => 'historyTransaction',
                 'date'              => $user->created_at
