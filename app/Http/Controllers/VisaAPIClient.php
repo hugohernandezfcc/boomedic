@@ -164,7 +164,7 @@ class VisaAPIClient extends Controller {
 				$json = json_encode($json->responseStatus->details[0]->message, JSON_PRETTY_PRINT);
 				//The quotation marks are removed so that the code is clean and can be found in the trans.
 				$resp = str_replace('"','', $json);
-				return $body;
+				return $resp;
 			}
 		
 		}
