@@ -232,8 +232,8 @@ class payments extends Controller
                     'card' => [
                       'number'=> $card->cardnumber,
                       'expirationMonth' => '0'.$card->month,
-                      'expirationYear' =>  $card->year,
-                      'securityCode' => '20'.$card->cvv
+                      'expirationYear' =>  '20'.$card->year,
+                      'securityCode' => $card->cvv
                     ]
                     ] 
                        ]);
