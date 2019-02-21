@@ -235,7 +235,7 @@ class payments extends Controller
                     $baseUrl = 'cybersource/';
                     $resourceP = 'payments/v1/authorizations';
                     //apykey lo proporcionaVISA
-                    $queryString = 'apikey=RY6NDJNX3Q2NDWVYUBQW21N37pbnY719X0SqzEs_CDSZbhFro';
+                    $queryString = 'apikey='.env('VISA_APIKEY');
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
          if($statusCode[0] == '201'){

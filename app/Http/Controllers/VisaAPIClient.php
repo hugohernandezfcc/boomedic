@@ -55,8 +55,8 @@ class VisaAPIClient extends Controller {
 		$method = strtolower ( $method );
 		$certificatePath = '';
 		$privateKey = '';
-		$userId = 'CFPWEIBP2SHI1U8HZS5D21jZDLEIpVLzzkJeocNdzEb8q9dSI';
-		$password = 'fkze3zvTKFKg3AC18wug287IOqE9QcBXSh';
+		$userId = env('VISA_USERID');
+		$password = env('VISA_PASSWORD');
 		$absUrl = 'https://sandbox.api.visa.com/'.$path;
 		$authHeader = $this->getBasicAuthHeader($userId, $password);
 		
@@ -109,8 +109,8 @@ class VisaAPIClient extends Controller {
 		$curl = curl_init ();
 		$method = strtolower ( $method );
 		//These data are provided by visa.
-		$sharedSecret = 'ooOGbyz5iGqkRE3bz5YbQrN7Us6Dtt#{2#$1nXk2';
-		$apiKey = 'RY6NDJNX3Q2NDWVYUBQW21N37pbnY719X0SqzEs_CDSZbhFro';
+		$sharedSecret = env('VISA_SHARETSECRET');
+		$apiKey = env('VISA_APIKEY');
 		//To determine what time the service started.
 		$time = time(); 
 		$preHashString = $time.$resource_path.$query_string.$requestBodyString; 
@@ -160,6 +160,7 @@ class VisaAPIClient extends Controller {
 			//If payment is not approved, the internal status code must be searched within the answer json.
 			if (empty($body) == false && $body != '') {
 				$json = json_decode($body);
+				print_r($body);
 				$json = json_encode($json->responseStatus->details[0]->message, JSON_PRETTY_PRINT);
 				//The quotation marks are removed so that the code is clean and can be found in the trans.
 				$resp = str_replace('"','', $json);
