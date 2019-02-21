@@ -222,15 +222,21 @@ class payments extends Controller
                     $this->VisaAPIClient = new VisaAPIClient;
                     //Build json with payment details
                     $this->paymentAuthorizationRequest = json_encode ( [ 
-                    'amount' => $transaction->amount,
-                    'currency' => 'USD',
-                    'payment' => [
-                      'cardNumber'=> $card->cardnumber,
-                      'cardExpirationMonth' => '0'.$card->month,
-                      'cardExpirationYear' =>  $card->year,
-                      'cvn' => $card->cvv
+                   'orderInformation' => [     
+                        'amountDetails' => [    
+                            'totalAmount' => $transaction->amount,
+                            'currency' => 'USD'
+                            ]
+                        ],
+                    'paymentInformation' => [
+                    'card' => [
+                      'number'=> $card->cardnumber,
+                      'expirationMonth' => '0'.$card->month,
+                      'expirationYear' =>  $card->year,
+                      'securityCode' => '20'.$card->cvv
                     ]
-                    ] );
+                    ] 
+                       ]);
 
                     $baseUrl = 'cybersource/';
                     $resourceP = 'payments/v1/authorizations';
