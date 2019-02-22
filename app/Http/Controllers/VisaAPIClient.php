@@ -53,8 +53,8 @@ class VisaAPIClient extends Controller {
 	public function doMutualAuthCall($method, $path, $testInfo, $requestBodyString, $inputHeaders = array()) {
 		$curl = curl_init ();
 		$method = strtolower ( $method );
-		$certificatePath = '';
-		$privateKey = '';
+		$certificatePath = asset('cert.pem');
+		$privateKey = asset('key_d14c9655-4439-4901-84bd-3bbf757a1892');
 		$userId = env('VISA_USERID');
 		$password = env('VISA_PASSWORD');
 		$absUrl = 'https://sandbox.api.visa.com/'.$path;
