@@ -40,7 +40,7 @@
 					.btn-secondary {
 					    color: #ffffff;
 					    background-color: #000000;
-					    border-color: #555;
+					    border-color: #555 !important;
 					}
 					.btn-group-vertical>.btn, .btn-group-vertical>.btn-group, .btn-group-vertical>.btn-group>.btn {
 					    display: block;
@@ -71,7 +71,7 @@
 					    user-select: none;
 					    background-image: none;
 					    box-shadow: none;
-    					border: 1px solid transparent;
+    					border: 1px solid;
 					}
 					a {
 						    background-color: transparent;
@@ -79,8 +79,10 @@
 						    color: #ffffff;
 
 						}
+					.ii a[href] {
+						  color: #ffffff !important;
+						}	
 		    </style>
-		        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
 	<div align="center">
@@ -142,14 +144,14 @@
 					<div align="left">
 						<div class="btn-group-vertical">
 						@foreach($alldr as $all)
-						<a href="{{ url('medicalconsultations') }}" class="btn btn-secondary" style="text-align: left;"><i class="fa fa-user-md"></i>&nbsp; {{ $all['name'] }} a {{ $all['distance'] }} km(s)</a>
+						<a href="{{ url('medicalconsultations') }}" class="btn btn-secondary" style="text-align: left;">{{ $all['name'] }} a {{ $all['distance'] }} km(s)</a>
 						@endforeach
 					</div>
 				   @else 
 						<div class="box-header with-border">
 						    <h3 class="box-title">{!! $dr !!} ha cancelado tu cita {!! $reason !!} de forma definitiva. Buscamos otros doctores con la misma especialidad en la zona pero no tuvimos éxito, te recomendamos ir a la página y agendar con otro doctor buscando en diferentes zonas</h3>
 					  	</div><br>
-					  	<a href="{{ url('medicalconsultations') }}" class="btn btn-secondary" style="text-align: left;"><i class="fa fa-user-md"></i>Ir a Isco</a>
+					  	<a href="{{ url('medicalconsultations') }}" class="btn btn-secondary" style="text-align: left;">Ir a Isco</a>
 				   @endif 		
 				@endif
 	
