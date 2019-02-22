@@ -97,13 +97,13 @@
 		</table>
 				</form>
 				@else
-				   @if($all)
-						    <h2>{!! $dr !!} ha cancelado tu cita de forma defínitiva, {!! $reason !!}  pero no te preocupes, te mostramos otros doctores de la misma especialidad cercanos a tu cita para que puedas reagendar<br></h2>
+				   @if($alldr)
+						    <h4>{!! $dr !!} ha cancelado tu cita de forma definitiva, {!! $reason !!}  pero no te preocupes, te mostramos otros doctores de la misma especialidad cercanos a tu cita para que puedas reagendar<br></h4>
 						@foreach($alldr as $all)
 							{{ $all['name'] }} a {{ $all['distance'] }} km(s)<br>
 						@endforeach
 				   @else 
-				    	<h2>{!! $dr !!} ha cancelado tu cita de forma defínitiva, {!! $reason !!}... Buscamos otros doctores con la misma especialidad en la zona pero no tuvimos éxito, te recomendamos ir a la página y agendar con otro doctor buscando en diferentes lugares<br></h2>
+				    	<h4>{!! $dr !!} ha cancelado tu cita de forma definitiva, {!! $reason !!}... Buscamos otros doctores con la misma especialidad en la zona pero no tuvimos éxito, te recomendamos ir a la página y agendar con otro doctor buscando en diferentes zonas<br></h4>
 				   @endif 		
 				@endif
 			
