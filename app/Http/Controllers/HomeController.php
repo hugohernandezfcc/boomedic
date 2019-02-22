@@ -703,7 +703,7 @@ class HomeController extends Controller
                              $join = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
                               ->where('labor_information.id','=', $id)
-                              ->select('labor_information.latitude', 'labor_information.longitude')
+                              ->select('labor_information.latitude', 'labor_information.longitude', 'professional_information.specialty')
                               ->first();
             return redirect('/medicalconsultations')->with($join);
         }    
