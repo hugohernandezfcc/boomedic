@@ -39,19 +39,18 @@
 @section('content')
 
 	<div class="box">
-			  	<div class="box-header with-border">
-				    <h3 class="box-title">Reagendar cita</h3>
-			  	</div>
-				<div class="box-body">
-							<div align="center">
+
+
 				@if($reschedule == false)
-									    <h4>Haz indicado que no quieres volver a agendar esta cita</h4>
+				<div class="box-header with-border">
+				    <h3 class="box-title">Haz indicado que no quieres volver a agendar esta cita</h3>
+			  	</div>
+							
 				@else					    
-			    
-			    <hr>
-			    <br>   
 			    @if($definitive == false)  
 			    <h4>{!! $dr !!} ha cancelado tu cita, {!! $reason !!}  pero no te preocupes, te mostramos algunas alternativas para reagendar</h4>
+			    <div class="box-body">
+							<div align="center">
 			    <form method="post" action="{{ url('drAppointments/editappointment') }}">
 			    <input type="hidden" name="idc" value="{!! $idcite !!}">
 			    <select class="custom-select" name="datenew">
@@ -80,7 +79,6 @@
 				</optgroup>	       
 		   
 				</select>
-				<hr>
 			<table>
 		    <tr>
 		         <td>
@@ -98,12 +96,21 @@
 				</form>
 				@else
 				   @if($alldr)
-						    <h4>{!! $dr !!} ha cancelado tu cita de forma definitiva, {!! $reason !!}  pero no te preocupes, te mostramos otros doctores de la misma especialidad cercanos a tu cita para que puedas reagendar<br></h4>
+				<div class="box-header with-border">
+				    <h3 class="box-title">{!! $dr !!} ha cancelado tu cita {!! $reason !!} de forma definitiva</h3>
+			  	</div>
+			  	<div class="box-body">
+					<div align="center">
+						!pero no te preocupes! te mostramos otros doctores de la misma especialidad cercanos a tu cita para que puedas reagendar
+						<div class="btn-group-vertical">
 						@foreach($alldr as $all)
-							{{ $all['name'] }} a {{ $all['distance'] }} km(s)<br>
+						<button class="btn btn-secondary"><i class="fa fa-user-md"></i> {{ $all['name'] }} a {{ $all['distance'] }} km(s)</button><br>
 						@endforeach
+					</div>
 				   @else 
-				    	<h4>{!! $dr !!} ha cancelado tu cita de forma definitiva, {!! $reason !!}... Buscamos otros doctores con la misma especialidad en la zona pero no tuvimos éxito, te recomendamos ir a la página y agendar con otro doctor buscando en diferentes zonas<br></h4>
+						<div class="box-header with-border">
+						    <h3 class="box-title">{!! $dr !!} ha cancelado tu cita {!! $reason !!} de forma definitiva. Buscamos otros doctores con la misma especialidad en la zona pero no tuvimos éxito, te recomendamos ir a la página y agendar con otro doctor buscando en diferentes zonas</h3>
+					  	</div>
 				   @endif 		
 				@endif
 			
