@@ -964,6 +964,14 @@
  
 
 $(document).ready(function () {
+          @isset($specialty)
+          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
+            if (document.getElementById("mySelect").options[i].text === '{{ $specialty }}'){
+                 document.getElementById("mySelect").options[i].selected = true;
+                  start();
+            }
+         }
+        @endisset
     if("{{ $medication }}" > 0)
        $( "#modalmedications" ).modal();
 
@@ -1276,14 +1284,6 @@ function prevTab(elem) {
         infoSelect();
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
-        @isset($specialty)
-          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
-            if (document.getElementById("mySelect").options[i].text === '{{ $specialty }}'){
-                 document.getElementById("mySelect").options[i].selected = true;
-                  start();
-            }
-         }
-        @endisset
         }, 2000);
       };
       function initMap() {
@@ -2054,6 +2054,7 @@ function prevTab(elem) {
             typeC = 'TypeGeneral';
           }
         });
+
     });
         
     </script>
