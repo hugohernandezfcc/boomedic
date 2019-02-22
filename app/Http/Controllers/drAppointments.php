@@ -460,7 +460,7 @@ class drAppointments extends Controller
 
                               foreach($allSpeciality as $sp){
                                    $distance = $this->LatLong($specialityDr->latitude, $specialityDr->longitude, $sp->latitude, $sp->longitude);
-                                   array_push($optionDrs, ['name' => $sp->namedr, 'distance' => $distance, 'id' => $sp->idli]);
+                                   array_push($optionDrs, ['name' => $sp->namedr, 'distance' => $distance, 'idli' => $sp->idli]);
                               }
                          
 
