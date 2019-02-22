@@ -96,7 +96,7 @@ class VisaAPIClient extends Controller {
 		} else {	
 			if (empty($body) == false && $body != '') {
 				$json = json_decode($body);
-				$json = json_encode($json->responseStatus->details[0]->message, JSON_PRETTY_PRINT);
+				$json = json_encode($json->responseStatus->message, JSON_PRETTY_PRINT);
 				$resp = str_replace('"',' ', $json);
 				return $resp;
 			}
@@ -161,7 +161,7 @@ class VisaAPIClient extends Controller {
 			if (empty($body) == false && $body != '') {
 				$json = json_decode($body);
 				print_r($body);
-				$json = json_encode($json->responseStatus->details[0]->message, JSON_PRETTY_PRINT);
+				$json = json_encode($json->responseStatus->message, JSON_PRETTY_PRINT);
 				//The quotation marks are removed so that the code is clean and can be found in the trans.
 				$resp = str_replace('"','', $json);
 				return $resp;
