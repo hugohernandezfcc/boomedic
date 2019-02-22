@@ -1129,13 +1129,7 @@ function prevTab(elem) {
         c.text = specialities1[i][0];
         x.options.add(c, 1);
         }
-        @isset($specialty)
-          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
-            if (document.getElementById("mySelect").options[i].text === '{{ $specialty }}')
-                 document.getElementById("mySelect").options[i].selected = true;
-                  start();
-         }
-        @endisset
+
       }
       function changeCheck(){
         if (!document.getElementById('general').checked){
@@ -1282,6 +1276,13 @@ function prevTab(elem) {
         infoSelect();
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
+        @isset($specialty)
+          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
+            if (document.getElementById("mySelect").options[i].text === '{{ $specialty }}')
+                 document.getElementById("mySelect").options[i].selected = true;
+                  start();
+         }
+        @endisset
         }, 2000);
       };
       function initMap() {
