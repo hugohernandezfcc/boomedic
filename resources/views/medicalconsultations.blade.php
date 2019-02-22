@@ -1131,7 +1131,7 @@ function prevTab(elem) {
         }
         @isset($specialty)
           for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
-            if (document.getElementById("mySelect").options[i].text === $specialty)
+            if (document.getElementById("mySelect").options[i].text === '{{ $specialty }}')
                  document.getElementById("mySelect").options[i].selected = true;
                   start();
          }
