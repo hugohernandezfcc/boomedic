@@ -144,7 +144,7 @@
 					<div align="left">
 						<div class="btn-group-vertical">
 						@foreach($alldr as $all)
-						<a href="{{ url('medicalconsultations') }}" class="btn btn-secondary" style="text-align: left;">{{ $all['name'] }} a {{ $all['distance'] }} km(s)</a>
+						<a href="{{ url('reSchedule') }}/{{ $all['idli'] }}" class="btn btn-secondary" style="text-align: left;">{{ $all['name'] }} a {{ $all['distance'] }} km(s)</a>
 						@endforeach
 					</div>
 				   @else 

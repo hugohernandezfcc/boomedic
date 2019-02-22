@@ -455,12 +455,12 @@ class drAppointments extends Controller
                               ->where('labor_information.delegation','=', $specialityDr->delegation)
                               ->where('professional_information.specialty','=', $specialityDr->specialty)
                               ->where('users.id','!=', $specialityDr->iddr)
-                              ->select('professional_information.*', 'labor_information.latitude', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation', 'users.name as namedr','users.id as iddr')
+                              ->select('professional_information.*', 'labor_information.latitude', 'labor_information.id as idli', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation', 'users.name as namedr','users.id as iddr')
                               ->get();             
 
                               foreach($allSpeciality as $sp){
                                    $distance = $this->LatLong($specialityDr->latitude, $specialityDr->longitude, $sp->latitude, $sp->longitude);
-                                   array_push($optionDrs, ['name' => $sp->namedr, 'distance' => $distance]);
+                                   array_push($optionDrs, ['name' => $sp->namedr, 'distance' => $distance, 'id' => $sp->idli]);
                               }
                          
 
