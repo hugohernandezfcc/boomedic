@@ -1290,10 +1290,12 @@ function prevTab(elem) {
               lng: position.coords.longitude
             };
             //Map
-            if("{{ $latitude }}")
+            @isset($latitude)
               var center = {lat: '{{ $latitude }}', lng: '{{ $longitude }}'};
-            else
+            @endisset
+            @empty($latitude)
               var center = new google.maps.LatLng(pos);
+           @endempty   
 
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 14,
