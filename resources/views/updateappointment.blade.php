@@ -97,20 +97,20 @@
 				@else
 				   @if($alldr)
 				<div class="box-header with-border">
-				    <h3 class="box-title">{!! $dr !!} ha cancelado tu cita {!! $reason !!} de forma definitiva</h3>
+				    <h3 class="box-title">{!! $dr !!} ha cancelado tu cita {!! $reason !!} de forma definitiva, te mostramos otros doctores de la misma especialidad cercanos a tu cita para que puedas reagendar</h3>
 			  	</div>
 			  	<div class="box-body">
-					<div align="center">
-						!pero no te preocupes! te mostramos otros doctores de la misma especialidad cercanos a tu cita para que puedas reagendar
+					<div align="left">
 						<div class="btn-group-vertical">
 						@foreach($alldr as $all)
-						<button class="btn btn-secondary"><i class="fa fa-user-md"></i> {{ $all['name'] }} a {{ $all['distance'] }} km(s)</button><br>
+						<a href="{{ url('medicalconsultations') }}" class="btn btn-secondary" style="text-align: left;"><i class="fa fa-user-md"></i>&nbsp; {{ $all['name'] }} a {{ $all['distance'] }} km(s)</a>
 						@endforeach
 					</div>
 				   @else 
 						<div class="box-header with-border">
 						    <h3 class="box-title">{!! $dr !!} ha cancelado tu cita {!! $reason !!} de forma definitiva. Buscamos otros doctores con la misma especialidad en la zona pero no tuvimos éxito, te recomendamos ir a la página y agendar con otro doctor buscando en diferentes zonas</h3>
-					  	</div>
+					  	</div><br>
+					  	<a href="{{ url('medicalconsultations') }}" class="btn btn-secondary" style="text-align: left;"><i class="fa fa-user-md"></i>Ir a Isco</a>
 				   @endif 		
 				@endif
 			
