@@ -964,7 +964,8 @@
  
 
 $(document).ready(function () {
-          @isset($specialty)
+        @isset($specialty)
+          alert('{{ $specialty }}');
           for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
             if (document.getElementById("mySelect").options[i].text === '{{ $specialty }}'){
                  document.getElementById("mySelect").options[i].selected = true;
@@ -972,6 +973,9 @@ $(document).ready(function () {
             }
          }
         @endisset
+        @empty($specialty)
+        alert('nel');
+        @endempty
     if("{{ $medication }}" > 0)
        $( "#modalmedications" ).modal();
 
