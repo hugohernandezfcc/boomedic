@@ -36,10 +36,10 @@
 	</head>
 	<body>
 	<div align="center">
-	    <h2>{!! $dr !!} ha cancelado tu cita, {!! $reason !!}  pero no te preocupes, te mostramos algunas alternativas para reagendar</h2>
-	    <hr>
-	      {!! $definitive !!}  <br>   
+
+	    <hr><br>   
 	    @if($definitive == false)  
+	    	    <h2>{!! $dr !!} ha cancelado tu cita, {!! $reason !!}  pero no te preocupes, te mostramos algunas alternativas para reagendar</h2>
 	    <form method="post" action="{{ url('drAppointments/editappointment') }}">
 	    <input type="hidden" name="idc" value="{!! $idcite !!}">
 	    <select class="custom-select" name="datenew">
@@ -86,10 +86,14 @@
 </table>
 		</form>
 				@else
-						Tienes otros doctores de la misma especialidad cercanos a tu cita para elegir<br>
+				   @if($all)
+						    <h2>{!! $dr !!} ha cancelado tu cita de forma defínitiva, {!! $reason !!}  pero no te preocupes, te mostramos otros doctores de la misma especialidad cercanos a tu cita para que puedas reagendar<br></h2>
 						@foreach($alldr as $all)
 							{{ $all['name'] }} a {{ $all['distance'] }} km(s)<br>
 						@endforeach
+				   @else 
+				    	<h2>{!! $dr !!} ha cancelado tu cita de forma defínitiva, {!! $reason !!}... Buscamos otros doctores con la misma especialidad en la zona pero no tuvimos éxito, te recomendamos ir a la página y agendar con otro doctor buscando en diferentes lugares<br></h2>
+				   @endif 		
 				@endif
 	
 </div>
