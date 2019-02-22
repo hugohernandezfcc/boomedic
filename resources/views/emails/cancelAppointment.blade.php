@@ -48,6 +48,15 @@
 					    width: 100%;
 					    max-width: 100%;
 					}
+					.btn-group-vertical>.btn, .btn-group>.btn {
+					    position: relative;
+					}
+					.btn-group-vertical>.btn:first-child:not(:last-child) {
+					    border-top-left-radius: 4px;
+					    border-top-right-radius: 4px;
+					    border-bottom-right-radius: 0;
+					    border-bottom-left-radius: 0;
+					}
 					.btn {
 					    display: inline-block;
 					    padding: 6px 12px;
@@ -69,6 +78,10 @@
 					    border: 1px solid transparent;
 					    border-radius: 4px;
 					}
+					a {
+						    background-color: transparent;
+						    text-decoration: none;
+						}
 		    </style>
 	</head>
 	<body>
