@@ -1278,7 +1278,7 @@ function prevTab(elem) {
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
         }, 2000);
-         if('{{ session()->get("specialty") }}'.length > 0){
+      /*   if('{{ session()->get("specialty") }}'.length > 0){
           alert('{{ session()->get("specialty") }}');
           for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
             if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
@@ -1286,7 +1286,7 @@ function prevTab(elem) {
                   start();
             }
          }
-        } 
+        } */
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
