@@ -995,15 +995,7 @@ $(document).ready(function () {
           typeC = 'TypeGeneral';
         }
       })
-       if('{{ session()->get("specialty") }}'.length > 0){
-          alert('{{ session()->get("specialty") }}');
-          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
-            if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
-                 document.getElementById("mySelect").options[i].selected = true;
-                  start();
-            }
-         }
-        } 
+
     //Initialize tooltips
        $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
@@ -1287,7 +1279,9 @@ function prevTab(elem) {
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
         }, 2000);
-      /*   if('{{ session()->get("specialty") }}'.length > 0){
+
+       if('{{ session()->get("specialty") }}'.length > 0){
+         setTimeout(function(){
           alert('{{ session()->get("specialty") }}');
           for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
             if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
@@ -1295,7 +1289,8 @@ function prevTab(elem) {
                   start();
             }
          }
-        } */
+       }, 3000);
+        } 
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
