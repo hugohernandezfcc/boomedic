@@ -1278,20 +1278,21 @@ function prevTab(elem) {
         infoSelect();
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
-        }, 2000);
-
-       if('{{ session()->get("specialty") }}'.length > 0){
-         setTimeout(function(){
+        if('{{ session()->get("specialty") }}'.length > 0){
+  
           alert('{{ session()->get("specialty") }}');
           for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
             if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
                  document.getElementById('general').click();
                  document.getElementById("mySelect").options[i].selected = true;
                   start();
+                  document.getElementById('{{ session()->get("id_lb") }}').click();
             }
          }
-       }, 3000);
         } 
+        }, 2000);
+
+
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
