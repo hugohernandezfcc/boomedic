@@ -964,7 +964,7 @@
  
 
 $(document).ready(function () {
-        @isset($specialty)
+        if('{{ $specialty }}' != 'undefined' || '{{ $specialty }}' != null){
           alert('{{ $specialty }}');
           for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
             if (document.getElementById("mySelect").options[i].text === '{{ $specialty }}'){
@@ -972,10 +972,10 @@ $(document).ready(function () {
                   start();
             }
          }
-        @endisset
-        @empty($specialty)
-        alert('nel');
-        @endempty
+        }else{
+          alert('nel');
+        } 
+
     if("{{ $medication }}" > 0)
        $( "#modalmedications" ).modal();
 
@@ -1303,13 +1303,13 @@ function prevTab(elem) {
               lng: position.coords.longitude
             };
             //Map
-            @isset($latitude)
+            if('{{ $latitude }}' != 'undefined' || '{{ $latitude }}' != null){
               var center = {lat: '{{ $latitude }}', lng: '{{ $longitude }}'};
               alert('latitude center');
-            @endisset
-            @empty($latitude)
+            }
+            else
               var center = new google.maps.LatLng(pos);
-           @endempty   
+
 
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 14,
