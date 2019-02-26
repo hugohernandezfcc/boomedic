@@ -1278,15 +1278,13 @@ function prevTab(elem) {
         infoSelect();
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
-        if('{{ session()->get("specialty") }}'.length > 0){
-  
+        if('{{ session()->get("specialty") }}'.length > 0){  
           alert('{{ session()->get("specialty") }}');
           for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
             if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
                  document.getElementById('general').click();
                  document.getElementById("mySelect").options[i].selected = true;
                   start();
-                  document.getElementById('{{ session()->get("id_lb") }}').click();
             }
          }
         } 
@@ -1669,6 +1667,14 @@ function prevTab(elem) {
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
+    if('{{ session()->get("specialty") }}'.length > 0){  
+          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
+            if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
+                   marker.click()
+               document.getElementById('{{ session()->get("id_lb") }}').click();
+            }
+         }
+        } 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               $('#infDr').show();
