@@ -348,7 +348,11 @@
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
 
   </script>
-
+        @isset($specialty)
+        <script type="text/javascript">
+          alert('join');
+        </script>  
+        @endisset 
 
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
