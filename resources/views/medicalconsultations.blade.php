@@ -968,18 +968,7 @@
  
 
 $(document).ready(function () {
-        @isset($specialty)
-          alert('{{ $specialty }}');
-          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
-            if (document.getElementById("mySelect").options[i].text === '{{ $specialty }}'){
-                 document.getElementById("mySelect").options[i].selected = true;
-                  start();
-            }
-         }
-        @endisset
-        @empty($specialty)
-        alert('nel');
-        @endempty
+
     if("{{ $medication }}" > 0)
        $( "#modalmedications" ).modal();
 
@@ -1293,6 +1282,18 @@ function prevTab(elem) {
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
         }, 2000);
+        @isset($specialty)
+          alert('{{ $specialty }}');
+          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
+            if (document.getElementById("mySelect").options[i].text === '{{ $specialty }}'){
+                 document.getElementById("mySelect").options[i].selected = true;
+                  start();
+            }
+         }
+        @endisset
+        @empty($specialty)
+        alert('nel');
+        @endempty
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
@@ -1311,6 +1312,7 @@ function prevTab(elem) {
               var center = {lat: '{{ $latitude }}', lng: '{{ $longitude }}'};
             @endisset
             @empty($latitude)
+              alert('latitude null');
               var center = new google.maps.LatLng(pos);
            @endempty   
 
