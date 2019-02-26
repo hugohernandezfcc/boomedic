@@ -1277,15 +1277,7 @@ function prevTab(elem) {
         infoSelect();
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
-        if('{{ session()->get("specialty") }}'){
-          alert('{{ session()->get("specialty") }}');
-          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
-            if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
-                 document.getElementById("mySelect").options[i].selected = true;
-                  start();
-            }
-         }
-        } 
+
         }, 2000);
  
       };
@@ -2022,6 +2014,15 @@ function prevTab(elem) {
       function showInfo(info){ 
         document.getElementById("info").innerHTML = '<strong>Detalle del médico:</strong> <br/><span style="font-size:12px;">'+ info +'</span>';
       }
+      if('{{ session()->get("specialty") }}'){
+          alert('{{ session()->get("specialty") }}');
+          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
+            if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
+                 document.getElementById("mySelect").options[i].selected = true;
+                  start();
+            }
+         }
+        } 
     </script>
 
     <!-- Calculate distance -->
