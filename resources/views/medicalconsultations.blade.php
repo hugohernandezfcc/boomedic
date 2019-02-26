@@ -1285,6 +1285,7 @@ function prevTab(elem) {
           alert('{{ session()->get("specialty") }}');
           for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
             if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
+                 document.getElementById('general').click();
                  document.getElementById("mySelect").options[i].selected = true;
                   start();
             }
