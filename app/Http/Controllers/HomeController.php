@@ -710,6 +710,7 @@ class HomeController extends Controller
                                         'longitude' => $join->longitude,
                                         'specialty' => $join->specialty             
                                       ];
+                              print_r($join);        
             return redirect('/medicalconsultations')->with($data);
         }    
     
