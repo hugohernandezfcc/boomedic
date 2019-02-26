@@ -705,13 +705,11 @@ class HomeController extends Controller
                               ->where('labor_information.id','=', $id)
                               ->select('labor_information.latitude', 'labor_information.longitude', 'professional_information.specialty')
                               ->first();
-                              $data = [
-                                        'latitude' => $join->latitude,
-                                        'longitude' => $join->longitude,
-                                        'specialty' => $join->specialty             
-                                      ];
-                              print_r($join);        
-            return redirect('/medicalconsultations')->with($data);
+                                      Session(['specialty' => $join->specialty]);
+                                      Session(['latitude' => $join->latitude]);
+                                      Session(['longitude' => $join->longitude]);
+                                     
+            return redirect('/medicalconsultations');
         }    
     
 }

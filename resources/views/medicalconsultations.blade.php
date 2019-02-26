@@ -348,11 +348,7 @@
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
 
   </script>
-        @isset($specialty)
-        <script type="text/javascript">
-          alert('join');
-        </script>  
-        @endisset 
+
 
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
@@ -1282,18 +1278,15 @@ function prevTab(elem) {
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
         }, 2000);
-        @isset($specialty)
-          alert('{{ $specialty }}');
+        if('{{ session()->get("specialty") }}'){
+          alert('{{ session()->get("specialty") }}');
           for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
-            if (document.getElementById("mySelect").options[i].text === '{{ $specialty }}'){
+            if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
                  document.getElementById("mySelect").options[i].selected = true;
                   start();
             }
          }
-        @endisset
-        @empty($specialty)
-        alert('nel');
-        @endempty
+        }  
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
@@ -1308,13 +1301,12 @@ function prevTab(elem) {
               lng: position.coords.longitude
             };
             //Map
-            @isset($latitude)
-              var center = {lat: '{{ $latitude }}', lng: '{{ $longitude }}'};
-            @endisset
-            @empty($latitude)
+            if('{{ session()->get("latitude") }}'){
+              var center = {lat: '{{ session()->get("latitude") }}', lng: '{{ session()->get("longitude") }}'};
+            }else{
               alert('latitude null');
               var center = new google.maps.LatLng(pos);
-           @endempty   
+           }
 
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 14,
