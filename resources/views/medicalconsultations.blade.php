@@ -1305,6 +1305,7 @@ function prevTab(elem) {
             //Map
             @isset($latitude)
               var center = {lat: '{{ $latitude }}', lng: '{{ $longitude }}'};
+              alert('latitude center');
             @endisset
             @empty($latitude)
               var center = new google.maps.LatLng(pos);
