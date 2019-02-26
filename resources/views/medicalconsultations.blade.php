@@ -1666,14 +1666,7 @@ function prevTab(elem) {
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
-           if('{{ session()->get("specialty") }}'.length > 0){  
-              for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
-                if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
-                       new google.maps.event.trigger( markers[0], 'click' );
-                      document.getElementById('{{ session()->get("id_lb") }}').click();
-                }
-             }
-            } 
+
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               $('#infDr').show();
@@ -2020,6 +2013,13 @@ function prevTab(elem) {
           })(marker, i));
           setTimeout(dropMarker(i), i * 250);
         }
+          if('{{ session()->get("specialty") }}'.length > 0){  
+              for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
+                if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
+                       new google.maps.event.trigger( markers[0], 'click' );
+                }
+             }
+            } 
       }
       function dropMarker(i) {
         return function() {
