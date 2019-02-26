@@ -2017,7 +2017,7 @@ function prevTab(elem) {
               for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
                 if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
                        new google.maps.event.trigger( markers[0], 'click' );
-                       document.getElementById('{{ $session()->get("id_lb") }}').click();
+                       document.getElementById('{{ session()->get("id_lb") }}').click();
                 }
              }
             } 
