@@ -1292,7 +1292,10 @@ function prevTab(elem) {
             //Map
             if('{{ session()->get("latitude") }}'.length > 0){
 
-            var pos = '{{ session()->get("latitude") }},{{ session()->get("longitude") }}';
+            var pos = {
+                        lat: '{{ session()->get("latitude") }}',
+                        lng: '{{ session()->get("longitude") }}'
+                      };
             alert(pos);
             }else{
              var pos = {
