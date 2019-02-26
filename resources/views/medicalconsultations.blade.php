@@ -1277,7 +1277,6 @@ function prevTab(elem) {
         infoSelect();
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
-        }, 2000);
         if('{{ session()->get("specialty") }}'){
           alert('{{ session()->get("specialty") }}');
           for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
@@ -1286,7 +1285,9 @@ function prevTab(elem) {
                   start();
             }
          }
-        }  
+        } 
+        }, 2000);
+ 
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
@@ -1296,10 +1297,6 @@ function prevTab(elem) {
         //Current position
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
             //Map
             if('{{ session()->get("latitude") }}'){
             var pos = {
