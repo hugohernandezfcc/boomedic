@@ -995,6 +995,15 @@ $(document).ready(function () {
           typeC = 'TypeGeneral';
         }
       })
+       if('{{ session()->get("specialty") }}'.length > 0){
+          alert('{{ session()->get("specialty") }}');
+          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
+            if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
+                 document.getElementById("mySelect").options[i].selected = true;
+                  start();
+            }
+         }
+        } 
     //Initialize tooltips
        $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
@@ -1446,7 +1455,7 @@ function prevTab(elem) {
             //Marker
               markerP = new google.maps.Marker({
               draggable: true,
-              position: new google.maps.LatLng(pos),
+              position: center,
               icon: pinIcon,
               map: map
             }); 
