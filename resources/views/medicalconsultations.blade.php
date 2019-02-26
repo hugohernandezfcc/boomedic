@@ -1291,10 +1291,11 @@ function prevTab(elem) {
           navigator.geolocation.getCurrentPosition(function(position) {
             //Map
             if('{{ session()->get("latitude") }}'){
-            var pos = {
-              lat: '{{ session()->get("latitude") }}',
-              lng: '{{ session()->get("longitude") }}'
+
+            var pos = { '{{ session()->get("latitude") }}',
+                        '{{ session()->get("longitude") }}'
             };
+            alert(pos)
             }else{
              var pos = {
                 lat: position.coords.latitude,
