@@ -1293,8 +1293,8 @@ function prevTab(elem) {
             if('{{ session()->get("latitude") }}'.length > 0){
 
             var pos = {
-                        lat: "{{ session()->get('latitude') }}",
-                        lng: "{{ session()->get('longitude') }}"
+                        lat: parseFloat("{{ session()->get('latitude') }}"),
+                        lng: parseFloat("{{ session()->get('longitude') }}")
                       };
             alert(pos);
             var center = pos;
