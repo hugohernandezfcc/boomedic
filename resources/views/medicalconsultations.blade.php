@@ -1290,9 +1290,9 @@ function prevTab(elem) {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             //Map
-            if('{{ session()->get("latitude") }}'){
+            if('{{ session()->get("latitude") }}'.length > 0){
 
-            var pos = '{{ session()->get("latitude") }}','{{ session()->get("longitude") }}';
+            var pos = '{{ session()->get("latitude") }},{{ session()->get("longitude") }}';
             alert(pos);
             }else{
              var pos = {
