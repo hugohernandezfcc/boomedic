@@ -67,11 +67,7 @@ class HomeController extends Controller
             }
             }
           }
-                                      Session(['medication' => null]);   
-                                      Session(['specialty' => null]);
-                                      Session(['latitude' => null]);
-                                      Session(['longitude' => null]);
-                                      Session(['id_lb' => null]);
+
 
 
         Session(['entered' => $user->entered]);
