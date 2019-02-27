@@ -37,18 +37,35 @@
 @stop
 
 @section('content')
-
 	<div class="box">
+	  	<div class="box-header with-border">
+	  		@if($reschedule == false)
+	  			<h3 class="box-title">Haz indicado que no quieres volver a agendar esta cita</h3>
+	  		@else	
+	  		@if($definitive != false)  
+		    <h3 class="box-title">Cancelación definitiva</h3>
+		    @else
+		    <h3 class="box-title">Cancelación con fechas alternativas</h3>
+		    @endif
+		    @endif
+	  	</div>
+		<div class="box-body">
 
-
-				@if($reschedule == false)
-				<div class="box-header with-border">
-				    <h3 class="box-title">Haz indicado que no quieres volver a agendar esta cita</h3>
-			  	</div>
-							
-				@else					    
+					    <div style="font-size: 12px; font-style: oblique;">Fecha de Cita: {{ $date }} </div> <br/>
+			                	<div class="col-xs-12 col-md-8">
+			                			<div class="col-sm-4"><b>Dr(a):</b></div>
+			                			<div class="col-sm-8" align="left">{!! $dr !!}</div>
+			                	</div>
+			                <br/>
+			                <div class="col-xs-12 col-md-8">
+			                			<div class="col-sm-4"><b>Motivo de cancelación:</b></div>
+			                			<div class="col-sm-8" align="left">{!! $reason !!}</div>
+			                </div>
+		</div>	  	
+	</div>
+@if($reschedule != false)	
+	<div class="box">						    
 			    @if($definitive == false)  
-			    <h4>{!! $dr !!} ha cancelado tu cita, {!! $reason !!}  pero no te preocupes, te mostramos algunas alternativas para reagendar</h4>
 			    <div class="box-body">
 							<div align="center">
 			    <form method="post" action="{{ url('drAppointments/editappointment') }}">
@@ -96,28 +113,38 @@
 				</form>
 				@else
 				   @if($alldr)
-				<div class="box-header with-border">
-				    <h3 class="box-title">{!! $dr !!} ha cancelado tu cita {!! $reason !!} de forma definitiva, te mostramos otros doctores de la misma especialidad cercanos a tu cita para que puedas reagendar</h3>
-			  	</div>
 			  	<div class="box-body">
-					<div align="left">
-						<div class="btn-group-vertical">
-						@foreach($alldr as $all)
-						<a href="{{ url('reSchedule') }}/{{ $all['idli'] }}" class="btn btn-secondary" style="text-align: left;">{{ $all['name'] }} a {{ $all['distance'] }} km(s)</a>
-						@endforeach
-					</div>
+			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
+				                <thead>
+				                    <tr>
+				                    	 <th></th>
+				                        <th class="all">Doctor</th>
+				                        <th class="desktop">Distancia apróx</th>
+				                        <th class="desktop">Dirección</th>
+				                    </tr>
+				                </thead>
+
+				                <tbody>
+					     	@foreach($alldr as $all)
+								     <tr>
+								     	<td></td>
+						             	<td><a href="{{ url('reSchedule') }}/{{ $all['idli'] }}" style="text-align: left;">{{ $all['name'] }}</a><br/></td>
+						             	<td>{{ $all['distance'] }} km(s)<br/></td>
+						             	<td></td>
+						             </tr>
+			             	@endforeach
+								<tbody>
+				    	 </table>
 				   @else 
-						<div class="box-header with-border">
-						    <h3 class="box-title">{!! $dr !!} ha cancelado tu cita {!! $reason !!} de forma definitiva. Buscamos otros doctores con la misma especialidad en la zona pero no tuvimos éxito, te recomendamos ir a la página y agendar con otro doctor buscando en diferentes zonas</h3>
-					  	</div><br>
-					  	<a href="{{ url('medicalconsultations') }}" class="btn btn-secondary" style="text-align: left;"><i class="fa fa-user-md"></i>Ir a Isco</a>
+						<div style="font-size: 12px; font-style: oblique;">
+						    Lo sentimos, buscamos otros doctores con la misma especialidad en la zona pero no tuvimos éxito, te recomendamos ir a la página y agendar con otro doctor buscando en diferentes lugares...
+					  	</div>
+					  	<a href="{{ url('medicalconsultations') }}" class="btn btn-secondary" style="text-align: left;"><i class="fa fa-user-md"></i>Volver al Inicio</a>
 				   @endif 		
 				@endif
 			
-		</div>
-			@endif
-	      </div>	  	
+				</div>  	
 		</div>    
-
+			@endif
 
 @stop
