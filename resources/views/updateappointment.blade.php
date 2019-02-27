@@ -138,7 +138,7 @@
 								     	<td></td>
 						             	<td><a href="{{ url('reSchedule') }}/{{ $all['idli'] }}" style="text-align: left;">{{ $all['name'] }}</a><br/></td>
 						             	<td>{{ $all['distance'] }} km(s)<br/></td>
-						             	<td></td>
+						             	<td>{{ $all['direction'] }}</td>
 						             </tr>
 			             	@endforeach
 								<tbody>
