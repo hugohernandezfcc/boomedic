@@ -427,6 +427,7 @@ class drAppointments extends Controller
                                     'reason' => $appo->reasontocancel,
                                     'definitive'     => $appo->definitive,
                                     'date'           => $appo->when, 
+                                    'specialty'      => $join->specialty,
                                     'array'          => $option1,
                                     'array2'         => $option2,
                                     'array3'         => $option3,
@@ -469,6 +470,7 @@ class drAppointments extends Controller
                           $data = [
                                     'reason'         => $appo->reasontocancel,
                                     'definitive'     => $appo->definitive,
+                                    'specialty'      => $specialityDr->specialty, 
                                     'alldr'          => collect($optionDrs)->sortBy('distance'),
                                     'idcite'         => $appo->id,
                                     'date'           => $appo->when, 

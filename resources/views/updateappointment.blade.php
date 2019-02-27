@@ -61,6 +61,11 @@
 			                			<div class="col-sm-4"><b>Motivo de cancelación:</b></div>
 			                			<div class="col-sm-8" align="left">{!! $reason !!}</div>
 			                </div>
+			                <br/>
+			                <div class="col-xs-12 col-md-8">
+			                			<div class="col-sm-4"><b>Especialidad:</b></div>
+			                			<div class="col-sm-8" align="left">{!! $specialty !!}</div>
+			                </div>
 		</div>	  	
 	</div>
 @if($reschedule != false)	
@@ -114,11 +119,14 @@
 				@else
 				   @if($alldr)
 			  	<div class="box-body">
+				<div class="box-header with-border">
+				    <h3 class="box-title">Médicos disponibles en la misma zona</h3>
+			  	</div>
 			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
 				                    <tr>
 				                    	 <th></th>
-				                        <th class="all">Doctor</th>
+				                        <th class="all">Médico</th>
 				                        <th class="desktop">Distancia apróx</th>
 				                        <th class="desktop">Dirección</th>
 				                    </tr>
