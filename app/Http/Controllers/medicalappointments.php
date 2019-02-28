@@ -77,7 +77,7 @@ class medicalappointments extends Controller
         /* Insert Cita */
         if(Session('id_lb') != null)
         {
-                $medical = medical_appointments::find(Session('id_cite');
+                $medical = medical_appointments::find(Session('id_cite'));
         }else{
                     $medical = new medical_appointments();
                     $medical->user           = Auth::id();
@@ -95,7 +95,7 @@ class medicalappointments extends Controller
             $request->session()->forget('longitude');
             $request->session()->forget('id_lb');
             $request->session()->forget('id_cite');
-            
+
                          /* Insert_bank*/
                         $Transaction = new transaction_bank();
                         $Transaction->paymentmethod = $request->id;
