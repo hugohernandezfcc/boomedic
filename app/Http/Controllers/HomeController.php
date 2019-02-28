@@ -696,16 +696,17 @@ class HomeController extends Controller
             }
 
         public function reSchedule($id){
-
+                      $exp = explode('-',$id); 
                              $join = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
-                              ->where('labor_information.id','=', $id)
+                              ->where('labor_information.id','=', $exp[0])
                               ->select('labor_information.latitude', 'labor_information.longitude', 'professional_information.specialty', 'labor_information.id')
                               ->first();
                                       Session(['specialty' => $join->specialty]);
                                       Session(['latitude' => $join->latitude]);
                                       Session(['longitude' => $join->longitude]);
-                                      Session(['id_lb' => $join->id]);
+                                      Session(['id_lb' => $exp[0]]);
+                                      Session(['id_cite' => $exp[1]]);
                                      
             return redirect('/medicalconsultations');
         }    

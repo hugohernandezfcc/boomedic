@@ -136,7 +136,7 @@
 					     	@foreach($alldr as $all)
 								     <tr>
 								     	<td></td>
-						             	<td><a href="{{ url('reSchedule') }}/{{ $all['idli'] }}" style="text-align: left;">{{ $all['name'] }}</a><br/></td>
+						             	<td><a href="{{ url('reSchedule') }}/{{ $all['idli'] }}-{{ $idcite}}" style="text-align: left;">{{ $all['name'] }}</a><br/></td>
 						             	<td>{{ $all['distance'] }} km(s)<br/></td>
 						             	<td>{{ $all['direction'] }}</td>
 						             </tr>

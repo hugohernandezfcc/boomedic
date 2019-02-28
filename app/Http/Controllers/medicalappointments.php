@@ -74,17 +74,28 @@ class medicalappointments extends Controller
         $user = User::find(Auth::id());
         //Look in the table of methods of saved payments all the information of the selected method.
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
-
-                    /* Insert Cita */
+        /* Insert Cita */
+        if(Session('id_lb') != null)
+        {
+                $medical = medical_appointments::find(Session('id_cite');
+        }else{
                     $medical = new medical_appointments();
                     $medical->user           = Auth::id();
+             }       
                     $medical->user_doctor    = $request->dr;
                     $medical->workplace      = $request->idlabor;
                     $medical->when           = $request->when;
                     $medical->status         = 'Registered';
 
+
             
-           if ($medical->save()) {
+           if ($medical->save()){
+            $request->session()->forget('specialty');
+            $request->session()->forget('latitude');
+            $request->session()->forget('longitude');
+            $request->session()->forget('id_lb');
+            $request->session()->forget('id_cite');
+            
                          /* Insert_bank*/
                         $Transaction = new transaction_bank();
                         $Transaction->paymentmethod = $request->id;
@@ -127,6 +138,7 @@ class medicalappointments extends Controller
          
             return redirect('medicalconsultations')->with($notification);
          }
+
          else {
              $notification = array(
                 //If it has been rejected, the internal error code is sent.
@@ -134,8 +146,7 @@ class medicalappointments extends Controller
             'error' => 'error'
         );
             return redirect('medicalconsultations')->with($notification);
-         }
-         
+         }     
     }
 
  /**

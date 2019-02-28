@@ -443,7 +443,7 @@ class drAppointments extends Controller
        //Alternative options
        $optionDrs = [];
        $daydatef = Carbon::parse($appo->when);
-
+       $delete = DB::delete('delete from transaction_bank where appointments= ?',[$appo->id]) ;
                  $specialityDr = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
                               ->where('labor_information.id','=', $appo->workplace)
