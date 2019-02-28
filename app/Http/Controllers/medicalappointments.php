@@ -77,7 +77,8 @@ class medicalappointments extends Controller
         /* Insert Cita */
         if(Session('id_lb') != null)
         {
-                $medical = medical_appointments::find(Session('id_cite'));
+               $delete = DB::delete('delete from transaction_bank where appointments= ?',[Session('id_cite')]) ;               
+               $medical = medical_appointments::find(Session('id_cite'));
         }else{
                     $medical = new medical_appointments();
                     $medical->user           = Auth::id();
