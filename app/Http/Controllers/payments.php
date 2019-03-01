@@ -267,7 +267,7 @@ class payments extends Controller
              $email = $user->email;
              Mail::send('emails.transaction', $data, function ($message) {
                         $message->subject('Transacción de pago en Boomedic');
-                        $message->to('contacto@doitcloud.consulting');
+                        $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
 
       }
@@ -293,7 +293,7 @@ class payments extends Controller
 
                     Mail::send('emails.errorPayment', $data, function ($message) {
                         $message->subject('Tú pago no fue procesado');
-                        $message->to('contacto@doitcloud.consulting');
+                        $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
 
     }
@@ -521,7 +521,7 @@ class payments extends Controller
                                 $email = $user->email;
                                  Mail::send('emails.transaction', $data, function ($message) {
                                             $message->subject('Transacción de pago en Boomedic');
-                                            $message->to('contacto@doitcloud.consulting');
+                                            $message->to('rebbeca.goncalves@doitcloud.consulting');
                                         });
                              }
                               return redirect('medicalconsultations')->with($notification);
