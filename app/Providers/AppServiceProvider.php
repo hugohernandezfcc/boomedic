@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,7 +33,14 @@ class AppServiceProvider extends ServiceProvider
         $agent = new Agent();
 
         View::share('agent', $agent);
-
+        
+        Validator::extend('space', function ($attribute, $value, $parameters, $validator) {
+                $val = explode(' ', $value);
+                    if(count($val) > 1)
+                       return true;
+                    else
+                        return false;
+             });
 
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
 
