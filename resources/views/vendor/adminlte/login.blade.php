@@ -63,7 +63,7 @@
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
             </form>
 
-                    <!-- /.col -->
+                   <!-- startsocials
                     <div class="box formsocial" align="center" style="border-style: none; box-shadow: none;"><br>
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
@@ -91,8 +91,7 @@
                             <div class="box-body">
                                 <div class="row" align="center">
                                     <div class="g-signin2"  data-width="165" data-height="27" data-clientid="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com"data-onsuccess="onSignInG"></div><br>
-                            <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
-                                </div>
+
                             </div>
                           </div>
                         </div>
@@ -122,7 +121,7 @@
                             <div id="cargafacebook"class="fa fa-refresh fa-spin"></div>
                         </div>
                      </div>
-
+    endsocials-->
             
             <div class="" id="loginload">
                 <div id="loginload2"class=""></div>
