@@ -15,7 +15,8 @@ class Workboard extends Model
 		'start',
 		'end',
 		'fixed_schedule',
-		'patient_duration_attention'
+		'patient_duration_attention',
+		'oldnew'
     ];
 
     public function labInformation(){
