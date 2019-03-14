@@ -41,6 +41,10 @@
 .fc-toolbar.fc-header-toolbar {
   margin-bottom: 0;
 } 
+#calendar3 .fc-widget-header{
+    background-color:#777;
+    color: white;
+}
 
 
 </style>
@@ -709,7 +713,10 @@ jQuery.noConflict(false);
 		defaultView: 'basicWeek',
 		editable: false,
 		lang: 'es',
-		events: horn	
+		events: horn,
+		dayRender: function(date, cell) {
+			cell.css("background", "#999");
+		}	
 	});
 
 		 if("@php echo $agent->isMobile(); @endphp"){
