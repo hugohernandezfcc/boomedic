@@ -48,8 +48,9 @@ class changeWorkboardDr extends Command
                                 DB::table('workboard')->where('id', $old->id)->delete();
                             }
                         }
-                        $new->oldnew = 'old';
-                        $new->save();
+                        $wnew = Workboard::find($new->id);
+                        $wnew->oldnew = 'old';
+                        $wnew->save();
             }
             
     }
