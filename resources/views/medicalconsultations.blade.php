@@ -1537,6 +1537,7 @@ function prevTab(elem) {
                                 document.getElementById('address').value = " ";     
                              }
                          });
+                           start();
                 });
           },
           //****Error
