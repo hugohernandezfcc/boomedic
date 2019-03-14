@@ -221,34 +221,12 @@ foreach($request->day as $day){
  }
 }
   $workboard2 = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'old')->get();
-    $workboardNew = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'new')->get();
-
-    $workArray = array();
-                          foreach($workboard2  as $work2){
-                            array_push($workArray, $work2->workingDays.':'.$work2->patient_duration_attention);
+      $workboardNew = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'new')->get();
+  $workArray = array();
+                          foreach($workboard2  as $work){
+                            array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
                           }
-    $workArrayNew = array();
-                      foreach($workboardNew  as $work3){
-                        array_push($workArrayNew, $work3->workingDays.':'.$work3->patient_duration_attention);
-                      }                      
-
-        return view('workboard', [
-                'userId'    => $user->id,
-                'username'  => $user->username,
-                'name'      => $user->name,
-                'gender'    => $user->gender,
-                'photo'     => $user->profile_photo,
-                'date'      => $user->created_at,
-                'work'      => $work,
-                'workboard' => $workboard,
-                'workboard2' => json_encode($workArray),
-                'mode'      => 'null',
-                'as'        => $assistant,
-                'donli'     => $donli,
-                'new'       => json_encode($workArrayNew),
-                'new2'      => $workboardNew
-            ]
-        );
+       return redirect('workboardDr/index/'.$id);
     }
     /**
      * Store a newly created resource in storage.
