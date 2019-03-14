@@ -10,6 +10,8 @@ use Mail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\payments;
+
+
 class medicationExecute extends Command
 {
     /**

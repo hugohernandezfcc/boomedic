@@ -303,6 +303,9 @@
           top: 90% !important; 
           z-index: 900;
     }
+    .ui-state-highlight.ui-state-default{
+         background:green;
+      }
 
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
