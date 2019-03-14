@@ -90,6 +90,7 @@ class HomeController extends Controller
          $time_blockers =  DB::table('time_blockers')->get();
          $cites = DB::table('medical_appointments')->get();
          $workboard = DB::table('workboard')->where('oldnew','old')->get();
+         
 
              foreach($join as $labor){
              $workArray = array();

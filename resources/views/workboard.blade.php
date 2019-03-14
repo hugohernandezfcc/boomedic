@@ -51,20 +51,26 @@
 <div class="box">
 
   	<div class="box-header with-border">
-	    <h3 class="box-title">Horario de Trabajo</h3>
+	    <h3 class="box-title">Horario habilitados para citas médicas</h3>
 	    
   	</div>
   	<div class="box-body">
 @if($mode != 'calendar')	
-
+        <div id="div1">
+			<div id="button" class="pull-right">Configurar Horarios &nbsp;<button class="btn btn-flag btn-default btn-xs"><i class="text-muted fa fa-cog" onclick="config();"></button></i></div><br/>
+			<div align="center"><h4>Horario actual</h4></div>
           <!-- Custom Tabs -->
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_2" data-toggle="tab" aria-expanded="false">Actual</a></li>
-              <li class=""><a href="#tab_1" data-toggle="tab" aria-expanded="true">Configurar Horario</a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane" id="tab_1">
+
+              	@if(count($workboard) > 0)
+                   <div id='calendar2'></div>
+                   @else
+                   <div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> No tienes horario agregado</b>
+					</div>
+				@endif
+
+
+              </div>
+                <div id="config1"  style="display: none">
 				@if(count($workboard) > 0)
 					<div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> Tienes un horario registrado en este lugar. Si guardas un nuevo horario se perderá el registro anterior.</b>
 					</div>
@@ -234,21 +240,6 @@
 			 	</div>
 			</form>
 		</div>
-
-              <!-- /.tab-pane -->
-              <div class="tab-pane active" id="tab_2">
-              	@if(count($workboard) > 0)
-                   <div id='calendar2'></div>
-                   @else
-                   <div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> No tienes horario agregado</b>
-					</div>
-				@endif
-
-
-              </div>
-            </div>
-            <!-- /.tab-content -->
-          </div>
           <!-- nav-tabs-custom -->
 
 				</div>
@@ -263,6 +254,12 @@
 		</div>
 		@endif
 <script type="text/javascript">
+
+	function config(){
+		$('#config1').show();
+		$('#div1').hide();
+	}
+
   $('#timepicker1').timepicker({
     showInputs: false,
      showMeridian:false,
