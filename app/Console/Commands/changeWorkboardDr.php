@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\email;
 use Mail;
-use App\Http\Controllers\Workboard;
+use App\Workboard;
 
 class changeWorkboardDr extends Command
 {
@@ -48,7 +48,7 @@ class changeWorkboardDr extends Command
                                 DB::table('workboard')->where('id', $old->id)->delete();
                             }
                         }
-                        $wnew = workboard::find($new->id);
+                        $wnew = Workboard::find($new->id);
                         $wnew->oldnew = 'old';
                         $wnew->save();
             }
