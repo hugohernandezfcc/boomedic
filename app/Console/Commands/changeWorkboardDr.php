@@ -49,7 +49,8 @@ class changeWorkboardDr extends Command
                             }
                         }
                         $new->oldnew = 'old';
+                        $new->save();
             }
-            $new->save();
+            
     }
 }
