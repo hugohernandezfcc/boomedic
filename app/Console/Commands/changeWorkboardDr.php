@@ -9,6 +9,7 @@ use App\PaymentMethod;
 use App\email;
 use Mail;
 use App\Http\Controllers\payments;
+use App\Http\Controllers\Workboard;
 
 class changeWorkboardDr extends Command
 {
@@ -17,13 +18,13 @@ class changeWorkboardDr extends Command
      *
      * @var string
      */
-    protected $signature = 'paymentExecute:send';
+    protected $signature = 'changeWorkboardDr:send';
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Send an email to payment no procesed';
+    protected $description = 'Change horary to new';
     /**
      * Create a new command instance.
      *
@@ -41,26 +42,16 @@ class changeWorkboardDr extends Command
      */
     public function handle()
     {
-        $pending = DB::table('transaction_bank')
-         ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
-         ->where(function($query)
-            {
-                $query->where('transaction_bank.status', 'Pending')
-                      ->orWhere('transaction_bank.status', 'Failed');
-            })
-         ->select('transaction_bank.*','paymentsmethods.id as pay')
-         ->get();
-
-          if(count($pending) > 0){ 
-            foreach($pending as $pen){
-            $idpay = $pen->pay;
-            $idtrans = $pen->id;
-
-            $this->payments = new payments;
-            $this->payments->PaymentAuthorizations($idpay, $idtrans);
-
-                }
-             }
-        
+            $workboardNew = DB::table('workboard')->where('oldnew', 'new')->get(); 
+            $workboardOld = DB::table('workboard')->where('oldnew', 'old')->get(); 
+            foreach($workboardNew as $new){
+                    foreach($workboardOld as $old){
+                        if($new->labInformation == $old->labInformation){
+                                $old->delete();
+                            }
+                        }
+                        $new->oldnew = 'old';
+            }
+            $new->save();
     }
 }
