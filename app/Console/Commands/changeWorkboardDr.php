@@ -5,10 +5,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
-use App\PaymentMethod;
 use App\email;
 use Mail;
-use App\Http\Controllers\payments;
 use App\Http\Controllers\Workboard;
 
 class changeWorkboardDr extends Command
