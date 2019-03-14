@@ -303,16 +303,7 @@
           top: 90% !important; 
           z-index: 900;
     }
-    .ui-datepicker-today  {
-         background: #f00 !important;
-         border:  #fff !important; 
-    }  
-    .ui-datepicker-today  a {
-         border:  #fff !important;
-         color:  #fff !important;
-         font-weight: bold !important;
-         background: #f00 !important; 
-    }
+
 
 
   </style>
@@ -1777,7 +1768,7 @@ function prevTab(elem) {
 
                   }
  
-                     $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es' }).on('changeDate',function(e){
+                     $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es', todayHighlight: true }).on('changeDate',function(e){
                      $('#timesByDay').children().remove();
                          document.getElementById("onestep").disabled = false;
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
