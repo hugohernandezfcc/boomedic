@@ -57,12 +57,17 @@
   	<div class="box-body">
 @if($mode != 'calendar')	
         <div id="div1">
-			<div id="button" class="pull-right">Configurar Horarios &nbsp;<button class="btn btn-flag btn-default btn-xs"><i class="text-muted fa fa-cog" onclick="config();"></button></i></div><br/>
-			<div align="center"><h4>Horario actual</h4></div>
+			<div id="button" class="pull-right">Configurar Horarios &nbsp;<button class="btn btn-flag btn-default btn-xs"><i class="text-muted fa fa-cog" onclick="config();"></i></button></div><br/>
+
           <!-- Custom Tabs -->
 
               	@if(count($workboard) > 0)
-                   <div id='calendar2'></div>
+              		<div align="center"><h4>Horario actual</h4></div>
+                   		<div id='calendar2'></div>
+	                   @if(count($new2) > 0)
+						<br/><div align="center"><h4>Horario recientemente agregado</h4></div>
+	                   		<div id='calendar3'></div>
+	                   @endif
                    @else
                    <div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> No tienes horario agregado</b>
 					</div>
@@ -510,6 +515,155 @@ $(function() {
                           }
                         }
 		}
+		    var optionhourn = @php echo $new;  @endphp;
+          var horn = Array();
+          var respn = Array();
+          var resp2n = Array();
+         for(var y = 0; y < optionhourn.length; y++){ 
+                     respn = optionhourn[y].split(":",2); 
+                     resp2n = JSON.parse(optionhourn[y].slice(4));
+					 if(respn[0] == 'Dom'){
+						for(var d = 0; d < resp2n.length; d++){
+						var dan = '[0]';	
+						if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3),  
+						    dow: dan // Repetir Lunes y Jueves
+
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00', 
+						    end: '00:'+ resp2n[d].slice(8),
+						    color: 'green',   						     
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                     	 }
+                        }
+                        if(respn[0] == 'Lun'){
+						for(var d = 0; d < resp2n.length; d++){
+							var dan = '[1]';		
+						if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3),  
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',
+						    end: '00:'+ resp2n[d].slice(8),
+						    color: 'green',   						      
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+                        if(respn[0] == 'Mar'){
+						     for(var d = 0; d < resp2n.length; d++){
+						     	var dan = '[2]';		
+						 if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3),  
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00', 
+						    end: '00:'+ resp2n[d].slice(8), 
+						    color: 'green',  					     
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+                        if(respn[0] == 'Mie'){
+						     for(var d = 0; d < resp2n.length; d++){
+						     	var dan = '[3]';		
+						 if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3),  
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00', 
+						    end: '00:'+ resp2n[d].slice(8), 
+						    color: 'green',  						     
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+                        if(respn[0] == 'Jue'){
+						     for(var d = 0; d < resp2n.length; d++){
+						     	var dan = '[4]';		
+						if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3),  
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',  
+						    end: '00:'+ resp2n[d].slice(8), 
+						    color: 'green',  
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+                        if(respn[0] == 'Vie'){
+						     for(var d = 0; d < resp2n.length; d++){
+						     	var dan = '[5]';		
+						 if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3), 
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',
+						    end: '00:'+ resp2n[d].slice(8),
+						    color: 'green', 
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+                        if(respn[0] == 'Sab'){
+						     for(var d = 0; d < resp2n.length; d++){
+						     	var dan = '[6]';		
+						if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3), 
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',
+						    end: '00:'+ resp2n[d].slice(8),
+						    color: 'green',
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+		}
 
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
@@ -540,6 +694,22 @@ jQuery.noConflict(false);
 		editable: false,
 		lang: 'es',
 		events: hor	
+	});
+
+
+    
+	$('#calendar3').fullCalendar({
+		
+		header: {
+			left: 'prev,next',
+			center: 'title',
+			right: 'month,basicWeek,listWeek'
+		},
+		contentHeight: 'auto',
+		defaultView: 'basicWeek',
+		editable: false,
+		lang: 'es',
+		events: horn	
 	});
 
 		 if("@php echo $agent->isMobile(); @endphp"){
