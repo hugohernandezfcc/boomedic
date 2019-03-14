@@ -303,9 +303,17 @@
           top: 90% !important; 
           z-index: 900;
     }
-    .ui-state-highlight.ui-state-default{
-         background:green;
-      }
+    .ui-datepicker-today  {
+         background: #f00 !important;
+         border:  #fff !important; 
+    }  
+    .ui-datepicker-today  a {
+         border:  #fff !important;
+         color:  #fff !important;
+         font-weight: bold !important;
+         background: #f00 !important; 
+    }
+
 
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
