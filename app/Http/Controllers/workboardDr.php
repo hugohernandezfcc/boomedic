@@ -108,7 +108,10 @@ class workboardDr extends Controller
                 $assistant = null;
                 $donli = null;
           } 
-          $workboard = DB::table('workboard')->where('labInformation', $id)->get();
+          $workboard = DB::table('workboard')->where('labInformation', $id)->where('oldnew', 'new')->get();
+         if(count($workboard) > 0){
+            DB::table('workboard')->where('labInformation', $id)->where('oldnew', 'new')->delete();   
+         }
 
         if ($request->type == 'false') {
                 $user = User::find(Auth::id()); 
