@@ -120,7 +120,7 @@
                                 <!-- Home tab content -->
                                 <div class="tab-pane active" id="control-sidebar-home-tab">
                                   <h4 class="control-sidebar-heading">Tratamiento Activo</h4>
-                                  <div class="displayactive" style="display: none; color:white;">No hay tratamientos Activos</div>
+                                  <div class="control-sidebar-heading displayactive" style="display: none; color:white;">No hay tratamientos Activos</div>
                                     <ul class="control-sidebar-menu timeline" id="activemed">
 
                                     </ul>         
@@ -128,7 +128,7 @@
                                 </div>
                                 <div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Todos los tratamientos</h4>
-                                   <div class="displayall" style="display: none; color:white;">No hay tratamientos anteriores o sin iniciar</div>
+                                   <div class="control-sidebar-heading displayall" style="display: none; color:white;">No hay tratamientos anteriores o sin iniciar</div>
                                        <ul class="control-sidebar-menu timeline" id="allmed">
                                         </ul> 
                                 </div></div>
