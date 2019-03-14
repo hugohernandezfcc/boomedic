@@ -52,8 +52,8 @@ class workboardDr extends Controller
           } 
     $work = $id;
 
-    $workboard = DB::table('workboard')->where('labInformation', $work)->get();
-    $workboard2 = DB::table('workboard') ->where('workboard.labInformation', '=', $id)->get();
+    $workboard = DB::table('workboard')->where('labInformation', $work)->where('oldnew', 'old')->get();
+    $workboard2 = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'old')->get();
     $workArray = array();
                           foreach($workboard2  as $work2){
                             array_push($workArray, $work2->workingDays.':'.$work2->patient_duration_attention);
@@ -109,9 +109,7 @@ class workboardDr extends Controller
                 $donli = null;
           } 
           $workboard = DB::table('workboard')->where('labInformation', $id)->get();
-         if(count($workboard) > 0){
-            DB::table('workboard')->where('labInformation', $id)->delete();   
-         }
+
         if ($request->type == 'false') {
                 $user = User::find(Auth::id()); 
         
@@ -168,6 +166,7 @@ foreach($request->day as $day){
          $workboard->fixed_schedule = 'True';
             }
          $workboard->patient_duration_attention =  json_encode($horas);
+         $workboard->oldnew = 'new';
          $workboard->save();
         
         }
@@ -205,11 +204,12 @@ foreach($request->day as $day){
          $workboard->labInformation = $id;
          $workboard->patient_duration_attention =  json_encode($horas);
          $workboard->fixed_schedule = 'False';
+         $workboard->oldnew = 'new';
          $workboard->save();
         
  }
 }
- $workboard2 = DB::table('workboard') ->where('workboard.labInformation', '=', $id)->get();
+  $workboard2 = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'new')->get();
   $workArray = array();
                           foreach($workboard2  as $work){
                             array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
