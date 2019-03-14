@@ -45,7 +45,7 @@ class changeWorkboardDr extends Command
             foreach($workboardNew as $new){
                     foreach($workboardOld as $old){
                         if($new->labInformation == $old->labInformation){
-                                $old->delete();
+                                DB::table('workboard')->where('id', $old->id)->delete();
                             }
                         }
                         $new->oldnew = 'old';
