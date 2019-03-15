@@ -308,7 +308,12 @@ foreach($request->day as $day){
      */
     public function handleExistAppointments($id){
 
-        $appointments = DB::table('medical_appointments')->where('workplace',$id)->wheredate('when', '>', Carbon::today())->get();
+        $appointments = DB::table('medical_appointments')
+                        ->join('users', 'medical_appointments.user', '=', 'users.id')
+                        ->where('workplace',$id)->wheredate('when', '>', Carbon::today())
+                        ->select('medical_appointments.*', 'users.name', 'users.profile_photo')
+                        ->get();
+
         if(count($appointments) > 0){
             foreach($appointments as $app){
                 $app->when;
