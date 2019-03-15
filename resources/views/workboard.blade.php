@@ -270,6 +270,27 @@
 
 				</div>
               </div>
+<!--Modal citas-->
+                 <div class="modal fade" role="dialog" id="modalAppo">
+                    <div class="modal-dialog modal-sm">
+                      <!--Modal cita reagendada-->
+                              <div class="modal-content">
+
+                                <div class="modal-header" >
+                                  <!-- Tachecito para cerrar -->
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  <div align="left"><label>¡Algunos pacientes  se habían registrado en el horario anterior!</label></div>
+                                </div>
+                                    <div class="modal-body" id="bodyappo">
+
+                                    </div>
+                                </div>
+
+                      </div> 
+                    </div>
+
 			@endif
   		
 
@@ -541,10 +562,14 @@ $(function() {
                         }
 		}
 		  var optionhourn = @php echo $new;  @endphp;
-		 var appo = JSON.stringify(@php echo $appointments; @endphp);
-		if(appo.length > 0 && optionhourn.length > 0)
-			console.log('citas ' + appo);
-
+		 var appo = @php echo $appointments; @endphp;
+		if(appo.length > 0 && optionhourn.length > 0){
+			$('#modalAppo').modal()
+			console.log('citas ' + JSON.stringify(appo));
+			for(var r = 0; r < appo.length; r++){
+				$('#bodyappo').append('<div>Cita: '+ appo[r]['when'] +'</div>');
+			}
+		}
 
           var horn = Array();
           var respn = Array();
