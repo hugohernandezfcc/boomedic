@@ -71,7 +71,7 @@
 <div class="box">
 
   	<div class="box-header with-border">
-	    <h3 class="box-title">Horario habilitados para citas médicas</h3>
+	    <h3 class="box-title">Horario habilitado para citas médicas</h3>
 	    
   	</div>
   	<div class="box-body">
@@ -87,7 +87,7 @@
                    		<div id='calendar2'></div>
 	                   @if(count($new2) > 0)
 						<br><br>
-						<div class="callout callout-gray">Horario aún no activo</div>
+						<div class="callout callout-gray">&nbsp; <i class="fa fa-info"></i> &nbsp; Horario aún no activo</div>
 	                   		<div id='calendar3'></div>
 	                   @endif
                    @else
