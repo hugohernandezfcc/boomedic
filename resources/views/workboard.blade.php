@@ -29,7 +29,7 @@
     min-width: 98%;
     margin: 0 auto;
   }
- #calendar {
+ #calendar3 {
     max-width: 98%;
     min-width: 98%;
     margin: 0 auto;
@@ -42,10 +42,15 @@
   margin-bottom: 0;
 } 
 #calendar3 .fc-widget-header{
-    background-color:#777;
+    background-color:#505050;
     color: white;
 }
-
+#calendar3 .fc-widget-content{
+	background-color: #D4D4D5;
+}
+#calendar3 .fc-head, #calendar3 .fc-body {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 </style>
 @stop
@@ -713,10 +718,7 @@ jQuery.noConflict(false);
 		defaultView: 'basicWeek',
 		editable: false,
 		lang: 'es',
-		events: horn,
-		dayRender: function(date, cell) {
-			cell.css("background", "#999");
-		}	
+		events: horn
 	});
 
 		 if("@php echo $agent->isMobile(); @endphp"){
