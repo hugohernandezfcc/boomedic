@@ -390,8 +390,8 @@
 		        });
 	
 $(function() {
-		var appo = "{{ $appointments }}";
-		console.log('citas ' + appo);
+		var appo = @php echo $appointments; @endphp;
+		console.log('citas ' + JSON.stringify(appo));
         var optionhour = @php echo $workboard2;  @endphp;
           var hor = Array();
           var resp = Array();
