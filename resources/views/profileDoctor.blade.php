@@ -710,7 +710,7 @@
 
 		         	    </div>
 		         	    <div class="tab-pane" id="laborInformation">
-		         	    <div class="box"> 	
+		         	    <div class="box-body"> 	
                           @if($labor->isEmpty())
 						 <span class="text-black">No hay ningún centro asociado a su cuenta.</span>			
 							@else
