@@ -77,7 +77,7 @@
   	<div class="box-body">
 @if($mode != 'calendar')	
         <div id="div1">
-			<div id="button" align="right">Configurar Horarios &nbsp;<button class="btn btn-flag btn-default btn-xs"><i class="text-muted fa fa-cog" onclick="config();"></i></button></div>
+			<div id="button" align="right">Configurar Horarios &nbsp;<button class="btn btn-flag btn-default btn-xs" onclick="config();"><i class="text-muted fa fa-cog"></i></button></div>
 
           <!-- Custom Tabs -->
 
@@ -261,9 +261,8 @@
 			 	</div>
 			 	<div class="col-sm-12" align="right">
 			 		<button type="submit" class="btn btn-secondary">Guardar</button>
-			 		<a href="{{ url()->previous() }}" class="btn btn-default">
-									                Cancelar
-			 </a>
+			 		<button class="btn btn-default" onclick="cancel();">Cancelar </button>
+
 			 	</div>
 			</form>
 		</div>
@@ -285,6 +284,10 @@
 	function config(){
 		$('#config1').show();
 		$('#div1').hide();
+	}
+	function cancel(){
+		$('#config1').hide();
+		$('#div1').show();
 	}
 
   $('#timepicker1').timepicker({
