@@ -390,8 +390,7 @@
 		        });
 	
 $(function() {
-		var appo = @php echo $appointments; @endphp;
-		console.log('citas ' + JSON.stringify(appo));
+
         var optionhour = @php echo $workboard2;  @endphp;
           var hor = Array();
           var resp = Array();
@@ -541,7 +540,12 @@ $(function() {
                           }
                         }
 		}
-		    var optionhourn = @php echo $new;  @endphp;
+		  var optionhourn = @php echo $new;  @endphp;
+		 var appo = JSON.stringify(@php echo $appointments; @endphp);
+		if(appo.length > 0 && optionhourn.length > 0)
+			console.log('citas ' + appo);
+
+
           var horn = Array();
           var respn = Array();
           var resp2n = Array();
