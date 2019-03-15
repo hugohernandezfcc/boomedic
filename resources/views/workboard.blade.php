@@ -51,6 +51,17 @@
 #calendar3 .fc-head, #calendar3 .fc-body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.callout {
+    border-radius: 3px;
+    margin: 0 0 5px 0;
+    padding: 5px 15px 5px 5px;
+    border-left: 5px solid #eee;
+}
+.callout.callout-gray {
+    border-color: #333;
+    background-color: #999;
+    color: white;
+}
 
 </style>
 @stop
@@ -66,15 +77,17 @@
   	<div class="box-body">
 @if($mode != 'calendar')	
         <div id="div1">
-			<div id="button" class="pull-right">Configurar Horarios &nbsp;<button class="btn btn-flag btn-default btn-xs"><i class="text-muted fa fa-cog" onclick="config();"></i></button></div><br/>
+			<div id="button" align="right">Configurar Horarios &nbsp;<button class="btn btn-flag btn-default btn-xs"><i class="text-muted fa fa-cog" onclick="config();"></i></button></div>
 
           <!-- Custom Tabs -->
 
               	@if(count($workboard) > 0)
-              		<div align="center"><h4>Horario actual</h4></div>
+              	<br/>
+              		<!--<div class="callout callout-success">Horario actual</div>-->
                    		<div id='calendar2'></div>
 	                   @if(count($new2) > 0)
-						<br/><div align="center"><h4>Horario recientemente agregado</h4></div>
+						<br><br>
+						<div class="callout callout-gray">Horario aún no activo</div>
 	                   		<div id='calendar3'></div>
 	                   @endif
                    @else
