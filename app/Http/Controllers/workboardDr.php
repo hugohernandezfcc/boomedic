@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Workboard;
 use Carbon\Carbon;
+
+
 class workboardDr extends Controller
 {
     /**
@@ -63,7 +65,8 @@ class workboardDr extends Controller
     $workArrayNew = array();
                       foreach($workboardNew  as $work3){
                         array_push($workArrayNew, $work3->workingDays.':'.$work3->patient_duration_attention);
-                      }                      
+                      }  
+     $validate = $this->handleExistAppointments($id);                    
 
         return view('workboard', [
                 'userId'    => $user->id,
@@ -79,7 +82,8 @@ class workboardDr extends Controller
                 'as'        => $assistant,
                 'donli'     => $donli,
                 'new'       => json_encode($workArrayNew),
-                'new2'      => $workboardNew
+                'new2'      => $workboardNew,
+                'appointments' => $validate
             ]
         );
     }
@@ -88,7 +92,7 @@ class workboardDr extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $id )
+    public function create(Request $request, $id)
     {
             $user = User::find(Auth::id());
             $assistant = DB::table('assistant')
@@ -226,6 +230,8 @@ foreach($request->day as $day){
                           foreach($workboard2  as $work){
                             array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
                           }
+        
+                          
        return redirect('workboardDr/index/'.$id);
     }
     /**
@@ -291,6 +297,27 @@ foreach($request->day as $day){
      */
     public function destroy($id)
     {
+    }
+
+
+    /**
+     * Function handle for cancel appointments for change horary
+     * 
+     * @param 
+     * @return  [<description>]
+     */
+    public function handleExistAppointments($id){
+
+        $appointments = DB::table('medical_appointments')->where('workplace',$id)->wheredate('when', '>', Carbon::today())->get();
+        if(count($appointments) > 0){
+            foreach($appointments as $app){
+                $app->when;
+            }
+            return $appointments;
+         }  
+         else{ 
+            return false;
+         }
     }
     
 }

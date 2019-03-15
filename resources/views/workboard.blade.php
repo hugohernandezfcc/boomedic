@@ -390,7 +390,8 @@
 		        });
 	
 $(function() {
-
+		var appo = "{{ $appointments }}";
+		console.log(appo);
         var optionhour = @php echo $workboard2;  @endphp;
           var hor = Array();
           var resp = Array();
