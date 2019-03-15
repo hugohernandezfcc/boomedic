@@ -316,7 +316,7 @@ foreach($request->day as $day){
             return $appointments;
          }  
          else{ 
-            return false;
+            return 'null';
          }
     }
     
