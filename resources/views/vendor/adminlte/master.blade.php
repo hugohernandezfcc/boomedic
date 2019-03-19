@@ -932,6 +932,12 @@ span.round-tab:hover {
       @include('modals.medicationsNotConfirm', ['medication' => session()->get('medication') ])
 @endif
 
+@if(!empty(session()->get('workboardnew')))
+     <script type="text/javascript">
+       alert('citas horario');
+     </script>
+@endif
+
 @if(config('adminlte.plugins.datatables'))
     <!-- DataTables -->
        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
