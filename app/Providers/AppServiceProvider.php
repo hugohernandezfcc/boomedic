@@ -84,6 +84,8 @@ class AppServiceProvider extends ServiceProvider
 
                 if($profInfo->count() > 0){
                     //es un médico
+
+                            
                     $menusInfo = DB::table('menus')
                                     ->where('to', 'Doctor')->orderBy('order')
                                     ->get();

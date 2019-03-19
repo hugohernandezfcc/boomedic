@@ -710,7 +710,13 @@ class HomeController extends Controller
                                       Session(['id_cite' => $exp[1]]);
                                      
             return redirect('/medicalconsultations');
-        }    
+        }  
+
+       public function changeHoraryAlert(){
+            $this->workboardDr = new workboardDr;
+            $appo = $this->workboardDr->handleExistAppointments(80);
+            return response()->json($appo); 
+       }   
     
 }
 
