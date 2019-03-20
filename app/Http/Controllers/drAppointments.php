@@ -151,7 +151,7 @@ class drAppointments extends Controller
                         });
 
         }else{
-          if($request->calcelwork != 'true'){  
+          if($request->calcelwork == 'true'){  
               foreach($request->idcancel as $key => $n ){
                $id = $n;
                $appo = medical_appointments::find($id);
