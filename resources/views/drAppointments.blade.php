@@ -85,13 +85,13 @@
                             	<input type="hidden" name="idcancel" id="idcancel">
                             	<ul class="nav nav-stacked">
                             		<li><div class="form-check">
-										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason" value="Por compromiso profesional" checked>
+										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason" value="por compromiso profesional" checked>
 										  <label class="form-check-label" for="radioreason">
 										    Por compromiso profesional
 										  </label>
 										</div></li>
                     <li><div class="form-check">
-										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason2" value="Por motivo personal">
+										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason2" value="por motivo personal">
 										  <label class="form-check-label" for="radioreason2">
 										    Por motivo personal
 										  </label>

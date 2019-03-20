@@ -133,9 +133,13 @@ class drAppointments extends Controller
        $appo = medical_appointments::find($id);
        $appo->status = 'No completed';
        $appo->sub_status = 'cancel by doctor';
-       $appo->reasontocancel = $request->radioreason;
-       if($request->definitive == 'true')
-          $appo->definitive = true;
+       if($request->calcelwork != 'true'){
+           $appo->reasontocancel = $request->radioreason;
+           if($request->definitive == 'true')
+              $appo->definitive = true;
+        }else{
+          $appo->reasontocancel = 'por cambio de horario';
+        }
        $appo->save();
 
        if($appo->definitive == false){
