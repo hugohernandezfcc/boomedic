@@ -18,13 +18,3 @@
       </div> 
   </div>
 
-  <script type="text/javascript">
-       var appo = @php echo $appo; @endphp;
-    if(appo != null &&  appo.length > 0){
-      $('#modalAppo').modal()
-      console.log('citas ' + JSON.stringify(appo));
-      for(var r = 0; r < appo.length; r++){
-        $('#bodyappo').append('<div>Paciente: '+ appo[r]['name'] +'<br>Cita: '+ appo[r]['when'] +'</div>');
-      }
-    }
-  </script>

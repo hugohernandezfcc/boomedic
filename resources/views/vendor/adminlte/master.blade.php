@@ -480,7 +480,25 @@ span.round-tab:hover {
     <![endif]-->
 </head>
 <body class="hold-transition @yield('body_class')">
+@if(!empty(session()->get('medication')))
+      @include('modals.medicationsNotConfirm', ['medication' => session()->get('medication') ])
+@endif
 
+@if(!empty(session()->get('workboardnew')))
+      @include('modals.modalChangeWorkboard', ['appo' => session()->get('workboardnew') ])
+  <script type="text/javascript">
+     $(function(){
+    var appo = @php echo session()->get('workboardnew'); @endphp;
+    if(appo != null &&  appo.length > 0){
+      $('#modalAppo').modal()
+      console.log('citas ' + JSON.stringify(appo));
+      for(var r = 0; r < appo.length; r++){
+        $('#bodyappo').append('<div>Paciente: '+ appo[r]['name'] +'<br>Cita: '+ appo[r]['when'] +'</div>');
+      }
+    }
+  })
+  </script>
+@endif
 @yield('body')
 
 
@@ -928,16 +946,7 @@ span.round-tab:hover {
         
     });
 </script>
-@if(!empty(session()->get('medication')))
-      @include('modals.medicationsNotConfirm', ['medication' => session()->get('medication') ])
-@endif
 
-@if(!empty(session()->get('workboardnew')))
-      @include('modals.modalChangeWorkboard', ['appo' => session()->get('workboardnew') ])
-     <script type="text/javascript">
-      console.log(@php echo session()->get('workboardnew'); @endphp);
-     </script>
-@endif
 
 @if(config('adminlte.plugins.datatables'))
     <!-- DataTables -->
