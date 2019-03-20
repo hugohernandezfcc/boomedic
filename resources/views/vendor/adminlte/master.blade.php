@@ -934,7 +934,7 @@ span.round-tab:hover {
 
 @if(!empty(session()->get('workboardnew')))
      <script type="text/javascript">
-       alert('citas horario');
+      console.log(@php echo session()->get('workboardnew'); @endphp);
      </script>
 @endif
 
