@@ -493,7 +493,7 @@ $(document).ready(function() {
       $('#modalAppo').modal();
       console.log('citas ' + JSON.stringify(appo));
       for(var r = 0; r < appo.length; r++){
-        $('#bodyappo').append('<div><input type="hidden" name="idcancel" value="'+ appo[r]['id']  +'">Paciente: '+ appo[r]['name'] +'<br>Cita: '+ appo[r]['when'] +'<br>Cancelar <input type="radio" name="calcelwork" value="true">&nbsp; Atender en mismo horario <input type="radio" name="calcel" value="false"></div>');
+        $('#bodyappo').append('<li class="active"><a href="javascript:void(0)" style="border-left-color: #333 !important;"><input type="hidden" name="idcancel[]" value="'+ appo[r]['id']  +'">Paciente: '+ appo[r]['name'] +'<br>Cita: '+ appo[r]['when'] +'<br>Cancelar <input type="radio" name="calcelwork[]" value="true"><br> Atender en mismo horario <input type="radio" name="calcelwork[]" value="false"></a></li>');
       }
     }
   })

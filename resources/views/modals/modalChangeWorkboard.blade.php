@@ -12,7 +12,7 @@
                 </div>
                 <form enctype="multipart/form-data" action="{{ url('drAppointments/cancelAppointment') }}" method="post">
                     <div class="modal-body">
-                        <div id="bodyappo"></div><br>
+                        <ul class="nav nav-pills nav-stacked" id="bodyappo"></ul><br>
                         <div align="right"><button class="btn btn-secondary btn-flat">Confirmar</button></div>
                     </div>
 

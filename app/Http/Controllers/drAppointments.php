@@ -129,20 +129,29 @@ class drAppointments extends Controller
          }else{  
            $user = User::find(Auth::id());
          }
+      if(!$request->calcelwork){  
        $id = $request->idcancel;
        $appo = medical_appointments::find($id);
        $appo->status = 'No completed';
        $appo->sub_status = 'cancel by doctor';
-       if($request->calcelwork != 'true'){
-           $appo->reasontocancel = $request->radioreason;
+       $appo->reasontocancel = $request->radioreason;
            if($request->definitive == 'true')
               $appo->definitive = true;
-        }else{
-          $appo->reasontocancel = 'por cambio de horario';
-          $request->session()->forget('workboardnew');
-        }
        $appo->save();
 
+        }else{
+          if($request->calcelwork != 'true'){  
+              foreach($request->idcancel as $key => $n ){
+               $id = $n;
+               $appo = medical_appointments::find($id);
+               $appo->status = 'No completed';
+               $appo->sub_status = 'cancel by doctor';
+               $appo->reasontocancel = 'por cambio de horario';
+               $appo->save();
+              }
+          $request->session()->forget('workboardnew');
+          }
+        }
        if($appo->definitive == false){
 
                              $data = $this->alternative($appo, $user->name);
