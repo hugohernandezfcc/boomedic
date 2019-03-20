@@ -117,11 +117,12 @@
 		</table>
 				</form>
 				@else
-				   @if($alldr)
+				
 			  	<div class="box-body">
 				<div class="box-header with-border">
 				    <h3 class="box-title">Médicos disponibles en la misma zona</h3>
 			  	</div>
+			  	   @if(count($alldr) > 0)
 			            	<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
 				                    <tr>
@@ -144,10 +145,10 @@
 								<tbody>
 				    	 </table>
 				   @else 
-						<div style="font-size: 12px; font-style: oblique;">
+						<div class="box-header with-border">
 						    Lo sentimos, buscamos otros doctores con la misma especialidad en la zona pero no tuvimos éxito, te recomendamos ir a la página y agendar con otro doctor buscando en diferentes lugares...
 					  	</div>
-					  	<a href="{{ url('medicalconsultations') }}" class="btn btn-secondary" style="text-align: left;"><i class="fa fa-user-md"></i>Volver al Inicio</a>
+					  	<div align="right"><a href="{{ url('medicalconsultations') }}" class="btn btn-secondary" style="text-align: left;">Volver al Inicio</a></div>
 				   @endif 		
 				@endif
 			

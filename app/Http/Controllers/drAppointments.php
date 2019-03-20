@@ -139,6 +139,17 @@ class drAppointments extends Controller
               $appo->definitive = true;
        $appo->save();
 
+              if($appo->definitive == false){
+
+               $data = $this->alternative($appo, $user->name);
+             }else{
+                 $data = $this->definitive($appo, $user->name);
+               }
+               Mail::send('emails.cancelAppointment', $data, function ($message) {
+                            $message->subject('Tu cita ha sido cancelada');
+                            $message->to('contacto@doitcloud.consulting');
+                        });
+
         }else{
           if($request->calcelwork != 'true'){  
               foreach($request->idcancel as $key => $n ){
@@ -148,22 +159,16 @@ class drAppointments extends Controller
                $appo->sub_status = 'cancel by doctor';
                $appo->reasontocancel = 'por cambio de horario';
                $appo->save();
+                            $data = $this->alternative($appo, $user->name);
+                            Mail::send('emails.cancelAppointment', $data, function ($message) {
+                            $message->subject('Tu cita ha sido cancelada');
+                            $message->to('contacto@doitcloud.consulting');
+                        });
               }
           $request->session()->forget('workboardnew');
           }
         }
-       if($appo->definitive == false){
 
-                             $data = $this->alternative($appo, $user->name);
-
-                           }else{
-
-                             $data = $this->definitive($appo, $user->name);
-                           }
-                                       Mail::send('emails.cancelAppointment', $data, function ($message) {
-                                                    $message->subject('Tu cita ha sido cancelada');
-                                                    $message->to('contacto@doitcloud.consulting');
-                                                });
         
 
        return redirect('drAppointments/index/'. $user->id);
