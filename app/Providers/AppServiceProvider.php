@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\User;
 use App\menu;
+use App\medical_appointments;
 use App\ProfessionalInformation;
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
@@ -85,7 +86,20 @@ class AppServiceProvider extends ServiceProvider
                 if($profInfo->count() > 0){
                     //es un médico
 
-                            
+                   
+                    $changeHorary = DB::table('medical_appointments')
+                                    ->join('workboard', 'medical_appointments.workplace', '=', 'workboard.labInformation')
+                                    ->join('users', 'medical_appointments.user', '=', 'users.id')
+                                    ->where('medical_appointments.user_doctor', '=', Auth::id())
+                                    ->where('workboard.oldnew','new')
+                                    ->wheredate('when', '>', Carbon::today())
+                                    ->select('medical_appointments.*', 'users.name', 'users.profile_photo')
+                                    ->get(); 
+
+                        if(count($changeHorary) > 0){
+                            $result = $changeHorary->unique('id');
+                            Session(['workboardnew' => $result]);   
+                        }              
                     $menusInfo = DB::table('menus')
                                     ->where('to', 'Doctor')->orderBy('order')
                                     ->get();

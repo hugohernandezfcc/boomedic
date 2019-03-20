@@ -477,20 +477,7 @@ class HomeController extends Controller
 
             array_push($notificationsArray, $medication);
             Session(['medication' => $medication->groupBy('date')]);  
-
-        $changeHorary = DB::table('medical_appointments')
-                        ->join('workboard', 'medical_appointments.workplace', '=', 'workboard.labInformation')
-                        ->join('users', 'medical_appointments.user', '=', 'users.id')
-                        ->where('medical_appointments.user_doctor', '=', $user->id)
-                        ->where('workboard.oldnew','new')
-                        ->wheredate('when', '>', Carbon::today())
-                        ->select('medical_appointments.*', 'users.name', 'users.profile_photo')
-                        ->get(); 
-
-            if(count($changeHorary) > 0){
-                $result = $changeHorary->unique('id');
-                Session(['workboardnew' => $result]);   
-            }                   
+              
    
 
         return response()->json($notificationsArray);
