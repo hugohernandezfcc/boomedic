@@ -139,6 +139,7 @@ class drAppointments extends Controller
               $appo->definitive = true;
         }else{
           $appo->reasontocancel = 'por cambio de horario';
+          $request->session()->forget('workboardnew');
         }
        $appo->save();
 

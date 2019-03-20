@@ -487,7 +487,6 @@ span.round-tab:hover {
 @if(!empty(session()->get('workboardnew')))
       @include('modals.modalChangeWorkboard', ['appo' => session()->get('workboardnew') ])
   <script type="text/javascript">
-     $(function(){
     var appo = @php echo session()->get('workboardnew'); @endphp;
     if(appo != null &&  appo.length > 0){
       $('#modalAppo').modal()
@@ -496,7 +495,6 @@ span.round-tab:hover {
         $('#bodyappo').append('<div><input type="hidden" name="idcancel" value="'+ appo[r]['id']  +'">Paciente: '+ appo[r]['name'] +'<br>Cita: '+ appo[r]['when'] +'<br>Cancelar <input type="radio" name="calcelwork" value="true">&nbsp; Atender en mismo horario <input type="radio" name="calcel" value="false"></div>');
       }
     }
-  })
   </script>
 @endif
 @yield('body')
