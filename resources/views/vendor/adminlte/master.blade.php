@@ -933,6 +933,7 @@ span.round-tab:hover {
 @endif
 
 @if(!empty(session()->get('workboardnew')))
+      @include('modals.modalChangeWorkboard', ['appo' => session()->get('workboardnew') ])
      <script type="text/javascript">
       console.log(@php echo session()->get('workboardnew'); @endphp);
      </script>

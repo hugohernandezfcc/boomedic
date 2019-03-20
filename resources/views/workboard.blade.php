@@ -562,14 +562,7 @@ $(function() {
                         }
 		}
 		  var optionhourn = @php echo $new;  @endphp;
-		 var appo = @php echo $appointments; @endphp;
-		if(appo != null &&  appo.length > 0 && optionhourn.length > 0){
-			$('#modalAppo').modal()
-			console.log('citas ' + JSON.stringify(appo));
-			for(var r = 0; r < appo.length; r++){
-				$('#bodyappo').append('<div>Paciente: '+ appo[r]['name'] +'<br>Cita: '+ appo[r]['when'] +'</div>');
-			}
-		}
+
 
           var horn = Array();
           var respn = Array();
