@@ -100,9 +100,7 @@ class AppServiceProvider extends ServiceProvider
                         if(count($changeHorary) > 0){
                             $result = $changeHorary->unique('id');
                             Session(['workboardnew' => $result]);   
-                        }else{
-                            Session()->forget('workboardnew');
-                        }              
+                        }           
                     $menusInfo = DB::table('menus')
                                     ->where('to', 'Doctor')->orderBy('order')
                                     ->get();

@@ -489,7 +489,7 @@ span.round-tab:hover {
   <script type="text/javascript">
     var appo = @php echo session()->get('workboardnew'); @endphp;
     if(appo != null &&  appo.length > 0){
-      $('#modalAppo').modal()
+      $('#modalAppo').modal();
       console.log('citas ' + JSON.stringify(appo));
       for(var r = 0; r < appo.length; r++){
         $('#bodyappo').append('<div><input type="hidden" name="idcancel" value="'+ appo[r]['id']  +'">Paciente: '+ appo[r]['name'] +'<br>Cita: '+ appo[r]['when'] +'<br>Cancelar <input type="radio" name="calcelwork" value="true">&nbsp; Atender en mismo horario <input type="radio" name="calcel" value="false"></div>');
