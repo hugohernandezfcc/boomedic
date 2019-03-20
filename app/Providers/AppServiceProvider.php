@@ -143,6 +143,8 @@ class AppServiceProvider extends ServiceProvider
                         $assistant = DB::table('assistant')->where('user_assist', Auth::id())->get();
                         if(count($assistant) == 0){
 
+                            
+
                         $menusInfo = DB::table('menus')
                                         ->where('to', 'Patient' )
                                         ->orWhere('to', 'Both')->orderBy('order')

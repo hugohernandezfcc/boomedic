@@ -10,9 +10,13 @@
                   </button>
                   <div align="left"><label>¡Algunos pacientes  se habían registrado en el horario anterior!</label></div>
                 </div>
-                    <div class="modal-body" id="bodyappo">
-
+                <form enctype="multipart/form-data" action="{{ url('drAppointments/cancelAppointment') }}" method="post">
+                    <div class="modal-body">
+                        <div id="bodyappo"></div><br>
+                        <div align="right"><button class="btn btn-secondary btn-flat">Confirmar</button></div>
                     </div>
+
+                </form>    
                 </div>
 
       </div> 
