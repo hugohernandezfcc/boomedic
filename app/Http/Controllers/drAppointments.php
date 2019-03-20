@@ -387,7 +387,7 @@ class drAppointments extends Controller
 
                            $time_blockers =  DB::table('time_blockers')->where('professional_inf', '=', $join->id)->get();
                            $cites = DB::table('medical_appointments')->where('workplace', '=', $appo->workplace)->get();
-                           $workboard = DB::table('workboard')->where('labInformation', '=', $appo->workplace)->get();
+                           $workboard = DB::table('workboard')->where('labInformation', '=', $appo->workplace)->where('oldnew','=','old')->get();
                          
                       //Validación 1 alternativo
                           for($s = 0; $s < 10; $s++){
