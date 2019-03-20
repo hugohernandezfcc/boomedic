@@ -457,33 +457,29 @@ class drAppointments extends Controller
     
                                     return $data;
     }
-    public function Definitive($appo,$dr)
+    public function definitive($appo,$dr)
     {
-       //Alternative options
        $optionDrs = [];
        $daydatef = Carbon::parse($appo->when);
                  $specialityDr = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
-                              ->where('labor_information.id','=', $appo->workplace)
                               ->join('users', 'professional_information.user', '=', 'users.id')
+                              ->where('labor_information.id','=', $appo->workplace)
                               ->select('professional_information.*', 'labor_information.latitude', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation','users.id as iddr')
                               ->first();
                  $allSpeciality = DB::table('professional_information')
                               ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
                               ->join('users', 'professional_information.user', '=', 'users.id')
-                              ->where('labor_information.state','=', $specialityDr->state)
                               ->where('labor_information.delegation','=', $specialityDr->delegation)
                               ->where('professional_information.specialty','=', $specialityDr->specialty)
                               ->where('users.id','!=', $specialityDr->iddr)
                               ->select('professional_information.*', 'labor_information.latitude', 'labor_information.id as idli', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation', 'users.name as namedr','users.id as iddr', 'labor_information.colony', 'labor_information.street', 'labor_information.streetNumber')
                               ->get();             
-
                               foreach($allSpeciality as $sp){
                                    $distance = $this->LatLong($specialityDr->latitude, $specialityDr->longitude, $sp->latitude, $sp->longitude);
                                    array_push($optionDrs, ['name' => $sp->namedr, 'distance' => $distance, 'idli' => $sp->idli, 'direction' => $sp->state .', '. $sp->delegation . ', '.$sp->colony. ' '.$sp->street .''.$sp->streetNumber]);
                               }
                          
-
                           //Validación definitive
                           $data = [
                                     'reason'         => $appo->reasontocancel,

@@ -136,7 +136,7 @@
 </table>
 		</form>
 				@else
-				   @if($alldr)
+				   @if(count($alldr) > 0)
 				<div class="box-header with-border">
 				    <h3 class="box-title">{!! $dr !!} ha cancelado tu cita {!! $reason !!} de forma definitiva, te mostramos otros doctores de la misma especialidad cercanos a tu cita para que puedas reagendar</h3>
 			  	</div>
