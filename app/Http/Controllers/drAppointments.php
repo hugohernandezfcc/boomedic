@@ -151,12 +151,14 @@ class drAppointments extends Controller
                         });
 
         }else{
-          if($request->calcelwork == 'true'){  
-              foreach($request->idcancel as $key => $n ){
+
+           foreach($request->idcancel as $key => $n ){
+              if($request->calcelwork[$n] == 'true'){  
                $id = $n;
                $appo = medical_appointments::find($id);
                $appo->status = 'No completed';
                $appo->sub_status = 'cancel by doctor';
+               $appo->reschedule_options = false;
                $appo->reasontocancel = 'por cambio de horario';
                $appo->save();
                             $data = $this->alternative($appo, $user->name);
@@ -164,6 +166,11 @@ class drAppointments extends Controller
                             $message->subject('Tu cita ha sido cancelada');
                             $message->to('contacto@doitcloud.consulting');
                         });
+              }else{
+                 $id = $n;
+                 $appo = medical_appointments::find($id);
+                 $appo->reschedule_options = false;
+                 $appo->save();
               }
           $request->session()->forget('workboardnew');
           }

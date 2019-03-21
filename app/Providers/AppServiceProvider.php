@@ -91,7 +91,7 @@ class AppServiceProvider extends ServiceProvider
                                     ->join('workboard', 'medical_appointments.workplace', '=', 'workboard.labInformation')
                                     ->join('users', 'medical_appointments.user', '=', 'users.id')
                                     ->where('medical_appointments.user_doctor', '=', Auth::id())
-                                    ->where('medical_appointments.status', '!=', 'No completed')
+                                    ->where('medical_appointments.reschedule_options', '=', true)
                                     ->where('workboard.oldnew','new')
                                     ->wheredate('when', '>', Carbon::today())
                                     ->select('medical_appointments.*', 'users.name', 'users.profile_photo')
