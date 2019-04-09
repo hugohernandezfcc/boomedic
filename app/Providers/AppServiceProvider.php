@@ -167,13 +167,13 @@ class AppServiceProvider extends ServiceProvider
                                 for ($o=0; $o < $menusInfo->count(); $o++) { 
 
                                             if($menusInfo[$o]->parent == $menusInfo[$i]->id ){
-                                               if(count($clinic_history) == 0 && $menusInfo[$i]->id == 7){
+                                               if(count($clinic_history) == 0 && $menusInfo[$o]->id == 7){
                                                      $event->menu->add([
                                                         'text'   => $menusInfo[$o]->text,
                                                         'url'    => $menusInfo[$o]->url,
                                                         'icon'   => $menusInfo[$o]->icon,
                                                         'active' => [$menusInfo[$o]->url, explode('/', $menusInfo[$o]->url)[0] . '/*'],
-                                                        'label'  => '0',
+                                                        'label'  => 'Pendiente',
                                                         'label_color' => 'yellow'
 
                                                     ]);
