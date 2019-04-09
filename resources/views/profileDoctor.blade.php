@@ -558,7 +558,7 @@
 
 	            <ul class="list-group list-group-unbordered">
 	                <li class="list-group-item">
-	                 	<b>Familiares</b> <a class="pull-right">2</a>
+	                 	<b>Asistentes</b> <a class="pull-right">2</a>
 	                </li>
 	                <li class="list-group-item">
 	                  	<b>No. de citas</b> <a class="pull-right">1</a>
@@ -748,7 +748,7 @@
 			         	    	<div class="input-group">
 				                <input type="text" name="question" id="question" class="form-control" placeholder="Escriba una pregunta para la información necesaria previa a la cita" required autocomplete="off">
 				                    <span class="input-group-btn">
-				                    <button class="btn btn-flat btn-secondary"><span class="fa fa-plus"></span></button>
+				                    <button class="btn btn-flat btn-secondary" onclick="document.getElementById('question').disabled = true;"><span class="fa fa-plus"></span></button>
 				                    </span>
 				              </div>
 			         	    	<br/>
