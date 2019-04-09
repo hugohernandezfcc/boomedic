@@ -55,8 +55,8 @@
                                                       success: function(result){
                                                         var med = result;
                                                         if(result.length == 0){
-                                                          $('#activemed').html('<li style="color:white;">No hay tratamientos Activos</li>');
-                                                          $('#allmed').html('<li style="color:white;">No hay tratamientos guardados</li>');
+                                                          $('.displayall').show();
+                                                          $('.displayactive').show();
                                                         }else{
                                                           var countact = 0;
                                                           var countfin = 0;
@@ -120,7 +120,7 @@
                                 <!-- Home tab content -->
                                 <div class="tab-pane active" id="control-sidebar-home-tab">
                                   <h4 class="control-sidebar-heading">Tratamiento Activo</h4>
-                                  <div class="control-sidebar-heading displayactive" style="display: none; color:white;">No hay tratamientos Activos</div>
+                                  <div class="control-sidebar-heading displayactive" style="display: none; color:white; font-size: 13px !important;">No hay tratamientos Activos</div>
                                     <ul class="control-sidebar-menu timeline" id="activemed">
 
                                     </ul>         
@@ -128,7 +128,7 @@
                                 </div>
                                 <div id="control-sidebar-theme-demo-options-tab" class="tab-pane"><div>
                                   <h4 class="control-sidebar-heading">Todos los tratamientos</h4>
-                                   <div class="control-sidebar-heading displayall" style="display: none; color:white;">No hay tratamientos anteriores o sin iniciar</div>
+                                   <div class="control-sidebar-heading displayall" style="display: none; color:white; font-size: 13px !important;">No hay tratamientos anteriores o por iniciar</div>
                                        <ul class="control-sidebar-menu timeline" id="allmed">
                                         </ul> 
                                 </div></div>
