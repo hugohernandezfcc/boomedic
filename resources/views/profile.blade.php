@@ -505,7 +505,7 @@
                 @endif
               </p>
 
-              <hr>
+              <hr style="margin-top: 10px !important; margin-bottom: 10px !important;">
 
 
               <strong><i class="fa fa-pencil margin-r-5"></i> Prescripción médica actual</strong>
@@ -514,7 +514,7 @@
                 <span class="label label-info">{{$current_prescription}}</span>
               </p>
 
-              <hr>
+              <hr style="margin-top: 10px !important; margin-bottom: 10px !important;">
 
               <strong><i class="fa fa-file-text-o margin-r-5"></i> Miembro desde</strong>
               <p>{{$created_at}}</p>
