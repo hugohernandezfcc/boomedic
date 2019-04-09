@@ -491,7 +491,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Educación</strong>
+              <strong><i class="fa fa-book margin-r-5"></i>Educación / Ocupación</strong>
 
               <p class="text-muted">
               	@if(empty($scholarship) && empty($occupation))
@@ -500,24 +500,13 @@
                 	<a href="#">Agregar Escolaridad</a> / {{ $occupation }}
                 @elseif(!empty($scholarship) && empty($occupation))
                 	{{ $scholarship }} / <a href="#">Agregar ocupación</a>
+                @elseif(!empty($scholarship) && !empty($occupation))
+                	{{ $scholarship }} / {{ $occupation }}
                 @endif
               </p>
 
               <hr>
 
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Dirección</strong>
- 
-              	<p class="text-muted">
-	              	@if(empty($colony) && empty($state))
-	                	<a href="#">Agregar dirección</a>
-	                @elseif(empty($colony) && !empty($state))
-	                	<a href="#">Agregar colonia</a>, {{$state}} {{$country}}
-	                @elseif(!empty($colony) && empty($state))
-	                	{{ $colony }}, <a href="#">Agregar estado</a> {{$country}}
-	                @endif
-				</p>
-
-              <hr>
 
               <strong><i class="fa fa-pencil margin-r-5"></i> Prescripción médica actual</strong>
 
@@ -564,12 +553,6 @@
 	                         
 	                        </div>
 	                        <div class="row">
-	                         
-	                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
-	                         
-	                        </div>
-	                        <div class="row">
 	                        
 	                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
 	                            @if($gender == "female")
@@ -582,12 +565,6 @@
 	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
 	                            @endif
 	                      
-	                        </div>
-	                        <div class="row">
-	                         
-	                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
-	                    
 	                        </div>
 	                        <div class="row">
 	                         
