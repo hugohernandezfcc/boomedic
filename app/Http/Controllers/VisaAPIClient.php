@@ -54,7 +54,7 @@ class VisaAPIClient extends Controller {
 		$curl = curl_init ();
 		$method = strtolower ( $method );
 		$certificatePath = asset('cert.pem');
-		$privateKey = asset('key_d14c9655-4439-4901-84bd-3bbf757a1892');
+		$privateKey = asset('key_372a5443-c24c-4e9e-adb9-9937ea41e7b9.pem');
 		$userId = env('VISA_USERID');
 		$password = env('VISA_PASSWORD');
 		$absUrl = 'https://sandbox.api.visa.com/'.$path;

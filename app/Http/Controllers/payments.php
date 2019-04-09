@@ -227,7 +227,7 @@ class payments extends Controller
                     'payment' => [
                       'cardNumber'=> $card->cardnumber,
                       'cardExpirationMonth' => $card->month,
-                      'cardExpirationYear' =>  $card->year,
+                      'cardExpirationYear' =>  '2020',
                       'cvn' => $card->cvv
                     ]
                     ] );
@@ -237,7 +237,7 @@ class payments extends Controller
                     //apykey lo proporcionaVISA
                     $queryString = 'apikey='.env('VISA_APIKEY');
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
-        
+                    print_r($statusCode);
          if($statusCode[0] == '201'){
             $this->AcceptedPayment($transaction, $statusCode[1], $user);
          }
