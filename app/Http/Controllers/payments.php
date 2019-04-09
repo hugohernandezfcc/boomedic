@@ -228,7 +228,7 @@ class payments extends Controller
                       'cardNumber'=> $card->cardnumber,
                       'cardExpirationMonth' => $card->month,
                       'cardExpirationYear' =>  '2020',
-                      'cvn' => $card->cvv
+                      'cnv' => $card->cvv
                     ]
                     ] );
 
