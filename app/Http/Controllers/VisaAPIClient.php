@@ -109,8 +109,9 @@ class VisaAPIClient extends Controller {
 		$curl = curl_init ();
 		$method = strtolower ( $method );
 		//These data are provided by visa.
-		$userId = env('VISA_USERID');
-		$password = env('VISA_PASSWORD');
+		$sharedSecret = env('VISA_SHARETSECRET');
+		$apiKey = env('VISA_APIKEY');
+
 		//To determine what time the service started.
 		$time = time(); 
 		$preHashString = $time.$resource_path.$query_string.$requestBodyString; 
