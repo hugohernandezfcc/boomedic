@@ -141,6 +141,12 @@ class profile extends Controller
             }
         }
 
+        $appointments = DB::table('medical_appointments')
+                        ->where('user', '=', Auth::id())
+                        ->get();
+        $payments = DB::table('paymentsmethods')
+                    ->where('owner','=', Auth::id())
+                        ->get();              
 
         return view('profile', [
                 
@@ -184,7 +190,10 @@ class profile extends Controller
                 'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
                 'longitude'     => (   empty($users[0]->longitude)      ) ? '' : $users[0]->longitude,
                 'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
-                'nodes'         => json_encode($nodes)
+                'nodes'         => json_encode($nodes),
+                'countfamily'   => count($family),
+                'countappo'     => count($appointments),
+                'countpayments' => count($payments)
             ]
         );
     }

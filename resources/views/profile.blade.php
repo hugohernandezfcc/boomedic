@@ -464,13 +464,13 @@
 
 	            <ul class="list-group list-group-unbordered">
 	                <li class="list-group-item">
-	                 	<b>Familiares</b> <a class="pull-right">2</a>
+	                 	<b>Familiares</b> <a class="pull-right">{{ $countfamily }}</a>
 	                </li>
 	                <li class="list-group-item">
-	                  	<b>No. de citas</b> <a class="pull-right">1</a>
+	                  	<b>No. de citas</b> <a class="pull-right">{{ $countappo }}</a>
 	                </li>
 	                <li class="list-group-item">
-	                  	<b>No. métodos de pago</b> <a class="pull-right">5</a>
+	                  	<b>No. métodos de pago</b> <a class="pull-right">{{ $countpayments }}</a>
 	                </li>
 	            </ul>
 
