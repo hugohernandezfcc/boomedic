@@ -619,6 +619,7 @@
 		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
 		              	<li><a href="#Asistant" id="four" data-toggle="tab">Asistentes</a></li>
 		              	<li><a href="#laborInformation" data-toggle="tab">Consultorios</a></li>
+		              	<li><a href="#configClinic" data-toggle="tab">Cuestionario de historia clínica</a></li>
 		            </ul>
 
 		            <div class="tab-content">
@@ -741,6 +742,11 @@
 									   </form>
 									</div>
 						   </div>			
+		         	    </div>
+		         	    <div class="tab-pane" id="configClinic">
+			         	    <div class="box-body"> 
+			         	    	<input type="text" name="question" id="question" class="form-control" placeholder="Escriba una pregunta necesaria para la historia clínica" required autocomplete="off">
+			         	    </div>	
 		         	    </div>
 		         	</div>
 		        </div>
