@@ -619,7 +619,7 @@
 		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
 		              	<li><a href="#Asistant" id="four" data-toggle="tab">Asistentes</a></li>
 		              	<li><a href="#laborInformation" data-toggle="tab">Consultorios</a></li>
-		              	<li><a href="#configClinic" data-toggle="tab">Cuestionario de historia clínica</a></li>
+		              	<li><a href="#configClinic" data-toggle="tab">Preguntas previa cita</a></li>
 		            </ul>
 
 		            <div class="tab-content">
@@ -745,7 +745,21 @@
 		         	    </div>
 		         	    <div class="tab-pane" id="configClinic">
 			         	    <div class="box-body"> 
-			         	    	<input type="text" name="question" id="question" class="form-control" placeholder="Escriba una pregunta necesaria para la historia clínica" required autocomplete="off">
+			         	    	<div class="input-group">
+				                <input type="text" name="question" id="question" class="form-control" placeholder="Escriba una pregunta para la información necesaria previa a la cita" required autocomplete="off">
+				                    <span class="input-group-btn">
+				                    <button class="btn btn-flat btn-secondary"><span class="fa fa-plus"></span></button>
+				                    </span>
+				              </div>
+			         	    	<br/>
+			         	    	<div class="well well-sm">
+			         	    		<label class="text-muted">Preguntas añadidas</label>
+				         	    		<div id="searchQuestions">
+				         	    			<div>pregunta</div>
+				         	    			<div>Respuesta</div>
+				         	    		</div>	
+			         	    	</div>
+
 			         	    </div>	
 		         	    </div>
 		         	</div>
@@ -809,6 +823,14 @@
                     </div>
                 </div>
       <script type="text/javascript">
+
+
+		            $("#question").on("keyup", function() {
+		                var value = $(this).val().toLowerCase();
+		                $("#searchQuestions div").filter(function() {
+		                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		                });
+		              });
           			function fun(a) {
 							    document.getElementById('sea').value = a.getAttribute("data-value");
 							    document.getElementById('idassist').value = a.getAttribute("data-id");
