@@ -126,6 +126,11 @@ class AppServiceProvider extends ServiceProvider
                     }
 
                 }else{
+
+                    //patient 
+
+
+
                      if($confirmed->confirmed == false){
                             $event->menu->add([
                                 'text' => ' Confirmación de correo',
@@ -148,6 +153,11 @@ class AppServiceProvider extends ServiceProvider
                                         ->where('to', 'Patient' )
                                         ->orWhere('to', 'Both')->orderBy('order')
                                         ->get();
+                        $clinic_history = DB::table('clinic_history')
+                                        ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                                        ->where('userid', Auth::id())
+                                        ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+                                        ->get();                
 
                         for ($i=0; $i < $menusInfo->count(); $i++) { 
                             if($menusInfo[$i]->typeitem == 'section' ){
@@ -155,16 +165,28 @@ class AppServiceProvider extends ServiceProvider
                                 $event->menu->add( $menusInfo[$i]->text );
                                 
                                 for ($o=0; $o < $menusInfo->count(); $o++) { 
-                                    if($menusInfo[$o]->parent == $menusInfo[$i]->id ){
 
-                                        # Se agregan los items de la sección.
-                                        $event->menu->add([
-                                            'text'   => $menusInfo[$o]->text,
-                                            'url'    => $menusInfo[$o]->url,
-                                            'icon'   => $menusInfo[$o]->icon,
-                                            'active' => [$menusInfo[$o]->url, explode('/', $menusInfo[$o]->url)[0] . '/*']
-                                        ]);
-                                    }
+                                            if($menusInfo[$o]->parent == $menusInfo[$i]->id ){
+                                               if(count($clinic_history) == 0 && $menusInfo[$i]->id == 7){
+                                                     $event->menu->add([
+                                                        'text'   => $menusInfo[$o]->text,
+                                                        'url'    => $menusInfo[$o]->url,
+                                                        'icon'   => $menusInfo[$o]->icon,
+                                                        'active' => [$menusInfo[$o]->url, explode('/', $menusInfo[$o]->url)[0] . '/*'],
+                                                        'label'  => '0',
+                                                        'label_color' => 'yellow'
+
+                                                    ]);
+                                                }else{ 
+                                                        # Se agregan los items de la sección.
+                                                $event->menu->add([
+                                                    'text'   => $menusInfo[$o]->text,
+                                                    'url'    => $menusInfo[$o]->url,
+                                                    'icon'   => $menusInfo[$o]->icon,
+                                                    'active' => [$menusInfo[$o]->url, explode('/', $menusInfo[$o]->url)[0] . '/*']
+                                                ]);
+                                               }
+                                            }
                                 }
                             }
                         }

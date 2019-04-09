@@ -12,7 +12,7 @@
 
 
             @if (isset($item['label']))
-                <span class="pull-right-container">
+                <span class="pull-right-container" id="clinicnew">
                     <span class="label label-{{ $item['label_color'] or 'primary' }} pull-right">{{ $item['label'] }}</span>
                 </span>
             
