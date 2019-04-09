@@ -926,7 +926,7 @@
 		         	    </div>
 		         	    <div class="tab-pane" id="address">
 
-		         	    	<div align="center">
+		         	    	<div class="box-body" align="center">
 		         	    		
 		         	    		@if($latitude == "" && $longitude == "")
 		                    	         @include('empty.emptyData', 
