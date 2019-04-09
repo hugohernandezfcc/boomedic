@@ -53,8 +53,8 @@ class VisaAPIClient extends Controller {
 	public function doMutualAuthCall($method, $path, $testInfo, $requestBodyString, $inputHeaders = array()) {
 		$curl = curl_init ();
 		$method = strtolower ( $method );
-		$certificatePath = '';
-		$privateKey = '';
+		$certificatePath = asset('cert.pem');
+		$privateKey = asset('key_372a5443-c24c-4e9e-adb9-9937ea41e7b9.pem');
 		$userId = env('VISA_USERID');
 		$password = env('VISA_PASSWORD');
 		$absUrl = 'https://sandbox.api.visa.com/'.$path;
@@ -109,8 +109,8 @@ class VisaAPIClient extends Controller {
 		$curl = curl_init ();
 		$method = strtolower ( $method );
 		//These data are provided by visa.
-		$sharedSecret = 'ooOGbyz5iGqkRE3bz5YbQrN7Us6Dtt#{2#$1nXk2';
-		$apiKey = 'RY6NDJNX3Q2NDWVYUBQW21N37pbnY719X0SqzEs_CDSZbhFro';
+		$userId = env('VISA_USERID');
+		$password = env('VISA_PASSWORD');
 		//To determine what time the service started.
 		$time = time(); 
 		$preHashString = $time.$resource_path.$query_string.$requestBodyString; 
