@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/hugohernandez', function () {
+    return view('auth.login');
+});
 
 
 Route::get('/', function () {
