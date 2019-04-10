@@ -22,6 +22,9 @@ use App\Medications;
 use App\recipes_tests;
 use App\cli_recipes_tests;
 
+use App\Http\Controllers\DoctorController;
+
+
 class HomeController extends Controller
 {
     /**
@@ -29,8 +32,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth');
     }
 
@@ -41,6 +43,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
          /*$redis = Redis::connection();
          $data = ['message' => 'hola'];
          $redis->publish('message', json_encode($data));
@@ -49,29 +52,39 @@ class HomeController extends Controller
          $user = User::find(Auth::id());
          $uuid = session()->get('uuid');
 
-          if($agent->isMobile() && $uuid != "null"){
+
+        $DoctorController = new DoctorController();
+        $DoctorController->index();
+
+        $agent = new Agent();
+        $user = User::find(Auth::id());
+        $uuid = session()->get('uuid');
+
+        if($agent->isMobile() && $uuid != "null"){
             if($uuid){
                 $device = DB::table('devices')->where('uuid_device', $uuid)->get();
-                $old =  DB::table('users_devices')->where(
-                [
+                $old =  DB::table('users_devices')->where([
                     ['device', '=', $device[0]->id],
                     ['user_id', '=',  $user->id]
-                ]
-            )->get();
+                ])->get();
+
                 if(count($old) == 0){
                     $ud = new users_devices;
                     $ud->user_id = $user->id;
                     $ud->device = $device[0]->id;
                     if($ud->save())
+
                     Session(['uuid' => $uuid]);    
+              }
+
             }
-            }
-          }
+        }
 
 
 
         Session(['entered' => $user->entered]);
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
+
         $StatementForUser = $user->privacy_statement;
         $appointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
@@ -87,6 +100,8 @@ class HomeController extends Controller
             ->join('users', 'professional_information.user', '=', 'users.id')
             ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'professional_information.id as prof', 'users.id AS dr', 'users.profile_photo')
             ->get();
+
+
          $time_blockers =  DB::table('time_blockers')->get();
          $cites = DB::table('medical_appointments')->get();
          $workboard = DB::table('workboard')->where('oldnew','old')->get();
@@ -152,11 +167,10 @@ class HomeController extends Controller
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
                     'gender'    => $user->gender
-                   
+                 
                 ]
             );
-        }     
-        elseif(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+        }else if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
                     'privacy'   => $privacyStatement[0],
@@ -167,14 +181,15 @@ class HomeController extends Controller
                     'date'      => $user->created_at,
                     'gender'    => $user->gender,
                     'mode'      => $mode,
-                   
                 ]
             );
-        }
+        }     
+        
 
         $profInfo = DB::table('professional_information')
                             ->where('user', Auth::id() )
                             ->get();
+
         $statusRecordUser = DB::table('users')->where('id', Auth::id() )->value('status');
         if($profInfo->count() > 0 && $user->confirmed == false){
                return view('confirme', [
@@ -187,8 +202,7 @@ class HomeController extends Controller
                    
                 ]
             );
-        }  
-        elseif($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+        }else if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
                     'privacy'   => $privacyStatement[0],
@@ -202,11 +216,14 @@ class HomeController extends Controller
                    
                 ]
             );
-        }
+        }  
+        
         if ($profInfo->count() > 0 && $statusRecordUser == 'In Progress') {
             Session(['utype' => 'doctor']);
             return redirect('doctor/edit/In%20Progress');
         }
+
+
         if ($profInfo->count() > 0 && $statusRecordUser != 'In Progress') {
              Session(['utype' => 'doctor']);
                     $countpaid = 0;
@@ -251,6 +268,7 @@ class HomeController extends Controller
              ->where('user_assist', Auth::id())
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
              ->get();
+
                         if(count($assistant) == 0){
 
                              Session(['utype' => 'mortal']); 
@@ -354,6 +372,7 @@ class HomeController extends Controller
                                     ]
                                 );
                             }
+
 
         }
     }
@@ -596,8 +615,8 @@ class HomeController extends Controller
      */
     public function appointments(){
 
-         $user = User::find(Auth::id());
-         $appointments = DB::table('medical_appointments')
+        $user = User::find(Auth::id());
+        $appointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
            ->join('professional_information', 'medical_appointments.user_doctor', '=', 'professional_information.user')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
@@ -605,7 +624,7 @@ class HomeController extends Controller
            ->where('medical_appointments.when', '>', Carbon::now())
            ->select('medical_appointments.id as mid','medical_appointments.created_at','users.name', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.*', 'professional_information.specialty','users.profile_photo')->get();
 
-                 return view('appointments', [
+            return view('appointments', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,

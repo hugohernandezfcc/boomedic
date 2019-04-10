@@ -696,6 +696,7 @@ class doctor extends Controller
         return redirect('doctor/doctor/' . $id );
         }
     }
+
     public function cropDoctor(Request $request, $id)
     {     $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
@@ -707,13 +708,16 @@ class doctor extends Controller
           }else{
               $user = User::find(Auth::id());
           }
+
         $targ_w = $targ_h = 300;
         $jpeg_quality = 90;
         $src = $user->profile_photo;
         $img_r = imagecreatefromjpeg($src);
         $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
         imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
             $targ_w,$targ_h,$request->w,$request->h);
+
         $filename = $id.'.jpg';
         $path2= 'https://s3.amazonaws.com/'. env('S3_BUCKET') .'/'. $filename;
         
@@ -752,6 +756,7 @@ class doctor extends Controller
         imagepng($image);
         $png_file = ob_get_contents();
         ob_end_clean();
+
         Storage::disk('s3')->put( $id.'-circle.png',  $png_file, 'public');
         //Imagen copia circular//
             return redirect('doctor/edit/complete' . $id );
