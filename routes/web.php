@@ -230,7 +230,11 @@ Route::group(['prefix' => 'doctor'], function(){
 			'as'	=>	'laborInformation'
 		]
 	);
-
+	Route::post('saveQuestions', [
+			'uses'	=>	'doctor@saveQuestions',
+			'as'	=>	'saveQuestions'
+		]
+	);
 	Route::get('doctor/{id}', [
 			'uses'	=>	'doctor@show',
 			'as'	=>	'doctor'

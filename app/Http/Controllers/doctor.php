@@ -15,6 +15,10 @@ use Carbon\Carbon;
 use App\professional_information;
 use App\assistant;
 use Mail;
+use questions_clinic_history;
+use answers_clinic_history;
+
+
 class doctor extends Controller
 {
     /**
@@ -598,6 +602,8 @@ class doctor extends Controller
             ]
         );
     }
+
+
     public function laborInformationView($id)
     {    
         $user2 = User::find(Auth::id());
@@ -646,6 +652,8 @@ class doctor extends Controller
             ]
         );
     }
+
+
     public function updateDoctor(Request $request, $id)
     {    $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
@@ -794,6 +802,46 @@ class doctor extends Controller
              ->get();
         return response()->json($assistants);
     }
+
+    /**
+     * Save question and answers to doctor
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function saveQuestions(Request $request)
+    {
+      $user = User::find(Auth::id());
+
+      $question = new questions_clinic_history;
+      $question->createdby = $user->id;
+      $question->question = $request->question;
+      $question->type = "Previa cita";
+
+      if($question->save()){
+            $answer = new answers_clinic_history;
+            $answer->question = $question->id;
+            $answer->createdby = $user->id;
+
+            if($request->type == 'texto')
+                $answer->answer = ["texto"];
+            if($request->type == 'radio'){
+                $option = $request->optionsradio;
+                $arrayOption = explode(";", $option);
+
+                $answer->answer = $arrayOption;
+            }
+            if($request->type == 'checkbox'){
+                $option = $request->optionscheck;
+                $arrayOption = explode(";", $option);
+                
+                $answer->answer = $arrayOption;
+            }
+            $answer->save();
+        }    
+        return response()->json($question);
+    }
+    
 
 
     /**
