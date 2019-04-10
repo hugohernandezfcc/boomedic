@@ -852,7 +852,7 @@
 								});
 								</script>
 
-								<label class="text-muted">Configuración de respuestas</label>
+								<label class="text-muted">Configuración de respuestas</label><br>
 								<div class="stepwizard">
 					                <div class="stepwizard-row setup-panel">
 					                    <div class="stepwizard-step">
@@ -876,7 +876,12 @@
                            <div class="row setup-content" id="step-1">
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
-			                        		<b>Selección única</b><br>
+			                        		<div class="radio"><label><input type="radio" name="type" value="radio" checked="" onclick="$('#check').show();">Selección única</label></div><br>
+												<div class="form-group" style="display: none;" id="check">
+								                  <label>Escriba las opciones separadas por ;</label>
+								                  <textarea class="form-control" rows="3" placeholder="Opción 1; Opción 2; Opción 3" name="optionsradio"></textarea>
+								                </div>
+
 				                         <!-- <span class="text-muted fa fa-question-circle">Respuestas de alternativa simple (dicotómicas), cuando sólo es posible una respuesta (sí o no, hombre o mujer)</span>
 				                       --></div>  
 			                         </div>    
@@ -886,8 +891,11 @@
 			               <div class="row setup-content" id="step-2">
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
-			                          <b>Selección múltiple</b>  
-			                            <!-- content go here -->
+			                          <div class="radio"><label><input type="radio" name="type" value="checkbox" checked="" onclick="$('#check2').show();">Selección múltiple</label></div>
+			                          		<div class="form-group" style="display: none;" id="check2">
+								                  <label>Escriba las opciones separadas por ;</label>
+								                  <textarea class="form-control" rows="3" placeholder="Opción 1; Opción 2; Opción 3" name="optionscheck"></textarea>
+								            </div>
 			                       </div>
 			                    </div>    
 			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
@@ -896,7 +904,7 @@
 			               <div class="row setup-content" id="step-3">
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
-			                          <b>Texto abierto</b>  
+			                          <div class="radio"><label><input type="radio" name="type" value="texto" checked="">Texto abierto</label></div>
 			                            <!-- content go here -->
 			                       </div>
 			                    </div>    
