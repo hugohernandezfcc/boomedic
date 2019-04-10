@@ -214,7 +214,7 @@ class HomeController extends Controller
                     'mode'      => $mode,
                     'gender'    => $user->gender
                    
-                ]
+                ] 
             );
         }  
         
