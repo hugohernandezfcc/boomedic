@@ -22,7 +22,7 @@ return [
     'sign_in'                     => 'Entrar',
     'log_out'                     => 'Salir',
     'toggle_navigation'           => 'Navegación de palanca',
-    'login_message'               => 'Inicio de sesión',
+    'login_message'               => 'Iniciar sesión',
     'register_message'            => 'Registre una nueva cuenta',
     'password_reset_message'      => 'Restablecer la contraseña',
     'reset_password'              => 'Restablecer la contraseña',
