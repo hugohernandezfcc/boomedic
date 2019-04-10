@@ -826,11 +826,11 @@ class doctor extends Controller
             if($request->type == 'texto')
                 $answer->answer = ["texto"];
             if($request->type == 'radio'){
-                $answer->answer = $request->options;
+                $answer->answer = json_decode($request->options);
             }
             if($request->type == 'checkbox'){
                 
-                $answer->answer = $request->options;
+                $answer->answer = json_decode($request->options);
             }
             $answer->save();
         }    
