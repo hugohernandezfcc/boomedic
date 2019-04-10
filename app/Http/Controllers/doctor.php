@@ -818,12 +818,12 @@ class doctor extends Controller
     {
       $user = User::find(Auth::id());
 
-      $question = new questions_clinic_history;
-      $question->createdby = $user->id;
-      $question->question = $request->question;
-      $question->type = "Previa cita";
-
-      if($question->save()){
+      $ques = new questions_clinic_history;
+      $ques->createdby = $user->id;
+      $ques->question = $request->question;
+      $ques->type = "Previa cita";
+      $ques->save();
+      /*if($question->save()){
             $answer = new answers_clinic_history;
             $answer->question = $question->id;
             $answer->createdby = $user->id;
@@ -831,20 +831,15 @@ class doctor extends Controller
             if($request->type == 'texto')
                 $answer->answer = ["texto"];
             if($request->type == 'radio'){
-                $option = $request->optionsradio;
-                $arrayOption = explode(";", $option);
-
-                $answer->answer = $arrayOption;
+                $answer->answer = json_decode($request->options);
             }
             if($request->type == 'checkbox'){
-                $option = $request->optionscheck;
-                $arrayOption = explode(";", $option);
                 
-                $answer->answer = $arrayOption;
+                $answer->answer = json_decode($request->options);
             }
             $answer->save();
-        }    
-        return response()->json($question);
+        }   */ 
+        return response()->json($request->question);
     }
     
 
