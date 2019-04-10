@@ -71,6 +71,53 @@
 		  white-space:nowrap; 
 		  overflow:hidden; 
 		}
+.stepwizard-step p {
+    margin-top: 10px;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard {
+    display: table;
+    width: 100%;
+    position: relative;
+}
+
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-order: 0;
+
+}
+
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
     </style>
 @stop
 
@@ -748,19 +795,126 @@
 			         	    	<div class="input-group">
 				                <input type="text" name="question" id="question" class="form-control" placeholder="Escriba una pregunta para la información necesaria previa a la cita" required autocomplete="off">
 				                    <span class="input-group-btn">
-				                    <button class="btn btn-flat btn-secondary" onclick="document.getElementById('question').disabled = true;"><span class="fa fa-plus"></span></button>
+				                    <button class="btn btn-flat btn-secondary" onclick="nextQues();"><span class="fa fa-plus"></span></button>
 				                    </span>
 				              </div>
 			         	    	<br/>
-			         	    	<div class="well well-sm">
+			         	    	<div class="well well-sm" id="box-question">
 			         	    		<label class="text-muted">Preguntas añadidas</label>
 				         	    		<div id="searchQuestions">
 				         	    			<div>pregunta</div>
 				         	    			<div>Respuesta</div>
 				         	    		</div>	
 			         	    	</div>
+			         	    	<div style="display: none;" id="box-question-save">
+								<script type="text/javascript">
+								$(document).ready(function () {
+								    var navListItems = $('div.setup-panel div a'), // tab nav items
+								            allWells = $('.setup-content'), // content div
+								            allNextBtn = $('.nextBtn'); // next button
 
-			         	    </div>	
+								    allWells.hide(); // hide all contents by defauld
+
+								    navListItems.click(function (e) {
+								        e.preventDefault();
+								        var $target = $($(this).attr('href')),
+								                $item = $(this);
+
+								        if (!$item.hasClass('disabled')) {
+								            navListItems.removeClass('btn-secondary').addClass('btn-default');
+								            $item.addClass('btn-secondary');
+								            allWells.hide();
+								            $target.show();
+								            $target.find('input:eq(0)').focus();
+								        }
+								    });
+								    // next button
+								    allNextBtn.click(function(){
+								        var curStep = $(this).closest(".setup-content"),
+								            curStepBtn = curStep.attr("id"),
+								            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+								            curInputs = curStep.find("input[type='text'],input[type='email'],input[type='password'],input[type='url']"),
+								            isValid = true;
+								           // Validation
+								        $(".form-group").removeClass("has-error");
+								        for(var i=0; i<curInputs.length; i++){
+								            if (!curInputs[i].validity.valid){
+								                isValid = false;
+								                $(curInputs[i]).closest(".form-group").addClass("has-error");
+								            }
+								        }
+								        // move to next step if valid
+								        if (isValid)
+								            nextStepWizard.removeAttr('disabled').trigger('click');
+								    });
+
+								    $('div.setup-panel div a.btn-secondary').trigger('click');
+								});
+								</script>
+
+								<label class="text-muted">Configuración de respuestas</label>
+								<div class="stepwizard">
+					                <div class="stepwizard-row setup-panel">
+					                    <div class="stepwizard-step">
+					                        <a href="#step-1" type="button" class="btn btn-secondary btn-circle"><i class="glyphicon glyphicon-check"></i></a>
+					                        
+					                    </div>
+					                    
+					                    <div class="stepwizard-step">
+					                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="glyphicon glyphicon-list-alt"></i></a>
+					                    </div>
+					                    
+					                    <div class="stepwizard-step">
+					                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-pencil"></i></a>
+					                    </div>
+					                    <div class="stepwizard-step">
+					                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="glyphicon glyphicon-ok"></i></a>
+					                    </div>
+					                    
+					                </div>
+					            </div><br>
+                           <div class="row setup-content" id="step-1">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12">
+			                        		<b>Selección única</b><br>
+				                         <!-- <span class="text-muted fa fa-question-circle">Respuestas de alternativa simple (dicotómicas), cuando sólo es posible una respuesta (sí o no, hombre o mujer)</span>
+				                       --></div>  
+			                         </div>    
+			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+              			    </div>
+
+			               <div class="row setup-content" id="step-2">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12">
+			                          <b>Selección múltiple</b>  
+			                            <!-- content go here -->
+			                       </div>
+			                    </div>    
+			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+			               </div>
+
+			               <div class="row setup-content" id="step-3">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12">
+			                          <b>Texto abierto</b>  
+			                            <!-- content go here -->
+			                       </div>
+			                    </div>    
+			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+			               </div>
+			               	<div class="row setup-content" id="step-4">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12">
+			                         <b>Finalizar</b>   
+			                            <!-- content go here -->
+			                     	</div>
+			                    </div>       
+			                            <button class="btn btn-secondary nextBtn btn-flat pull-right" type="submit">Guardar configuración</button>
+			               </div>
+			               			<hr>
+			         	    		<div align="left"><button class="btn btn-flat btn-default btn-sm" onclick="cancelQuestion();">Cancelar</button></div>
+			         	    	</div>	
+			         	    </div>
 		         	    </div>
 		         	</div>
 		        </div>
@@ -824,6 +978,18 @@
                 </div>
       <script type="text/javascript">
 
+      				function nextQues(){
+      					document.getElementById('question').disabled = true;
+      					$('#box-question').hide();
+      					$('#box-question-save').show();
+      					$('div.setup-panel div a[href="#step-1"]').click();
+      				}
+      				function cancelQuestion(){
+      					document.getElementById('question').disabled = false;
+      					$('#box-question').show();
+      					$('#box-question-save').hide();
+
+      				}
 
 		            $("#question").on("keyup", function() {
 		                var value = $(this).val().toLowerCase();
