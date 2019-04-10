@@ -835,6 +835,7 @@
 								            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
 								            curInputs = curStep.find("input[type='text'],input[type='email'],input[type='password'],input[type='url']"),
 								            isValid = true;
+
 								           // Validation
 								        $(".form-group").removeClass("has-error");
 								        for(var i=0; i<curInputs.length; i++){
@@ -856,19 +857,18 @@
 								<div class="stepwizard">
 					                <div class="stepwizard-row setup-panel">
 					                    <div class="stepwizard-step">
-					                        <a href="#step-1" type="button" class="btn btn-secondary btn-circle"><i class="glyphicon glyphicon-check"></i></a>
-					                        
+					                        <a href="#step-1" type="button" class="btn btn-secondary btn-circle" title="Selección única"><i class="glyphicon glyphicon-check"></i></a>
 					                    </div>
 					                    
 					                    <div class="stepwizard-step">
-					                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="glyphicon glyphicon-list-alt"></i></a>
+					                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Selección múltiple"><i class="glyphicon glyphicon-list-alt"></i></a>
 					                    </div>
 					                    
 					                    <div class="stepwizard-step">
-					                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-pencil"></i></a>
+					                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Texto abierto"><i class="fa fa-pencil"></i></a>
 					                    </div>
 					                    <div class="stepwizard-step">
-					                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="glyphicon glyphicon-ok"></i></a>
+					                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Confirmar"><i class="glyphicon glyphicon-ok"></i></a>
 					                    </div>
 					                    
 					                </div>
