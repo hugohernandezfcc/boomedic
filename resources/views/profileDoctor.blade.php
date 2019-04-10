@@ -691,12 +691,6 @@
 			                         
 			                        </div>
 			                        <div class="row">
-			                         
-			                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
-			                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
-			                         
-			                        </div>
-			                        <div class="row">
 			                        
 			                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
 			                            @if($gender == "female")
@@ -709,12 +703,6 @@
 			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
 			                            @endif
 			                      
-			                        </div>
-			                        <div class="row">
-			                         
-			                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
-			                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
-			                    
 			                        </div>
 			                        <div class="row">
 			                         
@@ -802,8 +790,6 @@
 			         	    	<div class="well well-sm" id="box-question">
 			         	    		<label class="text-muted">Preguntas añadidas</label>
 				         	    		<div id="searchQuestions">
-				         	    			<div>pregunta</div>
-				         	    			<div>Respuesta</div>
 				         	    		</div>	
 			         	    	</div>
 			         	    	<div style="display: none;" id="box-question-save">
@@ -836,14 +822,6 @@
 								            curInputs = curStep.find("input[type='text'],input[type='email'],input[type='password'],input[type='url']"),
 								            isValid = true;
 
-								           // Validation
-								        $(".form-group").removeClass("has-error");
-								        for(var i=0; i<curInputs.length; i++){
-								            if (!curInputs[i].validity.valid){
-								                isValid = false;
-								                $(curInputs[i]).closest(".form-group").addClass("has-error");
-								            }
-								        }
 								        // move to next step if valid
 								        if (isValid)
 								            nextStepWizard.removeAttr('disabled').trigger('click');
@@ -876,29 +854,38 @@
                            <div class="row setup-content" id="step-1">
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
-			                        		<div class="radio"><label><input type="radio" name="type" value="radio" checked="" onclick="$('#check').show();">Selección única</label></div><br>
-												<div class="form-group" style="display: none;" id="check">
-								                  <label>Escriba las opciones separadas por ;</label>
-								                  <textarea class="form-control" rows="3" placeholder="Opción 1; Opción 2; Opción 3" name="optionsradio"></textarea>
-								                </div>
+			                        		<div class="radio"><label><input type="radio" name="type" value="radio" checked="">Selección única</label></div>
+			                        			
+												<div class="input-group input-group-sm">
+								                  <input type="text"  id="opt" class="form-control" placeholder="Escriba una opción" required autocomplete="off">
+								                    <span class="input-group-btn">
+								                    	<button class="btn btn-flat btn-default btn-sm" onclick="add();"><span class="fa fa-plus"></span></button>
+								                    </span>
+								                </div><br>
+								                <div id="addOpt"></div><br>
+								                <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
 
 				                         <!-- <span class="text-muted fa fa-question-circle">Respuestas de alternativa simple (dicotómicas), cuando sólo es posible una respuesta (sí o no, hombre o mujer)</span>
 				                       --></div>  
-			                         </div>    
-			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+			                         </div>
+
+			                            
               			    </div>
 
 			               <div class="row setup-content" id="step-2">
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
 			                          <div class="radio"><label><input type="radio" name="type" value="checkbox" checked="" onclick="$('#check2').show();">Selección múltiple</label></div>
-			                          		<div class="form-group" style="display: none;" id="check2">
-								                  <label>Escriba las opciones separadas por ;</label>
-								                  <textarea class="form-control" rows="3" placeholder="Opción 1; Opción 2; Opción 3" name="optionscheck"></textarea>
-								            </div>
+												<div class="input-group input-group-sm">
+								                  <input type="text"  id="optcheck" class="form-control" placeholder="Escriba una opción" required autocomplete="off">
+								                    <span class="input-group-btn">
+								                    	<button class="btn btn-flat btn-default btn-sm" onclick="addcheck();"><span class="fa fa-plus"></span></button>
+								                    </span>
+								                </div><br>
+								                <div id="addOptcheck"></div><br>
+								           <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
 			                       </div>
 			                    </div>    
-			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
 			               </div>
 
 			               <div class="row setup-content" id="step-3">
@@ -913,11 +900,11 @@
 			               	<div class="row setup-content" id="step-4">
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
-			                         <b>Finalizar</b>   
-			                            <!-- content go here -->
+			                         Vista Previa
+			                           <button class="btn btn-secondary nextBtn btn-flat pull-right" type="button" id="finishQuestion">Guardar configuración</button>
 			                     	</div>
 			                    </div>       
-			                            <button class="btn btn-secondary nextBtn btn-flat pull-right" type="submit">Guardar configuración</button>
+			                            
 			               </div>
 			               			<hr>
 			         	    		<div align="left"><button class="btn btn-flat btn-default btn-sm" onclick="cancelQuestion();">Cancelar</button></div>
@@ -992,11 +979,27 @@
       					$('#box-question-save').show();
       					$('div.setup-panel div a[href="#step-1"]').click();
       				}
+
       				function cancelQuestion(){
       					document.getElementById('question').disabled = false;
       					$('#box-question').show();
       					$('#box-question-save').hide();
+      					$('#addOpt').html('');
+      					$('#addOptcheck').html('');
+      				}
 
+      				function add(){
+      					if($('#opt').val().length > 0 ){
+      					  $('#addOpt').append('&nbsp;<div class="label bg-green opr" style="font-size: 14px;">'+ $('#opt').val() +'</div>');
+      					  $('#opt').val('');
+      					}
+      				}
+
+      				function addcheck(){
+      					if($('#optcheck').val().length > 0 ){
+      					  $('#addOptcheck').append('&nbsp;<div class="label bg-green opc" style="font-size: 14px;">'+ $('#optcheck').val() +'</div>');
+      					  $('#optcheck').val('');
+      					}
       				}
 
 		            $("#question").on("keyup", function() {
@@ -1005,12 +1008,54 @@
 		                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 		                });
 		              });
+
+					$('#finishQuestion').on('click', function(e) {
+
+							if($("input[name='type']:checked").val() == 'radio'){
+								var classopt = document.getElementsByClassName("opr");
+								var arrayresponse = [];
+									arrayresponse.push("radio");
+								 for(i=0;i<classopt.length;i++){
+						    		arrayresponse.push(classopt[i].innerHTML);
+						  		  }
+							}
+							if($("input[name='type']:checked").val() == 'checkbox'){
+							 	var classopt = document.getElementsByClassName("opc");
+								var arrayresponse = [];
+									arrayresponse.push("checkbox");
+								 for(i=0;i<classopt.length;i++){
+						    		arrayresponse.push(classopt[i].innerHTML);
+						  		  }
+							}
+
+
+										  $.ajax({     
+				                             type: "POST",                 
+				                             url: "{{ url('doctor/saveQuestions') }}",  
+				                              data: { "question" : $('#question').val(),
+				                              		  "type": $("input[name='type']:checked").val(),
+				                              		  "options": arrayresponse;
+
+				                                    }, 
+				                              dataType: 'json',                
+				                             success: function(data)             
+				                             {
+				                             	alert(data);
+				                             	console.log(data);
+    											}
+				                            
+				                         });
+						    
+
+					});		
+
           			function fun(a) {
 							    document.getElementById('sea').value = a.getAttribute("data-value");
 							    document.getElementById('idassist').value = a.getAttribute("data-id");
 							    document.getElementById("resp").innerHTML = "";
 							    $("#sav").removeAttr("disabled");   
 							}
+
 					$("#sea").on("keyup", function(e) {
 
 						    		if(e.which == 32) {
