@@ -3,7 +3,8 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-    <style type="text/css">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+ <style type="text/css">
 .accordion-toggle {
   position: relative;
 }
@@ -1010,10 +1011,9 @@
 		              });
 
 					$('#finishQuestion').on('click', function(e) {
-
+						var arrayresponse = [];
 							if($("input[name='type']:checked").val() == 'radio'){
 								var classopt = document.getElementsByClassName("opr");
-								var arrayresponse = [];
 									arrayresponse.push("radio");
 								 for(i=0;i<classopt.length;i++){
 						    		arrayresponse.push(classopt[i].innerHTML);
@@ -1021,7 +1021,6 @@
 							}
 							if($("input[name='type']:checked").val() == 'checkbox'){
 							 	var classopt = document.getElementsByClassName("opc");
-								var arrayresponse = [];
 									arrayresponse.push("checkbox");
 								 for(i=0;i<classopt.length;i++){
 						    		arrayresponse.push(classopt[i].innerHTML);
@@ -1037,7 +1036,7 @@
 										  $.ajax({     
 				                             type: "POST",                 
 				                             url: "{{ url('doctor/saveQuestions') }}",  
-				                              data: { "question" : $('#question').val(),
+				                             data: { "question" : $('#question').val(),
 				                              		  "type": $("input[name='type']:checked").val(),
 				                              		  "options": JSON.stringify(arrayresponse)
 				                                    }, 

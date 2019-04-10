@@ -15,5 +15,7 @@ class questions_clinic_history extends Model
 		'createdby',
 		'active'
     ];
-
+    public function createdby(){
+	  return $this->belongsTo('App\User', 'createdby');
+	}
 }
