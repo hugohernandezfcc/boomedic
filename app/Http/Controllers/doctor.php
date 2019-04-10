@@ -831,16 +831,11 @@ class doctor extends Controller
             if($request->type == 'texto')
                 $answer->answer = ["texto"];
             if($request->type == 'radio'){
-                $option = $request->optionsradio;
-                $arrayOption = explode(";", $option);
-
-                $answer->answer = $arrayOption;
+                $answer->answer = $request->options;
             }
             if($request->type == 'checkbox'){
-                $option = $request->optionscheck;
-                $arrayOption = explode(";", $option);
                 
-                $answer->answer = $arrayOption;
+                $answer->answer = $request->options;
             }
             $answer->save();
         }    
