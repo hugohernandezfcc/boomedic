@@ -35,6 +35,7 @@ class help extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
+                'gender'    => $user->gender
             ]
         );
     }

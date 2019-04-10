@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\User;
 use App\medical_appointments;
 use App\menu;
-use App\cli_recipes_tests;
 use App\transaction_bank;
 use config;
 use Mail;
@@ -16,6 +15,10 @@ use Mailgun\Mailgun;
 use App\PaymentMethod;
 use App\Http\Controllers\payments;
 use Carbon\Carbon;
+use App\notifications;
+use App\Medications;
+use App\recipes_tests;
+use App\cli_recipes_tests;
 
 class medicalappointments extends Controller
 {
@@ -71,17 +74,29 @@ class medicalappointments extends Controller
         $user = User::find(Auth::id());
         //Look in the table of methods of saved payments all the information of the selected method.
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
-
-                    /* Insert Cita */
+        /* Insert Cita */
+        if(Session('id_lb') != null)
+        {
+               $delete = DB::delete('delete from transaction_bank where appointments= ?',[Session('id_cite')]) ;               
+               $medical = medical_appointments::find(Session('id_cite'));
+        }else{
                     $medical = new medical_appointments();
                     $medical->user           = Auth::id();
+             }       
                     $medical->user_doctor    = $request->dr;
                     $medical->workplace      = $request->idlabor;
                     $medical->when           = $request->when;
                     $medical->status         = 'Registered';
 
+
             
-           if ($medical->save()) {
+           if ($medical->save()){
+            $request->session()->forget('specialty');
+            $request->session()->forget('latitude');
+            $request->session()->forget('longitude');
+            $request->session()->forget('id_lb');
+            $request->session()->forget('id_cite');
+
                          /* Insert_bank*/
                         $Transaction = new transaction_bank();
                         $Transaction->paymentmethod = $request->id;
@@ -124,6 +139,7 @@ class medicalappointments extends Controller
          
             return redirect('medicalconsultations')->with($notification);
          }
+
          else {
              $notification = array(
                 //If it has been rejected, the internal error code is sent.
@@ -131,8 +147,7 @@ class medicalappointments extends Controller
             'error' => 'error'
         );
             return redirect('medicalconsultations')->with($notification);
-         }
-         
+         }     
     }
 
  /**
@@ -186,17 +201,11 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        $menu = menu::find('33');
-        $menu->icon = 'user-md';
-     /*   $menu = new menu();
-        $menu->text = 'Agenda';
-        $menu->to = 'assistant';
-        $menu->typeitem = 'item';
-        $menu->order = '2';
-        $menu->parent = '1';
-        $menu->icon = 'calendar-check-o';
-        $menu->url = 'drAppointments/redirecting/index';*/
-        if($menu->save()) 
+        $recipe = new Medications;
+        $recipe->recipe_medicines = '10';
+        $recipe->posology = 'Por 1x3 días';
+        $recipe->start_date = '2019-01-22 10:30:00';
+        $recipe->save();
        return redirect('medicalconsultations');
     }
 

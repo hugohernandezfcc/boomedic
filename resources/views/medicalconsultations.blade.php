@@ -4,7 +4,310 @@
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('vendor/medicalconsultations.css') }}">
+
+  <style type="text/css">
+      #mapaC{
+        position: relative;
+        height: 100%;
+        width: 100%;
+      } 
+      #map{
+        position: relative;
+        width: 100%;
+        z-index: 30;
+      }
+      #rango{ 
+        position: absolute;
+        width: 90%;
+        bottom: 5%;
+        right: 10%;
+        padding-top: 0.7%;
+        padding-bottom: 0.7%;
+        padding-right: 0.7%;
+        padding-left: 0.7%;
+        /*background-color: rgba(255,255,255,0.7);*/
+        z-index: 100;
+        text-align: center;
+        font-size: 90%;
+        line-height: 15%;
+      }
+
+      #rango03{
+        font-size:25px;
+      }
+
+      .rango{ 
+        position: absolute;
+        width: 90%;
+        bottom: 90%;
+        right: 10%;
+        padding-top: 0.7%;
+        padding-bottom: 0.7%;
+        padding-right: 0.7%;
+        padding-left: 0.7%;
+        /*background-color: rgba(255,255,255,0.7);*/
+        z-index: 100;
+        text-align: center;
+        font-size: 90%;
+        line-height: 15%;
+      }
+      #rangothree{ 
+        position: absolute !important;
+        bottom: 4% !important;
+        right: 2% !important;
+        padding-top: 0.7%;
+        padding-bottom: 0.7%;
+        padding-right: 0.7%;
+        padding-left: 0.7%;
+        /*background-color: rgba(255,255,255,0.7);*/
+        z-index: 1000;
+        text-align: center;
+      }
+      #rangotwo{ 
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        padding-top: 0.7%;
+        padding-bottom: 0.7%;
+        padding-right: 0.7%;
+        padding-left: 0.7%;
+        /*background-color: rgba(255,255,255,0.7);*/
+        z-index: 100;
+        text-align: center;
+      }  
+
+      #searchDiv{
+        position: absolute;
+        width: 24%;
+        top: 4.5%;
+        right: 4%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
+        padding-right: 0.1%;
+        padding-left: 0.1%;
+        background-color: rgba(255,255,255,0.6);
+        z-index: 100;
+        text-align: center;
+        font-size: 90%;
+        line-height: 15%;        
+      }
+      .rangeStyle{
+        height: 1%;
+        width: 100%;
+        
+      }
+      .checkStyle{
+        position: absolute;
+        top: 4.5%;
+        left: 1%;
+        background-color: rgba(255,255,255,0.8);
+        z-index: 100;
+        font-size: 90%;
+        line-height: 15%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;
+        border-radius: 1px;
+      }
+
+      .infoSpStyle{
+        position: absolute;
+        top: 19%;
+        right: 1%;
+        background-color: rgba(255,255,255,0.8);
+        z-index: 100;
+        font-size: 90%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;
+      }
+      .launchSearchStyle{
+        position: absolute;
+        top: 7%;
+        right: 1%;
+        /*background-color: rgba(255,255,255,0.8);
+        z-index: 100;
+        font-size: 90%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;*/
+      }
+      .textStyle01{
+        color: #424242;
+        text-shadow: 1px 1px 0.5px #424242;
+      }
+      .content{
+        padding-left: 1px;
+        padding-right: 1px;
+        padding-top: 0px;
+      }
+      .content-header {
+          position: relative;
+          padding: 1px 1px 0 1px; 
+      }
+      /*** Range
+      /*General format*/
+      input[type='range'] {
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin: 18px 0;
+      }
+      /*Removes the blue border*/
+      input[type='range']:focus {
+        outline: none;
+      }
+      input[type=range]:focus::-webkit-slider-runnable-track {
+        outline: none;
+      }
+      /*Unstyled range input*/
+      input[type='range'],
+      input[type='range']::-webkit-slider-runnable-track,
+      input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+      }
+      /*Thumb Chrome*/
+      input[type=range]::-webkit-slider-thumb {
+        background-color: #000;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #000;
+        border-radius: 50%;
+        margin-top: -9px;
+      }
+      /*Thumb Mozilla*/
+      input[type=range]::-moz-range-thumb {
+        background-color: #000;
+        width: 15px;
+        height: 15px;
+        border: 3px solid #000;
+        border-radius: 50%;
+      }
+      /*Thumb Edge*/
+      input[type=range]::-ms-thumb {
+        background-color: #000;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #000;
+        border-radius: 50%;
+      }
+      /*Track Chrome*/
+      input[type=range]::-webkit-slider-runnable-track {
+        background-color: #000;
+        height: 3.5px;
+      }
+      /*Color barra Mozilla*/
+      input[type=range]::-moz-range-track {
+        background-color: #000;
+        height: 3px;
+      }
+      /*Track Edge*/
+      input[type=range]::-ms-track {
+        width: 100%;
+        height: 2.4px;
+        background-color: #000;
+        height: 3px;
+      }
+     /****/
+     /* Modal */
+
+      .btn-default {
+          box-shadow: 1px 2px 5px #000000;   
+      }
+        .box {
+             margin-bottom: 0;
+        }
+        .panel {
+             margin-bottom: 0; 
+        }
+        .pac-container {
+         z-index: 100000; 
+       }
+
+    #infDr {
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: 1050;
+    width: 70%;
+    margin: 0 0 0 0 !important;
+    }
+    @media( max-width : 700px ) {
+       #infDr {
+         width: 95%;
+       }
+    }
+    .alert .close {
+    color: white !important;
+    opacity: .8 !important;
+}
+    #bodyDr{
+       margin-left: 90px; 
+    }
+.customMarker {
+    position:absolute;
+    cursor:pointer;
+    background:#424242;
+    width:50px;
+    height:50px;
+    /* -width/2 */
+    margin-left:-25px;
+    /* -height + arrow */
+    margin-top:-55px;
+    border-radius:50%;
+    padding:0px;
+}
+.customMarker:after {
+    content:"";
+    position: absolute;
+    bottom: -5px;
+    left: 20px;
+    border-width: 5px 5px 0;
+    border-style: solid;
+    border-color: #424242 transparent;
+    display: block;
+    width: 0;
+}
+.customMarker img {
+    width:45px;
+    height:45px;
+    margin:3px;
+    border-radius:50%;
+    pointer-events: auto;
+}
+    .modal-content-2 {
+        position: relative;
+        background-color: transparent;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        color: white;
+        padding-top: 50%;
+    }
+    .liright { 
+    color: #999 !important;
+    float: right !important;
+    padding: 3px !important;
+    font-size: 10px !important;
+    }
+    .nav-stacked>li.active>a {
+      border-left-color: #080808 !important;
+    }
+    .cut{
+      width:60%;
+      text-overflow:ellipsis;
+      white-space:nowrap; 
+      overflow:hidden; 
+      text-align: right;
+    }
+    .direct-chat-contacts {
+          height: 28px !important;
+          background: transparent !important; 
+          top: 90% !important; 
+          z-index: 900;
+    }
+
+
+
+  </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
 
@@ -51,9 +354,8 @@
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
 
   </script>
-      <?php echo "<pre>"; print_r(session()->get('sp')); echo "</pre>";?>
 
-  
+
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
                             <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h5>               
@@ -69,8 +371,20 @@
                   <div id="collapseOne" class="panel-collapse collapse" >
                     <div class="box-body">
                          @foreach($appointments->sortBy('when') as $appo)
-                              @if($loop->iteration < 3)
-                            <div class="col-sm-12">
+                           @if($loop->iteration < 3)
+                             @if($appo->status == 'No completed')
+                                  <div class="col-sm-12">
+                                    <div class="info-box sm bg-red">
+                                      <a href="{{ url('drAppointments/viewcancelAppointment/') }}/{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
+                                      <div class="info-box-content sm">
+                                       <span class="text-white">
+                                        <b>Lugar:</b> {{ $appo->workplace}}.<br/>
+                                       Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}  <b>*Cancelada</b></span>     
+                                       </div>       
+                                      </div>
+                                   </div> 
+                             @else 
+                               <div class="col-sm-12">
                                   <div class="info-box sm bg-gray">
                                     <a data-toggle="modal" data-target="#{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
                                     <div class="info-box-content sm">
@@ -98,8 +412,20 @@
                                                       <table style="width: 80%; text-align: center;">
                                                          <tr>
                                                             <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
-                                                            <td><img src="https://s3.amazonaws.com/abiliasf/Sin+título-1_a-01.png"></td>
-                                                            <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                            <td><img src="{{ asset('raya.png') }}"></td>
+                                                            @if($photo != '' || $photo != null)
+                                                              <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                            @else  
+                                                              @if($gender == 'male') 
+                                                                <td width="40%"><img src="{{ asset('profile-42914_640.png') }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                              @endif
+                                                              @if($gender == 'female') 
+                                                                <td width="40%"><img src="{{ asset('profile-female.png') }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                              @endif
+                                                              @if($gender == 'other' || $gender == '') 
+                                                                <td width="40%"><img src="{{ asset('profile-other.png') }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                              @endif
+                                                           @endif   
                                                          </tr>
                                                          <tr>
                                                             <td width="40%">{{ $appo->name }}</td><td>&nbsp;</td><td width="40%">{{ $name }}</td>
@@ -124,16 +450,17 @@
                                                           <span class="liright cut"><i class="fa fa-cc-paypal" style="font-size: 14px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
                                                      @endif 
                                                         </a></li>
-                                                        <li><a href="javascript:void(0)" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
+                                                        <li><a data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
  
                                                       </ul>
                                                       </div>
                                                       
-                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=250x200&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> </div> 
+                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=250x200&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación"  style="width:100%;"> </div> 
                                                     </div>
                                                 </div>
                                               </div> 
                                             </div>
+
                                                               <div class="modal-chat fade2 modal" id="chat-{{ $appo->id }}">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
@@ -148,11 +475,13 @@
                                                                                 <input type="hidden" class="mname" value="Cita médica">
                                                                                 <input type="hidden" class="mtable" value="medical_appointments">
                                                                              @include('conversations.conversationform')
+
                                                                          </div>
                                                                           </div>  
                                                                        </div>
                                                                     </div>  
 
+                                    @endif                                   
                                  @endif 
                                                          @if($loop->iteration > 2)
                                                          <div class="col-sm-12" style="text-align: right;">
@@ -173,13 +502,31 @@
               <!-- Charge Alert whether payment was processed or not -->
               @if(session()->has('message'))
 
-                @if(session()->has('success'))
-
-
+                @if(session()->has('success'))   
                  <!--Modal cita y pago success-->
                  <div class="modal fade" role="dialog" id="modalsuccess">
                     <div class="modal-dialog modal-sm">
+                  @if(session()->has('ok'))
+                      <!--Modal cita reagendada-->
+                              <div class="modal-content">
 
+                                <div class="modal-header" >
+                                  <!-- Tachecito para cerrar -->
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  <div align="left"><label>¡Cita reagendada!</label></div>
+                                </div>
+                                    <div class="modal-body" >
+                                      <div class="box box-primary">
+                                        <div class="box-body">
+                                           Nueva Fecha: <span class="text-muted">{{ \Carbon\Carbon::parse(session()->get('date'))->format('d-m-Y h:i A') }}</span>
+
+                                     </div>
+                                      </div>
+                                    </div>
+                                </div>
+                      @else          
                       <div class="modal-content">
 
                         <div class="modal-header" >
@@ -217,17 +564,31 @@
                               </div>
                             </div>
                         </div>
+                       @endif
                       </div> 
                     </div>
+
+                    
 
                  <!--Fin modal success-->
 
                 @elseif(session()->has('error'))
-  
+     
                 <!--Modal cita y pago error-->
                  <div class="modal fade" role="dialog" id="modalerror">
                     <div class="modal-dialog modal-sm">
-
+                   @if(session()->has('errort'))
+                      <!--Modal cita reagendada-->
+                              <div class="modal-content">
+                                <div class="modal-header" >
+                                  <!-- Tachecito para cerrar -->
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  <div align="left"><label>{{ session()->get('message') }}</label></div>
+                                </div>
+                              </div>
+                   @else    
                       <div class="modal-content">
 
                         <div class="modal-header" >
@@ -247,9 +608,10 @@
                               {{ trans('adminlte::adminlte.'.$code) }}
                           @else
                               {{ $code }}
-                              @endif
+                          @endif
                             </div>
                         </div>
+                  @endif
                       </div> 
                     </div>
 
@@ -275,16 +637,15 @@
 
 
 
-        <div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
+<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
       <div class="modal-dialog">
           <div class="modal-content-2">
             <div align="center">
-          <h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/>(Esto podría tardar unos segundos)
+          <h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1>
               </div>
           </div>
       </div>
   </div>
-
 
 
 
@@ -314,7 +675,9 @@
             </div>
     </div>
 </div>
-
+    <div class="rango" id="dragmap" style="display: none;">
+        <a class="btn btn-secondary" data-lng="" id="dragbutton">Buscar en esta zona</a>
+    </div> 
   </div> 
 
 
@@ -327,9 +690,10 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true" style="font-size: 21px;">&times;</span>
                     </button>
-                    <div align="left"><label for="rango01" id="label04"></label> <span id="rango03"></span></div>       
+                    <div align="left"><label for="rango01" id="label04"></label></div>       
                   </div>
                   <div class="modal-body">
+                    <div align="center"><label id="rango03"></label></div> 
                           <input type="range" name="rango01" id="rango01" value="1" min="1" max="10" step="0.1" autocomplete="off" onchange="start();" class="rangeStyle"/>
                   </div>
                 </div>
@@ -386,7 +750,7 @@
                         
                   </div>
                   <div class="modal-body">
-                   <div id="recentS" align="left" style="display: none; font-weight:500;">Busquedas recientes:<br/></div>         
+                   <div id="recentS" align="left" style="display: none; font-weight:500;">Busquedas anteriores:<br/></div>         
                    <div id="resp" align="left"></div>                
                      <!--<input id="submit" type="button" value="Buscar" class="map-marker text-muted">-->
                     
@@ -563,14 +927,14 @@
                          <br/>     
                           <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                                   {{ csrf_field() }}
-                            <input id="amount" type="hidden" class="form-control" name="amount">
-                            <input type="hidden" name="id" id="idcard">
-                             <input type="hidden" name="receiver" id="receiver">
-                             <input type="hidden" name="when" id="when">
-                             <input type="hidden" name="when1" id="when1">
-                             <input type="hidden" name="dr" id="dr">
-                             <input type="hidden" name="idlabor" id="idlabor">
-                             <input type="hidden" name="spe" id="spe">
+                            <input id="amount" type="hidden" class="form-control" name="amount"/>
+                            <input type="hidden" name="id" id="idcard"/>
+                             <input type="hidden" name="receiver" id="receiver"/>
+                             <input type="hidden" name="when" id="when"/>
+                             <input type="hidden" name="when1" id="when1"/>
+                             <input type="hidden" name="dr" id="dr"/>
+                             <input type="hidden" name="idlabor" id="idlabor"/>
+                             <input type="hidden" name="spe" id="spe"/>
                         
 
                           <div class="btn-group pull-right">
@@ -602,7 +966,14 @@
 
           <script type="text/javascript">
 
+
+ 
+
 $(document).ready(function () {
+
+    if("{{ $medication }}" > 0)
+       $( "#modalmedications" ).modal();
+
                          $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
                           var vis = $(this).find( ".calendarNull" );
                              if(vis.is(":visible")){
@@ -630,6 +1001,7 @@ $(document).ready(function () {
           typeC = 'TypeGeneral';
         }
       })
+
     //Initialize tooltips
        $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
@@ -765,6 +1137,7 @@ function prevTab(elem) {
         c.text = specialities1[i][0];
         x.options.add(c, 1);
         }
+
       }
       function changeCheck(){
         if (!document.getElementById('general').checked){
@@ -911,24 +1284,47 @@ function prevTab(elem) {
         infoSelect();
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
+        if('{{ session()->get("specialty") }}'.length > 0){  
+          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
+            if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
+                 document.getElementById('general').click();
+                 document.getElementById("mySelect").options[i].selected = true;
+                  start();
+            }
+         }
+        } 
         }, 2000);
+
+
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
+        $('#dragmap').fadeOut(); 
         $('#modal').modal('hide');
         infoWindow = new google.maps.InfoWindow();
         //Current position
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
             //Map
+            if('{{ session()->get("latitude") }}'.length > 0){
+
+            var pos = {
+                        lat: parseFloat("{{ session()->get('latitude') }}"),
+                        lng: parseFloat("{{ session()->get('longitude') }}")
+                      };
+            var center = pos;
+            }else{
+             var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+              var center = new google.maps.LatLng(pos);
+           }
+
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 14,
               gestureHandling: 'greedy',
-              center: new google.maps.LatLng(pos),
+              center: center,
               styles: [
                         {
                           "elementType": "labels",
@@ -1037,46 +1433,79 @@ function prevTab(elem) {
               scaleControl: false,
               streetViewControl: false,
               rotateControl: false,
-              fullscreenControl: false
+              fullscreenControl: false             
             });
 
             var input = document.getElementById('address');
-              new google.maps.places.Autocomplete(input);
-            var markerUser = "{{ asset('finish.png') }}";
+            var autocomplete = new google.maps.places.Autocomplete(input);
+               autocomplete.setComponentRestrictions(
+            {'country': ['mx']});
+            var markerUser = "{{ asset('markerloc.png') }}";
            
             var pinIcon = new google.maps.MarkerImage(
-                  "{{ asset('finish.png') }}",
+                  "{{ asset('markerloc.png') }}",
                   null, /* size is determined at runtime */
                   null, /* origin is 0,0 */
                   null, /* anchor is bottom center of the scaled image */
-                  new google.maps.Size(48, 63)
+                  new google.maps.Size(40, 40)
               ); 
 
 
             //Marker
               markerP = new google.maps.Marker({
               draggable: true,
-              position: new google.maps.LatLng(pos),
+              position: center,
               icon: pinIcon,
               map: map
             }); 
-                      google.maps.event.addListener(map, 'dragend', function(e){
-                        console.log(this.center.lat());
-                        console.log(this.center.lng());
-                        var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
-                        markerP.setPosition(latlng);
-                        start();
+                 //Bound México (North East and South West)
+                 var strictBounds = new google.maps.LatLngBounds(
+                                    new google.maps.LatLng(14.3895,-118.6523),
+                                    new google.maps.LatLng(32.718653,-86.5887)
+                                    );
+                  //Here function dragend map in marker//
+                  google.maps.event.addListener(map, 'dragend', function(){
+
+                        if("@php echo $agent->isMobile(); @endphp"){
+                            var complat = markerP.getPosition().lat() + 0.015;
+                            var complng = markerP.getPosition().lng() + 0.015;
+                            var complat2 = markerP.getPosition().lat() - 0.015;
+                            var complng2 = markerP.getPosition().lng() - 0.015;
+                        }else{
+                            var complat = markerP.getPosition().lat() + 0.03;
+                            var complng = markerP.getPosition().lng() + 0.04;
+                            var complat2 = markerP.getPosition().lat() - 0.03;
+                            var complng2 = markerP.getPosition().lng() - 0.04;  
+                        }
+                        //console.log('marker'+ markerP.getPosition().lat() +' : ' + complat +'-'+complat2);
+                      if(this.center.lat() > complat || this.center.lng() > complng || this.center.lat() < complat2 || this.center.lng() < complng2){
+                          if(!strictBounds.contains(map.getCenter())){
+                              map.setCenter(markerP.getPosition());
+                               }
+                          else{
+                                $('#dragmap').fadeIn();
+                                var latlng = new google.maps.LatLng(this.center.lat(),this.center.lng());
+                                $('#dragbutton').prop('data-lng',latlng);
+                              }
+                        }                                    
                       });
+
+                        $('#dragbutton').click(function() {
+                            var look = $('#dragbutton').prop('data-lng'); 
+                             $('#dragmap').fadeOut(); 
+                            markerP.setPosition(look);
+                            start();
+                        });
 
                      /*  map.addListener('center_changed', function(event) {
                           console.log(this);
                         });*/
 
             if("@php echo $agent->isMobile(); @endphp"){
-            var opt = { minZoom: 6, maxZoom: 20, zoomControl: false};
+            var opt = { minZoom: 6, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
              map.setOptions(opt);
            }else{
-           var opt = { minZoom: 6, maxZoom: 20, zoomControl: false };
+           var opt = { minZoom: 6, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
              map.setOptions(opt);
            }
             //Evento to open infowindow
@@ -1112,6 +1541,7 @@ function prevTab(elem) {
                                 document.getElementById('address').value = " ";     
                              }
                          });
+                           start();
                 });
           },
           //****Error
@@ -1131,12 +1561,14 @@ function prevTab(elem) {
       //Filter geocode Address
         function geocodeAddress(geocoder, resultsMap, markerP) {
         var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
+        geocoder.geocode({'address': address, componentRestrictions: {
+            country: 'MX'
+          }},function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
             markerP.setPosition(results[0].geometry.location);
           } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+            alert('Busqueda no es posible, por siguiente error: ' + status);
           }
         });
       }
@@ -1222,14 +1654,14 @@ function prevTab(elem) {
           var lat = loc[i][0];
           var lon = loc[i][1];
 
-          if(loc[i][10] != "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png"){
+          if(loc[i][10] != "{{ asset('dr.png') }}"){
           var doctor = {
-              url:"https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png",
+              url:"https://s3.amazonaws.com/boomedic/" + loc[i][8] + "-circle.png",
               scaledSize: new google.maps.Size(45, 45)
             };
         }else{
            var doctor = {
-              url: "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",
+              url: "{{ asset('dr.png') }}",
               scaledSize: new google.maps.Size(45, 45)
             };
         }
@@ -1240,6 +1672,7 @@ function prevTab(elem) {
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
+
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               $('#infDr').show();
@@ -1340,7 +1773,7 @@ function prevTab(elem) {
 
                   }
  
-                     $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es' }).on('changeDate',function(e){
+                     $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es', todayHighlight: true }).on('changeDate',function(e){
                      $('#timesByDay').children().remove();
                          document.getElementById("onestep").disabled = false;
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
@@ -1586,6 +2019,14 @@ function prevTab(elem) {
           })(marker, i));
           setTimeout(dropMarker(i), i * 250);
         }
+          if('{{ session()->get("specialty") }}'.length > 0){  
+              for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
+                if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
+                       new google.maps.event.trigger( markers[0], 'click' );
+                       document.getElementById('{{ session()->get("id_lb") }}').click();
+                }
+             }
+            } 
       }
       function dropMarker(i) {
         return function() {
@@ -1602,6 +2043,8 @@ function prevTab(elem) {
       function showInfo(info){ 
         document.getElementById("info").innerHTML = '<strong>Detalle del médico:</strong> <br/><span style="font-size:12px;">'+ info +'</span>';
       }
+
+
     </script>
 
     <!-- Calculate distance -->
@@ -1637,7 +2080,9 @@ function prevTab(elem) {
             x.selectedIndex = 0;
             typeC = 'TypeGeneral';
           }
+
         });
+
     });
         
     </script>

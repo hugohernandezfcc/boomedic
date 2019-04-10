@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Workboard;
 use Carbon\Carbon;
+
+
 class workboardDr extends Controller
 {
     /**
@@ -52,17 +54,25 @@ class workboardDr extends Controller
           } 
     $work = $id;
 
-    $workboard = DB::table('workboard')->where('labInformation', $work)->get();
-    $workboard2 = DB::table('workboard') ->where('workboard.labInformation', '=', $id)->get();
+    $workboard = DB::table('workboard')->where('labInformation', $work)->where('oldnew', 'old')->get();
+    $workboard2 = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'old')->get();
+    $workboardNew = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'new')->get();
+
     $workArray = array();
                           foreach($workboard2  as $work2){
                             array_push($workArray, $work2->workingDays.':'.$work2->patient_duration_attention);
                           }
+    $workArrayNew = array();
+                      foreach($workboardNew  as $work3){
+                        array_push($workArrayNew, $work3->workingDays.':'.$work3->patient_duration_attention);
+                      }  
+     $validate = $this->handleExistAppointments($id);                    
 
         return view('workboard', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
+                'gender'    => $user->gender,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
                 'work'      => $work,
@@ -70,7 +80,10 @@ class workboardDr extends Controller
                 'workboard2' => json_encode($workArray),
                 'mode'      => 'null',
                 'as'        => $assistant,
-                'donli'     => $donli
+                'donli'     => $donli,
+                'new'       => json_encode($workArrayNew),
+                'new2'      => $workboardNew,
+                'appointments' => $validate
             ]
         );
     }
@@ -79,7 +92,7 @@ class workboardDr extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $id )
+    public function create(Request $request, $id)
     {
             $user = User::find(Auth::id());
             $assistant = DB::table('assistant')
@@ -107,10 +120,11 @@ class workboardDr extends Controller
                 $assistant = null;
                 $donli = null;
           } 
-          $workboard = DB::table('workboard')->where('labInformation', $id)->get();
+          $workboard = DB::table('workboard')->where('labInformation', $id)->where('oldnew', 'new')->get();
          if(count($workboard) > 0){
-            DB::table('workboard')->where('labInformation', $id)->delete();   
+            DB::table('workboard')->where('labInformation', $id)->where('oldnew', 'new')->delete();   
          }
+
         if ($request->type == 'false') {
                 $user = User::find(Auth::id()); 
         
@@ -167,6 +181,7 @@ foreach($request->day as $day){
          $workboard->fixed_schedule = 'True';
             }
          $workboard->patient_duration_attention =  json_encode($horas);
+         $workboard->oldnew = 'new';
          $workboard->save();
         
         }
@@ -204,27 +219,20 @@ foreach($request->day as $day){
          $workboard->labInformation = $id;
          $workboard->patient_duration_attention =  json_encode($horas);
          $workboard->fixed_schedule = 'False';
+         $workboard->oldnew = 'new';
          $workboard->save();
         
  }
 }
- $workboard2 = DB::table('workboard') ->where('workboard.labInformation', '=', $id)->get();
+  $workboard2 = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'old')->get();
+      $workboardNew = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'new')->get();
   $workArray = array();
                           foreach($workboard2  as $work){
                             array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
                           }
-       return view('workboard', [
-                'userId'    => $user->id,
-                'username'  => $user->username,
-                'name'      => $user->name,
-                'photo'     => $user->profile_photo,
-                'date'      => $user->created_at,
-                'workboard2' => json_encode($workArray),
-                'mode'      => 'calendar' ,
-                'as'        => $assistant,
-                'donli'     => $donli
-            ]
-        );
+        
+                          
+       return redirect('workboardDr/index/'.$id);
     }
     /**
      * Store a newly created resource in storage.
@@ -289,6 +297,32 @@ foreach($request->day as $day){
      */
     public function destroy($id)
     {
+    }
+
+
+    /**
+     * Function handle for cancel appointments for change horary
+     * 
+     * @param 
+     * @return  [<description>]
+     */
+    public function handleExistAppointments($id){
+
+        $appointments = DB::table('medical_appointments')
+                        ->join('users', 'medical_appointments.user', '=', 'users.id')
+                        ->where('workplace',$id)->wheredate('when', '>', Carbon::today())
+                        ->select('medical_appointments.*', 'users.name', 'users.profile_photo')
+                        ->get();
+
+        if(count($appointments) > 0){
+            foreach($appointments as $app){
+                $app->when;
+            }
+            return $appointments;
+         }  
+         else{ 
+            return 'null';
+         }
     }
     
 }

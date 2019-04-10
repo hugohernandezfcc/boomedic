@@ -3,6 +3,15 @@
     <meta name="google-signin-client_id" content="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com">
     <meta name="_token" content="{{ csrf_token() }}">
     <script type="text/javascript" src="{{ asset('js/FacebookLogin.js') }}" async="true" defer="true"></script>
+    <style type="text/css">
+      .cre{
+        height: 35px;
+        padding-top: 8px;
+      }
+      .lockscreen-credentials {
+        margin-left: 110px !important;
+      }
+    </style>
 </head>
 
 @section('adminlte_css')
@@ -11,14 +20,7 @@
     @yield('css')
 @stop
 
-
-
-
-
 @section('body_class', 'login-page')
-
-
-
 
 
 @section('body')
@@ -27,9 +29,15 @@
             <a href="{{ url(config('adminlte.dashboard_url', 'medicalconsultations')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
         </div>
         <!-- /.login-logo -->
+
         <div class="login-box-body box">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
-            <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
+                 <form class="formfast" style="display: none;">
+                  {{ csrf_field() }}
+                  <br>
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                  </form>
+            <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post" class="formlogin">
                 {!! csrf_field() !!}
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -53,9 +61,10 @@
                     @endif
                 </div>
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
-                  </form>
-                    <!-- /.col -->
-                    <div class="box" align="center" style="border-style: none; box-shadow: none;"><br>
+            </form>
+
+                   <!-- startsocials
+                    <div class="box formsocial" align="center" style="border-style: none; box-shadow: none;"><br>
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-black" style="font-size: 14px;">
@@ -82,8 +91,7 @@
                             <div class="box-body">
                                 <div class="row" align="center">
                                     <div class="g-signin2"  data-width="165" data-height="27" data-clientid="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com"data-onsuccess="onSignInG"></div><br>
-                            <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
-                                </div>
+
                             </div>
                           </div>
                         </div>
@@ -113,7 +121,7 @@
                             <div id="cargafacebook"class="fa fa-refresh fa-spin"></div>
                         </div>
                      </div>
-
+    endsocials-->
             
             <div class="" id="loginload">
                 <div id="loginload2"class=""></div>
@@ -151,18 +159,56 @@
                 </div>
             </div>
         </div>
-    </div><!-- /.login-box -->
     @php 
     if($agent->isMobile()){
-    $link = explode("?", Request::fullUrl());
-    if(count($link) == 1){
-         Session(['uuid' => 'null']);
-    }else{
-        Session(['uuid' => $link[1]]);
-        }
+        $link = explode("?", Request::fullUrl());
+        if(count($link) == 1){
+               Session(['uuid' => 'null']);
+        }else{
+            Session(['uuid' => $link[1]]);
+            }
     }
     @endphp
+    <script type="text/javascript">
+            $(document).ready(function(){
+                if("{{ $agent->isMobile() }}")
+                 {
+                    var fullUrl = window.location.href;
+                    var res = fullUrl.split("?");
+                    if(res.length == 1 || "{{ session()->get('uuid') }}" == "null"){
+                        console.log('null');
+                    }else{
+                      if( "{{ session()->exists('uuid') }}" == 1)  
+                      var rest = "{{ session()->get('uuid') }}";
+                     else
+                      var rest = res[1];
 
+                        $.ajax(
+                                    {
+                                      type: "GET",    
+                                      url: "https://sbx00.herokuapp.com/loginusers/" + rest, 
+                                      success: function(result){
+                                       if(result.length > 0){
+                                        $('.formlogin').hide();
+                                        $('.formsocial').hide();
+                                        for(var z =0; z < result.length; z++){
+                                             $('.formfast').show();
+                                             if(!result[z]['profile_photo'])
+                                                var photo = "https://s3.amazonaws.com/abiliasf/profile-42914_640.png";
+                                             else
+                                                var photo = result[z]['profile_photo'];
+                                            var urll = "{{ url('loginId') }}";
+                                         /*   $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'"><div class="widget-user-header" style="background: #2f2f2f;"><div class="widget-user-image"><img class="img-circle" src="'+ photo +'" alt="User Avatar" style="width: 35px !important;"></div><h4 class="widget-user-desc">'+ result[z]['name'] +'</h3></div></a>');*/
+
+                                            $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'" class="text-muted" style="color: white !important;"><div class="lockscreen-item" style="position:relative !important; background: #333 !important;"><div class="lockscreen-image" style="background:#333 !important;"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials">{{ csrf_field() }}<div class="input-group cre"><label>'+ result[z]['name'] +'</label></div></form></div></a><br>');
+                                         }
+                                        }
+                                      }
+                                    })
+                  }
+                }
+            })        
+    </script>
 @stop
 
 @section('adminlte_js')

@@ -16,9 +16,7 @@ class ImapPop3 extends Controller {
 
 	public function connect($host, $port, $email, $pass){
 		$imbox = imap_open("{". $host .":".$port."/pop3/novalidate-cert}INBOX", $email, $pass);
-		if($imbox)
 		return $imbox;
-
 	}
 
 	public function count($imbox){
@@ -35,7 +33,7 @@ class ImapPop3 extends Controller {
 	}
 
 	public function attachment($imbox, $user){
-			$emails = imap_search($imbox, 'ALL', SE_UID);
+			$emails = imap_search($imbox, 'UNSEEN');
 						        $array = array();
 
 		/* if any emails found, iterate through each email */
@@ -138,8 +136,8 @@ class ImapPop3 extends Controller {
 
 			                if(empty($filename)) $filename = time() . ".dat";
 			                $date2 =  str_replace(' ','-',$date);
-			                $file_parts = pathinfo($filename);
-					            if($file_parts['extension'] == "zip"){
+			                $file_parts = pathinfo($attachment['name']);
+					            if(isset($file_parts['extension']) AND strtolower($file_parts['extension']) == 'zip'){
 									   $newDir = public_path("zip");
 									   File::makeDirectory( $newDir, 0755, true);
 									   $fp = fopen($newDir . "/". $filename, "w+");

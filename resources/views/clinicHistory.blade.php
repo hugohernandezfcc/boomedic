@@ -393,7 +393,7 @@
 
     <!-- Main content -->
 
-        @if(count($test_result) == 0)
+        @if(count($test_result) == 0 && $count == 0)
              <div class="box-header direct-chat">
               <h3 class="box-title">
                         Expediente médico
@@ -775,7 +775,7 @@
                         <h5>{{ $answer }}</h5>
                       </div>
                   @endforeach
-                 <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> 
+                 <a href="edit/{{ $clinic->question_id }}" class="down btn"><i class="fa fa-pencil text-muted"></i></a> 
                 </div>
               </div>
             </li>
@@ -829,7 +829,7 @@
             };
         
 
-           if(window.location.href == "{{ url('clinicHistory/index') }}"){      
+           if(window.location.href == "{{ url('clinicHistory/index') }}" && "{{ $mode }}" == "finish"){      
                 window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
                 var sticky = header.offsetTop;
@@ -1381,7 +1381,7 @@
                                         console.log(data);
                                        }
                                    });
-                         window.open('{{ url("clinicHistory/cHistory") }}', '_self');
+                         window.open('{{ url("clinicHistory/index") }}', '_self');
 
           });
 

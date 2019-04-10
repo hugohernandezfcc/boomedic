@@ -14,12 +14,18 @@ class transaction_bank extends Model
 		'paymentmethod',
 		'transaction',
 		'status',
-		'appointments'
+		'appointments',
+		'company',
+		'type_doctor'
 
     ];
     
 
-    public function user(){
+    public function paymentmethod(){
 	  return $this->belongsTo('PaymentMethod', 'paymentmethod');
+	}
+
+	public function company(){
+	  return $this->belongsTo('company_information', 'company');
 	}
 }

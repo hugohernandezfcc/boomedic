@@ -59,14 +59,12 @@
 			    color: white;
 			    margin-top: 50%;
 			    width: 100%;
-
 			}
       #mapAddressUser{
         position: relative;
         width: 95%;
         z-index: 30;
       }
-
 .cut{
   text-overflow:ellipsis;
   white-space:nowrap; 
@@ -81,7 +79,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 	<script type="text/javascript">
-
 			Dropzone.options.myAwesomeDropzone = { 
 			 
 			 // set following configuration
@@ -104,50 +101,26 @@
 			 };
 			 var val = "@php echo session()->get('val'); @endphp";
 			 		if(val == "true"){
-
 			 		setTimeout(function() {
 			 			$('#modal').modal({backdrop: 'static', keyboard: false})
 					}, 1000);	
 				}
-
 				    
 	</script>
-
-	@if( empty($status) )
-
-    @include('headerprofile')
-    <script type="text/javascript">
-      //O si no lleva botón hacer el div "div_profile" invisible
-      document.getElementById('labeltext').innerHTML = 'Editar';
-      var elemento = document.getElementById("i_button");
-      elemento.className = "fa fa-pencil text-muted";
-      document.forms.form_profile.action = "/user/edit/complete";
-    </script>
-
-	@endif
-
-
- 
-
-    <div class="box">
-	  	<div class="box-header with-border">
-		    <h3 class="box-title">Información de usuario</h3>
-	    	<!-- /.box-tools -->
-	  	</div>
 	  	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
-	    <div class="modal-dialog">
-	        <div class="modal-content-2">
-	        	<div align="center">
-					<h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
-	          	</div>
-	        </div>
-	    </div>
- 	</div>
+		    <div class="modal-dialog">
+		        <div class="modal-content-2">
+		        	<div align="center">
+						<h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1><br/><h4>(Esto podría tardar unos segundos)</h4>
+		          	</div>
+		        </div>
+		    </div>
+	 	</div>
 
 	  	<!-- /.box-header -->
-	  	<div class="box-body">
+	
 	  		@if( !empty($status) )
-
+  			 	<div class="box box-body">	
 
 					<div id="modal" class="modal fade" role="dialog">
 					              <div class="modal-dialog">
@@ -162,6 +135,7 @@
 											<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">	
 					                    
 					                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
+					                           	{{ csrf_field() }}
 					                           	<input type="hidden" id="x" name="x">
 												<input type="hidden" id="y" name="y">
 												<input type="hidden" id="w" name="w">
@@ -188,13 +162,20 @@
 	    		
 	    		<div class="col-sm-3" align="center">
 	    			@if($photo == '')
-		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@if($gender == 'male') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	@if($gender == 'female') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	 @if($gender == 'other' || $gender == '') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
 					@else
 					@php 
 					  $imagen = getimagesize($photo);    //Sacamos la información
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
-
 			          if($height > '500' || $width > '500'){
 			            $height = $height / 2.8;
 			            $width = $width / 2.8;
@@ -207,19 +188,16 @@
 			            $height = $height / 6;
 			            $width = $width / 6;
 			        }
-
-
 			          if($height < '400' || $width < '400'){
 			            $height = $height / 1.6;
 			            $width = $width / 1.6;
 			        }
-
 					@endphp
 						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">{{ csrf_field() }}</form></div>
 	    	</div><br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
@@ -276,6 +254,7 @@
 		                  <select class="form-control" name="gender">
 		                    <option value="female" {{ ($gender == 'female') ? 'selected' : '' }}>Femenino</option>
 		                    <option value="male"   {{ ($gender == 'male')   ? 'selected' : '' }}>Masculino</option>
+		                    <option value="other"   {{ ($gender == 'other')   ? 'selected' : '' }}>Otro</option>
 		                  </select>
 	                  </div>
 	                </div>
@@ -346,8 +325,8 @@
 			            </div>
 		            </div>
 
-		            <input type="text" style="display: none;" name="latitude" id="latitudeFend" />
-		            <input type="text" style="display: none;" name="longitude" id="longitudeFend" />
+		            <input type="text" style="visibility: hidden;" name="latitude" id="latitudeFend" />
+		            <input type="text" style="visibility: hidden;" name="longitude" id="longitudeFend" />
 		            <br/>
 		            <!-- /.box-body -->
 				  	<div class="box-footer">
@@ -388,7 +367,7 @@
 				  	</div>
 				  	<!-- box-footer -->
 			</form>
-	    		
+	    	</div>	
 
 	    	@else
 
@@ -417,298 +396,275 @@
 
 							@endif
 						<!-- Here ends the code for the alert -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="box box-solid">
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="box-group" id="accordion">
-                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-             
-                <div class="panel box box-default" style="border-top-color: black;">
-                
-                 <div class="box-header with-border"> 
-                 	<h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="accordion-toggle text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
-                        Información personal
-                  </a>
-              </h4>
-                  	</div>
-                   
-                  <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
 
-                    <div class="box-body">
-                      <br/>
+    <section class="content">
 
-                      
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $email }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $username }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Edad:</b></div>
-                            <div class="col-sm-10" align="left">{{ $age }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $occupation }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b>Genero:</b></div>
-                            @if($gender == "female")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.female') }}</div>
-                            @endif
-                            @if($gender == "male")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.male') }}</div>
-                            @endif
-                      
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $scholarship }}</div>
-                    
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
-                              @if($maritalstatus == "single")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.single') }}</div>
-                             @endif
-                            @if($maritalstatus == "married")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.married') }}</div>
-                             @endif	
-                      
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $mobile }}</div>
-                       
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $updated_at }}</div>
-                        
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                <br/>
-                <div class="panel box box-default" style="border-top-color: black;">
-               <div class="box-header with-border">
-               	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" class="accordion-toggle collapsed text-black" id="two" style="display:block; height:100%; width:100%;font-size: 17px;">
-                        Familia
-                </a>
-            </h4>
-                </div>
-                  <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
-                  	<div class="box-body">
-                  			<div class="lockscreen-item pull-right" style="width: 210px !important;">
-							      	<div class="input-group">
-							        	<div class="form-control" align="center"><label id="labeltext">Agregar Familiar</label></div>
-							        	<div class="input-group-btn">
-								          	<a class="btn btn-default" data-toggle="modal" data-target="#modalfamily">
-								          		<i class="fa fa-plus text-muted"></i>
-								          	</a>
-							        	</div>
-							      	</div>
-							</div>
+      	<div class="row">
+        <div class="col-md-3">
 
-                    <div id="demo"></div>
-                    </div>
-                  <!--Other modal -->
-                  <div class="modal fade" role="dialog" id="modalfamily2">
-                    <div class="modal-dialog modal-sm">
+          <!-- Profile Image -->
+          <div class="box box-default">
+            <div class="box-body box-profile">
 
-                      <div class="modal-content">
+            	@if($photo == '')
+            	    @if($gender == 'male') 
+		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
+		    	 	@if($gender == 'female') 
+		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
+		    	 	 @if($gender == 'other' || $gender == '') 
+		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
+		    	 		
+					@else
+						@php 
+						  $imagen = getimagesize($photo);    //Sacamos la información
+				          $width = $imagen[0];              //Ancho
+				          $height = $imagen[1];  
 
-                        <div class="modal-header" >
-                          <!-- Tachecito para cerrar -->
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <div align="left"><label>Información del Familiar</label></div>
-                        </div>
-                            <div class="modal-body">
-                            <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></img><br><br><b><div id="namep"></div></b></div><br>
-                            <form id="init1" style="display: none;" action="{{ url('/user/loginSon') }}" method="post">
-                            	<input type="hidden" name="id" id="idpa">
-	                  				<button type="submit" id="init" class="btn btn-secondary btn-flat btn-block" style="display: none;">Iniciar Sesión</button>
-	                  		</form>
-                            </div>
-                        </div>
-                      </div> 
-                    </div>
-
-                    <!--Other modal -->
-                   <div class="modal fade" role="dialog" id="modalfamily">
-                    <div class="modal-dialog">
-
-                      <div class="modal-content">
-
-
-                        <div class="modal-header" style="padding-bottom: 1px !important;">
-                            
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <div align="left"><label>Información de Familiar</label></div>
-                        </div>
-                             <div class="register-box-body">
-					                 <div align="form-group" style="margin-bottom: 6px;">
- 										<a class="btn btn-default btn-flat btn-block" id="inac">No es un usuario de la App</a>
- 									</div><div align="form-group">
- 										<a class="btn btn-default btn-flat btn-block" id="inac2">Si es un usuario activo de la App</a>
- 									</div>
-                             <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post" style="display: none;">
-
-                             	<input type="hidden" name="val" id="val" value="false">
-                                <div class="form-group has-feedback">	
- 								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>
- 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
- 							   </div>
- 							    <input type="hidden" name="idfam" id="idfam" required>
- 								<div id="resp" class="form-group text-muted"></div>
- 								 <div class="form-group has-feedback">	
- 								<select class="form-control select2" id="relationship" name="relationship" size="1">
- 									<option value="0" default>--Seleccione parentesco--</option>
- 									<option value="father">Padre</option>
- 									<option value="mother">Madre</option>
- 									<option value="son">Hijo(a)</option>
- 									<option value="siblings">Hermano(a)</option>
- 									<option value="grandparents">Abuelo(a)</option>
- 									<option value="uncles">Tío(a)</option>
- 									<option value="wife">Esposa</option>
- 									<option value="husband">Esposo</option>
- 								</select>
- 								</div>
- 								<div id="reg" style="display: none;">
-					                <div class="form-group has-feedback">
-					                    <input type="email" name="email" class="form-control" placeholder="{{ trans('adminlte::adminlte.email') }}">
-					                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-					                </div>
-
-					                <div class="form-group has-feedback">
-					                    <input type="date" name="birthdate" class="form-control" placeholder="{{ trans('adminlte::adminlte.birthdate') }}">
-					                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-					                </div>
-
-					                <div class="form-group has-feedback">
-					                  <select class="form-control select2" name="gender" size="1">
-					                  	<option value="female">Femenino</option>
-					                  	<option value="male">Masculino</option>
-					                  </select>
-					                </div>
- 								</div>	
- 								<div align="right">
- 								<button  type="button" class="btn btn-default btn-flat" id="back"><i class="fa fa-arrow-left text-muted"></i>&nbsp; Regresar</button>
- 								<button  type="submit" class="btn btn-default btn-flat" id="sav"><i class="fa fa-plus text-muted"></i>&nbsp; Agregar Familiar</button>
- 								</div>
- 							</form>
- 						</div>
-                      </div> 
-                    </div>
-                </div>
-				<script type="text/javascript">
-				$('#modalfamily [data-dismiss=modal]').on('click', function (e) {
-						document.getElementById('formulatio').style.display = "none";
-						document.getElementById('inac2').style.display = "block";
-						document.getElementById('inac').style.display = "block";
-
-				})
-				$('#back').on('click', function(e) {
-						document.getElementById('formulatio').style.display = "none";
-						document.getElementById('inac2').style.display = "block";
-						document.getElementById('inac').style.display = "block";
-
-				})
-				$('#inac').on('click', function(e) {
-       				 e.preventDefault();
-       				    document.getElementById('formulatio').style.display = "block";
-       				 	document.getElementById('reg').style.display = "block";
-       				 	document.getElementById('inac2').style.display = "none";
-       				 	document.getElementById('inac').style.display = "none";
-       				 	document.getElementById("formulatio").reset();
-       				 	$("#sav").removeAttr("disabled");
-       				 	document.getElementById("val").value ="true";
-       				 	document.getElementById('resp').style.display = "none";
-
-       				});
-				$('#inac2').on('click', function(e) {
-       				 e.preventDefault();
-       				 document.getElementById('formulatio').style.display = "block";
-       				 	document.getElementById('reg').style.display = "none";
-       				 	document.getElementById('inac').style.display = "none";
-       				 	document.getElementById('inac2').style.display = "none";
-       				 	document.getElementById("formulatio").reset();
-       				 	$("#sav").attr("disabled", "disabled");
-       				 	document.getElementById("val").value ="false";
-       				 	document.getElementById('resp').style.display = "inline";
-       				 	document.getElementById("resp").innerHTML = "";
-
-       				})
-
-				$('#two').on('click', function(e) {
-       				 e.preventDefault();
-       				 document.getElementById('demo').innerHTML='';
-					+ function(d3) {
-
-						var swatches = function(el) {
-						var circleWidth = 45;	
-						var charge = -800;
-						var h = 0;
-						var w= 0;
-				        if("@php echo $agent->isMobile(); @endphp"){
-				            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
-				              h= window.screen.availHeight;
-							  w= window.screen.availWidth;
-				          
-				            if(h >= 1000 && h <= 1300){
-				            	circleWidth = 30;
-								charge = -300;
-				                h = h*0.20;
-				                h = Math.floor(h);
-				                w = w*0.40;
-				                w = Math.floor(w);
-				                  //alert("Altura: "+h + "anchura " + w);
-				            }else if(h>=1800){
-				              h-= 1840;
-				              w-= 1200;
-				             circleWidth = 30;
-							 charge = -300;
-				            }else
-				            {
-				              h-=315;
-				              w-=100;
-				              circleWidth = 30;
-							 charge = -300;
-				            }
-				       	 }else{
-				          h = window.screen.availHeight-375;
-				          w = window.screen.availWidth-100;
-				           circleWidth = 50;
+				          if($height > '500' || $width > '500'){
+				            $height = $height / 2.8;
+				            $width = $width / 2.8;
+				        }
+				        if($height > '800' || $width > '800'){
+				            $height = $height / 4;
+				            $width = $width / 4;
+				        }
+				      if($height > '800' || $width > '1200'){
+				            $height = $height / 6;
+				            $width = $width / 6;
 				        }
 
-						    w = w;
-							h = h;
 
-								    
+				          if($height < '400' || $width < '400'){
+				            $height = $height / 1.6;
+				            $width = $width / 1.6;
+				        }
+
+						@endphp
+						<img class="profile-user-img img-responsive img-circle" src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+			    	@endif 
+
+              	
+
+              	<h3 class="profile-username text-center">{{ $firstname }}</h3>
+
+              	@if($gender == "female")
+              		<p class="text-muted text-center">{{ trans('adminlte::adminlte.female') }}</p>
+	            @endif
+	            @if($gender == "male")
+	            	<p class="text-muted text-center">{{ trans('adminlte::adminlte.male') }}</p>
+	            @endif
+	            @if($gender == "other")
+	            	<p class="text-muted text-center">{{ trans('adminlte::adminlte.other') }}</p>
+	            @endif
+
+              
+
+	            <ul class="list-group list-group-unbordered">
+	                <li class="list-group-item">
+	                 	<b>Familiares</b> <a class="pull-right">{{ $countfamily }}</a>
+	                </li>
+	                <li class="list-group-item">
+	                  	<b>No. de citas</b> <a class="pull-right">{{ $countappo }}</a>
+	                </li>
+	                <li class="list-group-item">
+	                  	<b>No. métodos de pago</b> <a class="pull-right">{{ $countpayments }}</a>
+	                </li>
+	            </ul>
+
+			    <form action="/user/edit/complete" method="get" id="form_profile">
+			    	{{ csrf_field() }}
+					<input type="hidden" name="id" value="{{ $userId }}">
+              		<button type="submit" class="btn btn-secondary btn-block btn-flat">Editar perfil</button>
+				</form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+          <div class="box box-default">
+            <div class="box-header with-border">
+              <h3 class="box-title">Información adicional</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i>Educación / Ocupación</strong>
+
+              <p class="text-muted">
+              	@if(empty($scholarship) && empty($occupation))
+                	<a href="#">Agregar información</a>
+                @elseif(empty($scholarship) && !empty($occupation))
+                	<a href="#">Agregar Escolaridad</a> / {{ $occupation }}
+                @elseif(!empty($scholarship) && empty($occupation))
+                	{{ $scholarship }} / <a href="#">Agregar ocupación</a>
+                @elseif(!empty($scholarship) && !empty($occupation))
+                	{{ $scholarship }} / {{ $occupation }}
+                @endif
+              </p>
+
+              <hr style="margin-top: 10px !important; margin-bottom: 10px !important;">
+
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> Prescripción médica actual</strong>
+
+              <p>
+                <span class="label label-info">{{$current_prescription}}</span>
+              </p>
+
+              <hr style="margin-top: 10px !important; margin-bottom: 10px !important;">
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Miembro desde</strong>
+              <p>{{$created_at}}</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        	<div class="col-md-9">
+        		<div class="nav-tabs-custom">
+		            <ul class="nav nav-tabs">
+		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
+		              	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
+		              	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
+		            </ul>
+		            <div class="tab-content">
+		            	<div class="active tab-pane" id="activity">
+
+		         	    	<div class="row">
+                          
+	                            <div class="col-sm-3" align="left"><b>Correo:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $email }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                          
+	                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $username }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                          
+	                            <div class="col-sm-3" align="left"><b>Edad:</b></div>
+	                            <div class="col-sm-9" align="left">{{ $age }}</div>
+	                         
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
+	                            @if($gender == "female")
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+	                            @endif
+	                            @if($gender == "male")
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+	                            @endif
+	                            @if($gender == "other")
+	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
+	                            @endif
+	                      
+	                        </div>
+	                        <div class="row">
+	                         
+	                            <div class="col-sm-3" align="left"><b>Estado civil:</b></div>
+	                              @if($maritalstatus == "single")
+	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+	                             @endif
+	                            @if($maritalstatus == "married")
+	                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+	                             @endif	
+	                      
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-3" align="left"><b># Móvil:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $mobile }}</div>
+	                       
+	                        </div>
+	                        <div class="row">
+	                        
+	                            <div class="col-sm-3" align="left"><b>Ultima modificación:</b></div>
+	                            <div class="col-sm-9 cut" align="left">{{ $updated_at }}</div>
+	                        </div>
+		         	    </div>
+		         	    <div class="tab-pane" id="family">
+		         	    	
+		         	    	<!--button modal to add more family members-->
+		         	    	<div class="lockscreen-item pull-right" style="width: 210px !important;">
+						      	<div class="input-group">
+						        	<div class="form-control" align="center"><label id="labeltext">Agregar Familiar</label></div>
+						        	<div class="input-group-btn">
+							          	<a class="btn btn-default" data-toggle="modal" data-target="#modalfamily">
+							          		<i class="fa fa-plus text-muted"></i>
+							          	</a>
+						        	</div>
+						      	</div>
+							</div>
+							<!-- button modal to add more family members -->
+
+
+
+
+	                    	<div id="diagramFamily"></div>
+
+
+
+
+	                    	<!-- modals add family member & session as child -->
+	                    	
+	                    	@include('modals.addFamilyMember')
+	                    	@include('modals.sessionAsParentChild')
+	                    	
+	                    	<!-- modals add family member & session as child -->
+
+	                    	<script type="text/javascript">
+	                    		
+	                    		$('#familyOption').on('click', function(e) {
+       				 				e.preventDefault();
+       				 				document.getElementById('diagramFamily').innerHTML='';
+									+ function(d3) {
+							/* Para centrar globos charge junta globos secundarios o los exparce más, y variable w, restarle o sumarl dependiendo el panel en donde se ve */			
+									var swatches = function(el) {
+										var circleWidth = 45;	
+										var charge = -700;//800
+										var h = 0;
+										var w= 0;
+								        if("@php echo $agent->isMobile(); @endphp"){
+								            //var mensaje2 = "@php echo $agent->version('Android'); @endphp";
+								              h= window.screen.availHeight;
+											  w= window.screen.availWidth;
+								          
+								            if(h >= 1000 && h <= 1300){
+								            	circleWidth = 30;
+												charge = -300;
+								                h = h*0.20;
+								                h = Math.floor(h);
+								                w = w*0.40;
+								                w = Math.floor(w);
+								                  //alert("Altura: "+h + "anchura " + w);
+								            }else if(h>=1800){
+								              h-= 1840;
+								              w-= 1200;
+								             circleWidth = 30;
+											 charge = -300;
+								            }else{
+								              h-=315;
+								              w-=100;
+								              circleWidth = 30;
+											 charge = -300;
+								            }
+								       	 }else{
+								          h = window.screen.availHeight-375;
+								          w = window.screen.availWidth-550;//100
+								           circleWidth = 53;
+								        }
+
+										    w = w;
+											h = h;
+
+												    
 
 								    var palette = {
 								      "lightgray": "#819090",
@@ -937,70 +893,53 @@
 										}
 									force.start();
 
-								  }('#demo');
+								  }('#diagramFamily');
 
 								}(window.d3);
 								  });
 
-                    	</script>
-                    </div>
-                  </div>
-                <br/>
-                
+	                    	</script>
 
-                <div class="panel box box-default" style="border-top-color: black;">
-                	 <div class="box-header with-border">
-                	 	<h4 class="panel-title">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;" onclick="initMapAddressUser();">	
-                       Dirección de usuario  
-                  </a> 
-                  </h4> 
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
-                    <div class="box-body" align="center">
-                    	@if($latitude == "" && $longitude == "")
-                    	         @include('empty.emptyData', 
-                                            [
-                                              'emptyc' => 'buttom',
-                                              'title'  => 'No se ha agregado dirección',
-                                              'icon'   => 'adminlte.empty-house'
-                                            ]
-                                          )
-                                       <script type="text/javascript">
-                                          $('#form_profile2').attr("action", "/user/edit/complete");
-                                          $('.buttonEmpty').text('Agregar dirección');
-                                          $('.spanEmpty1').html('No se ha agregado dirección');
-                                       </script>   
-                    	   <input type="hidden" id="nullmap" value="true">
-                    	@else   
-                          <div id="mapAddressUser"></div>
-                          <input type="hidden" id="nullmap" value="false">
-                        @endif
-                    </div>
-                </div>
-              </div>
+		         	    </div>
+		         	    <div class="tab-pane" id="address">
 
+		         	    	<div class="box-body" align="center">
+		         	    		
+		         	    		@if($latitude == "" && $longitude == "")
+		                    	         @include('empty.emptyData', 
+		                                    [
+		                                      'emptyc' => 'buttom',
+		                                      'title'  => 'No se ha agregado dirección',
+		                                      'icon'   => 'adminlte.empty-house'
+		                                    ]
+		                                  )
+		                                       <script type="text/javascript">
+		                                          $('#form_profile2').attr("action", "/user/edit/complete");
+		                                          $('.buttonEmpty').text('Agregar dirección');
+		                                          $('.spanEmpty1').html('No se ha agregado dirección');
+		                                       </script>   
+		                    	   <input type="hidden" id="nullmap" value="true">
+		                    	@else   
+		                          <div id="mapAddressUser"></div>
+		                          <input type="hidden" id="nullmap" value="false">
+		                        @endif
 
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <!-- /.col -->
-      </div>
-    		@endif
+		         	    	</div>
 
-
-
-    		<script type="text/javascript">
-    			function fun(a) {
-							    document.getElementById('sea').value = a.getAttribute("data-value");
-							    document.getElementById('idfam').value = a.getAttribute("data-id");
-							    document.getElementById("resp").innerHTML = "";
-							    $("#sav").removeAttr("disabled");   
-							}
+		         	    </div>
+		         	</div>
+		        </div>
+        	</div>
+    	</div>
+    </section>
+@endif
+    <script type="text/javascript">
+		function fun(a) {
+		    document.getElementById('sea').value = a.getAttribute("data-value");
+		    document.getElementById('idfam').value = a.getAttribute("data-id");
+		    document.getElementById("resp").innerHTML = "";
+		    $("#sav").removeAttr("disabled");   
+		}
 
 
 
@@ -1032,10 +971,15 @@
     													document.getElementById("resp").innerHTML = "Coincidencias: ";
     												for(var i= 0; i < data.length; i++){
 				                     				if(data[i]['profile_photo'] == null){
-				                     				$('#resp').append('<div style="margin-left:5%;"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
-				                     				}else{
-				                     				 $('#resp').append('<div style="margin-left:5%;"><img src="'+ data[i]['profile_photo'] +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+				                     						if(data[i]['gender'] == 'female')
+				                     							var photo =  "{{ asset('profile-female.png') }}";
+				                     						if(data[i]['gender'] == 'male')
+				                     							var photo =  "{{ asset('profile-42914_640.png') }}";
+				                     						if(data[i]['gender'] == 'other')
+				                     							var photo =  "{{ asset('profile-other.png') }}";				                     						
+
 				                     				}
+				                     				$('#resp').append('<div style="margin-left:5%;"><img src="'+ photo +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
 				                     				}
 				                             	} 
     											}
@@ -1106,9 +1050,10 @@
 		         (document.getElementById('autocomplete')),
 		            {types: ['geocode']});
 
-		        // When the user selects an address from the dropdown, populate the address
+								        // When the user selects an address from the dropdown, populate the address
 		        // fields in the form.
 		        autocomplete.addListener('place_changed', fillInAddress);
+
 		      }
 
 		      function fillInAddress() {
@@ -1119,7 +1064,8 @@
 		          document.getElementById(component).value = '';
 		          document.getElementById(component).disabled = false;
 		        }
-
+		            document.getElementById('latitudeFend').value = place.geometry.location.lat();
+		            document.getElementById('longitudeFend').value = place.geometry.location.lng();
 		        // Get each component of the address from the place details
 		        // and fill the corresponding field on the form.
 		        for (var i = 0; i < place.address_components.length; i++) {
@@ -1154,37 +1100,37 @@
 
 		    </script>
 
-		    @if( empty($status) )
+	    @if( empty($status) )
 
-		    	<script type="text/javascript">
-		    	
+	    	<script type="text/javascript">
+	    	
 
-		    		var counter = -1;
-			      	function initMapAddressUser() {	
-				      	if(!counter > 0){
-				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
-					          zoom: 14,
-					          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
-					        });
+	    		var counter = -1;
+		      	function initMapAddressUser() {	
+			      	if(!counter > 0){
+			      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
+				          zoom: 14,
+				          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
+				        });
 
 
-					        var image = "https://s3.amazonaws.com/abiliasf/markerCasa.png";
-					        
-					        var beachMarker = new google.maps.Marker({
-					          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
-					          map: map,
-					          icon: image
-					        });
-					    }
-				        counter++;
-			      	
-			      }
-		    	</script>
-			@endif
+				        var image = "https://s3.amazonaws.com/abiliasf/markerCasa.png";
+				        
+				        var beachMarker = new google.maps.Marker({
+				          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
+				          map: map,
+				          icon: image
+				        });
+				    }
+			        counter++;
+		      	
+		      }
+	    	</script>
+		@endif
 
-<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
-<script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
+		<link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
+		<script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
 		<script type="text/javascript">
 
 
@@ -1219,3 +1165,4 @@
 
 
 @stop
+

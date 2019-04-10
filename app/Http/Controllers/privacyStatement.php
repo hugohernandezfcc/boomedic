@@ -43,6 +43,7 @@ class privacyStatement extends Controller
                 'privacy'   => $privacyStatement[0],
                 'userId'    => $user->id,
                 'username'  => $user->username,
+                'gender'    => $user->gender,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,

@@ -57,10 +57,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'AKIAIUALBKFBYOH7SVXA',
-            'secret' => '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',
-            'region' => 'us-east-1',
-            'bucket' => 'abiliasf',
+            'key' => env('S3_KEY'),
+            'secret' => env('S3_SECRET'),
+            'region' => env('S3_REGION'),
+            'bucket' => env('S3_BUCKET'),
             'ACL'    => 'public-read'
         ],
 

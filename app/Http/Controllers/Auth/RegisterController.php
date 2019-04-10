@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\professional_information;
-
+use Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\xmlapi;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mail;
 use Carbon\Carbon;
-use App\devices;
+use App\devices; 
+use App\users_devices;
 
 class RegisterController extends Controller
 {
@@ -104,7 +105,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'      => 'required|string|max:255|min:5',
+            'name'      => 'required|string|max:255|min:5|space',
             'birthdate' => 'required',
             'email'     => 'required|string|email|max:255|unique:users',
             'password'  => 'required|string|min:6|confirmed',
@@ -159,25 +160,9 @@ class RegisterController extends Controller
 
 
         $uName = explode('@', $data['email']);
-        $uName['username'] = $uName[0] . '@boomedic.mx';
+        $uName['username'] = $uName[0] . '@iscoapp.com';
 
-        /*
-         * Create account email in cpanel
-         */
-              $cpanelusr = config('app.cpanel_user');
-              $cpanelpass = config('app.cpanel_pass');
-              $xmlapi = new xmlapi(config('app.cpanel_host'));
-              $xmlapi->set_port( 2083 );
-              $xmlapi->password_auth($cpanelusr,$cpanelpass);
-              $xmlapi->set_output('json');
-              $xmlapi->set_debug(1);
-                /* Data new user */ 
-                $email_user = $uName[0] . 'boomedic';
-                $email_password = "adfm90f1m3f0m0adf";
-                $email_domain = "fastcodecloud.com";
-                $email_quota = '50';
-                $em = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain));
-        /* End create account email in cpanel */
+
 
         /**
          * En caso de que este campo exista quiere decir que es un registro de médico.
@@ -240,7 +225,7 @@ class RegisterController extends Controller
         if($request->has('accessToken') && ($request->origin == "GG" || $request->origin == "FB" || $request->origin == "LI"))
         {
             $uN = explode('@', $request->email);
-            $uN['username'] = $uN[0] . '@boomedic.mx';
+            $uN['username'] = $uN[0] . '@iscoapp.com';
             $smUser = new User;
             $smUser->name = $request->name;
             $smUser->email = $request->email;
@@ -257,6 +242,56 @@ class RegisterController extends Controller
         }
 
     }
+     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  $id
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+
+    public function loginusers($id)
+    {
+             $device = DB::table('devices')->where('uuid_device', $id)->get();
+             $usersd =  DB::table('users_devices')
+             ->join('users', 'users_devices.user_id', '=', 'users.id')
+             ->where('device', $device[0]->id)
+             ->select('users_devices.*','users.name', 'users.profile_photo', 'users.id as idu')
+             ->get();
+        return response()->json($usersd);
+    }
+    public function verify($code)
+           { 
+             $user = User::where('confirmation_code', $code)->first();
+             Auth::loginUsingId($user->id);
+                if (!$user){
+                    return redirect('/login');
+                }else{
+   
+                        /*
+         * Create account email in cpanel
+         */
+              $cpanelusr = config('app.cpanel_user');
+              $cpanelpass = config('app.cpanel_pass');
+              $xmlapi = new xmlapi(config('app.cpanel_host'));
+              $xmlapi->set_port( 2083 );
+              $xmlapi->password_auth($cpanelusr,$cpanelpass);
+              $xmlapi->set_output('json');
+              $xmlapi->set_debug(1);
+                /* Data new user */ 
+                $email_user = $user->username;
+                $email_password = "adfm90f1m3f0m0adf";
+                $email_domain = "iscoapp.com";
+                $email_quota = '50';
+                $em = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain));
+        /* End create account email in cpanel */   
+         
+                $user->confirmed = true;
+                $user->confirmation_code = null;
+                if($user->save())
+                return redirect()->intended(route('medicalconsultations'))->with('notification', 'Has confirmado correctamente tu correo!');
+               
+            }
+     }
 
 
 

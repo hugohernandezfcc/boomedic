@@ -28,7 +28,7 @@
         <div class="col-lg-3 col-xs-6">
           	<div class="small-box bg-green">
             	<div class="inner">
-              		<h3>53<sup style="font-size: 20px">%</sup></h3>
+              		<h3><sup style="font-size: 20px">$</sup>{{ $paid }}</h3>
               		<p>Saldos</p>
             	</div>
             	<div class="icon">

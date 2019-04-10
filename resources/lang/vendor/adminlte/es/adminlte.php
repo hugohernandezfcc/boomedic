@@ -9,6 +9,7 @@ return [
     'birthdate'                   => 'Fecha de nacimiento',
     'female'                      => 'Femenino',
     'male'                        => 'Masculino', 
+    'other'                       => 'Otro',  
     'single'                      => 'soltero(a)',
     'married'                     => 'Casado(a)',     
     
@@ -46,8 +47,27 @@ return [
     'uncles'                             => 'Tío(a)',
 
     /* Days */
-    'Tuesday'   => 'Lun',
+    'Mon'   => 'Lun',
+    'Tue'   => 'Mar',
+    'Wed'   => 'Mie',
+    'Thu'   => 'Jue',
+    'Fri'   => 'Vie',
+    'Sat'   => 'Sab',                    
+    'Sun'   => 'Dom',
 
+    /* Months */
+    'January'       => 'Enero',
+    'February'      => 'Febrero',
+    'March'         => 'Marzo',
+    'April'         => 'Abril', 
+    'May'         => 'Mayo', 
+    'June'         => 'Junio', 
+    'July'         => 'Julio', 
+    'August'         => 'Agosto', 
+    'September'         => 'Septiembre', 
+    'October'         => 'Octubre', 
+    'November'         => 'Noviembre', 
+    'December'         => 'Diciembre',     
 
 
     /* System Error */

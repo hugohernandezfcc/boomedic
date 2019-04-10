@@ -31,24 +31,36 @@
   	<div class="box-body">
 
               @foreach($app->sortBy('when') as $app)  
-      
-            <div class="form-group">
-              <div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
-                    <div class="info-box bg-gray">
-                    <div class="info-box-icon-2"><img src="{{ $app->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"><br/>Dr. {{ $app->name }}</div>
-                      <div class="info-box-content">
-                        <b>Asistir {{ \Carbon\Carbon::parse($app->when)->format('d-m-Y h:i A') }}</b><br/>
-                       Especialidad: {{ $app->specialty }}<br/>
-                       Lugar: {{ $app->workplace}}<br/>
-                       Dirección: {{ $app->country }}, {{ $app->state }}, {{ $app->colony }}, {{ $app->delegation }}, {{ $app->street }} {{ $app->streetNumber }}. CP: {{ $app->postalcode }}
+              
+                <div class="form-group">
+                  <div class="col-sm-8" style="padding-right: 0; padding-left: 0;">
+                    @if($app->status != 'No completed')
+                        <div class="info-box bg-gray">
+                        <div class="info-box-icon-2"><img src="{{ $app->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"><br/>Dr. {{ $app->name }}</div>
+                          <div class="info-box-content">
+                            <b>Asistir {{ \Carbon\Carbon::parse($app->when)->format('d-m-Y h:i A') }}</b><br/>
+                           Especialidad: {{ $app->specialty }}<br/>
+                           Lugar: {{ $app->workplace}}<br/>
+                           Dirección: {{ $app->country }}, {{ $app->state }}, {{ $app->colony }}, {{ $app->delegation }}, {{ $app->street }} {{ $app->streetNumber }}. CP: {{ $app->postalcode }}
+                          </div>
+                        </div>
+                    @else
+                       <a href="{{ url('drAppointments/viewcancelAppointment/') }}/{{ $app->mid }}"><div class="info-box bg-red">
+                        <div class="info-box-icon-2"><img src="{{ $app->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"><br/>Dr. {{ $app->name }}</div>
+                         <div class="info-box-content">
+                            <b>Asistir {{ \Carbon\Carbon::parse($app->when)->format('d-m-Y h:i A') }}</b><br/>
+                           Especialidad: {{ $app->specialty }}<br/>
+                           Lugar: {{ $app->workplace}}<br/>
+                           Dirección: {{ $app->country }}, {{ $app->state }}, {{ $app->colony }}, {{ $app->delegation }}, {{ $app->street }} {{ $app->streetNumber }}. CP: {{ $app->postalcode }}
+                          </div>
+                        </div></a>
+                    @endif    
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-              <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $app->latitude }},{{ $app->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $app->latitude }},{{ $app->longitude }}&amp;zoom=15&amp;size=400x90&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 91px;"> 
-              </div></div>  
+                      <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
+                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $app->latitude }},{{ $app->longitude }}&amp;markers=color:black%7Clabel:%7C{{ $app->latitude }},{{ $app->longitude }}&amp;zoom=15&amp;size=400x90&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación"  style="width:100%; height: 91px;"> 
+                  </div></div>  
       
-      @endforeach
+          @endforeach
                 <br/>
                 <div class="pull-right">
                     <a href="{{ url('/medicalconsultations') }}" class="btn btn-secondary btn-block btn-flat">

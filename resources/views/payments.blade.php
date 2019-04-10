@@ -84,6 +84,7 @@
 	                <tbody>
 	                    @foreach ($cards as $card)
 	                           <tr><form action="PaymentAuthorizations" method="post" id="regForm">
+	                           	{{ csrf_field() }}
 	                        	@if($card->provider != 'Paypal')
 	                        	<td></td>
 	                        	<td>
@@ -405,24 +406,20 @@
 				             <div class="row">
 				             	<div class="col-sm-1"></div>
 			                	<div class="col-sm-4">
-			                			<div class="col-sm-6" align="right"><b>Id Paypal:</b></div>
+			                			<div class="col-sm-6" align="left"><b>Id Paypal:</b></div>
 			                			<div class="col-sm-6" align="left">{{ $cardnumber }}</div>
-			                		</div>
+			                	</div>
 			                	<div class="col-sm-4">
-			                			<div class="col-sm-3" align="right"><b>Email:</b></div>
+			                			<div class="col-sm-3" align="left"><b>Email:</b></div>
 			                			<div class="col-sm-9" align="left">{{ $paypal_email }}</div>
 			                	</div>
-			                </div>		
-			                <br/>
-			                <div class="row">
-			                <div class="col-sm-1"></div> 
-			                <div class="col-sm-4">
-			                		<div class="row">
-			                			<div class="col-sm-6" align="right"><b>Proveedor:</b></div>
-			                            <div class="col-sm-6" align="left"><i class="fa fa-cc-paypal" style="font-size: 25px;"></i></div>
-			                		</div>
+			                	<div class="col-sm-4">
+			                			<div class="col-sm-3" align="left"><b>Proveedor:</b></div>
+			                			<div class="col-sm-9" align="left"><i class="fa fa-cc-paypal" style="font-size: 25px;"></i></div>
 			                	</div>
-			              </div><br/>  </div>	  	
+			                </div>		
+			                <br/> 
+			            </div>	  	
 	</div>
 		@if(count($transactions) < 1)
                                         @include('empty.emptyData', 

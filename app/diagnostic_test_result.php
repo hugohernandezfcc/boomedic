@@ -20,7 +20,8 @@ class diagnostic_test_result extends Model
 		'structure_email',
 		'date_email',
 		'subject_email',
-		'text_email'
+		'text_email',
+		'viewed'
 
     ];
 

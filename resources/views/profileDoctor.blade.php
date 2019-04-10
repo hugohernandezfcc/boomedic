@@ -71,6 +71,53 @@
 		  white-space:nowrap; 
 		  overflow:hidden; 
 		}
+.stepwizard-step p {
+    margin-top: 10px;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard {
+    display: table;
+    width: 100%;
+    position: relative;
+}
+
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-order: 0;
+
+}
+
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
     </style>
 @stop
 
@@ -111,27 +158,7 @@
 				    
 	</script>
 	@if($mode == 'doctor')
-	@if( empty($status) )
 
-    @include('headerprofile')
-    <script type="text/javascript">
-      //O si no lleva botón hacer el div "div_profile" invisible
-      document.getElementById('labeltext').innerHTML = 'Editar';
-      var elemento = document.getElementById("i_button");
-      elemento.className = "fa fa-pencil text-muted";
-      document.forms.form_profile.action = "/doctor/edit/complete";
-
-    </script>
-	@endif
-
-	
-
-
-    <div class="box">
-	  	<div class="box-header with-border">
-		    <h3 class="box-title">Información de Médico</h3>
-	    	<!-- /.box-tools -->
-	  	</div>
 	  			<!-- Modal photo settings-->
 	<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
 	    <div class="modal-dialog">
@@ -147,7 +174,7 @@
 
 
 	  	<!-- /.box-header -->
-	  	<div class="box-body">
+
 	  		@if( !empty($status) )
 	  			<!-- Modal photo settings-->
 	<div id="modal" class="modal fade" role="dialog" style="width: 100%">
@@ -158,6 +185,7 @@
 	                <div align="center">
 	                   	<img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">
 	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
+	                   		{{ csrf_field() }}
 		                   	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
 							<input type="hidden" id="w" name="w" />
@@ -171,7 +199,7 @@
 	    </div>
  	</div>
  	<!-- Modal photo settings-->
-
+ 	<div class="box box-body">
 		  		@if ($status == "In Progress")
 		  			<div class="callout callout-success">
 		                <h4>Ya casi estamos listos {{ $firstname }} !!!</h4>
@@ -184,8 +212,16 @@
 	    		<div class="row" align="center">
 
 		    		<div class="col-sm-4" align="center">
-						@if($photo2 == '')
-		    	 		<img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" alt="User Image"  style="width:150px; height: 150px;">
+					@if($photo2 == '')
+	            	    @if($gender == 'male') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	@if($gender == 'female') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	 @if($gender == 'other' || $gender == '') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
 					@else
 					@php 
 					  $imagen = getimagesize($photo2);    //Sacamos la información
@@ -216,23 +252,24 @@
 			    	@endif 
 		    			
 		    		</div>
-						<div class="col-sm-6" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+						<div class="col-sm-6" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone">{{ csrf_field() }}</form></div>
 	    		</div>
 	    		<!-- Photo Zone. -->
 	    		<br/>
 
 	    		<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="formDr">
-	    <div id="modalAlert" class="modal fade" role="dialog">
-	    <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">La foto de perfil es obligatoria, recuerde que es la imagen que verá el ppaciente.</h4>
-              </div>
-            </div>
-          </div>
-      </div>
+	    			{{ csrf_field() }}
+				<div id="modalAlert" class="modal fade" role="dialog">
+				    <div class="modal-dialog">
+			            <div class="modal-content">
+			              <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                  <span aria-hidden="true">×</span></button>
+			                <h4 class="modal-title">La foto de perfil es obligatoria, recuerde que es la imagen que verá el ppaciente.</h4>
+			              </div>
+			            </div>
+			          </div>
+			      </div>
 	    			{{ csrf_field() }}
 
 	    			<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -288,6 +325,7 @@
 		                  <select class="form-control" name="gender">
 		                    <option value="female" {{ ($gender == 'female') ? 'selected' : '' }}>Femenino</option>
 		                    <option value="male"   {{ ($gender == 'male')   ? 'selected' : '' }}>Masculino</option>
+		                    <option value="other"   {{ ($gender == 'other')   ? 'selected' : '' }}>Otro</option>
 		                  </select>
 	                  </div>
 	                </div>
@@ -396,38 +434,37 @@
 		            		&nbsp;
 		            	</div>
 		            	<div id="locationField" class="col-sm-10">
-					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text"></input>
-					    </div>
+					      	<input id="autocomplete" class="form-control" placeholder="Ingresa tu dirección" onFocus="geolocate()" type="text">
 		            </div>
 
 		            <div class="form-group">
 		            	<label  class="col-sm-2 control-label">
 		            	</label>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $street }}" class="form-control" name="street" id="street_number"  placeholder="Número de calle" {{ ( empty( $street ) ) ? 'disabled="true"' : '' }}>
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $colony }}" class="form-control" name="colony" id="route" {{ ( empty( $colony ) ) ? 'disabled="true"' : '' }}>
 			            	</div>  
 			        </div>
 			        <div class="form-group">
 			        	<label  class="col-sm-2 control-label">
 		            	</label>    	            	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad"></input>
+			            		<input type="text" value="{{ $delegation }}" class="form-control" name="delegation" id="locality" {{ ( empty( $delegation ) ) ? 'disabled="true"' : '' }} placeholder="Ciudad">
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $state }}" class="form-control" name="state" id="administrative_area_level_1" placeholder="Estado" {{ ( empty( $state ) ) ? 'disabled="true"' : '' }}>
 			            	</div>
 			        </div>
 			        <div class="form-group">  
 			        	<label  class="col-sm-2 control-label">
 		            	</label>  	
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal"></input>
+			            		<input type="text" value="{{ $postalcode }}" class="form-control" name="postalcode" id="postal_code" {{ ( empty( $postalcode ) ) ? 'disabled="true"' : '' }} placeholder="Código postal">
 			            	</div>
 			            	<div class="col-sm-5">
-			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}></input>
+			            		<input type="text" value="{{ $country }}" class="form-control" name="country" id="country" placeholder="País" {{ ( empty( $country ) ) ? 'disabled="true"' : '' }}>
 			            	</div>
 			            
 		            </div>
@@ -475,6 +512,7 @@
 				  	<!-- box-footer -->
 
 	    		</form>
+	    		    		</div>
 
 	    	@else
 	    					@if(session()->has('message'))
@@ -500,144 +538,227 @@
 							   @endif
 							 @endif  
     			<!-- Custom Tabs -->
-     <div class="row">
-        <div class="col-md-12">
-          <div class="box box-solid">
+
+              <section class="content">
+
+      	<div class="row">
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-default">
+            <div class="box-body box-profile">
+
+					@if($photo2 == '')
+	            	    @if($gender == 'male') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	@if($gender == 'female') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	 @if($gender == 'other' || $gender == '') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+					@else
+						@php 
+						  $imagen = getimagesize($photo2);    //Sacamos la información
+				          $width = $imagen[0];              //Ancho
+				          $height = $imagen[1];  
+
+				          if($height > '500' || $width > '500'){
+				            $height = $height / 2.8;
+				            $width = $width / 2.8;
+				        }
+				        if($height > '800' || $width > '800'){
+				            $height = $height / 4;
+				            $width = $width / 4;
+				        }
+				      if($height > '800' || $width > '1200'){
+				            $height = $height / 6;
+				            $width = $width / 6;
+				        }
+
+
+				          if($height < '400' || $width < '400'){
+				            $height = $height / 1.6;
+				            $width = $width / 1.6;
+				        }
+
+						@endphp
+						<img class="profile-user-img img-responsive img-circle" src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+			    	@endif 
+
+              	
+
+              	<h3 class="profile-username text-center">{{ $firstname2 }}</h3>
+
+              	@if($gender == "female")
+              		<p class="text-muted text-center">{{ trans('adminlte::adminlte.female') }}</p>
+	            @endif
+	            @if($gender == "male")
+	            	<p class="text-muted text-center">{{ trans('adminlte::adminlte.male') }}</p>
+	            @endif
+	            @if($gender == "other")
+	            	<p class="text-muted text-center">{{ trans('adminlte::adminlte.other') }}</p>
+	            @endif
+
+              
+
+	            <ul class="list-group list-group-unbordered">
+	                <li class="list-group-item">
+	                 	<b>Asistentes</b> <a class="pull-right">2</a>
+	                </li>
+	                <li class="list-group-item">
+	                  	<b>No. de citas</b> <a class="pull-right">1</a>
+	                </li>
+	                <li class="list-group-item">
+	                  	<b>No. métodos de pago</b> <a class="pull-right">5</a>
+	                </li>
+	            </ul>
+
+			    <form action="/doctor/edit/complete" method="get" id="form_profile">
+			    	{{ csrf_field() }}
+					<input type="hidden" name="id" value="{{ $userId }}">
+              		<button type="submit" class="btn btn-secondary btn-block btn-flat">Editar perfil</button>
+				</form>
+			 <hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Miembro desde</strong>
+              <p>{{$created_at}}</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+          <div class="box box-default">
+            <div class="box-header with-border">
+              <h3 class="box-title">Información Profesional</h3>
+            </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="box-group" id="accordion">
-                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-             
-                <div class="panel box box-default" style="border-top-color: black;">
-                
-                 <div class="box-header with-border"> 
-                 	<h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="accordion-toggle text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
-                        Información personal
-                  </a>
-              </h4>
-                  	</div>
-                   
-                  <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
+              <strong><i class="fa fa-address-card margin-r-5"></i> Licencia</strong>
+              <p class="text-muted">{{ $professional_license }}</p>
 
-                    <div class="box-body">
-                      <br/>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Correo:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $email2 }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Nombre de usuario:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $username2 }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                          
-                            <div class="col-sm-2" align="left"><b>Edad:</b></div>
-                            <div class="col-sm-10" align="left">{{ $age }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Ocupación:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $occupation }}</div>
-                         
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b>Genero:</b></div>
-                            @if($gender == "female")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.female') }}</div>
-                            @endif
-                            @if($gender == "male")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.male') }}</div>
-                            @endif
-                      
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Escolaridad:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $scholarship }}</div>
-                    
-                        </div>
-                        <div class="col-xs-12">
-                         
-                            <div class="col-sm-2" align="left"><b>Estado civil:</b></div>
-                              @if($maritalstatus == "single")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.single') }}</div>
-                             @endif
-                            @if($maritalstatus == "married")
-                            <div class="col-sm-10" align="left">{{ trans('adminlte::adminlte.married') }}</div>
-                             @endif	
-                      
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b># Móvil:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $mobile }}</div>
-                       
-                        </div>
-                        <div class="col-xs-12">
-                        
-                            <div class="col-sm-2" align="left"><b>Ultima modificación:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $updated_at }}</div>
-                        
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                <br/>
-                <div class="panel box box-default" style="border-top-color: black;">
-               <div class="box-header with-border">
-               	<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"  class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;">
-                        Información Profesional
-                </a>
-            </h4>
-                </div>
-                  <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
-                    <div class="box-body">
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Licencia Profesional:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $professional_license }}</div>
-                        </div>
-                         <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Sociedad de Médicos:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $medical_society }}</div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Especialidad:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $specialty }}</div>
-                        </div>
-                       <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Escuela de Medicina:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $schoolOfMedicine }}</div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Facultad de Especialización:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $facultyOfSpecialization }}</div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="col-sm-2" align="left"><b>Práctica Profesional:</b></div>
-                            <div class="col-sm-10 cut" align="left">{{ $practiseProfessional }}</div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                <br/>
-                <div class="panel box box-default" style="border-top-color: black;">
-                	 <div class="box-header with-border">
-                	 	<h4 class="panel-title">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;">	
-                        Consultorios    
-                  </a> 
-                  </h4> 
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
-                    <div class="box-body">
+              <strong><i class="fa fa-user-md margin-r-5"></i> Sociedad de Médicos</strong>
+              <p>{{ $medical_society }}</p>
+
+              <strong><i class="fa fa-book margin-r-5"></i> Escuela de Medicina</strong>
+              	<p class="text-muted">{{ $schoolOfMedicine }}</p>
+
+              <strong><i class="fa fa-book margin-r-5"></i> Facultad de Especialización</strong>
+              	<p class="text-muted">{{ $facultyOfSpecialization }}</p>
+
+               <strong><i class="fa fa-star margin-r-5"></i> Especialidad</strong>
+              <p>{{ $specialty }}</p>	
+
+              <strong><i class="fa fa-black-tie margin-r-5"></i> Práctica Profesional</strong>
+              	<p class="text-muted">{{ $practiseProfessional }}</p>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        	<div class="col-md-9">
+        		<div class="nav-tabs-custom">
+		            <ul class="nav nav-tabs">
+		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
+		              	<li><a href="#Asistant" id="four" data-toggle="tab">Asistentes</a></li>
+		              	<li><a href="#laborInformation" data-toggle="tab">Consultorios</a></li>
+		              	<li><a href="#configClinic" data-toggle="tab">Preguntas previa cita</a></li>
+		            </ul>
+
+		            <div class="tab-content">
+		            	<div class="active tab-pane" id="activity">
+		         	    
+			 						<div class="row">
+			                          
+			                            <div class="col-sm-3" align="left"><b>Correo:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $email2 }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                          
+			                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $username2 }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                          
+			                            <div class="col-sm-3" align="left"><b>Edad:</b></div>
+			                            <div class="col-sm-9" align="left">{{ $age }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                         
+			                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
+			                         
+			                        </div>
+			                        <div class="row">
+			                        
+			                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
+			                            @if($gender == "female")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.female') }}</div>
+			                            @endif
+			                            @if($gender == "male")
+			                            <div class="col-sm-3" align="left">{{ trans('adminlte::adminlte.male') }}</div>
+			                            @endif
+			                            @if($gender == "other")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
+			                            @endif
+			                      
+			                        </div>
+			                        <div class="row">
+			                         
+			                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
+			                    
+			                        </div>
+			                        <div class="row">
+			                         
+			                            <div class="col-sm-3" align="left"><b>Estado civil:</b></div>
+			                              @if($maritalstatus == "single")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.single') }}</div>
+			                             @endif
+			                            @if($maritalstatus == "married")
+			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.married') }}</div>
+			                             @endif	
+			                      
+			                        </div>
+			                        <div class="row">
+			                        
+			                            <div class="col-sm-3" align="left"><b># Móvil:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $mobile }}</div>
+			                       
+			                        </div>
+			                        <div class="row">
+			                        
+			                            <div class="col-sm-3" align="left"><b>Ultima modificación:</b></div>
+			                            <div class="col-sm-9 cut" align="left">{{ $updated_at }}</div>
+			                        
+			                        </div>
+		         	    </div>
+		         	    <div class="tab-pane" id="Asistant">
+		         	    	
+			                    <div class="box-body">
+			                    	     <div class="lockscreen-item pull-right" style="width: 210px !important;">
+										      	<div class="input-group">
+										        	<div class="form-control" align="center"><label id="labeltext">Agregar Asistente</label></div>
+										        	<div class="input-group-btn">
+											          	<a class="btn btn-default" data-toggle="modal" data-target="#modalassist">
+											          		<i class="fa fa-plus text-muted"></i>
+											          	</a>
+										        	</div>
+										      	</div>
+										</div>
+									<div id="demo"></div>
+			                    </div>
+
+		         	    </div>
+		         	    <div class="tab-pane" id="laborInformation">
+		         	    <div class="box-body"> 	
                           @if($labor->isEmpty())
 						 <span class="text-black">No hay ningún centro asociado a su cuenta.</span>			
 							@else
@@ -656,53 +777,161 @@
 									          <!-- /.info-box -->
 							</div>
 							<div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height:45px;">	
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x45&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación"  style="width:100%; height:45px;">	
 							</div>
 							</div>		
 							@endforeach
 							@endif
 									<div class="pull-right">
 									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
+									   		{{ csrf_field() }}
 									   	<button type="submit" class="btn btn-secondary btn-xs"><i class="fa fa-plus"></i> Agregar consultorio</button>
-									   </form></div>
-                  </div>
-                </div>
-              </div>
-                              <br/>
-                <div class="panel box box-default" style="border-top-color: black;">
-                	 <div class="box-header with-border">
-                	 	<h4 class="panel-title">
-                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="accordion-toggle collapsed text-black" style="display:block; height:100%; width:100%;font-size: 17px;" id="four">	
-                        Asistentes
-                  </a> 
-                  </h4> 
-                  </div>
-                  <div id="collapse4" class="panel-collapse collapse" aria-expanded="false">
-                    <div class="box-body">
-                    	     <div class="lockscreen-item pull-right" style="width: 210px !important;">
-							      	<div class="input-group">
-							        	<div class="form-control" align="center"><label id="labeltext">Agregar Asistente</label></div>
-							        	<div class="input-group-btn">
-								          	<a class="btn btn-default" data-toggle="modal" data-target="#modalassist">
-								          		<i class="fa fa-plus text-muted"></i>
-								          	</a>
-							        	</div>
-							      	</div>
-							</div>
-						<div id="demo"></div>
-                    </div>
-                                      <!--Other modal -->
+									   </form>
+									</div>
+						   </div>			
+		         	    </div>
+		         	    <div class="tab-pane" id="configClinic">
+			         	    <div class="box-body"> 
+			         	    	<div class="input-group">
+				                <input type="text" name="question" id="question" class="form-control" placeholder="Escriba una pregunta para la información necesaria previa a la cita" required autocomplete="off">
+				                    <span class="input-group-btn">
+				                    <button class="btn btn-flat btn-secondary" onclick="nextQues();"><span class="fa fa-plus"></span></button>
+				                    </span>
+				              </div>
+			         	    	<br/>
+			         	    	<div class="well well-sm" id="box-question">
+			         	    		<label class="text-muted">Preguntas añadidas</label>
+				         	    		<div id="searchQuestions">
+				         	    			<div>pregunta</div>
+				         	    			<div>Respuesta</div>
+				         	    		</div>	
+			         	    	</div>
+			         	    	<div style="display: none;" id="box-question-save">
+								<script type="text/javascript">
+								$(document).ready(function () {
+								    var navListItems = $('div.setup-panel div a'), // tab nav items
+								            allWells = $('.setup-content'), // content div
+								            allNextBtn = $('.nextBtn'); // next button
 
+								    allWells.hide(); // hide all contents by defauld
 
-                </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <!-- /.col -->
-      </div>
+								    navListItems.click(function (e) {
+								        e.preventDefault();
+								        var $target = $($(this).attr('href')),
+								                $item = $(this);
+
+								        if (!$item.hasClass('disabled')) {
+								            navListItems.removeClass('btn-secondary').addClass('btn-default');
+								            $item.addClass('btn-secondary');
+								            allWells.hide();
+								            $target.show();
+								            $target.find('input:eq(0)').focus();
+								        }
+								    });
+								    // next button
+								    allNextBtn.click(function(){
+								        var curStep = $(this).closest(".setup-content"),
+								            curStepBtn = curStep.attr("id"),
+								            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+								            curInputs = curStep.find("input[type='text'],input[type='email'],input[type='password'],input[type='url']"),
+								            isValid = true;
+
+								           // Validation
+								        $(".form-group").removeClass("has-error");
+								        for(var i=0; i<curInputs.length; i++){
+								            if (!curInputs[i].validity.valid){
+								                isValid = false;
+								                $(curInputs[i]).closest(".form-group").addClass("has-error");
+								            }
+								        }
+								        // move to next step if valid
+								        if (isValid)
+								            nextStepWizard.removeAttr('disabled').trigger('click');
+								    });
+
+								    $('div.setup-panel div a.btn-secondary').trigger('click');
+								});
+								</script>
+
+								<label class="text-muted">Configuración de respuestas</label><br>
+								<div class="stepwizard">
+					                <div class="stepwizard-row setup-panel">
+					                    <div class="stepwizard-step">
+					                        <a href="#step-1" type="button" class="btn btn-secondary btn-circle" title="Selección única"><i class="glyphicon glyphicon-check"></i></a>
+					                    </div>
+					                    
+					                    <div class="stepwizard-step">
+					                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Selección múltiple"><i class="glyphicon glyphicon-list-alt"></i></a>
+					                    </div>
+					                    
+					                    <div class="stepwizard-step">
+					                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Texto abierto"><i class="fa fa-pencil"></i></a>
+					                    </div>
+					                    <div class="stepwizard-step">
+					                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Confirmar"><i class="glyphicon glyphicon-ok"></i></a>
+					                    </div>
+					                    
+					                </div>
+					            </div><br>
+                           <div class="row setup-content" id="step-1">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12">
+			                        		<div class="radio"><label><input type="radio" name="type" value="radio" checked="" onclick="$('#check').show();">Selección única</label></div><br>
+												<div class="form-group" style="display: none;" id="check">
+								                  <label>Escriba las opciones separadas por ;</label>
+								                  <textarea class="form-control" rows="3" placeholder="Opción 1; Opción 2; Opción 3" name="optionsradio"></textarea>
+								                </div>
+
+				                         <!-- <span class="text-muted fa fa-question-circle">Respuestas de alternativa simple (dicotómicas), cuando sólo es posible una respuesta (sí o no, hombre o mujer)</span>
+				                       --></div>  
+			                         </div>    
+			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+              			    </div>
+
+			               <div class="row setup-content" id="step-2">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12">
+			                          <div class="radio"><label><input type="radio" name="type" value="checkbox" checked="" onclick="$('#check2').show();">Selección múltiple</label></div>
+			                          		<div class="form-group" style="display: none;" id="check2">
+								                  <label>Escriba las opciones separadas por ;</label>
+								                  <textarea class="form-control" rows="3" placeholder="Opción 1; Opción 2; Opción 3" name="optionscheck"></textarea>
+								            </div>
+			                       </div>
+			                    </div>    
+			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+			               </div>
+
+			               <div class="row setup-content" id="step-3">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12">
+			                          <div class="radio"><label><input type="radio" name="type" value="texto" checked="">Texto abierto</label></div>
+			                            <!-- content go here -->
+			                       </div>
+			                    </div>    
+			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+			               </div>
+			               	<div class="row setup-content" id="step-4">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12">
+			                         <b>Finalizar</b>   
+			                            <!-- content go here -->
+			                     	</div>
+			                    </div>       
+			                            <button class="btn btn-secondary nextBtn btn-flat pull-right" type="submit">Guardar configuración</button>
+			               </div>
+			               			<hr>
+			         	    		<div align="left"><button class="btn btn-flat btn-default btn-sm" onclick="cancelQuestion();">Cancelar</button></div>
+			         	    	</div>	
+			         	    </div>
+		         	    </div>
+		         	</div>
+		        </div>
+        	</div>
+    	</div>
+    </section>
+
+        <!-- /.col AQUI -->
+
                         <div class="modal fade" role="dialog" id="modalassist2">
                     <div class="modal-dialog modal-sm">
 
@@ -738,6 +967,7 @@
                         </div>
                              <div class="register-box-body">
                              <form action="{{ url('/doctor/saveAssistant') }}" id="formulatio" method="post">
+                             	{{ csrf_field() }}
                                 <div class="form-group has-feedback">	
  								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required autocomplete="off">
  								<span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -755,6 +985,26 @@
                     </div>
                 </div>
       <script type="text/javascript">
+
+      				function nextQues(){
+      					document.getElementById('question').disabled = true;
+      					$('#box-question').hide();
+      					$('#box-question-save').show();
+      					$('div.setup-panel div a[href="#step-1"]').click();
+      				}
+      				function cancelQuestion(){
+      					document.getElementById('question').disabled = false;
+      					$('#box-question').show();
+      					$('#box-question-save').hide();
+
+      				}
+
+		            $("#question").on("keyup", function() {
+		                var value = $(this).val().toLowerCase();
+		                $("#searchQuestions div").filter(function() {
+		                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		                });
+		              });
           			function fun(a) {
 							    document.getElementById('sea').value = a.getAttribute("data-value");
 							    document.getElementById('idassist').value = a.getAttribute("data-id");
@@ -785,7 +1035,7 @@
     													document.getElementById("resp").innerHTML = "Coincidencias: ";
     												for(var i= 0; i < data.length; i++){
 				                     				if(data[i]['profile_photo'] == null){
-				                     				$('#resp').append('<div style="margin-left:5%;"><img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+				                     				$('#resp').append('<div style="margin-left:5%;"><img src="{{ asset("profile-42914_640.png") }}" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
 				                     				}else{
 				                     				 $('#resp').append('<div style="margin-left:5%;"><img src="'+ data[i]['profile_photo'] +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
 				                     				}
@@ -808,7 +1058,7 @@
 
 						var swatches = function(el) {
 						var circleWidth = 45;	
-						var charge = -800;
+						var charge = -700;
 						var h = 0;
 						var w= 0;
 				        if("@php echo $agent->isMobile(); @endphp"){
@@ -837,9 +1087,9 @@
 							 charge = -300;
 				            }
 				       	 }else{
-				          h = window.screen.availHeight-375;
-				          w = window.screen.availWidth-100;
-				           circleWidth = 50;
+						  h = window.screen.availHeight-375;
+						  w = window.screen.availWidth-550;//100
+				          circleWidth = 53;
 				        }
 
 						    w = w;
@@ -1197,9 +1447,7 @@
 		    	</script>
 
 			@endif
-
-	  	</div>	  	
-	</div>
+  <!-- aqui x2-->
 <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}" type="text/css" />
 <script type="text/javascript" src="{{ asset('js/jquery.color.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.Jcrop.js') }}"></script>
@@ -1254,6 +1502,7 @@ $('#target').Jcrop({
 					   </div>
 
 					<form action="/doctor/laborInformationNext/{{ $userId }}" method="post" class="form-horizontal" id="form1" style="display:none">
+						{{ csrf_field() }}
 		<div class="modal fade" id="modal-default1" style="display: none;">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -1382,6 +1631,7 @@ $('#target').Jcrop({
 
 				<!-- form for map -->
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
+			{{ csrf_field() }}
 			<div class="modal fade" id="modal-default" style="display: none;">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -1856,7 +2106,7 @@ $('#target').Jcrop({
 					          </div>
 					        </div>
 					        <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x90&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 91px;">
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x90&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación"  style="width:100%; height: 91px;">
 							</div>
 
 						</div> <br> 

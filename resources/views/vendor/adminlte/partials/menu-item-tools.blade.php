@@ -45,6 +45,7 @@
             font-size: 13px !important;
           }
       </style>
+
                           <aside class="control-sidebar control-sidebar-dark" style="overflow: hidden;">
                               <!-- Create the tabs -->
                               <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
@@ -90,6 +91,16 @@
                             </aside>
                             <div id="tool"></div>
       <script type="text/javascript">
+     function  check(a){
+          var id = a.attr('id'); 
+          if($(a).prop('checked')) {
+             $('#'+id+'w').removeAttr('disabled');
+          }
+          else{
+             $('#'+id+'w').attr('disabled','disabled');
+              $('#'+id+'w').prop( "checked", false );
+          }
+      }
       $(document).ready(function(){
               $.ajax({
                  type: "GET",                 
@@ -99,7 +110,7 @@
                       if(result.length > 0){
                           $('#accordion2').html('');
                           for(var z= 0; z < result.length; z++){
-                          $('#accordion2').append('<div class="panel box tit"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'"><div class="box-header with-border"><h5 class="box-title tit">'+ result[z]['name'] +'</h5></div></a><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse"><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permisos</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody><tr><td>Perfil</td><td><input type="checkbox" value="" checked></td><td><input type="checkbox" value=""></td></tr><tr><td>Agenda</td><td><input type="checkbox" value="" checked></td><td><input type="checkbox" value=""></td></tr><tr><td>Horarios</td><td><input type="checkbox" value="" checked></td><td><input type="checkbox" value=""></td></tr></tbody></table></div></div></div></div>');
+                          $('#accordion2').append('<div class="panel box tit"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'"><div class="box-header with-border"><h5 class="box-title tit">'+ result[z]['name'] +'</h5></div></a><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse"><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permisos</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody><tr><td>Perfil</td><td><input type="checkbox" id="a" onclick="check($(this));" value="perfil"></td><td><input type="checkbox" id="aw" value="" disabled="disabled"></td></tr><tr><td>Agenda</td><td><input type="checkbox" value="" onclick="check($(this));" id="b"></td><td><input type="checkbox" value="" id="bw" disabled="disabled"></td></tr><tr><td>Horarios</td><td><input type="checkbox" value="" id="c" onclick="check($(this));"></td><td><input type="checkbox" value="" id="cw" disabled="disabled"></td></tr></tbody></table></div></div></div></div>');
                         
                         }
                       }else{

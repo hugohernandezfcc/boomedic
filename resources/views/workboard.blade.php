@@ -29,7 +29,7 @@
     min-width: 98%;
     margin: 0 auto;
   }
- #calendar {
+ #calendar3 {
     max-width: 98%;
     min-width: 98%;
     margin: 0 auto;
@@ -41,7 +41,27 @@
 .fc-toolbar.fc-header-toolbar {
   margin-bottom: 0;
 } 
-
+#calendar3 .fc-widget-header{
+    background-color:#505050;
+    color: white;
+}
+#calendar3 .fc-widget-content{
+	background-color: #D4D4D5;
+}
+#calendar3 .fc-head, #calendar3 .fc-body {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.callout {
+    border-radius: 3px;
+    margin: 0 0 5px 0;
+    padding: 5px 15px 5px 5px;
+    border-left: 5px solid #eee;
+}
+.callout.callout-gray {
+    border-color: #333;
+    background-color: #999;
+    color: white;
+}
 
 </style>
 @stop
@@ -51,20 +71,33 @@
 <div class="box">
 
   	<div class="box-header with-border">
-	    <h3 class="box-title">Horario de Trabajo</h3>
+	    <h3 class="box-title">Horario habilitado para citas médicas</h3>
 	    
   	</div>
   	<div class="box-body">
 @if($mode != 'calendar')	
+        <div id="div1">
+			<div id="button" align="right">Configurar Horarios &nbsp;<button class="btn btn-flag btn-default btn-xs" onclick="config();"><i class="text-muted fa fa-cog"></i></button></div>
 
           <!-- Custom Tabs -->
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_2" data-toggle="tab" aria-expanded="false">Actual</a></li>
-              <li class=""><a href="#tab_1" data-toggle="tab" aria-expanded="true">Configurar Horario</a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane" id="tab_1">
+
+              	@if(count($workboard) > 0)
+              	<br/>
+              		<!--<div class="callout callout-success">Horario actual</div>-->
+                   		<div id='calendar2'></div>
+	                   @if(count($new2) > 0)
+						<br><br>
+						<div class="callout callout-gray">&nbsp; <i class="fa fa-info"></i> &nbsp; Horario aún no activo</div>
+	                   		<div id='calendar3'></div>
+	                   @endif
+                   @else
+                   <div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> No tienes horario agregado</b>
+					</div>
+				@endif
+
+
+              </div>
+                <div id="config1"  style="display: none">
 				@if(count($workboard) > 0)
 					<div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> Tienes un horario registrado en este lugar. Si guardas un nuevo horario se perderá el registro anterior.</b>
 					</div>
@@ -82,6 +115,7 @@
 				</div>
 				</div>
 			  	    <form action="{{ url('/workboardDr/create') }}/{{ $work }}" method="post" class="form-horizontal" id="formwork">
+			  	    	{{ csrf_field() }}
 				<div class="form-group col-sm-12" id="menu1">
 
 			  		
@@ -227,31 +261,36 @@
 			 	</div>
 			 	<div class="col-sm-12" align="right">
 			 		<button type="submit" class="btn btn-secondary">Guardar</button>
-			 		<a href="{{ url()->previous() }}" class="btn btn-default">
-									                Cancelar
-			 </a>
+			 		<button class="btn btn-default" onclick="cancel();">Cancelar </button>
+
 			 	</div>
 			</form>
 		</div>
-
-              <!-- /.tab-pane -->
-              <div class="tab-pane active" id="tab_2">
-              	@if(count($workboard) > 0)
-                   <div id='calendar2'></div>
-                   @else
-                   <div class="alert alert-dismissible text-red"><b><i class="icon fa fa-warning"></i> No tienes horario agregado</b>
-					</div>
-				@endif
-
-
-              </div>
-            </div>
-            <!-- /.tab-content -->
-          </div>
           <!-- nav-tabs-custom -->
 
 				</div>
               </div>
+<!--Modal citas-->
+                 <div class="modal fade" role="dialog" id="modalAppo">
+                    <div class="modal-dialog modal-sm">
+                      <!--Modal cita reagendada-->
+                              <div class="modal-content">
+
+                                <div class="modal-header" >
+                                  <!-- Tachecito para cerrar -->
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  <div align="left"><label>¡Algunos pacientes  se habían registrado en el horario anterior!</label></div>
+                                </div>
+                                    <div class="modal-body" id="bodyappo">
+
+                                    </div>
+                                </div>
+
+                      </div> 
+                    </div>
+
 			@endif
   		
 
@@ -262,6 +301,16 @@
 		</div>
 		@endif
 <script type="text/javascript">
+
+	function config(){
+		$('#config1').show();
+		$('#div1').hide();
+	}
+	function cancel(){
+		$('#config1').hide();
+		$('#div1').show();
+	}
+
   $('#timepicker1').timepicker({
     showInputs: false,
      showMeridian:false,
@@ -512,6 +561,158 @@ $(function() {
                           }
                         }
 		}
+		  var optionhourn = @php echo $new;  @endphp;
+
+
+          var horn = Array();
+          var respn = Array();
+          var resp2n = Array();
+         for(var y = 0; y < optionhourn.length; y++){ 
+                     respn = optionhourn[y].split(":",2); 
+                     resp2n = JSON.parse(optionhourn[y].slice(4));
+					 if(respn[0] == 'Dom'){
+						for(var d = 0; d < resp2n.length; d++){
+						var dan = '[0]';	
+						if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3),  
+						    dow: dan // Repetir Lunes y Jueves
+
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00', 
+						    end: '00:'+ resp2n[d].slice(8),
+						    color: 'green',   						     
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                     	 }
+                        }
+                        if(respn[0] == 'Lun'){
+						for(var d = 0; d < resp2n.length; d++){
+							var dan = '[1]';		
+						if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3),  
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',
+						    end: '00:'+ resp2n[d].slice(8),
+						    color: 'green',   						      
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+                        if(respn[0] == 'Mar'){
+						     for(var d = 0; d < resp2n.length; d++){
+						     	var dan = '[2]';		
+						 if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3),  
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00', 
+						    end: '00:'+ resp2n[d].slice(8), 
+						    color: 'green',  					     
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+                        if(respn[0] == 'Mie'){
+						     for(var d = 0; d < resp2n.length; d++){
+						     	var dan = '[3]';		
+						 if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3),  
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00', 
+						    end: '00:'+ resp2n[d].slice(8), 
+						    color: 'green',  						     
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+                        if(respn[0] == 'Jue'){
+						     for(var d = 0; d < resp2n.length; d++){
+						     	var dan = '[4]';		
+						if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3),  
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',  
+						    end: '00:'+ resp2n[d].slice(8), 
+						    color: 'green',  
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+                        if(respn[0] == 'Vie'){
+						     for(var d = 0; d < resp2n.length; d++){
+						     	var dan = '[5]';		
+						 if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3), 
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',
+						    end: '00:'+ resp2n[d].slice(8),
+						    color: 'green', 
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+                        if(respn[0] == 'Sab'){
+						     for(var d = 0; d < resp2n.length; d++){
+						     	var dan = '[6]';		
+						if(resp2n[d].slice(0,-3) != 'asueto '){	
+						 horn.push({  
+						 	title: 'Espacio disponible para cita',
+						    start:  resp2n[d].slice(0,-3), 
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          } else {
+                          	horn.push({  
+						 	title: 'Asueto',
+						    start:  '00:00',
+						    end: '00:'+ resp2n[d].slice(8),
+						    color: 'green',
+						    dow: dan // Repetir Lunes y Jueves
+						});
+                          }
+                          }
+                        }
+		}
+
 
 /*	$('#calendar').fullCalendar( 'destroy' );*/
 jQuery.noConflict(false);
@@ -542,6 +743,22 @@ jQuery.noConflict(false);
 		editable: false,
 		lang: 'es',
 		events: hor	
+	});
+
+
+    
+	$('#calendar3').fullCalendar({
+		
+		header: {
+			left: 'prev,next',
+			center: 'title',
+			right: 'month,basicWeek,listWeek'
+		},
+		contentHeight: 'auto',
+		defaultView: 'basicWeek',
+		editable: false,
+		lang: 'es',
+		events: horn
 	});
 
 		 if("@php echo $agent->isMobile(); @endphp"){

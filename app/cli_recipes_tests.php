@@ -12,7 +12,9 @@ class cli_recipes_tests extends Model
 		'medicine',
 		'test',
 		'recipe_test',
-		'diagnostic'
+		'diagnostic',
+		'frequency_days',
+		'posology'
 
     ];
 

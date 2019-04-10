@@ -13,7 +13,7 @@
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/bootstrap/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
@@ -325,11 +325,9 @@ span.round-tab:hover {
     content: " ";
     position: absolute;
     left: 35%;
-    opacity: 1;
     margin: 0 auto;
     bottom: 0px;
-    border: 10px solid transparent;
-    border-bottom-color: #151515;
+
 }
 .wizard .nav-tabs > li a {
     width: 30px;
@@ -380,17 +378,91 @@ span.round-tab:hover {
             padding-left: 0px !important;
         }
 
-            .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
 
-                background-color: #333;
-                border-color: #333;
-            }
-            .none {
-              display: none;
-            }
-            .pointer{
-             cursor:pointer;
-            }
+            background-color: #333;
+            border-color: #333;
+        }
+        .none {
+          display: none;
+        }
+        .pointer{
+         cursor:pointer;
+        }
+        .cutMess{
+        width:60%;
+        text-overflow:ellipsis;
+        white-space:nowrap; 
+        overflow:hidden; 
+        }
+
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 15px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #777;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+ input:checked + .slider {
+  background-color: #333;
+}
+
+ input:focus + .slider {
+  box-shadow: 0 0 1px #333;
+}
+
+ input:checked + .slider:before {
+  -webkit-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
+}
+
+/* Rounded sliders */
+ .slider.round {
+  border-radius: 13px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.box.box-primary {
+  border-top-color: #242627;
+}
+
 </style>
 
 
@@ -408,7 +480,25 @@ span.round-tab:hover {
     <![endif]-->
 </head>
 <body class="hold-transition @yield('body_class')">
+@if(!empty(session()->get('medication')))
+      @include('modals.medicationsNotConfirm', ['medication' => session()->get('medication') ])
+@endif
 
+@if(!empty(session()->get('workboardnew')))
+      @include('modals.modalChangeWorkboard', ['appo' => session()->get('workboardnew') ])
+  <script type="text/javascript">
+$(document).ready(function() {
+    var appo = @php echo session()->get('workboardnew'); @endphp;
+    if(appo != null &&  appo.length > 0){
+      $('#modalAppo').modal();
+      console.log('citas ' + JSON.stringify(appo));
+      for(var r = 0; r < appo.length; r++){
+        $('#bodyappo').append('<li class="active"><a href="javascript:void(0)" style="border-left-color: #333 !important;"><input type="hidden" name="idcancel[]" value="'+ appo[r]['id']  +'">Paciente: '+ appo[r]['name'] +'<br>Cita: '+ moment(appo[r]['when']).format('DD/MM/YYYY hh:mm a') +'<br>Cancelar <input type="radio" name="calcelwork[]" value="true"><br> Atender en mismo horario <input type="radio" name="calcelwork[]" value="false"></a></li>');
+      }
+    }
+  })
+  </script>
+@endif
 @yield('body')
 
 
@@ -418,11 +508,10 @@ span.round-tab:hover {
 <script src="{{ asset('js/GoogleLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInRegister.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.33&key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_KEY') }}&libraries=geometry,places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
-
-
-
+  <p id="power"></p>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>-->
 <script type="text/javascript">
 
           //Function for minutes appointments set interval dinamic
@@ -449,7 +538,9 @@ span.round-tab:hover {
                     });
             }
 
-
+            function agend(){
+              window.location.href = "{{ url('drAppointments/redirecting/index') }}";
+            }
             function panelDr(){
                 var doc = "@php echo session()->get('utype'); @endphp";
               if(doc == "doctor"){          
@@ -470,12 +561,12 @@ span.round-tab:hover {
                                   console.log(result2);
                                   $('#futureCites').addClass('timeline');
                                   $('#stateCite').html('');
-                                  $('#futureCites').html('<li class="time-label none" id="yesterday"><span class="bg-gray">Mañana</span></li><li class="time-label none" id="moreYesterday"><span class="bg-gray">Pasado mañana</span></li><li class="time-label none" id="more"><span class="bg-gray">El resto de la semana</span></li> <li><i class="fa fa-clock-o bg-gray"></i></li>');
+                                  $('#futureCites').html('<li class="time-label none" id="yesterday"><span class="bg-gray">Mañana</span></li><li class="time-label none" id="moreYesterday"><span class="bg-gray">Pasado mañana</span></li><li class="time-label none" id="more"><span class="bg-gray">El resto de la semana</span></li><li><i class="fa fa-clock-o bg-gray" onclick="agend();"></i></li>');
                                    $('#tool').html('');
 
                       ///Function for cites of day         
                      var now = moment().format("MM/DD/YYYY HH:mm");
-             
+                      
                    if(result2[0] != null && result2[0].length > 0){
                      $('#numberAppo').html(result2[0].length);
                      $('#stateCite2').hide();
@@ -483,11 +574,23 @@ span.round-tab:hover {
                      $('#drAlert').addClass('animated');
                      var array = new Array();
                       for(var g =0; g < result2[0].length; g++){
-                                   var gender = result2[0][g]['gender'];
-                                       if(gender == 'female')
-                                          gender = 'Femenino';
-                                       if(gender == 'male')
-                                          gender = 'Masculino';
+                                      var gender = result2[0][g]['gender'];
+                                      if(result2[0][g]['profile_photo'] == null || result2[0][g]['profile_photo'] == ''){
+                                        if(gender == 'female'){
+                                           var  photo = "{{ asset('profile-female.png') }}";
+                                           gender = 'Femenino';
+                                         }
+                                        if(gender == 'male'){
+                                           var  photo = "{{ asset('profile-42914_640.png') }}";
+                                           gender = 'Masculino';
+                                         }
+                                        if(gender == 'other'){
+                                           var  photo = "{{ asset('profile-other.png') }}";
+                                           gender = 'Otro';
+                                         } 
+                                      }else
+                                      var photo = result2[0][g]['profile_photo'];
+                                           
 
                                 var com = moment(result2[0][g]['when']).format("MM/DD/YYYY HH:mm");
                                if(now < com){
@@ -504,11 +607,12 @@ span.round-tab:hover {
                          if(result2[0][g]['status'] == 'No completed'){  
                                     $('#stateCite').append('<li><a class="pointer"><i class="menu-icon fa fa-calendar-times-o bg-red"></i><button type="button" class="close" data-dismiss="li" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +'" onclick=" $(this).parent().parent().fadeOut(1000);">×</button><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
 
-                                                                   $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Detalle de cita cancelada</h4></div><div class="modal-body"><div align="center"><img src="'+ result2[0][g]['profile_photo'] +'" class="img-circle" alt="User Image" style="height: 80px;"><br>xxxxxxxxxxxxxxxxxxxxxxx<br><button class="btn btn-secondary btn-flat" onclick="sendAware('+ result2[0][g]['id'] +')">Enterado</button></div></div></div></div></div>');
+                                                                   $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Detalle de cita cancelada</h4></div><div class="modal-body"><div align="center"><img src="'+ photo +'" class="img-circle" alt="User Image" style="height: 80px;"><br>xxxxxxxxxxxxxxxxxxxxxxx<br><button class="btn btn-secondary btn-flat" onclick="sendAware('+ result2[0][g]['id'] +')">Enterado</button></div></div></div></div></div>');
                                   }
                        else{      
 
-                              $('#tool').append('<div class="modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Modal x</h4></div><div class="modal-body"></div></div></div></div>');     
+                              $('#tool').append('<div class="modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog modal-sm modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Información general de la cita</h4></div><div class="modal-body"><ul class="nav nav-stacked" id="normal"><div align="center"><img src="'+ photo +'" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br><li><a ><label class="text-muted">Nombre: </label> '+ result2[0][g]['name'] +'</a></li><li><a><label class="text-muted">Edad: </label> '+ result2[0][g]['age'] +'</a></li><li><a><label class="text-muted">Fecha: </label> '+ result2[0][g]['when'] +'</a></li><li id="buttondetail"><form action="{{ url("doctor/viewPatient/") }}/'+ result2[0][g]['did'] +'" method="get" id="form_profile">{{ csrf_field() }}<button type="submit" class="btn btn-secondary btn-block btn-flat">Detalle de paciente</button></form></li></ul><br></div></div></div>');    
+
                          if(result2[0][g]['status'] == 'Taked'){  
                                     $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p></div></a></li>');
                                   }
@@ -556,25 +660,38 @@ span.round-tab:hover {
                         var yesterday = moment().add(1, 'day').format("MM/DD/YYYY");
                         var more = moment().add(2, 'day').format("MM/DD/YYYY");      
                        for(var h =0; h < result2[1].length; h++){
-                                     var gender = result2[1][h]['gender'];
-                                           if(gender == 'female')
-                                              gender = 'Femenino';
-                                           if(gender == 'male')
-                                              gender = 'Masculino';
+
+                                      var gender = result2[0][h]['gender'];
+                                      if(result2[0][h]['profile_photo'] == null || result2[0][h]['profile_photo'] == ''){
+                                        if(gender == 'female'){
+                                           var  photo = "{{ asset('profile-female.png') }}";
+                                           gender = 'Femenino';
+                                         }
+                                        if(gender == 'male'){
+                                           var  photo = "{{ asset('profile-42914_640.png') }}";
+                                           gender = 'Masculino';
+                                         }
+                                        if(gender == 'other'){
+                                           var  photo = "{{ asset('profile-other.png') }}";
+                                           gender = 'Otro';
+                                         } 
+                                      }else{
+                                        var photo = result2[0][h]['profile_photo'];
+                                      }
 
                                      var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
                             if(yesterday == when){
                               $('#yesterday').removeClass('none');
-                              $('#yesterday').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#yesterday').after('<li><a class="pointer"><img src="'+ photo +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
 
                             }
                             if(more == when){
                               $('#moreYesterday').removeClass('none');
-                              $('#moreYesterday').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#moreYesterday').after('<li><a class="pointer"><img src="'+ photo +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
                             }    
                             if(when > more){
                               $('#more').removeClass('none');
-                              $('#more').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#more').after('<li><a class="pointer"><img src="'+ photo +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
                             }         
 
                                    }  
@@ -606,24 +723,33 @@ span.round-tab:hover {
                 type: "GET",    
                 url: "{{ url('HomeController/notify') }}", 
                 success: function(result){
-                 var com = "@php echo session()->get('entered'); @endphp";
+                 var com = "{{ session()->get('entered') }}";
                     if(com != 1){
                       $('#notN').css("display", "block");  
                     }else{
                         $('#notN').css("display", "none"); 
                     }
                     $('#notify').html('');
-                  for (var i =0; i < result.length; i++) {
-                    if(i == 0){
-                    $('#countNot').html('Tiene '+ result.length + ' notificación');
+                      if(result[1].length > 0){  
+
+                          var length = result[0].length + 1;
+                          $('#notify').append('<li><a class="pointer" data-toggle="modal" href="#modalmedications"><img src="{{ asset("prescription.png") }}" height="20" width="20">Tienes un tratamiento por iniciar</a></li>');
+
+                      }else 
+                          var length = result[0].length;   
+
+
+                  for (var i =0; i < length; i++) {
+                    if(length == 1){
+                    $('#countNot').html('Tiene '+ length + ' notificación');
                      $('#notN').html('1');
                     }else{
-                     $('#notN').html(result.length);
-                    $('#countNot').html('Tiene '+ result.length + ' notificaciones');
+                     $('#notN').html(length);
+                    $('#countNot').html('Tiene '+ length + ' notificaciones');
                     }
-                    var u = result[i]['url'];
+                    var u = result[0][i]['url'];
                     var url = "{{ url('') }}";
-                            $('#notify').append('<li><a href="'+ url +'/'+ u +'"><i class="fa fa-warning text-yellow"></i>'+ result[i]['description']+'</a></li>');
+                            $('#notify').append('<li><a href="'+ url +'/'+ u +'"><i class="fa fa-warning text-yellow"></i>'+ result[0][i]['description']+'</a></li>');
                         
                         }
                                 }
@@ -634,7 +760,7 @@ span.round-tab:hover {
                     type: "GET",    
                     url: "{{ url('HomeController/messages') }}", 
                     success: function(result){
-                            console.log("me ejecuté");
+                            console.log(result);
                     if(result.length > 0){
                         $('#newMess').html('');
                       for (var o =0; o < result.length; o++) {
@@ -653,7 +779,7 @@ span.round-tab:hover {
                                 var url = "{{ url('') }}" + "/clinicHistory/index"; 
                             } 
 
-                          $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle" alt="User Image"></div><h4 style="text-align: left;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["namec"] +'</p></a></li>');
+                          $('#newMess').append('<li><a href="'+ url +'"><div class="pull-left"><img src="'+ result[o]["profile_photo"] +'" class="img-circle"></div><h4 style="text-align: left; font-size: 9px;">'+ result[o]["name"] +'<small><i class="fa fa-clock-o"></i> '+ mo +'</small></h4><p>'+ result[o]["title"] +'</p></a></li>');
                             }
                           }else{
                                $('#countMes').html('');
@@ -675,7 +801,15 @@ span.round-tab:hover {
           console.log('ya paso el tiempo '+ time);
             panelDr();
         }
+
     $(function () {
+       /* var socket =  io.connect('http://localhost:6379');
+        socket.on('testone:App\\Events\\Event', function(data){
+                //you append that data to DOM, so user can see it
+                //$('#power').text(data.username)
+                console.log('socket');
+            });*/
+
             var par = "@php echo session()->get('parental'); @endphp";
       if(!par){
           $("body").removeClass("skin-black-light");
@@ -812,6 +946,7 @@ span.round-tab:hover {
         
     });
 </script>
+
 
 @if(config('adminlte.plugins.datatables'))
     <!-- DataTables -->
