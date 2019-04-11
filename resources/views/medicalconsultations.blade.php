@@ -357,26 +357,32 @@
       </div>
 
 
-<div class="direct-chat">
-       <div  id="rangothree">
-         <div class="btn-group-vertical">
-        <a class="btn btn-default btn-flat" onclick="initMap();"><b><span class="fa fa-crosshairs"></span></b></a>
-        <a class="btn btn-default btn-flat" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }"><b><span class="fa fa-plus" id="fap"></span></b></a></div></div>
-      <div class="direct-chat-contacts">
+        <div class="direct-chat">
+         <div  id="rangothree">
+           <div class="btn-group-vertical">
+              <a class="btn btn-default btn-flat" onclick="initMap();">
+                <b><span class="fa fa-crosshairs"></span></b>
+              </a>
+              <a class="btn btn-default btn-flat" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }">
+                <b><span class="fa fa-plus" id="fap"></span></b>
+              </a>
+            </div>
+          </div>
+          <div class="direct-chat-contacts">
             <div id="rango">   
               <div class="btn-group">
-              <a class="btn btn-default btn-xs" onclick="showMy();"><b><span id="labelextra"></span></b></a>
-              <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
-              <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
-              <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
+                <a class="btn btn-default" onclick="showMy();"><b><span id="labelextra"></span></b></a>
+                <a class="btn btn-default" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
+                <a class="btn btn-default" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
+                <a class="btn btn-default" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
               </div>
             </div>
-    </div>
-</div>
-    <div class="rango" id="dragmap" style="display: none;">
-        <a class="btn btn-secondary" data-lng="" id="dragbutton">Buscar en esta zona</a>
-    </div> 
-  </div> 
+          </div>
+        </div>
+        <div class="rango" id="dragmap" style="display: none;">
+            <a class="btn btn-secondary" data-lng="" id="dragbutton">Buscar en esta zona</a>
+        </div> 
+      </div> 
 
 
 
