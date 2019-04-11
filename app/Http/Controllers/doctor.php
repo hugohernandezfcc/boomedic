@@ -15,8 +15,8 @@ use Carbon\Carbon;
 use App\professional_information;
 use App\assistant;
 use Mail;
-use questions_clinic_history;
-use answers_clinic_history;
+use App\questions_clinic_history;
+use App\answers_clinic_history;
 
 
 class doctor extends Controller
@@ -820,7 +820,7 @@ class doctor extends Controller
 
       $ques = new questions_clinic_history;
       $ques->createdby = $user->id;
-      $ques->question = "test estático";
+      $ques->question = $request->question;
       $ques->type = "Previa cita";
       $ques->save();
       /*if($question->save()){
@@ -839,7 +839,7 @@ class doctor extends Controller
             }
             $answer->save();
         }   */ 
-        return response()->json('holA');
+        return response()->json($ques);
     }
     
 

@@ -1038,7 +1038,8 @@
 				                             type: "POST",                 
 				                             url: "{{ url('doctor/saveQuestions') }}",  
 				                             data: { "question" : $('#question').val(),
-				                              		  "type": $("input[name='type']:checked").val()
+				                              		  "type": $("input[name='type']:checked").val(),
+				                              		  "options": JSON.stringify(arrayresponse)
 				                                    }, 
 				                             dataType: 'json',                
 				                             success: function(data)             
