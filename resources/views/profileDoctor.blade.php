@@ -3,7 +3,7 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
  <style type="text/css">
 .accordion-toggle {
   position: relative;
@@ -123,6 +123,7 @@
 @stop
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
  <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
@@ -1037,10 +1038,9 @@
 				                             type: "POST",                 
 				                             url: "{{ url('doctor/saveQuestions') }}",  
 				                             data: { "question" : $('#question').val(),
-				                              		  "type": $("input[name='type']:checked").val(),
-				                              		  "options": JSON.stringify(arrayresponse)
+				                              		  "type": $("input[name='type']:checked").val()
 				                                    }, 
-				                              dataType: 'json',                
+				                             dataType: 'json',                
 				                             success: function(data)             
 				                             {
 				                             	alert(data);
