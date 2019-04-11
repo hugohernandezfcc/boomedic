@@ -822,24 +822,21 @@ class doctor extends Controller
       $ques->createdby = $user->id;
       $ques->question = $request->question;
       $ques->type = "Previa cita";
-      $ques->save();
-      /*if($question->save()){
+
+      if($ques->save()){
             $answer = new answers_clinic_history;
             $answer->question = $question->id;
             $answer->createdby = $user->id;
 
             if($request->type == 'texto')
                 $answer->answer = ["texto"];
-            if($request->type == 'radio'){
+            else{
                 $answer->answer = json_decode($request->options);
             }
-            if($request->type == 'checkbox'){
-                
-                $answer->answer = json_decode($request->options);
-            }
+
             $answer->save();
-        }   */ 
-        return response()->json($ques);
+        }   
+        return response()->json($answer);
     }
     
 
