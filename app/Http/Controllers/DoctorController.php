@@ -24,7 +24,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        dd('Hola mundo desde sbx09');
+        
     }
 
     /**
