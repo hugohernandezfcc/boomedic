@@ -1017,12 +1017,7 @@
 		              });
 
 					$('#finishQuestion').on('click', function(e) {
-						document.getElementById('question').disabled = false;
-						document.getElementById('question').value = "";
-      					$('#box-question').show();
-      					$('#box-question-save').hide();
-      					$('#addOpt').html('');
-      					$('#addOptcheck').html('');
+
 
 						var arrayresponse = [];
 							if($("input[name='type']:checked").val() == 'radio'){
@@ -1056,9 +1051,15 @@
 				                             dataType: 'json',                
 				                             success: function(data)             
 				                             {
-				                             	alert(data);
+				                             							document.getElementById('question').disabled = false;
+																		document.getElementById('question').value = "";
+												      					$('#box-question').show();
+												      					$('#box-question-save').hide();
+												      					$('#addOpt').html('');
+												      					$('#addOptcheck').html('');
 				                             	console.log(data);
-				                             	//$('#addquest').append('<li>'+ data['question']  +'</li>');
+				                             	if(data != 'error')
+				                             	$('#addquest').append('<li>'+ data['question']  +'</li>');
     										}
 				                            
 				                         });
