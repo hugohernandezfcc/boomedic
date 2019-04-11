@@ -828,7 +828,7 @@ function prevTab(elem) {
 });
       function infoSelect(){
 
-        
+
         var x = document.getElementById("mySelect");
         var specialities1 = specialities.sort();
         specialities1 = specialities.reverse();
@@ -999,6 +999,10 @@ function prevTab(elem) {
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
+
+        //>>>>>>>>>>>>>
+
+
         $('#dragmap').fadeOut(); 
         $('#modal').modal('hide');
         infoWindow = new google.maps.InfoWindow();
@@ -1243,11 +1247,9 @@ function prevTab(elem) {
                          });
                            start();
                 });
-          },
-          //****Error
-          function(failure) {
+          }, function(failure) {
             if(failure.message.indexOf(message02) == 0) {
-            // Secure Origin issue.
+              alert('hugo');
             }
           });
         }else {
@@ -1256,7 +1258,11 @@ function prevTab(elem) {
             //infoWindow.setPosition(map.getCenter());
             infoWindow.setPosition({lat: 20.42, lng: -99.18});
             infoWindow.setContent(message03);
+
+            alert('mostrar mensaje aquí');
         }
+      
+        //>>>>>>>>>>>>>
       }
       //Filter geocode Address
         function geocodeAddress(geocoder, resultsMap, markerP) {
