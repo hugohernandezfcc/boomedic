@@ -836,6 +836,30 @@
 								            curInputs = curStep.find("input[type='text'],input[type='email'],input[type='password'],input[type='url']"),
 								            isValid = true;
 
+								         $('#readquestion').html($('#question').val()); 
+
+								         	if($("input[name='type']:checked").val() ==  'texto')  
+								        		 $('#readresponse').html('<textarea class="form-control"></textarea>');
+
+								        	if($("input[name='type']:checked").val() ==  'radio'){
+								        		 $('#readresponse').html('');
+								        			var classopt = document.getElementsByClassName("opr");
+
+												 for(i=0;i<classopt.length;i++){
+												 	$('#readresponse').append('<input type="radio" name="radio">&nbsp;'+ classopt[i].innerHTML + '<br>');
+										  		  }
+								        	}
+
+								        	if($("input[name='type']:checked").val() ==  'checkbox'){
+								        		 $('#readresponse').html('');
+								        			var classopt = document.getElementsByClassName("opc");
+
+												 for(i=0;i<classopt.length;i++){
+												 	$('#readresponse').append('<input type="checkbox" name="checkbox">&nbsp;'+ classopt[i].innerHTML + '<br>');
+										  		  }
+								        	}
+
+
 								        // move to next step if valid
 								        if (isValid)
 								            nextStepWizard.removeAttr('disabled').trigger('click');
@@ -931,9 +955,16 @@
 			               	<div class="row setup-content" id="step-4">
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
-			                         Vista Previa
-			                           <button class="btn btn-secondary nextBtn btn-flat pull-right" type="button" id="finishQuestion">Guardar configuración</button>
-			                     	</div>
+			                        <div class="row">
+			                         <div class="col-sm-12">
+			                         <h5><b>Vista Previa</b></h5>
+
+			                        	 <label class="text-muted" id="readquestion"></label><br>
+				                          <div id="readresponse"></div>
+				                     </div>
+				                 </div><br>
+				                           <button class="btn btn-secondary nextBtn btn-flat pull-right" type="button" id="finishQuestion">Guardar configuración</button>
+				                     	</div>
 			                    </div>       
 			                            
 			               </div>
