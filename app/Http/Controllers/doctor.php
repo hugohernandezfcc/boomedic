@@ -825,14 +825,14 @@ class doctor extends Controller
 
       if($ques->save()){
             $answer = new answers_clinic_history;
-            $answer->question = $question->id;
+            $answer->question = $ques->id;
             $answer->createdby = $user->id;
 
             if($request->type == 'texto')
                 $answer->answer = ["texto"];
-            else{
+            else
                 $answer->answer = json_decode($request->options);
-            }
+            
 
             $answer->save();
         }   
