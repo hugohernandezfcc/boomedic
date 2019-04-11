@@ -19,7 +19,7 @@ use App\notifications;
 use App\Medications;
 use App\recipes_tests;
 use App\cli_recipes_tests;
-use App\questions_clinic_history;
+use App\answers_clinic_history;
 
 class medicalappointments extends Controller
 {
@@ -203,11 +203,12 @@ class medicalappointments extends Controller
     public function update(Request $request, $id)
     {
       $user = User::find(Auth::id());
-
-      $ques = new questions_clinic_history;
+      $array = [];
+      array_push($array, "texto");
+      $ques = new answers_clinic_history;
       $ques->createdby = $user->id;
-      $ques->question = 'test';
-      $ques->type = "Previa cita";
+      $ques->question = 26;
+      $ques->answer = json_encode($array);
       $ques->save();
        return redirect('medicalconsultations');
     }

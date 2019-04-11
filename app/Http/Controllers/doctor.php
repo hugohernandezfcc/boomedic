@@ -817,7 +817,7 @@ class doctor extends Controller
     public function saveQuestions(Request $request)
     {
       $user = User::find(Auth::id());
-
+      $array = [];
       $ques = new questions_clinic_history;
       $ques->createdby = $user->id;
       $ques->question = $request->question;
@@ -828,15 +828,17 @@ class doctor extends Controller
             $answer->question = $ques->id;
             $answer->createdby = $user->id;
 
-            if($request->type == 'texto')
-                $answer->answer = ["texto"];
+            if($request->type == 'texto'){
+                array_push($array, "texto");
+                $answer->answer = json_encode($array);
+            }
             else
-                $answer->answer = json_decode($request->options);
+                $answer->answer = $request->options;
             
 
             $answer->save();
         }   
-        return response()->json($request->options);
+        return response()->json($answer);
     }
     
 
