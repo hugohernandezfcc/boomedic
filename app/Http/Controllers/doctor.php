@@ -836,7 +836,7 @@ class doctor extends Controller
 
             $answer->save();
         }   
-        return response()->json($answer);
+        return response()->json($request->options);
     }
     
 
