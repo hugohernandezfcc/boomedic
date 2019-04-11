@@ -203,7 +203,7 @@ class doctor extends Controller
         );
     }
 
-    
+
         public function saveAssistant (Request $request)
       {     
         $user2 = User::find(Auth::id());
@@ -851,10 +851,18 @@ class doctor extends Controller
             else
                 $answer->answer = $request->options;
             
-
             $answer->save();
-        }   
-        return response()->json($answer);
+
+                    $questions = DB::table('questions_clinic_history')
+                         ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+                         ->where('questions_clinic_history.id', $ques->id)
+                         ->select('questions_clinic_history.*', 'answers_clinic_history.answer')
+                         ->first();
+           
+            return response()->json($questions);
+        }
+        else
+            return response()->json('error');
     }
     
 

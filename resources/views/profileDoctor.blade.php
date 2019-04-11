@@ -792,7 +792,7 @@
 			         	    	<div class="well well-sm" id="box-question">
 			         	    		<label class="text-muted">Preguntas añadidas</label>
 				         	    		<div id="searchQuestions">
-				         	    			<ul>
+				         	    			<ul id="addquest">
 					         	    			@foreach($questions as $quest)
 					         	    				<li>{{ $quest->question }}</li>
 					         	    			@endforeach
@@ -1056,10 +1056,10 @@
 				                             dataType: 'json',                
 				                             success: function(data)             
 				                             {
-				                             	alert('Se guardó correctamente');
-
+				                             	alert(data);
 				                             	console.log(data);
-    											}
+				                             	//$('#addquest').append('<li>'+ data['question']  +'</li>');
+    										}
 				                            
 				                         });
 						    
