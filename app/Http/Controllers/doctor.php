@@ -820,7 +820,7 @@ class doctor extends Controller
 
       $ques = new questions_clinic_history;
       $ques->createdby = $user->id;
-      $ques->question = $request->question;
+      $ques->question = "test estático";
       $ques->type = "Previa cita";
       $ques->save();
       /*if($question->save()){

@@ -19,6 +19,7 @@ use App\notifications;
 use App\Medications;
 use App\recipes_tests;
 use App\cli_recipes_tests;
+use App\questions_clinic_history;
 
 class medicalappointments extends Controller
 {
@@ -201,11 +202,13 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-        $recipe = new Medications;
-        $recipe->recipe_medicines = '10';
-        $recipe->posology = 'Por 1x3 días';
-        $recipe->start_date = '2019-01-22 10:30:00';
-        $recipe->save();
+      $user = User::find(Auth::id());
+
+      $ques = new questions_clinic_history;
+      $ques->createdby = $user->id;
+      $ques->question = 'test';
+      $ques->type = "Previa cita";
+      $ques->save();
        return redirect('medicalconsultations');
     }
 
