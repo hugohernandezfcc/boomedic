@@ -1008,129 +1008,30 @@ function prevTab(elem) {
         infoWindow = new google.maps.InfoWindow();
         //Current position
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            //Map
-            if('{{ session()->get("latitude") }}'.length > 0){
+          
 
-            var pos = {
-                        lat: parseFloat("{{ session()->get('latitude') }}"),
-                        lng: parseFloat("{{ session()->get('longitude') }}")
-                      };
-            var center = pos;
+          navigator.geolocation.getCurrentPosition(function(position) {
+
+            
+            if('{{ session()->get("latitude") }}'.length > 0){
+              var pos = {
+                lat: parseFloat("{{ session()->get('latitude') }}"),
+                lng: parseFloat("{{ session()->get('longitude') }}")
+              };
+              var center = pos;
             }else{
-             var pos = {
+              var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
               };
               var center = new google.maps.LatLng(pos);
-           }
+            }
 
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 14,
               gestureHandling: 'greedy',
               center: center,
-              styles: [
-                        {
-                          "elementType": "labels",
-                          "stylers": [
-                            {
-                              "visibility": "off"
-                            }
-                          ]
-                        },
-                        {
-                          "featureType": "administrative.land_parcel",
-                          "stylers": [
-                            {
-                              "visibility": "off"
-                            }
-                          ]
-                        },
-                        {
-                          "featureType": "administrative.neighborhood",
-                          "stylers": [
-                            {
-                              "visibility": "off"
-                            }
-                          ]
-                        },
-                        {
-                          "featureType": "landscape.man_made",
-                          "elementType": "labels.icon",
-                          "stylers": [
-                            {
-                              "visibility": "on"
-                            }
-                          ]
-                        },
-                        {
-                          "featureType": "poi.attraction",
-                          "stylers": [
-                            {
-                              "visibility": "off"
-                            }
-                          ]
-                        },
-                        {
-                          "featureType": "poi.business",
-                          "stylers": [
-                            {
-                              "saturation": -100
-                            },
-                            {
-                              "visibility": "simplified"
-                            }
-                          ]
-                        },
-                        {
-                          "featureType": "poi.medical",
-                          "stylers": [
-                            {
-                              "visibility": "off"
-                            }
-                          ]
-                        },
-                        {
-                          "featureType": "poi.park",
-                          "stylers": [
-                            {
-                              "visibility": "on"
-                            }
-                          ]
-                        },
-                        {
-                          "featureType": "poi.place_of_worship",
-                          "stylers": [
-                            {
-                              "visibility": "simplified"
-                            }
-                          ]
-                        },
-                        {
-                          "featureType": "poi.school",
-                          "stylers": [
-                            {
-                              "visibility": "off"
-                            }
-                          ]
-                        },
-                        {
-                          "featureType": "poi.sports_complex",
-                          "stylers": [
-                            {
-                              "visibility": "off"
-                            }
-                          ]
-                        },
-                        {
-                          "featureType": "water",
-                          "stylers": [
-                            {
-                              "visibility": "off"
-                            }
-                          ]
-                        }
-                      ],
+              styles: "{{ config('adminlte.styleMapGoogle') }}",
               // disableDefaultUI: true,
               zoomControl: true,
               mapTypeControl: false,
@@ -1138,12 +1039,11 @@ function prevTab(elem) {
               streetViewControl: false,
               rotateControl: false,
               fullscreenControl: false             
-            });
+          });
 
             var input = document.getElementById('address');
             var autocomplete = new google.maps.places.Autocomplete(input);
-               autocomplete.setComponentRestrictions(
-            {'country': ['mx']});
+               autocomplete.setComponentRestrictions( {'country': ['mx']} );
             var markerUser = "{{ asset('markerloc.png') }}";
            
             var pinIcon = new google.maps.MarkerImage(
@@ -1247,9 +1147,10 @@ function prevTab(elem) {
                          });
                            start();
                 });
-          }, function(failure) {
+          },
+          function(failure) {
             if(failure.message.indexOf(message02) == 0) {
-              alert('hugo');
+            // Secure Origin issue.
             }
           });
         }else {
@@ -1258,8 +1159,6 @@ function prevTab(elem) {
             //infoWindow.setPosition(map.getCenter());
             infoWindow.setPosition({lat: 20.42, lng: -99.18});
             infoWindow.setContent(message03);
-
-            alert('mostrar mensaje aquí');
         }
       
         //>>>>>>>>>>>>>

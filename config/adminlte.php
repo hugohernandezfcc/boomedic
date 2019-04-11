@@ -208,6 +208,108 @@ return [
     |
     */
    
-    'bucketAmazon'           => 'https://s3.amazonaws.com/abiliasf/'
+    'bucketAmazon'           => 'https://s3.amazonaws.com/abiliasf/',
+    'styleMapGoogle'         => '[
+                                    {
+                                      "elementType": "labels",
+                                      "stylers": [
+                                        {
+                                          "visibility": "off"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "featureType": "administrative.land_parcel",
+                                      "stylers": [
+                                        {
+                                          "visibility": "off"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "featureType": "administrative.neighborhood",
+                                      "stylers": [
+                                        {
+                                          "visibility": "off"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "featureType": "landscape.man_made",
+                                      "elementType": "labels.icon",
+                                      "stylers": [
+                                        {
+                                          "visibility": "on"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "featureType": "poi.attraction",
+                                      "stylers": [
+                                        {
+                                          "visibility": "off"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "featureType": "poi.business",
+                                      "stylers": [
+                                        {
+                                          "saturation": -100
+                                        },
+                                        {
+                                          "visibility": "simplified"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "featureType": "poi.medical",
+                                      "stylers": [
+                                        {
+                                          "visibility": "off"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "featureType": "poi.park",
+                                      "stylers": [
+                                        {
+                                          "visibility": "on"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "featureType": "poi.place_of_worship",
+                                      "stylers": [
+                                        {
+                                          "visibility": "simplified"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "featureType": "poi.school",
+                                      "stylers": [
+                                        {
+                                          "visibility": "off"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "featureType": "poi.sports_complex",
+                                      "stylers": [
+                                        {
+                                          "visibility": "off"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "featureType": "water",
+                                      "stylers": [
+                                        {
+                                          "visibility": "off"
+                                        }
+                                      ]
+                                    }
+                                  ]'
 
 ];
