@@ -1031,7 +1031,7 @@ function prevTab(elem) {
               zoom: 14,
               gestureHandling: 'greedy',
               center: center,
-              styles: JSON.parse({{ config("adminlte.styleMapGoogle") }}.replace(/&quot;/g,'"')),
+              styles: JSON.parse('{{ config("adminlte.styleMapGoogle") }}'.replace(/&quot;/g,'"')),
               // disableDefaultUI: true,
               zoomControl: true,
               mapTypeControl: false,
@@ -1106,12 +1106,12 @@ function prevTab(elem) {
                         });*/
 
             if("@php echo $agent->isMobile(); @endphp"){
-            var opt = { minZoom: 6, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
-             map.setOptions(opt);
-           }else{
-           var opt = { minZoom: 6, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
-             map.setOptions(opt);
-           }
+              var opt = { minZoom: 6, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
+               map.setOptions(opt);
+            }else{
+             var opt = { minZoom: 6, maxZoom: 20, zoomControl: false, componentRestrictions: {country: 'mx'}};
+               map.setOptions(opt);
+            }
             //Evento to open infowindow
             markerP.addListener('click', function() {
               infoWindow.open(map, markerP);
