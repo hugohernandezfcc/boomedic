@@ -793,13 +793,13 @@
 			         	   <!-- Alert success-->
 			         	     <div class="alert alert-success alert-dismissible" style="display: none;">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-				                <b><i class="icon fa fa-check"></i>Se ha guardado la pregunta y su configuración correctamente</b>
+				                <i class="icon fa fa-check"></i>Se ha guardado la pregunta y su configuración correctamente
 				             </div>
 				           <!-- Alert success-->  
 				           <!-- Alert error-->
 			         	     <div class="alert alert-warning alert-dismissible" style="display: none;">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-				                <b><i class="icon fa fa-check"></i>Ha ocurrido un error guardando tu pregunta, por favor vuelve a intentaro. Si el fallo persiste envía un caso de soporte.</b>
+				                <i class="icon fa fa-check"></i>Ha ocurrido un error guardando tu pregunta, por favor vuelve a intentaro. Si el fallo persiste envía un caso de soporte.
 				             </div>
 				           <!-- Alert error-->
 
