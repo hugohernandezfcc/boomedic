@@ -5,6 +5,13 @@
 @section('content_header')
 
  <style type="text/css">
+
+ .btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
 .accordion-toggle {
   position: relative;
 }
@@ -799,7 +806,7 @@
 				         	    			</ul>
 				         	    		</div>	
 			         	    	</div>
-			         	    	<div style="display: none;" id="box-question-save">
+			         	    	<div style="display: none;" id="box-question-save" data-toggle="buttons">
 								<script type="text/javascript">
 								$(document).ready(function () {
 								    var navListItems = $('div.setup-panel div a'), // tab nav items
@@ -860,13 +867,19 @@
 					            </div><br>
                            <div class="row setup-content" id="step-1">
 			                    <div class="col-xs-12">
-			                        <div class="col-md-12">
-			                        		<div class="radio"><label><input type="radio" name="type" value="radio" checked="">Selección única</label></div>
+			                        <div class="col-md-12" >
+			                        	 <div class="row">
+			                        		<label for="radio" class="btn btn-default btn-sm">
+			                        			<span class="glyphicon glyphicon-ok"></span>
+			                        			<input type="radio" name="type" value="radio" id="radio" style="visibility: hidden;"/>
+			                        			<b>Selección única</b>
+			                        		</label>
+			                        	</div><br/>
 			                        			
 												<div class="input-group input-group-sm">
 								                  <input type="text"  id="opt" class="form-control" placeholder="Escriba una opción" required autocomplete="off">
 								                    <span class="input-group-btn">
-								                    	<button class="btn btn-flat btn-default btn-sm" onclick="add();"><span class="fa fa-plus"></span></button>
+								                    	<button class="btn btn-flat btn-default btn-sm" onclick="add();"><span class="fa fa-plus"></span> Agregar opción</button>
 								                    </span>
 								                </div><br>
 								                <div id="addOpt"></div><br>
@@ -882,11 +895,16 @@
 			               <div class="row setup-content" id="step-2">
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
-			                          <div class="radio"><label><input type="radio" name="type" value="checkbox" checked="" onclick="$('#check2').show();">Selección múltiple</label></div>
+			                        <div class="row">
+			                          <label for="checkbox" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-ok"></span>
+			                          	<input type="radio" name="type" value="checkbox" id="checkbox" autocomplete="off" style="visibility: hidden;">
+			                        			<b>Selección múltiple</b>
+			                          </label>
+			                      </div><br>
 												<div class="input-group input-group-sm">
 								                  <input type="text"  id="optcheck" class="form-control" placeholder="Escriba una opción" required autocomplete="off">
 								                    <span class="input-group-btn">
-								                    	<button class="btn btn-flat btn-default btn-sm" onclick="addcheck();"><span class="fa fa-plus"></span></button>
+								                    	<button class="btn btn-flat btn-default btn-sm" onclick="addcheck();"><span class="fa fa-plus"></span> Agregar opción</button>
 								                    </span>
 								                </div><br>
 								                <div id="addOptcheck"></div><br>
@@ -898,9 +916,15 @@
 			               <div class="row setup-content" id="step-3">
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
-			                          <div class="radio"><label><input type="radio" name="type" value="texto" checked="">Texto abierto</label></div>
-			                            <!-- content go here -->
-			                       </div>
+			                         <div class="row">	
+			                         <label for="texto" class="btn btn-default active btn-sm">
+			                        	<span class="glyphicon glyphicon-ok"></span>
+			                        	<input type="radio" name="type" value="texto" id="texto" style="visibility: hidden;" checked="checked">
+			                         		<b>Texto abierto</b>
+			                         	</label>
+			                         </div>
+			                    </div>        <!-- content go here -->
+			                       
 			                    </div>    
 			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
 			               </div>
