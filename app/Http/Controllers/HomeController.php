@@ -252,8 +252,8 @@ class HomeController extends Controller
                     'workplaces'    => $this->getWorkPlaces(),
                     'medAppoints'   => $this->getMedicalAppointments(),
                     'paid'          => number_format($countpaid,2),
-                    'gender'        => $user->gender,
-                    'isMobile'      => $agent->isMobile()
+                    'gender'        => $user->gender
+                    
                 ]);   
         }
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
@@ -310,7 +310,7 @@ class HomeController extends Controller
                                     }
 
 
-                               }
+                               } 
                                             
                                 return view('medicalconsultations', [
                                         'username'       => $user->username,
@@ -327,7 +327,8 @@ class HomeController extends Controller
                                         'it'             => $it,
                                         'sp'             => $sp,
                                         'mg'             => $mg,
-                                        'medication'     => $countm   
+                                        'medication'     => $countm,
+                                        'isMobile'       => $agent->isMobile()   
 
                                     ]
                                 );
