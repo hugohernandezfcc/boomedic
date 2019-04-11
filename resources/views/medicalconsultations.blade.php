@@ -371,10 +371,10 @@
           <div class="direct-chat-contacts">
             <div id="rango">   
               <div class="btn-group">
-                <a class="btn btn-default" onclick="showMy();"><b><span id="labelextra"></span></b></a>
-                <a class="btn btn-default" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></a>             
-                <a class="btn btn-default" data-toggle="modal" data-target="#modal"><b>Ubicación</b></a>
-                <a class="btn btn-default" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></a>
+                <button class="btn btn-default" onclick="showMy();"><b><span id="labelextra"></span></b></button>
+                <button class="btn btn-default" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></button>             
+                <button class="btn btn-default" data-toggle="modal" data-target="#modal"><b>Ubicación</b></button>
+                <button class="btn btn-default" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></button>
               </div>
             </div>
           </div>
