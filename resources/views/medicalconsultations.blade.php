@@ -1031,7 +1031,7 @@ function prevTab(elem) {
               zoom: 14,
               gestureHandling: 'greedy',
               center: center,
-              styles: "{{ config('adminlte.styleMapGoogle') }}",
+              styles: JSON.parse('{{ config("adminlte.title") }}'.replace(/&quot;/g,'"'));,
               // disableDefaultUI: true,
               zoomControl: true,
               mapTypeControl: false,
