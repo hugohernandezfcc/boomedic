@@ -139,6 +139,15 @@ class doctor extends Controller
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
         $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
+
+        $questions = DB::table('questions_clinic_history')
+                         ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+                         ->where('questions_clinic_history.createdby', Auth::id())
+                         ->where('questions_clinic_history.active', true)
+                         ->select('questions_clinic_history.*', 'answers_clinic_history.answer')
+                         ->get();
+
+
         return view('profileDoctor', [
                  /** SYSTEM INFORMATION */
                 'userId'        => $user->id,
@@ -188,10 +197,13 @@ class doctor extends Controller
                 /*NODES ASSISTANT*/
                 'nodes'         => json_encode($nodes),
                 'donli'         => $donli,
-                'as'            => $assistant 
+                'as'            => $assistant,
+                'questions'     => $questions 
             ]
         );
     }
+
+    
         public function saveAssistant (Request $request)
       {     
         $user2 = User::find(Auth::id());
@@ -386,6 +398,10 @@ class doctor extends Controller
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
         $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
+
+
+
+
         return view('profileDoctor', [
                 /** SYSTEM INFORMATION */
                 'userId'        => $user->id,

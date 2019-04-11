@@ -22,8 +22,6 @@ use App\Medications;
 use App\recipes_tests;
 use App\cli_recipes_tests;
 
-use App\Http\Controllers\DoctorController;
-
 
 class HomeController extends Controller
 {
@@ -53,8 +51,6 @@ class HomeController extends Controller
          $uuid = session()->get('uuid');
 
 
-        $DoctorController = new DoctorController();
-        $DoctorController->index();
 
         $agent = new Agent();
         $user = User::find(Auth::id());

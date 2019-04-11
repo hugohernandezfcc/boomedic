@@ -792,6 +792,11 @@
 			         	    	<div class="well well-sm" id="box-question">
 			         	    		<label class="text-muted">Preguntas añadidas</label>
 				         	    		<div id="searchQuestions">
+				         	    			<ul>
+					         	    			@foreach($questions as $quest)
+					         	    				<li>{{ $quest->question }}</li>
+					         	    			@endforeach
+				         	    			</ul>
 				         	    		</div>	
 			         	    	</div>
 			         	    	<div style="display: none;" id="box-question-save">
@@ -1012,6 +1017,13 @@
 		              });
 
 					$('#finishQuestion').on('click', function(e) {
+						document.getElementById('question').disabled = false;
+						document.getElementById('question').value = "";
+      					$('#box-question').show();
+      					$('#box-question-save').hide();
+      					$('#addOpt').html('');
+      					$('#addOptcheck').html('');
+
 						var arrayresponse = [];
 							if($("input[name='type']:checked").val() == 'radio'){
 								var classopt = document.getElementsByClassName("opr");
@@ -1044,7 +1056,7 @@
 				                             dataType: 'json',                
 				                             success: function(data)             
 				                             {
-				                             	alert(data);
+				                             	alert('Se guardó correctamente');
 
 				                             	console.log(data);
     											}
