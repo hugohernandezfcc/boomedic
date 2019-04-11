@@ -124,7 +124,33 @@
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
-}
+}		
+		.container {
+		  position: relative;
+		  width: 90%;
+		}
+
+		/* Make the image responsive */
+		.container img {
+		  width: 80%;
+		  height: auto;
+		}
+
+		/* Style the button and place it in the middle of the container/image */
+		.container .btn {
+		  position: absolute;
+		  top: -5%;
+		  left: 78%;
+		}
+		.btn-circle-d {
+		  width: 40px;
+		  height: 40px;
+		  text-align: center;
+		  padding: 6px 0;
+		  font-size: 16px;
+		  line-height: 1.428571429;
+		  border-radius: 19px;
+		}
 
     </style>
 @stop
@@ -245,15 +271,15 @@
 	    		<div class="col-sm-3" align="center">
 	    			@if($photo == '')
 			    	 	@if($gender == 'male') 
-			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 			    	 		</div>
 			    	 	@endif
 			    	 	@if($gender == 'female') 
-			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 			    	 		</div>
 			    	 	@endif
 			    	 	 @if($gender == 'other' || $gender == '') 
-			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 			    	 		</div>
 		    	 	@endif
 					@else
@@ -279,7 +305,7 @@
 			        }
 					@endphp
 					
-						<div class="container"><img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" ><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+						<div class="container"><img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" ><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 
 			    	 	</div>
 			    			
