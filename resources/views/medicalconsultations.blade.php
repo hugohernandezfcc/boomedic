@@ -55,9 +55,9 @@
 
 
              @if($appointments->isEmpty())
-            <div class="alert alert-info alert-dismissible" id="alert">
-                            <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h5>               
-            </div>
+              <div class="alert alert-info alert-dismissible" id="alert">
+                <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h5>               
+              </div>
              @else
         <div class="box-group" id="accordion">
                 <div class="panel box box-default" style="border-top-color: gray;">
@@ -827,6 +827,8 @@ function prevTab(elem) {
     $("#alert").fadeOut(500);
 });
       function infoSelect(){
+
+        
         var x = document.getElementById("mySelect");
         var specialities1 = specialities.sort();
         specialities1 = specialities.reverse();
