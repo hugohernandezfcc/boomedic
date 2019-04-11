@@ -1001,7 +1001,7 @@ function prevTab(elem) {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
 
         //>>>>>>>>>>>>>
-
+        console.log("{{ $isMobile }}");
 
         $('#dragmap').fadeOut(); 
         $('#modal').modal('hide');
@@ -1018,7 +1018,7 @@ function prevTab(elem) {
                 lat: parseFloat("{{ session()->get('latitude') }}"),
                 lng: parseFloat("{{ session()->get('longitude') }}")
               };
-              var center = pos;
+              var center = pos; 
             }else{
               var pos = {
                 lat: position.coords.latitude,
@@ -1032,7 +1032,6 @@ function prevTab(elem) {
               gestureHandling: 'greedy',
               center: center,
               styles: JSON.parse('{{ config("adminlte.styleMapGoogle") }}'.replace(/&quot;/g,'"')),
-              // disableDefaultUI: true,
               zoomControl: true,
               mapTypeControl: false,
               scaleControl: false,
@@ -1043,8 +1042,8 @@ function prevTab(elem) {
 
             var input = document.getElementById('address');
             var autocomplete = new google.maps.places.Autocomplete(input);
-               autocomplete.setComponentRestrictions( {'country': ['mx']} );
-            var markerUser = "{{ asset('markerloc.png') }}";
+            autocomplete.setComponentRestrictions( {'country': ['mx']} );
+
            
             var pinIcon = new google.maps.MarkerImage(
                   "{{ asset('markerloc.png') }}",
@@ -1054,21 +1053,18 @@ function prevTab(elem) {
                   new google.maps.Size(40, 40)
               ); 
 
-
-            //Marker
               markerP = new google.maps.Marker({
-              draggable: true,
-              position: center,
-              icon: pinIcon,
-              map: map
-            }); 
+                draggable: true,
+                position: center,
+                icon: pinIcon,
+                map: map
+              }); 
                  //Bound México (North East and South West)
-                 var strictBounds = new google.maps.LatLngBounds(
-                                    new google.maps.LatLng(14.3895,-118.6523),
-                                    new google.maps.LatLng(32.718653,-86.5887)
-                                    );
+                 var strictBounds = new google.maps.LatLngBounds( new google.maps.LatLng(14.3895,-118.6523), new google.maps.LatLng(32.718653,-86.5887) );
                   //Here function dragend map in marker//
                   google.maps.event.addListener(map, 'dragend', function(){
+
+                        
 
                         if("@php echo $agent->isMobile(); @endphp"){
                             var complat = markerP.getPosition().lat() + 0.015;
@@ -1092,7 +1088,7 @@ function prevTab(elem) {
                                 $('#dragbutton').prop('data-lng',latlng);
                               }
                         }                                    
-                      });
+                  });
 
                         $('#dragbutton').click(function() {
                             var look = $('#dragbutton').prop('data-lng'); 

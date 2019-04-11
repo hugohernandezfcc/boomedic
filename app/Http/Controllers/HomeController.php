@@ -48,13 +48,10 @@ class HomeController extends Controller
          $data = ['message' => 'hola'];
          $redis->publish('message', json_encode($data));
          Event::fire(new EventName('JohnDoe'));*/
-         $agent = new Agent();
+
          $user = User::find(Auth::id());
          $uuid = session()->get('uuid');
 
-
-        $DoctorController = new DoctorController();
-        $DoctorController->index();
 
         $agent = new Agent();
         $user = User::find(Auth::id());
@@ -255,7 +252,8 @@ class HomeController extends Controller
                     'workplaces'    => $this->getWorkPlaces(),
                     'medAppoints'   => $this->getMedicalAppointments(),
                     'paid'          => number_format($countpaid,2),
-                    'gender'        => $user->gender
+                    'gender'        => $user->gender,
+                    'isMobile'      => $agent->isMobile()
                 ]);   
         }
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
