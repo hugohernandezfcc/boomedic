@@ -839,7 +839,7 @@ class doctor extends Controller
             }
             $answer->save();
         }   */ 
-        return response()->json($request->question);
+        return response()->json('holA');
     }
     
 
