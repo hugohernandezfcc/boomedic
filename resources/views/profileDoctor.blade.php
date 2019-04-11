@@ -788,7 +788,21 @@
 						   </div>			
 		         	    </div>
 		         	    <div class="tab-pane" id="configClinic">
-			         	    <div class="box-body"> 
+			         	    <div class="box-body">
+
+			         	   <!-- Alert success-->
+			         	     <div class="alert alert-success alert-dismissible" style="display: none;">
+				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				                <b><i class="icon fa fa-check"></i>Se ha guardado la pregunta y su configuración correctamente</b>
+				             </div>
+				           <!-- Alert success-->  
+				           <!-- Alert error-->
+			         	     <div class="alert alert-warning alert-dismissible" style="display: none;">
+				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				                <b><i class="icon fa fa-check"></i>Ha ocurrido un error guardando tu pregunta, por favor vuelve a intentaro. Si el fallo persiste envía un caso de soporte.</b>
+				             </div>
+				           <!-- Alert error-->
+
 			         	    	<div class="input-group">
 				                <input type="text" name="question" id="question" class="form-control" placeholder="Escriba una pregunta para la información necesaria previa a la cita" required autocomplete="off">
 				                    <span class="input-group-btn">
@@ -1113,8 +1127,19 @@
 												      					$('#addOpt').html('');
 												      					$('#addOptcheck').html('');
 				                             	console.log(data);
-				                             	if(data != 'error')
-				                             	$('#addquest').append('<li>'+ data['question']  +'</li>');
+				                             	if(data != 'error'){
+				                             		$('#addquest').append('<li>'+ data['question']  +'</li>');
+				                                  	$('.alert-success').show();
+				                                  	$(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
+														    $(".alert-success").slideUp(500);
+														});
+				                                  }
+				                                else{
+				                                	$(".alert-warning").show();
+				                                	$(".alert-warning").fadeTo(2000, 500).slideUp(500, function(){
+													 $(".alert-warning").slideUp(500);
+													});
+				                                }  
     										}
 				                            
 				                         });
