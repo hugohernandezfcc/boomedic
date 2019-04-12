@@ -813,6 +813,40 @@ class doctor extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function deletequestion($id)
+    {
+        $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+             $user = User::find(session()->get('asdr'));
+          }else{
+              $user = User::find(Auth::id());
+          }
+
+          $question = questions_clinic_history::find($id);
+          $answer = DB::table('answers_clinic_history')->where('question', $id)->first();
+          $clinic_history =   DB::table('clinic_history')->where('question_id', $id)->get();
+
+          if(count($clinic_history) == 0){
+             if(DB::table('answers_clinic_history')->where('question', $id)->delete())
+                    DB::table('questions_clinic_history')->where('id', $id)->delete();   
+          }else{
+              $question->active = false;
+                if($question->save())
+                    $answer->active = false;
+
+          }
+          return redirect('doctor/doctor/'.$user->id);
+    }    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function settingAss()
     {
       $user = User::find(Auth::id());

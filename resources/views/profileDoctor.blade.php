@@ -903,11 +903,11 @@
 				              </div>
 			         	    	<br/>
 			         	    	<div class="well well-sm" id="box-question">
-			         	    		<label class="text-muted">Preguntas añadidas</label>
+			         	    		<label class="text-muted">Preguntas agregadas</label>
 				         	    		<div id="searchQuestions">
 				         	    			<ul id="addquest">
 					         	    			@foreach($questions as $quest)
-					         	    				<li>{{ $quest->question }}</li>
+					         	    				<li>{{ $quest->question }} <a href="{{ url('doctor/deletequestion') }}/{{ $quest->id }}" class="btn btn-sm btn-flat text-muted"><span class="fa fa-trash"></span></a></li>
 					         	    			@endforeach
 				         	    			</ul>
 				         	    		</div>	

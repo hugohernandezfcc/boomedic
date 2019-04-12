@@ -228,6 +228,12 @@ Route::group(['prefix' => 'doctor'], function(){
 		]
 	);
 
+	Route::get('deletequestion/{id}', [
+			'uses'	=>	'doctor@deletequestion',
+			'as'	=>	'deletequestion'
+		]
+	);
+
 	Route::post('laborInformation/{id}', [
 			'uses'	=>	'doctor@update',
 			'as'	=>	'laborInformation'
