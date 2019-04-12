@@ -273,16 +273,27 @@
                                 <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
                                 <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
                                 <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
-                                @if($a2 == "Si" OR $a2 == "No")
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
-                                    {{ $an }}
-                                </label>
+                                @if($a2 == "radio")    
+                                   @if($a2 != "radio")
+                                        <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                        <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
+                                            {{ $an }}
+                                        </label>
+                                   @endif  
                                 @else
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                    {{ $an }}
-                                </label>
+                                 @if($a2 == "Si" OR $a2 == "No" )
+                                    <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                    <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
+                                        {{ $an }}
+                                    </label>     
+                                @else
+                                   @if($a2 != "checkbox") 
+                                      <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                      <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                          {{ $an }}
+                                      </label>
+                                   @endif   
+                                @endif
                                 @endif
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
@@ -309,16 +320,27 @@
                                 <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
                                 <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
                                 <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
-                                @if($a2 == "Si" OR $a2 == "No")
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
-                                    {{ $an }}
-                                </label>
+                                @if($a2 == "radio")    
+                                   @if($a2 != "radio")
+                                        <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                        <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
+                                            {{ $an }}
+                                        </label>
+                                   @endif  
                                 @else
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                    {{ $an }}
-                                </label>
+                                 @if($a2 == "Si" OR $a2 == "No" )
+                                    <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                    <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
+                                        {{ $an }}
+                                    </label>     
+                                @else
+                                   @if($a2 != "checkbox") 
+                                      <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                      <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                          {{ $an }}
+                                      </label>
+                                   @endif   
+                                @endif
                                 @endif
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
@@ -345,16 +367,27 @@
                                 <input type="hidden" id="{{ $a2 }}" value="{{ $questions1->parent_answer }}">
                                 <input type="hidden" id="p{{ $a2 }}" value="{{ $questions1->parent }}">
                                 <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
-                                @if($a2 == "Si" OR $a2 == "No")
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
-                                    {{ $an }}
-                                </label>
+                                @if($a2 == "radio")    
+                                   @if($a2 != "radio")
+                                        <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                        <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
+                                            {{ $an }}
+                                        </label>
+                                   @endif  
                                 @else
-                                <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                    {{ $an }}
-                                </label>
+                                 @if($a2 == "Si" OR $a2 == "No" )
+                                    <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                    <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $an }}">
+                                        {{ $an }}
+                                    </label>     
+                                @else
+                                   @if($a2 != "checkbox") 
+                                      <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                      <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                          {{ $an }}
+                                      </label>
+                                   @endif   
+                                @endif
                                 @endif
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
