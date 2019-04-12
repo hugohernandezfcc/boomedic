@@ -483,17 +483,17 @@
           </div>
 
           <div class="modal-body" >
-            <!-- <div class="form-group">
-              <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><b>&nbsp;<label for="general" id="label01"></label></b>
-            </div> -->
+             <div class="form-group">
+              <input type="hidden" name="general" id="general" value="checked" onchange="changeCheck();" />
+            </div> 
 
             <b>Mostrando resultados por: </b> <span for="general" id="label01"></span>
-
-              <div class="form-group">
-                <select class="form-control" name="Speciality" id="mySelect" size="1">
-                  <option id="opc01"></option>
-                </select>
-              </div>
+            <br/>
+            <div class="form-group">
+              <select class="form-control" name="Speciality" id="specialitiesSelect" size="1">
+                <option id="opc01"></option>
+              </select>
+            </div>
           </div>
 
           <div class="modal-footer">
@@ -676,40 +676,46 @@
           <script type="text/javascript">
 
 
- 
+            function byId(arg) {
+              return document.getElementById(arg);
+            }
 
 $(document).ready(function () {
 
     if("{{ $medication }}" > 0)
-       $( "#modalmedications" ).modal();
+        $( "#modalmedications" ).modal();
+        
 
-                         $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
-                          var vis = $(this).find( ".calendarNull" );
-                             if(vis.is(":visible")){
-                                    $.ajax(
-                                    {
-                                      type: "GET",    
-                                      url: "{{ url('medicalconsultations/notificationdr') }}/" + document.getElementById('dr').value, 
-                                      success: function(result){
-                                      }
-                                    })
-                                  }
-                      })
+        $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
+          var vis = $(this).find( ".calendarNull" );
+             if(vis.is(":visible")){
+                    $.ajax(
+                    {
+                      type: "GET",    
+                      url: "{{ url('medicalconsultations/notificationdr') }}/" + byId('dr').value, 
+                      success: function(result){
+                      }
+                    })
+                  }
+        })
 
- $('#mySelect').on('change', function() {
-        if( $('#mySelect').val() !== firstValue){
-          $("#general" ).prop( "checked", false );
-          $('#general').attr('checked', false);
-          startProcess = false;
-          typeC = 'TypeSpeciality';
-        }
-       if( $('#mySelect').val() == firstValue){
-          $("#general" ).prop( "checked", true);
-          $('#general').attr('checked', true);
-          startProcess = false;
-          typeC = 'TypeGeneral';
-        }
-      })
+        $('#specialitiesSelect').on('change', function() {
+
+            if( byId('specialitiesSelect').value !== '- Ninguna -'){
+                // $("#general" ).prop( "checked", false );
+                // $('#general').attr('checked', false);
+
+                startProcess = false;
+                typeC = 'TypeSpeciality';
+            }
+            
+            if( $('#specialitiesSelect').val() == '- Ninguna -'){
+                // $("#general" ).prop( "checked", true);
+                // $('#general').attr('checked', true);
+                startProcess = false;
+                typeC = 'TypeGeneral';
+            }
+        })
 
     //Initialize tooltips
        $('#footerw').css("display", "none");
@@ -841,7 +847,7 @@ function prevTab(elem) {
       function infoSelect(){
 
 
-        var x = document.getElementById("mySelect");
+        var x = document.getElementById("specialitiesSelect");
         var specialities1 = specialities.sort();
         specialities1 = specialities.reverse();
         for (var i = 0; i < specialities1.length; i++) {
@@ -861,13 +867,14 @@ function prevTab(elem) {
         }
         if (document.getElementById('general').checked){
           startProcess = false;
-          var x = document.getElementById("mySelect");   
-          x.selectedIndex = 0;
+          // var x = document.getElementById("specialitiesSelect");   
+          // x.selectedIndex = 0;
+          returnMeSelectedValue("specialitiesSelect", 0);
           typeC = 'TypeGeneral';
           document.getElementById("infoSpDetail").innerHTML = ' ';
           document.getElementById('infoSp').style.display = 'none';
           document.getElementById("label01").innerHTML = "Médico General";
-          $('#mySelect').val("- Ninguna -").trigger("change");
+          $('#specialitiesSelect').val("- Ninguna -").trigger("change");
           start();
           $("#myModal").modal("hide");
         }
@@ -926,43 +933,51 @@ function prevTab(elem) {
     </script>
 
     <script type="text/javascript">
-      function start(){
-        startProcess = true;
-        //Clean
-        clearMarkers();
-        document.getElementById("ShowDetails").innerHTML = ' ';
-        document.getElementById("info").innerHTML = ' ';
-        //Value of Speciality
-        var x = document.getElementById("mySelect");
-        var s = x.selectedIndex;
-        var selectedValue = x.options[s].text;
-        //Value of word for search
-        var keySearch = document.getElementById("kWSearch").value;
-        //Value of indicated Position
-        markerLatLng = markerP.getPosition();
-        //Value of Range to search
-        var x = document.getElementById("rango01");
-        var currentVal = x.value * 1000;
-        
-        if(typeC == 'TypeSpeciality'){
 
-          if(selectedValue !== firstValue){
-            hideM2();
-            document.getElementById('infoSp').style.display = 'block';
-            document.getElementById("infoSpDetail").innerHTML = selectedValue;
-            document.getElementById("labelextra").innerHTML = selectedValue;
-            functionEsp(selectedValue, keySearch, markerLatLng, currentVal);
-            drop();
+
+
+        function start(){
+            startProcess = true;
+            //Clean
+
+            clearMarkers();
+            byId("ShowDetails").innerHTML = ' ';
+            byId("info").innerHTML = ' ';
+
+        
+            //Value of Speciality
+            var selectedValue = returnMeSelectedValue("specialitiesSelect", "commond");
+
+            //Value of word for search
+            var keySearch = byId("kWSearch").value;
+
+            //Value of indicated Position
+            markerLatLng = markerP.getPosition();
+            //Value of Range to search
+
+            var rango1 = document.getElementById("rango01");
+            var currentVal = rango1.value * 1000;
+            
+            if(typeC == 'TypeSpeciality'){
+
+                if(selectedValue !== firstValue){
+                    hideM2();
+                    byId('infoSp').style.display = 'block';
+                    byId("infoSpDetail").innerHTML = selectedValue;
+                    byId("labelextra").innerHTML = selectedValue;
+                    functionEsp(selectedValue, keySearch, markerLatLng, currentVal);
+                    drop();
+                }
             }
-          }
-          if(typeC == 'TypeGeneral'){
-            document.getElementById('infoSp').style.display = 'none';
-            document.getElementById("label01").innerHTML = "Médico General";
-            document.getElementById("labelextra").innerHTML = "Médico General";
-            functionGen(keySearch, markerLatLng, currentVal);
-            drop();
-          }
-      }
+            
+            if(typeC == 'TypeGeneral'){
+                byId('infoSp').style.display = 'none';
+                byId("label01").innerHTML = "Médico General";
+                byId("labelextra").innerHTML = "Médico General";
+                functionGen(keySearch, markerLatLng, currentVal);
+                drop();
+            }
+        }
     </script>
 
     <script type="text/javascript">
@@ -999,10 +1014,10 @@ function prevTab(elem) {
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
         if('{{ session()->get("specialty") }}'.length > 0){  
-          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
-            if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
+          for (var i = 0; i < document.getElementById("specialitiesSelect").options.length; ++i) {
+            if (document.getElementById("specialitiesSelect").options[i].text === '{{ session()->get("specialty") }}'){
                  document.getElementById('general').click();
-                 document.getElementById("mySelect").options[i].selected = true;
+                 document.getElementById("specialitiesSelect").options[i].selected = true;
                   start();
             }
          }
@@ -1639,8 +1654,8 @@ function prevTab(elem) {
           setTimeout(dropMarker(i), i * 250);
         }
           if('{{ session()->get("specialty") }}'.length > 0){  
-              for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
-                if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
+              for (var i = 0; i < document.getElementById("specialitiesSelect").options.length; ++i) {
+                if (document.getElementById("specialitiesSelect").options[i].text === '{{ session()->get("specialty") }}'){
                        new google.maps.event.trigger( markers[0], 'click' );
                        document.getElementById('{{ session()->get("id_lb") }}').click();
                 }
@@ -1681,8 +1696,24 @@ function prevTab(elem) {
       }
     </script>
 
+
+
+
     <!-- Hides modal -->
     <script>
+
+    /**
+     * Function responsable of return value selected from picklist used.
+     */
+    function returnMeSelectedValue(fieldSelectType, mode) {
+        var field = byId(fieldSelectType);
+        if (mode == "commond") {
+            return field.options[field.selectedIndex].text;
+        }else{
+            field.selectedIndex = mode;
+        }
+    }
+
     $(document).ready(function(){
 
 
@@ -1691,12 +1722,10 @@ function prevTab(elem) {
           //alert(startProcess);
            if(!startProcess){
             /*alert('The modal is now hidden.');*/
-            var x = document.getElementById("mySelect");
-            var s = x.selectedIndex;
-            var selectedValue = x.options[s].text;
-            //alert(s);
-            document.getElementById("general").checked = true;            
-            x.selectedIndex = 0;
+
+            returnMeSelectedValue("specialitiesSelect", "commond");
+            //document.getElementById("general").value = "checked";            
+            returnMeSelectedValue("specialitiesSelect", 0);
             typeC = 'TypeGeneral';
           }
 
