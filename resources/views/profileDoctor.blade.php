@@ -905,11 +905,9 @@
 			         	    	<div class="well well-sm" id="box-question">
 			         	    		<label class="text-muted">Preguntas agregadas</label>
 				         	    		<div id="searchQuestions">
-				         	    			<ul id="addquest">
 					         	    			@foreach($questions as $quest)
-					         	    				<li>{{ $quest->question }} <a href="{{ url('doctor/deletequestion') }}/{{ $quest->id }}" class="btn btn-sm btn-flat text-muted"><span class="fa fa-trash"></span></a></li>
+					         	    				<div>{{ $quest->question }} <a href="{{ url('doctor/deletequestion') }}/{{ $quest->id }}" class="btn btn-sm btn-flat text-muted"><span class="fa fa-trash"></span></a></div>
 					         	    			@endforeach
-				         	    			</ul>
 				         	    		</div>	
 			         	    	</div>
 			         	    	<div style="display: none;" id="box-question-save" data-toggle="buttons">
@@ -1220,7 +1218,7 @@
 												      					$('#addOptcheck').html('');
 				                             	console.log(data);
 				                             	if(data != 'error'){
-				                             		$('#addquest').append('<li>'+ data['question']  +'</li>');
+				                             		$('#searchQuestions').append('<div>'+ data['question']  +'<a href="{{ url("doctor/deletequestion") }}/'+ data['id']+'" class="btn btn-sm btn-flat text-muted"><span class="fa fa-trash"></span></a></div><br>');
 				                                  	$('.alert-success').show();
 				                                  	$(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
 														    $(".alert-success").slideUp(500);
