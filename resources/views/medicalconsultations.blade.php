@@ -1291,8 +1291,8 @@ function prevTab(elem) {
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br>"+loc[i][3]+"</b><br>"+loc[i][4]+"</b><br>Consulta: $"+loc[i][5];
                  
-              document.getElementById('btncita').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs btncita" id="'+ loc[i][7] +'"><b>Concretar Cita</b></button>';
-              document.getElementById('btncita').innerHTML = '<<a class="btn btn-app" id="'+ loc[i][7] +'"><i class="fa fa-fw fa-calendar-check-o "></i> <b>Concretar Cita</b></a>';
+              //document.getElementById('btncita').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs btncita" id="'+ loc[i][7] +'"><b>Concretar Cita</b></button>';
+              document.getElementById('btncita').innerHTML = '<a class="btn btn-app" id="'+ loc[i][7] +'"><i class="fa fa-fw fa-calendar-check-o "></i> Concretar Cita</a>';
               console.log(loc[i][7]);
              console.log(loc[i][11]);
            $('#'+ loc[i][7]).on('click', function(){
