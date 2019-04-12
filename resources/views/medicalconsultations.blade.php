@@ -513,8 +513,10 @@
 
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true" style="font-size: 21px;">&times;</span></button>
+                  <span aria-hidden="true" style="font-size: 21px;">&times;</span>
+                </button>
                 <div align="left"><label>Concretar cita</label></div>
+
               </div>
               <div class="modal-body">
                 <div id="info">
@@ -1280,12 +1282,17 @@ function prevTab(elem) {
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
 
+
+
+
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               $('#infDr').show();
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br>"+loc[i][3]+"</b><br>"+loc[i][4]+"</b><br>Consulta: $"+loc[i][5];
+                 
               document.getElementById('btncita').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs btncita" id="'+ loc[i][7] +'"><b>Concretar Cita</b></button>';
+              document.getElementById('btncita').innerHTML = '<<a class="btn btn-app" id="'+ loc[i][7] +'"><i class="fa fa-fw fa-calendar-check-o "></i> <b>Concretar Cita</b></a>';
               console.log(loc[i][7]);
              console.log(loc[i][11]);
            $('#'+ loc[i][7]).on('click', function(){
