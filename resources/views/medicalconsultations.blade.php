@@ -374,7 +374,7 @@
                 <button class="btn btn-default" onclick="showMy();"><b><span id="labelextra"></span></b></button>
                 <button class="btn btn-default" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></button>             
                 <button class="btn btn-default" data-toggle="modal" data-target="#modal"><b>Ubicación</b></button>
-                <button class="btn btn-default" data-toggle="modal" data-target="#modalsearch"><b>Búsqueda</b></button>
+                <button class="btn btn-default" data-toggle="modal" data-target="#modalsearch"><b>Buscar</b></button>
               </div>
             </div>
           </div>
