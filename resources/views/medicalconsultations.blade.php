@@ -483,9 +483,12 @@
           </div>
 
           <div class="modal-body" >
-            <div class="form-group">
+            <!-- <div class="form-group">
               <input type="checkbox" name="general" id="general" checked onchange="changeCheck();"><b>&nbsp;<label for="general" id="label01"></label></b>
-            </div>
+            </div> -->
+
+            <b>Mostrando resultados por: </b> <span for="general" id="label01"></span>
+
               <div class="form-group">
                 <select class="form-control" name="Speciality" id="mySelect" size="1">
                   <option id="opc01"></option>
@@ -712,19 +715,20 @@ $(document).ready(function () {
        $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
        $('#modalerror').modal('show');
- $("#paymentMethodsFields").on("change", function(){
-        document.getElementById('endtime').innerHTML = 'Hora: ' + $('#timesByDay option:selected').text();
-        document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
-        document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
-        if(document.getElementById('paymentMethodsFields').value != "Paypal"){
-          $('#formulatio_paypal').attr('action', '/medicalappointments/store');
-         document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
-        }
-       if(document.getElementById('paymentMethodsFields').value == "Paypal"){
-          $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
-                   document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
-        }
-                        })
+       $("#paymentMethodsFields").on("change", function(){
+
+              document.getElementById('endtime').innerHTML = 'Hora: ' + $('#timesByDay option:selected').text();
+              document.getElementById('endpayment').innerHTML =  'Método de Pago: ' + $('#paymentMethodsFields option:selected').text();
+              document.getElementById("idcard").value = document.getElementById('paymentMethodsFields').value;
+              if(document.getElementById('paymentMethodsFields').value != "Paypal"){
+                $('#formulatio_paypal').attr('action', '/medicalappointments/store');
+               document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
+              }
+            if(document.getElementById('paymentMethodsFields').value == "Paypal"){
+              $('#formulatio_paypal').attr('action', '/payment/postPaymentWithpaypal');
+              document.getElementById('when').value = document.getElementById('when1').value +' '+ $('#timesByDay option:selected').text() +':00';
+            }
+        })
           $('.nav-tabs > li a[title]').tooltip();
     
     //Wizard
@@ -847,6 +851,7 @@ function prevTab(elem) {
         }
 
       }
+
       function changeCheck(){
         if (!document.getElementById('general').checked){
           startProcess = false;
@@ -867,6 +872,7 @@ function prevTab(elem) {
           $("#myModal").modal("hide");
         }
       }
+
       function showM(){
         if (!document.getElementById('general').checked){
           startProcess = false;
@@ -1290,8 +1296,8 @@ function prevTab(elem) {
               $('#infDr').show();
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br>"+loc[i][3]+"</b><br>"+loc[i][4]+"</b><br>Consulta: $"+loc[i][5];
-                 
               document.getElementById('btncita').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs " id="'+ loc[i][7] +'"><b>Reservar</b></button>';
+                 
               console.log(loc[i][7]);
              console.log(loc[i][11]);
            $('#'+ loc[i][7]).on('click', function(){
