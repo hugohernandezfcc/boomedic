@@ -706,13 +706,10 @@
 
 	            <ul class="list-group list-group-unbordered">
 	                <li class="list-group-item">
-	                 	<b>Asistentes</b> <a class="pull-right">2</a>
+	                 	<b>Asistentes</b> <a class="pull-right">{{ $countassist }}</a>
 	                </li>
 	                <li class="list-group-item">
-	                  	<b>No. de citas</b> <a class="pull-right">1</a>
-	                </li>
-	                <li class="list-group-item">
-	                  	<b>No. métodos de pago</b> <a class="pull-right">5</a>
+	                  	<b>No. de citas</b> <a class="pull-right">{{ $countAppo }}</a>
 	                </li>
 	            </ul>
 

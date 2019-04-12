@@ -142,11 +142,11 @@ class doctor extends Controller
 
         $questions = DB::table('questions_clinic_history')
                          ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
-                         ->where('questions_clinic_history.createdby', Auth::id())
+                         ->where('questions_clinic_history.createdby', $user->id)
                          ->where('questions_clinic_history.active', true)
                          ->select('questions_clinic_history.*', 'answers_clinic_history.answer')
                          ->get();
-
+        $countAppointments = DB::table('medical_appointments')->where('user_doctor',  $user->id )->count();                
 
         return view('profileDoctor', [
                  /** SYSTEM INFORMATION */
@@ -198,7 +198,9 @@ class doctor extends Controller
                 'nodes'         => json_encode($nodes),
                 'donli'         => $donli,
                 'as'            => $assistant,
-                'questions'     => $questions 
+                'questions'     => $questions,
+                'countAppo'     => $countAppointments,
+                'countassist'   => count($assist)  
             ]
         );
     }
