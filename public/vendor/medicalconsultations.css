@@ -295,5 +295,6 @@
           background: transparent !important; 
           top: 90% !important; 
           z-index: 900;
+          overflow: visible;
     }
 
