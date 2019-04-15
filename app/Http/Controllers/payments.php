@@ -42,7 +42,7 @@ class payments extends Controller
     {
         $this->middleware('auth');
         $paypal_conf = \Config::get('paypal');
-        $this->_api_context = new ApiContext(new OAuthTokenCredential('AbVIn0UOzZZdKIhkGJDVfhvREJTEpxOaL1IxFdohTnXkgkLV-SO9irKdhmLL00tjQJTVIIAD0aIhcau-', 'ECKwqs6svjxoVIY55gw-LBX23jpWUKq6jUqIOh5adCDUhtfDxWAHPxPAWsPJshjXdpZvQK4po-L5buBS'));
+        $this->_api_context = new ApiContext(new OAuthTokenCredential(env('PAYPAL_CLIENTID'), env('PAYPAL_SECRET')));
         $this->_api_context->setConfig(['mode' => 'sandbox', 'http.ConnectionTimeOut' => 1000,'log.LogEnabled' => false,'log.FileName' => '','log.LogLevel' => 'FINE','validation.level' => 'log']);
 
 
@@ -66,6 +66,7 @@ class payments extends Controller
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
                 'mode'      => 'listPaymentMethods',
+                'gender'    => $user->gender,
             ]
         );
     }
@@ -85,6 +86,7 @@ class payments extends Controller
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,
+                'gender'    => $user->gender,
                 'mode'      => 'createPaymentMethod'
             ]
         );
@@ -225,21 +227,20 @@ class payments extends Controller
                     'payment' => [
                       'cardNumber'=> $card->cardnumber,
                       'cardExpirationMonth' => $card->month,
-                      'cardExpirationYear' =>  $card->year,
-                      'cvn' => $card->cvv
+                      'cardExpirationYear' =>  '2020',
+                      'cnv' => $card->cvv
                     ]
                     ] );
 
                     $baseUrl = 'cybersource/';
                     $resourceP = 'payments/v1/authorizations';
                     //apykey lo proporcionaVISA
-                    $queryString = 'apikey=RY6NDJNX3Q2NDWVYUBQW21N37pbnY719X0SqzEs_CDSZbhFro';
+                    $queryString = 'apikey='.env('VISA_APIKEY');
                     $statusCode = $this->VisaAPIClient->doXPayTokenCall( 'post', $baseUrl, $resourceP, $queryString, 'Cybersource Payments', $this->paymentAuthorizationRequest);
         
          if($statusCode[0] == '201'){
             $this->AcceptedPayment($transaction, $statusCode[1], $user);
          }
-
          else {
               $this->RejectedPayment($transaction, $user);  
          }
@@ -265,7 +266,7 @@ class payments extends Controller
              $email = $user->email;
              Mail::send('emails.transaction', $data, function ($message) {
                         $message->subject('Transacción de pago en Boomedic');
-                        $message->to('contacto@doitcloud.consulting');
+                        $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
 
       }
@@ -291,7 +292,7 @@ class payments extends Controller
 
                     Mail::send('emails.errorPayment', $data, function ($message) {
                         $message->subject('Tú pago no fue procesado');
-                        $message->to('contacto@doitcloud.consulting');
+                        $message->to('rebbeca.goncalves@doitcloud.consulting');
                     });
 
     }
@@ -314,6 +315,7 @@ class payments extends Controller
                 'userId'            => $user->id,
                 'photo'             => $user->profile_photo,
                 'username'          => $user->username,
+                'gender'            => $user->gender,
                 'name'              => $user->name,
                 'mode'              => 'historyTransaction',
                 'date'              => $user->created_at
@@ -511,13 +513,14 @@ class payments extends Controller
                                 'username'  => $user->username,                 
                                 'firstname' => $user->firstname,                
                                 'lastname'  => $user->lastname,    
+                                'gender'    => $user->gender,
                                 'number'    => $payment_id,
                                 'amount'    => '$'.$payment->transactions[0]->amount->total        
                                 ];
                                 $email = $user->email;
                                  Mail::send('emails.transaction', $data, function ($message) {
                                             $message->subject('Transacción de pago en Boomedic');
-                                            $message->to('contacto@doitcloud.consulting');
+                                            $message->to('rebbeca.goncalves@doitcloud.consulting');
                                         });
                              }
                               return redirect('medicalconsultations')->with($notification);

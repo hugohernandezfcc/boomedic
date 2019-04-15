@@ -42,15 +42,17 @@
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
-			.dropzone {
+			.dropzone  {
 			     min-height: 10px !important; 
 			    border-style: dotted  !important;
 			    /* background: white; */
-			     padding: 0 !important;
+			    padding: 5px !important;
 			}
-			.dropzone .dz-message {
+			.dropzone .gen .dz-message {
 			    margin: 1em 0 !important;
 			}
+
+
 			.modal-content-2 {
 			    position: relative;
 			    background-color: transparent;
@@ -65,11 +67,39 @@
         width: 95%;
         z-index: 30;
       }
-.cut{
-  text-overflow:ellipsis;
-  white-space:nowrap; 
-  overflow:hidden; 
-}
+		.cut{
+		  text-overflow:ellipsis;
+		  white-space:nowrap; 
+		  overflow:hidden; 
+		}
+		.container {
+		  position: relative;
+		  width: 90%;
+		}
+
+		/* Make the image responsive */
+		.container img {
+		  width: 80%;
+		  height: auto;
+		}
+
+		/* Style the button and place it in the middle of the container/image */
+		.container .btn {
+		  position: absolute;
+		  top: -5%;
+		  left: 78%;
+		}
+		.btn-circle {
+		  width: 40px;
+		  height: 40px;
+		  text-align: center;
+		  padding: 6px 0;
+		  font-size: 16px;
+		  line-height: 1.428571429;
+		  border-radius: 19px;
+		}
+
+
     </style>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
@@ -89,6 +119,26 @@
 			    dictRemoveFile: "Eliminar",
 			    dictCancelUpload: "Cancel",
 			    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+			     success: function(file, response){
+				        //alert(response);
+				 $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
+				  setTimeout(function(){ 
+				  	$('#loadingmodal').modal('toggle');
+				  	window.location.reload(true);
+				  },21000);
+				     	}
+			    //autoProcessQueue : false 
+			 };
+			Dropzone.options.myDropzone = { 
+			 
+			 // set following configuration
+			 	paramName: "file",
+			    maxFiles: 1,
+			    acceptedFiles: "image/*",
+			    addRemoveLinks: true,
+			    dictRemoveFile: "Eliminar",
+			    dictCancelUpload: "Cancel",
+			    dictDefaultMessage: "",
 			     success: function(file, response){
 				        //alert(response);
 				 $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
@@ -135,6 +185,7 @@
 											<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">	
 					                    
 					                           <form enctype="multipart/form-data" action="/user/cropProfile/{{$userId}}" method="post" onsubmit="return checkCoords();">
+					                           	{{ csrf_field() }}
 					                           	<input type="hidden" id="x" name="x">
 												<input type="hidden" id="y" name="y">
 												<input type="hidden" id="w" name="w">
@@ -156,12 +207,70 @@
 		                <p>Confirma y completa la información que esta debajo</p>
 		            </div>
 	    		@endif
-          <label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
+          <label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label><br>
+
+          @if($agent->isMobile())
 	    		<div class="row" align="center">
 	    		
 	    		<div class="col-sm-3" align="center">
 	    			@if($photo == '')
-		    	 		<img src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@if($gender == 'male') 
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		</div>
+			    	 	@endif
+			    	 	@if($gender == 'female') 
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		</div>
+			    	 	@endif
+			    	 	 @if($gender == 'other' || $gender == '') 
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		</div>
+		    	 	@endif
+					@else
+					@php 
+					  $imagen = getimagesize($photo);    //Sacamos la información
+			          $width = $imagen[0];              //Ancho
+			          $height = $imagen[1];  
+			          if($height > '500' || $width > '500'){
+			            $height = $height / 2.8;
+			            $width = $width / 2.8;
+			        }
+			        if($height > '800' || $width > '800'){
+			            $height = $height / 4;
+			            $width = $width / 4;
+			        }
+			      if($height > '800' || $width > '1200'){
+			            $height = $height / 6;
+			            $width = $width / 6;
+			        }
+			          if($height < '400' || $width < '400'){
+			            $height = $height / 1.6;
+			            $width = $width / 1.6;
+			        }
+					@endphp
+					
+						<div class="container"><img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" ><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+
+			    	 	</div>
+			    			
+			    	@endif 
+	    			
+	    		</div>
+	    	</div>
+          @else
+	    		<div class="row" align="center">
+	    		
+	    		<div class="col-sm-3" align="center">
+	    			@if($photo == '')
+			    	 	@if($gender == 'male') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	@if($gender == 'female') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	 @if($gender == 'other' || $gender == '') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
 					@else
 					@php 
 					  $imagen = getimagesize($photo);    //Sacamos la información
@@ -188,8 +297,10 @@
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
-	    	</div><br/>
+	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone gen" id="myAwesomeDropzone">{{ csrf_field() }}</form></div>
+	    	</div>
+	    	@endif 
+	    	<br/>
 	    		<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 
@@ -398,7 +509,16 @@
             <div class="box-body box-profile">
 
             	@if($photo == '')
+            	    @if($gender == 'male') 
 		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
+		    	 	@if($gender == 'female') 
+		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
+		    	 	 @if($gender == 'other' || $gender == '') 
+		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
+		    	 		
 					@else
 						@php 
 						  $imagen = getimagesize($photo);    //Sacamos la información
@@ -446,13 +566,13 @@
 
 	            <ul class="list-group list-group-unbordered">
 	                <li class="list-group-item">
-	                 	<b>Familiares</b> <a class="pull-right">2</a>
+	                 	<b>Familiares</b> <a class="pull-right">{{ $countfamily }}</a>
 	                </li>
 	                <li class="list-group-item">
-	                  	<b>No. de citas</b> <a class="pull-right">1</a>
+	                  	<b>No. de citas</b> <a class="pull-right">{{ $countappo }}</a>
 	                </li>
 	                <li class="list-group-item">
-	                  	<b>No. métodos de pago</b> <a class="pull-right">5</a>
+	                  	<b>No. métodos de pago</b> <a class="pull-right">{{ $countpayments }}</a>
 	                </li>
 	            </ul>
 
@@ -473,7 +593,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Educación</strong>
+              <strong><i class="fa fa-book margin-r-5"></i>Educación / Ocupación</strong>
 
               <p class="text-muted">
               	@if(empty($scholarship) && empty($occupation))
@@ -482,24 +602,13 @@
                 	<a href="#">Agregar Escolaridad</a> / {{ $occupation }}
                 @elseif(!empty($scholarship) && empty($occupation))
                 	{{ $scholarship }} / <a href="#">Agregar ocupación</a>
+                @elseif(!empty($scholarship) && !empty($occupation))
+                	{{ $scholarship }} / {{ $occupation }}
                 @endif
               </p>
 
-              <hr>
+              <hr style="margin-top: 10px !important; margin-bottom: 10px !important;">
 
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Dirección</strong>
- 
-              	<p class="text-muted">
-	              	@if(empty($colony) && empty($state))
-	                	<a href="#">Agregar dirección</a>
-	                @elseif(empty($colony) && !empty($state))
-	                	<a href="#">Agregar colonia</a>, {{$state}} {{$country}}
-	                @elseif(!empty($colony) && empty($state))
-	                	{{ $colony }}, <a href="#">Agregar estado</a> {{$country}}
-	                @endif
-				</p>
-
-              <hr>
 
               <strong><i class="fa fa-pencil margin-r-5"></i> Prescripción médica actual</strong>
 
@@ -507,7 +616,7 @@
                 <span class="label label-info">{{$current_prescription}}</span>
               </p>
 
-              <hr>
+              <hr style="margin-top: 10px !important; margin-bottom: 10px !important;">
 
               <strong><i class="fa fa-file-text-o margin-r-5"></i> Miembro desde</strong>
               <p>{{$created_at}}</p>
@@ -546,12 +655,6 @@
 	                         
 	                        </div>
 	                        <div class="row">
-	                         
-	                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
-	                         
-	                        </div>
-	                        <div class="row">
 	                        
 	                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
 	                            @if($gender == "female")
@@ -564,12 +667,6 @@
 	                            	<div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
 	                            @endif
 	                      
-	                        </div>
-	                        <div class="row">
-	                         
-	                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
-	                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
-	                    
 	                        </div>
 	                        <div class="row">
 	                         
@@ -908,7 +1005,7 @@
 		         	    </div>
 		         	    <div class="tab-pane" id="address">
 
-		         	    	<div align="center">
+		         	    	<div class="box-body" align="center">
 		         	    		
 		         	    		@if($latitude == "" && $longitude == "")
 		                    	         @include('empty.emptyData', 
@@ -976,10 +1073,15 @@
     													document.getElementById("resp").innerHTML = "Coincidencias: ";
     												for(var i= 0; i < data.length; i++){
 				                     				if(data[i]['profile_photo'] == null){
-				                     				$('#resp').append('<div style="margin-left:5%;"><img src="{{ asset("profile-42914_640.png") }}" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
-				                     				}else{
-				                     				 $('#resp').append('<div style="margin-left:5%;"><img src="'+ data[i]['profile_photo'] +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+				                     						if(data[i]['gender'] == 'female')
+				                     							var photo =  "{{ asset('profile-female.png') }}";
+				                     						if(data[i]['gender'] == 'male')
+				                     							var photo =  "{{ asset('profile-42914_640.png') }}";
+				                     						if(data[i]['gender'] == 'other')
+				                     							var photo =  "{{ asset('profile-other.png') }}";				                     						
+
 				                     				}
+				                     				$('#resp').append('<div style="margin-left:5%;"><img src="'+ photo +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
 				                     				}
 				                             	} 
     											}

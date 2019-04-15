@@ -33,6 +33,7 @@
         <div class="login-box-body box">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
                  <form class="formfast" style="display: none;">
+                  {{ csrf_field() }}
                   <br>
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                   </form>
@@ -62,7 +63,7 @@
                         <button type="submit" class="btn btn-secondary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
             </form>
 
-                    <!-- /.col -->
+                   <!-- startsocials
                     <div class="box formsocial" align="center" style="border-style: none; box-shadow: none;"><br>
                         <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
@@ -90,8 +91,7 @@
                             <div class="box-body">
                                 <div class="row" align="center">
                                     <div class="g-signin2"  data-width="165" data-height="27" data-clientid="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com"data-onsuccess="onSignInG"></div><br>
-                            <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
-                                </div>
+
                             </div>
                           </div>
                         </div>
@@ -121,7 +121,7 @@
                             <div id="cargafacebook"class="fa fa-refresh fa-spin"></div>
                         </div>
                      </div>
-
+    endsocials-->
             
             <div class="" id="loginload">
                 <div id="loginload2"class=""></div>
@@ -200,7 +200,7 @@
                                             var urll = "{{ url('loginId') }}";
                                          /*   $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'"><div class="widget-user-header" style="background: #2f2f2f;"><div class="widget-user-image"><img class="img-circle" src="'+ photo +'" alt="User Avatar" style="width: 35px !important;"></div><h4 class="widget-user-desc">'+ result[z]['name'] +'</h3></div></a>');*/
 
-                                            $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'" class="text-muted" style="color: white !important;"><div class="lockscreen-item" style="position:relative !important; background: #333 !important;"><div class="lockscreen-image" style="background:#333 !important;"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials"><div class="input-group cre"><label>'+ result[z]['name'] +'</label></div></form></div></a><br>');
+                                            $('.formfast').append('<a href="'+ urll +'/'+ result[z]['idu'] +'" class="text-muted" style="color: white !important;"><div class="lockscreen-item" style="position:relative !important; background: #333 !important;"><div class="lockscreen-image" style="background:#333 !important;"><img src="'+ photo +'" alt="User Image"></div><form class="lockscreen-credentials">{{ csrf_field() }}<div class="input-group cre"><label>'+ result[z]['name'] +'</label></div></form></div></a><br>');
                                          }
                                         }
                                       }

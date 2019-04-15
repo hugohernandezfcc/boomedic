@@ -75,7 +75,17 @@
                  <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                   @if($photo == '')
-                                        <img src="{{ asset('profile-42914_640.png') }}" class="user-image" alt="User Image">
+                                          @if($gender == 'male') 
+                                            <img class="user-image"src="{{ asset('profile-42914_640.png') }}" alt="User Image">
+
+                                            
+                                          @endif
+                                          @if($gender == 'female') 
+                                            <img class="user-image" src="{{ asset('profile-female.png') }}" alt="User Image">
+                                          @endif
+                                           @if($gender == 'other' || $gender == '') 
+                                            <img class="user-image" src="{{ asset('profile-other.png') }}" alt="User Image">
+                                          @endif
                                     @else
                                         <img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" class="user-image" alt="User Image">            
                                     @endif 
@@ -86,9 +96,25 @@
                                   <li class="user-header" style="background-color: #222;" id="uh">
                                     @if($photo == '')
                                       @if(session()->get('utype') == "doctor")
-                                      <img src="{{ asset('profile-42914_640.png') }}" class="img-circle" alt="User Image" width="100" height="100" onclick="window.location.href='{{ url('/doctor/doctor') }}/{{Auth::id()}}'">
+                                                @if($gender == 'male') 
+                                                  <img src="{{ asset('profile-42914_640.png') }}" class="img-circle" alt="User Image" width="100" height="100" onclick="window.location.href='{{ url('/doctor/doctor') }}/{{Auth::id()}}'">">
+                                                @endif
+                                                @if($gender == 'female') 
+                                                  <img src="{{ asset('profile-female.png') }}" class="img-circle" alt="User Image" width="100" height="100" onclick="window.location.href='{{ url('/doctor/doctor') }}/{{Auth::id()}}'">
+                                                @endif
+                                                 @if($gender == 'other' || $gender == '') 
+                                                  <img src="{{ asset('profile-other.png') }}" class="img-circle" alt="User Image" width="100" height="100" onclick="window.location.href='{{ url('/doctor/doctor') }}/{{Auth::id()}}'">
+                                                @endif
                                        @else
-                                         <img src="{{ asset('profile-42914_640.png') }}" class="img-circle" alt="User Image" width="100" height="100" onclick="window.location.href='{{ url('/user/profile') }}/{{Auth::id()}}'">
+                                                @if($gender == 'male') 
+                                                  <img src="{{ asset('profile-42914_640.png') }}" class="img-circle" alt="User Image" width="100" height="100" onclick="window.location.href='{{ url('/user/profile') }}/{{Auth::id()}}'">">
+                                                @endif
+                                                @if($gender == 'female') 
+                                                  <img src="{{ asset('profile-female.png') }}" class="img-circle" alt="User Image" width="100" height="100" onclick="window.location.href='{{ url('/user/profile') }}/{{Auth::id()}}'">
+                                                @endif
+                                                 @if($gender == 'other' || $gender == '') 
+                                                  <img src="{{ asset('profile-other.png') }}" class="img-circle" alt="User Image" width="100" height="100" onclick="window.location.href='{{ url('/user/profile') }}/{{Auth::id()}}'">
+                                                @endif
                                         @endif
                                     @else
                                     @if(session()->get('utype') == "doctor")
@@ -163,6 +189,10 @@
                     <li>
                         <a data-toggle="control-sidebar"><i class="fa fa-child"></i><span class="label" id="drAlert">¡HOLA!</span></a>
                     </li>
+                 @else
+                    <li>
+                        <a data-toggle="control-sidebar"><i class="fa fa-medkit"></i></a>
+                    </li>   
 
                 @endif   
                  <!-- Tools en doctor--> 

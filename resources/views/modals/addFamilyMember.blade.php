@@ -24,7 +24,7 @@
 
 
              <form action="{{ url('/user/saveFamily') }}" id="formulatio" method="post" style="display: none;">
-
+             	{{ csrf_field() }}
              	<input type="hidden" name="val" id="val" value="false">
                 <div class="form-group has-feedback">	
 					<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required>

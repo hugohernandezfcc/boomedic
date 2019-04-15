@@ -37,6 +37,7 @@ class supportTickets extends Controller
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
+                'gender'    => $user->gender,
                 'date'      => $user->created_at,
                 'mode'      => 'listTickets'
             ]
@@ -57,6 +58,7 @@ class supportTickets extends Controller
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
+                'gender'    => $user->gender,
                 'email'     => $user->email,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,

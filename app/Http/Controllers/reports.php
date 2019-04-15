@@ -127,6 +127,7 @@ class reports extends Controller
         return view('reports', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
+                'gender'    => $user->gender,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
                 'date'      => $user->created_at,

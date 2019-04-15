@@ -13,11 +13,29 @@
 
 @section('content')
 <div class="row">
+	<div align="right" class="col-md-3 col-sm-6 col-xs-6 pull-right">
+		<form name='classic' method='POST' action=''>
+			{{ csrf_field() }}
+			<select id="filter" name="filter" class="form-control" onchange="changeup()">
+				@foreach($dates as $dat)
+				@if($loop->first)
+				<option value="{{ $dat['when'] }}" selected>{{ $dat['when'] }}</option>
+				@else
+				<option value="{{ $dat['when'] }}">{{ $dat['when'] }}</option>
+				@endif
+				@endforeach
+				<option value="all">Todos</option>
+
+			</select>	
+		</form>
+	</div>
+</div><br>
+<div class="row">
 	  	<div class="col-md-6 col-sm-12 col-xs-12">
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3><sup style="font-size: 20px">$</sup>{{ $owed }}</h3>
+              <h3><sup style="font-size: 20px">$</sup><span id="owed">0</span></h3>
 
               <p>Pendiente</p>
             </div>
@@ -33,7 +51,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><sup style="font-size: 20px">$</sup>{{ $paid }}</h3>
+              <h3><sup style="font-size: 20px">$</sup><span id="paid">0</span></h3>
 
               <p>Pagado</p>
             </div>
@@ -50,9 +68,9 @@
 	  <div class="box-header with-border">
 	      <h3 class="box-title">Histórico de Saldos</h3>  
 	  </div> 
-
 	  <div class="box-body content">
-	  					<table id="paymentmethodtable" class="display responsive nowrap table" cellspacing="0" width="100%">
+
+	  					<table id="paytable" class="display responsive nowrap table" cellspacing="0" width="100%">
 				                <thead>
 				                    <tr>
 				                    	 <th></th>
@@ -64,34 +82,146 @@
 				                        <th class="desktop">Estado</th>
 				                    </tr>
 				                </thead>
+                                       
 
-				                <tbody>
-					     	@foreach ($transaction->sortByDesc('when') as $tr)
-					     		@if($tr->type_doctor == 'Owed')
-								     <tr>
-								     	<td></td>
-						             	<td style="color: red;">{{ $tr->transaction }} <br/></td>
-						             	<td style="color: red;">{{ $tr->when }}</td>
-						             	<td style="color: red;">{{ $tr->place }}</td>
-						             	<td style="color: red;">{{ $tr->name }}</td>
-						             	<td style="color: red;">{{ $tr->amount }}</td>
-						             	<td>Pendiente</td>
-						             </tr>
-						        @endif  
-						        @if($tr->type_doctor == 'Paid')
-								     <tr>
-								     	<td></td>
-						             	<td style="color: green;">{{ $tr->transaction }} <br/></td>
-						             	<td style="color: green;">{{ $tr->when }}</td>
-						             	<td style="color: green;">{{ $tr->place }}</td>
-						             	<td style="color: green;">{{ $tr->name }}</td>
-						             	<td style="color: green;">{{ $tr->amount }}</td>
-						             	<td>Pagado</td>
-						             </tr>
-						        @endif        
-			             	@endforeach
-								<tbody>
 				    	 </table>
 	  </div>
-</div>	  	
+</div>	 
+<script type="text/javascript">
+
+                function changeSelect(){
+
+                                  $('#paytable .tbody').remove();
+                                  $('#paytable').append('<tbody class="tbody"></tbody>');
+                                  $('#owed').html('0');
+                                  $('#paid').html('0');
+
+                                var transaction = @php echo $transaction->sortByDesc('when'); @endphp;
+
+                                for(var z=0; z < transaction.length; z++){
+                                  if(document.getElementById('filter').value == 'all'){ 
+                                                if(transaction[z]['type_doctor'] == 'Owed'){
+                                               
+                                                  var mount = transaction[z]['amount'];
+                                                  var count = parseFloat(document.getElementById('owed').innerHTML) + parseFloat(mount);
+                                                  document.getElementById('owed').innerHTML = count.toFixed(2); 
+                                               
+                                                $('#paytable .tbody').append('<tr><td></td>'
+                                                      +'<td style="color: red;">'+ transaction[z]['transaction'] +'<br/></td>'
+                                                      +'<td style="color: red;">'+ transaction[z]['when'] +'</td>'
+                                                      +'<td style="color: red;">'+ transaction[z]['place'] +'</td>'
+                                                      +'<td style="color: red;">'+ transaction[z]['name'] +'</td>'
+                                                      +'<td style="color: red;">'+ transaction[z]['amount'] +'</td>'
+                                                      +'<td>Pendiente</td></tr>');
+                                                }
+                                                
+                                                if(transaction[z]['type_doctor'] == 'Paid'){
+                                               
+                                                  var mountpaid = transaction[z]['amount'];
+                                                  var countpaid = parseFloat(document.getElementById('paid').innerHTML) + parseFloat(mountpaid);
+                                                  document.getElementById('paid').innerHTML = countpaid.toFixed(2); 
+                                          
+                                               
+                                                   $('#paytable .tbody').append('<tr><td></td>'
+                                                      +'<td style="color: green;">'+ transaction[z]['transaction'] +'<br/></td>'
+                                                      +'<td style="color: green;">'+ transaction[z]['when'] +'</td>'
+                                                      +'<td style="color: green;">'+ transaction[z]['place'] +'</td>'
+                                                      +'<td style="color: green;">'+ transaction[z]['name'] +'</td>'
+                                                      +'<td style="color: green;">'+ transaction[z]['amount'] +'</td>'
+                                                      +'<td>Pagado</td></tr>');
+                                                
+
+                                                   }
+                                      }else{
+                                  
+                                  if(moment(transaction[z]['when']).format("MM/YYYY") == document.getElementById('filter').value){ 
+
+                                    if(transaction[z]['type_doctor'] == 'Owed'){
+                                   
+                                      var mount = transaction[z]['amount'];
+                                      var count = parseFloat(document.getElementById('owed').innerHTML) + parseFloat(mount);
+                                      document.getElementById('owed').innerHTML = count.toFixed(2); 
+                                   
+                                       $('#paytable .tbody').append('<tr><td></td>'
+                                          +'<td style="color: red;">'+ transaction[z]['transaction'] +'<br/></td>'
+                                          +'<td style="color: red;">'+ transaction[z]['when'] +'</td>'
+                                          +'<td style="color: red;">'+ transaction[z]['place'] +'</td>'
+                                          +'<td style="color: red;">'+ transaction[z]['name'] +'</td>'
+                                          +'<td style="color: red;">'+ transaction[z]['amount'] +'</td>'
+                                          +'<td>Pendiente</td></tr>');
+                                    }
+                                    
+                                    if(transaction[z]['type_doctor'] == 'Paid'){
+                                   
+                                      var mountpaid = transaction[z]['amount'];
+                                      var countpaid = parseFloat(document.getElementById('paid').innerHTML) + parseFloat(mountpaid);
+                                      document.getElementById('paid').innerHTML = countpaid.toFixed(2); 
+                              
+                                   
+                                       $('#paytable .tbody').append('<tr><td></td>'
+                                          +'<td style="color: green;">'+ transaction[z]['transaction'] +'<br/></td>'
+                                          +'<td style="color: green;">'+ transaction[z]['when'] +'</td>'
+                                          +'<td style="color: green;">'+ transaction[z]['place'] +'</td>'
+                                          +'<td style="color: green;">'+ transaction[z]['name'] +'</td>'
+                                          +'<td style="color: green;">'+ transaction[z]['amount'] +'</td>'
+                                          +'<td>Pagado</td></tr>');
+                                    
+
+                                       }
+                                      }
+
+                                    }
+                                  }
+                                     var table = $('#paytable').DataTable({
+      
+                                          language: {
+                                                  'processing':     'Procesando...',
+                                                  'lengthMenu':     'Mostrar _MENU_ registros',
+                                                  'zeroRecords':    'No se encontraron resultados',
+                                                  'emptyTable':     'Ningún dato disponible en esta tabla',
+                                                  'info':           'Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros',
+                                                  'infoEmpty':      'Mostrando registros del 0 al 0 de un total de 0 registros',
+                                                  'infoFiltered':   '(filtrado de un total de _MAX_ registros)',
+                                                  'infoPostFix':    '',
+                                                  'search':         'Buscar:',
+                                                  'url':            '',
+                                                  'infoThousandsi':  ',',
+                                                  'loadingRecords': 'Cargando...',
+                                                  'paginate': {
+                                                      'first':    'Primero',
+                                                      'last':     'Último',
+                                                      'next':     'Siguiente',
+                                                      'previous': 'Anterior'
+                                                  },
+                                                  "aria": {
+                                                      'sortAscending':  ': Activar para ordenar la columna de manera ascendente',
+                                                      'sortDescending': ': Activar para ordenar la columna de manera descendente'
+                                                  }
+                                              },
+                                          'lengthChange': false,
+                                  responsive: {
+                                      details: {
+                                          type: 'column',
+                                          target: 0
+                                      }
+                                  },
+                                  columnDefs: [ {
+                                      className: 'control',
+                                      orderable: false,
+                                      targets:   0
+                                  } ]
+                                      });
+                                     
+                                     }   
+
+                                     function changeup(){
+                                      $('#paytable').DataTable().destroy();
+                                      changeSelect();
+                                     }
+$(document).ready(function(){
+     changeSelect();
+               $('select').select2();
+
+              });
+</script> 	
 @stop

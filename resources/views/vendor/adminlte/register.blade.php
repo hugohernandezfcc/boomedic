@@ -47,7 +47,7 @@
 
                 <div class="form-group has-feedback {{ $errors->has('birthdate') ? 'has-error' : '' }}">
                     <input type="date" name="birthdate" class="form-control" value="{{ old('birthdate') }}" placeholder="{{ trans('adminlte::adminlte.birthdate') }}" autocomplete="off">
-                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                    <span class="fa fa-birthday-cake form-control-feedback"></span>
                     @if ($errors->has('birthdate'))
                         <span class="help-block">
                             <strong>{{ $errors->first('birthdate') }}</strong>
@@ -81,7 +81,7 @@
                 <button type="submit" class="btn btn-secondary btn-block btn-flat">
                     {{ trans('adminlte::adminlte.register_a_new_membership') }}
                 </button>
-
+                <!-- Start socials
                 <div class="box"  align="center" id="socialnet" style="border:none; box-shadow: none;"><br>
                     <div class="box-group" id="accordion">
                         <div class="panel box box-primary">
@@ -109,7 +109,6 @@
                             <div class="box-body">
                                 <div class="row" align="center">
                                     <div class="g-signin2"  data-width="165" data-height="27" data-clientid="547942327508-f90dgpiredb3mj5sosnsm89mq7c45f8u.apps.googleusercontent.com"data-onsuccess="onRegisterG"></div><br>
-                            <!--<div class="g-plusone" id="myButton" data-onload="renderG"></div>-->
                                 </div>
                             </div>
                           </div>
@@ -140,7 +139,7 @@
                                 <div id="cargafacebook"class="fa fa-refresh fa-spin"></div>
                             </div>
                         </div>
-               
+                end socials -->
 
             </form>
             <br/> 

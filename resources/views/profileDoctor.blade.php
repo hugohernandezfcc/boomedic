@@ -3,7 +3,15 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
-    <style type="text/css">
+
+ <style type="text/css">
+
+ .btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
 .accordion-toggle {
   position: relative;
 }
@@ -47,13 +55,13 @@
 		    height: 300px;
 		    z-index: 30;
 		      }
-		.dropzone {
+			.dropzone  {
 			     min-height: 10px !important; 
 			    border-style: dotted  !important;
 			    /* background: white; */
-			     padding: 0 !important;
+			    padding: 5px !important;
 			}
-			.dropzone .dz-message {
+			.dropzone .gen .dz-message {
 			    margin: 1em 0 !important;
 			}
 		.modal-content-2 {
@@ -71,13 +79,91 @@
 		  white-space:nowrap; 
 		  overflow:hidden; 
 		}
+.stepwizard-step p {
+    margin-top: 10px;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard {
+    display: table;
+    width: 100%;
+    position: relative;
+}
+
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-order: 0;
+
+}
+
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}		
+		.container {
+		  position: relative;
+		  width: 90%;
+		}
+
+		/* Make the image responsive */
+		.container img {
+		  width: 80%;
+		  height: auto;
+		}
+
+		/* Style the button and place it in the middle of the container/image */
+		.container .btn {
+		  position: absolute;
+		  top: -5%;
+		  left: 78%;
+		}
+		.btn-circle-d {
+		  width: 40px;
+		  height: 40px;
+		  text-align: center;
+		  padding: 6px 0;
+		  font-size: 16px;
+		  line-height: 1.428571429;
+		  border-radius: 19px;
+		}
+
     </style>
 @stop
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
  <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script type="text/javascript">
 
@@ -91,6 +177,27 @@
 			    dictRemoveFile: "Eliminar",
 			    dictCancelUpload: "Cancel",
 			    dictDefaultMessage: "Arraste y suelte una nueva foto de perfil...",
+			     success: function(file, response){
+				        //alert(response);
+				 $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
+				  setTimeout(function(){ 
+				  	$('#loadingmodal').modal('toggle');
+				  	window.location.reload(true);
+				  },21000);
+				     	}
+			    //autoProcessQueue : false 
+			 };
+
+			Dropzone.options.myDropzone = { 
+			 
+			 // set following configuration
+			 	paramName: "file",
+			    maxFiles: 1,
+			    acceptedFiles: "image/*",
+			    addRemoveLinks: true,
+			    dictRemoveFile: "Eliminar",
+			    dictCancelUpload: "Cancel",
+			    dictDefaultMessage: "",
 			     success: function(file, response){
 				        //alert(response);
 				 $('#loadingmodal').modal({backdrop: 'static', keyboard: false})
@@ -138,6 +245,7 @@
 	                <div align="center">
 	                   	<img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" id="target">
 	                   	<form enctype="multipart/form-data" action="/doctor/cropDoctor/{{$userId}}" method="post" onsubmit="return checkCoords();">
+	                   		{{ csrf_field() }}
 		                   	<input type="hidden" id="x" name="x" />
 							<input type="hidden" id="y" name="y" />
 							<input type="hidden" id="w" name="w" />
@@ -161,17 +269,28 @@
 	    		@endif
 	    		<!-- Photo Zone. -->
 	 <label class="col-sm-2 control-label" style="text-align: right;">Foto de perfil</label>
+          @if($agent->isMobile())
 	    		<div class="row" align="center">
-
-		    		<div class="col-sm-4" align="center">
-						@if($photo2 == '')
-		    	 		<img src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+	    		
+	    		<div class="col-sm-3" align="center">
+	    			@if($photo == '')
+			    	 	@if($gender == 'male') 
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		</div>
+			    	 	@endif
+			    	 	@if($gender == 'female') 
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		</div>
+			    	 	@endif
+			    	 	 @if($gender == 'other' || $gender == '') 
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		</div>
+		    	 	@endif
 					@else
 					@php 
-					  $imagen = getimagesize($photo2);    //Sacamos la información
+					  $imagen = getimagesize($photo);    //Sacamos la información
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
-
 			          if($height > '500' || $width > '500'){
 			            $height = $height / 2.8;
 			            $width = $width / 2.8;
@@ -184,24 +303,67 @@
 			            $height = $height / 6;
 			            $width = $width / 6;
 			        }
-
-
 			          if($height < '400' || $width < '400'){
 			            $height = $height / 1.6;
 			            $width = $width / 1.6;
 			        }
-
 					@endphp
-						<img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+					
+						<div class="container"><img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" ><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+
+			    	 	</div>
+			    			
 			    	@endif 
-		    			
-		    		</div>
-						<div class="col-sm-6" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone" id="myAwesomeDropzone"></form></div>
+	    			
 	    		</div>
-	    		<!-- Photo Zone. -->
+	    	</div>
+          @else
+	    		<div class="row" align="center">
+	    		
+	    		<div class="col-sm-3" align="center">
+	    			@if($photo == '')
+			    	 	@if($gender == 'male') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	@if($gender == 'female') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	 @if($gender == 'other' || $gender == '') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+		    	 	@endif
+					@else
+					@php 
+					  $imagen = getimagesize($photo);    //Sacamos la información
+			          $width = $imagen[0];              //Ancho
+			          $height = $imagen[1];  
+			          if($height > '500' || $width > '500'){
+			            $height = $height / 2.8;
+			            $width = $width / 2.8;
+			        }
+			        if($height > '800' || $width > '800'){
+			            $height = $height / 4;
+			            $width = $width / 4;
+			        }
+			      if($height > '800' || $width > '1200'){
+			            $height = $height / 6;
+			            $width = $width / 6;
+			        }
+			          if($height < '400' || $width < '400'){
+			            $height = $height / 1.6;
+			            $width = $width / 1.6;
+			        }
+					@endphp
+						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+			    	@endif 
+	    			
+	    		</div>
+	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone gen" id="myAwesomeDropzone">{{ csrf_field() }}</form></div>
+	    	</div>
+	    	@endif 
 	    		<br/>
 
 	    		<form action="/doctor/laborInformation/{{$userId}}" method="post" class="form-horizontal" id="formDr">
+	    			{{ csrf_field() }}
 				<div id="modalAlert" class="modal fade" role="dialog">
 				    <div class="modal-dialog">
 			            <div class="modal-content">
@@ -491,11 +653,19 @@
           <div class="box box-default">
             <div class="box-body box-profile">
 
-            	@if($photo == '')
-		    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+					@if($photo2 == '')
+	            	    @if($gender == 'male') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	@if($gender == 'female') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
+			    	 	 @if($gender == 'other' || $gender == '') 
+			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;">
+			    	 	@endif
 					@else
 						@php 
-						  $imagen = getimagesize($photo);    //Sacamos la información
+						  $imagen = getimagesize($photo2);    //Sacamos la información
 				          $width = $imagen[0];              //Ancho
 				          $height = $imagen[1];  
 
@@ -519,12 +689,12 @@
 				        }
 
 						@endphp
-						<img class="profile-user-img img-responsive img-circle" src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+						<img class="profile-user-img img-responsive img-circle" src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 
               	
 
-              	<h3 class="profile-username text-center">{{ $firstname }}</h3>
+              	<h3 class="profile-username text-center">{{ $firstname2 }}</h3>
 
               	@if($gender == "female")
               		<p class="text-muted text-center">{{ trans('adminlte::adminlte.female') }}</p>
@@ -540,13 +710,10 @@
 
 	            <ul class="list-group list-group-unbordered">
 	                <li class="list-group-item">
-	                 	<b>Familiares</b> <a class="pull-right">2</a>
+	                 	<b>Asistentes</b> <a class="pull-right">{{ $countassist }}</a>
 	                </li>
 	                <li class="list-group-item">
-	                  	<b>No. de citas</b> <a class="pull-right">1</a>
-	                </li>
-	                <li class="list-group-item">
-	                  	<b>No. métodos de pago</b> <a class="pull-right">5</a>
+	                  	<b>No. de citas</b> <a class="pull-right">{{ $countAppo }}</a>
 	                </li>
 	            </ul>
 
@@ -601,6 +768,7 @@
 		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
 		              	<li><a href="#Asistant" id="four" data-toggle="tab">Asistentes</a></li>
 		              	<li><a href="#laborInformation" data-toggle="tab">Consultorios</a></li>
+		              	<li><a href="#configClinic" data-toggle="tab">Preguntas previa cita</a></li>
 		            </ul>
 
 		            <div class="tab-content">
@@ -625,12 +793,6 @@
 			                         
 			                        </div>
 			                        <div class="row">
-			                         
-			                            <div class="col-sm-3" align="left"><b>Ocupación:</b></div>
-			                            <div class="col-sm-9 cut" align="left">{{ $occupation }}</div>
-			                         
-			                        </div>
-			                        <div class="row">
 			                        
 			                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
 			                            @if($gender == "female")
@@ -643,12 +805,6 @@
 			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
 			                            @endif
 			                      
-			                        </div>
-			                        <div class="row">
-			                         
-			                            <div class="col-sm-3" align="left"><b>Escolaridad:</b></div>
-			                            <div class="col-sm-9 cut" align="left">{{ $scholarship }}</div>
-			                    
 			                        </div>
 			                        <div class="row">
 			                         
@@ -692,7 +848,7 @@
 
 		         	    </div>
 		         	    <div class="tab-pane" id="laborInformation">
-		         	    <div class="box"> 	
+		         	    <div class="box-body"> 	
                           @if($labor->isEmpty())
 						 <span class="text-black">No hay ningún centro asociado a su cuenta.</span>			
 							@else
@@ -711,17 +867,216 @@
 									          <!-- /.info-box -->
 							</div>
 							<div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x45&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height:45px;">	
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x45&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación"  style="width:100%; height:45px;">	
 							</div>
 							</div>		
 							@endforeach
 							@endif
 									<div class="pull-right">
 									   	<form action="/doctor/laborInformation/{{$userId}}" method="post">
+									   		{{ csrf_field() }}
 									   	<button type="submit" class="btn btn-secondary btn-xs"><i class="fa fa-plus"></i> Agregar consultorio</button>
 									   </form>
 									</div>
 						   </div>			
+		         	    </div>
+		         	    <div class="tab-pane" id="configClinic">
+			         	    <div class="box-body">
+
+			         	   <!-- Alert success-->
+			         	     <div class="alert alert-success alert-dismissible" style="display: none;">
+				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				                <i class="icon fa fa-check"></i>Se ha guardado la pregunta y su configuración correctamente
+				             </div>
+				           <!-- Alert success-->  
+				           <!-- Alert error-->
+			         	     <div class="alert alert-warning alert-dismissible" style="display: none;">
+				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				                <i class="icon fa fa-check"></i>Ha ocurrido un error guardando tu pregunta, por favor vuelve a intentaro. Si el fallo persiste envía un caso de soporte.
+				             </div>
+				           <!-- Alert error-->
+
+			         	    	<div class="input-group">
+				                <input type="text" name="question" id="question" class="form-control" placeholder="Escriba una pregunta para la información necesaria previa a la cita" required>
+				                    <span class="input-group-btn">
+				                    <button class="btn btn-flat btn-secondary" onclick="nextQues();"><span class="fa fa-plus"></span></button>
+				                    </span>
+				              </div>
+			         	    	<br/>
+			         	    	<div class="well well-sm" id="box-question">
+			         	    		<label class="text-muted">Preguntas agregadas</label>
+				         	    		<div id="searchQuestions">
+					         	    			@foreach($questions as $quest)
+					         	    				<div>{{ $quest->question }} <a href="{{ url('doctor/deletequestion') }}/{{ $quest->id }}" class="btn btn-sm btn-flat text-muted"><span class="fa fa-trash"></span></a></div>
+					         	    			@endforeach
+				         	    		</div>	
+			         	    	</div>
+			         	    	<div style="display: none;" id="box-question-save" data-toggle="buttons">
+								<script type="text/javascript">
+								$(document).ready(function () {
+								    var navListItems = $('div.setup-panel div a'), // tab nav items
+								            allWells = $('.setup-content'), // content div
+								            allNextBtn = $('.nextBtn'); // next button
+
+								    allWells.hide(); // hide all contents by defauld
+
+								    navListItems.click(function (e) {
+								        e.preventDefault();
+								        var $target = $($(this).attr('href')),
+								                $item = $(this);
+
+								        if (!$item.hasClass('disabled')) {
+								            navListItems.removeClass('btn-secondary').addClass('btn-default');
+								            $item.addClass('btn-secondary');
+								            allWells.hide();
+								            $target.show();
+								            $target.find('input:eq(0)').focus();
+								        }
+								    });
+								    // next button
+								    allNextBtn.click(function(){
+								        var curStep = $(this).closest(".setup-content"),
+								            curStepBtn = curStep.attr("id"),
+								            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+								            curInputs = curStep.find("input[type='text'],input[type='email'],input[type='password'],input[type='url']"),
+								            isValid = true;
+
+								         $('#readquestion').html($('#question').val()); 
+
+								         	if($("input[name='type']:checked").val() ==  'texto')  
+								        		 $('#readresponse').html('<textarea class="form-control"></textarea>');
+
+								        	if($("input[name='type']:checked").val() ==  'radio'){
+								        		 $('#readresponse').html('');
+								        			var classopt = document.getElementsByClassName("opr");
+
+												 for(i=0;i<classopt.length;i++){
+												 	$('#readresponse').append('<input type="radio" name="radio">&nbsp;'+ classopt[i].innerHTML + '<br>');
+										  		  }
+								        	}
+
+								        	if($("input[name='type']:checked").val() ==  'checkbox'){
+								        		 $('#readresponse').html('');
+								        			var classopt = document.getElementsByClassName("opc");
+
+												 for(i=0;i<classopt.length;i++){
+												 	$('#readresponse').append('<input type="checkbox" name="checkbox">&nbsp;'+ classopt[i].innerHTML + '<br>');
+										  		  }
+								        	}
+
+
+								        // move to next step if valid
+								        if (isValid)
+								            nextStepWizard.removeAttr('disabled').trigger('click');
+								    });
+
+								    $('div.setup-panel div a.btn-secondary').trigger('click');
+								});
+								</script>
+
+								<label class="text-muted">Configuración de respuestas</label><br>
+								<div class="stepwizard">
+					                <div class="stepwizard-row setup-panel">
+					                    <div class="stepwizard-step">
+					                        <a href="#step-1" type="button" class="btn btn-secondary btn-circle" title="Selección única"><i class="glyphicon glyphicon-check"></i></a>
+					                    </div>
+					                    
+					                    <div class="stepwizard-step">
+					                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Selección múltiple"><i class="glyphicon glyphicon-list-alt"></i></a>
+					                    </div>
+					                    
+					                    <div class="stepwizard-step">
+					                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Texto abierto"><i class="fa fa-pencil"></i></a>
+					                    </div>
+					                    <div class="stepwizard-step">
+					                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Confirmar"><i class="glyphicon glyphicon-ok"></i></a>
+					                    </div>
+					                    
+					                </div>
+					            </div><br>
+                           <div class="row setup-content" id="step-1">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12" >
+			                        	 <div class="row">
+			                        		<label for="radio" class="btn btn-default btn-sm">
+			                        			<span class="glyphicon glyphicon-ok"></span>
+			                        			<input type="radio" name="type" value="radio" id="radio" style="visibility: hidden;"/>
+			                        			<b>Selección única</b>
+			                        		</label>
+			                        	</div><br/>
+			                        			
+												<div class="input-group input-group-sm">
+								                  <input type="text"  id="opt" class="form-control" placeholder="Escriba una opción" required autocomplete="off">
+								                    <span class="input-group-btn">
+								                    	<button class="btn btn-flat btn-default btn-sm" onclick="add();"><span class="fa fa-plus"></span> Agregar opción</button>
+								                    </span>
+								                </div><br>
+								                <div id="addOpt"></div><br>
+								                <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+
+				                         <!-- <span class="text-muted fa fa-question-circle">Respuestas de alternativa simple (dicotómicas), cuando sólo es posible una respuesta (sí o no, hombre o mujer)</span>
+				                       --></div>  
+			                         </div>
+
+			                            
+              			    </div>
+
+			               <div class="row setup-content" id="step-2">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12">
+			                        <div class="row">
+			                          <label for="checkbox" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-ok"></span>
+			                          	<input type="radio" name="type" value="checkbox" id="checkbox" autocomplete="off" style="visibility: hidden;">
+			                        			<b>Selección múltiple</b>
+			                          </label>
+			                      </div><br>
+												<div class="input-group input-group-sm">
+								                  <input type="text"  id="optcheck" class="form-control" placeholder="Escriba una opción" required autocomplete="off">
+								                    <span class="input-group-btn">
+								                    	<button class="btn btn-flat btn-default btn-sm" onclick="addcheck();"><span class="fa fa-plus"></span> Agregar opción</button>
+								                    </span>
+								                </div><br>
+								                <div id="addOptcheck"></div><br>
+								           <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+			                       </div>
+			                    </div>    
+			               </div>
+
+			               <div class="row setup-content" id="step-3">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12">
+			                         <div class="row">	
+			                         <label for="texto" class="btn btn-default active btn-sm">
+			                        	<span class="glyphicon glyphicon-ok"></span>
+			                        	<input type="radio" name="type" value="texto" id="texto" style="visibility: hidden;" checked="checked">
+			                         		<b>Texto abierto</b>
+			                         	</label>
+			                         </div>
+			                    </div>        <!-- content go here -->
+			                       
+			                    </div>    
+			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+			               </div>
+			               	<div class="row setup-content" id="step-4">
+			                    <div class="col-xs-12">
+			                        <div class="col-md-12">
+			                        <div class="row">
+			                         <div class="col-sm-12">
+			                         <h5><b>Vista Previa</b></h5>
+
+			                        	 <label class="text-muted" id="readquestion"></label><br>
+				                          <div id="readresponse"></div>
+				                     </div>
+				                 </div><br>
+				                           <button class="btn btn-secondary nextBtn btn-flat pull-right" type="button" id="finishQuestion">Guardar configuración</button>
+				                     	</div>
+			                    </div>       
+			                            
+			               </div>
+			               			<hr>
+			         	    		<div align="left"><button class="btn btn-flat btn-default btn-sm" onclick="cancelQuestion();">Cancelar</button></div>
+			         	    	</div>	
+			         	    </div>
 		         	    </div>
 		         	</div>
 		        </div>
@@ -766,6 +1121,7 @@
                         </div>
                              <div class="register-box-body">
                              <form action="{{ url('/doctor/saveAssistant') }}" id="formulatio" method="post">
+                             	{{ csrf_field() }}
                                 <div class="form-group has-feedback">	
  								<input type="text" name="name" id="sea" class="form-control" placeholder="Nombre Completo" required autocomplete="off">
  								<span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -783,12 +1139,121 @@
                     </div>
                 </div>
       <script type="text/javascript">
+
+      				function nextQues(){
+      					document.getElementById('question').disabled = true;
+      					$('#box-question').hide();
+      					$('#box-question-save').show();
+      					$('div.setup-panel div a[href="#step-1"]').click();
+      				}
+
+      				function cancelQuestion(){
+      					document.getElementById('question').disabled = false;
+      					$('#box-question').show();
+      					$('#box-question-save').hide();
+      					$('#addOpt').html('');
+      					$('#addOptcheck').html('');
+      				}
+
+      				function add(){
+      					if($('#opt').val().length > 0 ){
+      					  $('#addOpt').append('&nbsp;<div class="label bg-green opr" style="font-size: 14px;">'+ $('#opt').val() +'</div>');
+      					  $('#opt').val('');
+      					}
+      				}
+
+      				function addcheck(){
+      					if($('#optcheck').val().length > 0 ){
+      					  $('#addOptcheck').append('&nbsp;<div class="label bg-green opc" style="font-size: 14px;">'+ $('#optcheck').val() +'</div>');
+      					  $('#optcheck').val('');
+      					}
+      				}
+
+		            $("#question").on("keyup", function() {
+		                var value = $(this).val().toLowerCase();
+		                $("#searchQuestions div").filter(function() {
+		                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		                });
+		              });
+					
+					var listAutoc = @php echo $questionAutocomplete; @endphp;
+
+					$('#question').autocomplete({
+					    source : listAutoc,
+					    position:  { my: "center bottom", at: "center top"},
+					    minLength: 3
+					  });
+
+					$('#finishQuestion').on('click', function(e) {
+
+
+						var arrayresponse = [];
+							if($("input[name='type']:checked").val() == 'radio'){
+								var classopt = document.getElementsByClassName("opr");
+									arrayresponse.push("radio");
+								 for(i=0;i<classopt.length;i++){
+						    		arrayresponse.push(classopt[i].innerHTML);
+						  		  }
+							}
+							if($("input[name='type']:checked").val() == 'checkbox'){
+							 	var classopt = document.getElementsByClassName("opc");
+									arrayresponse.push("checkbox");
+								 for(i=0;i<classopt.length;i++){
+						    		arrayresponse.push(classopt[i].innerHTML);
+						  		  }
+							}
+
+				                      $.ajaxSetup({
+				                                  headers: {
+				                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				                                  }
+				                              });
+
+										  $.ajax({     
+				                             type: "POST",                 
+				                             url: "{{ url('doctor/saveQuestions') }}",  
+				                             data: { "question" : $('#question').val(),
+				                              		  "type": $("input[name='type']:checked").val(),
+				                              		  "options": JSON.stringify(arrayresponse)
+				                                    }, 
+				                             dataType: 'json',                
+				                             success: function(data)             
+				                             {
+				                             							document.getElementById('question').disabled = false;
+																		document.getElementById('question').value = "";
+												      					$('#box-question').show();
+												      					$('#box-question-save').hide();
+												      					$('#addOpt').html('');
+												      					$('#addOptcheck').html('');
+				                             	console.log(data);
+				                             	if(data != 'error'){
+				                             		$('#searchQuestions').append('<div>'+ data['question']  +'<a href="{{ url("doctor/deletequestion") }}/'+ data['id']+'" class="btn btn-sm btn-flat text-muted"><span class="fa fa-trash"></span></a></div><br>');
+				                                  	$('.alert-success').show();
+				                                  	$(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
+														    $(".alert-success").slideUp(500);
+														});
+				                                  	  $('#searchQuestions div').show();
+				                                  }
+				                                else{
+				                                	$(".alert-warning").show();
+				                                	$(".alert-warning").fadeTo(2000, 500).slideUp(500, function(){
+													 $(".alert-warning").slideUp(500);
+													});
+				                                }  
+    										}
+				                            
+				                         });
+						    
+
+					});		
+
           			function fun(a) {
 							    document.getElementById('sea').value = a.getAttribute("data-value");
 							    document.getElementById('idassist').value = a.getAttribute("data-id");
 							    document.getElementById("resp").innerHTML = "";
 							    $("#sav").removeAttr("disabled");   
 							}
+
 					$("#sea").on("keyup", function(e) {
 
 						    		if(e.which == 32) {
@@ -1280,6 +1745,7 @@ $('#target').Jcrop({
 					   </div>
 
 					<form action="/doctor/laborInformationNext/{{ $userId }}" method="post" class="form-horizontal" id="form1" style="display:none">
+						{{ csrf_field() }}
 		<div class="modal fade" id="modal-default1" style="display: none;">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -1408,6 +1874,7 @@ $('#target').Jcrop({
 
 				<!-- form for map -->
 		<form action="/doctor/laborInformationNext/{{$userId}}" method="post" class="form-horizontal" id="form2" style="display: none;">
+			{{ csrf_field() }}
 			<div class="modal fade" id="modal-default" style="display: none;">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -1882,7 +2349,7 @@ $('#target').Jcrop({
 					          </div>
 					        </div>
 					        <div class="col-sm-4" style="padding-right: 0; padding-left: 0;">
-							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x90&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%; height: 91px;">
+							<img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $labor->latitude }},{{ $labor->longitude }}&amp;markers=size:small%7Ccolor:black%7Clabel:%7C{{ $labor->latitude }},{{ $labor->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x90&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación"  style="width:100%; height: 91px;">
 							</div>
 
 						</div> <br> 

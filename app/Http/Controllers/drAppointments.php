@@ -9,6 +9,8 @@ use App\User;
 use App\time_blockers;
 use App\medical_appointments;
 use Carbon\Carbon;
+use App\email;
+use Mail;
 
 
 class drAppointments extends Controller
@@ -66,7 +68,7 @@ class drAppointments extends Controller
             ->join('users', 'medical_appointments.user', '=', 'users.id')
             ->where('medical_appointments.user_doctor', '=', $user->id)
             ->where('medical_appointments.status', '!=', 'No completed')
-            ->select('medical_appointments.*', 'users.name', 'users.profile_photo','users.age', 'users.id as userid', 'labor_information.workplace as place', 'workboard.patient_duration_attention')
+            ->select('medical_appointments.*', 'users.name', 'users.profile_photo','users.age', 'users.gender', 'users.id as userid', 'labor_information.workplace as place', 'workboard.patient_duration_attention')
             ->get();
             $appo2 = $appo->unique('id');
             $time_blockers = DB::table('time_blockers')
@@ -85,17 +87,17 @@ class drAppointments extends Controller
                             $end = Carbon::parse($ap->when)->addMinutes($end3);
 
                             if(Carbon::parse($ap->when)->format('m-d-Y') < Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "gray", "photo" => $ap->profile_photo, "uid" => $ap->userid, "age" => $ap->age, "lug" => $ap->place, "end" => $end, "type" => "1"]);
+                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "gray", "photo" => $ap->profile_photo, "gender" => $ap->gender, "uid" => $ap->userid, "age" => $ap->age, "lug" => $ap->place, "end" => $end, "type" => "1"]);
                                 }
                             if(Carbon::parse($ap->when)->format('m-d-Y') > Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "black", "photo" => $ap->profile_photo, "age" => $ap->age, "uid" => $ap->userid, "lug" => $ap->place, "end" => $end, "type" => "1"]);
+                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "black", "photo" => $ap->profile_photo, "gender" => $ap->gender, "age" => $ap->age, "uid" => $ap->userid, "lug" => $ap->place, "end" => $end, "type" => "1"]);
                                 }
                             if(Carbon::parse($ap->when)->format('m-d-Y') === Carbon::now()->format('m-d-Y')){
-                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "blue", "photo" => $ap->profile_photo, "age" => $ap->age, "uid" => $ap->userid, "lug" => $ap->place, "end" => $end, "type" => "1"]);
+                                    array_push($array, ["id" => $ap->id, "start" => $ap->when, "user" => $ap->name, "color" => "blue", "photo" => $ap->profile_photo, "gender" => $ap->gender, "age" => $ap->age, "uid" => $ap->userid, "lug" => $ap->place, "end" => $end, "type" => "1"]);
                                 }
                                   }
                         foreach($time2  as $ti){
-                            array_push($array, ["id" => $ti->id, "start" => $ti->start, "user" => $user->name, "color" => "green", "photo" => $user->profile_photo, "age" => $user->age, "title" => $ti->title, "color" => $ti->color, "end" => $ti->end, "type" => "3"]);
+                            array_push($array, ["id" => $ti->id, "start" => $ti->start, "user" => $user->name, "color" => "green", "photo" => $user->profile_photo, "gender" => $ap->gender, "age" => $user->age, "title" => $ti->title, "color" => $ti->color, "end" => $ti->end, "type" => "3"]);
                         }           
 
             
@@ -105,6 +107,7 @@ class drAppointments extends Controller
                 'name'      => $user2->name,
                 'photo'     => $user2->profile_photo,
                 'date'      => $user2->created_at,
+                'gender'    => $user2->gender,
                 'array'     => json_encode($array),
                 'as'        => $assistant,
                 'donli'     => $donli
@@ -126,15 +129,93 @@ class drAppointments extends Controller
          }else{  
            $user = User::find(Auth::id());
          }
+      if(!$request->calcelwork){  
        $id = $request->idcancel;
        $appo = medical_appointments::find($id);
        $appo->status = 'No completed';
        $appo->sub_status = 'cancel by doctor';
+       $appo->reasontocancel = $request->radioreason;
+           if($request->definitive == 'true')
+              $appo->definitive = true;
        $appo->save();
+
+              if($appo->definitive == false){
+
+               $data = $this->alternative($appo, $user->name);
+             }else{
+                 $data = $this->definitive($appo, $user->name);
+               }
+               Mail::send('emails.cancelAppointment', $data, function ($message) {
+                            $message->subject('Tu cita ha sido cancelada');
+                            $message->to('contacto@doitcloud.consulting');
+                        });
+
+        }else{
+
+           foreach($request->idcancel as $key => $n ){
+              if($request->calcelwork[$n] == 'true'){  
+               $id = $n;
+               $appo = medical_appointments::find($id);
+               $appo->status = 'No completed';
+               $appo->sub_status = 'cancel by doctor';
+               $appo->reschedule_options = false;
+               $appo->reasontocancel = 'por cambio de horario';
+               $appo->save();
+                            $data = $this->alternative($appo, $user->name);
+                            Mail::send('emails.cancelAppointment', $data, function ($message) {
+                            $message->subject('Tu cita ha sido cancelada');
+                            $message->to('contacto@doitcloud.consulting');
+                        });
+              }else{
+                 $id = $n;
+                 $appo = medical_appointments::find($id);
+                 $appo->reschedule_options = false;
+                 $appo->save();
+              }
+          $request->session()->forget('workboardnew');
+          }
+        }
+
+        
+
        return redirect('drAppointments/index/'. $user->id);
+       
     }
 
-        /**
+    /**
+     * View to cancel 
+     *
+     * @return \Illuminate\Http\Response
+     */
+ 
+    public function viewcancelAppointment($id)
+    {
+        $id = $id;
+        $appo = medical_appointments::find($id);
+        $userd = User::find($appo->user_doctor);
+        $user = User::find(Auth::id());
+
+       if($appo->definitive == false){
+
+                             $data = $this->alternative($appo, $userd->name);
+
+                           }else{
+
+                             $data = $this->definitive($appo, $userd->name);
+                           }                
+
+       return view('updateappointment',[        
+                                        'userId'    => $user->id,
+                                        'username'  => $user->username,
+                                        'name'      => $user->name,
+                                        'photo'     => $user->profile_photo,
+                                        'date'      => $user->created_at,
+                                        'gender'    => $user->gender 
+                                         ])->with($data); 
+       
+    }    
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -152,10 +233,77 @@ class drAppointments extends Controller
        $time->start = $request->startEdit;
        $time->end   = $request->endEdit;       
        $time->save();
+
        return redirect('drAppointments/index/'. $user->id);
     }
 
         /**
+     * edit appointments.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editappointment(Request $request)
+    {
+      if($request->action == 'update'){
+       $id = $request->idc;
+       $appo = medical_appointments::find($id);
+       if($appo->status == 'No completed' && $appo->reschedule == true){
+       $appo->status = 'Registered';
+       $appo->when = Carbon::parse($request->datenew)->format('Y-m-d H:i:s');
+       $appo->definitive = false;
+       $appo->save();
+       $notification = array(
+                //If it has been rejected, the internal error code is sent.
+            'message' => 'Se ha reagendado su cita correctamente', 
+            'date'    => $appo->when,
+            'success' => 'success',
+            'ok'      => 'ok'
+        );
+     }else{
+       if($appo->reschedule == false)
+             $notification = array(
+                //If it has been rejected, the internal error code is sent.
+            'message' => 'Indicaste en esta cita que ya no quieres volver a agendar', 
+            'error'   => 'error',
+            'errort'  => 'errort'
+        );
+        else{
+            $notification = array(
+                //If it has been rejected, the internal error code is sent.
+            'message' => 'Esta cita ya fue reagendada con anterioridad', 
+            'error'   => 'error',
+            'errort'  => 'errort'
+            );
+        }   
+     }
+       return redirect('medicalconsultations')->with($notification);
+     }
+      if($request->action == 'notreschedule'){
+               $id = $request->idc;
+               $appo = medical_appointments::find($id);
+               if($appo->status == 'No completed'){
+               $appo->reschedule = false;
+               $appo->save();
+               $notification = array(
+                        //If it has been rejected, the internal error code is sent.
+                    'message' => 'Listo, no se te volverá a preguntar sobre esta cita', 
+                    'date'    => $appo->when,
+                    'success' => 'success',
+                    'ok'      => 'ok'
+                );
+             }else{
+                    $notification = array(
+                        //If it has been rejected, the internal error code is sent.
+                    'message' => 'Esta cita ya fue reagendada con anterioridad', 
+                    'error'   => 'error',
+                    'errort'  => 'errort'
+                    );
+             }
+               return redirect('medicalconsultations')->with($notification);
+      }
+    }
+
+     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -229,6 +377,163 @@ class drAppointments extends Controller
         }   
     }
 
+
+    public function alternative($appo,$dr)
+    {
+       //Alternative options
+       $option1 = array();
+       $option2 = array();
+       $option3 = array();
+       $daydatef = Carbon::parse($appo->when);
+
+                 $join = DB::table('professional_information')
+                              ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
+                              ->where('labor_information.id','=', $appo->workplace)
+                              ->select('professional_information.*')
+                              ->first();
+
+                           $time_blockers =  DB::table('time_blockers')->where('professional_inf', '=', $join->id)->get();
+                           $cites = DB::table('medical_appointments')->where('workplace', '=', $appo->workplace)->get();
+                           $workboard = DB::table('workboard')->where('labInformation', '=', $appo->workplace)->where('oldnew','=','old')->get();
+                         
+                      //Validación 1 alternativo
+                          for($s = 0; $s < 10; $s++){
+
+                                if($s == 0)
+                                   $daydate = Carbon::parse($appo->when);
+                                else 
+                                   $daydate = Carbon::parse($appo->when)->addDays($s);
+
+                                   $day =  trans('adminlte::adminlte.'.$daydate->format('D')); 
+
+                             foreach($workboard as $work){   
+
+                                   if($work->workingDays == $day){
+                                    $h = json_decode($work->patient_duration_attention);
+
+                                       for($z =0; $z < count($h); $z++){
+                                          $ex = 0;
+                                          $notex = 0;
+                                          $time = $daydate->format('HH:mm:ss');
+                                          $date = $daydate->format('Y-m-d');
+
+                                          if($h[$z] >= $time){
+                                              foreach ($cites as $cite) {
+                                                  if($date.' '.$h[$z] == $cite->when)
+                                                      $ex++;
+                                                  else
+                                                      $notex++;
+                                              }
+                                              if($ex == 0){
+                                                $asueto = explode(" :", $h[$z]);
+                                                if($asueto[0] != 'asueto'){
+                                                   if ($daydate == Carbon::parse($appo->when)) {
+
+                                                      if($date.' '.$h[$z] > Carbon::parse($appo->when))
+                                                          array_push($option3, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
+
+                                                  }
+                                                  else{
+                                                              if($date.' '.$h[$z]  == Carbon::parse($appo->when)->addDays(7))
+                                                                   array_push($option2,  Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
+
+                                                              if($daydate != Carbon::parse($appo->when)->addDays(7))
+                                                                    array_push($option1, Carbon::parse($date . ' ' .$h[$z])->format('d-m-Y H:i:s'));
+                                                        }
+                                                  }       
+                                              }
+
+                                          }
+                                       }
+                                }
+                            } 
+                          }
+                          //Validación 1 alternativo
+                          $data = [
+                                    'reason' => $appo->reasontocancel,
+                                    'definitive'     => $appo->definitive,
+                                    'date'           => $appo->when, 
+                                    'specialty'      => $join->specialty,
+                                    'array'          => $option1,
+                                    'array2'         => $option2,
+                                    'array3'         => $option3,
+                                    'idcite'         => $appo->id,
+                                    'dr'             => $dr,
+                                    'reschedule'     => $appo->reschedule
+                                  ];  
+    
+                                    return $data;
+    }
+    public function definitive($appo,$dr)
+    {
+       $optionDrs = [];
+       $daydatef = Carbon::parse($appo->when);
+                 $specialityDr = DB::table('professional_information')
+                              ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
+                              ->join('users', 'professional_information.user', '=', 'users.id')
+                              ->where('labor_information.id','=', $appo->workplace)
+                              ->select('professional_information.*', 'labor_information.latitude', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation','users.id as iddr')
+                              ->first();
+                 $allSpeciality = DB::table('professional_information')
+                              ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
+                              ->join('users', 'professional_information.user', '=', 'users.id')
+                              ->where('labor_information.delegation','=', $specialityDr->delegation)
+                              ->where('professional_information.specialty','=', $specialityDr->specialty)
+                              ->where('users.id','!=', $specialityDr->iddr)
+                              ->select('professional_information.*', 'labor_information.latitude', 'labor_information.id as idli', 'labor_information.longitude', 'labor_information.state', 'labor_information.delegation', 'users.name as namedr','users.id as iddr', 'labor_information.colony', 'labor_information.street', 'labor_information.streetNumber')
+                              ->get();             
+                              foreach($allSpeciality as $sp){
+                                   $distance = $this->LatLong($specialityDr->latitude, $specialityDr->longitude, $sp->latitude, $sp->longitude);
+                                   array_push($optionDrs, ['name' => $sp->namedr, 'distance' => $distance, 'idli' => $sp->idli, 'direction' => $sp->state .', '. $sp->delegation . ', '.$sp->colony. ' '.$sp->street .''.$sp->streetNumber]);
+                              }
+                         
+                          //Validación definitive
+                          $data = [
+                                    'reason'         => $appo->reasontocancel,
+                                    'definitive'     => $appo->definitive,
+                                    'specialty'      => $specialityDr->specialty, 
+                                    'alldr'          => collect($optionDrs)->sortBy('distance'),
+                                    'idcite'         => $appo->id,
+                                    'date'           => $appo->when, 
+                                    'dr'             => $dr,
+                                    'reschedule'     => $appo->reschedule
+                                  ];  
+    
+                                    return $data;
+    }
+
+
+
+    public function LatLong($Lat, $Long, $compLat, $compLong)
+    {
+        $earth = 6371; //km 
+        //$earth = 3960; //miles
+
+        //Point 1 cords
+        $lat1 = deg2rad($Lat);
+        $long1= deg2rad($Long);
+
+        //Point 2 cords
+        // deg2rad Convierte el número en grados a su equivalente en radianes
+        $lat2 = deg2rad($compLat);
+        $long2= deg2rad($compLong);
+
+        //Formula
+        $dlong= $long2-$long1;
+        $dlat= $lat2-$lat1;
+        //sin() devuelve el seno del parámetro 
+        $sinlat= sin($dlat/2);
+        $sinlong= sin($dlong/2);
+
+        //cos() devuelve el coseno del parámetro 
+        $a= ($sinlat*$sinlat)+cos($lat1)*cos($lat2)*($sinlong*$sinlong);
+        //Devuelve el arco seno de arg en radianes,  min() devuelve el valor más bajo de ese array, sqrt es raíz cuadrada
+        $c= 2*asin(min(1,sqrt($a)));
+        //round Redondea un float
+        $d= round($earth*$c);
+
+        return $d;
+    }
 
     
 }

@@ -39,7 +39,7 @@
     <script src="https://adminlte.io/themes/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
     <script type="text/javascript" src="https://adminlte.io/themes/AdminLTE/bower_components/select2/dist/js/select2.full.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.print.min.css" media="print">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/locale/es.js"></script>
@@ -325,11 +325,9 @@ span.round-tab:hover {
     content: " ";
     position: absolute;
     left: 35%;
-    opacity: 1;
     margin: 0 auto;
     bottom: 0px;
-    border: 10px solid transparent;
-    border-bottom-color: #151515;
+
 }
 .wizard .nav-tabs > li a {
     width: 30px;
@@ -398,6 +396,73 @@ span.round-tab:hover {
         overflow:hidden; 
         }
 
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 15px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #777;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+ input:checked + .slider {
+  background-color: #333;
+}
+
+ input:focus + .slider {
+  box-shadow: 0 0 1px #333;
+}
+
+ input:checked + .slider:before {
+  -webkit-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
+}
+
+/* Rounded sliders */
+ .slider.round {
+  border-radius: 13px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.box.box-primary {
+  border-top-color: #242627;
+}
+
 </style>
 
 
@@ -415,7 +480,25 @@ span.round-tab:hover {
     <![endif]-->
 </head>
 <body class="hold-transition @yield('body_class')">
+@if(!empty(session()->get('medication')))
+      @include('modals.medicationsNotConfirm', ['medication' => session()->get('medication') ])
+@endif
 
+@if(!empty(session()->get('workboardnew')))
+      @include('modals.modalChangeWorkboard', ['appo' => session()->get('workboardnew') ])
+  <script type="text/javascript">
+$(document).ready(function() {
+    var appo = @php echo session()->get('workboardnew'); @endphp;
+    if(appo != null &&  appo.length > 0){
+      $('#modalAppo').modal();
+      console.log('citas ' + JSON.stringify(appo));
+      for(var r = 0; r < appo.length; r++){
+        $('#bodyappo').append('<li class="active"><a href="javascript:void(0)" style="border-left-color: #333 !important;"><input type="hidden" name="idcancel[]" value="'+ appo[r]['id']  +'">Paciente: '+ appo[r]['name'] +'<br>Cita: '+ moment(appo[r]['when']).format('DD/MM/YYYY hh:mm a') +'<br>Cancelar <input type="radio" name="calcelwork[]" value="true"><br> Atender en mismo horario <input type="radio" name="calcelwork[]" value="false"></a></li>');
+      }
+    }
+  })
+  </script>
+@endif
 @yield('body')
 
 
@@ -425,7 +508,7 @@ span.round-tab:hover {
 <script src="{{ asset('js/GoogleLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInLogin.js') }}"></script>
 <script src="{{ asset('js/LinkedInRegister.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.33&key=AIzaSyASpjRM_KRr86IC02UvQKq9NtJL_9ZHbHg&libraries=geometry,places" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_KEY') }}&libraries=geometry,places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
   <p id="power"></p>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>-->
@@ -483,7 +566,7 @@ span.round-tab:hover {
 
                       ///Function for cites of day         
                      var now = moment().format("MM/DD/YYYY HH:mm");
-             
+                      
                    if(result2[0] != null && result2[0].length > 0){
                      $('#numberAppo').html(result2[0].length);
                      $('#stateCite2').hide();
@@ -491,11 +574,23 @@ span.round-tab:hover {
                      $('#drAlert').addClass('animated');
                      var array = new Array();
                       for(var g =0; g < result2[0].length; g++){
-                                   var gender = result2[0][g]['gender'];
-                                       if(gender == 'female')
-                                          gender = 'Femenino';
-                                       if(gender == 'male')
-                                          gender = 'Masculino';
+                                      var gender = result2[0][g]['gender'];
+                                      if(result2[0][g]['profile_photo'] == null || result2[0][g]['profile_photo'] == ''){
+                                        if(gender == 'female'){
+                                           var  photo = "{{ asset('profile-female.png') }}";
+                                           gender = 'Femenino';
+                                         }
+                                        if(gender == 'male'){
+                                           var  photo = "{{ asset('profile-42914_640.png') }}";
+                                           gender = 'Masculino';
+                                         }
+                                        if(gender == 'other'){
+                                           var  photo = "{{ asset('profile-other.png') }}";
+                                           gender = 'Otro';
+                                         } 
+                                      }else
+                                      var photo = result2[0][g]['profile_photo'];
+                                           
 
                                 var com = moment(result2[0][g]['when']).format("MM/DD/YYYY HH:mm");
                                if(now < com){
@@ -512,11 +607,11 @@ span.round-tab:hover {
                          if(result2[0][g]['status'] == 'No completed'){  
                                     $('#stateCite').append('<li><a class="pointer"><i class="menu-icon fa fa-calendar-times-o bg-red"></i><button type="button" class="close" data-dismiss="li" data-toggle="modal" data-target="#cancel'+ result2[0][g]['id'] +'" onclick=" $(this).parent().parent().fadeOut(1000);">×</button><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender +', edad: '+ result2[0][g]['age'] +'</p></div></a></li>');
 
-                                                                   $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Detalle de cita cancelada</h4></div><div class="modal-body"><div align="center"><img src="'+ result2[0][g]['profile_photo'] +'" class="img-circle" alt="User Image" style="height: 80px;"><br>xxxxxxxxxxxxxxxxxxxxxxx<br><button class="btn btn-secondary btn-flat" onclick="sendAware('+ result2[0][g]['id'] +')">Enterado</button></div></div></div></div></div>');
+                                                                   $('#tool').append('<div class="modal fade" role="dialog" id="cancel'+ result2[0][g]['id'] +'" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Detalle de cita cancelada</h4></div><div class="modal-body"><div align="center"><img src="'+ photo +'" class="img-circle" alt="User Image" style="height: 80px;"><br>xxxxxxxxxxxxxxxxxxxxxxx<br><button class="btn btn-secondary btn-flat" onclick="sendAware('+ result2[0][g]['id'] +')">Enterado</button></div></div></div></div></div>');
                                   }
                        else{      
 
-                              $('#tool').append('<div class="modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog modal-sm modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Información general de la cita</h4></div><div class="modal-body"><ul class="nav nav-stacked" id="normal"><div align="center"><img src="'+ result2[0][g]['profile_photo'] +'" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br><li><a ><label class="text-muted">Nombre: </label> '+ result2[0][g]['name'] +'</a></li><li><a><label class="text-muted">Edad: </label> '+ result2[0][g]['age'] +'</a></li><li><a><label class="text-muted">Fecha: </label> '+ result2[0][g]['when'] +'</a></li><li id="buttondetail"><form action="{{ url("doctor/viewPatient/") }}/'+ result2[0][g]['did'] +'" method="get" id="form_profile">{{ csrf_field() }}<button type="submit" class="btn btn-secondary btn-block btn-flat">Detalle de paciente</button></form></li></ul><br></div></div></div>');    
+                              $('#tool').append('<div class="modal fade" role="dialog" id="'+ result2[0][g]['id'] +'"><div class="modal-dialog modal-sm modal-content"><div class="modal-header"><button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Información general de la cita</h4></div><div class="modal-body"><ul class="nav nav-stacked" id="normal"><div align="center"><img src="'+ photo +'" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br><li><a ><label class="text-muted">Nombre: </label> '+ result2[0][g]['name'] +'</a></li><li><a><label class="text-muted">Edad: </label> '+ result2[0][g]['age'] +'</a></li><li><a><label class="text-muted">Fecha: </label> '+ result2[0][g]['when'] +'</a></li><li id="buttondetail"><form action="{{ url("doctor/viewPatient/") }}/'+ result2[0][g]['did'] +'" method="get" id="form_profile">{{ csrf_field() }}<button type="submit" class="btn btn-secondary btn-block btn-flat">Detalle de paciente</button></form></li></ul><br></div></div></div>');    
 
                          if(result2[0][g]['status'] == 'Taked'){  
                                     $('#stateCite').append('<li><a data-toggle="modal" data-target="#'+ result2[0][g]['id'] +'" class="pointer"><i class="menu-icon fa fa-calendar-check-o bg-green"></i><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[0][g]['name'] +'</h4><p>'+ gender+', edad: '+ result2[0][g]['age'] +'</p><p></div></a></li>');
@@ -565,25 +660,38 @@ span.round-tab:hover {
                         var yesterday = moment().add(1, 'day').format("MM/DD/YYYY");
                         var more = moment().add(2, 'day').format("MM/DD/YYYY");      
                        for(var h =0; h < result2[1].length; h++){
-                                     var gender = result2[1][h]['gender'];
-                                           if(gender == 'female')
-                                              gender = 'Femenino';
-                                           if(gender == 'male')
-                                              gender = 'Masculino';
+
+                                      var gender = result2[0][h]['gender'];
+                                      if(result2[0][h]['profile_photo'] == null || result2[0][h]['profile_photo'] == ''){
+                                        if(gender == 'female'){
+                                           var  photo = "{{ asset('profile-female.png') }}";
+                                           gender = 'Femenino';
+                                         }
+                                        if(gender == 'male'){
+                                           var  photo = "{{ asset('profile-42914_640.png') }}";
+                                           gender = 'Masculino';
+                                         }
+                                        if(gender == 'other'){
+                                           var  photo = "{{ asset('profile-other.png') }}";
+                                           gender = 'Otro';
+                                         } 
+                                      }else{
+                                        var photo = result2[0][h]['profile_photo'];
+                                      }
 
                                      var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
                             if(yesterday == when){
                               $('#yesterday').removeClass('none');
-                              $('#yesterday').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#yesterday').after('<li><a class="pointer"><img src="'+ photo +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
 
                             }
                             if(more == when){
                               $('#moreYesterday').removeClass('none');
-                              $('#moreYesterday').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#moreYesterday').after('<li><a class="pointer"><img src="'+ photo +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
                             }    
                             if(when > more){
                               $('#more').removeClass('none');
-                              $('#more').after('<li><a class="pointer"><img src="'+ result2[1][h]['profile_photo'] +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
+                              $('#more').after('<li><a class="pointer"><img src="'+ photo +'" class="menu-icon"><div class="menu-info"><h4 class="control-sidebar-subheading">'+ result2[1][h]['name'] +'</h4><p>'+ gender +', edad: '+ result2[1][h]['age'] +'</p></div></a></li>');
                             }         
 
                                    }  
@@ -615,24 +723,33 @@ span.round-tab:hover {
                 type: "GET",    
                 url: "{{ url('HomeController/notify') }}", 
                 success: function(result){
-                 var com = "@php echo session()->get('entered'); @endphp";
+                 var com = "{{ session()->get('entered') }}";
                     if(com != 1){
                       $('#notN').css("display", "block");  
                     }else{
                         $('#notN').css("display", "none"); 
                     }
                     $('#notify').html('');
-                  for (var i =0; i < result.length; i++) {
-                    if(i == 0){
-                    $('#countNot').html('Tiene '+ result.length + ' notificación');
+                      if(result[1].length > 0){  
+
+                          var length = result[0].length + 1;
+                          $('#notify').append('<li><a class="pointer" data-toggle="modal" href="#modalmedications"><img src="{{ asset("prescription.png") }}" height="20" width="20">Tienes un tratamiento por iniciar</a></li>');
+
+                      }else 
+                          var length = result[0].length;   
+
+
+                  for (var i =0; i < length; i++) {
+                    if(length == 1){
+                    $('#countNot').html('Tiene '+ length + ' notificación');
                      $('#notN').html('1');
                     }else{
-                     $('#notN').html(result.length);
-                    $('#countNot').html('Tiene '+ result.length + ' notificaciones');
+                     $('#notN').html(length);
+                    $('#countNot').html('Tiene '+ length + ' notificaciones');
                     }
-                    var u = result[i]['url'];
+                    var u = result[0][i]['url'];
                     var url = "{{ url('') }}";
-                            $('#notify').append('<li><a href="'+ url +'/'+ u +'"><i class="fa fa-warning text-yellow"></i>'+ result[i]['description']+'</a></li>');
+                            $('#notify').append('<li><a href="'+ url +'/'+ u +'"><i class="fa fa-warning text-yellow"></i>'+ result[0][i]['description']+'</a></li>');
                         
                         }
                                 }
@@ -711,17 +828,17 @@ span.round-tab:hover {
                 panelDr();
 
         $.fn.datepicker.dates['es'] = {
-        days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-        daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-        daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
-        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-        monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
-        today: "Hoy",
-        monthsTitle: "Meses",
-        clear: "Borrar",
-        weekStart: 1,
-        format: "yyyy/mm/dd"
-    };
+          days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+          daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+          daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+          months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+          monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+          today: "Hoy",
+          monthsTitle: "Meses",
+          clear: "Borrar",
+          weekStart: 1,
+          format: "yyyy/mm/dd"
+        };
 
         $('#datepicker1').datepicker({
             autoclose: true,
@@ -830,20 +947,17 @@ span.round-tab:hover {
     });
 </script>
 
+
 @if(config('adminlte.plugins.datatables'))
     <!-- DataTables -->
-       <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
     <script src="https://adminlte.io/themes/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-
-
-    
-
 
 @endif
 

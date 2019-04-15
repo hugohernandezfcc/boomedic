@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
          '\App\Console\Commands\paymentExecute',
+         '\App\Console\Commands\medicationExecute',
+         '\App\Console\Commands\changeWorkboardDr'
     ];
 
     /**

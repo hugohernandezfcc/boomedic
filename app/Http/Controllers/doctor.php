@@ -15,6 +15,10 @@ use Carbon\Carbon;
 use App\professional_information;
 use App\assistant;
 use Mail;
+use App\questions_clinic_history;
+use App\answers_clinic_history;
+
+
 class doctor extends Controller
 {
     /**
@@ -66,7 +70,7 @@ class doctor extends Controller
         $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
-             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr', 'users.gender')
              ->get();
          if(count($assistant) > 0){
             Session(['utype' => 'assistant']); 
@@ -94,15 +98,21 @@ class doctor extends Controller
             ->join('users', 'assistant.user_assist', '=', 'users.id')
             ->where('assistant.user_doctor', $user->id)
             ->where('assistant.confirmation', true)
-            ->select('assistant.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name')
+            ->select('assistant.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name', 'users.gender')
             ->get();
         $nodes = array();
     //Json que guarda datos de familiares para generar externalidad//
       if(count($assist) < 1){
-        if($user->profile_photo != null)
+        if($user->profile_photo != '')
          array_push( $nodes, ['name' => 'Yo', 'photo' => $user->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
             else{
-                array_push( $nodes, ['name' => 'Yo', 'photo' => asset('profile-42914_640.png') .'?'.  Carbon::now()->format('h:i'), 'id' => '0']);
+                if($user->gender == 'male')
+                    $phot = asset('profile-42914_640.png') ;
+                if($user->gender == 'female')
+                    $phot = asset('profile-female.png') ;
+                if($user->gender == 'other' || $user->gender == '')
+                    $phot = asset('profile-other.png') ;
+                array_push( $nodes, ['name' => 'Yo', 'photo' => $phot .'?'.  Carbon::now()->format('h:i'), 'id' => '0']);
             }
           for($i = 1; $i < 2; $i++){
                 array_push($nodes, ['name' => 'Agregar asistente', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
@@ -114,7 +124,13 @@ class doctor extends Controller
             if($assist[$i]->profile_photo != null){
                 array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => $assist[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
                   }else {
-                        array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => asset('profile-42914_640.png'), 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
+                            if($assist[$i]->gender == 'male')
+                                $photas = asset('profile-42914_640.png') ;
+                            if($assist[$i]->gender == 'female')
+                                $photas = asset('profile-female.png') ;
+                            if($assist[$i]->gender == 'other' || $assist[$i]->gender == '')
+                                $photas = asset('profile-other.png') ;
+                        array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => $photas, 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
                   }
             }
           }
@@ -123,6 +139,27 @@ class doctor extends Controller
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
         $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
+
+        $questions = DB::table('questions_clinic_history')
+                         ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+                         ->where('questions_clinic_history.createdby', $user->id)
+                         ->where('questions_clinic_history.active', true)
+                         ->select('questions_clinic_history.*', 'answers_clinic_history.answer')
+                         ->get();
+
+        $questionsAlls = DB::table('questions_clinic_history')
+                 ->join('professional_information', 'questions_clinic_history.createdby', '=', 'professional_information.user')
+                 ->where('professional_information.specialty','=',$professionali[0]->specialty)
+                 ->select('questions_clinic_history.*', 'professional_information.specialty')
+                 ->get();
+
+            $arrayQuestions =  array();
+            foreach ($questionsAlls as $quest) {
+                                    array_push($arrayQuestions, $quest->question);
+                                  }                      
+
+        $countAppointments = DB::table('medical_appointments')->where('user_doctor',  $user->id )->count();                
+
         return view('profileDoctor', [
                  /** SYSTEM INFORMATION */
                 'userId'        => $user->id,
@@ -140,6 +177,7 @@ class doctor extends Controller
                 'username2' => $user->username,
                 'email2'         => $user->email,
                 'name2'          => $user->name,
+                'firstname2'          => $user->name,
                 'photo2'         => $user->profile_photo,
                 'gender'        => $user->gender,
                 'occupation'    => $user->occupation,
@@ -171,10 +209,16 @@ class doctor extends Controller
                 /*NODES ASSISTANT*/
                 'nodes'         => json_encode($nodes),
                 'donli'         => $donli,
-                'as'            => $assistant 
+                'as'            => $assistant,
+                'questions'     => $questions,
+                'countAppo'     => $countAppointments,
+                'countassist'   => count($assist),
+                'questionAutocomplete'  =>  json_encode($arrayQuestions)  
             ]
         );
     }
+
+
         public function saveAssistant (Request $request)
       {     
         $user2 = User::find(Auth::id());
@@ -369,6 +413,10 @@ class doctor extends Controller
         $prof = professional_information::find($bus);
         $labor = DB::table('labor_information')->where('profInformation', $bus)->get();
         $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
+
+
+
+
         return view('profileDoctor', [
                 /** SYSTEM INFORMATION */
                 'userId'        => $user->id,
@@ -585,6 +633,8 @@ class doctor extends Controller
             ]
         );
     }
+
+
     public function laborInformationView($id)
     {    
         $user2 = User::find(Auth::id());
@@ -633,6 +683,8 @@ class doctor extends Controller
             ]
         );
     }
+
+
     public function updateDoctor(Request $request, $id)
     {    $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
@@ -675,6 +727,7 @@ class doctor extends Controller
         return redirect('doctor/doctor/' . $id );
         }
     }
+
     public function cropDoctor(Request $request, $id)
     {     $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
@@ -686,13 +739,16 @@ class doctor extends Controller
           }else{
               $user = User::find(Auth::id());
           }
+
         $targ_w = $targ_h = 300;
         $jpeg_quality = 90;
         $src = $user->profile_photo;
         $img_r = imagecreatefromjpeg($src);
         $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
         imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
             $targ_w,$targ_h,$request->w,$request->h);
+
         $filename = $id.'.jpg';
         $path2= 'https://s3.amazonaws.com/'. env('S3_BUCKET') .'/'. $filename;
         
@@ -731,6 +787,7 @@ class doctor extends Controller
         imagepng($image);
         $png_file = ob_get_contents();
         ob_end_clean();
+
         Storage::disk('s3')->put( $id.'-circle.png',  $png_file, 'public');
         //Imagen copia circular//
             return redirect('doctor/edit/complete' . $id );
@@ -771,6 +828,40 @@ class doctor extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function deletequestion($id)
+    {
+        $assistant = DB::table('assistant')
+             ->join('users', 'assistant.user_doctor', '=', 'users.id')
+             ->where('user_assist', Auth::id())
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->get();
+         if(count($assistant) > 0){
+             $user = User::find(session()->get('asdr'));
+          }else{
+              $user = User::find(Auth::id());
+          }
+
+          $question = questions_clinic_history::find($id);
+          $answer = DB::table('answers_clinic_history')->where('question', $id)->first();
+          $clinic_history =   DB::table('clinic_history')->where('question_id', $id)->get();
+
+          if(count($clinic_history) == 0){
+             if(DB::table('answers_clinic_history')->where('question', $id)->delete())
+                    DB::table('questions_clinic_history')->where('id', $id)->delete();   
+          }else{
+              $question->active = false;
+                if($question->save())
+                    $answer->active = false;
+
+          }
+          return redirect('doctor/doctor/'.$user->id);
+    }    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function settingAss()
     {
       $user = User::find(Auth::id());
@@ -781,6 +872,48 @@ class doctor extends Controller
              ->get();
         return response()->json($assistants);
     }
+
+    /**
+     * Save question and answers to doctor
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function saveQuestions(Request $request)
+    {
+      $user = User::find(Auth::id());
+      $array = [];
+      $ques = new questions_clinic_history;
+      $ques->createdby = $user->id;
+      $ques->question = $request->question;
+      $ques->type = "Previa cita";
+
+      if($ques->save()){
+            $answer = new answers_clinic_history;
+            $answer->question = $ques->id;
+            $answer->createdby = $user->id;
+
+            if($request->type == 'texto'){
+                array_push($array, "texto");
+                $answer->answer = json_encode($array);
+            }
+            else
+                $answer->answer = $request->options;
+            
+            $answer->save();
+
+                    $questions = DB::table('questions_clinic_history')
+                         ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+                         ->where('questions_clinic_history.id', $ques->id)
+                         ->select('questions_clinic_history.*', 'answers_clinic_history.answer')
+                         ->first();
+           
+            return response()->json($questions);
+        }
+        else
+            return response()->json('error');
+    }
+    
 
 
     /**
@@ -796,23 +929,50 @@ class doctor extends Controller
         $users = DB::table('users')->where('id', $id)->get();
         $family = DB::table('family')
             ->join('users', 'family.activeUser', '=', 'users.id')
-            ->where('family.parent', $id)
-            ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name')
+            ->where('family.parent', $users[0]->id)
+            ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name', 'users.gender')
             ->get();
         $nodes = array();
-    //Json que guarda datos de familiares para generar externalidad//           
-          array_push( $nodes, ['name' => $users[0]->firstname, 'photo' => $users[0]->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
-          for($i = 0; $i < count($family); $i++){
-            $session = "0";
-            if($family[$i]->relationship == "son" && $family[$i]->age < 18){
-                $session = "1";
-            } 
-            if($family[$i]->profile_photo != null){
-                array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
-                  }else {
-                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => asset('profile-42914_640.png') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
+            //Json que guarda datos de familiares para generar externalidad//
+           if($users[0]->profile_photo != '')
+              $photou = $users[0]->profile_photo;
+            else{
+                 if($users[0]->gender == "male")
+                    $photou = asset('profile-42914_640.png');
+                 if($users[0]->gender == "female")
+                    $photou = asset('profile-female.png');
+                 if($users[0]->gender == "other" || $users[0]->gender == '')
+                    $photou = asset('profile-other.png');
+              }
+
+              if(count($family) < 1){
+                        array_push( $nodes, ['name' => 'Yo', 'photo' => $photou.'?'. Carbon::now()->format('h:i'), 'id' => '0']);
+
+                  for($i = 1; $i < 2; $i++){
+                        array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
+                    }
+              }   else {
+                       
+                  array_push( $nodes, ['name' => 'Yo', 'photo' => $photou. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
+                  for($i = 0; $i < count($family); $i++){
+                    $session = "0";
+                    if($family[$i]->relationship == "son" && $family[$i]->age < 18){
+                        $session = "1";
+                    } 
+                    if($family[$i]->profile_photo != null){
+                        array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
+                          }else {
+                            if($family[$i]->gender == "male")
+                              $photof = asset('profile-42914_640.png');
+                            if($family[$i]->gender == "female")
+                              $photof = asset('profile-female.png');
+                            if($family[$i]->gender == "other" || $family[$i]->gender == '')
+                              $photof = asset('profile-other.png');
+
+                                array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $photof , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
+                          }
+                    }
                   }
-            }
     //Json que guarda datos de familiares para generar externalidad//   
 
 

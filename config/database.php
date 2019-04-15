@@ -66,6 +66,7 @@ return [
             'prefix' => '',
             'schema' => 'public',
             'sslmode' => 'require',
+            'strict' => false
         ],
 
         'sqlsrv' => [

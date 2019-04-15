@@ -4,6 +4,7 @@
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <style type="text/css">
       #mapaC{
         position: relative;
@@ -221,9 +222,7 @@
         .pac-container {
          z-index: 100000; 
        }
-      .box.box-primary {
-        border-top-color: #242627;
-        }
+
     #infDr {
     bottom: 0;
     right: 0;
@@ -306,6 +305,8 @@
           z-index: 900;
     }
 
+
+
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
@@ -344,12 +345,17 @@
     /**
      * Information loader
      */
-  
+    // console.log('>>>>>>>');
+    // console.log(@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp);
+
+
     var specialities = [@php echo implode(',', array_unique(session()->get('sp'))).','; @endphp];
     var generalM = [@php if(session()->get('mg') != '0') foreach(session()->get('mg') as $mg){ echo $mg.','; } @endphp];
     var datos = [@php foreach(session()->get('it') as $it){ echo $it.','; } @endphp];
 
   </script>
+
+
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
                             <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h5>               
@@ -365,8 +371,20 @@
                   <div id="collapseOne" class="panel-collapse collapse" >
                     <div class="box-body">
                          @foreach($appointments->sortBy('when') as $appo)
-                              @if($loop->iteration < 3)
-                            <div class="col-sm-12">
+                           @if($loop->iteration < 3)
+                             @if($appo->status == 'No completed')
+                                  <div class="col-sm-12">
+                                    <div class="info-box sm bg-red">
+                                      <a href="{{ url('drAppointments/viewcancelAppointment/') }}/{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
+                                      <div class="info-box-content sm">
+                                       <span class="text-white">
+                                        <b>Lugar:</b> {{ $appo->workplace}}.<br/>
+                                       Asignada para:  {{ \Carbon\Carbon::parse($appo->when)->format('d-m-Y h:i A') }}  <b>*Cancelada</b></span>     
+                                       </div>       
+                                      </div>
+                                   </div> 
+                             @else 
+                               <div class="col-sm-12">
                                   <div class="info-box sm bg-gray">
                                     <a data-toggle="modal" data-target="#{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
                                     <div class="info-box-content sm">
@@ -394,8 +412,20 @@
                                                       <table style="width: 80%; text-align: center;">
                                                          <tr>
                                                             <td width="40%"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
-                                                            <td><img src="https://s3.amazonaws.com/abiliasf/Sin+título-1_a-01.png"></td>
-                                                            <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                            <td><img src="{{ asset('raya.png') }}"></td>
+                                                            @if($photo != '' || $photo != null)
+                                                              <td width="40%"><img src="{{ $photo }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                            @else  
+                                                              @if($gender == 'male') 
+                                                                <td width="40%"><img src="{{ asset('profile-42914_640.png') }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                              @endif
+                                                              @if($gender == 'female') 
+                                                                <td width="40%"><img src="{{ asset('profile-female.png') }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                              @endif
+                                                              @if($gender == 'other' || $gender == '') 
+                                                                <td width="40%"><img src="{{ asset('profile-other.png') }}" class="img-circle" alt="User Image" style="height: 55px;"></td>
+                                                              @endif
+                                                           @endif   
                                                          </tr>
                                                          <tr>
                                                             <td width="40%">{{ $appo->name }}</td><td>&nbsp;</td><td width="40%">{{ $name }}</td>
@@ -420,16 +450,17 @@
                                                           <span class="liright cut"><i class="fa fa-cc-paypal" style="font-size: 14px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
                                                      @endif 
                                                         </a></li>
-                                                        <li><a href="javascript:void(0)" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
+                                                        <li><a data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
  
                                                       </ul>
                                                       </div>
                                                       
-                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=250x200&amp;key=AIzaSyCKh6YcZQgwbcbUBCftcAQq7rfL5bLW_6g" alt="ubicación"  style="width:100%;"> </div> 
+                                                    <div align="center"><img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $appo->latitude }},{{ $appo->longitude }}&amp;markers=%7Ccolor:black%7Clabel:%7C{{ $appo->latitude }},{{ $appo->longitude }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=250x200&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación"  style="width:100%;"> </div> 
                                                     </div>
                                                 </div>
                                               </div> 
                                             </div>
+
                                                               <div class="modal-chat fade2 modal" id="chat-{{ $appo->id }}">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
@@ -444,11 +475,13 @@
                                                                                 <input type="hidden" class="mname" value="Cita médica">
                                                                                 <input type="hidden" class="mtable" value="medical_appointments">
                                                                              @include('conversations.conversationform')
+
                                                                          </div>
                                                                           </div>  
                                                                        </div>
                                                                     </div>  
 
+                                    @endif                                   
                                  @endif 
                                                          @if($loop->iteration > 2)
                                                          <div class="col-sm-12" style="text-align: right;">
@@ -469,13 +502,31 @@
               <!-- Charge Alert whether payment was processed or not -->
               @if(session()->has('message'))
 
-                @if(session()->has('success'))
-
-
+                @if(session()->has('success'))   
                  <!--Modal cita y pago success-->
                  <div class="modal fade" role="dialog" id="modalsuccess">
                     <div class="modal-dialog modal-sm">
+                  @if(session()->has('ok'))
+                      <!--Modal cita reagendada-->
+                              <div class="modal-content">
 
+                                <div class="modal-header" >
+                                  <!-- Tachecito para cerrar -->
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  <div align="left"><label>¡Cita reagendada!</label></div>
+                                </div>
+                                    <div class="modal-body" >
+                                      <div class="box box-primary">
+                                        <div class="box-body">
+                                           Nueva Fecha: <span class="text-muted">{{ \Carbon\Carbon::parse(session()->get('date'))->format('d-m-Y h:i A') }}</span>
+
+                                     </div>
+                                      </div>
+                                    </div>
+                                </div>
+                      @else          
                       <div class="modal-content">
 
                         <div class="modal-header" >
@@ -513,17 +564,31 @@
                               </div>
                             </div>
                         </div>
+                       @endif
                       </div> 
                     </div>
+
+                    
 
                  <!--Fin modal success-->
 
                 @elseif(session()->has('error'))
-  
+     
                 <!--Modal cita y pago error-->
                  <div class="modal fade" role="dialog" id="modalerror">
                     <div class="modal-dialog modal-sm">
-
+                   @if(session()->has('errort'))
+                      <!--Modal cita reagendada-->
+                              <div class="modal-content">
+                                <div class="modal-header" >
+                                  <!-- Tachecito para cerrar -->
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  <div align="left"><label>{{ session()->get('message') }}</label></div>
+                                </div>
+                              </div>
+                   @else    
                       <div class="modal-content">
 
                         <div class="modal-header" >
@@ -543,9 +608,10 @@
                               {{ trans('adminlte::adminlte.'.$code) }}
                           @else
                               {{ $code }}
-                              @endif
+                          @endif
                             </div>
                         </div>
+                  @endif
                       </div> 
                     </div>
 
@@ -580,7 +646,6 @@
           </div>
       </div>
   </div>
-
 
 
 
@@ -862,14 +927,14 @@
                          <br/>     
                           <form action="/payment/postPaymentWithpaypal" id="formulatio_paypal" method="post" class="form-horizontal">
                                   {{ csrf_field() }}
-                            <input id="amount" type="hidden" class="form-control" name="amount">
-                            <input type="hidden" name="id" id="idcard">
-                             <input type="hidden" name="receiver" id="receiver">
-                             <input type="hidden" name="when" id="when">
-                             <input type="hidden" name="when1" id="when1">
-                             <input type="hidden" name="dr" id="dr">
-                             <input type="hidden" name="idlabor" id="idlabor">
-                             <input type="hidden" name="spe" id="spe">
+                            <input id="amount" type="hidden" class="form-control" name="amount"/>
+                            <input type="hidden" name="id" id="idcard"/>
+                             <input type="hidden" name="receiver" id="receiver"/>
+                             <input type="hidden" name="when" id="when"/>
+                             <input type="hidden" name="when1" id="when1"/>
+                             <input type="hidden" name="dr" id="dr"/>
+                             <input type="hidden" name="idlabor" id="idlabor"/>
+                             <input type="hidden" name="spe" id="spe"/>
                         
 
                           <div class="btn-group pull-right">
@@ -901,7 +966,14 @@
 
           <script type="text/javascript">
 
+
+ 
+
 $(document).ready(function () {
+
+    if("{{ $medication }}" > 0)
+       $( "#modalmedications" ).modal();
+
                          $( ".modal-register-cite" ).on('shown.bs.modal', function (e) {
                           var vis = $(this).find( ".calendarNull" );
                              if(vis.is(":visible")){
@@ -929,6 +1001,7 @@ $(document).ready(function () {
           typeC = 'TypeGeneral';
         }
       })
+
     //Initialize tooltips
        $('#footerw').css("display", "none");
        $('#modalsuccess').modal('show');
@@ -1064,6 +1137,7 @@ function prevTab(elem) {
         c.text = specialities1[i][0];
         x.options.add(c, 1);
         }
+
       }
       function changeCheck(){
         if (!document.getElementById('general').checked){
@@ -1210,7 +1284,18 @@ function prevTab(elem) {
         infoSelect();
         setTimeout(function(){
           $('#loadingmodal').modal('toggle');
+        if('{{ session()->get("specialty") }}'.length > 0){  
+          for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
+            if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
+                 document.getElementById('general').click();
+                 document.getElementById("mySelect").options[i].selected = true;
+                  start();
+            }
+         }
+        } 
         }, 2000);
+
+
       };
       function initMap() {
         //var image = "{{ asset('maps-and-flags_1.png') }}";
@@ -1220,15 +1305,26 @@ function prevTab(elem) {
         //Current position
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
             //Map
+            if('{{ session()->get("latitude") }}'.length > 0){
+
+            var pos = {
+                        lat: parseFloat("{{ session()->get('latitude') }}"),
+                        lng: parseFloat("{{ session()->get('longitude') }}")
+                      };
+            var center = pos;
+            }else{
+             var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+              var center = new google.maps.LatLng(pos);
+           }
+
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 14,
               gestureHandling: 'greedy',
-              center: new google.maps.LatLng(pos),
+              center: center,
               styles: [
                         {
                           "elementType": "labels",
@@ -1358,7 +1454,7 @@ function prevTab(elem) {
             //Marker
               markerP = new google.maps.Marker({
               draggable: true,
-              position: new google.maps.LatLng(pos),
+              position: center,
               icon: pinIcon,
               map: map
             }); 
@@ -1445,6 +1541,7 @@ function prevTab(elem) {
                                 document.getElementById('address').value = " ";     
                              }
                          });
+                           start();
                 });
           },
           //****Error
@@ -1557,14 +1654,14 @@ function prevTab(elem) {
           var lat = loc[i][0];
           var lon = loc[i][1];
 
-          if(loc[i][10] != "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png"){
+          if(loc[i][10] != "{{ asset('dr.png') }}"){
           var doctor = {
-              url:"https://s3.amazonaws.com/abiliasf/" + loc[i][8] + "-circle.png",
+              url:"https://s3.amazonaws.com/boomedic/" + loc[i][8] + "-circle.png",
               scaledSize: new google.maps.Size(45, 45)
             };
         }else{
            var doctor = {
-              url: "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png",
+              url: "{{ asset('dr.png') }}",
               scaledSize: new google.maps.Size(45, 45)
             };
         }
@@ -1575,6 +1672,7 @@ function prevTab(elem) {
           });
           var infowindow = new google.maps.InfoWindow();
           var marker = markers[i];
+
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               $('#infDr').show();
@@ -1675,7 +1773,7 @@ function prevTab(elem) {
 
                   }
  
-                     $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es' }).on('changeDate',function(e){
+                     $('#calendar1').datepicker({ daysOfWeekDisabled: days, startDate: "today", language: 'es', todayHighlight: true }).on('changeDate',function(e){
                      $('#timesByDay').children().remove();
                          document.getElementById("onestep").disabled = false;
                          var da = moment(e.date.toISOString()).format("DD-MM-YYYY");
@@ -1921,6 +2019,14 @@ function prevTab(elem) {
           })(marker, i));
           setTimeout(dropMarker(i), i * 250);
         }
+          if('{{ session()->get("specialty") }}'.length > 0){  
+              for (var i = 0; i < document.getElementById("mySelect").options.length; ++i) {
+                if (document.getElementById("mySelect").options[i].text === '{{ session()->get("specialty") }}'){
+                       new google.maps.event.trigger( markers[0], 'click' );
+                       document.getElementById('{{ session()->get("id_lb") }}').click();
+                }
+             }
+            } 
       }
       function dropMarker(i) {
         return function() {
@@ -1937,6 +2043,8 @@ function prevTab(elem) {
       function showInfo(info){ 
         document.getElementById("info").innerHTML = '<strong>Detalle del médico:</strong> <br/><span style="font-size:12px;">'+ info +'</span>';
       }
+
+
     </script>
 
     <!-- Calculate distance -->
@@ -1972,7 +2080,9 @@ function prevTab(elem) {
             x.selectedIndex = 0;
             typeC = 'TypeGeneral';
           }
+
         });
+
     });
         
     </script>

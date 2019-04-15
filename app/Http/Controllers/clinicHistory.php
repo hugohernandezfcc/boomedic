@@ -14,6 +14,7 @@ use App\diagnostic_test_result;
 use Mail;
 use email;
 use Mailgun\Mailgun;
+use App\Medications;
 
 
 class clinicHistory extends Controller
@@ -44,7 +45,8 @@ class clinicHistory extends Controller
                             'username'   => $user->username,
                             'name'       => $user->name,
                             'photo'      => $user->profile_photo,
-                            'date'      => $user->created_at
+                            'date'      => $user->created_at,
+                            'gender'    => $user->gender
                            ]
                            )->with($data);
 
@@ -60,6 +62,12 @@ class clinicHistory extends Controller
         $clinic_history = DB::table('clinic_history')
         ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
         ->where('userid', $user->id)
+        ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+        ->get();
+        $clinic_history_general = DB::table('clinic_history')
+        ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+        ->where('userid', $user->id)
+        ->where('questions_clinic_history.createdby', null)
         ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
         ->get();
 
@@ -80,7 +88,7 @@ class clinicHistory extends Controller
             
         $question_parent = DB::table('answers_clinic_history')->get();
             /* ----------Files of inbox function store s3 pop3-------------- */
-                       $this->imapPop3 = new imapPop3;
+             /*          $this->imapPop3 = new imapPop3;
                         $host = 'iscoapp.com';
                         $port = '110';
                         $mbox = $this->imapPop3->connect($host, $port, $user->username, "adfm90f1m3f0m0adf");
@@ -114,12 +122,12 @@ class clinicHistory extends Controller
                            //print_r($result2);
 
 
-                        }
+                        }*/
                           $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->where('diagnostic_test','=',null)->get();   
                            $result2 = $result->groupBy('date_email'); 
 
            
-        if(count($clinic_history) == 0){
+        if(count($clinic_history_general) == 0){
             $mode = "null";
         } else{
             $mode = "finish";
@@ -217,7 +225,8 @@ class clinicHistory extends Controller
                 'clinic_history'    => $clinic_history,
                 'test_result'       => $test_result,
                 'questions_parent'  => $question_parent,
-                'mode'              => 'finish'
+                'mode'              => 'finish',
+                'gender'            => $user->gender
             ]
         );
     
@@ -238,12 +247,14 @@ class clinicHistory extends Controller
         $clinic_history = DB::table('clinic_history')
         ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
         ->where('userid', $user->id)
+        ->where('questions_clinic_history.createdby', null)
         ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
         ->get();
 
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
             ->where('answers_clinic_history.question','!=', null)
+            ->where('questions_clinic_history.createdby', null)
             ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
             ->get();
         } else{
@@ -275,7 +286,8 @@ class clinicHistory extends Controller
                 'questions'         => $question,
                 'questions_parent'  => $question_parent,
                 'clinic_history'    => $clinic_history,
-                'mode'              => "null"
+                'mode'              => "null",
+                'gender'            => $user->gender
             ]
         );
     }
@@ -374,6 +386,7 @@ class clinicHistory extends Controller
            $data = [
             'name'      => $user->name,
             'email'     => $user->email, 
+            'gender'    => $user->gender,
             'username'  => $user->username,                 
             'url'       => $diagnostic_test->url,
             'filename'  => $diagnostic_test->details, 
@@ -387,6 +400,59 @@ class clinicHistory extends Controller
                     });
              return response()->json($id);
       }
+    
+     /**
+     * ConfirmMedication a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function confirmMedication(Request $request)
+    {
+        $user = User::find(Auth::id());
+
+
+        $medication = DB::table('medications')->get();
+
+      $recipe_id = json_decode($request->dat);
+
+      foreach($recipe_id as $rec){
+                foreach($medication as $med){
+                     if($rec->id == $med->id){
+                         $change = Medications::find($rec->id);
+                         $change->active = 'Confirmed';
+                         $change->start_date = str_replace(" ", "T", $rec->date);
+                         $change->save();
+                     }
+                }
+            }
+
+
+
+        return response()->json($recipe_id);
+    
+    }
+
+     /*
+     * ConfirmMedication a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function medicationAll(Request $request)
+    {
+        $user = User::find(Auth::id());
+        $medicationAll = DB::table('medications')
+                ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+                ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                ->where('recipes_tests.patient', '=', $user->id)
+                ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid')
+                ->get()->groupBy('date');      
+
+        return response()->json($medicationAll);
+    
+    }    
 
     
 }

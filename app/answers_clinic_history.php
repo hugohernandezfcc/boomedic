@@ -14,7 +14,9 @@ class answers_clinic_history extends Model
 		'question',
 		'text_help',
         'parent',
-        'parent_answer'
+        'parent_answer',
+        'createdby',
+        'active'
     ];
     public function questions_clinic_history(){
 	  return $this->belongsTo('App\questions_clinic_history');

@@ -81,24 +81,28 @@
                             <div class="modal-body">
 
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/cancelAppointment') }}" method="post">
+                              {{ csrf_field() }}
                             	<input type="hidden" name="idcancel" id="idcancel">
                             	<ul class="nav nav-stacked">
                             		<li><div class="form-check">
-										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason" value="option1" checked>
+										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason" value="por compromiso profesional" checked>
 										  <label class="form-check-label" for="radioreason">
 										    Por compromiso profesional
 										  </label>
 										</div></li>
-                            		<li><div class="form-check">
-										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason2" value="option2">
+                    <li><div class="form-check">
+										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason2" value="por motivo personal">
 										  <label class="form-check-label" for="radioreason2">
 										    Por motivo personal
 										  </label>
 										</div></li><br>
+                     <li><div class="form-check" align="right">
+                       <label class="text-muted" for="definitive">Cancelación definitiva
+                      <input class="form-check-input" type="checkbox" name="definitive" id="definitive" value="true">
+                      </label>
+                    </div></li><br>
 								    <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>		
-                            	</ul>		
-	                  			
-
+                         </ul>		
 	                		</form>	
 	            				 <br>
                             </div>
@@ -120,6 +124,7 @@
                         </div>
                             <div class="modal-body">
                              <form enctype="multipart/form-data" action="{{ url('drAppointments/editTimeBlocker') }}" method="post">
+                              {{ csrf_field() }}
                               <ul class="nav nav-stacked">
                                 <input type="hidden" name="idEdit" id="idEdit">
                                 <li>Título <input type="text" class="form-control" name="titleEdit" id="titleEdit"></li>
@@ -149,6 +154,7 @@
                         </div>
                             <div class="modal-body" style="padding-top: 0px !important">
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event1">
+                              {{ csrf_field() }}
                               <input type="hidden" name="title" id="title">
                               <input type="hidden" name="color" id="color1">
                               <input type="hidden" name="t" id="t" value="1">
@@ -171,6 +177,7 @@
                               </ul>   
                           </form> 
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event2" style="display: none;">
+                              {{ csrf_field() }}
                               <input type="hidden" name="t" id="t" value="2">
                               <input type="hidden" name="title" id="title2">
                               <input type="hidden" name="color" id="color2">
@@ -283,6 +290,16 @@
                      resp = optionhour[y].start;
                      resp2 = optionhour[y].user;
                      resp3 = optionhour[y].color;
+           if(optionhour[y].photo == null || optionhour[y].photo == ''){
+              if(optionhour[y].gender == 'male')
+                var photo = "{{ asset('profile-42914_640.png') }}";
+              if(optionhour[y].gender == 'female')
+                var photo = "{{ asset('profile-female.png') }}";
+              if(optionhour[y].gender == 'other')
+                var photo = "{{ asset('profile-other.png') }}";
+           }
+           else  
+              var photo = optionhour[y].photo;       
 
           if(optionhour[y].type == "1"){
                 if( optionhour[y].color == "gray"){
@@ -292,7 +309,7 @@
 						    start:  resp,
 						    end:    optionhour[y].end['date'], 
 						    color: '#bfbfbf',
-						    photo: optionhour[y].photo,
+						    photo: photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
                 uid: optionhour[y].uid,
@@ -307,7 +324,7 @@
 						    start:  resp, 
 						    end:    optionhour[y].end['date'], 
 						    color: '#5ad6f5',   
-						    photo: optionhour[y].photo,
+						    photo: photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
                 uid: optionhour[y].uid,
@@ -322,7 +339,7 @@
 						    start:  resp, 
 						    end:    optionhour[y].end['date'], 
 						    color: 'green',   
-						    photo: optionhour[y].photo,
+						    photo: photo,
 						    age:  optionhour[y].age,
 						    lug: optionhour[y].lug,
                 uid: optionhour[y].uid,
@@ -420,6 +437,7 @@
            }
            },
 		  eventClick: function(calEvent, jsEvent, view) {
+        $('#buttondetail').html('');
 		   	if(calEvent.typ != "3"  && calEvent.typ != "2"){
 		   	$('#userp').css('display','block');	
 		  	$('#userp').attr('src', calEvent.photo + '?1');

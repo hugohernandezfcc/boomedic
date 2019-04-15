@@ -18,6 +18,10 @@ use App\diagnostic_test_result;
 use Event;
 use App\Events\EventName;
 use Redis;
+use App\Medications;
+use App\recipes_tests;
+use App\cli_recipes_tests;
+
 
 class HomeController extends Controller
 {
@@ -26,8 +30,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth');
     }
 
@@ -38,6 +41,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
          /*$redis = Redis::connection();
          $data = ['message' => 'hola'];
          $redis->publish('message', json_encode($data));
@@ -46,29 +50,37 @@ class HomeController extends Controller
          $user = User::find(Auth::id());
          $uuid = session()->get('uuid');
 
-          if($agent->isMobile() && $uuid != "null"){
+
+
+        $agent = new Agent();
+        $user = User::find(Auth::id());
+        $uuid = session()->get('uuid');
+
+        if($agent->isMobile() && $uuid != "null"){
             if($uuid){
                 $device = DB::table('devices')->where('uuid_device', $uuid)->get();
-                $old =  DB::table('users_devices')->where(
-                [
+                $old =  DB::table('users_devices')->where([
                     ['device', '=', $device[0]->id],
                     ['user_id', '=',  $user->id]
-                ]
-            )->get();
+                ])->get();
+
                 if(count($old) == 0){
                     $ud = new users_devices;
                     $ud->user_id = $user->id;
                     $ud->device = $device[0]->id;
                     if($ud->save())
+
                     Session(['uuid' => $uuid]);    
+              }
+
             }
-            }
-          }
+        }
 
 
 
         Session(['entered' => $user->entered]);
         $privacyStatement = DB::table('privacy_statement')->orderby('id','DESC')->take(1)->get();
+
         $StatementForUser = $user->privacy_statement;
         $appointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
@@ -77,16 +89,19 @@ class HomeController extends Controller
            ->join('paymentsmethods', 'transaction_bank.paymentmethod', '=', 'paymentsmethods.id')
            ->where('medical_appointments.user', '=', Auth::id())
            ->where('medical_appointments.when', '>', Carbon::now()->subDays(1))
-           ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.profile_photo', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.longitude', 'labor_information.latitude','paymentsmethods.cardnumber', 'paymentsmethods.provider', 'paymentsmethods.paypal_email','paymentsmethods.id as idtr')->get();
+           ->select('medical_appointments.*', 'users.name', 'users.profile_photo', 'users.id as did', 'labor_information.workplace', 'labor_information.longitude', 'labor_information.latitude','paymentsmethods.cardnumber', 'paymentsmethods.provider', 'paymentsmethods.paypal_email','paymentsmethods.id as idtr')->get();
 
          $join = DB::table('professional_information')
             ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
             ->join('users', 'professional_information.user', '=', 'users.id')
             ->select('labor_information.*', 'users.name', 'professional_information.specialty', 'professional_information.id as prof', 'users.id AS dr', 'users.profile_photo')
             ->get();
+
+
          $time_blockers =  DB::table('time_blockers')->get();
          $cites = DB::table('medical_appointments')->get();
-         $workboard = DB::table('workboard')->get();
+         $workboard = DB::table('workboard')->where('oldnew','old')->get();
+         
 
              foreach($join as $labor){
              $workArray = array();
@@ -114,7 +129,7 @@ class HomeController extends Controller
                     if($labor->specialty == 'Médico General'){
 
                         if(!$labor->profile_photo){
-                            $mg[] = json_encode(array($labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png", $blocker)); 
+                            $mg[] = json_encode(array($labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, asset('dr.png'), $blocker)); 
                         } else{
                             $mg[] = json_encode(array($labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, $labor->profile_photo, $blocker));
                                     //$mg[] = '["'.$labor->latitude.','.$labor->longitude.', "'.$labor->name.'", "'.$labor->workplace.'","'.$labor->general_amount.'",'.json_encode($workArray).', "'.$labor->id.'", "'.$labor->dr.'",'.json_encode($cite).', "'.$labor->profile_photo.'",'.json_encode($blocker).']';
@@ -122,7 +137,7 @@ class HomeController extends Controller
                         }
                     else{
                         if(!$labor->profile_photo){
-                            $it[] = json_encode(array($labor->specialty, $labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, "https://s3.amazonaws.com/abiliasf/iconoo_doc_verde-01.png", $blocker));
+                            $it[] = json_encode(array($labor->specialty, $labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, asset('dr.png'), $blocker));
                             } 
                         else{
                             $it[] = json_encode(array($labor->specialty, $labor->latitude, $labor->longitude, $labor->name, $labor->workplace, $labor->general_amount, $workArray, $labor->id, $labor->dr, $cite, $labor->profile_photo, $blocker));
@@ -147,11 +162,11 @@ class HomeController extends Controller
                     'name'      => $user->name,
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
-                   
+                    'gender'    => $user->gender
+                 
                 ]
             );
-        }     
-        elseif(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+        }else if(is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
                     'privacy'   => $privacyStatement[0],
@@ -160,15 +175,17 @@ class HomeController extends Controller
                     'name'      => $user->name,
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
+                    'gender'    => $user->gender,
                     'mode'      => $mode,
-                   
                 ]
             );
-        }
+        }     
+        
 
         $profInfo = DB::table('professional_information')
                             ->where('user', Auth::id() )
                             ->get();
+
         $statusRecordUser = DB::table('users')->where('id', Auth::id() )->value('status');
         if($profInfo->count() > 0 && $user->confirmed == false){
                return view('confirme', [
@@ -177,11 +194,11 @@ class HomeController extends Controller
                     'name'      => $user->name,
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
+                    'gender'    => $user->gender
                    
                 ]
             );
-        }  
-        elseif($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
+        }else if($profInfo->count() > 0 && is_null($StatementForUser) || $StatementForUser != $privacyStatement[0]->id){
             $mode = 'Null';
             return view('privacyStatement', [
                     'privacy'   => $privacyStatement[0],
@@ -191,14 +208,18 @@ class HomeController extends Controller
                     'photo'     => $user->profile_photo,
                     'date'      => $user->created_at,
                     'mode'      => $mode,
+                    'gender'    => $user->gender
                    
                 ]
             );
-        }
+        }  
+        
         if ($profInfo->count() > 0 && $statusRecordUser == 'In Progress') {
             Session(['utype' => 'doctor']);
             return redirect('doctor/edit/In%20Progress');
         }
+
+
         if ($profInfo->count() > 0 && $statusRecordUser != 'In Progress') {
              Session(['utype' => 'doctor']);
                     $countpaid = 0;
@@ -229,7 +250,8 @@ class HomeController extends Controller
                     'photo'         => $user->profile_photo,
                     'workplaces'    => $this->getWorkPlaces(),
                     'medAppoints'   => $this->getMedicalAppointments(),
-                    'paid'          => number_format($countpaid,2)
+                    'paid'          => number_format($countpaid,2),
+                    'gender'        => $user->gender
                 ]);   
         }
         if(DB::table('users')->where('id', Auth::id() )->value('status') == 'In Progress'){
@@ -242,24 +264,68 @@ class HomeController extends Controller
              ->where('user_assist', Auth::id())
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
              ->get();
+
                         if(count($assistant) == 0){
 
                              Session(['utype' => 'mortal']); 
+                             $medication = DB::table('medications')
+                                    ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+                                    ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                                    ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                                    ->join('users', 'recipes_tests.doctor', '=', 'users.id')
+                                    ->where('recipes_tests.patient', '=', $user->id)
+                                    ->where('medications.active', '=', 'Not Confirmed')
+                                    ->whereDay('medications.created_at','=', Carbon::now()->day)
+                                    ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')->get()->groupBy('date');
+                             $countm = count($medication);        
 
+                            if($countm == 0) {    
+                                $medication = DB::table('medications')
+                                    ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+                                    ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                                    ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                                    ->join('users', 'recipes_tests.doctor', '=', 'users.id')
+                                    ->where('recipes_tests.patient', '=', $user->id)
+                                    ->where('medications.active', '=', 'Not Confirmed')
+                                    ->where( 'medications.created_at', '>',  Carbon::now()->timezone('America/Mexico_City')->subDays(8))
+                                    ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')->get()->groupBy('date'); 
+
+                                    if(count($medication) == 0) {   
+                                        $medicationupdate = DB::table('medications')
+                                            ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+                                            ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                                            ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                                            ->where('recipes_tests.patient', '=', $user->id)
+                                            ->where('medications.active', '=', 'Not Confirmed')
+                                            ->select('medications.*')->get();       
+
+                                         foreach($medicationupdate as $up){   
+
+                                             $updatemed = Medications::find($up->id);
+                                             $updatemed->active = 'Finished';
+                                             $updatemed->save(); 
+                                         }
+                                    }
+
+
+                               }
+                                            
                                 return view('medicalconsultations', [
-                                        'username'  => $user->username,
-                                        'name'      => $user->name,
-                                        'firstname' => $user->firstname,
-                                        'lastname'  => $user->lastname,
-                                        'photo'     => $user->profile_photo,
-                                        'date'      => $user->created_at,
-                                        'userId'    => $user->id,
-                                        'labor'     => $join,
-                                        'appointments' => $appointments,
-                                        'title'     => 'Este doctor no tiene horarios agregados',
-                                        'it'        => $it,
-                                        'sp'        => $sp,
-                                        'mg'        => $mg
+                                        'username'       => $user->username,
+                                        'name'           => $user->name,
+                                        'firstname'      => $user->firstname,
+                                        'lastname'       => $user->lastname,
+                                        'photo'          => $user->profile_photo,
+                                        'gender'         => $user->gender,
+                                        'date'           => $user->created_at,
+                                        'userId'         => $user->id,
+                                        'labor'          => $join,
+                                        'appointments'   => $appointments,
+                                        'title'          => 'Este doctor no tiene horarios agregados',
+                                        'it'             => $it,
+                                        'sp'             => $sp,
+                                        'mg'             => $mg,
+                                        'medication'     => $countm   
 
                                     ]
                                 );
@@ -289,6 +355,7 @@ class HomeController extends Controller
                                         'lastname'  => $user->lastname,
                                         'photo'     => $user->profile_photo,
                                         'date'      => $user->created_at,
+                                        'gender'    => $user->gender,
                                         'userId'    => $user->id,
                                         'labor'     => $join,
                                         'appointments' => $appointments,
@@ -301,6 +368,7 @@ class HomeController extends Controller
                                     ]
                                 );
                             }
+
 
         }
     }
@@ -403,11 +471,31 @@ class HomeController extends Controller
           $user = User::find(Auth::id());
           Session(['entered' => $user->entered]);
         //if is for user or for all
+         $notificationsArray = Array();
+
          $notifications = DB::table('notifications')->where(function($q) {
-          $q->where('user_id', Auth::id())
+           $q->where('user_id', Auth::id())
             ->orWhere('type', 'Global');})->get();
 
-        return response()->json($notifications);
+         array_push($notificationsArray, $notifications);
+
+         $medication = DB::table('medications')
+                ->join('cli_recipes_tests', 'medications.recipe_medicines', '=', 'cli_recipes_tests.id')
+                ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                ->join('medicines', 'cli_recipes_tests.medicine', '=', 'medicines.id')
+                ->join('users', 'recipes_tests.doctor', '=', 'users.id')
+                ->where('recipes_tests.patient', '=', $user->id)
+                ->where('medications.active', '=', 'Not Confirmed')
+                ->where( 'medications.created_at', '>',  Carbon::now()->timezone('America/Mexico_City')->subDays(8))
+                ->select('medications.*', 'medicines.name as name_medicine', 'recipes_tests.date', 'cli_recipes_tests.frequency_days', 'cli_recipes_tests.posology', 'recipes_tests.id as rid', 'users.name as ndoctor')
+                ->get();
+
+            array_push($notificationsArray, $medication);
+            Session(['medication' => $medication->groupBy('date')]);  
+              
+   
+
+        return response()->json($notificationsArray);
     }
 
 
@@ -443,13 +531,9 @@ class HomeController extends Controller
                      }else{  
                             $user = User::find(Auth::id());
                       }
-                          /* ----------Files of inbox function store s3 pop3-------------- */
-                $this->imapPop3 = new imapPop3;
-                $host = 'iscoapp.com';
-                $port = '110';
-                $mbox = $this->imapPop3->connect($host, $port, $user->username, "adfm90f1m3f0m0adf");
+
                                 /* ----------Files of inbox function store s3 pop3-------------- */
-                $this->imapPop3 = new imapPop3;
+          /*      $this->imapPop3 = new imapPop3;
                 $host = 'iscoapp.com';
                 $port = '110';
                 $mbox = $this->imapPop3->connect($host, $port, $user->username, "adfm90f1m3f0m0adf");
@@ -474,7 +558,7 @@ class HomeController extends Controller
                                        $new_result->save();
 
                                     }
-                                }
+                                }*/
                            $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->where('viewed','=',false)->get();   
                            $result2 = $result->unique('date_email');
                            if(count($result2) > 0){
@@ -527,20 +611,21 @@ class HomeController extends Controller
      */
     public function appointments(){
 
-         $user = User::find(Auth::id());
-         $appointments = DB::table('medical_appointments')
+        $user = User::find(Auth::id());
+        $appointments = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
            ->join('professional_information', 'medical_appointments.user_doctor', '=', 'professional_information.user')
            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
            ->where('medical_appointments.user', '=', Auth::id())
            ->where('medical_appointments.when', '>', Carbon::now())
-           ->select('medical_appointments.id','medical_appointments.created_at','users.name', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.*', 'professional_information.specialty','users.profile_photo')->get();
+           ->select('medical_appointments.id as mid','medical_appointments.created_at','users.name', 'users.id as did','medical_appointments.when', 'medical_appointments.status', 'labor_information.*', 'professional_information.specialty','users.profile_photo')->get();
 
-                 return view('appointments', [
+            return view('appointments', [
                 'userId'    => $user->id,
                 'username'  => $user->username,
                 'name'      => $user->name,
                 'photo'     => $user->profile_photo,
+                'gender'    => $user->gender,
                 'date'      => $user->created_at,
                 'app'       => $appointments
             ]
@@ -564,7 +649,8 @@ class HomeController extends Controller
          $appoFuture = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
            ->where('medical_appointments.user_doctor', Auth::id())
-            ->whereBetween('medical_appointments.when', [Carbon::now()->addDays(1)->format('Y-m-d'), Carbon::now()->addDays(8)->format('Y-m-d')])
+           ->where('medical_appointments.status', '!=', 'No completed')
+           ->whereBetween('medical_appointments.when', [Carbon::now()->addDays(1)->format('Y-m-d'), Carbon::now()->addDays(8)->format('Y-m-d')])
            ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age','users.profile_photo')->orderBy('medical_appointments.when')->get();  
 
            if(count($appo) > 0){
@@ -626,6 +712,28 @@ class HomeController extends Controller
                         return redirect('/login');
                 }
             }
+
+        public function reSchedule($id){
+                      $exp = explode('-',$id); 
+                             $join = DB::table('professional_information')
+                              ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
+                              ->where('labor_information.id','=', $exp[0])
+                              ->select('labor_information.latitude', 'labor_information.longitude', 'professional_information.specialty', 'labor_information.id')
+                              ->first();
+                                      Session(['specialty' => $join->specialty]);
+                                      Session(['latitude' => $join->latitude]);
+                                      Session(['longitude' => $join->longitude]);
+                                      Session(['id_lb' => $exp[0]]);
+                                      Session(['id_cite' => $exp[1]]);
+                                     
+            return redirect('/medicalconsultations');
+        }  
+
+       public function changeHoraryAlert(){
+            $this->workboardDr = new workboardDr;
+            $appo = $this->workboardDr->handleExistAppointments(80);
+            return response()->json($appo); 
+       }   
     
 }
 

@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Isco</b>',
+    'logo' => '<b>Iscos</b>',
 
     'logo_mini' => '<b>Isco</b>',
 
@@ -182,7 +182,9 @@ return [
     'plugins' => [
         'datatables' => true,
     ],
-        /*
+    
+
+    /*
     |--------------------------------------------------------------------------
     | URLs ICONS
     |--------------------------------------------------------------------------
@@ -196,5 +198,16 @@ return [
     'empty-house'          => 'images/house-no.png',
     'empty-message'        => 'images/empty-message.png',
     'marker-doc'           => 'images/icono_doc_verde.png',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Static URLs 
+    |--------------------------------------------------------------------------
+    |
+    | Static URLs where will be storaged the profile photos.
+    |
+    */
+   
+    'bucketAmazon'           => 'https://s3.amazonaws.com/abiliasf/'
 
 ];

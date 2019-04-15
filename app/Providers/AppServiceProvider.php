@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\User;
 use App\menu;
+use App\medical_appointments;
 use App\ProfessionalInformation;
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,7 +34,14 @@ class AppServiceProvider extends ServiceProvider
         $agent = new Agent();
 
         View::share('agent', $agent);
-
+        
+        Validator::extend('space', function ($attribute, $value, $parameters, $validator) {
+                $val = explode(' ', $value);
+                    if(count($val) > 1)
+                       return true;
+                    else
+                        return false;
+             });
 
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
 
@@ -75,6 +85,22 @@ class AppServiceProvider extends ServiceProvider
 
                 if($profInfo->count() > 0){
                     //es un médico
+
+                   
+                    $changeHorary = DB::table('medical_appointments')
+                                    ->join('workboard', 'medical_appointments.workplace', '=', 'workboard.labInformation')
+                                    ->join('users', 'medical_appointments.user', '=', 'users.id')
+                                    ->where('medical_appointments.user_doctor', '=', Auth::id())
+                                    ->where('medical_appointments.status', '!=', 'No completed')
+                                    ->where('workboard.oldnew','new')
+                                    ->wheredate('when', '>', Carbon::today())
+                                    ->select('medical_appointments.*', 'users.name', 'users.profile_photo')
+                                    ->get(); 
+
+                        if(count($changeHorary) > 0){
+                            $result = $changeHorary->unique('id');
+                            Session(['workboardnew' => $result]);   
+                        }           
                     $menusInfo = DB::table('menus')
                                     ->where('to', 'Doctor')->orderBy('order')
                                     ->get();
@@ -100,6 +126,11 @@ class AppServiceProvider extends ServiceProvider
                     }
 
                 }else{
+
+                    //patient 
+
+
+
                      if($confirmed->confirmed == false){
                             $event->menu->add([
                                 'text' => ' Confirmación de correo',
@@ -122,6 +153,11 @@ class AppServiceProvider extends ServiceProvider
                                         ->where('to', 'Patient' )
                                         ->orWhere('to', 'Both')->orderBy('order')
                                         ->get();
+                        $clinic_history = DB::table('clinic_history')
+                                        ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                                        ->where('userid', Auth::id())
+                                        ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+                                        ->get();                
 
                         for ($i=0; $i < $menusInfo->count(); $i++) { 
                             if($menusInfo[$i]->typeitem == 'section' ){
@@ -129,16 +165,28 @@ class AppServiceProvider extends ServiceProvider
                                 $event->menu->add( $menusInfo[$i]->text );
                                 
                                 for ($o=0; $o < $menusInfo->count(); $o++) { 
-                                    if($menusInfo[$o]->parent == $menusInfo[$i]->id ){
 
-                                        # Se agregan los items de la sección.
-                                        $event->menu->add([
-                                            'text'   => $menusInfo[$o]->text,
-                                            'url'    => $menusInfo[$o]->url,
-                                            'icon'   => $menusInfo[$o]->icon,
-                                            'active' => [$menusInfo[$o]->url, explode('/', $menusInfo[$o]->url)[0] . '/*']
-                                        ]);
-                                    }
+                                            if($menusInfo[$o]->parent == $menusInfo[$i]->id ){
+                                               if(count($clinic_history) == 0 && $menusInfo[$o]->id == 7){
+                                                     $event->menu->add([
+                                                        'text'   => $menusInfo[$o]->text,
+                                                        'url'    => $menusInfo[$o]->url,
+                                                        'icon'   => $menusInfo[$o]->icon,
+                                                        'active' => [$menusInfo[$o]->url, explode('/', $menusInfo[$o]->url)[0] . '/*'],
+                                                        'label'  => 'Pendiente',
+                                                        'label_color' => 'yellow'
+
+                                                    ]);
+                                                }else{ 
+                                                        # Se agregan los items de la sección.
+                                                $event->menu->add([
+                                                    'text'   => $menusInfo[$o]->text,
+                                                    'url'    => $menusInfo[$o]->url,
+                                                    'icon'   => $menusInfo[$o]->icon,
+                                                    'active' => [$menusInfo[$o]->url, explode('/', $menusInfo[$o]->url)[0] . '/*']
+                                                ]);
+                                               }
+                                            }
                                 }
                             }
                         }

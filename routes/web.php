@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/hugohernandez', function () {
+    return view('auth.login');
+});
 
 
 Route::get('/', function () {
@@ -55,6 +58,7 @@ Route::get('/medicalconsultations/notificationdr/{id}', 'HomeController@notifica
 Route::get('HomeController/notify', 'HomeController@notify')->name('HomeController/notify');
 Route::get('HomeController/notify2', 'HomeController@notify2')->name('HomeController/notify2');
 Route::get('HomeController/messages', 'HomeController@messages')->name('HomeController/messages');
+Route::get('reSchedule/{id}', 'HomeController@reSchedule')->name('reSchedule/{id}');
 Route::get('HomeController/listpatients', 'HomeController@listpatients')->name('HomeController/listpatients');
 Route::get('HomeController/listpatients2/{id}', 'HomeController@listpatients2')->name('HomeController/listpatients2/{id}');
 Route::get('/appointments', 'HomeController@appointments')->name('/appointments');
@@ -224,12 +228,22 @@ Route::group(['prefix' => 'doctor'], function(){
 		]
 	);
 
+	Route::get('deletequestion/{id}', [
+			'uses'	=>	'doctor@deletequestion',
+			'as'	=>	'deletequestion'
+		]
+	);
+
 	Route::post('laborInformation/{id}', [
 			'uses'	=>	'doctor@update',
 			'as'	=>	'laborInformation'
 		]
 	);
-
+	Route::post('saveQuestions', [
+			'uses'	=>	'doctor@saveQuestions',
+			'as'	=>	'saveQuestions'
+		]
+	);
 	Route::get('doctor/{id}', [
 			'uses'	=>	'doctor@show',
 			'as'	=>	'doctor'
@@ -351,7 +365,11 @@ Route::group(['prefix' => 'clinicHistory'], function(){
 			'as'	=>	'edit'
 		]
 	);
-
+	Route::post('confirmMedication', [
+			'uses'	=>	'clinicHistory@confirmMedication',
+			'as'	=>	'confirmMedication'
+		]
+	);
 	Route::get('update/{id}', [
 			'uses'	=>	'clinicHistory@update',
 			'as'	=>	'update'
@@ -368,7 +386,11 @@ Route::group(['prefix' => 'clinicHistory'], function(){
 			'as'	=>	'store'
 		]
 	);
-
+	Route::get('medicationAll', [
+			'uses'	=>	'clinicHistory@medicationAll',
+			'as'	=>	'medicationAll'
+		]
+	);
 	Route::get('reSender/{id}', [
 			'uses'	=>	'clinicHistory@reSender',
 			'as'	=>	'reSender'
@@ -450,23 +472,38 @@ Route::group(['prefix' => 'drAppointments'], function(){
 		]
 	);	
 
+	Route::post('calcelReschedule', [
+			'uses'	=>	'drAppointments@calcelReschedule',
+			'as'	=>	'calcelReschedule'
+		]
+	);	
+
 	Route::post('confirmTimeBlocker', [
 			'uses'	=>	'drAppointments@confirmTimeBlocker',
 			'as'	=>	'confirmTimeBlocker'
 		]
 	);
-
+	Route::get('viewcancelAppointment/{id}', [
+			'uses'	=>	'drAppointments@viewcancelAppointment',
+			'as'	=>	'viewcancelAppointment'
+		]
+	);	
 	Route::post('editTimeBlocker', [
 			'uses'	=>	'drAppointments@editTimeBlocker',
 			'as'	=>	'editTimeBlocker'
 		]
-	);	
+	);
+
 	Route::get('deleteBlocker/{id}', [
 			'uses'	=>	'drAppointments@destroy',
 			'as'	=>	'destroy'
 		]
 	);	
-
+	Route::post('editappointment', [
+			'uses'	=>	'drAppointments@editappointment',
+			'as'	=>	'editappointment'
+		]
+	);
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'drAppointments@redirecting',
 			'as'	=>	'redirecting'

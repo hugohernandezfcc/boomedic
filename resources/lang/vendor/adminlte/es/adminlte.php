@@ -22,7 +22,7 @@ return [
     'sign_in'                     => 'Entrar',
     'log_out'                     => 'Salir',
     'toggle_navigation'           => 'Navegación de palanca',
-    'login_message'               => 'Inicio de sesión',
+    'login_message'               => 'Iniciar sesión',
     'register_message'            => 'Registre una nueva cuenta',
     'password_reset_message'      => 'Restablecer la contraseña',
     'reset_password'              => 'Restablecer la contraseña',
@@ -47,8 +47,27 @@ return [
     'uncles'                             => 'Tío(a)',
 
     /* Days */
-    'Tuesday'   => 'Lun',
+    'Mon'   => 'Lun',
+    'Tue'   => 'Mar',
+    'Wed'   => 'Mie',
+    'Thu'   => 'Jue',
+    'Fri'   => 'Vie',
+    'Sat'   => 'Sab',                    
+    'Sun'   => 'Dom',
 
+    /* Months */
+    'January'       => 'Enero',
+    'February'      => 'Febrero',
+    'March'         => 'Marzo',
+    'April'         => 'Abril', 
+    'May'         => 'Mayo', 
+    'June'         => 'Junio', 
+    'July'         => 'Julio', 
+    'August'         => 'Agosto', 
+    'September'         => 'Septiembre', 
+    'October'         => 'Octubre', 
+    'November'         => 'Noviembre', 
+    'December'         => 'Diciembre',     
 
 
     /* System Error */
