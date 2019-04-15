@@ -370,8 +370,10 @@
                     <div class="btn-group">
                         <button class="btn btn-default" onclick="showMy();"><b><span id="labelextra"></span></b></button>
                         <button class="btn btn-default" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></button>             
-                        <button class="btn btn-default" data-toggle="modal" data-target="#modal"><b>Ubicación</b></button>
-                        <button class="btn btn-default" data-toggle="modal" data-target="#modaloksearch"><b>Buscar</b></button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#modal"><span class="fa fa-map-signs"></span></button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#modaloksearch">
+                            <span class="fa fa-search"></span>
+                        </button>
                     </div>
                 </div>
             </div>
