@@ -359,8 +359,8 @@
                     <a class="btn btn-default btn-flat" onclick="initMap();">
                         <b><span class="fa fa-crosshairs"></span></b>
                     </a>
-                    <a class="btn btn-default btn-flat" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }">
-                        <b><span class="fa fa-plus" id="fap"></span></b>
+                    <a class="btn btn-default btn-flat" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-arrow-circle-left')){$('#fap').removeClass('fa-arrow-circle-left'); $('#fap').addClass('fa-arrow-circle-right'); }else{ $('#fap').removeClass('fa-arrow-circle-right');$('#fap').addClass('fa-arrow-circle-left'); }">
+                        <b><span class="fa fa-arrow-circle-left" id="fap"></span></b>
                     </a>
                 </div>
             </div>
