@@ -1141,11 +1141,20 @@
       <script type="text/javascript">
 
       				function nextQues(){
+      					var indexquestion = $('#question').val().trim().toLowerCase();
+						$('#searchQuestions div').each(function(){
+						if($(this).text().trim().toLowerCase() == indexquestion){
+							alert('Debes guardar una pregunta diferente a las anteriores')
+							return false;
+						}else{
+
       					document.getElementById('question').disabled = true;
       					$('#box-question').hide();
       					$('#box-question-save').show();
       					$('div.setup-panel div a[href="#step-1"]').click();
-      				}
+			      				}
+			      			});
+			      		}
 
       				function cancelQuestion(){
       					document.getElementById('question').disabled = false;
@@ -1185,7 +1194,6 @@
 					  });
 
 					$('#finishQuestion').on('click', function(e) {
-
 
 						var arrayresponse = [];
 							if($("input[name='type']:checked").val() == 'radio'){
@@ -1243,7 +1251,6 @@
     										}
 				                            
 				                         });
-						    
 
 					});		
 
