@@ -257,10 +257,12 @@
                                               {{ $answer }}
                                           </label>
                                           @else
-                                          <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                          <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                              {{ $answer }}
-                                          </label>
+                                            @if($a2 != "checkbox")
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                                  {{ $answer }}
+                                              </label>
+                                            @endif  
                                         @endif  
                                     @endif
                                @endif 
@@ -309,10 +311,12 @@
                                               {{ $answer }}
                                           </label>
                                           @else
-                                          <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                          <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                              {{ $answer }}
-                                          </label>
+                                            @if($a2 != "checkbox")
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                                  {{ $answer }}
+                                              </label>
+                                            @endif  
                                         @endif  
                                     @endif
                                @endif 
@@ -361,10 +365,12 @@
                                               {{ $answer }}
                                           </label>
                                           @else
-                                          <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                          <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                              {{ $answer }}
-                                          </label>
+                                            @if($a2 != "checkbox")
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                                  {{ $answer }}
+                                              </label>
+                                            @endif  
                                         @endif  
                                     @endif
                                @endif 
@@ -413,10 +419,12 @@
                                               {{ $answer }}
                                           </label>
                                           @else
-                                          <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                          <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                              {{ $answer }}
-                                          </label>
+                                            @if($a2 != "checkbox")
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                                  {{ $answer }}
+                                              </label>
+                                            @endif  
                                         @endif  
                                     @endif
                                @endif 
