@@ -351,29 +351,17 @@
 
     <!--this-->
     @include('alerts.DoctorSelected')
-
-    <style type="text/css">
-        .btn-circle {
-            width: 30px;
-            height: 30px;
-            padding: 6px 0px;
-            border-radius: 15px;
-            text-align: center;
-            font-size: 12px;
-            line-height: 1.42857;
-        }
-    </style>
-
+ 
 
         <div class="direct-chat">
             <div id="rangothree">
                 <div class="btn-group-vertical">
-                    <button class="btn btn-default btn-circle" onclick="initMap();">
+                    <a class="btn btn-default btn-flat" onclick="initMap();">
                         <b><span class="fa fa-crosshairs"></span></b>
-                    </button>
-                    <button class="btn btn-default btn-circle" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }">
+                    </a>
+                    <a class="btn btn-default btn-flat" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }">
                         <b><span class="fa fa-plus" id="fap"></span></b>
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -383,7 +371,7 @@
                         <button class="btn btn-default" onclick="showMy();"><b><span id="labelextra"></span></b></button>
                         <button class="btn btn-default" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></button>             
                         <button class="btn btn-default" data-toggle="modal" data-target="#modal"><b>Ubicación</b></button>
-                        <button class="btn btn-default" data-toggle="modal" data-target="#modalsearch"><b>Buscar</b></button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#modaloksearch"><b>Buscar</b></button>
                     </div>
                 </div>
             </div>
