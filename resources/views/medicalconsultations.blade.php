@@ -969,7 +969,7 @@ function prevTab(elem) {
                     drop();
                 }
             }
-            
+
             if(typeC == 'TypeGeneral'){
                 byId('infoSp').style.display = 'none';
                 byId("label01").innerHTML = "Médico General";
@@ -1355,20 +1355,23 @@ function prevTab(elem) {
                      resp = optionhour[y].split(":",2); 
                      resp2 = JSON.parse(optionhour[y].slice(4));
 
-                      if(resp[0] == 'Dom'){
-                        Dom = resp2;
-                      var index = days.indexOf(0);
-                       if (index > -1) {
+                        if(resp[0] == 'Dom'){
+                            Dom = resp2;
+                            var index = days.indexOf(0);
+                            if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
+
                         if(resp[0] == 'Lun'){
-                          Lun = resp2;
-                        var index = days.indexOf(1);
-                        if (index > -1) {
+                            Lun = resp2;
+                            var index = days.indexOf(1);
+                            if (index > -1) {
                                days.splice(index, 1);
                             }
                         }
+
+                        
                         if(resp[0] == 'Mar'){
                           Mar = resp2;
                           var index = days.indexOf(2);
