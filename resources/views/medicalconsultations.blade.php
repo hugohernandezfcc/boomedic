@@ -326,64 +326,23 @@
       <!-- Trigger the modal with a checkbox -->
 
 
-      <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
-        <strong>
-          <span id="infoSpDetail" class="textStyle01" style="visibility: hidden;"></span>
-        </strong>
-      </div>
+        <!-- <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
+            <strong>
+                <span id="infoSpDetail" class="textStyle01" style="visibility: hidden;"></span>
+            </strong>
+        </div> -->
  
+        @include('alerts.LoaderPage')        
 
-
-
-<div id="loadingmodal" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.8);">
-      <div class="modal-dialog">
-          <div class="modal-content-2">
-            <div align="center">
-          <h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1>
-              </div>
-          </div>
-      </div>
-  </div>
-
-
-
-    <div id="map"></div>
-
-    <!--this-->
-    @include('alerts.DoctorSelected')
- 
-
-        <div class="direct-chat">
-            <div id="rangothree">
-                <div class="btn-group-vertical">
-                    <a class="btn btn-default btn-flat" onclick="initMap();">
-                        <b><span class="fa fa-crosshairs"></span></b>
-                    </a>
-                    <a class="btn btn-default btn-flat" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-arrow-circle-left')){$('#fap').removeClass('fa-arrow-circle-left'); $('#fap').addClass('fa-arrow-circle-right'); }else{ $('#fap').removeClass('fa-arrow-circle-right');$('#fap').addClass('fa-arrow-circle-left'); }">
-                        <b><span class="fa fa-arrow-circle-left" id="fap"></span></b>
-                    </a>
-                </div>
-            </div>
-
-            <div class="direct-chat-contacts">
-                <div id="rango">   
-                    <div class="btn-group">
-                        <button class="btn btn-default" onclick="showMy();"><b><span id="labelextra"></span></b></button>
-                        <button class="btn btn-default" data-toggle="modal" data-target="#modalrango" id="rang"><b><span class="fa fa-dot-circle-o"></span> <span id="rango04"></span> km</b></button>             
-                        <button class="btn btn-default" data-toggle="modal" data-target="#modal"><span class="fa fa-map-signs"></span></button>
-                        <button class="btn btn-default" data-toggle="modal" data-target="#modaloksearch">
-                            <span class="fa fa-search"></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <div id="map"></div>
+        
+        @include('alerts.DoctorSelected')
+        @include('alerts.ControlsMap')
+        
         <div class="rango" id="dragmap" style="display: none;">
             <a class="btn btn-secondary" data-lng="" id="dragbutton">Buscar en esta zona</a>
         </div>
-
-      </div> 
+    </div> 
 
 
 
