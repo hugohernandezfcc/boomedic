@@ -349,39 +349,50 @@
 
     <div id="map"></div>
 
-<div class="alert alert-info alert-dismissable" id="infDr" style="display: none; background-color: rgba(0, 0, 0, 0.9) !important; border-color: rgba(0, 0, 0, 0.9) !important;">
-   <a class="close" onclick="$('.alert').hide()" style="text-decoration: none">×</a>  
-    <div class="info-box-icon2-sm" id="Drp"></div>                                           
-     <div id="bodyDr"></div>
-     <div class="pull-right" id="btncita"></div>
-      </div>
+    <!--this-->
+    @include('alerts.DoctorSelected')
+
+    <style type="text/css">
+        .btn-circle {
+            width: 30px;
+            height: 30px;
+            padding: 6px 0px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.42857;
+        }
+    </style>
 
 
         <div class="direct-chat">
-         <div  id="rangothree">
-           <div class="btn-group-vertical">
-              <a class="btn btn-default btn-flat" onclick="initMap();">
-                <b><span class="fa fa-crosshairs"></span></b>
-              </a>
-              <a class="btn btn-default btn-flat" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }">
-                <b><span class="fa fa-plus" id="fap"></span></b>
-              </a>
+            <div id="rangothree">
+                <div class="btn-group-vertical">
+                    <a class="btn btn-default btn-flat btn-circle" onclick="initMap();">
+                        <b><span class="fa fa-crosshairs"></span></b>
+                    </a>
+                    <a class="btn btn-default btn-flat btn-circle" data-widget="chat-pane-toggle" onclick="if($('#fap').hasClass('fa-plus')){$('#fap').removeClass('fa-plus'); $('#fap').addClass('fa-minus'); }else{ $('#fap').removeClass('fa-minus');$('#fap').addClass('fa-plus'); }">
+                        <b><span class="fa fa-plus" id="fap"></span></b>
+                    </a>
+                </div>
             </div>
-          </div>
-          <div class="direct-chat-contacts">
-            <div id="rango">   
-              <div class="btn-group">
-                <button class="btn btn-default" onclick="showMy();"><b><span id="labelextra"></span></b></button>
-                <button class="btn btn-default" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></button>             
-                <button class="btn btn-default" data-toggle="modal" data-target="#modal"><b>Ubicación</b></button>
-                <button class="btn btn-default" data-toggle="modal" data-target="#modalsearch"><b>Buscar</b></button>
-              </div>
+
+            <div class="direct-chat-contacts">
+                <div id="rango">   
+                    <div class="btn-group">
+                        <button class="btn btn-default" onclick="showMy();"><b><span id="labelextra"></span></b></button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#modalrango" id="rang"><b>a <span id="rango04"></span> km</b></button>             
+                        <button class="btn btn-default" data-toggle="modal" data-target="#modal"><b>Ubicación</b></button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#modalsearch"><b>Buscar</b></button>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
+
         <div class="rango" id="dragmap" style="display: none;">
             <a class="btn btn-secondary" data-lng="" id="dragbutton">Buscar en esta zona</a>
-        </div> 
+        </div>
+
       </div> 
 
 
@@ -1309,9 +1320,11 @@ function prevTab(elem) {
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               $('#infDr').show();
+
+
               document.getElementById('Drp').innerHTML = '<img src="' + loc[i][10] +'" class="img-circle" alt="User Image" style="height: 65px;">';
               document.getElementById('bodyDr').innerHTML = "<b>"+loc[i][2]+"</b><br>"+loc[i][3]+"</b><br>"+loc[i][4]+"</b><br>Consulta: $"+loc[i][5];
-              document.getElementById('btncita').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs " id="'+ loc[i][7] +'"><b>Reservar</b></button>';
+              document.getElementById('btncita').innerHTML = '<button type="button" class="btn btn-default btn-flat btn-xs " id="'+ loc[i][7] +'"><b>Consultar disponibilidad</b></button>';
                  
               console.log(loc[i][7]);
              console.log(loc[i][11]);
