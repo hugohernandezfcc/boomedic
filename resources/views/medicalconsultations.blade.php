@@ -456,7 +456,12 @@
                                                           <span class="liright cut"><i class="fa fa-cc-paypal" style="font-size: 14px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
                                                      @endif 
                                                         </a></li>
-                                                        <li><a data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
+                                                        @foreach($questions as $quest)
+                                                          @if($quest->createdby == $appo->did && $loop->iteration == 1)
+                                                              <li><a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Historia clínica</a></li>
+                                                          @endif    
+                                                        @endforeach
+                                                        <li><a href="javascript:void(0)" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
  
                                                       </ul>
                                                       </div>
@@ -486,6 +491,13 @@
                                                                           </div>  
                                                                        </div>
                                                                     </div>  
+                                                                      @include('modals.clinichistoryappointments', 
+                                                                            [
+                                                                              'id' => $appo->id,
+                                                                              'dr' => $appo->did, 
+                                                                              'questions'  => $questions
+                                                                            ]
+                                                                          )
 
                                     @endif                                   
                                  @endif 
