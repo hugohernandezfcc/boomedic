@@ -146,9 +146,11 @@ class doctor extends Controller
                          ->where('questions_clinic_history.active', true)
                          ->select('questions_clinic_history.*', 'answers_clinic_history.answer')
                          ->get();
+
         $questionsAlls = DB::table('questions_clinic_history')
-                 ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
-                 ->select('questions_clinic_history.*', 'answers_clinic_history.answer')
+                 ->join('professional_information', 'questions_clinic_history.createdby', '=', 'professional_information.user')
+                 ->where('professional_information.specialty','=',$professionali[0]->specialty)
+                 ->select('questions_clinic_history.*', 'professional_information.specialty')
                  ->get();
 
             $arrayQuestions =  array();
