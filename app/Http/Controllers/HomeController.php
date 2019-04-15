@@ -91,6 +91,9 @@ class HomeController extends Controller
            ->where('medical_appointments.when', '>', Carbon::now()->subDays(1))
            ->select('medical_appointments.*', 'users.name', 'users.profile_photo', 'users.id as did', 'labor_information.workplace', 'labor_information.longitude', 'labor_information.latitude','paymentsmethods.cardnumber', 'paymentsmethods.provider', 'paymentsmethods.paypal_email','paymentsmethods.id as idtr')->get();
 
+
+
+
          $join = DB::table('professional_information')
             ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
             ->join('users', 'professional_information.user', '=', 'users.id')
@@ -309,6 +312,22 @@ class HomeController extends Controller
 
 
                                }
+
+                            $questionsAppo = DB::table('questions_clinic_history')
+                                             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+                                             ->where('questions_clinic_history.createdby', '!=', null)
+                                             ->where('questions_clinic_history.active', true)
+                                             ->select('questions_clinic_history.*', 'answers_clinic_history.answer')
+                                             ->get(); 
+                            $countquestion = 0;                 
+                                    foreach($questionsAppo as $question){
+                                        foreach($appointments as $appo){
+                                            if($appo->did == $question->createdby)
+                                                $countquestion++;
+
+                                        }
+                                    }         
+
                                             
                                 return view('medicalconsultations', [
                                         'username'       => $user->username,
@@ -325,7 +344,9 @@ class HomeController extends Controller
                                         'it'             => $it,
                                         'sp'             => $sp,
                                         'mg'             => $mg,
-                                        'medication'     => $countm   
+                                        'medication'     => $countm,
+                                        'countquestion'  => $countquestion,
+                                        'questions'      => $questionsAppo 
 
                                     ]
                                 );

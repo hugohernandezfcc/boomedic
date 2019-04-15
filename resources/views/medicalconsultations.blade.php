@@ -358,14 +358,20 @@
 
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
-                            <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h5>               
+                            <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días... </h5>               
             </div>
              @else
         <div class="box-group" id="accordion">
                 <div class="panel box box-default" style="border-top-color: gray;">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
                  <div class="box-header with-border"> 
-                       <div align="left"><i class="fa fa-chevron-down text-muted"></i> <b>Citas médicas registradas</b></div>
+                       <div align="left"><i class="fa fa-chevron-down text-muted"></i> <b>Citas médicas registradas</b>
+                                    @if($countquestion > 0)                 
+                                        <span class="pull-left-container">
+                                          <small class="label bg-green">Pendiente</small>
+                                        </span>
+                                    @endif    
+                        </div>
                      </div> 
                     </a>
                   <div id="collapseOne" class="panel-collapse collapse" >
