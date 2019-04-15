@@ -158,8 +158,12 @@
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
  <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script type="text/javascript">
 
@@ -893,7 +897,7 @@
 				           <!-- Alert error-->
 
 			         	    	<div class="input-group">
-				                <input type="text" name="question" id="question" class="form-control" placeholder="Escriba una pregunta para la información necesaria previa a la cita" required autocomplete="off">
+				                <input type="text" name="question" id="question" class="form-control" placeholder="Escriba una pregunta para la información necesaria previa a la cita" required>
 				                    <span class="input-group-btn">
 				                    <button class="btn btn-flat btn-secondary" onclick="nextQues();"><span class="fa fa-plus"></span></button>
 				                    </span>
@@ -1171,6 +1175,14 @@
 		                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 		                });
 		              });
+					
+					var listAutoc = @php echo $questionAutocomplete; @endphp;
+
+					$('#question').autocomplete({
+					    source : listAutoc,
+					    position:  { my: "center bottom", at: "center top"},
+					    minLength: 3
+					  });
 
 					$('#finishQuestion').on('click', function(e) {
 

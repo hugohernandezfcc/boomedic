@@ -146,6 +146,16 @@ class doctor extends Controller
                          ->where('questions_clinic_history.active', true)
                          ->select('questions_clinic_history.*', 'answers_clinic_history.answer')
                          ->get();
+        $questionsAlls = DB::table('questions_clinic_history')
+                 ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+                 ->select('questions_clinic_history.*', 'answers_clinic_history.answer')
+                 ->get();
+
+            $arrayQuestions =  array();
+            foreach ($questionsAlls as $quest) {
+                                    array_push($arrayQuestions, $quest->question);
+                                  }                      
+
         $countAppointments = DB::table('medical_appointments')->where('user_doctor',  $user->id )->count();                
 
         return view('profileDoctor', [
@@ -200,7 +210,8 @@ class doctor extends Controller
                 'as'            => $assistant,
                 'questions'     => $questions,
                 'countAppo'     => $countAppointments,
-                'countassist'   => count($assist)  
+                'countassist'   => count($assist),
+                'questionAutocomplete'  =>  json_encode($arrayQuestions)  
             ]
         );
     }
