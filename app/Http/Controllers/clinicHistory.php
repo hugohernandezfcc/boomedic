@@ -64,6 +64,12 @@ class clinicHistory extends Controller
         ->where('userid', $user->id)
         ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
         ->get();
+        $clinic_history_general = DB::table('clinic_history')
+        ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+        ->where('userid', $user->id)
+        ->where('questions_clinic_history.createdby', null)
+        ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+        ->get();
 
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
@@ -121,7 +127,7 @@ class clinicHistory extends Controller
                            $result2 = $result->groupBy('date_email'); 
 
            
-        if(count($clinic_history) == 0){
+        if(count($clinic_history_general) == 0){
             $mode = "null";
         } else{
             $mode = "finish";
@@ -241,12 +247,14 @@ class clinicHistory extends Controller
         $clinic_history = DB::table('clinic_history')
         ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
         ->where('userid', $user->id)
+        ->where('questions_clinic_history.createdby', null)
         ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
         ->get();
 
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
             ->where('answers_clinic_history.question','!=', null)
+            ->where('questions_clinic_history.createdby', null)
             ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
             ->get();
         } else{

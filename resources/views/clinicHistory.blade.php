@@ -669,6 +669,7 @@
                             <button id="morbidos" type="button"  class="btn bg-gray btn-flat" title="Antecedentes Mórbidos"><i class="fa fa-stethoscope"></i></button>
                             <button id="alergias" type="button" class="btn bg-black btn-flat" title="Alergias"> <i class="fa fa-medkit"></i></button> 
                             <button id="habitos" type="button" class="btn bg-green btn-flat" title="Hábitos"><i class="fa fa-coffee"></i></button>
+                            <button id="cita" type="button" class="btn bg-yellow btn-flat" title="Previa cita"><i class="fa fa-medkit"></i></button>
                             <button id="all" type="button" class="btn btn-default btn-flat" title="Ver todo"><b>Ver Todo</b></button>   
                       </div>
               </div>
@@ -680,6 +681,7 @@
                   <div class="col-md-12">
            <ul class="timeline">   
             @php
+            $t0 = 0;
             $t1 = 0; 
             $t2 = 0; 
             $t3 = 0;
@@ -689,6 +691,37 @@
       @foreach($clinic_history->sortBy('type') as $clinic)
 
             <!-- timeline time label -->
+          @if($clinic->type == 'Previa cita')
+             @php $t0++; @endphp
+             @if($t0 == 1)
+            <li class="time-label cita">
+                  <span class="bg-yellow">
+                   {{ $clinic->type }} 
+                  </span>
+            </li>
+            @endif
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+
+            <li class="cita">
+              <i class="fa fa-medkit bg-yellow"></i>
+
+              <div class="timeline-item">
+              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
+
+                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
+                <div class="timeline-body">
+                   @php $a = json_decode($clinic->answer); @endphp
+                  @foreach($a as $answer)
+                      <div class="callout callout-success" style="color: #000 !important;">
+                        <h5>{{ $answer }}</h5>
+                      </div>
+                  @endforeach
+                 <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
+                </div>
+              </div>
+            </li>
+            @endif
             @if($clinic->type == 'Antecedentes Familiares')
              @php $t1++; @endphp
              @if($t1 == 1)
@@ -999,6 +1032,11 @@
                             for (i = 0; i < z.length; i++) {
                                 z[i].style.display = 'none';
                             }
+                            var o = document.getElementsByClassName("cita");
+                            var i;
+                            for (i = 0; i < o.length; i++) {
+                                o[i].style.display = 'none';
+                            }                            
 
                             var u = document.getElementsByClassName("familiares");
                             var i;
@@ -1026,7 +1064,11 @@
                             for (i = 0; i < z.length; i++) {
                                 z[i].style.display = 'none';
                             }
-
+                            var o = document.getElementsByClassName("cita");
+                            var i;
+                            for (i = 0; i < o.length; i++) {
+                                o[i].style.display = 'none';
+                            }
                             var u = document.getElementsByClassName("morbidos");
                             var i;
                             for (i = 0; i < u.length; i++) {
@@ -1052,6 +1094,11 @@
                             for (i = 0; i < z.length; i++) {
                                 z[i].style.display = 'none';
                             }
+                            var o = document.getElementsByClassName("cita");
+                            var i;
+                            for (i = 0; i < o.length; i++) {
+                                o[i].style.display = 'none';
+                            }                            
                             var u = document.getElementsByClassName("alergias");
                             var i;
                             for (i = 0; i < u.length; i++) {
@@ -1078,12 +1125,51 @@
                             for (i = 0; i < z.length; i++) {
                                 z[i].style.display = 'none';
                             }
+                             var o = document.getElementsByClassName("cita");
+                            var i;
+                            for (i = 0; i < o.length; i++) {
+                                o[i].style.display = 'none';
+                            }
+
                             var u = document.getElementsByClassName("habitos");
                             var i;
 
                             for (i = 0; i < u.length; i++) {
                                 u[i].style.display = 'block';
 
+                            }
+
+                            });  
+
+                            $("#cita").click(function () {
+                        
+                            var x = document.getElementsByClassName("alergias");
+                            var i;
+                            for (i = 0; i < x.length; i++) {
+                                x[i].style.display = 'none';
+                            }
+                            var y = document.getElementsByClassName("familiares");
+                            var i;
+                            for (i = 0; i < y.length; i++) {
+                                y[i].style.display = 'none';
+                            }
+
+                            var z = document.getElementsByClassName("morbidos");
+                            var i;
+                            for (i = 0; i < z.length; i++) {
+                                z[i].style.display = 'none';
+                            }
+                            var u = document.getElementsByClassName("habitos");
+                            var i;
+
+                            for (i = 0; i < u.length; i++) {
+                                u[i].style.display = 'none';
+
+                            }
+                            var o = document.getElementsByClassName("cita");
+                            var i;
+                            for (i = 0; i < o.length; i++) {
+                                o[i].style.display = 'block';
                             }
                             });  
 
@@ -1109,6 +1195,11 @@
                             var i;
                             for (i = 0; i < u.length; i++) {
                                 u[i].style.display = 'block';
+                            }
+                            var o = document.getElementsByClassName("cita");
+                            var i;
+                            for (i = 0; i < o.length; i++) {
+                                o[i].style.display = 'block';
                             }
                                 
 
