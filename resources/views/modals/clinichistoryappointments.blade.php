@@ -16,10 +16,13 @@
 
                                    @foreach($questions as $quest)
                                       @if($quest->createdby == $dr)
-                                         <li class="active"><a href="javascript:void(0)">{{ $quest->question }}  <span class="liright"></span></a></li>
-                                            <ul>
+                                         <li class="active">
+                                            <a href="javascript:void(0)">{{ $quest->question }}  
+                                             <ul class="nav nav-pills nav-stacked">
                                                 <li>{{ $quest->answer }}</li>
-                                            </ul> 
+                                             </ul>  
+                                            </a>
+                                        </li>    
                                       @endif
                                    @endforeach  
                               </ul>     
