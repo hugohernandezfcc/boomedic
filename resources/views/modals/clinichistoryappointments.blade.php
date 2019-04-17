@@ -246,7 +246,7 @@
                                    @endif  
                                 @else
                                         @if($an[0] == "texto") 
-                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
+                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}" class="form-control"></textarea>
                                          @elseif($an[0] == "checkbox")   
                                             @if($a2 != "checkbox")
                                               <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
@@ -359,9 +359,9 @@
             var nextId = $(this).parents('.tab-pane').next().attr("id");
             $('[href=#'+nextId+']').tab('show');
             var tab = $(this).parents('.tab-pane').attr("id");
-                        if($('#'+tab+' textarea').val()){
-                           var values = $('#'+tab+' textarea').val();
-                        }else{
+                        if(typeof $('#'+tab+' textarea').val() != "undefined")
+                           var values = Array($('#'+tab+' textarea').val());
+                        else{
                          var values = $('#'+tab+' input').map(function() {
                           if($(this).is(':checkbox') && this.checked){
                                   var check2 = this.value.replace(/_/gi, " ");
@@ -430,9 +430,9 @@
           $('.finish').click(function(){
 
                         var tab = $(this).parents('.tab-pane').attr("id");
-                        if($('#'+tab+' textarea').val()){
-                           var values = $('#'+tab+' textarea').val();
-                        }else{
+                        if(typeof $('#'+tab+' textarea').val() != "undefined")
+                           var values = Array($('#'+tab+' textarea').val());
+                        else{
                          var values = $('#'+tab+' input').map(function() {
                           if($(this).is(':checkbox') && this.checked){
                                   var check2 = this.value.replace(/_/gi, " ");
@@ -467,10 +467,11 @@
                                        {
                                           
                                         console.log(data);
-                                         $('#btnclosehc').click();
+                                        
 
                                        }
                                    });
+                                      $('#btnclosehc').click();
                        
           });
         })
