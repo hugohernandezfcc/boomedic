@@ -135,7 +135,7 @@
                 </div>
                   @endif 
               @if($loop->iteration == 1 && count($questions) != 1)
-              <div class="tab-pane fade in active" id="step1">
+              <div class="tab-pane fade in active" id="step{{ $loop->iteration }}">
                  
                 <div class="well well-sm"> 
                   
@@ -293,13 +293,15 @@
   <script type="text/javascript">
   $(document).ready(function(){
               var clinic_history = @php echo $clinic_history; @endphp;
-
+              console.log(clinic_history);
               for(var k = 0; k < clinic_history.length; k++){
               var t = "step" + (k + 1);
                 if(clinic_history[k]['question_id'] == $('#'+t+ ' .quesId').val()){
                 var answer = JSON.parse(clinic_history[k]['answer']);
+                console.log(clinic_history[k]['answer']);
                   for(var i = 0; i < answer.length; i++){
-                  
+
+                  console.log(answer);
 
                   var ids = $('#'+t+' input').map(function() {
                    var tro =  answer[i].split(" ");
@@ -325,29 +327,31 @@
                        else{    
                               if($(this).val() == answer[i]){
                                     $(this).prop('checked', true);
+                                    $(this).click();
                                    return $(this).val();
                                  } 
 
                                   if($(this).val() == answer[i].replace(/ /gi,"_")){
                                     $(this).prop('checked', true);
+                                    $(this).click();
                                    return $(this).val();
                                  } 
                                }  
                                 }).get();
-                  $('#'+t+' input:radio').map(function() {
-                          if( $(this).val() == ids){
-                          $(this).click();
-                                  }  
-                     }).get();          
-                    $('#'+t+' input:checkbox').map(function() {
-                          if( $(this).val() == ids){
-                          $(this).click();
-                                  }  
-                     }).get();
-                     $('#'+t+' textarea').map(function() {
-                          $(this).val() == answer[i];
-                                
-                     }).get();                  
+                  if(typeof $('#'+t+' textarea').val() != "undefined"){
+                          $('#'+t+' textarea').val(answer[i])
+                  }else{
+                          $('#'+t+' input:radio').map(function() {
+                                  if( $(this).val() == ids)
+                                  $(this).click();
+                                          
+                             }).get();          
+                            $('#'+t+' input:checkbox').map(function() {
+                                  if( $(this).val() == ids)
+                                  $(this).click();
+                                          
+                             }).get();
+                    }
                   }                  
                   }
                 }

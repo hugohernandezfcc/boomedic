@@ -274,7 +274,7 @@
                 </div>
                   @endif 
               @if($loop->iteration == 1 && count($questions) != 1)
-              <div class="tab-pane fade in active" id="step1">
+              <div class="tab-pane fade in active" id="step{{ $loop->iteration }}">
                  
                 <div class="well well-sm"> 
                   
