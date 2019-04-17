@@ -110,18 +110,18 @@
                                 <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
                                 @if($an[0] == "radio")    
                                    @if($a2 != "radio")
-                                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
-                                        <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                        <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                        <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                             {{ $answer }}
                                         </label>
                                    @endif  
                                 @else
                                         @if($an[0] == "texto") 
-                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  value="{{ $a2 }}" name="{{ $questions1->id }}"></textarea>
+                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
                                          @elseif($an[0] == "checkbox")   
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                                   {{ $answer }}
                                               </label>
                                             @endif      
@@ -153,18 +153,18 @@
                                 <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
                                 @if($an[0] == "radio")    
                                    @if($a2 != "radio")
-                                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
-                                        <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                        <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                        <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                             {{ $answer }}
                                         </label>
                                    @endif  
                                 @else
                                         @if($an[0] == "texto") 
-                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  value="{{ $a2 }}" name="{{ $questions1->id }}"></textarea>
+                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
                                          @elseif($an[0] == "checkbox")   
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                                   {{ $answer }}
                                               </label>
                                             @endif      
@@ -196,18 +196,18 @@
                                 <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
                                 @if($an[0] == "radio")    
                                    @if($a2 != "radio")
-                                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
-                                        <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                        <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                        <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                             {{ $answer }}
                                         </label>
                                    @endif  
                                 @else
                                         @if($an[0] == "texto") 
-                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  value="{{ $a2 }}" name="{{ $questions1->id }}"></textarea>
+                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
                                          @elseif($an[0] == "checkbox")   
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                                   {{ $answer }}
                                               </label>
                                             @endif      
@@ -239,18 +239,18 @@
                                 <input type="hidden" id="id{{ $a2 }}" value="{{ $questions1->id }}">
                                 @if($an[0] == "radio")    
                                    @if($a2 != "radio")
-                                        <input id="{{ $questions1->id }}{{ $loop->iteration }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
-                                        <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                        <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" name="{{ $questions1->id }}" type="radio" value="{{ $a2 }}">
+                                        <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                             {{ $answer }}
                                         </label>
                                    @endif  
                                 @else
                                         @if($an[0] == "texto") 
-                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  value="{{ $a2 }}" name="{{ $questions1->id }}"></textarea>
+                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
                                          @elseif($an[0] == "checkbox")   
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                                   {{ $answer }}
                                               </label>
                                             @endif      
@@ -322,7 +322,8 @@
                                   }
     
                                  } 
-                       else{    if($(this).val() == answer[i]){
+                       else{    
+                              if($(this).val() == answer[i]){
                                     $(this).prop('checked', true);
                                    return $(this).val();
                                  } 
