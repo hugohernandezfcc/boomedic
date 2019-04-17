@@ -81,45 +81,50 @@
 
                                    @foreach($questions as $quest)
                                       @if($quest->createdby == $dr)
-                                        <li class="active"><a href="javascript:void(0)">{{ $quest->question }}
-                                              <br>
+                                        <li class="active"><a href="javascript:void(0)"> {{ $quest->question }}
+                                            
                                             @php $an = json_decode($quest->answer); @endphp
-                                              <label>Respuestas:</label><br>
+                                             <br>
                                               <input type="hidden" class="quesId" value="{{ $quest->id }}">
 
                                               @foreach($an as $answer)
-                                                      <div class="checkbox checkbox-primary">
+                                                      
                                                         @php  $a2 = str_replace(" ", "_", $answer); @endphp
                                                           <input type="hidden" id="id{{ $a2 }}" value="{{ $quest->id }}">
                                                           @if($an[0] == "radio")    
                                                              @if($a2 != "radio")
+                                                             <div class="checkbox checkbox-primary">
                                                                   <input id="{{ $quest->id }}{{ $loop->iteration }}{{ $answer }}" name="{{ $quest->id }}" type="radio" value="{{ $a2 }}">
                                                                   <label for="{{ $quest->id }}{{ $loop->iteration }}{{ $answer }}">
                                                                       {{ $answer }}
                                                                   </label>
-                                                             @endif  
+                                                             </div> 
+                                                             @endif 
                                                           @else
-                                                                  @if($a2 == "texto") 
-                                                                    <input id="{{ $quest->id }}{{ $loop->iteration }}" type="textarea" value="{{ $a2 }}" name="resp[]">
+                                                                  @if($an[0] == "texto") 
+                                                                  <div class="checkbox checkbox-primary">
+                                                                    <input id="{{ $quest->id }}{{ $loop->iteration }}" type="textarea" value="{{ $a2 }}">
                                                                     <label for="{{ $quest->id }}{{ $loop->iteration }}">
                                                                         {{ $answer }}
                                                                     </label>
+                                                                  </div>  
                                                                     @else
                                                                       @if($a2 != "checkbox")
-                                                                        <input id="{{ $quest->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]">
+                                                                      <div class="checkbox checkbox-primary" style="padding-left: 35px !important;">
+                                                                        <input id="{{ $quest->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" >
                                                                         <label for="{{ $quest->id }}{{ $loop->iteration }}">
                                                                             {{ $answer }}
                                                                         </label>
+                                                                      </div>  
                                                                       @endif  
-                                                              @endif
+                                                                  @endif
                                                          @endif 
-                                                      </div>
-                                               @endforeach        
+                                               @endforeach     
+                                        </a></li>       
                                       @endif
                                    @endforeach  
-                                      </a>
-                                        </li>
                               </ul>     
+                              <div align="right"><button class="btn btn-flat btn-secondary btn-sm">Guardar cambios</button></div>
                       </div>
                     </div> 
                   </div>
