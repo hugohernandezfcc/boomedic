@@ -317,8 +317,8 @@ class HomeController extends Controller
                                              ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
                                              ->where('questions_clinic_history.createdby', '!=', null)
                                              ->where('questions_clinic_history.active', true)
-                                             ->select('questions_clinic_history.*', 'answers_clinic_history.answer')
-                                             ->get(); 
+                                            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.*', 'answers_clinic_history.id AS a')
+                                            ->get();
                             $countquestion = 0;                 
                                     foreach($questionsAppo as $question){
                                         foreach($appointments as $appo){
@@ -326,7 +326,14 @@ class HomeController extends Controller
                                                 $countquestion++;
 
                                         }
-                                    }         
+                                    }     
+                            $clinic_history = DB::table('clinic_history')
+                            ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                            ->where('userid', $user->id)
+                             ->where('questions_clinic_history.createdby', '!=', null)
+                             ->where('questions_clinic_history.active', true)                           
+                            ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+                            ->get();            
 
                                             
                                 return view('medicalconsultations', [
@@ -346,7 +353,8 @@ class HomeController extends Controller
                                         'mg'             => $mg,
                                         'medication'     => $countm,
                                         'countquestion'  => $countquestion,
-                                        'questions'      => $questionsAppo 
+                                        'questions'      => $questionsAppo,
+                                        'clinic_history' => $clinic_history
 
                                     ]
                                 );

@@ -495,7 +495,8 @@
                                                                             [
                                                                               'id' => $appo->id,
                                                                               'dr' => $appo->did, 
-                                                                              'questions'  => $questions
+                                                                              'questions'  => $questions,
+                                                                              'clinic_history'  => $clinic_history
                                                                             ]
                                                                           )
 
