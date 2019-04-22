@@ -79,8 +79,11 @@
               <h3 class="box-title">Edades</h3>
 
               <div class="box-tools pull-right">
+               <button type="button" class="btn btn-default btn-sm" onclick="changeAges();"><i class="fa fa-pie-chart ageicon"></i>
+                </button>
                 <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
+
               </div>
             </div>
             <div class="box-body border-radius-none">
@@ -115,7 +118,7 @@
 
 <script type="text/javascript">
 	
-$(function() {
+
   var dis = @php echo $dis; @endphp;
   var fem = @php echo $fem; @endphp;
   var mas = @php echo $mas; @endphp;
@@ -160,8 +163,8 @@ var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oc
 
 data = {
     datasets: [{
-        data: [fem.toFixed(2), mas.toFixed(2), oth.toFixed(2)],
-        backgroundColor: ['black', 'gray', '#777']
+        data: [fem.toFixed(), mas.toFixed(), oth.toFixed()],
+        backgroundColor: ['black', 'gray', '#677']
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
@@ -171,16 +174,18 @@ data = {
         'Otro'
     ]
 };
-
+    function colorRandom(){
+              var value = Math.random() * 0xFF | 0;
+              var grayscale = (value << 16) | (value << 8) | value;
+              var color = '#' + grayscale.toString(16);
+        return color;      
+    }
 
 
     var arraycolorAge = Array();
         for(var x = 0; x < count.length; x++){
-              var value = Math.random() * 0xFF | 0;
-              var grayscale = (value << 16) | (value << 8) | value;
-              var color = '#' + grayscale.toString(16);
-              arraycolorAge.push(String(color));
-      }
+                 arraycolorAge.push(colorRandom());
+              }
     
 
 var ctx = document.getElementById('myChart').getContext('2d');
@@ -191,7 +196,7 @@ var myPieChart = new Chart(ctx,{
 });
 // And for a doughnut chart
 
-var myDoughnutChart = new Chart(ctx, {
+var myDoughnutChartGender = new Chart(ctx, {
     type: 'doughnut',
     data: data
 });
@@ -219,108 +224,32 @@ var options = {
     }
 };
 /*Edades*/
-var ctz = document.getElementById('myChart2').getContext('2d');
-var myBarChart = new Chart(ctz, {
-    type: 'bar',
-    data: data2,
-    options: options 
-});
+      var myBarChartAges;
+      var chartType = 'bar';
+      AgesGr();
+   function AgesGr(){
+        var ctz = document.getElementById('myChart2').getContext('2d');
+        myBarChartAges = new Chart(ctz, {
+            type: chartType,
+            data: data2,
+            options: options 
+        });
+            if(this.chartType == 'bar')
+              $('.ageicon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
+            else
+              $('.ageicon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
+    }    
 
-/*var cty = document.getElementById('myChart3').getContext('2d');
-var myLineChart = new Chart(cty, {
-    type: 'line',
-  data: {
-   labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-    datasets: [{ 
-        data: [860,114,1060,106,1070],
-        label: "Cancer",
-        borderColor: "black",
-        backgroundColor: "black",
-        pointBorderWidth: 2,
-        fill: false,
-        borderWidth: 2,
-        yAxisID: 'y-axis-1'
-      }, { 
-        data: [2500,350,411,809,635],
-        label: "Hepatitis",
-        borderColor: "#8e5ea2",
-        backgroundColor: "#8e5ea2",
-        pointBorderWidth: 2,
-        fill: false,
-        borderWidth: 2,
-        yAxisID: 'y-axis-1'
-      }, { 
-        data: [168,1700,2965,190,2000],
-        label: "Dengue",
-        borderColor: "white",
-        backgroundColor: "white",
-        pointBorderWidth: 2,
-        fill: false,
-        borderWidth: 2,
-        yAxisID: 'y-axis-1'
-      }, { 
-        data: [40,20,38,74,167],
-        label: "Otras",
-        borderColor: "#FF9EDA",
-        backgroundColor: "#FF9EDA",
-        pointBorderWidth: 2,
-        fill: false,
-        borderWidth: 2,
-        yAxisID: 'y-axis-2'
-      },
-
-    ]
-  },
-  options: {
-    responsive: true,
-     scales: {
+  function changeAges(){
+      myBarChartAges.destroy();
+  //change chart type: 
+            this.chartType = (this.chartType == 'bar') ? 'doughnut' : 'bar';
+            //restart chart:
+            AgesGr();
+  }  
 
 
-    xAxes: [{
-      ticks:{
-        fontColor:"white",
-        fontSize: 10,
-        fontStyle: "normal",
-         beginAtZero: true
-      },
-       gridLines:{ 
-          display: false
-        }
-    }],
-    yAxes: [{
-      type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-              display: true,
-              position: 'left',
-              id: 'y-axis-1',
-                ticks:{
-              fontColor:"white",
-              fontSize: 10,
-              fontStyle: "normal",
-               beginAtZero: true
-            },
-             gridLines:{
-                display: false
-            }}, {
-              type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-              display: true,
-              position: 'right',
-              id: 'y-axis-2',
-      ticks:{
-        fontColor:"white",
-        fontSize: 10,
-        fontStyle: "normal",
-         beginAtZero: true
-      },
-       gridLines:{
-          display: false
-        }
-    }]
-  }
-}
-});*/
 
-
-});
 
 
 
