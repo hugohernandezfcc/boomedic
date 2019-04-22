@@ -333,6 +333,9 @@ class clinicHistory extends Controller
         ->where('userid', $user->id)->where('question_id', $request->question)->first();
         $newArray = array();
         $answers = json_decode($request->answers);
+        $answers = str_replace("_", " ", $answers);
+
+        
             if (in_array("Fallecido", $answers) && in_array("Vivo", $answers)) {
                 $z = 1;
                for($i = 0; $i < count($answers); $i++){
