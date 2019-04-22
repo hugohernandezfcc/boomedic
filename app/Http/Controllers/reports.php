@@ -31,7 +31,7 @@ class reports extends Controller
     public function index(){
           $grap = DB::table('medical_appointments')
             ->join('users', 'medical_appointments.user', '=', 'users.id')
-            ->where('user_doctor', '=', Auth::id())
+            ->where('medical_appointments.user_doctor', '=', Auth::id())
             ->select('medical_appointments.*', 'users.id as us', 'users.gender', 'users.age')
             ->get();
 
@@ -92,8 +92,10 @@ class reports extends Controller
                     $v = array();
                     $fem = 0;
                     $mas = 0;
+                    $other = 0;
                     $porcentf = 0;
                     $porcentm = 0;
+                    $porcento = 0;
 
                     foreach($grap2 as $gr){
                         if($gr->gender == "female"){
@@ -102,12 +104,19 @@ class reports extends Controller
                        if($gr->gender == "male"){
                             $mas = $mas + 1;   
                         }
+                        if($gr->gender == "other"){
+                            $other = $other + 1;   
+                        }
                     }
 
                     if($fem > 0)
-                    $porcentf = (100 * $fem) / $total;
+                        $porcentf = (100 * $fem) / $total;
                     if($mas > 0)
-                    $porcentm = (100 * $mas) / $total;
+                        $porcentm = (100 * $mas) / $total;
+                    if($other > 0)
+                        $porcento = (100 * $other) / $total;
+
+
                             //array edades
                             foreach ($grap2 as $gr2) {
                                 if($gr2->age){
@@ -133,10 +142,12 @@ class reports extends Controller
                 'date'      => $user->created_at,
                 'fem'       => $porcentf,
                 'mas'       => $porcentm,
+                'oth'       => $porcento,
                 'arrayA'    => json_encode($arrayAge),
                 'count'     => json_encode($v),
                 'report'    => json_encode($arrayM),
-                'dis'       => json_encode($arraydis)
+                'dis'       => json_encode($arraydis),
+                'grap'      => $grap2
             ]
         );
     }

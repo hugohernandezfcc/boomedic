@@ -119,14 +119,15 @@ $(function() {
   var dis = @php echo $dis; @endphp;
   var fem = @php echo $fem; @endphp;
   var mas = @php echo $mas; @endphp;
+  var oth = @php echo $oth; @endphp;
   var age = @php echo $arrayA; @endphp;
   var count = @php echo $count; @endphp;
 
   var report =JSON.stringify(@php echo $report; @endphp);
   report =JSON.parse(report);
   console.log(report);
-
-  console.log(count);
+console.log();
+  console.log('edad' + JSON.stringify(@php echo $count; @endphp));
   /* Morris.js Charts */
   // Sales chart
 /*Enfermedades*/
@@ -160,16 +161,30 @@ var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oc
 
 data = {
     datasets: [{
-        data: [fem.toFixed(2), mas.toFixed(2)],
-        backgroundColor: ['black', 'gray']
+        data: [fem.toFixed(2), mas.toFixed(2), oth.toFixed(2)],
+        backgroundColor: ['black', 'gray', '#777']
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
         'Femenino',
         'Masculino',
+        'Otro'
     ]
 };
+
+
+
+    var arraycolorAge = Array();
+    for(var x = 0; x < count.length; x++){
+          var color = "hsl(" + 360 * Math.random() + ',' +
+                 (25 + 70 * Math.random()) + '%,' + 
+                 (75 +  10 * Math.random()) + '%)';
+        
+        arraycolorAge.push(color);
+      }
+    
+
 var ctx = document.getElementById('myChart').getContext('2d');
 
 var myPieChart = new Chart(ctx,{
@@ -186,8 +201,8 @@ var myDoughnutChart = new Chart(ctx, {
 data2 = {
     datasets: [{
         data: count,
-        backgroundColor: '#656565',
-        label: 'Edad paciente'
+        label: 'Edad paciente',
+        backgroundColor: arraycolorAge
 
     }],
 
@@ -195,12 +210,22 @@ data2 = {
     labels: age
 };
  
-
+var options = {
+    scales: {
+        yAxes: [{
+            ticks: {
+              min: 0,
+              stepSize: 1
+            }
+        }]
+    }
+};
 /*Edades*/
 var ctz = document.getElementById('myChart2').getContext('2d');
 var myBarChart = new Chart(ctz, {
     type: 'bar',
     data: data2,
+    options: options 
 });
 
 /*var cty = document.getElementById('myChart3').getContext('2d');
