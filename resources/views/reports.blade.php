@@ -166,6 +166,7 @@ var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oc
 data = {
     datasets: [{
         data: [fem.toFixed(), mas.toFixed(), oth.toFixed()],
+        label: 'Generos',
         backgroundColor: ['black', 'gray', '#677']
     }],
 
