@@ -297,7 +297,7 @@
               for(var k = 0; k < clinic_history.length; k++){
                 for(var st = 0; st <  clinic_history.length; st++){
                    var t = "step" + (st + 1);
-              
+              console.log(clinic_history);
 
                 if(clinic_history[k]['question_id'] == $('#'+t+ ' .quesId').val()){
                 var answer = JSON.parse(clinic_history[k]['answer']);

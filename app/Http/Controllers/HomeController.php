@@ -330,8 +330,8 @@ class HomeController extends Controller
                             $clinic_history = DB::table('clinic_history')
                             ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
                             ->where('userid', $user->id)
-                             ->where('questions_clinic_history.createdby', '!=', null)
-                             ->where('questions_clinic_history.active', true)                           
+                            ->where('questions_clinic_history.createdby', '!=', null)
+                            ->where('questions_clinic_history.active', true)                           
                             ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
                             ->get();            
 

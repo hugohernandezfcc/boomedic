@@ -998,6 +998,26 @@ class doctor extends Controller
         $this->clinicHistory = new clinicHistory;
         $data = $this->clinicHistory->helperIndex($users[0]);
 
+                $appointments = DB::table('medical_appointments')
+                        ->where('user', '=', $users[0]->id)
+                        ->get();
+
+
+                $questionsAppo = DB::table('questions_clinic_history')
+                                 ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+                                 ->where('questions_clinic_history.createdby', $userOne->id)
+                                 ->where('questions_clinic_history.active', true)
+                                ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.*', 'answers_clinic_history.id AS a')
+                                ->get();
+
+                $clinic_history_appointments = DB::table('clinic_history')
+                ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                ->where('userid', $users[0]->id)
+                ->where('questions_clinic_history.createdby', $userOne->id)
+                ->where('questions_clinic_history.active', true)                           
+                ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+                ->get();              
+
         return view('viewPatient', [
                 
                  /** SYSTEM INFORMATION */
@@ -1047,7 +1067,12 @@ class doctor extends Controller
                 'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
                 'longitude'     => (   empty($users[0]->longitude)      ) ? '' : $users[0]->longitude,
                 'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
-                'nodes'         => json_encode($nodes)
+                'nodes'         => json_encode($nodes),
+                'countfamily'   => count($family),
+                'countappo'     => count($appointments),
+                'questions_appointments'     => $questionsAppo,
+                'clinic_history_appointments'    => $clinic_history_appointments,
+                'patientId'         => $users[0]->id
             ]
         )->with($allhistory)->with($data);
     }
