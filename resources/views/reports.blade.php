@@ -126,8 +126,7 @@ $(function() {
   var report =JSON.stringify(@php echo $report; @endphp);
   report =JSON.parse(report);
   console.log(report);
-console.log();
-  console.log('edad' + JSON.stringify(@php echo $count; @endphp));
+
   /* Morris.js Charts */
   // Sales chart
 /*Enfermedades*/
@@ -176,12 +175,11 @@ data = {
 
 
     var arraycolorAge = Array();
-    for(var x = 0; x < count.length; x++){
-          var color = "hsl(" + 360 * Math.random() + ',' +
-                 (25 + 70 * Math.random()) + '%,' + 
-                 (75 +  10 * Math.random()) + '%)';
-        
-        arraycolorAge.push(color);
+        for(var x = 0; x < count.length; x++){
+              var value = Math.random() * 0xFF | 0;
+              var grayscale = (value << 16) | (value << 8) | value;
+              var color = '#' + grayscale.toString(16);
+              arraycolorAge.push(String(color));
       }
     
 
