@@ -994,55 +994,57 @@
           var clinic_history = @php echo $clinic_history; @endphp;
 
               for(var k = 0; k < clinic_history.length; k++){
-              var t = "step" + (k + 1);
+                for(var st = 0; st <  clinic_history.length; st++){
+                   var t = "step" + (st + 1);
                 if(clinic_history[k]['question_id'] == $('#'+t+ ' .quesId').val()){
                 var answer = JSON.parse(clinic_history[k]['answer']);
-                  for(var i = 0; i < answer.length; i++){
-                  
+                      for(var i = 0; i < answer.length; i++){
+                      
 
-                  var ids = $('#'+t+' input').map(function() {
-                   var tro =  answer[i].split(" ");
-                   var minus = answer[i].indexOf("(");
-                    if(tro.length == 3 && minus != -1){
-                        var result = tro[0] + '_' + tro[1];
-                        var result2 = tro[2].replace("(", "").replace(")", "");
-                         if($(this).val() == result){
+                         var ids = $('#'+t+' input').map(function() {
+                         var tro =  answer[i].split(" ");
+                         var minus = answer[i].indexOf("(");
+                          if(tro.length == 3 && minus != -1){
+                              var result = tro[0] + '_' + tro[1];
+                              var result2 = tro[2].replace("(", "").replace(")", "");
+                               if($(this).val() == result){
+                                        $(this).click();
+                                         return result2;
+                                        }
+          
+                                       } 
+                          if(tro.length == 2 && minus != -1){
+                              var result = tro[0];
+                              var result2 = tro[1].replace("(", "").replace(")", "");
+                               if($(this).val() == result){
+                                        $(this).click();
+                                         return result2;
+                                        }
+          
+                                       } 
+                             else{
+                                   if($(this).val() == "Si" && answer[i] != "No"){
+                                         $(this).prop('checked', true);
+                                          $(this).siblings('div').css("display", "block");
+                                          $(this).siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="text'+ answer[i]+'">'+ answer[i] +'</textarea>');
+                                         return answer[i];
+                                        }
+                                        if($(this).val() == answer[i].replace(/ /gi,"_")){
+                                          $(this).prop('checked', true);
+                                         return $(this).val();
+                                       } 
+                                     }  
+                                      }).get();
+                          $('#'+t+' input:radio').map(function() {
+                                  if( $(this).val() == ids){
                                   $(this).click();
-                                   return result2;
-                                  }
-    
-                                 } 
-                    if(tro.length == 2 && minus != -1){
-                        var result = tro[0];
-                        var result2 = tro[1].replace("(", "").replace(")", "");
-                         if($(this).val() == result){
-                                  $(this).click();
-                                   return result2;
-                                  }
-    
-                                 } 
-                       else{
-                             if($(this).val() == "Si" && answer[i] != "No"){
-                                   $(this).prop('checked', true);
-                                    $(this).siblings('div').css("display", "block");
-                                    $(this).siblings('div').html('<textarea class="form-control" rows="2" placeholder="Especifique" id="text'+ answer[i]+'">'+ answer[i] +'</textarea>');
-                                   return answer[i];
-                                  }
-                                  if($(this).val() == answer[i].replace(/ /gi,"_")){
-                                    $(this).prop('checked', true);
-                                   return $(this).val();
-                                 } 
-                               }  
-                                }).get();
-                  $('#'+t+' input:radio').map(function() {
-                          if( $(this).val() == ids){
-                          $(this).click();
-                                  }  
-                     }).get();             
-                  }
+                                          }  
+                             }).get();             
+                        }
                 }
               }
             }
+          }
 
 
 				$(document).ready(function(){
