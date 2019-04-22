@@ -60,6 +60,8 @@
               <h3 class="box-title">Género</h3>
 
               <div class="box-tools pull-right">
+                <button type="button" class="btn btn-default btn-sm" onclick="changeGender();"><i class="fa fa-bar-chart gendericon"></i>
+                </button>
                 <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
@@ -187,19 +189,30 @@ data = {
                  arraycolorAge.push(colorRandom());
               }
     
+    var myDoughnutChartGender;
+    var chartTypeGender = 'doughnut';
+    genderGr();
 
-var ctx = document.getElementById('myChart').getContext('2d');
+        function genderGr(){
+            var ctx = document.getElementById('myChart').getContext('2d');
+            myDoughnutChartGender = new Chart(ctx, {
+                type: chartTypeGender ,
+                data: data
+            });
+           if(this.chartTypeGender == 'bar')
+              $('.gendericon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
+            else
+              $('.gendericon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
+        }
+      function changeGender(){
+      myDoughnutChartGender.destroy();
+       //change chart type: 
+            this.chartTypeGender = (this.chartTypeGender == 'bar') ? 'doughnut' : 'bar';
+            //restart chart:
+            genderGr();
+       }  
 
-var myPieChart = new Chart(ctx,{
-    type: 'pie',
-    data: data
-});
-// And for a doughnut chart
 
-var myDoughnutChartGender = new Chart(ctx, {
-    type: 'doughnut',
-    data: data
-});
 /*edades*/
 data2 = {
     datasets: [{
