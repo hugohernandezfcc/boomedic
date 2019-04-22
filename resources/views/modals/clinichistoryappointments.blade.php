@@ -295,8 +295,12 @@
               var clinic_history = @php echo $clinic_history; @endphp;
               console.log(clinic_history);
               for(var k = 0; k < clinic_history.length; k++){
-              var t = "step" + (k + 1);
+                for(var st = 0; st <  clinic_history.length; st++){
+                   var t = "step" + (st + 1);
+              
+
                 if(clinic_history[k]['question_id'] == $('#'+t+ ' .quesId').val()){
+                console.log(clinic_history[k]['question_id'] + '-' + $('#'+t+ ' .quesId').val());
                 var answer = JSON.parse(clinic_history[k]['answer']);
                 console.log(clinic_history[k]['answer']);
                   for(var i = 0; i < answer.length; i++){
@@ -304,57 +308,62 @@
                   console.log(answer);
 
                   var ids = $('#'+t+' input').map(function() {
-                   var tro =  answer[i].split(" ");
-                   var minus = answer[i].indexOf("(");
-                    if(tro.length == 3 && minus != -1){
-                        var result = tro[0] + '_' + tro[1];
-                        var result2 = tro[2].replace("(", "").replace(")", "");
-                         if($(this).val() == result){
-                                  $(this).click();
-                                   return result2;
-                                  }
-    
-                                 } 
-                    if(tro.length == 2 && minus != -1){
-                        var result = tro[0];
-                        var result2 = tro[1].replace("(", "").replace(")", "");
-                         if($(this).val() == result){
-                                  $(this).click();
-                                   return result2;
-                                  }
-    
-                                 } 
-                       else{    
-                              if($(this).val() == answer[i]){
-                                    $(this).prop('checked', true);
-                                    $(this).click();
-                                   return $(this).val();
-                                 } 
+                                   var tro =  answer[i].split(" ");
+                                   var minus = answer[i].indexOf("(");
+                                   
+                                    if(tro.length == 3 && minus != -1){
+                                        var result = tro[0] + '_' + tro[1];
+                                        var result2 = tro[2].replace("(", "").replace(")", "");
+                                            if($(this).val() == result){
+                                                    $(this).click();
+                                                     return result2;
+                                                    }
+              
+                                           } 
+                                    if(tro.length == 2 && minus != -1){
+                                        var result = tro[0];
+                                        var result2 = tro[1].replace("(", "").replace(")", "");
+                                         if($(this).val() == result){
+                                                  $(this).click();
+                                                   return result2;
+                                                  }
+                    
+                                        } 
+                                       else{    
+                                              if($(this).val() == answer[i]){
+                                                    $(this).prop('checked', true);
+                                                    $(this).click();
+                                                   return $(this).val();
+                                                 } 
 
-                                  if($(this).val() == answer[i].replace(/ /gi,"_")){
-                                    $(this).prop('checked', true);
-                                    $(this).click();
-                                   return $(this).val();
-                                 } 
-                               }  
-                                }).get();
-                  if(typeof $('#'+t+' textarea').val() != "undefined"){
-                          $('#'+t+' textarea').val(answer[i])
-                  }else{
-                          $('#'+t+' input:radio').map(function() {
-                                  if( $(this).val() == ids)
-                                  $(this).click();
-                                          
-                             }).get();          
-                            $('#'+t+' input:checkbox').map(function() {
-                                  if( $(this).val() == ids)
-                                  $(this).click();
-                                          
-                             }).get();
-                    }
-                  }                  
+                                                  if($(this).val() == answer[i].replace(/ /gi,"_")){
+                                                    $(this).prop('checked', true);
+                                                    $(this).click();
+                                                   return $(this).val();
+                                                 } 
+                                         }  
+                         }).get();
+
+                        if(typeof $('#'+t+' textarea').val() != "undefined"){
+                                $('#'+t+' textarea').val(answer[i])
+                        }
+                        else{
+                                $('#'+t+' input:radio').map(function() {
+                                        if( $(this).val() == ids)
+                                        $(this).click();
+                                                
+                                   }).get();          
+                                  $('#'+t+' input:checkbox').map(function() {
+                                        if( $(this).val() == ids)
+                                        $(this).click();
+                                                
+                                   }).get();
+                          }
                   }
+                  }                 
                 }
+              }
+
             
 
 
