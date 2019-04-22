@@ -190,28 +190,7 @@ data = {
                  arraycolorAge.push(colorRandom());
               }
     
-    var myDoughnutChartGender;
-    var chartTypeGender = 'doughnut';
-    genderGr();
 
-        function genderGr(){
-            var ctx = document.getElementById('myChart').getContext('2d');
-            myDoughnutChartGender = new Chart(ctx, {
-                type: chartTypeGender ,
-                data: data
-            });
-           if(this.chartTypeGender == 'bar')
-              $('.gendericon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
-            else
-              $('.gendericon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
-        }
-      function changeGender(){
-      myDoughnutChartGender.destroy();
-       //change chart type: 
-            this.chartTypeGender = (this.chartTypeGender == 'bar') ? 'doughnut' : 'bar';
-            //restart chart:
-            genderGr();
-       }  
 
 
 /*edades*/
@@ -244,6 +223,8 @@ var options = {
    function AgesGr(){
         var ctz = document.getElementById('myChart2').getContext('2d');
         myBarChartAges = new Chart(ctz, {
+            responsive: true,
+            maintainAspectRatio: false,          
             type: chartType,
             data: data2,
             options: options 
@@ -262,7 +243,30 @@ var options = {
             AgesGr();
   }  
 
+    var myDoughnutChartGender;
+    var chartTypeGender = 'doughnut';
+    genderGr();
 
+        function genderGr(){
+            var ctx = document.getElementById('myChart').getContext('2d');
+            myDoughnutChartGender = new Chart(ctx, {
+                responsive: true,
+                maintainAspectRatio: false,
+                type: chartTypeGender ,
+                data: data
+            });
+           if(this.chartTypeGender == 'bar')
+              $('.gendericon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
+            else
+              $('.gendericon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
+        }
+      function changeGender(){
+      myDoughnutChartGender.destroy();
+       //change chart type: 
+            this.chartTypeGender = (this.chartTypeGender == 'bar') ? 'doughnut' : 'bar';
+            //restart chart:
+            genderGr();
+       }  
 
 
 
