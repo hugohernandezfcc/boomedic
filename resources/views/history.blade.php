@@ -89,42 +89,57 @@
             <!-- timeline time label -->
 
           @if($items['Type'] == 'Medical Appointments')
-            <li class="appointment">
-              <i class="fa fa-calendar-check-o bg-blue"></i>
+              <li class="appointment">
+                <i class="fa fa-calendar-check-o bg-blue"></i>
 
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
-                <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
-                <div class="timeline-body">
-                  <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
-                  <b>Estado:</b> {{ $items['status']}} <br/>
-                  <b>Lugar:</b> {{ $items['workplace']}}<br/>
+                  <div class="timeline-item">
+                    <span class="time"><i class="fa fa-clock-o"></i> {{  $items['time'] }}</span>
+                    <h3 class="timeline-header"><a href="{{ url('/medicalconsultations') }}">Cita registrada</a></h3>
+                    <div class="timeline-body">
+                      <b>Fecha asignada:</b> {{ \Carbon\Carbon::parse($items['when'])->format('d-m-Y h:i A') }} <br/>
+                      <b>Estado:</b> {{ $items['status']}} <br/>
+                      <b>Lugar:</b> {{ $items['workplace']}}<br/>
+                    </div>
+                     <div class="timeline-footer">
+                        <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                     @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                         @foreach($items['questions'] as $quest)
+                            @if($quest->createdby == $items['did'] && $loop->iteration == 1)
+                                <a data-target="#modalhistoryappointments-{{ $items['id'] }}" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                            @endif    
+                         @endforeach
+                     @endif    
+                     </div>
+                  </div>
+              </li>
+              <div class="modal fade" id="modalmap" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content">  
+                               <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                                  <div align="left"><label>Mapa de ubicación</label></div>
+                              </div>
+
+                  <div class="modal-body">
+                    <div align="center">
+                                <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
+                    </div>            
+                    </div>
+                  </div>
+                  <!-- /.modal-content -->
                 </div>
-                 <div class="timeline-footer">
-                    <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
-                 </div>
-              </div>
-            </li>
-            <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog">
-          <div class="modal-content">  
-                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                            <div align="left"><label>Mapa de ubicación</label></div>
-                        </div>
-
-            <div class="modal-body">
-              <div align="center">
-                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
-              </div>            
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-        </div>
-            @endif
+             </div>
+                     @include('modals.clinichistoryappointments', 
+                        [
+                          'id' => $items['id'],
+                          'dr' => $items['did'], 
+                          'questions'  => $items['questions'],
+                          'clinic_history'  => $items['clinic_history']
+                        ]
+                      )
+          @endif
 
             @if($items['Type'] == 'Support Ticket')
             <li class="support">
@@ -208,6 +223,13 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                     @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                         @foreach($items['questions'] as $quest)
+                            @if($quest->createdby == $items['did'] && $loop->iteration == 1)
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                            @endif    
+                         @endforeach
+                     @endif 
                  </div>
               </div>
             </li>
@@ -221,14 +243,22 @@
                             <div align="left"><label>Mapa de ubicación</label></div>
                         </div>
                         </div>
-            <div class="modal-body">
-              <div align="center">
-                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
-              </div>            
-              </div>
+                       <div class="modal-body">
+                              <div align="center">
+                                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
+                              </div>            
+                        </div>
             </div>
             <!-- /.modal-content -->
           </div>
+                      @include('modals.clinichistoryappointments', 
+                        [
+                          'id' => $items['id'],
+                          'dr' => $items['did'], 
+                          'questions'  => $items['questions'],
+                          'clinic_history'  => $items['clinic_history']
+                        ]
+                      )
             @endif
             
             @if($items['Type'] == 'Support Ticket')
@@ -314,27 +344,42 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                    @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                         @foreach($items['questions'] as $quest)
+                            @if($quest->createdby == $items['did'] && $loop->iteration == 1)
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                            @endif    
+                         @endforeach
+                     @endif 
                  </div>
               </div>
             </li>
-            <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog">
-          <div class="modal-content">  
-                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                            <div align="left"><label>Mapa de ubicación</label></div>
-                        </div>
-            <div class="modal-body">
-                  <div align="center">
-                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
-                  </div>
+              <div class="modal fade" id="modalmap" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">  
+                                 <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    <div align="left"><label>Mapa de ubicación</label></div>
+                                </div>
+                    <div class="modal-body">
+                          <div align="center">
+                                  <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
+                          </div>
+                      </div>
+                    </div>
+                  <!-- /.modal-content -->
+                </div>
               </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-        </div>
+                      @include('modals.clinichistoryappointments', 
+                        [
+                          'id' => $items['id'],
+                          'dr' => $items['did'], 
+                          'questions'  => $items['questions'],
+                          'clinic_history'  => $items['clinic_history']
+                        ]
+                      )
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -420,27 +465,42 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                    @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                         @foreach($items['questions'] as $quest)
+                            @if($quest->createdby == $items['did'] && $loop->iteration == 1)
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                            @endif    
+                         @endforeach
+                     @endif 
                  </div>
               </div>
             </li>
-            <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog">
-          <div class="modal-content"> 
-                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                            <div align="left"><label>Mapa de ubicación</label></div>
-                        </div>
-            <div class="modal-body">
-                 <div align="center">
-                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
-                 </div>          
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-        </div>
+                <div class="modal fade" id="modalmap" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content"> 
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                      <div align="left"><label>Mapa de ubicación</label></div>
+                                  </div>
+                          <div class="modal-body">
+                               <div align="center">
+                                        <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
+                               </div>          
+                            </div>
+                      </div>
+                    <!-- /.modal-content -->
+                  </div>
+                </div>
+                      @include('modals.clinichistoryappointments', 
+                        [
+                          'id' => $items['id'],
+                          'dr' => $items['did'], 
+                          'questions'  => $items['questions'],
+                          'clinic_history'  => $items['clinic_history']
+                        ]
+                      )
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -526,27 +586,42 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                     @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                         @foreach($items['questions'] as $quest)
+                            @if($quest->createdby == $items['did'] && $loop->iteration == 1)
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                            @endif    
+                         @endforeach
+                     @endif 
                  </div>
               </div>
             </li>
-            <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog">
-          <div class="modal-content">  
-                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                            <div align="left"><label>Mapa de ubicación</label></div>
-                        </div>
-            <div class="modal-body">
-                 <div align="center">
-                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
-                 </div>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-        </div>
+                <div class="modal fade" id="modalmap" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">  
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                          <div align="left"><label>Mapa de ubicación</label></div>
+                                      </div>
+                                <div class="modal-body">
+                                   <div align="center">
+                                            <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
+                                   </div>
+                                </div>
+                          </div>
+                      <!-- /.modal-content -->
+                    </div>
+                </div>
+                  @include('modals.clinichistoryappointments', 
+                                                [
+                                                  'id' => $items['id'],
+                                                  'dr' => $items['did'], 
+                                                  'questions'  => $items['questions'],
+                                                  'clinic_history'  => $items['clinic_history']
+                                                ]
+                                              )
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -630,27 +705,42 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                     @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                         @foreach($items['questions'] as $quest)
+                            @if($quest->createdby == $items['did'] && $loop->iteration == 1)
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                            @endif    
+                         @endforeach
+                     @endif 
                  </div>
               </div>
             </li>
             <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog">
-          <div class="modal-content">  
-                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                            <div align="left"><label>Mapa de ubicación</label></div>
-                        </div>
-            <div class="modal-body">
-                 <div align="center">
-                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
-                 </div>
-              </div>
+                <div class="modal-dialog">
+                    <div class="modal-content">  
+                                   <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                      <div align="left"><label>Mapa de ubicación</label></div>
+                                  </div>
+                             <div class="modal-body">
+                               <div align="center">
+                                        <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
+                               </div>
+                             </div>
+                      </div>
+                  <!-- /.modal-content -->
+                </div>
             </div>
-            <!-- /.modal-content -->
-          </div>
-        </div>
+             @include('modals.clinichistoryappointments', 
+                        [
+                          'id' => $items['id'],
+                          'dr' => $items['did'], 
+                          'questions'  => $items['questions'],
+                          'clinic_history'  => $items['clinic_history']
+                        ]
+                      )
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -736,27 +826,42 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
+                     @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                         @foreach($items['questions'] as $quest)
+                            @if($quest->createdby == $items['did'] && $loop->iteration == 1)
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                            @endif    
+                         @endforeach
+                     @endif 
                  </div>
               </div>
             </li>
-            <div class="modal fade" id="modalmap" role="dialog">
-          <div class="modal-dialog">
-          <div class="modal-content">  
-                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                            <div align="left"><label>Mapa de ubicación</label></div>
+              <div class="modal fade" id="modalmap" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">  
+                                   <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                      <div align="left"><label>Mapa de ubicación</label></div>
+                                  </div>
+                        <div class="modal-body">
+                             <div align="center">
+                                    <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
+                            </div>
                         </div>
-            <div class="modal-body">
-                   <div align="center">
-                          <img border="0" src="//maps.googleapis.com/maps/api/staticmap?center={{ $items['latitude'] }},{{ $items['longitude'] }}&amp;markers=color:black%7Clabel:%7C{{ $items['latitude'] }},{{ $items['longitude'] }}&amp;zoom=15&amp;style=element:geometry%7Ccolor:0xf5f5f5&amp;size=400x400&amp;key={{ env('GOOGLE_KEY') }}" alt="ubicación" style="width:100%;">
-                  </div>
+                      </div>
+                  <!-- /.modal-content -->
+                </div>
               </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-        </div>
+              @include('modals.clinichistoryappointments', 
+                        [
+                          'id' => $items['id'],
+                          'dr' => $items['did'], 
+                          'questions'  => $items['questions'],
+                          'clinic_history'  => $items['clinic_history']
+                        ]
+                      )
             @endif
             
             @if($items['Type'] == 'Support Ticket')

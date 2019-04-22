@@ -62,8 +62,8 @@ class history extends Controller
                             'username'   => $user->username,
                             'name'       => $user->name,
                             'photo'      => $user->profile_photo,
-                             'date'      => $user->created_at,
-                             'gender'    => $user->gender,
+                            'date'      => $user->created_at,
+                            'gender'    => $user->gender,
                             'array2'     => $array2,
                             'array1'     => $array1,
                             'array3'     => $array3,
@@ -260,6 +260,31 @@ class history extends Controller
            ->where( 'medical_appointments.created_at', '>', Carbon::now()->subDays($sumDays))
            ->select('medical_appointments.id','medical_appointments.created_at','medical_appointments.updated_at','medical_appointments.user_doctor','medical_appointments.when', 'medical_appointments.status', 'labor_information.workplace', 'labor_information.latitude', 'labor_information.longitude')->get();
 
+                               //Questions of clinic history at appointments  
+                               $questionsAppo = DB::table('questions_clinic_history')
+                                      ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+                                      ->where('questions_clinic_history.createdby', '!=', null)
+                                      ->where('questions_clinic_history.active', true)
+                                      ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.*', 'answers_clinic_history.id AS a')
+                                      ->get();
+
+                                $countquestion = 0;                 
+                                        foreach($questionsAppo as $question){
+                                            foreach($dateAppointments as $appo){
+                                                if($appo->user_doctor == $question->createdby)
+                                                    $countquestion++;
+
+                                            }
+                                        }  
+
+                                $clinic_history = DB::table('clinic_history')
+                                ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                                ->where('userid', $user->id)
+                                ->where('questions_clinic_history.createdby', '!=', null)
+                                ->where('questions_clinic_history.active', true)                           
+                                ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+                                ->get();    
+                                //Questions of clinic history at appointments  
            $array = collect();
            $array1 = collect();
            $array2 = collect();
@@ -318,16 +343,20 @@ class history extends Controller
            $car = new Carbon($date->created_at);
 
                 $array[]  = collect([
-                            'Type'       => 'Medical Appointments',
-                            'id'         =>  $date->id,
-                            'created_at' => $date->created_at,
-                            'updated_at' => $date->updated_at,
-                            'time'       => $car->diffForHumans(),
-                            'when'       => $date->when,
-                            'workplace' => $date->workplace,
-                            'latitude'  => $date->latitude,
-                            'longitude'  => $date->longitude,
-                            'status'    => $date->status
+                            'Type'            => 'Medical Appointments',
+                            'id'              => $date->id,
+                            'created_at'      => $date->created_at,
+                            'updated_at'      => $date->updated_at,
+                            'time'            => $car->diffForHumans(),
+                            'did'             => $date->user_doctor,
+                            'when'            => $date->when,
+                            'workplace'       => $date->workplace,
+                            'latitude'        => $date->latitude,
+                            'longitude'       => $date->longitude,
+                            'status'          => $date->status,
+                            'countquestion'   => $countquestion,
+                            'questions'       => $questionsAppo,
+                            'clinic_history'  => $clinic_history
                             ]);
 
            }
