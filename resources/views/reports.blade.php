@@ -52,7 +52,7 @@
 
         </div>
             <!-- /.box-footer -->
-            <div class="col-md-6">
+      <div class="col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
@@ -73,7 +73,7 @@
         </div>
 
                     <!-- /.box-footer -->
-            <div class="col-md-6">
+       <div class="col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
@@ -96,26 +96,44 @@
             <!-- /.box-footer -->
           </div>
         </div>
-        <!--<div class="col-md-12">
-        <div class="box box-solid bg-teal-gradient">
+      <div class="col-md-6">
+         <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
-              <h3 class="box-title">Polígono de Enfermedades</h3>
+              <h3 class="box-title">Citas</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-default btn-sm" onclick="changeAppo();"><i class="fa fa-bar-chart appoicon"></i>
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
             </div>
             <div class="box-body border-radius-none">
-              <div class="chart">
-              <canvas id="myChart3" height="200" style="height: 250px"></canvas>
+            <canvas id="myChartAppointments" class="chartjs" style="height: 250px;"></canvas>
             </div>
-            </div>
-
           </div>
-        </div>-->
+        </div>
+        <div class="col-md-6">
+         <div class="box box-secondary">
+            <div class="box-header ui-sortable-handle" style="cursor: move;">
+              <i class="fa fa-th"></i>
+
+              <h3 class="box-title">Saldos</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-default btn-sm" onclick=""><i class="fa fa-bar-chart gendericon"></i>
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body border-radius-none">
+            <canvas id="myChartPayments" class="chartjs" style="height: 250px;"></canvas>
+            </div>
+          </div>
+        </div> 
           </div>
 
 <script type="text/javascript">
@@ -127,11 +145,14 @@
   var oth = @php echo $oth; @endphp;
   var age = @php echo $arrayA; @endphp;
   var count = @php echo $count; @endphp;
+  var appointments = @php echo $arrayAppo; @endphp;
+  var countAppo = @php echo $countAppo; @endphp;
 
   var report =JSON.stringify(@php echo $report; @endphp);
   report =JSON.parse(report);
   console.log(report);
-
+ console.log('count' + countAppo);
+ console.log('array' + appointments);
   /* Morris.js Charts */
   // Sales chart
 /*Enfermedades*/
@@ -163,7 +184,7 @@ var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oc
 }
 /*generos*/
 
-data = {
+var data = {
     datasets: [{
         data: [fem.toFixed(), mas.toFixed(), oth.toFixed()],
         label: 'Generos',
@@ -189,12 +210,16 @@ data = {
         for(var x = 0; x < count.length; x++){
                  arraycolorAge.push(colorRandom());
               }
-    
+
+    var arraycolorAppo = Array();
+        for(var z = 0; z < countAppo.length; z++){
+                 arraycolorAppo.push(colorRandom());
+              }    
 
 
 
 /*edades*/
-data2 = {
+var data2 = {
     datasets: [{
         data: count,
         label: 'Edad paciente',
@@ -205,6 +230,17 @@ data2 = {
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: age
 };
+   var dataAppo = {
+        datasets: [{
+            data: countAppo,
+            label: 'Estatus Citas',
+            backgroundColor: arraycolorAppo
+
+        }],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+        labels: appointments
+    };
  
 var options = {
     scales: {
@@ -227,7 +263,7 @@ var options = {
             maintainAspectRatio: false,          
             type: chartType,
             data: data2,
-            options: options 
+            options: options
         });
             if(this.chartType == 'bar')
               $('.ageicon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
@@ -268,6 +304,34 @@ var options = {
             genderGr();
        }  
 
+
+    var myChartAppo;
+    var chartTypeAppo = 'doughnut';
+    appoGr();
+
+
+ 
+      function appoGr(){
+            var ctx = document.getElementById('myChartAppointments').getContext('2d');
+            myChartAppo = new Chart(ctx, {
+                responsive: true,
+                maintainAspectRatio: false,
+                type: chartTypeAppo,
+                data: dataAppo,
+                options: options
+            });
+           if(this.chartTypeAppo == 'horizontalBar')
+              $('.appoicon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
+            else
+              $('.appoicon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
+        }
+      function changeAppo(){
+       myChartAppo.destroy();
+       //change chart type: 
+            this.chartTypeAppo = (this.chartTypeAppo == 'horizontalBar') ? 'doughnut' : 'horizontalBar';
+            //restart chart:
+            appoGr();
+       }  
 
 
 

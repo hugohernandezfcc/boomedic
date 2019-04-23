@@ -96,6 +96,9 @@ class reports extends Controller
                     $porcentf = 0;
                     $porcentm = 0;
                     $porcento = 0;
+                    $arrayAppointments = array();
+                    $appo = array();
+                    $vAppo = array();
 
                     foreach($grap2 as $gr){
                         if($gr->gender == "female"){
@@ -123,11 +126,34 @@ class reports extends Controller
                                  array_push($arrayAge, $gr2->age);
                                 }
                             }
+
+                            //array citas
+                            foreach ($grap as $gr) {
+                                if(Carbon::parse($gr->when)->format('y-m-d h:s') < Carbon::now()->format('y-m-d h:s')){
+                                      if($gr->status == 'Registered')
+                                             array_push($arrayAppointments, 'Registradas (N/A)');
+                                      if($gr->status == 'No completed')  
+                                             array_push($arrayAppointments, 'Canceladas');    
+                                      if($gr->status == 'Taked')  
+                                             array_push($arrayAppointments, 'Efectuadas');                                            
+                                }else{
+                                      array_push($arrayAppointments, 'Próximas');
+                                }
+                            }
                             //Calculando total por edades array
                             $val = array_count_values($arrayAge);
+                            $valAppo = array_count_values($arrayAppointments);
+
                             foreach ($val as $val2) {
                                   array_push($v, $val2);   
                             }
+
+                            foreach ($valAppo as $key => $valApp) {
+                                  array_push($vAppo, $valApp);  
+                                  array_push($appo, $key);
+
+                            }
+
                   //End Graphic bar and donuts (ages, genders) 
                 
 
@@ -147,6 +173,8 @@ class reports extends Controller
                 'count'     => json_encode($v),
                 'report'    => json_encode($arrayM),
                 'dis'       => json_encode($arraydis),
+                'arrayAppo' => json_encode($appo),
+                'countAppo' => json_encode($vAppo),
                 'grap'      => $grap2
             ]
         );
