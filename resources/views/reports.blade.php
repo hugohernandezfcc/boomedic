@@ -148,11 +148,10 @@
   var appointments = @php echo $arrayAppo; @endphp;
   var countAppo = @php echo $countAppo; @endphp;
 
-  var report =JSON.stringify(@php echo $report; @endphp);
-  report =JSON.parse(report);
+  var report =@php echo $report; @endphp;
+
   console.log(report);
- console.log('count' + countAppo);
- console.log('array' + appointments);
+
   /* Morris.js Charts */
   // Sales chart
 /*Enfermedades*/

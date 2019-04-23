@@ -44,44 +44,30 @@ class reports extends Controller
             ->get();
 
                  //Graphic polligone 
-                    $arrayM1 = array();
-                    $arrayM2 = array();
-                    $arrayM3 = array();
-                    $arrayM = array();
+                    $arrayM1 = collect();
+                    $arrayM2 = collect();
+                    $arrayM3 = collect();
+                    $arrayM = collect();
                     $arraydis = array();
 
                         foreach($polig as $poli){
-                         if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->format('Y-m')){
-                           array_push($arrayM1, $poli->name);
-                           //array_push($arrayM2, $poli->name); 
-                           $m1 = Carbon::parse($poli->created_at)->format('Y-m');      
-                           }
-                         if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(1)->format('Y-m')){
-                           array_push($arrayM2, $poli->name);      
-                           $m2 = Carbon::parse($poli->created_at)->format('Y-m');   
-                           }
-                        if(Carbon::parse($poli->created_at)->format('Y-m') == Carbon::now()->subMonths(2)->format('Y-m')){
-                           array_push($arrayM3, $poli->name);  
-                           $m3 = Carbon::parse($poli->created_at)->format('Y-m');       
-                           }
-                           array_push($arraydis,  $poli->name);
+
+                           $arrayM1->push(["y" => Carbon::parse($poli->created_at)->format('Y-m'), "name" => $poli->name]);
+                           array_push($arraydis, $poli->name);
+
                         }
-                        if($arrayM1){
-                        $arrayM1 = array_count_values($arrayM1); 
-                        $arrayM1 = array_merge(["y" => $m1], $arrayM1);
-                        array_push($arrayM, $arrayM1);
+                            $arrayM1 = $arrayM1->groupBy('y')->toarray();
+                               
+
+                        foreach($arrayM1 as $keyP => $arr){
+                                    $arrayM2 = array_count_values(array_column($arrayM1[$keyP], 'name'));
+                                    $arrayM3 = array_merge(["y" => $keyP], $arrayM2);
+                                    $arrayM->push($arrayM3);
+
+
                         }
-                        if($arrayM2){
-                        $arrayM2 = array_count_values($arrayM2);
-                        //$arrayM2 = array_merge(["y" => "2018-04"], $arrayM2);
-                        $arrayM2 = array_merge(["y" => $m2], $arrayM2);
-                        array_push($arrayM, $arrayM2);
-                        }
-                        if($arrayM3){ 
-                        $arrayM3 = array_count_values($arrayM3); 
-                        $arrayM3 = array_merge(["y" => $m3], $arrayM3);
-                        array_push($arrayM, $arrayM3);
-                        }
+                        $arrayM = $arrayM->toarray();
+
                         $arraydis = array_unique($arraydis);
                 //End Graphic polligone  
 
