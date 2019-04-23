@@ -149,12 +149,14 @@
   var countAppo = @php echo $countAppo; @endphp;
 
   var report =@php echo $report; @endphp;
-
-  console.log(report);
+  console.log(JSON.stringify(dis));
+    console.log(JSON.stringify(report));
+ 
 
   /* Morris.js Charts */
   // Sales chart
 /*Enfermedades*/
+
 if(report.length > 0){
 var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
 
@@ -163,8 +165,8 @@ var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oc
     resize           : true,
     data             : report,
     xkey             : 'y',
-    ykeys            : dis,
-    labels           : dis,
+    ykeys            : ['Embarazo, parto y puerperio', 'Meningitis cronica', 'Sinusitis aguda'],
+    labels           : ['Embarazo, parto y puerperio', 'Meningitis cronica', 'Sinusitis aguda'],
     lineColors       : ['#efefef', 'black'],
     lineWidth        : 2,
     hideHover        : 'auto',
