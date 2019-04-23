@@ -165,22 +165,20 @@ var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oc
     resize           : true,
     data             : report,
     xkey             : 'y',
-    ykeys            : ['Embarazo, parto y puerperio', 'Meningitis cronica', 'Sinusitis aguda'],
-    labels           : ['Embarazo, parto y puerperio', 'Meningitis cronica', 'Sinusitis aguda'],
-    lineColors       : ['#efefef', 'black'],
+    ykeys            : dis,
+    labels           : dis,
+    lineColors       : ['#efefef', 'black', '#ff508c'],
     lineWidth        : 2,
     hideHover        : 'auto',
     gridTextColor    : '#fff',
     gridStrokeWidth  : 0.4,
-    pointSize        : 3,
+    pointSize        : 4,
     fillOpacity: 0.1,
-    pointStrokeColors: ['#efefef','black'],
-    gridLineColor    : ['#efefef','black'],
+    pointStrokeColors: ['#efefef', 'black', '#ff508c'],
+    gridLineColor    : ['#efefef', 'black', '#ff508c'],
     gridTextFamily   : 'Open Sans',
     gridTextSize     : 10,
-    hideHover: 'auto',
-    xLabels: "month",
-    xLabelFormat: function (x) { return months[x.getMonth()]; }
+    hideHover: 'auto'
   });
 }
 /*generos*/

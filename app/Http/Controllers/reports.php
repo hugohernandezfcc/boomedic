@@ -40,9 +40,9 @@ class reports extends Controller
             ->join('diagnostics', 'cli_recipes_tests.diagnostic', '=', 'diagnostics.id')
             ->where('diagnostic', '>', 0)
             ->where('recipes_tests.doctor', Auth::id())
-            ->select('recipes_tests.patient', 'diagnostics.name', 'cli_recipes_tests.created_at')
+            ->select('recipes_tests.patient', 'diagnostics.name', 'cli_recipes_tests.created_at', 'cli_recipes_tests.id')
             ->get();
-
+            
                  //Graphic polligone 
                     $arrayM1 = collect();
                     $arrayM2 = collect();
@@ -68,7 +68,7 @@ class reports extends Controller
                         }
                         $arrayM = $arrayM->toarray();
 
-                        $arraydis = array_unique($arraydis);
+                        $arraydis = array_values(array_unique($arraydis));
                 //End Graphic polligone  
 
                  //Graphic bar and donuts (ages, genders)   

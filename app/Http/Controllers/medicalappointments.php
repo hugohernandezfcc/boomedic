@@ -202,14 +202,18 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-      $user = User::find(Auth::id());
-      $array = [];
-      array_push($array, "texto");
-      $ques = new answers_clinic_history;
-      $ques->createdby = $user->id;
-      $ques->question = 26;
-      $ques->answer = json_encode($array);
-      $ques->save();
+
+      $ques = new recipes_tests;
+      $ques->type = 'Recipe';
+      $ques->doctor = 26;
+      $ques->patient = 1;
+      $ques->date = '2019-01-20 11:00:00';
+      if($ques->save()){
+        $diag = new cli_recipes_tests;
+        $diag->recipe_test = $ques->id;
+        $diag->diagnostic = '15';
+        $diag->save();
+      }
        return redirect('medicalconsultations');
     }
 
