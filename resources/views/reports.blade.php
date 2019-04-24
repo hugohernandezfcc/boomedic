@@ -275,7 +275,7 @@
   var dataBalance = {
       datasets: [{
           data: arrayBalance,
-          label: 'Saldos'
+          label: 'Saldos',
           backgroundColor: ['#96da99', '#e46f6f']
 
       }],
@@ -293,12 +293,10 @@
                   stepSize: 1
                 }
             }]
-        },
+        }
     };
 
-    var optionsCurrency = {
-         responsive: true
-    };
+
 
       /*Edades*/
       var myBarChartAges;
@@ -388,25 +386,9 @@
             myChartBal = new Chart(document.getElementById('myChartBalance'), {
                 type: chartTypeBal,
                 data: dataBalance,
-                options: optionsCurrency,
-                plugins: [{
-                    id: 'total',
-                    beforeDraw: function(chart) {
-                        const width = chart.chart.width;
-                        const height = chart.chart.height;
-                        const ctx = chart.chart.ctx;
-                        ctx.restore();
-                        const fontSize = (height / 114).toFixed(2);
-                        ctx.font = fontSize + "em sans-serif";
-                        ctx.textBaseline = 'middle';
-                        var total = 'testteststs';
-                        const text = total;
-                        const textX = Math.round((width - ctx.measureText(text).width) / 2);
-                        const textY = height / 2;
-                        ctx.fillText(text, textX, textY);
-                        ctx.save();
-                    }
-                }]
+                options: {
+                    responsive: true
+                }
             });
 
            if(this.chartTypeBal == 'horizontalBar')
