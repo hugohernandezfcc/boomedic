@@ -170,7 +170,8 @@
               for(var z = 0; z < countAppo.length; z++){
                        arraycolorAppo.push(colorRandom());
                     }   
-
+          var colorbalance = Array();  
+ 
             /*Balance*/
             if(balance.length > 0){
                                 arrayBalance = Array();
@@ -189,10 +190,8 @@
                                                   countPaid = parseFloat(countPaid) + parseFloat(mountpaid);
                                                 }
                                       }
-
-                                      arrayBalance.push(countOwed);
-                                      arrayBalance.push(countPaid);
-
+                                      arrayBalance.push(countPaid.toFixed(2));
+                                      arrayBalance.push(countOwed.toFixed(2));
 
             }
 
@@ -272,17 +271,18 @@ var data2 = {
       datasets: [{
           data: arrayBalance,
           label: 'Saldos',
-          backgroundColor: ['Red', 'Green']
+          backgroundColor: ['#96da99', '#e46f6f']
 
       }],
 
       // These labels appear in the legend and in the tooltips when hovering different arcs
-      labels: ['Pendiente', 'Pagado']
+      labels: ["Pagado", "Pendiente"]
   };
   console.log(dataBalance);
 
  
 var options = {
+    responsive: true,   
     scales: {
         yAxes: [{
             ticks: {
@@ -294,13 +294,14 @@ var options = {
 };
 
 var optionsCurrency = {
-    tooltipTemplate: function(label) { return '$' + label.value.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
+     responsive: true
 };
 
-/*Edades*/
+      /*Edades*/
       var myBarChartAges;
       var chartType = 'bar';
       AgesGr();
+
    function AgesGr(){
         var ctz = document.getElementById('myChart2').getContext('2d');
         myBarChartAges = new Chart(ctz, {
