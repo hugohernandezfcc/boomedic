@@ -32,14 +32,14 @@
         @php
         $r = json_decode($report);
         @endphp
-  			<div class="box box-solid bg-teal-gradient">
+  			<div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
               <h3 class="box-title">Polígono de Enfermedades</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
             </div>
@@ -261,18 +261,13 @@
                             xkey             : 'y',
                             ykeys            : dis,
                             labels           : dis,
-                            lineColors       : ['#efefef', 'black', '#ff508c'],
-                            lineWidth        : 2,
+                            lineColors       : ['#555', 'black', '#ff508c'],
                             hideHover        : 'auto',
-                            gridTextColor    : '#fff',
-                            gridStrokeWidth  : 0.3,
                             pointSize        : 6,
-                            fillOpacity: 0.1,
-                            pointStrokeColors: ['#efefef', 'black', '#ff508c'],
-                            gridLineColor    : ['#efefef', 'black', '#ff508c'],
+                            pointStrokeColors: ['#555', 'black', '#ff508c'],
+                            gridLineColor    : ['#555', 'black', '#ff508c'],
                             gridTextFamily   : 'Open Sans',
-                            gridTextSize     : 12,
-                            hideHover: 'auto'
+                            gridTextSize     : 13,
                           });
               }
 
