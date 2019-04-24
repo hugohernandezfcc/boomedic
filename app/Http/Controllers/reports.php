@@ -169,11 +169,12 @@ class reports extends Controller
                         $dates = $dates->unique('when');
 
                      //Labels workplaces - citas
-                       $places = collect();   
+                       $places = array();   
                         foreach ($workplace as $work) {
-                            $places->push(['workplace' => $work->place]);
+                           array_push($places, $work->place);
                         }
-                        $places = $places->unique('place');
+
+                        $places = array_values(array_unique($places));
                 
 
         
@@ -197,7 +198,7 @@ class reports extends Controller
                 'balances'  => $transactions,
                 'balancedates'  => $dates,
                 'workplaces'    => $workplace,
-                'places'        => $places
+                'places'        => json_encode($places)
             ]
         );
     }

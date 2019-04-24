@@ -120,7 +120,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+      <div class="col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
@@ -138,8 +138,27 @@
             <canvas id="myChartBalance" class="chartjs" style="height: 250px;"></canvas>
             </div>
           </div>
-        </div> 
+      </div> 
+      <div class="col-md-6">
+         <div class="box box-secondary">
+            <div class="box-header ui-sortable-handle" style="cursor: move;">
+              <i class="fa fa-th"></i>
+
+              <h3 class="box-title">Citas por consultorios</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-default btn-sm" onclick="changeWorkplace();"><i class="fa fa-bar-chart workicon"></i>
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body border-radius-none">
+            <canvas id="myChartWorkplace" class="chartjs" style="height: 250px;"></canvas>
+            </div>
           </div>
+        </div> 
+  </div>
 
 <script type="text/javascript">
 	
@@ -155,8 +174,11 @@
           var balancedates = @php echo $balancedates; @endphp;
           var balance = @php echo $balances; @endphp;
           var report = @php echo $report; @endphp;
+          var workplaces = @php echo $workplaces; @endphp;
+          var places = @php echo $places; @endphp;         
           var arrayBalance = [0,0];
-
+          var arrayworkplace = [0,0];
+          var title = '0';
 
                      function colorRandom(){
                             var value = Math.random() * 0xFF | 0;
@@ -175,37 +197,59 @@
               for(var z = 0; z < countAppo.length; z++){
                        arraycolorAppo.push(colorRandom());
                     }   
-          var title = '0';
+
+          var arraycolorWork = Array();
+              for(var z = 0; z < places.length; z++){
+                       arraycolorWork.push(colorRandom());
+                    }   
  
             /*Balance*/
             if(balance.length > 0){
-                                arrayBalance = Array();
-                                var countOwed = 0;
-                                var countPaid = 0;
+
+                            arrayBalance = Array();
+                            var countOwed = 0;
+                            var countPaid = 0;
                                 for(var z=0; z < balance.length; z++){
                              
                                                 if(balance[z]['type_doctor'] == 'Owed'){
-                                               
-                                                  var mount = balance[z]['amount'];
-                                                  countOwed = parseFloat(countOwed) + parseFloat(mount); 
+                                                      var mount = balance[z]['amount'];
+                                                      countOwed = parseFloat(countOwed) + parseFloat(mount); 
                                                 }
+
                                                 if(balance[z]['type_doctor'] == 'Paid'){
-                                               
-                                                  var mountpaid = balance[z]['amount'];
-                                                  countPaid = parseFloat(countPaid) + parseFloat(mountpaid);
+                                                      var mountpaid = balance[z]['amount'];
+                                                      countPaid = parseFloat(countPaid) + parseFloat(mountpaid);
                                                 }
                                       }
-                                      arrayBalance.push(countPaid.toFixed(2));
-                                      arrayBalance.push(countOwed.toFixed(2));
-                                          if(countPaid > countOwed)
-                                                title = '$' + countPaid.toFixed(2) +' Pagado';
-                                          else 
-                                                title = '$' + countOwed.toFixed(2) +' Pendiente';    
+
+                            arrayBalance.push(countPaid.toFixed(2));
+                            arrayBalance.push(countOwed.toFixed(2));
+
+                            if(countPaid > countOwed)
+                                  title = '$' + countPaid.toFixed(2) +' Pagado';
+                            else 
+                                  title = '$' + countOwed.toFixed(2) +' Pendiente';    
             }
+            /*Workplace*/
+            if(workplaces.length > 0){
+
+                            arrayworkplace = Array();
+                              for(var pl = 0; pl < places.length; pl++){
+                                  var variable = {};
+                                   variable[pl] = 0;
+                                    for(var w=0; w < workplaces.length; w++){
+                                                    if(workplaces[w]['place'] == places[pl]){
+                                                        variable[pl]  = parseFloat(variable[pl]) + 1;
+                                                    }
+                                          }
+                                    arrayworkplace.push(variable[pl]);       
+                              }
+                              console.log(arrayworkplace);
+            }            
 
 
 
-              /*Enfermedades*/
+              /********** Diagnostics  ********s*/
 
               if(report.length > 0){
                         var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
@@ -231,8 +275,10 @@
                             hideHover: 'auto'
                           });
               }
-              /*generos*/
 
+
+
+            /****** SET DATA ******/
               var data = {
                   datasets: [{
                       data: [fem.toFixed(), mas.toFixed(), oth.toFixed()],
@@ -247,55 +293,62 @@
                       'Otro'
                   ]
               };
- 
+
+              var data2 = {
+                  datasets: [{
+                      data: count,
+                      label: 'Edad paciente',
+                      backgroundColor: arraycolorAge
+
+                  }],
+                  labels: age
+              };
+
+             var dataAppo = {
+                    datasets: [{
+                        data: countAppo,
+                        label: 'Estatus Citas',
+                        backgroundColor: arraycolorAppo
+
+                    }],
+                    labels: appointments
+                }; 
+
+              var dataBalance = {
+                  datasets: [{
+                      data: arrayBalance,
+                      label: 'Saldos',
+                      backgroundColor: ['#96da99', '#e46f6f']
+
+                  }],
+                  labels: ["Pagado", "Pendiente"]
+              };
+
+              var dataworkplace = {
+                  datasets: [{
+                      data: arrayworkplace,
+                      label: 'Citas por consultorios',
+                      backgroundColor: arraycolorWork
+
+                  }],
+                  labels: places
+              };              
 
 
+                 
+                var options = {
+                    responsive: true,   
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                              min: 0,
+                              stepSize: 1
+                            }
+                        }]
+                    }
+                };
 
-  /*edades*/
-  var data2 = {
-      datasets: [{
-          data: count,
-          label: 'Edad paciente',
-          backgroundColor: arraycolorAge
-
-      }],
-      labels: age
-  };
-
- var dataAppo = {
-        datasets: [{
-            data: countAppo,
-            label: 'Estatus Citas',
-            backgroundColor: arraycolorAppo
-
-        }],
-        labels: appointments
-    }; 
-
-  var dataBalance = {
-      datasets: [{
-          data: arrayBalance,
-          label: 'Saldos',
-          backgroundColor: ['#96da99', '#e46f6f']
-
-      }],
-      labels: ["Pagado", "Pendiente"]
-  };
-
-
-     
-    var options = {
-        responsive: true,   
-        scales: {
-            yAxes: [{
-                ticks: {
-                  min: 0,
-                  stepSize: 1
-                }
-            }]
-        }
-    };
-
+             /****** SET DATA ******/   
 
 
       /*Edades*/
@@ -382,7 +435,7 @@
     balanceGr();
 
       function balanceGr(){
-        
+
             myChartBal = new Chart(document.getElementById('myChartBalance'), {
                 type: chartTypeBal,
                 data: dataBalance,
@@ -403,6 +456,33 @@
             //restart chart:
             balanceGr();
        }  
+
+
+      var myChartWorkplace;
+      var chartTypeWork = 'bar';
+      workGr();
+
+      function workGr(){
+
+            myChartWorkplace = new Chart(document.getElementById('myChartWorkplace'), {
+                type: chartTypeWork,
+                data: dataworkplace
+            });
+           if(this.chartTypeWork == 'bar')
+              $('.workicon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
+            else
+              $('.workicon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
+        }
+
+      function changeWorkplace(){
+
+             myChartWorkplace.destroy();
+             //change chart type: 
+            this.chartTypeWork = (this.chartTypeWork == 'bar') ? 'doughnut' : 'bar';
+            //restart chart:
+            workGr();
+       }  
+
 
 </script>
 
