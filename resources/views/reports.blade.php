@@ -123,14 +123,14 @@
               <h3 class="box-title">Saldos</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn btn-default btn-sm" onclick=""><i class="fa fa-bar-chart gendericon"></i>
+                <button type="button" class="btn btn-default btn-sm" onclick="changeBalance();"><i class="fa fa-bar-chart baricon"></i>
                 </button>
                 <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
             </div>
             <div class="box-body border-radius-none">
-            <canvas id="myChartPayments" class="chartjs" style="height: 250px;"></canvas>
+            <canvas id="myChartBalance" class="chartjs" style="height: 250px;"></canvas>
             </div>
           </div>
         </div> 
@@ -139,81 +139,108 @@
 <script type="text/javascript">
 	
 
-  var dis = @php echo $dis; @endphp;
-  var fem = @php echo $fem; @endphp;
-  var mas = @php echo $mas; @endphp;
-  var oth = @php echo $oth; @endphp;
-  var age = @php echo $arrayA; @endphp;
-  var count = @php echo $count; @endphp;
-  var appointments = @php echo $arrayAppo; @endphp;
-  var countAppo = @php echo $countAppo; @endphp;
-
-  var report =@php echo $report; @endphp;
-  console.log(JSON.stringify(dis));
-    console.log(JSON.stringify(report));
- 
-
-  /* Morris.js Charts */
-  // Sales chart
-/*Enfermedades*/
-
-if(report.length > 0){
-var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
-
-  var line = new Morris.Line({
-    element          : 'line-chart',
-    resize           : true,
-    data             : report,
-    xkey             : 'y',
-    ykeys            : dis,
-    labels           : dis,
-    lineColors       : ['#efefef', 'black', '#ff508c'],
-    lineWidth        : 2,
-    hideHover        : 'auto',
-    gridTextColor    : '#fff',
-    gridStrokeWidth  : 0.4,
-    pointSize        : 4,
-    fillOpacity: 0.1,
-    pointStrokeColors: ['#efefef', 'black', '#ff508c'],
-    gridLineColor    : ['#efefef', 'black', '#ff508c'],
-    gridTextFamily   : 'Open Sans',
-    gridTextSize     : 10,
-    hideHover: 'auto'
-  });
-}
-/*generos*/
-
-var data = {
-    datasets: [{
-        data: [fem.toFixed(), mas.toFixed(), oth.toFixed()],
-        label: 'Generos',
-        backgroundColor: ['black', 'gray', '#677']
-    }],
-
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-        'Femenino',
-        'Masculino',
-        'Otro'
-    ]
-};
-    function colorRandom(){
-              var value = Math.random() * 0xFF | 0;
-              var grayscale = (value << 16) | (value << 8) | value;
-              var color = '#' + grayscale.toString(16);
-        return color;      
-    }
+          var dis = @php echo $dis; @endphp;
+          var fem = @php echo $fem; @endphp;
+          var mas = @php echo $mas; @endphp;
+          var oth = @php echo $oth; @endphp;
+          var age = @php echo $arrayA; @endphp;
+          var count = @php echo $count; @endphp;
+          var appointments = @php echo $arrayAppo; @endphp;
+          var countAppo = @php echo $countAppo; @endphp;
+          var balancedates = @php echo $balancedates; @endphp;
+          var balance = @php echo $balances; @endphp;
+          var report = @php echo $report; @endphp;
+          var arrayBalance = [0,0];
 
 
-    var arraycolorAge = Array();
-        for(var x = 0; x < count.length; x++){
-                 arraycolorAge.push(colorRandom());
+                     function colorRandom(){
+                            var value = Math.random() * 0xFF | 0;
+                            var grayscale = (value << 16) | (value << 8) | value;
+                            var color = '#' + grayscale.toString(16);
+                            return color;      
+                        }
+
+
+          var arraycolorAge = Array();
+              for(var x = 0; x < count.length; x++){
+                       arraycolorAge.push(colorRandom());
+                    }
+
+          var arraycolorAppo = Array();
+              for(var z = 0; z < countAppo.length; z++){
+                       arraycolorAppo.push(colorRandom());
+                    }   
+
+            /*Balance*/
+            if(balance.length > 0){
+                                arrayBalance = Array();
+                                var countOwed = 0;
+                                var countPaid = 0;
+                                for(var z=0; z < balance.length; z++){
+                             
+                                                if(balance[z]['type_doctor'] == 'Owed'){
+                                               
+                                                  var mount = balance[z]['amount'];
+                                                  countOwed = parseFloat(countOwed) + parseFloat(mount); 
+                                                }
+                                                if(balance[z]['type_doctor'] == 'Paid'){
+                                               
+                                                  var mountpaid = balance[z]['amount'];
+                                                  countPaid = parseFloat(countPaid) + parseFloat(mountpaid);
+                                                }
+                                      }
+
+                                      arrayBalance.push(countOwed);
+                                      arrayBalance.push(countPaid);
+
+
+            }
+
+
+
+              /*Enfermedades*/
+
+              if(report.length > 0){
+                        var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+
+                          var line = new Morris.Line({
+                            element          : 'line-chart',
+                            resize           : true,
+                            data             : report,
+                            xkey             : 'y',
+                            ykeys            : dis,
+                            labels           : dis,
+                            lineColors       : ['#efefef', 'black', '#ff508c'],
+                            lineWidth        : 2,
+                            hideHover        : 'auto',
+                            gridTextColor    : '#fff',
+                            gridStrokeWidth  : 0.3,
+                            pointSize        : 6,
+                            fillOpacity: 0.1,
+                            pointStrokeColors: ['#efefef', 'black', '#ff508c'],
+                            gridLineColor    : ['#efefef', 'black', '#ff508c'],
+                            gridTextFamily   : 'Open Sans',
+                            gridTextSize     : 12,
+                            hideHover: 'auto'
+                          });
               }
+              /*generos*/
 
-    var arraycolorAppo = Array();
-        for(var z = 0; z < countAppo.length; z++){
-                 arraycolorAppo.push(colorRandom());
-              }    
+              var data = {
+                  datasets: [{
+                      data: [fem.toFixed(), mas.toFixed(), oth.toFixed()],
+                      label: 'Generos',
+                      backgroundColor: ['black', 'gray', '#677']
+                  }],
+
+                  // These labels appear in the legend and in the tooltips when hovering different arcs
+                  labels: [
+                      'Femenino',
+                      'Masculino',
+                      'Otro'
+                  ]
+              };
+ 
 
 
 
@@ -229,7 +256,7 @@ var data2 = {
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: age
 };
-   var dataAppo = {
+ var dataAppo = {
         datasets: [{
             data: countAppo,
             label: 'Estatus Citas',
@@ -239,7 +266,21 @@ var data2 = {
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: appointments
-    };
+    }; 
+
+  var dataBalance = {
+      datasets: [{
+          data: arrayBalance,
+          label: 'Saldos',
+          backgroundColor: ['Red', 'Green']
+
+      }],
+
+      // These labels appear in the legend and in the tooltips when hovering different arcs
+      labels: ['Pendiente', 'Pagado']
+  };
+  console.log(dataBalance);
+
  
 var options = {
     scales: {
@@ -249,8 +290,13 @@ var options = {
               stepSize: 1
             }
         }]
-    }
+    },
 };
+
+var optionsCurrency = {
+    tooltipTemplate: function(label) { return '$' + label.value.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
+};
+
 /*Edades*/
       var myBarChartAges;
       var chartType = 'bar';
@@ -308,8 +354,6 @@ var options = {
     var chartTypeAppo = 'doughnut';
     appoGr();
 
-
- 
       function appoGr(){
             var ctx = document.getElementById('myChartAppointments').getContext('2d');
             myChartAppo = new Chart(ctx, {
@@ -332,7 +376,31 @@ var options = {
             appoGr();
        }  
 
+    var myChartBal;
+    var chartTypeBal = 'doughnut';
+    balanceGr();
 
+      function balanceGr(){
+            var ctx = document.getElementById('myChartBalance').getContext('2d');
+            myChartBal= new Chart(ctx, {
+                responsive: true,
+                maintainAspectRatio: false,
+                type: chartTypeBal,
+                data: dataBalance,
+                options: optionsCurrency
+            });
+           if(this.chartTypeBal == 'horizontalBar')
+              $('.balicon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
+            else
+              $('.balicon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
+        }
+      function changeBalance(){
+       myChartBal.destroy();
+       //change chart type: 
+            this.chartTypeBal = (this.chartTypeBal == 'horizontalBar') ? 'doughnut' : 'horizontalBar';
+            //restart chart:
+            balanceGr();
+       }  
 
 </script>
 
