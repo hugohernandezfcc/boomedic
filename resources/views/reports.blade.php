@@ -1,16 +1,21 @@
 @extends('adminlte::page')
 
 @section('title', 'Boomedic')
+
 <style type="text/css">
-  .morris-hover.morris-default-style {
-    background: rgba(84, 84, 84, 0.8)  !important;
-    border: none !important; 
-  }
-  .morris-hover-row-label{
-    color: black !important;
-  }
+
+    .morris-hover.morris-default-style {
+      background: rgba(84, 84, 84, 0.8)  !important;
+      border: none !important; 
+    }
+    .morris-hover-row-label{
+      color: black !important;
+    }
+
 </style>
+
 @section('content')
+
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
@@ -170,7 +175,7 @@
               for(var z = 0; z < countAppo.length; z++){
                        arraycolorAppo.push(colorRandom());
                     }   
-          var colorbalance = Array();  
+          var title = '0';
  
             /*Balance*/
             if(balance.length > 0){
@@ -192,7 +197,10 @@
                                       }
                                       arrayBalance.push(countPaid.toFixed(2));
                                       arrayBalance.push(countOwed.toFixed(2));
-
+                                          if(countPaid > countOwed)
+                                                title = '$' + countPaid.toFixed(2) +' Pagado';
+                                          else 
+                                                title = '$' + countOwed.toFixed(2) +' Pendiente';    
             }
 
 
@@ -243,18 +251,17 @@
 
 
 
-/*edades*/
-var data2 = {
-    datasets: [{
-        data: count,
-        label: 'Edad paciente',
-        backgroundColor: arraycolorAge
+  /*edades*/
+  var data2 = {
+      datasets: [{
+          data: count,
+          label: 'Edad paciente',
+          backgroundColor: arraycolorAge
 
-    }],
+      }],
+      labels: age
+  };
 
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: age
-};
  var dataAppo = {
         datasets: [{
             data: countAppo,
@@ -262,40 +269,36 @@ var data2 = {
             backgroundColor: arraycolorAppo
 
         }],
-
-        // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: appointments
     }; 
 
   var dataBalance = {
       datasets: [{
           data: arrayBalance,
-          label: 'Saldos',
+          label: 'Saldos'
           backgroundColor: ['#96da99', '#e46f6f']
 
       }],
-
-      // These labels appear in the legend and in the tooltips when hovering different arcs
       labels: ["Pagado", "Pendiente"]
   };
-  console.log(dataBalance);
 
- 
-var options = {
-    responsive: true,   
-    scales: {
-        yAxes: [{
-            ticks: {
-              min: 0,
-              stepSize: 1
-            }
-        }]
-    },
-};
 
-var optionsCurrency = {
-     responsive: true
-};
+     
+    var options = {
+        responsive: true,   
+        scales: {
+            yAxes: [{
+                ticks: {
+                  min: 0,
+                  stepSize: 1
+                }
+            }]
+        },
+    };
+
+    var optionsCurrency = {
+         responsive: true
+    };
 
       /*Edades*/
       var myBarChartAges;
@@ -303,10 +306,9 @@ var optionsCurrency = {
       AgesGr();
 
    function AgesGr(){
-        var ctz = document.getElementById('myChart2').getContext('2d');
-        myBarChartAges = new Chart(ctz, {
-            responsive: true,
-            maintainAspectRatio: false,          
+
+  
+        myBarChartAges = new Chart(document.getElementById('myChart2'), {     
             type: chartType,
             data: data2,
             options: options
@@ -330,10 +332,8 @@ var optionsCurrency = {
     genderGr();
 
         function genderGr(){
-            var ctx = document.getElementById('myChart').getContext('2d');
-            myDoughnutChartGender = new Chart(ctx, {
-                responsive: true,
-                maintainAspectRatio: false,
+
+            myDoughnutChartGender = new Chart(document.getElementById('myChart'), {
                 type: chartTypeGender ,
                 data: data
             });
@@ -342,24 +342,24 @@ var optionsCurrency = {
             else
               $('.gendericon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
         }
+
       function changeGender(){
-      myDoughnutChartGender.destroy();
-       //change chart type: 
+
+            myDoughnutChartGender.destroy();
+             //change chart type: 
             this.chartTypeGender = (this.chartTypeGender == 'bar') ? 'doughnut' : 'bar';
             //restart chart:
             genderGr();
        }  
 
 
-    var myChartAppo;
-    var chartTypeAppo = 'doughnut';
-    appoGr();
+      var myChartAppo;
+      var chartTypeAppo = 'doughnut';
+      appoGr();
 
       function appoGr(){
-            var ctx = document.getElementById('myChartAppointments').getContext('2d');
-            myChartAppo = new Chart(ctx, {
-                responsive: true,
-                maintainAspectRatio: false,
+
+            myChartAppo = new Chart(document.getElementById('myChartAppointments'), {
                 type: chartTypeAppo,
                 data: dataAppo,
                 options: options
@@ -369,9 +369,11 @@ var optionsCurrency = {
             else
               $('.appoicon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
         }
+
       function changeAppo(){
-       myChartAppo.destroy();
-       //change chart type: 
+
+             myChartAppo.destroy();
+             //change chart type: 
             this.chartTypeAppo = (this.chartTypeAppo == 'horizontalBar') ? 'doughnut' : 'horizontalBar';
             //restart chart:
             appoGr();
@@ -382,14 +384,31 @@ var optionsCurrency = {
     balanceGr();
 
       function balanceGr(){
-            var ctx = document.getElementById('myChartBalance').getContext('2d');
-            myChartBal= new Chart(ctx, {
-                responsive: true,
-                maintainAspectRatio: false,
+
+            myChartBal = new Chart(document.getElementById('myChartBalance'), {
                 type: chartTypeBal,
                 data: dataBalance,
-                options: optionsCurrency
+                options: optionsCurrency,
+                plugins: [{
+                    id: 'total',
+                    beforeDraw: function(chart) {
+                        const width = chart.chart.width;
+                        const height = chart.chart.height;
+                        const ctx = chart.chart.ctx;
+                        ctx.restore();
+                        const fontSize = (height / 114).toFixed(2);
+                        ctx.font = fontSize + "em sans-serif";
+                        ctx.textBaseline = 'middle';
+                        var total = 'testteststs';
+                        const text = total;
+                        const textX = Math.round((width - ctx.measureText(text).width) / 2);
+                        const textY = height / 2;
+                        ctx.fillText(text, textX, textY);
+                        ctx.save();
+                    }
+                }]
             });
+
            if(this.chartTypeBal == 'horizontalBar')
               $('.balicon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
             else
