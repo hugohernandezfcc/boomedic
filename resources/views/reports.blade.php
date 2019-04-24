@@ -265,7 +265,6 @@
                             hideHover        : 'auto',
                             pointSize        : 6,
                             pointStrokeColors: ['#555', 'black', '#ff508c'],
-                            gridLineColor    : ['#555', 'black', '#ff508c'],
                             gridTextFamily   : 'Open Sans',
                             gridTextSize     : 13,
                           });
