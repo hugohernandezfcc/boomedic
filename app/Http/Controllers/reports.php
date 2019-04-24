@@ -45,6 +45,24 @@ class reports extends Controller
             ->select('recipes_tests.patient', 'diagnostics.name', 'cli_recipes_tests.created_at', 'cli_recipes_tests.id')
             ->get();
             
+           $transactions = DB::table('transaction_bank')
+            ->join('medical_appointments', 'transaction_bank.appointments', '=', 'medical_appointments.id')
+            ->join('users', 'medical_appointments.user', '=', 'users.id')
+            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+            ->where('medical_appointments.user_doctor', '=', $user->id)
+            ->orderBy('medical_appointments.when', 'desc')
+            ->select('transaction_bank.*', 'users.name', 'medical_appointments.when', 'labor_information.workplace as place')
+            ->get();
+
+
+            $workplace = DB::table('medical_appointments')
+            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
+            ->where('medical_appointments.user_doctor', '=', $user->id)
+            ->orderBy('medical_appointments.when', 'desc')
+            ->select('medical_appointments.*', 'users.name', 'labor_information.workplace as place')
+            ->get();
+
                  //Graphic polligone 
                     $arrayM1 = collect();
                     $arrayM2 = collect();
@@ -142,23 +160,20 @@ class reports extends Controller
 
                             }
 
-                  //End Graphic bar and donuts (ages, genders) 
+
+                     //Labels dates to medical_appointments status       
                         $dates = collect();
-
-                        $transactions = DB::table('transaction_bank')
-                        ->join('medical_appointments', 'transaction_bank.appointments', '=', 'medical_appointments.id')
-                        ->join('users', 'medical_appointments.user', '=', 'users.id')
-                        ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
-                        ->where('medical_appointments.user_doctor', '=', $user->id)
-                        ->orderBy('medical_appointments.when', 'desc')
-                        ->select('transaction_bank.*', 'users.name', 'medical_appointments.when', 'labor_information.workplace as place')
-                        ->get();
-
                         foreach ($transactions as $tr) {
                             $dates->push(['when' => Carbon::parse($tr->when)->format('m/Y')]);
                         }
                         $dates = $dates->unique('when');
 
+                     //Labels workplaces - citas
+                       $places = collect();   
+                        foreach ($workplace as $work) {
+                            $places->push(['workplace' => $work->place]);
+                        }
+                        $places = $places->unique('place');
                 
 
         
@@ -180,7 +195,9 @@ class reports extends Controller
                 'countAppo' => json_encode($vAppo),
                 'grap'      => $grap2,
                 'balances'  => $transactions,
-                'balancedates'  => $dates
+                'balancedates'  => $dates,
+                'workplaces'    => $workplace,
+                'places'        => $places
             ]
         );
     }

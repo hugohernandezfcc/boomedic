@@ -382,7 +382,7 @@
     balanceGr();
 
       function balanceGr(){
-
+        
             myChartBal = new Chart(document.getElementById('myChartBalance'), {
                 type: chartTypeBal,
                 data: dataBalance,
