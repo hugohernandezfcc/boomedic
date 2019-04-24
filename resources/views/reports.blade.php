@@ -62,7 +62,7 @@
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
-              <h3 class="box-title">Género</h3>
+              <h3 class="box-title">Pacientes por género</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-default btn-sm" onclick="changeGender();"><i class="fa fa-bar-chart gendericon"></i>
@@ -83,7 +83,7 @@
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
-              <h3 class="box-title">Edades</h3>
+              <h3 class="box-title">Pacientes por edades</h3>
 
               <div class="box-tools pull-right">
                <button type="button" class="btn btn-default btn-sm" onclick="changeAges();"><i class="fa fa-pie-chart ageicon"></i>
