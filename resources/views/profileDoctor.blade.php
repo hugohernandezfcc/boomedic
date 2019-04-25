@@ -973,6 +973,9 @@
 								    });
 									$('div.setup-panel div a.btn-circle').click(function(){
 								    	$('#preview').hide();
+								    	 allNextBtn.hide();
+								    	 $('#addOpt').html('');
+								    	 $('#addOptcheck').html('');
 									});
 
 
@@ -1002,12 +1005,12 @@
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12" >
 			                        	 <div class="row">
-			                        		<label for="radio" class="btn btn-default btn-sm">
+			                        		<label for="radio" class="btn btn-default btn-sm btn-flat">
 			                        			<span class="glyphicon glyphicon-ok"></span>
 			                        			<input type="radio" name="type" value="radio" id="radio" style="visibility: hidden;"/>
 			                        			<b>Selección única</b>
 			                        		</label>
-			                        		 <button class="btn btn-secondary btn-flat nextBtn pull-right" type="button">Vista previa</button>
+			                        		 <button class="btn btn-secondary btn-flat nextBtn step1 pull-right" type="button" style="display: none;">Vista previa</button>
 			                        	</div><br/>
 			                        			
 												<div class="input-group input-group-sm">
@@ -1030,11 +1033,11 @@
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
 			                        <div class="row">
-			                          <label for="checkbox" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-ok"></span>
+			                          <label for="checkbox" class="btn btn-default btn-sm btn-flat"><span class="glyphicon glyphicon-ok"></span>
 			                          	<input type="radio" name="type" value="checkbox" id="checkbox" autocomplete="off" style="visibility: hidden;">
 			                        			<b>Selección múltiple</b>
 			                          </label>
-			                       <button class="btn btn-secondary btn-flat nextBtn pull-right" type="button">Vista previa</button>   
+			                       <button class="btn btn-secondary btn-flat nextBtn step2 pull-right" type="button" style="display: none;">Vista previa</button>   
 			                      </div><br>
 												<div class="input-group input-group-sm">
 								                  <input type="text"  id="optcheck" class="form-control" placeholder="Escriba una opción" required autocomplete="off">
@@ -1051,12 +1054,12 @@
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
 			                         <div class="row">	
-			                         <label for="texto" class="btn btn-default active btn-sm">
+			                         <label for="texto" class="btn btn-default active btn-sm btn-flat">
 			                        	<span class="glyphicon glyphicon-ok"></span>
-			                        	<input type="radio" name="type" value="texto" id="texto" style="visibility: hidden;" checked="checked">
+			                        	<input type="radio" name="type" value="texto" id="texto" style="visibility: hidden;" checked="checked" onchange="if($('#texto:checked').val() == 'texto') $('.nextBtn.step3').show()">
 			                         		<b>Texto abierto</b>
 			                         	</label>
-			                         	<button class="btn btn-secondary btn-flat nextBtn pull-right" type="button">Vista Previa</button>
+			                         	<button class="btn btn-secondary btn-flat nextBtn step3 pull-right" type="button" style="display: none;">Vista Previa</button>
 			                         </div>
 			                    </div>        <!-- content go here -->
 
@@ -1074,7 +1077,7 @@
 				                          <div id="readresponse"></div>
 				                     </div>
 				                 </div><br>
-				                           <button class="btn btn-secondary nextBtn btn-flat pull-right" type="button" id="finishQuestion">Guardar configuración</button>
+				                           <button class="btn btn-secondary btn-flat pull-right" type="button" id="finishQuestion">Guardar configuración</button>
 				                     	</div>
 			                    </div>       
 			                            
@@ -1169,21 +1172,34 @@
       					$('#box-question-save').hide();
       					$('#addOpt').html('');
       					$('#addOptcheck').html('');
+      					$('#question').val('');
       				}
 
       				function add(){
+      				if($('#radio:checked').val() == 'radio'){
       					if($('#opt').val().length > 0 ){
       					  $('#addOpt').append('&nbsp;<div class="label bg-green opr" style="font-size: 14px;">'+ $('#opt').val() +'</div>');
       					  $('#opt').val('');
+		      			  $('.nextBtn.step1').show();
+
       					}
+      				}
+      					else
+		      				alert('No puedes agregar si no tienes elegida la opción de selección única');
       				}
 
       				function addcheck(){
-      					if($('#optcheck').val().length > 0 ){
-      					  $('#addOptcheck').append('&nbsp;<div class="label bg-green opc" style="font-size: 14px;">'+ $('#optcheck').val() +'</div>');
-      					  $('#optcheck').val('');
-      					}
+      					if($('#checkbox:checked').val() == 'checkbox'){
+	      					if($('#optcheck').val().length > 0 ){
+	      					  $('#addOptcheck').append('&nbsp;<div class="label bg-green opc" style="font-size: 14px;">'+ $('#optcheck').val() +'</div>');
+	      					  $('#optcheck').val('');
+							  $('.nextBtn.step2').show();
+	      					}
+	      				}	
+      					  else
+		      				 alert('No puedes agregar si no tienes elegida la opción de selección multiple');
       				}
+      			
 
 		            $("#question").on("keyup", function() {
 		                var value = $(this).val().toLowerCase();
