@@ -17,18 +17,17 @@
 @section('content')
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<div class="box">
 
-  	<div class="box-header with-border">
+
+
+  	<div class="box-header">
 	    <h3 class="box-title">Reportes</h3>
   	</div>
   	<div class="box-body">
-      <div class="col-md-12">
+      <section class="connectedSortable ui-sortable col-md-12">
         @php
         $r = json_decode($report);
         @endphp
@@ -55,9 +54,9 @@
             <!-- /.box-footer -->
           </div>
 
-        </div>
+        </section>
             <!-- /.box-footer -->
-      <div class="col-md-6">
+      <section class="connectedSortable ui-sortable col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
@@ -75,10 +74,10 @@
             <canvas id="myChart" class="chartjs" style="height: 250px;"></canvas>
             </div>
           </div>
-        </div>
+        </section>
 
                     <!-- /.box-footer -->
-       <div class="col-md-6">
+      <section class="connectedSortable ui-sortable col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
@@ -95,13 +94,14 @@
             </div>
             <div class="box-body border-radius-none">
             <canvas id="myChart2" class="chartjs" style="height: 250px;"></canvas>
-            </div>
+
             <!-- /.box-body -->
             
             <!-- /.box-footer -->
           </div>
         </div>
-      <div class="col-md-6">
+       </section>   
+      <section class="connectedSortable ui-sortable col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
@@ -119,8 +119,8 @@
             <canvas id="myChartAppointments" class="chartjs" style="height: 250px;"></canvas>
             </div>
           </div>
-        </div>
-      <div class="col-md-6">
+        </section>
+      <section class="connectedSortable ui-sortable col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
@@ -137,9 +137,9 @@
             <div class="box-body border-radius-none">
             <canvas id="myChartBalance" class="chartjs" style="height: 250px;"></canvas>
             </div>
-          </div>
       </div> 
-      <div class="col-md-6">
+      </section> 
+      <section class="connectedSortable ui-sortable col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
@@ -157,7 +157,7 @@
             <canvas id="myChartWorkplace" class="chartjs" style="height: 250px;"></canvas>
             </div>
           </div>
-        </div> 
+        </section> 
   </div>
 
 <script type="text/javascript">
@@ -478,6 +478,22 @@
        }  
 
 
-</script>
 
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+     var j$132 = jQuery.noConflict();
+     (function(jQuery) {
+   
+        // Make the dashboard widgets sortable Using jquery UI
+        jQuery('.connectedSortable').sortable({
+          placeholder         : 'sort-highlight',
+          connectWith         : '.connectedSortable',
+          handle              : '.box-header',
+          forcePlaceholderSize: true,
+          zIndex              : 999999
+        });
+       jQuery('.connectedSortable .box-header').css('cursor', 'move');
+          })(j$132);
+    </script>
 @stop
