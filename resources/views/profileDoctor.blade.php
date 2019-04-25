@@ -976,6 +976,9 @@
 								    	 allNextBtn.hide();
 								    	 $('#addOpt').html('');
 								    	 $('#addOptcheck').html('');
+								    	 
+								    	 if($('#texto:checked').val() == 'texto')
+								    	 		 $('.nextBtn.step3').show()
 									});
 
 
@@ -1185,7 +1188,7 @@
       					}
       				}
       					else
-		      				alert('No puedes agregar si no tienes elegida la opción de selección única');
+		      				alert('No puedes agregar si no tienes marcada la opción de selección única');
       				}
 
       				function addcheck(){
@@ -1197,7 +1200,7 @@
 	      					}
 	      				}	
       					  else
-		      				 alert('No puedes agregar si no tienes elegida la opción de selección multiple');
+		      				 alert('No puedes agregar si no tienes marcada la opción de selección multiple');
       				}
       			
 
