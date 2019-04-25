@@ -291,17 +291,15 @@
               </div>
 
   <script type="text/javascript">
-  $(document).ready(function(){
+
               var clinic_history = @php echo $clinic_history; @endphp;
 
               for(var k = 0; k < clinic_history.length; k++){
                 for(var st = 0; st <  clinic_history.length; st++){
                    var t = "step" + (st + 1);
-              console.log(clinic_history);
 
                 if(clinic_history[k]['question_id'] == $('#'+t+ ' .quesId').val()){
                 var answer = JSON.parse(clinic_history[k]['answer']);
-
                   for(var i = 0; i < answer.length; i++){
 
                   var ids = $('#'+t+' input').map(function() {
@@ -423,7 +421,6 @@
             //update progress
             var step = $(e.target).data('step');
             var percent = (parseInt(step) / @php echo count($questions); @endphp) * 100;
-            console.log(@php echo count($questions); @endphp);
             
             $('.progress-bar').css({width: percent + '%'});
             $('.progress-bar').text(parseInt(percent) + "%");
@@ -483,5 +480,5 @@
                                       $('#btnclosehc').click();
                        
           });
-        })
+
   </script>              
