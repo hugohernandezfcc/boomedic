@@ -1180,8 +1180,14 @@
 
 		            $("#question").on("keyup", function() {
 		                var value = $(this).val().toLowerCase();
+
+						value = value.replace('¿','');
+						value = value.replace('?','');
+						value = value.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+
+
 		                $("#searchQuestions div").filter(function() {
-		                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		                  $(this).toggle($(this).text().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").indexOf(value) > -1)
 		                });
 		              });
 					

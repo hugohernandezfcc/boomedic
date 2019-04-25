@@ -139,7 +139,7 @@
             </div>
       </div> 
       </section> 
-      <section class="connectedSortable ui-sortable col-md-6">
+      <section class="connectedSortable ui-sortable col-md-6" id="workplaces">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
@@ -494,6 +494,7 @@
           forcePlaceholderSize: true,
           zIndex              : 999999
         });
+        jQuery('#workplace').resizable();
        jQuery('.connectedSortable .box-header').css('cursor', 'move');
           })(j$132);
     </script>
