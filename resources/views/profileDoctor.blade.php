@@ -916,7 +916,8 @@
 								$(document).ready(function () {
 								    var navListItems = $('div.setup-panel div a'), // tab nav items
 								            allWells = $('.setup-content'), // content div
-								            allNextBtn = $('.nextBtn'); // next button
+								            allNextBtn = $('.nextBtn'), // next button
+								            stepb = $('.setup-content');
 
 								    allWells.hide(); // hide all contents by defauld
 
@@ -935,9 +936,10 @@
 								    });
 								    // next button
 								    allNextBtn.click(function(){
-								        var curStep = $(this).closest(".setup-content"),
+								    	$('#preview').show();
+								        	var curStep = $(this).closest(".setup-content"),
 								            curStepBtn = curStep.attr("id"),
-								            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+								            //nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
 								            curInputs = curStep.find("input[type='text'],input[type='email'],input[type='password'],input[type='url']"),
 								            isValid = true;
 
@@ -969,11 +971,16 @@
 								        if (isValid)
 								            nextStepWizard.removeAttr('disabled').trigger('click');
 								    });
+									$('div.setup-panel div a.btn-circle').click(function(){
+								    	$('#preview').hide();
+									});
+
 
 								    $('div.setup-panel div a.btn-secondary').trigger('click');
 								});
 								</script>
 
+			         	    	<div align="right"><span class="fa fa-close btn btn-sm text-muted" onclick="cancelQuestion();"></span></div>
 								<label class="text-muted">Configuración de respuestas</label><br>
 								<div class="stepwizard">
 					                <div class="stepwizard-row setup-panel">
@@ -982,14 +989,11 @@
 					                    </div>
 					                    
 					                    <div class="stepwizard-step">
-					                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Selección múltiple"><i class="glyphicon glyphicon-list-alt"></i></a>
+					                        <a href="#step-2" type="button" class="btn btn-default btn-circle" title="Selección múltiple"><i class="glyphicon glyphicon-list-alt"></i></a>
 					                    </div>
 					                    
 					                    <div class="stepwizard-step">
-					                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Texto abierto"><i class="fa fa-pencil"></i></a>
-					                    </div>
-					                    <div class="stepwizard-step">
-					                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Confirmar"><i class="glyphicon glyphicon-ok"></i></a>
+					                        <a href="#step-3" type="button" class="btn btn-default btn-circle" title="Texto abierto"><i class="fa fa-pencil"></i></a>
 					                    </div>
 					                    
 					                </div>
@@ -1003,6 +1007,7 @@
 			                        			<input type="radio" name="type" value="radio" id="radio" style="visibility: hidden;"/>
 			                        			<b>Selección única</b>
 			                        		</label>
+			                        		 <button class="btn btn-secondary btn-flat nextBtn pull-right" type="button">Vista previa</button>
 			                        	</div><br/>
 			                        			
 												<div class="input-group input-group-sm">
@@ -1012,7 +1017,7 @@
 								                    </span>
 								                </div><br>
 								                <div id="addOpt"></div><br>
-								                <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+
 
 				                         <!-- <span class="text-muted fa fa-question-circle">Respuestas de alternativa simple (dicotómicas), cuando sólo es posible una respuesta (sí o no, hombre o mujer)</span>
 				                       --></div>  
@@ -1029,6 +1034,7 @@
 			                          	<input type="radio" name="type" value="checkbox" id="checkbox" autocomplete="off" style="visibility: hidden;">
 			                        			<b>Selección múltiple</b>
 			                          </label>
+			                       <button class="btn btn-secondary btn-flat nextBtn pull-right" type="button">Vista previa</button>   
 			                      </div><br>
 												<div class="input-group input-group-sm">
 								                  <input type="text"  id="optcheck" class="form-control" placeholder="Escriba una opción" required autocomplete="off">
@@ -1037,7 +1043,6 @@
 								                    </span>
 								                </div><br>
 								                <div id="addOptcheck"></div><br>
-								           <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
 			                       </div>
 			                    </div>    
 			               </div>
@@ -1051,15 +1056,16 @@
 			                        	<input type="radio" name="type" value="texto" id="texto" style="visibility: hidden;" checked="checked">
 			                         		<b>Texto abierto</b>
 			                         	</label>
+			                         	<button class="btn btn-secondary btn-flat nextBtn pull-right" type="button">Vista Previa</button>
 			                         </div>
 			                    </div>        <!-- content go here -->
-			                       
+
 			                    </div>    
-			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+			                          
 			               </div>
-			               	<div class="row setup-content" id="step-4">
+			               	<div class="row" id="preview" style="display: none;">
 			                    <div class="col-xs-12">
-			                        <div class="col-md-12">
+			                        <div class="col-md-12 well well-sm">
 			                        <div class="row">
 			                         <div class="col-sm-12">
 			                         <h5><b>Vista Previa</b></h5>
@@ -1073,9 +1079,10 @@
 			                    </div>       
 			                            
 			               </div>
-			               			<hr>
-			         	    		<div align="left"><button class="btn btn-flat btn-default btn-sm" onclick="cancelQuestion();">Cancelar</button></div>
 			         	    	</div>	
+
+
+
 			         	    </div>
 		         	    </div>
 		         	</div>
@@ -1086,7 +1093,7 @@
 
         <!-- /.col AQUI -->
 
-                        <div class="modal fade" role="dialog" id="modalassist2">
+                <div class="modal fade" role="dialog" id="modalassist2">
                     <div class="modal-dialog modal-sm">
 
                       <div class="modal-content">
