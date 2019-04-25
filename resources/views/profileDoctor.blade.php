@@ -974,11 +974,29 @@
 									$('div.setup-panel div a.btn-circle').click(function(){
 								    	$('#preview').hide();
 								    	 allNextBtn.hide();
-								    	 $('#addOpt').html('');
-								    	 $('#addOptcheck').html('');
-								    	 
-								    	 if($('#texto:checked').val() == 'texto')
+								    	 if($('#radio:checked').val() == 'radio'){
+										    	 if($('#addOpt').html().length > 0){
+		 										    	 $('.nextBtn.step1').show() 	
+		 										    	 $('#addOptcheck').html('');
+	 										    	 }
+	 										    	 else 
+		 										    	 $('#addOptcheck').html('');
+								    	 	}
+
+								    	 if($('#checkbox:checked').val() == 'checkbox'){
+										    	 if($('#addOptcheck').html().length > 0){
+		 										    	 $('.nextBtn.step2').show() 	
+		 										    	 $('#addOpt').html('');
+	 										    	 }
+	 										     else 
+	 										     	 $('#addOpt').html('');   	 
+								    	 	}
+
+								    	 if($('#texto:checked').val() == 'texto'){
 								    	 		 $('.nextBtn.step3').show()
+										    	 $('#addOpt').html('');
+										    	 $('#addOptcheck').html('');
+								    	 	}
 									});
 
 
@@ -1176,6 +1194,10 @@
       					$('#addOpt').html('');
       					$('#addOptcheck').html('');
       					$('#question').val('');
+      					 var value = $('#question').val().toLowerCase();
+		                $("#searchQuestions div").filter(function() {
+		                  $(this).toggle($(this).text().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").indexOf(value) > -1)
+		                });
       				}
 
       				function add(){
