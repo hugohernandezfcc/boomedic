@@ -128,7 +128,7 @@
               <h3 class="box-title">Saldos</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn btn-default btn-sm" onclick="changeBalance();"><i class="fa fa-bar-chart baricon"></i>
+                <button type="button" class="btn btn-default btn-sm" onclick="changeBalance();"><i class="fa fa-bar-chart balicon"></i>
                 </button>
                 <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -480,6 +480,7 @@
 
 
 </script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
      var j$132 = jQuery.noConflict();
