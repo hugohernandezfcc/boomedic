@@ -312,7 +312,7 @@
                   datasets: [{
                       data: arrayBalance,
                       label: 'Saldos',
-                      backgroundColor: ['#96da99', '#e46f6f']
+                      backgroundColor: ['#50d056', '#f70707']
 
                   }],
                   labels: ["Pagado", "Pendiente"]
