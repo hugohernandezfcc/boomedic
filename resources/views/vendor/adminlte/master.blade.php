@@ -661,8 +661,8 @@ $(document).ready(function() {
                         var more = moment().add(2, 'day').format("MM/DD/YYYY");      
                        for(var h =0; h < result2[1].length; h++){
 
-                                      var gender = result2[0][h]['gender'];
-                                      if(result2[0][h]['profile_photo'] == null || result2[0][h]['profile_photo'] == ''){
+                                      var gender = result2[1][h]['gender'];
+                                      if(result2[1][h]['profile_photo'] == null || result2[1][h]['profile_photo'] == ''){
                                         if(gender == 'female'){
                                            var  photo = "{{ asset('profile-female.png') }}";
                                            gender = 'Femenino';
@@ -676,7 +676,7 @@ $(document).ready(function() {
                                            gender = 'Otro';
                                          } 
                                       }else{
-                                        var photo = result2[0][h]['profile_photo'];
+                                        var photo = result2[1][h]['profile_photo'];
                                       }
 
                                      var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
