@@ -161,7 +161,7 @@
                                                                               'id' => $patientId,
                                                                               'dr' => Auth::id(), 
                                                                               'questions'  => $questions_appointments,
-                                                                              'clinic_history'  => $clinic_history_appointments
+                                                                              'clinic_historyappo'  => $clinic_history_appointments
                                                                             ]
                                                                           )
           <!-- /.box -->

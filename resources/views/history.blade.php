@@ -136,7 +136,7 @@
                           'id' => $items['id'],
                           'dr' => $items['did'], 
                           'questions'  => $items['questions'],
-                          'clinic_history'  => $items['clinic_history']
+                          'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
           @endif
@@ -256,7 +256,7 @@
                           'id' => $items['id'],
                           'dr' => $items['did'], 
                           'questions'  => $items['questions'],
-                          'clinic_history'  => $items['clinic_history']
+                          'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
             @endif
@@ -377,7 +377,7 @@
                           'id' => $items['id'],
                           'dr' => $items['did'], 
                           'questions'  => $items['questions'],
-                          'clinic_history'  => $items['clinic_history']
+                          'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
             @endif
@@ -498,7 +498,7 @@
                           'id' => $items['id'],
                           'dr' => $items['did'], 
                           'questions'  => $items['questions'],
-                          'clinic_history'  => $items['clinic_history']
+                          'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
             @endif
@@ -619,7 +619,7 @@
                                                   'id' => $items['id'],
                                                   'dr' => $items['did'], 
                                                   'questions'  => $items['questions'],
-                                                  'clinic_history'  => $items['clinic_history']
+                                                  'clinic_historyappo'  => $items['clinic_history']
                                                 ]
                                               )
             @endif
@@ -738,7 +738,7 @@
                           'id' => $items['id'],
                           'dr' => $items['did'], 
                           'questions'  => $items['questions'],
-                          'clinic_history'  => $items['clinic_history']
+                          'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
             @endif
@@ -859,7 +859,7 @@
                           'id' => $items['id'],
                           'dr' => $items['did'], 
                           'questions'  => $items['questions'],
-                          'clinic_history'  => $items['clinic_history']
+                          'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
             @endif

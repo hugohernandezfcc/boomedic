@@ -292,7 +292,7 @@
 
   <script type="text/javascript">
   $(document).ready(function(){
-              var clinic_history = @php echo $clinic_history; @endphp;
+              var clinic_history = @php echo $clinic_historyappo; @endphp;
 
               for(var k = 0; k < clinic_history.length; k++){
                 for(var st = 0; st <  clinic_history.length; st++){
