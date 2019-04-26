@@ -92,7 +92,7 @@
            <div class="tab-content">
             @foreach($questions as $questions1)
              @if($loop->iteration == 1 && count($questions) == 1)
-              <div class="tab-pane fade in active" id="step1">
+              <div class="tab-pane fade in active" id="stepc1">
                  
                 <div class="well well-sm"> 
                   
@@ -135,7 +135,7 @@
                 </div>
                   @endif 
               @if($loop->iteration == 1 && count($questions) != 1)
-              <div class="tab-pane fade in active" id="step{{ $loop->iteration }}">
+              <div class="tab-pane fade in active" id="stepc{{ $loop->iteration }}">
                  
                 <div class="well well-sm"> 
                   
@@ -180,7 +180,7 @@
                 </div>
                   @endif
                    @if(($loop->iteration > 1) && !$loop->last)
-                <div class="tab-pane fade" id="step{{ $loop->iteration }}">
+                <div class="tab-pane fade" id="stepc{{ $loop->iteration }}">
                    <div class="well well-sm"> 
                       <b>{{ $questions1->question }}</b>
                       <br>
@@ -223,7 +223,7 @@
               </div>
         @endif
        @if($loop->last && count($questions) != 1)
-              <div class="tab-pane fade" id="step{{ $loop->iteration }}">
+              <div class="tab-pane fade" id="stepc{{ $loop->iteration }}">
                  <div class="well well-sm"> 
                     <b>{{ $questions1->question }}</b>
                     <br>
@@ -276,10 +276,10 @@
                       <ul class="nav nav-pills pull-center">
                     @foreach($questions as $question) 
                         @if($loop->iteration == 1)
-                         <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
+                         <li class="active"><a href="#stepc1" data-toggle="tab" data-step="1">1</a></li>
                         @endif
                          @if($loop->iteration > 1)
-                         <li><a href="#step{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
+                         <li><a href="#stepc{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
                          @endif
                       @endforeach
                       </ul>
@@ -291,12 +291,12 @@
               </div>
 
   <script type="text/javascript">
-
+  $(document).ready(function(){
               var clinic_history = @php echo $clinic_history; @endphp;
 
               for(var k = 0; k < clinic_history.length; k++){
                 for(var st = 0; st <  clinic_history.length; st++){
-                   var t = "step" + (st + 1);
+                   var t = "stepc" + (st + 1);
 
                 if(clinic_history[k]['question_id'] == $('#'+t+ ' .quesId').val()){
                 var answer = JSON.parse(clinic_history[k]['answer']);
@@ -420,8 +420,7 @@
             
             //update progress
             var step = $(e.target).data('step');
-            var percent = (parseInt(step) / @php echo count($questions); @endphp) * 100;
-            
+            var percent = (parseInt(step) / @php echo count($questions); @endphp) * 100;       
             $('.progress-bar').css({width: percent + '%'});
             $('.progress-bar').text(parseInt(percent) + "%");
             
@@ -480,5 +479,5 @@
                                       $('#btnclosehc').click();
                        
           });
-
+ })
   </script>              
