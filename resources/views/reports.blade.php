@@ -297,7 +297,6 @@
                                           }
                                     arrayworkplace.push(variable[pl]);       
                               }
-                              console.log('work' + arrayworkplace);
             }            
 
 
@@ -513,7 +512,7 @@
       workGr();
 
       function workGr(){
-          if(workplaces.length > 0){
+        if(workplaces.length > 0){
             myChartWorkplace = new Chart(document.getElementById('myChartWorkplace'), {
                 type: chartTypeWork,
                 data: dataworkplace
@@ -526,7 +525,7 @@
       }
 
       function changeWorkplace(){
-          if(workplaces.length > 0){
+        if(workplaces.length > 0){
              myChartWorkplace.destroy();
              //change chart type: 
             this.chartTypeWork = (this.chartTypeWork == 'bar') ? 'doughnut' : 'bar';
@@ -540,19 +539,19 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-     var j$132 = jQuery.noConflict();
-     (function(jQuery) {
-   
-        // Make the dashboard widgets sortable Using jquery UI
-        jQuery('.connectedSortable').sortable({
-          placeholder         : 'sort-highlight',
-          connectWith         : '.connectedSortable',
-          handle              : '.box-header',
-          forcePlaceholderSize: true,
-          zIndex              : 999999
-        });
-        jQuery('#workplace').resizable();
-       jQuery('.connectedSortable .box-header').css('cursor', 'move');
-          })(j$132);
-    </script>
+     var jquery = jQuery.noConflict(true);
+     !function($){
+            // Make the dashboard widgets sortable Using jquery UI
+            $('.connectedSortable').sortable({
+              placeholder         : 'sort-highlight',
+              connectWith         : '.connectedSortable',
+              handle              : '.box-header',
+              forcePlaceholderSize: true,
+              zIndex              : 999999
+            });
+            $('#workplace').resizable();
+            $('.connectedSortable .box-header').css('cursor', 'move');
+          }(jquery);
+
+</script>
 @stop
