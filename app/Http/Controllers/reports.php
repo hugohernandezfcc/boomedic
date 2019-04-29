@@ -115,6 +115,7 @@ class reports extends Controller
 
             $whenAppointments = DB::table('medical_appointments')
             ->where('medical_appointments.user_doctor', '=', $user->id)
+            ->orderBy('when', 'asc')
             ->get();
             
 

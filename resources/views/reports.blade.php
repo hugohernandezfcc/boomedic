@@ -199,8 +199,11 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
+              @if(count($workplaces) > 0)
                 <canvas id="myChartWorkplace" class="chartjs" style="height: 250px;"></canvas>
-
+              @else
+                No tienes registros de citas por consultorios en el período seleccionado.
+              @endif    
             </div>
           </div>
         </section> 
@@ -208,6 +211,10 @@
 
 <script type="text/javascript">
 	
+         $('#filter').on('change', function(e){
+              $('#sendFilter').attr('action', '{{ url("reports/index") }}/'+ $(this).val());
+              $(this).closest('form').submit();
+          });
 
           var dis = @php echo $dis; @endphp;
           var fem = @php echo $fem; @endphp;
@@ -475,7 +482,7 @@
     balanceGr();
 
       function balanceGr(){
-
+         if(balance.length > 0){
             myChartBal = new Chart(document.getElementById('myChartBalance'), {
                 type: chartTypeBal,
                 data: dataBalance,
@@ -488,14 +495,17 @@
               $('.balicon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
             else
               $('.balicon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
+          }  
         }
       function changeBalance(){
-       myChartBal.destroy();
-       //change chart type: 
-            this.chartTypeBal = (this.chartTypeBal == 'horizontalBar') ? 'doughnut' : 'horizontalBar';
-            //restart chart:
-            balanceGr();
-       }  
+        if(balance.length > 0){
+             myChartBal.destroy();
+             //change chart type: 
+                  this.chartTypeBal = (this.chartTypeBal == 'horizontalBar') ? 'doughnut' : 'horizontalBar';
+                  //restart chart:
+                  balanceGr();
+                }
+             }  
 
 
       var myChartWorkplace;
@@ -503,7 +513,7 @@
       workGr();
 
       function workGr(){
-
+          if(workplaces.length > 0){
             myChartWorkplace = new Chart(document.getElementById('myChartWorkplace'), {
                 type: chartTypeWork,
                 data: dataworkplace
@@ -513,20 +523,18 @@
             else
               $('.workicon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
         }
+      }
 
       function changeWorkplace(){
-
+          if(workplaces.length > 0){
              myChartWorkplace.destroy();
              //change chart type: 
             this.chartTypeWork = (this.chartTypeWork == 'bar') ? 'doughnut' : 'bar';
             //restart chart:
             workGr();
+           } 
        }  
 
-       $('#filter').on('change', function(e){
-            $('#sendFilter').attr('action', '{{ url("reports/index") }}/'+ $(this).val());
-            $(this).closest('form').submit();
-        });
 
 </script>
 
