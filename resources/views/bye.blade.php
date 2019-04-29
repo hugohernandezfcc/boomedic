@@ -21,7 +21,6 @@
         <!-- /.login-box-body -->
     </div><!-- /.login-box -->
 
-
 @stop
 
 @section('adminlte_js')

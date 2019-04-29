@@ -5,7 +5,6 @@
 @section('content_header')
 
 <style type="text/css">
-
       .content{
         overflow-y: auto;
       }

@@ -5,216 +5,205 @@
 @section('content')
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-	     <style type="text/css">
 
-        .contacts-list>li {
+<style type="text/css">
+      .contacts-list>li {
          border-bottom: 1px solid rgba(0,0,0,0.2);
          padding: 10px;
          margin: 0;
       }
-      	 .progress-bar {
+      .progress-bar {
       	 	background-color: #3E3E3E;
-      	 }
-      	 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+      }
+      .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
           color: #fff;
           background-color: #3E3E3E;
-      		}
-      		.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+      }
+      .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
           border-top-color: #3E3E3E;
       }
-       .nav-pills {
-          width: 100% !important;
-          text-align: center !important;
-
-        }
-
-        .nav-pills > li {
-            float: none !important;
-            display: inline-block !important;
-          }
-        .checkbox {
-        padding-left: 20px; }
-
-        .checkbox label {
+      .nav-pills {
+        width: 100% !important;
+        text-align: center !important;
+      }
+      .nav-pills > li {
+        float: none !important;
+        display: inline-block !important;
+      }
+      .checkbox {
+        padding-left: 20px; 
+      }
+      .checkbox label {
         display: inline-block;
         position: relative;
-        padding-left: 5px; }
-
-        .checkbox label::before {
-          content: "";
-          display: inline-block;
-          position: absolute;
-          width: 17px;
-          height: 17px;
-          left: 0;
-          margin-left: -20px;
-          border: 1px solid #cccccc;
-          border-radius: 3px;
-          background-color: #fff;
-          -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-          -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-          transition: border 0.15s ease-in-out, color 0.15s ease-in-out; }
-
-        .checkbox label::after {
-          display: inline-block;
-          position: absolute;
-          width: 16px;
-          height: 16px;
-          left: 0;
-          top: 0;
-          margin-left: -20px;
-          padding-left: 3px;
-          padding-top: 1px;
-          font-size: 11px;
-          color: #555555; }
-
-        .checkbox input[type="radio"],  
-        .checkbox input[type="checkbox"] {
-          opacity: 0; }
-
-        .checkbox input[type="radio"]:checked + label::after,
-        .checkbox input[type="checkbox"]:checked + label::after {
-          font-family: 'FontAwesome';
-          content: "\f00c"; }
-
-        .checkbox input[type="radio"]:disabled + label,  
-        .checkbox input[type="checkbox"]:disabled + label {
-          opacity: 0.65; }
-       
-        .checkbox input[type="radio"]:disabled + label::before,
-        .checkbox input[type="checkbox"]:disabled + label::before {
-        background-color: #eeeeee;
-        cursor: not-allowed; }
-
-        .checkbox-primary input[type="radio"]:checked + label::before,
-        .checkbox-primary input[type="checkbox"]:checked + label::before {
-         background-color: #3E3E3E;
-         border-color: #3E3E3E; }
-        
-        .checkbox-primary input[type="radio"]:checked + label::after,
-        .checkbox-primary input[type="checkbox"]:checked + label::after {
-          color: #fff; }
-
-          iframe {
-            max-width: 100%;
-            display:block;
-            margin:0 auto;
-          }
-
-                .down {
-                  position:absolute;
-                  bottom:5px;
-                  right:10px;
-                }  
-                .callout.callout-success {
-                    border-color: #b7b7b7 !important;
-                }
-                .callout {
-                    padding: 5px 15px 5px 5px !important;
-                    margin: 0 0 5px 0 !important;
-                    border-left: 3px solid #cacaca !important;
-                }
-                .callout.callout-success {
-                    background-color: #ffffff !important;
-                    border-left: 3px solid #cacaca !important;
-                }
-      .direct-chat-contacts.plus {
-            height: 55px !important;
-            background: transparent !important; 
-            top: 75% !important; 
+        padding-left: 5px; 
       }
-
-
-        .sticky {
-          position: fixed;
-          top: 0;
-          width: 82%;
-          z-index: 1000;
-          background: #ecf0f5;
-        }
-        .sticky + .content {
-          padding-top: 102px;
-        }
-       .isDisabled {
+      .checkbox label::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 17px;
+        height: 17px;
+        left: 0;
+        margin-left: -20px;
+        border: 1px solid #cccccc;
+        border-radius: 3px;
+        background-color: #fff;
+        -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+        -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+        transition: border 0.15s ease-in-out, color 0.15s ease-in-out; 
+      }
+      .checkbox label::after {
+        display: inline-block;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        left: 0;
+        top: 0;
+        margin-left: -20px;
+        padding-left: 3px;
+        padding-top: 1px;
+        font-size: 11px;
+        color: #555555; 
+      }
+      .checkbox input[type="radio"],  
+      .checkbox input[type="checkbox"] {
+        opacity: 0; 
+      }
+      .checkbox input[type="radio"]:checked + label::after,
+      .checkbox input[type="checkbox"]:checked + label::after {
+        font-family: 'FontAwesome';
+        content: "\f00c"; 
+      }
+      .checkbox input[type="radio"]:disabled + label,  
+      .checkbox input[type="checkbox"]:disabled + label {
+        opacity: 0.65; 
+      }
+      .checkbox input[type="radio"]:disabled + label::before,
+      .checkbox input[type="checkbox"]:disabled + label::before {
+        background-color: #eeeeee;
+        cursor: not-allowed;
+      }
+      .checkbox-primary input[type="radio"]:checked + label::before,
+      .checkbox-primary input[type="checkbox"]:checked + label::before {
+        background-color: #3E3E3E;
+        border-color: #3E3E3E; 
+      }      
+      .checkbox-primary input[type="radio"]:checked + label::after,
+      .checkbox-primary input[type="checkbox"]:checked + label::after {
+        color: #fff; 
+      }
+      iframe {
+        max-width: 100%;
+        display:block;
+        margin:0 auto;
+      }
+      .down {
+        position:absolute;
+        bottom:5px;
+        right:10px;
+      }  
+      .callout.callout-success {
+        border-color: #b7b7b7 !important;
+      }
+      .callout {
+        padding: 5px 15px 5px 5px !important;
+        margin: 0 0 5px 0 !important;
+        border-left: 3px solid #cacaca !important;
+      }
+      .callout.callout-success {
+        background-color: #ffffff !important;
+        border-left: 3px solid #cacaca !important;
+      }
+      .direct-chat-contacts.plus {
+        height: 55px !important;
+        background: transparent !important; 
+        top: 75% !important; 
+      }
+      .sticky {
+        position: fixed;
+        top: 0;
+        width: 82%;
+        z-index: 1000;
+        background: #ecf0f5;
+      }
+      .sticky + .content {
+        padding-top: 102px;
+      }
+     .isDisabled {
         color: currentColor;
         cursor: not-allowed;
         opacity: 0.5;
         text-decoration: none;
       }   
       input[id^="spoiler"]{
-         display: none;
-        }
-        input[id^="spoiler"] + label {
-          text-align: center;
-          font-size: 12px;
-          cursor: pointer;
-          transition: all .6s;
-        }
-        input[id^="spoiler"]:checked + label {
-          color: #333;
-          background: #ccc;
-        }
-        input[id^="spoiler"] ~ .spoiler {
-          overflow: hidden;
-          opacity: 0;
-          background: #eee;
-          border: 1px solid #ccc;
-          transition: all .6s;
-        }
-        input[id^="spoiler"]:checked + label + .spoiler{
-          height: auto;
-          opacity: 1;
-        }
+        display: none;
+      }
+      input[id^="spoiler"] + label {
+        text-align: center;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all .6s;
+      }
+      input[id^="spoiler"]:checked + label {
+        color: #333;
+        background: #ccc;
+      }
+      input[id^="spoiler"] ~ .spoiler {
+        overflow: hidden;
+        opacity: 0;
+        background: #eee;
+        border: 1px solid #ccc;
+        transition: all .6s;
+      }
+      input[id^="spoiler"]:checked + label + .spoiler{
+        height: auto;
+        opacity: 1;
+      }
       .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
         background-color: #333 !important;  
        } 
-     .cut{
-      width: 85%;
-      text-overflow:ellipsis;
-      white-space:nowrap; 
-      overflow:hidden; 
-    } 
-    .cut2{
-       word-break: break-all;
-       word-wrap: break-word;
-    }
-     .cut2>div{
-      font-size: 12px !important;
-    }
-    .cut2>span{
-      font-size: 12px !important;
-    }
-     blockquote{
-      font-size: 12px !important;
-      padding: 10px 10px !important;
-    }
-    .iframe-container{
-      min-height: 100px;
-      background: #fff url("{{ asset('images/Loading.gif') }}") no-repeat 50% center !important;
-    }
-
-
-
+      .cut{
+        width: 85%;
+        text-overflow:ellipsis;
+        white-space:nowrap; 
+        overflow:hidden; 
+      } 
+      .cut2{
+        word-break: break-all;
+        word-wrap: break-word;
+      }
+      .cut2>div{
+        font-size: 12px !important;
+      }
+      .cut2>span{
+        font-size: 12px !important;
+      }
+      blockquote{
+        font-size: 12px !important;
+        padding: 10px 10px !important;
+      }
+      .iframe-container{
+        min-height: 100px;
+        background: #fff url("{{ asset('images/Loading.gif') }}") no-repeat 50% center !important;
+      }
 </style>
-
 
  @if($mode == 'null')  
         <div class="box">
               	<div class="box-header with-border">
             	    <h3 class="box-title">Historia Clínica</h3>
               	</div>
-             
-              	<div class="box-body"  id="myWizard">
-
+         <div class="box-body" id="myWizard">
                  <div class="progress">
                    	@php
-                   	$percent = (1 /count($questions)) * 100;
-                    $per = intval($percent);
+                       	$percent = (1 /count($questions)) * 100;
+                        $per = intval($percent);
                    	@endphp
-                 <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: {{ $percent }}%;">
-                   {{ $per }}%
+                     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: {{ $percent }}%;">
+                       {{ $per }}%
+                     </div>
                  </div>
-           </div>
   
 
            <div class="tab-content">
@@ -223,7 +212,6 @@
               <div class="tab-pane fade in active" id="step1">
                  
                 <div class="well well-sm"> 
-                  
                     <h3>{{ $questions1->question }}</h3>
                     <br>
                   @php $an = json_decode($questions1->answer); @endphp
@@ -264,7 +252,7 @@
                                               </label>
                                             @endif  
                                         @endif  
-                                    @endif
+                                  @endif
                                @endif 
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
                             </div>
@@ -443,17 +431,17 @@
               @endforeach
 
            </div>
-                     <div class="navbar" style="visibility: hidden" id="wiz">
+           <div class="navbar" style="visibility: hidden" id="wiz">
                 <div class="navbar-inner">
                       <ul class="nav nav-pills pull-center">
-                    @foreach($questions as $question) 
-                        @if($loop->iteration == 1)
-                         <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
-                        @endif
-                         @if($loop->iteration > 1)
-                         <li><a href="#step{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
-                         @endif
-                      @endforeach
+                        @foreach($questions as $question) 
+                            @if($loop->iteration == 1)
+                                <li class="active"><a href="#step1" data-toggle="tab" data-step="1">1</a></li>
+                            @endif
+                            @if($loop->iteration > 1)
+                                <li><a href="#step{{ $loop->iteration }}" data-toggle="tab" data-step="{{ $loop->iteration }}">{{ $loop->iteration }}</a></li>
+                            @endif
+                        @endforeach
                       </ul>
                 </div>
              </div>
@@ -481,18 +469,18 @@
             </div>                         
         @else 
      <div class="box-header direct-chat header1" id="header1">
-              <h3 class="box-title">
+               <h3 class="box-title">
                         Expediente médico<a href="javascript:void(0);" onclick="visib();" style="color: #777 !important;" class="btn"><i class="fa fa-eye" id="eye"></i></a>   
                </h3> 
-        <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
+                 <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-search text-muted"></span></button>
-      <div class="direct-chat-contacts plus">
-       <div class="col-sm-3 pull-right"><input id="search" type="text" placeholder="Buscar expedientes" class="form-control"></div>     
-     </div><br>
-     <div id="headeralert"></div>
-   </div>
+          <div class="direct-chat-contacts plus">
+                <div class="col-sm-3 pull-right"><input id="search" type="text" placeholder="Buscar expedientes" class="form-control"></div>     
+          </div><br>
+          <div id="headeralert"></div>
+     </div>
 
-        <div class="box-body content expbody">
+    <div class="box-body content expbody">
       <!-- row -->
      <div class="row">
         <div class="col-md-12">
@@ -527,97 +515,92 @@
                                 echo $bod;
                               @endphp          
                             </div>
-                                                          <a href="javascript:void(0)" id="a{{ $fi[0]->id }}" onclick="if(document.getElementById('spoiler{{ $fi[0]->id }}') .style.display=='none') {document.getElementById('spoiler{{ $fi[0]->id }}') .style.display=''; document.getElementById('a{{ $fi[0]->id }}').innerHTML ='...Ver menos';}else{document.getElementById('spoiler{{ $fi[0]->id }}') .style.display='none'; document.getElementById('a{{ $fi[0]->id }}').innerHTML ='Ver más...';}">Ver más...</a><br>
+                                <a href="javascript:void(0)" id="a{{ $fi[0]->id }}" onclick="if(document.getElementById('spoiler{{ $fi[0]->id }}') .style.display=='none') {document.getElementById('spoiler{{ $fi[0]->id }}') .style.display=''; document.getElementById('a{{ $fi[0]->id }}').innerHTML ='...Ver menos';}else{document.getElementById('spoiler{{ $fi[0]->id }}') .style.display='none'; document.getElementById('a{{ $fi[0]->id }}').innerHTML ='Ver más...';}">Ver más...</a><br>
+
                         @if(count($fi) == 1)                                
                             @php
-                            $part = pathinfo($fi[0]->url);
-                              if($part['extension'] == "rar" || $part['extension'] == "tar" || $part['extension'] == "tar.gz"){
-                                $validate = 1;
-                              }else{
-                                $validate = 0;
-                              }
-                            @endphp <br>
+                              $part = pathinfo($fi[0]->url);
+                                if($part['extension'] == "rar" || $part['extension'] == "tar" || $part['extension'] == "tar.gz"){
+                                  $validate = 1;
+                                }else{
+                                  $validate = 0;
+                                }
+                            @endphp 
+                            <br>
 
                             @if($validate == 0)
-                            <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $fi[0]->url }}" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}">Ver estudio</a>
-
+                                 <a class="btn btn-default btn-flat btn-sm external" data-toggle="modal" href="{{ $fi[0]->url }}" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}">Ver estudio</a>
                             @else
-                              @if($agent->isMobile())
-                                <label class="text-red" style="font-size: 11px;"> *Este archivo solo tiene opción de reenvío</label>
-                              @else
-                               <a class="btn btn-default btn-flat btn-sm" href="{{ $fi[0]->url }}">Descargar estudio</a>
-                              @endif 
-
+                                @if($agent->isMobile())
+                                    <label class="text-red" style="font-size: 11px;"> *Este archivo solo tiene opción de reenvío</label>
+                                @else
+                                    <a class="btn btn-default btn-flat btn-sm" href="{{ $fi[0]->url }}">Descargar estudio</a>
+                                @endif 
                             @endif
 
                             <!-- Modal for file view -->
                                       <div class="modal fade" id="myModal{{$fi[0]->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
                                         <div class="modal-dialog">
                                           <div class="modal-content">
-                                          <div class="modal-header">
-                                           <span style="font-size: 15px;"><b> {{ $fi[0]->details }} </b></span>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                          </div>
-                                            <div class="modal-body results">
-                                            </div>
-                                            </div><!-- /.modal-content -->
+                                            <div class="modal-header">
+                                                <span style="font-size: 15px;"><b> {{ $fi[0]->details }} </b></span>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                             </div>
+                                            <div class="modal-body results"></div>
+                                          </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->
                                       </div><!-- /.modal -->
                             <!-- End modal for file view -->
 
                            @else
-                                                       <a class="btn btn-default btn-flat btn-sm" data-toggle="modal" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}" onclick="$('.x.active.external').click();">Ver estudio</a>
+                              <a class="btn btn-default btn-flat btn-sm" data-toggle="modal" data-id="myModal{{$fi[0]->id}}" data-target="#myModal{{$fi[0]->id}}" onclick="$('.x.active.external').click();">Ver estudio</a>
                                 
                                 <div class="modal fade" id="myModal{{$fi[0]->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height: 900px;">
-                                        <div class="modal-dialog">
-                                          <div class="modal-content">
-                                          <div class="modal-header">
+                                   <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
                                             @php
-                                            $cont = count($fi);
+                                                $cont = count($fi);
                                             @endphp
                                            <span style="font-size: 15px;"><b>Se adjuntaron #{{ $cont }} archivos</b></span>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                          </div>
+                                        </div>
                                             <div class="modal-body">
                                                 <div class="nav-tabs-custom">
-                                                        <ul class="nav nav-tabs">
+                                                      <ul class="nav nav-tabs">
                                                           <li class="dropdown">
                                                             <a class="dropdown-toggle men" data-toggle="dropdown" href="#" aria-expanded="false">
                                                               <label><span class="spt">Seleccione: </span>&nbsp;<i class="fa fa-angle-down" style="font-size: 18px;"></i></label>
                                                             </a>
                                                             <ul class="dropdown-menu">
                                                           @foreach($fi as $f)    
-                                                           @if($loop->iteration == 1)
-                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="x active external" onclick="$('.dropdown-toggle.men span.spt').text($(this).text());">{{ $f->details}}</a></li>
-                                                           @else
-                                                            <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="external"  onclick="$('.dropdown-toggle.men span.spt').text($(this).text());">{{ $f->details}}</a></li>
-                                                           @endif
-                                                          
+                                                             @if($loop->iteration == 1)
+                                                                <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="x active external" onclick="$('.dropdown-toggle.men span.spt').text($(this).text());">{{ $f->details}}</a></li>
+                                                             @else
+                                                                <li><a href="{{ $f->url }}" data-toggle="tab" data-target="#t{{ $f->id}}" class="external"  onclick="$('.dropdown-toggle.men span.spt').text($(this).text());">{{ $f->details}}</a></li>
+                                                             @endif
                                                           @endforeach
                                                             </ul>
                                                           </li>
                                                         </ul>
-                                                        <div class="tab-content">
+                                                      <div class="tab-content">
                                                          @foreach($fi as $f)    
-                                                         @if($loop->iteration == 1)
-                                                          <div class="tab-pane active" id="t{{ $f->id}}">
-                                                         @else
-                                                          <div class="tab-pane" id="t{{ $f->id}}">   
-                                                         @endif   
-                                                                       <div class="modal-body dos iframe-container results">
-                                                                       </div>
-                                                          </div>
+                                                             @if($loop->iteration == 1)
+                                                                <div class="tab-pane active" id="t{{ $f->id}}">
+                                                             @else
+                                                                <div class="tab-pane" id="t{{ $f->id}}">   
+                                                             @endif   
+                                                                    <div class="modal-body dos iframe-container results"></div>
+                                                                </div>
                                                           @endforeach
-                                                        </div>
+                                                      </div>
                                                         <!-- /.tab-content -->
                                                       </div>
 
-                                            </div>
+                                                </div>
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->
                                       </div><!-- /.modal -->
-
-                  
                            @endif
                           </div>
                         </div>
@@ -650,37 +633,36 @@
 
                   <a class="btn btn-default btn-flat btn-sm external" data-id="myModal{{$test->id}}"  data-toggle="modal" href="{{ $test->url }}" data-target="#myModal{{$test->id}}">Ver estudio</a>
                   <a class="btn btn-secondary btn-sm btn-flat modal-chat" data-toggle="modal" data-target="#chat-form-modal">Comentarios</a>
-                  <div class="modal-chat fade2 modal" id="chat-form-modal">
+            <div class="modal-chat fade2 modal" id="chat-form-modal">
                 <div class="modal-dialog">
-                    <div class="modal-content">
-                         <div class="modal-header">
-                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
-                             <h4 class="modal-title"> <i class="fa fa-comments"></i> Ventana de Conversación</h4>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                                 <h4 class="modal-title"> <i class="fa fa-comments"></i> Ventana de Conversación</h4>
                              </div>
-                          <div class="modal-body">
-                                <input type="hidden" class="middr" value="{{ $test->doctor }}">
-                                <input type="hidden" class="midfield" value="{{ $test->id }}">
-                                <input type="hidden" class="mname" value="{{ $test->name }}">
-                                <input type="hidden" class="mtable" value="diagnostic_test_result">
-                             @include('conversations.conversationform')
-                         </div>
-                          </div>  
-                       </div>
-                    </div>    
+                                <div class="modal-body">
+                                      <input type="hidden" class="middr" value="{{ $test->doctor }}">
+                                      <input type="hidden" class="midfield" value="{{ $test->id }}">
+                                      <input type="hidden" class="mname" value="{{ $test->name }}">
+                                      <input type="hidden" class="mtable" value="diagnostic_test_result">
+                                   @include('conversations.conversationform')
+                               </div>
+                        </div>  
+                </div>
+            </div>    
 
-                            <div class="modal fade" id="myModal{{$test->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal fade" id="myModal{{$test->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                               <div class="modal-dialog">
                                 <div class="modal-content">
-                                <div class="modal-header">
-                                 <span style="font-size: 15px;"><b> {{ $test->name }} </b></span>
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                                  <div class="modal-body iframe-container results">
-                                  </div>
-                                  </div><!-- /.modal-content -->
+                                    <div class="modal-header">
+                                        <span style="font-size: 15px;"><b> {{ $test->name }} </b></span>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body iframe-container results"></div>
+                                </div><!-- /.modal-content -->
                               </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
+                           </div><!-- /.modal -->
                                                     <!-- /.modal -->
 
                 </div>
@@ -688,7 +670,7 @@
             </li>
             @endforeach
              <li>
-              <i class="fa fa-clock-o bg-gray"></i>
+                  <i class="fa fa-clock-o bg-gray"></i>
             </li>
          </ul>  
           </div>
@@ -698,20 +680,23 @@
          <br>
           <div class="box-header direct-chat header2" id="header2">
                 <h3 class="box-title">
-                          Historia clínica<a href="{{ url('clinicHistory/edit/0')}}" class="btn"><i class="fa fa-pencil text-muted"></i></a>  
+                    Historia clínica
+                    <a href="{{ url('clinicHistory/edit/0')}}" class="btn">
+                        <i class="fa fa-pencil text-muted"></i>
+                     </a>  
                  </h3>
-                <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
+                 <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-filter text-muted"></span></button>
-              <div class="direct-chat-contacts plus">
-                       <div class="btn-group pull-right">
-                            <button id="familiares" type="button" class="btn bg-blue btn-flat" title="Antecedentes Familiares"><i class="fa fa-users"></i></button>   
-                            <button id="morbidos" type="button"  class="btn bg-gray btn-flat" title="Antecedentes Mórbidos"><i class="fa fa-stethoscope"></i></button>
-                            <button id="alergias" type="button" class="btn bg-black btn-flat" title="Alergias"> <i class="fa fa-medkit"></i></button> 
-                            <button id="habitos" type="button" class="btn bg-green btn-flat" title="Hábitos"><i class="fa fa-coffee"></i></button>
-                            <button id="cita" type="button" class="btn bg-yellow btn-flat" title="Previa cita"><i class="fa fa-medkit"></i></button>
-                            <button id="all" type="button" class="btn btn-default btn-flat" title="Ver todo"><b>Ver Todo</b></button>   
-                      </div>
-              </div>
+                 <div class="direct-chat-contacts plus">
+                           <div class="btn-group pull-right">
+                                <button id="familiares" type="button" class="btn bg-blue btn-flat" title="Antecedentes Familiares"><i class="fa fa-users"></i></button>   
+                                <button id="morbidos" type="button"  class="btn bg-gray btn-flat" title="Antecedentes Mórbidos"><i class="fa fa-stethoscope"></i></button>
+                                <button id="alergias" type="button" class="btn bg-black btn-flat" title="Alergias"> <i class="fa fa-medkit"></i></button> 
+                                <button id="habitos" type="button" class="btn bg-green btn-flat" title="Hábitos"><i class="fa fa-coffee"></i></button>
+                                <button id="cita" type="button" class="btn bg-yellow btn-flat" title="Previa cita"><i class="fa fa-medkit"></i></button>
+                                <button id="all" type="button" class="btn btn-default btn-flat" title="Ver todo"><b>Ver Todo</b></button>   
+                          </div>
+                  </div>
      
 
            </div><br/>
@@ -720,12 +705,12 @@
                   <div class="col-md-12">
            <ul class="timeline">   
             @php
-            $t0 = 0;
-            $t1 = 0; 
-            $t2 = 0; 
-            $t3 = 0;
-            $t4 = 0;
-            $t5 = 0;                         
+                $t0 = 0;
+                $t1 = 0; 
+                $t2 = 0; 
+                $t3 = 0;
+                $t4 = 0;
+                $t5 = 0;                         
             @endphp
       @foreach($clinic_history->sortBy('type') as $clinic)
 
@@ -733,43 +718,42 @@
           @if($clinic->type == 'Previa cita')
              @php $t0++; @endphp
              @if($t0 == 1)
-            <li class="time-label cita">
-                  <span class="bg-yellow">
-                   {{ $clinic->type }} 
-                  </span>
-            </li>
-            @endif
+                <li class="time-label cita">
+                      <span class="bg-yellow">
+                       {{ $clinic->type }} 
+                      </span>
+                </li>
+             @endif
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
             <li class="cita">
               <i class="fa fa-medkit bg-yellow"></i>
-
               <div class="timeline-item">
-              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
-
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
-                <div class="timeline-body">
-                   @php $a = json_decode($clinic->answer); @endphp
-                  @foreach($a as $answer)
-                      <div class="callout callout-success" style="color: #000 !important;">
-                        <h5>{{ $answer }}</h5>
-                      </div>
-                  @endforeach
-                 <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
-                </div>
-              </div>
+                 <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
+                 <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
+                  <div class="timeline-body">
+                     @php $a = json_decode($clinic->answer); @endphp
+                    @foreach($a as $answer)
+                        <div class="callout callout-success" style="color: #000 !important;">
+                          <h5>{{ $answer }}</h5>
+                        </div>
+                    @endforeach
+                   <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
+                  </div>
+               </div>
             </li>
             @endif
+
             @if($clinic->type == 'Antecedentes Familiares')
              @php $t1++; @endphp
-             @if($t1 == 1)
-            <li class="time-label familiares">
-                  <span class="bg-blue">
-                   {{ $clinic->type }} 
-                  </span>
-            </li>
-            @endif
+               @if($t1 == 1)
+                  <li class="time-label familiares">
+                        <span class="bg-blue">
+                         {{ $clinic->type }} 
+                        </span>
+                  </li>
+               @endif
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
@@ -782,25 +766,26 @@
                 <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
                 <div class="timeline-body">
                    @php $a = json_decode($clinic->answer); @endphp
-                  @foreach($a as $answer)
-                      <div class="callout callout-success" style="color: #000 !important;">
-                        <h5>{{ $answer }}</h5>
-                      </div>
-                  @endforeach
+                    @foreach($a as $answer)
+                        <div class="callout callout-success" style="color: #000 !important;">
+                          <h5>{{ $answer }}</h5>
+                        </div>
+                    @endforeach
                  <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
                 </div>
               </div>
             </li>
             @endif
+
              @if($clinic->type == 'Antecedentes Morbidos')
-             @php $t2++; @endphp
-             @if($t2 == 1)
-            <li class="time-label morbidos">
-                  <span class="bg-gray">
-                   Antecedentes Mórbidos
-                  </span>
-            </li>
-            @endif
+                @php $t2++; @endphp
+               @if($t2 == 1)
+                <li class="time-label morbidos">
+                      <span class="bg-gray">
+                       Antecedentes Mórbidos
+                      </span>
+                </li>
+               @endif
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
@@ -811,49 +796,51 @@
               <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
                 <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
-                <div class="timeline-body">
-                   @php $a = json_decode($clinic->answer); @endphp
-                  @foreach($a as $answer)
-                      <div class="callout callout-success" style="color: #000 !important;">
-                        <h5>{{ $answer }}</h5>
-                      </div>
-                  @endforeach
-                  <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
-                </div>
+                  <div class="timeline-body">
+                     @php $a = json_decode($clinic->answer); @endphp
+                      @foreach($a as $answer)
+                          <div class="callout callout-success" style="color: #000 !important;">
+                            <h5>{{ $answer }}</h5>
+                          </div>
+                      @endforeach
+                    <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
+                  </div>
               </div>
             </li>
-            @endif
+           @endif
+
            @if($clinic->type == 'Alergias')
-           @php $t3++; @endphp
+             @php $t3++; @endphp
              @if($t3 == 1)
-            <li class="time-label alergias">
-                  <span class="bg-black">
-                   Alergias
-                  </span>
-            </li>
-            @endif
+                <li class="time-label alergias">
+                      <span class="bg-black">
+                       Alergias
+                      </span>
+                </li>
+             @endif
             <!-- /.timeline-label -->
             <!-- timeline item -->
 
-            <li class="alergias">
-              <i class="fa fa-medkit bg-black"></i>
+              <li class="alergias">
+                <i class="fa fa-medkit bg-black"></i>
 
-              <div class="timeline-item">
-              <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
+                <div class="timeline-item">
+                  <span class="time"><i class="fa fa-clock-o"></i> {{ \Carbon\Carbon::parse($clinic->updated_at)->diffForHumans() }}</span>
 
-                <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
-                <div class="timeline-body">
-                   @php $a = json_decode($clinic->answer); @endphp
-                  @foreach($a as $answer)
-                      <div class="callout callout-success" style="color: #000 !important;">
-                        <h5>{{ $answer }}</h5>
-                      </div>
-                  @endforeach
+                    <h3 class="timeline-header"><a data-toggle="tooltip" title="{{ $clinic->text_help}}" href="javascript:void(0)">{{ $clinic->question }}</a></h3>
+                    <div class="timeline-body">
+                       @php $a = json_decode($clinic->answer); @endphp
+                      @foreach($a as $answer)
+                          <div class="callout callout-success" style="color: #000 !important;">
+                            <h5>{{ $answer }}</h5>
+                          </div>
+                      @endforeach
+                    </div>
+                    <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
                 </div>
-                <a href="edit/{{ $clinic->question_id}}" class="down btn"><i class="fa fa-pencil text-muted"></i></a>
-              </div>
-            </li>
+              </li>
             @endif
+
            @if($clinic->type == 'Habitos')
             @php $t4++; @endphp
              @if($t4 == 1)
@@ -933,7 +920,6 @@
               $('.alert').fadeOut(500);
             };
         
-
            if(window.location.href == "{{ url('clinicHistory/index') }}" && "{{ $mode }}" == "finish"){      
                 window.onscroll = function() {myFunction()};
                 var header = document.getElementById("header2");
@@ -942,6 +928,7 @@
                 var header1 = document.getElementById("header1");
                 var sticky1 = header1.offsetTop;
              }   
+
         function myFunction() {
             
             if (window.pageYOffset >= sticky) {
@@ -965,27 +952,29 @@
                      $('#header2').css('width','');
                   }
           if($('.box-header').hasClass('header1')){        
-             if($('#eye').hasClass('fa-eye-slash') == true){
-                header1.classList.remove("sticky");
-                     $('#header1').css('width','');
-                        header.classList.add("sticky");
-             }else{
-            if (window.pageYOffset >= sticky1) {
-                    header1.classList.add("sticky");
-              if("@php echo $agent->isMobile(); @endphp"){
-                          $('.sticky').css('width','96%');
-                 }else{ 
-                  if ($('body').hasClass('sidebar-collapse')){
-                        $('.sticky').css('width','96%');
-                      }else{
-                         $('.sticky').css('width','82%');
-                      }
-                    }
-                  } else {
-                    header1.classList.remove("sticky");
-                     $('#header1').css('width','');
-                  }
-                 }
+               if($('#eye').hasClass('fa-eye-slash') == true){
+                  header1.classList.remove("sticky");
+                       $('#header1').css('width','');
+                          header.classList.add("sticky");
+               }
+            else{
+                if (window.pageYOffset >= sticky1) {
+                        header1.classList.add("sticky");
+                        if("@php echo $agent->isMobile(); @endphp"){
+                                    $('.sticky').css('width','96%');
+                           }else{ 
+                            if ($('body').hasClass('sidebar-collapse')){
+                                  $('.sticky').css('width','96%');
+                                }else{
+                                   $('.sticky').css('width','82%');
+                                }
+                              }
+                            } 
+                         else {
+                              header1.classList.remove("sticky");
+                               $('#header1').css('width','');
+                        }
+                     }
                 } 
               }
             }
@@ -1282,9 +1271,9 @@
                                             }
                                          }
                                          else{
-                                          $(this).prop("checked", false);
-                                          $(this).siblings('div').html('');
-                                          $(this).siblings('div').css("display", "none");
+                                              $(this).prop("checked", false);
+                                              $(this).siblings('div').html('');
+                                              $(this).siblings('div').css("display", "none");
                                          }
 
                       });
@@ -1472,53 +1461,49 @@
 					  return false;
 					  
 					});
-					$('.prev').click(function(){
 
-					  var prevId = $(this).parents('.tab-pane').prev().attr("id");
-					  $('[href=#'+prevId+']').tab('show');
+					$('.prev').click(function(){
+  					  var prevId = $(this).parents('.tab-pane').prev().attr("id");
+  					  $('[href=#'+prevId+']').tab('show');
 					  return false;
-					  
 					});
 
 					$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-					  
 					  //update progress
 					  var step = $(e.target).data('step');
 					  var percent = (parseInt(step) / @php echo count($questions); @endphp) * 100;
-					  console.log(@php echo count($questions); @endphp);
 					  
 					  $('.progress-bar').css({width: percent + '%'});
 					  $('.progress-bar').text(parseInt(percent) + "%");
 					  
-					  //e.relatedTarget // previous tab
-					  
 					});
 
 					$('.first').click(function(){
-
-					  $('#wiz a:first').tab('show')
-
+					     $('#wiz a:first').tab('show')
 					});
+
           $('.finish').click(function(){
 
                         var tab = $(this).parents('.tab-pane').attr("id");
 
-                         var values = $('#'+tab+' input').map(function() {
+                        var values = $('#'+tab+' input').map(function() {
+
                           if($(this).is(':checkbox') && this.checked){
 
                                   var check2 = this.value.replace(/_/gi, " ");
                                 if($('#'+tab+' input:radio').is(':checked')){
                                     check2 =  this.value.replace(/_/gi, " ") + ' (' + $('#'+tab+' input:radio:checked').val() + ')';
-                                } 
-                                    
-                                  }
+                                }   
+                           }
+
                           if($(this).is(':radio')){
                                 if($(this).is(':checked') && $('#'+tab+' input:radio:checked').val() == "Si"){
                                    var check2 =  $('#'+tab+' textarea').val();
                                 } 
                                 if($(this).is(':checked') && $('#'+tab+' input:radio:checked').val() == "No"){
                                    var check2 =    $('#'+tab+' input:radio:checked').val();
-                                } }
+                                } 
+                              }
                                 return check2; // obtienes el valor de todos los checkboxes
                                   
                           }).get();
@@ -1527,25 +1512,25 @@
                         var ques = $('#'+tab+ ' .quesId').val();
                         var ansId = $('#'+tab+ ' .ansId').val();
                                   $.ajaxSetup({
-                                  headers: {
+                                    headers: {
                                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                  }
-                              });
+                                    }
+                                  });
 
-                                     $.ajax({     
-                                       type: "POST",                 
-                                        url: '{{ url("clinicHistory/save") }}',  
-                                        data: { "answers" : JSON.stringify(values), 
-                                                "question" : ques,
-                                                "ansId"    : ansId
-                                      }, 
-                                        dataType: 'json',                
-                                       success: function(data)             
-                                       {
-                                          
-                                        console.log(data);
-                                       }
-                                   });
+                                 $.ajax({     
+                                   type: "POST",                 
+                                    url: '{{ url("clinicHistory/save") }}',  
+                                    data: { "answers" : JSON.stringify(values), 
+                                            "question" : ques,
+                                            "ansId"    : ansId
+                                  }, 
+                                    dataType: 'json',                
+                                   success: function(data)             
+                                   {
+                                      
+                                    console.log(data);
+                                   }
+                               });
                          window.open('{{ url("clinicHistory/index") }}', '_self');
 
           });
