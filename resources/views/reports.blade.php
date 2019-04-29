@@ -35,12 +35,20 @@
                  <span class="fa fa-filter text-muted"></span></button>
               <div class="direct-chat-contacts">
                       <div class="btn-group pull-right col-sm-3">
-                          <form name='classic' method='POST' action=''>
+                          <form id='sendFilter' method='GET' action=''>
                             {{ csrf_field() }}
                             <select id="filter" name="filter" class="form-control">
-                                   <option value="all" selected>Todos</option>
+                                  @if($date == 'All')
+                                    <option value="All" selected>Todos</option>
+                                  @else
+                                    <option value="All">Todos</option>
+                                  @endif 
                               @foreach($picklist as $dat)
-                                   <option value="{{ $dat }}">{{ $dat }}</option>
+                                  @if($date == $dat)
+                                    <option value="{{ $dat }}" selected="">{{ $dat }}</option>
+                                  @else
+                                    <option value="{{ $dat }}">{{ $dat }}</option>
+                                  @endif 
                               @endforeach
                             </select> 
                           </form>    
@@ -201,12 +209,12 @@
           var arrayworkplace = [0,0];
           var title = '0';
 
-                     function colorRandom(){
-                            var value = Math.random() * 0xFF | 0;
-                            var grayscale = (value << 16) | (value << 8) | value;
-                            var color = '#' + grayscale.toString(16);
-                            return color;      
-                        }
+         function colorRandom(){
+                var value = Math.random() * 0xFF | 0;
+                var grayscale = (value << 16) | (value << 8) | value;
+                var color = '#' + grayscale.toString(16);
+                return color;      
+            }
 
 
           var arraycolorAge = Array();
@@ -498,7 +506,10 @@
             workGr();
        }  
 
-
+       $('#filter').on('change', function(e){
+            $('#sendFilter').attr('action', '{{ url("reports/index") }}/'+ $(this).val());
+            $(this).closest('form').submit();
+        });
 
 </script>
 

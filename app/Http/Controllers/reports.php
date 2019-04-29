@@ -28,40 +28,90 @@ class reports extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index($date){
+
          $user = User::find(Auth::id());
 
-            $grap = DB::table('medical_appointments')
-            ->join('users', 'medical_appointments.user', '=', 'users.id')
-            ->where('medical_appointments.user_doctor', '=', $user->id)
-            ->select('medical_appointments.*', 'users.id as us', 'users.gender', 'users.age')
-            ->get();
+       switch ($date) {
+          case 'All':
+                  $grap = DB::table('medical_appointments')
+                  ->join('users', 'medical_appointments.user', '=', 'users.id')
+                  ->where('medical_appointments.user_doctor', '=', $user->id)
+                  ->select('medical_appointments.*', 'users.id as us', 'users.gender', 'users.age')
+                  ->get();
 
-            $polig = DB::table('cli_recipes_tests')
-            ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
-            ->join('diagnostics', 'cli_recipes_tests.diagnostic', '=', 'diagnostics.id')
-            ->where('diagnostic', '>', 0)
-            ->where('recipes_tests.doctor', $user->id)
-            ->select('recipes_tests.patient', 'diagnostics.name', 'cli_recipes_tests.created_at', 'cli_recipes_tests.id')
-            ->get();
-            
-           $transactions = DB::table('transaction_bank')
-            ->join('medical_appointments', 'transaction_bank.appointments', '=', 'medical_appointments.id')
-            ->join('users', 'medical_appointments.user', '=', 'users.id')
-            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
-            ->where('medical_appointments.user_doctor', '=', $user->id)
-            ->orderBy('medical_appointments.when', 'desc')
-            ->select('transaction_bank.*', 'users.name', 'medical_appointments.when', 'labor_information.workplace as place')
-            ->get();
+                  $polig = DB::table('cli_recipes_tests')
+                  ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                  ->join('diagnostics', 'cli_recipes_tests.diagnostic', '=', 'diagnostics.id')
+                  ->where('diagnostic', '>', 0)
+                  ->where('recipes_tests.doctor', $user->id)
+                  ->select('recipes_tests.patient', 'diagnostics.name', 'cli_recipes_tests.created_at', 'cli_recipes_tests.id')
+                  ->get();
+                  
+                 $transactions = DB::table('transaction_bank')
+                  ->join('medical_appointments', 'transaction_bank.appointments', '=', 'medical_appointments.id')
+                  ->join('users', 'medical_appointments.user', '=', 'users.id')
+                  ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+                  ->where('medical_appointments.user_doctor', '=', $user->id)
+                  ->orderBy('medical_appointments.when', 'desc')
+                  ->select('transaction_bank.*', 'users.name', 'medical_appointments.when', 'labor_information.workplace as place')
+                  ->get();
 
 
-            $workplace = DB::table('medical_appointments')
-            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
-            ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
-            ->where('medical_appointments.user_doctor', '=', $user->id)
-            ->orderBy('medical_appointments.when', 'desc')
-            ->select('medical_appointments.*', 'users.name', 'labor_information.workplace as place')
-            ->get();
+                  $workplace = DB::table('medical_appointments')
+                  ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+                  ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
+                  ->where('medical_appointments.user_doctor', '=', $user->id)
+                  ->orderBy('medical_appointments.when', 'desc')
+                  ->select('medical_appointments.*', 'users.name', 'labor_information.workplace as place')
+                  ->get();
+                 
+
+                 break;
+
+           default:
+                 $grap = DB::table('medical_appointments')
+                  ->join('users', 'medical_appointments.user', '=', 'users.id')
+                  ->where('medical_appointments.user_doctor', '=', $user->id)
+                  ->whereYear('medical_appointments.when', Carbon::parse($date)->format('Y'))
+                  ->whereMonth('medical_appointments.when', Carbon::parse($date)->format('m'))                
+                  ->select('medical_appointments.*', 'users.id as us', 'users.gender', 'users.age')
+                  ->get();
+
+                  $polig = DB::table('cli_recipes_tests')
+                  ->join('recipes_tests', 'cli_recipes_tests.recipe_test', '=', 'recipes_tests.id')
+                  ->join('diagnostics', 'cli_recipes_tests.diagnostic', '=', 'diagnostics.id')
+                  ->where('diagnostic', '>', 0)
+                  ->where('recipes_tests.doctor', $user->id)
+                  ->whereYear('cli_recipes_tests.created_at', Carbon::parse($date)->format('Y'))
+                  ->whereMonth('cli_recipes_tests.created_at', Carbon::parse($date)->format('m'))                 
+                  ->select('recipes_tests.patient', 'diagnostics.name', 'cli_recipes_tests.created_at', 'cli_recipes_tests.id')
+                  ->get();
+                  
+                 $transactions = DB::table('transaction_bank')
+                  ->join('medical_appointments', 'transaction_bank.appointments', '=', 'medical_appointments.id')
+                  ->join('users', 'medical_appointments.user', '=', 'users.id')
+                  ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+                  ->where('medical_appointments.user_doctor', '=', $user->id)
+                  ->whereYear('medical_appointments.when', Carbon::parse($date)->format('Y'))
+                  ->whereMonth('medical_appointments.when', Carbon::parse($date)->format('m'))                  
+                  ->orderBy('medical_appointments.when', 'desc')
+                  ->select('transaction_bank.*', 'users.name', 'medical_appointments.when', 'labor_information.workplace as place')
+                  ->get();
+
+
+                  $workplace = DB::table('medical_appointments')
+                  ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+                  ->join('users', 'medical_appointments.user_doctor', '=', 'users.id')
+                  ->where('medical_appointments.user_doctor', '=', $user->id)
+                  ->whereYear('medical_appointments.when', Carbon::parse($date)->format('Y'))
+                  ->whereMonth('medical_appointments.when', Carbon::parse($date)->format('m'))
+                  ->orderBy('medical_appointments.when', 'desc')
+                  ->select('medical_appointments.*', 'users.name', 'labor_information.workplace as place')
+                  ->get();
+                   
+                 break;
+               }  
 
             $whenAppointments = DB::table('medical_appointments')
             ->where('medical_appointments.user_doctor', '=', $user->id)
@@ -212,7 +262,8 @@ class reports extends Controller
                 'balancedates'  => $dates,
                 'workplaces'    => $workplace,
                 'places'        => json_encode($places),
-                'picklist'      => $picklistMonth
+                'picklist'      => $picklistMonth,
+                'dateselect'    => $date
             ]
         );
     }
@@ -228,7 +279,7 @@ class reports extends Controller
     {
         switch ($page) {
             case 'index':
-                return redirect('reports/index'); //show
+                return redirect('reports/index/All');
                 break;
             
             default:

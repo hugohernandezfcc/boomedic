@@ -513,11 +513,12 @@ Route::group(['prefix' => 'drAppointments'], function(){
 
 Route::group(['prefix' => 'reports'], function(){
 
-	Route::get('index', [
+
+	Route::get('index/{date}', [
 			'uses'	=>	'reports@index',
 			'as'	=>	'index'
 		]
-	);
+	);	
 
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'reports@redirecting',
