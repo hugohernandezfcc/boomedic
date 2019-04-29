@@ -31,7 +31,7 @@ class reports extends Controller
     public function index(){
          $user = User::find(Auth::id());
 
-          $grap = DB::table('medical_appointments')
+            $grap = DB::table('medical_appointments')
             ->join('users', 'medical_appointments.user', '=', 'users.id')
             ->where('medical_appointments.user_doctor', '=', $user->id)
             ->select('medical_appointments.*', 'users.id as us', 'users.gender', 'users.age')
@@ -62,6 +62,19 @@ class reports extends Controller
             ->orderBy('medical_appointments.when', 'desc')
             ->select('medical_appointments.*', 'users.name', 'labor_information.workplace as place')
             ->get();
+
+            $whenAppointments = DB::table('medical_appointments')
+            ->where('medical_appointments.user_doctor', '=', $user->id)
+            ->get();
+            
+
+            $picklistMonth = collect();
+
+            foreach($whenAppointments as $whenA){
+              $picklistMonth->push(Carbon::parse($whenA->when)->format('Y-m'));
+            }
+            $picklistMonth = $picklistMonth->unique();
+
 
                  //Graphic polligone 
                     $arrayM1 = collect();
@@ -198,7 +211,8 @@ class reports extends Controller
                 'balances'  => $transactions,
                 'balancedates'  => $dates,
                 'workplaces'    => $workplace,
-                'places'        => json_encode($places)
+                'places'        => json_encode($places),
+                'picklist'      => $picklistMonth
             ]
         );
     }

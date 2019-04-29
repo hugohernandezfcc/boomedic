@@ -6,38 +6,38 @@
 <style type="text/css">
 
 
-  .timeline>li {
+.timeline>li {
     margin-right: 0 !important;
 }
 
 .timeline>li>.timeline-item {
    margin-right: 0 !important;
 }
-      .direct-chat-contacts {
-            height: 55px !important;
-            background: transparent !important; 
-            top: 75% !important; 
-      }
- .timeline>li>.timeline-item>.timeline-header {
+.direct-chat-contacts {
+      height: 55px !important;
+      background: transparent !important; 
+      top: 75% !important; 
+}
+.timeline>li>.timeline-item>.timeline-header {
     border-bottom: 1px solid #e0e0e0 !important;
 }
 .timeline-footer {
     padding: 5px 0 0 0;
     border-top: 1px solid #e0e0e0 !important;
 }
-        .sticky {
-          position: fixed;
-          top: 0;
-          width: 82%;
-          z-index: 1000;
-          background: #ecf0f5;
-        }
-        .sticky + .content {
-          padding-top: 102px;
-        }
-  .modal-body{
-    background: white;
-  }      
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 82%;
+  z-index: 1000;
+  background: #ecf0f5;
+}
+.sticky + .content {
+  padding-top: 102px;
+}
+.modal-body{
+  background: white;
+}      
 </style>
 
 

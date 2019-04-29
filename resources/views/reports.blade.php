@@ -11,7 +11,12 @@
     .morris-hover-row-label{
       color: black !important;
     }
-
+    .direct-chat-contacts {
+          height: 55px !important;
+          background: transparent !important; 
+          top: 75% !important; 
+          right: 3% !important;
+    }
 </style>
 
 @section('content')
@@ -23,9 +28,25 @@
 
 
 
-  	<div class="box-header">
-	    <h3 class="box-title">Reportes</h3>
-  	</div>
+
+     <div class="box-header direct-chat" id="header2">
+      <h3 class="box-title">Reportes</h3>
+       <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
+                 <span class="fa fa-filter text-muted"></span></button>
+              <div class="direct-chat-contacts">
+                      <div class="btn-group pull-right col-sm-3">
+                          <form name='classic' method='POST' action=''>
+                            {{ csrf_field() }}
+                            <select id="filter" name="filter" class="form-control">
+                                   <option value="all" selected>Todos</option>
+                              @foreach($picklist as $dat)
+                                   <option value="{{ $dat }}">{{ $dat }}</option>
+                              @endforeach
+                            </select> 
+                          </form>    
+                      </div>
+              </div>
+    </div><br>
   	<div class="box-body">
       <section class="connectedSortable ui-sortable col-md-12">
         @php
