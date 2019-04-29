@@ -58,7 +58,10 @@
   	<div class="box-body">
       <section class="connectedSortable ui-sortable col-md-12">
         @php
-        $r = json_decode($report);
+          $r = json_decode($report);
+          $age = json_decode($count);
+          $appo = json_decode($arrayAppo);
+          $wor = json_decode($places);
         @endphp
   			<div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
@@ -75,7 +78,7 @@
          @if(count($r) > 0)
               <div class="chart" id="line-chart" style="height: 250px;"></div>
           @else
-                   No hay diagnósticos registrados aún, por tanto no se puede generar la gráfica
+                   No hay diagnósticos registrados en el período seleccionado
           @endif
             </div>
             <!-- /.box-body -->
@@ -100,7 +103,11 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
-            <canvas id="myChart" class="chartjs" style="height: 250px;"></canvas>
+              @if($fem > 0 || $mas > 0 || $oth > 0)
+                <canvas id="myChart" class="chartjs" style="height: 250px;"></canvas>
+              @else
+                No hay citas generadas en el período seleccionado para clasificar los géneros.  
+              @endif  
             </div>
           </div>
         </section>
@@ -122,14 +129,15 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
-            <canvas id="myChart2" class="chartjs" style="height: 250px;"></canvas>
-
-            <!-- /.box-body -->
-            
-            <!-- /.box-footer -->
+              @if(count($age) > 0)
+                 <canvas id="myChart2" class="chartjs" style="height: 250px;"></canvas>
+              @else
+                  No hay datos en el período seleccionado para clasificar las edades.
+              @endif
           </div>
         </div>
        </section>   
+
       <section class="connectedSortable ui-sortable col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
@@ -145,10 +153,15 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
-            <canvas id="myChartAppointments" class="chartjs" style="height: 250px;"></canvas>
+              @if(count($appo) > 0)
+                <canvas id="myChartAppointments" class="chartjs" style="height: 250px;"></canvas>
+              @else
+                No hay citas registradas en el período seleccionado.
+              @endif    
             </div>
           </div>
         </section>
+
       <section class="connectedSortable ui-sortable col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
@@ -164,17 +177,20 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
-            <canvas id="myChartBalance" class="chartjs" style="height: 250px;"></canvas>
+              @if(count($balances) > 0)
+                  <canvas id="myChartBalance" class="chartjs" style="height: 250px;"></canvas>
+              @else
+                  No hay saldos registrados en el período seleccionado.
+              @endif        
             </div>
-      </div> 
+         </div> 
       </section> 
+
       <section class="connectedSortable ui-sortable col-md-6" id="workplaces">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
-
               <h3 class="box-title">Citas por consultorios</h3>
-
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-default btn-sm" onclick="changeWorkplace();"><i class="fa fa-bar-chart workicon"></i>
                 </button>
@@ -183,7 +199,8 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
-            <canvas id="myChartWorkplace" class="chartjs" style="height: 250px;"></canvas>
+                <canvas id="myChartWorkplace" class="chartjs" style="height: 250px;"></canvas>
+
             </div>
           </div>
         </section> 
@@ -273,7 +290,7 @@
                                           }
                                     arrayworkplace.push(variable[pl]);       
                               }
-                              console.log(arrayworkplace);
+                              console.log('work' + arrayworkplace);
             }            
 
 
