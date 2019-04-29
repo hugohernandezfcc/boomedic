@@ -30,7 +30,7 @@
 
 
      <div class="box-header direct-chat" id="header2">
-      <h3 class="box-title">Reportes</h3>
+      <h3 class="box-title">Reportes: {{ $dateselect }}</h3>
        <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-filter text-muted"></span></button>
               <div class="direct-chat-contacts">
@@ -38,13 +38,13 @@
                           <form id='sendFilter' method='GET' action=''>
                             {{ csrf_field() }}
                             <select id="filter" name="filter" class="form-control">
-                                  @if($date == 'All')
+                                  @if($dateselect == 'All')
                                     <option value="All" selected>Todos</option>
                                   @else
                                     <option value="All">Todos</option>
                                   @endif 
                               @foreach($picklist as $dat)
-                                  @if($date == $dat)
+                                  @if($dateselect == $dat)
                                     <option value="{{ $dat }}" selected="">{{ $dat }}</option>
                                   @else
                                     <option value="{{ $dat }}">{{ $dat }}</option>
