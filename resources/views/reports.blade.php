@@ -539,8 +539,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-     var jquery = jQuery.noConflict(true);
-     !function($){
+
+
             // Make the dashboard widgets sortable Using jquery UI
             $('.connectedSortable').sortable({
               placeholder         : 'sort-highlight',
@@ -551,7 +551,7 @@
             });
             $('#workplace').resizable();
             $('.connectedSortable .box-header').css('cursor', 'move');
-          }(jquery);
 
+    
 </script>
 @stop

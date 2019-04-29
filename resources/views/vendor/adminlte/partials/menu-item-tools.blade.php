@@ -101,12 +101,11 @@
               $('#'+id+'w').prop( "checked", false );
           }
       }
-      $(document).ready(function(){
+
               $.ajax({
                  type: "GET",                 
                  url: "{{ url('doctor/settingAss') }}",  
                  success: function(result){ 
-                  console.log(result);
                       if(result.length > 0){
                           $('#accordion2').html('');
                           for(var z= 0; z < result.length; z++){
@@ -118,6 +117,6 @@
                       }
                   }
                 });
-       })
+
       </script>
  @endif
