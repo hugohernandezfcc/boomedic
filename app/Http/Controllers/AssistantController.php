@@ -25,7 +25,7 @@ class AssistantController extends Controller
              ->join('users', 'assistant.user_assist', '=', 'users.id')
              ->where('user_doctor', $user->id)
              ->where('user_assist', $id)
-             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as idass')
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as idass', 'users.email')
              ->first();
 
          $saveAssis = assistant::find($assistants->id);
@@ -36,13 +36,13 @@ class AssistantController extends Controller
          $saveAssis->assistant = $request->assistant;
 
                 if($saveAssis->save()){
-                        $data = [
+                       $data = [
                                 'username'  => $user->username,
                                 'name'      => $user->name,
-                                'email'     => $user->email,                
+                                'email'     => $user->email                
                                 ];
 
-                                $email = $user->email;
+                                $email = $assistants->email;
                                  Mail::send('emails.assistantSettings', $data, function ($message) {
                                             $message->subject('Han cambiado tus permisos de asistente');
                                             $message->to('contacto@doitcloud.consulting');
