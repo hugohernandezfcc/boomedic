@@ -543,7 +543,7 @@ $(document).ready(function() {
             }
             function panelDr(){
                 var doc = "@php echo session()->get('utype'); @endphp";
-              if(doc == "doctor"){          
+              if(doc == "doctor" || doc == "assistant"){          
               $.ajax({
                                     type: "GET",    
                                     url: "{{ url('HomeController/listpatients') }}", 
@@ -773,7 +773,7 @@ $(document).ready(function() {
                                 }
                         var type = "@php echo session()->get('utype'); @endphp"
                         var mo = moment(result[o]['created_at']).fromNow();
-                            if(type == "doctor"){
+                            if(type == "doctor" || type == "assistant"){
                                 var url = "{{ url('') }}" + "/medicalconsultations";
                             }else{
                                 var url = "{{ url('') }}" + "/clinicHistory/index"; 

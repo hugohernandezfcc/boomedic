@@ -1,4 +1,4 @@
- @if(session()->get('utype') == "doctor")
+ @if(session()->get('utype') == "doctor" || session()->get('utype') == "assistant")
       <style type="text/css">
             .accordion-toggle {
             position: relative;

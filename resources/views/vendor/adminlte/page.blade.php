@@ -114,7 +114,7 @@
             @yield('footer')
         </footer>
     <!-- divs of tools doctor in menu-item-user -->
-               @if(session()->get('utype') == "doctor")
+               @if(session()->get('utype') == "doctor" || session()->get('utype') == "assistant")
                  @include('adminlte::partials.menu-item-tools');
                @else  
                  @include('adminlte::partials.menu-tools-user');

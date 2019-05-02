@@ -185,7 +185,7 @@
                  <!-- End bar perfil user -->              
 
                 <!-- Tools en doctor-->
-                 @if(session()->get('utype') == "doctor")              
+                @if(session()->get('utype') == "doctor" || session()->get('utype') == "assistant")        
                     <li>
                         <a data-toggle="control-sidebar"><i class="fa fa-child"></i><span class="label" id="drAlert">¡HOLA!</span></a>
                     </li>
