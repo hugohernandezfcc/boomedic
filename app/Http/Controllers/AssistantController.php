@@ -42,7 +42,6 @@ class AssistantController extends Controller
                                 'email'     => $user->email                
                                 ];
 
-                                $email = $assistants->email;
                                  Mail::send('emails.assistantSettings', $data, function ($message) {
                                             $message->subject('Han cambiado tus permisos de asistente');
                                             $message->to('contacto@doitcloud.consulting');
