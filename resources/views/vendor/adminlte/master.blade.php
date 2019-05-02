@@ -463,6 +463,10 @@ span.round-tab:hover {
   border-top-color: #242627;
 }
 
+.notifications.top-center {
+  left: 40%;
+  top: 25px;
+}
 </style>
 
 
@@ -515,7 +519,8 @@ $(document).ready(function() {
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.css">
   <p id="power"></p>
 
-<div class='notifications top-right' align="center"></div>
+<div class='notifications top-center'></div>
+
 <script type="text/javascript">
 
           //Function for minutes appointments set interval dinamic

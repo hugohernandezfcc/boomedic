@@ -121,8 +121,8 @@
                                                                dataType: 'json',                
                                                                success: function(data)             
                                                                {
-                                                                   $('.top-right').notify({
-                                                                      message: { text: "Se guardó correctamente" }
+                                                                   $('.notifications').notify({
+                                                                      message: { text: "Se guardaron los cambios correctamente para el asistente" + data + "  " }
                                                                     }).show();
                                                                  }
                                                               
