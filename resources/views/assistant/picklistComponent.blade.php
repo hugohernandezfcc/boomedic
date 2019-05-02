@@ -76,6 +76,7 @@
  		 }else{
  		 	$("#mySelectd").prop('disabled', false);
  		 }
+
  		 $("#mySelectd").val("{{ session()->get('asdr') }}");
  	 var dr = JSON.stringify(@php echo $as; @endphp);
 
@@ -131,7 +132,6 @@
 				                             success: function(result)             
 				                             {
 				                             	if(window.location.href == "{{ url('medicalconsultations') }}"){
-				                             		console.log(result);
 				                             		 var data = 0;
 				                             		 clearTimeout(timer);
 													 $("#mid").val(data);
@@ -140,6 +140,7 @@
 													 $('.chatbut').prop('disabled', true);
 				                             		 get(data);
 				                             		 notifications();
+				                             		 location.reload();
 				                          }else{
 				 									location.reload();
 				 								}
