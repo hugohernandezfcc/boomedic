@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
 use App\assistant;
 use Mail;
+use Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
 
 class AssistantController extends Controller
 {
@@ -16,9 +20,25 @@ class AssistantController extends Controller
      */
     public function save(Request $request, $id)
     {
-        session()->put('success','Item created successfully.');
-        
-        return response()->json($id);
+        $user = User::find(Auth::id());
+        $assistants = DB::table('assistant')
+             ->join('users', 'assistant.user_assist', '=', 'users.id')
+             ->where('user_doctor', $user->id)
+             ->where('user_assist', $id)
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as idass')
+             ->first();
+
+         $saveAssis = assistant::find($assistants->id);
+         $saveAssis->profile = $request->profile;
+         $saveAssis->calendar = $request->calendar;           
+         $saveAssis->workboard = $request->workboard;
+         $saveAssis->chat = $request->chat;
+         $saveAssis->assistant = $request->assistant;
+
+                if($saveAssis->save())
+                    return response()->json($assistants->name);
+                else
+                    return response()->json('Error');                   
     }
 
     /**
