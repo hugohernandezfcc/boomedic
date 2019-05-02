@@ -374,7 +374,22 @@ class HomeController extends Controller
                                        }
                                  }
                                /*Validate doctor online*/  
+                            $countpaid = 0;
 
+                            $transactions = DB::table('transaction_bank')
+                                            ->join('medical_appointments', 'transaction_bank.appointments', '=', 'medical_appointments.id')
+                                            ->join('users', 'medical_appointments.user', '=', 'users.id')
+                                            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+                                            ->where('medical_appointments.user_doctor', '=', $user->id)
+                                            ->whereMonth('transaction_bank.created_at','=', Carbon::now()->month)
+                                            ->whereYear('transaction_bank.created_at','=', Carbon::now()->year)                                    
+                                            ->select('transaction_bank.*', 'users.name', 'medical_appointments.when', 'labor_information.workplace as place')
+                                            ->get();
+
+                                foreach ($transactions as $tr) {
+                                    if($tr->type_doctor == 'Paid')
+                                        $countpaid = $countpaid + $tr->amount;
+                                }
                                if(session()->get('asdr') == null){
                                 Session(['asdr' => $assistant[0]->iddr]);
                             }
@@ -390,11 +405,9 @@ class HomeController extends Controller
                                         'labor'     => $join,
                                         'appointments' => $appointments,
                                         'title'     => 'Este doctor no tiene horarios agregados',
-                                        'it'        => $it,
-                                        'sp'        => $sp,
-                                        'mg'        => $mg,
                                         'as'        => $assistant,
-                                        'donli'     => $donli
+                                        'donli'     => $donli,
+                                        'paid'          => number_format($countpaid,2),
                                     ]
                                 );
                             }
