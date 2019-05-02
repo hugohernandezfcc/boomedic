@@ -12,7 +12,7 @@
     <p>
     <strong>Detalles del usuario</strong><br/>
     <strong>Nombre de Usuario:</strong> {!! $username !!} <br/>
-    <strong>Nombre:</strong> {!! $firstname !!} {!! $lastname !!} <br/>
+    <strong>Email:</strong> {!! $email !!} <br/>
 
     <br/>
 
