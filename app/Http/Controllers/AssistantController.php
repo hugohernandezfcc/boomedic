@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\assistant;
-use Mail;
 use Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use config;
+use Mail;
+use email;
+use Mailgun\Mailgun;
 
 class AssistantController extends Controller
 {
