@@ -102,8 +102,7 @@ class doctor extends Controller
             ->get();
         $nodes = array();
     //Json que guarda datos de familiares para generar externalidad//
-      if(count($assist) < 1){
-        if($user->profile_photo != '')
+             if($user->profile_photo != '' || $user->profile_photo != null)
          array_push( $nodes, ['name' => 'Yo', 'photo' => $user->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
             else{
                 if($user->gender == 'male')
@@ -114,12 +113,13 @@ class doctor extends Controller
                     $phot = asset('profile-other.png') ;
                 array_push( $nodes, ['name' => 'Yo', 'photo' => $phot .'?'.  Carbon::now()->format('h:i'), 'id' => '0']);
             }
+      if(count($assist) < 1){
+
           for($i = 1; $i < 2; $i++){
                 array_push($nodes, ['name' => 'Agregar asistente', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
             }
       }   else {
-               
-          array_push( $nodes, ['name' => 'Yo', 'photo' => $user->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $user->id]);
+
           for($i = 0; $i < count($assist); $i++){
             if($assist[$i]->profile_photo != null){
                 array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => $assist[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
@@ -364,7 +364,7 @@ class doctor extends Controller
         }   
     }
 
-    
+
     /**
      * Show the form for editing the specified resource.
      *questions_clinic_history
@@ -936,7 +936,7 @@ class doctor extends Controller
             ->get();
         $nodes = array();
             //Json que guarda datos de familiares para generar externalidad//
-           if($users[0]->profile_photo != '')
+           if($users[0]->profile_photo != '' || $users[0]->profile_photo != null)
               $photou = $users[0]->profile_photo;
             else{
                  if($users[0]->gender == "male")
