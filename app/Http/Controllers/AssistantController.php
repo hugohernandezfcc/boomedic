@@ -35,8 +35,21 @@ class AssistantController extends Controller
          $saveAssis->chat = $request->chat;
          $saveAssis->assistant = $request->assistant;
 
-                if($saveAssis->save())
+                if($saveAssis->save()){
+                        $data = [
+                                'username'  => $user->username,
+                                'name'      => $user->name,
+                                'email'     => $user->email,                
+                                ];
+
+                                $email = $user->email;
+                                 Mail::send('emails.assistantSettings', $data, function ($message) {
+                                            $message->subject('Han cambiado tus permisos de asistente');
+                                            $message->to('contacto@doitcloud.consulting');
+                                        });
+
                     return response()->json($assistants->name);
+                }
                 else
                     return response()->json('Error');                   
     }
