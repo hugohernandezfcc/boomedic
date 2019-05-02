@@ -49,7 +49,7 @@
 	<div class="lockscreen-item">
     <!-- lockscreen image -->
     <div class="lockscreen-image">
-      <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" id="imgDrA"  class="img-circle">
+      <img src="{{ asset('profile-other.png') }}" id="imgDrA"  class="img-circle">
     </div>
     <form class="lockscreen-credentials">
       <div class="input-group" style="display: block !important;">
@@ -82,7 +82,7 @@
   	 dr =JSON.parse(dr);
  			for(var z=0; z < dr.length; z++){
  				if(dr[z]['iddr'] ==  $('#mySelectd option:selected').val()){
- 					if(dr[z]['profile_photo'] == ''){
+ 					if(dr[z]['profile_photo'] == '' || dr[z]['profile_photo'] == null){
  							if(dr[z]['gender'] == 'male')
  								var photo = "{{ asset('profile-42914_640.png') }}";
  							if(dr[z]['gender'] == 'female') 				
@@ -112,7 +112,7 @@
  					 	$('.lockscreen-image').addClass('offline');
  					 	$('.lockscreen-image').removeClass('online');
  					 }
- 					if(dr[x]['profile_photo'] == ''){
+ 					if(dr[x]['profile_photo'] == '' || dr[x]['profile_photo'] == null){
  							if(dr[x]['gender'] == 'male')
  								var photox = "{{ asset('profile-42914_640.png') }}";
  							if(dr[x]['gender'] == 'female') 				

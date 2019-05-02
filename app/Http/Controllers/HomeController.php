@@ -265,7 +265,7 @@ class HomeController extends Controller
              $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
-             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr', 'users.gender')
              ->get();
 
                         if(count($assistant) == 0){
@@ -549,7 +549,7 @@ class HomeController extends Controller
         $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
-             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr', 'users.gender')
              ->get();
                      if(count($assistant) > 0){
                         Session(['utype' => 'assistant']); 
@@ -670,7 +670,7 @@ class HomeController extends Controller
                 $assistant = DB::table('assistant')
                      ->join('users', 'assistant.user_doctor', '=', 'users.id')
                      ->where('user_assist', Auth::id())
-                     ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+                     ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr', 'users.gender')
                      ->get();
 
                  if(count($assistant) > 0){
