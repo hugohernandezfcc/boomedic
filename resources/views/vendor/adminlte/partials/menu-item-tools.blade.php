@@ -111,12 +111,16 @@
                                                         if(result.length > 0){
                                                             $('#accordion2').html('');
                                                             for(var z= 0; z < result.length; z++){
-                                                              
+
                                                               var profile = '<tr><td>Perfil</td><td><input type="checkbox" id="'+ result[z]["idass"] +'a" onclick="check($(this));" value="perfil"></td><td><input type="checkbox" id="'+ result[z]["idass"] +'aw" value="" disabled="disabled"></td></tr>';
 
-                                                              var calendar = '<tr><td>Agenda</td><td><input type="checkbox" value="" onclick="check($(this));" id="'+ result[z]["idass"] +'b"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'bw" disabled="disabled"></td></tr>;'
+                                                              var calendar = '<tr><td>Agenda</td><td><input type="checkbox" value="" onclick="check($(this));" id="'+ result[z]["idass"] +'b"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'bw" disabled="disabled"></td></tr>';
 
                                                               var workboard = '<tr><td>Horarios</td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'c" onclick="check($(this));"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'cw" disabled="disabled"></td></tr>';
+
+                                                              var chat = '<tr><td>Chat</td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'c" onclick="check($(this));"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'cw" disabled="disabled"></td></tr>';
+
+                                                              var assistant = '<tr><td>Asistentes</td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'c" onclick="check($(this));"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'cw" disabled="disabled"></td></tr>';                                                              
 
                                                             $('#accordion2').append('<div class="panel box tit"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'"><div class="box-header with-border"><h5 class="box-title tit">'+ result[z]['name'] +'</h5></div></a><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse"><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permisos</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody>'+ profile + calendar + workboard + '<tr><td colspan="3"><a class="btn btn-xs btn-secondary pull-right">Guardar</a></td></tr></tbody></table></div></div></div></div>');
                                                           
