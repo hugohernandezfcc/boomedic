@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\assistant;
+use Mail;
 
 class AssistantController extends Controller
 {
@@ -11,9 +14,11 @@ class AssistantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function save(Request $request, $id)
     {
-        //
+        session()->put('success','Item created successfully.');
+        
+        return response()->json($id);
     }
 
     /**

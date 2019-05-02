@@ -652,6 +652,15 @@ Route::group(['prefix' => 'history'], function(){
 
 });
 
+Route::group(['prefix' => 'AssistantController'], function(){
+
+	Route::post('save/{id}', [
+			'uses'	=>	'assistantController@save',
+			'as'	=>	'save'
+		]
+	);
+});
+
 Route::post('/bye' , 'Auth\LoginController@logout');
 
 

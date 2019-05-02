@@ -45,6 +45,7 @@
             font-size: 13px !important;
           }
       </style>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
                     <aside class="control-sidebar control-sidebar-dark" style="overflow: hidden;">
                               <!-- Create the tabs -->
@@ -105,8 +106,27 @@
                                               }
 
                                               function saveSettings(id){
-                                                 alert(id);
+                                                $.ajaxSetup({
+                                                            headers: {
+                                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                            }
+                                                        });
 
+                                                $.ajax({     
+                                                               type: "POST",                 
+                                                               url: "{{ url('AssistantController/save/') }}/" + id,  
+                                                               data: { "test" : "1",
+                                                                        "dos" : "22"
+                                                                      }, 
+                                                               dataType: 'json',                
+                                                               success: function(data)             
+                                                               {
+                                                                   $('.top-right').notify({
+                                                                      message: { text: "Se guardó correctamente" }
+                                                                    }).show();
+                                                                 }
+                                                              
+                                                           });
                                               }
 
                                               $.ajax({
