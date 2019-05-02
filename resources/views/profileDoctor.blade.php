@@ -49,36 +49,36 @@
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
-		#map {
-			padding-top: 0;
-		    width: 100%;
-		    height: 300px;
-		    z-index: 30;
-		      }
-			.dropzone  {
-			     min-height: 10px !important; 
-			    border-style: dotted  !important;
-			    /* background: white; */
-			    padding: 5px !important;
-			}
-			.dropzone .gen .dz-message {
-			    margin: 1em 0 !important;
-			}
-		.modal-content-2 {
-		    position: relative;
-		    background-color: transparent;
-		    -webkit-background-clip: padding-box;
-		    background-clip: padding-box;
-		    color: white;
-		    margin-top: 50%;
-		    width: 100%;
+#map {
+	padding-top: 0;
+    width: 100%;
+    height: 300px;
+    z-index: 30;
+      }
+.dropzone  {
+     min-height: 10px !important; 
+    border-style: dotted  !important;
+    /* background: white; */
+    padding: 5px !important;
+}
+.dropzone .gen .dz-message {
+    margin: 1em 0 !important;
+}
+.modal-content-2 {
+    position: relative;
+    background-color: transparent;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    color: white;
+    margin-top: 50%;
+    width: 100%;
 
-		}
-		.cut{
-		  text-overflow:ellipsis;
-		  white-space:nowrap; 
-		  overflow:hidden; 
-		}
+}
+.cut{
+  text-overflow:ellipsis;
+  white-space:nowrap; 
+  overflow:hidden; 
+}
 .stepwizard-step p {
     margin-top: 10px;
 }
@@ -273,22 +273,22 @@
 	    		<div class="row" align="center">
 	    		
 	    		<div class="col-sm-3" align="center">
-	    			@if($photo == '')
+	    			@if($photo2 == '')
 			    	 	@if($gender == 'male') 
-			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 			    	 		</div>
 			    	 	@endif
 			    	 	@if($gender == 'female') 
-			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 			    	 		</div>
 			    	 	@endif
 			    	 	 @if($gender == 'other' || $gender == '') 
-			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 			    	 		</div>
 		    	 	@endif
 					@else
 					@php 
-					  $imagen = getimagesize($photo);    //Sacamos la información
+					  $imagen = getimagesize($photo2);    //Sacamos la información
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 			          if($height > '500' || $width > '500'){
@@ -309,7 +309,7 @@
 			        }
 					@endphp
 					
-						<div class="container"><img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" ><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+						<div class="container"><img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" ><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 
 			    	 	</div>
 			    			
@@ -321,7 +321,7 @@
 	    		<div class="row" align="center">
 	    		
 	    		<div class="col-sm-3" align="center">
-	    			@if($photo == '')
+	    			@if($photo2 == '')
 			    	 	@if($gender == 'male') 
 			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
 			    	 	@endif
@@ -333,7 +333,7 @@
 		    	 	@endif
 					@else
 					@php 
-					  $imagen = getimagesize($photo);    //Sacamos la información
+					  $imagen = getimagesize($photo2);    //Sacamos la información
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 			          if($height > '500' || $width > '500'){
@@ -353,11 +353,11 @@
 			            $width = $width / 1.6;
 			        }
 					@endphp
-						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+						<img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone gen" id="myAwesomeDropzone">{{ csrf_field() }}</form></div>
+	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone gen" id="myAwesomeDropzone">{{ csrf_field() }}</form></div>
 	    	</div>
 	    	@endif 
 	    		<br/>

@@ -363,6 +363,8 @@ class doctor extends Controller
                 break;
         }   
     }
+
+    
     /**
      * Show the form for editing the specified resource.
      *questions_clinic_history
