@@ -49,8 +49,16 @@
                     <aside class="control-sidebar control-sidebar-dark" style="overflow: hidden;">
                               <!-- Create the tabs -->
                               <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-                                  <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-clock-o"></i></a></li><li><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab"><i class="fa fa-calendar"></i></a></li>
-                                  <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+                                  <li class="active">
+                                    <a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-clock-o"></i></a></li>
+                                  <li>
+                                    <a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab"><i class="fa fa-calendar"></i></a>
+                                  </li>
+                                   @if(session()->get('utype') != "assistant")
+                                  <li>
+                                    <a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a>
+                                  </li>
+                                  @endif
                               </ul>
 
                               <!-- Tab panes -->
@@ -72,10 +80,8 @@
                                       </div>
                                     </div>
                                     <!-- /.tab-pane -->
-                                    <!-- Stats tab content -->
-                                    <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
                                     <!-- /.tab-pane -->
-
+                                   @if(session()->get('utype') != "assistant")
                                     <!-- Settings tab content -->
                                     <div class="tab-pane" id="control-sidebar-settings-tab">
                                         <h3 class="control-sidebar-heading">Configuración de permisos</h3>
@@ -83,41 +89,43 @@
                                              <div class="box-group" id="accordion2"></div>
                                         </div>         
                                     </div>
+                                          <script type="text/javascript">
+
+                                             function  check(a){
+                                              
+                                                  var id = a.attr('id'); 
+
+                                                  if($(a).prop('checked'))
+                                                     $('#'+id+'w').removeAttr('disabled');
+
+                                                  else{
+                                                       $('#'+id+'w').attr('disabled','disabled');
+                                                       $('#'+id+'w').prop( "checked", false );
+                                                  }
+                                              }
+
+                                              $.ajax({
+                                                   type: "GET",                 
+                                                   url: "{{ url('doctor/settingAss') }}",  
+                                                   success: function(result){ 
+                                                        if(result.length > 0){
+                                                            $('#accordion2').html('');
+                                                            for(var z= 0; z < result.length; z++){
+                                                            $('#accordion2').append('<div class="panel box tit"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'"><div class="box-header with-border"><h5 class="box-title tit">'+ result[z]['name'] +'</h5></div></a><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse"><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permisos</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody><tr><td>Perfil</td><td><input type="checkbox" id="'+ result[z]["idass"] +'a" onclick="check($(this));" value="perfil"></td><td><input type="checkbox" id="'+ result[z]["idass"] +'aw" value="" disabled="disabled"></td></tr><tr><td>Agenda</td><td><input type="checkbox" value="" onclick="check($(this));" id="'+ result[z]["idass"] +'b"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'bw" disabled="disabled"></td></tr><tr><td>Horarios</td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'c" onclick="check($(this));"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'cw" disabled="disabled"></td></tr></tbody></table></div></div></div></div>');
+                                                          
+                                                          }
+                                                        }else{
+                                                          $('#accordion2').html('');
+                                                        }
+                                                    }
+                                                });
+
+                                      </script>
+                                   @endif 
                                     <!-- /.tab-pane -->
                               </div>
                     </aside>
                     <div id="tool"></div>
 
-      <script type="text/javascript">
 
-             function  check(a){
-              
-                  var id = a.attr('id'); 
-
-                  if($(a).prop('checked'))
-                     $('#'+id+'w').removeAttr('disabled');
-
-                  else{
-                       $('#'+id+'w').attr('disabled','disabled');
-                       $('#'+id+'w').prop( "checked", false );
-                  }
-              }
-
-              $.ajax({
-                   type: "GET",                 
-                   url: "{{ url('doctor/settingAss') }}",  
-                   success: function(result){ 
-                        if(result.length > 0){
-                            $('#accordion2').html('');
-                            for(var z= 0; z < result.length; z++){
-                            $('#accordion2').append('<div class="panel box tit"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'"><div class="box-header with-border"><h5 class="box-title tit">'+ result[z]['name'] +'</h5></div></a><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse"><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permisos</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody><tr><td>Perfil</td><td><input type="checkbox" id="'+ result[z]["idass"] +'a" onclick="check($(this));" value="perfil"></td><td><input type="checkbox" id="'+ result[z]["idass"] +'aw" value="" disabled="disabled"></td></tr><tr><td>Agenda</td><td><input type="checkbox" value="" onclick="check($(this));" id="'+ result[z]["idass"] +'b"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'bw" disabled="disabled"></td></tr><tr><td>Horarios</td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'c" onclick="check($(this));"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'cw" disabled="disabled"></td></tr></tbody></table></div></div></div></div>');
-                          
-                          }
-                        }else{
-                          $('#accordion2').html('');
-                        }
-                    }
-                });
-
-      </script>
  @endif

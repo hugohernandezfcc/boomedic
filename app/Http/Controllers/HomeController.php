@@ -666,10 +666,27 @@ class HomeController extends Controller
      * Method responsable of list of patients for day
      */
     public function listpatients(){
+
+                $assistant = DB::table('assistant')
+                     ->join('users', 'assistant.user_doctor', '=', 'users.id')
+                     ->where('user_assist', Auth::id())
+                     ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+                     ->get();
+
+                 if(count($assistant) > 0){
+                    Session(['utype' => 'assistant']); 
+                      if(session()->get('asdr') == null){
+                          Session(['asdr' => $assistant[0]->iddr]);
+                         }
+                     $user = User::find(session()->get('asdr'));
+                 }else{  
+                        $user = User::find(Auth::id());
+                  }
+         
          $array = array(); 
          $appo = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
-           ->where('medical_appointments.user_doctor', Auth::id())
+           ->where('medical_appointments.user_doctor', $user->id)
            ->whereNull('medical_appointments.aware')
            ->whereDate('medical_appointments.when', Carbon::now()->format('Y-m-d'))
            ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age','users.profile_photo')->orderBy('medical_appointments.when')->get();
@@ -677,7 +694,7 @@ class HomeController extends Controller
 
          $appoFuture = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
-           ->where('medical_appointments.user_doctor', Auth::id())
+           ->where('medical_appointments.user_doctor', $user->id)
            ->where('medical_appointments.status', '!=', 'No completed')
            ->whereBetween('medical_appointments.when', [Carbon::now()->addDays(1)->format('Y-m-d'), Carbon::now()->addDays(8)->format('Y-m-d')])
            ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age','users.profile_photo')->orderBy('medical_appointments.when')->get();  
