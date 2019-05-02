@@ -104,6 +104,11 @@
                                                   }
                                               }
 
+                                              function saveSettings(id){
+                                                 alert(id);
+
+                                              }
+
                                               $.ajax({
                                                    type: "GET",                 
                                                    url: "{{ url('doctor/settingAss') }}",  
@@ -112,17 +117,37 @@
                                                             $('#accordion2').html('');
                                                             for(var z= 0; z < result.length; z++){
 
-                                                              var profile = '<tr><td>Perfil</td><td><input type="checkbox" id="'+ result[z]["idass"] +'profile" onclick="check($(this));" value="perfil" checked></td><td><input type="checkbox" id="'+ result[z]["idass"] +'profilew" value="" disabled="disabled"></td></tr>';
+                                                              //Profile options                                                                
+                                                              var checkRead = (result[z]["profile"] === "read" || result[z]["profile"] === "write") ? 'checked' : '';
+                                                              var checkWrite = (result[z]["profile"] === "write") ? 'checked' : 'disabled="disabled"';
 
-                                                              var calendar = '<tr><td>Agenda</td><td><input type="checkbox" value="" onclick="check($(this));" id="'+ result[z]["idass"] +'calendar"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'calendarw" disabled="disabled"></td></tr>';
+                                                              var profile = '<tr><td>Perfil</td><td><input type="checkbox" id="'+ result[z]["idass"] +'profile" onclick="check($(this));" '+ checkRead +'></td><td><input type="checkbox" id="'+ result[z]["idass"] +'profilew" '+ checkWrite +'></td></tr>';
 
-                                                              var workboard = '<tr><td>Horarios</td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'workboard" onclick="check($(this));"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'workboardw" disabled="disabled"></td></tr>';
+                                                              //Calendar options  
+                                                              checkRead = (result[z]["calendar"] === "read" || result[z]["calendar"] === "write") ? 'checked' : '';
+                                                              checkWrite = (result[z]["calendar"] === "write") ? 'checked' : 'disabled="disabled"';
 
-                                                              var chat = '<tr><td>Chat</td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'chat" onclick="check($(this));"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'chatw" disabled="disabled"></td></tr>';
+                                                              var calendar = '<tr><td>Agenda</td><td><input type="checkbox" onclick="check($(this));" id="'+ result[z]["idass"] +'calendar" '+ checkRead +'></td><td><input type="checkbox" id="'+ result[z]["idass"] +'calendarw" '+ checkWrite +'></td></tr>';
 
-                                                              var assistant = '<tr><td>Asistentes</td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'assistant" onclick="check($(this));"></td><td><input type="checkbox" value="" id="'+ result[z]["idass"] +'assistantw" disabled="disabled"></td></tr>';                                                              
+                                                              //Workboard options  
+                                                              checkRead = (result[z]["workboard"] === "read" || result[z]["workboard"] === "write") ? 'checked' : '';
+                                                              checkWrite = (result[z]["workboard"] === "write") ? 'checked' : 'disabled="disabled"';
 
-                                                            $('#accordion2').append('<div class="panel box tit"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'"><div class="box-header with-border"><h5 class="box-title tit">'+ result[z]['name'] +'</h5></div></a><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse"><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permisos</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody>'+ profile + calendar + workboard + chat + assistant +'<tr><td colspan="3"><a class="btn btn-xs btn-secondary pull-right">Guardar</a></td></tr></tbody></table></div></div></div></div>');
+                                                              var workboard = '<tr><td>Horarios</td><td><input type="checkbox" id="'+ result[z]["idass"] +'workboard" onclick="check($(this));" '+ checkRead +'></td><td><input type="checkbox" id="'+ result[z]["idass"] +'workboardw" '+ checkWrite +'></td></tr>';
+
+                                                              //Chat options  
+                                                              checkRead = (result[z]["chat"] === "read" || result[z]["chat"] === "write") ? 'checked' : '';
+                                                              checkWrite = (result[z]["chat"] === "write") ? 'checked' : 'disabled="disabled"';
+
+                                                              var chat = '<tr><td>Chat</td><td><input type="checkbox" id="'+ result[z]["idass"] +'chat" onclick="check($(this));" '+ checkRead +'></td><td><input type="checkbox" id="'+ result[z]["idass"] +'chatw" '+ checkWrite +'></td></tr>';
+
+                                                              //Chat options  
+                                                              checkRead = (result[z]["assistant"] === "read" || result[z]["assistant"] === "write") ? 'checked' : '';
+                                                              checkWrite = (result[z]["assistant"] === "write") ? 'checked' : 'disabled="disabled"';
+
+                                                              var assistant = '<tr><td>Asistentes</td><td><input type="checkbox" id="'+ result[z]["idass"] +'assistant" onclick="check($(this)); '+ checkRead +'"></td><td><input type="checkbox" id="'+ result[z]["idass"] +'assistantw" '+ checkWrite +'></td></tr>';                                                              
+
+                                                            $('#accordion2').append('<div class="panel box tit"><a data-toggle="collapse" data-parent="#accordion2" href="#'+ result[z]['idass'] +'"><div class="box-header with-border"><h5 class="box-title tit">'+ result[z]['name'] +'</h5></div></a><div id="'+ result[z]['idass'] +'" class="panel-collapse collapse"><div class="box-body"><div class="table-responsive"><table class="table table-condensed"><thead><tr><th scope="col">Permisos</th><th scope="col">Ver</th><th scope="col">Editar</th></tr></thead><tbody>'+ profile + calendar + workboard + chat + assistant +'<tr><td colspan="3"><button class="btn btn-xs btn-secondary pull-right" onclick="saveSettings('+ result[z]["idass"] +');">Guardar</button></td></tr></tbody></table></div></div></div></div>');
                                                           
                                                           }
                                                         }else{
