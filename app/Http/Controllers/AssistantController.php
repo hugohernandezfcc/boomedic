@@ -25,6 +25,14 @@ class AssistantController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(){
+       //
+    }
+    /**
      * Save to settings salesforce
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -48,7 +56,7 @@ class AssistantController extends Controller
          $saveAssis->assistant = $request->assistant;
 
                 if($saveAssis->save()){
-                     /*  $data = [
+                       $data = [
                                 'username'  => $user->username,
                                 'name'      => $user->name,
                                 'email'     => $user->email                
@@ -57,7 +65,7 @@ class AssistantController extends Controller
                                  Mail::send('emails.assistantSettings', $data, function ($message) {
                                             $message->subject('Han cambiado tus permisos de asistente');
                                             $message->to('contacto@doitcloud.consulting');
-                                 });*/
+                                 });
 
                     return response()->json($assistants->name);
                 }
