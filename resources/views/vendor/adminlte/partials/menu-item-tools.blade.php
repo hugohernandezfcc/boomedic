@@ -126,11 +126,13 @@
                                                 }
 
                                               function saveSettings(id){
+
                                                 var profile = attribute(id, "profile");
                                                 var calendar = attribute(id, "calendar");
                                                 var workboard = attribute(id, "workboard");
                                                 var chat = attribute(id, "chat");
                                                 var assistant = attribute(id, "assistant");
+
                                                 $.ajaxSetup({
                                                             headers: {
                                                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -138,31 +140,34 @@
                                                         });
 
                                                 $.ajax({     
-                                                               type: "POST",                 
-                                                               url: "{{ url('AssistantController/save') }}/" + id,  
-                                                               data: { "profile" : profile,
-                                                                        "calendar" : calendar,
-                                                                        "workboard" : workboard,
-                                                                        "chat" : chat,
-                                                                        "assistant" : assistant
-                                                                      }, 
-                                                               dataType: 'json',                
-                                                               success: function(data)             
-                                                               {  
-                                                                  if(data != 'Error')
-                                                                       $('.notifications').notify({
-                                                                          message: { text: "Se guardaron los cambios correctamente para el asistente " + data + ". " }
-                                                                        }).show();
-                                                                  else 
-                                                                       $('.notifications').notify({
-                                                                          message: { text: "Ha ocurrido un error, vuelve a intentarlo o levanta un caso si el error persiste." },
-                                                                          type:'danger'
-                                                                        }).show();
-                                                                }
-                                                              
-                                                           });
-                                              }
+                                                       type: "POST",                 
+                                                       url: "{{ url('AssistantController/save') }}/" + id,  
+                                                       data: {  "profile" : profile,
+                                                                "calendar" : calendar,
+                                                                "workboard" : workboard,
+                                                                "chat" : chat,
+                                                                "assistant" : assistant
+                                                              }, 
+                                                       dataType: 'json',                
+                                                       success: function(data)             
+                                                       {  
+                                                          if(data != 'Error'){
+                                                               $('.notifications').notify({
+                                                                  message: { text: "Se guardaron los cambios correctamente para el asistente " + data + ". " }
+                                                                }).show();
+                                                             }
+                                                          else {
+                                                               $('.notifications').notify({
+                                                                  message: { text: "Ha ocurrido un error, vuelve a intentarlo o levanta un caso si el error persiste." },
+                                                                  type:'danger'
+                                                                }).show();
+                                                             }
+                                                        }
 
+                                                      
+                                                   });
+                                              }
+                               window.onload = function(){
                                               $.ajax({
                                                    type: "GET",                 
                                                    url: "{{ url('doctor/settingAss') }}",  
@@ -209,7 +214,7 @@
                                                         }
                                                     }
                                                 });
-
+                                                };
                                       </script>
 
  @endif
