@@ -90,7 +90,13 @@
                                              <div class="box-group" id="accordion2"></div>
                                         </div>         
                                     </div>
-                                          <script type="text/javascript">
+
+                                   @endif 
+                                    <!-- /.tab-pane -->
+                              </div>
+                    </aside>
+                    <div id="tool"></div>
+                       <script type="text/javascript">
 
                                              function  check(a){
                                               
@@ -125,7 +131,7 @@
                                                 var workboard = attribute(id, "workboard");
                                                 var chat = attribute(id, "chat");
                                                 var assistant = attribute(id, "assistant");
-
+                                                  alert('savesettings');
                                                 $.ajaxSetup({
                                                             headers: {
                                                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -206,11 +212,5 @@
                                                 });
 
                                       </script>
-                                   @endif 
-                                    <!-- /.tab-pane -->
-                              </div>
-                    </aside>
-                    <div id="tool"></div>
-
 
  @endif
