@@ -74,7 +74,7 @@
                        <button type="button" class="close" data-target="#{{ $id }}" data-dismiss="modal" data-toggle="modal" aria-label="Close" id="btnclosehc">
                           <span aria-hidden="true">&times;</span>
                         </button>
-                         <div align="left"><label>Historia clínica previa cita</label></div>
+                         <div align="left"><label>Información previa cita</label></div>
                       </div>
                 <div class="box-body"  id="myWizard">
 

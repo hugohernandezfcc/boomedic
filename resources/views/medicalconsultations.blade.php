@@ -441,6 +441,13 @@
                                                       <div align="left">
                                                       <ul class="nav nav-pills nav-stacked">
                                                         <li class="active"><a href="javascript:void(0)">Tiempo restante para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
+                                                        <li><a href="javascript:void(0)" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li> 
+                                                        @foreach($questions as $quest)
+                                                          @if($quest->createdby == $appo->did && $loop->iteration == 1)
+                                                              <li><a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Información previa cita</a></li>
+                                                          @endif    
+                                                        @endforeach  
+
                                                         <li><a href="{{ url('/payment/Transactions/') }}/{{ $appo->idtr }}">Método de pago 
                                                      @if($appo->provider != 'Paypal')
                                                              @php 
@@ -456,12 +463,8 @@
                                                           <span class="liright cut"><i class="fa fa-cc-paypal" style="font-size: 14px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
                                                      @endif 
                                                         </a></li>
-                                                        @foreach($questions as $quest)
-                                                          @if($quest->createdby == $appo->did && $loop->iteration == 1)
-                                                              <li><a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Historia clínica</a></li>
-                                                          @endif    
-                                                        @endforeach
-                                                        <li><a href="javascript:void(0)" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
+
+                                                       
  
                                                       </ul>
                                                       </div>

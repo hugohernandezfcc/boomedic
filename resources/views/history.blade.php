@@ -105,7 +105,7 @@
                      @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
-                                <a data-target="#modalhistoryappointments-{{ $items['id'] }}" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                                <a data-target="#modalhistoryappointments-{{ $items['id'] }}" data-toggle="modal" class="btn btn-default btn-xs">Información previa cita</a>
                             @endif    
                          @endforeach
                      @endif    
@@ -228,7 +228,7 @@
                      @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
-                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Información previa cita</a>
                             @endif    
                          @endforeach
                      @endif 
@@ -351,7 +351,7 @@
                     @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
-                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Información previa cita</a>
                             @endif    
                          @endforeach
                      @endif 
@@ -474,7 +474,7 @@
                     @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
-                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Información previa cita</a>
                             @endif    
                          @endforeach
                      @endif 
@@ -597,7 +597,7 @@
                      @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
-                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Información previa cita</a>
                             @endif    
                          @endforeach
                      @endif 
@@ -718,7 +718,7 @@
                      @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
-                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Información previa cita</a>
                             @endif    
                          @endforeach
                      @endif 
@@ -841,7 +841,7 @@
                      @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
-                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
+                                <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Información previa cita</a>
                             @endif    
                          @endforeach
                      @endif 
