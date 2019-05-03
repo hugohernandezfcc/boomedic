@@ -652,7 +652,7 @@ Route::group(['prefix' => 'history'], function(){
 Route::group(['prefix' => 'AssistantController'], function(){
 
 	Route::get('save', [
-			'uses'	=>	'assistantController@save',
+			'uses'	=>	'AssistantController@save',
 			'as'	=>	'save'
 		]
 	);
