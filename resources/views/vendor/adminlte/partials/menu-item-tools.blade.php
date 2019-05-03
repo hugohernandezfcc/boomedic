@@ -133,6 +133,12 @@
                                                 var chat = attribute(id, "chat");
                                                 var assistant = attribute(id, "assistant");
 
+                                                  console.log(profile);
+                                                  console.log(calendar);
+                                                  console.log(workboard);
+                                                  console.log(chat);
+                                                  console.log(assistant);
+
                                                 $.ajaxSetup({
                                                             headers: {
                                                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -167,7 +173,7 @@
                                                       
                                                    });
                                               };
-                               window.onload = function(){
+
                                               $.ajax({
                                                    type: "GET",                 
                                                    url: "{{ url('doctor/settingAss') }}",  
@@ -178,31 +184,31 @@
 
                                                               //Profile options                                                                
                                                               var checkRead = (result[z]["profile"] === "read" || result[z]["profile"] === "write") ? 'checked' : '';
-                                                              var checkWrite = (result[z]["profile"] === "write") ? 'checked' : 'disabled="disabled"';
+                                                              var checkWrite = (result[z]["profile"] === "write") ? 'checked' : (result[z]["profile"] === "none") ? 'disabled="disabled"' : '';
 
                                                               var profile = '<tr><td>Perfil</td><td><input type="checkbox" id="'+ result[z]["idass"] +'profile" onclick="check($(this));" '+ checkRead +'></td><td><input type="checkbox" id="'+ result[z]["idass"] +'profilew" '+ checkWrite +'></td></tr>';
 
                                                               //Calendar options  
                                                               checkRead = (result[z]["calendar"] === "read" || result[z]["calendar"] === "write") ? 'checked' : '';
-                                                              checkWrite = (result[z]["calendar"] === "write") ? 'checked' : 'disabled="disabled"';
+                                                              checkWrite = (result[z]["calendar"] === "write") ? 'checked' : (result[z]["calendar"] === "none") ? 'disabled="disabled"' : '';
 
                                                               var calendar = '<tr><td>Agenda</td><td><input type="checkbox" onclick="check($(this));" id="'+ result[z]["idass"] +'calendar" '+ checkRead +'></td><td><input type="checkbox" id="'+ result[z]["idass"] +'calendarw" '+ checkWrite +'></td></tr>';
 
                                                               //Workboard options  
                                                               checkRead = (result[z]["workboard"] === "read" || result[z]["workboard"] === "write") ? 'checked' : '';
-                                                              checkWrite = (result[z]["workboard"] === "write") ? 'checked' : 'disabled="disabled"';
+                                                              checkWrite = (result[z]["workboard"] === "write") ? 'checked' : (result[z]["workboard"] === "none") ? 'disabled="disabled"' : '';
 
                                                               var workboard = '<tr><td>Horarios</td><td><input type="checkbox" id="'+ result[z]["idass"] +'workboard" onclick="check($(this));" '+ checkRead +'></td><td><input type="checkbox" id="'+ result[z]["idass"] +'workboardw" '+ checkWrite +'></td></tr>';
 
                                                               //Chat options  
                                                               checkRead = (result[z]["chat"] === "read" || result[z]["chat"] === "write") ? 'checked' : '';
-                                                              checkWrite = (result[z]["chat"] === "write") ? 'checked' : 'disabled="disabled"';
+                                                              checkWrite = (result[z]["chat"] === "write") ? 'checked' : (result[z]["chat"] === "none") ? 'disabled="disabled"' : '';
 
                                                               var chat = '<tr><td>Chat</td><td><input type="checkbox" id="'+ result[z]["idass"] +'chat" onclick="check($(this));" '+ checkRead +'></td><td><input type="checkbox" id="'+ result[z]["idass"] +'chatw" '+ checkWrite +'></td></tr>';
 
                                                               //Chat options  
                                                               checkRead = (result[z]["assistant"] === "read" || result[z]["assistant"] === "write") ? 'checked' : '';
-                                                              checkWrite = (result[z]["assistant"] === "write") ? 'checked' : 'disabled="disabled"';
+                                                              checkWrite = (result[z]["assistant"] === "write") ? 'checked' : (result[z]["assistant"] === "none") ? 'disabled="disabled"' : '';
 
                                                               var assistant = '<tr><td>Asistentes</td><td><input type="checkbox" id="'+ result[z]["idass"] +'assistant" onclick="check($(this)); '+ checkRead +'"></td><td><input type="checkbox" id="'+ result[z]["idass"] +'assistantw" '+ checkWrite +'></td></tr>';                                                              
 
@@ -214,7 +220,6 @@
                                                         }
                                                     }
                                                 });
-                                                };
                                       </script>
 
  @endif
