@@ -519,7 +519,7 @@ $(document).ready(function() {
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.css">
   <p id="power"></p>
 
-<div class='notifications top-center'></div>
+
 
 <script type="text/javascript">
 

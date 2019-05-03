@@ -42,10 +42,6 @@ class HomeController extends Controller
     public function index()
     {
 
-         /*$redis = Redis::connection();
-         $data = ['message' => 'hola'];
-         $redis->publish('message', json_encode($data));
-         Event::fire(new EventName('JohnDoe'));*/
          $agent = new Agent();
          $user = User::find(Auth::id());
          $uuid = session()->get('uuid');

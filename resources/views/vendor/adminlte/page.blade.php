@@ -99,7 +99,7 @@
 
             <!-- Main content -->
             <section class="content">
-
+                <div class='notifications top-center'></div>
                 @yield('content')
 
             </section>
