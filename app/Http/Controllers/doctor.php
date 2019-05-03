@@ -292,40 +292,40 @@ class doctor extends Controller
              return redirect('doctor/doctor/' . $user->id)->with($notification);
               
         } 
-         public function verify($id)
-           {
-                 $assistant = assistant::where('id', $id)->first();
-                if (!$assistant){
-             $notification = array(
-                            //In case the payment is approved it shows a message reminding you the amount you paid.
-                        'message' => 'Ha ocurrido un error con la confirmación, al parecer fue eliminado', 
-                        'error' => 'error'
-                        );
-                      
-                    return  redirect('user/profile/' . Auth::id() )->with($notification);
-                }
-                else{
-          $assist = User::where('id', $assistant->user_assist)->first();
-          $doctor = User::where('id', $assistant->user_doctor)->first();
-                $assistant->confirmation = true;
-                if($assistant->save()){
-                    $notification = array(
-                        'message' => 'Se confirmó exitosamente se agregó por defecto a tu perfil', 
-                        'success' => 'success'
-                        );
-                      $data = [
-                                'username'      => $assist->username,
-                                'name'      => $assist->name,
-                                ];
-                               $email = $doctor->email;
-                                 Mail::send('emails.assistantconfirm', $data, function ($message) {
-                                            $message->subject('El asistente que agregaste ha confirmado exitosamente');
-                                            $message->to('contacto@doitcloud.consulting');
-                                        });
-                return redirect('user/profile/' . Auth::id())->with($notification);
-              }
+     public function verify($id)
+       {
+             $assistant = assistant::where('id', $id)->first();
+            if (!$assistant){
+         $notification = array(
+                        //In case the payment is approved it shows a message reminding you the amount you paid.
+                    'message' => 'Ha ocurrido un error con la confirmación, al parecer fue eliminado', 
+                    'error' => 'error'
+                    );
+                  
+                return  redirect('user/profile/' . Auth::id() )->with($notification);
             }
+            else{
+      $assist = User::where('id', $assistant->user_assist)->first();
+      $doctor = User::where('id', $assistant->user_doctor)->first();
+            $assistant->confirmation = true;
+            if($assistant->save()){
+                $notification = array(
+                    'message' => 'Se confirmó exitosamente se agregó por defecto a tu perfil', 
+                    'success' => 'success'
+                    );
+                  $data = [
+                            'username'      => $assist->username,
+                            'name'      => $assist->name,
+                            ];
+                           $email = $doctor->email;
+                             Mail::send('emails.assistantconfirm', $data, function ($message) {
+                                        $message->subject('El asistente que agregaste ha confirmado exitosamente');
+                                        $message->to('contacto@doitcloud.consulting');
+                                    });
+            return redirect('user/profile/' . Auth::id())->with($notification);
+          }
         }
+    }
 
     public function deleteAssistant($id){
          $assistant = DB::table('assistant')
@@ -845,6 +845,7 @@ class doctor extends Controller
 
           $question = questions_clinic_history::find($id);
           $answer = DB::table('answers_clinic_history')->where('question', $id)->first();
+          $answerid = answers_clinic_history::find($answer->id);
           $clinic_history =   DB::table('clinic_history')->where('question_id', $id)->get();
 
           if(count($clinic_history) == 0){
@@ -852,8 +853,10 @@ class doctor extends Controller
                     DB::table('questions_clinic_history')->where('id', $id)->delete();   
           }else{
               $question->active = false;
-                if($question->save())
-                    $answer->active = false;
+                if($question->save()){
+                    $answerid->active = false;
+                    $answerid->save();
+                }
 
           }
           return redirect('doctor/doctor/'.$user->id);

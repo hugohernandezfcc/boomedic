@@ -239,19 +239,16 @@
                                         {{ $answer }}
                                     </label>     
                                     @else
-                                        @if($a2 == "texto") 
-                                          <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="textarea" value="{{ $a2 }}" name="resp[]">
-                                          <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                              {{ $answer }}
-                                          </label>
-                                          @else
+                                        @if($an[0] == "texto") 
+                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
+                                         @elseif($an[0] == "checkbox")   
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                                   {{ $answer }}
                                               </label>
-                                            @endif  
-                                        @endif  
+                                            @endif      
+                                        @endif
                                   @endif
                                @endif 
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
@@ -293,19 +290,16 @@
                                         {{ $answer }}
                                     </label>     
                                     @else
-                                        @if($a2 == "texto") 
-                                          <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="textarea" value="{{ $a2 }}" name="resp[]">
-                                          <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                              {{ $answer }}
-                                          </label>
-                                          @else
+                                        @if($an[0] == "texto") 
+                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
+                                         @elseif($an[0] == "checkbox")   
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                                   {{ $answer }}
                                               </label>
-                                            @endif  
-                                        @endif  
+                                            @endif      
+                                        @endif
                                     @endif
                                @endif 
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
@@ -347,19 +341,16 @@
                                         {{ $answer }}
                                     </label>     
                                     @else
-                                        @if($a2 == "texto") 
-                                          <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="textarea" value="{{ $a2 }}" name="resp[]">
-                                          <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                              {{ $answer }}
-                                          </label>
-                                          @else
+                                        @if($an[0] == "texto") 
+                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
+                                         @elseif($an[0] == "checkbox")   
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                                   {{ $answer }}
                                               </label>
-                                            @endif  
-                                        @endif  
+                                            @endif      
+                                        @endif 
                                     @endif
                                @endif 
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
@@ -401,19 +392,16 @@
                                         {{ $answer }}
                                     </label>     
                                     @else
-                                        @if($a2 == "texto") 
-                                          <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="textarea" value="{{ $a2 }}" name="resp[]">
-                                          <label for="{{ $questions1->id }}{{ $loop->iteration }}">
-                                              {{ $answer }}
-                                          </label>
-                                          @else
+                                        @if($an[0] == "texto") 
+                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
+                                         @elseif($an[0] == "checkbox")   
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
                                                   {{ $answer }}
                                               </label>
-                                            @endif  
-                                        @endif  
+                                            @endif      
+                                        @endif
                                     @endif
                                @endif 
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
@@ -1411,33 +1399,29 @@
 
 
 					$('.next').click(function(){
-
-					  var nextId = $(this).parents('.tab-pane').next().attr("id");
-					  $('[href=#'+nextId+']').tab('show');
+            
+            var nextId = $(this).parents('.tab-pane').next().attr("id");
+            $('[href=#'+nextId+']').tab('show');
             var tab = $(this).parents('.tab-pane').attr("id");
+                        if(typeof $('#'+tab+' textarea').val() != "undefined")
+                           var values = Array($('#'+tab+' textarea').val());
+                        else{
                          var values = $('#'+tab+' input').map(function() {
                           if($(this).is(':checkbox') && this.checked){
-
                                   var check2 = this.value.replace(/_/gi, " ");
-                                if($('#'+tab+' input:radio').is(':checked')){
-                                    check2 =  this.value.replace(/_/gi, " ") + ' (' + $('#'+tab+' input:radio:checked').val() + ')';
-                                } 
                                     
                                   }
-                          if($(this).is(':radio')){
-                                if($(this).is(':checked') && $('#'+tab+' input:radio:checked').val() == "Si"){
-                                   var check2 =  $('#'+tab+' textarea').val();
-                                } 
-                                if($(this).is(':checked') && $('#'+tab+' input:radio:checked').val() == "No"){
+                          if($(this).is(':radio') && this.checked){
                                    var check2 =    $('#'+tab+' input:radio:checked').val();
-                                } }
+                                 }
                                 return check2; // obtienes el valor de todos los checkboxes
                                   
                           }).get();
-
+                          }
 
             var ques = $('#'+tab+ ' .quesId').val();
             var ansId = $('#'+tab+ ' .ansId').val();
+
 
                       $.ajaxSetup({
                                   headers: {
@@ -1485,28 +1469,21 @@
           $('.finish').click(function(){
 
                         var tab = $(this).parents('.tab-pane').attr("id");
-
-                        var values = $('#'+tab+' input').map(function() {
-
+                        if(typeof $('#'+tab+' textarea').val() != "undefined")
+                           var values = Array($('#'+tab+' textarea').val());
+                        else{
+                         var values = $('#'+tab+' input').map(function() {
                           if($(this).is(':checkbox') && this.checked){
-
                                   var check2 = this.value.replace(/_/gi, " ");
-                                if($('#'+tab+' input:radio').is(':checked')){
-                                    check2 =  this.value.replace(/_/gi, " ") + ' (' + $('#'+tab+' input:radio:checked').val() + ')';
-                                }   
-                           }
-
-                          if($(this).is(':radio')){
-                                if($(this).is(':checked') && $('#'+tab+' input:radio:checked').val() == "Si"){
-                                   var check2 =  $('#'+tab+' textarea').val();
-                                } 
-                                if($(this).is(':checked') && $('#'+tab+' input:radio:checked').val() == "No"){
+                                    
+                                  }
+                          if($(this).is(':radio') && this.checked){
                                    var check2 =    $('#'+tab+' input:radio:checked').val();
-                                } 
-                              }
+                                 }
                                 return check2; // obtienes el valor de todos los checkboxes
                                   
                           }).get();
+                          }
 
 
                         var ques = $('#'+tab+ ' .quesId').val();
