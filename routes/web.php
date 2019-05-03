@@ -647,14 +647,11 @@ Route::group(['prefix' => 'history'], function(){
 			'as'	=>	'store'
 		]
 	);
-
-
-
 });
 
 Route::group(['prefix' => 'AssistantController'], function(){
 
-	Route::post('save/{id}', [
+	Route::get('save/{id}', [
 			'uses'	=>	'assistantController@save',
 			'as'	=>	'save'
 		]

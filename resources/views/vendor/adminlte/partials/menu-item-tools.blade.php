@@ -146,7 +146,7 @@
                                                         });
 
                                                 $.ajax({     
-                                                       type: "POST",                 
+                                                       type: "GET",                 
                                                        url: "{{ url('AssistantController/save') }}/" + id,  
                                                        data: {  "profile" : profile,
                                                                 "calendar" : calendar,
