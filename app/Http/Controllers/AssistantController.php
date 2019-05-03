@@ -30,13 +30,13 @@ class AssistantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function save(Request $request, $id)
+    public function save(Request $request)
     {
         $user = User::find(Auth::id());
         $assistants = DB::table('assistant')
              ->join('users', 'assistant.user_assist', '=', 'users.id')
              ->where('user_doctor', $user->id)
-             ->where('user_assist', $id)
+             ->where('user_assist', $request->id)
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as idass', 'users.email')
              ->first();
 

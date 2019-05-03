@@ -133,26 +133,15 @@
                                                 var chat = attribute(id, "chat");
                                                 var assistant = attribute(id, "assistant");
 
-                                                  console.log(profile);
-                                                  console.log(calendar);
-                                                  console.log(workboard);
-                                                  console.log(chat);
-                                                  console.log(assistant);
-
-                                                $.ajaxSetup({
-                                                            headers: {
-                                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                                            }
-                                                        });
-
                                                 $.ajax({     
                                                        type: "GET",                 
-                                                       url: "{{ url('AssistantController/save') }}/" + id,  
+                                                       url: "{{ url('AssistantController/save') }}",  
                                                        data: {  "profile" : profile,
                                                                 "calendar" : calendar,
                                                                 "workboard" : workboard,
                                                                 "chat" : chat,
-                                                                "assistant" : assistant
+                                                                "assistant" : assistant,
+                                                                "id" : id
                                                               }, 
                                                        dataType: 'json',                
                                                        success: function(data)             
