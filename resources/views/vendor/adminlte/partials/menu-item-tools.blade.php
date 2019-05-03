@@ -45,7 +45,7 @@
             font-size: 13px !important;
           }
       </style>
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
 
                     <aside class="control-sidebar control-sidebar-dark" style="overflow: hidden;">
                               <!-- Create the tabs -->

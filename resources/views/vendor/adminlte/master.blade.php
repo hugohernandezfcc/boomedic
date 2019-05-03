@@ -468,7 +468,7 @@ span.round-tab:hover {
   top: 25px;
 }
 </style>
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
     @if(config('adminlte.plugins.datatables'))
         <!-- DataTables -->
