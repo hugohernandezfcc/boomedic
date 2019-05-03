@@ -131,6 +131,7 @@
                   <!-- /.modal-content -->
                 </div>
              </div>
+                 @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                      @include('modals.clinichistoryappointments', 
                         [
                           'id' => $items['id'],
@@ -139,6 +140,7 @@
                           'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
+                @endif      
           @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -251,7 +253,8 @@
             </div>
             <!-- /.modal-content -->
           </div>
-                      @include('modals.clinichistoryappointments', 
+                 @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
+                     @include('modals.clinichistoryappointments', 
                         [
                           'id' => $items['id'],
                           'dr' => $items['did'], 
@@ -259,6 +262,7 @@
                           'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
+                @endif   
             @endif
             
             @if($items['Type'] == 'Support Ticket')
@@ -372,7 +376,8 @@
                   <!-- /.modal-content -->
                 </div>
               </div>
-                      @include('modals.clinichistoryappointments', 
+                 @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
+                     @include('modals.clinichistoryappointments', 
                         [
                           'id' => $items['id'],
                           'dr' => $items['did'], 
@@ -380,6 +385,7 @@
                           'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
+                @endif   
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -493,7 +499,8 @@
                     <!-- /.modal-content -->
                   </div>
                 </div>
-                      @include('modals.clinichistoryappointments', 
+                 @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
+                     @include('modals.clinichistoryappointments', 
                         [
                           'id' => $items['id'],
                           'dr' => $items['did'], 
@@ -501,6 +508,7 @@
                           'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
+                @endif   
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -614,14 +622,16 @@
                       <!-- /.modal-content -->
                     </div>
                 </div>
-                  @include('modals.clinichistoryappointments', 
-                                                [
-                                                  'id' => $items['id'],
-                                                  'dr' => $items['did'], 
-                                                  'questions'  => $items['questions'],
-                                                  'clinic_historyappo'  => $items['clinic_history']
-                                                ]
-                                              )
+                 @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
+                     @include('modals.clinichistoryappointments', 
+                        [
+                          'id' => $items['id'],
+                          'dr' => $items['did'], 
+                          'questions'  => $items['questions'],
+                          'clinic_historyappo'  => $items['clinic_history']
+                        ]
+                      )
+                @endif   
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -733,7 +743,8 @@
                   <!-- /.modal-content -->
                 </div>
             </div>
-             @include('modals.clinichistoryappointments', 
+                 @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
+                     @include('modals.clinichistoryappointments', 
                         [
                           'id' => $items['id'],
                           'dr' => $items['did'], 
@@ -741,6 +752,7 @@
                           'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
+                @endif   
             @endif
 
             @if($items['Type'] == 'Support Ticket')
@@ -854,7 +866,8 @@
                   <!-- /.modal-content -->
                 </div>
               </div>
-              @include('modals.clinichistoryappointments', 
+                 @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
+                     @include('modals.clinichistoryappointments', 
                         [
                           'id' => $items['id'],
                           'dr' => $items['did'], 
@@ -862,6 +875,7 @@
                           'clinic_historyappo'  => $items['clinic_history']
                         ]
                       )
+                @endif   
             @endif
             
             @if($items['Type'] == 'Support Ticket')
