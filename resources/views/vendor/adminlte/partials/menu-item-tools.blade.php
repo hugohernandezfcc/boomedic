@@ -109,7 +109,7 @@
                                                        $('#'+id+'w').attr('disabled','disabled');
                                                        $('#'+id+'w').prop( "checked", false );
                                                   }
-                                              }
+                                              };
 
                                               function attribute(id, atr){
                                                   var result;
@@ -123,7 +123,7 @@
                                                         result = "none";
 
                                                         return result;
-                                                }
+                                                };
 
                                               function saveSettings(id){
 
@@ -166,7 +166,7 @@
 
                                                       
                                                    });
-                                              }
+                                              };
                                window.onload = function(){
                                               $.ajax({
                                                    type: "GET",                 
