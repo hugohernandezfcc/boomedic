@@ -102,7 +102,7 @@
                     </div>
                      <div class="timeline-footer">
                         <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
-                     @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                     @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
                                 <a data-target="#modalhistoryappointments-{{ $items['id'] }}" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
@@ -223,7 +223,7 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
-                     @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                     @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
                                 <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
@@ -344,7 +344,7 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
-                    @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                    @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
                                 <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
@@ -465,7 +465,7 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
-                    @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                    @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
                                 <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
@@ -586,7 +586,7 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
-                     @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                     @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
                                 <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
@@ -705,7 +705,7 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
-                     @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                     @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
                                 <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
@@ -826,7 +826,7 @@
                 </div>
                  <div class="timeline-footer">
                     <a data-target="#modalmap" data-toggle="modal" class="btn btn-secondary btn-xs">Ver mapa</a>
-                     @if(\Carbon\Carbon::parse($items['when'])->format('d-m-Y') >=  \Carbon\Carbon::now()->format('d-m-Y'))   
+                     @if(\Carbon\Carbon::parse($items['when'])->format('m-d-Y') >=  \Carbon\Carbon::now()->format('m-d-Y'))   
                          @foreach($items['questions'] as $quest)
                             @if($quest->createdby == $items['did'] && $loop->iteration == 1)
                                 <a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $items['id'] }}" data-dismiss="modal" data-toggle="modal" class="btn btn-default btn-xs">Historia clínica</a>
