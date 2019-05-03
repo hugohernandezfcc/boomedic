@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use App\assistant;
 use Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use config;
@@ -24,11 +23,11 @@ class AssistantController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-
-
+    
     /**
-     * Display a listing of the resource.
-     *
+     * Save to settings salesforce
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function save(Request $request, $id)
@@ -49,7 +48,7 @@ class AssistantController extends Controller
          $saveAssis->assistant = $request->assistant;
 
                 if($saveAssis->save()){
-                      /* $data = [
+                       $data = [
                                 'username'  => $user->username,
                                 'name'      => $user->name,
                                 'email'     => $user->email                
@@ -58,7 +57,7 @@ class AssistantController extends Controller
                                  Mail::send('emails.assistantSettings', $data, function ($message) {
                                             $message->subject('Han cambiado tus permisos de asistente');
                                             $message->to('contacto@doitcloud.consulting');
-                                        });*/
+                                 });
 
                     return response()->json($assistants->name);
                 }
@@ -121,14 +120,4 @@ class AssistantController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
