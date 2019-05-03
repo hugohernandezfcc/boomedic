@@ -240,15 +240,15 @@
                                     </label>     
                                     @else
                                         @if($an[0] == "texto") 
-                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
-                                         @elseif($an[0] == "checkbox")   
+                                          <textarea class="form-control" rows="3" id="{{ $questions1->id }}{{ $loop->iteration }}" value="{{ $a2 }}" name="resp"></textarea>
+                                          @else
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                                                   {{ $answer }}
                                               </label>
-                                            @endif      
-                                        @endif
+                                            @endif  
+                                        @endif  
                                   @endif
                                @endif 
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
@@ -291,15 +291,15 @@
                                     </label>     
                                     @else
                                         @if($an[0] == "texto") 
-                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
-                                         @elseif($an[0] == "checkbox")   
+                                          <textarea class="form-control" rows="3" id="{{ $questions1->id }}{{ $loop->iteration }}" value="{{ $a2 }}" name="resp"></textarea>
+                                          @else
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                                                   {{ $answer }}
                                               </label>
-                                            @endif      
-                                        @endif
+                                            @endif  
+                                        @endif  
                                     @endif
                                @endif 
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
@@ -342,15 +342,15 @@
                                     </label>     
                                     @else
                                         @if($an[0] == "texto") 
-                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
-                                         @elseif($an[0] == "checkbox")   
+                                          <textarea  class="form-control" rows="3" id="{{ $questions1->id }}{{ $loop->iteration }}" value="{{ $a2 }}" name="resp"></textarea>
+                                          @else
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                                                   {{ $answer }}
                                               </label>
-                                            @endif      
-                                        @endif 
+                                            @endif  
+                                        @endif  
                                     @endif
                                @endif 
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
@@ -393,15 +393,15 @@
                                     </label>     
                                     @else
                                         @if($an[0] == "texto") 
-                                          <textarea id="{{ $questions1->id }}{{ $loop->iteration }}"  name="{{ $questions1->id }}"></textarea>
-                                         @elseif($an[0] == "checkbox")   
+                                          <textarea class="form-control" rows="3" id="{{ $questions1->id }}{{ $loop->iteration }}" value="{{ $a2 }}" name="resp"></textarea>
+                                          @else
                                             @if($a2 != "checkbox")
-                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
-                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}{{ $a2 }}">
+                                              <input id="{{ $questions1->id }}{{ $loop->iteration }}" type="checkbox" value="{{ $a2 }}" name="resp[]" class="checkbox">
+                                              <label for="{{ $questions1->id }}{{ $loop->iteration }}">
                                                   {{ $answer }}
                                               </label>
-                                            @endif      
-                                        @endif
+                                            @endif  
+                                        @endif  
                                     @endif
                                @endif 
                                  <div class="well well-sm" style="display: none; border: 1px solid #3E3E3E; padding: 0px;"></div>
@@ -1399,7 +1399,7 @@
 
 
 					$('.next').click(function(){
-            
+
             var nextId = $(this).parents('.tab-pane').next().attr("id");
             $('[href=#'+nextId+']').tab('show');
             var tab = $(this).parents('.tab-pane').attr("id");
