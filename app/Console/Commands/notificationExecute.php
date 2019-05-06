@@ -45,7 +45,7 @@ class notificationExecute extends Command
          ->join('devices', 'users_devices.device', '=', 'devices.id')         
          ->select('devices.*','users.name')
          ->get();
-         print_r($devices_all);
+         
         $body = "Bienvenido a Isco";
 
 
