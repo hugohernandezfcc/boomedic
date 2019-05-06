@@ -326,11 +326,11 @@
       <!-- Trigger the modal with a checkbox -->
 
 
-        <!-- <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
+        <div id="infoSp" class="infoSpStyle" style="display:none;" onclick="changeCheck();">
             <strong>
                 <span id="infoSpDetail" class="textStyle01" style="visibility: hidden;"></span>
             </strong>
-        </div> -->
+        </div>
  
         @include('alerts.LoaderPage')        
 
