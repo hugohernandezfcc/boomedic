@@ -17,9 +17,22 @@
      */
 
     var title = "Programar Cita";
-    var check01 = "Médico General";
     var select01 = "Seleccionar especialidad";
+
+    /**
+     * Variable utilizada en el picklist de especialidades, ese el primer valor
+     */
     var firstValue = '- Ninguna -';
+    
+    /**
+     * Médico general, es el valor por defecto y se ocupa en innerHTML de : label01
+     * 
+     *  
+     */
+    var check01 = "Médico General";
+
+
+
     var fieldSearch = 'Buscar';//'Nombre del Médico';
     var Rango01 = 'Rango de búsqueda (Kilómetros):';
     var Rango02 = 'Rango de búsqueda predefinido (Kilómetros):';
@@ -70,6 +83,7 @@
                     <div class="box-body">
                          @foreach($appointments->sortBy('when') as $appo)
                            @if($loop->iteration < 3)
+
                              @if($appo->status == 'No completed')
                                   <div class="col-sm-12">
                                     <div class="info-box sm bg-red">
