@@ -21,7 +21,7 @@ class PushNotifications extends Controller
 				 );
 		$fields = array
 				 (
-					'to'		=> $registrationIds,
+					'to'		=> $fmc,
 					'notification'	=> $msg,	
 				 );
 	
@@ -40,7 +40,7 @@ class PushNotifications extends Controller
 		curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
 		$result = curl_exec($ch );
 		curl_close( $ch );
-				
+				print_r($result);
 			return $result;
 		}
 }

@@ -1,6 +1,5 @@
 <?php
 namespace App\Console\Commands;
-
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -10,7 +9,7 @@ use App\users_devices;
 use App\Http\Controllers\PushNotifications;
 
 
-class notficationExecute extends Command
+class notificationExecute extends Command
 {
     /**
      * The name and signature of the console command.
@@ -43,10 +42,10 @@ class notficationExecute extends Command
     {
         $devices_all = DB::table('users_devices')
          ->join('users', 'users_devices.user_id', '=', 'users.id')
-         ->join('devices', 'users_devices.user_id', '=', 'users.id')         
+         ->join('devices', 'users_devices.device', '=', 'devices.id')         
          ->select('devices.*','users.name')
          ->get();
-
+         print_r($devices_all);
         $body = "Bienvenido a Isco";
 
 

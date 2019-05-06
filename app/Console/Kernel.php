@@ -13,10 +13,11 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+         '\App\Console\Commands\notificationExecute',
          '\App\Console\Commands\paymentExecute',
          '\App\Console\Commands\medicationExecute',
-         '\App\Console\Commands\changeWorkboardDr',
-         '\App\Console\Commands\notificationExecute'
+         '\App\Console\Commands\changeWorkboardDr'
+
     ];
 
     /**
