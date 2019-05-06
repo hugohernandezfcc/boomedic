@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
          '\App\Console\Commands\paymentExecute',
          '\App\Console\Commands\medicationExecute',
          '\App\Console\Commands\changeWorkboardDr'
+         '\App\Console\Commands\notificationExecute'
     ];
 
     /**
