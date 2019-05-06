@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\devices;
 use App\users_devices;
+use App\Http\Controllers\PushNotifications;
+
 
 class notficationExecute extends Command
 {
