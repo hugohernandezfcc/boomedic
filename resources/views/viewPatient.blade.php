@@ -145,25 +145,28 @@
 	                  	<b>No. de citas</b> <a class="pull-right">{{ $countappo }}</a>
 	                </li>
 	                <li class="list-group-item">
-	                	 @foreach($questions as $quest)
+	                	@php
+						 	dd($questions);
+						@endphp
+	                	@foreach($questions as $quest)
                             @if($loop->iteration == 1)
                                 <a data-target="#modalhistoryappointments-{{ $patientId}}" data-toggle="modal" class="btn btn-secondary btn-flat btn-block">Historia clínica previa cita</a>
                             @endif    
-                         @endforeach
+                        @endforeach
 	                </li>
 	            </ul>
 
             </div>
             <!-- /.box-body -->
           </div>
-                                                              @include('modals.clinichistoryappointments', 
-                                                                            [
-                                                                              'id' => $patientId,
-                                                                              'dr' => Auth::id(), 
-                                                                              'questions'  => $questions_appointments,
-                                                                              'clinic_historyappo'  => $clinic_history_appointments
-                                                                            ]
-                                                                          )
+      		@include('modals.clinichistoryappointments', 
+                    [
+                      	'id' => $patientId,
+                      	'dr' => Auth::id(), 
+                      	'questions'  => $questions_appointments,
+                      	'clinic_historyappo'  => $clinic_history_appointments
+                    ]
+                  )
           <!-- /.box -->
 
           <!-- About Me Box -->
