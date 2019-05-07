@@ -463,8 +463,12 @@ span.round-tab:hover {
   border-top-color: #242627;
 }
 
+.notifications.top-center {
+  left: 40%;
+  top: 25px;
+}
 </style>
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
     @if(config('adminlte.plugins.datatables'))
         <!-- DataTables -->
@@ -510,8 +514,13 @@ $(document).ready(function() {
 <script src="{{ asset('js/LinkedInRegister.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_KEY') }}&libraries=geometry,places" async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.css">
   <p id="power"></p>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>-->
+
+
+
 <script type="text/javascript">
 
           //Function for minutes appointments set interval dinamic
@@ -543,7 +552,7 @@ $(document).ready(function() {
             }
             function panelDr(){
                 var doc = "@php echo session()->get('utype'); @endphp";
-              if(doc == "doctor"){          
+              if(doc == "doctor" || doc == "assistant"){          
               $.ajax({
                                     type: "GET",    
                                     url: "{{ url('HomeController/listpatients') }}", 
@@ -661,8 +670,8 @@ $(document).ready(function() {
                         var more = moment().add(2, 'day').format("MM/DD/YYYY");      
                        for(var h =0; h < result2[1].length; h++){
 
-                                      var gender = result2[0][h]['gender'];
-                                      if(result2[0][h]['profile_photo'] == null || result2[0][h]['profile_photo'] == ''){
+                                      var gender = result2[1][h]['gender'];
+                                      if(result2[1][h]['profile_photo'] == null || result2[1][h]['profile_photo'] == ''){
                                         if(gender == 'female'){
                                            var  photo = "{{ asset('profile-female.png') }}";
                                            gender = 'Femenino';
@@ -676,7 +685,7 @@ $(document).ready(function() {
                                            gender = 'Otro';
                                          } 
                                       }else{
-                                        var photo = result2[0][h]['profile_photo'];
+                                        var photo = result2[1][h]['profile_photo'];
                                       }
 
                                      var when = moment(result2[1][h]['when']).format("MM/DD/YYYY");
@@ -773,7 +782,7 @@ $(document).ready(function() {
                                 }
                         var type = "@php echo session()->get('utype'); @endphp"
                         var mo = moment(result[o]['created_at']).fromNow();
-                            if(type == "doctor"){
+                            if(type == "doctor" || type == "assistant"){
                                 var url = "{{ url('') }}" + "/medicalconsultations";
                             }else{
                                 var url = "{{ url('') }}" + "/clinicHistory/index"; 
@@ -810,7 +819,7 @@ $(document).ready(function() {
                 console.log('socket');
             });*/
 
-            var par = "@php echo session()->get('parental'); @endphp";
+     var par = "@php echo session()->get('parental'); @endphp";
       if(!par){
           $("body").removeClass("skin-black-light");
           $("body").addClass("skin-black");
@@ -865,16 +874,6 @@ $(document).ready(function() {
           };
 
 
-                    //Date picker
-       /* $('#datepicker').datepicker({
-            format: "mm/dd/yyyy",
-            language: "es",
-            autoclose: true
-        });
-        $('#datepicker').datepicker().on('show', function(e) {
-            $('div.datepicker').removeClass( "datepicker-dropdown" );
-        });*/
-        //$('#mobile').inputmask({"mask": "(999) 999-9999"});
         $('form').on('keyup keypress', function(e) {
             var keyCode = e.keyCode || e.which;
             if (keyCode === 13) { 

@@ -2,18 +2,75 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\assistant;
+use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use config;
+use Mail;
+use email;
+use Mailgun\Mailgun;
 
 class AssistantController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(){
+       //
+    }
+    /**
+     * Save to settings salesforce
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function save(Request $request)
     {
-        //
+        $user = User::find(Auth::id());
+        $assistants = DB::table('assistant')
+             ->join('users', 'assistant.user_assist', '=', 'users.id')
+             ->where('user_doctor', $user->id)
+             ->where('user_assist', $request->id)
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as idass', 'users.email')
+             ->first();
+
+         $saveAssis = assistant::find($assistants->id);
+         $saveAssis->profile = $request->profile;
+         $saveAssis->calendar = $request->calendar;           
+         $saveAssis->workboard = $request->workboard;
+         $saveAssis->chat = $request->chat;
+         $saveAssis->assistant = $request->assistant;
+
+                if($saveAssis->save()){
+                       $data = [
+                                'username'  => $user->username,
+                                'name'      => $user->name,
+                                'email'     => $user->email                
+                                ];
+
+                                 Mail::send('emails.assistantSettings', $data, function ($message) {
+                                            $message->subject('Han cambiado tus permisos de asistente');
+                                            $message->to('contacto@doitcloud.consulting');
+                                 });
+
+                    return response()->json($assistants->name);
+                }
+                else
+                    return response()->json('Error');                   
     }
 
     /**
@@ -71,14 +128,4 @@ class AssistantController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

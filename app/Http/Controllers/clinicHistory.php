@@ -340,6 +340,9 @@ class clinicHistory extends Controller
         ->where('userid', $user->id)->where('question_id', $request->question)->first();
         $newArray = array();
         $answers = json_decode($request->answers);
+        $answersguion = str_replace("_", " ", $answers);
+
+
             if (in_array("Fallecido", $answers) && in_array("Vivo", $answers)) {
                 $z = 1;
                for($i = 0; $i < count($answers); $i++){
@@ -358,7 +361,7 @@ class clinicHistory extends Controller
                 $clinic = clinic_history::find($history->id);
                 $clinic->answer_id = $request->ansId;
                 if(count($newArray) == 0){
-                $clinic->answer = $request->answers;
+                $clinic->answer = json_encode($answersguion);
             }else {
                 $clinic->answer = json_encode($newArray);
             }
@@ -370,7 +373,7 @@ class clinicHistory extends Controller
             $clinic->question_id =  $request->question;
             $clinic->question = $q->question;
             if(count($newArray) == 0){
-            $clinic->answer = $request->answers;
+            $clinic->answer = json_encode($answersguion);
               }else {
                 $clinic->answer = json_encode($newArray);
             }

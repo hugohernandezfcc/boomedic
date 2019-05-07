@@ -77,8 +77,6 @@
                                   @if($photo == '')
                                           @if($gender == 'male') 
                                             <img class="user-image"src="{{ asset('profile-42914_640.png') }}" alt="User Image">
-
-                                            
                                           @endif
                                           @if($gender == 'female') 
                                             <img class="user-image" src="{{ asset('profile-female.png') }}" alt="User Image">
@@ -185,7 +183,7 @@
                  <!-- End bar perfil user -->              
 
                 <!-- Tools en doctor-->
-                 @if(session()->get('utype') == "doctor")              
+                @if(session()->get('utype') == "doctor" || session()->get('utype') == "assistant")        
                     <li>
                         <a data-toggle="control-sidebar"><i class="fa fa-child"></i><span class="label" id="drAlert">¡HOLA!</span></a>
                     </li>

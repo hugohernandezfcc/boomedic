@@ -49,7 +49,7 @@
 	<div class="lockscreen-item">
     <!-- lockscreen image -->
     <div class="lockscreen-image">
-      <img src="https://s3.amazonaws.com/abiliasf/profile-42914_640.png" id="imgDrA"  class="img-circle">
+      <img src="{{ asset('profile-other.png') }}" id="imgDrA"  class="img-circle">
     </div>
     <form class="lockscreen-credentials">
       <div class="input-group" style="display: block !important;">
@@ -76,13 +76,25 @@
  		 }else{
  		 	$("#mySelectd").prop('disabled', false);
  		 }
+
  		 $("#mySelectd").val("{{ session()->get('asdr') }}");
  	 var dr = JSON.stringify(@php echo $as; @endphp);
 
   	 dr =JSON.parse(dr);
  			for(var z=0; z < dr.length; z++){
  				if(dr[z]['iddr'] ==  $('#mySelectd option:selected').val()){
- 					$('#imgDrA').attr('src', dr[z]['profile_photo']);
+ 					if(dr[z]['profile_photo'] == '' || dr[z]['profile_photo'] == null){
+ 							if(dr[z]['gender'] == 'male')
+ 								var photo = "{{ asset('profile-42914_640.png') }}";
+ 							if(dr[z]['gender'] == 'female') 				
+ 								var photo = "{{ asset('profile-female.png') }}";
+ 							if(dr[z]['gender'] == 'other') 				
+ 								var photo = "{{ asset('profile-other.png') }}";	 											
+ 					}
+ 					else
+ 						var photo = dr[z]['profile_photo'];
+
+ 					$('#imgDrA').attr('src', photo);
  					 if($('#mySelectd option:selected').attr('col') == '1'){
  					 	$('.lockscreen-image').addClass('online');
  					 }else{
@@ -101,15 +113,25 @@
  					 	$('.lockscreen-image').addClass('offline');
  					 	$('.lockscreen-image').removeClass('online');
  					 }
- 					console.log(dr[x]['iddr']);
- 					$('#imgDrA').attr('src', dr[x]['profile_photo']);
+ 					if(dr[x]['profile_photo'] == '' || dr[x]['profile_photo'] == null){
+ 							if(dr[x]['gender'] == 'male')
+ 								var photox = "{{ asset('profile-42914_640.png') }}";
+ 							if(dr[x]['gender'] == 'female') 				
+ 								var photox = "{{ asset('profile-female.png') }}";
+ 							if(dr[x]['gender'] == 'other') 				
+ 								var photox = "{{ asset('profile-other.png') }}";	 											
+ 					}
+ 					else
+ 						var photox = dr[x]['profile_photo'];
+
+
+ 					$('#imgDrA').attr('src', photox);
  					 				$.ajax({     
 				                             type: "GET",                 
 				                             url: "{{ url('user/select') }}/" + dr[x]['iddr'] ,           
 				                             success: function(result)             
 				                             {
 				                             	if(window.location.href == "{{ url('medicalconsultations') }}"){
-				                             		console.log(result);
 				                             		 var data = 0;
 				                             		 clearTimeout(timer);
 													 $("#mid").val(data);
@@ -118,6 +140,7 @@
 													 $('.chatbut').prop('disabled', true);
 				                             		 get(data);
 				                             		 notifications();
+				                             		 location.reload();
 				                          }else{
 				 									location.reload();
 				 								}

@@ -49,36 +49,36 @@
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
-		#map {
-			padding-top: 0;
-		    width: 100%;
-		    height: 300px;
-		    z-index: 30;
-		      }
-			.dropzone  {
-			     min-height: 10px !important; 
-			    border-style: dotted  !important;
-			    /* background: white; */
-			    padding: 5px !important;
-			}
-			.dropzone .gen .dz-message {
-			    margin: 1em 0 !important;
-			}
-		.modal-content-2 {
-		    position: relative;
-		    background-color: transparent;
-		    -webkit-background-clip: padding-box;
-		    background-clip: padding-box;
-		    color: white;
-		    margin-top: 50%;
-		    width: 100%;
+#map {
+	padding-top: 0;
+    width: 100%;
+    height: 300px;
+    z-index: 30;
+      }
+.dropzone  {
+     min-height: 10px !important; 
+    border-style: dotted  !important;
+    /* background: white; */
+    padding: 5px !important;
+}
+.dropzone .gen .dz-message {
+    margin: 1em 0 !important;
+}
+.modal-content-2 {
+    position: relative;
+    background-color: transparent;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    color: white;
+    margin-top: 50%;
+    width: 100%;
 
-		}
-		.cut{
-		  text-overflow:ellipsis;
-		  white-space:nowrap; 
-		  overflow:hidden; 
-		}
+}
+.cut{
+  text-overflow:ellipsis;
+  white-space:nowrap; 
+  overflow:hidden; 
+}
 .stepwizard-step p {
     margin-top: 10px;
 }
@@ -273,22 +273,22 @@
 	    		<div class="row" align="center">
 	    		
 	    		<div class="col-sm-3" align="center">
-	    			@if($photo == '')
+	    			@if($photo2 == '')
 			    	 	@if($gender == 'male') 
-			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 			    	 		</div>
 			    	 	@endif
 			    	 	@if($gender == 'female') 
-			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-female.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 			    	 		</div>
 			    	 	@endif
 			    	 	 @if($gender == 'other' || $gender == '') 
-			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+			    	 		<div class="container"><img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 			    	 		</div>
 		    	 	@endif
 					@else
 					@php 
-					  $imagen = getimagesize($photo);    //Sacamos la información
+					  $imagen = getimagesize($photo2);    //Sacamos la información
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 			          if($height > '500' || $width > '500'){
@@ -309,7 +309,7 @@
 			        }
 					@endphp
 					
-						<div class="container"><img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" ><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
+						<div class="container"><img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" ><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}"  method="post" class="dropzone btn btn-default btn-circle-d" id="myDropzone" >{{ csrf_field() }}<span class="fa fa-pencil" ></span></form>
 
 			    	 	</div>
 			    			
@@ -321,7 +321,7 @@
 	    		<div class="row" align="center">
 	    		
 	    		<div class="col-sm-3" align="center">
-	    			@if($photo == '')
+	    			@if($photo2 == '')
 			    	 	@if($gender == 'male') 
 			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-42914_640.png') }}" alt="User Image"  style="width:150px; height: 150px;">
 			    	 	@endif
@@ -333,7 +333,7 @@
 		    	 	@endif
 					@else
 					@php 
-					  $imagen = getimagesize($photo);    //Sacamos la información
+					  $imagen = getimagesize($photo2);    //Sacamos la información
 			          $width = $imagen[0];              //Ancho
 			          $height = $imagen[1];  
 			          if($height > '500' || $width > '500'){
@@ -353,11 +353,11 @@
 			            $width = $width / 1.6;
 			        }
 					@endphp
-						<img src="{{ $photo }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
+						<img src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 	    			
 	    		</div>
-	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/user/updateProfile/{{$userId}}" method="post" class="dropzone gen" id="myAwesomeDropzone">{{ csrf_field() }}</form></div>
+	    		<div class="col-sm-2" align="center" style="width: 240px;"><form enctype="multipart/form-data" action="/doctor/updateDoctor/{{$userId}}" method="post" class="dropzone gen" id="myAwesomeDropzone">{{ csrf_field() }}</form></div>
 	    	</div>
 	    	@endif 
 	    		<br/>
@@ -916,7 +916,8 @@
 								$(document).ready(function () {
 								    var navListItems = $('div.setup-panel div a'), // tab nav items
 								            allWells = $('.setup-content'), // content div
-								            allNextBtn = $('.nextBtn'); // next button
+								            allNextBtn = $('.nextBtn'), // next button
+								            stepb = $('.setup-content');
 
 								    allWells.hide(); // hide all contents by defauld
 
@@ -935,9 +936,10 @@
 								    });
 								    // next button
 								    allNextBtn.click(function(){
-								        var curStep = $(this).closest(".setup-content"),
+								    	$('#preview').show();
+								        	var curStep = $(this).closest(".setup-content"),
 								            curStepBtn = curStep.attr("id"),
-								            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+								            //nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
 								            curInputs = curStep.find("input[type='text'],input[type='email'],input[type='password'],input[type='url']"),
 								            isValid = true;
 
@@ -969,11 +971,40 @@
 								        if (isValid)
 								            nextStepWizard.removeAttr('disabled').trigger('click');
 								    });
+									$('div.setup-panel div a.btn-circle').click(function(){
+								    	$('#preview').hide();
+								    	 allNextBtn.hide();
+								    	 if($('#radio:checked').val() == 'radio'){
+										    	 if($('#addOpt').html().length > 0){
+		 										    	 $('.nextBtn.step1').show() 	
+		 										    	 $('#addOptcheck').html('');
+	 										    	 }
+	 										    	 else 
+		 										    	 $('#addOptcheck').html('');
+								    	 	}
+
+								    	 if($('#checkbox:checked').val() == 'checkbox'){
+										    	 if($('#addOptcheck').html().length > 0){
+		 										    	 $('.nextBtn.step2').show() 	
+		 										    	 $('#addOpt').html('');
+	 										    	 }
+	 										     else 
+	 										     	 $('#addOpt').html('');   	 
+								    	 	}
+
+								    	 if($('#texto:checked').val() == 'texto'){
+								    	 		 $('.nextBtn.step3').show()
+										    	 $('#addOpt').html('');
+										    	 $('#addOptcheck').html('');
+								    	 	}
+									});
+
 
 								    $('div.setup-panel div a.btn-secondary').trigger('click');
 								});
 								</script>
 
+			         	    	<div align="right"><span class="fa fa-close btn btn-sm text-muted" onclick="cancelQuestion();"></span></div>
 								<label class="text-muted">Configuración de respuestas</label><br>
 								<div class="stepwizard">
 					                <div class="stepwizard-row setup-panel">
@@ -982,14 +1013,11 @@
 					                    </div>
 					                    
 					                    <div class="stepwizard-step">
-					                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Selección múltiple"><i class="glyphicon glyphicon-list-alt"></i></a>
+					                        <a href="#step-2" type="button" class="btn btn-default btn-circle" title="Selección múltiple"><i class="glyphicon glyphicon-list-alt"></i></a>
 					                    </div>
 					                    
 					                    <div class="stepwizard-step">
-					                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Texto abierto"><i class="fa fa-pencil"></i></a>
-					                    </div>
-					                    <div class="stepwizard-step">
-					                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled" title="Confirmar"><i class="glyphicon glyphicon-ok"></i></a>
+					                        <a href="#step-3" type="button" class="btn btn-default btn-circle" title="Texto abierto"><i class="fa fa-pencil"></i></a>
 					                    </div>
 					                    
 					                </div>
@@ -998,11 +1026,12 @@
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12" >
 			                        	 <div class="row">
-			                        		<label for="radio" class="btn btn-default btn-sm">
+			                        		<label for="radio" class="btn btn-default btn-sm btn-flat">
 			                        			<span class="glyphicon glyphicon-ok"></span>
 			                        			<input type="radio" name="type" value="radio" id="radio" style="visibility: hidden;"/>
 			                        			<b>Selección única</b>
 			                        		</label>
+			                        		 <button class="btn btn-secondary btn-flat nextBtn step1 pull-right" type="button" style="display: none;">Vista previa</button>
 			                        	</div><br/>
 			                        			
 												<div class="input-group input-group-sm">
@@ -1012,7 +1041,7 @@
 								                    </span>
 								                </div><br>
 								                <div id="addOpt"></div><br>
-								                <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+
 
 				                         <!-- <span class="text-muted fa fa-question-circle">Respuestas de alternativa simple (dicotómicas), cuando sólo es posible una respuesta (sí o no, hombre o mujer)</span>
 				                       --></div>  
@@ -1025,10 +1054,11 @@
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
 			                        <div class="row">
-			                          <label for="checkbox" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-ok"></span>
+			                          <label for="checkbox" class="btn btn-default btn-sm btn-flat"><span class="glyphicon glyphicon-ok"></span>
 			                          	<input type="radio" name="type" value="checkbox" id="checkbox" autocomplete="off" style="visibility: hidden;">
 			                        			<b>Selección múltiple</b>
 			                          </label>
+			                       <button class="btn btn-secondary btn-flat nextBtn step2 pull-right" type="button" style="display: none;">Vista previa</button>   
 			                      </div><br>
 												<div class="input-group input-group-sm">
 								                  <input type="text"  id="optcheck" class="form-control" placeholder="Escriba una opción" required autocomplete="off">
@@ -1037,7 +1067,6 @@
 								                    </span>
 								                </div><br>
 								                <div id="addOptcheck"></div><br>
-								           <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
 			                       </div>
 			                    </div>    
 			               </div>
@@ -1046,20 +1075,21 @@
 			                    <div class="col-xs-12">
 			                        <div class="col-md-12">
 			                         <div class="row">	
-			                         <label for="texto" class="btn btn-default active btn-sm">
+			                         <label for="texto" class="btn btn-default active btn-sm btn-flat">
 			                        	<span class="glyphicon glyphicon-ok"></span>
-			                        	<input type="radio" name="type" value="texto" id="texto" style="visibility: hidden;" checked="checked">
+			                        	<input type="radio" name="type" value="texto" id="texto" style="visibility: hidden;" checked="checked" onchange="if($('#texto:checked').val() == 'texto') $('.nextBtn.step3').show()">
 			                         		<b>Texto abierto</b>
 			                         	</label>
+			                         	<button class="btn btn-secondary btn-flat nextBtn step3 pull-right" type="button" style="display: none;">Vista Previa</button>
 			                         </div>
 			                    </div>        <!-- content go here -->
-			                       
+
 			                    </div>    
-			                            <button class="btn btn-light btn-flat nextBtn pull-right" type="button">Siguiente</button>
+			                          
 			               </div>
-			               	<div class="row setup-content" id="step-4">
+			               	<div class="row" id="preview" style="display: none;">
 			                    <div class="col-xs-12">
-			                        <div class="col-md-12">
+			                        <div class="col-md-12 well well-sm">
 			                        <div class="row">
 			                         <div class="col-sm-12">
 			                         <h5><b>Vista Previa</b></h5>
@@ -1068,14 +1098,15 @@
 				                          <div id="readresponse"></div>
 				                     </div>
 				                 </div><br>
-				                           <button class="btn btn-secondary nextBtn btn-flat pull-right" type="button" id="finishQuestion">Guardar configuración</button>
+				                           <button class="btn btn-secondary btn-flat pull-right" type="button" id="finishQuestion">Guardar configuración</button>
 				                     	</div>
 			                    </div>       
 			                            
 			               </div>
-			               			<hr>
-			         	    		<div align="left"><button class="btn btn-flat btn-default btn-sm" onclick="cancelQuestion();">Cancelar</button></div>
 			         	    	</div>	
+
+
+
 			         	    </div>
 		         	    </div>
 		         	</div>
@@ -1086,7 +1117,7 @@
 
         <!-- /.col AQUI -->
 
-                        <div class="modal fade" role="dialog" id="modalassist2">
+                <div class="modal fade" role="dialog" id="modalassist2">
                     <div class="modal-dialog modal-sm">
 
                       <div class="modal-content">
@@ -1141,11 +1172,20 @@
       <script type="text/javascript">
 
       				function nextQues(){
+      					var indexquestion = $('#question').val().trim().toLowerCase();
+						$('#searchQuestions div').each(function(){
+						if($(this).text().trim().toLowerCase() == indexquestion){
+							alert('Debes guardar una pregunta diferente a las anteriores')
+							return false;
+						}else{
+
       					document.getElementById('question').disabled = true;
       					$('#box-question').hide();
       					$('#box-question-save').show();
       					$('div.setup-panel div a[href="#step-1"]').click();
-      				}
+			      				}
+			      			});
+			      		}
 
       				function cancelQuestion(){
       					document.getElementById('question').disabled = false;
@@ -1153,26 +1193,49 @@
       					$('#box-question-save').hide();
       					$('#addOpt').html('');
       					$('#addOptcheck').html('');
+      					$('#question').val('');
+      					 var value = $('#question').val().toLowerCase();
+		                $("#searchQuestions div").filter(function() {
+		                  $(this).toggle($(this).text().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").indexOf(value) > -1)
+		                });
       				}
 
       				function add(){
+      				if($('#radio:checked').val() == 'radio'){
       					if($('#opt').val().length > 0 ){
       					  $('#addOpt').append('&nbsp;<div class="label bg-green opr" style="font-size: 14px;">'+ $('#opt').val() +'</div>');
       					  $('#opt').val('');
+		      			  $('.nextBtn.step1').show();
+
       					}
+      				}
+      					else
+		      				alert('No puedes agregar si no tienes marcada la opción de selección única');
       				}
 
       				function addcheck(){
-      					if($('#optcheck').val().length > 0 ){
-      					  $('#addOptcheck').append('&nbsp;<div class="label bg-green opc" style="font-size: 14px;">'+ $('#optcheck').val() +'</div>');
-      					  $('#optcheck').val('');
-      					}
+      					if($('#checkbox:checked').val() == 'checkbox'){
+	      					if($('#optcheck').val().length > 0 ){
+	      					  $('#addOptcheck').append('&nbsp;<div class="label bg-green opc" style="font-size: 14px;">'+ $('#optcheck').val() +'</div>');
+	      					  $('#optcheck').val('');
+							  $('.nextBtn.step2').show();
+	      					}
+	      				}	
+      					  else
+		      				 alert('No puedes agregar si no tienes marcada la opción de selección multiple');
       				}
+      			
 
 		            $("#question").on("keyup", function() {
 		                var value = $(this).val().toLowerCase();
+
+						value = value.replace('¿','');
+						value = value.replace('?','');
+						value = value.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+
+
 		                $("#searchQuestions div").filter(function() {
-		                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		                  $(this).toggle($(this).text().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").indexOf(value) > -1)
 		                });
 		              });
 					
@@ -1185,7 +1248,6 @@
 					  });
 
 					$('#finishQuestion').on('click', function(e) {
-
 
 						var arrayresponse = [];
 							if($("input[name='type']:checked").val() == 'radio'){
@@ -1243,7 +1305,6 @@
     										}
 				                            
 				                         });
-						    
 
 					});		
 

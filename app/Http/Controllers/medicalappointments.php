@@ -202,14 +202,17 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-      $user = User::find(Auth::id());
-      $array = [];
-      array_push($array, "texto");
-      $ques = new answers_clinic_history;
-      $ques->createdby = $user->id;
-      $ques->question = 26;
-      $ques->answer = json_encode($array);
-      $ques->save();
+    $user = User::find(Auth::id());
+                       $data = [
+                                'username'  => $user->username,
+                                'name'      => $user->name,
+                                'email'     => $user->email                
+                                ];
+
+                                 Mail::send('emails.assistantSettings', $data, function ($message) {
+                                            $message->subject('Han cambiado tus permisos de asistente');
+                                            $message->to('contacto@doitcloud.consulting');
+                                        });
        return redirect('medicalconsultations');
     }
 

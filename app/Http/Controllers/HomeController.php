@@ -42,10 +42,6 @@ class HomeController extends Controller
     public function index()
     {
 
-         /*$redis = Redis::connection();
-         $data = ['message' => 'hola'];
-         $redis->publish('message', json_encode($data));
-         Event::fire(new EventName('JohnDoe'));*/
          $agent = new Agent();
          $user = User::find(Auth::id());
          $uuid = session()->get('uuid');
@@ -90,6 +86,9 @@ class HomeController extends Controller
            ->where('medical_appointments.user', '=', Auth::id())
            ->where('medical_appointments.when', '>', Carbon::now()->subDays(1))
            ->select('medical_appointments.*', 'users.name', 'users.profile_photo', 'users.id as did', 'labor_information.workplace', 'labor_information.longitude', 'labor_information.latitude','paymentsmethods.cardnumber', 'paymentsmethods.provider', 'paymentsmethods.paypal_email','paymentsmethods.id as idtr')->get();
+
+
+
 
          $join = DB::table('professional_information')
             ->join('labor_information', 'professional_information.id', '=', 'labor_information.profInformation')
@@ -230,6 +229,7 @@ class HomeController extends Controller
                                     ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
                                     ->where('medical_appointments.user_doctor', '=', $user->id)
                                     ->whereMonth('transaction_bank.created_at','=', Carbon::now()->month)
+                                    ->whereYear('transaction_bank.created_at','=', Carbon::now()->year)                                    
                                     ->select('transaction_bank.*', 'users.name', 'medical_appointments.when', 'labor_information.workplace as place')
                                     ->get();
 
@@ -262,7 +262,7 @@ class HomeController extends Controller
              $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
-             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr', 'users.gender')
              ->get();
 
                         if(count($assistant) == 0){
@@ -309,6 +309,29 @@ class HomeController extends Controller
 
 
                                }
+
+                            $questionsAppo = DB::table('questions_clinic_history')
+                                             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+                                             ->where('questions_clinic_history.createdby', '!=', null)
+                                             ->where('questions_clinic_history.active', true)
+                                            ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.*', 'answers_clinic_history.id AS a')
+                                            ->get();
+                            $countquestion = 0;                 
+                                    foreach($questionsAppo as $question){
+                                        foreach($appointments as $appo){
+                                            if($appo->did == $question->createdby)
+                                                $countquestion++;
+
+                                        }
+                                    }     
+                            $clinic_history = DB::table('clinic_history')
+                            ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                            ->where('userid', $user->id)
+                            ->where('questions_clinic_history.createdby', '!=', null)
+                            ->where('questions_clinic_history.active', true)                           
+                            ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+                            ->get();            
+
                                             
                                 return view('medicalconsultations', [
                                         'username'       => $user->username,
@@ -325,7 +348,10 @@ class HomeController extends Controller
                                         'it'             => $it,
                                         'sp'             => $sp,
                                         'mg'             => $mg,
-                                        'medication'     => $countm   
+                                        'medication'     => $countm,
+                                        'countquestion'  => $countquestion,
+                                        'questions'      => $questionsAppo,
+                                        'clinic_history' => $clinic_history
 
                                     ]
                                 );
@@ -344,7 +370,22 @@ class HomeController extends Controller
                                        }
                                  }
                                /*Validate doctor online*/  
+                            $countpaid = 0;
 
+                            $transactions = DB::table('transaction_bank')
+                                            ->join('medical_appointments', 'transaction_bank.appointments', '=', 'medical_appointments.id')
+                                            ->join('users', 'medical_appointments.user', '=', 'users.id')
+                                            ->join('labor_information', 'medical_appointments.workplace', '=', 'labor_information.id')
+                                            ->where('medical_appointments.user_doctor', '=', $user->id)
+                                            ->whereMonth('transaction_bank.created_at','=', Carbon::now()->month)
+                                            ->whereYear('transaction_bank.created_at','=', Carbon::now()->year)                                    
+                                            ->select('transaction_bank.*', 'users.name', 'medical_appointments.when', 'labor_information.workplace as place')
+                                            ->get();
+
+                                foreach ($transactions as $tr) {
+                                    if($tr->type_doctor == 'Paid')
+                                        $countpaid = $countpaid + $tr->amount;
+                                }
                                if(session()->get('asdr') == null){
                                 Session(['asdr' => $assistant[0]->iddr]);
                             }
@@ -360,11 +401,9 @@ class HomeController extends Controller
                                         'labor'     => $join,
                                         'appointments' => $appointments,
                                         'title'     => 'Este doctor no tiene horarios agregados',
-                                        'it'        => $it,
-                                        'sp'        => $sp,
-                                        'mg'        => $mg,
                                         'as'        => $assistant,
-                                        'donli'     => $donli
+                                        'donli'     => $donli,
+                                        'paid'          => number_format($countpaid,2),
                                     ]
                                 );
                             }
@@ -520,7 +559,7 @@ class HomeController extends Controller
         $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
-             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
+             ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr', 'users.gender')
              ->get();
                      if(count($assistant) > 0){
                         Session(['utype' => 'assistant']); 
@@ -637,10 +676,27 @@ class HomeController extends Controller
      * Method responsable of list of patients for day
      */
     public function listpatients(){
+
+                $assistant = DB::table('assistant')
+                     ->join('users', 'assistant.user_doctor', '=', 'users.id')
+                     ->where('user_assist', Auth::id())
+                     ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr', 'users.gender')
+                     ->get();
+
+                 if(count($assistant) > 0){
+                    Session(['utype' => 'assistant']); 
+                      if(session()->get('asdr') == null){
+                          Session(['asdr' => $assistant[0]->iddr]);
+                         }
+                     $user = User::find(session()->get('asdr'));
+                 }else{  
+                        $user = User::find(Auth::id());
+                  }
+         
          $array = array(); 
          $appo = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
-           ->where('medical_appointments.user_doctor', Auth::id())
+           ->where('medical_appointments.user_doctor', $user->id)
            ->whereNull('medical_appointments.aware')
            ->whereDate('medical_appointments.when', Carbon::now()->format('Y-m-d'))
            ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age','users.profile_photo')->orderBy('medical_appointments.when')->get();
@@ -648,7 +704,7 @@ class HomeController extends Controller
 
          $appoFuture = DB::table('medical_appointments')
            ->join('users', 'medical_appointments.user', '=', 'users.id')
-           ->where('medical_appointments.user_doctor', Auth::id())
+           ->where('medical_appointments.user_doctor', $user->id)
            ->where('medical_appointments.status', '!=', 'No completed')
            ->whereBetween('medical_appointments.when', [Carbon::now()->addDays(1)->format('Y-m-d'), Carbon::now()->addDays(8)->format('Y-m-d')])
            ->select('medical_appointments.*', 'users.id as did', 'users.profile_photo', 'users.name', 'users.gender','users.age','users.profile_photo')->orderBy('medical_appointments.when')->get();  

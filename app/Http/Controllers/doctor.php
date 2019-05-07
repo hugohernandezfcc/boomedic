@@ -102,8 +102,7 @@ class doctor extends Controller
             ->get();
         $nodes = array();
     //Json que guarda datos de familiares para generar externalidad//
-      if(count($assist) < 1){
-        if($user->profile_photo != '')
+             if($user->profile_photo != '' || $user->profile_photo != null)
          array_push( $nodes, ['name' => 'Yo', 'photo' => $user->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => '0']);
             else{
                 if($user->gender == 'male')
@@ -114,12 +113,13 @@ class doctor extends Controller
                     $phot = asset('profile-other.png') ;
                 array_push( $nodes, ['name' => 'Yo', 'photo' => $phot .'?'.  Carbon::now()->format('h:i'), 'id' => '0']);
             }
+      if(count($assist) < 1){
+
           for($i = 1; $i < 2; $i++){
                 array_push($nodes, ['name' => 'Agregar asistente', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
             }
       }   else {
-               
-          array_push( $nodes, ['name' => 'Yo', 'photo' => $user->profile_photo. '?'. Carbon::now()->format('h:i'), 'id' => $user->id]);
+
           for($i = 0; $i < count($assist); $i++){
             if($assist[$i]->profile_photo != null){
                 array_push($nodes, ['name' => $assist[$i]->firstname, 'target' => [0] , 'photo' => $assist[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $assist[$i]->id, 'namecom' => $assist[$i]->name]);
@@ -292,40 +292,40 @@ class doctor extends Controller
              return redirect('doctor/doctor/' . $user->id)->with($notification);
               
         } 
-         public function verify($id)
-           {
-                 $assistant = assistant::where('id', $id)->first();
-                if (!$assistant){
-             $notification = array(
-                            //In case the payment is approved it shows a message reminding you the amount you paid.
-                        'message' => 'Ha ocurrido un error con la confirmación, al parecer fue eliminado', 
-                        'error' => 'error'
-                        );
-                      
-                    return  redirect('user/profile/' . Auth::id() )->with($notification);
-                }
-                else{
-          $assist = User::where('id', $assistant->user_assist)->first();
-          $doctor = User::where('id', $assistant->user_doctor)->first();
-                $assistant->confirmation = true;
-                if($assistant->save()){
-                    $notification = array(
-                        'message' => 'Se confirmó exitosamente se agregó por defecto a tu perfil', 
-                        'success' => 'success'
-                        );
-                      $data = [
-                                'username'      => $assist->username,
-                                'name'      => $assist->name,
-                                ];
-                               $email = $doctor->email;
-                                 Mail::send('emails.assistantconfirm', $data, function ($message) {
-                                            $message->subject('El asistente que agregaste ha confirmado exitosamente');
-                                            $message->to('contacto@doitcloud.consulting');
-                                        });
-                return redirect('user/profile/' . Auth::id())->with($notification);
-              }
+     public function verify($id)
+       {
+             $assistant = assistant::where('id', $id)->first();
+            if (!$assistant){
+         $notification = array(
+                        //In case the payment is approved it shows a message reminding you the amount you paid.
+                    'message' => 'Ha ocurrido un error con la confirmación, al parecer fue eliminado', 
+                    'error' => 'error'
+                    );
+                  
+                return  redirect('user/profile/' . Auth::id() )->with($notification);
             }
+            else{
+      $assist = User::where('id', $assistant->user_assist)->first();
+      $doctor = User::where('id', $assistant->user_doctor)->first();
+            $assistant->confirmation = true;
+            if($assistant->save()){
+                $notification = array(
+                    'message' => 'Se confirmó exitosamente se agregó por defecto a tu perfil', 
+                    'success' => 'success'
+                    );
+                  $data = [
+                            'username'      => $assist->username,
+                            'name'      => $assist->name,
+                            ];
+                           $email = $doctor->email;
+                             Mail::send('emails.assistantconfirm', $data, function ($message) {
+                                        $message->subject('El asistente que agregaste ha confirmado exitosamente');
+                                        $message->to('contacto@doitcloud.consulting');
+                                    });
+            return redirect('user/profile/' . Auth::id())->with($notification);
+          }
         }
+    }
 
     public function deleteAssistant($id){
          $assistant = DB::table('assistant')
@@ -363,6 +363,8 @@ class doctor extends Controller
                 break;
         }   
     }
+
+
     /**
      * Show the form for editing the specified resource.
      *questions_clinic_history
@@ -843,6 +845,7 @@ class doctor extends Controller
 
           $question = questions_clinic_history::find($id);
           $answer = DB::table('answers_clinic_history')->where('question', $id)->first();
+          $answerid = answers_clinic_history::find($answer->id);
           $clinic_history =   DB::table('clinic_history')->where('question_id', $id)->get();
 
           if(count($clinic_history) == 0){
@@ -850,8 +853,10 @@ class doctor extends Controller
                     DB::table('questions_clinic_history')->where('id', $id)->delete();   
           }else{
               $question->active = false;
-                if($question->save())
-                    $answer->active = false;
+                if($question->save()){
+                    $answerid->active = false;
+                    $answerid->save();
+                }
 
           }
           return redirect('doctor/doctor/'.$user->id);
@@ -934,7 +939,7 @@ class doctor extends Controller
             ->get();
         $nodes = array();
             //Json que guarda datos de familiares para generar externalidad//
-           if($users[0]->profile_photo != '')
+           if($users[0]->profile_photo != '' || $users[0]->profile_photo != null)
               $photou = $users[0]->profile_photo;
             else{
                  if($users[0]->gender == "male")
@@ -998,6 +1003,26 @@ class doctor extends Controller
         $this->clinicHistory = new clinicHistory;
         $data = $this->clinicHistory->helperIndex($users[0]);
 
+                $appointments = DB::table('medical_appointments')
+                        ->where('user', '=', $users[0]->id)
+                        ->get();
+
+
+                $questionsAppo = DB::table('questions_clinic_history')
+                                 ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+                                 ->where('questions_clinic_history.createdby', $userOne->id)
+                                 ->where('questions_clinic_history.active', true)
+                                ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.*', 'answers_clinic_history.id AS a')
+                                ->get();
+
+                $clinic_history_appointments = DB::table('clinic_history')
+                ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+                ->where('userid', $users[0]->id)
+                ->where('questions_clinic_history.createdby', $userOne->id)
+                ->where('questions_clinic_history.active', true)                           
+                ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+                ->get();              
+
         return view('viewPatient', [
                 
                  /** SYSTEM INFORMATION */
@@ -1047,7 +1072,12 @@ class doctor extends Controller
                 'postalcode'    => (   empty($users[0]->postalcode)     ) ? '' : $users[0]->postalcode,
                 'longitude'     => (   empty($users[0]->longitude)      ) ? '' : $users[0]->longitude,
                 'latitude'      => (   empty($users[0]->latitude)       ) ? '' : $users[0]->latitude,
-                'nodes'         => json_encode($nodes)
+                'nodes'         => json_encode($nodes),
+                'countfamily'   => count($family),
+                'countappo'     => count($appointments),
+                'questions_appointments'     => $questionsAppo,
+                'clinic_history_appointments'    => $clinic_history_appointments,
+                'patientId'         => $users[0]->id
             ]
         )->with($allhistory)->with($data);
     }

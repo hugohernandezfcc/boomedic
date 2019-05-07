@@ -3,109 +3,106 @@
 @section('title', 'Boomedic')
 
 @section('content_header')
+
 <style type="text/css">
-
- #calendar {
-
-    margin: 0 auto;
-  }
-  .fc-toolbar h2 {
-    font-size: 20px;
-    margin: 15px;
-}
-.fc-toolbar.fc-header-toolbar {
-  margin-bottom: 0;
-} 
-.text-black{
-	color: black !important;
-}
-.text-gray{
-	color: #777 !important;
-}
+    #calendar {
+      margin: 0 auto;
+    }
+    .fc-toolbar h2 {
+      font-size: 20px;
+      margin: 15px;
+    }
+    .fc-toolbar.fc-header-toolbar {
+      margin-bottom: 0;
+    } 
+    .text-black{
+    	color: black !important;
+    }
+    .text-gray{
+    	color: #777 !important;
+    }
 </style>
 
 @stop
 
 @section('content')
 	<div class="box box-solid">
-		<div class="box-header with-border">
-		    <h3 class="box-title">Citas</h3>
-		</div>
+      <div class="box-header with-border">
+          <h3 class="box-title">Citas</h3>
+      </div>
 		<div class="box-body" style="overflow: auto;">
 
   		    <div class="modal fade" role="dialog" id="modalsuccess">
                     <div class="modal-dialog modal-sm">
-
-
-                      <div class="modal-content">
-
-                        <div class="modal-header" >
-                          <!-- Tachecito para cerrar -->
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <div align="left"><label>Información general de la cita</label></div>
-                        </div>
-                            <div class="modal-body">
-                            	<ul class="nav nav-stacked" id="normal">
-                            		<div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br>
-	                  				<li><a id="namep"></a></li>
-	                  				<li><a id="age"></a></li>
-	                  				<li><a id="lug"></a></li>
-	                  				<li><a id="start"></a></li>
-                            <input type="hidden" id="idpatient">
-                            <li id="buttondetail"></li>
-	                  				<li><button id="canceled" style="display: none;" class="btn btn-default btn-flat btn-block" data-target="#reason" data-dismiss="modal" data-toggle="modal">Cancelar cita</button></li>
-	                			</ul>	
-	                			<ul class="nav nav-stacked" id="doc" style="display: none;">
-	                				<li><a id="start2"></a></li>
-	                				<li><a id="end"></a></li>
-	                			</ul>
-	            				 <br>
-                            </div>
-                        </div>
+                        <div class="modal-content">
+                              <div class="modal-header" >
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  <div align="left"><label>Información general de la cita</label></div>
+                              </div>
+                              <div class="modal-body">
+                                	<ul class="nav nav-stacked" id="normal">
+                                		  <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br>
+          	                  				<li><a id="namep"></a></li>
+          	                  				<li><a id="age"></a></li>
+          	                  				<li><a id="lug"></a></li>
+          	                  				<li><a id="start"></a></li>
+                                        <input type="hidden" id="idpatient">
+                                      <li id="buttondetail"></li>
+          	                  				<li><button id="canceled" style="display: none;" class="btn btn-default btn-flat btn-block" data-target="#reason" data-dismiss="modal" data-toggle="modal">Cancelar cita</button></li>
+          	                			</ul>	
+          	                			<ul class="nav nav-stacked" id="doc" style="display: none;">
+          	                				<li><a id="start2"></a></li>
+          	                				<li><a id="end"></a></li>
+          	                			</ul>
+  	            				          <br>
+                              </div>
+                          </div>
                       </div> 
             </div>
         <div class="modal fade" role="dialog" id="reason">
                     <div class="modal-dialog modal-sm">
-
                       <div class="modal-content">
-
                         <div class="modal-header" >
-                          <!-- Tachecito para cerrar -->
-                         <button type="button" class="close" data-target="#modalsuccess" data-dismiss="modal" data-toggle="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <div align="left"><label>Razones para cancelar la cita</label></div>
+                           <button type="button" class="close" data-target="#modalsuccess" data-dismiss="modal" data-toggle="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div align="left"><label>Razones para cancelar la cita</label></div>
                         </div>
-                            <div class="modal-body">
+                          <div class="modal-body">
 
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/cancelAppointment') }}" method="post">
-                              {{ csrf_field() }}
-                            	<input type="hidden" name="idcancel" id="idcancel">
-                            	<ul class="nav nav-stacked">
-                            		<li><div class="form-check">
-										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason" value="por compromiso profesional" checked>
-										  <label class="form-check-label" for="radioreason">
-										    Por compromiso profesional
-										  </label>
-										</div></li>
-                    <li><div class="form-check">
-										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason2" value="por motivo personal">
-										  <label class="form-check-label" for="radioreason2">
-										    Por motivo personal
-										  </label>
-										</div></li><br>
-                     <li><div class="form-check" align="right">
-                       <label class="text-muted" for="definitive">Cancelación definitiva
-                      <input class="form-check-input" type="checkbox" name="definitive" id="definitive" value="true">
-                      </label>
-                    </div></li><br>
-								    <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>		
-                         </ul>		
-	                		</form>	
-	            				 <br>
-                            </div>
+                                  {{ csrf_field() }}
+                                	<input type="hidden" name="idcancel" id="idcancel">
+                                	<ul class="nav nav-stacked">
+                                		<li>
+                                     <div class="form-check">
+            										        <input class="form-check-input" type="radio" name="radioreason" id="radioreason" value="por compromiso profesional" checked>
+            										        <label class="form-check-label" for="radioreason">
+            										          Por compromiso profesional
+            										        </label>
+                										</div>
+                                    </li>
+                                    <li>
+                                      <div class="form-check">
+                  										  <input class="form-check-input" type="radio" name="radioreason" id="radioreason2" value="por motivo personal">
+                  										  <label class="form-check-label" for="radioreason2">
+                  										    Por motivo personal
+                  										  </label>
+                										  </div>
+                                    </li><br>
+                                     <li>
+                                       <div class="form-check" align="right">
+                                          <label class="text-muted" for="definitive">Cancelación definitiva
+                                          <input class="form-check-input" type="checkbox" name="definitive" id="definitive" value="true">
+                                          </label>
+                                       </div>
+                                    </li><br>
+                								    <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>		
+                                 </ul>		
+	                		       </form><br>
+                          </div>
                         </div>
                       </div> 
             </div>
@@ -114,27 +111,25 @@
                     <div class="modal-dialog modal-sm">
 
                       <div class="modal-content">
-
                         <div class="modal-header" >
-                          <!-- Tachecito para cerrar -->
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <div align="left"><i class="fa fa-edit"></i><label> Editar evento</label></div>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div align="left"><i class="fa fa-edit"></i><label> Editar evento</label></div>
                         </div>
                             <div class="modal-body">
-                             <form enctype="multipart/form-data" action="{{ url('drAppointments/editTimeBlocker') }}" method="post">
-                              {{ csrf_field() }}
-                              <ul class="nav nav-stacked">
-                                <input type="hidden" name="idEdit" id="idEdit">
-                                <li>Título <input type="text" class="form-control" name="titleEdit" id="titleEdit"></li>
-                                <li>Inicio <input type="text" class="form-control" name="startEdit" id="startEdit"></li>
-                                <li>Fin <input type="text" class="form-control" name="endEdit" id="endEdit"></li>
-                                <br>
-                                <li><div align="right"><button type="submit" class="btn btn-secondary btn-flat">Guardar edición</button><a id="deleteT" class="btn btn-default btn-flat" onclick ="return confirm('¿Seguro desea eliminarlo?')" style="display: inline !important">
-                                <i class="fa fa-trash text-muted"></i> Eliminar evento</a></div></li>
-                            </ul>
-                            </form>
+                               <form enctype="multipart/form-data" action="{{ url('drAppointments/editTimeBlocker') }}" method="post">
+                                  {{ csrf_field() }}
+                                    <ul class="nav nav-stacked">
+                                        <input type="hidden" name="idEdit" id="idEdit">
+                                        <li>Título <input type="text" class="form-control" name="titleEdit" id="titleEdit"></li>
+                                        <li>Inicio <input type="text" class="form-control" name="startEdit" id="startEdit"></li>
+                                        <li>Fin <input type="text" class="form-control" name="endEdit" id="endEdit"></li>
+                                        <br>
+                                        <li><div align="right"><button type="submit" class="btn btn-secondary btn-flat">Guardar edición</button><a id="deleteT" class="btn btn-default btn-flat" onclick ="return confirm('¿Seguro desea eliminarlo?')" style="display: inline !important">
+                                        <i class="fa fa-trash text-muted"></i> Eliminar evento</a></div></li>
+                                    </ul>
+                              </form>
                             </div>
                         </div>
                       </div> 
@@ -142,16 +137,13 @@
             <!--Event Doc information and edit -->
                   <div class="modal fade" role="dialog" id="confirm">
                     <div class="modal-dialog modal-sm">
-
                       <div class="modal-content">
-
-                        <div class="modal-header" >
-                          <!-- Tachecito para cerrar -->
-                         <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <div align="left"><i class="fa fa-edit"></i><label> Crear evento</label></div>
-                        </div>
+                            <div class="modal-header" >
+                               <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div align="left"><i class="fa fa-edit"></i><label> Crear evento</label></div>
+                            </div>
                             <div class="modal-body" style="padding-top: 0px !important">
                             <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event1">
                               {{ csrf_field() }}
@@ -162,43 +154,50 @@
                                 <li>Inicio: <input type="text" name="start" id="startTime" class="form-control"></li>
                                 <li>Final: <input type="text" name="end" id="endTime"  class="form-control"></li>
                                 <li>Razones para apartar ese horario: <br><div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio" id="radio" value="professional commitment" checked>
-                                <label class="form-check-label" for="radio">
-                                 Compromiso profesional
-                                </label>
-                                </div></li>
-                                <li><div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio" id="radio2" value="Isnt possible attended">
-                                <label class="form-check-label" for="radio2">
-                                  Es imposible atender
-                                </label>
-                              </div></li><br>
-                              <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>    
+                                    <input class="form-check-input" type="radio" name="radio" id="radio" value="professional commitment" checked>
+                                    <label class="form-check-label" for="radio">
+                                     Compromiso profesional
+                                    </label>
+                                    </div>
+                                </li>
+                                <li>
+                                  <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="radio" id="radio2" value="Isnt possible attended">
+                                      <label class="form-check-label" for="radio2">
+                                        Es imposible atender
+                                      </label>
+                                  </div>
+                                </li><br>
+                                <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>    
                               </ul>   
                           </form> 
-                            <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event2" style="display: none;">
+                          <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event2" style="display: none;">
                               {{ csrf_field() }}
                               <input type="hidden" name="t" id="t" value="2">
                               <input type="hidden" name="title" id="title2">
                               <input type="hidden" name="color" id="color2">
-                              <ul class="nav nav-stacked">
-                                <li>Fecha: <input type="date" name="date" id="date" class="form-control"></li>
-                                <li>Hora inicio: <input type="time" name="start" id="startTime" class="form-control"></li>
-                                <li>Hora final: <input type="time" name="end" id="endTime"  class="form-control"></li>
-                                <li>Razones para apartar ese horario: <br><div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio" id="radio" value="professional commitment" checked>
-                                <label class="form-check-label" for="radio">
-                                 Compromiso profesional
-                                </label>
-                                </div></li>
-                                <li><div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio" id="radio2" value="Isnt possible attended">
-                                <label class="form-check-label" for="radio2">
-                                  Es imposible atender
-                                </label>
-                              </div></li><br>
-                              <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>    
-                              </ul>   
+                               <ul class="nav nav-stacked">
+                                  <li>Fecha: <input type="date" name="date" id="date" class="form-control"></li>
+                                  <li>Hora inicio: <input type="time" name="start" id="startTime" class="form-control"></li>
+                                  <li>Hora final: <input type="time" name="end" id="endTime"  class="form-control"></li>
+                                  <li>Razones para apartar ese horario: <br>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="radio" id="radio" value="professional commitment" checked>
+                                      <label class="form-check-label" for="radio">
+                                        Compromiso profesional
+                                      </label>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="radio" id="radio2" value="Isnt possible attended">
+                                      <label class="form-check-label" for="radio2">
+                                          Es imposible atender
+                                      </label>
+                                    </div>
+                                  </li><br>
+                                  <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>    
+                               </ul>   
                           </form> 
                        <br>
                             </div>
@@ -216,69 +215,69 @@
               </div>  
             </div>
             <div class="box-body">
-              <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
-                <ul class="fc-color-picker" id="color-chooser">
-                  <li><a style="color: #333 !important"><i class="fa fa-square"></i></a></li>
-                  <li><a style="color: #909090 !important"><i class="fa fa-square"></i></a></li>
-                  <li><a style="color: #525252 !important"><i class="fa fa-square"></i></a></li>
-                  <li><a style="color: #000000 !important"><i class="fa fa-square"></i></a></li>
-                </ul>
-              </div>
-              <!-- /btn-group -->
-              <div class="input-group">
-                <input id="new-event" type="text" class="form-control" placeholder="Título de evento">
-
-                <div class="input-group-btn">
-                  <button id="add-new-event" type="button" class="btn btn-secondary btn-flat">Agregar</button>
+                <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                  <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
+                    <ul class="fc-color-picker" id="color-chooser">
+                      <li><a style="color: #333 !important"><i class="fa fa-square"></i></a></li>
+                      <li><a style="color: #909090 !important"><i class="fa fa-square"></i></a></li>
+                      <li><a style="color: #525252 !important"><i class="fa fa-square"></i></a></li>
+                      <li><a style="color: #000000 !important"><i class="fa fa-square"></i></a></li>
+                    </ul>
                 </div>
-                <!-- /btn-group -->
-              </div>
-              <label class="text-red" style="font-size: 11px;">*Estos eventos apartaran tiempo en que no podrá dar citas</label>
+               <!-- /btn-group -->
+                <div class="input-group">
+                  <input id="new-event" type="text" class="form-control" placeholder="Título de evento">
+
+                    <div class="input-group-btn">
+                      <button id="add-new-event" type="button" class="btn btn-secondary btn-flat">Agregar</button>
+                    </div>
+                  <!-- /btn-group -->
+                </div>
+                <label class="text-red" style="font-size: 11px;">*Estos eventos apartaran tiempo en que no podrá dar citas</label>
               <!-- /input-group -->
             </div>
             <!--box table -->
-            <div class="box ev">
+          <div class="box ev">
             <div class="box-header with-border">
               <h4 class="box-title">Tablero de Eventos</h4>
               <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool board" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
+                  <button type="button" class="btn btn-box-tool board" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
               </div>  
             </div>
-            <div class="box-body">
-              <!-- the events -->
-              <div id="external-events">
-                <div class="checkbox">
-                  <label for="drop-remove">
-                    <input type="checkbox" id="drop-remove">
-                   Remover despues de mover
-                  </label>
-                </div>
+              <div class="box-body">
+                  <!-- the events -->
+                  <div id="external-events">
+                    <div class="checkbox">
+                      <label for="drop-remove">
+                        <input type="checkbox" id="drop-remove">
+                       Remover despues de mover
+                      </label>
+                    </div>
+                  </div>
               </div>
-            </div>
-            <!-- /.box-body -->
+              <!-- /.box-body -->
           </div>
 
           </div>
         </div>
        <div class="col-md-9">
-       	<div class="box box-solid">
-       		 <div class="box-body">
-				<div id='calendar'></div>
-			</div>	
-	    </div>
-	   </div>
-</div>
+         	<div class="box box-solid">
+         		 <div class="box-body">
+  				      <div id='calendar'></div>
+  			     </div>	
+  	      </div>
+	     </div>
+  </div>
 </div>	   
 <script type="text/javascript">
 
   $(function () {
   	 if("@php echo $agent->isMobile(); @endphp"){
-      $('.ev').css('display','none');
-  	 	$('.board').click();
-      $('#event1').css('display','none');
-      $('#event2').css('display','block');
+          $('.ev').css('display','none');
+      	 	$('.board').click();
+          $('#event1').css('display','none');
+          $('#event2').css('display','block');
   	 }
 
  var optionhour = @php echo $array;  @endphp;
@@ -286,6 +285,7 @@
           var resp = Array();
           var resp2 = Array();
           var resp3 = Array();
+          
          for(var y = 0; y < optionhour.length; y++){ 
                      resp = optionhour[y].start;
                      resp2 = optionhour[y].user;

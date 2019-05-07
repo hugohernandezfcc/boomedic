@@ -84,7 +84,7 @@
 		function checkAppInstall() {
 			//schema of the app
 					
-			if(IS_ANDROID) {
+		if(IS_ANDROID) {
 			setTimeout( function() {
 					goMarket();
 				}, 25);

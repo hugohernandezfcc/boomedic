@@ -1,40 +1,76 @@
 @extends('adminlte::page')
 
 @section('title', 'Boomedic')
+
 <style type="text/css">
-  .morris-hover.morris-default-style {
-    background: rgba(84, 84, 84, 0.8)  !important;
-    border: none !important; 
-  }
-  .morris-hover-row-label{
-    color: black !important;
-  }
+
+    .morris-hover.morris-default-style {
+      background: rgba(84, 84, 84, 0.8)  !important;
+      border: none !important; 
+    }
+    .morris-hover-row-label{
+      color: black !important;
+    }
+    .direct-chat-contacts {
+          height: 55px !important;
+          background: transparent !important; 
+          top: 75% !important; 
+          right: 3% !important;
+    }
 </style>
+
 @section('content')
+
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<div class="box">
 
-  	<div class="box-header with-border">
-	    <h3 class="box-title">Reportes</h3>
-  	</div>
+
+
+
+     <div class="box-header direct-chat" id="header2">
+      <h3 class="box-title">Reportes: {{ $dateselect }}</h3>
+       <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
+                 <span class="fa fa-filter text-muted"></span></button>
+              <div class="direct-chat-contacts">
+                      <div class="btn-group pull-right col-sm-3">
+                          <form id='sendFilter' method='GET' action=''>
+                            {{ csrf_field() }}
+                            <select id="filter" name="filter" class="form-control">
+                                  @if($dateselect == 'All')
+                                    <option value="All" selected>Todos</option>
+                                  @else
+                                    <option value="All">Todos</option>
+                                  @endif 
+                              @foreach($picklist as $dat)
+                                  @if($dateselect == $dat)
+                                    <option value="{{ $dat }}" selected="">{{ $dat }}</option>
+                                  @else
+                                    <option value="{{ $dat }}">{{ $dat }}</option>
+                                  @endif 
+                              @endforeach
+                            </select> 
+                          </form>    
+                      </div>
+              </div>
+    </div><br>
   	<div class="box-body">
-      <div class="col-md-12">
+      <section class="connectedSortable ui-sortable col-md-12">
         @php
-        $r = json_decode($report);
+          $r = json_decode($report);
+          $age = json_decode($count);
+          $appo = json_decode($arrayAppo);
+          $wor = json_decode($places);
         @endphp
-  			<div class="box box-solid bg-teal-gradient">
+  			<div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
               <h3 class="box-title">Polígono de Enfermedades</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
             </div>
@@ -42,7 +78,7 @@
          @if(count($r) > 0)
               <div class="chart" id="line-chart" style="height: 250px;"></div>
           @else
-                   No hay diagnósticos registrados aún, por tanto no se puede generar la gráfica
+                   No hay diagnósticos registrados en el período seleccionado
           @endif
             </div>
             <!-- /.box-body -->
@@ -50,257 +86,472 @@
             <!-- /.box-footer -->
           </div>
 
-        </div>
+        </section>
             <!-- /.box-footer -->
-            <div class="col-md-6">
+      <section class="connectedSortable ui-sortable col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
-              <h3 class="box-title">Género</h3>
+              <h3 class="box-title">Pacientes por género</h3>
 
               <div class="box-tools pull-right">
+                <button type="button" class="btn btn-default btn-sm" onclick="changeGender();"><i class="fa fa-bar-chart gendericon"></i>
+                </button>
                 <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
             </div>
             <div class="box-body border-radius-none">
-            <canvas id="myChart" class="chartjs" style="height: 250px;"></canvas>
+              @if($fem > 0 || $mas > 0 || $oth > 0)
+                <canvas id="myChart" class="chartjs" style="height: 250px;"></canvas>
+              @else
+                No hay citas generadas en el período seleccionado para clasificar los géneros.  
+              @endif  
             </div>
           </div>
-        </div>
+        </section>
 
                     <!-- /.box-footer -->
-            <div class="col-md-6">
+      <section class="connectedSortable ui-sortable col-md-6">
          <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
-              <h3 class="box-title">Edades</h3>
+              <h3 class="box-title">Pacientes por edades</h3>
 
               <div class="box-tools pull-right">
+               <button type="button" class="btn btn-default btn-sm" onclick="changeAges();"><i class="fa fa-pie-chart ageicon"></i>
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+
+              </div>
+            </div>
+            <div class="box-body border-radius-none">
+              @if(count($age) > 0)
+                 <canvas id="myChart2" class="chartjs" style="height: 250px;"></canvas>
+              @else
+                  No hay datos en el período seleccionado para clasificar las edades.
+              @endif
+          </div>
+        </div>
+       </section>   
+
+      <section class="connectedSortable ui-sortable col-md-6">
+         <div class="box box-secondary">
+            <div class="box-header ui-sortable-handle" style="cursor: move;">
+              <i class="fa fa-th"></i>
+
+              <h3 class="box-title">Citas</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-default btn-sm" onclick="changeAppo();"><i class="fa fa-bar-chart appoicon"></i>
+                </button>
                 <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
             </div>
             <div class="box-body border-radius-none">
-            <canvas id="myChart2" class="chartjs" style="height: 250px;"></canvas>
+              @if(count($appo) > 0)
+                <canvas id="myChartAppointments" class="chartjs" style="height: 250px;"></canvas>
+              @else
+                No hay citas registradas en el período seleccionado.
+              @endif    
             </div>
-            <!-- /.box-body -->
-            
-            <!-- /.box-footer -->
           </div>
-        </div>
-        <!--<div class="col-md-12">
-        <div class="box box-solid bg-teal-gradient">
+        </section>
+
+      <section class="connectedSortable ui-sortable col-md-6">
+         <div class="box box-secondary">
             <div class="box-header ui-sortable-handle" style="cursor: move;">
               <i class="fa fa-th"></i>
 
-              <h3 class="box-title">Polígono de Enfermedades</h3>
+              <h3 class="box-title">Saldos</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-default btn-sm" onclick="changeBalance();"><i class="fa fa-bar-chart balicon"></i>
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
             </div>
             <div class="box-body border-radius-none">
-              <div class="chart">
-              <canvas id="myChart3" height="200" style="height: 250px"></canvas>
+              @if(count($balances) > 0)
+                  <canvas id="myChartBalance" class="chartjs" style="height: 250px;"></canvas>
+              @else
+                  No hay saldos registrados en el período seleccionado.
+              @endif        
             </div>
-            </div>
+         </div> 
+      </section> 
 
+      <section class="connectedSortable ui-sortable col-md-6" id="workplaces">
+         <div class="box box-secondary">
+            <div class="box-header ui-sortable-handle" style="cursor: move;">
+              <i class="fa fa-th"></i>
+              <h3 class="box-title">Citas por consultorios</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-default btn-sm" onclick="changeWorkplace();"><i class="fa fa-bar-chart workicon"></i>
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body border-radius-none">
+              @if(count($workplaces) > 0)
+                <canvas id="myChartWorkplace" class="chartjs" style="height: 250px;"></canvas>
+              @else
+                No tienes registros de citas por consultorios en el período seleccionado.
+              @endif    
+            </div>
           </div>
-        </div>-->
-          </div>
+        </section> 
+  </div>
 
 <script type="text/javascript">
 	
-$(function() {
-  var dis = @php echo $dis; @endphp;
-  var fem = @php echo $fem; @endphp;
-  var mas = @php echo $mas; @endphp;
-  var age = @php echo $arrayA; @endphp;
-  var count = @php echo $count; @endphp;
+         $('#filter').on('change', function(e){
+              $('#sendFilter').attr('action', '{{ url("reports/index") }}/'+ $(this).val());
+              $(this).closest('form').submit();
+          });
 
-  var report =JSON.stringify(@php echo $report; @endphp);
-  report =JSON.parse(report);
-  console.log(report);
+          var dis = @php echo $dis; @endphp;
+          var fem = @php echo $fem; @endphp;
+          var mas = @php echo $mas; @endphp;
+          var oth = @php echo $oth; @endphp;
+          var age = @php echo $arrayA; @endphp;
+          var count = @php echo $count; @endphp;
+          var appointments = @php echo $arrayAppo; @endphp;
+          var countAppo = @php echo $countAppo; @endphp;
+          var balancedates = @php echo $balancedates; @endphp;
+          var balance = @php echo $balances; @endphp;
+          var report = @php echo $report; @endphp;
+          var workplaces = @php echo $workplaces; @endphp;
+          var places = @php echo $places; @endphp;         
+          var arrayBalance = [0,0];
+          var arrayworkplace = [0,0];
+          var title = '0';
 
-  console.log(count);
-  /* Morris.js Charts */
-  // Sales chart
-/*Enfermedades*/
-if(report.length > 0){
-var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+         function colorRandom(){
+                var value = Math.random() * 0xFF | 0;
+                var grayscale = (value << 16) | (value << 8) | value;
+                var color = '#' + grayscale.toString(16);
+                return color;      
+            }
 
-  var line = new Morris.Line({
-    element          : 'line-chart',
-    resize           : true,
-    data             : report,
-    xkey             : 'y',
-    ykeys            : dis,
-    labels           : dis,
-    lineColors       : ['#efefef', 'black'],
-    lineWidth        : 2,
-    hideHover        : 'auto',
-    gridTextColor    : '#fff',
-    gridStrokeWidth  : 0.4,
-    pointSize        : 3,
-    fillOpacity: 0.1,
-    pointStrokeColors: ['#efefef','black'],
-    gridLineColor    : ['#efefef','black'],
-    gridTextFamily   : 'Open Sans',
-    gridTextSize     : 10,
-    hideHover: 'auto',
-    xLabels: "month",
-    xLabelFormat: function (x) { return months[x.getMonth()]; }
-  });
-}
-/*generos*/
 
-data = {
-    datasets: [{
-        data: [fem.toFixed(2), mas.toFixed(2)],
-        backgroundColor: ['black', 'gray']
-    }],
+          var arraycolorAge = Array();
+              for(var x = 0; x < count.length; x++){
+                       arraycolorAge.push(colorRandom());
+                    }
 
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-        'Femenino',
-        'Masculino',
-    ]
-};
-var ctx = document.getElementById('myChart').getContext('2d');
+          var arraycolorAppo = Array();
+              for(var z = 0; z < countAppo.length; z++){
+                       arraycolorAppo.push(colorRandom());
+                    }   
 
-var myPieChart = new Chart(ctx,{
-    type: 'pie',
-    data: data
-});
-// And for a doughnut chart
-
-var myDoughnutChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: data
-});
-/*edades*/
-data2 = {
-    datasets: [{
-        data: count,
-        backgroundColor: '#656565',
-        label: 'Edad paciente'
-
-    }],
-
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: age
-};
+          var arraycolorWork = Array();
+              for(var z = 0; z < places.length; z++){
+                       arraycolorWork.push(colorRandom());
+                    }   
  
+            /*Balance*/
+            if(balance.length > 0){
 
-/*Edades*/
-var ctz = document.getElementById('myChart2').getContext('2d');
-var myBarChart = new Chart(ctz, {
-    type: 'bar',
-    data: data2,
-});
+                            arrayBalance = Array();
+                            var countOwed = 0;
+                            var countPaid = 0;
+                                for(var z=0; z < balance.length; z++){
+                             
+                                                if(balance[z]['type_doctor'] == 'Owed'){
+                                                      var mount = balance[z]['amount'];
+                                                      countOwed = parseFloat(countOwed) + parseFloat(mount); 
+                                                }
 
-/*var cty = document.getElementById('myChart3').getContext('2d');
-var myLineChart = new Chart(cty, {
-    type: 'line',
-  data: {
-   labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-    datasets: [{ 
-        data: [860,114,1060,106,1070],
-        label: "Cancer",
-        borderColor: "black",
-        backgroundColor: "black",
-        pointBorderWidth: 2,
-        fill: false,
-        borderWidth: 2,
-        yAxisID: 'y-axis-1'
-      }, { 
-        data: [2500,350,411,809,635],
-        label: "Hepatitis",
-        borderColor: "#8e5ea2",
-        backgroundColor: "#8e5ea2",
-        pointBorderWidth: 2,
-        fill: false,
-        borderWidth: 2,
-        yAxisID: 'y-axis-1'
-      }, { 
-        data: [168,1700,2965,190,2000],
-        label: "Dengue",
-        borderColor: "white",
-        backgroundColor: "white",
-        pointBorderWidth: 2,
-        fill: false,
-        borderWidth: 2,
-        yAxisID: 'y-axis-1'
-      }, { 
-        data: [40,20,38,74,167],
-        label: "Otras",
-        borderColor: "#FF9EDA",
-        backgroundColor: "#FF9EDA",
-        pointBorderWidth: 2,
-        fill: false,
-        borderWidth: 2,
-        yAxisID: 'y-axis-2'
-      },
+                                                if(balance[z]['type_doctor'] == 'Paid'){
+                                                      var mountpaid = balance[z]['amount'];
+                                                      countPaid = parseFloat(countPaid) + parseFloat(mountpaid);
+                                                }
+                                      }
 
-    ]
-  },
-  options: {
-    responsive: true,
-     scales: {
+                            arrayBalance.push(countPaid.toFixed(2));
+                            arrayBalance.push(countOwed.toFixed(2));
+
+                            if(countPaid > countOwed)
+                                  title = '$' + countPaid.toFixed(2) +' Pagado';
+                            else 
+                                  title = '$' + countOwed.toFixed(2) +' Pendiente';    
+            }
+            /*Workplace*/
+            if(workplaces.length > 0){
+
+                            arrayworkplace = Array();
+                              for(var pl = 0; pl < places.length; pl++){
+                                  var variable = {};
+                                   variable[pl] = 0;
+                                    for(var w=0; w < workplaces.length; w++){
+                                                    if(workplaces[w]['place'] == places[pl]){
+                                                        variable[pl]  = parseFloat(variable[pl]) + 1;
+                                                    }
+                                          }
+                                    arrayworkplace.push(variable[pl]);       
+                              }
+            }            
 
 
-    xAxes: [{
-      ticks:{
-        fontColor:"white",
-        fontSize: 10,
-        fontStyle: "normal",
-         beginAtZero: true
-      },
-       gridLines:{ 
-          display: false
+
+              /********** Diagnostics  ********s*/
+
+              if(report.length > 0){
+                        var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+
+                          var line = new Morris.Line({
+                            element          : 'line-chart',
+                            resize           : true,
+                            data             : report,
+                            xkey             : 'y',
+                            ykeys            : dis,
+                            labels           : dis,
+                            lineColors       : ['#555', 'black', '#ff508c'],
+                            hideHover        : 'auto',
+                            pointSize        : 6,
+                            pointStrokeColors: ['#555', 'black', '#ff508c'],
+                            gridTextFamily   : 'Open Sans',
+                            gridTextSize     : 13,
+                          });
+              }
+
+
+
+            /****** SET DATA ******/
+              var data = {
+                  datasets: [{
+                      data: [fem.toFixed(), mas.toFixed(), oth.toFixed()],
+                      label: 'Generos',
+                      backgroundColor: ['black', 'gray', '#677']
+                  }],
+
+                  // These labels appear in the legend and in the tooltips when hovering different arcs
+                  labels: [
+                      'Femenino',
+                      'Masculino',
+                      'Otro'
+                  ]
+              };
+
+              var data2 = {
+                  datasets: [{
+                      data: count,
+                      label: 'Edad paciente',
+                      backgroundColor: arraycolorAge
+
+                  }],
+                  labels: age
+              };
+
+             var dataAppo = {
+                    datasets: [{
+                        data: countAppo,
+                        label: 'Estatus Citas',
+                        backgroundColor: arraycolorAppo
+
+                    }],
+                    labels: appointments
+                }; 
+
+              var dataBalance = {
+                  datasets: [{
+                      data: arrayBalance,
+                      label: 'Saldos',
+                      backgroundColor: ['#50d056', '#f70707']
+
+                  }],
+                  labels: ["Pagado", "Pendiente"]
+              };
+
+              var dataworkplace = {
+                  datasets: [{
+                      data: arrayworkplace,
+                      label: 'Citas por consultorios',
+                      backgroundColor: arraycolorWork
+
+                  }],
+                  labels: places
+              };              
+
+
+                 
+                var options = {
+                    responsive: true,   
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                              min: 0,
+                              stepSize: 1
+                            }
+                        }]
+                    }
+                };
+
+             /****** SET DATA ******/   
+
+
+      /*Edades*/
+      var myBarChartAges;
+      var chartType = 'bar';
+      AgesGr();
+
+   function AgesGr(){
+
+  
+        myBarChartAges = new Chart(document.getElementById('myChart2'), {     
+            type: chartType,
+            data: data2,
+            options: options
+        });
+            if(this.chartType == 'bar')
+              $('.ageicon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
+            else
+              $('.ageicon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
+    }    
+
+  function changeAges(){
+      myBarChartAges.destroy();
+  //change chart type: 
+            this.chartType = (this.chartType == 'bar') ? 'doughnut' : 'bar';
+            //restart chart:
+            AgesGr();
+  }  
+
+    var myDoughnutChartGender;
+    var chartTypeGender = 'doughnut';
+    genderGr();
+
+        function genderGr(){
+
+            myDoughnutChartGender = new Chart(document.getElementById('myChart'), {
+                type: chartTypeGender ,
+                data: data
+            });
+           if(this.chartTypeGender == 'bar')
+              $('.gendericon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
+            else
+              $('.gendericon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
         }
-    }],
-    yAxes: [{
-      type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-              display: true,
-              position: 'left',
-              id: 'y-axis-1',
-                ticks:{
-              fontColor:"white",
-              fontSize: 10,
-              fontStyle: "normal",
-               beginAtZero: true
-            },
-             gridLines:{
-                display: false
-            }}, {
-              type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-              display: true,
-              position: 'right',
-              id: 'y-axis-2',
-      ticks:{
-        fontColor:"white",
-        fontSize: 10,
-        fontStyle: "normal",
-         beginAtZero: true
-      },
-       gridLines:{
-          display: false
+
+      function changeGender(){
+
+            myDoughnutChartGender.destroy();
+             //change chart type: 
+            this.chartTypeGender = (this.chartTypeGender == 'bar') ? 'doughnut' : 'bar';
+            //restart chart:
+            genderGr();
+       }  
+
+
+      var myChartAppo;
+      var chartTypeAppo = 'doughnut';
+      appoGr();
+
+      function appoGr(){
+
+            myChartAppo = new Chart(document.getElementById('myChartAppointments'), {
+                type: chartTypeAppo,
+                data: dataAppo,
+                options: options
+            });
+           if(this.chartTypeAppo == 'horizontalBar')
+              $('.appoicon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
+            else
+              $('.appoicon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
         }
-    }]
-  }
-}
-});*/
+
+      function changeAppo(){
+
+             myChartAppo.destroy();
+             //change chart type: 
+            this.chartTypeAppo = (this.chartTypeAppo == 'horizontalBar') ? 'doughnut' : 'horizontalBar';
+            //restart chart:
+            appoGr();
+       }  
+
+    var myChartBal;
+    var chartTypeBal = 'doughnut';
+    balanceGr();
+
+      function balanceGr(){
+         if(balance.length > 0){
+            myChartBal = new Chart(document.getElementById('myChartBalance'), {
+                type: chartTypeBal,
+                data: dataBalance,
+                options: {
+                    responsive: true
+                }
+            });
+
+           if(this.chartTypeBal == 'horizontalBar')
+              $('.balicon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
+            else
+              $('.balicon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
+          }  
+        }
+      function changeBalance(){
+        if(balance.length > 0){
+             myChartBal.destroy();
+             //change chart type: 
+                  this.chartTypeBal = (this.chartTypeBal == 'horizontalBar') ? 'doughnut' : 'horizontalBar';
+                  //restart chart:
+                  balanceGr();
+                }
+             }  
 
 
-});
+      var myChartWorkplace;
+      var chartTypeWork = 'bar';
+      workGr();
 
+      function workGr(){
+        if(workplaces.length > 0){
+            myChartWorkplace = new Chart(document.getElementById('myChartWorkplace'), {
+                type: chartTypeWork,
+                data: dataworkplace
+            });
+           if(this.chartTypeWork == 'bar')
+              $('.workicon').removeClass('fa-bar-chart').addClass('fa-pie-chart');
+            else
+              $('.workicon').removeClass('fa-pie-chart').addClass('fa-bar-chart');
+        }
+      }
+
+      function changeWorkplace(){
+        if(workplaces.length > 0){
+             myChartWorkplace.destroy();
+             //change chart type: 
+            this.chartTypeWork = (this.chartTypeWork == 'bar') ? 'doughnut' : 'bar';
+            //restart chart:
+            workGr();
+           } 
+       }  
 
 
 </script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+
+
+            // Make the dashboard widgets sortable Using jquery UI
+            $('.connectedSortable').sortable({
+              placeholder         : 'sort-highlight',
+              connectWith         : '.connectedSortable',
+              handle              : '.box-header',
+              forcePlaceholderSize: true,
+              zIndex              : 999999
+            });
+            $('#workplace').resizable();
+            $('.connectedSortable .box-header').css('cursor', 'move');
+
+    
+</script>
 @stop

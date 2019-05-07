@@ -358,14 +358,20 @@
 
              @if($appointments->isEmpty())
             <div class="alert alert-info alert-dismissible" id="alert">
-                            <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días...</h5>               
+                            <h5><i class="icon fa fa-info"></i> No hay citas registradas para los próximos días... </h5>               
             </div>
              @else
         <div class="box-group" id="accordion">
                 <div class="panel box box-default" style="border-top-color: gray;">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="a text-black" style="font-size: 12px;">
                  <div class="box-header with-border"> 
-                       <div align="left"><i class="fa fa-chevron-down text-muted"></i> <b>Citas médicas registradas</b></div>
+                       <div align="left"><i class="fa fa-chevron-down text-muted"></i> <b>Citas médicas registradas</b>
+                                    @if($countquestion > 0)                 
+                                        <span class="pull-left-container">
+                                          <small class="label bg-green">Pendiente</small>
+                                        </span>
+                                    @endif    
+                        </div>
                      </div> 
                     </a>
                   <div id="collapseOne" class="panel-collapse collapse" >
@@ -435,6 +441,13 @@
                                                       <div align="left">
                                                       <ul class="nav nav-pills nav-stacked">
                                                         <li class="active"><a href="javascript:void(0)">Tiempo restante para la cita <span class="liright">{{ \Carbon\Carbon::parse($appo->when)->diffForHumans() }}</span></a></li>
+                                                        <li><a href="javascript:void(0)" data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li> 
+                                                        @foreach($questions as $quest)
+                                                          @if($quest->createdby == $appo->did && $loop->iteration == 1)
+                                                              <li><a href="javascript:void(0)" data-target="#modalhistoryappointments-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Información previa cita</a></li>
+                                                          @endif    
+                                                        @endforeach  
+
                                                         <li><a href="{{ url('/payment/Transactions/') }}/{{ $appo->idtr }}">Método de pago 
                                                      @if($appo->provider != 'Paypal')
                                                              @php 
@@ -450,7 +463,8 @@
                                                           <span class="liright cut"><i class="fa fa-cc-paypal" style="font-size: 14px;"></i> &nbsp;{{ $appo->paypal_email }}</span>
                                                      @endif 
                                                         </a></li>
-                                                        <li><a data-target="#chat-{{ $appo->id }}" data-dismiss="modal" data-toggle="modal">Conectar con Médico</a></li>
+
+                                                       
  
                                                       </ul>
                                                       </div>
@@ -480,6 +494,14 @@
                                                                           </div>  
                                                                        </div>
                                                                     </div>  
+                                                                      @include('modals.clinichistoryappointments', 
+                                                                            [
+                                                                              'id' => $appo->id,
+                                                                              'dr' => $appo->did, 
+                                                                              'questions'  => $questions,
+                                                                              'clinic_historyappo'  => $clinic_history
+                                                                            ]
+                                                                          )
 
                                     @endif                                   
                                  @endif 

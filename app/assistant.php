@@ -11,7 +11,12 @@ class assistant extends Model
     	'id',
 		'user_assist',
 		'user_doctor',
-		'confirmation'
+		'confirmation',
+        'profile', //Enum [none, read, write] default: none
+        'calendar', //Enum [none, read, write] default: none
+        'chat',  //Enum [none, read, write] default: none
+        'assistant', //Enum [none, read, write] default: none 
+        'workboard' //Enum [none, read, write] default: none
     ];
 
     public function user_assist(){

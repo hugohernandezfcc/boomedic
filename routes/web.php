@@ -513,11 +513,12 @@ Route::group(['prefix' => 'drAppointments'], function(){
 
 Route::group(['prefix' => 'reports'], function(){
 
-	Route::get('index', [
+
+	Route::get('index/{date}', [
 			'uses'	=>	'reports@index',
 			'as'	=>	'index'
 		]
-	);
+	);	
 
 	Route::get('redirecting/{page}', [
 			'uses'	=>	'reports@redirecting',
@@ -646,9 +647,15 @@ Route::group(['prefix' => 'history'], function(){
 			'as'	=>	'store'
 		]
 	);
+});
 
+Route::group(['prefix' => 'AssistantController'], function(){
 
-
+	Route::get('save', [
+			'uses'	=>	'AssistantController@save',
+			'as'	=>	'save'
+		]
+	);
 });
 
 Route::post('/bye' , 'Auth\LoginController@logout');
