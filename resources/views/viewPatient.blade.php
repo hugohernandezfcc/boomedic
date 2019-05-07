@@ -145,9 +145,9 @@
 	                  	<b>No. de citas</b> <a class="pull-right">{{ $countappo }}</a>
 	                </li>
 	                <li class="list-group-item">
-	                	@php
-						 	dd($questions);
-						@endphp
+	                	<!-- @php
+						 	dd($questions); ##HDHM#### tengo que validar que cuando el médico no tenga preguntas agregadas se deshabilite este botón
+						@endphp -->
 	                	@foreach($questions as $quest)
                             @if($loop->iteration == 1)
                                 <a data-target="#modalhistoryappointments-{{ $patientId}}" data-toggle="modal" class="btn btn-secondary btn-flat btn-block">Historia clínica previa cita</a>
@@ -181,10 +181,10 @@
               <p class="text-muted">
               	@if(empty($scholarship) && empty($occupation))
                 	<a href="#">Agregar información</a>
-                @elseif(empty($scholarship) && !empty($occupation))
+                <!-- @elseif(empty($scholarship) && !empty($occupation))
                 	<a href="#">Agregar Escolaridad</a> / {{ $occupation }}
                 @elseif(!empty($scholarship) && empty($occupation))
-                	{{ $scholarship }} / <a href="#">Agregar ocupación</a>
+                	{{ $scholarship }} / <a href="#">Agregar ocupación</a> -->
                 @endif
               </p>
 
