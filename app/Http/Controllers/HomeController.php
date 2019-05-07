@@ -776,6 +776,7 @@ class HomeController extends Controller
                               ->where('labor_information.id','=', $exp[0])
                               ->select('labor_information.latitude', 'labor_information.longitude', 'professional_information.specialty', 'labor_information.id')
                               ->first();
+                              
                                       Session(['specialty' => $join->specialty]);
                                       Session(['latitude' => $join->latitude]);
                                       Session(['longitude' => $join->longitude]);

@@ -1726,22 +1726,22 @@
 
 			      	function initMapAddressUser() {
 
-				      	if(!counter > 0){
-				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
-					          zoom: 7,
-					          center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
+				     //  	if(!counter > 0){
+				     //  		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
+					    //       zoom: 7,
+					    //       center: {lat: {{ $longitude }} , lng: {{ $latitude }} }
 
-					        });
+					    //     });
 
-					        var image = "{{ asset('maps-and-flags_1.png') }}";
+					    //     var image = "{{ asset('maps-and-flags_1.png') }}";
 					        
-					        var beachMarker = new google.maps.Marker({
-					          position: {lat: {{ $longitude }} , lng: {{ $latitude }} },
-					          map: map,
-					          icon: image
-					        });
-					    }
-				        counter++;
+					    //     var beachMarker = new google.maps.Marker({
+					    //       position: { lat: {{ $longitude }} , lng: {{ $latitude }} },
+					    //       map: map,
+					    //       icon: image
+					    //     });
+					    // }
+				     //    counter++;
 			      	}
 		    	</script>
 
