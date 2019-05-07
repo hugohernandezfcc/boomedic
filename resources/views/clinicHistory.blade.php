@@ -480,10 +480,10 @@
                             )
             </div>                         
         @else 
-     <div class="box-header direct-chat header1" id="header1">
-              <h3 class="box-title">
-                        Expediente médico<a href="javascript:void(0);" onclick="visib();" style="color: #777 !important;" class="btn"><i class="fa fa-eye" id="eye"></i></a>   
-               </h3> 
+         <div class="box-header direct-chat header1" id="header1">
+            <h3 class="box-title">
+                Expediente médico<a href="javascript:void(0);" onclick="visib();" style="color: #777 !important;" class="btn"><i class="fa fa-eye" id="eye"></i></a>   
+            </h3> 
         <button type="button" class="btn pull-right" title="" data-widget="chat-pane-toggle">
                  <span class="fa fa-search text-muted"></span></button>
       <div class="direct-chat-contacts plus">

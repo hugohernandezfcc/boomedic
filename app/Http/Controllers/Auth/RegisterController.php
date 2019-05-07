@@ -56,7 +56,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-    $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
+        $asso = DB::table('medical_association')->where('parent', '>', '0')->get();
         return response()->json($asso);
     }
      /**

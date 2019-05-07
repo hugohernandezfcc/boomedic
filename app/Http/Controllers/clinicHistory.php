@@ -64,12 +64,15 @@ class clinicHistory extends Controller
         ->where('userid', $user->id)
         ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
         ->get();
+
+
         $clinic_history_general = DB::table('clinic_history')
         ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
         ->where('userid', $user->id)
         ->where('questions_clinic_history.createdby', null)
         ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
         ->get();
+
 
         $question = DB::table('questions_clinic_history')
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
@@ -123,7 +126,11 @@ class clinicHistory extends Controller
 
 
                         }*/
-                          $result = DB::table('diagnostic_test_result')->where('patient','=', $user->id)->where('diagnostic_test','=',null)->get();   
+                          $result = DB::table('diagnostic_test_result')->where([
+                                                                            ['patient','=', $user->id],
+                                                                            ['diagnostic_test','=',null]
+                                                                        ])->get();
+
                            $result2 = $result->groupBy('date_email'); 
 
            
