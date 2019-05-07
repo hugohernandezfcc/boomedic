@@ -129,7 +129,7 @@ class clinicHistory extends Controller
                                                                             ['diagnostic_test','=',null]
                                                                         ])->get();
 
-    for ($i=0; $i < count($result); $i++) { 
+    for ($i=0; $i < count($result); $i++)  
         if(strpos($result[0]->subject_email, 'Asunto: [iscoapp.com] Email configuration settings') !== false)
             unset($result[$i]);
         
