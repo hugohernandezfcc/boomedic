@@ -80,8 +80,8 @@
 
                  <div class="progress">
                     @php
-                    $percent = (1 /count($questions)) * 100;
-                    $per = intval($percent);
+                      $percent = (1 / (count($questions) == 0) ? 1 : count($questions) ) * 100;
+                      $per = intval($percent);
                     @endphp
                  <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: {{ $percent }}%;">
                    {{ $per }}%
@@ -435,48 +435,48 @@
           });
           $('.finish').click(function(){
 
-                        var tab = $(this).parents('.tab-pane').attr("id");
-                        if(typeof $('#'+tab+' textarea').val() != "undefined")
-                           var values = Array($('#'+tab+' textarea').val());
-                        else{
-                         var values = $('#'+tab+' input').map(function() {
-                          if($(this).is(':checkbox') && this.checked){
-                                  var check2 = this.value.replace(/_/gi, " ");
-                                    
-                                  }
-                          if($(this).is(':radio') && this.checked){
-                                   var check2 =    $('#'+tab+' input:radio:checked').val();
-                                 }
-                                return check2; // obtienes el valor de todos los checkboxes
-                                  
-                          }).get();
-                          }
+          var tab = $(this).parents('.tab-pane').attr("id");
+          if(typeof $('#'+tab+' textarea').val() != "undefined")
+          var values = Array($('#'+tab+' textarea').val());
+          else{
+          var values = $('#'+tab+' input').map(function() {
+          if($(this).is(':checkbox') && this.checked){
+                var check2 = this.value.replace(/_/gi, " ");
+                  
+                }
+          if($(this).is(':radio') && this.checked){
+                 var check2 =    $('#'+tab+' input:radio:checked').val();
+               }
+              return check2; // obtienes el valor de todos los checkboxes
+                
+          }).get();
+          }
 
 
-                        var ques = $('#'+tab+ ' .quesId').val();
-                        var ansId = $('#'+tab+ ' .ansId').val();
-                                  $.ajaxSetup({
-                                  headers: {
-                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                  }
-                              });
+          var ques = $('#'+tab+ ' .quesId').val();
+          var ansId = $('#'+tab+ ' .ansId').val();
+                $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-                                     $.ajax({     
-                                       type: "POST",                 
-                                        url: '{{ url("clinicHistory/save") }}',  
-                                        data: { "answers" : JSON.stringify(values), 
-                                                "question" : ques,
-                                                "ansId"    : ansId
-                                      }, 
-                                        dataType: 'json',                
-                                       success: function(data)             
-                                       {
-                                          
-                                        console.log(data);
+         $.ajax({     
+           type: "POST",                 
+            url: '{{ url("clinicHistory/save") }}',  
+            data: { "answers" : JSON.stringify(values), 
+                    "question" : ques,
+                    "ansId"    : ansId
+          }, 
+            dataType: 'json',                
+           success: function(data)             
+           {
+              
+            console.log(data);
 
-                                       }
-                                   });
-                                      $('#btnclosehc').click();
+           }
+       });
+          $('#btnclosehc').click();
                        
           });
  })
