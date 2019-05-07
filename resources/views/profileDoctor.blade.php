@@ -1640,14 +1640,9 @@
 				    });
 				});
 
-    			window.onload = function(){
-    				@if(!empty($status))
-    				initAutocomplete();
-    				@endif
-    				@if( empty($status) )
-    					initMapAddressUser();
-					@endif
-    			};
+    			/**
+    			 * Se quito código aquí
+    			 */
 
 
 		      // This example displays an address form, using the autocomplete feature
