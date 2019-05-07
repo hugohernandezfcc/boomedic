@@ -130,8 +130,9 @@ class clinicHistory extends Controller
                                                                         ])->get();
 
     for ($i=0; $i < count($result); $i++)  
-        if(strpos($result[0]->subject_email, 'Asunto: [iscoapp.com] Email configuration settings') !== false)
+        if(strpos($result[$i]->subject_email, 'Asunto: [iscoapp.com] Email configuration settings') === true){
             unset($result[$i]);
+        }
         
     
 
