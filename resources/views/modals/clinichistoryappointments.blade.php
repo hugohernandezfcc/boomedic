@@ -80,7 +80,7 @@
 
                  <div class="progress">
                     @php
-                      $percent = (1 / (count($questions) == 0) ? 1 : count($questions) ) * 100;
+                      $percent = (1 / ((count($questions) == 0) ? 1 : count($questions)) ) * 100;
                       $per = intval($percent);
                     @endphp
                  <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: {{ $percent }}%;">
