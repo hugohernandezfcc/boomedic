@@ -132,6 +132,9 @@ class clinicHistory extends Controller
                                                                         ])->get();
 
                            $result2 = $result->groupBy('date_email'); 
+    dd($result2);
+
+    // Asunto: [iscoapp.com] Email configuration settings 
 
            
         if(count($clinic_history_general) == 0){
