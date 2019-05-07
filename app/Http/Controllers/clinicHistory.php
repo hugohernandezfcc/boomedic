@@ -123,18 +123,22 @@ class clinicHistory extends Controller
                                 
 
                            //print_r($result2);
-
-
                         }*/
                           $result = DB::table('diagnostic_test_result')->where([
                                                                             ['patient','=', $user->id],
                                                                             ['diagnostic_test','=',null]
                                                                         ])->get();
 
+    for ($i=0; $i < count($result); $i++) { 
+        if(strpos($result[0]->subject_email, 'Asunto: [iscoapp.com] Email configuration settings') !== false)
+            unset($result[$i]);
+        
+    
+
     dd($result);
                            $result2 = $result->groupBy('date_email'); 
 
-    // Asunto: [iscoapp.com] Email configuration settings 
+    //  
 
            
         if(count($clinic_history_general) == 0){
