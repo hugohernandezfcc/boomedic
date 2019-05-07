@@ -51,21 +51,22 @@
 	  	</div>
 		<div class="box-body">
 
-					    <div style="font-size: 12px; font-style: oblique;">Fecha de Cita: {{ $date }} </div> <br/>
-			                	<div class="col-xs-12 col-md-8">
-			                			<div class="col-sm-4"><b>Dr(a):</b></div>
-			                			<div class="col-sm-8" align="left">{!! $dr !!}</div>
-			                	</div>
-			                <br/>
-			                <div class="col-xs-12 col-md-8">
-			                			<div class="col-sm-4"><b>Motivo de cancelación:</b></div>
-			                			<div class="col-sm-8" align="left">{!! $reason !!}</div>
-			                </div>
-			                <br/>
-			                <div class="col-xs-12 col-md-8">
-			                			<div class="col-sm-4"><b>Especialidad:</b></div>
-			                			<div class="col-sm-8" align="left">{!! $specialty !!}</div>
-			                </div>
+	    	<div style="font-size: 12px; font-style: oblique;">Fecha de Cita: {{ $date }} </div> 
+	    	<br/>
+        	<div class="col-xs-12 col-md-8">
+    			<div class="col-sm-4"><b>Dr(a):</b></div>
+    			<div class="col-sm-8" align="left">{!! $dr !!}</div>
+        	</div>
+            <br/>
+            <div class="col-xs-12 col-md-8">
+    			<div class="col-sm-4"><b>Motivo de cancelación:</b></div>
+    			<div class="col-sm-8" align="left">{!! $reason !!}</div>
+            </div>
+            <br/>
+            <div class="col-xs-12 col-md-8">
+    			<div class="col-sm-4"><b>Especialidad:</b></div>
+    			<div class="col-sm-8" align="left">{!! $specialty !!}</div>
+            </div>
 		</div>	  	
 	</div>
 @if($reschedule != false)	

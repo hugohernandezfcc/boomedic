@@ -197,12 +197,12 @@ class drAppointments extends Controller
 
        if($appo->definitive == false){
 
-                             $data = $this->alternative($appo, $userd->name);
+         $data = $this->alternative($appo, $userd->name);
 
-                           }else{
+       }else{
 
-                             $data = $this->definitive($appo, $userd->name);
-                           }                
+         $data = $this->definitive($appo, $userd->name);
+       }                
 
        return view('updateappointment',[        
                                         'userId'    => $user->id,

@@ -58,7 +58,10 @@ Route::get('/medicalconsultations/notificationdr/{id}', 'HomeController@notifica
 Route::get('HomeController/notify', 'HomeController@notify')->name('HomeController/notify');
 Route::get('HomeController/notify2', 'HomeController@notify2')->name('HomeController/notify2');
 Route::get('HomeController/messages', 'HomeController@messages')->name('HomeController/messages');
+
 Route::get('reSchedule/{id}', 'HomeController@reSchedule')->name('reSchedule/{id}');
+
+
 Route::get('HomeController/listpatients', 'HomeController@listpatients')->name('HomeController/listpatients');
 Route::get('HomeController/listpatients2/{id}', 'HomeController@listpatients2')->name('HomeController/listpatients2/{id}');
 Route::get('/appointments', 'HomeController@appointments')->name('/appointments');

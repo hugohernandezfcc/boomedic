@@ -912,97 +912,97 @@
 				         	    		</div>	
 			         	    	</div>
 			         	    	<div style="display: none;" id="box-question-save" data-toggle="buttons">
-								<script type="text/javascript">
-								$(document).ready(function () {
-								    var navListItems = $('div.setup-panel div a'), // tab nav items
-								            allWells = $('.setup-content'), // content div
-								            allNextBtn = $('.nextBtn'), // next button
-								            stepb = $('.setup-content');
+									<script type="text/javascript">
+										$(document).ready(function () {
+										    var navListItems = $('div.setup-panel div a'), // tab nav items
+										            allWells = $('.setup-content'), // content div
+										            allNextBtn = $('.nextBtn'), // next button
+										            stepb = $('.setup-content');
 
-								    allWells.hide(); // hide all contents by defauld
+										    allWells.hide(); // hide all contents by defauld
 
-								    navListItems.click(function (e) {
-								        e.preventDefault();
-								        var $target = $($(this).attr('href')),
-								                $item = $(this);
+										    navListItems.click(function (e) {
+										        e.preventDefault();
+										        var $target = $($(this).attr('href')),
+										                $item = $(this);
 
-								        if (!$item.hasClass('disabled')) {
-								            navListItems.removeClass('btn-secondary').addClass('btn-default');
-								            $item.addClass('btn-secondary');
-								            allWells.hide();
-								            $target.show();
-								            $target.find('input:eq(0)').focus();
-								        }
-								    });
-								    // next button
-								    allNextBtn.click(function(){
-								    	$('#preview').show();
-								        	var curStep = $(this).closest(".setup-content"),
-								            curStepBtn = curStep.attr("id"),
-								            //nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-								            curInputs = curStep.find("input[type='text'],input[type='email'],input[type='password'],input[type='url']"),
-								            isValid = true;
+										        if (!$item.hasClass('disabled')) {
+										            navListItems.removeClass('btn-secondary').addClass('btn-default');
+										            $item.addClass('btn-secondary');
+										            allWells.hide();
+										            $target.show();
+										            $target.find('input:eq(0)').focus();
+										        }
+										    });
+										    // next button
+										    allNextBtn.click(function(){
+										    	$('#preview').show();
+										        	var curStep = $(this).closest(".setup-content"),
+										            curStepBtn = curStep.attr("id"),
+										            //nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+										            curInputs = curStep.find("input[type='text'],input[type='email'],input[type='password'],input[type='url']"),
+										            isValid = true;
 
-								         $('#readquestion').html($('#question').val()); 
+										         $('#readquestion').html($('#question').val()); 
 
-								         	if($("input[name='type']:checked").val() ==  'texto')  
-								        		 $('#readresponse').html('<textarea class="form-control"></textarea>');
+										         	if($("input[name='type']:checked").val() ==  'texto')  
+										        		 $('#readresponse').html('<textarea class="form-control"></textarea>');
 
-								        	if($("input[name='type']:checked").val() ==  'radio'){
-								        		 $('#readresponse').html('');
-								        			var classopt = document.getElementsByClassName("opr");
+										        	if($("input[name='type']:checked").val() ==  'radio'){
+										        		 $('#readresponse').html('');
+										        			var classopt = document.getElementsByClassName("opr");
 
-												 for(i=0;i<classopt.length;i++){
-												 	$('#readresponse').append('<input type="radio" name="radio">&nbsp;'+ classopt[i].innerHTML + '<br>');
-										  		  }
-								        	}
+														 for(i=0;i<classopt.length;i++){
+														 	$('#readresponse').append('<input type="radio" name="radio">&nbsp;'+ classopt[i].innerHTML + '<br>');
+												  		  }
+										        	}
 
-								        	if($("input[name='type']:checked").val() ==  'checkbox'){
-								        		 $('#readresponse').html('');
-								        			var classopt = document.getElementsByClassName("opc");
+										        	if($("input[name='type']:checked").val() ==  'checkbox'){
+										        		 $('#readresponse').html('');
+										        			var classopt = document.getElementsByClassName("opc");
 
-												 for(i=0;i<classopt.length;i++){
-												 	$('#readresponse').append('<input type="checkbox" name="checkbox">&nbsp;'+ classopt[i].innerHTML + '<br>');
-										  		  }
-								        	}
-
-
-								        // move to next step if valid
-								        if (isValid)
-								            nextStepWizard.removeAttr('disabled').trigger('click');
-								    });
-									$('div.setup-panel div a.btn-circle').click(function(){
-								    	$('#preview').hide();
-								    	 allNextBtn.hide();
-								    	 if($('#radio:checked').val() == 'radio'){
-										    	 if($('#addOpt').html().length > 0){
-		 										    	 $('.nextBtn.step1').show() 	
-		 										    	 $('#addOptcheck').html('');
-	 										    	 }
-	 										    	 else 
-		 										    	 $('#addOptcheck').html('');
-								    	 	}
-
-								    	 if($('#checkbox:checked').val() == 'checkbox'){
-										    	 if($('#addOptcheck').html().length > 0){
-		 										    	 $('.nextBtn.step2').show() 	
-		 										    	 $('#addOpt').html('');
-	 										    	 }
-	 										     else 
-	 										     	 $('#addOpt').html('');   	 
-								    	 	}
-
-								    	 if($('#texto:checked').val() == 'texto'){
-								    	 		 $('.nextBtn.step3').show()
-										    	 $('#addOpt').html('');
-										    	 $('#addOptcheck').html('');
-								    	 	}
-									});
+														 for(i=0;i<classopt.length;i++){
+														 	$('#readresponse').append('<input type="checkbox" name="checkbox">&nbsp;'+ classopt[i].innerHTML + '<br>');
+												  		  }
+										        	}
 
 
-								    $('div.setup-panel div a.btn-secondary').trigger('click');
-								});
-								</script>
+										        // move to next step if valid
+										        if (isValid)
+										            nextStepWizard.removeAttr('disabled').trigger('click');
+										    });
+											$('div.setup-panel div a.btn-circle').click(function(){
+										    	$('#preview').hide();
+										    	 allNextBtn.hide();
+										    	 if($('#radio:checked').val() == 'radio'){
+												    	 if($('#addOpt').html().length > 0){
+				 										    	 $('.nextBtn.step1').show() 	
+				 										    	 $('#addOptcheck').html('');
+			 										    	 }
+			 										    	 else 
+				 										    	 $('#addOptcheck').html('');
+										    	 	}
+
+										    	 if($('#checkbox:checked').val() == 'checkbox'){
+												    	 if($('#addOptcheck').html().length > 0){
+				 										    	 $('.nextBtn.step2').show() 	
+				 										    	 $('#addOpt').html('');
+			 										    	 }
+			 										     else 
+			 										     	 $('#addOpt').html('');   	 
+										    	 	}
+
+										    	 if($('#texto:checked').val() == 'texto'){
+										    	 		 $('.nextBtn.step3').show()
+												    	 $('#addOpt').html('');
+												    	 $('#addOptcheck').html('');
+										    	 	}
+											});
+
+
+										    $('div.setup-panel div a.btn-secondary').trigger('click');
+										});
+									</script>
 
 			         	    	<div align="right"><span class="fa fa-close btn btn-sm text-muted" onclick="cancelQuestion();"></span></div>
 								<label class="text-muted">Configuración de respuestas</label><br>
@@ -1172,20 +1172,23 @@
       <script type="text/javascript">
 
       				function nextQues(){
-      					var indexquestion = $('#question').val().trim().toLowerCase();
-						$('#searchQuestions div').each(function(){
-						if($(this).text().trim().toLowerCase() == indexquestion){
-							alert('Debes guardar una pregunta diferente a las anteriores')
-							return false;
-						}else{
 
-      					document.getElementById('question').disabled = true;
-      					$('#box-question').hide();
-      					$('#box-question-save').show();
-      					$('div.setup-panel div a[href="#step-1"]').click();
-			      				}
-			      			});
-			      		}
+      					var indexquestion = $('#question').val().trim().toLowerCase();
+						
+						$('#searchQuestions div').each(function(){
+							if($(this).text().trim().toLowerCase() == indexquestion){
+								alert('Debes guardar una pregunta diferente a las anteriores');
+								return false;
+							}else{
+
+		      					document.getElementById('question').disabled = true;
+		      					$('#box-question').hide();
+		      					//$('#box-question-save').show();
+		      					document.getElementById('box-question-save').style.display = 'block';
+		      					$('div.setup-panel div a[href="#step-1"]').click();
+				      		}
+			      		});
+			      	}
 
       				function cancelQuestion(){
       					document.getElementById('question').disabled = false;
