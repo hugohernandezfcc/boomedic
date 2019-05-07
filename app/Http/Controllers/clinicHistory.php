@@ -131,8 +131,8 @@ class clinicHistory extends Controller
                                                                             ['diagnostic_test','=',null]
                                                                         ])->get();
 
+    dd($result);
                            $result2 = $result->groupBy('date_email'); 
-    dd($result2);
 
     // Asunto: [iscoapp.com] Email configuration settings 
 
