@@ -267,7 +267,7 @@ class RegisterController extends Controller
         $user = User::where('confirmation_code', $code)->first();
 
         Auth::loginUsingId($user->id);
-        dd($user);
+        
         if (!$user){
             return redirect('/login');
         }else{   
