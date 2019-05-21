@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+
 use App\User;
 use App\professional_information;
 use Auth;
@@ -16,6 +17,7 @@ use Mail;
 use Carbon\Carbon;
 use App\devices; 
 use App\users_devices;
+
 
 class RegisterController extends Controller
 {
@@ -48,7 +50,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }    
-     /**
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -123,8 +125,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-
         $data['confirmation_code'] = str_random(25);
         $age = date("Y") - Carbon::parse($data['birthdate'])->format('Y');
         $namesUser = array();
@@ -132,44 +132,38 @@ class RegisterController extends Controller
         //$pos = strpos(' ', $data['name']);
 
         //if($pos !== false){
-            $explodeName = explode(' ', $data['name']);
+        $explodeName = explode(' ', $data['name']);
 
-            
-            
-            if(count($explodeName) == 2){
+        
+        
+        if(count($explodeName) == 2){
 
-                $namesUser['first'] = $explodeName[0];
-                $namesUser['last'] = $explodeName[1];
-            
-            }elseif (count($explodeName) == 3) {
+            $namesUser['first'] = $explodeName[0];
+            $namesUser['last'] = $explodeName[1];
+        
+        }elseif (count($explodeName) == 3) {
 
-                $namesUser['first'] = $explodeName[0];
-                $namesUser['last'] = $explodeName[1] . ' ' . $explodeName[2];
+            $namesUser['first'] = $explodeName[0];
+            $namesUser['last'] = $explodeName[1] . ' ' . $explodeName[2];
 
-            }elseif (count($explodeName) == 4) {
+        }elseif (count($explodeName) == 4) {
 
-                $namesUser['first'] = $explodeName[0] . ' ' . $explodeName[1];
-                $namesUser['last'] = $explodeName[2] . ' ' . $explodeName[3];
-            }
+            $namesUser['first'] = $explodeName[0] . ' ' . $explodeName[1];
+            $namesUser['last'] = $explodeName[2] . ' ' . $explodeName[3];
+        }
         //}else{
            //$namesUser['first'] = $data['name'];
 
         //}
 
-        
-
-
         $uName = explode('@', $data['email']);
         $uName['username'] = $uName[0] . '@iscoapp.com';
-
-
 
         /**
          * En caso de que este campo exista quiere decir que es un registro de médico.
          */
 
         if (isset($data['professional_license'])) {
-
 
 
             $userCreated =  User::create([
@@ -184,9 +178,15 @@ class RegisterController extends Controller
                 'password'  => bcrypt($data['password']),
                 'confirmation_code' => $data['confirmation_code']
             ]);
-                 Mail::send('emails.confirmation_code', $data, function($message) use ($data) {
-                $message->to('rebbeca.goncalves@doitcloud.consulting', $data['name'])->subject('Por favor confirma tu correo');
-            });
+
+            Mail::send(
+                'emails.confirmation_code', 
+                $data, 
+                function($message) use ($data) {
+                $message->to('hugo@doitcloud.consulting', $data['name'])->subject('Por favor confirma tu correo');
+                }
+            );
+
             $profInformation = professional_information::create([ 
                 'professional_license'  => $data['professional_license'],
                 'medical_society'  => $data['medical_society'],
@@ -199,18 +199,20 @@ class RegisterController extends Controller
                 return false;
 
         }else{
-                     Mail::send('emails.confirmation_code', $data, function($message) use ($data) {
-                    $message->to('rebbeca.goncalves@doitcloud.consulting', $data['name'])->subject('Por favor confirma tu correo');
-                });
+            Mail::send('emails.confirmation_code', $data, function($message) use ($data) {
+                $message->to('hugo@doitcloud.consulting', $data['name'])->subject('Por favor confirma tu correo');
+            });
 
             $usermor        = User::create([
                 'name'      => $data['name'],
+                'firstname' => $namesUser['first'],
+                'lastname'  => $namesUser['last'],
                 'email'     => $data['email'],
                 'birthdate' => Carbon::parse($data['birthdate'])->format('m-d-Y'),
                 'age'       => (int) $age,
                 'status'    => 'In Progress',
-                'firstname' => $namesUser['first'],
-                'lastname'  => $namesUser['last'],
+
+                
                 'username'  => $uName['username'],
                 'password'  => bcrypt($data['password']),
                 'confirmation_code' => $data['confirmation_code']
@@ -259,30 +261,33 @@ class RegisterController extends Controller
              ->get();
         return response()->json($usersd);
     }
-    public function verify($code)
-           { 
-             $user = User::where('confirmation_code', $code)->first();
-             Auth::loginUsingId($user->id);
-                if (!$user){
-                    return redirect('/login');
-                }else{
-   
-                        /*
-         * Create account email in cpanel
-         */
-              $cpanelusr = config('app.cpanel_user');
-              $cpanelpass = config('app.cpanel_pass');
-              $xmlapi = new xmlapi(config('app.cpanel_host'));
-              $xmlapi->set_port( 2083 );
-              $xmlapi->password_auth($cpanelusr,$cpanelpass);
-              $xmlapi->set_output('json');
-              $xmlapi->set_debug(1);
-                /* Data new user */ 
-                $email_user = $user->username;
-                $email_password = "adfm90f1m3f0m0adf";
-                $email_domain = "iscoapp.com";
-                $email_quota = '50';
-                $em = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain));
+
+
+    public function verify($code){ 
+        $user = User::where('confirmation_code', $code)->first();
+
+        Auth::loginUsingId($user->id);
+
+        if (!$user){
+            return redirect('/login');
+        }else{   
+            /*
+             * Create account email in cpanel
+             */
+            $cpanelusr = config('app.cpanel_user');
+            $cpanelpass = config('app.cpanel_pass');
+            $xmlapi = new xmlapi(config('app.cpanel_host'));
+            $xmlapi->set_port( 2083 );
+            $xmlapi->password_auth($cpanelusr,$cpanelpass);
+            $xmlapi->set_output('json');
+            $xmlapi->set_debug(1);
+                
+            /* Data new user */ 
+            $email_user = $user->username;
+            $email_password = "adfm90f1m3f0m0adf";
+            $email_domain = "iscoapp.com";
+            $email_quota = '50';
+            $em = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain));
         /* End create account email in cpanel */   
          
                 $user->confirmed = true;
