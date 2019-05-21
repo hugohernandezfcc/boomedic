@@ -267,7 +267,7 @@ class RegisterController extends Controller
         $user = User::where('confirmation_code', $code)->first();
 
         Auth::loginUsingId($user->id);
-
+        dd($user);
         if (!$user){
             return redirect('/login');
         }else{   
@@ -276,6 +276,7 @@ class RegisterController extends Controller
              */
             $cpanelusr = config('app.cpanel_user');
             $cpanelpass = config('app.cpanel_pass');
+
             $xmlapi = new xmlapi(config('app.cpanel_host'));
             $xmlapi->set_port( 2083 );
             $xmlapi->password_auth($cpanelusr,$cpanelpass);
@@ -288,12 +289,12 @@ class RegisterController extends Controller
             $email_domain = "iscoapp.com";
             $email_quota = '50';
             $em = $xmlapi->api1_query($cpanelusr, "Email", "addpop", array($email_user, $email_password, $email_quota, $email_domain));
-        /* End create account email in cpanel */   
+            /* End create account email in cpanel */   
          
                 $user->confirmed = true;
                 $user->confirmation_code = null;
                 if($user->save())
-                return redirect()->intended(route('medicalconsultations'))->with('notification', 'Has confirmado correctamente tu correo!');
+                    return redirect()->intended(route('medicalconsultations'))->with('notification', 'Has confirmado correctamente tu correo!');
                
             }
      }
