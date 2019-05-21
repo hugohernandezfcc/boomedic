@@ -183,7 +183,7 @@ class RegisterController extends Controller
                 'emails.confirmation_code', 
                 $data, 
                 function($message) use ($data) {
-                $message->to('hugo@doitcloud.consulting', $data['name'])->subject('Por favor confirma tu correo');
+                $message->to('contacto@doitcloud.consulting', $data['name'])->subject('Por favor confirma tu correo');
                 }
             );
 
@@ -200,7 +200,7 @@ class RegisterController extends Controller
 
         }else{
             Mail::send('emails.confirmation_code', $data, function($message) use ($data) {
-                $message->to('hugo@doitcloud.consulting', $data['name'])->subject('Por favor confirma tu correo');
+                $message->to('contacto@doitcloud.consulting', $data['name'])->subject('Por favor confirma tu correo');
             });
 
             $usermor        = User::create([
