@@ -477,7 +477,7 @@
 							@if(session()->has('message'))
 
 								@if(session()->has('success'))
-							    <div class="alert alert-success alert-dismissable fade in" role="alert" id="alertf">
+							    <div class="alert alert-success alert-dismissable fade in" role="alert" id="alertMessageAfterSaveAction">
 							    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									    <span aria-hidden="true">&times;</span>
 									</button>
@@ -486,7 +486,7 @@
 							    </div>
 							   
 								@elseif(session()->has('error'))
-								 <div class="alert alert-danger alert-dismissable fade in" role="alert" id="alertf">
+								 <div class="alert alert-danger alert-dismissable fade in" role="alert" id="alertMessageAfterSaveAction">
 								 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									    <span aria-hidden="true">&times;</span>
 									</button>
@@ -1036,63 +1036,52 @@
     </section>
 @endif
     <script type="text/javascript">
-		function fun(a) {
-		    document.getElementById('sea').value = a.getAttribute("data-value");
-		    document.getElementById('idfam').value = a.getAttribute("data-id");
-		    document.getElementById("resp").innerHTML = "";
-		    $("#sav").removeAttr("disabled");   
-		}
+			
+		$(document).ready(function(){
 
+			$("#nameFamily").on("keyup", function(e) {
+				$("#alertMessageAfterSaveAction").fadeTo(3000, 500).fadeOut(500, function(){
+				    $("#alertMessageAfterSaveAction").fadeOut(500);
+				});
+						
+				if(e.which == 32) {
+					$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+					var nameFamily = document.getElementById('nameFamily').value;
+                    $.ajax({     
+                        type: "POST",                 
+                        url: "{{ url('user/userSearch') }}",  
+                        data: { "search" : nameFamily}, 
+                        dataType: 'json',                
+                        success: function(data){
 
+	                             if(data.length == 0){
+	                             	document.getElementById("resp").innerHTML = "No existe usuario registrado...";
+	                             	
+									}else {
 
-				$(document).ready(function(){
-					    $("#alertf").fadeTo(3000, 500).fadeOut(500, function(){
-						    $("#alertf").fadeOut(500);
-						});
- 						 	$("#sea").on("keyup", function(e) {
+										document.getElementById("resp").innerHTML = "Coincidencias: ";
+										for(var i= 0; i < data.length; i++){
+		                     				if(data[i]['profile_photo'] == null){
+		                     						if(data[i]['gender'] == 'female')
+		                     							var photo =  "{{ asset('profile-female.png') }}";
+		                     						if(data[i]['gender'] == 'male')
+		                     							var photo =  "{{ asset('profile-42914_640.png') }}";
+		                     						if(data[i]['gender'] == 'other')
+		                     							var photo =  "{{ asset('profile-other.png') }}";				                     						
 
-						    		if(e.which == 32) {
-					                   $.ajaxSetup({
-				                        headers: {
-				                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				                        }
-				                    });
-				                 var sea = document.getElementById('sea').value;
-				                           $.ajax({     
-				                             type: "POST",                 
-				                             url: "{{ url('user/userSearch') }}",  
-				                              data: { "search" : sea }, 
-				                              dataType: 'json',                
-				                             success: function(data)             
-				                             {
-				                             if(data.length == 0){
-				                             	document.getElementById("resp").innerHTML = "No existe usuario registrado...";
-				                             	
-    											}else {
-
-    													document.getElementById("resp").innerHTML = "Coincidencias: ";
-    												for(var i= 0; i < data.length; i++){
-				                     				if(data[i]['profile_photo'] == null){
-				                     						if(data[i]['gender'] == 'female')
-				                     							var photo =  "{{ asset('profile-female.png') }}";
-				                     						if(data[i]['gender'] == 'male')
-				                     							var photo =  "{{ asset('profile-42914_640.png') }}";
-				                     						if(data[i]['gender'] == 'other')
-				                     							var photo =  "{{ asset('profile-other.png') }}";				                     						
-
-				                     				}
-				                     				$('#resp').append('<div style="margin-left:5%;"><img src="'+ photo +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
-				                     				}
-				                             	} 
-    											}
-				                            
-				                         });
-					            } else{
-					        	 var value = $(this).val().toLowerCase();
-						   		 $("#resp div").filter(function() {
-						    	  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-						    });
-					            }
+		                     				}
+		                     				$('#resp').append('<div style="margin-left:5%;"><img src="'+ photo +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+	                     				}
+	                             	} 
+									}
+	                            
+	                         });
+		            } else{
+		        	 var value = $(this).val().toLowerCase();
+			   		 $("#resp div").filter(function() {
+					    	  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+		            }
 						  });
 
 					                   

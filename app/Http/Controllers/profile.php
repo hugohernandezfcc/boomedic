@@ -34,37 +34,6 @@ class profile extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -80,32 +49,42 @@ class profile extends Controller
             ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name', 'users.gender')
             ->get();
         $nodes = array();
-    //Json que guarda datos de familiares para generar externalidad//
-   if($users[0]->profile_photo != '')
-      $photou = $users[0]->profile_photo;
-    else{
-         if($users[0]->gender == "male")
-            $photou = asset('profile-42914_640.png');
-         if($users[0]->gender == "female")
-            $photou = asset('profile-female.png');
-         if($users[0]->gender == "other" || $users[0]->gender == '')
-            $photou = asset('profile-other.png');
-      }
 
-      if(count($family) < 1){
-                array_push( $nodes, ['name' => 'Yo', 'photo' => $photou.'?'. Carbon::now()->format('h:i'), 'id' => '0']);
+        //Json que guarda datos de familiares para generar externalidad//
+        if($users[0]->profile_photo != '')
+            $photou = $users[0]->profile_photo;
+        else{
 
-          for($i = 1; $i < 2; $i++){
-                array_push($nodes, ['name' => 'Agregar familiar', 'target' => [0] , 'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg' , 'id' => 'n']);
-            }
-      }   else {
+            if($users[0]->gender == "male")
+                $photou = asset('profile-42914_640.png');
+            if($users[0]->gender == "female")
+                $photou = asset('profile-female.png');
+            if($users[0]->gender == "other" || $users[0]->gender == '')
+                $photou = asset('profile-other.png');
+        }
+
+        if(count($family) < 1){
+            array_push( $nodes, ['name' => 'Yo', 'photo' => $photou.'?'. Carbon::now()->format('h:i'), 'id' => '0']);
+            
+            for($i = 1; $i < 2; $i++)
+                array_push($nodes, [
+                        'name' => 'Agregar familiar', 
+                        'target' => [0], 
+                        'photo' => 'https://image.freepik.com/iconen-gratis/zwart-plus_318-8487.jpg', 
+                        'id' => 'n'
+                    ]
+                );    
+        }else{
                
-          array_push( $nodes, ['name' => 'Yo', 'photo' => $photou. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
-          for($i = 0; $i < count($family); $i++){
+            array_push( $nodes, ['name' => 'Yo', 'photo' => $photou. '?'. Carbon::now()->format('h:i'), 'id' => $users[0]->id]);
+          
+            for($i = 0; $i < count($family); $i++){
             $session = "0";
+            
             if($family[$i]->relationship == "son" && $family[$i]->age < 18){
                 $session = "1";
             } 
+
             if($family[$i]->profile_photo != null){
                 array_push($nodes, ['name' => $family[$i]->firstname, 'target' => [0] , 'photo' => $family[$i]->profile_photo. '?'. Carbon::now()->format('h:i') , 'id' => $family[$i]->activeUser, 'relationship' => trans('adminlte::adminlte.'.$family[$i]->relationship), "session" => $session, 'namecom' => $family[$i]->name]);
                   }else {
@@ -389,7 +368,7 @@ class profile extends Controller
         
         $path = Storage::cloud()->url($filename);
 
-         Session(['val' => 'false']);
+        Session(['val' => 'false']);
        
         $user->profile_photo = $path2;   
         Storage::disk('s3')->delete('https://s3.amazonaws.com/'. env('S3_BUCKET') .'/'.$user->id.'temporal.jpg');
@@ -404,90 +383,113 @@ class profile extends Controller
      * @return \Illuminate\Http\Response
      */
 
-        public function userSearch (Request $request)
-      {     $user = User::find(Auth::id());
-           
+    public function userSearch (Request $request)
+    {     
+        $user = User::find(Auth::id());
+
         if($request->search != null){
           $search = family::ilike($request->search);
           
             return response()->json($search);
-              }
         }
+    }
+
+    /**
+     * Validatio relationship
+     *
+     * @param      <type>  $arg    The argument
+     *
+     * @return     string  ( description_of_the_return_value )
+     */
+    public function relationshipValidation($arg)
+    {
+        switch ($arg->relationship) {
+            case 'siblings':
+                return "Hermano(a)";
+                break;
+
+            case 'mother':
+                return "Madre";
+                break;
+
+            case 'father':
+                return "Padre";
+                break;
+
+            case 'son':
+                return "Hijo(a)";
+                break;
+
+            case 'wife':
+                return "Esposa";
+                break;
+
+            case 'husband':
+                return "Esposo";
+                break;
+
+            case 'uncles':
+                return "Tío(a)";
+                break;
+            
+            case 'grandparents':
+                return "Abuelo(a)";
+                break;
+        }
+    }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-
-        public function saveFamily (Request $request)
-      {     
+    public function saveFamily (Request $request)
+    {     
         $user = User::find(Auth::id());
            
         if($request->idfam != null){
-         if($request->val == "false") {
+            if($request->val == "isUserApp") {
          
-          $family = new family;
-          $family->parent = $user->id;
-          $family->relationship = $request->relationship;
-          $family->activeUser = $request->idfam;
-          $family->activeUserStatus = 'inactive';
-          if($family->save()){
-             $userfam=  DB::table('users')->where('id', $family->activeUser)->first();
-           $notification = array(
-                //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Usuario emparentado como familiar de manera exitosa.', 
-            'success' => 'success'
-            );
+                $family = new family;
+                $family->parent = $user->id;
+                $family->relationship = $request->relationship;
+                $family->activeUser = $request->idfam;
+                $family->activeUserStatus = 'inactive';
 
-          if($request->relationship == "siblings"){
-            $rela = "Hermano(a)";
-          }
-          if($request->relationship == "mother"){
-            $rela = "Madre";
-          }
-          if($request->relationship == "father"){
-            $rela = "Padre";
-          }
-          if($request->relationship == "son"){
-            $rela = "Hijo(a)";
-          }
-          if($request->relationship == "wife"){
-            $rela = "Esposa";
-          }  
-          if($request->relationship == "husband"){
-            $rela = "Esposo";
-          }  
-          if($request->relationship == "uncles"){
-            $rela = "Tío(a)";
-          } 
-          if($request->relationship == "grandparents"){
-            $rela = "Abuelo(a)";
-          }                                                           
-                             $data = [
-                                'username'      => $user->username,
-                                'name'      => $user->name,
-                                'email'     => $user->email,                
-                                'firstname' => $user->firstname,                
-                                'lastname'  => $user->lastname,    
-                                'relationship'      => $rela,
-                                'activeUser'        => $family->activeUser,
-                                'id'                => $family->id
-                                ];
-                                $email = $user->email;
-                                 Mail::send('emails.family', $data, function ($message) {
-                                            $message->subject('Tienes una solicitud de parentesco familiar');
-                                            $message->to('contacto@doitcloud.consulting');
-                                        });
-         }else{
-           $notification = array(
-                //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'No se pudo emparentar el usuario, vuelva a intentarlo más tarde.', 
-            'error' => 'error'
-            );
+                if($family->save()){
 
-         }
-          }
+                    $userfam=  DB::table('users')->where('id', $family->activeUser)->first();
+                    $notification = array(
+                        //In case the payment is approved it shows a message reminding you the amount you paid.
+                        'message' => 'Usuario emparentado como familiar de manera exitosa.', 
+                        'success' => 'success'
+                    );
+                     
+                $data = [
+                    'username'      => $user->username,
+                    'name'      => $user->name,
+                    'email'     => $user->email,                
+                    'firstname' => $user->firstname,                
+                    'lastname'  => $user->lastname,    
+                    'relationship'      => $this->relationshipValidation($request->relationship),
+                    'activeUser'        => $family->activeUser,
+                    'id'                => $family->id
+                ];
+
+                $email = $user->email;
+                Mail::send('emails.family', $data, function ($message) {
+                    $message->subject('Tienes una solicitud de parentesco familiar');
+                    $message->to('contacto@doitcloud.consulting');
+                });
+
+             }else{
+               $notification = array(
+                    //In case the payment is approved it shows a message reminding you the amount you paid.
+                    'message' => 'No se pudo emparentar el usuario, vuelva a intentarlo más tarde.', 
+                    'error' => 'error'
+                );
+             }
+            }
         } else{
 
         $age = date("Y") - Carbon::parse($request->birthdate)->format('Y');
@@ -692,45 +694,22 @@ class profile extends Controller
             $request->only('email')    
         );
 
-          if($request->relationship == "siblings"){
-            $rela = "Hermano(a)";
-          }
-          if($request->relationship == "mother"){
-            $rela = "Madre";
-          }
-          if($request->relationship == "father"){
-            $rela = "Padre";
-          }
-          if($request->relationship == "son"){
-            $rela = "Hijo(a)";
-          }
-          if($request->relationship == "wife"){
-            $rela = "Esposa";
-          }  
-          if($request->relationship == "husband"){
-            $rela = "Esposo";
-          }  
-          if($request->relationship == "uncles"){
-            $rela = "Tío(a)";
-          } 
-          if($request->relationship == "grandparents"){
-            $rela = "Abuelo(a)";
-          }                                                           
-                             $data = [
-                                'username'      => $user->username,
-                                'name'      => $user->name,
-                                'email'     => $user->email,                
-                                'firstname' => $user->firstname,                
-                                'lastname'  => $user->lastname,    
-                                'relationship'      => $rela,
-                                'activeUser'        => $unew->id,
-                                'id'                => $family->id
-                                ];
-                                $email = $user->email;
-                                 Mail::send('emails.family', $data, function ($message) {
-                                            $message->subject('Tienes una solicitud de parentesco familiar');
-                                            $message->to('contacto@doitcloud.consulting');
-                                        });
+                                                                  
+             $data = [
+                'username'      => $user->username,
+                'name'      => $user->name,
+                'email'     => $user->email,                
+                'firstname' => $user->firstname,                
+                'lastname'  => $user->lastname,    
+                'relationship'      => $this->relationshipValidation($request->relationship),
+                'activeUser'        => $unew->id,
+                'id'                => $family->id
+                ];
+                $email = $user->email;
+                 Mail::send('emails.family', $data, function ($message) {
+                            $message->subject('Tienes una solicitud de parentesco familiar');
+                            $message->to('contacto@doitcloud.consulting');
+                        });
 
           
          $notification = array(
@@ -833,8 +812,8 @@ class profile extends Controller
      * @return \Illuminate\Http\Response
      */
 
-        public function loginSon (Request $request)
-      {    
+    public function loginSon (Request $request)
+    {    
         $parental = User::find(Auth::id());
         $user = User::find($request->id);
         Auth::login($user, true);
