@@ -167,7 +167,7 @@ class RegisterController extends Controller
 
         }else{
 
-            return $this->creationMethodUser($userData, $namesUser);
+            return $this->creationMethodUser($data, $namesUser);
         }
     }
     /**
