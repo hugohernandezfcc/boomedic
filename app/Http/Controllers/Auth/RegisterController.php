@@ -152,7 +152,7 @@ class RegisterController extends Controller
         if (isset($data['professional_license'])) {
 
 
-            $userCreated = $this->creationMethodUser($userData, $namesUser);
+            $userCreated = $this->creationMethodUser($data, $namesUser);
             
             $profInformation = professional_information::create([ 
                 'professional_license'  => $data['professional_license'],
