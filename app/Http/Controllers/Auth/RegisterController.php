@@ -180,7 +180,7 @@ class RegisterController extends Controller
      */
     public function creationMethodUser($userData, $namesUser)
     {
-        $age = date("Y") - Carbon::parse($data['birthdate'])->format('Y');
+        $age = date("Y") - Carbon::parse($userData['birthdate'])->format('Y');
 
         Mail::send('emails.confirmation_code', $userData, function($message) use ($data) {
             $message->to('contacto@doitcloud.consulting', $userData['name'])->subject('Hola ' . $userData['name'] . ', es hora de confirmar tu correo.');
