@@ -247,7 +247,7 @@ class RegisterController extends Controller
     public function verify($code){ 
         $user = User::where( [
                 ['confirmation_code', '=', $code],
-                ['status', '=', 'In Progress']
+                ['status', '=', 'In Progress'],
                 ['confirmed', '=', false]
             ])->first();
 
