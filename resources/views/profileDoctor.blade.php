@@ -774,68 +774,62 @@
 		            <div class="tab-content">
 		            	<div class="active tab-pane" id="activity">
 		         	    
-		            				<div class="form-group">
-									    <label class="col-sm-2 control-label">Correo:</label>
-									    <div class="col-sm-10">
-									      	<p class="form-control-static">{{ $email2 }}</p>
-									    </div>
-									</div>
-
-			 						<!-- <div class="row">
-			                          
-			                            <div class="col-sm-3" align="left"><b></b></div>
-			                            <div class="col-sm-9 cut" align="left"></div>
-			                         
-			                        </div> -->
-			                        <div class="row">
-			                          
-			                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
-			                            <div class="col-sm-9 cut" align="left">{{ $username2 }}</div>
-			                         
-			                        </div>
-			                        <div class="row">
-			                          
-			                            <div class="col-sm-3" align="left"><b>Edad:</b></div>
-			                            <div class="col-sm-9" align="left">{{ $age }}</div>
-			                         
-			                        </div>
-			                        <div class="row">
-			                        
-			                            <div class="col-sm-3" align="left"><b>Genero:</b></div>
-			                            @if($gender == "female")
-			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.female') }}</div>
-			                            @endif
-			                            @if($gender == "male")
-			                            <div class="col-sm-3" align="left">{{ trans('adminlte::adminlte.male') }}</div>
-			                            @endif
-			                            @if($gender == "other")
-			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.other') }}</div>
-			                            @endif
-			                      
-			                        </div>
-			                        <div class="row">
-			                         
-			                            <div class="col-sm-3" align="left"><b>Estado civil:</b></div>
-			                              @if($maritalstatus == "single")
-			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.single') }}</div>
-			                             @endif
-			                            @if($maritalstatus == "married")
-			                            <div class="col-sm-9" align="left">{{ trans('adminlte::adminlte.married') }}</div>
-			                             @endif	
-			                      
-			                        </div>
-			                        <div class="row">
-			                        
-			                            <div class="col-sm-3" align="left"><b># Móvil:</b></div>
-			                            <div class="col-sm-9 cut" align="left">{{ $mobile }}</div>
-			                       
-			                        </div>
-			                        <div class="row">
-			                        
-			                            <div class="col-sm-3" align="left"><b>Ultima modificación:</b></div>
-			                            <div class="col-sm-9 cut" align="left">{{ $updated_at }}</div>
-			                        
-			                        </div>
+            				<div class="form-group">
+							    <label class="col-sm-3 control-label">Correo:</label>
+							    <div class="col-sm-9">
+							      	<p>{{ $email2 }}</p>
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label class="col-sm-3 control-label">Nombre de usuario:</label>
+							    <div class="col-sm-9">
+							      	<p>{{ $username2 }}</p>
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label class="col-sm-3 control-label">Edad:</label>
+							    <div class="col-sm-9">
+							      	<p>{{ $age }}</p>
+							    </div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Genero:</label>
+								<div class="col-sm-9">
+									@if($gender == "female")
+								      	<p>{{ trans('adminlte::adminlte.female') }}</p>
+								    @endif
+	                            	
+	                            	@if($gender == "male")
+	                            		<p>{{ trans('adminlte::adminlte.female') }}</p>
+	                            	@endif
+	                            	@if($gender == "other")
+	                            		<p>{{ trans('adminlte::adminlte.male') }}</p>
+	                            	@endif
+							    </div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Estado civil:</label>
+								<div class="col-sm-9">
+									@if($maritalstatus == "single")
+								      	<p>{{ trans('adminlte::adminlte.single') }}</p>
+								    @endif
+								    @if($maritalstatus == "married")
+								      	<p>{{ trans('adminlte::adminlte.married') }}</p>
+								    @endif
+								</div>
+							</div>
+			 				<div class="form-group">
+							    <label class="col-sm-3 control-label"># Móvil:</label>
+							    <div class="col-sm-9">
+							      	<p>{{ $mobile }}</p>
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label class="col-sm-3 control-label">Ultima modificación:</label>
+							    <div class="col-sm-9">
+							      	<p>{{ $updated_at }}</p>
+							    </div>
+							</div>
 		         	    </div>
 		         	    <div class="tab-pane" id="Asistant">
 		         	    	
