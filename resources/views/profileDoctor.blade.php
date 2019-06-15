@@ -764,17 +764,37 @@
         <!-- /.col -->
         	<div class="col-md-9">
 
-        		@include('tabs.tabsvertical', [
-        			'questions' 	=>  $questions, 
-        			'labor' 		=>  $labor,
-        			'username2' 	=>	$username2,
-					'email2' 		=>	$email2,
-					'age' 			=>	$age,
-					'mobile' 		=>	$mobile,
-					'updated_at' 	=>	$updated_at,
-					'gender' 		=>	$gender,
-					'maritalstatus' =>	$maritalstatus
-        			])
+        		@if($isMobile)
+        			@include('tabs.tabsvertical', [
+	        			'questions' 	=>  $questions, 
+	        			'labor' 		=>  $labor,
+	        			'username2' 	=>	$username2,
+						'email2' 		=>	$email2,
+						'age' 			=>	$age,
+						'mobile' 		=>	$mobile,
+						'updated_at' 	=>	$updated_at,
+						'gender' 		=>	$gender,
+						'maritalstatus' =>	$maritalstatus
+	        			]
+	        		)
+				@endif
+
+				@if(!$isMobile)
+					@include('tabs.tabshorizontal', [
+	        			'questions' 	=>  $questions, 
+	        			'labor' 		=>  $labor,
+	        			'username2' 	=>	$username2,
+						'email2' 		=>	$email2,
+						'age' 			=>	$age,
+						'mobile' 		=>	$mobile,
+						'updated_at' 	=>	$updated_at,
+						'gender' 		=>	$gender,
+						'maritalstatus' =>	$maritalstatus
+	        			]
+	        		)
+				@endif
+
+
 
         	</div>
     	</div>

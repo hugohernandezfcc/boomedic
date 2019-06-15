@@ -1,20 +1,25 @@
 <?php
 namespace App\Http\Controllers;
+
 use Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\User;
-use App\Workboard;
-use App\LaborInformation;
+
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
-use Image;
 use Carbon\Carbon;
+use Jenssegers\Agent\Agent;
+
+use Image;
+use Mail;
+
+use App\User;
+use App\Workboard;
+use App\LaborInformation;
 use App\professional_information;
 use App\assistant;
-use Mail;
 use App\questions_clinic_history;
 use App\answers_clinic_history;
 
@@ -133,6 +138,9 @@ class doctor extends Controller
 
         $countAppointments = DB::table('medical_appointments')->where('user_doctor',  $user->id )->count();                
 
+        $agent = new Agent();
+
+
         return view('profileDoctor', [
                  /** SYSTEM INFORMATION */
                 'userId'        => $user->id,
@@ -186,7 +194,8 @@ class doctor extends Controller
                 'questions'     => $questions,
                 'countAppo'     => $countAppointments,
                 'countassist'   => count($assist),
-                'questionAutocomplete'  =>  json_encode($arrayQuestions)  
+                'questionAutocomplete'  =>  json_encode($arrayQuestions),
+                'isMobile'  =>  $agent->isMobile()
             ]
         );
     }
