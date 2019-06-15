@@ -365,20 +365,19 @@
            	<div class="row" id="preview" style="display: none;">
                 <div class="col-xs-12">
                     <div class="col-md-12 well well-sm">
-                    <div class="row">
-                     <div class="col-sm-12">
-                     <h5><b>Vista Previa</b></h5>
+	                    <div class="row">
+	                     	<div class="col-sm-12">
+	                     		<h5><b>Vista Previa</b></h5>
 
-                    	 <label class="text-muted" id="readquestion"></label><br>
-                          <div id="readresponse"></div>
-                     </div>
-                 </div><br>
+	                    	 	<label class="text-muted" id="readquestion"></label><br>
+	                          	<div id="readresponse"></div>
+	                     	</div>
+	                 	</div><br>
                            <button class="btn btn-secondary btn-flat pull-right" type="button" id="finishQuestion">Guardar configuración</button>
                      	</div>
-                </div>       
-                        
-           </div>
-     	    	</div>	
+                </div>             
+           	</div>
+     	   </div>	
 
 
 

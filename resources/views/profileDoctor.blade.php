@@ -763,8 +763,8 @@
         </div>
         <!-- /.col -->
         	<div class="col-md-9">
-        		
-        		@include('tabs.tabshorizontal', [
+
+        		@include('tabs.tabsvertical', [
         			'questions' 	=>  $questions, 
         			'labor' 		=>  $labor,
         			'username2' 	=>	$username2,
@@ -1023,6 +1023,8 @@
 						    });
 					            }
 						  });
+
+
       	$('#four').on('click', function(e) {
        				 e.preventDefault();
        				 document.getElementById('demo').innerHTML='';
@@ -1065,9 +1067,7 @@
 				        }
 
 						    w = w;
-							h = h;
-
-								    
+							h = h;  
 
 								    var palette = {
 								      "lightgray": "#819090",
