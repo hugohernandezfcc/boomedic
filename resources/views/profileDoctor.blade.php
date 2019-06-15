@@ -764,6 +764,7 @@
         <!-- /.col -->
         	<div class="col-md-9">
         		<div class="nav-tabs-custom">
+
 		            <ul class="nav nav-tabs">
 		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
 		              	<li><a href="#Asistant" id="four" data-toggle="tab">Asistentes</a></li>
@@ -778,33 +779,33 @@
 		         	    		<div class="form-group">
 								    <label class="col-sm-3 control-label">Correo:</label>
 								    <div class="col-sm-9">
-								      	<p>{{ $email2 }}</p>
+								      	<p class="form-control-static">{{ $email2 }}</p>
 								    </div>
 								</div>
 								<div class="form-group">
 								    <label class="col-sm-3 control-label">Nombre de usuario:</label>
 								    <div class="col-sm-9">
-								      	<p>{{ $username2 }}</p>
+								      	<p class="form-control-static">{{ $username2 }}</p>
 								    </div>
 								</div>
 								<div class="form-group">
 								    <label class="col-sm-3 control-label">Edad:</label>
 								    <div class="col-sm-9">
-								      	<p>{{ $age }}</p>
+								      	<p class="form-control-static">{{ $age }}</p>
 								    </div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Genero:</label>
 									<div class="col-sm-9">
 										@if($gender == "female")
-									      	<p>{{$gender}} {{ trans('adminlte::adminlte.female') }}</p>
+									      	<p class="form-control-static">{{$gender}} {{ trans('adminlte::adminlte.female') }}</p>
 									    @endif
 		                            	
 		                            	@if($gender == "male")
-		                            		<p>{{ trans('adminlte::adminlte.female') }}</p>
+		                            		<p class="form-control-static">{{ trans('adminlte::adminlte.female') }}</p>
 		                            	@endif
 		                            	@if($gender == "other")
-		                            		<p>{{ trans('adminlte::adminlte.male') }}</p>
+		                            		<p class="form-control-static">{{ trans('adminlte::adminlte.male') }}</p>
 		                            	@endif
 								    </div>
 								</div>
@@ -812,23 +813,23 @@
 									<label class="col-sm-3 control-label">Estado civil:</label>
 									<div class="col-sm-9">
 										@if($maritalstatus == "single")
-									      	<p>{{ trans('adminlte::adminlte.single') }}</p>
+									      	<p class="form-control-static">{{ trans('adminlte::adminlte.single') }}</p>
 									    @endif
 									    @if($maritalstatus == "married")
-									      	<p>{{ trans('adminlte::adminlte.married') }}</p>
+									      	<p class="form-control-static">{{ trans('adminlte::adminlte.married') }}</p>
 									    @endif
 									</div>
 								</div>
 				 				<div class="form-group">
 								    <label class="col-sm-3 control-label"># Móvil:</label>
 								    <div class="col-sm-9">
-								      	<p>{{ $mobile }}</p>
+								      	<p class="form-control-static">{{ $mobile }}</p>
 								    </div>
 								</div>
 								<div class="form-group">
 								    <label class="col-sm-3 control-label">Ultima modificación:</label>
 								    <div class="col-sm-9">
-								      	<p>{{ $updated_at }}</p>
+								      	<p class="form-control-static">{{ $updated_at }}</p>
 								    </div>
 								</div>
             				</form>
