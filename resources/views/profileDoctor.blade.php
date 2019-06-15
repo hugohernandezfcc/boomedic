@@ -774,12 +774,19 @@
 		            <div class="tab-content">
 		            	<div class="active tab-pane" id="activity">
 		         	    
-			 						<div class="row">
+		            				<div class="form-group">
+									    <label class="col-sm-2 control-label">Correo:</label>
+									    <div class="col-sm-10">
+									      	<p class="form-control-static">{{ $email2 }}</p>
+									    </div>
+									</div>
+
+			 						<!-- <div class="row">
 			                          
-			                            <div class="col-sm-3" align="left"><b>Correo:</b></div>
-			                            <div class="col-sm-9 cut" align="left">{{ $email2 }}</div>
+			                            <div class="col-sm-3" align="left"><b></b></div>
+			                            <div class="col-sm-9 cut" align="left"></div>
 			                         
-			                        </div>
+			                        </div> -->
 			                        <div class="row">
 			                          
 			                            <div class="col-sm-3" align="left"><b>Nombre de usuario:</b></div>
