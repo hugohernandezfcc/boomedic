@@ -664,31 +664,32 @@
 			    	 		<img class="profile-user-img img-responsive img-circle" src="{{ asset('profile-other.png') }}" alt="User Image"  style="width:150px; height: 150px;">
 			    	 	@endif
 					@else
+
 						@php 
-						  $imagen = getimagesize($photo2);    //Sacamos la información
-				          $width = $imagen[0];              //Ancho
-				          $height = $imagen[1];  
+						  	$imagen = getimagesize($photo2);    //Sacamos la información
+				          	$width = $imagen[0];              //Ancho
+				          	$height = $imagen[1];  
 
-				          if($height > '500' || $width > '500'){
-				            $height = $height / 2.8;
-				            $width = $width / 2.8;
-				        }
-				        if($height > '800' || $width > '800'){
-				            $height = $height / 4;
-				            $width = $width / 4;
-				        }
-				      if($height > '800' || $width > '1200'){
-				            $height = $height / 6;
-				            $width = $width / 6;
-				        }
+				          	if($height > '500' || $width > '500'){
+					            $height = $height / 2.8;
+					            $width = $width / 2.8;
+					        }
+					        if($height > '800' || $width > '800'){
+					            $height = $height / 4;
+					            $width = $width / 4;
+					        }
+					      	if($height > '800' || $width > '1200'){
+					            $height = $height / 6;
+					            $width = $width / 6;
+					        }
 
-
-				          if($height < '400' || $width < '400'){
-				            $height = $height / 1.6;
-				            $width = $width / 1.6;
-				        }
+				          	if($height < '400' || $width < '400'){
+					            $height = $height / 1.6;
+					            $width = $width / 1.6;
+					        }
 
 						@endphp
+						
 						<img class="profile-user-img img-responsive img-circle" src="{{ $photo2 }}?{{ \Carbon\Carbon::now()->format('h:i') }}" style="width:{{ $width }}px; height: {{ $height }}px;" >			
 			    	@endif 
 
@@ -763,7 +764,6 @@
         </div>
         <!-- /.col -->
         	<div class="col-md-9">
-
         		@if($isMobile)
         			@include('tabs.tabsvertical', [
 	        			'questions' 	=>  $questions, 
@@ -793,9 +793,6 @@
 	        			]
 	        		)
 				@endif
-
-
-
         	</div>
     	</div>
     </section>
