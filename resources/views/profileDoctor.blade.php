@@ -772,7 +772,7 @@
 		            </ul>
 
 		            <div class="tab-content">
-		            	<div class="active tab-pane" id="activity">
+		            	<div class="active tab-pane" role="tabpanel" id="activity">
 		         	    
             				<div class="form-group">
 							    <label class="col-sm-3 control-label">Correo:</label>
@@ -796,7 +796,7 @@
 								<label class="col-sm-3 control-label">Genero:</label>
 								<div class="col-sm-9">
 									@if($gender == "female")
-								      	<p>{{ trans('adminlte::adminlte.female') }}</p>
+								      	<p>{{$gender}} {{ trans('adminlte::adminlte.female') }}</p>
 								    @endif
 	                            	
 	                            	@if($gender == "male")
@@ -831,21 +831,22 @@
 							    </div>
 							</div>
 		         	    </div>
+
 		         	    <div class="tab-pane" id="Asistant">
 		         	    	
-			                    <div class="box-body">
-			                    	     <div class="lockscreen-item pull-right" style="width: 210px !important;">
-										      	<div class="input-group">
-										        	<div class="form-control" align="center"><label id="labeltext">Agregar Asistente</label></div>
-										        	<div class="input-group-btn">
-											          	<a class="btn btn-default" data-toggle="modal" data-target="#modalassist">
-											          		<i class="fa fa-plus text-muted"></i>
-											          	</a>
-										        	</div>
-										      	</div>
-										</div>
-									<div id="demo"></div>
-			                    </div>
+		                    <div class="box-body">
+		                    	     <div class="lockscreen-item pull-right" style="width: 210px !important;">
+									      	<div class="input-group">
+									        	<div class="form-control" align="center"><label id="labeltext">Agregar Asistente</label></div>
+									        	<div class="input-group-btn">
+										          	<a class="btn btn-default" data-toggle="modal" data-target="#modalassist">
+										          		<i class="fa fa-plus text-muted"></i>
+										          	</a>
+									        	</div>
+									      	</div>
+									</div>
+								<div id="demo"></div>
+		                    </div>
 
 		         	    </div>
 		         	    <div class="tab-pane" id="laborInformation">
