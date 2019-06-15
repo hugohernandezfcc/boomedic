@@ -218,12 +218,12 @@
             <div class="box-body">
               <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
                 <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
-                <ul class="fc-color-picker" id="color-chooser">
+                <!-- <ul class="fc-color-picker" id="color-chooser">
                   <li><a style="color: #333 !important"><i class="fa fa-square"></i></a></li>
                   <li><a style="color: #909090 !important"><i class="fa fa-square"></i></a></li>
                   <li><a style="color: #525252 !important"><i class="fa fa-square"></i></a></li>
                   <li><a style="color: #000000 !important"><i class="fa fa-square"></i></a></li>
-                </ul>
+                </ul> -->
               </div>
               <!-- /btn-group -->
               <div class="input-group">

@@ -2,7 +2,6 @@
       <div class="modal-dialog">
           <div class="modal-content-2">
             <div align="center">
-              <!-- <h1><i class="fa fa-refresh fa-spin"></i><br/>Cargando...</h1> -->
 
                 <svg width="135" height="140" viewBox="0 0 135 140" xmlns="http://www.w3.org/2000/svg" fill="#222">
                 <rect y="10" width="15" height="120" rx="6">
@@ -56,7 +55,6 @@
                          repeatCount="indefinite" />
                 </rect>
             </svg>
-
 
               </div>
           </div>
