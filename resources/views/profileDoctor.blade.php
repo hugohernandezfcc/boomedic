@@ -776,16 +776,16 @@
 		            	<div class="active tab-pane" role="tabpanel" id="activity">
 		            		<!-- Form details -->
 		         	    	<form class="form-horizontal">
-		         	    		<div class="form-group">
-								    <label class="col-sm-3 control-label">Correo:</label>
-								    <div class="col-sm-9">
-								      	<p class="form-control-static">{{ $email2 }}</p>
-								    </div>
-								</div>
 								<div class="form-group">
 								    <label class="col-sm-3 control-label">Nombre de usuario:</label>
 								    <div class="col-sm-9">
 								      	<p class="form-control-static">{{ $username2 }}</p>
+								    </div>
+								</div>
+		         	    		<div class="form-group">
+								    <label class="col-sm-3 control-label">Correo:</label>
+								    <div class="col-sm-9">
+								      	<p class="form-control-static">{{ $email2 }}</p>
 								    </div>
 								</div>
 								<div class="form-group">
