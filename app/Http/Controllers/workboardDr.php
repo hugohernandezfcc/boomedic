@@ -161,43 +161,45 @@ class workboardDr extends Controller
                 array_push($horas, "asueto :".$timedeath);
             }
 
-foreach($request->day as $day){   
-         $workboard = new workboard;
+            foreach($request->day as $day){   
+                $workboard = new workboard;
         
-         if($day == 'Lun'){
-         $workboard->workingDays = $day;
-         }
-         if($day == 'Mar'){
-         $workboard->workingDays = $day;
-         }
-         if($day == 'Mie'){
-         $workboard->workingDays = $day;
-         }
-         if($day == 'Jue'){
-         $workboard->workingDays = $day;
-         }
-         if($day == 'Vie'){
-         $workboard->workingDays = $day;
-         }
-        if($day == 'Sab'){
-         $workboard->workingDays = $day;
-         }
-        if($day == 'Dom'){
-         $workboard->workingDays = $day;
-         }
-         $workboard->workingHours = number_format(($totalDuration / 60), 0, '.', ',');
-         $workboard->labInformation = $id;
-         $workboard->start = $request->start;
-         $workboard->end   = $request->end;
-         if($request->fixed == 'fixed'){
-         $workboard->fixed_schedule = 'True';
+                if($day == 'Lun'){
+                    $workboard->workingDays = $day;
+                }
+                if($day == 'Mar'){
+                    $workboard->workingDays = $day;
+                }
+                if($day == 'Mie'){
+                    $workboard->workingDays = $day;
+                }
+                if($day == 'Jue'){
+                    $workboard->workingDays = $day;
+                }
+                if($day == 'Vie'){
+                    $workboard->workingDays = $day;
+                }
+                if($day == 'Sab'){
+                    $workboard->workingDays = $day;
+                }
+                if($day == 'Dom'){
+                    $workboard->workingDays = $day;
+                }
+
+                $workboard->workingHours = number_format(($totalDuration / 60), 0, '.', ',');
+                $workboard->labInformation = $id;
+                $workboard->start = $request->start;
+                $workboard->end   = $request->end;
+
+                if($request->fixed == 'fixed'){
+                    $workboard->fixed_schedule = 'True';
+                }
+                $workboard->patient_duration_attention =  json_encode($horas);
+                $workboard->oldnew = 'new';
+                $workboard->save();
+                dd($workboard);
             }
-         $workboard->patient_duration_attention =  json_encode($horas);
-         $workboard->oldnew = 'new';
-         $workboard->save();
-        
-        }
-} 
+        } 
 
         if ($request->type == 'true')  {
             
