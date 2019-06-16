@@ -135,75 +135,80 @@
                       </div> 
             </div>
             <!--Event Doc information and edit -->
-                  <div class="modal fade" role="dialog" id="confirm">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                            <div class="modal-header" >
-                               <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div align="left"><i class="fa fa-edit"></i><label> Crear evento</label></div>
-                            </div>
-                            <div class="modal-body" style="padding-top: 0px !important">
-                            <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event1">
-                              {{ csrf_field() }}
-                              <input type="hidden" name="title" id="title">
-                              <input type="hidden" name="color" id="color1">
-                              <input type="hidden" name="t" id="t" value="1">
-                              <ul class="nav nav-stacked">
-                                <li>Inicio: <input type="text" name="start" id="startTime" class="form-control"></li>
-                                <li>Final: <input type="text" name="end" id="endTime"  class="form-control"></li>
-                                <li>Razones para apartar ese horario: <br><div class="form-check">
-                                    <input class="form-check-input" type="radio" name="radio" id="radio" value="professional commitment" checked>
-                                    <label class="form-check-label" for="radio">
-                                     Compromiso profesional
-                                    </label>
-                                    </div>
-                                </li>
-                                <li>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="radio" id="radio2" value="Isnt possible attended">
-                                      <label class="form-check-label" for="radio2">
-                                        Es imposible atender
-                                      </label>
-                                  </div>
-                                </li><br>
-                                <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>    
-                              </ul>   
-                          </form> 
-                          <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event2" style="display: none;">
-                              {{ csrf_field() }}
-                              <input type="hidden" name="t" id="t" value="2">
-                              <input type="hidden" name="title" id="title2">
-                              <input type="hidden" name="color" id="color2">
-                               <ul class="nav nav-stacked">
-                                  <li>Fecha: <input type="date" name="date" id="date" class="form-control"></li>
-                                  <li>Hora inicio: <input type="time" name="start" id="startTime" class="form-control"></li>
-                                  <li>Hora final: <input type="time" name="end" id="endTime"  class="form-control"></li>
-                                  <li>Razones para apartar ese horario: <br>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="radio" id="radio" value="professional commitment" checked>
-                                      <label class="form-check-label" for="radio">
-                                        Compromiso profesional
-                                      </label>
-                                    </div>
-                                  </li>
-                                  <li>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="radio" id="radio2" value="Isnt possible attended">
-                                      <label class="form-check-label" for="radio2">
-                                          Es imposible atender
-                                      </label>
-                                    </div>
-                                  </li><br>
-                                  <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>    
-                               </ul>   
-                          </form> 
-                       <br>
-                            </div>
+        <div class="modal fade" role="dialog" id="confirm">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                  <div class="modal-header" >
+                     <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <div align="left"><i class="fa fa-edit"></i><label> Crear evento</label></div>
+                  </div>
+
+                  <div class="modal-body" style="padding-top: 0px !important">
+                  <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event1">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="title" id="title">
+                    <input type="hidden" name="color" id="color1">
+                    <input type="hidden" name="t" id="t" value="1">
+                    <ul class="nav nav-stacked">
+                      <li>Inicio: <input type="text" name="start" id="startTime" class="form-control"></li>
+                      <li>Final: <input type="text" name="end" id="endTime"  class="form-control"></li>
+                      <li>Razones para apartar ese horario: <br><div class="form-check">
+                          <input class="form-check-input" type="radio" name="radio" id="radio" value="professional commitment" checked>
+                          <label class="form-check-label" for="radio">
+                           Compromiso profesional
+                          </label>
+                          </div>
+                      </li>
+                      <li>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio" id="radio2" value="Isnt possible attended">
+                            <label class="form-check-label" for="radio2">
+                              Es imposible atender
+                            </label>
                         </div>
-                      </div> 
-                  </div>  
+                      </li><br>
+                      <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>    
+                    </ul>   
+                </form> 
+                <form enctype="multipart/form-data" action="{{ url('drAppointments/confirmTimeBlocker') }}" method="post" id="event2" style="display: none;">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="t" id="t" value="2">
+                    <input type="hidden" name="title" id="title2">
+                    <input type="hidden" name="color" id="color2">
+                     <ul class="nav nav-stacked">
+                        <li>Fecha: <input type="date" name="date" id="date" class="form-control"></li>
+                        <li>Hora inicio: <input type="time" name="start" id="startTime" class="form-control"></li>
+                        <li>Hora final: <input type="time" name="end" id="endTime"  class="form-control"></li>
+                        <li>Razones para apartar ese horario: <br>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio" id="radio" value="professional commitment" checked>
+                            <label class="form-check-label" for="radio">
+                              Compromiso profesional
+                            </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio" id="radio2" value="Isnt possible attended">
+                            <label class="form-check-label" for="radio2">
+                                Es imposible atender
+                            </label>
+                          </div>
+                        </li><br>
+                        <li><button type="submit" class="btn btn-secondary btn-flat btn-block">Aceptar</button></li>    
+                     </ul>   
+                </form> 
+             <br>
+                  </div>
+              </div>
+            </div> 
+        </div>
+
+
+
         <div class="col-md-3">
           <!-- /. box -->
           <div class="box">
@@ -261,6 +266,10 @@
 
           </div>
         </div>
+
+
+
+
        <div class="col-md-9">
          	<div class="box box-solid">
          		 <div class="box-body">
@@ -268,9 +277,14 @@
   			     </div>	
   	      </div>
 	     </div>
+
+
+
   </div>
 </div>	   
 <script type="text/javascript">
+
+  
 
   $(function () {
   	 if("@php echo $agent->isMobile(); @endphp"){
@@ -361,9 +375,10 @@
             });
 
                  }
-                          
-                       
+                                      
 		}
+
+
 		jQuery.noConflict(false);
     /* initialize the external events
      -----------------------------------------------------------------*/
@@ -405,9 +420,9 @@
 		header: {
 			left: 'prev,next',
 			center: 'title',
-			right: 'month,basicWeek,agendaDay'
+			right: 'month,basicWeek,agendaDay,listWeek'
 		},
-		defaultView: 'agendaDay',
+		defaultView: 'listWeek',
 		editable: true,
 		lang: 'es',
 		contentHeight: 'auto',
