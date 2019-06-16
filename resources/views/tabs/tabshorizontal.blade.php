@@ -1,3 +1,7 @@
+
+@if($usedOnUserType == "patient")
+	<b>I am a patient user.</b>
+@else
 <div class="nav-tabs-custom">
 
     <ul class="nav nav-tabs">
@@ -385,3 +389,4 @@
  	    </div>
  	</div>
 </div>
+@endif

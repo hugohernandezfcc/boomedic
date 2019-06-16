@@ -627,6 +627,12 @@
         </div>
         <!-- /.col -->
         	<div class="col-md-9">
+
+    			@include('tabs.tabshorizontal', [
+        			'usedOnUserType'	=>  "patient", 
+        			]
+        		)
+
         		<div class="nav-tabs-custom">
 		            <ul class="nav nav-tabs">
 		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
@@ -634,6 +640,8 @@
 		              	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
 		            </ul>
 		            <div class="tab-content">
+
+
 		            	<div class="active tab-pane" id="activity">
 
 		         	    	<div class="row">
@@ -691,6 +699,7 @@
 	                            <div class="col-sm-9 cut" align="left">{{ $updated_at }}</div>
 	                        </div>
 		         	    </div>
+
 		         	    <div class="tab-pane" id="family">
 		         	    	
 		         	    	<!--button modal to add more family members-->
@@ -1031,6 +1040,8 @@
 		         	    </div>
 		         	</div>
 		        </div>
+
+
         	</div>
     	</div>
     </section>
