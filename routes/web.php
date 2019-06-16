@@ -27,9 +27,11 @@ Route::group(['prefix' => 'prescriptions'], function(){
 		$pdf->loadHTML('<h1>Test</h1>');
 		return $pdf->stream();
 	});
+
 	Route::get('settings', function(){
 		return view('prescriptionsettings');
 	});
+	
 });
 
 

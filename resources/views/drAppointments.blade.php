@@ -422,7 +422,7 @@
 			center: 'title',
 			right: 'month,basicWeek,agendaDay,listWeek'
 		},
-		defaultView: 'listWeek',
+		defaultView: 'agendaDay',
 		editable: true,
 		lang: 'es',
 		contentHeight: 'auto',
@@ -450,7 +450,7 @@
                   jQuery("#confirm").modal('toggle');
              })
            }
-           },
+      },
 		  eventClick: function(calEvent, jsEvent, view) {
         $('#buttondetail').html('');
 		   	if(calEvent.typ != "3"  && calEvent.typ != "2"){

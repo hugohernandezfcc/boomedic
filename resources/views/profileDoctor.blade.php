@@ -766,6 +766,7 @@
         	<div class="col-md-9">
         		@if($isMobile)
         			@include('tabs.tabsvertical', [
+        				'usedOnUserType' => "doctor",
 	        			'questions' 	=>  $questions, 
 	        			'labor' 		=>  $labor,
 	        			'username2' 	=>	$username2,

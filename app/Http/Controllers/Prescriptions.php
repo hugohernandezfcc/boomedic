@@ -34,6 +34,7 @@ class Prescriptions extends Controller
                                 ['medical_appointments.when', '<', Carbon::tomorrow()],
                             ])->select('medical_appointments.*', 'users.firstname', 'users.lastname', 'users.gender', 'users.age' )
                             ->get();
+                            
         $prescriptionsList = array();
         return view('prescriptions', [
                 'userId'            => $user->id,

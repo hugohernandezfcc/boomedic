@@ -380,7 +380,7 @@
                            @if($loop->iteration < 3)
                              @if($appo->status == 'No completed')
                                   <div class="col-sm-12">
-                                    <div class="info-box sm bg-red">
+                                    <div class="info-box sm bg-red" >
                                       <a href="{{ url('drAppointments/viewcancelAppointment/') }}/{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
                                       <div class="info-box-content sm">
                                        <span class="text-white">
@@ -391,7 +391,7 @@
                                    </div> 
                              @else 
                                <div class="col-sm-12">
-                                  <div class="info-box sm bg-gray">
+                                  <div class="info-box sm bg-gray" data-toggle="modal" data-target="#{{ $appo->id }}">
                                     <a data-toggle="modal" data-target="#{{ $appo->id }}"><div class="info-box-icon2-sm"><img src="{{ $appo->profile_photo }}" class="img-circle" alt="User Image" style="height: 35px;"></div></a>
                                     <div class="info-box-content sm">
                                      <a href="https://www.google.com/maps/search/?api=1&query={{ $appo->latitude }}, {{ $appo->longitude }}" class="text-muted" target="_blank"> 
