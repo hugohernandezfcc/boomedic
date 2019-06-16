@@ -197,7 +197,7 @@ class workboardDr extends Controller
                 $workboard->patient_duration_attention =  json_encode($horas);
                 $workboard->oldnew = 'new';
                 $workboard->save();
-                dd($workboard);
+                
             }
         } 
 
@@ -242,7 +242,7 @@ class workboardDr extends Controller
                  $workboard->oldnew = 'new';
                  $workboard->save();
 
-                 dd($workboard);
+                 
 
 
             }
