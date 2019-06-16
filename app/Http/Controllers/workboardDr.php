@@ -94,13 +94,17 @@ class workboardDr extends Controller
      */
     public function create(Request $request, $id)
     {
-            $user = User::find(Auth::id());
-            $assistant = DB::table('assistant')
+        $user = User::find(Auth::id());
+
+        $assistant = DB::table('assistant')
              ->join('users', 'assistant.user_doctor', '=', 'users.id')
              ->where('user_assist', Auth::id())
              ->select('assistant.*', 'users.name', 'users.profile_photo', 'users.id as iddr')
              ->get();
-         if(count($assistant) > 0){
+
+
+        if(count($assistant) > 0){
+
             Session(['utype' => 'assistant']); 
               if(session()->get('asdr') == null){
                   Session(['asdr' => $assistant[0]->iddr]);
@@ -119,36 +123,44 @@ class workboardDr extends Controller
          }else{  
                 $assistant = null;
                 $donli = null;
-          } 
-          $workboard = DB::table('workboard')->where('labInformation', $id)->where('oldnew', 'new')->get();
-         if(count($workboard) > 0){
+        } 
+
+        $workboard = DB::table('workboard')->where('labInformation', $id)->where('oldnew', 'new')->get();
+        if(count($workboard) > 0){
             DB::table('workboard')->where('labInformation', $id)->where('oldnew', 'new')->delete();   
-         }
+        }
+
 
         if ($request->type == 'false') {
-                $user = User::find(Auth::id()); 
+            //$user = User::find(Auth::id()); 
         
-        $startTime = Carbon::parse($request->start);
-        $finishTime = Carbon::parse($request->end);
-        $totalDuration = $finishTime->diffInMinutes($startTime);
-        $consultation = $request->prom + 5;
-        $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
-    $hora_inicio = new \DateTime(  $startTime );
-    $hora_fin    = new \DateTime(  $finishTime );
-    $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que nos muestre $hora_fin
-    // Establecemos el intervalo en minutos        
-    $intervalo = new \DateInterval('PT'.$consultation.'M');
-    // Sacamos los periodos entre las horas
-    $periodo   = new \DatePeriod($hora_inicio, $intervalo, $hora_fin);        
-    foreach( $periodo as $hora ) {
-        // Guardamos las horas intervalos 
-        $horas[] =  $hora->format('H:i:s');
-    }
-    $timeend = Carbon::parse(\end($horas)); 
-    if($timeend !=  $finishTime){
-         $timedeath = $finishTime->diffInMinutes($timeend);
-         array_push($horas, "asueto :".$timedeath);
-    }
+            $startTime  = Carbon::parse($request->start);
+            $finishTime = Carbon::parse($request->end);
+            $totalDuration = $finishTime->diffInMinutes($startTime);
+            $consultation = $request->prom + 5;
+            $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
+            $hora_inicio = new \DateTime(  $startTime );
+            $hora_fin    = new \DateTime(  $finishTime );
+            $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que nos muestre $hora_fin
+
+            // Establecemos el intervalo en minutos        
+            $intervalo = new \DateInterval('PT'.$consultation.'M');
+        
+            // Sacamos los periodos entre las horas
+            $periodo   = new \DatePeriod($hora_inicio, $intervalo, $hora_fin);        
+       
+            foreach( $periodo as $hora ) {
+                // Guardamos las horas intervalos 
+                $horas[] =  $hora->format('H:i:s');
+            }
+
+            $timeend = Carbon::parse(\end($horas));
+
+            if($timeend !=  $finishTime){
+                $timedeath = $finishTime->diffInMinutes($timeend);
+                array_push($horas, "asueto :".$timedeath);
+            }
+
 foreach($request->day as $day){   
          $workboard = new workboard;
         
@@ -185,54 +197,63 @@ foreach($request->day as $day){
          $workboard->save();
         
         }
-} if ($request->type == 'true')  {
-    $json = json_decode($request->vardays);
-    foreach ($json as $json2) {
-        $horas = array();
-        $startTime = Carbon::parse($json2->start);
-        $finishTime = Carbon::parse($json2->end);
-        $totalDuration = $finishTime->diffInMinutes($startTime);
-        $consultation = $request->prom - 5;
-        $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
-    $hora_inicio = new \DateTime(  $startTime );
-    $hora_fin    = new \DateTime(  $finishTime );
-    $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que nos muestre $hora_fin
-    // Establecemos el intervalo en minutos        
-    $intervalo = new \DateInterval('PT'.$consultation.'M');
-    // Sacamos los periodos entre las horas
-    $periodo   = new \DatePeriod($hora_inicio, $intervalo, $hora_fin);        
-    foreach( $periodo as $hora ) {
-        // Guardamos las horas intervalos 
-        $horas[] =  $hora->format('H:i:s');
-    }
-    $timeend = Carbon::parse(\end($horas)); 
-    if($timeend !=  $finishTime){
-         $timedeath = $finishTime->diffInMinutes($timeend);
-         array_push($horas, "asueto :".$timedeath);
-    }
+} 
+
+        if ($request->type == 'true')  {
+            
+            $json = json_decode($request->vardays);
+            
+            foreach ($json as $json2) {
+
+                $horas = array();
+                $startTime = Carbon::parse($json2->start);
+                $finishTime = Carbon::parse($json2->end);
+                $totalDuration = $finishTime->diffInMinutes($startTime);
+                $consultation = $request->prom - 5;
+                $totalconsultation = number_format(($totalDuration / $consultation), 0, '.', ',');
+                $hora_inicio = new \DateTime(  $startTime );
+                $hora_fin    = new \DateTime(  $finishTime );
+                $hora_fin->modify('+1 second'); // Añadimos 1 segundo para que nos muestre $hora_fin
+
+                // Establecemos el intervalo en minutos        
+                $intervalo = new \DateInterval('PT'.$consultation.'M');
+                // Sacamos los periodos entre las horas
+                $periodo   = new \DatePeriod($hora_inicio, $intervalo, $hora_fin);        
+                foreach( $periodo as $hora ) {
+                    // Guardamos las horas intervalos 
+                    $horas[] =  $hora->format('H:i:s');
+                }
+                $timeend = Carbon::parse(\end($horas)); 
+                if($timeend !=  $finishTime){
+                     $timedeath = $finishTime->diffInMinutes($timeend);
+                     array_push($horas, "asueto :".$timedeath);
+                }
        
-         $workboard = new workboard;
-         $workboard->workingHours = number_format(($totalDuration / 60), 0, '.', ',');
-         $workboard->workingDays = $json2->day;
-         $workboard->start = $json2->start;
-         $workboard->end   = $json2->end;
-         $workboard->labInformation = $id;
-         $workboard->patient_duration_attention =  json_encode($horas);
-         $workboard->fixed_schedule = 'False';
-         $workboard->oldnew = 'new';
-         $workboard->save();
+                 $workboard = new workboard;
+                 $workboard->workingHours = number_format(($totalDuration / 60), 0, '.', ',');
+                 $workboard->workingDays = $json2->day;
+                 $workboard->start = $json2->start;
+                 $workboard->end   = $json2->end;
+                 $workboard->labInformation = $id;
+                 $workboard->patient_duration_attention =  json_encode($horas);
+                 $workboard->fixed_schedule = 'False';
+                 $workboard->oldnew = 'new';
+                 $workboard->save();
+
+                 dd($workboard);
+
+
+            }
+        }
+        $workboard2 = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'old')->get();
+        $workboardNew = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'new')->get();
+        $workArray = array();
         
- }
-}
-  $workboard2 = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'old')->get();
-      $workboardNew = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'new')->get();
-  $workArray = array();
-                          foreach($workboard2  as $work){
-                            array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
-                          }
+        foreach($workboard2  as $work){
+            array_push($workArray, $work->workingDays.':'.$work->patient_duration_attention);
+        }
         
-                          
-       return redirect('workboardDr/index/'.$id);
+        return redirect('workboardDr/index/'.$id);
     }
     /**
      * Store a newly created resource in storage.
@@ -244,39 +265,8 @@ foreach($request->day as $day){
     {
        return redirect('medicalconsultations');
     }
-    /**
-     * Method responsable of list of paymentmethods
-     */
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-    }
+
+
     public function redirecting($page)
     {
         switch ($page) {

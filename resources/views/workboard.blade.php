@@ -121,47 +121,47 @@
 			  		
 
 			  	    	<div class="col-sm-4"><label>Seleccione los días de la semana que dará consulta con una jornada fija</label></div>
-			  	<div class="col-sm-8">	
-			  		<div data-toggle="buttons" class="btn-group">
+						  	<div class="col-sm-8">	
+						  		<div data-toggle="buttons" class="btn-group">
 
-			  			<label for="Dom" class="btn btn-default">
-							<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off">
-							<span class="glyphicon glyphicon-ok"></span>
-							 <b>Domingo</b>
-						</label>		
-				  		<label for="Lun" class="btn btn-default">
-							<input type="checkbox" value="Lun" name="day[]" id="Lun" autocomplete="off">
-							<span class="glyphicon glyphicon-ok"></span>
-							<b>Lunes</b>
-						</label>
-						<label for="Mar" class="btn btn-default">
-							<input type="checkbox" value="Mar" name="day[]" id="Mar" autocomplete="off">
-							<span class="glyphicon glyphicon-ok"></span>
-							<b>Martes</b>
-						</label>
-						<label for="Mie"  class="btn btn-default">
-							<input type="checkbox" value="Mie" name="day[]" id="Mier" autocomplete="off">
-							<span class="glyphicon glyphicon-ok"></span>
-							<b>Miercoles</b>
-						</label>
-						<label for="Jue" class="btn btn-default">
-							<input type="checkbox" value="Jue" name="day[]" id="Jue" autocomplete="off">
-							<span class="glyphicon glyphicon-ok"></span>
-							<b>Jueves</b>
-						</label>
-						<label for="Vie" class="btn btn-default">
-							<input type="checkbox" value="Vie" name="day[]" id="Vie" autocomplete="off">
-							<span class="glyphicon glyphicon-ok"></span>
-							<b>Viernes</b>
-						</label>
-						<label for="Sab" class="btn btn-default">
-							<input type="checkbox" value="Sab" name="day[]" id="Sab" autocomplete="off">
-							<span class="glyphicon glyphicon-ok"></span>
-							<b>Sábado</b>
-						</label>				
-					</div>
-				</div>
-			</div>
+						  			<label for="Dom" class="btn btn-default">
+										<input type="checkbox" value="Dom" name="day[]" id="Dom" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										 <b>Domingo</b>
+									</label>		
+							  		<label for="Lun" class="btn btn-default">
+										<input type="checkbox" value="Lun" name="day[]" id="Lun" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Lunes</b>
+									</label>
+									<label for="Mar" class="btn btn-default">
+										<input type="checkbox" value="Mar" name="day[]" id="Mar" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Martes</b>
+									</label>
+									<label for="Mie"  class="btn btn-default">
+										<input type="checkbox" value="Mie" name="day[]" id="Mier" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Miercoles</b>
+									</label>
+									<label for="Jue" class="btn btn-default">
+										<input type="checkbox" value="Jue" name="day[]" id="Jue" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Jueves</b>
+									</label>
+									<label for="Vie" class="btn btn-default">
+										<input type="checkbox" value="Vie" name="day[]" id="Vie" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Viernes</b>
+									</label>
+									<label for="Sab" class="btn btn-default">
+										<input type="checkbox" value="Sab" name="day[]" id="Sab" autocomplete="off">
+										<span class="glyphicon glyphicon-ok"></span>
+										<b>Sábado</b>
+									</label>				
+								</div>
+							</div>
+						</div>
 			<div class="form-group col-sm-12" id="menu1mob" style="display: none;" align="center">
 				<a data-target="#modalmobile" data-toggle="modal" class="btn btn-default btn-block">Seleccione los días que dará consulta</a>
 
@@ -224,9 +224,9 @@
 						<label> Agrupe los días que tengan un mismo horario</label>
 							<select id="sel" name="sel" class="selectpicker col-sm-12 form-control" data-style="btn-secondary" multiple title="Seleccione uno o varios días">
 
-							  </select>
-							  <input type="hidden" name="vardays" id="vardays">
-							  <input type="hidden" name="type" id="type" value="false">
+							</select>
+							<input type="hidden" name="vardays" id="vardays">
+							<input type="hidden" name="type" id="type" value="false">
 					</div>
 				</div>
 
@@ -253,7 +253,7 @@
 					
 					<label class="col-sm-2 control-label">Promedio de duración por cita:</label>
 					<div class="col-sm-10">
-						 <input id="prom" type="number" name="prom" class="form-control" placeholder="Unidad de tiempo en minutos" required>
+						 <input id="tiempoPromedioPorCita" type="number" name="tiempoPromedioPorCita" class="form-control" placeholder="Unidad de tiempo en minutos" required>
 				 	</div>
 				</div>
 				<div id="btn1" class="col-sm-12" align="left" style="display: none;">
@@ -352,7 +352,7 @@
 					    $("#danger").alert('close');
 					});
 					} 
-				if (!document.getElementById('prom').value) {
+				if (!document.getElementById('tiempoPromedioPorCita').value) {
 				document.getElementById("al").style.display = "block";	
 				  $('.al').append('<div class="alert alert-danger alert-dismissible" id="danger2"><b><i class="icon fa fa-warning"></i> No has indicado la duración de la cita</b></div>');
 					$("#danger2").fadeTo(2000, 500).slideUp(500, function(){
@@ -366,7 +366,7 @@
 				
 					
 				for(var z=0; z < selects.length; z++){
-					json.push({"day" : selects[z], "start": $("#timepicker2").val() , "end" : $("#timepicker1").val(), "prom" : $("#prom").val() });
+					json.push({"day" : selects[z], "start": $("#timepicker2").val() , "end" : $("#timepicker1").val(), "tiempoPromedioPorCita" : $("#tiempoPromedioPorCita").val() });
 					$("#sel").val('"+ selects[z] +"').trigger('change');
 					$("#sel option[value='"+ selects[z] +"']").attr('disabled','disabled');
 				}
