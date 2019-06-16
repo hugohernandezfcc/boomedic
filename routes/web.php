@@ -11,9 +11,27 @@
 |
 */
 
-Route::get('/hugohernandez', function () {
-    return view('auth.login');
+Route::group(['prefix' => 'prescriptions'], function(){
+	Route::get('/', [
+			'uses'	=>	'Prescriptions@index',
+			'as'	=>	'index'
+		]
+	);
+	Route::get('medicinescatalogue', [
+			'uses'	=>	'Prescriptions@medicinesCatalogue',
+			'as'	=>	'medicinescatalogue'
+		]
+	);
+	Route::get('pdf', function (){
+		$pdf = App::make('dompdf.wrapper');
+		$pdf->loadHTML('<h1>Test</h1>');
+		return $pdf->stream();
+	});
+	Route::get('settings', function(){
+		return view('prescriptionsettings');
+	});
 });
+
 
 
 Route::get('/', function () {
