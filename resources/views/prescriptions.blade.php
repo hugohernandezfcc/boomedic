@@ -14,6 +14,54 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-steps/jquery.steps.css') }}">
 
 	<div class="row">
+		<!-- /.col -->
+        <div class="col-md-4">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">Alexander Pierce</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="https://s3.amazonaws.com/boomedic/2.jpg?03:36" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">3,200</h5>
+                    <span class="description-text">SALES</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">13,000</h5>
+                    <span class="description-text">FOLLOWERS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">35</h5>
+                    <span class="description-text">PRODUCTS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+	</div>
+
+
+	<div class="row">
         <div class="col-md-3">
         	
         	<a class="btn btn-secondary btn-block btn-flat margin-bottom" data-toggle="modal" onclick="loadMedicines();" data-target="#prescription-form-modal">Generar receta </a>
