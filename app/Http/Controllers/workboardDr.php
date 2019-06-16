@@ -54,19 +54,29 @@ class workboardDr extends Controller
           } 
     $work = $id;
 
-    $workboard = DB::table('workboard')->where('labInformation', $work)->where('oldnew', 'old')->get();
-    $workboard2 = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'old')->get();
-    $workboardNew = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'new')->get();
+    $arrayName = array();
 
-    $workArray = array();
-                          foreach($workboard2  as $work2){
-                            array_push($workArray, $work2->workingDays.':'.$work2->patient_duration_attention);
-                          }
-    $workArrayNew = array();
-                      foreach($workboardNew  as $work3){
-                        array_push($workArrayNew, $work3->workingDays.':'.$work3->patient_duration_attention);
-                      }  
-     $validate = $this->handleExistAppointments($id);                    
+    $workboard = DB::table('workboard')->where('labInformation', $work)->where('oldnew', 'old')->get();
+    array_push($arrayName, $workboard);
+    $workboard2 = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'old')->get();
+    array_push($arrayName, $workboard2);
+    $workboardNew = DB::table('workboard')->where('workboard.labInformation', '=', $id)->where('oldnew', 'new')->get();
+    array_push($arrayName, $workboardNew);
+
+    dd($arrayName);
+
+        $workArray = array();
+        foreach($workboard2  as $work2){
+            array_push($workArray, $work2->workingDays.':'.$work2->patient_duration_attention);
+        }
+        
+
+        $workArrayNew = array();
+        foreach($workboardNew  as $work3){
+            array_push($workArrayNew, $work3->workingDays.':'.$work3->patient_duration_attention);
+        }  
+     
+        $validate = $this->handleExistAppointments($id);                    
 
         return view('workboard', [
                 'userId'    => $user->id,
