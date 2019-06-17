@@ -20,7 +20,16 @@ class medical_appointments extends Model
 		'definitive',
 		'reasontocancel',
 		'reschedule',
-		'reschedule_options'
+		'reschedule_options',
+		'Height',
+		'weight',
+		'temperature',
+		'cranial_capacity',
+		'waist_diameter',
+		'blood_pressure_pa',
+		'heart_rate',
+		'breathing_frequency',
+		'descriptions'
     ];
 
     public function user(){

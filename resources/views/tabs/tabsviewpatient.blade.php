@@ -17,17 +17,50 @@
 
         	<div class="tab-pane" id="medicalAttentionLink" style="display: none;">
 
+        		<form class="form-horizontal">
+				  	<div class="form-group">
+				    	<label for="HeightField" class="col-sm-2 control-label">Estatura:</label>
+					    <div class="col-sm-10">
+					      	<input type="text" class="form-control" id="HeightField" placeholder="1.70 m">
+					    </div>
+				  	</div>
+				  	<div class="form-group">
+				    	<label for="WeightField" class="col-sm-2 control-label">Peso:</label>
+					    <div class="col-sm-10">
+					      	<input type="text" class="form-control" id="WeightField" placeholder="73 kg">
+					    </div>
+				  	</div>
+				  	
+
+				  	<div class="form-group">
+				    	<label for="temperatureField" class="col-sm-2 control-label">Temp. (°C):</label>
+					    <div class="col-sm-10">
+					    	<div class="input-group-btn">
+					        	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					        		Action <span class="caret"></span>
+					        	</button>
+					        	<ul class="dropdown-menu">
+					          		<li><a href="#">Action</a></li>
+					          		<li><a href="#">Another action</a></li>
+					          		<li><a href="#">Something else here</a></li>
+					          		<li><a href="#">Separated link</a></li>
+					        	</ul>
+					      	</div>
+					      	<input type="text" class="form-control" id="temperatureField" placeholder="73 kg">
+					    </div>
+				  	</div>
+				</form>
         		<div class="row">
-					<div class="col-lg-6" style="margin: 3px 3px 3px 3px;">
-					    <div class="input-group" >
+					<div class="col-lg-6" >
+					    <div class="input-group" style="margin: 3px 3px 3px 3px;">
 					      	<span class="input-group-btn">
 					        	<button class="btn btn-default" type="button">Go!</button>
 					      	</span>
 					      	<input type="text" class="form-control" placeholder="Search for...">
 					    </div>
 					</div>
-					<div class="col-lg-6" style="margin: 3px 3px 3px 3px;">
-					    <div class="input-group">
+					<div class="col-lg-6" >
+					    <div class="input-group"style="margin: 3px 3px 3px 3px;">
 					      	<span class="input-group-btn">
 					        	<button class="btn btn-default" type="button">Go!</button>
 					      	</span>
