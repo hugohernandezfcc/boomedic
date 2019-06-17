@@ -222,6 +222,13 @@
     	function medicalAttention() {
     		byId('medicalAttentionTab').style.display = 'block';
 			byId('medicalAttentionLink').style.display = 'block';
+
+			var activeItem = document.getElementsByClassName('active tab-pane');
+			activeItem[0].className = 'tab-pane';
+
+			byId('medicalAttentionTab').className = 'active tab-pane'
+			byId('medicalAttentionLink').className = 'active tab-pane'
+
     	}
 
 		function fun(a) {

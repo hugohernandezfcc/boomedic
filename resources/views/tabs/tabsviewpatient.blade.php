@@ -5,8 +5,7 @@
 
 	<div class="nav-tabs-custom">
 		<ul class="nav nav-tabs">
-          	<li id="medicalAttentionTab" style="display: none;"><a href="#medicalAttentionLink" data-toggle="tab">Atención médica </a><a href="#" onclick="byId('medicalAttentionTab').style.display = 'none'; byId('medicalAttentionLink').style.display = 'none';"> <i class="fa fa-close"></i></a> </li>
-
+          	<li id="medicalAttentionTab" style="display: none;"><a href="#medicalAttentionLink" data-toggle="tab">Atención médica <i onclick="byId('medicalAttentionTab').style.displays = 'none'; byId('medicalAttentionLink').style.displays = 'none';" class="fa fa-close"></i></a> </li>
           	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
           	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
           	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
