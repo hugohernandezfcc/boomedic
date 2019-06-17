@@ -148,7 +148,7 @@
 									 	##HDHM#### tengo que validar que cuando el médico no tenga preguntas agregadas se deshabilite este botón
 									-->
 
-				                	<a href="#" onclick="medicalAttention('viewPatientBlade');" class="btn btn-secondary btn-flat btn-block">
+				                	<a href="#" id="initAttentionMedicalButton" onclick="medicalAttention('viewPatientBlade');" class="btn btn-secondary btn-flat btn-block">
 				                		Iniciar atención médica
 				                	</a>
 				                
@@ -220,6 +220,7 @@
     	}
 
     	function medicalAttention(from) {
+    		byId('initAttentionMedicalButton').style.display = 'none';
     		if(from == "viewPatientBlade"){
     			byId('medicalAttentionTab').style.display = 'block';
 				byId('medicalAttentionLink').style.display = 'block';
@@ -232,7 +233,8 @@
     		}else{
 
     			byId('activity').className = 'active tab-pane';
-
+    			byId('initAttentionMedicalButton').style.display = 'block';
+    			
     			byId('medicalAttentionTab').style.display = 'none';
 				byId('medicalAttentionLink').style.display = 'none';
 
