@@ -169,7 +169,33 @@
 			            <div class="box-header with-border">
 			              	<h3 class="box-title">Información adicional</h3>
 			            </div>
-				            <!-- /.box-header -->
+			            <div class="box-body">
+			            	<strong><i class="fa fa-book margin-r-5"></i> Educación</strong>
+
+			              	<p class="text-muted">
+			              	@if(empty($scholarship) && empty($occupation))
+			                	<a href="#">Agregar información</a>
+			                <!-- @elseif(empty($scholarship) && !empty($occupation))
+			                	<a href="#">Agregar Escolaridad</a> / {{ $occupation }}
+			                @elseif(!empty($scholarship) && empty($occupation))
+			                	{{ $scholarship }} / <a href="#">Agregar ocupación</a> -->
+			                @endif
+			              	</p>
+				            <hr />
+				            <strong><i class="fa fa-map-marker margin-r-5"></i> Dirección</strong>
+				 
+			              	<p class="text-muted">
+				              	@if(empty($colony) && empty($state))
+				                	<a href="#">Agregar dirección</a>
+				                @elseif(empty($colony) && !empty($state))
+				                	<a href="#">Agregar colonia</a>, {{$state}} {{$country}}
+				                @elseif(!empty($colony) && empty($state))
+				                	{{ $colony }}, <a href="#">Agregar estado</a> {{$country}}
+				                @endif
+							</p>
+
+				            <hr />
+			            </div>
 				                
 				    </div>
 		        </div>
