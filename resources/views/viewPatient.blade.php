@@ -411,21 +411,27 @@
 
 	    		var counter = -1;
 		      	function initMapAddressUser() {	
-			      	if(!counter > 0){
-			      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
-				          zoom: 14,
-				          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
-				        });
+
+		      		@if($latitude != "" && $longitude != "")
+
+				      	if(!counter > 0){
+				      		var map = new google.maps.Map(document.getElementById('mapAddressUser'), {
+					          zoom: 14,
+					          center: {lat: {{ $latitude }}  , lng: {{ $longitude }} }
+					        });
 
 
-				        var image = "https://s3.amazonaws.com/abiliasf/markerCasa.png";
-				        
-				        var beachMarker = new google.maps.Marker({
-				          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
-				          map: map,
-				          icon: image
-				        });
-				    }
+					        var image = "https://s3.amazonaws.com/abiliasf/markerCasa.png";
+					        
+					        var beachMarker = new google.maps.Marker({
+					          position: {lat: {{ $latitude }}  , lng: {{ $longitude }} },
+					          map: map,
+					          icon: image
+					        });
+					    }
+
+					@endif
+
 			        counter++;
 		      	
 		      }
