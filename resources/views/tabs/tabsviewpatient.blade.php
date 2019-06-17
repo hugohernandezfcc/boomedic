@@ -381,7 +381,11 @@
 		                      'icon'   => 'adminlte.empty-house'
 		                    ]
 		                  )
-			                
+			               <script type="text/javascript">
+			                  $('#form_profile2').attr("action", "/user/edit/complete");
+			                  $('.buttonEmpty').text('Agregar dirección');
+			                  $('.spanEmpty1').html('No se ha agregado dirección');
+			               </script>   
 			    	   <input type="hidden" id="nullmap" value="true">
 			    	@else   
 			          <div id="mapAddressUser"></div>
@@ -392,12 +396,20 @@
 
 			<div class="tab-pane" id="clinichistory">
 		    	<div class="box-body" >
-		    			  @include('viewclinichistory')
+		    		@include('modals.clinichistoryappointments', 
+	                    [
+	                      	'id' => $patientId,
+	                      	'dr' => Auth::id(), 
+	                      	'questions'  => $questions_appointments,
+	                      	'clinic_historyappo'  => $clinic_history_appointments
+	                    ]
+	                )
+		    		@include('viewclinichistory')
 		    	</div>		  
 		    </div> 	
 		    <div class="tab-pane" id="history">
 		    	<div class="box-body" >
-		    	 	       @include('historyView')
+		    	 	@include('historyView')
 		    	</div> 	       
 		    </div>
 	    </div>

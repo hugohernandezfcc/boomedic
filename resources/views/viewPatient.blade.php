@@ -157,14 +157,7 @@
 			            </div>
 			            <!-- /.box-body -->
 			        </div>
-			        @include('modals.clinichistoryappointments', 
-	                    [
-	                      	'id' => $patientId,
-	                      	'dr' => Auth::id(), 
-	                      	'questions'  => $questions_appointments,
-	                      	'clinic_historyappo'  => $clinic_history_appointments
-	                    ]
-	                )
+			        
 	                <div class="box box-default">
 			            <div class="box-header with-border">
 			              	<h3 class="box-title">Información adicional</h3>
@@ -200,18 +193,21 @@
 
 		        	@include('tabs.tabsviewpatient', [
 
-				    			'latitude' 		=>  $latitude,
-				    			'longitude'		=>  $longitude,
-				    			'nodes' 		=>  $nodes,
-				    			'pusername'		=>	$pusername,
-								'agep'			=>	$agep,
-								'occupation'	=>	$occupation,
-								'gender'		=>	$gender,
-								'maritalstatus'	=>	$maritalstatus,
-								'scholarship'	=>	$scholarship,
-								'updated_at'	=>	$updated_at,
-				    			]
-				    		)
+			    			'latitude' 		=>  $latitude,
+			    			'longitude'		=>  $longitude,
+			    			'nodes' 		=>  $nodes,
+			    			'pusername'		=>	$pusername,
+							'agep'			=>	$agep,
+							'occupation'	=>	$occupation,
+							'gender'		=>	$gender,
+							'maritalstatus'	=>	$maritalstatus,
+							'scholarship'	=>	$scholarship,
+							'updated_at'	=>	$updated_at,
+							'patientId'		=>  $patientId,
+							'questions_appointments'	=> $questions_appointments,
+							'clinic_history_appointments'	=> $clinic_history_appointments
+		    			]
+		    		)
 		        </div>		          
 	    	</div>
 	    </section>
