@@ -220,8 +220,8 @@
     	}
 
     	function medicalAttention() {
-    		byId('medicalAttentionTab').style.displays = 'block';
-			byId('medicalAttentionLink').style.displays = 'block';
+    		byId('medicalAttentionTab').style.display = 'block';
+			byId('medicalAttentionLink').style.display = 'block';
     	}
 
 		function fun(a) {
