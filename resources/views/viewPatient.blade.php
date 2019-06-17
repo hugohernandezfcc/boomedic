@@ -170,60 +170,26 @@
 			              	<h3 class="box-title">Información adicional</h3>
 			            </div>
 				            <!-- /.box-header -->
-				        <div class="box-body">
-				            <strong><i class="fa fa-book margin-r-5"></i> Educación</strong>
-
-				              	<p class="text-muted">
-					              	@if(empty($scholarship) && empty($occupation))
-					                	<a href="#">Agregar información</a>
-					                <!-- @elseif(empty($scholarship) && !empty($occupation))
-					                	<a href="#">Agregar Escolaridad</a> / {{ $occupation }}
-					                @elseif(!empty($scholarship) && empty($occupation))
-					                	{{ $scholarship }} / <a href="#">Agregar ocupación</a> -->
-					                @endif
-				              	</p>
-
-				            <hr>
-				            <strong><i class="fa fa-map-marker margin-r-5"></i> Dirección</strong>
-				              	<p class="text-muted">
-					              	@if(empty($colony) && empty($state))
-					                	<a href="#">Agregar dirección</a>
-					                @elseif(empty($colony) && !empty($state))
-					                	<a href="#">Agregar colonia</a>, {{$state}} {{$country}}
-					                @elseif(!empty($colony) && empty($state))
-					                	{{ $colony }}, <a href="#">Agregar estado</a> {{$country}}
-					                @endif
-								</p>
-				            <hr>
-				           	<strong><i class="fa fa-pencil margin-r-5"></i> Prescripción médica actual</strong>
-
-			              	<p>
-			                	<span class="label label-info">{{$current_prescription}}</span>
-			              	</p>
-				            <hr>
-
-				            <strong><i class="fa fa-file-text-o margin-r-5"></i> Miembro desde</strong>
-				            <p>{{$created_at}}</p>
-				        </div>        
+				                
 				    </div>
 		        </div>
+
 		        <div class="col-md-9"> 
 
 		        	@include('tabs.tabsviewpatient', [
 
-		    			'latitude' 		=>  $latitude,
-		    			'longitude'		=>  $longitude,
-		    			'nodes' 		=>  $nodes,
-		    			'pusername'		=>	$pusername,
-						'agep'			=>	$agep,
-						'occupation'	=>	$occupation,
-						'gender'		=>	$gender,
-						'maritalstatus'	=>	$maritalstatus,
-						'scholarship'	=>	$scholarship,
-						'updated_at'	=>	$updated_at,
-		    			]
-		    		)
-
+				    			'latitude' 		=>  $latitude,
+				    			'longitude'		=>  $longitude,
+				    			'nodes' 		=>  $nodes,
+				    			'pusername'		=>	$pusername,
+								'agep'			=>	$agep,
+								'occupation'	=>	$occupation,
+								'gender'		=>	$gender,
+								'maritalstatus'	=>	$maritalstatus,
+								'scholarship'	=>	$scholarship,
+								'updated_at'	=>	$updated_at,
+				    			]
+				    		)
 		        </div>		          
 	    	</div>
 	    </section>
