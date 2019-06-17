@@ -49,25 +49,52 @@
 					      	<input type="text" class="form-control" id="temperatureField" placeholder="73 kg">
 					    </div>
 				  	</div>
+
+				  	<div class="form-group">
+				    	<label for="cranial_capacityField" class="col-sm-2 control-label">C.Craneal (CC):</label>
+					    <div class="col-sm-10">
+					      	<input type="text" class="form-control" id="cranial_capacityField" placeholder="72 cm">
+					    </div>
+				  	</div>
+				  	<div class="form-group">
+				    	<label for="waist_diameterField" class="col-sm-2 control-label">D. de Cintura:</label>
+					    <div class="col-sm-10">
+					      	<input type="text" class="form-control" id="waist_diameterField" placeholder="92 cm">
+					    </div>
+				  	</div>
+
+				  	<div class="input-group" >
+				  		<label for="paField" class="col-sm-2 control-label">Presión Arterial (PA):</label>
+						<div class="col-sm-10">
+					      	<span class="input-group-btn">
+					        	<button class="btn btn-default" type="button">Estable</button>
+					      	</span>
+					      	<input type="text" id="paField" class="form-control" placeholder="120/80 ...">
+				      	</div>
+				    </div>
+
+				    <div class="input-group" >
+				  		<label for="paField" class="col-sm-2 control-label">Frec. Cardiaca (FC):</label>
+						<div class="col-sm-10">
+					      	<span class="input-group-btn">
+					        	<button class="btn btn-default" type="button">Estable</button>
+					      	</span>
+					      	<input type="text" id="paField" class="form-control" placeholder="60 - 100">
+				      	</div>
+				    </div>
+
+				    <div class="input-group" >
+				  		<label for="paField" class="col-sm-2 control-label">Frec. Respiratoria (FC):</label>
+						<div class="col-sm-10">
+					      	<span class="input-group-btn">
+					        	<button class="btn btn-default" type="button">Estable</button>
+					      	</span>
+					      	<input type="text" id="paField" class="form-control" placeholder="12 - 16">
+				      	</div>
+				    </div>
+
 				</form>
-        		<div class="row">
-					<div class="col-lg-6" >
-					    <div class="input-group" style="margin: 3px 3px 3px 3px;">
-					      	<span class="input-group-btn">
-					        	<button class="btn btn-default" type="button">Go!</button>
-					      	</span>
-					      	<input type="text" class="form-control" placeholder="Search for...">
-					    </div>
-					</div>
-					<div class="col-lg-6" >
-					    <div class="input-group"style="margin: 3px 3px 3px 3px;">
-					      	<span class="input-group-btn">
-					        	<button class="btn btn-default" type="button">Go!</button>
-					      	</span>
-					      	<input type="text" class="form-control" placeholder="Search for...">
-					    </div>
-					</div>
-				</div>
+        		
 
         		<div class="row">
         			<div class="col-md-6">
