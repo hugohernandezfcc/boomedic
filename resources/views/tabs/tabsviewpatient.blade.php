@@ -102,6 +102,7 @@
 
 					<div class="progress-bar" id="progressCompleteRecipe" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 10%;"> 10% </div>
 					
+					<input type="hidden" id="load-medicines" value="" />
 					<div id="wizardPrescription">
 	                     <h3>Receta </h3>
 	                     <section>
