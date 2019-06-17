@@ -104,10 +104,14 @@
 
         		<div class="row">
         			<div class="col-md-6">
-        				aaaaa
+        				<a href="#" class="btn btn-secondary btn-flat btn-block">
+	                		Cancelar
+	                	</a>
         			</div>
         			<div class="col-md-6">
-        				aaaaa
+        				<a href="#" class="btn btn-secondary btn-flat btn-block">
+	                		Guardar
+	                	</a>
         			</div>
         		</div>
         	</div>
