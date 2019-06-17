@@ -101,6 +101,7 @@
 					</div>
 
 					<div class="progress-bar" id="progressCompleteRecipe" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 10%;"> 10% </div>
+					
 					<div id="wizardPrescription">
 	                     <h3>Receta </h3>
 	                     <section>
@@ -121,11 +122,9 @@
 	                        @else
 	                          <center><iframe id="framepdfprescription" width="100%" style="height: 300px;"></iframe></center>
 	                        @endif
-	                           
 	                    </section>
-	                     
 	                </div>
-	                
+
 	                <script type="text/javascript">
 		               /**
 		                * Se guardan los nombre de cada medicamento cuando se abre el Modal
