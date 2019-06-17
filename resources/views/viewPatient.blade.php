@@ -230,8 +230,8 @@
 				byId('medicalAttentionTab').className = 'active tab-pane';
 				byId('medicalAttentionLink').className = 'active tab-pane';
     		}else{
-    			var activeItem = document.getElementsByClassName('tab-pane');
-				activeItem[0].className = 'active tab-pane';
+
+    			byId('activity').className = 'active tab-pane';
 
     			byId('medicalAttentionTab').style.display = 'none';
 				byId('medicalAttentionLink').style.display = 'none';
