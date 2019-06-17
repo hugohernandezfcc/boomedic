@@ -5,7 +5,7 @@
 
 	<div class="nav-tabs-custom">
 		<ul class="nav nav-tabs">
-          	<li id="medicalAttentionTab" style="display: none;"><a href="#medicalAttentionLink" data-toggle="tab">Atención médica <i onclick="byId('medicalAttentionTab').style.displays = 'none'; byId('medicalAttentionLink').style.displays = 'none';" class="fa fa-close"></i></a> </li>
+          	<li id="medicalAttentionTab" style="display: none;"><a href="#medicalAttentionLink" data-toggle="tab">Atención médica </a> </li>
           	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
           	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
           	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
@@ -16,7 +16,34 @@
         <div class="tab-content">
 
         	<div class="tab-pane" id="medicalAttentionLink" style="display: none;">
-        		Hola
+
+        		<div class="row">
+					<div class="col-lg-6">
+					    <div class="input-group">
+					      	<span class="input-group-btn">
+					        	<button class="btn btn-default" type="button">Go!</button>
+					      	</span>
+					      	<input type="text" class="form-control" placeholder="Search for...">
+					    </div>
+					</div>
+					<div class="col-lg-6">
+					    <div class="input-group">
+					      	<span class="input-group-btn">
+					        	<button class="btn btn-default" type="button">Go!</button>
+					      	</span>
+					      	<input type="text" class="form-control" placeholder="Search for...">
+					    </div>
+					</div>
+				</div>
+
+        		<div class="row">
+        			<div class="col-md-6">
+        				aaaaa
+        			</div>
+        			<div class="col-md-6">
+        				aaaaa
+        			</div>
+        		</div>
         	</div>
 
 			<div class="active tab-pane" role="tabpanel" id="activity">
