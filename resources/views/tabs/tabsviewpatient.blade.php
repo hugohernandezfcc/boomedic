@@ -1,4 +1,4 @@
-@if($device == "mobile")
+@if($agent->isMobile())
 
 
 @else
@@ -75,6 +75,7 @@
 			</div>
 		</form>
     </div>
+
 
     <div class="tab-pane" id="family">
 		         	    	

@@ -919,7 +919,7 @@ class doctor extends Controller
             ->where('family.parent', $users[0]->id)
             ->select('family.*', 'users.firstname', 'users.profile_photo', 'users.age', 'users.name', 'users.gender')
             ->get();
-            
+
         $nodes = array();
             //Json que guarda datos de familiares para generar externalidad//
            if($users[0]->profile_photo != '' || $users[0]->profile_photo != null)
@@ -931,6 +931,7 @@ class doctor extends Controller
                     $photou = asset('profile-female.png');
                  if($users[0]->gender == "other" || $users[0]->gender == '')
                     $photou = asset('profile-other.png');
+
               }
 
               if(count($family) < 1){
