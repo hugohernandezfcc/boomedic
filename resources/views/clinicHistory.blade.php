@@ -472,12 +472,12 @@
                </h3>
           <br><br>
             @include('empty.emptyData', 
-                              [
-                                'emptyc' => 'not_buttom',
-                                'title'  => 'Expedientes',
-                                'icon'   => 'adminlte.empty-box'
-                              ]
-                            )
+                  [
+                    'emptyc' => 'not_buttom',
+                    'title'  => 'Expedientes',
+                    'icon'   => 'adminlte.empty-box'
+                  ]
+                )
             </div>                         
         @else 
          <div class="box-header direct-chat header1" id="header1">

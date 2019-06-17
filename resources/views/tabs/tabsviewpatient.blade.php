@@ -381,11 +381,7 @@
 		                      'icon'   => 'adminlte.empty-house'
 		                    ]
 		                  )
-			               <script type="text/javascript">
-			                  $('#form_profile2').attr("action", "/user/edit/complete");
-			                  $('.buttonEmpty').text('Agregar dirección');
-			                  $('.spanEmpty1').html('No se ha agregado dirección');
-			               </script>   
+			                
 			    	   <input type="hidden" id="nullmap" value="true">
 			    	@else   
 			          <div id="mapAddressUser"></div>
