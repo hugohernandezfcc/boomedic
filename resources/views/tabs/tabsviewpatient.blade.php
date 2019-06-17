@@ -106,7 +106,7 @@
 
         		<div class="row">
         			<div class="col-md-6">
-        				<a href="#" class="btn btn-default btn-block btn-flat">
+        				<a href="#" class="btn btn-default btn-block">
 	                		Cancelar
 	                	</a>
         			</div>
