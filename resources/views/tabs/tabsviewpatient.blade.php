@@ -30,11 +30,9 @@
 					      	<input type="text" class="form-control" id="WeightField" placeholder="73 kg">
 					    </div>
 				  	</div>
-				  	
-
 				  	<div class="form-group">
-				    	<label for="temperatureField" class="col-sm-2 control-label">Temp. (°C):</label>
-					    <div class="col-sm-10">
+					  	<label for="temperatureField" class="col-sm-2 control-label">Temp. (°C):</label>
+						 <div class="col-sm-10">
 					    	<div class="input-group-btn">
 					        	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					        		Action <span class="caret"></span>
@@ -48,7 +46,9 @@
 					      	</div>
 					      	<input type="text" class="form-control" id="temperatureField" placeholder="73 kg">
 					    </div>
-				  	</div>
+					</div>
+
+				  	
 
 				  	<div class="form-group">
 				    	<label for="cranial_capacityField" class="col-sm-2 control-label">C.Craneal (CC):</label>
@@ -62,6 +62,7 @@
 					      	<input type="text" class="form-control" id="waist_diameterField" placeholder="92 cm">
 					    </div>
 				  	</div>
+
 				  	<div class="form-group">
 					  	<label for="paField" class="col-sm-2 control-label">Presión Arterial (PA):</label>
 						<div class="col-sm-10">
@@ -73,25 +74,30 @@
 					      	</div>
 					    </div>
 					</div>
-				    <div class="input-group" >
-				  		<label for="paField" class="col-sm-2 control-label">Frec. Cardiaca (FC):</label>
+					<div class="form-group">
+					  	<label for="hearRateField" class="col-sm-2 control-label">Frec. Cardiaca (FC):</label>
 						<div class="col-sm-10">
-					      	<span class="input-group-btn">
-					        	<button class="btn btn-default" type="button">Estable</button>
-					      	</span>
-					      	<input type="text" id="paField" class="form-control" placeholder="60 - 100">
-				      	</div>
-				    </div>
+					  		<div class="input-group" >
+						      	<span class="input-group-btn">
+						        	<button class="btn btn-default" type="button">Estable</button>
+						      	</span>
+						      	<input type="text" id="hearRateField" class="form-control" placeholder="60 - 100">
+					      	</div>
+					    </div>
+					</div>
 
-				    <div class="input-group" >
-				  		<label for="paField" class="col-sm-2 control-label">Frec. Respiratoria (FC):</label>
+				    <div class="form-group">
+					  	<label for="frecRepField" class="col-sm-2 control-label">Frec. Respiratoria (FC):</label>
 						<div class="col-sm-10">
-					      	<span class="input-group-btn">
-					        	<button class="btn btn-default" type="button">Estable</button>
-					      	</span>
-					      	<input type="text" id="paField" class="form-control" placeholder="12 - 16">
-				      	</div>
-				    </div>
+					  		<div class="input-group" >
+						      	<span class="input-group-btn">
+						        	<button class="btn btn-default" type="button">Estable</button>
+						      	</span>
+						      	<input type="text" id="frecRepField" class="form-control" placeholder="12 - 16">
+					      	</div>
+					    </div>
+					</div>
+
 
 				</form>
         		
