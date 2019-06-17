@@ -18,15 +18,15 @@
         	<div class="tab-pane" id="medicalAttentionLink" style="display: none;">
 
         		<div class="row">
-					<div class="col-lg-6">
-					    <div class="input-group">
+					<div class="col-lg-6" style="margin: 3px 3px 3px 3px;">
+					    <div class="input-group" >
 					      	<span class="input-group-btn">
 					        	<button class="btn btn-default" type="button">Go!</button>
 					      	</span>
 					      	<input type="text" class="form-control" placeholder="Search for...">
 					    </div>
 					</div>
-					<div class="col-lg-6">
+					<div class="col-lg-6" style="margin: 3px 3px 3px 3px;">
 					    <div class="input-group">
 					      	<span class="input-group-btn">
 					        	<button class="btn btn-default" type="button">Go!</button>
