@@ -5,6 +5,8 @@
 
 	<div class="nav-tabs-custom">
 		<ul class="nav nav-tabs">
+          	<li id="medicalAttentionTab" style="display: none;"><a href="#medicalAttentionLink" data-toggle="tab">Atención médica </a><a href="#" onclick="byId('medicalAttentionTab').style.displays = 'none'; byId('medicalAttentionLink').style.displays = 'none';"> <i class="fa fa-close"></i></a> </li>
+
           	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
           	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
           	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
@@ -13,6 +15,11 @@
         </ul>
 
         <div class="tab-content">
+
+        	<div class="tab-pane" id="medicalAttentionLink" style="display: none;">
+        		Hola
+        	</div>
+
 			<div class="active tab-pane" role="tabpanel" id="activity">
 				<!-- Form details -->
 		    	<form class="form-horizontal">
@@ -396,6 +403,13 @@
 
 			<div class="tab-pane" id="clinichistory">
 		    	<div class="box-body" >
+
+		    		@foreach($questions as $quest)
+                        @if($loop->iteration == 1)
+                            <a data-target="#modalhistoryappointments-{{ $patientId}}" data-toggle="modal" class="btn btn-secondary btn-flat btn-block">Historia clínica previa cita</a>
+                        @endif    
+                    @endforeach
+
 		    		@include('modals.clinichistoryappointments', 
 	                    [
 	                      	'id' => $patientId,
@@ -404,6 +418,7 @@
 	                      	'clinic_historyappo'  => $clinic_history_appointments
 	                    ]
 	                )
+
 		    		@include('viewclinichistory')
 		    	</div>		  
 		    </div> 	
@@ -413,5 +428,9 @@
 		    	</div> 	       
 		    </div>
 	    </div>
+
+
+
+
     </div>
 @endif

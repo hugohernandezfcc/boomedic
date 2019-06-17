@@ -147,11 +147,11 @@
 				                	<!--
 									 	##HDHM#### tengo que validar que cuando el médico no tenga preguntas agregadas se deshabilite este botón
 									-->
-				                	@foreach($questions as $quest)
-			                            @if($loop->iteration == 1)
-			                                <a data-target="#modalhistoryappointments-{{ $patientId}}" data-toggle="modal" class="btn btn-secondary btn-flat btn-block">Historia clínica previa cita</a>
-			                            @endif    
-			                        @endforeach
+
+				                	<a href="#" onclick="medicalAttention();" class="btn btn-secondary btn-flat btn-block">
+				                		Iniciar atención médica
+				                	</a>
+				                
 				                </li>
 				            </ul>
 			            </div>
@@ -205,7 +205,8 @@
 							'updated_at'	=>	$updated_at,
 							'patientId'		=>  $patientId,
 							'questions_appointments'	=> $questions_appointments,
-							'clinic_history_appointments'	=> $clinic_history_appointments
+							'clinic_history_appointments'	=> $clinic_history_appointments,
+							'questions' 	=> $questions
 		    			]
 		    		)
 		        </div>		          
@@ -213,6 +214,16 @@
 	    </section>
 	@endif
     <script type="text/javascript">
+
+    	function byId(argument) {
+    		return document.getElementById(argument);
+    	}
+
+    	function medicalAttention() {
+    		byId('medicalAttentionTab').style.displays = 'block';
+			byId('medicalAttentionLink').style.displays = 'block';
+    	}
+
 		function fun(a) {
 		    document.getElementById('sea').value = a.getAttribute("data-value");
 		    document.getElementById('idfam').value = a.getAttribute("data-id");
