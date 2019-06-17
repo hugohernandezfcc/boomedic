@@ -222,6 +222,10 @@
         <!-- /.col -->
         	<div class="col-md-9">
         		<div class="nav-tabs-custom">
+
+
+
+
 		            <ul class="nav nav-tabs">
 		              	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
 		              	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
@@ -229,6 +233,9 @@
 		              	<li><a href="#clinichistory" data-toggle="tab">Historia Clínica</a></li>
 		              	<li><a href="#history" data-toggle="tab">Registro de Actividad</a></li>
 		            </ul>
+
+
+
 		            <div class="tab-content">
 		            	<div class="active tab-pane" id="activity">
 	                        <div class="row">
@@ -617,6 +624,11 @@
 		         	    	</div> 	       
 		         	    </div> 	
 		         	</div>
+
+
+
+
+
 		        </div>
         	</div>
     	</div>
@@ -645,30 +657,30 @@
 				                        }
 				                    });
 				                 var sea = document.getElementById('sea').value;
-				                           $.ajax({     
-				                             type: "POST",                 
-				                             url: "{{ url('user/userSearch') }}",  
-				                              data: { "search" : sea }, 
-				                              dataType: 'json',                
-				                             success: function(data)             
-				                             {
-				                             if(data.length == 0){
-				                             	document.getElementById("resp").innerHTML = "No existe usuario registrado...";
-				                             	
-    											}else {
+		                           $.ajax({     
+		                             type: "POST",                 
+		                             url: "{{ url('user/userSearch') }}",  
+		                              data: { "search" : sea }, 
+		                              dataType: 'json',                
+		                             success: function(data)             
+		                             {
+		                             if(data.length == 0){
+		                             	document.getElementById("resp").innerHTML = "No existe usuario registrado...";
+		                             	
+										}else {
 
-    													document.getElementById("resp").innerHTML = "Coincidencias: ";
-    												for(var i= 0; i < data.length; i++){
-				                     				if(data[i]['profile_photo'] == null){
-				                     				$('#resp').append('<div style="margin-left:5%;"><img src="{{ asset("profile-42914_640.png") }}" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
-				                     				}else{
-				                     				 $('#resp').append('<div style="margin-left:5%;"><img src="'+ data[i]['profile_photo'] +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
-				                     				}
-				                     				}
-				                             	} 
-    											}
-				                            
-				                         });
+												document.getElementById("resp").innerHTML = "Coincidencias: ";
+											for(var i= 0; i < data.length; i++){
+		                     				if(data[i]['profile_photo'] == null){
+		                     				$('#resp').append('<div style="margin-left:5%;"><img src="{{ asset("profile-42914_640.png") }}" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+		                     				}else{
+		                     				 $('#resp').append('<div style="margin-left:5%;"><img src="'+ data[i]['profile_photo'] +'" class="img-circle" style="width:25px; height:25px;"><a data-id="'+ data[i]['id'] +'" data-value="'+ data[i]['name'] +'" onclick="fun(this);" class="btn text-muted" style="text-align: left;white-space: normal;">'+ data[i]['name'] +'</a></div>');
+		                     				}
+		                     				}
+		                             	} 
+										}
+		                            
+		                         });
 					            } else{
 					        	 var value = $(this).val().toLowerCase();
 						   		 $("#resp div").filter(function() {
