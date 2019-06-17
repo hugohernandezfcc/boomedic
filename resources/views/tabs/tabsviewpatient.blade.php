@@ -30,26 +30,28 @@
 					      	<input type="text" class="form-control" id="WeightField" placeholder="73 kg">
 					    </div>
 				  	</div>
+
 				  	<div class="form-group">
 					  	<label for="temperatureField" class="col-sm-2 control-label">Temp. (°C):</label>
 						 <div class="col-sm-10">
-					    	<div class="input-group-btn">
-					        	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					        		Action <span class="caret"></span>
-					        	</button>
-					        	<ul class="dropdown-menu">
-					          		<li><a href="#">Action</a></li>
-					          		<li><a href="#">Another action</a></li>
-					          		<li><a href="#">Something else here</a></li>
-					          		<li><a href="#">Separated link</a></li>
-					        	</ul>
+						 	<div class="input-group">
+						    	<div class="input-group-btn">
+						        	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						        		Action <span class="caret"></span>
+						        	</button>
+						        	<ul class="dropdown-menu">
+						          		<li><a href="#">Action</a></li>
+						          		<li><a href="#">Another action</a></li>
+						          		<li><a href="#">Something else here</a></li>
+						          		<li><a href="#">Separated link</a></li>
+						        	</ul>
+						      	</div>
 					      	</div>
 					      	<input type="text" class="form-control" id="temperatureField" placeholder="73 kg">
 					    </div>
 					</div>
 
 				  	
-
 				  	<div class="form-group">
 				    	<label for="cranial_capacityField" class="col-sm-2 control-label">C.Craneal (CC):</label>
 					    <div class="col-sm-10">
