@@ -169,7 +169,16 @@
 			            <div class="box-header with-border">
 			              	<h3 class="box-title">Información adicional</h3>
 			            </div>
-			            
+			            <div class="box-body">
+			            	<strong><i class="fa fa-book margin-r-5"></i> Educación</strong>
+			            	<p class="text-muted">
+				              	@if(empty($scholarship) && empty($occupation))
+				                	<a href="#">Agregar información</a>
+								@endif
+				            </p>
+				            <hr />
+				            <strong><i class="fa fa-map-marker margin-r-5"></i> Dirección</strong>
+			            </div>
 				                
 				    </div>
 		        </div>
