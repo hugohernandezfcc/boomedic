@@ -44,11 +44,13 @@
                               <div class="modal-body">
                                 	<ul class="nav nav-stacked" id="normal">
                                 		  <div align="center"><img src="" id="userp" class="img-circle" alt="User Image" style="height: 100px;"></div><br>
+
           	                  				<li><a id="namep"></a></li>
           	                  				<li><a id="age"></a></li>
           	                  				<li><a id="lug"></a></li>
           	                  				<li><a id="start"></a></li>
-                                        <input type="hidden" id="idpatient">
+
+                                      <input type="hidden" id="idpatient">
                                       <li id="buttondetail"></li>
           	                  				<li><button id="canceled" style="display: none;" class="btn btn-default btn-flat btn-block" data-target="#reason" data-dismiss="modal" data-toggle="modal">Cancelar cita</button></li>
           	                			</ul>	
@@ -462,7 +464,8 @@
 		  	$('#start').html('<label class="text-muted">Fecha: </label> '+ moment(calEvent.start).format('DD MMM YYYY h:mm A'));
 		  	if(calEvent.typ == "1" ){
 		  		$('#normal').css('display','block');
-          if(moment(calEvent.start).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD'))
+
+          //if(moment(calEvent.start).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD'))
             $('#buttondetail').html('<form action="{{ url("doctor/viewPatient/") }}/'+ calEvent.uid +'" method="get" id="form_profile">{{ csrf_field() }}<button type="submit" class="btn btn-secondary btn-block btn-flat">Detalle de paciente</button></form>');
           
           if(moment(calEvent.start) > moment())

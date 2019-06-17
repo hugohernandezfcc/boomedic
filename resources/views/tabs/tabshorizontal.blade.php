@@ -433,6 +433,7 @@
 						   		<button type="submit" class="btn btn-secondary btn-xs"><i class="fa fa-plus"></i> Agregar consultorio</button>
 						   	</form>
 						</div>
+						<br/><br/>
 						@foreach($labor->sortByDesc('created_at') as $labor)
 
 							<div class="form-group">	

@@ -36,6 +36,8 @@ class Prescriptions extends Controller
                             ->get();
                             
         $prescriptionsList = array();
+
+
         return view('prescriptions', [
                 'userId'            => $user->id,
                 'username'          => $user->username,
