@@ -2,8 +2,11 @@
 
 
 @else
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.8.4/jquery.textcomplete.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-steps/jquery.steps.css') }}">
+
 	<div class="nav-tabs-custom">
 		<ul class="nav nav-tabs">
           	<li id="medicalAttentionTab" style="display: none;"><a href="#medicalAttentionLink" data-toggle="tab">Atención médica </a> </li>
@@ -161,6 +164,7 @@
 		                  byId('progressCompleteRecipe').setAttribute("style", "width: 30%;");
 		                  byId('progressCompleteRecipe').innerHTML = "30%";
 		               });
+
 		               $(document).ready(function(){
 		                  jQuery.noConflict(false);
 		                  $("#wizardPrescription").steps({
@@ -207,7 +211,7 @@
 		                   * Activa el framework select2 para la selección de la cita a la cual se dirigirá la receta.
 		                   * @type {String}
 		                   */
-		                  $('#currentMedicalAppointment').select2({ width: "100%" });
+
 		                  
 		                  /**
 		                   * Permite que pueda establecer un id al botón y <LI> element de finalizar.
@@ -293,6 +297,7 @@
 		                           });
 		                           console.log(medicinesToSelect);
 		                           byId('load-medicines').value = true;
+
 		                           $('#receta').textcomplete([{
 		                              match: /(^|\b)(\w{2,})$/,
 		                              search: function (term, callback) {
