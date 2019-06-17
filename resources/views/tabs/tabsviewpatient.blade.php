@@ -46,8 +46,8 @@
 						          		<li><a href="#">Frontal</a></li>
 						        	</ul>
 						      	</div>
+					      		<input type="text" class="form-control" id="temperatureField" placeholder="73 kg">
 					      	</div>
-					      	<input type="text" class="form-control" id="temperatureField" placeholder="73 kg">
 					    </div>
 					</div>
 
