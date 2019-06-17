@@ -62,17 +62,17 @@
 					      	<input type="text" class="form-control" id="waist_diameterField" placeholder="92 cm">
 					    </div>
 				  	</div>
-
-				  	<div class="input-group" >
-				  		<label for="paField" class="col-sm-2 control-label">Presión Arterial (PA):</label>
+				  	<div class="form-group">
+					  	<label for="paField" class="col-sm-2 control-label">Presión Arterial (PA):</label>
 						<div class="col-sm-10">
-					      	<span class="input-group-btn">
-					        	<button class="btn btn-default" type="button">Estable</button>
-					      	</span>
-					      	<input type="text" id="paField" class="form-control" placeholder="120/80 ...">
-				      	</div>
-				    </div>
-
+					  		<div class="input-group" >
+						      	<span class="input-group-btn">
+						        	<button class="btn btn-default" type="button">Estable</button>
+						      	</span>
+						      	<input type="text" id="paField" class="form-control" placeholder="120/80 ...">
+					      	</div>
+					    </div>
+					</div>
 				    <div class="input-group" >
 				  		<label for="paField" class="col-sm-2 control-label">Frec. Cardiaca (FC):</label>
 						<div class="col-sm-10">
