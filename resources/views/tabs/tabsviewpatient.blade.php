@@ -21,13 +21,13 @@
 				  	<div class="form-group">
 				    	<label for="HeightField" class="col-sm-2 control-label">Estatura:</label>
 					    <div class="col-sm-10">
-					      	<input type="text" class="form-control" id="HeightField" placeholder="1.70 m">
+					      	<input type="text" required="true" class="form-control" id="HeightField" placeholder="1.70 m">
 					    </div>
 				  	</div>
 				  	<div class="form-group">
 				    	<label for="WeightField" class="col-sm-2 control-label">Peso:</label>
 					    <div class="col-sm-10">
-					      	<input type="text" class="form-control" id="WeightField" placeholder="73 kg">
+					      	<input type="text" required="true" class="form-control" id="WeightField" placeholder="73 kg">
 					    </div>
 				  	</div>
 
@@ -46,7 +46,7 @@
 						          		<li><a href="#">Frontal</a></li>
 						        	</ul>
 						      	</div>
-					      		<input type="text" class="form-control" id="temperatureField" placeholder="73 kg">
+					      		<input type="text" required="true" class="form-control" id="temperatureField" placeholder="73 kg">
 					      	</div>
 					    </div>
 					</div>
@@ -106,7 +106,7 @@
 
         		<div class="row">
         			<div class="col-md-6">
-        				<a href="#" class="btn btn-secondary btn-flat btn-block">
+        				<a href="#" class="btn btn-default btn-block btn-flat">
 	                		Cancelar
 	                	</a>
         			</div>
