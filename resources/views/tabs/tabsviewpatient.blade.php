@@ -2,7 +2,8 @@
 
 
 @else
-
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
 	<div class="nav-tabs-custom">
 		<ul class="nav nav-tabs">
           	<li id="medicalAttentionTab" style="display: none;"><a href="#medicalAttentionLink" data-toggle="tab">Atención médica </a> </li>
