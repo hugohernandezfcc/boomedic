@@ -148,7 +148,7 @@
 									 	##HDHM#### tengo que validar que cuando el médico no tenga preguntas agregadas se deshabilite este botón
 									-->
 
-				                	<a href="#" onclick="medicalAttention();" class="btn btn-secondary btn-flat btn-block">
+				                	<a href="#" onclick="medicalAttention('viewPatientBlade');" class="btn btn-secondary btn-flat btn-block">
 				                		Iniciar atención médica
 				                	</a>
 				                
@@ -219,17 +219,24 @@
     		return document.getElementById(argument);
     	}
 
-    	function medicalAttention() {
+    	function medicalAttention(from) {
+    		if(from == "viewPatientBlade"){
+    			byId('medicalAttentionTab').style.display = 'block';
+				byId('medicalAttentionLink').style.display = 'block';
 
-    		byId('medicalAttentionTab').style.display = 'block';
-			byId('medicalAttentionLink').style.display = 'block';
+				var activeItem = document.getElementsByClassName('active tab-pane');
+				activeItem[0].className = 'tab-pane';
 
-			var activeItem = document.getElementsByClassName('active tab-pane');
-			activeItem[0].className = 'tab-pane';
+				byId('medicalAttentionTab').className = 'active tab-pane';
+				byId('medicalAttentionLink').className = 'active tab-pane';
+    		}else{
 
-			byId('medicalAttentionTab').className = 'active tab-pane';
-			byId('medicalAttentionLink').className = 'active tab-pane';
-			
+    			byId('medicalAttentionTab').style.display = 'none';
+				byId('medicalAttentionLink').style.display = 'none';
+
+				byId('medicalAttentionTab').className = 'tab-pane';
+				byId('medicalAttentionLink').className = 'tab-pane';
+    		}   		
     	}
 
 		function fun(a) {
