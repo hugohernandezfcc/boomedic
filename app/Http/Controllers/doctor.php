@@ -86,14 +86,14 @@ class doctor extends Controller
         array_push($allobjects, $meticalAppointment);
 
 
-            $folioLocal = Carbon::now()->format('Y-m-d');
+
 
             $recipe = new recipes_tests;
             $recipe->type               = 'Recipe';
             $recipe->doctor             = Auth::id();
             $recipe->patient            = $idPatient;
             $recipe->notes              = $request->receta;
-            $recipe->folio              = strval($folioLocal->timestamp);
+            $recipe->folio              = strval(Carbon::getPreciseTimestamp(-1));
             //$recipe->date               = Carbon::now()->format('Y-m-d');
             $recipe->appointment        = $meticalAppointment->id;
 
