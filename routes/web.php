@@ -246,6 +246,16 @@ Route::group(['prefix' => 'PaymentsDr'], function(){
 
 Route::group(['prefix' => 'doctor'], function(){
 
+
+
+	Route::get('medicalCareResult/{status}', [
+			'uses'	=>	'doctor@medicalCareResult',
+			'as'	=>	'medicalCareResult'
+		]
+	);
+
+
+
 	Route::get('edit/{status}', [
 			'uses'	=>	'doctor@edit',
 			'as'	=>	'edit'

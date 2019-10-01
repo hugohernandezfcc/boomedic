@@ -36,6 +36,31 @@ class doctor extends Controller
         $this->middleware('auth');
     }
 
+//Request $request,
+    public function medicalCareResult($idPatient)
+    {
+        $meticalAppointment = DB::table('medical_appointments')->where([
+                                ['user_doctor', '=',  Auth::id()],
+                                ['user', '=', $idPatient]
+                            ])->whereDate(
+                                'when', Carbon::now()->format('Y-m-d')
+                            )->get();
+
+        dd($meticalAppointment);
+        
+
+
+        // Height => Estatura
+        // weight
+        // temperature
+        // cranial_capacity
+        // waist_diameter
+        // blood_pressure_pa
+        // heart_rate
+        // breathing_frequency
+    }
+
+
     /**
      * Display the specified resource.
      *
