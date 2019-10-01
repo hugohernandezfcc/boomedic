@@ -57,6 +57,8 @@ class doctor extends Controller
 
 
 
+
+
         if($meticalAppointment->count() > 0)
            $meticalAppointment = medical_appointments::find($meticalAppointment[0]->id); 
 
@@ -1104,6 +1106,15 @@ class doctor extends Controller
         if($meticalAppointment->count() > 0)
            $meticalAppointment = medical_appointments::find($meticalAppointment[0]->id); 
 
+        $meticalAppointment->recipe = DB::table('recipes_tests')->where([
+                                ['doctor', '=',  Auth::id()],
+                                ['appointment', '=', $meticalAppointment->id]
+                            ])->get();
+
+        if($meticalAppointment->count() > 0)
+            $meticalAppointment->recipe = $meticalAppointment->recipe[0];
+
+        dd($meticalAppointment);
 
         return view('viewPatient', [
                 

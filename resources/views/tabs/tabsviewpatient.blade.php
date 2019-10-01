@@ -5,6 +5,7 @@
 @if($agent->isMobile())
 	<div class="nav-tabs-custom">
 		<ul class="nav nav-tabs">
+          	
           	<li id="medicalAttentionTab" style="display: none;"><a href="#medicalAttentionLink" data-toggle="tab">Atención médica </a> </li>
           	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
           	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
@@ -446,6 +447,38 @@
 					    </div>
 					</div>
 				</form>
+
+				@if($writePrescription->status != 'Taked')
+
+					
+
+
+					<div class="box box-default">
+			            <div class="box-header with-border">
+			              <i class="fa fa-fw fa-edit "></i>
+			              <h3 class="box-title">Ultima prescripción</h3>
+			            </div>
+		            	<!-- /.box-header -->
+			            <div class="box-body">
+
+
+			              	<div class="form-group">
+							    <label class="col-sm-3 control-label">Receta:</label>
+							    <div class="col-sm-9">
+							      	<p class="form-control-static"></p>
+							    </div>
+							</div>
+
+			            </div>
+		            	<!-- /.box-body -->
+		          	</div>
+
+
+
+				@endif
+
+				
+
 		    </div>
 
 
