@@ -1122,7 +1122,7 @@ class doctor extends Controller
                                 ['recipe_test', '=',  $meticalAppointment->recipe->id]
                             ])->get();
 
-        dd($meticalAppointment);
+
 
         return view('viewPatient', [
                 
