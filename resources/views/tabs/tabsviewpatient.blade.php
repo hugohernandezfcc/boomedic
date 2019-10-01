@@ -462,22 +462,22 @@
 					          
 					            if(h >= 1000 && h <= 1300){
 					            	circleWidth = 30;
-									charge = -100;
+									charge = -500;
 					                h = h*0.20;
 					                h = Math.floor(h);
 					                w = w*0.40;
 					                w = Math.floor(w);
-					                  //alert("Altura: "+h + "anchura " + w);
+					                  alert("Altura: "+h + "anchura " + w);
 					            }else if(h>=1800){
 					              h-= 1840;
 					              w-= 1200;
 					             circleWidth = 30;
-								 charge = -100;
+								 charge = -500;
 					            }else{
 					              h-=315;
 					              w-=100;
 					              circleWidth = 30;
-								 charge = -100;
+								 charge = -500;
 					            }
 					       	 }else{
 					          h = window.screen.availHeight-375;
