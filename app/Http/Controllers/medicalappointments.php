@@ -75,7 +75,7 @@ class medicalappointments extends Controller
         $user = User::find(Auth::id());
         //Look in the table of methods of saved payments all the information of the selected method.
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
-        
+
         /* Insert Cita */
         if(Session('id_lb') != null){
                $delete = DB::delete('delete from transaction_bank where appointments= ?',[Session('id_cite')]) ;               
@@ -167,30 +167,7 @@ class medicalappointments extends Controller
         }
         return response()->json($pay);
     }
-  /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
-
-
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -201,17 +178,17 @@ class medicalappointments extends Controller
      */
     public function update(Request $request, $id)
     {
-    $user = User::find(Auth::id());
-                       $data = [
-                                'username'  => $user->username,
-                                'name'      => $user->name,
-                                'email'     => $user->email                
-                                ];
+        $user = User::find(Auth::id());
+        $data = [
+                'username'  => $user->username,
+                'name'      => $user->name,
+                'email'     => $user->email                
+                ];
 
-                                 Mail::send('emails.assistantSettings', $data, function ($message) {
-                                            $message->subject('Han cambiado tus permisos de asistente');
-                                            $message->to('contacto@doitcloud.consulting');
-                                        });
+         Mail::send('emails.assistantSettings', $data, function ($message) {
+                    $message->subject('Han cambiado tus permisos de asistente');
+                    $message->to('contacto@doitcloud.consulting');
+                });
        return redirect('medicalconsultations');
     }
 

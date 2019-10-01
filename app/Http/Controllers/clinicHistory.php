@@ -131,27 +131,28 @@ class clinicHistory extends Controller
                                             ])->get();
 
 
-    for ($i=0; $i < count($result); $i++)  
-        if($result[$i]->email == 'cpanel@iscoapp.com')
-            unset($result[$i]);
+    for ($i=0; $i < count($diagnosticTestResults); $i++)  
+        if($diagnosticTestResults[$i]->email == 'cpanel@iscoapp.com')
+            unset($diagnosticTestResults[$i]);
         
-            $result2 = $result->groupBy('date_email'); 
+            $resultToTimeLine = $diagnosticTestResults->groupBy('date_email'); 
            
         if(count($clinic_history_general) == 0){
             $mode = "null";
         } else{
             $mode = "finish";
         }
+        
         return  [
-                'questions'         => $question,
-                'email'             => $user->email,
-                'questions_parent'  => $question_parent,
-                'clinic_history'    => $clinic_history,
-                'test_result'       => $test_result,
-                'mode'              => $mode,
-                'files'             => $result2,
-                'count'             => count($result)
-            ];
+            'questions'         => $question,
+            'email'             => $user->email,
+            'questions_parent'  => $question_parent,
+            'clinic_history'    => $clinic_history,
+            'test_result'       => $test_result,
+            'mode'              => $mode,
+            'files'             => $resultToTimeLine,
+            'count'             => count($result)
+        ];
     }
     /**
      * Show the form for creating a new resource.
