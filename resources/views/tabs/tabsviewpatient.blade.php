@@ -41,7 +41,7 @@
 				  	<div class="form-group">
 				    	<label for="WeightField" class="col-sm-2 control-label">Peso:</label>
 					    <div class="col-sm-10">
-					      	<input type="text" id="aware" name="aware" required="true" class="form-control"  placeholder="73 kg">
+					      	<input type="text" id="weight" name="weight" required="true" class="form-control"  placeholder="73 kg">
 					    </div>
 				  	</div>
 
@@ -86,7 +86,7 @@
 						      	<span class="input-group-btn">
 						        	<button class="btn btn-default" onclick="setInField('blood_pressure_pa', '120/80');" type="button">Estable</button>
 						      	</span>
-						      	<input type="text" id="blood_pressure_pa" onclick="setInField('blood_pressure_pa', '60 - 100');" name="blood_pressure_pa" class="form-control" placeholder="120/80 ...">
+						      	<input type="text" id="blood_pressure_pa"  name="blood_pressure_pa" class="form-control" placeholder="120/80 ...">
 					      	</div>
 					    </div>
 					</div>

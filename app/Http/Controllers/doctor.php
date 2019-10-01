@@ -72,7 +72,7 @@ class doctor extends Controller
         // breathing_frequency
 
         $meticalAppointment->Height             = $request->Height;
-        $meticalAppointment->aware              = $request->aware;
+        $meticalAppointment->weight              = $request->weight;
         $meticalAppointment->temperature        = $request->temperature;
         $meticalAppointment->cranial_capacity   = $request->cranial_capacity;
         $meticalAppointment->waist_diameter     = $request->waist_diameter;
