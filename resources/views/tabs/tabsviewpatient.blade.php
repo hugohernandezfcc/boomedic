@@ -30,17 +30,18 @@
 
         	<div class="tab-pane" id="medicalAttentionLink" style="display: none;">
 
-        		<form class="form-horizontal">
+				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
+	    			{{ csrf_field() }}
 				  	<div class="form-group">
 				    	<label for="HeightField" class="col-sm-2 control-label">Estatura:</label>
 					    <div class="col-sm-10">
-					      	<input type="text" required="true" class="form-control" id="HeightField" placeholder="1.70 m">
+					      	<input type="text" id="Height" name="Height" required="true" class="form-control" id="HeightField" placeholder="1.70 m">
 					    </div>
 				  	</div>
 				  	<div class="form-group">
 				    	<label for="WeightField" class="col-sm-2 control-label">Peso:</label>
 					    <div class="col-sm-10">
-					      	<input type="text" required="true" class="form-control" id="WeightField" placeholder="73 kg">
+					      	<input type="text" id="aware" name="aware" required="true" class="form-control"  placeholder="73 kg">
 					    </div>
 				  	</div>
 
@@ -53,13 +54,13 @@
 						        		Modo <span class="caret"></span>
 						        	</button>
 						        	<ul class="dropdown-menu">
-						          		<li><a href="#">Oral</a></li>
-						          		<li><a href="#">Axilar</a></li>
-						          		<li><a href="#">Rectal</a></li>
-						          		<li><a href="#">Frontal</a></li>
+						          		<li><a href="#" onclick="setInField('temperature', 'Oral');" >Oral</a></li>
+						          		<li><a href="#" onclick="setInField('temperature', 'Axilar');" >Axilar</a></li>
+						          		<li><a href="#" onclick="setInField('temperature', 'Rectal');" >Rectal</a></li>
+						          		<li><a href="#" onclick="setInField('temperature', 'Frontal');" >Frontal</a></li>
 						        	</ul>
 						      	</div>
-					      		<input type="text" required="true" class="form-control" id="temperatureField" placeholder="73 kg">
+					      		<input type="text" required="true" class="form-control" id="temperature" name="temperature" placeholder="73 kg">
 					      	</div>
 					    </div>
 					</div>
@@ -68,13 +69,13 @@
 				  	<div class="form-group">
 				    	<label for="cranial_capacityField" class="col-sm-2 control-label">C.Craneal (CC):</label>
 					    <div class="col-sm-10">
-					      	<input type="text" class="form-control" id="cranial_capacityField" placeholder="72 cm">
+					      	<input type="text" class="form-control" id="cranial_capacity" name="cranial_capacity" placeholder="72 cm">
 					    </div>
 				  	</div>
 				  	<div class="form-group">
 				    	<label for="waist_diameterField" class="col-sm-2 control-label">D. de Cintura:</label>
 					    <div class="col-sm-10">
-					      	<input type="text" class="form-control" id="waist_diameterField" placeholder="92 cm">
+					      	<input type="text" class="form-control" id="waist_diameter" name="waist_diameter" placeholder="92 cm">
 					    </div>
 				  	</div>
 
@@ -85,7 +86,7 @@
 						      	<span class="input-group-btn">
 						        	<button class="btn btn-default" type="button">Estable</button>
 						      	</span>
-						      	<input type="text" id="paField" class="form-control" placeholder="120/80 ...">
+						      	<input type="text" id="blood_pressure_pa" name="blood_pressure_pa" class="form-control" placeholder="120/80 ...">
 					      	</div>
 					    </div>
 					</div>
@@ -96,7 +97,7 @@
 						      	<span class="input-group-btn">
 						        	<button class="btn btn-default" type="button">Estable</button>
 						      	</span>
-						      	<input type="text" id="hearRateField" class="form-control" placeholder="60 - 100">
+						      	<input type="text" id="heart_rate" name="heart_rate" class="form-control" placeholder="60 - 100">
 					      	</div>
 					    </div>
 					</div>
@@ -108,18 +109,22 @@
 						      	<span class="input-group-btn">
 						        	<button class="btn btn-default" type="button">Estable</button>
 						      	</span>
-						      	<input type="text" id="frecRepField" class="form-control" placeholder="12 - 16">
+						      	<input type="text" id="breathing_frequency" name="breathing_frequency" class="form-control" placeholder="12 - 16">
 					      	</div>
 					    </div>
 					</div>
 
-					<div class="progress-bar" id="progressCompleteRecipe" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 10%;"> 10% </div>
+					<br/> 
+
+					<textarea class="form-control" name="receta" id="receta" rows="8" cols="34" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
+					<input type="hidden" id="load-medicines" name="load_medicines" value="" />
+
+					<!-- <div class="progress-bar" id="progressCompleteRecipe" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 10%;"> 10% </div> -->
 					
-					<input type="hidden" id="load-medicines" value="" />
-					<div id="wizardPrescription">
+					<!-- <div id="wizardPrescription">
 	                     <h3>Receta </h3>
 	                     <section>
-	                           <!-- The validation is to change the cols number in textarea -->
+	                           <!- The validation is to change the cols number in textarea ->
 	                           <div class="form-group">
 	                              @if($agent->isMobile())
 	                                 <textarea class="form-control" id="receta" rows="8" cols="32" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
@@ -137,9 +142,14 @@
 	                          <center><iframe id="framepdfprescription" width="100%" style="height: 300px;"></iframe></center>
 	                        @endif
 	                    </section>
-	                </div>
+	                </div> -->
 
 	                <script type="text/javascript">
+
+	                	function setInField(field, value) {
+	                		byId(field).value = value + '/ ';
+	                	}
+
 		               /**
 		                * Se guardan los nombre de cada medicamento cuando se abre el Modal
 		                * @type {Array}
@@ -166,75 +176,75 @@
 		               function byId(argument) {
 		                  return document.getElementById(argument);
 		               }
-		               /**
-		                * Utilizado para avanzar la barra de receta en cuanto se abra el Modal.
-		                */
-		               $('#prescription-form-modal').on('shown.bs.modal', function () {
-		                  byId('progressCompleteRecipe').setAttribute("style", "width: 30%;");
-		                  byId('progressCompleteRecipe').innerHTML = "30%";
-		               });
+		               // /**
+		               //  * Utilizado para avanzar la barra de receta en cuanto se abra el Modal.
+		               //  */
+		               // $('#prescription-form-modal').on('shown.bs.modal', function () {
+		               //    byId('progressCompleteRecipe').setAttribute("style", "width: 30%;");
+		               //    byId('progressCompleteRecipe').innerHTML = "30%";
+		               // });
 
-		               $(document).ready(function(){
-		                  jQuery.noConflict(false);
-		                  $("#wizardPrescription").steps({
-		                        headerTag: "h3",
-		                        bodyTag: "section",
-		                        transitionEffect: "slideLeft",
-		                        cssClass: "wizard",
-		                        autoFocus: true,
-		                        labels: {
-		                           pagination: "Paginación",
-		                           finish:     "Enviar",
-		                           next:       "Revisar",
-		                           previous:   "Editar",
-		                           loading:    "Cargando"
-		                        },
-		                        showFinishButtonAlways: true,
-		                        onStepChanged: function (event, currentIndex, priorIndex) { 
-		                           if(currentIndex){
-		                              byId('linkfinish').href = "#finish";
-		                              byId('optionlinkfinish').removeAttribute("class");
-		                              byId('progressCompleteRecipe').setAttribute("style", "width: 90%;");
-		                              byId('progressCompleteRecipe').innerHTML = "90%";
-		                              byId('framepdfprescription').src = "{{ url('prescriptions/pdf')}}";
-		                           }else{
-		                              byId('linkfinish').href = "return false;";
-		                              byId('optionlinkfinish').className = "disabled";
-		                              byId('progressCompleteRecipe').setAttribute("style", "width: 50%;");
-		                              byId('progressCompleteRecipe').innerHTML = "50%";
-		                           }
-		                           console.log(currentIndex); // 1
-		                           console.log(priorIndex); // 0
-		                        },
-		                        onFinished: function (event, currentIndex) { 
-		                           console.log('terminado...' + event);
-		                           console.log('terminado...' + currentIndex);
-		                           byId('progressCompleteRecipe').setAttribute("style", "width: 100%;");
-		                           byId('progressCompleteRecipe').innerHTML = "100%";
+		               // $(document).ready(function(){
+		               //    jQuery.noConflict(false);
+		               //    $("#wizardPrescription").steps({
+		               //          headerTag: "h3",
+		               //          bodyTag: "section",
+		               //          transitionEffect: "slideLeft",
+		               //          cssClass: "wizard",
+		               //          autoFocus: true,
+		               //          labels: {
+		               //             pagination: "Paginación",
+		               //             finish:     "Enviar",
+		               //             next:       "Revisar",
+		               //             previous:   "Editar",
+		               //             loading:    "Cargando"
+		               //          },
+		               //          showFinishButtonAlways: true,
+		               //          onStepChanged: function (event, currentIndex, priorIndex) { 
+		               //             if(currentIndex){
+		               //                byId('linkfinish').href = "#finish";
+		               //                byId('optionlinkfinish').removeAttribute("class");
+		               //                byId('progressCompleteRecipe').setAttribute("style", "width: 90%;");
+		               //                byId('progressCompleteRecipe').innerHTML = "90%";
+		               //                byId('framepdfprescription').src = "{{ url('prescriptions/pdf')}}";
+		               //             }else{
+		               //                byId('linkfinish').href = "return false;";
+		               //                byId('optionlinkfinish').className = "disabled";
+		               //                byId('progressCompleteRecipe').setAttribute("style", "width: 50%;");
+		               //                byId('progressCompleteRecipe').innerHTML = "50%";
+		               //             }
+		               //             console.log(currentIndex); // 1
+		               //             console.log(priorIndex); // 0
+		               //          },
+		               //          onFinished: function (event, currentIndex) { 
+		               //             console.log('terminado...' + event);
+		               //             console.log('terminado...' + currentIndex);
+		               //             byId('progressCompleteRecipe').setAttribute("style", "width: 100%;");
+		               //             byId('progressCompleteRecipe').innerHTML = "100%";
 		                           
 		                           
-		                        }
-		                     });
+		               //          }
+		               //       });
 		                  
-		                  /**
-		                   * Activa el framework select2 para la selección de la cita a la cual se dirigirá la receta.
-		                   * @type {String}
-		                   */
+		               //    /**
+		               //     * Activa el framework select2 para la selección de la cita a la cual se dirigirá la receta.
+		               //     * @type {String}
+		               //     */
 
 		                  
-		                  /**
-		                   * Permite que pueda establecer un id al botón y <LI> element de finalizar.
-		                   */
-		                  var getLinks = document.getElementsByTagName('a');
-		                  for (var i = getLinks.length - 1; i >= 0; i--) 
-		                     if(getLinks[i].href == "{{ url('prescriptions#finish')}}")
-		                        getLinks[i].setAttribute('id', "linkfinish");
+		               //    /**
+		               //     * Permite que pueda establecer un id al botón y <LI> element de finalizar.
+		               //     */
+		               //    var getLinks = document.getElementsByTagName('a');
+		               //    for (var i = getLinks.length - 1; i >= 0; i--) 
+		               //       if(getLinks[i].href == "{{ url('prescriptions#finish')}}")
+		               //          getLinks[i].setAttribute('id', "linkfinish");
 		                     
-		                  byId('linkfinish').parentNode.setAttribute('id', "optionlinkfinish");
-		                  byId('optionlinkfinish').className = "disabled";
-		                  byId('linkfinish').href = "return false;";
+		               //    byId('linkfinish').parentNode.setAttribute('id', "optionlinkfinish");
+		               //    byId('optionlinkfinish').className = "disabled";
+		               //    byId('linkfinish').href = "return false;";
 		                  
-		               });
+		               // });
 		              	
 		               /**
 		                * Función responsable de identificar los movimientos de escritura sobre la receta.
@@ -349,22 +359,23 @@
 		                  }
 		               }               
 		            </script>
-
+		            <div class="row">
+	        			<div class="col-md-6">
+	        				<button onclick="medicalAttention('tabsBlade');" class="btn btn-default btn-block">
+		                		Cancelar
+		                	</button>
+	        			</div>
+	        			<div class="col-md-6">
+	        				<button type="submit" class="btn btn-secondary btn-flat btn-block">
+				                Guardar
+				            </button>
+	        			</div>
+	        		</div>
+									
 				</form>
         		
 
-        		<div class="row">
-        			<div class="col-md-6">
-        				<button onclick="medicalAttention('tabsBlade');" class="btn btn-default btn-block">
-	                		Cancelar
-	                	</button>
-        			</div>
-        			<div class="col-md-6">
-        				<a href="#" class="btn btn-secondary btn-flat btn-block">
-	                		Guardar
-	                	</a>
-        			</div>
-        		</div>
+        		
         	</div>
 
 			<div class="active tab-pane" role="tabpanel" id="activity">
@@ -1012,7 +1023,7 @@
 		               function controlledActionsOnTheWrite(textBody) {
 		                  var textBodyArray = textBody.split(" ");
 		                  if (textBody.length <= lengthTextBody) {
-		                  	
+
 		                     /**
 		                      * Agregar si existe la sustancia en el catalogo pero no fue seleccionada y se encuentra escrita en el textarea.
 		                      * (Validando para ver si lo agrego al array como optional)
