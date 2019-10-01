@@ -151,7 +151,7 @@ class clinicHistory extends Controller
             'test_result'       => $test_result,
             'mode'              => $mode,
             'files'             => $resultToTimeLine,
-            'count'             => count($result)
+            'count'             => count($diagnosticTestResults)
         ];
     }
     /**
