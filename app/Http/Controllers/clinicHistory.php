@@ -130,14 +130,13 @@ class clinicHistory extends Controller
                                                 ['diagnostic_test','=',null]
                                             ])->get();
 
-                        
+    dd($result);
 
     for ($i=0; $i < count($result); $i++)  
         if($result[$i]->email == 'cpanel@iscoapp.com')
             unset($result[$i]);
         
-    
-                           $result2 = $result->groupBy('date_email'); 
+            $result2 = $result->groupBy('date_email'); 
            
         if(count($clinic_history_general) == 0){
             $mode = "null";
@@ -217,6 +216,7 @@ class clinicHistory extends Controller
             ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
             ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.question', 'questions_clinic_history.id', 'answers_clinic_history.id AS a')
             ->get();
+
         $test_result = DB::table('diagnostic_test_result')
         ->join('diagnostic_tests', 'diagnostic_test_result.diagnostic_test', '=', 'diagnostic_tests.id')
         ->join('recipes_tests', 'diagnostic_test_result.recipes_test', '=', 'recipes_tests.id')
