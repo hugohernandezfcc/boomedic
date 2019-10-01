@@ -588,25 +588,24 @@ class profile extends Controller
             $bir =  DB::table('users')->where('birthdate', $request->birthdate)->where('name', 'ILIKE','%'.$request->name.'%')->get();
                 if(count($bir) > 0){
                     $coincidences =  DB::table('family')->where('parent', Auth::id())->get();
-                      for($y = 0; $y < count($bir); $y++){ 
-                          for($z = 0; $z < count($coincidences); $z++){
+                    for($y = 0; $y < count($bir); $y++){ 
+                        for($z = 0; $z < count($coincidences); $z++){
                        
-                                if($bir[$y]->id === $coincidences[$z]->activeUser ){
-                                      $coin++;
-                                }
-                                if($bir[$y]->id === $coincidences[$z]->passiveUser ){
-                                      $coin++;
-                                } 
-                           }   
-                     }
-                     if($coin > 0){
-                                   $notification = array(
-                                    'message' => 'Hubo una coincidencia en nombre, fecha de nacimiento y un usuario que registraste antes, asegurate de no estar duplicando.', 
-                                    'error' => 'error'
-                                    );
-                     } 
-                else{
-                      $unew = User::create([
+                            if($bir[$y]->id === $coincidences[$z]->activeUser ){
+                                $coin++;
+                            }
+                            if($bir[$y]->id === $coincidences[$z]->passiveUser ){
+                                $coin++;
+                            } 
+                        }   
+                    }
+                    if($coin > 0){
+                        $notification = array(
+                            'message' => 'Hubo una coincidencia en nombre, fecha de nacimiento y un usuario que registraste antes, asegurate de no estar duplicando.', 
+                            'error' => 'error'
+                        );
+                    }else{
+                        $unew = User::create([
                               'name'      => $request->name,
                               'email'     => $request->email,
                               'birthdate' => Carbon::parse($request->birthdate)->format('m-d-Y'),
@@ -627,17 +626,16 @@ class profile extends Controller
                         //Envío de correo para modificar contraseña
                         $response = $this->broker()->sendResetLink(
                           $request->only('email')
-                      );
+                        );
 
                         
-                       $notification = array(
-                              //In case the payment is approved it shows a message reminding you the amount you paid.
-                          'message' => 'Se creó correctamente un usuario para tu familiar y se emparentó correctamente.', 
-                          'success' => 'success'
-                          );
-                     }
-                }
-                else{
+                        $notification = array(
+                            //In case the payment is approved it shows a message reminding you the amount you paid.
+                            'message' => 'Se creó correctamente un usuario para tu familiar y se emparentó correctamente.', 
+                            'success' => 'success'
+                        );
+                    }
+                }else{
                       $unew = User::create([
                               'name'      => $request->name,
                               'email'     => $request->email,
@@ -658,80 +656,81 @@ class profile extends Controller
 
                         //Envío de correo para modificar contraseña
                         $response = $this->broker()->sendResetLink(
-                          $request->only('email')
-                      );
+                            $request->only('email')
+                        );
 
                         
-                       $notification = array(
+                        $notification = array(
                               //In case the payment is approved it shows a message reminding you the amount you paid.
                           'message' => 'Se creó correctamente un usuario para tu familiar y se emparentó correctamente.', 
                           'success' => 'success'
-                          );
-                     } 
-        }
-
-        else{
-        $unew = User::create([
-                'name'      => $request->name,
-                'email'     => $request->email,
-                'birthdate' => Carbon::parse($request->birthdate)->format('m-d-Y'),
-                'age'       => (int) $age,
-                'status'    => 'In Progress',
-                'firstname' => $namesUser['first'],
-                'lastname'  => $namesUser['last'],
-                'username'  => $uName['username'],
-                'password'  => bcrypt('123456')
-            ]);
-          $family = family::create([
-                'activeUser'        => $unew->id,
-                'relationship'      => $request->relationship,
-                'activeUserStatus'  => 'inactive',
-                'parent'            => $user->id
-          ]);
-
-          //Envío de correo para modificar contraseña
-          $response = $this->broker()->sendResetLink(
-            $request->only('email')    
-        );
+                        );
+                    } 
+                }else{
+                    $unew = User::create([
+                        'name'      => $request->name,
+                        'email'     => $request->email,
+                        'birthdate' => Carbon::parse($request->birthdate)->format('m-d-Y'),
+                        'age'       => (int) $age,
+                        'status'    => 'In Progress',
+                        'firstname' => $namesUser['first'],
+                        'lastname'  => $namesUser['last'],
+                        'username'  => $uName['username'],
+                        'password'  => bcrypt('123456')
+                    ]);
+                    $family = family::create([
+                        'activeUser'        => $unew->id,
+                        'relationship'      => $request->relationship,
+                        'activeUserStatus'  => 'inactive',
+                        'parent'            => $user->id
+                    ]);
+                    //Envío de correo para modificar contraseña
+                    $response = $this->broker()->sendResetLink( $request->only('email') );
 
                                                                   
-             $data = [
-                'username'      => $user->username,
-                'name'      => $user->name,
-                'email'     => $user->email,                
-                'firstname' => $user->firstname,                
-                'lastname'  => $user->lastname,    
-                'relationship'      => $this->relationshipValidation($request->relationship),
-                'activeUser'        => $unew->id,
-                'id'                => $family->id
-                ];
-                $email = $user->email;
-                 Mail::send('emails.family', $data, function ($message) {
+                    $data = [
+                        'username'     => $user->username,
+                        'name'         => $user->name,
+                        'email'        => $user->email,                
+                        'firstname'    => $user->firstname,                
+                        'lastname'     => $user->lastname,    
+                        'relationship' => $this->relationshipValidation($request->relationship),
+                        'activeUser'   => $unew->id,
+                        'id'           => $family->id
+                    ];
+                    $email = $user->email;
+                    Mail::send('emails.family', $data, function ($message) {
                             $message->subject('Tienes una solicitud de parentesco familiar');
                             $message->to('contacto@doitcloud.consulting');
                         });
 
           
-         $notification = array(
-                //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Se creó correctamente un usuario para tu familiar y se emparentó correctamente.', 
-            'success' => 'success'
-            );
+                    $notification = array(
+                        //In case the payment is approved it shows a message reminding you the amount you paid.
+                        'message' => 'Se creó correctamente un usuario para tu familiar y se emparentó correctamente.', 
+                        'success' => 'success'
+                    );
+                }
+            }else{
+                $notification = array(
+                    //In case the payment is approved it shows a message reminding you the amount you paid.
+                    'message' => 'No se pudo registrar, el correo que utilizaste  ya está en uso.', 
+                    'error' => 'error'
+                );
+            }
 
         }
-      }
-         else{
-            $notification = array(
-                //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'No se pudo registrar, el correo que utilizaste  ya está en uso.', 
-            'error' => 'error'
-            );
-          }
 
-      }
-             return redirect('user/profile/' . Auth::id() )->with($notification);
-              
-        }        
+        if(isset($notification)){
+            $notification = array(
+                  //In case the payment is approved it shows a message reminding you the amount you paid.
+              'message' => 'Tu solicitud se ha procesado correctamente.', 
+              'success' => 'success'
+            );
+        }
+
+        return redirect('user/profile/' . Auth::id() )->with($notification);          
+    }        
 
     /**
      * Remove the specified resource from storage.
