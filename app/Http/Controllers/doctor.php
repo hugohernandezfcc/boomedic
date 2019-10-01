@@ -22,6 +22,7 @@ use App\professional_information;
 use App\assistant;
 use App\questions_clinic_history;
 use App\answers_clinic_history;
+use App\medical_appointments;
 
 
 class doctor extends Controller
@@ -36,8 +37,8 @@ class doctor extends Controller
         $this->middleware('auth');
     }
 
-//Request $request,
-    public function medicalCareResult($idPatient)
+//,
+    public function medicalCareResult(Request $request, $idPatient)
     {
         $meticalAppointment = DB::table('medical_appointments')->where([
                                 ['user_doctor', '=',  Auth::id()],
@@ -46,10 +47,11 @@ class doctor extends Controller
                                 'when', Carbon::now()->format('Y-m-d')
                             )->get();
 
+        if($meticalAppointment->count() > 0)
+           $meticalAppointment = medical_appointments::find($meticalAppointment[0]->id); 
+
         dd($meticalAppointment);
         
-
-
         // Height => Estatura
         // weight
         // temperature
@@ -58,6 +60,19 @@ class doctor extends Controller
         // blood_pressure_pa
         // heart_rate
         // breathing_frequency
+
+        $meticalAppointment->Height     = $request->Height;
+        $meticalAppointment->aware  = $request->aware;
+        $meticalAppointment->temperature    = $request->temperature;
+        $meticalAppointment->cranial_capacity   = $request->cranial_capacity;
+        $meticalAppointment->waist_diameter     = $request->waist_diameter;
+        $meticalAppointment->blood_pressure_pa  = $request->blood_pressure_pa;
+        $meticalAppointment->heart_rate     = $request->heart_rate;
+        $meticalAppointment->breathing_frequency    = $request->breathing_frequency;
+
+        
+        
+        
     }
 
 
