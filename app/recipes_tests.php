@@ -15,7 +15,7 @@ class recipes_tests extends Model
 		'notes',
 		'folio',
 		'date',
-
+		'appointment'
     ];
 
     public function user(){

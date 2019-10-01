@@ -44,12 +44,17 @@ class doctor extends Controller
 
     public function medicalCareResult(Request $request, $idPatient)
     {
+
+        $allobjects = array();
+
+
         $meticalAppointment = DB::table('medical_appointments')->where([
                                 ['user_doctor', '=',  Auth::id()],
                                 ['user', '=', $idPatient]
                             ])->whereDate(
                                 'when', Carbon::now()->format('Y-m-d')
                             )->get();
+
 
 
         if($meticalAppointment->count() > 0)
@@ -76,8 +81,43 @@ class doctor extends Controller
         $meticalAppointment->breathing_frequency = $request->breathing_frequency;
         $meticalAppointment->status             = 'Taked';
 
-        if($meticalAppointment->save())
+        // if($meticalAppointment->save()){
+
+        array_push($allobjects, $meticalAppointment);
+
+
+            $folioLocal = Carbon::now()->format('Y-m-d');
+
+            $recipe = new recipes_tests;
+            $recipe->type               = 'Recipe';
+            $recipe->doctor             = Auth::id();
+            $recipe->patient            = $idPatient;
+            $recipe->notes              = $request->receta;
+            $recipe->folio              = strval($folioLocal->timestamp);
+            //$recipe->date               = Carbon::now()->format('Y-m-d');
+            $recipe->appointment        = $meticalAppointment->id;
+
+            // if($recipe->save()){
+            array_push($allobjects, $recipe);
+                
+
+                $inputMedicinesSelected = json_decode($request->inputMedicinesSelected, true);
+
+                for ($i=0; $i < count($inputMedicinesSelected); $i++) {
+                    $recipeTest = new cli_recipes_tests; 
+                    $recipeTest->medicine = $inputMedicinesSelected[$i]['id'];
+                    $recipeTest->recipe_test = 1;
+                    array_push($allobjects, $recipeTest);
+
+                }
+
+            // }
+
+            dd($allobjects);
+
+
             return redirect('doctor/viewPatient/' . $idPatient );
+        // }
         
         
     }
