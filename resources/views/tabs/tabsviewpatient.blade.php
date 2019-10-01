@@ -448,7 +448,7 @@
 					</div>
 				</form>
 
-				@if($writePrescription->status != 'Taked')
+				@if($writePrescription->status == 'Taked')
 
 					
 
