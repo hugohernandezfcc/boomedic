@@ -463,12 +463,28 @@
 
 
 			              	<div class="form-group">
-							    <label class="col-sm-3 control-label">Receta:</label>
+							    <label class="col-sm-3 control-label">Receta:{{$writePrescription->recipe->folio}}</label>
 							    <div class="col-sm-9">
-							      	<p class="form-control-static"></p>
+							      	<p class="form-control-static">{{$writePrescription->recipe->notes}}</p>
 							    </div>
 							</div>
 
+							<br/>
+							<table class="table table-hover">
+				                <tbody>
+				                <tr>
+				                  <th>Presentación</th>
+				                  <th>Sustancía</th>
+				                </tr>
+								@foreach($writePrescription->recipe->medicines as $medicine)
+				                <tr>
+				                  <td>{{$medicine->name}}</td>
+				                  <td>{{$medicine->description}}</td>
+				                  
+				                </tr>
+				               @endforeach
+				              </tbody>
+				          </table>
 			            </div>
 		            	<!-- /.box-body -->
 		          	</div>
