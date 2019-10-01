@@ -93,7 +93,7 @@ class doctor extends Controller
             $recipe->doctor             = Auth::id();
             $recipe->patient            = $idPatient;
             $recipe->notes              = $request->receta;
-            $recipe->folio              = strval(Carbon::getPreciseTimestamp(-1));
+            $recipe->folio              = 'R-'.Auth::id().'129302'.$idPatient;
             //$recipe->date               = Carbon::now()->format('Y-m-d');
             $recipe->appointment        = $meticalAppointment->id;
 
