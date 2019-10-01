@@ -54,10 +54,10 @@
 						        		Modo <span class="caret"></span>
 						        	</button>
 						        	<ul class="dropdown-menu">
-						          		<li><a href="#" onclick="setInField('temperature', 'Oral');" >Oral</a></li>
-						          		<li><a href="#" onclick="setInField('temperature', 'Axilar');" >Axilar</a></li>
-						          		<li><a href="#" onclick="setInField('temperature', 'Rectal');" >Rectal</a></li>
-						          		<li><a href="#" onclick="setInField('temperature', 'Frontal');" >Frontal</a></li>
+						          		<li><a href="" onclick="setInField('temperature', 'Oral');" >Oral</a></li>
+						          		<li><a href="" onclick="setInField('temperature', 'Axilar');" >Axilar</a></li>
+						          		<li><a href="" onclick="setInField('temperature', 'Rectal');" >Rectal</a></li>
+						          		<li><a href="" onclick="setInField('temperature', 'Frontal');" >Frontal</a></li>
 						        	</ul>
 						      	</div>
 					      		<input type="text" required="true" class="form-control" id="temperature" name="temperature" placeholder="73 kg">
