@@ -355,9 +355,9 @@
 
         		<div class="row">
         			<div class="col-md-6">
-        				<a href="#" onclick="medicalAttention('tabsBlade');" class="btn btn-default btn-block">
+        				<button onclick="medicalAttention('tabsBlade');" class="btn btn-default btn-block">
 	                		Cancelar
-	                	</a>
+	                	</button>
         			</div>
         			<div class="col-md-6">
         				<a href="#" class="btn btn-secondary btn-flat btn-block">
@@ -1121,6 +1121,7 @@
 
 				</form>
         		
+        		<!-- hdhmhdhm -->
 
         		<div class="row">
         			<div class="col-md-6">
