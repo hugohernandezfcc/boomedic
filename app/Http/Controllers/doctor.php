@@ -26,6 +26,7 @@ use App\medical_appointments;
 
 
 use App\recipes_tests;//papá
+use App\cli_recipes_tests;
 use App\Medications;//hijos
 
 class doctor extends Controller
@@ -73,7 +74,7 @@ class doctor extends Controller
         $meticalAppointment->blood_pressure_pa  = $request->blood_pressure_pa;
         $meticalAppointment->heart_rate         = $request->heart_rate;
         $meticalAppointment->breathing_frequency = $request->breathing_frequency;
-
+        $meticalAppointment->status             = 'Taked';
 
         if($meticalAppointment->save())
             return redirect('doctor/viewPatient/' . $idPatient );

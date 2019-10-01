@@ -118,6 +118,7 @@
 
 					<textarea class="form-control" name="receta" id="receta" rows="8" cols="34" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
 					<input type="hidden" id="load-medicines" name="load_medicines" value="" />
+					<input type="hidden" id="inputMedicinesSelected" name="inputMedicinesSelected" value="" />
 
 					<!-- <div class="progress-bar" id="progressCompleteRecipe" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 10%;"> 10% </div> -->
 					
@@ -284,12 +285,17 @@
 		                        toDeleted.push(medicine.name);
 		                     
 		                  });
+
 		                  if(toDeleted.length > 0)
 		                     for (var o = toDeleted.length - 1; o >= 0; o--) 
 		                        for (var i = medicinesSelected.length - 1; i >= 0; i--) 
 		                           if (medicinesSelected[i].name == toDeleted[o]) 
 		                              medicinesSelected.splice(i, 1);
+
+		                   byId('inputMedicinesSelected').value = JSON.stringify(medicinesSelected);
 		               }
+
+
 		               /**
 		                * La función se ejecuta solo cuando se abre el modal para no hacer solicitudes que no sean
 		                * estrictamente necesarias.
