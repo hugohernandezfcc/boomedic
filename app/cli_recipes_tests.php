@@ -21,4 +21,8 @@ class cli_recipes_tests extends Model
     public function recipes_tests(){
 	  return $this->belongsTo('App\recipes_tests', 'recipes_tests');
 	}
+
+	public function medicines(){
+	  return $this->belongsTo('App\medicines', 'medicine');
+	}
 }

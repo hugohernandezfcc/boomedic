@@ -81,9 +81,9 @@ class doctor extends Controller
         $meticalAppointment->breathing_frequency = $request->breathing_frequency;
         $meticalAppointment->status             = 'Taked';
 
-        // if($meticalAppointment->save()){
+        if($meticalAppointment->save()){
 
-        array_push($allobjects, $meticalAppointment);
+            array_push($allobjects, $meticalAppointment);
 
 
 
@@ -97,29 +97,32 @@ class doctor extends Controller
             //$recipe->date               = Carbon::now()->format('Y-m-d');
             $recipe->appointment        = $meticalAppointment->id;
 
-            // if($recipe->save()){
-            array_push($allobjects, $recipe);
+            if($recipe->save()){
+                array_push($allobjects, $recipe);
                 
 
                 $inputMedicinesSelected = json_decode($request->inputMedicinesSelected, true);
-                echo "<pre>";
-                    print_r($inputMedicinesSelected);
-                echo "</pre>";
+                // echo "<pre>";
+                //     print_r($inputMedicinesSelected);
+                // echo "</pre>";
                 for ($i=0; $i < count($inputMedicinesSelected); $i++) {
                     $recipeTest = new cli_recipes_tests; 
                     $recipeTest->medicine = $inputMedicinesSelected[$i]['id'];
-                    $recipeTest->recipe_test = 1;
-                    array_push($allobjects, $recipeTest);
+                    $recipeTest->recipe_test = $recipe->id;
+
+                    $recipeTest->save();
+
+                    //array_push($allobjects, $recipeTest);
 
                 }
 
-            // }
+            }
 
-            dd($allobjects);
+                //dd($allobjects);
 
 
-            return redirect('doctor/viewPatient/' . $idPatient );
-        // }
+                return redirect('doctor/viewPatient/' . $idPatient );
+        }
         
         
     }
