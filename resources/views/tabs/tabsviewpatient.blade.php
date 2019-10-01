@@ -30,7 +30,7 @@
 
         	<div class="tab-pane" id="medicalAttentionLink" style="display: none;">
 
-				<form enctype="multipart/form-data" action="/user/update/{{$userId}}" method="post" class="form-horizontal">
+				<form enctype="multipart/form-data" action="/doctor/medicalCareResult/{{$patientId}}" method="post" class="form-horizontal">
 	    			{{ csrf_field() }}
 				  	<div class="form-group">
 				    	<label for="HeightField" class="col-sm-2 control-label">Estatura:</label>

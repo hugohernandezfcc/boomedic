@@ -50,6 +50,7 @@ class doctor extends Controller
                                 'when', Carbon::now()->format('Y-m-d')
                             )->get();
 
+
         if($meticalAppointment->count() > 0)
            $meticalAppointment = medical_appointments::find($meticalAppointment[0]->id); 
 

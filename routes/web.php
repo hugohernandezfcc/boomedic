@@ -248,7 +248,7 @@ Route::group(['prefix' => 'doctor'], function(){
 
 
 
-	Route::get('medicalCareResult/{idPatient}', [
+	Route::post('medicalCareResult/{idPatient}', [
 			'uses'	=>	'doctor@medicalCareResult',
 			'as'	=>	'medicalCareResult'
 		]
