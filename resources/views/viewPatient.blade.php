@@ -209,7 +209,7 @@
 							'questions_appointments'	=> $questions_appointments,
 							'clinic_history_appointments'	=> $clinic_history_appointments,
 							'questions' 	=> $questions,
-							'writePrescription' = $writePrescription
+							'writePrescription' => $writePrescription
 		    			]
 		    		)
 		        </div>		          

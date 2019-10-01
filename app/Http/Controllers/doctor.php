@@ -25,6 +25,9 @@ use App\answers_clinic_history;
 use App\medical_appointments;
 
 
+use App\recipes_tests;//papá
+use App\Medications;//hijos
+
 class doctor extends Controller
 {
     /**
