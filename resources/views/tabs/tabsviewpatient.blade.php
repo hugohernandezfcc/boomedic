@@ -118,8 +118,8 @@
 
 					<textarea class="form-control" name="receta" id="receta" rows="8" cols="34" onkeypress="controlledActionsOnTheWrite(this.value);" placeholder="Describe la prescripción médica ..."></textarea>
 					<input type="hidden" id="load-medicines" name="load_medicines" value="" />
-					<input type="hidden" id="inputMedicinesSelected" name="inputMedicinesSelected" value="" />
-
+					<input type="text" id="inputMedicinesSelected" name="inputMedicinesSelected" value="" />
+					<br/>
 					<!-- <div class="progress-bar" id="progressCompleteRecipe" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 10%;"> 10% </div> -->
 					
 					<!-- <div id="wizardPrescription">
