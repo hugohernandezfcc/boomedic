@@ -9,9 +9,22 @@
           	<li class="active"><a href="#activity" data-toggle="tab">Detalle</a></li>
           	<li><a href="#family" id="familyOption" data-toggle="tab">Familia</a></li>
           	<li><a href="#address" onclick="initMapAddressUser();" data-toggle="tab">Dirección</a></li>
-          	<li><a href="#clinichistory" data-toggle="tab">Historia Clínica</a></li>
-          	<li><a href="#history" data-toggle="tab">Registro de Actividad</a></li>
-        </ul>
+
+
+	        <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  Más <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  	<li role="presentation">
+		          		<a role="menuitem" href="#clinichistory" data-toggle="tab">Historia Clínica</a>
+		          	</li>
+		          	<li role="presentation">
+		          		<a role="menuitem" href="#history" data-toggle="tab">Registro de Actividad</a>
+		          	</li>
+                </ul>
+	         </li>
+	    </ul>
 
         <div class="tab-content">
 
