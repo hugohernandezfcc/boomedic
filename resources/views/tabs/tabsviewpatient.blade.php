@@ -95,7 +95,7 @@
 						<div class="col-sm-10">
 					  		<div class="input-group" >
 						      	<span class="input-group-btn">
-						        	<button class="btn btn-default" onclick="setInField('heart_rate', '12 - 16');" type="button">Estable</button>
+						        	<button class="btn btn-default" onclick="setInField('heart_rate', '60 - 100');" type="button">Estable</button>
 						      	</span>
 						      	<input type="text" id="heart_rate" name="heart_rate" class="form-control" placeholder="60 - 100">
 					      	</div>
@@ -107,7 +107,7 @@
 						<div class="col-sm-10">
 					  		<div class="input-group" >
 						      	<span class="input-group-btn">
-						        	<button class="btn btn-default" type="button">Estable</button>
+						        	<button class="btn btn-default" onclick="setInField('breathing_frequency', '12 - 16');" type="button">Estable</button>
 						      	</span>
 						      	<input type="text" id="breathing_frequency" name="breathing_frequency" class="form-control" placeholder="12 - 16">
 					      	</div>

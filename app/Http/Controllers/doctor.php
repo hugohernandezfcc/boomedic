@@ -102,7 +102,9 @@ class doctor extends Controller
                 
 
                 $inputMedicinesSelected = json_decode($request->inputMedicinesSelected, true);
-
+                echo "<pre>";
+                    print_r($inputMedicinesSelected);
+                echo "</pre>";
                 for ($i=0; $i < count($inputMedicinesSelected); $i++) {
                     $recipeTest = new cli_recipes_tests; 
                     $recipeTest->medicine = $inputMedicinesSelected[$i]['id'];
