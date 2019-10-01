@@ -94,7 +94,7 @@ class doctor extends Controller
             $recipe->patient            = $idPatient;
             $recipe->notes              = $request->receta;
             $recipe->folio              = 'R-'.Auth::id().'129302'.$idPatient;
-            //$recipe->date               = Carbon::now()->format('Y-m-d');
+            $recipe->date               = Carbon::now()->format('Y-m-d');
             $recipe->appointment        = $meticalAppointment->id;
 
             if($recipe->save()){
