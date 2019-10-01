@@ -147,10 +147,12 @@
 				                	<!--
 									 	##HDHM#### tengo que validar que cuando el médico no tenga preguntas agregadas se deshabilite este botón
 									-->
-
-				                	<a href="#" id="initAttentionMedicalButton" onclick="medicalAttention('viewPatientBlade'); loadMedicines();" class="btn btn-secondary btn-flat btn-block">
-				                		Iniciar atención médica
-				                	</a>
+									<button id="initAttentionMedicalButton" onclick="medicalAttention('viewPatientBlade'); loadMedicines();" class="btn btn-secondary btn-flat btn-block">
+										Iniciar atención 
+									</button>
+				                	<!-- <a href="#" >
+				                		
+				                	</a> -->
 				                
 				                </li>
 				            </ul>
