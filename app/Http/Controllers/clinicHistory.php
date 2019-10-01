@@ -125,10 +125,10 @@ class clinicHistory extends Controller
 
                        //     //dd($result2);
                        //  }
-                          $result = DB::table('diagnostic_test_result')->where([
-                                                ['patient','=', $user->id],
-                                                ['diagnostic_test','=',null]
-                                            ])->get();
+    $diagnosticTestResults = DB::table('diagnostic_test_result')->where([
+        ['patient','=', $user->id],
+        ['diagnostic_test','=',null]
+    ])->get();
 
 
     for ($i=0; $i < count($diagnosticTestResults); $i++)  
@@ -142,7 +142,7 @@ class clinicHistory extends Controller
         } else{
             $mode = "finish";
         }
-        
+
         return  [
             'questions'         => $question,
             'email'             => $user->email,
