@@ -75,80 +75,79 @@ class medicalappointments extends Controller
         $user = User::find(Auth::id());
         //Look in the table of methods of saved payments all the information of the selected method.
         $card = DB::table('paymentsmethods')->where('id', $id)->first();
+        
         /* Insert Cita */
-        if(Session('id_lb') != null)
-        {
+        if(Session('id_lb') != null){
                $delete = DB::delete('delete from transaction_bank where appointments= ?',[Session('id_cite')]) ;               
                $medical = medical_appointments::find(Session('id_cite'));
         }else{
-                    $medical = new medical_appointments();
-                    $medical->user           = Auth::id();
-             }       
-                    $medical->user_doctor    = $request->dr;
-                    $medical->workplace      = $request->idlabor;
-                    $medical->when           = $request->when;
-                    $medical->status         = 'Registered';
+            $medical = new medical_appointments();
+            $medical->user           = Auth::id();
+        }  
+
+        $medical->user_doctor    = $request->dr;
+        $medical->workplace      = $request->idlabor;
+        $medical->when           = $request->when;
+        $medical->status         = 'Registered';
 
 
             
-           if ($medical->save()){
+        if ($medical->save()){
             $request->session()->forget('specialty');
             $request->session()->forget('latitude');
             $request->session()->forget('longitude');
             $request->session()->forget('id_lb');
             $request->session()->forget('id_cite');
 
-                         /* Insert_bank*/
-                        $Transaction = new transaction_bank();
-                        $Transaction->paymentmethod = $request->id;
-                        $Transaction->receiver = $request->receiver;
-                        $Transaction->amount = $request->amount;
-                        $Transaction->appointments =  $medical->id;
-                        $Transaction->transaction = '(Pendiente por Ejecutar)';
-                        $Transaction->save();
-                    /* Insert Transaction_bank*/
+             /* Insert_bank*/
+            $Transaction = new transaction_bank();
+            $Transaction->paymentmethod = $request->id;
+            $Transaction->receiver = $request->receiver;
+            $Transaction->amount = $request->amount;
+            $Transaction->appointments =  $medical->id;
+            $Transaction->transaction = '(Pendiente por Ejecutar)';
+            $Transaction->save();
+            /* Insert Transaction_bank*/
 
-                    //Validate payment or not
-                        if(Carbon::parse($request->when)->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
-                            $this->payments = new payments;
-                            $this->payments->PaymentAuthorizations($request->id, $Transaction->id);
-                            $tr = transaction_bank::find($Transaction->id);
-                            $trn = $tr->transaction;
-                        }else{
-                            $trn = '(Pendiente por ejecutar)';    
-                        }  
+            //Validate payment or not
+            if(Carbon::parse($request->when)->format('d-m-Y') == Carbon::now()->format('d-m-Y')){
+                // $this->payments = new payments;
+                // $this->payments->PaymentAuthorizations($request->id, $Transaction->id);
+                $tr = transaction_bank::find($Transaction->id);
+                $trn = $tr->transaction;
+            }else{
+                $trn = '(Pendiente por ejecutar)';    
+            }  
 
             $doc = User::find($request->dr); 
             $work = DB::table('labor_information')->where('id', $request->idlabor)->first();    
             $cardfin = substr_replace($card->cardnumber, '••••••••••••', 0, 12);
             $notification = array(
                 //In case the payment is approved it shows a message reminding you the amount you paid.
-            'message' => 'Transacción (pendiente por ejecutar) por un monto de: $'. $request->amount.', para más información consulte su cartera de pago... ', 
-            'success' => 'success',
-            'dr'      => $doc->name,
-            'drphoto'      => $doc->profile_photo,
-            'fecha'   => $request->when,
-            'monto'   => $request->amount,
-            'transaccion' => $trn,
-            'card'        => $cardfin,
-            'idcard'      => $card->id,
-            'spe'         => $request->spe,
-            'work'        => $work->workplace
+                'message' => 'Transacción (pendiente por ejecutar) por un monto de: $'. $request->amount.', para más información consulte su cartera de pago... ', 
+                'success' => 'success',
+                'dr'      => $doc->name,
+                'drphoto'      => $doc->profile_photo,
+                'fecha'   => $request->when,
+                'monto'   => $request->amount,
+                'transaccion' => $trn,
+                'card'        => $cardfin,
+                'idcard'      => $card->id,
+                'spe'         => $request->spe,
+                'work'        => $work->workplace
             );
 
 
          
             return redirect('medicalconsultations')->with($notification);
-         }
-
-         else {
+        }else {
              $notification = array(
                 //If it has been rejected, the internal error code is sent.
-            'message' => 'No se pudo guardar la cita, vuelva a intentarlo', 
-            'error' => 'error'
-        );
+                'message' => 'No se pudo guardar la cita, vuelva a intentarlo', 
+                'error' => 'error'
+            );
             return redirect('medicalconsultations')->with($notification);
-         }     
+        }     
     }
 
  /**
