@@ -223,12 +223,17 @@
 
     	function medicalAttention(from) {
     		byId('initAttentionMedicalButton').style.display = 'none';
+
     		if(from == "viewPatientBlade"){
     			byId('medicalAttentionTab').style.display = 'block';
 				byId('medicalAttentionLink').style.display = 'block';
 
 				var activeItem = document.getElementsByClassName('active tab-pane');
-				activeItem[0].className = 'tab-pane';
+				//activeItem[0].className = 'tab-pane';
+
+				for (var i = activeItem.length - 1; i >= 0; i--) 
+					activeItem[i].className = 'tab-pane';
+				
 
 				byId('medicalAttentionTab').className = 'active tab-pane';
 				byId('medicalAttentionLink').className = 'active tab-pane';

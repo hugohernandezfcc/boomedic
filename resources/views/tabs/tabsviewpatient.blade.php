@@ -1012,6 +1012,7 @@
 		               function controlledActionsOnTheWrite(textBody) {
 		                  var textBodyArray = textBody.split(" ");
 		                  if (textBody.length <= lengthTextBody) {
+		                  	
 		                     /**
 		                      * Agregar si existe la sustancia en el catalogo pero no fue seleccionada y se encuentra escrita en el textarea.
 		                      * (Validando para ver si lo agrego al array como optional)
