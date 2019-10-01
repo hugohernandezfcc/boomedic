@@ -37,7 +37,7 @@ class doctor extends Controller
         $this->middleware('auth');
     }
 
-//,
+
     public function medicalCareResult(Request $request, $idPatient)
     {
         $meticalAppointment = DB::table('medical_appointments')->where([
@@ -61,16 +61,17 @@ class doctor extends Controller
         // heart_rate
         // breathing_frequency
 
-        $meticalAppointment->Height     = $request->Height;
-        $meticalAppointment->aware  = $request->aware;
-        $meticalAppointment->temperature    = $request->temperature;
+        $meticalAppointment->Height             = $request->Height;
+        $meticalAppointment->aware              = $request->aware;
+        $meticalAppointment->temperature        = $request->temperature;
         $meticalAppointment->cranial_capacity   = $request->cranial_capacity;
         $meticalAppointment->waist_diameter     = $request->waist_diameter;
         $meticalAppointment->blood_pressure_pa  = $request->blood_pressure_pa;
-        $meticalAppointment->heart_rate     = $request->heart_rate;
-        $meticalAppointment->breathing_frequency    = $request->breathing_frequency;
+        $meticalAppointment->heart_rate         = $request->heart_rate;
+        $meticalAppointment->breathing_frequency= $request->breathing_frequency;
 
-        
+        if($meticalAppointment->save())
+            return redirect('doctor/viewPatient/' . $idPatient );
         
         
     }
@@ -1027,25 +1028,28 @@ class doctor extends Controller
         $this->clinicHistory = new clinicHistory;
         $data = $this->clinicHistory->helperIndex($users[0]);
 
-                $appointments = DB::table('medical_appointments')
-                        ->where('user', '=', $users[0]->id)
+        $appointments = DB::table('medical_appointments')
+                ->where('user', '=', $users[0]->id)
+                ->get();
+
+
+        $questionsAppo = DB::table('questions_clinic_history')
+                         ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
+                         ->where('questions_clinic_history.createdby', $userOne->id)
+                         ->where('questions_clinic_history.active', true)
+                        ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.*', 'answers_clinic_history.id AS a')
                         ->get();
 
+        $clinic_history_appointments = DB::table('clinic_history')
+        ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
+        ->where('userid', $users[0]->id)
+        ->where('questions_clinic_history.createdby', $userOne->id)
+        ->where('questions_clinic_history.active', true)                           
+        ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
+        ->get();              
 
-                $questionsAppo = DB::table('questions_clinic_history')
-                                 ->join('answers_clinic_history', 'questions_clinic_history.id', '=', 'answers_clinic_history.question')
-                                 ->where('questions_clinic_history.createdby', $userOne->id)
-                                 ->where('questions_clinic_history.active', true)
-                                ->select('answers_clinic_history.answer', 'answers_clinic_history.parent', 'answers_clinic_history.parent_answer','questions_clinic_history.*', 'answers_clinic_history.id AS a')
-                                ->get();
 
-                $clinic_history_appointments = DB::table('clinic_history')
-                ->join('questions_clinic_history', 'clinic_history.question_id', '=', 'questions_clinic_history.id')
-                ->where('userid', $users[0]->id)
-                ->where('questions_clinic_history.createdby', $userOne->id)
-                ->where('questions_clinic_history.active', true)                           
-                ->select('clinic_history.*', 'questions_clinic_history.text_help', 'questions_clinic_history.type')
-                ->get();              
+
 
         return view('viewPatient', [
                 
@@ -1101,7 +1105,8 @@ class doctor extends Controller
                 'countappo'     => count($appointments),
                 'questions_appointments'     => $questionsAppo,
                 'clinic_history_appointments'    => $clinic_history_appointments,
-                'patientId'         => $users[0]->id
+                'patientId'         => $users[0]->id,
+                'writePrescription' => 'write'
             ]
         )->with($allhistory)->with($data);
     }

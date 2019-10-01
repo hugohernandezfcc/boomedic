@@ -208,7 +208,8 @@
 							'patientId'		=>  $patientId,
 							'questions_appointments'	=> $questions_appointments,
 							'clinic_history_appointments'	=> $clinic_history_appointments,
-							'questions' 	=> $questions
+							'questions' 	=> $questions,
+							'writePrescription' = $writePrescription
 		    			]
 		    		)
 		        </div>		          
