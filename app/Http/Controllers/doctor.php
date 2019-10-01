@@ -60,19 +60,10 @@ class doctor extends Controller
         if($meticalAppointment->count() > 0)
            $meticalAppointment = medical_appointments::find($meticalAppointment[0]->id); 
 
-        // dd($request);
-        
-        // Height => Estatura
-        // weight
-        // temperature
-        // cranial_capacity
-        // waist_diameter
-        // blood_pressure_pa
-        // heart_rate
-        // breathing_frequency
+
 
         $meticalAppointment->Height             = $request->Height;
-        $meticalAppointment->weight              = $request->weight;
+        $meticalAppointment->weight             = $request->weight;
         $meticalAppointment->temperature        = $request->temperature;
         $meticalAppointment->cranial_capacity   = $request->cranial_capacity;
         $meticalAppointment->waist_diameter     = $request->waist_diameter;
@@ -1101,6 +1092,18 @@ class doctor extends Controller
 
 
 
+        $meticalAppointment = DB::table('medical_appointments')->where([
+                                ['user_doctor', '=',  Auth::id()],
+                                ['user', '=', $users[0]->id]
+                            ])->whereDate(
+                                'when', Carbon::now()->format('Y-m-d')
+                            )->get();
+
+
+
+        if($meticalAppointment->count() > 0)
+           $meticalAppointment = medical_appointments::find($meticalAppointment[0]->id); 
+
 
         return view('viewPatient', [
                 
@@ -1157,7 +1160,7 @@ class doctor extends Controller
                 'questions_appointments'     => $questionsAppo,
                 'clinic_history_appointments'    => $clinic_history_appointments,
                 'patientId'         => $users[0]->id,
-                'writePrescription' => 'write'
+                'writePrescription' => $meticalAppointment
             ]
         )->with($allhistory)->with($data);
     }

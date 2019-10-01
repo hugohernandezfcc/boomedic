@@ -143,6 +143,7 @@
 				                <li class="list-group-item">
 				                  	<b>No. de citas</b> <a class="pull-right">{{ $countappo }}</a>
 				                </li>
+				                @if($writePrescription->status != 'Taked')
 				                <li class="list-group-item">
 				                	<!--
 									 	##HDHM#### tengo que validar que cuando el médico no tenga preguntas agregadas se deshabilite este botón
@@ -153,8 +154,8 @@
 				                	<!-- <a href="#" >
 				                		
 				                	</a> -->
-				                
 				                </li>
+								@endif
 				            </ul>
 			            </div>
 			            <!-- /.box-body -->
