@@ -467,10 +467,10 @@
 					                h = Math.floor(h);
 					                w = w*0.40;
 					                w = Math.floor(w);
-					                  alert("Altura: "+h + "anchura " + w);
+					                  //alert("Altura: "+h + "anchura " + w);
 					            }else if(h>=1800){
 					              h-= 1840;
-					              w-= 1200;
+					              w-= 700;//1200
 					             circleWidth = 30;
 								 charge = -500;
 					            }else{
