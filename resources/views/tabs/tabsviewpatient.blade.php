@@ -84,9 +84,9 @@
 						<div class="col-sm-10">
 					  		<div class="input-group" >
 						      	<span class="input-group-btn">
-						        	<button class="btn btn-default" type="button">Estable</button>
+						        	<button class="btn btn-default" onclick="setInField('blood_pressure_pa', '120/80');" type="button">Estable</button>
 						      	</span>
-						      	<input type="text" id="blood_pressure_pa" name="blood_pressure_pa" class="form-control" placeholder="120/80 ...">
+						      	<input type="text" id="blood_pressure_pa" onclick="setInField('blood_pressure_pa', '60 - 100');" name="blood_pressure_pa" class="form-control" placeholder="120/80 ...">
 					      	</div>
 					    </div>
 					</div>
@@ -95,7 +95,7 @@
 						<div class="col-sm-10">
 					  		<div class="input-group" >
 						      	<span class="input-group-btn">
-						        	<button class="btn btn-default" type="button">Estable</button>
+						        	<button class="btn btn-default" onclick="setInField('heart_rate', '12 - 16');" type="button">Estable</button>
 						      	</span>
 						      	<input type="text" id="heart_rate" name="heart_rate" class="form-control" placeholder="60 - 100">
 					      	</div>
@@ -150,6 +150,8 @@
 	                		byId(field).value = value + '/ ';
 	                	}
 
+	                	
+
 		               /**
 		                * Se guardan los nombre de cada medicamento cuando se abre el Modal
 		                * @type {Array}
@@ -176,75 +178,75 @@
 		               function byId(argument) {
 		                  return document.getElementById(argument);
 		               }
-		               // /**
-		               //  * Utilizado para avanzar la barra de receta en cuanto se abra el Modal.
-		               //  */
-		               // $('#prescription-form-modal').on('shown.bs.modal', function () {
-		               //    byId('progressCompleteRecipe').setAttribute("style", "width: 30%;");
-		               //    byId('progressCompleteRecipe').innerHTML = "30%";
-		               // });
+		               /**
+		                * Utilizado para avanzar la barra de receta en cuanto se abra el Modal.
+		                */
+		               $('#prescription-form-modal').on('shown.bs.modal', function () {
+		                  // byId('progressCompleteRecipe').setAttribute("style", "width: 30%;");
+		                  // byId('progressCompleteRecipe').innerHTML = "30%";
+		               });
 
-		               // $(document).ready(function(){
-		               //    jQuery.noConflict(false);
-		               //    $("#wizardPrescription").steps({
-		               //          headerTag: "h3",
-		               //          bodyTag: "section",
-		               //          transitionEffect: "slideLeft",
-		               //          cssClass: "wizard",
-		               //          autoFocus: true,
-		               //          labels: {
-		               //             pagination: "Paginación",
-		               //             finish:     "Enviar",
-		               //             next:       "Revisar",
-		               //             previous:   "Editar",
-		               //             loading:    "Cargando"
-		               //          },
-		               //          showFinishButtonAlways: true,
-		               //          onStepChanged: function (event, currentIndex, priorIndex) { 
-		               //             if(currentIndex){
-		               //                byId('linkfinish').href = "#finish";
-		               //                byId('optionlinkfinish').removeAttribute("class");
-		               //                byId('progressCompleteRecipe').setAttribute("style", "width: 90%;");
-		               //                byId('progressCompleteRecipe').innerHTML = "90%";
-		               //                byId('framepdfprescription').src = "{{ url('prescriptions/pdf')}}";
-		               //             }else{
-		               //                byId('linkfinish').href = "return false;";
-		               //                byId('optionlinkfinish').className = "disabled";
-		               //                byId('progressCompleteRecipe').setAttribute("style", "width: 50%;");
-		               //                byId('progressCompleteRecipe').innerHTML = "50%";
-		               //             }
-		               //             console.log(currentIndex); // 1
-		               //             console.log(priorIndex); // 0
-		               //          },
-		               //          onFinished: function (event, currentIndex) { 
-		               //             console.log('terminado...' + event);
-		               //             console.log('terminado...' + currentIndex);
-		               //             byId('progressCompleteRecipe').setAttribute("style", "width: 100%;");
-		               //             byId('progressCompleteRecipe').innerHTML = "100%";
+		               $(document).ready(function(){
+		                  jQuery.noConflict(false);
+		                   // $("#wizardPrescription").steps({
+		                   //      headerTag: "h3",
+		                   //      bodyTag: "section",
+		                   //      transitionEffect: "slideLeft",
+		                   //      cssClass: "wizard",
+		                   //      autoFocus: true,
+		                   //      labels: {
+		                   //         pagination: "Paginación",
+		                   //         finish:     "Enviar",
+		                   //         next:       "Revisar",
+		                   //         previous:   "Editar",
+		                   //         loading:    "Cargando"
+		                   //      },
+		                   //      showFinishButtonAlways: true,
+		                   //      onStepChanged: function (event, currentIndex, priorIndex) { 
+		                   //         if(currentIndex){
+		                   //            byId('linkfinish').href = "#finish";
+		                   //            byId('optionlinkfinish').removeAttribute("class");
+		                   //            byId('progressCompleteRecipe').setAttribute("style", "width: 90%;");
+		                   //            byId('progressCompleteRecipe').innerHTML = "90%";
+		                   //            byId('framepdfprescription').src = "{{ url('prescriptions/pdf')}}";
+		                   //         }else{
+		                   //            byId('linkfinish').href = "return false;";
+		                   //            byId('optionlinkfinish').className = "disabled";
+		                   //            byId('progressCompleteRecipe').setAttribute("style", "width: 50%;");
+		                   //            byId('progressCompleteRecipe').innerHTML = "50%";
+		                   //         }
+		                   //         console.log(currentIndex); // 1
+		                   //         console.log(priorIndex); // 0
+		                   //      },
+		                   //      onFinished: function (event, currentIndex) { 
+		                   //         console.log('terminado...' + event);
+		                   //         console.log('terminado...' + currentIndex);
+		                   //         byId('progressCompleteRecipe').setAttribute("style", "width: 100%;");
+		                   //         byId('progressCompleteRecipe').innerHTML = "100%";
 		                           
 		                           
-		               //          }
-		               //       });
+		                   //      }
+		                   //   });
 		                  
-		               //    /**
-		               //     * Activa el framework select2 para la selección de la cita a la cual se dirigirá la receta.
-		               //     * @type {String}
-		               //     */
+		                  /**
+		                   * Activa el framework select2 para la selección de la cita a la cual se dirigirá la receta.
+		                   * @type {String}
+		                   */
 
 		                  
-		               //    /**
-		               //     * Permite que pueda establecer un id al botón y <LI> element de finalizar.
-		               //     */
-		               //    var getLinks = document.getElementsByTagName('a');
-		               //    for (var i = getLinks.length - 1; i >= 0; i--) 
-		               //       if(getLinks[i].href == "{{ url('prescriptions#finish')}}")
-		               //          getLinks[i].setAttribute('id', "linkfinish");
+		                  /**
+		                   * Permite que pueda establecer un id al botón y <LI> element de finalizar.
+		                   */
+		                  // var getLinks = document.getElementsByTagName('a');
+		                  // for (var i = getLinks.length - 1; i >= 0; i--) 
+		                  //    if(getLinks[i].href == "{{ url('prescriptions#finish')}}")
+		                  //       getLinks[i].setAttribute('id', "linkfinish");
 		                     
-		               //    byId('linkfinish').parentNode.setAttribute('id', "optionlinkfinish");
-		               //    byId('optionlinkfinish').className = "disabled";
-		               //    byId('linkfinish').href = "return false;";
+		                  // byId('linkfinish').parentNode.setAttribute('id', "optionlinkfinish");
+		                  // byId('optionlinkfinish').className = "disabled";
+		                  // byId('linkfinish').href = "return false;";
 		                  
-		               // });
+		               });
 		              	
 		               /**
 		                * Función responsable de identificar los movimientos de escritura sobre la receta.
