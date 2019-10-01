@@ -727,9 +727,10 @@ class profile extends Controller
               'message' => 'Tu solicitud se ha procesado correctamente.', 
               'success' => 'success'
             );
-        }
+            return redirect('user/profile/' . Auth::id() )->with($notification);          
+        }else
+            return redirect('user/profile/' . Auth::id() )->with($notification);
 
-        return redirect('user/profile/' . Auth::id() )->with($notification);          
     }        
 
     /**
