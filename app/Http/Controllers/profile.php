@@ -718,10 +718,9 @@ class profile extends Controller
                     'error' => 'error'
                 );
             }
-
         }
 
-        if(isset($notification)){
+        if(!isset($notification)){
             $notification = array(
                   //In case the payment is approved it shows a message reminding you the amount you paid.
               'message' => 'Tu solicitud se ha procesado correctamente.', 
